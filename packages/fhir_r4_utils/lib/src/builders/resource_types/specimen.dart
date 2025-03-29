@@ -1,8 +1,22 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        Specimen,
+        SpecimenCollection,
+        SpecimenProcessing,
+        SpecimenContainer;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [Specimen] to a Builder
+extension BuilderSpecimen on Specimen {
+  /// Converts [Specimen] to a [SpecimenBuilder]
+  SpecimenBuilder get toBuilder => SpecimenBuilder.fromJson(toJson());
+}
 
 /// [SpecimenBuilder]
 /// A sample to be used for analysis.
@@ -318,6 +332,11 @@ class SpecimenBuilder extends DomainResourceBuilder {
   /// specimen collection. (for example: broken vial, sent with patient,
   /// frozen).
   List<AnnotationBuilder>? note;
+
+  /// Converts a SpecimenBuilder to [Specimen]
+  Specimen build() => Specimen.fromJson(toJson());
+
+  /// Converts a [SpecimenBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1192,6 +1211,13 @@ class SpecimenBuilder extends DomainResourceBuilder {
   }
 }
 
+/// Extension to change [SpecimenCollection] to a Builder
+extension BuilderSpecimenCollection on SpecimenCollection {
+  /// Converts [SpecimenCollection] to a [SpecimenCollectionBuilder]
+  SpecimenCollectionBuilder get toBuilder =>
+      SpecimenCollectionBuilder.fromJson(toJson());
+}
+
 /// [SpecimenCollectionBuilder]
 /// Details concerning the specimen collection.
 class SpecimenCollectionBuilder extends BackboneElementBuilder {
@@ -1391,6 +1417,11 @@ class SpecimenCollectionBuilder extends BackboneElementBuilder {
   /// Getter for [fastingStatusDuration] as a FhirDurationBuilder
   FhirDurationBuilder? get fastingStatusDuration =>
       fastingStatusX?.isAs<FhirDurationBuilder>();
+
+  /// Converts a SpecimenCollectionBuilder to [SpecimenCollection]
+  SpecimenCollection build() => SpecimenCollection.fromJson(toJson());
+
+  /// Converts a [SpecimenCollectionBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1981,6 +2012,13 @@ class SpecimenCollectionBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [SpecimenProcessing] to a Builder
+extension BuilderSpecimenProcessing on SpecimenProcessing {
+  /// Converts [SpecimenProcessing] to a [SpecimenProcessingBuilder]
+  SpecimenProcessingBuilder get toBuilder =>
+      SpecimenProcessingBuilder.fromJson(toJson());
+}
+
 /// [SpecimenProcessingBuilder]
 /// Details concerning processing and processing steps for the specimen.
 class SpecimenProcessingBuilder extends BackboneElementBuilder {
@@ -2134,6 +2172,11 @@ class SpecimenProcessingBuilder extends BackboneElementBuilder {
 
   /// Getter for [timePeriod] as a PeriodBuilder
   PeriodBuilder? get timePeriod => timeX?.isAs<PeriodBuilder>();
+
+  /// Converts a SpecimenProcessingBuilder to [SpecimenProcessing]
+  SpecimenProcessing build() => SpecimenProcessing.fromJson(toJson());
+
+  /// Converts a [SpecimenProcessingBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2579,6 +2622,13 @@ class SpecimenProcessingBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [SpecimenContainer] to a Builder
+extension BuilderSpecimenContainer on SpecimenContainer {
+  /// Converts [SpecimenContainer] to a [SpecimenContainerBuilder]
+  SpecimenContainerBuilder get toBuilder =>
+      SpecimenContainerBuilder.fromJson(toJson());
+}
+
 /// [SpecimenContainerBuilder]
 /// The container holding the specimen. The recursive nature of containers;
 /// i.e. blood in tube in tray in rack is not addressed here.
@@ -2760,6 +2810,11 @@ class SpecimenContainerBuilder extends BackboneElementBuilder {
   /// Getter for [additiveReference] as a ReferenceBuilder
   ReferenceBuilder? get additiveReference =>
       additiveX?.isAs<ReferenceBuilder>();
+
+  /// Converts a SpecimenContainerBuilder to [SpecimenContainer]
+  SpecimenContainer build() => SpecimenContainer.fromJson(toJson());
+
+  /// Converts a [SpecimenContainerBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

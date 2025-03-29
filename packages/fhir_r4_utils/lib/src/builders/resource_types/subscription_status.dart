@@ -1,8 +1,21 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        SubscriptionStatus,
+        SubscriptionStatusNotificationEvent;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [SubscriptionStatus] to a Builder
+extension BuilderSubscriptionStatus on SubscriptionStatus {
+  /// Converts [SubscriptionStatus] to a [SubscriptionStatusBuilder]
+  SubscriptionStatusBuilder get toBuilder =>
+      SubscriptionStatusBuilder.fromJson(toJson());
+}
 
 /// [SubscriptionStatusBuilder]
 /// The SubscriptionStatus resource describes the state of a Subscription
@@ -232,6 +245,11 @@ class SubscriptionStatusBuilder extends DomainResourceBuilder {
   /// A record of errors that occurred when the server processed a
   /// notification.
   List<CodeableConceptBuilder>? error;
+
+  /// Converts a SubscriptionStatusBuilder to [SubscriptionStatus]
+  SubscriptionStatus build() => SubscriptionStatus.fromJson(toJson());
+
+  /// Converts a [SubscriptionStatusBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -890,6 +908,14 @@ class SubscriptionStatusBuilder extends DomainResourceBuilder {
   }
 }
 
+/// Extension to change [SubscriptionStatusNotificationEvent] to a Builder
+extension BuilderSubscriptionStatusNotificationEvent
+    on SubscriptionStatusNotificationEvent {
+  /// Converts [SubscriptionStatusNotificationEvent] to a [SubscriptionStatusNotificationEventBuilder]
+  SubscriptionStatusNotificationEventBuilder get toBuilder =>
+      SubscriptionStatusNotificationEventBuilder.fromJson(toJson());
+}
+
 /// [SubscriptionStatusNotificationEventBuilder]
 /// Detailed information about events relevant to this subscription
 /// notification.
@@ -1042,6 +1068,12 @@ class SubscriptionStatusNotificationEventBuilder
   /// (e.g., the Patient relevant to an Encounter), however it MAY refer to
   /// non-FHIR objects.
   List<ReferenceBuilder>? additionalContext;
+
+  /// Converts a SubscriptionStatusNotificationEventBuilder to [SubscriptionStatusNotificationEvent]
+  SubscriptionStatusNotificationEvent build() =>
+      SubscriptionStatusNotificationEvent.fromJson(toJson());
+
+  /// Converts a [SubscriptionStatusNotificationEventBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

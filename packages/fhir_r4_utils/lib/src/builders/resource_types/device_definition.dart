@@ -1,8 +1,26 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        DeviceDefinition,
+        DeviceDefinitionUdiDeviceIdentifier,
+        DeviceDefinitionDeviceName,
+        DeviceDefinitionSpecialization,
+        DeviceDefinitionCapability,
+        DeviceDefinitionProperty,
+        DeviceDefinitionMaterial;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [DeviceDefinition] to a Builder
+extension BuilderDeviceDefinition on DeviceDefinition {
+  /// Converts [DeviceDefinition] to a [DeviceDefinitionBuilder]
+  DeviceDefinitionBuilder get toBuilder =>
+      DeviceDefinitionBuilder.fromJson(toJson());
+}
 
 /// [DeviceDefinitionBuilder]
 /// The characteristics, operational status and capabilities of a
@@ -454,6 +472,11 @@ class DeviceDefinitionBuilder extends DomainResourceBuilder {
   /// [material]
   /// A substance used to create the material(s) of which the device is made.
   List<DeviceDefinitionMaterialBuilder>? material;
+
+  /// Converts a DeviceDefinitionBuilder to [DeviceDefinition]
+  DeviceDefinition build() => DeviceDefinition.fromJson(toJson());
+
+  /// Converts a [DeviceDefinitionBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1701,6 +1724,14 @@ class DeviceDefinitionBuilder extends DomainResourceBuilder {
   }
 }
 
+/// Extension to change [DeviceDefinitionUdiDeviceIdentifier] to a Builder
+extension BuilderDeviceDefinitionUdiDeviceIdentifier
+    on DeviceDefinitionUdiDeviceIdentifier {
+  /// Converts [DeviceDefinitionUdiDeviceIdentifier] to a [DeviceDefinitionUdiDeviceIdentifierBuilder]
+  DeviceDefinitionUdiDeviceIdentifierBuilder get toBuilder =>
+      DeviceDefinitionUdiDeviceIdentifierBuilder.fromJson(toJson());
+}
+
 /// [DeviceDefinitionUdiDeviceIdentifierBuilder]
 /// Unique device identifier (UDI) assigned to device label or package.
 /// Note that the Device may include multiple udiCarriers as it either may
@@ -1836,6 +1867,12 @@ class DeviceDefinitionUdiDeviceIdentifierBuilder
   /// [jurisdiction]
   /// The jurisdiction to which the deviceIdentifier applies.
   FhirUriBuilder? jurisdiction;
+
+  /// Converts a DeviceDefinitionUdiDeviceIdentifierBuilder to [DeviceDefinitionUdiDeviceIdentifier]
+  DeviceDefinitionUdiDeviceIdentifier build() =>
+      DeviceDefinitionUdiDeviceIdentifier.fromJson(toJson());
+
+  /// Converts a [DeviceDefinitionUdiDeviceIdentifierBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2191,6 +2228,13 @@ class DeviceDefinitionUdiDeviceIdentifierBuilder
   }
 }
 
+/// Extension to change [DeviceDefinitionDeviceName] to a Builder
+extension BuilderDeviceDefinitionDeviceName on DeviceDefinitionDeviceName {
+  /// Converts [DeviceDefinitionDeviceName] to a [DeviceDefinitionDeviceNameBuilder]
+  DeviceDefinitionDeviceNameBuilder get toBuilder =>
+      DeviceDefinitionDeviceNameBuilder.fromJson(toJson());
+}
+
 /// [DeviceDefinitionDeviceNameBuilder]
 /// A name given to the device to identify it.
 class DeviceDefinitionDeviceNameBuilder extends BackboneElementBuilder {
@@ -2311,6 +2355,12 @@ class DeviceDefinitionDeviceNameBuilder extends BackboneElementBuilder {
   /// UDILabelName | UserFriendlyName | PatientReportedName |
   /// ManufactureDeviceName | ModelName.
   DeviceNameTypeBuilder? type;
+
+  /// Converts a DeviceDefinitionDeviceNameBuilder to [DeviceDefinitionDeviceName]
+  DeviceDefinitionDeviceName build() =>
+      DeviceDefinitionDeviceName.fromJson(toJson());
+
+  /// Converts a [DeviceDefinitionDeviceNameBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2633,6 +2683,14 @@ class DeviceDefinitionDeviceNameBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [DeviceDefinitionSpecialization] to a Builder
+extension BuilderDeviceDefinitionSpecialization
+    on DeviceDefinitionSpecialization {
+  /// Converts [DeviceDefinitionSpecialization] to a [DeviceDefinitionSpecializationBuilder]
+  DeviceDefinitionSpecializationBuilder get toBuilder =>
+      DeviceDefinitionSpecializationBuilder.fromJson(toJson());
+}
+
 /// [DeviceDefinitionSpecializationBuilder]
 /// The capabilities supported on a device, the standards to which the
 /// device conforms for a particular purpose, and used for the
@@ -2753,6 +2811,12 @@ class DeviceDefinitionSpecializationBuilder extends BackboneElementBuilder {
   /// [version]
   /// The version of the standard that is used to operate and communicate.
   FhirStringBuilder? version;
+
+  /// Converts a DeviceDefinitionSpecializationBuilder to [DeviceDefinitionSpecialization]
+  DeviceDefinitionSpecialization build() =>
+      DeviceDefinitionSpecialization.fromJson(toJson());
+
+  /// Converts a [DeviceDefinitionSpecializationBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3075,6 +3139,13 @@ class DeviceDefinitionSpecializationBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [DeviceDefinitionCapability] to a Builder
+extension BuilderDeviceDefinitionCapability on DeviceDefinitionCapability {
+  /// Converts [DeviceDefinitionCapability] to a [DeviceDefinitionCapabilityBuilder]
+  DeviceDefinitionCapabilityBuilder get toBuilder =>
+      DeviceDefinitionCapabilityBuilder.fromJson(toJson());
+}
+
 /// [DeviceDefinitionCapabilityBuilder]
 /// Device capabilities.
 class DeviceDefinitionCapabilityBuilder extends BackboneElementBuilder {
@@ -3197,6 +3268,12 @@ class DeviceDefinitionCapabilityBuilder extends BackboneElementBuilder {
   /// [description]
   /// Description of capability.
   List<CodeableConceptBuilder>? description;
+
+  /// Converts a DeviceDefinitionCapabilityBuilder to [DeviceDefinitionCapability]
+  DeviceDefinitionCapability build() =>
+      DeviceDefinitionCapability.fromJson(toJson());
+
+  /// Converts a [DeviceDefinitionCapabilityBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3524,6 +3601,13 @@ class DeviceDefinitionCapabilityBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [DeviceDefinitionProperty] to a Builder
+extension BuilderDeviceDefinitionProperty on DeviceDefinitionProperty {
+  /// Converts [DeviceDefinitionProperty] to a [DeviceDefinitionPropertyBuilder]
+  DeviceDefinitionPropertyBuilder get toBuilder =>
+      DeviceDefinitionPropertyBuilder.fromJson(toJson());
+}
+
 /// [DeviceDefinitionPropertyBuilder]
 /// The actual configuration settings of a device as it actually operates,
 /// e.g., regulation status, time properties.
@@ -3663,6 +3747,12 @@ class DeviceDefinitionPropertyBuilder extends BackboneElementBuilder {
   /// [valueCode]
   /// Property value as a code, e.g., NTP4 (synced to NTP).
   List<CodeableConceptBuilder>? valueCode;
+
+  /// Converts a DeviceDefinitionPropertyBuilder to [DeviceDefinitionProperty]
+  DeviceDefinitionProperty build() =>
+      DeviceDefinitionProperty.fromJson(toJson());
+
+  /// Converts a [DeviceDefinitionPropertyBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -4027,6 +4117,13 @@ class DeviceDefinitionPropertyBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [DeviceDefinitionMaterial] to a Builder
+extension BuilderDeviceDefinitionMaterial on DeviceDefinitionMaterial {
+  /// Converts [DeviceDefinitionMaterial] to a [DeviceDefinitionMaterialBuilder]
+  DeviceDefinitionMaterialBuilder get toBuilder =>
+      DeviceDefinitionMaterialBuilder.fromJson(toJson());
+}
+
 /// [DeviceDefinitionMaterialBuilder]
 /// A substance used to create the material(s) of which the device is made.
 class DeviceDefinitionMaterialBuilder extends BackboneElementBuilder {
@@ -4156,6 +4253,12 @@ class DeviceDefinitionMaterialBuilder extends BackboneElementBuilder {
   /// [allergenicIndicator]
   /// Whether the substance is a known or suspected allergen.
   FhirBooleanBuilder? allergenicIndicator;
+
+  /// Converts a DeviceDefinitionMaterialBuilder to [DeviceDefinitionMaterial]
+  DeviceDefinitionMaterial build() =>
+      DeviceDefinitionMaterial.fromJson(toJson());
+
+  /// Converts a [DeviceDefinitionMaterialBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

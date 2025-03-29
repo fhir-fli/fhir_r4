@@ -1,8 +1,20 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        ResearchSubject;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [ResearchSubject] to a Builder
+extension BuilderResearchSubject on ResearchSubject {
+  /// Converts [ResearchSubject] to a [ResearchSubjectBuilder]
+  ResearchSubjectBuilder get toBuilder =>
+      ResearchSubjectBuilder.fromJson(toJson());
+}
 
 /// [ResearchSubjectBuilder]
 /// A physical entity which is the primary unit of operational and/or
@@ -234,6 +246,11 @@ class ResearchSubjectBuilder extends DomainResourceBuilder {
   /// A record of the patient's informed agreement to participate in the
   /// study.
   ReferenceBuilder? consent;
+
+  /// Converts a ResearchSubjectBuilder to [ResearchSubject]
+  ResearchSubject build() => ResearchSubject.fromJson(toJson());
+
+  /// Converts a [ResearchSubjectBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

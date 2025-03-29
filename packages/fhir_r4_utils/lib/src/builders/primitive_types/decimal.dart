@@ -1,5 +1,11 @@
 part of 'primitive_types.dart';
 
+/// Extension to convert a [FhirDecimal] to a [FhirDecimalBuilder]
+extension BuilderFhirDecimal on FhirDecimal {
+  /// Converts this instance to a [FhirDecimalBuilder]
+  FhirDecimalBuilder get toBuilder => FhirDecimalBuilder.fromJson(toJson());
+}
+
 /// Extension to convert a Dart number to a [FhirDecimalBuilder].
 extension FhirDecimalBuilderExtension on num {
   /// Converts a Dart number to a [FhirDecimalBuilder].

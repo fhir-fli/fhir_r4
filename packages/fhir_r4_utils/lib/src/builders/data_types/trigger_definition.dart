@@ -1,8 +1,15 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, StringExtensionForFHIR;
+    show yamlMapToJson, yamlToJson, StringExtensionForFHIR, TriggerDefinition;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [TriggerDefinition] to a Builder
+extension BuilderTriggerDefinition on TriggerDefinition {
+  /// Converts [TriggerDefinition] to a [TriggerDefinitionBuilder]
+  TriggerDefinitionBuilder get toBuilder =>
+      TriggerDefinitionBuilder.fromJson(toJson());
+}
 
 /// [TriggerDefinitionBuilder]
 /// A description of a triggering event. Triggering events can be named
@@ -180,6 +187,11 @@ class TriggerDefinitionBuilder extends DataTypeBuilder
   /// container of the trigger definition and returns whether or not the
   /// trigger fires.
   FhirExpressionBuilder? condition;
+
+  /// Converts a TriggerDefinitionBuilder to [TriggerDefinition]
+  TriggerDefinition build() => TriggerDefinition.fromJson(toJson());
+
+  /// Converts a [TriggerDefinitionBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

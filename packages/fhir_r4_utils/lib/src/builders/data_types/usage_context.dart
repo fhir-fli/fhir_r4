@@ -1,8 +1,14 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, StringExtensionForFHIR;
+    show yamlMapToJson, yamlToJson, StringExtensionForFHIR, UsageContext;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [UsageContext] to a Builder
+extension BuilderUsageContext on UsageContext {
+  /// Converts [UsageContext] to a [UsageContextBuilder]
+  UsageContextBuilder get toBuilder => UsageContextBuilder.fromJson(toJson());
+}
 
 /// [UsageContextBuilder]
 /// Specifies clinical/business/etc. metadata that can be used to retrieve,
@@ -141,6 +147,11 @@ class UsageContextBuilder extends DataTypeBuilder
 
   /// Getter for [valueReference] as a ReferenceBuilder
   ReferenceBuilder? get valueReference => valueX?.isAs<ReferenceBuilder>();
+
+  /// Converts a UsageContextBuilder to [UsageContext]
+  UsageContext build() => UsageContext.fromJson(toJson());
+
+  /// Converts a [UsageContextBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

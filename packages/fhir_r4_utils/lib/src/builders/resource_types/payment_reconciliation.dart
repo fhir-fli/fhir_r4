@@ -1,8 +1,22 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        PaymentReconciliation,
+        PaymentReconciliationDetail,
+        PaymentReconciliationProcessNote;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [PaymentReconciliation] to a Builder
+extension BuilderPaymentReconciliation on PaymentReconciliation {
+  /// Converts [PaymentReconciliation] to a [PaymentReconciliationBuilder]
+  PaymentReconciliationBuilder get toBuilder =>
+      PaymentReconciliationBuilder.fromJson(toJson());
+}
 
 /// [PaymentReconciliationBuilder]
 /// This resource provides the details including amount of a payment and
@@ -322,6 +336,11 @@ class PaymentReconciliationBuilder extends DomainResourceBuilder {
   /// A note that describes or explains the processing in a human readable
   /// form.
   List<PaymentReconciliationProcessNoteBuilder>? processNote;
+
+  /// Converts a PaymentReconciliationBuilder to [PaymentReconciliation]
+  PaymentReconciliation build() => PaymentReconciliation.fromJson(toJson());
+
+  /// Converts a [PaymentReconciliationBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1240,6 +1259,13 @@ class PaymentReconciliationBuilder extends DomainResourceBuilder {
   }
 }
 
+/// Extension to change [PaymentReconciliationDetail] to a Builder
+extension BuilderPaymentReconciliationDetail on PaymentReconciliationDetail {
+  /// Converts [PaymentReconciliationDetail] to a [PaymentReconciliationDetailBuilder]
+  PaymentReconciliationDetailBuilder get toBuilder =>
+      PaymentReconciliationDetailBuilder.fromJson(toJson());
+}
+
 /// [PaymentReconciliationDetailBuilder]
 /// Distribution of the payment amount for a previously acknowledged
 /// payable.
@@ -1452,6 +1478,12 @@ class PaymentReconciliationDetailBuilder extends BackboneElementBuilder {
   /// [amount]
   /// The monetary amount allocated from the total payment to the payable.
   MoneyBuilder? amount;
+
+  /// Converts a PaymentReconciliationDetailBuilder to [PaymentReconciliationDetail]
+  PaymentReconciliationDetail build() =>
+      PaymentReconciliationDetail.fromJson(toJson());
+
+  /// Converts a [PaymentReconciliationDetailBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2030,6 +2062,14 @@ class PaymentReconciliationDetailBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [PaymentReconciliationProcessNote] to a Builder
+extension BuilderPaymentReconciliationProcessNote
+    on PaymentReconciliationProcessNote {
+  /// Converts [PaymentReconciliationProcessNote] to a [PaymentReconciliationProcessNoteBuilder]
+  PaymentReconciliationProcessNoteBuilder get toBuilder =>
+      PaymentReconciliationProcessNoteBuilder.fromJson(toJson());
+}
+
 /// [PaymentReconciliationProcessNoteBuilder]
 /// A note that describes or explains the processing in a human readable
 /// form.
@@ -2149,6 +2189,12 @@ class PaymentReconciliationProcessNoteBuilder extends BackboneElementBuilder {
   /// [text]
   /// The explanation or description associated with the processing.
   FhirStringBuilder? text;
+
+  /// Converts a PaymentReconciliationProcessNoteBuilder to [PaymentReconciliationProcessNote]
+  PaymentReconciliationProcessNote build() =>
+      PaymentReconciliationProcessNote.fromJson(toJson());
+
+  /// Converts a [PaymentReconciliationProcessNoteBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

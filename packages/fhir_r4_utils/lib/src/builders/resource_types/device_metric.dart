@@ -1,8 +1,20 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        DeviceMetric,
+        DeviceMetricCalibration;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [DeviceMetric] to a Builder
+extension BuilderDeviceMetric on DeviceMetric {
+  /// Converts [DeviceMetric] to a [DeviceMetricBuilder]
+  DeviceMetricBuilder get toBuilder => DeviceMetricBuilder.fromJson(toJson());
+}
 
 /// [DeviceMetricBuilder]
 /// Describes a measurement, calculation or setting capability of a medical
@@ -284,6 +296,11 @@ class DeviceMetricBuilder extends DomainResourceBuilder {
   /// Describes the calibrations that have been performed or that are
   /// required to be performed.
   List<DeviceMetricCalibrationBuilder>? calibration;
+
+  /// Converts a DeviceMetricBuilder to [DeviceMetric]
+  DeviceMetric build() => DeviceMetric.fromJson(toJson());
+
+  /// Converts a [DeviceMetricBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1037,6 +1054,13 @@ class DeviceMetricBuilder extends DomainResourceBuilder {
   }
 }
 
+/// Extension to change [DeviceMetricCalibration] to a Builder
+extension BuilderDeviceMetricCalibration on DeviceMetricCalibration {
+  /// Converts [DeviceMetricCalibration] to a [DeviceMetricCalibrationBuilder]
+  DeviceMetricCalibrationBuilder get toBuilder =>
+      DeviceMetricCalibrationBuilder.fromJson(toJson());
+}
+
 /// [DeviceMetricCalibrationBuilder]
 /// Describes the calibrations that have been performed or that are
 /// required to be performed.
@@ -1167,6 +1191,11 @@ class DeviceMetricCalibrationBuilder extends BackboneElementBuilder {
   /// [time]
   /// Describes the time last calibration has been performed.
   FhirInstantBuilder? time;
+
+  /// Converts a DeviceMetricCalibrationBuilder to [DeviceMetricCalibration]
+  DeviceMetricCalibration build() => DeviceMetricCalibration.fromJson(toJson());
+
+  /// Converts a [DeviceMetricCalibrationBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

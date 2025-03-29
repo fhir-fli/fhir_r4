@@ -1,8 +1,15 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, StringExtensionForFHIR;
+    show yamlMapToJson, yamlToJson, StringExtensionForFHIR, ParameterDefinition;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [ParameterDefinition] to a Builder
+extension BuilderParameterDefinition on ParameterDefinition {
+  /// Converts [ParameterDefinition] to a [ParameterDefinitionBuilder]
+  ParameterDefinitionBuilder get toBuilder =>
+      ParameterDefinitionBuilder.fromJson(toJson());
+}
 
 /// [ParameterDefinitionBuilder]
 /// The parameters to the module. This collection specifies both the input
@@ -182,6 +189,11 @@ class ParameterDefinitionBuilder extends DataTypeBuilder
   /// If specified, this indicates a profile that the input data must conform
   /// to, or that the output data will conform to.
   FhirCanonicalBuilder? profile;
+
+  /// Converts a ParameterDefinitionBuilder to [ParameterDefinition]
+  ParameterDefinition build() => ParameterDefinition.fromJson(toJson());
+
+  /// Converts a [ParameterDefinitionBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

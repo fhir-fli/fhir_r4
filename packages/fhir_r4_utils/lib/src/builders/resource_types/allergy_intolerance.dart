@@ -1,8 +1,21 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        AllergyIntolerance,
+        AllergyIntoleranceReaction;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [AllergyIntolerance] to a Builder
+extension BuilderAllergyIntolerance on AllergyIntolerance {
+  /// Converts [AllergyIntolerance] to a [AllergyIntoleranceBuilder]
+  AllergyIntoleranceBuilder get toBuilder =>
+      AllergyIntoleranceBuilder.fromJson(toJson());
+}
 
 /// [AllergyIntoleranceBuilder]
 /// Risk of harmful or undesirable, physiological response which is unique
@@ -377,6 +390,11 @@ class AllergyIntoleranceBuilder extends DomainResourceBuilder {
   /// Details about each adverse reaction event linked to exposure to the
   /// identified substance.
   List<AllergyIntoleranceReactionBuilder>? reaction;
+
+  /// Converts a AllergyIntoleranceBuilder to [AllergyIntolerance]
+  AllergyIntolerance build() => AllergyIntolerance.fromJson(toJson());
+
+  /// Converts a [AllergyIntoleranceBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1464,6 +1482,13 @@ class AllergyIntoleranceBuilder extends DomainResourceBuilder {
   }
 }
 
+/// Extension to change [AllergyIntoleranceReaction] to a Builder
+extension BuilderAllergyIntoleranceReaction on AllergyIntoleranceReaction {
+  /// Converts [AllergyIntoleranceReaction] to a [AllergyIntoleranceReactionBuilder]
+  AllergyIntoleranceReactionBuilder get toBuilder =>
+      AllergyIntoleranceReactionBuilder.fromJson(toJson());
+}
+
 /// [AllergyIntoleranceReactionBuilder]
 /// Details about each adverse reaction event linked to exposure to the
 /// identified substance.
@@ -1661,6 +1686,12 @@ class AllergyIntoleranceReactionBuilder extends BackboneElementBuilder {
   /// Additional text about the adverse reaction event not captured in other
   /// fields.
   List<AnnotationBuilder>? note;
+
+  /// Converts a AllergyIntoleranceReactionBuilder to [AllergyIntoleranceReaction]
+  AllergyIntoleranceReaction build() =>
+      AllergyIntoleranceReaction.fromJson(toJson());
+
+  /// Converts a [AllergyIntoleranceReactionBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

@@ -1,8 +1,20 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        Parameters,
+        ParametersParameter;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [Parameters] to a Builder
+extension BuilderParameters on Parameters {
+  /// Converts [Parameters] to a [ParametersBuilder]
+  ParametersBuilder get toBuilder => ParametersBuilder.fromJson(toJson());
+}
 
 /// [ParametersBuilder]
 /// This resource is a non-persisted resource used to pass information into
@@ -115,6 +127,11 @@ class ParametersBuilder extends ResourceBuilder {
   /// [parameter]
   /// A parameter passed to or received from the operation.
   List<ParametersParameterBuilder>? parameter;
+
+  /// Converts a ParametersBuilder to [Parameters]
+  Parameters build() => Parameters.fromJson(toJson());
+
+  /// Converts a [ParametersBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -430,6 +447,13 @@ class ParametersBuilder extends ResourceBuilder {
     }
     return true;
   }
+}
+
+/// Extension to change [ParametersParameter] to a Builder
+extension BuilderParametersParameter on ParametersParameter {
+  /// Converts [ParametersParameter] to a [ParametersParameterBuilder]
+  ParametersParameterBuilder get toBuilder =>
+      ParametersParameterBuilder.fromJson(toJson());
 }
 
 /// [ParametersParameterBuilder]
@@ -790,6 +814,11 @@ class ParametersParameterBuilder extends BackboneElementBuilder {
   /// [part_]
   /// A named part of a multi-part parameter.
   List<ParametersParameterBuilder>? part_;
+
+  /// Converts a ParametersParameterBuilder to [ParametersParameter]
+  ParametersParameter build() => ParametersParameter.fromJson(toJson());
+
+  /// Converts a [ParametersParameterBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

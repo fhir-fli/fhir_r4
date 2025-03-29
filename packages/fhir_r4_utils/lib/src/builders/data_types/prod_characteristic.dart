@@ -1,8 +1,15 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, StringExtensionForFHIR;
+    show yamlMapToJson, yamlToJson, StringExtensionForFHIR, ProdCharacteristic;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [ProdCharacteristic] to a Builder
+extension BuilderProdCharacteristic on ProdCharacteristic {
+  /// Converts [ProdCharacteristic] to a [ProdCharacteristicBuilder]
+  ProdCharacteristicBuilder get toBuilder =>
+      ProdCharacteristicBuilder.fromJson(toJson());
+}
 
 /// [ProdCharacteristicBuilder]
 /// The marketing status describes the date when a medicinal product is
@@ -250,6 +257,11 @@ class ProdCharacteristicBuilder extends BackboneTypeBuilder {
   /// controlled vocabulary shall be used The term and the term identifier
   /// shall be used.
   CodeableConceptBuilder? scoring;
+
+  /// Converts a ProdCharacteristicBuilder to [ProdCharacteristic]
+  ProdCharacteristic build() => ProdCharacteristic.fromJson(toJson());
+
+  /// Converts a [ProdCharacteristicBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

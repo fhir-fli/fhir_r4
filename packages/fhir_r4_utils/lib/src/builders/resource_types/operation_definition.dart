@@ -1,8 +1,24 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        OperationDefinition,
+        OperationDefinitionParameter,
+        OperationDefinitionBinding,
+        OperationDefinitionReferencedFrom,
+        OperationDefinitionOverload;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [OperationDefinition] to a Builder
+extension BuilderOperationDefinition on OperationDefinition {
+  /// Converts [OperationDefinition] to a [OperationDefinitionBuilder]
+  OperationDefinitionBuilder get toBuilder =>
+      OperationDefinitionBuilder.fromJson(toJson());
+}
 
 /// [OperationDefinitionBuilder]
 /// A formal computable definition of an operation (on the RESTful
@@ -421,6 +437,11 @@ class OperationDefinitionBuilder extends CanonicalResourceBuilder {
   /// this operation, to help code generators when generating overloaded
   /// parameter sets for this operation.
   List<OperationDefinitionOverloadBuilder>? overload;
+
+  /// Converts a OperationDefinitionBuilder to [OperationDefinition]
+  OperationDefinition build() => OperationDefinition.fromJson(toJson());
+
+  /// Converts a [OperationDefinitionBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1706,6 +1727,13 @@ class OperationDefinitionBuilder extends CanonicalResourceBuilder {
   }
 }
 
+/// Extension to change [OperationDefinitionParameter] to a Builder
+extension BuilderOperationDefinitionParameter on OperationDefinitionParameter {
+  /// Converts [OperationDefinitionParameter] to a [OperationDefinitionParameterBuilder]
+  OperationDefinitionParameterBuilder get toBuilder =>
+      OperationDefinitionParameterBuilder.fromJson(toJson());
+}
+
 /// [OperationDefinitionParameterBuilder]
 /// The parameters for the operation/query.
 class OperationDefinitionParameterBuilder extends BackboneElementBuilder {
@@ -1943,6 +1971,12 @@ class OperationDefinitionParameterBuilder extends BackboneElementBuilder {
   /// [part_]
   /// The parts of a nested Parameter.
   List<OperationDefinitionParameterBuilder>? part_;
+
+  /// Converts a OperationDefinitionParameterBuilder to [OperationDefinitionParameter]
+  OperationDefinitionParameter build() =>
+      OperationDefinitionParameter.fromJson(toJson());
+
+  /// Converts a [OperationDefinitionParameterBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2568,6 +2602,13 @@ class OperationDefinitionParameterBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [OperationDefinitionBinding] to a Builder
+extension BuilderOperationDefinitionBinding on OperationDefinitionBinding {
+  /// Converts [OperationDefinitionBinding] to a [OperationDefinitionBindingBuilder]
+  OperationDefinitionBindingBuilder get toBuilder =>
+      OperationDefinitionBindingBuilder.fromJson(toJson());
+}
+
 /// [OperationDefinitionBindingBuilder]
 /// Binds to a value set if this parameter is coded (code, Coding,
 /// CodeableConcept).
@@ -2690,6 +2731,12 @@ class OperationDefinitionBindingBuilder extends BackboneElementBuilder {
   /// Points to the value set or external definition (e.g. implicit value
   /// set) that identifies the set of codes to be used.
   FhirCanonicalBuilder? valueSet;
+
+  /// Converts a OperationDefinitionBindingBuilder to [OperationDefinitionBinding]
+  OperationDefinitionBinding build() =>
+      OperationDefinitionBinding.fromJson(toJson());
+
+  /// Converts a [OperationDefinitionBindingBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3012,6 +3059,14 @@ class OperationDefinitionBindingBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [OperationDefinitionReferencedFrom] to a Builder
+extension BuilderOperationDefinitionReferencedFrom
+    on OperationDefinitionReferencedFrom {
+  /// Converts [OperationDefinitionReferencedFrom] to a [OperationDefinitionReferencedFromBuilder]
+  OperationDefinitionReferencedFromBuilder get toBuilder =>
+      OperationDefinitionReferencedFromBuilder.fromJson(toJson());
+}
+
 /// [OperationDefinitionReferencedFromBuilder]
 /// Identifies other resource parameters within the operation invocation
 /// that are expected to resolve to this resource.
@@ -3134,6 +3189,12 @@ class OperationDefinitionReferencedFromBuilder extends BackboneElementBuilder {
   /// The id of the element in the referencing resource that is expected to
   /// resolve to this resource.
   FhirStringBuilder? sourceId;
+
+  /// Converts a OperationDefinitionReferencedFromBuilder to [OperationDefinitionReferencedFrom]
+  OperationDefinitionReferencedFrom build() =>
+      OperationDefinitionReferencedFrom.fromJson(toJson());
+
+  /// Converts a [OperationDefinitionReferencedFromBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3457,6 +3518,13 @@ class OperationDefinitionReferencedFromBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [OperationDefinitionOverload] to a Builder
+extension BuilderOperationDefinitionOverload on OperationDefinitionOverload {
+  /// Converts [OperationDefinitionOverload] to a [OperationDefinitionOverloadBuilder]
+  OperationDefinitionOverloadBuilder get toBuilder =>
+      OperationDefinitionOverloadBuilder.fromJson(toJson());
+}
+
 /// [OperationDefinitionOverloadBuilder]
 /// Defines an appropriate combination of parameters to use when invoking
 /// this operation, to help code generators when generating overloaded
@@ -3577,6 +3645,12 @@ class OperationDefinitionOverloadBuilder extends BackboneElementBuilder {
   /// [comment]
   /// Comments to go on overload.
   FhirStringBuilder? comment;
+
+  /// Converts a OperationDefinitionOverloadBuilder to [OperationDefinitionOverload]
+  OperationDefinitionOverload build() =>
+      OperationDefinitionOverload.fromJson(toJson());
+
+  /// Converts a [OperationDefinitionOverloadBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

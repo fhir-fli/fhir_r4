@@ -103,14 +103,14 @@ class FhirMapEngine {
     if (inputName == null) {
       throw MappingDefinitionException(message: 'No input name found');
     }
-    final sourceBuilder = source.toBuilder();
+    final sourceBuilder = source.toBuilder;
     final vars = MappingVariables()
       ..add(MappingVariableMode.INPUT, inputName, sourceBuilder);
     final String? targetName =
         _getInputName(g, StructureMapInputMode.target, 'target');
     if (targetName != null) {
       if (target != null) {
-        final targetBuilder = target.toBuilder();
+        final targetBuilder = target.toBuilder;
         vars.add(MappingVariableMode.OUTPUT, targetName, targetBuilder);
       } else {
         final type = _getInputType(g, StructureMapInputMode.target);
@@ -140,7 +140,7 @@ class FhirMapEngine {
       if (result == null) {
         throw FHIRException(message: 'No output found');
       } else {
-        return result.fromBuilder();
+        return result.build();
       }
     } catch (e) {
       return e is FHIRException
@@ -737,7 +737,7 @@ class FhirMapEngine {
         await _getChildrenByName(b, src.element?.value ?? '', items);
 
         if (items.isEmpty && src.defaultValueX != null) {
-          items.add(src.defaultValueX!.toBuilder());
+          items.add(src.defaultValueX!.toBuilder);
         }
       }
     }
@@ -777,7 +777,7 @@ class FhirMapEngine {
         }
 
         final bool passed = fpe.evaluateToBoolean(
-            varsForSource, null, null, item.fromBuilder(), expr);
+            varsForSource, null, null, item.build(), expr);
 
         if (!passed) {
           remove.add(item);
@@ -816,7 +816,7 @@ class FhirMapEngine {
           }
         }
         final bool passed = fpe.evaluateToBoolean(
-            varsForSource, null, null, item.fromBuilder(), expr);
+            varsForSource, null, null, item.build(), expr);
         if (!passed) {
           throw FHIRException(
             message: "Rule '$ruleId', Check condition failed, $expr",
@@ -842,7 +842,7 @@ class FhirMapEngine {
           );
         }
         logs.add(fpe.evaluateToString(
-            varsForSource, null, null, item.fromBuilder(), expr));
+            varsForSource, null, null, item.build(), expr));
       }
       // TODO(Dokotela): implement services
       // if (logs.isNotEmpty && services != null) {
@@ -1118,8 +1118,7 @@ class FhirMapEngine {
                 : false.toFhirBooleanBuilder;
             final List<FhirBase> v = expr == null
                 ? <FhirBase>[]
-                : fpe.evaluateWithContext(
-                    vars, null, null, test.fromBuilder(), expr);
+                : fpe.evaluateWithContext(vars, null, null, test.build(), expr);
             if (v.isEmpty) {
               return null;
             } else if (v.length != 1) {
@@ -1128,7 +1127,7 @@ class FhirMapEngine {
                     'Evaluation of $expr returned ${v.length} objects',
               );
             } else {
-              return v.first.toBuilder();
+              return v.first.toBuilder;
             }
           }
 
@@ -1620,7 +1619,7 @@ class FhirMapEngine {
       MappingVariables vars, StructureMapParameter parameter) {
     final DataType p = parameter.valueX;
     if (p is! FhirId) {
-      return p.toBuilder();
+      return p.toBuilder;
     } else {
       final String n = p.toString();
       FhirBaseBuilder? b = vars.get(MappingVariableMode.INPUT, n);
@@ -1732,8 +1731,8 @@ class FhirMapEngine {
 
         if (matchingTarget != null) {
           return CodingBuilder(
-            system: group.target?.toBuilder() as FhirUriBuilder?,
-            code: matchingTarget.code?.toBuilder() as FhirCodeBuilder?,
+            system: group.target?.toBuilder,
+            code: matchingTarget.code?.toBuilder,
           );
         }
       }

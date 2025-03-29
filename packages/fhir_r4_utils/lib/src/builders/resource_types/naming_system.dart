@@ -1,8 +1,20 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        NamingSystem,
+        NamingSystemUniqueId;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [NamingSystem] to a Builder
+extension BuilderNamingSystem on NamingSystem {
+  /// Converts [NamingSystem] to a [NamingSystemBuilder]
+  NamingSystemBuilder get toBuilder => NamingSystemBuilder.fromJson(toJson());
+}
 
 /// [NamingSystemBuilder]
 /// A curated namespace that issues unique symbols within that namespace
@@ -320,6 +332,11 @@ class NamingSystemBuilder extends DomainResourceBuilder {
   /// Indicates how the system may be identified when referenced in
   /// electronic exchange.
   List<NamingSystemUniqueIdBuilder>? uniqueId;
+
+  /// Converts a NamingSystemBuilder to [NamingSystem]
+  NamingSystem build() => NamingSystem.fromJson(toJson());
+
+  /// Converts a [NamingSystemBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1179,6 +1196,13 @@ class NamingSystemBuilder extends DomainResourceBuilder {
   }
 }
 
+/// Extension to change [NamingSystemUniqueId] to a Builder
+extension BuilderNamingSystemUniqueId on NamingSystemUniqueId {
+  /// Converts [NamingSystemUniqueId] to a [NamingSystemUniqueIdBuilder]
+  NamingSystemUniqueIdBuilder get toBuilder =>
+      NamingSystemUniqueIdBuilder.fromJson(toJson());
+}
+
 /// [NamingSystemUniqueIdBuilder]
 /// Indicates how the system may be identified when referenced in
 /// electronic exchange.
@@ -1335,6 +1359,11 @@ class NamingSystemUniqueIdBuilder extends BackboneElementBuilder {
   /// appropriate to refer to the naming system. Outside of this window, the
   /// identifier might be non-deterministic.
   PeriodBuilder? period;
+
+  /// Converts a NamingSystemUniqueIdBuilder to [NamingSystemUniqueId]
+  NamingSystemUniqueId build() => NamingSystemUniqueId.fromJson(toJson());
+
+  /// Converts a [NamingSystemUniqueIdBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

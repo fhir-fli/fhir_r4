@@ -1,8 +1,27 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        PlanDefinition,
+        PlanDefinitionGoal,
+        PlanDefinitionTarget,
+        PlanDefinitionAction,
+        PlanDefinitionCondition,
+        PlanDefinitionRelatedAction,
+        PlanDefinitionParticipant,
+        PlanDefinitionDynamicValue;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [PlanDefinition] to a Builder
+extension BuilderPlanDefinition on PlanDefinition {
+  /// Converts [PlanDefinition] to a [PlanDefinitionBuilder]
+  PlanDefinitionBuilder get toBuilder =>
+      PlanDefinitionBuilder.fromJson(toJson());
+}
 
 /// [PlanDefinitionBuilder]
 /// This resource allows for the definition of various types of plans as a
@@ -542,6 +561,11 @@ class PlanDefinitionBuilder extends CanonicalResourceBuilder {
   /// pharmaceutical quality, an action would be the test that needs to be
   /// performed on a drug product as defined in the quality specification.
   List<PlanDefinitionActionBuilder>? action;
+
+  /// Converts a PlanDefinitionBuilder to [PlanDefinition]
+  PlanDefinition build() => PlanDefinition.fromJson(toJson());
+
+  /// Converts a [PlanDefinitionBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2104,6 +2128,13 @@ class PlanDefinitionBuilder extends CanonicalResourceBuilder {
   }
 }
 
+/// Extension to change [PlanDefinitionGoal] to a Builder
+extension BuilderPlanDefinitionGoal on PlanDefinitionGoal {
+  /// Converts [PlanDefinitionGoal] to a [PlanDefinitionGoalBuilder]
+  PlanDefinitionGoalBuilder get toBuilder =>
+      PlanDefinitionGoalBuilder.fromJson(toJson());
+}
+
 /// [PlanDefinitionGoalBuilder]
 /// A goal describes an expected outcome that activities within the plan
 /// are intended to achieve. For example, weight loss, restoring an
@@ -2299,6 +2330,11 @@ class PlanDefinitionGoalBuilder extends BackboneElementBuilder {
   /// [target]
   /// Indicates what should be done and within what timeframe.
   List<PlanDefinitionTargetBuilder>? target;
+
+  /// Converts a PlanDefinitionGoalBuilder to [PlanDefinitionGoal]
+  PlanDefinitionGoal build() => PlanDefinitionGoal.fromJson(toJson());
+
+  /// Converts a [PlanDefinitionGoalBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2796,6 +2832,13 @@ class PlanDefinitionGoalBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [PlanDefinitionTarget] to a Builder
+extension BuilderPlanDefinitionTarget on PlanDefinitionTarget {
+  /// Converts [PlanDefinitionTarget] to a [PlanDefinitionTargetBuilder]
+  PlanDefinitionTargetBuilder get toBuilder =>
+      PlanDefinitionTargetBuilder.fromJson(toJson());
+}
+
 /// [PlanDefinitionTargetBuilder]
 /// Indicates what should be done and within what timeframe.
 class PlanDefinitionTargetBuilder extends BackboneElementBuilder {
@@ -2945,6 +2988,11 @@ class PlanDefinitionTargetBuilder extends BackboneElementBuilder {
   /// Indicates the timeframe after the start of the goal in which the goal
   /// should be met.
   FhirDurationBuilder? due;
+
+  /// Converts a PlanDefinitionTargetBuilder to [PlanDefinitionTarget]
+  PlanDefinitionTarget build() => PlanDefinitionTarget.fromJson(toJson());
+
+  /// Converts a [PlanDefinitionTargetBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3375,6 +3423,13 @@ class PlanDefinitionTargetBuilder extends BackboneElementBuilder {
     }
     return true;
   }
+}
+
+/// Extension to change [PlanDefinitionAction] to a Builder
+extension BuilderPlanDefinitionAction on PlanDefinitionAction {
+  /// Converts [PlanDefinitionAction] to a [PlanDefinitionActionBuilder]
+  PlanDefinitionActionBuilder get toBuilder =>
+      PlanDefinitionActionBuilder.fromJson(toJson());
 }
 
 /// [PlanDefinitionActionBuilder]
@@ -3908,6 +3963,11 @@ class PlanDefinitionActionBuilder extends BackboneElementBuilder {
   /// selection behavior of at-most-one indicates that of the sub-actions, at
   /// most one may be chosen as part of realizing the action definition.
   List<PlanDefinitionActionBuilder>? action;
+
+  /// Converts a PlanDefinitionActionBuilder to [PlanDefinitionAction]
+  PlanDefinitionAction build() => PlanDefinitionAction.fromJson(toJson());
+
+  /// Converts a [PlanDefinitionActionBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -5383,6 +5443,13 @@ class PlanDefinitionActionBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [PlanDefinitionCondition] to a Builder
+extension BuilderPlanDefinitionCondition on PlanDefinitionCondition {
+  /// Converts [PlanDefinitionCondition] to a [PlanDefinitionConditionBuilder]
+  PlanDefinitionConditionBuilder get toBuilder =>
+      PlanDefinitionConditionBuilder.fromJson(toJson());
+}
+
 /// [PlanDefinitionConditionBuilder]
 /// An expression that describes applicability criteria or start/stop
 /// conditions for the action.
@@ -5503,6 +5570,11 @@ class PlanDefinitionConditionBuilder extends BackboneElementBuilder {
   /// An expression that returns true or false, indicating whether the
   /// condition is satisfied.
   FhirExpressionBuilder? expression;
+
+  /// Converts a PlanDefinitionConditionBuilder to [PlanDefinitionCondition]
+  PlanDefinitionCondition build() => PlanDefinitionCondition.fromJson(toJson());
+
+  /// Converts a [PlanDefinitionConditionBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -5825,6 +5897,13 @@ class PlanDefinitionConditionBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [PlanDefinitionRelatedAction] to a Builder
+extension BuilderPlanDefinitionRelatedAction on PlanDefinitionRelatedAction {
+  /// Converts [PlanDefinitionRelatedAction] to a [PlanDefinitionRelatedActionBuilder]
+  PlanDefinitionRelatedActionBuilder get toBuilder =>
+      PlanDefinitionRelatedActionBuilder.fromJson(toJson());
+}
+
 /// [PlanDefinitionRelatedActionBuilder]
 /// A relationship to another action such as "before" or "30-60 minutes
 /// after start of".
@@ -5966,6 +6045,12 @@ class PlanDefinitionRelatedActionBuilder extends BackboneElementBuilder {
 
   /// Getter for [offsetRange] as a RangeBuilder
   RangeBuilder? get offsetRange => offsetX?.isAs<RangeBuilder>();
+
+  /// Converts a PlanDefinitionRelatedActionBuilder to [PlanDefinitionRelatedAction]
+  PlanDefinitionRelatedAction build() =>
+      PlanDefinitionRelatedAction.fromJson(toJson());
+
+  /// Converts a [PlanDefinitionRelatedActionBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -6374,6 +6459,13 @@ class PlanDefinitionRelatedActionBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [PlanDefinitionParticipant] to a Builder
+extension BuilderPlanDefinitionParticipant on PlanDefinitionParticipant {
+  /// Converts [PlanDefinitionParticipant] to a [PlanDefinitionParticipantBuilder]
+  PlanDefinitionParticipantBuilder get toBuilder =>
+      PlanDefinitionParticipantBuilder.fromJson(toJson());
+}
+
 /// [PlanDefinitionParticipantBuilder]
 /// Indicates who should participate in performing the action described.
 class PlanDefinitionParticipantBuilder extends BackboneElementBuilder {
@@ -6493,6 +6585,12 @@ class PlanDefinitionParticipantBuilder extends BackboneElementBuilder {
   /// The role the participant should play in performing the described
   /// action.
   CodeableConceptBuilder? role;
+
+  /// Converts a PlanDefinitionParticipantBuilder to [PlanDefinitionParticipant]
+  PlanDefinitionParticipant build() =>
+      PlanDefinitionParticipant.fromJson(toJson());
+
+  /// Converts a [PlanDefinitionParticipantBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -6815,6 +6913,13 @@ class PlanDefinitionParticipantBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [PlanDefinitionDynamicValue] to a Builder
+extension BuilderPlanDefinitionDynamicValue on PlanDefinitionDynamicValue {
+  /// Converts [PlanDefinitionDynamicValue] to a [PlanDefinitionDynamicValueBuilder]
+  PlanDefinitionDynamicValueBuilder get toBuilder =>
+      PlanDefinitionDynamicValueBuilder.fromJson(toJson());
+}
+
 /// [PlanDefinitionDynamicValueBuilder]
 /// Customizations that should be applied to the statically defined
 /// resource. For example, if the dosage of a medication must be computed
@@ -6945,6 +7050,12 @@ class PlanDefinitionDynamicValueBuilder extends BackboneElementBuilder {
   /// [expression]
   /// An expression specifying the value of the customized element.
   FhirExpressionBuilder? expression;
+
+  /// Converts a PlanDefinitionDynamicValueBuilder to [PlanDefinitionDynamicValue]
+  PlanDefinitionDynamicValue build() =>
+      PlanDefinitionDynamicValue.fromJson(toJson());
+
+  /// Converts a [PlanDefinitionDynamicValueBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

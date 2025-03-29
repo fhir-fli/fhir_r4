@@ -1,8 +1,23 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        HealthcareService,
+        HealthcareServiceEligibility,
+        HealthcareServiceAvailableTime,
+        HealthcareServiceNotAvailable;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [HealthcareService] to a Builder
+extension BuilderHealthcareService on HealthcareService {
+  /// Converts [HealthcareService] to a [HealthcareServiceBuilder]
+  HealthcareServiceBuilder get toBuilder =>
+      HealthcareServiceBuilder.fromJson(toJson());
+}
 
 /// [HealthcareServiceBuilder]
 /// The details of a healthcare service available at a location.
@@ -490,6 +505,11 @@ class HealthcareServiceBuilder extends DomainResourceBuilder {
   /// Technical endpoints providing access to services operated for the
   /// specific healthcare services defined at this resource.
   List<ReferenceBuilder>? endpoint;
+
+  /// Converts a HealthcareServiceBuilder to [HealthcareService]
+  HealthcareService build() => HealthcareService.fromJson(toJson());
+
+  /// Converts a [HealthcareServiceBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1762,6 +1782,13 @@ class HealthcareServiceBuilder extends DomainResourceBuilder {
   }
 }
 
+/// Extension to change [HealthcareServiceEligibility] to a Builder
+extension BuilderHealthcareServiceEligibility on HealthcareServiceEligibility {
+  /// Converts [HealthcareServiceEligibility] to a [HealthcareServiceEligibilityBuilder]
+  HealthcareServiceEligibilityBuilder get toBuilder =>
+      HealthcareServiceEligibilityBuilder.fromJson(toJson());
+}
+
 /// [HealthcareServiceEligibilityBuilder]
 /// Does this service have specific eligibility requirements that need to
 /// be met in order to use the service?
@@ -1881,6 +1908,12 @@ class HealthcareServiceEligibilityBuilder extends BackboneElementBuilder {
   /// [comment]
   /// Describes the eligibility conditions for the service.
   FhirMarkdownBuilder? comment;
+
+  /// Converts a HealthcareServiceEligibilityBuilder to [HealthcareServiceEligibility]
+  HealthcareServiceEligibility build() =>
+      HealthcareServiceEligibility.fromJson(toJson());
+
+  /// Converts a [HealthcareServiceEligibilityBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2203,6 +2236,14 @@ class HealthcareServiceEligibilityBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [HealthcareServiceAvailableTime] to a Builder
+extension BuilderHealthcareServiceAvailableTime
+    on HealthcareServiceAvailableTime {
+  /// Converts [HealthcareServiceAvailableTime] to a [HealthcareServiceAvailableTimeBuilder]
+  HealthcareServiceAvailableTimeBuilder get toBuilder =>
+      HealthcareServiceAvailableTimeBuilder.fromJson(toJson());
+}
+
 /// [HealthcareServiceAvailableTimeBuilder]
 /// A collection of times that the Service Site is available.
 class HealthcareServiceAvailableTimeBuilder extends BackboneElementBuilder {
@@ -2347,6 +2388,12 @@ class HealthcareServiceAvailableTimeBuilder extends BackboneElementBuilder {
   /// The closing time of day. Note: If the AllDay flag is set, then this
   /// time is ignored.
   FhirTimeBuilder? availableEndTime;
+
+  /// Converts a HealthcareServiceAvailableTimeBuilder to [HealthcareServiceAvailableTime]
+  HealthcareServiceAvailableTime build() =>
+      HealthcareServiceAvailableTime.fromJson(toJson());
+
+  /// Converts a [HealthcareServiceAvailableTimeBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2738,6 +2785,14 @@ class HealthcareServiceAvailableTimeBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [HealthcareServiceNotAvailable] to a Builder
+extension BuilderHealthcareServiceNotAvailable
+    on HealthcareServiceNotAvailable {
+  /// Converts [HealthcareServiceNotAvailable] to a [HealthcareServiceNotAvailableBuilder]
+  HealthcareServiceNotAvailableBuilder get toBuilder =>
+      HealthcareServiceNotAvailableBuilder.fromJson(toJson());
+}
+
 /// [HealthcareServiceNotAvailableBuilder]
 /// The HealthcareService is not available during this period of time due
 /// to the provided reason.
@@ -2859,6 +2914,12 @@ class HealthcareServiceNotAvailableBuilder extends BackboneElementBuilder {
   /// Service is not available (seasonally or for a public holiday) from this
   /// date.
   PeriodBuilder? during;
+
+  /// Converts a HealthcareServiceNotAvailableBuilder to [HealthcareServiceNotAvailable]
+  HealthcareServiceNotAvailable build() =>
+      HealthcareServiceNotAvailable.fromJson(toJson());
+
+  /// Converts a [HealthcareServiceNotAvailableBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

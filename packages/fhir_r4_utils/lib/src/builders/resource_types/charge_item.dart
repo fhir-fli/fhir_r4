@@ -1,8 +1,20 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        ChargeItem,
+        ChargeItemPerformer;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [ChargeItem] to a Builder
+extension BuilderChargeItem on ChargeItem {
+  /// Converts [ChargeItem] to a [ChargeItemBuilder]
+  ChargeItemBuilder get toBuilder => ChargeItemBuilder.fromJson(toJson());
+}
 
 /// [ChargeItemBuilder]
 /// The resource ChargeItem describes the provision of healthcare provider
@@ -498,6 +510,11 @@ class ChargeItemBuilder extends DomainResourceBuilder {
   /// [supportingInformation]
   /// Further information supporting this charge.
   List<ReferenceBuilder>? supportingInformation;
+
+  /// Converts a ChargeItemBuilder to [ChargeItem]
+  ChargeItem build() => ChargeItem.fromJson(toJson());
+
+  /// Converts a [ChargeItemBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1943,6 +1960,13 @@ class ChargeItemBuilder extends DomainResourceBuilder {
   }
 }
 
+/// Extension to change [ChargeItemPerformer] to a Builder
+extension BuilderChargeItemPerformer on ChargeItemPerformer {
+  /// Converts [ChargeItemPerformer] to a [ChargeItemPerformerBuilder]
+  ChargeItemPerformerBuilder get toBuilder =>
+      ChargeItemPerformerBuilder.fromJson(toJson());
+}
+
 /// [ChargeItemPerformerBuilder]
 /// Indicates who or what performed or participated in the charged service.
 class ChargeItemPerformerBuilder extends BackboneElementBuilder {
@@ -2062,6 +2086,11 @@ class ChargeItemPerformerBuilder extends BackboneElementBuilder {
   /// The device, practitioner, etc. who performed or participated in the
   /// service.
   ReferenceBuilder? actor;
+
+  /// Converts a ChargeItemPerformerBuilder to [ChargeItemPerformer]
+  ChargeItemPerformer build() => ChargeItemPerformer.fromJson(toJson());
+
+  /// Converts a [ChargeItemPerformerBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

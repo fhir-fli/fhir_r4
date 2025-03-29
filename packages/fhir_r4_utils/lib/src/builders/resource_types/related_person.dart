@@ -1,8 +1,20 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        RelatedPerson,
+        RelatedPersonCommunication;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [RelatedPerson] to a Builder
+extension BuilderRelatedPerson on RelatedPerson {
+  /// Converts [RelatedPerson] to a [RelatedPersonBuilder]
+  RelatedPersonBuilder get toBuilder => RelatedPersonBuilder.fromJson(toJson());
+}
 
 /// [RelatedPersonBuilder]
 /// Information about a person that is involved in the care for a patient,
@@ -305,6 +317,11 @@ class RelatedPersonBuilder extends DomainResourceBuilder {
   /// A language which may be used to communicate with about the patient's
   /// health.
   List<RelatedPersonCommunicationBuilder>? communication;
+
+  /// Converts a RelatedPersonBuilder to [RelatedPerson]
+  RelatedPerson build() => RelatedPerson.fromJson(toJson());
+
+  /// Converts a [RelatedPersonBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1147,6 +1164,13 @@ class RelatedPersonBuilder extends DomainResourceBuilder {
   }
 }
 
+/// Extension to change [RelatedPersonCommunication] to a Builder
+extension BuilderRelatedPersonCommunication on RelatedPersonCommunication {
+  /// Converts [RelatedPersonCommunication] to a [RelatedPersonCommunicationBuilder]
+  RelatedPersonCommunicationBuilder get toBuilder =>
+      RelatedPersonCommunicationBuilder.fromJson(toJson());
+}
+
 /// [RelatedPersonCommunicationBuilder]
 /// A language which may be used to communicate with about the patient's
 /// health.
@@ -1270,6 +1294,12 @@ class RelatedPersonCommunicationBuilder extends BackboneElementBuilder {
   /// Indicates whether or not the patient prefers this language (over other
   /// languages he masters up a certain level).
   FhirBooleanBuilder? preferred;
+
+  /// Converts a RelatedPersonCommunicationBuilder to [RelatedPersonCommunication]
+  RelatedPersonCommunication build() =>
+      RelatedPersonCommunication.fromJson(toJson());
+
+  /// Converts a [RelatedPersonCommunicationBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

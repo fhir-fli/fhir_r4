@@ -1,8 +1,21 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        SupplyDelivery,
+        SupplyDeliverySuppliedItem;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [SupplyDelivery] to a Builder
+extension BuilderSupplyDelivery on SupplyDelivery {
+  /// Converts [SupplyDelivery] to a [SupplyDeliveryBuilder]
+  SupplyDeliveryBuilder get toBuilder =>
+      SupplyDeliveryBuilder.fromJson(toJson());
+}
 
 /// [SupplyDeliveryBuilder]
 /// Record of delivery of what is supplied.
@@ -296,6 +309,11 @@ class SupplyDeliveryBuilder extends DomainResourceBuilder {
   /// [receiver]
   /// Identifies the person who picked up the Supply.
   List<ReferenceBuilder>? receiver;
+
+  /// Converts a SupplyDeliveryBuilder to [SupplyDelivery]
+  SupplyDelivery build() => SupplyDelivery.fromJson(toJson());
+
+  /// Converts a [SupplyDeliveryBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1169,6 +1187,13 @@ class SupplyDeliveryBuilder extends DomainResourceBuilder {
   }
 }
 
+/// Extension to change [SupplyDeliverySuppliedItem] to a Builder
+extension BuilderSupplyDeliverySuppliedItem on SupplyDeliverySuppliedItem {
+  /// Converts [SupplyDeliverySuppliedItem] to a [SupplyDeliverySuppliedItemBuilder]
+  SupplyDeliverySuppliedItemBuilder get toBuilder =>
+      SupplyDeliverySuppliedItemBuilder.fromJson(toJson());
+}
+
 /// [SupplyDeliverySuppliedItemBuilder]
 /// The item that is being delivered or has been supplied.
 class SupplyDeliverySuppliedItemBuilder extends BackboneElementBuilder {
@@ -1299,6 +1324,12 @@ class SupplyDeliverySuppliedItemBuilder extends BackboneElementBuilder {
 
   /// Getter for [itemReference] as a ReferenceBuilder
   ReferenceBuilder? get itemReference => itemX?.isAs<ReferenceBuilder>();
+
+  /// Converts a SupplyDeliverySuppliedItemBuilder to [SupplyDeliverySuppliedItem]
+  SupplyDeliverySuppliedItem build() =>
+      SupplyDeliverySuppliedItem.fromJson(toJson());
+
+  /// Converts a [SupplyDeliverySuppliedItemBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

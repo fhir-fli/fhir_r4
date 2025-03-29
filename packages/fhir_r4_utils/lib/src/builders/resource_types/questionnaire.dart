@@ -1,8 +1,23 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        Questionnaire,
+        QuestionnaireItem,
+        QuestionnaireEnableWhen,
+        QuestionnaireAnswerOption,
+        QuestionnaireInitial;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [Questionnaire] to a Builder
+extension BuilderQuestionnaire on Questionnaire {
+  /// Converts [Questionnaire] to a [QuestionnaireBuilder]
+  QuestionnaireBuilder get toBuilder => QuestionnaireBuilder.fromJson(toJson());
+}
 
 /// [QuestionnaireBuilder]
 /// A structured set of questions intended to guide the collection of
@@ -382,6 +397,11 @@ class QuestionnaireBuilder extends CanonicalResourceBuilder {
   /// A particular question, question grouping or display text that is part
   /// of the questionnaire.
   List<QuestionnaireItemBuilder>? item;
+
+  /// Converts a QuestionnaireBuilder to [Questionnaire]
+  Questionnaire build() => Questionnaire.fromJson(toJson());
+
+  /// Converts a [QuestionnaireBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1549,6 +1569,13 @@ class QuestionnaireBuilder extends CanonicalResourceBuilder {
   }
 }
 
+/// Extension to change [QuestionnaireItem] to a Builder
+extension BuilderQuestionnaireItem on QuestionnaireItem {
+  /// Converts [QuestionnaireItem] to a [QuestionnaireItemBuilder]
+  QuestionnaireItemBuilder get toBuilder =>
+      QuestionnaireItemBuilder.fromJson(toJson());
+}
+
 /// [QuestionnaireItemBuilder]
 /// A particular question, question grouping or display text that is part
 /// of the questionnaire.
@@ -1875,6 +1902,11 @@ class QuestionnaireItemBuilder extends BackboneElementBuilder {
   /// Text, questions and other groups to be nested beneath a question or
   /// group.
   List<QuestionnaireItemBuilder>? item;
+
+  /// Converts a QuestionnaireItemBuilder to [QuestionnaireItem]
+  QuestionnaireItem build() => QuestionnaireItem.fromJson(toJson());
+
+  /// Converts a [QuestionnaireItemBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2670,6 +2702,13 @@ class QuestionnaireItemBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [QuestionnaireEnableWhen] to a Builder
+extension BuilderQuestionnaireEnableWhen on QuestionnaireEnableWhen {
+  /// Converts [QuestionnaireEnableWhen] to a [QuestionnaireEnableWhenBuilder]
+  QuestionnaireEnableWhenBuilder get toBuilder =>
+      QuestionnaireEnableWhenBuilder.fromJson(toJson());
+}
+
 /// [QuestionnaireEnableWhenBuilder]
 /// A constraint indicating that this item should only be enabled
 /// (displayed/allow answers to be captured) when the specified condition
@@ -2845,6 +2884,11 @@ class QuestionnaireEnableWhenBuilder extends BackboneElementBuilder {
 
   /// Getter for [answerReference] as a ReferenceBuilder
   ReferenceBuilder? get answerReference => answerX?.isAs<ReferenceBuilder>();
+
+  /// Converts a QuestionnaireEnableWhenBuilder to [QuestionnaireEnableWhen]
+  QuestionnaireEnableWhen build() => QuestionnaireEnableWhen.fromJson(toJson());
+
+  /// Converts a [QuestionnaireEnableWhenBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3456,6 +3500,13 @@ class QuestionnaireEnableWhenBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [QuestionnaireAnswerOption] to a Builder
+extension BuilderQuestionnaireAnswerOption on QuestionnaireAnswerOption {
+  /// Converts [QuestionnaireAnswerOption] to a [QuestionnaireAnswerOptionBuilder]
+  QuestionnaireAnswerOptionBuilder get toBuilder =>
+      QuestionnaireAnswerOptionBuilder.fromJson(toJson());
+}
+
 /// [QuestionnaireAnswerOptionBuilder]
 /// One of the permitted answers for a "choice" or "open-choice" question.
 class QuestionnaireAnswerOptionBuilder extends BackboneElementBuilder {
@@ -3600,6 +3651,12 @@ class QuestionnaireAnswerOptionBuilder extends BackboneElementBuilder {
   /// Indicates whether the answer value is selected when the list of
   /// possible answers is initially shown.
   FhirBooleanBuilder? initialSelected;
+
+  /// Converts a QuestionnaireAnswerOptionBuilder to [QuestionnaireAnswerOption]
+  QuestionnaireAnswerOption build() =>
+      QuestionnaireAnswerOption.fromJson(toJson());
+
+  /// Converts a [QuestionnaireAnswerOptionBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -4079,6 +4136,13 @@ class QuestionnaireAnswerOptionBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [QuestionnaireInitial] to a Builder
+extension BuilderQuestionnaireInitial on QuestionnaireInitial {
+  /// Converts [QuestionnaireInitial] to a [QuestionnaireInitialBuilder]
+  QuestionnaireInitialBuilder get toBuilder =>
+      QuestionnaireInitialBuilder.fromJson(toJson());
+}
+
 /// [QuestionnaireInitialBuilder]
 /// One or more values that should be pre-populated in the answer when
 /// initially rendering the questionnaire for user input.
@@ -4234,6 +4298,11 @@ class QuestionnaireInitialBuilder extends BackboneElementBuilder {
 
   /// Getter for [valueReference] as a ReferenceBuilder
   ReferenceBuilder? get valueReference => valueX?.isAs<ReferenceBuilder>();
+
+  /// Converts a QuestionnaireInitialBuilder to [QuestionnaireInitial]
+  QuestionnaireInitial build() => QuestionnaireInitial.fromJson(toJson());
+
+  /// Converts a [QuestionnaireInitialBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

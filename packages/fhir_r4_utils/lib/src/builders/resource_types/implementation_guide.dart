@@ -1,8 +1,31 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        ImplementationGuide,
+        ImplementationGuideDependsOn,
+        ImplementationGuideGlobal,
+        ImplementationGuideDefinition,
+        ImplementationGuideGrouping,
+        ImplementationGuideResource,
+        ImplementationGuidePage,
+        ImplementationGuideParameter,
+        ImplementationGuideTemplate,
+        ImplementationGuideManifest,
+        ImplementationGuideResource1,
+        ImplementationGuidePage1;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [ImplementationGuide] to a Builder
+extension BuilderImplementationGuide on ImplementationGuide {
+  /// Converts [ImplementationGuide] to a [ImplementationGuideBuilder]
+  ImplementationGuideBuilder get toBuilder =>
+      ImplementationGuideBuilder.fromJson(toJson());
+}
 
 /// [ImplementationGuideBuilder]
 /// A set of rules of how a particular interoperability or standards
@@ -358,6 +381,11 @@ class ImplementationGuideBuilder extends CanonicalResourceBuilder {
   /// Information about an assembled implementation guide, created by the
   /// publication tooling.
   ImplementationGuideManifestBuilder? manifest;
+
+  /// Converts a ImplementationGuideBuilder to [ImplementationGuide]
+  ImplementationGuide build() => ImplementationGuide.fromJson(toJson());
+
+  /// Converts a [ImplementationGuideBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1451,6 +1479,13 @@ class ImplementationGuideBuilder extends CanonicalResourceBuilder {
   }
 }
 
+/// Extension to change [ImplementationGuideDependsOn] to a Builder
+extension BuilderImplementationGuideDependsOn on ImplementationGuideDependsOn {
+  /// Converts [ImplementationGuideDependsOn] to a [ImplementationGuideDependsOnBuilder]
+  ImplementationGuideDependsOnBuilder get toBuilder =>
+      ImplementationGuideDependsOnBuilder.fromJson(toJson());
+}
+
 /// [ImplementationGuideDependsOnBuilder]
 /// Another implementation guide that this implementation depends on.
 /// Typically, an implementation guide uses value sets, profiles
@@ -1584,6 +1619,12 @@ class ImplementationGuideDependsOnBuilder extends BackboneElementBuilder {
   /// The version of the IG that is depended on, when the correct version is
   /// required to understand the IG correctly.
   FhirStringBuilder? version;
+
+  /// Converts a ImplementationGuideDependsOnBuilder to [ImplementationGuideDependsOn]
+  ImplementationGuideDependsOn build() =>
+      ImplementationGuideDependsOn.fromJson(toJson());
+
+  /// Converts a [ImplementationGuideDependsOnBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1938,6 +1979,13 @@ class ImplementationGuideDependsOnBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [ImplementationGuideGlobal] to a Builder
+extension BuilderImplementationGuideGlobal on ImplementationGuideGlobal {
+  /// Converts [ImplementationGuideGlobal] to a [ImplementationGuideGlobalBuilder]
+  ImplementationGuideGlobalBuilder get toBuilder =>
+      ImplementationGuideGlobalBuilder.fromJson(toJson());
+}
+
 /// [ImplementationGuideGlobalBuilder]
 /// A set of profiles that all resources covered by this implementation
 /// guide must conform to.
@@ -2057,6 +2105,12 @@ class ImplementationGuideGlobalBuilder extends BackboneElementBuilder {
   /// [profile]
   /// A reference to the profile that all instances must conform to.
   FhirCanonicalBuilder? profile;
+
+  /// Converts a ImplementationGuideGlobalBuilder to [ImplementationGuideGlobal]
+  ImplementationGuideGlobal build() =>
+      ImplementationGuideGlobal.fromJson(toJson());
+
+  /// Converts a [ImplementationGuideGlobalBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2379,6 +2433,14 @@ class ImplementationGuideGlobalBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [ImplementationGuideDefinition] to a Builder
+extension BuilderImplementationGuideDefinition
+    on ImplementationGuideDefinition {
+  /// Converts [ImplementationGuideDefinition] to a [ImplementationGuideDefinitionBuilder]
+  ImplementationGuideDefinitionBuilder get toBuilder =>
+      ImplementationGuideDefinitionBuilder.fromJson(toJson());
+}
+
 /// [ImplementationGuideDefinitionBuilder]
 /// The information needed by an IG publisher tool to publish the whole
 /// implementation guide.
@@ -2552,6 +2614,12 @@ class ImplementationGuideDefinitionBuilder extends BackboneElementBuilder {
   /// [template]
   /// A template for building resources.
   List<ImplementationGuideTemplateBuilder>? template;
+
+  /// Converts a ImplementationGuideDefinitionBuilder to [ImplementationGuideDefinition]
+  ImplementationGuideDefinition build() =>
+      ImplementationGuideDefinition.fromJson(toJson());
+
+  /// Converts a [ImplementationGuideDefinitionBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2990,6 +3058,13 @@ class ImplementationGuideDefinitionBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [ImplementationGuideGrouping] to a Builder
+extension BuilderImplementationGuideGrouping on ImplementationGuideGrouping {
+  /// Converts [ImplementationGuideGrouping] to a [ImplementationGuideGroupingBuilder]
+  ImplementationGuideGroupingBuilder get toBuilder =>
+      ImplementationGuideGroupingBuilder.fromJson(toJson());
+}
+
 /// [ImplementationGuideGroupingBuilder]
 /// A logical group of resources. Logical groups can be used when building
 /// pages.
@@ -3110,6 +3185,12 @@ class ImplementationGuideGroupingBuilder extends BackboneElementBuilder {
   /// [description]
   /// Human readable text describing the package.
   FhirStringBuilder? description;
+
+  /// Converts a ImplementationGuideGroupingBuilder to [ImplementationGuideGrouping]
+  ImplementationGuideGrouping build() =>
+      ImplementationGuideGrouping.fromJson(toJson());
+
+  /// Converts a [ImplementationGuideGroupingBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3432,6 +3513,13 @@ class ImplementationGuideGroupingBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [ImplementationGuideResource] to a Builder
+extension BuilderImplementationGuideResource on ImplementationGuideResource {
+  /// Converts [ImplementationGuideResource] to a [ImplementationGuideResourceBuilder]
+  ImplementationGuideResourceBuilder get toBuilder =>
+      ImplementationGuideResourceBuilder.fromJson(toJson());
+}
+
 /// [ImplementationGuideResourceBuilder]
 /// A resource that is part of the implementation guide. Conformance
 /// resources (value set, structure definition, capability statements etc.)
@@ -3615,6 +3703,12 @@ class ImplementationGuideResourceBuilder extends BackboneElementBuilder {
   /// [groupingId]
   /// Reference to the id of the grouping this resource appears in.
   FhirIdBuilder? groupingId;
+
+  /// Converts a ImplementationGuideResourceBuilder to [ImplementationGuideResource]
+  ImplementationGuideResource build() =>
+      ImplementationGuideResource.fromJson(toJson());
+
+  /// Converts a [ImplementationGuideResourceBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -4124,6 +4218,13 @@ class ImplementationGuideResourceBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [ImplementationGuidePage] to a Builder
+extension BuilderImplementationGuidePage on ImplementationGuidePage {
+  /// Converts [ImplementationGuidePage] to a [ImplementationGuidePageBuilder]
+  ImplementationGuidePageBuilder get toBuilder =>
+      ImplementationGuidePageBuilder.fromJson(toJson());
+}
+
 /// [ImplementationGuidePageBuilder]
 /// A page / section in the implementation guide. The root page is the
 /// implementation guide home page.
@@ -4278,6 +4379,11 @@ class ImplementationGuidePageBuilder extends BackboneElementBuilder {
   /// [page]
   /// Nested Pages/Sections under this page.
   List<ImplementationGuidePageBuilder>? page;
+
+  /// Converts a ImplementationGuidePageBuilder to [ImplementationGuidePage]
+  ImplementationGuidePage build() => ImplementationGuidePage.fromJson(toJson());
+
+  /// Converts a [ImplementationGuidePageBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -4723,6 +4829,13 @@ class ImplementationGuidePageBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [ImplementationGuideParameter] to a Builder
+extension BuilderImplementationGuideParameter on ImplementationGuideParameter {
+  /// Converts [ImplementationGuideParameter] to a [ImplementationGuideParameterBuilder]
+  ImplementationGuideParameterBuilder get toBuilder =>
+      ImplementationGuideParameterBuilder.fromJson(toJson());
+}
+
 /// [ImplementationGuideParameterBuilder]
 /// Defines how IG is built by tools.
 class ImplementationGuideParameterBuilder extends BackboneElementBuilder {
@@ -4843,6 +4956,12 @@ class ImplementationGuideParameterBuilder extends BackboneElementBuilder {
   /// [value]
   /// Value for named type.
   FhirStringBuilder? value;
+
+  /// Converts a ImplementationGuideParameterBuilder to [ImplementationGuideParameter]
+  ImplementationGuideParameter build() =>
+      ImplementationGuideParameter.fromJson(toJson());
+
+  /// Converts a [ImplementationGuideParameterBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -5165,6 +5284,13 @@ class ImplementationGuideParameterBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [ImplementationGuideTemplate] to a Builder
+extension BuilderImplementationGuideTemplate on ImplementationGuideTemplate {
+  /// Converts [ImplementationGuideTemplate] to a [ImplementationGuideTemplateBuilder]
+  ImplementationGuideTemplateBuilder get toBuilder =>
+      ImplementationGuideTemplateBuilder.fromJson(toJson());
+}
+
 /// [ImplementationGuideTemplateBuilder]
 /// A template for building resources.
 class ImplementationGuideTemplateBuilder extends BackboneElementBuilder {
@@ -5294,6 +5420,12 @@ class ImplementationGuideTemplateBuilder extends BackboneElementBuilder {
   /// [scope]
   /// The scope in which the template applies.
   FhirStringBuilder? scope;
+
+  /// Converts a ImplementationGuideTemplateBuilder to [ImplementationGuideTemplate]
+  ImplementationGuideTemplate build() =>
+      ImplementationGuideTemplate.fromJson(toJson());
+
+  /// Converts a [ImplementationGuideTemplateBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -5648,6 +5780,13 @@ class ImplementationGuideTemplateBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [ImplementationGuideManifest] to a Builder
+extension BuilderImplementationGuideManifest on ImplementationGuideManifest {
+  /// Converts [ImplementationGuideManifest] to a [ImplementationGuideManifestBuilder]
+  ImplementationGuideManifestBuilder get toBuilder =>
+      ImplementationGuideManifestBuilder.fromJson(toJson());
+}
+
 /// [ImplementationGuideManifestBuilder]
 /// Information about an assembled implementation guide, created by the
 /// publication tooling.
@@ -5814,6 +5953,12 @@ class ImplementationGuideManifestBuilder extends BackboneElementBuilder {
   /// that is part of the IG - e.g. zip, jar and similar files that could be
   /// the target of a hyperlink in a derived IG.
   List<FhirStringBuilder>? other;
+
+  /// Converts a ImplementationGuideManifestBuilder to [ImplementationGuideManifest]
+  ImplementationGuideManifest build() =>
+      ImplementationGuideManifest.fromJson(toJson());
+
+  /// Converts a [ImplementationGuideManifestBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -6252,6 +6397,13 @@ class ImplementationGuideManifestBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [ImplementationGuideResource1] to a Builder
+extension BuilderImplementationGuideResource1 on ImplementationGuideResource1 {
+  /// Converts [ImplementationGuideResource1] to a [ImplementationGuideResource1Builder]
+  ImplementationGuideResource1Builder get toBuilder =>
+      ImplementationGuideResource1Builder.fromJson(toJson());
+}
+
 /// [ImplementationGuideResource1Builder]
 /// A resource that is part of the implementation guide. Conformance
 /// resources (value set, structure definition, capability statements etc.)
@@ -6397,6 +6549,12 @@ class ImplementationGuideResource1Builder extends BackboneElementBuilder {
   /// [relativePath]
   /// The relative path for primary page for this resource within the IG.
   FhirUrlBuilder? relativePath;
+
+  /// Converts a ImplementationGuideResource1Builder to [ImplementationGuideResource1]
+  ImplementationGuideResource1 build() =>
+      ImplementationGuideResource1.fromJson(toJson());
+
+  /// Converts a [ImplementationGuideResource1Builder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -6805,6 +6963,13 @@ class ImplementationGuideResource1Builder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [ImplementationGuidePage1] to a Builder
+extension BuilderImplementationGuidePage1 on ImplementationGuidePage1 {
+  /// Converts [ImplementationGuidePage1] to a [ImplementationGuidePage1Builder]
+  ImplementationGuidePage1Builder get toBuilder =>
+      ImplementationGuidePage1Builder.fromJson(toJson());
+}
+
 /// [ImplementationGuidePage1Builder]
 /// Information about a page within the IG.
 class ImplementationGuidePage1Builder extends BackboneElementBuilder {
@@ -6934,6 +7099,12 @@ class ImplementationGuidePage1Builder extends BackboneElementBuilder {
   /// [anchor]
   /// The name of an anchor available on the page.
   List<FhirStringBuilder>? anchor;
+
+  /// Converts a ImplementationGuidePage1Builder to [ImplementationGuidePage1]
+  ImplementationGuidePage1 build() =>
+      ImplementationGuidePage1.fromJson(toJson());
+
+  /// Converts a [ImplementationGuidePage1Builder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

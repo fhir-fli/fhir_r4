@@ -1,8 +1,14 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, StringExtensionForFHIR;
+    show yamlMapToJson, yamlToJson, StringExtensionForFHIR, Ratio;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [Ratio] to a Builder
+extension BuilderRatio on Ratio {
+  /// Converts [Ratio] to a [RatioBuilder]
+  RatioBuilder get toBuilder => RatioBuilder.fromJson(toJson());
+}
 
 /// [RatioBuilder]
 /// A relationship of two Quantity values - expressed as a numerator and a
@@ -131,6 +137,11 @@ class RatioBuilder extends DataTypeBuilder
   /// [denominator]
   /// The value of the denominator.
   QuantityBuilder? denominator;
+
+  /// Converts a RatioBuilder to [Ratio]
+  Ratio build() => Ratio.fromJson(toJson());
+
+  /// Converts a [RatioBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

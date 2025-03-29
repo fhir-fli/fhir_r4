@@ -1,8 +1,21 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        Condition,
+        ConditionStage,
+        ConditionEvidence;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [Condition] to a Builder
+extension BuilderCondition on Condition {
+  /// Converts [Condition] to a [ConditionBuilder]
+  ConditionBuilder get toBuilder => ConditionBuilder.fromJson(toJson());
+}
 
 /// [ConditionBuilder]
 /// A clinical condition, problem, diagnosis, or other event, situation,
@@ -409,6 +422,11 @@ class ConditionBuilder extends DomainResourceBuilder {
   /// notes/comments entry for description of the Condition, its diagnosis
   /// and prognosis.
   List<AnnotationBuilder>? note;
+
+  /// Converts a ConditionBuilder to [Condition]
+  Condition build() => Condition.fromJson(toJson());
+
+  /// Converts a [ConditionBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1670,6 +1688,13 @@ class ConditionBuilder extends DomainResourceBuilder {
   }
 }
 
+/// Extension to change [ConditionStage] to a Builder
+extension BuilderConditionStage on ConditionStage {
+  /// Converts [ConditionStage] to a [ConditionStageBuilder]
+  ConditionStageBuilder get toBuilder =>
+      ConditionStageBuilder.fromJson(toJson());
+}
+
 /// [ConditionStageBuilder]
 /// Clinical stage or grade of a condition. May include formal severity
 /// assessments.
@@ -1805,6 +1830,11 @@ class ConditionStageBuilder extends BackboneElementBuilder {
   /// [type]
   /// The kind of staging, such as pathological or clinical staging.
   CodeableConceptBuilder? type;
+
+  /// Converts a ConditionStageBuilder to [ConditionStage]
+  ConditionStage build() => ConditionStage.fromJson(toJson());
+
+  /// Converts a [ConditionStageBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2164,6 +2194,13 @@ class ConditionStageBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [ConditionEvidence] to a Builder
+extension BuilderConditionEvidence on ConditionEvidence {
+  /// Converts [ConditionEvidence] to a [ConditionEvidenceBuilder]
+  ConditionEvidenceBuilder get toBuilder =>
+      ConditionEvidenceBuilder.fromJson(toJson());
+}
+
 /// [ConditionEvidenceBuilder]
 /// Supporting evidence / manifestations that are the basis of the
 /// Condition's verification status, such as evidence that confirmed or
@@ -2291,6 +2328,11 @@ class ConditionEvidenceBuilder extends BackboneElementBuilder {
   /// [detail]
   /// Links to other relevant information, including pathology reports.
   List<ReferenceBuilder>? detail;
+
+  /// Converts a ConditionEvidenceBuilder to [ConditionEvidence]
+  ConditionEvidence build() => ConditionEvidence.fromJson(toJson());
+
+  /// Converts a [ConditionEvidenceBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

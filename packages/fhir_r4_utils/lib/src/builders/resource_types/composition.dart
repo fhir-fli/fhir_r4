@@ -1,8 +1,23 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        Composition,
+        CompositionAttester,
+        CompositionRelatesTo,
+        CompositionEvent,
+        CompositionSection;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [Composition] to a Builder
+extension BuilderComposition on Composition {
+  /// Converts [Composition] to a [CompositionBuilder]
+  CompositionBuilder get toBuilder => CompositionBuilder.fromJson(toJson());
+}
 
 /// [CompositionBuilder]
 /// A set of healthcare-related information that is assembled together into
@@ -352,6 +367,11 @@ class CompositionBuilder extends DomainResourceBuilder {
   /// [section]
   /// The root of the sections that make up the composition.
   List<CompositionSectionBuilder>? section;
+
+  /// Converts a CompositionBuilder to [Composition]
+  Composition build() => Composition.fromJson(toJson());
+
+  /// Converts a [CompositionBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1285,6 +1305,13 @@ class CompositionBuilder extends DomainResourceBuilder {
   }
 }
 
+/// Extension to change [CompositionAttester] to a Builder
+extension BuilderCompositionAttester on CompositionAttester {
+  /// Converts [CompositionAttester] to a [CompositionAttesterBuilder]
+  CompositionAttesterBuilder get toBuilder =>
+      CompositionAttesterBuilder.fromJson(toJson());
+}
+
 /// [CompositionAttesterBuilder]
 /// A participant who has attested to the accuracy of the
 /// composition/document.
@@ -1414,6 +1441,11 @@ class CompositionAttesterBuilder extends BackboneElementBuilder {
   /// [party]
   /// Who attested the composition in the specified way.
   ReferenceBuilder? party;
+
+  /// Converts a CompositionAttesterBuilder to [CompositionAttester]
+  CompositionAttester build() => CompositionAttester.fromJson(toJson());
+
+  /// Converts a [CompositionAttesterBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1768,6 +1800,13 @@ class CompositionAttesterBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [CompositionRelatesTo] to a Builder
+extension BuilderCompositionRelatesTo on CompositionRelatesTo {
+  /// Converts [CompositionRelatesTo] to a [CompositionRelatesToBuilder]
+  CompositionRelatesToBuilder get toBuilder =>
+      CompositionRelatesToBuilder.fromJson(toJson());
+}
+
 /// [CompositionRelatesToBuilder]
 /// Relationships that this composition has with other compositions or
 /// documents that already exist.
@@ -1895,6 +1934,11 @@ class CompositionRelatesToBuilder extends BackboneElementBuilder {
 
   /// Getter for [targetReference] as a ReferenceBuilder
   ReferenceBuilder? get targetReference => targetX?.isAs<ReferenceBuilder>();
+
+  /// Converts a CompositionRelatesToBuilder to [CompositionRelatesTo]
+  CompositionRelatesTo build() => CompositionRelatesTo.fromJson(toJson());
+
+  /// Converts a [CompositionRelatesToBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2271,6 +2315,13 @@ class CompositionRelatesToBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [CompositionEvent] to a Builder
+extension BuilderCompositionEvent on CompositionEvent {
+  /// Converts [CompositionEvent] to a [CompositionEventBuilder]
+  CompositionEventBuilder get toBuilder =>
+      CompositionEventBuilder.fromJson(toJson());
+}
+
 /// [CompositionEventBuilder]
 /// The clinical service, such as a colonoscopy or an appendectomy, being
 /// documented.
@@ -2416,6 +2467,11 @@ class CompositionEventBuilder extends BackboneElementBuilder {
   /// example, this could be used to document such a colonoscopy or an
   /// appendectomy.
   List<ReferenceBuilder>? detail;
+
+  /// Converts a CompositionEventBuilder to [CompositionEvent]
+  CompositionEvent build() => CompositionEvent.fromJson(toJson());
+
+  /// Converts a [CompositionEventBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2780,6 +2836,13 @@ class CompositionEventBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [CompositionSection] to a Builder
+extension BuilderCompositionSection on CompositionSection {
+  /// Converts [CompositionSection] to a [CompositionSectionBuilder]
+  CompositionSectionBuilder get toBuilder =>
+      CompositionSectionBuilder.fromJson(toJson());
+}
+
 /// [CompositionSectionBuilder]
 /// The root of the sections that make up the composition.
 class CompositionSectionBuilder extends BackboneElementBuilder {
@@ -3018,6 +3081,11 @@ class CompositionSectionBuilder extends BackboneElementBuilder {
   /// [section]
   /// A nested sub-section within this section.
   List<CompositionSectionBuilder>? section;
+
+  /// Converts a CompositionSectionBuilder to [CompositionSection]
+  CompositionSection build() => CompositionSection.fromJson(toJson());
+
+  /// Converts a [CompositionSectionBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

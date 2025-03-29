@@ -1,8 +1,20 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        EnrollmentRequest;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [EnrollmentRequest] to a Builder
+extension BuilderEnrollmentRequest on EnrollmentRequest {
+  /// Converts [EnrollmentRequest] to a [EnrollmentRequestBuilder]
+  EnrollmentRequestBuilder get toBuilder =>
+      EnrollmentRequestBuilder.fromJson(toJson());
+}
 
 /// [EnrollmentRequestBuilder]
 /// This resource provides the insurance enrollment details to the insurer
@@ -221,6 +233,11 @@ class EnrollmentRequestBuilder extends DomainResourceBuilder {
   /// [coverage]
   /// Reference to the program or plan identification, underwriter or payor.
   ReferenceBuilder? coverage;
+
+  /// Converts a EnrollmentRequestBuilder to [EnrollmentRequest]
+  EnrollmentRequest build() => EnrollmentRequest.fromJson(toJson());
+
+  /// Converts a [EnrollmentRequestBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

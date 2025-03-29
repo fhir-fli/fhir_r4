@@ -1,5 +1,11 @@
 part of 'primitive_types.dart';
 
+/// Extension to convert a [FhirBoolean] to a [FhirBooleanBuilder]
+extension BuilderFhirBoolean on FhirBoolean {
+  /// Converts this instance to a [FhirBooleanBuilder]
+  FhirBooleanBuilder get toBuilder => FhirBooleanBuilder.fromJson(toJson());
+}
+
 /// Extension to convert a [bool] to [FhirBooleanBuilder]
 extension FhirBooleanBuilderExtension on bool {
   /// Converts a [bool] to [FhirBooleanBuilder]

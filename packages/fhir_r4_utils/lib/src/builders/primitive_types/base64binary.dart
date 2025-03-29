@@ -1,5 +1,12 @@
 part of 'primitive_types.dart';
 
+/// Extension to convert a [FhirBase64Binary] to a [FhirBase64BinaryBuilder]
+extension BuilderFhirBase64Binary on FhirBase64Binary {
+  /// Converts this instance to a [FhirBase64BinaryBuilder]
+  FhirBase64BinaryBuilder get toBuilder =>
+      FhirBase64BinaryBuilder.fromJson(toJson());
+}
+
 /// Extension to convert a [String] to [FhirBase64BinaryBuilder]
 extension FhirBase64BinaryBuilderExtension on String {
   /// Converts a [String] to [FhirBase64BinaryBuilder]

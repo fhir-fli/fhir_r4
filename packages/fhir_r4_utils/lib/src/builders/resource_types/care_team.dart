@@ -1,8 +1,20 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        CareTeam,
+        CareTeamParticipant;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [CareTeam] to a Builder
+extension BuilderCareTeam on CareTeam {
+  /// Converts [CareTeam] to a [CareTeamBuilder]
+  CareTeamBuilder get toBuilder => CareTeamBuilder.fromJson(toJson());
+}
 
 /// [CareTeamBuilder]
 /// The Care Team includes all the people and organizations who plan to
@@ -324,6 +336,11 @@ class CareTeamBuilder extends DomainResourceBuilder {
   /// [note]
   /// Comments made about the CareTeam.
   List<AnnotationBuilder>? note;
+
+  /// Converts a CareTeamBuilder to [CareTeam]
+  CareTeam build() => CareTeam.fromJson(toJson());
+
+  /// Converts a [CareTeamBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1203,6 +1220,13 @@ class CareTeamBuilder extends DomainResourceBuilder {
   }
 }
 
+/// Extension to change [CareTeamParticipant] to a Builder
+extension BuilderCareTeamParticipant on CareTeamParticipant {
+  /// Converts [CareTeamParticipant] to a [CareTeamParticipantBuilder]
+  CareTeamParticipantBuilder get toBuilder =>
+      CareTeamParticipantBuilder.fromJson(toJson());
+}
+
 /// [CareTeamParticipantBuilder]
 /// Identifies all people and organizations who are expected to be involved
 /// in the care team.
@@ -1351,6 +1375,11 @@ class CareTeamParticipantBuilder extends BackboneElementBuilder {
   /// Indicates when the specific member or organization did (or is intended
   /// to) come into effect and end.
   PeriodBuilder? period;
+
+  /// Converts a CareTeamParticipantBuilder to [CareTeamParticipant]
+  CareTeamParticipant build() => CareTeamParticipant.fromJson(toJson());
+
+  /// Converts a [CareTeamParticipantBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

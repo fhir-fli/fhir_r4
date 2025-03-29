@@ -1,8 +1,22 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        StringExtensionForFHIR,
+        DataRequirement,
+        DataRequirementCodeFilter,
+        DataRequirementDateFilter,
+        DataRequirementSort;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [DataRequirement] to a Builder
+extension BuilderDataRequirement on DataRequirement {
+  /// Converts [DataRequirement] to a [DataRequirementBuilder]
+  DataRequirementBuilder get toBuilder =>
+      DataRequirementBuilder.fromJson(toJson());
+}
 
 /// [DataRequirementBuilder]
 /// Describes a required data item for evaluation in terms of the type of
@@ -229,6 +243,11 @@ class DataRequirementBuilder extends DataTypeBuilder
   /// [sort]
   /// Specifies the order of the results to be returned.
   List<DataRequirementSortBuilder>? sort;
+
+  /// Converts a DataRequirementBuilder to [DataRequirement]
+  DataRequirement build() => DataRequirement.fromJson(toJson());
+
+  /// Converts a [DataRequirementBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -785,6 +804,13 @@ class DataRequirementBuilder extends DataTypeBuilder
   }
 }
 
+/// Extension to change [DataRequirementCodeFilter] to a Builder
+extension BuilderDataRequirementCodeFilter on DataRequirementCodeFilter {
+  /// Converts [DataRequirementCodeFilter] to a [DataRequirementCodeFilterBuilder]
+  DataRequirementCodeFilterBuilder get toBuilder =>
+      DataRequirementCodeFilterBuilder.fromJson(toJson());
+}
+
 /// [DataRequirementCodeFilterBuilder]
 /// Code filters specify additional constraints on the data, specifying the
 /// value set of interest for a particular element of the data. Each code
@@ -937,6 +963,12 @@ class DataRequirementCodeFilterBuilder extends ElementBuilder {
   /// If codes are specified in addition to a value set, the filter returns
   /// items matching a code in the value set or one of the specified codes.
   List<CodingBuilder>? code;
+
+  /// Converts a DataRequirementCodeFilterBuilder to [DataRequirementCodeFilter]
+  DataRequirementCodeFilter build() =>
+      DataRequirementCodeFilter.fromJson(toJson());
+
+  /// Converts a [DataRequirementCodeFilterBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1291,6 +1323,13 @@ class DataRequirementCodeFilterBuilder extends ElementBuilder {
   }
 }
 
+/// Extension to change [DataRequirementDateFilter] to a Builder
+extension BuilderDataRequirementDateFilter on DataRequirementDateFilter {
+  /// Converts [DataRequirementDateFilter] to a [DataRequirementDateFilterBuilder]
+  DataRequirementDateFilterBuilder get toBuilder =>
+      DataRequirementDateFilterBuilder.fromJson(toJson());
+}
+
 /// [DataRequirementDateFilterBuilder]
 /// Date filters specify additional constraints on the data in terms of the
 /// applicable date range for specific elements. Each date filter specifies
@@ -1440,6 +1479,12 @@ class DataRequirementDateFilterBuilder extends ElementBuilder {
 
   /// Getter for [valueDuration] as a FhirDurationBuilder
   FhirDurationBuilder? get valueDuration => valueX?.isAs<FhirDurationBuilder>();
+
+  /// Converts a DataRequirementDateFilterBuilder to [DataRequirementDateFilter]
+  DataRequirementDateFilter build() =>
+      DataRequirementDateFilter.fromJson(toJson());
+
+  /// Converts a [DataRequirementDateFilterBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1835,6 +1880,13 @@ class DataRequirementDateFilterBuilder extends ElementBuilder {
   }
 }
 
+/// Extension to change [DataRequirementSort] to a Builder
+extension BuilderDataRequirementSort on DataRequirementSort {
+  /// Converts [DataRequirementSort] to a [DataRequirementSortBuilder]
+  DataRequirementSortBuilder get toBuilder =>
+      DataRequirementSortBuilder.fromJson(toJson());
+}
+
 /// [DataRequirementSortBuilder]
 /// Specifies the order of the results to be returned.
 class DataRequirementSortBuilder extends ElementBuilder {
@@ -1944,6 +1996,11 @@ class DataRequirementSortBuilder extends ElementBuilder {
   /// [direction]
   /// The direction of the sort, ascending or descending.
   SortDirectionBuilder? direction;
+
+  /// Converts a DataRequirementSortBuilder to [DataRequirementSort]
+  DataRequirementSort build() => DataRequirementSort.fromJson(toJson());
+
+  /// Converts a [DataRequirementSortBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

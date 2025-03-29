@@ -1,8 +1,22 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        MessageHeader,
+        MessageHeaderDestination,
+        MessageHeaderSource,
+        MessageHeaderResponse;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [MessageHeader] to a Builder
+extension BuilderMessageHeader on MessageHeader {
+  /// Converts [MessageHeader] to a [MessageHeaderBuilder]
+  MessageHeaderBuilder get toBuilder => MessageHeaderBuilder.fromJson(toJson());
+}
 
 /// [MessageHeaderBuilder]
 /// The header for a message exchange that is either requesting or
@@ -293,6 +307,11 @@ class MessageHeaderBuilder extends DomainResourceBuilder {
   /// [definition]
   /// Permanent link to the MessageDefinition for this message.
   FhirCanonicalBuilder? definition;
+
+  /// Converts a MessageHeaderBuilder to [MessageHeader]
+  MessageHeader build() => MessageHeader.fromJson(toJson());
+
+  /// Converts a [MessageHeaderBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1132,6 +1151,13 @@ class MessageHeaderBuilder extends DomainResourceBuilder {
   }
 }
 
+/// Extension to change [MessageHeaderDestination] to a Builder
+extension BuilderMessageHeaderDestination on MessageHeaderDestination {
+  /// Converts [MessageHeaderDestination] to a [MessageHeaderDestinationBuilder]
+  MessageHeaderDestinationBuilder get toBuilder =>
+      MessageHeaderDestinationBuilder.fromJson(toJson());
+}
+
 /// [MessageHeaderDestinationBuilder]
 /// The destination application which the message is intended for.
 class MessageHeaderDestinationBuilder extends BackboneElementBuilder {
@@ -1275,6 +1301,12 @@ class MessageHeaderDestinationBuilder extends BackboneElementBuilder {
   /// person or department when routing to a specific application isn't
   /// sufficient.
   ReferenceBuilder? receiver;
+
+  /// Converts a MessageHeaderDestinationBuilder to [MessageHeaderDestination]
+  MessageHeaderDestination build() =>
+      MessageHeaderDestination.fromJson(toJson());
+
+  /// Converts a [MessageHeaderDestinationBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1661,6 +1693,13 @@ class MessageHeaderDestinationBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [MessageHeaderSource] to a Builder
+extension BuilderMessageHeaderSource on MessageHeaderSource {
+  /// Converts [MessageHeaderSource] to a [MessageHeaderSourceBuilder]
+  MessageHeaderSourceBuilder get toBuilder =>
+      MessageHeaderSourceBuilder.fromJson(toJson());
+}
+
 /// [MessageHeaderSourceBuilder]
 /// The source application from which this message originated.
 class MessageHeaderSourceBuilder extends BackboneElementBuilder {
@@ -1813,6 +1852,11 @@ class MessageHeaderSourceBuilder extends BackboneElementBuilder {
   /// [endpoint]
   /// Identifies the routing target to send acknowledgements to.
   FhirUrlBuilder? endpoint;
+
+  /// Converts a MessageHeaderSourceBuilder to [MessageHeaderSource]
+  MessageHeaderSource build() => MessageHeaderSource.fromJson(toJson());
+
+  /// Converts a [MessageHeaderSourceBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2231,6 +2275,13 @@ class MessageHeaderSourceBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [MessageHeaderResponse] to a Builder
+extension BuilderMessageHeaderResponse on MessageHeaderResponse {
+  /// Converts [MessageHeaderResponse] to a [MessageHeaderResponseBuilder]
+  MessageHeaderResponseBuilder get toBuilder =>
+      MessageHeaderResponseBuilder.fromJson(toJson());
+}
+
 /// [MessageHeaderResponseBuilder]
 /// Information about the message that this message is a response to. Only
 /// present if this message is a response.
@@ -2363,6 +2414,11 @@ class MessageHeaderResponseBuilder extends BackboneElementBuilder {
   /// [details]
   /// Full details of any issues found in the message.
   ReferenceBuilder? details;
+
+  /// Converts a MessageHeaderResponseBuilder to [MessageHeaderResponse]
+  MessageHeaderResponse build() => MessageHeaderResponse.fromJson(toJson());
+
+  /// Converts a [MessageHeaderResponseBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

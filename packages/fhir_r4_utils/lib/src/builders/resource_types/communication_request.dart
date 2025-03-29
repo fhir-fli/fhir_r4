@@ -1,8 +1,21 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        CommunicationRequest,
+        CommunicationRequestPayload;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [CommunicationRequest] to a Builder
+extension BuilderCommunicationRequest on CommunicationRequest {
+  /// Converts [CommunicationRequest] to a [CommunicationRequestBuilder]
+  CommunicationRequestBuilder get toBuilder =>
+      CommunicationRequestBuilder.fromJson(toJson());
+}
 
 /// [CommunicationRequestBuilder]
 /// A request to convey information; e.g. the CDS system proposes that an
@@ -454,6 +467,11 @@ class CommunicationRequestBuilder extends DomainResourceBuilder {
   /// Comments made about the request by the requester, sender, recipient,
   /// subject or other participants.
   List<AnnotationBuilder>? note;
+
+  /// Converts a CommunicationRequestBuilder to [CommunicationRequest]
+  CommunicationRequest build() => CommunicationRequest.fromJson(toJson());
+
+  /// Converts a [CommunicationRequestBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1690,6 +1708,13 @@ class CommunicationRequestBuilder extends DomainResourceBuilder {
   }
 }
 
+/// Extension to change [CommunicationRequestPayload] to a Builder
+extension BuilderCommunicationRequestPayload on CommunicationRequestPayload {
+  /// Converts [CommunicationRequestPayload] to a [CommunicationRequestPayloadBuilder]
+  CommunicationRequestPayloadBuilder get toBuilder =>
+      CommunicationRequestPayloadBuilder.fromJson(toJson());
+}
+
 /// [CommunicationRequestPayloadBuilder]
 /// Text, attachment(s), or resource(s) to be communicated to the
 /// recipient.
@@ -1813,6 +1838,12 @@ class CommunicationRequestPayloadBuilder extends BackboneElementBuilder {
 
   /// Getter for [contentReference] as a ReferenceBuilder
   ReferenceBuilder? get contentReference => contentX?.isAs<ReferenceBuilder>();
+
+  /// Converts a CommunicationRequestPayloadBuilder to [CommunicationRequestPayload]
+  CommunicationRequestPayload build() =>
+      CommunicationRequestPayload.fromJson(toJson());
+
+  /// Converts a [CommunicationRequestPayloadBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

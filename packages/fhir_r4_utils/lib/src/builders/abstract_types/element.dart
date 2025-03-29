@@ -1,8 +1,14 @@
 import 'dart:convert';
 
-import 'package:fhir_r4/fhir_r4.dart' show FHIRException;
+import 'package:fhir_r4/fhir_r4.dart' show Element, FHIRException;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension for [Element] to convert to a builder
+extension BuilderElement on Element {
+  /// Converts the [Element] to a [ElementBuilder]
+  ElementBuilder get toBuilder => ElementBuilder.fromJson(toJson());
+}
 
 /// [ElementBuilder] Base definition for all FHIR elements.
 class ElementBuilder extends FhirBaseBuilder {
@@ -21,8 +27,8 @@ class ElementBuilder extends FhirBaseBuilder {
   /// Creates an empty [ElementBuilder] object
   factory ElementBuilder.empty() => ElementBuilder();
 
-  /// Factory constructor for [ElementBuilder] that takes in a [YamlMap] and returns
-  /// a [ElementBuilder]
+  /// Factory constructor for [ElementBuilder] that takes in a
+  /// [YamlMap] and returns a [ElementBuilder]
   factory ElementBuilder.fromYaml(dynamic yaml) => yaml is String
       ? ElementBuilder.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, dynamic>,
@@ -125,7 +131,8 @@ class ElementBuilder extends FhirBaseBuilder {
   /// Method to check if an extension exists by url
   bool hasExtensionByUrl(String url) {
     return extension_?.any(
-            (FhirExtensionBuilder ext) => ext.url?.equals(url) ?? false) ??
+          (FhirExtensionBuilder ext) => ext.url?.equals(url) ?? false,
+        ) ??
         false;
   }
 
@@ -137,7 +144,8 @@ class ElementBuilder extends FhirBaseBuilder {
   /// Method to remove an extension by url
   void removeExtension(String url) {
     extension_?.removeWhere(
-        (FhirExtensionBuilder ext) => ext.url?.equals(url) ?? false);
+      (FhirExtensionBuilder ext) => ext.url?.equals(url) ?? false,
+    );
   }
 
   /// Implementing the getProperty method
@@ -158,7 +166,9 @@ class ElementBuilder extends FhirBaseBuilder {
       case 'id':
         if (value is String) {
           return ElementBuilder(
-              id: value.toFhirStringBuilder, extension_: extension_);
+            id: value.toFhirStringBuilder,
+            extension_: extension_,
+          );
         } else {
           throw ArgumentError('Invalid type for id. Expected String.');
         }
@@ -208,6 +218,10 @@ class ElementBuilder extends FhirBaseBuilder {
     return copiedElement;
   }
 
+  /// Method to convert the builder object to the original Element object
+  @override
+  Element build() => Element.fromJson(toJson());
+
   @override
   Map<String, dynamic> toJson() {
     final json = <String, Object?>{};
@@ -241,8 +255,10 @@ class ElementBuilder extends FhirBaseBuilder {
   }
 
   @override
-  List<FhirBaseBuilder> getChildrenByName(String name,
-      [bool checkValid = false]) {
+  List<FhirBaseBuilder> getChildrenByName(
+    String name, [
+    bool checkValid = false,
+  ]) {
     if (name == 'id') {
       return [id!];
     } else if (name == 'extension') {

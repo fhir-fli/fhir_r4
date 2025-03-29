@@ -1,8 +1,26 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        NutritionOrder,
+        NutritionOrderOralDiet,
+        NutritionOrderNutrient,
+        NutritionOrderTexture,
+        NutritionOrderSupplement,
+        NutritionOrderEnteralFormula,
+        NutritionOrderAdministration;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [NutritionOrder] to a Builder
+extension BuilderNutritionOrder on NutritionOrder {
+  /// Converts [NutritionOrder] to a [NutritionOrderBuilder]
+  NutritionOrderBuilder get toBuilder =>
+      NutritionOrderBuilder.fromJson(toJson());
+}
 
 /// [NutritionOrderBuilder]
 /// A request to supply a diet, formula feeding (enteral) or oral
@@ -379,6 +397,11 @@ class NutritionOrderBuilder extends DomainResourceBuilder {
   /// Comments made about the {{title}} by the requester, performer, subject
   /// or other participants.
   List<AnnotationBuilder>? note;
+
+  /// Converts a NutritionOrderBuilder to [NutritionOrder]
+  NutritionOrder build() => NutritionOrder.fromJson(toJson());
+
+  /// Converts a [NutritionOrderBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1393,6 +1416,13 @@ class NutritionOrderBuilder extends DomainResourceBuilder {
   }
 }
 
+/// Extension to change [NutritionOrderOralDiet] to a Builder
+extension BuilderNutritionOrderOralDiet on NutritionOrderOralDiet {
+  /// Converts [NutritionOrderOralDiet] to a [NutritionOrderOralDietBuilder]
+  NutritionOrderOralDietBuilder get toBuilder =>
+      NutritionOrderOralDietBuilder.fromJson(toJson());
+}
+
 /// [NutritionOrderOralDietBuilder]
 /// Diet given orally in contrast to enteral (tube) feeding.
 class NutritionOrderOralDietBuilder extends BackboneElementBuilder {
@@ -1582,6 +1612,11 @@ class NutritionOrderOralDietBuilder extends BackboneElementBuilder {
   /// Free text or additional instructions or information pertaining to the
   /// oral diet.
   FhirStringBuilder? instruction;
+
+  /// Converts a NutritionOrderOralDietBuilder to [NutritionOrderOralDiet]
+  NutritionOrderOralDiet build() => NutritionOrderOralDiet.fromJson(toJson());
+
+  /// Converts a [NutritionOrderOralDietBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2057,6 +2092,13 @@ class NutritionOrderOralDietBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [NutritionOrderNutrient] to a Builder
+extension BuilderNutritionOrderNutrient on NutritionOrderNutrient {
+  /// Converts [NutritionOrderNutrient] to a [NutritionOrderNutrientBuilder]
+  NutritionOrderNutrientBuilder get toBuilder =>
+      NutritionOrderNutrientBuilder.fromJson(toJson());
+}
+
 /// [NutritionOrderNutrientBuilder]
 /// Class that defines the quantity and type of nutrient modifications (for
 /// example carbohydrate, fiber or sodium) required for the oral diet.
@@ -2176,6 +2218,11 @@ class NutritionOrderNutrientBuilder extends BackboneElementBuilder {
   /// [amount]
   /// The quantity of the specified nutrient to include in diet.
   QuantityBuilder? amount;
+
+  /// Converts a NutritionOrderNutrientBuilder to [NutritionOrderNutrient]
+  NutritionOrderNutrient build() => NutritionOrderNutrient.fromJson(toJson());
+
+  /// Converts a [NutritionOrderNutrientBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2498,6 +2545,13 @@ class NutritionOrderNutrientBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [NutritionOrderTexture] to a Builder
+extension BuilderNutritionOrderTexture on NutritionOrderTexture {
+  /// Converts [NutritionOrderTexture] to a [NutritionOrderTextureBuilder]
+  NutritionOrderTextureBuilder get toBuilder =>
+      NutritionOrderTextureBuilder.fromJson(toJson());
+}
+
 /// [NutritionOrderTextureBuilder]
 /// Class that describes any texture modifications required for the patient
 /// to safely consume various types of solid foods.
@@ -2619,6 +2673,11 @@ class NutritionOrderTextureBuilder extends BackboneElementBuilder {
   /// The food type(s) (e.g. meats, all foods) that the texture modification
   /// applies to. This could be all foods types.
   CodeableConceptBuilder? foodType;
+
+  /// Converts a NutritionOrderTextureBuilder to [NutritionOrderTexture]
+  NutritionOrderTexture build() => NutritionOrderTexture.fromJson(toJson());
+
+  /// Converts a [NutritionOrderTextureBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2941,6 +3000,13 @@ class NutritionOrderTextureBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [NutritionOrderSupplement] to a Builder
+extension BuilderNutritionOrderSupplement on NutritionOrderSupplement {
+  /// Converts [NutritionOrderSupplement] to a [NutritionOrderSupplementBuilder]
+  NutritionOrderSupplementBuilder get toBuilder =>
+      NutritionOrderSupplementBuilder.fromJson(toJson());
+}
+
 /// [NutritionOrderSupplementBuilder]
 /// Oral nutritional products given in order to add further nutritional
 /// value to the patient's diet.
@@ -3102,6 +3168,12 @@ class NutritionOrderSupplementBuilder extends BackboneElementBuilder {
   /// Free text or additional instructions or information pertaining to the
   /// oral supplement.
   FhirStringBuilder? instruction;
+
+  /// Converts a NutritionOrderSupplementBuilder to [NutritionOrderSupplement]
+  NutritionOrderSupplement build() =>
+      NutritionOrderSupplement.fromJson(toJson());
+
+  /// Converts a [NutritionOrderSupplementBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3525,6 +3597,13 @@ class NutritionOrderSupplementBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [NutritionOrderEnteralFormula] to a Builder
+extension BuilderNutritionOrderEnteralFormula on NutritionOrderEnteralFormula {
+  /// Converts [NutritionOrderEnteralFormula] to a [NutritionOrderEnteralFormulaBuilder]
+  NutritionOrderEnteralFormulaBuilder get toBuilder =>
+      NutritionOrderEnteralFormulaBuilder.fromJson(toJson());
+}
+
 /// [NutritionOrderEnteralFormulaBuilder]
 /// Feeding provided through the gastrointestinal tract via a tube,
 /// catheter, or stoma that delivers nutrition distal to the oral cavity.
@@ -3741,6 +3820,12 @@ class NutritionOrderEnteralFormulaBuilder extends BackboneElementBuilder {
   /// Free text formula administration, feeding instructions or additional
   /// instructions or information.
   FhirStringBuilder? administrationInstruction;
+
+  /// Converts a NutritionOrderEnteralFormulaBuilder to [NutritionOrderEnteralFormula]
+  NutritionOrderEnteralFormula build() =>
+      NutritionOrderEnteralFormula.fromJson(toJson());
+
+  /// Converts a [NutritionOrderEnteralFormulaBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -4295,6 +4380,13 @@ class NutritionOrderEnteralFormulaBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [NutritionOrderAdministration] to a Builder
+extension BuilderNutritionOrderAdministration on NutritionOrderAdministration {
+  /// Converts [NutritionOrderAdministration] to a [NutritionOrderAdministrationBuilder]
+  NutritionOrderAdministrationBuilder get toBuilder =>
+      NutritionOrderAdministrationBuilder.fromJson(toJson());
+}
+
 /// [NutritionOrderAdministrationBuilder]
 /// Formula administration instructions as structured data. This repeating
 /// structure allows for changing the administration rate or volume over
@@ -4440,6 +4532,12 @@ class NutritionOrderAdministrationBuilder extends BackboneElementBuilder {
 
   /// Getter for [rateRatio] as a RatioBuilder
   RatioBuilder? get rateRatio => rateX?.isAs<RatioBuilder>();
+
+  /// Converts a NutritionOrderAdministrationBuilder to [NutritionOrderAdministration]
+  NutritionOrderAdministration build() =>
+      NutritionOrderAdministration.fromJson(toJson());
+
+  /// Converts a [NutritionOrderAdministrationBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

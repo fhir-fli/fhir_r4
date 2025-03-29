@@ -1,8 +1,20 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        Communication,
+        CommunicationPayload;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [Communication] to a Builder
+extension BuilderCommunication on Communication {
+  /// Converts [Communication] to a [CommunicationBuilder]
+  CommunicationBuilder get toBuilder => CommunicationBuilder.fromJson(toJson());
+}
 
 /// [CommunicationBuilder]
 /// An occurrence of information being transmitted; e.g. an alert that was
@@ -464,6 +476,11 @@ class CommunicationBuilder extends DomainResourceBuilder {
   /// Additional notes or commentary about the communication by the sender,
   /// receiver or other interested parties.
   List<AnnotationBuilder>? note;
+
+  /// Converts a CommunicationBuilder to [Communication]
+  Communication build() => Communication.fromJson(toJson());
+
+  /// Converts a [CommunicationBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1694,6 +1711,13 @@ class CommunicationBuilder extends DomainResourceBuilder {
   }
 }
 
+/// Extension to change [CommunicationPayload] to a Builder
+extension BuilderCommunicationPayload on CommunicationPayload {
+  /// Converts [CommunicationPayload] to a [CommunicationPayloadBuilder]
+  CommunicationPayloadBuilder get toBuilder =>
+      CommunicationPayloadBuilder.fromJson(toJson());
+}
+
 /// [CommunicationPayloadBuilder]
 /// Text, attachment(s), or resource(s) that was communicated to the
 /// recipient.
@@ -1816,6 +1840,11 @@ class CommunicationPayloadBuilder extends BackboneElementBuilder {
 
   /// Getter for [contentReference] as a ReferenceBuilder
   ReferenceBuilder? get contentReference => contentX?.isAs<ReferenceBuilder>();
+
+  /// Converts a CommunicationPayloadBuilder to [CommunicationPayload]
+  CommunicationPayload build() => CommunicationPayload.fromJson(toJson());
+
+  /// Converts a [CommunicationPayloadBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

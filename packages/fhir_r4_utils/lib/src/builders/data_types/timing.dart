@@ -1,8 +1,19 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        StringExtensionForFHIR,
+        Timing,
+        TimingRepeat;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [Timing] to a Builder
+extension BuilderTiming on Timing {
+  /// Converts [Timing] to a [TimingBuilder]
+  TimingBuilder get toBuilder => TimingBuilder.fromJson(toJson());
+}
 
 /// [TimingBuilder]
 /// Specifies an event that may occur multiple times. Timing schedules are
@@ -167,6 +178,11 @@ class TimingBuilder extends BackboneTypeBuilder
   /// Timing, with the exception that .repeat.bounds still applies over the
   /// code (and is not contained in the code).
   CodeableConceptBuilder? code;
+
+  /// Converts a TimingBuilder to [Timing]
+  Timing build() => Timing.fromJson(toJson());
+
+  /// Converts a [TimingBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -526,6 +542,12 @@ class TimingBuilder extends BackboneTypeBuilder
   }
 }
 
+/// Extension to change [TimingRepeat] to a Builder
+extension BuilderTimingRepeat on TimingRepeat {
+  /// Converts [TimingRepeat] to a [TimingRepeatBuilder]
+  TimingRepeatBuilder get toBuilder => TimingRepeatBuilder.fromJson(toJson());
+}
+
 /// [TimingRepeatBuilder]
 /// A set of rules that describe when the event is scheduled.
 class TimingRepeatBuilder extends ElementBuilder {
@@ -808,6 +830,11 @@ class TimingRepeatBuilder extends ElementBuilder {
   /// indicate whether the minutes is before or after the event, then the
   /// offset is assumed to be after the event.
   FhirUnsignedIntBuilder? offset;
+
+  /// Converts a TimingRepeatBuilder to [TimingRepeat]
+  TimingRepeat build() => TimingRepeat.fromJson(toJson());
+
+  /// Converts a [TimingRepeatBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

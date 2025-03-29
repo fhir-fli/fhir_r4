@@ -4,6 +4,15 @@ import 'package:collection/collection.dart';
 import 'package:fhir_r4/fhir_r4.dart' as fhir;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 
+/// Base extension for all FHIRBaseBuilder classes to instantiate from the
+/// original object
+extension BuilderFhirBase on fhir.FhirBase {
+  /// Converts the object to a builder.
+  FhirBaseBuilder get toBuilder {
+    throw UnimplementedError('toBuilder not implemented');
+  }
+}
+
 /// Base class for all FHIR elements.
 abstract class FhirBaseBuilder {
   /// Main constructor for [FhirBaseBuilder].
@@ -144,8 +153,10 @@ abstract class FhirBaseBuilder {
 
   /// Retrieves the properties of the object.
   // ignore: avoid_positional_boolean_parameters
-  List<FhirBaseBuilder> getChildrenByName(String name,
-      [bool checkValid = false]);
+  List<FhirBaseBuilder> getChildrenByName(
+    String name, [
+    bool checkValid = false,
+  ]);
 
   /// Sets a property by name.
   void setChildByName(String childName, FhirBaseBuilder? child) {
@@ -277,6 +288,9 @@ abstract class FhirBaseBuilder {
     }
     return const DeepCollectionEquality().equals(e1.toJson(), e2.toJson());
   }
+
+  /// Ccreates a [fhir.FhirBase] object from the builder.
+  fhir.FhirBase build();
 
   /// Converts the object to a JSON representation.
   Map<String, dynamic> toJson();

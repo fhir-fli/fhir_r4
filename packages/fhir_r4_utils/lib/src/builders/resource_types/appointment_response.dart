@@ -1,8 +1,20 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        AppointmentResponse;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [AppointmentResponse] to a Builder
+extension BuilderAppointmentResponse on AppointmentResponse {
+  /// Converts [AppointmentResponse] to a [AppointmentResponseBuilder]
+  AppointmentResponseBuilder get toBuilder =>
+      AppointmentResponseBuilder.fromJson(toJson());
+}
 
 /// [AppointmentResponseBuilder]
 /// A reply to an appointment request for a patient and/or practitioner(s),
@@ -246,6 +258,11 @@ class AppointmentResponseBuilder extends DomainResourceBuilder {
   /// [comment]
   /// Additional comments about the appointment.
   FhirStringBuilder? comment;
+
+  /// Converts a AppointmentResponseBuilder to [AppointmentResponse]
+  AppointmentResponse build() => AppointmentResponse.fromJson(toJson());
+
+  /// Converts a [AppointmentResponseBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

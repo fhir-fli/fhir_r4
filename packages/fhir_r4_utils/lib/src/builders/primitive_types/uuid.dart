@@ -1,5 +1,11 @@
 part of 'primitive_types.dart';
 
+/// Extension to convert a [FhirUuid] to a [FhirUuidBuilder]
+extension BuilderFhirUuid on FhirUuid {
+  /// Converts this instance to a [FhirUuidBuilder]
+  FhirUuidBuilder get toBuilder => FhirUuidBuilder.fromJson(toJson());
+}
+
 /// Extension to convert a [String] to a [FhirUuidBuilder].
 extension FhirUuidBuilderExtension on String {
   /// Converts a [String] to a [FhirUuidBuilder].

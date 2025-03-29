@@ -1,8 +1,25 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        MeasureReport,
+        MeasureReportGroup,
+        MeasureReportPopulation,
+        MeasureReportStratifier,
+        MeasureReportStratum,
+        MeasureReportComponent,
+        MeasureReportPopulation1;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [MeasureReport] to a Builder
+extension BuilderMeasureReport on MeasureReport {
+  /// Converts [MeasureReport] to a [MeasureReportBuilder]
+  MeasureReportBuilder get toBuilder => MeasureReportBuilder.fromJson(toJson());
+}
 
 /// [MeasureReportBuilder]
 /// The MeasureReport resource contains the results of the calculation of a
@@ -286,6 +303,11 @@ class MeasureReportBuilder extends DomainResourceBuilder {
   /// A reference to a Bundle containing the Resources that were used in the
   /// calculation of this measure.
   List<ReferenceBuilder>? evaluatedResource;
+
+  /// Converts a MeasureReportBuilder to [MeasureReport]
+  MeasureReport build() => MeasureReport.fromJson(toJson());
+
+  /// Converts a [MeasureReportBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1076,6 +1098,13 @@ class MeasureReportBuilder extends DomainResourceBuilder {
   }
 }
 
+/// Extension to change [MeasureReportGroup] to a Builder
+extension BuilderMeasureReportGroup on MeasureReportGroup {
+  /// Converts [MeasureReportGroup] to a [MeasureReportGroupBuilder]
+  MeasureReportGroupBuilder get toBuilder =>
+      MeasureReportGroupBuilder.fromJson(toJson());
+}
+
 /// [MeasureReportGroupBuilder]
 /// The results of the calculation, one for each population group in the
 /// measure.
@@ -1229,6 +1258,11 @@ class MeasureReportGroupBuilder extends BackboneElementBuilder {
   /// When a measure includes multiple stratifiers, there will be a
   /// stratifier group for each stratifier defined by the measure.
   List<MeasureReportStratifierBuilder>? stratifier;
+
+  /// Converts a MeasureReportGroupBuilder to [MeasureReportGroup]
+  MeasureReportGroup build() => MeasureReportGroup.fromJson(toJson());
+
+  /// Converts a [MeasureReportGroupBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1625,6 +1659,13 @@ class MeasureReportGroupBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [MeasureReportPopulation] to a Builder
+extension BuilderMeasureReportPopulation on MeasureReportPopulation {
+  /// Converts [MeasureReportPopulation] to a [MeasureReportPopulationBuilder]
+  MeasureReportPopulationBuilder get toBuilder =>
+      MeasureReportPopulationBuilder.fromJson(toJson());
+}
+
 /// [MeasureReportPopulationBuilder]
 /// The populations that make up the population group, one for each type of
 /// population appropriate for the measure.
@@ -1756,6 +1797,11 @@ class MeasureReportPopulationBuilder extends BackboneElementBuilder {
   /// This element refers to a List of subject level MeasureReport resources,
   /// one for each subject in this population.
   ReferenceBuilder? subjectResults;
+
+  /// Converts a MeasureReportPopulationBuilder to [MeasureReportPopulation]
+  MeasureReportPopulation build() => MeasureReportPopulation.fromJson(toJson());
+
+  /// Converts a [MeasureReportPopulationBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2110,6 +2156,13 @@ class MeasureReportPopulationBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [MeasureReportStratifier] to a Builder
+extension BuilderMeasureReportStratifier on MeasureReportStratifier {
+  /// Converts [MeasureReportStratifier] to a [MeasureReportStratifierBuilder]
+  MeasureReportStratifierBuilder get toBuilder =>
+      MeasureReportStratifierBuilder.fromJson(toJson());
+}
+
 /// [MeasureReportStratifierBuilder]
 /// When a measure includes multiple stratifiers, there will be a
 /// stratifier group for each stratifier defined by the measure.
@@ -2239,6 +2292,11 @@ class MeasureReportStratifierBuilder extends BackboneElementBuilder {
   /// stratifier. For example, when stratifying on administrative gender,
   /// there will be four strata, one for each possible gender value.
   List<MeasureReportStratumBuilder>? stratum;
+
+  /// Converts a MeasureReportStratifierBuilder to [MeasureReportStratifier]
+  MeasureReportStratifier build() => MeasureReportStratifier.fromJson(toJson());
+
+  /// Converts a [MeasureReportStratifierBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2571,6 +2629,13 @@ class MeasureReportStratifierBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [MeasureReportStratum] to a Builder
+extension BuilderMeasureReportStratum on MeasureReportStratum {
+  /// Converts [MeasureReportStratum] to a [MeasureReportStratumBuilder]
+  MeasureReportStratumBuilder get toBuilder =>
+      MeasureReportStratumBuilder.fromJson(toJson());
+}
+
 /// [MeasureReportStratumBuilder]
 /// This element contains the results for a single stratum within the
 /// stratifier. For example, when stratifying on administrative gender,
@@ -2725,6 +2790,11 @@ class MeasureReportStratumBuilder extends BackboneElementBuilder {
   /// measure type and scoring method, and based on only the members of this
   /// stratum.
   QuantityBuilder? measureScore;
+
+  /// Converts a MeasureReportStratumBuilder to [MeasureReportStratum]
+  MeasureReportStratum build() => MeasureReportStratum.fromJson(toJson());
+
+  /// Converts a [MeasureReportStratumBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3121,6 +3191,13 @@ class MeasureReportStratumBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [MeasureReportComponent] to a Builder
+extension BuilderMeasureReportComponent on MeasureReportComponent {
+  /// Converts [MeasureReportComponent] to a [MeasureReportComponentBuilder]
+  MeasureReportComponentBuilder get toBuilder =>
+      MeasureReportComponentBuilder.fromJson(toJson());
+}
+
 /// [MeasureReportComponentBuilder]
 /// A stratifier component value.
 class MeasureReportComponentBuilder extends BackboneElementBuilder {
@@ -3239,6 +3316,11 @@ class MeasureReportComponentBuilder extends BackboneElementBuilder {
   /// [value]
   /// The stratum component value.
   CodeableConceptBuilder? value;
+
+  /// Converts a MeasureReportComponentBuilder to [MeasureReportComponent]
+  MeasureReportComponent build() => MeasureReportComponent.fromJson(toJson());
+
+  /// Converts a [MeasureReportComponentBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3561,6 +3643,13 @@ class MeasureReportComponentBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [MeasureReportPopulation1] to a Builder
+extension BuilderMeasureReportPopulation1 on MeasureReportPopulation1 {
+  /// Converts [MeasureReportPopulation1] to a [MeasureReportPopulation1Builder]
+  MeasureReportPopulation1Builder get toBuilder =>
+      MeasureReportPopulation1Builder.fromJson(toJson());
+}
+
 /// [MeasureReportPopulation1Builder]
 /// The populations that make up the stratum, one for each type of
 /// population appropriate to the measure.
@@ -3692,6 +3781,12 @@ class MeasureReportPopulation1Builder extends BackboneElementBuilder {
   /// This element refers to a List of subject level MeasureReport resources,
   /// one for each subject in this population in this stratum.
   ReferenceBuilder? subjectResults;
+
+  /// Converts a MeasureReportPopulation1Builder to [MeasureReportPopulation1]
+  MeasureReportPopulation1 build() =>
+      MeasureReportPopulation1.fromJson(toJson());
+
+  /// Converts a [MeasureReportPopulation1Builder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

@@ -1,8 +1,19 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        Media;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [Media] to a Builder
+extension BuilderMedia on Media {
+  /// Converts [Media] to a [MediaBuilder]
+  MediaBuilder get toBuilder => MediaBuilder.fromJson(toJson());
+}
 
 /// [MediaBuilder]
 /// A photo, video, or audio recording acquired or used in healthcare. The
@@ -426,6 +437,11 @@ class MediaBuilder extends DomainResourceBuilder {
   /// Comments made about the media by the performer, subject or other
   /// participants.
   List<AnnotationBuilder>? note;
+
+  /// Converts a MediaBuilder to [Media]
+  Media build() => Media.fromJson(toJson());
+
+  /// Converts a [MediaBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

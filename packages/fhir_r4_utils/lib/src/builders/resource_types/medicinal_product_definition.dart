@@ -1,8 +1,27 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        MedicinalProductDefinition,
+        MedicinalProductDefinitionContact,
+        MedicinalProductDefinitionName,
+        MedicinalProductDefinitionNamePart,
+        MedicinalProductDefinitionCountryLanguage,
+        MedicinalProductDefinitionCrossReference,
+        MedicinalProductDefinitionOperation,
+        MedicinalProductDefinitionCharacteristic;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [MedicinalProductDefinition] to a Builder
+extension BuilderMedicinalProductDefinition on MedicinalProductDefinition {
+  /// Converts [MedicinalProductDefinition] to a [MedicinalProductDefinitionBuilder]
+  MedicinalProductDefinitionBuilder get toBuilder =>
+      MedicinalProductDefinitionBuilder.fromJson(toJson());
+}
 
 /// [MedicinalProductDefinitionBuilder]
 /// A medicinal product, being a substance or combination of substances
@@ -577,6 +596,12 @@ class MedicinalProductDefinitionBuilder extends DomainResourceBuilder {
   /// Allows the key product features to be recorded, such as "sugar free",
   /// "modified release", "parallel import".
   List<MedicinalProductDefinitionCharacteristicBuilder>? characteristic;
+
+  /// Converts a MedicinalProductDefinitionBuilder to [MedicinalProductDefinition]
+  MedicinalProductDefinition build() =>
+      MedicinalProductDefinition.fromJson(toJson());
+
+  /// Converts a [MedicinalProductDefinitionBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1990,6 +2015,14 @@ class MedicinalProductDefinitionBuilder extends DomainResourceBuilder {
   }
 }
 
+/// Extension to change [MedicinalProductDefinitionContact] to a Builder
+extension BuilderMedicinalProductDefinitionContact
+    on MedicinalProductDefinitionContact {
+  /// Converts [MedicinalProductDefinitionContact] to a [MedicinalProductDefinitionContactBuilder]
+  MedicinalProductDefinitionContactBuilder get toBuilder =>
+      MedicinalProductDefinitionContactBuilder.fromJson(toJson());
+}
+
 /// [MedicinalProductDefinitionContactBuilder]
 /// A product specific contact, person (in a role), or an organization.
 class MedicinalProductDefinitionContactBuilder extends BackboneElementBuilder {
@@ -2109,6 +2142,12 @@ class MedicinalProductDefinitionContactBuilder extends BackboneElementBuilder {
   /// [contact]
   /// A product specific contact, person (in a role), or an organization.
   ReferenceBuilder? contact;
+
+  /// Converts a MedicinalProductDefinitionContactBuilder to [MedicinalProductDefinitionContact]
+  MedicinalProductDefinitionContact build() =>
+      MedicinalProductDefinitionContact.fromJson(toJson());
+
+  /// Converts a [MedicinalProductDefinitionContactBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2432,6 +2471,14 @@ class MedicinalProductDefinitionContactBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [MedicinalProductDefinitionName] to a Builder
+extension BuilderMedicinalProductDefinitionName
+    on MedicinalProductDefinitionName {
+  /// Converts [MedicinalProductDefinitionName] to a [MedicinalProductDefinitionNameBuilder]
+  MedicinalProductDefinitionNameBuilder get toBuilder =>
+      MedicinalProductDefinitionNameBuilder.fromJson(toJson());
+}
+
 /// [MedicinalProductDefinitionNameBuilder]
 /// The product's name, including full name and possibly coded parts.
 class MedicinalProductDefinitionNameBuilder extends BackboneElementBuilder {
@@ -2581,6 +2628,12 @@ class MedicinalProductDefinitionNameBuilder extends BackboneElementBuilder {
   /// Country and jurisdiction where the name applies, and associated
   /// language.
   List<MedicinalProductDefinitionCountryLanguageBuilder>? countryLanguage;
+
+  /// Converts a MedicinalProductDefinitionNameBuilder to [MedicinalProductDefinitionName]
+  MedicinalProductDefinitionName build() =>
+      MedicinalProductDefinitionName.fromJson(toJson());
+
+  /// Converts a [MedicinalProductDefinitionNameBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2979,6 +3032,14 @@ class MedicinalProductDefinitionNameBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [MedicinalProductDefinitionNamePart] to a Builder
+extension BuilderMedicinalProductDefinitionNamePart
+    on MedicinalProductDefinitionNamePart {
+  /// Converts [MedicinalProductDefinitionNamePart] to a [MedicinalProductDefinitionNamePartBuilder]
+  MedicinalProductDefinitionNamePartBuilder get toBuilder =>
+      MedicinalProductDefinitionNamePartBuilder.fromJson(toJson());
+}
+
 /// [MedicinalProductDefinitionNamePartBuilder]
 /// Coding words or phrases of the name.
 class MedicinalProductDefinitionNamePartBuilder extends BackboneElementBuilder {
@@ -3097,6 +3158,12 @@ class MedicinalProductDefinitionNamePartBuilder extends BackboneElementBuilder {
   /// [type]
   /// Identifying type for this part of the name (e.g. strength part).
   CodeableConceptBuilder? type;
+
+  /// Converts a MedicinalProductDefinitionNamePartBuilder to [MedicinalProductDefinitionNamePart]
+  MedicinalProductDefinitionNamePart build() =>
+      MedicinalProductDefinitionNamePart.fromJson(toJson());
+
+  /// Converts a [MedicinalProductDefinitionNamePartBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3420,6 +3487,14 @@ class MedicinalProductDefinitionNamePartBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [MedicinalProductDefinitionCountryLanguage] to a Builder
+extension BuilderMedicinalProductDefinitionCountryLanguage
+    on MedicinalProductDefinitionCountryLanguage {
+  /// Converts [MedicinalProductDefinitionCountryLanguage] to a [MedicinalProductDefinitionCountryLanguageBuilder]
+  MedicinalProductDefinitionCountryLanguageBuilder get toBuilder =>
+      MedicinalProductDefinitionCountryLanguageBuilder.fromJson(toJson());
+}
+
 /// [MedicinalProductDefinitionCountryLanguageBuilder]
 /// Country and jurisdiction where the name applies, and associated
 /// language.
@@ -3552,6 +3627,12 @@ class MedicinalProductDefinitionCountryLanguageBuilder
   /// [language]
   /// Language code for this name.
   CodeableConceptBuilder? language;
+
+  /// Converts a MedicinalProductDefinitionCountryLanguageBuilder to [MedicinalProductDefinitionCountryLanguage]
+  MedicinalProductDefinitionCountryLanguage build() =>
+      MedicinalProductDefinitionCountryLanguage.fromJson(toJson());
+
+  /// Converts a [MedicinalProductDefinitionCountryLanguageBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3907,6 +3988,14 @@ class MedicinalProductDefinitionCountryLanguageBuilder
   }
 }
 
+/// Extension to change [MedicinalProductDefinitionCrossReference] to a Builder
+extension BuilderMedicinalProductDefinitionCrossReference
+    on MedicinalProductDefinitionCrossReference {
+  /// Converts [MedicinalProductDefinitionCrossReference] to a [MedicinalProductDefinitionCrossReferenceBuilder]
+  MedicinalProductDefinitionCrossReferenceBuilder get toBuilder =>
+      MedicinalProductDefinitionCrossReferenceBuilder.fromJson(toJson());
+}
+
 /// [MedicinalProductDefinitionCrossReferenceBuilder]
 /// Reference to another product, e.g. for linking authorised to
 /// investigational product, or a virtual product.
@@ -4030,6 +4119,12 @@ class MedicinalProductDefinitionCrossReferenceBuilder
   /// actual product, product to development product (investigational),
   /// parallel import version.
   CodeableConceptBuilder? type;
+
+  /// Converts a MedicinalProductDefinitionCrossReferenceBuilder to [MedicinalProductDefinitionCrossReference]
+  MedicinalProductDefinitionCrossReference build() =>
+      MedicinalProductDefinitionCrossReference.fromJson(toJson());
+
+  /// Converts a [MedicinalProductDefinitionCrossReferenceBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -4353,6 +4448,14 @@ class MedicinalProductDefinitionCrossReferenceBuilder
   }
 }
 
+/// Extension to change [MedicinalProductDefinitionOperation] to a Builder
+extension BuilderMedicinalProductDefinitionOperation
+    on MedicinalProductDefinitionOperation {
+  /// Converts [MedicinalProductDefinitionOperation] to a [MedicinalProductDefinitionOperationBuilder]
+  MedicinalProductDefinitionOperationBuilder get toBuilder =>
+      MedicinalProductDefinitionOperationBuilder.fromJson(toJson());
+}
+
 /// [MedicinalProductDefinitionOperationBuilder]
 /// A manufacturing or administrative process or step associated with (or
 /// performed on) the medicinal product.
@@ -4504,6 +4607,12 @@ class MedicinalProductDefinitionOperationBuilder
   /// Specifies whether this particular business or manufacturing process is
   /// considered proprietary or confidential.
   CodeableConceptBuilder? confidentialityIndicator;
+
+  /// Converts a MedicinalProductDefinitionOperationBuilder to [MedicinalProductDefinitionOperation]
+  MedicinalProductDefinitionOperation build() =>
+      MedicinalProductDefinitionOperation.fromJson(toJson());
+
+  /// Converts a [MedicinalProductDefinitionOperationBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -4897,6 +5006,14 @@ class MedicinalProductDefinitionOperationBuilder
   }
 }
 
+/// Extension to change [MedicinalProductDefinitionCharacteristic] to a Builder
+extension BuilderMedicinalProductDefinitionCharacteristic
+    on MedicinalProductDefinitionCharacteristic {
+  /// Converts [MedicinalProductDefinitionCharacteristic] to a [MedicinalProductDefinitionCharacteristicBuilder]
+  MedicinalProductDefinitionCharacteristicBuilder get toBuilder =>
+      MedicinalProductDefinitionCharacteristicBuilder.fromJson(toJson());
+}
+
 /// [MedicinalProductDefinitionCharacteristicBuilder]
 /// Allows the key product features to be recorded, such as "sugar free",
 /// "modified release", "parallel import".
@@ -5039,6 +5156,12 @@ class MedicinalProductDefinitionCharacteristicBuilder
 
   /// Getter for [valueAttachment] as a AttachmentBuilder
   AttachmentBuilder? get valueAttachment => valueX?.isAs<AttachmentBuilder>();
+
+  /// Converts a MedicinalProductDefinitionCharacteristicBuilder to [MedicinalProductDefinitionCharacteristic]
+  MedicinalProductDefinitionCharacteristic build() =>
+      MedicinalProductDefinitionCharacteristic.fromJson(toJson());
+
+  /// Converts a [MedicinalProductDefinitionCharacteristicBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

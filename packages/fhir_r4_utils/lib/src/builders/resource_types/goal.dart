@@ -1,8 +1,20 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        Goal,
+        GoalTarget;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [Goal] to a Builder
+extension BuilderGoal on Goal {
+  /// Converts [Goal] to a [GoalBuilder]
+  GoalBuilder get toBuilder => GoalBuilder.fromJson(toJson());
+}
 
 /// [GoalBuilder]
 /// Describes the intended objective(s) for a patient, group or
@@ -364,6 +376,11 @@ class GoalBuilder extends DomainResourceBuilder {
   /// [outcomeReference]
   /// Details of what's changed (or not changed).
   List<ReferenceBuilder>? outcomeReference;
+
+  /// Converts a GoalBuilder to [Goal]
+  Goal build() => Goal.fromJson(toJson());
+
+  /// Converts a [GoalBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1388,6 +1405,12 @@ class GoalBuilder extends DomainResourceBuilder {
   }
 }
 
+/// Extension to change [GoalTarget] to a Builder
+extension BuilderGoalTarget on GoalTarget {
+  /// Converts [GoalTarget] to a [GoalTargetBuilder]
+  GoalTargetBuilder get toBuilder => GoalTargetBuilder.fromJson(toJson());
+}
+
 /// [GoalTargetBuilder]
 /// Indicates what should be done by when.
 class GoalTargetBuilder extends BackboneElementBuilder {
@@ -1560,6 +1583,11 @@ class GoalTargetBuilder extends BackboneElementBuilder {
 
   /// Getter for [dueDuration] as a FhirDurationBuilder
   FhirDurationBuilder? get dueDuration => dueX?.isAs<FhirDurationBuilder>();
+
+  /// Converts a GoalTargetBuilder to [GoalTarget]
+  GoalTarget build() => GoalTarget.fromJson(toJson());
+
+  /// Converts a [GoalTargetBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

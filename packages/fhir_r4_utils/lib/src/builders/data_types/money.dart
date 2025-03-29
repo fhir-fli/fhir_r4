@@ -1,8 +1,14 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, StringExtensionForFHIR;
+    show yamlMapToJson, yamlToJson, StringExtensionForFHIR, Money;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [Money] to a Builder
+extension BuilderMoney on Money {
+  /// Converts [Money] to a [MoneyBuilder]
+  MoneyBuilder get toBuilder => MoneyBuilder.fromJson(toJson());
+}
 
 /// [MoneyBuilder]
 /// An amount of economic utility in some recognized currency.
@@ -124,6 +130,11 @@ class MoneyBuilder extends DataTypeBuilder
   /// [currency]
   /// ISO 4217 Currency Code.
   FhirCodeBuilder? currency;
+
+  /// Converts a MoneyBuilder to [Money]
+  Money build() => Money.fromJson(toJson());
+
+  /// Converts a [MoneyBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

@@ -1,8 +1,22 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        ClinicalImpression,
+        ClinicalImpressionInvestigation,
+        ClinicalImpressionFinding;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [ClinicalImpression] to a Builder
+extension BuilderClinicalImpression on ClinicalImpression {
+  /// Converts [ClinicalImpression] to a [ClinicalImpressionBuilder]
+  ClinicalImpressionBuilder get toBuilder =>
+      ClinicalImpressionBuilder.fromJson(toJson());
+}
 
 /// [ClinicalImpressionBuilder]
 /// A record of a clinical assessment performed to determine what
@@ -424,6 +438,11 @@ class ClinicalImpressionBuilder extends DomainResourceBuilder {
   /// impression itself was made, though supplemental notes by the original
   /// author could also appear.
   List<AnnotationBuilder>? note;
+
+  /// Converts a ClinicalImpressionBuilder to [ClinicalImpression]
+  ClinicalImpression build() => ClinicalImpression.fromJson(toJson());
+
+  /// Converts a [ClinicalImpressionBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1590,6 +1609,14 @@ class ClinicalImpressionBuilder extends DomainResourceBuilder {
   }
 }
 
+/// Extension to change [ClinicalImpressionInvestigation] to a Builder
+extension BuilderClinicalImpressionInvestigation
+    on ClinicalImpressionInvestigation {
+  /// Converts [ClinicalImpressionInvestigation] to a [ClinicalImpressionInvestigationBuilder]
+  ClinicalImpressionInvestigationBuilder get toBuilder =>
+      ClinicalImpressionInvestigationBuilder.fromJson(toJson());
+}
+
 /// [ClinicalImpressionInvestigationBuilder]
 /// One or more sets of investigations (signs, symptoms, etc.). The actual
 /// grouping of investigations varies greatly depending on the type and
@@ -1719,6 +1746,12 @@ class ClinicalImpressionInvestigationBuilder extends BackboneElementBuilder {
   /// [item]
   /// A record of a specific investigation that was undertaken.
   List<ReferenceBuilder>? item;
+
+  /// Converts a ClinicalImpressionInvestigationBuilder to [ClinicalImpressionInvestigation]
+  ClinicalImpressionInvestigation build() =>
+      ClinicalImpressionInvestigation.fromJson(toJson());
+
+  /// Converts a [ClinicalImpressionInvestigationBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2046,6 +2079,13 @@ class ClinicalImpressionInvestigationBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [ClinicalImpressionFinding] to a Builder
+extension BuilderClinicalImpressionFinding on ClinicalImpressionFinding {
+  /// Converts [ClinicalImpressionFinding] to a [ClinicalImpressionFindingBuilder]
+  ClinicalImpressionFindingBuilder get toBuilder =>
+      ClinicalImpressionFindingBuilder.fromJson(toJson());
+}
+
 /// [ClinicalImpressionFindingBuilder]
 /// Specific findings or diagnoses that were considered likely or relevant
 /// to ongoing treatment.
@@ -2178,6 +2218,12 @@ class ClinicalImpressionFindingBuilder extends BackboneElementBuilder {
   /// [basis]
   /// Which investigations support finding or diagnosis.
   FhirStringBuilder? basis;
+
+  /// Converts a ClinicalImpressionFindingBuilder to [ClinicalImpressionFinding]
+  ClinicalImpressionFinding build() =>
+      ClinicalImpressionFinding.fromJson(toJson());
+
+  /// Converts a [ClinicalImpressionFindingBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

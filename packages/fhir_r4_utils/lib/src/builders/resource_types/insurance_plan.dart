@@ -1,8 +1,28 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        InsurancePlan,
+        InsurancePlanContact,
+        InsurancePlanCoverage,
+        InsurancePlanBenefit,
+        InsurancePlanLimit,
+        InsurancePlanPlan,
+        InsurancePlanGeneralCost,
+        InsurancePlanSpecificCost,
+        InsurancePlanBenefit1,
+        InsurancePlanCost;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [InsurancePlan] to a Builder
+extension BuilderInsurancePlan on InsurancePlan {
+  /// Converts [InsurancePlan] to a [InsurancePlanBuilder]
+  InsurancePlanBuilder get toBuilder => InsurancePlanBuilder.fromJson(toJson());
+}
 
 /// [InsurancePlanBuilder]
 /// Details of a Health Insurance product/plan provided by an organization.
@@ -335,6 +355,11 @@ class InsurancePlanBuilder extends DomainResourceBuilder {
   /// [plan]
   /// Details about an insurance plan.
   List<InsurancePlanPlanBuilder>? plan;
+
+  /// Converts a InsurancePlanBuilder to [InsurancePlan]
+  InsurancePlan build() => InsurancePlan.fromJson(toJson());
+
+  /// Converts a [InsurancePlanBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1251,6 +1276,13 @@ class InsurancePlanBuilder extends DomainResourceBuilder {
   }
 }
 
+/// Extension to change [InsurancePlanContact] to a Builder
+extension BuilderInsurancePlanContact on InsurancePlanContact {
+  /// Converts [InsurancePlanContact] to a [InsurancePlanContactBuilder]
+  InsurancePlanContactBuilder get toBuilder =>
+      InsurancePlanContactBuilder.fromJson(toJson());
+}
+
 /// [InsurancePlanContactBuilder]
 /// The contact for the health insurance product for a certain purpose.
 class InsurancePlanContactBuilder extends BackboneElementBuilder {
@@ -1395,6 +1427,11 @@ class InsurancePlanContactBuilder extends BackboneElementBuilder {
   /// [address]
   /// Visiting or postal addresses for the contact.
   AddressBuilder? address;
+
+  /// Converts a InsurancePlanContactBuilder to [InsurancePlanContact]
+  InsurancePlanContact build() => InsurancePlanContact.fromJson(toJson());
+
+  /// Converts a [InsurancePlanContactBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1786,6 +1823,13 @@ class InsurancePlanContactBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [InsurancePlanCoverage] to a Builder
+extension BuilderInsurancePlanCoverage on InsurancePlanCoverage {
+  /// Converts [InsurancePlanCoverage] to a [InsurancePlanCoverageBuilder]
+  InsurancePlanCoverageBuilder get toBuilder =>
+      InsurancePlanCoverageBuilder.fromJson(toJson());
+}
+
 /// [InsurancePlanCoverageBuilder]
 /// Details about the coverage offered by the insurance product.
 class InsurancePlanCoverageBuilder extends BackboneElementBuilder {
@@ -1924,6 +1968,11 @@ class InsurancePlanCoverageBuilder extends BackboneElementBuilder {
   /// [benefit]
   /// Specific benefits under this type of coverage.
   List<InsurancePlanBenefitBuilder>? benefit;
+
+  /// Converts a InsurancePlanCoverageBuilder to [InsurancePlanCoverage]
+  InsurancePlanCoverage build() => InsurancePlanCoverage.fromJson(toJson());
+
+  /// Converts a [InsurancePlanCoverageBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2288,6 +2337,13 @@ class InsurancePlanCoverageBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [InsurancePlanBenefit] to a Builder
+extension BuilderInsurancePlanBenefit on InsurancePlanBenefit {
+  /// Converts [InsurancePlanBenefit] to a [InsurancePlanBenefitBuilder]
+  InsurancePlanBenefitBuilder get toBuilder =>
+      InsurancePlanBenefitBuilder.fromJson(toJson());
+}
+
 /// [InsurancePlanBenefitBuilder]
 /// Specific benefits under this type of coverage.
 class InsurancePlanBenefitBuilder extends BackboneElementBuilder {
@@ -2420,6 +2476,11 @@ class InsurancePlanBenefitBuilder extends BackboneElementBuilder {
   /// [limit]
   /// The specific limits on the benefit.
   List<InsurancePlanLimitBuilder>? limit;
+
+  /// Converts a InsurancePlanBenefitBuilder to [InsurancePlanBenefit]
+  InsurancePlanBenefit build() => InsurancePlanBenefit.fromJson(toJson());
+
+  /// Converts a [InsurancePlanBenefitBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2779,6 +2840,13 @@ class InsurancePlanBenefitBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [InsurancePlanLimit] to a Builder
+extension BuilderInsurancePlanLimit on InsurancePlanLimit {
+  /// Converts [InsurancePlanLimit] to a [InsurancePlanLimitBuilder]
+  InsurancePlanLimitBuilder get toBuilder =>
+      InsurancePlanLimitBuilder.fromJson(toJson());
+}
+
 /// [InsurancePlanLimitBuilder]
 /// The specific limits on the benefit.
 class InsurancePlanLimitBuilder extends BackboneElementBuilder {
@@ -2897,6 +2965,11 @@ class InsurancePlanLimitBuilder extends BackboneElementBuilder {
   /// [code]
   /// The specific limit on the benefit.
   CodeableConceptBuilder? code;
+
+  /// Converts a InsurancePlanLimitBuilder to [InsurancePlanLimit]
+  InsurancePlanLimit build() => InsurancePlanLimit.fromJson(toJson());
+
+  /// Converts a [InsurancePlanLimitBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3219,6 +3292,13 @@ class InsurancePlanLimitBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [InsurancePlanPlan] to a Builder
+extension BuilderInsurancePlanPlan on InsurancePlanPlan {
+  /// Converts [InsurancePlanPlan] to a [InsurancePlanPlanBuilder]
+  InsurancePlanPlanBuilder get toBuilder =>
+      InsurancePlanPlanBuilder.fromJson(toJson());
+}
+
 /// [InsurancePlanPlanBuilder]
 /// Details about an insurance plan.
 class InsurancePlanPlanBuilder extends BackboneElementBuilder {
@@ -3403,6 +3483,11 @@ class InsurancePlanPlanBuilder extends BackboneElementBuilder {
   /// [specificCost]
   /// Costs associated with the coverage provided by the product.
   List<InsurancePlanSpecificCostBuilder>? specificCost;
+
+  /// Converts a InsurancePlanPlanBuilder to [InsurancePlanPlan]
+  InsurancePlanPlan build() => InsurancePlanPlan.fromJson(toJson());
+
+  /// Converts a [InsurancePlanPlanBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3878,6 +3963,13 @@ class InsurancePlanPlanBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [InsurancePlanGeneralCost] to a Builder
+extension BuilderInsurancePlanGeneralCost on InsurancePlanGeneralCost {
+  /// Converts [InsurancePlanGeneralCost] to a [InsurancePlanGeneralCostBuilder]
+  InsurancePlanGeneralCostBuilder get toBuilder =>
+      InsurancePlanGeneralCostBuilder.fromJson(toJson());
+}
+
 /// [InsurancePlanGeneralCostBuilder]
 /// Overall costs associated with the plan.
 class InsurancePlanGeneralCostBuilder extends BackboneElementBuilder {
@@ -4019,6 +4111,12 @@ class InsurancePlanGeneralCostBuilder extends BackboneElementBuilder {
   /// Additional information about the general costs associated with this
   /// plan.
   FhirStringBuilder? comment;
+
+  /// Converts a InsurancePlanGeneralCostBuilder to [InsurancePlanGeneralCost]
+  InsurancePlanGeneralCost build() =>
+      InsurancePlanGeneralCost.fromJson(toJson());
+
+  /// Converts a [InsurancePlanGeneralCostBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -4405,6 +4503,13 @@ class InsurancePlanGeneralCostBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [InsurancePlanSpecificCost] to a Builder
+extension BuilderInsurancePlanSpecificCost on InsurancePlanSpecificCost {
+  /// Converts [InsurancePlanSpecificCost] to a [InsurancePlanSpecificCostBuilder]
+  InsurancePlanSpecificCostBuilder get toBuilder =>
+      InsurancePlanSpecificCostBuilder.fromJson(toJson());
+}
+
 /// [InsurancePlanSpecificCostBuilder]
 /// Costs associated with the coverage provided by the product.
 class InsurancePlanSpecificCostBuilder extends BackboneElementBuilder {
@@ -4528,6 +4633,12 @@ class InsurancePlanSpecificCostBuilder extends BackboneElementBuilder {
   /// [benefit]
   /// List of the specific benefits under this category of benefit.
   List<InsurancePlanBenefitBuilder>? benefit;
+
+  /// Converts a InsurancePlanSpecificCostBuilder to [InsurancePlanSpecificCost]
+  InsurancePlanSpecificCost build() =>
+      InsurancePlanSpecificCost.fromJson(toJson());
+
+  /// Converts a [InsurancePlanSpecificCostBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -4855,6 +4966,13 @@ class InsurancePlanSpecificCostBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [InsurancePlanBenefit1] to a Builder
+extension BuilderInsurancePlanBenefit1 on InsurancePlanBenefit1 {
+  /// Converts [InsurancePlanBenefit1] to a [InsurancePlanBenefit1Builder]
+  InsurancePlanBenefit1Builder get toBuilder =>
+      InsurancePlanBenefit1Builder.fromJson(toJson());
+}
+
 /// [InsurancePlanBenefit1Builder]
 /// List of the specific benefits under this category of benefit.
 class InsurancePlanBenefit1Builder extends BackboneElementBuilder {
@@ -4978,6 +5096,11 @@ class InsurancePlanBenefit1Builder extends BackboneElementBuilder {
   /// [cost]
   /// List of the costs associated with a specific benefit.
   List<InsurancePlanCostBuilder>? cost;
+
+  /// Converts a InsurancePlanBenefit1Builder to [InsurancePlanBenefit1]
+  InsurancePlanBenefit1 build() => InsurancePlanBenefit1.fromJson(toJson());
+
+  /// Converts a [InsurancePlanBenefit1Builder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -5305,6 +5428,13 @@ class InsurancePlanBenefit1Builder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [InsurancePlanCost] to a Builder
+extension BuilderInsurancePlanCost on InsurancePlanCost {
+  /// Converts [InsurancePlanCost] to a [InsurancePlanCostBuilder]
+  InsurancePlanCostBuilder get toBuilder =>
+      InsurancePlanCostBuilder.fromJson(toJson());
+}
+
 /// [InsurancePlanCostBuilder]
 /// List of the costs associated with a specific benefit.
 class InsurancePlanCostBuilder extends BackboneElementBuilder {
@@ -5452,6 +5582,11 @@ class InsurancePlanCostBuilder extends BackboneElementBuilder {
   /// The actual cost value. (some of the costs may be represented as
   /// percentages rather than currency, e.g. 10% coinsurance).
   QuantityBuilder? value;
+
+  /// Converts a InsurancePlanCostBuilder to [InsurancePlanCost]
+  InsurancePlanCost build() => InsurancePlanCost.fromJson(toJson());
+
+  /// Converts a [InsurancePlanCostBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

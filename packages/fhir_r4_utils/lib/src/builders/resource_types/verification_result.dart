@@ -1,8 +1,23 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        VerificationResult,
+        VerificationResultPrimarySource,
+        VerificationResultAttestation,
+        VerificationResultValidator;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [VerificationResult] to a Builder
+extension BuilderVerificationResult on VerificationResult {
+  /// Converts [VerificationResult] to a [VerificationResultBuilder]
+  VerificationResultBuilder get toBuilder =>
+      VerificationResultBuilder.fromJson(toJson());
+}
 
 /// [VerificationResultBuilder]
 /// Describes validation requirements, source(s), status and dates for one
@@ -314,6 +329,11 @@ class VerificationResultBuilder extends DomainResourceBuilder {
   /// [validator]
   /// Information about the entity validating information.
   List<VerificationResultValidatorBuilder>? validator;
+
+  /// Converts a VerificationResultBuilder to [VerificationResult]
+  VerificationResult build() => VerificationResult.fromJson(toJson());
+
+  /// Converts a [VerificationResultBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1210,6 +1230,14 @@ class VerificationResultBuilder extends DomainResourceBuilder {
   }
 }
 
+/// Extension to change [VerificationResultPrimarySource] to a Builder
+extension BuilderVerificationResultPrimarySource
+    on VerificationResultPrimarySource {
+  /// Converts [VerificationResultPrimarySource] to a [VerificationResultPrimarySourceBuilder]
+  VerificationResultPrimarySourceBuilder get toBuilder =>
+      VerificationResultPrimarySourceBuilder.fromJson(toJson());
+}
+
 /// [VerificationResultPrimarySourceBuilder]
 /// Information about the primary source(s) involved in validation.
 class VerificationResultPrimarySourceBuilder extends BackboneElementBuilder {
@@ -1400,6 +1428,12 @@ class VerificationResultPrimarySourceBuilder extends BackboneElementBuilder {
   /// Type of alerts/updates the primary source can send (specific requested
   /// changes; any changes; as defined by source).
   List<CodeableConceptBuilder>? pushTypeAvailable;
+
+  /// Converts a VerificationResultPrimarySourceBuilder to [VerificationResultPrimarySource]
+  VerificationResultPrimarySource build() =>
+      VerificationResultPrimarySource.fromJson(toJson());
+
+  /// Converts a [VerificationResultPrimarySourceBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1897,6 +1931,14 @@ class VerificationResultPrimarySourceBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [VerificationResultAttestation] to a Builder
+extension BuilderVerificationResultAttestation
+    on VerificationResultAttestation {
+  /// Converts [VerificationResultAttestation] to a [VerificationResultAttestationBuilder]
+  VerificationResultAttestationBuilder get toBuilder =>
+      VerificationResultAttestationBuilder.fromJson(toJson());
+}
+
 /// [VerificationResultAttestationBuilder]
 /// Information about the entity attesting to information.
 class VerificationResultAttestationBuilder extends BackboneElementBuilder {
@@ -2087,6 +2129,12 @@ class VerificationResultAttestationBuilder extends BackboneElementBuilder {
   /// Signed assertion by the attestation source that they have attested to
   /// the information.
   SignatureBuilder? sourceSignature;
+
+  /// Converts a VerificationResultAttestationBuilder to [VerificationResultAttestation]
+  VerificationResultAttestation build() =>
+      VerificationResultAttestation.fromJson(toJson());
+
+  /// Converts a [VerificationResultAttestationBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2603,6 +2651,13 @@ class VerificationResultAttestationBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [VerificationResultValidator] to a Builder
+extension BuilderVerificationResultValidator on VerificationResultValidator {
+  /// Converts [VerificationResultValidator] to a [VerificationResultValidatorBuilder]
+  VerificationResultValidatorBuilder get toBuilder =>
+      VerificationResultValidatorBuilder.fromJson(toJson());
+}
+
 /// [VerificationResultValidatorBuilder]
 /// Information about the entity validating information.
 class VerificationResultValidatorBuilder extends BackboneElementBuilder {
@@ -2733,6 +2788,12 @@ class VerificationResultValidatorBuilder extends BackboneElementBuilder {
   /// Signed assertion by the validator that they have validated the
   /// information.
   SignatureBuilder? attestationSignature;
+
+  /// Converts a VerificationResultValidatorBuilder to [VerificationResultValidator]
+  VerificationResultValidator build() =>
+      VerificationResultValidator.fromJson(toJson());
+
+  /// Converts a [VerificationResultValidatorBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

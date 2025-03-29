@@ -1,8 +1,24 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        Measure,
+        MeasureGroup,
+        MeasurePopulation,
+        MeasureStratifier,
+        MeasureComponent,
+        MeasureSupplementalData;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [Measure] to a Builder
+extension BuilderMeasure on Measure {
+  /// Converts [Measure] to a [MeasureBuilder]
+  MeasureBuilder get toBuilder => MeasureBuilder.fromJson(toJson());
+}
 
 /// [MeasureBuilder]
 /// The Measure resource provides the definition of a quality measure.
@@ -653,6 +669,11 @@ class MeasureBuilder extends CanonicalResourceBuilder {
   /// either the name of a valid CQL expression within a referenced library,
   /// or a valid FHIR Resource Path.
   List<MeasureSupplementalDataBuilder>? supplementalData;
+
+  /// Converts a MeasureBuilder to [Measure]
+  Measure build() => Measure.fromJson(toJson());
+
+  /// Converts a [MeasureBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2520,6 +2541,12 @@ class MeasureBuilder extends CanonicalResourceBuilder {
   }
 }
 
+/// Extension to change [MeasureGroup] to a Builder
+extension BuilderMeasureGroup on MeasureGroup {
+  /// Converts [MeasureGroup] to a [MeasureGroupBuilder]
+  MeasureGroupBuilder get toBuilder => MeasureGroupBuilder.fromJson(toJson());
+}
+
 /// [MeasureGroupBuilder]
 /// A group of population criteria for the measure.
 class MeasureGroupBuilder extends BackboneElementBuilder {
@@ -2671,6 +2698,11 @@ class MeasureGroupBuilder extends BackboneElementBuilder {
   /// name of a valid CQL expression defined within a referenced library or a
   /// valid FHIR Resource Path.
   List<MeasureStratifierBuilder>? stratifier;
+
+  /// Converts a MeasureGroupBuilder to [MeasureGroup]
+  MeasureGroup build() => MeasureGroup.fromJson(toJson());
+
+  /// Converts a [MeasureGroupBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3067,6 +3099,13 @@ class MeasureGroupBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [MeasurePopulation] to a Builder
+extension BuilderMeasurePopulation on MeasurePopulation {
+  /// Converts [MeasurePopulation] to a [MeasurePopulationBuilder]
+  MeasurePopulationBuilder get toBuilder =>
+      MeasurePopulationBuilder.fromJson(toJson());
+}
+
 /// [MeasurePopulationBuilder]
 /// A population criteria for the measure.
 class MeasurePopulationBuilder extends BackboneElementBuilder {
@@ -3196,6 +3235,11 @@ class MeasurePopulationBuilder extends BackboneElementBuilder {
   /// An expression that specifies the criteria for the population, typically
   /// the name of an expression in a library.
   FhirExpressionBuilder? criteria;
+
+  /// Converts a MeasurePopulationBuilder to [MeasurePopulation]
+  MeasurePopulation build() => MeasurePopulation.fromJson(toJson());
+
+  /// Converts a [MeasurePopulationBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3550,6 +3594,13 @@ class MeasurePopulationBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [MeasureStratifier] to a Builder
+extension BuilderMeasureStratifier on MeasureStratifier {
+  /// Converts [MeasureStratifier] to a [MeasureStratifierBuilder]
+  MeasureStratifierBuilder get toBuilder =>
+      MeasureStratifierBuilder.fromJson(toJson());
+}
+
 /// [MeasureStratifierBuilder]
 /// The stratifier criteria for the measure report, specified as either the
 /// name of a valid CQL expression defined within a referenced library or a
@@ -3702,6 +3753,11 @@ class MeasureStratifierBuilder extends BackboneElementBuilder {
   /// specified as either the name of a valid CQL expression defined within a
   /// referenced library or a valid FHIR Resource Path.
   List<MeasureComponentBuilder>? component;
+
+  /// Converts a MeasureStratifierBuilder to [MeasureStratifier]
+  MeasureStratifier build() => MeasureStratifier.fromJson(toJson());
+
+  /// Converts a [MeasureStratifierBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -4093,6 +4149,13 @@ class MeasureStratifierBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [MeasureComponent] to a Builder
+extension BuilderMeasureComponent on MeasureComponent {
+  /// Converts [MeasureComponent] to a [MeasureComponentBuilder]
+  MeasureComponentBuilder get toBuilder =>
+      MeasureComponentBuilder.fromJson(toJson());
+}
+
 /// [MeasureComponentBuilder]
 /// A component of the stratifier criteria for the measure report,
 /// specified as either the name of a valid CQL expression defined within a
@@ -4229,6 +4292,11 @@ class MeasureComponentBuilder extends BackboneElementBuilder {
   /// a referenced library, but it may also be a path to a stratifier
   /// element.
   FhirExpressionBuilder? criteria;
+
+  /// Converts a MeasureComponentBuilder to [MeasureComponent]
+  MeasureComponent build() => MeasureComponent.fromJson(toJson());
+
+  /// Converts a [MeasureComponentBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -4583,6 +4651,13 @@ class MeasureComponentBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [MeasureSupplementalData] to a Builder
+extension BuilderMeasureSupplementalData on MeasureSupplementalData {
+  /// Converts [MeasureSupplementalData] to a [MeasureSupplementalDataBuilder]
+  MeasureSupplementalDataBuilder get toBuilder =>
+      MeasureSupplementalDataBuilder.fromJson(toJson());
+}
+
 /// [MeasureSupplementalDataBuilder]
 /// The supplemental data criteria for the measure report, specified as
 /// either the name of a valid CQL expression within a referenced library,
@@ -4740,6 +4815,11 @@ class MeasureSupplementalDataBuilder extends BackboneElementBuilder {
   /// be a path to a specific data element. The criteria defines the data to
   /// be returned for this element.
   FhirExpressionBuilder? criteria;
+
+  /// Converts a MeasureSupplementalDataBuilder to [MeasureSupplementalData]
+  MeasureSupplementalData build() => MeasureSupplementalData.fromJson(toJson());
+
+  /// Converts a [MeasureSupplementalDataBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

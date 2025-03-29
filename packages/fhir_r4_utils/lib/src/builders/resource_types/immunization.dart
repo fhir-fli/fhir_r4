@@ -1,8 +1,23 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        Immunization,
+        ImmunizationPerformer,
+        ImmunizationEducation,
+        ImmunizationReaction,
+        ImmunizationProtocolApplied;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [Immunization] to a Builder
+extension BuilderImmunization on Immunization {
+  /// Converts [Immunization] to a [ImmunizationBuilder]
+  ImmunizationBuilder get toBuilder => ImmunizationBuilder.fromJson(toJson());
+}
 
 /// [ImmunizationBuilder]
 /// Describes the event of a patient being administered a vaccine or a
@@ -514,6 +529,11 @@ class ImmunizationBuilder extends DomainResourceBuilder {
   /// The protocol (set of recommendations) being followed by the provider
   /// who administered the dose.
   List<ImmunizationProtocolAppliedBuilder>? protocolApplied;
+
+  /// Converts a ImmunizationBuilder to [Immunization]
+  Immunization build() => Immunization.fromJson(toJson());
+
+  /// Converts a [ImmunizationBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1937,6 +1957,13 @@ class ImmunizationBuilder extends DomainResourceBuilder {
   }
 }
 
+/// Extension to change [ImmunizationPerformer] to a Builder
+extension BuilderImmunizationPerformer on ImmunizationPerformer {
+  /// Converts [ImmunizationPerformer] to a [ImmunizationPerformerBuilder]
+  ImmunizationPerformerBuilder get toBuilder =>
+      ImmunizationPerformerBuilder.fromJson(toJson());
+}
+
 /// [ImmunizationPerformerBuilder]
 /// Indicates who performed the immunization event.
 class ImmunizationPerformerBuilder extends BackboneElementBuilder {
@@ -2056,6 +2083,11 @@ class ImmunizationPerformerBuilder extends BackboneElementBuilder {
   /// [actor]
   /// The practitioner or organization who performed the action.
   ReferenceBuilder? actor;
+
+  /// Converts a ImmunizationPerformerBuilder to [ImmunizationPerformer]
+  ImmunizationPerformer build() => ImmunizationPerformer.fromJson(toJson());
+
+  /// Converts a [ImmunizationPerformerBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2378,6 +2410,13 @@ class ImmunizationPerformerBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [ImmunizationEducation] to a Builder
+extension BuilderImmunizationEducation on ImmunizationEducation {
+  /// Converts [ImmunizationEducation] to a [ImmunizationEducationBuilder]
+  ImmunizationEducationBuilder get toBuilder =>
+      ImmunizationEducationBuilder.fromJson(toJson());
+}
+
 /// [ImmunizationEducationBuilder]
 /// Educational material presented to the patient (or guardian) at the time
 /// of vaccine administration.
@@ -2520,6 +2559,11 @@ class ImmunizationEducationBuilder extends BackboneElementBuilder {
   /// [presentationDate]
   /// Date the educational material was given to the patient.
   FhirDateTimeBuilder? presentationDate;
+
+  /// Converts a ImmunizationEducationBuilder to [ImmunizationEducation]
+  ImmunizationEducation build() => ImmunizationEducation.fromJson(toJson());
+
+  /// Converts a [ImmunizationEducationBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2906,6 +2950,13 @@ class ImmunizationEducationBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [ImmunizationReaction] to a Builder
+extension BuilderImmunizationReaction on ImmunizationReaction {
+  /// Converts [ImmunizationReaction] to a [ImmunizationReactionBuilder]
+  ImmunizationReactionBuilder get toBuilder =>
+      ImmunizationReactionBuilder.fromJson(toJson());
+}
+
 /// [ImmunizationReactionBuilder]
 /// Categorical data indicating that an adverse event is associated in time
 /// to an immunization.
@@ -3035,6 +3086,11 @@ class ImmunizationReactionBuilder extends BackboneElementBuilder {
   /// [reported]
   /// Self-reported indicator.
   FhirBooleanBuilder? reported;
+
+  /// Converts a ImmunizationReactionBuilder to [ImmunizationReaction]
+  ImmunizationReaction build() => ImmunizationReaction.fromJson(toJson());
+
+  /// Converts a [ImmunizationReactionBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3389,6 +3445,13 @@ class ImmunizationReactionBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [ImmunizationProtocolApplied] to a Builder
+extension BuilderImmunizationProtocolApplied on ImmunizationProtocolApplied {
+  /// Converts [ImmunizationProtocolApplied] to a [ImmunizationProtocolAppliedBuilder]
+  ImmunizationProtocolAppliedBuilder get toBuilder =>
+      ImmunizationProtocolAppliedBuilder.fromJson(toJson());
+}
+
 /// [ImmunizationProtocolAppliedBuilder]
 /// The protocol (set of recommendations) being followed by the provider
 /// who administered the dose.
@@ -3569,6 +3632,12 @@ class ImmunizationProtocolAppliedBuilder extends BackboneElementBuilder {
   /// Getter for [seriesDosesString] as a FhirStringBuilder
   FhirStringBuilder? get seriesDosesString =>
       seriesDosesX?.isAs<FhirStringBuilder>();
+
+  /// Converts a ImmunizationProtocolAppliedBuilder to [ImmunizationProtocolApplied]
+  ImmunizationProtocolApplied build() =>
+      ImmunizationProtocolApplied.fromJson(toJson());
+
+  /// Converts a [ImmunizationProtocolAppliedBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

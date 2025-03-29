@@ -1,8 +1,22 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        ObservationDefinition,
+        ObservationDefinitionQuantitativeDetails,
+        ObservationDefinitionQualifiedInterval;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [ObservationDefinition] to a Builder
+extension BuilderObservationDefinition on ObservationDefinition {
+  /// Converts [ObservationDefinition] to a [ObservationDefinitionBuilder]
+  ObservationDefinitionBuilder get toBuilder =>
+      ObservationDefinitionBuilder.fromJson(toJson());
+}
 
 /// [ObservationDefinitionBuilder]
 /// Set of definitional characteristics for a kind of observation or
@@ -306,6 +320,11 @@ class ObservationDefinitionBuilder extends DomainResourceBuilder {
   /// The set of critical coded results for the observation conforming to
   /// this ObservationDefinition.
   ReferenceBuilder? criticalCodedValueSet;
+
+  /// Converts a ObservationDefinitionBuilder to [ObservationDefinition]
+  ObservationDefinition build() => ObservationDefinition.fromJson(toJson());
+
+  /// Converts a [ObservationDefinitionBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1169,6 +1188,14 @@ class ObservationDefinitionBuilder extends DomainResourceBuilder {
   }
 }
 
+/// Extension to change [ObservationDefinitionQuantitativeDetails] to a Builder
+extension BuilderObservationDefinitionQuantitativeDetails
+    on ObservationDefinitionQuantitativeDetails {
+  /// Converts [ObservationDefinitionQuantitativeDetails] to a [ObservationDefinitionQuantitativeDetailsBuilder]
+  ObservationDefinitionQuantitativeDetailsBuilder get toBuilder =>
+      ObservationDefinitionQuantitativeDetailsBuilder.fromJson(toJson());
+}
+
 /// [ObservationDefinitionQuantitativeDetailsBuilder]
 /// Characteristics for quantitative results of this observation.
 class ObservationDefinitionQuantitativeDetailsBuilder
@@ -1314,6 +1341,12 @@ class ObservationDefinitionQuantitativeDetailsBuilder
   /// Number of digits after decimal separator when the results of such
   /// observations are of type Quantity.
   FhirIntegerBuilder? decimalPrecision;
+
+  /// Converts a ObservationDefinitionQuantitativeDetailsBuilder to [ObservationDefinitionQuantitativeDetails]
+  ObservationDefinitionQuantitativeDetails build() =>
+      ObservationDefinitionQuantitativeDetails.fromJson(toJson());
+
+  /// Converts a [ObservationDefinitionQuantitativeDetailsBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1701,6 +1734,14 @@ class ObservationDefinitionQuantitativeDetailsBuilder
   }
 }
 
+/// Extension to change [ObservationDefinitionQualifiedInterval] to a Builder
+extension BuilderObservationDefinitionQualifiedInterval
+    on ObservationDefinitionQualifiedInterval {
+  /// Converts [ObservationDefinitionQualifiedInterval] to a [ObservationDefinitionQualifiedIntervalBuilder]
+  ObservationDefinitionQualifiedIntervalBuilder get toBuilder =>
+      ObservationDefinitionQualifiedIntervalBuilder.fromJson(toJson());
+}
+
 /// [ObservationDefinitionQualifiedIntervalBuilder]
 /// Multiple ranges of results qualified by different contexts for ordinal
 /// or continuous observations conforming to this ObservationDefinition.
@@ -1897,6 +1938,12 @@ class ObservationDefinitionQualifiedIntervalBuilder
   /// [condition]
   /// Text based condition for which the reference range is valid.
   FhirStringBuilder? condition;
+
+  /// Converts a ObservationDefinitionQualifiedIntervalBuilder to [ObservationDefinitionQualifiedInterval]
+  ObservationDefinitionQualifiedInterval build() =>
+      ObservationDefinitionQualifiedInterval.fromJson(toJson());
+
+  /// Converts a [ObservationDefinitionQualifiedIntervalBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

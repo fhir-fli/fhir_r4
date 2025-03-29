@@ -1,8 +1,15 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, StringExtensionForFHIR;
+    show yamlMapToJson, yamlToJson, StringExtensionForFHIR, RelatedArtifact;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [RelatedArtifact] to a Builder
+extension BuilderRelatedArtifact on RelatedArtifact {
+  /// Converts [RelatedArtifact] to a [RelatedArtifactBuilder]
+  RelatedArtifactBuilder get toBuilder =>
+      RelatedArtifactBuilder.fromJson(toJson());
+}
 
 /// [RelatedArtifactBuilder]
 /// Related artifacts such as additional documentation, justification, or
@@ -181,6 +188,11 @@ class RelatedArtifactBuilder extends DataTypeBuilder
   /// The related resource, such as a library, value set, profile, or other
   /// knowledge resource.
   FhirCanonicalBuilder? resource;
+
+  /// Converts a RelatedArtifactBuilder to [RelatedArtifact]
+  RelatedArtifact build() => RelatedArtifact.fromJson(toJson());
+
+  /// Converts a [RelatedArtifactBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

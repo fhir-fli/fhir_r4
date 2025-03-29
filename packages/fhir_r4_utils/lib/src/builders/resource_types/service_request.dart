@@ -1,8 +1,20 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        ServiceRequest;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [ServiceRequest] to a Builder
+extension BuilderServiceRequest on ServiceRequest {
+  /// Converts [ServiceRequest] to a [ServiceRequestBuilder]
+  ServiceRequestBuilder get toBuilder =>
+      ServiceRequestBuilder.fromJson(toJson());
+}
 
 /// [ServiceRequestBuilder]
 /// A record of a request for service such as diagnostic investigations,
@@ -647,6 +659,11 @@ class ServiceRequestBuilder extends DomainResourceBuilder {
   /// [relevantHistory]
   /// Key events in the history of the request.
   List<ReferenceBuilder>? relevantHistory;
+
+  /// Converts a ServiceRequestBuilder to [ServiceRequest]
+  ServiceRequest build() => ServiceRequest.fromJson(toJson());
+
+  /// Converts a [ServiceRequestBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

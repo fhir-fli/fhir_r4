@@ -41,8 +41,8 @@ abstract class DataTypeBuilder extends ElementBuilder {
     return json;
   }
 
-  /// Factory constructor for [DataTypeBuilder] that takes in a [YamlMap] and returns
-  /// a [DataTypeBuilder]
+  /// Factory constructor for [DataTypeBuilder] that takes in a [YamlMap]
+  /// and returns a [DataTypeBuilder]
   static DataTypeBuilder fromYaml(dynamic yaml) => yaml is String
       ? DataTypeBuilder.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, dynamic>,

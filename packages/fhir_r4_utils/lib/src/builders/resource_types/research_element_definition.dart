@@ -1,8 +1,21 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        ResearchElementDefinition,
+        ResearchElementDefinitionCharacteristic;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [ResearchElementDefinition] to a Builder
+extension BuilderResearchElementDefinition on ResearchElementDefinition {
+  /// Converts [ResearchElementDefinition] to a [ResearchElementDefinitionBuilder]
+  ResearchElementDefinitionBuilder get toBuilder =>
+      ResearchElementDefinitionBuilder.fromJson(toJson());
+}
 
 /// [ResearchElementDefinitionBuilder]
 /// The ResearchElementDefinition resource describes a "PICO" element that
@@ -620,6 +633,12 @@ class ResearchElementDefinitionBuilder extends DomainResourceBuilder {
   /// A characteristic that defines the members of the research element.
   /// Multiple characteristics are applied with "and" semantics.
   List<ResearchElementDefinitionCharacteristicBuilder>? characteristic;
+
+  /// Converts a ResearchElementDefinitionBuilder to [ResearchElementDefinition]
+  ResearchElementDefinition build() =>
+      ResearchElementDefinition.fromJson(toJson());
+
+  /// Converts a [ResearchElementDefinitionBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2218,6 +2237,14 @@ class ResearchElementDefinitionBuilder extends DomainResourceBuilder {
   }
 }
 
+/// Extension to change [ResearchElementDefinitionCharacteristic] to a Builder
+extension BuilderResearchElementDefinitionCharacteristic
+    on ResearchElementDefinitionCharacteristic {
+  /// Converts [ResearchElementDefinitionCharacteristic] to a [ResearchElementDefinitionCharacteristicBuilder]
+  ResearchElementDefinitionCharacteristicBuilder get toBuilder =>
+      ResearchElementDefinitionCharacteristicBuilder.fromJson(toJson());
+}
+
 /// [ResearchElementDefinitionCharacteristicBuilder]
 /// A characteristic that defines the members of the research element.
 /// Multiple characteristics are applied with "and" semantics.
@@ -2528,6 +2555,12 @@ class ResearchElementDefinitionCharacteristicBuilder
   /// Indicates how elements are aggregated within the study effective
   /// period.
   GroupMeasureBuilder? participantEffectiveGroupMeasure;
+
+  /// Converts a ResearchElementDefinitionCharacteristicBuilder to [ResearchElementDefinitionCharacteristic]
+  ResearchElementDefinitionCharacteristic build() =>
+      ResearchElementDefinitionCharacteristic.fromJson(toJson());
+
+  /// Converts a [ResearchElementDefinitionCharacteristicBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

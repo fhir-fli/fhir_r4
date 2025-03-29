@@ -1,5 +1,12 @@
 part of 'primitive_types.dart';
 
+/// Extension to convert a [FhirUnsignedInt] to a [FhirUnsignedIntBuilder]
+extension BuilderFhirUnsignedInt on FhirUnsignedInt {
+  /// Converts this instance to a [FhirUnsignedIntBuilder]
+  FhirUnsignedIntBuilder get toBuilder =>
+      FhirUnsignedIntBuilder.fromJson(toJson());
+}
+
 /// Extension to convert a [num] to a [FhirUnsignedIntBuilder].
 extension FhirUnsignedIntBuilderExtension on num {
   /// Converts a [num] to a [FhirUnsignedIntBuilder].

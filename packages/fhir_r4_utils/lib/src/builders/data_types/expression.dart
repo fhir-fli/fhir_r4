@@ -1,8 +1,15 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, StringExtensionForFHIR;
+    show yamlMapToJson, yamlToJson, StringExtensionForFHIR, FhirExpression;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [FhirExpression] to a Builder
+extension BuilderFhirExpression on FhirExpression {
+  /// Converts [FhirExpression] to a [FhirExpressionBuilder]
+  FhirExpressionBuilder get toBuilder =>
+      FhirExpressionBuilder.fromJson(toJson());
+}
 
 /// [FhirExpressionBuilder]
 /// A expression that is evaluated in a specified context and returns a
@@ -159,6 +166,11 @@ class FhirExpressionBuilder extends DataTypeBuilder
   /// [reference]
   /// A URI that defines where the expression is found.
   FhirUriBuilder? reference;
+
+  /// Converts a FhirExpressionBuilder to [FhirExpression]
+  FhirExpression build() => FhirExpression.fromJson(toJson());
+
+  /// Converts a [FhirExpressionBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

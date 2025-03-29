@@ -1,8 +1,21 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        OperationOutcome,
+        OperationOutcomeIssue;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [OperationOutcome] to a Builder
+extension BuilderOperationOutcome on OperationOutcome {
+  /// Converts [OperationOutcome] to a [OperationOutcomeBuilder]
+  OperationOutcomeBuilder get toBuilder =>
+      OperationOutcomeBuilder.fromJson(toJson());
+}
 
 /// [OperationOutcomeBuilder]
 /// A collection of error, warning, or information messages that result
@@ -155,6 +168,11 @@ class OperationOutcomeBuilder extends DomainResourceBuilder {
   /// An error, warning, or information message that results from a system
   /// action.
   List<OperationOutcomeIssueBuilder>? issue;
+
+  /// Converts a OperationOutcomeBuilder to [OperationOutcome]
+  OperationOutcome build() => OperationOutcome.fromJson(toJson());
+
+  /// Converts a [OperationOutcomeBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -615,6 +633,13 @@ class OperationOutcomeBuilder extends DomainResourceBuilder {
   }
 }
 
+/// Extension to change [OperationOutcomeIssue] to a Builder
+extension BuilderOperationOutcomeIssue on OperationOutcomeIssue {
+  /// Converts [OperationOutcomeIssue] to a [OperationOutcomeIssueBuilder]
+  OperationOutcomeIssueBuilder get toBuilder =>
+      OperationOutcomeIssueBuilder.fromJson(toJson());
+}
+
 /// [OperationOutcomeIssueBuilder]
 /// An error, warning, or information message that results from a system
 /// action.
@@ -793,6 +818,11 @@ class OperationOutcomeIssueBuilder extends BackboneElementBuilder {
   /// identifies one of the elements in the resource that caused this issue
   /// to be raised.
   List<FhirStringBuilder>? expression;
+
+  /// Converts a OperationOutcomeIssueBuilder to [OperationOutcomeIssue]
+  OperationOutcomeIssue build() => OperationOutcomeIssue.fromJson(toJson());
+
+  /// Converts a [OperationOutcomeIssueBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

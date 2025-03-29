@@ -1,8 +1,15 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, StringExtensionForFHIR;
+    show yamlMapToJson, yamlToJson, StringExtensionForFHIR, CodeableConcept;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [CodeableConcept] to a Builder
+extension BuilderCodeableConcept on CodeableConcept {
+  /// Converts [CodeableConcept] to a [CodeableConceptBuilder]
+  CodeableConceptBuilder get toBuilder =>
+      CodeableConceptBuilder.fromJson(toJson());
+}
 
 /// [CodeableConceptBuilder]
 /// A concept that may be defined by a formal reference to a terminology or
@@ -194,6 +201,11 @@ class CodeableConceptBuilder extends DataTypeBuilder
   /// by the user who entered the data and/or which represents the intended
   /// meaning of the user.
   FhirStringBuilder? text;
+
+  /// Converts a CodeableConceptBuilder to [CodeableConcept]
+  CodeableConcept build() => CodeableConcept.fromJson(toJson());
+
+  /// Converts a [CodeableConceptBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

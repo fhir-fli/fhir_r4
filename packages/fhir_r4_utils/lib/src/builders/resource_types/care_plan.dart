@@ -1,8 +1,21 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        CarePlan,
+        CarePlanActivity,
+        CarePlanDetail;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [CarePlan] to a Builder
+extension BuilderCarePlan on CarePlan {
+  /// Converts [CarePlan] to a [CarePlanBuilder]
+  CarePlanBuilder get toBuilder => CarePlanBuilder.fromJson(toJson());
+}
 
 /// [CarePlanBuilder]
 /// Describes the intention of how one or more practitioners intend to
@@ -467,6 +480,11 @@ class CarePlanBuilder extends DomainResourceBuilder {
   /// [note]
   /// General notes about the care plan not covered elsewhere.
   List<AnnotationBuilder>? note;
+
+  /// Converts a CarePlanBuilder to [CarePlan]
+  CarePlan build() => CarePlan.fromJson(toJson());
+
+  /// Converts a [CarePlanBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1697,6 +1715,13 @@ class CarePlanBuilder extends DomainResourceBuilder {
   }
 }
 
+/// Extension to change [CarePlanActivity] to a Builder
+extension BuilderCarePlanActivity on CarePlanActivity {
+  /// Converts [CarePlanActivity] to a [CarePlanActivityBuilder]
+  CarePlanActivityBuilder get toBuilder =>
+      CarePlanActivityBuilder.fromJson(toJson());
+}
+
 /// [CarePlanActivityBuilder]
 /// Identifies a planned action to occur as part of the plan. For example,
 /// a medication to be used, lab tests to perform, self-monitoring,
@@ -1870,6 +1895,11 @@ class CarePlanActivityBuilder extends BackboneElementBuilder {
   /// system (e.g. form driven) that doesn't know about specific resources
   /// such as procedure etc.
   CarePlanDetailBuilder? detail;
+
+  /// Converts a CarePlanActivityBuilder to [CarePlanActivity]
+  CarePlanActivity build() => CarePlanActivity.fromJson(toJson());
+
+  /// Converts a [CarePlanActivityBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2304,6 +2334,13 @@ class CarePlanActivityBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [CarePlanDetail] to a Builder
+extension BuilderCarePlanDetail on CarePlanDetail {
+  /// Converts [CarePlanDetail] to a [CarePlanDetailBuilder]
+  CarePlanDetailBuilder get toBuilder =>
+      CarePlanDetailBuilder.fromJson(toJson());
+}
+
 /// [CarePlanDetailBuilder]
 /// A simple summary of a planned activity suitable for a general care plan
 /// system (e.g. form driven) that doesn't know about specific resources
@@ -2653,6 +2690,11 @@ class CarePlanDetailBuilder extends BackboneElementBuilder {
   /// may convey specifics about the activity such as body site, method,
   /// route, etc.
   FhirStringBuilder? description;
+
+  /// Converts a CarePlanDetailBuilder to [CarePlanDetail]
+  CarePlanDetail build() => CarePlanDetail.fromJson(toJson());
+
+  /// Converts a [CarePlanDetailBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

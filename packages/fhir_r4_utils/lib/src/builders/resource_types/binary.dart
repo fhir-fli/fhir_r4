@@ -1,8 +1,19 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        Binary;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [Binary] to a Builder
+extension BuilderBinary on Binary {
+  /// Converts [Binary] to a [BinaryBuilder]
+  BinaryBuilder get toBuilder => BinaryBuilder.fromJson(toJson());
+}
 
 /// [BinaryBuilder]
 /// A resource that represents the data of a single raw artifact as digital
@@ -144,6 +155,11 @@ class BinaryBuilder extends ResourceBuilder {
   /// [data]
   /// The actual content, base64 encoded.
   FhirBase64BinaryBuilder? data;
+
+  /// Converts a BinaryBuilder to [Binary]
+  Binary build() => Binary.fromJson(toJson());
+
+  /// Converts a [BinaryBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

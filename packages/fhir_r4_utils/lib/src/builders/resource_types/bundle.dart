@@ -1,8 +1,24 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        Bundle,
+        BundleLink,
+        BundleEntry,
+        BundleSearch,
+        BundleRequest,
+        BundleResponse;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [Bundle] to a Builder
+extension BuilderBundle on Bundle {
+  /// Converts [Bundle] to a [BundleBuilder]
+  BundleBuilder get toBuilder => BundleBuilder.fromJson(toJson());
+}
 
 /// [BundleBuilder]
 /// A container for a collection of resources.
@@ -189,6 +205,11 @@ class BundleBuilder extends ResourceBuilder {
   /// [signature]
   /// Digital Signature - base64 encoded. XML-DSig or a JWT.
   SignatureBuilder? signature;
+
+  /// Converts a BundleBuilder to [Bundle]
+  Bundle build() => Bundle.fromJson(toJson());
+
+  /// Converts a [BundleBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -703,6 +724,12 @@ class BundleBuilder extends ResourceBuilder {
   }
 }
 
+/// Extension to change [BundleLink] to a Builder
+extension BuilderBundleLink on BundleLink {
+  /// Converts [BundleLink] to a [BundleLinkBuilder]
+  BundleLinkBuilder get toBuilder => BundleLinkBuilder.fromJson(toJson());
+}
+
 /// [BundleLinkBuilder]
 /// A series of links that provide context to this bundle.
 class BundleLinkBuilder extends BackboneElementBuilder {
@@ -821,6 +848,11 @@ class BundleLinkBuilder extends BackboneElementBuilder {
   /// [url]
   /// The reference details for the link.
   FhirUriBuilder? url;
+
+  /// Converts a BundleLinkBuilder to [BundleLink]
+  BundleLink build() => BundleLink.fromJson(toJson());
+
+  /// Converts a [BundleLinkBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1143,6 +1175,12 @@ class BundleLinkBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [BundleEntry] to a Builder
+extension BuilderBundleEntry on BundleEntry {
+  /// Converts [BundleEntry] to a [BundleEntryBuilder]
+  BundleEntryBuilder get toBuilder => BundleEntryBuilder.fromJson(toJson());
+}
+
 /// [BundleEntryBuilder]
 /// An entry in a bundle resource - will either contain a resource or
 /// information about a resource (transactions and history only).
@@ -1323,6 +1361,11 @@ class BundleEntryBuilder extends BackboneElementBuilder {
   /// in the batch or transaction being responded to or what the results of
   /// an operation where when returning history.
   BundleResponseBuilder? response;
+
+  /// Converts a BundleEntryBuilder to [BundleEntry]
+  BundleEntry build() => BundleEntry.fromJson(toJson());
+
+  /// Converts a [BundleEntryBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1778,6 +1821,12 @@ class BundleEntryBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [BundleSearch] to a Builder
+extension BuilderBundleSearch on BundleSearch {
+  /// Converts [BundleSearch] to a [BundleSearchBuilder]
+  BundleSearchBuilder get toBuilder => BundleSearchBuilder.fromJson(toJson());
+}
+
 /// [BundleSearchBuilder]
 /// Information about the search process that lead to the creation of this
 /// entry.
@@ -1898,6 +1947,11 @@ class BundleSearchBuilder extends BackboneElementBuilder {
   /// [score]
   /// When searching, the server's search ranking score for the entry.
   FhirDecimalBuilder? score;
+
+  /// Converts a BundleSearchBuilder to [BundleSearch]
+  BundleSearch build() => BundleSearch.fromJson(toJson());
+
+  /// Converts a [BundleSearchBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2220,6 +2274,12 @@ class BundleSearchBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [BundleRequest] to a Builder
+extension BuilderBundleRequest on BundleRequest {
+  /// Converts [BundleRequest] to a [BundleRequestBuilder]
+  BundleRequestBuilder get toBuilder => BundleRequestBuilder.fromJson(toJson());
+}
+
 /// [BundleRequestBuilder]
 /// Additional information about how this entry should be processed as part
 /// of a transaction or batch. For history, it shows how the entry was
@@ -2393,6 +2453,11 @@ class BundleRequestBuilder extends BackboneElementBuilder {
   /// ["Conditional Create"](http.html#ccreate). This is just the query
   /// portion of the URL - what follows the "?" (not including the "?").
   FhirStringBuilder? ifNoneExist;
+
+  /// Converts a BundleRequestBuilder to [BundleRequest]
+  BundleRequest build() => BundleRequest.fromJson(toJson());
+
+  /// Converts a [BundleRequestBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2843,6 +2908,13 @@ class BundleRequestBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [BundleResponse] to a Builder
+extension BuilderBundleResponse on BundleResponse {
+  /// Converts [BundleResponse] to a [BundleResponseBuilder]
+  BundleResponseBuilder get toBuilder =>
+      BundleResponseBuilder.fromJson(toJson());
+}
+
 /// [BundleResponseBuilder]
 /// Indicates the results of processing the corresponding 'request' entry
 /// in the batch or transaction being responded to or what the results of
@@ -3002,6 +3074,11 @@ class BundleResponseBuilder extends BackboneElementBuilder {
   /// An OperationOutcome containing hints and warnings produced as part of
   /// processing this entry in a batch or transaction.
   ResourceBuilder? outcome;
+
+  /// Converts a BundleResponseBuilder to [BundleResponse]
+  BundleResponse build() => BundleResponse.fromJson(toJson());
+
+  /// Converts a [BundleResponseBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

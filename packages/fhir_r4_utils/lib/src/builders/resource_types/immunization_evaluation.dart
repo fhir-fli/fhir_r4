@@ -1,8 +1,20 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        ImmunizationEvaluation;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [ImmunizationEvaluation] to a Builder
+extension BuilderImmunizationEvaluation on ImmunizationEvaluation {
+  /// Converts [ImmunizationEvaluation] to a [ImmunizationEvaluationBuilder]
+  ImmunizationEvaluationBuilder get toBuilder =>
+      ImmunizationEvaluationBuilder.fromJson(toJson());
+}
 
 /// [ImmunizationEvaluationBuilder]
 /// Describes a comparison of an immunization event against published
@@ -320,6 +332,11 @@ class ImmunizationEvaluationBuilder extends DomainResourceBuilder {
   /// Getter for [seriesDosesString] as a FhirStringBuilder
   FhirStringBuilder? get seriesDosesString =>
       seriesDosesX?.isAs<FhirStringBuilder>();
+
+  /// Converts a ImmunizationEvaluationBuilder to [ImmunizationEvaluation]
+  ImmunizationEvaluation build() => ImmunizationEvaluation.fromJson(toJson());
+
+  /// Converts a [ImmunizationEvaluationBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

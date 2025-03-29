@@ -1,8 +1,24 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        StructureDefinition,
+        StructureDefinitionMapping,
+        StructureDefinitionContext,
+        StructureDefinitionSnapshot,
+        StructureDefinitionDifferential;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [StructureDefinition] to a Builder
+extension BuilderStructureDefinition on StructureDefinition {
+  /// Converts [StructureDefinition] to a [StructureDefinitionBuilder]
+  StructureDefinitionBuilder get toBuilder =>
+      StructureDefinitionBuilder.fromJson(toJson());
+}
 
 /// [StructureDefinitionBuilder]
 /// A definition of a FHIR structure. This resource is used to describe the
@@ -455,6 +471,11 @@ class StructureDefinitionBuilder extends CanonicalResourceBuilder {
   /// A differential view is expressed relative to the base
   /// StructureDefinition - a statement of differences that it applies.
   StructureDefinitionDifferentialBuilder? differential;
+
+  /// Converts a StructureDefinitionBuilder to [StructureDefinition]
+  StructureDefinition build() => StructureDefinition.fromJson(toJson());
+
+  /// Converts a [StructureDefinitionBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1782,6 +1803,13 @@ class StructureDefinitionBuilder extends CanonicalResourceBuilder {
   }
 }
 
+/// Extension to change [StructureDefinitionMapping] to a Builder
+extension BuilderStructureDefinitionMapping on StructureDefinitionMapping {
+  /// Converts [StructureDefinitionMapping] to a [StructureDefinitionMappingBuilder]
+  StructureDefinitionMappingBuilder get toBuilder =>
+      StructureDefinitionMappingBuilder.fromJson(toJson());
+}
+
 /// [StructureDefinitionMappingBuilder]
 /// An external specification that the content is mapped to.
 class StructureDefinitionMappingBuilder extends BackboneElementBuilder {
@@ -1925,6 +1953,12 @@ class StructureDefinitionMappingBuilder extends BackboneElementBuilder {
   /// Comments about this mapping, including version notes, issues, scope
   /// limitations, and other important notes for usage.
   FhirStringBuilder? comment;
+
+  /// Converts a StructureDefinitionMappingBuilder to [StructureDefinitionMapping]
+  StructureDefinitionMapping build() =>
+      StructureDefinitionMapping.fromJson(toJson());
+
+  /// Converts a [StructureDefinitionMappingBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2311,6 +2345,13 @@ class StructureDefinitionMappingBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [StructureDefinitionContext] to a Builder
+extension BuilderStructureDefinitionContext on StructureDefinitionContext {
+  /// Converts [StructureDefinitionContext] to a [StructureDefinitionContextBuilder]
+  StructureDefinitionContextBuilder get toBuilder =>
+      StructureDefinitionContextBuilder.fromJson(toJson());
+}
+
 /// [StructureDefinitionContextBuilder]
 /// Identifies the types of resource or data type elements to which the
 /// extension can be applied.
@@ -2431,6 +2472,12 @@ class StructureDefinitionContextBuilder extends BackboneElementBuilder {
   /// [expression]
   /// An expression that defines where an extension can be used in resources.
   FhirStringBuilder? expression;
+
+  /// Converts a StructureDefinitionContextBuilder to [StructureDefinitionContext]
+  StructureDefinitionContext build() =>
+      StructureDefinitionContext.fromJson(toJson());
+
+  /// Converts a [StructureDefinitionContextBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2753,6 +2800,13 @@ class StructureDefinitionContextBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [StructureDefinitionSnapshot] to a Builder
+extension BuilderStructureDefinitionSnapshot on StructureDefinitionSnapshot {
+  /// Converts [StructureDefinitionSnapshot] to a [StructureDefinitionSnapshotBuilder]
+  StructureDefinitionSnapshotBuilder get toBuilder =>
+      StructureDefinitionSnapshotBuilder.fromJson(toJson());
+}
+
 /// [StructureDefinitionSnapshotBuilder]
 /// A snapshot view is expressed in a standalone form that can be used and
 /// interpreted without considering the base StructureDefinition.
@@ -2865,6 +2919,12 @@ class StructureDefinitionSnapshotBuilder extends BackboneElementBuilder {
   /// [element]
   /// Captures constraints on each element within the resource.
   List<ElementDefinitionBuilder>? element;
+
+  /// Converts a StructureDefinitionSnapshotBuilder to [StructureDefinitionSnapshot]
+  StructureDefinitionSnapshot build() =>
+      StructureDefinitionSnapshot.fromJson(toJson());
+
+  /// Converts a [StructureDefinitionSnapshotBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3160,6 +3220,14 @@ class StructureDefinitionSnapshotBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [StructureDefinitionDifferential] to a Builder
+extension BuilderStructureDefinitionDifferential
+    on StructureDefinitionDifferential {
+  /// Converts [StructureDefinitionDifferential] to a [StructureDefinitionDifferentialBuilder]
+  StructureDefinitionDifferentialBuilder get toBuilder =>
+      StructureDefinitionDifferentialBuilder.fromJson(toJson());
+}
+
 /// [StructureDefinitionDifferentialBuilder]
 /// A differential view is expressed relative to the base
 /// StructureDefinition - a statement of differences that it applies.
@@ -3272,6 +3340,12 @@ class StructureDefinitionDifferentialBuilder extends BackboneElementBuilder {
   /// [element]
   /// Captures constraints on each element within the resource.
   List<ElementDefinitionBuilder>? element;
+
+  /// Converts a StructureDefinitionDifferentialBuilder to [StructureDefinitionDifferential]
+  StructureDefinitionDifferential build() =>
+      StructureDefinitionDifferential.fromJson(toJson());
+
+  /// Converts a [StructureDefinitionDifferentialBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

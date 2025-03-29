@@ -1,8 +1,24 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        BiologicallyDerivedProduct,
+        BiologicallyDerivedProductCollection,
+        BiologicallyDerivedProductProcessing,
+        BiologicallyDerivedProductManipulation,
+        BiologicallyDerivedProductStorage;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [BiologicallyDerivedProduct] to a Builder
+extension BuilderBiologicallyDerivedProduct on BiologicallyDerivedProduct {
+  /// Converts [BiologicallyDerivedProduct] to a [BiologicallyDerivedProductBuilder]
+  BiologicallyDerivedProductBuilder get toBuilder =>
+      BiologicallyDerivedProductBuilder.fromJson(toJson());
+}
 
 /// [BiologicallyDerivedProductBuilder]
 /// A material substance originating from a biological entity intended to
@@ -295,6 +311,12 @@ class BiologicallyDerivedProductBuilder extends DomainResourceBuilder {
   /// [storage]
   /// Product storage.
   List<BiologicallyDerivedProductStorageBuilder>? storage;
+
+  /// Converts a BiologicallyDerivedProductBuilder to [BiologicallyDerivedProduct]
+  BiologicallyDerivedProduct build() =>
+      BiologicallyDerivedProduct.fromJson(toJson());
+
+  /// Converts a [BiologicallyDerivedProductBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1095,6 +1117,14 @@ class BiologicallyDerivedProductBuilder extends DomainResourceBuilder {
   }
 }
 
+/// Extension to change [BiologicallyDerivedProductCollection] to a Builder
+extension BuilderBiologicallyDerivedProductCollection
+    on BiologicallyDerivedProductCollection {
+  /// Converts [BiologicallyDerivedProductCollection] to a [BiologicallyDerivedProductCollectionBuilder]
+  BiologicallyDerivedProductCollectionBuilder get toBuilder =>
+      BiologicallyDerivedProductCollectionBuilder.fromJson(toJson());
+}
+
 /// [BiologicallyDerivedProductCollectionBuilder]
 /// How this product was collected.
 class BiologicallyDerivedProductCollectionBuilder
@@ -1236,6 +1266,12 @@ class BiologicallyDerivedProductCollectionBuilder
 
   /// Getter for [collectedPeriod] as a PeriodBuilder
   PeriodBuilder? get collectedPeriod => collectedX?.isAs<PeriodBuilder>();
+
+  /// Converts a BiologicallyDerivedProductCollectionBuilder to [BiologicallyDerivedProductCollection]
+  BiologicallyDerivedProductCollection build() =>
+      BiologicallyDerivedProductCollection.fromJson(toJson());
+
+  /// Converts a [BiologicallyDerivedProductCollectionBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1645,6 +1681,14 @@ class BiologicallyDerivedProductCollectionBuilder
   }
 }
 
+/// Extension to change [BiologicallyDerivedProductProcessing] to a Builder
+extension BuilderBiologicallyDerivedProductProcessing
+    on BiologicallyDerivedProductProcessing {
+  /// Converts [BiologicallyDerivedProductProcessing] to a [BiologicallyDerivedProductProcessingBuilder]
+  BiologicallyDerivedProductProcessingBuilder get toBuilder =>
+      BiologicallyDerivedProductProcessingBuilder.fromJson(toJson());
+}
+
 /// [BiologicallyDerivedProductProcessingBuilder]
 /// Any processing of the product during collection that does not change
 /// the fundamental nature of the product. For example adding
@@ -1797,6 +1841,12 @@ class BiologicallyDerivedProductProcessingBuilder
 
   /// Getter for [timePeriod] as a PeriodBuilder
   PeriodBuilder? get timePeriod => timeX?.isAs<PeriodBuilder>();
+
+  /// Converts a BiologicallyDerivedProductProcessingBuilder to [BiologicallyDerivedProductProcessing]
+  BiologicallyDerivedProductProcessing build() =>
+      BiologicallyDerivedProductProcessing.fromJson(toJson());
+
+  /// Converts a [BiologicallyDerivedProductProcessingBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2238,6 +2288,14 @@ class BiologicallyDerivedProductProcessingBuilder
   }
 }
 
+/// Extension to change [BiologicallyDerivedProductManipulation] to a Builder
+extension BuilderBiologicallyDerivedProductManipulation
+    on BiologicallyDerivedProductManipulation {
+  /// Converts [BiologicallyDerivedProductManipulation] to a [BiologicallyDerivedProductManipulationBuilder]
+  BiologicallyDerivedProductManipulationBuilder get toBuilder =>
+      BiologicallyDerivedProductManipulationBuilder.fromJson(toJson());
+}
+
 /// [BiologicallyDerivedProductManipulationBuilder]
 /// Any manipulation of product post-collection that is intended to alter
 /// the product. For example a buffy-coat enrichment or CD8 reduction of
@@ -2368,6 +2426,12 @@ class BiologicallyDerivedProductManipulationBuilder
 
   /// Getter for [timePeriod] as a PeriodBuilder
   PeriodBuilder? get timePeriod => timeX?.isAs<PeriodBuilder>();
+
+  /// Converts a BiologicallyDerivedProductManipulationBuilder to [BiologicallyDerivedProductManipulation]
+  BiologicallyDerivedProductManipulation build() =>
+      BiologicallyDerivedProductManipulation.fromJson(toJson());
+
+  /// Converts a [BiologicallyDerivedProductManipulationBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2745,6 +2809,14 @@ class BiologicallyDerivedProductManipulationBuilder
   }
 }
 
+/// Extension to change [BiologicallyDerivedProductStorage] to a Builder
+extension BuilderBiologicallyDerivedProductStorage
+    on BiologicallyDerivedProductStorage {
+  /// Converts [BiologicallyDerivedProductStorage] to a [BiologicallyDerivedProductStorageBuilder]
+  BiologicallyDerivedProductStorageBuilder get toBuilder =>
+      BiologicallyDerivedProductStorageBuilder.fromJson(toJson());
+}
+
 /// [BiologicallyDerivedProductStorageBuilder]
 /// Product storage.
 class BiologicallyDerivedProductStorageBuilder extends BackboneElementBuilder {
@@ -2886,6 +2958,12 @@ class BiologicallyDerivedProductStorageBuilder extends BackboneElementBuilder {
   /// [duration]
   /// Storage timeperiod.
   PeriodBuilder? duration;
+
+  /// Converts a BiologicallyDerivedProductStorageBuilder to [BiologicallyDerivedProductStorage]
+  BiologicallyDerivedProductStorage build() =>
+      BiologicallyDerivedProductStorage.fromJson(toJson());
+
+  /// Converts a [BiologicallyDerivedProductStorageBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

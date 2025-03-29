@@ -1,8 +1,22 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        ImagingStudy,
+        ImagingStudySeries,
+        ImagingStudyPerformer,
+        ImagingStudyInstance;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [ImagingStudy] to a Builder
+extension BuilderImagingStudy on ImagingStudy {
+  /// Converts [ImagingStudy] to a [ImagingStudyBuilder]
+  ImagingStudyBuilder get toBuilder => ImagingStudyBuilder.fromJson(toJson());
+}
 
 /// [ImagingStudyBuilder]
 /// Representation of the content produced in a DICOM imaging study. A
@@ -423,6 +437,11 @@ class ImagingStudyBuilder extends DomainResourceBuilder {
   /// [series]
   /// Each study has one or more series of images or other content.
   List<ImagingStudySeriesBuilder>? series;
+
+  /// Converts a ImagingStudyBuilder to [ImagingStudy]
+  ImagingStudy build() => ImagingStudy.fromJson(toJson());
+
+  /// Converts a [ImagingStudyBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1536,6 +1555,13 @@ class ImagingStudyBuilder extends DomainResourceBuilder {
   }
 }
 
+/// Extension to change [ImagingStudySeries] to a Builder
+extension BuilderImagingStudySeries on ImagingStudySeries {
+  /// Converts [ImagingStudySeries] to a [ImagingStudySeriesBuilder]
+  ImagingStudySeriesBuilder get toBuilder =>
+      ImagingStudySeriesBuilder.fromJson(toJson());
+}
+
 /// [ImagingStudySeriesBuilder]
 /// Each study has one or more series of images or other content.
 class ImagingStudySeriesBuilder extends BackboneElementBuilder {
@@ -1793,6 +1819,11 @@ class ImagingStudySeriesBuilder extends BackboneElementBuilder {
   /// A single SOP instance within the series, e.g. an image, or presentation
   /// state.
   List<ImagingStudyInstanceBuilder>? instance;
+
+  /// Converts a ImagingStudySeriesBuilder to [ImagingStudySeries]
+  ImagingStudySeries build() => ImagingStudySeries.fromJson(toJson());
+
+  /// Converts a [ImagingStudySeriesBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2455,6 +2486,13 @@ class ImagingStudySeriesBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [ImagingStudyPerformer] to a Builder
+extension BuilderImagingStudyPerformer on ImagingStudyPerformer {
+  /// Converts [ImagingStudyPerformer] to a [ImagingStudyPerformerBuilder]
+  ImagingStudyPerformerBuilder get toBuilder =>
+      ImagingStudyPerformerBuilder.fromJson(toJson());
+}
+
 /// [ImagingStudyPerformerBuilder]
 /// Indicates who or what performed the series and how they were involved.
 class ImagingStudyPerformerBuilder extends BackboneElementBuilder {
@@ -2573,6 +2611,11 @@ class ImagingStudyPerformerBuilder extends BackboneElementBuilder {
   /// [actor]
   /// Indicates who or what performed the series.
   ReferenceBuilder? actor;
+
+  /// Converts a ImagingStudyPerformerBuilder to [ImagingStudyPerformer]
+  ImagingStudyPerformer build() => ImagingStudyPerformer.fromJson(toJson());
+
+  /// Converts a [ImagingStudyPerformerBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2895,6 +2938,13 @@ class ImagingStudyPerformerBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [ImagingStudyInstance] to a Builder
+extension BuilderImagingStudyInstance on ImagingStudyInstance {
+  /// Converts [ImagingStudyInstance] to a [ImagingStudyInstanceBuilder]
+  ImagingStudyInstanceBuilder get toBuilder =>
+      ImagingStudyInstanceBuilder.fromJson(toJson());
+}
+
 /// [ImagingStudyInstanceBuilder]
 /// A single SOP instance within the series, e.g. an image, or presentation
 /// state.
@@ -3035,6 +3085,11 @@ class ImagingStudyInstanceBuilder extends BackboneElementBuilder {
   /// [title]
   /// The description of the instance.
   FhirStringBuilder? title;
+
+  /// Converts a ImagingStudyInstanceBuilder to [ImagingStudyInstance]
+  ImagingStudyInstance build() => ImagingStudyInstance.fromJson(toJson());
+
+  /// Converts a [ImagingStudyInstanceBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

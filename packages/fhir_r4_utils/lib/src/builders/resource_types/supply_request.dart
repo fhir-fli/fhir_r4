@@ -1,8 +1,20 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        SupplyRequest,
+        SupplyRequestParameter;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [SupplyRequest] to a Builder
+extension BuilderSupplyRequest on SupplyRequest {
+  /// Converts [SupplyRequest] to a [SupplyRequestBuilder]
+  SupplyRequestBuilder get toBuilder => SupplyRequestBuilder.fromJson(toJson());
+}
 
 /// [SupplyRequestBuilder]
 /// A record of a request for a medication, substance or device used in the
@@ -353,6 +365,11 @@ class SupplyRequestBuilder extends DomainResourceBuilder {
   /// [deliverTo]
   /// Where the supply is destined to go.
   ReferenceBuilder? deliverTo;
+
+  /// Converts a SupplyRequestBuilder to [SupplyRequest]
+  SupplyRequest build() => SupplyRequest.fromJson(toJson());
+
+  /// Converts a [SupplyRequestBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1413,6 +1430,13 @@ class SupplyRequestBuilder extends DomainResourceBuilder {
   }
 }
 
+/// Extension to change [SupplyRequestParameter] to a Builder
+extension BuilderSupplyRequestParameter on SupplyRequestParameter {
+  /// Converts [SupplyRequestParameter] to a [SupplyRequestParameterBuilder]
+  SupplyRequestParameterBuilder get toBuilder =>
+      SupplyRequestParameterBuilder.fromJson(toJson());
+}
+
 /// [SupplyRequestParameterBuilder]
 /// Specific parameters for the ordered item. For example, the size of the
 /// indicated item.
@@ -1549,6 +1573,11 @@ class SupplyRequestParameterBuilder extends BackboneElementBuilder {
 
   /// Getter for [valueBoolean] as a FhirBooleanBuilder
   FhirBooleanBuilder? get valueBoolean => valueX?.isAs<FhirBooleanBuilder>();
+
+  /// Converts a SupplyRequestParameterBuilder to [SupplyRequestParameter]
+  SupplyRequestParameter build() => SupplyRequestParameter.fromJson(toJson());
+
+  /// Converts a [SupplyRequestParameterBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

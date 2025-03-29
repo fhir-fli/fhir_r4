@@ -1,8 +1,22 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        ImmunizationRecommendation,
+        ImmunizationRecommendationRecommendation,
+        ImmunizationRecommendationDateCriterion;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [ImmunizationRecommendation] to a Builder
+extension BuilderImmunizationRecommendation on ImmunizationRecommendation {
+  /// Converts [ImmunizationRecommendation] to a [ImmunizationRecommendationBuilder]
+  ImmunizationRecommendationBuilder get toBuilder =>
+      ImmunizationRecommendationBuilder.fromJson(toJson());
+}
 
 /// [ImmunizationRecommendationBuilder]
 /// A patient's point-in-time set of recommendations (i.e. forecasting)
@@ -204,6 +218,12 @@ class ImmunizationRecommendationBuilder extends DomainResourceBuilder {
   /// [recommendation]
   /// Vaccine administration recommendations.
   List<ImmunizationRecommendationRecommendationBuilder>? recommendation;
+
+  /// Converts a ImmunizationRecommendationBuilder to [ImmunizationRecommendation]
+  ImmunizationRecommendation build() =>
+      ImmunizationRecommendation.fromJson(toJson());
+
+  /// Converts a [ImmunizationRecommendationBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -797,6 +817,14 @@ class ImmunizationRecommendationBuilder extends DomainResourceBuilder {
   }
 }
 
+/// Extension to change [ImmunizationRecommendationRecommendation] to a Builder
+extension BuilderImmunizationRecommendationRecommendation
+    on ImmunizationRecommendationRecommendation {
+  /// Converts [ImmunizationRecommendationRecommendation] to a [ImmunizationRecommendationRecommendationBuilder]
+  ImmunizationRecommendationRecommendationBuilder get toBuilder =>
+      ImmunizationRecommendationRecommendationBuilder.fromJson(toJson());
+}
+
 /// [ImmunizationRecommendationRecommendationBuilder]
 /// Vaccine administration recommendations.
 class ImmunizationRecommendationRecommendationBuilder
@@ -1082,6 +1110,12 @@ class ImmunizationRecommendationRecommendationBuilder
   /// includes patient observations, adverse reactions and
   /// allergy/intolerance information.
   List<ReferenceBuilder>? supportingPatientInformation;
+
+  /// Converts a ImmunizationRecommendationRecommendationBuilder to [ImmunizationRecommendationRecommendation]
+  ImmunizationRecommendationRecommendation build() =>
+      ImmunizationRecommendationRecommendation.fromJson(toJson());
+
+  /// Converts a [ImmunizationRecommendationRecommendationBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1874,6 +1908,14 @@ class ImmunizationRecommendationRecommendationBuilder
   }
 }
 
+/// Extension to change [ImmunizationRecommendationDateCriterion] to a Builder
+extension BuilderImmunizationRecommendationDateCriterion
+    on ImmunizationRecommendationDateCriterion {
+  /// Converts [ImmunizationRecommendationDateCriterion] to a [ImmunizationRecommendationDateCriterionBuilder]
+  ImmunizationRecommendationDateCriterionBuilder get toBuilder =>
+      ImmunizationRecommendationDateCriterionBuilder.fromJson(toJson());
+}
+
 /// [ImmunizationRecommendationDateCriterionBuilder]
 /// Vaccine date recommendations. For example, earliest date to administer,
 /// latest date to administer, etc.
@@ -1996,6 +2038,12 @@ class ImmunizationRecommendationDateCriterionBuilder
   /// [value]
   /// The date whose meaning is specified by dateCriterion.code.
   FhirDateTimeBuilder? value;
+
+  /// Converts a ImmunizationRecommendationDateCriterionBuilder to [ImmunizationRecommendationDateCriterion]
+  ImmunizationRecommendationDateCriterion build() =>
+      ImmunizationRecommendationDateCriterion.fromJson(toJson());
+
+  /// Converts a [ImmunizationRecommendationDateCriterionBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

@@ -100,7 +100,8 @@ abstract class CanonicalResourceBuilder extends DomainResourceBuilder {
     return val;
   }
 
-  /// Factory constructor for [CanonicalResourceBuilder] that takes in a [YamlMap].
+  /// Factory constructor for [CanonicalResourceBuilder]
+  /// that takes in a [YamlMap].
   static CanonicalResourceBuilder fromYaml(dynamic yaml) => yaml is String
       ? DomainResourceBuilder.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, dynamic>,
@@ -113,7 +114,8 @@ abstract class CanonicalResourceBuilder extends DomainResourceBuilder {
               'CanonicalResource cannot be constructed from input provided,'
               ' it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [CanonicalResourceBuilder] from a JSON-encoded string.
+  /// Factory constructor for [CanonicalResourceBuilder]
+  /// from a JSON-encoded string.
   static CanonicalResourceBuilder fromJsonString(String source) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {

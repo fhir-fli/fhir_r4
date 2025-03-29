@@ -1,8 +1,21 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        FamilyMemberHistory,
+        FamilyMemberHistoryCondition;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [FamilyMemberHistory] to a Builder
+extension BuilderFamilyMemberHistory on FamilyMemberHistory {
+  /// Converts [FamilyMemberHistory] to a [FamilyMemberHistoryBuilder]
+  FamilyMemberHistoryBuilder get toBuilder =>
+      FamilyMemberHistoryBuilder.fromJson(toJson());
+}
 
 /// [FamilyMemberHistoryBuilder]
 /// Significant health conditions for a person related to the patient
@@ -423,6 +436,11 @@ class FamilyMemberHistoryBuilder extends DomainResourceBuilder {
   /// one condition per resource, though there is nothing stopping multiple
   /// resources - one per condition.
   List<FamilyMemberHistoryConditionBuilder>? condition;
+
+  /// Converts a FamilyMemberHistoryBuilder to [FamilyMemberHistory]
+  FamilyMemberHistory build() => FamilyMemberHistory.fromJson(toJson());
+
+  /// Converts a [FamilyMemberHistoryBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1746,6 +1764,13 @@ class FamilyMemberHistoryBuilder extends DomainResourceBuilder {
   }
 }
 
+/// Extension to change [FamilyMemberHistoryCondition] to a Builder
+extension BuilderFamilyMemberHistoryCondition on FamilyMemberHistoryCondition {
+  /// Converts [FamilyMemberHistoryCondition] to a [FamilyMemberHistoryConditionBuilder]
+  FamilyMemberHistoryConditionBuilder get toBuilder =>
+      FamilyMemberHistoryConditionBuilder.fromJson(toJson());
+}
+
 /// [FamilyMemberHistoryConditionBuilder]
 /// The significant Conditions (or condition) that the family member had.
 /// This is a repeating section to allow a system to represent more than
@@ -1929,6 +1954,12 @@ class FamilyMemberHistoryConditionBuilder extends BackboneElementBuilder {
   /// An area where general notes can be placed about this specific
   /// condition.
   List<AnnotationBuilder>? note;
+
+  /// Converts a FamilyMemberHistoryConditionBuilder to [FamilyMemberHistoryCondition]
+  FamilyMemberHistoryCondition build() =>
+      FamilyMemberHistoryCondition.fromJson(toJson());
+
+  /// Converts a [FamilyMemberHistoryConditionBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

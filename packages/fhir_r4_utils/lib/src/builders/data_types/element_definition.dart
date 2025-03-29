@@ -1,8 +1,27 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        StringExtensionForFHIR,
+        ElementDefinition,
+        ElementDefinitionSlicing,
+        ElementDefinitionDiscriminator,
+        ElementDefinitionBase,
+        ElementDefinitionType,
+        ElementDefinitionExample,
+        ElementDefinitionConstraint,
+        ElementDefinitionBinding,
+        ElementDefinitionMapping;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [ElementDefinition] to a Builder
+extension BuilderElementDefinition on ElementDefinition {
+  /// Converts [ElementDefinition] to a [ElementDefinitionBuilder]
+  ElementDefinitionBuilder get toBuilder =>
+      ElementDefinitionBuilder.fromJson(toJson());
+}
 
 /// [ElementDefinitionBuilder]
 /// Captures constraints on each element within the resource, profile, or
@@ -1365,6 +1384,11 @@ class ElementDefinitionBuilder extends BackboneTypeBuilder {
   /// Identifies a concept from an external specification that roughly
   /// corresponds to this element.
   List<ElementDefinitionMappingBuilder>? mapping;
+
+  /// Converts a ElementDefinitionBuilder to [ElementDefinition]
+  ElementDefinition build() => ElementDefinition.fromJson(toJson());
+
+  /// Converts a [ElementDefinitionBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -7061,6 +7085,13 @@ class ElementDefinitionBuilder extends BackboneTypeBuilder {
   }
 }
 
+/// Extension to change [ElementDefinitionSlicing] to a Builder
+extension BuilderElementDefinitionSlicing on ElementDefinitionSlicing {
+  /// Converts [ElementDefinitionSlicing] to a [ElementDefinitionSlicingBuilder]
+  ElementDefinitionSlicingBuilder get toBuilder =>
+      ElementDefinitionSlicingBuilder.fromJson(toJson());
+}
+
 /// [ElementDefinitionSlicingBuilder]
 /// Indicates that the element is sliced into a set of alternative
 /// definitions (i.e. in a structure definition, there are multiple
@@ -7210,6 +7241,12 @@ class ElementDefinitionSlicingBuilder extends ElementBuilder {
   /// ordered, profile authors can also say that additional slices are only
   /// allowed at the end.
   SlicingRulesBuilder? rules;
+
+  /// Converts a ElementDefinitionSlicingBuilder to [ElementDefinitionSlicing]
+  ElementDefinitionSlicing build() =>
+      ElementDefinitionSlicing.fromJson(toJson());
+
+  /// Converts a [ElementDefinitionSlicingBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -7564,6 +7601,14 @@ class ElementDefinitionSlicingBuilder extends ElementBuilder {
   }
 }
 
+/// Extension to change [ElementDefinitionDiscriminator] to a Builder
+extension BuilderElementDefinitionDiscriminator
+    on ElementDefinitionDiscriminator {
+  /// Converts [ElementDefinitionDiscriminator] to a [ElementDefinitionDiscriminatorBuilder]
+  ElementDefinitionDiscriminatorBuilder get toBuilder =>
+      ElementDefinitionDiscriminatorBuilder.fromJson(toJson());
+}
+
 /// [ElementDefinitionDiscriminatorBuilder]
 /// Designates which child elements are used to discriminate between the
 /// slices when processing an instance. If one or more discriminators are
@@ -7677,6 +7722,12 @@ class ElementDefinitionDiscriminatorBuilder extends ElementBuilder {
   /// FHIRPath](fhirpath.html#simple), that is used to identify the element
   /// on which discrimination is based.
   FhirStringBuilder? path;
+
+  /// Converts a ElementDefinitionDiscriminatorBuilder to [ElementDefinitionDiscriminator]
+  ElementDefinitionDiscriminator build() =>
+      ElementDefinitionDiscriminator.fromJson(toJson());
+
+  /// Converts a [ElementDefinitionDiscriminatorBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -7962,6 +8013,13 @@ class ElementDefinitionDiscriminatorBuilder extends ElementBuilder {
   }
 }
 
+/// Extension to change [ElementDefinitionBase] to a Builder
+extension BuilderElementDefinitionBase on ElementDefinitionBase {
+  /// Converts [ElementDefinitionBase] to a [ElementDefinitionBaseBuilder]
+  ElementDefinitionBaseBuilder get toBuilder =>
+      ElementDefinitionBaseBuilder.fromJson(toJson());
+}
+
 /// [ElementDefinitionBaseBuilder]
 /// Information about the base definition of the element, provided to make
 /// it unnecessary for tools to trace the deviation of the element through
@@ -8091,6 +8149,11 @@ class ElementDefinitionBaseBuilder extends ElementBuilder {
   /// [max]
   /// Maximum cardinality of the base element identified by the path.
   FhirStringBuilder? max;
+
+  /// Converts a ElementDefinitionBaseBuilder to [ElementDefinitionBase]
+  ElementDefinitionBase build() => ElementDefinitionBase.fromJson(toJson());
+
+  /// Converts a [ElementDefinitionBaseBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -8408,6 +8471,13 @@ class ElementDefinitionBaseBuilder extends ElementBuilder {
   }
 }
 
+/// Extension to change [ElementDefinitionType] to a Builder
+extension BuilderElementDefinitionType on ElementDefinitionType {
+  /// Converts [ElementDefinitionType] to a [ElementDefinitionTypeBuilder]
+  ElementDefinitionTypeBuilder get toBuilder =>
+      ElementDefinitionTypeBuilder.fromJson(toJson());
+}
+
 /// [ElementDefinitionTypeBuilder]
 /// The data type or resource that the value of this element is permitted
 /// to be.
@@ -8569,6 +8639,11 @@ class ElementDefinitionTypeBuilder extends ElementBuilder {
   /// Whether this reference needs to be version specific or version
   /// independent, or whether either can be used.
   ReferenceVersionRulesBuilder? versioning;
+
+  /// Converts a ElementDefinitionTypeBuilder to [ElementDefinitionType]
+  ElementDefinitionType build() => ElementDefinitionType.fromJson(toJson());
+
+  /// Converts a [ElementDefinitionTypeBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -8965,6 +9040,13 @@ class ElementDefinitionTypeBuilder extends ElementBuilder {
   }
 }
 
+/// Extension to change [ElementDefinitionExample] to a Builder
+extension BuilderElementDefinitionExample on ElementDefinitionExample {
+  /// Converts [ElementDefinitionExample] to a [ElementDefinitionExampleBuilder]
+  ElementDefinitionExampleBuilder get toBuilder =>
+      ElementDefinitionExampleBuilder.fromJson(toJson());
+}
+
 /// [ElementDefinitionExampleBuilder]
 /// A sample value for this element demonstrating the type of information
 /// that would typically be found in the element.
@@ -9295,6 +9377,12 @@ class ElementDefinitionExampleBuilder extends ElementBuilder {
 
   /// Getter for [valueDosage] as a DosageBuilder
   DosageBuilder? get valueDosage => valueX?.isAs<DosageBuilder>();
+
+  /// Converts a ElementDefinitionExampleBuilder to [ElementDefinitionExample]
+  ElementDefinitionExample build() =>
+      ElementDefinitionExample.fromJson(toJson());
+
+  /// Converts a [ElementDefinitionExampleBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -10862,6 +10950,13 @@ class ElementDefinitionExampleBuilder extends ElementBuilder {
   }
 }
 
+/// Extension to change [ElementDefinitionConstraint] to a Builder
+extension BuilderElementDefinitionConstraint on ElementDefinitionConstraint {
+  /// Converts [ElementDefinitionConstraint] to a [ElementDefinitionConstraintBuilder]
+  ElementDefinitionConstraintBuilder get toBuilder =>
+      ElementDefinitionConstraintBuilder.fromJson(toJson());
+}
+
 /// [ElementDefinitionConstraintBuilder]
 /// Formal constraints such as co-occurrence and other constraints that can
 /// be computationally evaluated within the context of the instance.
@@ -11032,6 +11127,12 @@ class ElementDefinitionConstraintBuilder extends ElementBuilder {
   /// A reference to the original source of the constraint, for traceability
   /// purposes.
   FhirCanonicalBuilder? source;
+
+  /// Converts a ElementDefinitionConstraintBuilder to [ElementDefinitionConstraint]
+  ElementDefinitionConstraint build() =>
+      ElementDefinitionConstraint.fromJson(toJson());
+
+  /// Converts a [ElementDefinitionConstraintBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -11477,6 +11578,13 @@ class ElementDefinitionConstraintBuilder extends ElementBuilder {
   }
 }
 
+/// Extension to change [ElementDefinitionBinding] to a Builder
+extension BuilderElementDefinitionBinding on ElementDefinitionBinding {
+  /// Converts [ElementDefinitionBinding] to a [ElementDefinitionBindingBuilder]
+  ElementDefinitionBindingBuilder get toBuilder =>
+      ElementDefinitionBindingBuilder.fromJson(toJson());
+}
+
 /// [ElementDefinitionBindingBuilder]
 /// Binds to a value set if this element is coded (code, Coding,
 /// CodeableConcept, Quantity), or the data types (string, uri).
@@ -11599,6 +11707,12 @@ class ElementDefinitionBindingBuilder extends ElementBuilder {
   /// Refers to the value set that identifies the set of codes the binding
   /// refers to.
   FhirCanonicalBuilder? valueSet;
+
+  /// Converts a ElementDefinitionBindingBuilder to [ElementDefinitionBinding]
+  ElementDefinitionBinding build() =>
+      ElementDefinitionBinding.fromJson(toJson());
+
+  /// Converts a [ElementDefinitionBindingBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -11916,6 +12030,13 @@ class ElementDefinitionBindingBuilder extends ElementBuilder {
   }
 }
 
+/// Extension to change [ElementDefinitionMapping] to a Builder
+extension BuilderElementDefinitionMapping on ElementDefinitionMapping {
+  /// Converts [ElementDefinitionMapping] to a [ElementDefinitionMappingBuilder]
+  ElementDefinitionMappingBuilder get toBuilder =>
+      ElementDefinitionMappingBuilder.fromJson(toJson());
+}
+
 /// [ElementDefinitionMappingBuilder]
 /// Identifies a concept from an external specification that roughly
 /// corresponds to this element.
@@ -12047,6 +12168,12 @@ class ElementDefinitionMappingBuilder extends ElementBuilder {
   /// [comment]
   /// Comments that provide information about the mapping or its use.
   FhirStringBuilder? comment;
+
+  /// Converts a ElementDefinitionMappingBuilder to [ElementDefinitionMapping]
+  ElementDefinitionMapping build() =>
+      ElementDefinitionMapping.fromJson(toJson());
+
+  /// Converts a [ElementDefinitionMappingBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

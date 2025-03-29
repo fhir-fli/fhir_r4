@@ -1,8 +1,22 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        MedicationAdministration,
+        MedicationAdministrationPerformer,
+        MedicationAdministrationDosage;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [MedicationAdministration] to a Builder
+extension BuilderMedicationAdministration on MedicationAdministration {
+  /// Converts [MedicationAdministration] to a [MedicationAdministrationBuilder]
+  MedicationAdministrationBuilder get toBuilder =>
+      MedicationAdministrationBuilder.fromJson(toJson());
+}
 
 /// [MedicationAdministrationBuilder]
 /// Describes the event of a patient consuming or otherwise being
@@ -439,6 +453,12 @@ class MedicationAdministrationBuilder extends DomainResourceBuilder {
   /// A summary of the events of interest that have occurred, such as when
   /// the administration was verified.
   List<ReferenceBuilder>? eventHistory;
+
+  /// Converts a MedicationAdministrationBuilder to [MedicationAdministration]
+  MedicationAdministration build() =>
+      MedicationAdministration.fromJson(toJson());
+
+  /// Converts a [MedicationAdministrationBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1634,6 +1654,14 @@ class MedicationAdministrationBuilder extends DomainResourceBuilder {
   }
 }
 
+/// Extension to change [MedicationAdministrationPerformer] to a Builder
+extension BuilderMedicationAdministrationPerformer
+    on MedicationAdministrationPerformer {
+  /// Converts [MedicationAdministrationPerformer] to a [MedicationAdministrationPerformerBuilder]
+  MedicationAdministrationPerformerBuilder get toBuilder =>
+      MedicationAdministrationPerformerBuilder.fromJson(toJson());
+}
+
 /// [MedicationAdministrationPerformerBuilder]
 /// Indicates who or what performed the medication administration and how
 /// they were involved.
@@ -1754,6 +1782,12 @@ class MedicationAdministrationPerformerBuilder extends BackboneElementBuilder {
   /// [actor]
   /// Indicates who or what performed the medication administration.
   ReferenceBuilder? actor;
+
+  /// Converts a MedicationAdministrationPerformerBuilder to [MedicationAdministrationPerformer]
+  MedicationAdministrationPerformer build() =>
+      MedicationAdministrationPerformer.fromJson(toJson());
+
+  /// Converts a [MedicationAdministrationPerformerBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2077,6 +2111,14 @@ class MedicationAdministrationPerformerBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [MedicationAdministrationDosage] to a Builder
+extension BuilderMedicationAdministrationDosage
+    on MedicationAdministrationDosage {
+  /// Converts [MedicationAdministrationDosage] to a [MedicationAdministrationDosageBuilder]
+  MedicationAdministrationDosageBuilder get toBuilder =>
+      MedicationAdministrationDosageBuilder.fromJson(toJson());
+}
+
 /// [MedicationAdministrationDosageBuilder]
 /// Describes the medication dosage information details e.g. dose, rate,
 /// site, route, etc.
@@ -2264,6 +2306,12 @@ class MedicationAdministrationDosageBuilder extends BackboneElementBuilder {
 
   /// Getter for [rateQuantity] as a QuantityBuilder
   QuantityBuilder? get rateQuantity => rateX?.isAs<QuantityBuilder>();
+
+  /// Converts a MedicationAdministrationDosageBuilder to [MedicationAdministrationDosage]
+  MedicationAdministrationDosage build() =>
+      MedicationAdministrationDosage.fromJson(toJson());
+
+  /// Converts a [MedicationAdministrationDosageBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

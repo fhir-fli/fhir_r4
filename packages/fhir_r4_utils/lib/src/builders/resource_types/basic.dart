@@ -1,8 +1,19 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        Basic;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [Basic] to a Builder
+extension BuilderBasic on Basic {
+  /// Converts [Basic] to a [BasicBuilder]
+  BasicBuilder get toBuilder => BasicBuilder.fromJson(toJson());
+}
 
 /// [BasicBuilder]
 /// Basic is used for handling concepts not yet defined in FHIR,
@@ -203,6 +214,11 @@ class BasicBuilder extends DomainResourceBuilder {
   /// [author]
   /// Indicates who was responsible for creating the resource instance.
   ReferenceBuilder? author;
+
+  /// Converts a BasicBuilder to [Basic]
+  Basic build() => Basic.fromJson(toJson());
+
+  /// Converts a [BasicBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

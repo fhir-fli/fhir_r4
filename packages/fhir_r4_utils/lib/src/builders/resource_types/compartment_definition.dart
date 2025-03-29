@@ -1,8 +1,21 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        CompartmentDefinition,
+        CompartmentDefinitionResource;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [CompartmentDefinition] to a Builder
+extension BuilderCompartmentDefinition on CompartmentDefinition {
+  /// Converts [CompartmentDefinition] to a [CompartmentDefinitionBuilder]
+  CompartmentDefinitionBuilder get toBuilder =>
+      CompartmentDefinitionBuilder.fromJson(toJson());
+}
 
 /// [CompartmentDefinitionBuilder]
 /// A compartment definition that defines how resources are accessed on a
@@ -335,6 +348,11 @@ class CompartmentDefinitionBuilder extends DomainResourceBuilder {
   /// [resource]
   /// Information about how a resource is related to the compartment.
   List<CompartmentDefinitionResourceBuilder>? resource;
+
+  /// Converts a CompartmentDefinitionBuilder to [CompartmentDefinition]
+  CompartmentDefinition build() => CompartmentDefinition.fromJson(toJson());
+
+  /// Converts a [CompartmentDefinitionBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1221,6 +1239,14 @@ class CompartmentDefinitionBuilder extends DomainResourceBuilder {
   }
 }
 
+/// Extension to change [CompartmentDefinitionResource] to a Builder
+extension BuilderCompartmentDefinitionResource
+    on CompartmentDefinitionResource {
+  /// Converts [CompartmentDefinitionResource] to a [CompartmentDefinitionResourceBuilder]
+  CompartmentDefinitionResourceBuilder get toBuilder =>
+      CompartmentDefinitionResourceBuilder.fromJson(toJson());
+}
+
 /// [CompartmentDefinitionResourceBuilder]
 /// Information about how a resource is related to the compartment.
 class CompartmentDefinitionResourceBuilder extends BackboneElementBuilder {
@@ -1352,6 +1378,12 @@ class CompartmentDefinitionResourceBuilder extends BackboneElementBuilder {
   /// [documentation]
   /// Additional documentation about the resource and compartment.
   FhirStringBuilder? documentation;
+
+  /// Converts a CompartmentDefinitionResourceBuilder to [CompartmentDefinitionResource]
+  CompartmentDefinitionResource build() =>
+      CompartmentDefinitionResource.fromJson(toJson());
+
+  /// Converts a [CompartmentDefinitionResourceBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

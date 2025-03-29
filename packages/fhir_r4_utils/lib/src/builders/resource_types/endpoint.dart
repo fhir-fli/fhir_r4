@@ -1,8 +1,19 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        FhirEndpoint;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [FhirEndpoint] to a Builder
+extension BuilderFhirEndpoint on FhirEndpoint {
+  /// Converts [FhirEndpoint] to a [FhirEndpointBuilder]
+  FhirEndpointBuilder get toBuilder => FhirEndpointBuilder.fromJson(toJson());
+}
 
 /// [FhirEndpointBuilder]
 /// The technical details of an endpoint that can be used for electronic
@@ -284,6 +295,11 @@ class FhirEndpointBuilder extends DomainResourceBuilder {
   /// [header]
   /// Additional headers / information to send as part of the notification.
   List<FhirStringBuilder>? header;
+
+  /// Converts a FhirEndpointBuilder to [FhirEndpoint]
+  FhirEndpoint build() => FhirEndpoint.fromJson(toJson());
+
+  /// Converts a [FhirEndpointBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

@@ -1,8 +1,24 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        CoverageEligibilityResponse,
+        CoverageEligibilityResponseInsurance,
+        CoverageEligibilityResponseItem,
+        CoverageEligibilityResponseBenefit,
+        CoverageEligibilityResponseError;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [CoverageEligibilityResponse] to a Builder
+extension BuilderCoverageEligibilityResponse on CoverageEligibilityResponse {
+  /// Converts [CoverageEligibilityResponse] to a [CoverageEligibilityResponseBuilder]
+  CoverageEligibilityResponseBuilder get toBuilder =>
+      CoverageEligibilityResponseBuilder.fromJson(toJson());
+}
 
 /// [CoverageEligibilityResponseBuilder]
 /// This resource provides eligibility and plan details from the processing
@@ -335,6 +351,12 @@ class CoverageEligibilityResponseBuilder extends DomainResourceBuilder {
   /// [error]
   /// Errors encountered during the processing of the request.
   List<CoverageEligibilityResponseErrorBuilder>? error;
+
+  /// Converts a CoverageEligibilityResponseBuilder to [CoverageEligibilityResponse]
+  CoverageEligibilityResponse build() =>
+      CoverageEligibilityResponse.fromJson(toJson());
+
+  /// Converts a [CoverageEligibilityResponseBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1312,6 +1334,14 @@ class CoverageEligibilityResponseBuilder extends DomainResourceBuilder {
   }
 }
 
+/// Extension to change [CoverageEligibilityResponseInsurance] to a Builder
+extension BuilderCoverageEligibilityResponseInsurance
+    on CoverageEligibilityResponseInsurance {
+  /// Converts [CoverageEligibilityResponseInsurance] to a [CoverageEligibilityResponseInsuranceBuilder]
+  CoverageEligibilityResponseInsuranceBuilder get toBuilder =>
+      CoverageEligibilityResponseInsuranceBuilder.fromJson(toJson());
+}
+
 /// [CoverageEligibilityResponseInsuranceBuilder]
 /// Financial instruments for reimbursement for the health care products
 /// and services.
@@ -1464,6 +1494,12 @@ class CoverageEligibilityResponseInsuranceBuilder
   /// Benefits and optionally current balances, and authorization details by
   /// category or service.
   List<CoverageEligibilityResponseItemBuilder>? item;
+
+  /// Converts a CoverageEligibilityResponseInsuranceBuilder to [CoverageEligibilityResponseInsurance]
+  CoverageEligibilityResponseInsurance build() =>
+      CoverageEligibilityResponseInsurance.fromJson(toJson());
+
+  /// Converts a [CoverageEligibilityResponseInsuranceBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1856,6 +1892,14 @@ class CoverageEligibilityResponseInsuranceBuilder
   }
 }
 
+/// Extension to change [CoverageEligibilityResponseItem] to a Builder
+extension BuilderCoverageEligibilityResponseItem
+    on CoverageEligibilityResponseItem {
+  /// Converts [CoverageEligibilityResponseItem] to a [CoverageEligibilityResponseItemBuilder]
+  CoverageEligibilityResponseItemBuilder get toBuilder =>
+      CoverageEligibilityResponseItemBuilder.fromJson(toJson());
+}
+
 /// [CoverageEligibilityResponseItemBuilder]
 /// Benefits and optionally current balances, and authorization details by
 /// category or service.
@@ -2131,6 +2175,12 @@ class CoverageEligibilityResponseItemBuilder extends BackboneElementBuilder {
   /// A web location for obtaining requirements or descriptive information
   /// regarding the preauthorization.
   FhirUriBuilder? authorizationUrl;
+
+  /// Converts a CoverageEligibilityResponseItemBuilder to [CoverageEligibilityResponseItem]
+  CoverageEligibilityResponseItem build() =>
+      CoverageEligibilityResponseItem.fromJson(toJson());
+
+  /// Converts a [CoverageEligibilityResponseItemBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2857,6 +2907,14 @@ class CoverageEligibilityResponseItemBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [CoverageEligibilityResponseBenefit] to a Builder
+extension BuilderCoverageEligibilityResponseBenefit
+    on CoverageEligibilityResponseBenefit {
+  /// Converts [CoverageEligibilityResponseBenefit] to a [CoverageEligibilityResponseBenefitBuilder]
+  CoverageEligibilityResponseBenefitBuilder get toBuilder =>
+      CoverageEligibilityResponseBenefitBuilder.fromJson(toJson());
+}
+
 /// [CoverageEligibilityResponseBenefitBuilder]
 /// Benefits used to date.
 class CoverageEligibilityResponseBenefitBuilder extends BackboneElementBuilder {
@@ -3014,6 +3072,12 @@ class CoverageEligibilityResponseBenefitBuilder extends BackboneElementBuilder {
 
   /// Getter for [usedMoney] as a MoneyBuilder
   MoneyBuilder? get usedMoney => usedX?.isAs<MoneyBuilder>();
+
+  /// Converts a CoverageEligibilityResponseBenefitBuilder to [CoverageEligibilityResponseBenefit]
+  CoverageEligibilityResponseBenefit build() =>
+      CoverageEligibilityResponseBenefit.fromJson(toJson());
+
+  /// Converts a [CoverageEligibilityResponseBenefitBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3525,6 +3589,14 @@ class CoverageEligibilityResponseBenefitBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [CoverageEligibilityResponseError] to a Builder
+extension BuilderCoverageEligibilityResponseError
+    on CoverageEligibilityResponseError {
+  /// Converts [CoverageEligibilityResponseError] to a [CoverageEligibilityResponseErrorBuilder]
+  CoverageEligibilityResponseErrorBuilder get toBuilder =>
+      CoverageEligibilityResponseErrorBuilder.fromJson(toJson());
+}
+
 /// [CoverageEligibilityResponseErrorBuilder]
 /// Errors encountered during the processing of the request.
 class CoverageEligibilityResponseErrorBuilder extends BackboneElementBuilder {
@@ -3633,6 +3705,12 @@ class CoverageEligibilityResponseErrorBuilder extends BackboneElementBuilder {
   /// An error code,from a specified code system, which details why the
   /// eligibility check could not be performed.
   CodeableConceptBuilder? code;
+
+  /// Converts a CoverageEligibilityResponseErrorBuilder to [CoverageEligibilityResponseError]
+  CoverageEligibilityResponseError build() =>
+      CoverageEligibilityResponseError.fromJson(toJson());
+
+  /// Converts a [CoverageEligibilityResponseErrorBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

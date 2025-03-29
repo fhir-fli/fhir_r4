@@ -1,8 +1,27 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        StructureMap,
+        StructureMapStructure,
+        StructureMapGroup,
+        StructureMapInput,
+        StructureMapRule,
+        StructureMapSource,
+        StructureMapTarget,
+        StructureMapParameter,
+        StructureMapDependent;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [StructureMap] to a Builder
+extension BuilderStructureMap on StructureMap {
+  /// Converts [StructureMap] to a [StructureMapBuilder]
+  StructureMapBuilder get toBuilder => StructureMapBuilder.fromJson(toJson());
+}
 
 /// [StructureMapBuilder]
 /// A Map of relationships between 2 structures that can be used to
@@ -331,6 +350,11 @@ class StructureMapBuilder extends CanonicalResourceBuilder {
   /// Organizes the mapping into manageable chunks for human review/ease of
   /// maintenance.
   List<StructureMapGroupBuilder>? group;
+
+  /// Converts a StructureMapBuilder to [StructureMap]
+  StructureMap build() => StructureMap.fromJson(toJson());
+
+  /// Converts a [StructureMapBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1365,6 +1389,13 @@ class StructureMapBuilder extends CanonicalResourceBuilder {
   }
 }
 
+/// Extension to change [StructureMapStructure] to a Builder
+extension BuilderStructureMapStructure on StructureMapStructure {
+  /// Converts [StructureMapStructure] to a [StructureMapStructureBuilder]
+  StructureMapStructureBuilder get toBuilder =>
+      StructureMapStructureBuilder.fromJson(toJson());
+}
+
 /// [StructureMapStructureBuilder]
 /// A structure definition used by this map. The structure definition may
 /// describe instances that are converted, or the instances that are
@@ -1507,6 +1538,11 @@ class StructureMapStructureBuilder extends BackboneElementBuilder {
   /// [documentation]
   /// Documentation that describes how the structure is used in the mapping.
   FhirStringBuilder? documentation;
+
+  /// Converts a StructureMapStructureBuilder to [StructureMapStructure]
+  StructureMapStructure build() => StructureMapStructure.fromJson(toJson());
+
+  /// Converts a [StructureMapStructureBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1893,6 +1929,13 @@ class StructureMapStructureBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [StructureMapGroup] to a Builder
+extension BuilderStructureMapGroup on StructureMapGroup {
+  /// Converts [StructureMapGroup] to a [StructureMapGroupBuilder]
+  StructureMapGroupBuilder get toBuilder =>
+      StructureMapGroupBuilder.fromJson(toJson());
+}
+
 /// [StructureMapGroupBuilder]
 /// Organizes the mapping into manageable chunks for human review/ease of
 /// maintenance.
@@ -2066,6 +2109,11 @@ class StructureMapGroupBuilder extends BackboneElementBuilder {
   /// [rule]
   /// Transform Rule from source to target.
   List<StructureMapRuleBuilder>? rule;
+
+  /// Converts a StructureMapGroupBuilder to [StructureMapGroup]
+  StructureMapGroup build() => StructureMapGroup.fromJson(toJson());
+
+  /// Converts a [StructureMapGroupBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2526,6 +2574,13 @@ class StructureMapGroupBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [StructureMapInput] to a Builder
+extension BuilderStructureMapInput on StructureMapInput {
+  /// Converts [StructureMapInput] to a [StructureMapInputBuilder]
+  StructureMapInputBuilder get toBuilder =>
+      StructureMapInputBuilder.fromJson(toJson());
+}
+
 /// [StructureMapInputBuilder]
 /// A name assigned to an instance of data. The instance must be provided
 /// when the mapping is invoked.
@@ -2666,6 +2721,11 @@ class StructureMapInputBuilder extends BackboneElementBuilder {
   /// [documentation]
   /// Documentation for this instance of data.
   FhirStringBuilder? documentation;
+
+  /// Converts a StructureMapInputBuilder to [StructureMapInput]
+  StructureMapInput build() => StructureMapInput.fromJson(toJson());
+
+  /// Converts a [StructureMapInputBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3052,6 +3112,13 @@ class StructureMapInputBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [StructureMapRule] to a Builder
+extension BuilderStructureMapRule on StructureMapRule {
+  /// Converts [StructureMapRule] to a [StructureMapRuleBuilder]
+  StructureMapRuleBuilder get toBuilder =>
+      StructureMapRuleBuilder.fromJson(toJson());
+}
+
 /// [StructureMapRuleBuilder]
 /// Transform Rule from source to target.
 class StructureMapRuleBuilder extends BackboneElementBuilder {
@@ -3229,6 +3296,11 @@ class StructureMapRuleBuilder extends BackboneElementBuilder {
   /// [documentation]
   /// Documentation for this instance of data.
   FhirStringBuilder? documentation;
+
+  /// Converts a StructureMapRuleBuilder to [StructureMapRule]
+  StructureMapRule build() => StructureMapRule.fromJson(toJson());
+
+  /// Converts a [StructureMapRuleBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3699,6 +3771,13 @@ class StructureMapRuleBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [StructureMapSource] to a Builder
+extension BuilderStructureMapSource on StructureMapSource {
+  /// Converts [StructureMapSource] to a [StructureMapSourceBuilder]
+  StructureMapSourceBuilder get toBuilder =>
+      StructureMapSourceBuilder.fromJson(toJson());
+}
+
 /// [StructureMapSourceBuilder]
 /// Source inputs to the mapping.
 class StructureMapSourceBuilder extends BackboneElementBuilder {
@@ -4160,6 +4239,11 @@ class StructureMapSourceBuilder extends BackboneElementBuilder {
   /// A FHIRPath expression which specifies a message to put in the transform
   /// log when content matching the source rule is found.
   FhirStringBuilder? logMessage;
+
+  /// Converts a StructureMapSourceBuilder to [StructureMapSource]
+  StructureMapSource build() => StructureMapSource.fromJson(toJson());
+
+  /// Converts a [StructureMapSourceBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -6027,6 +6111,13 @@ class StructureMapSourceBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [StructureMapTarget] to a Builder
+extension BuilderStructureMapTarget on StructureMapTarget {
+  /// Converts [StructureMapTarget] to a [StructureMapTargetBuilder]
+  StructureMapTargetBuilder get toBuilder =>
+      StructureMapTargetBuilder.fromJson(toJson());
+}
+
 /// [StructureMapTargetBuilder]
 /// Content to create because of this mapping rule.
 class StructureMapTargetBuilder extends BackboneElementBuilder {
@@ -6215,6 +6306,11 @@ class StructureMapTargetBuilder extends BackboneElementBuilder {
   /// [parameter]
   /// Parameters to the transform.
   List<StructureMapParameterBuilder>? parameter;
+
+  /// Converts a StructureMapTargetBuilder to [StructureMapTarget]
+  StructureMapTarget build() => StructureMapTarget.fromJson(toJson());
+
+  /// Converts a [StructureMapTargetBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -6739,6 +6835,13 @@ class StructureMapTargetBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [StructureMapParameter] to a Builder
+extension BuilderStructureMapParameter on StructureMapParameter {
+  /// Converts [StructureMapParameter] to a [StructureMapParameterBuilder]
+  StructureMapParameterBuilder get toBuilder =>
+      StructureMapParameterBuilder.fromJson(toJson());
+}
+
 /// [StructureMapParameterBuilder]
 /// Parameters to the transform.
 class StructureMapParameterBuilder extends BackboneElementBuilder {
@@ -6866,6 +6969,11 @@ class StructureMapParameterBuilder extends BackboneElementBuilder {
 
   /// Getter for [valueDecimal] as a FhirDecimalBuilder
   FhirDecimalBuilder? get valueDecimal => valueX?.isAs<FhirDecimalBuilder>();
+
+  /// Converts a StructureMapParameterBuilder to [StructureMapParameter]
+  StructureMapParameter build() => StructureMapParameter.fromJson(toJson());
+
+  /// Converts a [StructureMapParameterBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -7288,6 +7396,13 @@ class StructureMapParameterBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [StructureMapDependent] to a Builder
+extension BuilderStructureMapDependent on StructureMapDependent {
+  /// Converts [StructureMapDependent] to a [StructureMapDependentBuilder]
+  StructureMapDependentBuilder get toBuilder =>
+      StructureMapDependentBuilder.fromJson(toJson());
+}
+
 /// [StructureMapDependentBuilder]
 /// Which other rules to apply in the context of this rule.
 class StructureMapDependentBuilder extends BackboneElementBuilder {
@@ -7406,6 +7521,11 @@ class StructureMapDependentBuilder extends BackboneElementBuilder {
   /// [variable]
   /// Variable to pass to the rule or group.
   List<FhirStringBuilder>? variable;
+
+  /// Converts a StructureMapDependentBuilder to [StructureMapDependent]
+  StructureMapDependent build() => StructureMapDependent.fromJson(toJson());
+
+  /// Converts a [StructureMapDependentBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

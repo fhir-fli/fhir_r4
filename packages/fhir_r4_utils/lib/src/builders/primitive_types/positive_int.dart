@@ -1,5 +1,12 @@
 part of 'primitive_types.dart';
 
+/// Extension to convert a [FhirPositiveInt] to a [FhirPositiveIntBuilder]
+extension BuilderFhirPositiveInt on FhirPositiveInt {
+  /// Converts this instance to a [FhirPositiveIntBuilder]
+  FhirPositiveIntBuilder get toBuilder =>
+      FhirPositiveIntBuilder.fromJson(toJson());
+}
+
 /// Extension to convert a [num] to a [FhirPositiveIntBuilder].
 extension FhirPositiveIntBuilderExtension on num {
   /// Converts a [num] to a [FhirPositiveIntBuilder].

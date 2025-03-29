@@ -1,8 +1,21 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        ResearchStudy,
+        ResearchStudyArm,
+        ResearchStudyObjective;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [ResearchStudy] to a Builder
+extension BuilderResearchStudy on ResearchStudy {
+  /// Converts [ResearchStudy] to a [ResearchStudyBuilder]
+  ResearchStudyBuilder get toBuilder => ResearchStudyBuilder.fromJson(toJson());
+}
 
 /// [ResearchStudyBuilder]
 /// A process where a researcher or organization plans and then executes a
@@ -495,6 +508,11 @@ class ResearchStudyBuilder extends DomainResourceBuilder {
   /// question to be answered by the analysis of data collected during the
   /// study.
   List<ResearchStudyObjectiveBuilder>? objective;
+
+  /// Converts a ResearchStudyBuilder to [ResearchStudy]
+  ResearchStudy build() => ResearchStudy.fromJson(toJson());
+
+  /// Converts a [ResearchStudyBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1762,6 +1780,13 @@ class ResearchStudyBuilder extends DomainResourceBuilder {
   }
 }
 
+/// Extension to change [ResearchStudyArm] to a Builder
+extension BuilderResearchStudyArm on ResearchStudyArm {
+  /// Converts [ResearchStudyArm] to a [ResearchStudyArmBuilder]
+  ResearchStudyArmBuilder get toBuilder =>
+      ResearchStudyArmBuilder.fromJson(toJson());
+}
+
 /// [ResearchStudyArmBuilder]
 /// Describes an expected sequence of events for one of the participants of
 /// a study. E.g. Exposure to drug A, wash-out, exposure to drug B,
@@ -1894,6 +1919,11 @@ class ResearchStudyArmBuilder extends BackboneElementBuilder {
   /// A succinct description of the path through the study that would be
   /// followed by a subject adhering to this arm.
   FhirStringBuilder? description;
+
+  /// Converts a ResearchStudyArmBuilder to [ResearchStudyArm]
+  ResearchStudyArm build() => ResearchStudyArm.fromJson(toJson());
+
+  /// Converts a [ResearchStudyArmBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2248,6 +2278,13 @@ class ResearchStudyArmBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [ResearchStudyObjective] to a Builder
+extension BuilderResearchStudyObjective on ResearchStudyObjective {
+  /// Converts [ResearchStudyObjective] to a [ResearchStudyObjectiveBuilder]
+  ResearchStudyObjectiveBuilder get toBuilder =>
+      ResearchStudyObjectiveBuilder.fromJson(toJson());
+}
+
 /// [ResearchStudyObjectiveBuilder]
 /// A goal that the study is aiming to achieve in terms of a scientific
 /// question to be answered by the analysis of data collected during the
@@ -2368,6 +2405,11 @@ class ResearchStudyObjectiveBuilder extends BackboneElementBuilder {
   /// [type]
   /// The kind of study objective.
   CodeableConceptBuilder? type;
+
+  /// Converts a ResearchStudyObjectiveBuilder to [ResearchStudyObjective]
+  ResearchStudyObjective build() => ResearchStudyObjective.fromJson(toJson());
+
+  /// Converts a [ResearchStudyObjectiveBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

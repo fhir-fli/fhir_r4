@@ -98,7 +98,8 @@ abstract class DomainResourceBuilder extends ResourceBuilder {
     return val;
   }
 
-  /// Factory constructor for [DomainResourceBuilder] that takes in a [YamlMap] and
+  /// Factory constructor for [DomainResourceBuilder]
+  /// that takes in a [YamlMap] and returns a [DomainResourceBuilder]
   static DomainResourceBuilder fromYaml(dynamic yaml) => yaml is String
       ? ResourceBuilder.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, dynamic>,

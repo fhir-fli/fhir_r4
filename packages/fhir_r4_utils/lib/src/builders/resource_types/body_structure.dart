@@ -1,8 +1,19 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        BodyStructure;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [BodyStructure] to a Builder
+extension BuilderBodyStructure on BodyStructure {
+  /// Converts [BodyStructure] to a [BodyStructureBuilder]
+  BodyStructureBuilder get toBuilder => BodyStructureBuilder.fromJson(toJson());
+}
 
 /// [BodyStructureBuilder]
 /// Record details about an anatomical structure. This resource may be used
@@ -244,6 +255,11 @@ class BodyStructureBuilder extends DomainResourceBuilder {
   /// [patient]
   /// The person to which the body site belongs.
   ReferenceBuilder? patient;
+
+  /// Converts a BodyStructureBuilder to [BodyStructure]
+  BodyStructure build() => BodyStructure.fromJson(toJson());
+
+  /// Converts a [BodyStructureBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

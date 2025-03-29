@@ -1,8 +1,31 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        ClaimResponse,
+        ClaimResponseItem,
+        ClaimResponseAdjudication,
+        ClaimResponseDetail,
+        ClaimResponseSubDetail,
+        ClaimResponseAddItem,
+        ClaimResponseDetail1,
+        ClaimResponseSubDetail1,
+        ClaimResponseTotal,
+        ClaimResponsePayment,
+        ClaimResponseProcessNote,
+        ClaimResponseInsurance,
+        ClaimResponseError;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [ClaimResponse] to a Builder
+extension BuilderClaimResponse on ClaimResponse {
+  /// Converts [ClaimResponse] to a [ClaimResponseBuilder]
+  ClaimResponseBuilder get toBuilder => ClaimResponseBuilder.fromJson(toJson());
+}
 
 /// [ClaimResponseBuilder]
 /// This resource provides the adjudication details from the processing of
@@ -491,6 +514,11 @@ class ClaimResponseBuilder extends DomainResourceBuilder {
   /// [error]
   /// Errors encountered during the processing of the adjudication.
   List<ClaimResponseErrorBuilder>? error;
+
+  /// Converts a ClaimResponseBuilder to [ClaimResponse]
+  ClaimResponse build() => ClaimResponse.fromJson(toJson());
+
+  /// Converts a [ClaimResponseBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1823,6 +1851,13 @@ class ClaimResponseBuilder extends DomainResourceBuilder {
   }
 }
 
+/// Extension to change [ClaimResponseItem] to a Builder
+extension BuilderClaimResponseItem on ClaimResponseItem {
+  /// Converts [ClaimResponseItem] to a [ClaimResponseItemBuilder]
+  ClaimResponseItemBuilder get toBuilder =>
+      ClaimResponseItemBuilder.fromJson(toJson());
+}
+
 /// [ClaimResponseItemBuilder]
 /// A claim line. Either a simple (a product or service) or a 'group' of
 /// details which can also be a simple items or groups of sub-details.
@@ -1975,6 +2010,11 @@ class ClaimResponseItemBuilder extends BackboneElementBuilder {
   /// A claim detail. Either a simple (a product or service) or a 'group' of
   /// sub-details which are simple items.
   List<ClaimResponseDetailBuilder>? detail;
+
+  /// Converts a ClaimResponseItemBuilder to [ClaimResponseItem]
+  ClaimResponseItem build() => ClaimResponseItem.fromJson(toJson());
+
+  /// Converts a [ClaimResponseItemBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2376,6 +2416,13 @@ class ClaimResponseItemBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [ClaimResponseAdjudication] to a Builder
+extension BuilderClaimResponseAdjudication on ClaimResponseAdjudication {
+  /// Converts [ClaimResponseAdjudication] to a [ClaimResponseAdjudicationBuilder]
+  ClaimResponseAdjudicationBuilder get toBuilder =>
+      ClaimResponseAdjudicationBuilder.fromJson(toJson());
+}
+
 /// [ClaimResponseAdjudicationBuilder]
 /// If this item is a group then the values here are a summary of the
 /// adjudication of the detail items. If this item is a simple product or
@@ -2525,6 +2572,12 @@ class ClaimResponseAdjudicationBuilder extends BackboneElementBuilder {
   /// A non-monetary value associated with the category. Mutually exclusive
   /// to the amount element above.
   FhirDecimalBuilder? value;
+
+  /// Converts a ClaimResponseAdjudicationBuilder to [ClaimResponseAdjudication]
+  ClaimResponseAdjudication build() =>
+      ClaimResponseAdjudication.fromJson(toJson());
+
+  /// Converts a [ClaimResponseAdjudicationBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2911,6 +2964,13 @@ class ClaimResponseAdjudicationBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [ClaimResponseDetail] to a Builder
+extension BuilderClaimResponseDetail on ClaimResponseDetail {
+  /// Converts [ClaimResponseDetail] to a [ClaimResponseDetailBuilder]
+  ClaimResponseDetailBuilder get toBuilder =>
+      ClaimResponseDetailBuilder.fromJson(toJson());
+}
+
 /// [ClaimResponseDetailBuilder]
 /// A claim detail. Either a simple (a product or service) or a 'group' of
 /// sub-details which are simple items.
@@ -3060,6 +3120,11 @@ class ClaimResponseDetailBuilder extends BackboneElementBuilder {
   /// [subDetail]
   /// A sub-detail adjudication of a simple product or service.
   List<ClaimResponseSubDetailBuilder>? subDetail;
+
+  /// Converts a ClaimResponseDetailBuilder to [ClaimResponseDetail]
+  ClaimResponseDetail build() => ClaimResponseDetail.fromJson(toJson());
+
+  /// Converts a [ClaimResponseDetailBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3461,6 +3526,13 @@ class ClaimResponseDetailBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [ClaimResponseSubDetail] to a Builder
+extension BuilderClaimResponseSubDetail on ClaimResponseSubDetail {
+  /// Converts [ClaimResponseSubDetail] to a [ClaimResponseSubDetailBuilder]
+  ClaimResponseSubDetailBuilder get toBuilder =>
+      ClaimResponseSubDetailBuilder.fromJson(toJson());
+}
+
 /// [ClaimResponseSubDetailBuilder]
 /// A sub-detail adjudication of a simple product or service.
 class ClaimResponseSubDetailBuilder extends BackboneElementBuilder {
@@ -3595,6 +3667,11 @@ class ClaimResponseSubDetailBuilder extends BackboneElementBuilder {
   /// [adjudication]
   /// The adjudication results.
   List<ClaimResponseAdjudicationBuilder>? adjudication;
+
+  /// Converts a ClaimResponseSubDetailBuilder to [ClaimResponseSubDetail]
+  ClaimResponseSubDetail build() => ClaimResponseSubDetail.fromJson(toJson());
+
+  /// Converts a [ClaimResponseSubDetailBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3959,6 +4036,13 @@ class ClaimResponseSubDetailBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [ClaimResponseAddItem] to a Builder
+extension BuilderClaimResponseAddItem on ClaimResponseAddItem {
+  /// Converts [ClaimResponseAddItem] to a [ClaimResponseAddItemBuilder]
+  ClaimResponseAddItemBuilder get toBuilder =>
+      ClaimResponseAddItemBuilder.fromJson(toJson());
+}
+
 /// [ClaimResponseAddItemBuilder]
 /// The first-tier service adjudications for payor added product or service
 /// lines.
@@ -4316,6 +4400,11 @@ class ClaimResponseAddItemBuilder extends BackboneElementBuilder {
   /// [detail]
   /// The second-tier service adjudications for payor added services.
   List<ClaimResponseDetailBuilder>? detail;
+
+  /// Converts a ClaimResponseAddItemBuilder to [ClaimResponseAddItem]
+  ClaimResponseAddItem build() => ClaimResponseAddItem.fromJson(toJson());
+
+  /// Converts a [ClaimResponseAddItemBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -5332,6 +5421,13 @@ class ClaimResponseAddItemBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [ClaimResponseDetail1] to a Builder
+extension BuilderClaimResponseDetail1 on ClaimResponseDetail1 {
+  /// Converts [ClaimResponseDetail1] to a [ClaimResponseDetail1Builder]
+  ClaimResponseDetail1Builder get toBuilder =>
+      ClaimResponseDetail1Builder.fromJson(toJson());
+}
+
 /// [ClaimResponseDetail1Builder]
 /// The second-tier service adjudications for payor added services.
 class ClaimResponseDetail1Builder extends BackboneElementBuilder {
@@ -5548,6 +5644,11 @@ class ClaimResponseDetail1Builder extends BackboneElementBuilder {
   /// [subDetail]
   /// The third-tier service adjudications for payor added services.
   List<ClaimResponseSubDetailBuilder>? subDetail;
+
+  /// Converts a ClaimResponseDetail1Builder to [ClaimResponseDetail1]
+  ClaimResponseDetail1 build() => ClaimResponseDetail1.fromJson(toJson());
+
+  /// Converts a [ClaimResponseDetail1Builder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -6114,6 +6215,13 @@ class ClaimResponseDetail1Builder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [ClaimResponseSubDetail1] to a Builder
+extension BuilderClaimResponseSubDetail1 on ClaimResponseSubDetail1 {
+  /// Converts [ClaimResponseSubDetail1] to a [ClaimResponseSubDetail1Builder]
+  ClaimResponseSubDetail1Builder get toBuilder =>
+      ClaimResponseSubDetail1Builder.fromJson(toJson());
+}
+
 /// [ClaimResponseSubDetail1Builder]
 /// The third-tier service adjudications for payor added services.
 class ClaimResponseSubDetail1Builder extends BackboneElementBuilder {
@@ -6316,6 +6424,11 @@ class ClaimResponseSubDetail1Builder extends BackboneElementBuilder {
   /// [adjudication]
   /// The adjudication results.
   List<ClaimResponseAdjudicationBuilder>? adjudication;
+
+  /// Converts a ClaimResponseSubDetail1Builder to [ClaimResponseSubDetail1]
+  ClaimResponseSubDetail1 build() => ClaimResponseSubDetail1.fromJson(toJson());
+
+  /// Converts a [ClaimResponseSubDetail1Builder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -6845,6 +6958,13 @@ class ClaimResponseSubDetail1Builder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [ClaimResponseTotal] to a Builder
+extension BuilderClaimResponseTotal on ClaimResponseTotal {
+  /// Converts [ClaimResponseTotal] to a [ClaimResponseTotalBuilder]
+  ClaimResponseTotalBuilder get toBuilder =>
+      ClaimResponseTotalBuilder.fromJson(toJson());
+}
+
 /// [ClaimResponseTotalBuilder]
 /// Categorized monetary totals for the adjudication.
 class ClaimResponseTotalBuilder extends BackboneElementBuilder {
@@ -6966,6 +7086,11 @@ class ClaimResponseTotalBuilder extends BackboneElementBuilder {
   /// [amount]
   /// Monetary total amount associated with the category.
   MoneyBuilder? amount;
+
+  /// Converts a ClaimResponseTotalBuilder to [ClaimResponseTotal]
+  ClaimResponseTotal build() => ClaimResponseTotal.fromJson(toJson());
+
+  /// Converts a [ClaimResponseTotalBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -7288,6 +7413,13 @@ class ClaimResponseTotalBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [ClaimResponsePayment] to a Builder
+extension BuilderClaimResponsePayment on ClaimResponsePayment {
+  /// Converts [ClaimResponsePayment] to a [ClaimResponsePaymentBuilder]
+  ClaimResponsePaymentBuilder get toBuilder =>
+      ClaimResponsePaymentBuilder.fromJson(toJson());
+}
+
 /// [ClaimResponsePaymentBuilder]
 /// Payment details for the adjudication of the claim.
 class ClaimResponsePaymentBuilder extends BackboneElementBuilder {
@@ -7452,6 +7584,11 @@ class ClaimResponsePaymentBuilder extends BackboneElementBuilder {
   /// [identifier]
   /// Issuer's unique identifier for the payment instrument.
   IdentifierBuilder? identifier;
+
+  /// Converts a ClaimResponsePaymentBuilder to [ClaimResponsePayment]
+  ClaimResponsePayment build() => ClaimResponsePayment.fromJson(toJson());
+
+  /// Converts a [ClaimResponsePaymentBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -7902,6 +8039,13 @@ class ClaimResponsePaymentBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [ClaimResponseProcessNote] to a Builder
+extension BuilderClaimResponseProcessNote on ClaimResponseProcessNote {
+  /// Converts [ClaimResponseProcessNote] to a [ClaimResponseProcessNoteBuilder]
+  ClaimResponseProcessNoteBuilder get toBuilder =>
+      ClaimResponseProcessNoteBuilder.fromJson(toJson());
+}
+
 /// [ClaimResponseProcessNoteBuilder]
 /// A note that describes or explains adjudication results in a human
 /// readable form.
@@ -8043,6 +8187,12 @@ class ClaimResponseProcessNoteBuilder extends BackboneElementBuilder {
   /// [language]
   /// A code to define the language used in the text of the note.
   CodeableConceptBuilder? language;
+
+  /// Converts a ClaimResponseProcessNoteBuilder to [ClaimResponseProcessNote]
+  ClaimResponseProcessNote build() =>
+      ClaimResponseProcessNote.fromJson(toJson());
+
+  /// Converts a [ClaimResponseProcessNoteBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -8429,6 +8579,13 @@ class ClaimResponseProcessNoteBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [ClaimResponseInsurance] to a Builder
+extension BuilderClaimResponseInsurance on ClaimResponseInsurance {
+  /// Converts [ClaimResponseInsurance] to a [ClaimResponseInsuranceBuilder]
+  ClaimResponseInsuranceBuilder get toBuilder =>
+      ClaimResponseInsuranceBuilder.fromJson(toJson());
+}
+
 /// [ClaimResponseInsuranceBuilder]
 /// Financial instruments for reimbursement for the health care products
 /// and services specified on the claim.
@@ -8588,6 +8745,11 @@ class ClaimResponseInsuranceBuilder extends BackboneElementBuilder {
   /// The result of the adjudication of the line items for the Coverage
   /// specified in this insurance.
   ReferenceBuilder? claimResponse;
+
+  /// Converts a ClaimResponseInsuranceBuilder to [ClaimResponseInsurance]
+  ClaimResponseInsurance build() => ClaimResponseInsurance.fromJson(toJson());
+
+  /// Converts a [ClaimResponseInsuranceBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -9006,6 +9168,13 @@ class ClaimResponseInsuranceBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [ClaimResponseError] to a Builder
+extension BuilderClaimResponseError on ClaimResponseError {
+  /// Converts [ClaimResponseError] to a [ClaimResponseErrorBuilder]
+  ClaimResponseErrorBuilder get toBuilder =>
+      ClaimResponseErrorBuilder.fromJson(toJson());
+}
+
 /// [ClaimResponseErrorBuilder]
 /// Errors encountered during the processing of the adjudication.
 class ClaimResponseErrorBuilder extends BackboneElementBuilder {
@@ -9152,6 +9321,11 @@ class ClaimResponseErrorBuilder extends BackboneElementBuilder {
   /// An error code, from a specified code system, which details why the
   /// claim could not be adjudicated.
   CodeableConceptBuilder? code;
+
+  /// Converts a ClaimResponseErrorBuilder to [ClaimResponseError]
+  ClaimResponseError build() => ClaimResponseError.fromJson(toJson());
+
+  /// Converts a [ClaimResponseErrorBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

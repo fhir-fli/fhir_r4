@@ -1,8 +1,14 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, StringExtensionForFHIR;
+    show yamlMapToJson, yamlToJson, StringExtensionForFHIR, Period;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [Period] to a Builder
+extension BuilderPeriod on Period {
+  /// Converts [Period] to a [PeriodBuilder]
+  PeriodBuilder get toBuilder => PeriodBuilder.fromJson(toJson());
+}
 
 /// [PeriodBuilder]
 /// A time period defined by a start and end date and optionally time.
@@ -170,6 +176,11 @@ class PeriodBuilder extends DataTypeBuilder
   /// start may be in the past, and the end date in the future, which means
   /// that period is expected/planned to end at that time.
   FhirDateTimeBuilder? end;
+
+  /// Converts a PeriodBuilder to [Period]
+  Period build() => Period.fromJson(toJson());
+
+  /// Converts a [PeriodBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

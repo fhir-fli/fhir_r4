@@ -1,8 +1,23 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        GraphDefinition,
+        GraphDefinitionLink,
+        GraphDefinitionTarget,
+        GraphDefinitionCompartment;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [GraphDefinition] to a Builder
+extension BuilderGraphDefinition on GraphDefinition {
+  /// Converts [GraphDefinition] to a [GraphDefinitionBuilder]
+  GraphDefinitionBuilder get toBuilder =>
+      GraphDefinitionBuilder.fromJson(toJson());
+}
 
 /// [GraphDefinitionBuilder]
 /// A formal computable definition of a graph of resources - that is, a
@@ -285,6 +300,11 @@ class GraphDefinitionBuilder extends CanonicalResourceBuilder {
   /// [link]
   /// Links this graph makes rules about.
   List<GraphDefinitionLinkBuilder>? link;
+
+  /// Converts a GraphDefinitionBuilder to [GraphDefinition]
+  GraphDefinition build() => GraphDefinition.fromJson(toJson());
+
+  /// Converts a [GraphDefinitionBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1208,6 +1228,13 @@ class GraphDefinitionBuilder extends CanonicalResourceBuilder {
   }
 }
 
+/// Extension to change [GraphDefinitionLink] to a Builder
+extension BuilderGraphDefinitionLink on GraphDefinitionLink {
+  /// Converts [GraphDefinitionLink] to a [GraphDefinitionLinkBuilder]
+  GraphDefinitionLinkBuilder get toBuilder =>
+      GraphDefinitionLinkBuilder.fromJson(toJson());
+}
+
 /// [GraphDefinitionLinkBuilder]
 /// Links this graph makes rules about.
 class GraphDefinitionLinkBuilder extends BackboneElementBuilder {
@@ -1375,6 +1402,11 @@ class GraphDefinitionLinkBuilder extends BackboneElementBuilder {
   /// [target]
   /// Potential target for the link.
   List<GraphDefinitionTargetBuilder>? target;
+
+  /// Converts a GraphDefinitionLinkBuilder to [GraphDefinitionLink]
+  GraphDefinitionLink build() => GraphDefinitionLink.fromJson(toJson());
+
+  /// Converts a [GraphDefinitionLinkBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1830,6 +1862,13 @@ class GraphDefinitionLinkBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [GraphDefinitionTarget] to a Builder
+extension BuilderGraphDefinitionTarget on GraphDefinitionTarget {
+  /// Converts [GraphDefinitionTarget] to a [GraphDefinitionTargetBuilder]
+  GraphDefinitionTargetBuilder get toBuilder =>
+      GraphDefinitionTargetBuilder.fromJson(toJson());
+}
+
 /// [GraphDefinitionTargetBuilder]
 /// Potential target for the link.
 class GraphDefinitionTargetBuilder extends BackboneElementBuilder {
@@ -1989,6 +2028,11 @@ class GraphDefinitionTargetBuilder extends BackboneElementBuilder {
   /// [link]
   /// Additional links from target resource.
   List<GraphDefinitionLinkBuilder>? link;
+
+  /// Converts a GraphDefinitionTargetBuilder to [GraphDefinitionTarget]
+  GraphDefinitionTarget build() => GraphDefinitionTarget.fromJson(toJson());
+
+  /// Converts a [GraphDefinitionTargetBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2417,6 +2461,13 @@ class GraphDefinitionTargetBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [GraphDefinitionCompartment] to a Builder
+extension BuilderGraphDefinitionCompartment on GraphDefinitionCompartment {
+  /// Converts [GraphDefinitionCompartment] to a [GraphDefinitionCompartmentBuilder]
+  GraphDefinitionCompartmentBuilder get toBuilder =>
+      GraphDefinitionCompartmentBuilder.fromJson(toJson());
+}
+
 /// [GraphDefinitionCompartmentBuilder]
 /// Compartment Consistency Rules.
 class GraphDefinitionCompartmentBuilder extends BackboneElementBuilder {
@@ -2570,6 +2621,12 @@ class GraphDefinitionCompartmentBuilder extends BackboneElementBuilder {
   /// [description]
   /// Documentation for FHIRPath expression.
   FhirStringBuilder? description;
+
+  /// Converts a GraphDefinitionCompartmentBuilder to [GraphDefinitionCompartment]
+  GraphDefinitionCompartment build() =>
+      GraphDefinitionCompartment.fromJson(toJson());
+
+  /// Converts a [GraphDefinitionCompartmentBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

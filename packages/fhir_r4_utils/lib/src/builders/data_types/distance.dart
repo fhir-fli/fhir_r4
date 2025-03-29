@@ -1,8 +1,14 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, StringExtensionForFHIR;
+    show yamlMapToJson, yamlToJson, StringExtensionForFHIR, Distance;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [Distance] to a Builder
+extension BuilderDistance on Distance {
+  /// Converts [Distance] to a [DistanceBuilder]
+  DistanceBuilder get toBuilder => DistanceBuilder.fromJson(toJson());
+}
 
 /// [DistanceBuilder]
 /// A length - a value with a unit that is a physical distance.
@@ -133,6 +139,10 @@ class DistanceBuilder extends QuantityBuilder
   @override
   String get fhirType => 'Distance';
 
+  /// Converts a DistanceBuilder to [Distance]
+  Distance build() => Distance.fromJson(toJson());
+
+  /// Converts a [DistanceBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

@@ -1,8 +1,21 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        Provenance,
+        ProvenanceAgent,
+        ProvenanceEntity;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [Provenance] to a Builder
+extension BuilderProvenance on Provenance {
+  /// Converts [Provenance] to a [ProvenanceBuilder]
+  ProvenanceBuilder get toBuilder => ProvenanceBuilder.fromJson(toJson());
+}
 
 /// [ProvenanceBuilder]
 /// Provenance of a resource is a record that describes entities and
@@ -295,6 +308,11 @@ class ProvenanceBuilder extends DomainResourceBuilder {
   /// A digital signature on the target Reference(s). The signer should match
   /// a Provenance.agent. The purpose of the signature is indicated.
   List<SignatureBuilder>? signature;
+
+  /// Converts a ProvenanceBuilder to [Provenance]
+  Provenance build() => Provenance.fromJson(toJson());
+
+  /// Converts a [ProvenanceBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1122,6 +1140,13 @@ class ProvenanceBuilder extends DomainResourceBuilder {
   }
 }
 
+/// Extension to change [ProvenanceAgent] to a Builder
+extension BuilderProvenanceAgent on ProvenanceAgent {
+  /// Converts [ProvenanceAgent] to a [ProvenanceAgentBuilder]
+  ProvenanceAgentBuilder get toBuilder =>
+      ProvenanceAgentBuilder.fromJson(toJson());
+}
+
 /// [ProvenanceAgentBuilder]
 /// An actor taking a role in an activity for which it can be assigned some
 /// degree of responsibility for the activity taking place.
@@ -1267,6 +1292,11 @@ class ProvenanceAgentBuilder extends BackboneElementBuilder {
   /// [onBehalfOf]
   /// The individual, device, or organization for whom the change was made.
   ReferenceBuilder? onBehalfOf;
+
+  /// Converts a ProvenanceAgentBuilder to [ProvenanceAgent]
+  ProvenanceAgent build() => ProvenanceAgent.fromJson(toJson());
+
+  /// Converts a [ProvenanceAgentBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1658,6 +1688,13 @@ class ProvenanceAgentBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [ProvenanceEntity] to a Builder
+extension BuilderProvenanceEntity on ProvenanceEntity {
+  /// Converts [ProvenanceEntity] to a [ProvenanceEntityBuilder]
+  ProvenanceEntityBuilder get toBuilder =>
+      ProvenanceEntityBuilder.fromJson(toJson());
+}
+
 /// [ProvenanceEntityBuilder]
 /// An entity used in this activity.
 class ProvenanceEntityBuilder extends BackboneElementBuilder {
@@ -1794,6 +1831,11 @@ class ProvenanceEntityBuilder extends BackboneElementBuilder {
   /// description can be understood as shorthand for saying that the agent
   /// was responsible for the activity which generated the entity.
   List<ProvenanceAgentBuilder>? agent;
+
+  /// Converts a ProvenanceEntityBuilder to [ProvenanceEntity]
+  ProvenanceEntity build() => ProvenanceEntity.fromJson(toJson());
+
+  /// Converts a [ProvenanceEntityBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

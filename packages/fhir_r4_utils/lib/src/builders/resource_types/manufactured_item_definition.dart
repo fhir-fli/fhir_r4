@@ -1,8 +1,21 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        ManufacturedItemDefinition,
+        ManufacturedItemDefinitionProperty;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [ManufacturedItemDefinition] to a Builder
+extension BuilderManufacturedItemDefinition on ManufacturedItemDefinition {
+  /// Converts [ManufacturedItemDefinition] to a [ManufacturedItemDefinitionBuilder]
+  ManufacturedItemDefinitionBuilder get toBuilder =>
+      ManufacturedItemDefinitionBuilder.fromJson(toJson());
+}
 
 /// [ManufacturedItemDefinitionBuilder]
 /// The definition and characteristics of a medicinal manufactured item,
@@ -240,6 +253,12 @@ class ManufacturedItemDefinitionBuilder extends DomainResourceBuilder {
   /// [property]
   /// General characteristics of this item.
   List<ManufacturedItemDefinitionPropertyBuilder>? property;
+
+  /// Converts a ManufacturedItemDefinitionBuilder to [ManufacturedItemDefinition]
+  ManufacturedItemDefinition build() =>
+      ManufacturedItemDefinition.fromJson(toJson());
+
+  /// Converts a [ManufacturedItemDefinitionBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -907,6 +926,14 @@ class ManufacturedItemDefinitionBuilder extends DomainResourceBuilder {
   }
 }
 
+/// Extension to change [ManufacturedItemDefinitionProperty] to a Builder
+extension BuilderManufacturedItemDefinitionProperty
+    on ManufacturedItemDefinitionProperty {
+  /// Converts [ManufacturedItemDefinitionProperty] to a [ManufacturedItemDefinitionPropertyBuilder]
+  ManufacturedItemDefinitionPropertyBuilder get toBuilder =>
+      ManufacturedItemDefinitionPropertyBuilder.fromJson(toJson());
+}
+
 /// [ManufacturedItemDefinitionPropertyBuilder]
 /// General characteristics of this item.
 class ManufacturedItemDefinitionPropertyBuilder extends BackboneElementBuilder {
@@ -1047,6 +1074,12 @@ class ManufacturedItemDefinitionPropertyBuilder extends BackboneElementBuilder {
 
   /// Getter for [valueAttachment] as a AttachmentBuilder
   AttachmentBuilder? get valueAttachment => valueX?.isAs<AttachmentBuilder>();
+
+  /// Converts a ManufacturedItemDefinitionPropertyBuilder to [ManufacturedItemDefinitionProperty]
+  ManufacturedItemDefinitionProperty build() =>
+      ManufacturedItemDefinitionProperty.fromJson(toJson());
+
+  /// Converts a [ManufacturedItemDefinitionPropertyBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

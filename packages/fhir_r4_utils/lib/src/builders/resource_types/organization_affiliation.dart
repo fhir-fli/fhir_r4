@@ -1,8 +1,20 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        OrganizationAffiliation;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [OrganizationAffiliation] to a Builder
+extension BuilderOrganizationAffiliation on OrganizationAffiliation {
+  /// Converts [OrganizationAffiliation] to a [OrganizationAffiliationBuilder]
+  OrganizationAffiliationBuilder get toBuilder =>
+      OrganizationAffiliationBuilder.fromJson(toJson());
+}
 
 /// [OrganizationAffiliationBuilder]
 /// Defines an affiliation/assotiation/relationship between 2 distinct
@@ -315,6 +327,11 @@ class OrganizationAffiliationBuilder extends DomainResourceBuilder {
   /// Technical endpoints providing access to services operated for this
   /// role.
   List<ReferenceBuilder>? endpoint;
+
+  /// Converts a OrganizationAffiliationBuilder to [OrganizationAffiliation]
+  OrganizationAffiliation build() => OrganizationAffiliation.fromJson(toJson());
+
+  /// Converts a [OrganizationAffiliationBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

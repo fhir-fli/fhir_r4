@@ -1,8 +1,21 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        EpisodeOfCare,
+        EpisodeOfCareStatusHistory,
+        EpisodeOfCareDiagnosis;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [EpisodeOfCare] to a Builder
+extension BuilderEpisodeOfCare on EpisodeOfCare {
+  /// Converts [EpisodeOfCare] to a [EpisodeOfCareBuilder]
+  EpisodeOfCareBuilder get toBuilder => EpisodeOfCareBuilder.fromJson(toJson());
+}
 
 /// [EpisodeOfCareBuilder]
 /// An association between a patient and an organization / healthcare
@@ -311,6 +324,11 @@ class EpisodeOfCareBuilder extends DomainResourceBuilder {
   /// The set of accounts that may be used for billing for this
   /// EpisodeOfCare.
   List<ReferenceBuilder>? account;
+
+  /// Converts a EpisodeOfCareBuilder to [EpisodeOfCare]
+  EpisodeOfCare build() => EpisodeOfCare.fromJson(toJson());
+
+  /// Converts a [EpisodeOfCareBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1153,6 +1171,13 @@ class EpisodeOfCareBuilder extends DomainResourceBuilder {
   }
 }
 
+/// Extension to change [EpisodeOfCareStatusHistory] to a Builder
+extension BuilderEpisodeOfCareStatusHistory on EpisodeOfCareStatusHistory {
+  /// Converts [EpisodeOfCareStatusHistory] to a [EpisodeOfCareStatusHistoryBuilder]
+  EpisodeOfCareStatusHistoryBuilder get toBuilder =>
+      EpisodeOfCareStatusHistoryBuilder.fromJson(toJson());
+}
+
 /// [EpisodeOfCareStatusHistoryBuilder]
 /// The history of statuses that the EpisodeOfCare has been through
 /// (without requiring processing the history of the resource).
@@ -1272,6 +1297,12 @@ class EpisodeOfCareStatusHistoryBuilder extends BackboneElementBuilder {
   /// [period]
   /// The period during this EpisodeOfCare that the specific status applied.
   PeriodBuilder? period;
+
+  /// Converts a EpisodeOfCareStatusHistoryBuilder to [EpisodeOfCareStatusHistory]
+  EpisodeOfCareStatusHistory build() =>
+      EpisodeOfCareStatusHistory.fromJson(toJson());
+
+  /// Converts a [EpisodeOfCareStatusHistoryBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1594,6 +1625,13 @@ class EpisodeOfCareStatusHistoryBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [EpisodeOfCareDiagnosis] to a Builder
+extension BuilderEpisodeOfCareDiagnosis on EpisodeOfCareDiagnosis {
+  /// Converts [EpisodeOfCareDiagnosis] to a [EpisodeOfCareDiagnosisBuilder]
+  EpisodeOfCareDiagnosisBuilder get toBuilder =>
+      EpisodeOfCareDiagnosisBuilder.fromJson(toJson());
+}
+
 /// [EpisodeOfCareDiagnosisBuilder]
 /// The list of diagnosis relevant to this episode of care.
 class EpisodeOfCareDiagnosisBuilder extends BackboneElementBuilder {
@@ -1725,6 +1763,11 @@ class EpisodeOfCareDiagnosisBuilder extends BackboneElementBuilder {
   /// [rank]
   /// Ranking of the diagnosis (for each role type).
   FhirPositiveIntBuilder? rank;
+
+  /// Converts a EpisodeOfCareDiagnosisBuilder to [EpisodeOfCareDiagnosis]
+  EpisodeOfCareDiagnosis build() => EpisodeOfCareDiagnosis.fromJson(toJson());
+
+  /// Converts a [EpisodeOfCareDiagnosisBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

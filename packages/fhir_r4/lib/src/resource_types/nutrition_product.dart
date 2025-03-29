@@ -2606,7 +2606,7 @@ class NutritionProductProductCharacteristic extends BackboneElement {
           'Quantity',
           'FhirBase64Binary',
           'Attachment',
-          'FhirBoolean',
+          'FhirBoolean'
         ];
       case 'valueCodeableConcept':
         return ['CodeableConcept'];

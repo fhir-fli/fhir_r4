@@ -17,7 +17,7 @@ class FHIRPathHostServices extends IEvaluationContext {
     final res = vars?.get(MappingVariableMode.INPUT, name) ??
         vars?.get(MappingVariableMode.OUTPUT, name);
     if (res != null) {
-      list.add(res.fromBuilder());
+      list.add(res.build());
     }
     return list;
   }

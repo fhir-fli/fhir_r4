@@ -1,8 +1,24 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        SpecimenDefinition,
+        SpecimenDefinitionTypeTested,
+        SpecimenDefinitionContainer,
+        SpecimenDefinitionAdditive,
+        SpecimenDefinitionHandling;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [SpecimenDefinition] to a Builder
+extension BuilderSpecimenDefinition on SpecimenDefinition {
+  /// Converts [SpecimenDefinition] to a [SpecimenDefinitionBuilder]
+  SpecimenDefinitionBuilder get toBuilder =>
+      SpecimenDefinitionBuilder.fromJson(toJson());
+}
 
 /// [SpecimenDefinitionBuilder]
 /// A kind of specimen with associated set of requirements.
@@ -217,6 +233,11 @@ class SpecimenDefinitionBuilder extends DomainResourceBuilder {
   /// Specimen conditioned in a container as expected by the testing
   /// laboratory.
   List<SpecimenDefinitionTypeTestedBuilder>? typeTested;
+
+  /// Converts a SpecimenDefinitionBuilder to [SpecimenDefinition]
+  SpecimenDefinition build() => SpecimenDefinition.fromJson(toJson());
+
+  /// Converts a [SpecimenDefinitionBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -847,6 +868,13 @@ class SpecimenDefinitionBuilder extends DomainResourceBuilder {
   }
 }
 
+/// Extension to change [SpecimenDefinitionTypeTested] to a Builder
+extension BuilderSpecimenDefinitionTypeTested on SpecimenDefinitionTypeTested {
+  /// Converts [SpecimenDefinitionTypeTested] to a [SpecimenDefinitionTypeTestedBuilder]
+  SpecimenDefinitionTypeTestedBuilder get toBuilder =>
+      SpecimenDefinitionTypeTestedBuilder.fromJson(toJson());
+}
+
 /// [SpecimenDefinitionTypeTestedBuilder]
 /// Specimen conditioned in a container as expected by the testing
 /// laboratory.
@@ -1044,6 +1072,12 @@ class SpecimenDefinitionTypeTestedBuilder extends BackboneElementBuilder {
   /// Set of instructions for preservation/transport of the specimen at a
   /// defined temperature interval, prior the testing process.
   List<SpecimenDefinitionHandlingBuilder>? handling;
+
+  /// Converts a SpecimenDefinitionTypeTestedBuilder to [SpecimenDefinitionTypeTested]
+  SpecimenDefinitionTypeTested build() =>
+      SpecimenDefinitionTypeTested.fromJson(toJson());
+
+  /// Converts a [SpecimenDefinitionTypeTestedBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1568,6 +1602,13 @@ class SpecimenDefinitionTypeTestedBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [SpecimenDefinitionContainer] to a Builder
+extension BuilderSpecimenDefinitionContainer on SpecimenDefinitionContainer {
+  /// Converts [SpecimenDefinitionContainer] to a [SpecimenDefinitionContainerBuilder]
+  SpecimenDefinitionContainerBuilder get toBuilder =>
+      SpecimenDefinitionContainerBuilder.fromJson(toJson());
+}
+
 /// [SpecimenDefinitionContainerBuilder]
 /// The specimen's container.
 class SpecimenDefinitionContainerBuilder extends BackboneElementBuilder {
@@ -1769,6 +1810,12 @@ class SpecimenDefinitionContainerBuilder extends BackboneElementBuilder {
   /// Special processing that should be applied to the container for this
   /// kind of specimen.
   FhirStringBuilder? preparation;
+
+  /// Converts a SpecimenDefinitionContainerBuilder to [SpecimenDefinitionContainer]
+  SpecimenDefinitionContainer build() =>
+      SpecimenDefinitionContainer.fromJson(toJson());
+
+  /// Converts a [SpecimenDefinitionContainerBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2342,6 +2389,13 @@ class SpecimenDefinitionContainerBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [SpecimenDefinitionAdditive] to a Builder
+extension BuilderSpecimenDefinitionAdditive on SpecimenDefinitionAdditive {
+  /// Converts [SpecimenDefinitionAdditive] to a [SpecimenDefinitionAdditiveBuilder]
+  SpecimenDefinitionAdditiveBuilder get toBuilder =>
+      SpecimenDefinitionAdditiveBuilder.fromJson(toJson());
+}
+
 /// [SpecimenDefinitionAdditiveBuilder]
 /// Substance introduced in the kind of container to preserve, maintain or
 /// enhance the specimen. Examples: Formalin, Citrate, EDTA.
@@ -2462,6 +2516,12 @@ class SpecimenDefinitionAdditiveBuilder extends BackboneElementBuilder {
   /// Getter for [additiveReference] as a ReferenceBuilder
   ReferenceBuilder? get additiveReference =>
       additiveX?.isAs<ReferenceBuilder>();
+
+  /// Converts a SpecimenDefinitionAdditiveBuilder to [SpecimenDefinitionAdditive]
+  SpecimenDefinitionAdditive build() =>
+      SpecimenDefinitionAdditive.fromJson(toJson());
+
+  /// Converts a [SpecimenDefinitionAdditiveBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2806,6 +2866,13 @@ class SpecimenDefinitionAdditiveBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [SpecimenDefinitionHandling] to a Builder
+extension BuilderSpecimenDefinitionHandling on SpecimenDefinitionHandling {
+  /// Converts [SpecimenDefinitionHandling] to a [SpecimenDefinitionHandlingBuilder]
+  SpecimenDefinitionHandlingBuilder get toBuilder =>
+      SpecimenDefinitionHandlingBuilder.fromJson(toJson());
+}
+
 /// [SpecimenDefinitionHandlingBuilder]
 /// Set of instructions for preservation/transport of the specimen at a
 /// defined temperature interval, prior the testing process.
@@ -2951,6 +3018,12 @@ class SpecimenDefinitionHandlingBuilder extends BackboneElementBuilder {
   /// Additional textual instructions for the preservation or transport of
   /// the specimen. For instance, 'Protect from light exposure'.
   FhirStringBuilder? instruction;
+
+  /// Converts a SpecimenDefinitionHandlingBuilder to [SpecimenDefinitionHandling]
+  SpecimenDefinitionHandling build() =>
+      SpecimenDefinitionHandling.fromJson(toJson());
+
+  /// Converts a [SpecimenDefinitionHandlingBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

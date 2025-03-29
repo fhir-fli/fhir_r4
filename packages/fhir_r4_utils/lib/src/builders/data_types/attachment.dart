@@ -1,8 +1,14 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, StringExtensionForFHIR;
+    show yamlMapToJson, yamlToJson, StringExtensionForFHIR, Attachment;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [Attachment] to a Builder
+extension BuilderAttachment on Attachment {
+  /// Converts [Attachment] to a [AttachmentBuilder]
+  AttachmentBuilder get toBuilder => AttachmentBuilder.fromJson(toJson());
+}
 
 /// [AttachmentBuilder]
 /// For referring to data content defined in other formats.
@@ -210,6 +216,11 @@ class AttachmentBuilder extends DataTypeBuilder
   /// [creation]
   /// The date that the attachment was first created.
   FhirDateTimeBuilder? creation;
+
+  /// Converts a AttachmentBuilder to [Attachment]
+  Attachment build() => Attachment.fromJson(toJson());
+
+  /// Converts a [AttachmentBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

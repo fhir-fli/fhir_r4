@@ -1,8 +1,26 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        Evidence,
+        EvidenceVariableDefinition,
+        EvidenceStatistic,
+        EvidenceSampleSize,
+        EvidenceAttributeEstimate,
+        EvidenceModelCharacteristic,
+        EvidenceModelCharacteristicVariable,
+        EvidenceCertainty;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [Evidence] to a Builder
+extension BuilderEvidence on Evidence {
+  /// Converts [Evidence] to a [EvidenceBuilder]
+  EvidenceBuilder get toBuilder => EvidenceBuilder.fromJson(toJson());
+}
 
 /// [EvidenceBuilder]
 /// The Evidence Resource provides a machine-interpretable expression of an
@@ -506,6 +524,11 @@ class EvidenceBuilder extends DomainResourceBuilder {
   /// Assessment of certainty, confidence in the estimates, or quality of the
   /// evidence.
   List<EvidenceCertaintyBuilder>? certainty;
+
+  /// Converts a EvidenceBuilder to [Evidence]
+  Evidence build() => Evidence.fromJson(toJson());
+
+  /// Converts a [EvidenceBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1843,6 +1866,13 @@ class EvidenceBuilder extends DomainResourceBuilder {
   }
 }
 
+/// Extension to change [EvidenceVariableDefinition] to a Builder
+extension BuilderEvidenceVariableDefinition on EvidenceVariableDefinition {
+  /// Converts [EvidenceVariableDefinition] to a [EvidenceVariableDefinitionBuilder]
+  EvidenceVariableDefinitionBuilder get toBuilder =>
+      EvidenceVariableDefinitionBuilder.fromJson(toJson());
+}
+
 /// [EvidenceVariableDefinitionBuilder]
 /// Evidence variable such as population, exposure, or outcome.
 class EvidenceVariableDefinitionBuilder extends BackboneElementBuilder {
@@ -2011,6 +2041,12 @@ class EvidenceVariableDefinitionBuilder extends BackboneElementBuilder {
   /// Indication of quality of match between intended variable to actual
   /// variable.
   CodeableConceptBuilder? directnessMatch;
+
+  /// Converts a EvidenceVariableDefinitionBuilder to [EvidenceVariableDefinition]
+  EvidenceVariableDefinition build() =>
+      EvidenceVariableDefinition.fromJson(toJson());
+
+  /// Converts a [EvidenceVariableDefinitionBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2466,6 +2502,13 @@ class EvidenceVariableDefinitionBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [EvidenceStatistic] to a Builder
+extension BuilderEvidenceStatistic on EvidenceStatistic {
+  /// Converts [EvidenceStatistic] to a [EvidenceStatisticBuilder]
+  EvidenceStatisticBuilder get toBuilder =>
+      EvidenceStatisticBuilder.fromJson(toJson());
+}
+
 /// [EvidenceStatisticBuilder]
 /// Values and parameters for a single statistic.
 class EvidenceStatisticBuilder extends BackboneElementBuilder {
@@ -2688,6 +2731,11 @@ class EvidenceStatisticBuilder extends BackboneElementBuilder {
   /// [modelCharacteristic]
   /// A component of the method to generate the statistic.
   List<EvidenceModelCharacteristicBuilder>? modelCharacteristic;
+
+  /// Converts a EvidenceStatisticBuilder to [EvidenceStatistic]
+  EvidenceStatistic build() => EvidenceStatistic.fromJson(toJson());
+
+  /// Converts a [EvidenceStatisticBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3281,6 +3329,13 @@ class EvidenceStatisticBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [EvidenceSampleSize] to a Builder
+extension BuilderEvidenceSampleSize on EvidenceSampleSize {
+  /// Converts [EvidenceSampleSize] to a [EvidenceSampleSizeBuilder]
+  EvidenceSampleSizeBuilder get toBuilder =>
+      EvidenceSampleSizeBuilder.fromJson(toJson());
+}
+
 /// [EvidenceSampleSizeBuilder]
 /// Number of samples in the statistic.
 class EvidenceSampleSizeBuilder extends BackboneElementBuilder {
@@ -3436,6 +3491,11 @@ class EvidenceSampleSizeBuilder extends BackboneElementBuilder {
   /// [knownDataCount]
   /// Number of participants with known results for measured variables.
   FhirUnsignedIntBuilder? knownDataCount;
+
+  /// Converts a EvidenceSampleSizeBuilder to [EvidenceSampleSize]
+  EvidenceSampleSize build() => EvidenceSampleSize.fromJson(toJson());
+
+  /// Converts a [EvidenceSampleSizeBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3859,6 +3919,13 @@ class EvidenceSampleSizeBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [EvidenceAttributeEstimate] to a Builder
+extension BuilderEvidenceAttributeEstimate on EvidenceAttributeEstimate {
+  /// Converts [EvidenceAttributeEstimate] to a [EvidenceAttributeEstimateBuilder]
+  EvidenceAttributeEstimateBuilder get toBuilder =>
+      EvidenceAttributeEstimateBuilder.fromJson(toJson());
+}
+
 /// [EvidenceAttributeEstimateBuilder]
 /// A statistical attribute of the statistic such as a measure of
 /// heterogeneity.
@@ -4044,6 +4111,12 @@ class EvidenceAttributeEstimateBuilder extends BackboneElementBuilder {
   /// A nested attribute estimate; which is the attribute estimate of an
   /// attribute estimate.
   List<EvidenceAttributeEstimateBuilder>? attributeEstimate;
+
+  /// Converts a EvidenceAttributeEstimateBuilder to [EvidenceAttributeEstimate]
+  EvidenceAttributeEstimate build() =>
+      EvidenceAttributeEstimate.fromJson(toJson());
+
+  /// Converts a [EvidenceAttributeEstimateBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -4536,6 +4609,13 @@ class EvidenceAttributeEstimateBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [EvidenceModelCharacteristic] to a Builder
+extension BuilderEvidenceModelCharacteristic on EvidenceModelCharacteristic {
+  /// Converts [EvidenceModelCharacteristic] to a [EvidenceModelCharacteristicBuilder]
+  EvidenceModelCharacteristicBuilder get toBuilder =>
+      EvidenceModelCharacteristicBuilder.fromJson(toJson());
+}
+
 /// [EvidenceModelCharacteristicBuilder]
 /// A component of the method to generate the statistic.
 class EvidenceModelCharacteristicBuilder extends BackboneElementBuilder {
@@ -4685,6 +4765,12 @@ class EvidenceModelCharacteristicBuilder extends BackboneElementBuilder {
   /// [attributeEstimate]
   /// An attribute of the statistic used as a model characteristic.
   List<EvidenceAttributeEstimateBuilder>? attributeEstimate;
+
+  /// Converts a EvidenceModelCharacteristicBuilder to [EvidenceModelCharacteristic]
+  EvidenceModelCharacteristic build() =>
+      EvidenceModelCharacteristic.fromJson(toJson());
+
+  /// Converts a [EvidenceModelCharacteristicBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -5081,6 +5167,14 @@ class EvidenceModelCharacteristicBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [EvidenceModelCharacteristicVariable] to a Builder
+extension BuilderEvidenceModelCharacteristicVariable
+    on EvidenceModelCharacteristicVariable {
+  /// Converts [EvidenceModelCharacteristicVariable] to a [EvidenceModelCharacteristicVariableBuilder]
+  EvidenceModelCharacteristicVariableBuilder get toBuilder =>
+      EvidenceModelCharacteristicVariableBuilder.fromJson(toJson());
+}
+
 /// [EvidenceModelCharacteristicVariableBuilder]
 /// A variable adjusted for in the adjusted analysis.
 class EvidenceModelCharacteristicVariableBuilder
@@ -5245,6 +5339,12 @@ class EvidenceModelCharacteristicVariableBuilder
   /// [valueRange]
   /// Range of values for grouping of ordinal or polychotomous variables.
   List<RangeBuilder>? valueRange;
+
+  /// Converts a EvidenceModelCharacteristicVariableBuilder to [EvidenceModelCharacteristicVariable]
+  EvidenceModelCharacteristicVariable build() =>
+      EvidenceModelCharacteristicVariable.fromJson(toJson());
+
+  /// Converts a [EvidenceModelCharacteristicVariableBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -5679,6 +5779,13 @@ class EvidenceModelCharacteristicVariableBuilder
   }
 }
 
+/// Extension to change [EvidenceCertainty] to a Builder
+extension BuilderEvidenceCertainty on EvidenceCertainty {
+  /// Converts [EvidenceCertainty] to a [EvidenceCertaintyBuilder]
+  EvidenceCertaintyBuilder get toBuilder =>
+      EvidenceCertaintyBuilder.fromJson(toJson());
+}
+
 /// [EvidenceCertaintyBuilder]
 /// Assessment of certainty, confidence in the estimates, or quality of the
 /// evidence.
@@ -5849,6 +5956,11 @@ class EvidenceCertaintyBuilder extends BackboneElementBuilder {
   /// [subcomponent]
   /// A domain or subdomain of certainty.
   List<EvidenceCertaintyBuilder>? subcomponent;
+
+  /// Converts a EvidenceCertaintyBuilder to [EvidenceCertainty]
+  EvidenceCertainty build() => EvidenceCertainty.fromJson(toJson());
+
+  /// Converts a [EvidenceCertaintyBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

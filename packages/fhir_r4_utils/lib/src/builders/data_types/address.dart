@@ -1,8 +1,14 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, StringExtensionForFHIR;
+    show yamlMapToJson, yamlToJson, StringExtensionForFHIR, Address;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [Address] to a Builder
+extension BuilderAddress on Address {
+  /// Converts [Address] to a [AddressBuilder]
+  AddressBuilder get toBuilder => AddressBuilder.fromJson(toJson());
+}
 
 /// [AddressBuilder]
 /// An address expressed using postal conventions (as opposed to GPS or
@@ -226,6 +232,11 @@ class AddressBuilder extends DataTypeBuilder
   /// [period]
   /// Time period when address was/is in use.
   PeriodBuilder? period;
+
+  /// Converts a AddressBuilder to [Address]
+  Address build() => Address.fromJson(toJson());
+
+  /// Converts a [AddressBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

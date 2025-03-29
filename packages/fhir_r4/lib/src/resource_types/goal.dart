@@ -2086,7 +2086,7 @@ class GoalTarget extends BackboneElement {
           'FhirString',
           'FhirBoolean',
           'FhirInteger',
-          'Ratio',
+          'Ratio'
         ];
       case 'detailQuantity':
         return ['Quantity'];

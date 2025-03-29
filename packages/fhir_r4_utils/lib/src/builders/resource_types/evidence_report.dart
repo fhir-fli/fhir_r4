@@ -1,8 +1,24 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        EvidenceReport,
+        EvidenceReportSubject,
+        EvidenceReportCharacteristic,
+        EvidenceReportRelatesTo,
+        EvidenceReportSection;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [EvidenceReport] to a Builder
+extension BuilderEvidenceReport on EvidenceReport {
+  /// Converts [EvidenceReport] to a [EvidenceReportBuilder]
+  EvidenceReportBuilder get toBuilder =>
+      EvidenceReportBuilder.fromJson(toJson());
+}
 
 /// [EvidenceReportBuilder]
 /// The EvidenceReport Resource is a specialized container for a collection
@@ -419,6 +435,11 @@ class EvidenceReportBuilder extends DomainResourceBuilder {
   /// [section]
   /// The root of the sections that make up the composition.
   List<EvidenceReportSectionBuilder>? section;
+
+  /// Converts a EvidenceReportBuilder to [EvidenceReport]
+  EvidenceReport build() => EvidenceReport.fromJson(toJson());
+
+  /// Converts a [EvidenceReportBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1532,6 +1553,13 @@ class EvidenceReportBuilder extends DomainResourceBuilder {
   }
 }
 
+/// Extension to change [EvidenceReportSubject] to a Builder
+extension BuilderEvidenceReportSubject on EvidenceReportSubject {
+  /// Converts [EvidenceReportSubject] to a [EvidenceReportSubjectBuilder]
+  EvidenceReportSubjectBuilder get toBuilder =>
+      EvidenceReportSubjectBuilder.fromJson(toJson());
+}
+
 /// [EvidenceReportSubjectBuilder]
 /// Specifies the subject or focus of the report. Answers "What is this
 /// report about?".
@@ -1659,6 +1687,11 @@ class EvidenceReportSubjectBuilder extends BackboneElementBuilder {
   /// [note]
   /// Used for general notes and annotations not coded elsewhere.
   List<AnnotationBuilder>? note;
+
+  /// Converts a EvidenceReportSubjectBuilder to [EvidenceReportSubject]
+  EvidenceReportSubject build() => EvidenceReportSubject.fromJson(toJson());
+
+  /// Converts a [EvidenceReportSubjectBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1991,6 +2024,13 @@ class EvidenceReportSubjectBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [EvidenceReportCharacteristic] to a Builder
+extension BuilderEvidenceReportCharacteristic on EvidenceReportCharacteristic {
+  /// Converts [EvidenceReportCharacteristic] to a [EvidenceReportCharacteristicBuilder]
+  EvidenceReportCharacteristicBuilder get toBuilder =>
+      EvidenceReportCharacteristicBuilder.fromJson(toJson());
+}
+
 /// [EvidenceReportCharacteristicBuilder]
 /// Characteristic.
 class EvidenceReportCharacteristicBuilder extends BackboneElementBuilder {
@@ -2153,6 +2193,12 @@ class EvidenceReportCharacteristicBuilder extends BackboneElementBuilder {
   /// [period]
   /// Timeframe for the characteristic.
   PeriodBuilder? period;
+
+  /// Converts a EvidenceReportCharacteristicBuilder to [EvidenceReportCharacteristic]
+  EvidenceReportCharacteristic build() =>
+      EvidenceReportCharacteristic.fromJson(toJson());
+
+  /// Converts a [EvidenceReportCharacteristicBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2671,6 +2717,13 @@ class EvidenceReportCharacteristicBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [EvidenceReportRelatesTo] to a Builder
+extension BuilderEvidenceReportRelatesTo on EvidenceReportRelatesTo {
+  /// Converts [EvidenceReportRelatesTo] to a [EvidenceReportRelatesToBuilder]
+  EvidenceReportRelatesToBuilder get toBuilder =>
+      EvidenceReportRelatesToBuilder.fromJson(toJson());
+}
+
 /// [EvidenceReportRelatesToBuilder]
 /// Relationships that this composition has with other compositions or
 /// documents that already exist.
@@ -2800,6 +2853,11 @@ class EvidenceReportRelatesToBuilder extends BackboneElementBuilder {
 
   /// Getter for [targetReference] as a ReferenceBuilder
   ReferenceBuilder? get targetReference => targetX?.isAs<ReferenceBuilder>();
+
+  /// Converts a EvidenceReportRelatesToBuilder to [EvidenceReportRelatesTo]
+  EvidenceReportRelatesTo build() => EvidenceReportRelatesTo.fromJson(toJson());
+
+  /// Converts a [EvidenceReportRelatesToBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3176,6 +3234,13 @@ class EvidenceReportRelatesToBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [EvidenceReportSection] to a Builder
+extension BuilderEvidenceReportSection on EvidenceReportSection {
+  /// Converts [EvidenceReportSection] to a [EvidenceReportSectionBuilder]
+  EvidenceReportSectionBuilder get toBuilder =>
+      EvidenceReportSectionBuilder.fromJson(toJson());
+}
+
 /// [EvidenceReportSectionBuilder]
 /// The root of the sections that make up the composition.
 class EvidenceReportSectionBuilder extends BackboneElementBuilder {
@@ -3438,6 +3503,11 @@ class EvidenceReportSectionBuilder extends BackboneElementBuilder {
   /// [section]
   /// A nested sub-section within this section.
   List<EvidenceReportSectionBuilder>? section;
+
+  /// Converts a EvidenceReportSectionBuilder to [EvidenceReportSection]
+  EvidenceReportSection build() => EvidenceReportSection.fromJson(toJson());
+
+  /// Converts a [EvidenceReportSectionBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

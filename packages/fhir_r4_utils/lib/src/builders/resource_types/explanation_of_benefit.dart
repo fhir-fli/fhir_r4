@@ -1,8 +1,40 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        ExplanationOfBenefit,
+        ExplanationOfBenefitRelated,
+        ExplanationOfBenefitPayee,
+        ExplanationOfBenefitCareTeam,
+        ExplanationOfBenefitSupportingInfo,
+        ExplanationOfBenefitDiagnosis,
+        ExplanationOfBenefitProcedure,
+        ExplanationOfBenefitInsurance,
+        ExplanationOfBenefitAccident,
+        ExplanationOfBenefitItem,
+        ExplanationOfBenefitAdjudication,
+        ExplanationOfBenefitDetail,
+        ExplanationOfBenefitSubDetail,
+        ExplanationOfBenefitAddItem,
+        ExplanationOfBenefitDetail1,
+        ExplanationOfBenefitSubDetail1,
+        ExplanationOfBenefitTotal,
+        ExplanationOfBenefitPayment,
+        ExplanationOfBenefitProcessNote,
+        ExplanationOfBenefitBenefitBalance,
+        ExplanationOfBenefitFinancial;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [ExplanationOfBenefit] to a Builder
+extension BuilderExplanationOfBenefit on ExplanationOfBenefit {
+  /// Converts [ExplanationOfBenefit] to a [ExplanationOfBenefitBuilder]
+  ExplanationOfBenefitBuilder get toBuilder =>
+      ExplanationOfBenefitBuilder.fromJson(toJson());
+}
 
 /// [ExplanationOfBenefitBuilder]
 /// This resource provides: the claim details; adjudication details from
@@ -701,6 +733,11 @@ class ExplanationOfBenefitBuilder extends DomainResourceBuilder {
   /// [benefitBalance]
   /// Balance by Benefit Category.
   List<ExplanationOfBenefitBenefitBalanceBuilder>? benefitBalance;
+
+  /// Converts a ExplanationOfBenefitBuilder to [ExplanationOfBenefit]
+  ExplanationOfBenefit build() => ExplanationOfBenefit.fromJson(toJson());
+
+  /// Converts a [ExplanationOfBenefitBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2576,6 +2613,13 @@ class ExplanationOfBenefitBuilder extends DomainResourceBuilder {
   }
 }
 
+/// Extension to change [ExplanationOfBenefitRelated] to a Builder
+extension BuilderExplanationOfBenefitRelated on ExplanationOfBenefitRelated {
+  /// Converts [ExplanationOfBenefitRelated] to a [ExplanationOfBenefitRelatedBuilder]
+  ExplanationOfBenefitRelatedBuilder get toBuilder =>
+      ExplanationOfBenefitRelatedBuilder.fromJson(toJson());
+}
+
 /// [ExplanationOfBenefitRelatedBuilder]
 /// Other claims which are related to this claim such as prior submissions
 /// or claims for related services or for the same event.
@@ -2707,6 +2751,12 @@ class ExplanationOfBenefitRelatedBuilder extends BackboneElementBuilder {
   /// An alternate organizational reference to the case or file to which this
   /// particular claim pertains.
   IdentifierBuilder? reference;
+
+  /// Converts a ExplanationOfBenefitRelatedBuilder to [ExplanationOfBenefitRelated]
+  ExplanationOfBenefitRelated build() =>
+      ExplanationOfBenefitRelated.fromJson(toJson());
+
+  /// Converts a [ExplanationOfBenefitRelatedBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3061,6 +3111,13 @@ class ExplanationOfBenefitRelatedBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [ExplanationOfBenefitPayee] to a Builder
+extension BuilderExplanationOfBenefitPayee on ExplanationOfBenefitPayee {
+  /// Converts [ExplanationOfBenefitPayee] to a [ExplanationOfBenefitPayeeBuilder]
+  ExplanationOfBenefitPayeeBuilder get toBuilder =>
+      ExplanationOfBenefitPayeeBuilder.fromJson(toJson());
+}
+
 /// [ExplanationOfBenefitPayeeBuilder]
 /// The party to be reimbursed for cost of the products and services
 /// according to the terms of the policy.
@@ -3181,6 +3238,12 @@ class ExplanationOfBenefitPayeeBuilder extends BackboneElementBuilder {
   /// Reference to the individual or organization to whom any payment will be
   /// made.
   ReferenceBuilder? party;
+
+  /// Converts a ExplanationOfBenefitPayeeBuilder to [ExplanationOfBenefitPayee]
+  ExplanationOfBenefitPayee build() =>
+      ExplanationOfBenefitPayee.fromJson(toJson());
+
+  /// Converts a [ExplanationOfBenefitPayeeBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3503,6 +3566,13 @@ class ExplanationOfBenefitPayeeBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [ExplanationOfBenefitCareTeam] to a Builder
+extension BuilderExplanationOfBenefitCareTeam on ExplanationOfBenefitCareTeam {
+  /// Converts [ExplanationOfBenefitCareTeam] to a [ExplanationOfBenefitCareTeamBuilder]
+  ExplanationOfBenefitCareTeamBuilder get toBuilder =>
+      ExplanationOfBenefitCareTeamBuilder.fromJson(toJson());
+}
+
 /// [ExplanationOfBenefitCareTeamBuilder]
 /// The members of the team who provided the products and services.
 class ExplanationOfBenefitCareTeamBuilder extends BackboneElementBuilder {
@@ -3657,6 +3727,12 @@ class ExplanationOfBenefitCareTeamBuilder extends BackboneElementBuilder {
   /// The qualification of the practitioner which is applicable for this
   /// service.
   CodeableConceptBuilder? qualification;
+
+  /// Converts a ExplanationOfBenefitCareTeamBuilder to [ExplanationOfBenefitCareTeam]
+  ExplanationOfBenefitCareTeam build() =>
+      ExplanationOfBenefitCareTeam.fromJson(toJson());
+
+  /// Converts a [ExplanationOfBenefitCareTeamBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -4075,6 +4151,14 @@ class ExplanationOfBenefitCareTeamBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [ExplanationOfBenefitSupportingInfo] to a Builder
+extension BuilderExplanationOfBenefitSupportingInfo
+    on ExplanationOfBenefitSupportingInfo {
+  /// Converts [ExplanationOfBenefitSupportingInfo] to a [ExplanationOfBenefitSupportingInfoBuilder]
+  ExplanationOfBenefitSupportingInfoBuilder get toBuilder =>
+      ExplanationOfBenefitSupportingInfoBuilder.fromJson(toJson());
+}
+
 /// [ExplanationOfBenefitSupportingInfoBuilder]
 /// Additional information codes regarding exceptions, special
 /// considerations, the condition, situation, prior or concurrent issues.
@@ -4274,6 +4358,12 @@ class ExplanationOfBenefitSupportingInfoBuilder extends BackboneElementBuilder {
   /// Provides the reason in the situation where a reason code is required in
   /// addition to the content.
   CodingBuilder? reason;
+
+  /// Converts a ExplanationOfBenefitSupportingInfoBuilder to [ExplanationOfBenefitSupportingInfo]
+  ExplanationOfBenefitSupportingInfo build() =>
+      ExplanationOfBenefitSupportingInfo.fromJson(toJson());
+
+  /// Converts a [ExplanationOfBenefitSupportingInfoBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -4911,6 +5001,14 @@ class ExplanationOfBenefitSupportingInfoBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [ExplanationOfBenefitDiagnosis] to a Builder
+extension BuilderExplanationOfBenefitDiagnosis
+    on ExplanationOfBenefitDiagnosis {
+  /// Converts [ExplanationOfBenefitDiagnosis] to a [ExplanationOfBenefitDiagnosisBuilder]
+  ExplanationOfBenefitDiagnosisBuilder get toBuilder =>
+      ExplanationOfBenefitDiagnosisBuilder.fromJson(toJson());
+}
+
 /// [ExplanationOfBenefitDiagnosisBuilder]
 /// Information about diagnoses relevant to the claim items.
 class ExplanationOfBenefitDiagnosisBuilder extends BackboneElementBuilder {
@@ -5081,6 +5179,12 @@ class ExplanationOfBenefitDiagnosisBuilder extends BackboneElementBuilder {
   /// services to a particular health condition (such as heart attack) which
   /// is based on a predetermined grouping code system.
   CodeableConceptBuilder? packageCode;
+
+  /// Converts a ExplanationOfBenefitDiagnosisBuilder to [ExplanationOfBenefitDiagnosis]
+  ExplanationOfBenefitDiagnosis build() =>
+      ExplanationOfBenefitDiagnosis.fromJson(toJson());
+
+  /// Converts a [ExplanationOfBenefitDiagnosisBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -5558,6 +5662,14 @@ class ExplanationOfBenefitDiagnosisBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [ExplanationOfBenefitProcedure] to a Builder
+extension BuilderExplanationOfBenefitProcedure
+    on ExplanationOfBenefitProcedure {
+  /// Converts [ExplanationOfBenefitProcedure] to a [ExplanationOfBenefitProcedureBuilder]
+  ExplanationOfBenefitProcedureBuilder get toBuilder =>
+      ExplanationOfBenefitProcedureBuilder.fromJson(toJson());
+}
+
 /// [ExplanationOfBenefitProcedureBuilder]
 /// Procedures performed on the patient relevant to the billing items with
 /// the claim.
@@ -5730,6 +5842,12 @@ class ExplanationOfBenefitProcedureBuilder extends BackboneElementBuilder {
   /// [udi]
   /// Unique Device Identifiers associated with this line item.
   List<ReferenceBuilder>? udi;
+
+  /// Converts a ExplanationOfBenefitProcedureBuilder to [ExplanationOfBenefitProcedure]
+  ExplanationOfBenefitProcedure build() =>
+      ExplanationOfBenefitProcedure.fromJson(toJson());
+
+  /// Converts a [ExplanationOfBenefitProcedureBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -6212,6 +6330,14 @@ class ExplanationOfBenefitProcedureBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [ExplanationOfBenefitInsurance] to a Builder
+extension BuilderExplanationOfBenefitInsurance
+    on ExplanationOfBenefitInsurance {
+  /// Converts [ExplanationOfBenefitInsurance] to a [ExplanationOfBenefitInsuranceBuilder]
+  ExplanationOfBenefitInsuranceBuilder get toBuilder =>
+      ExplanationOfBenefitInsuranceBuilder.fromJson(toJson());
+}
+
 /// [ExplanationOfBenefitInsuranceBuilder]
 /// Financial instruments for reimbursement for the health care products
 /// and services specified on the claim.
@@ -6348,6 +6474,12 @@ class ExplanationOfBenefitInsuranceBuilder extends BackboneElementBuilder {
   /// be quoted on subsequent claims containing services or products related
   /// to the prior authorization.
   List<FhirStringBuilder>? preAuthRef;
+
+  /// Converts a ExplanationOfBenefitInsuranceBuilder to [ExplanationOfBenefitInsurance]
+  ExplanationOfBenefitInsurance build() =>
+      ExplanationOfBenefitInsurance.fromJson(toJson());
+
+  /// Converts a [ExplanationOfBenefitInsuranceBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -6707,6 +6839,13 @@ class ExplanationOfBenefitInsuranceBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [ExplanationOfBenefitAccident] to a Builder
+extension BuilderExplanationOfBenefitAccident on ExplanationOfBenefitAccident {
+  /// Converts [ExplanationOfBenefitAccident] to a [ExplanationOfBenefitAccidentBuilder]
+  ExplanationOfBenefitAccidentBuilder get toBuilder =>
+      ExplanationOfBenefitAccidentBuilder.fromJson(toJson());
+}
+
 /// [ExplanationOfBenefitAccidentBuilder]
 /// Details of a accident which resulted in injuries which required the
 /// products and services listed in the claim.
@@ -6850,6 +6989,12 @@ class ExplanationOfBenefitAccidentBuilder extends BackboneElementBuilder {
   /// Getter for [locationReference] as a ReferenceBuilder
   ReferenceBuilder? get locationReference =>
       locationX?.isAs<ReferenceBuilder>();
+
+  /// Converts a ExplanationOfBenefitAccidentBuilder to [ExplanationOfBenefitAccident]
+  ExplanationOfBenefitAccident build() =>
+      ExplanationOfBenefitAccident.fromJson(toJson());
+
+  /// Converts a [ExplanationOfBenefitAccidentBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -7256,6 +7401,13 @@ class ExplanationOfBenefitAccidentBuilder extends BackboneElementBuilder {
     }
     return true;
   }
+}
+
+/// Extension to change [ExplanationOfBenefitItem] to a Builder
+extension BuilderExplanationOfBenefitItem on ExplanationOfBenefitItem {
+  /// Converts [ExplanationOfBenefitItem] to a [ExplanationOfBenefitItemBuilder]
+  ExplanationOfBenefitItemBuilder get toBuilder =>
+      ExplanationOfBenefitItemBuilder.fromJson(toJson());
 }
 
 /// [ExplanationOfBenefitItemBuilder]
@@ -7679,6 +7831,12 @@ class ExplanationOfBenefitItemBuilder extends BackboneElementBuilder {
   /// [detail]
   /// Second-tier of goods and services.
   List<ExplanationOfBenefitDetailBuilder>? detail;
+
+  /// Converts a ExplanationOfBenefitItemBuilder to [ExplanationOfBenefitItem]
+  ExplanationOfBenefitItem build() =>
+      ExplanationOfBenefitItem.fromJson(toJson());
+
+  /// Converts a [ExplanationOfBenefitItemBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -8865,6 +9023,14 @@ class ExplanationOfBenefitItemBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [ExplanationOfBenefitAdjudication] to a Builder
+extension BuilderExplanationOfBenefitAdjudication
+    on ExplanationOfBenefitAdjudication {
+  /// Converts [ExplanationOfBenefitAdjudication] to a [ExplanationOfBenefitAdjudicationBuilder]
+  ExplanationOfBenefitAdjudicationBuilder get toBuilder =>
+      ExplanationOfBenefitAdjudicationBuilder.fromJson(toJson());
+}
+
 /// [ExplanationOfBenefitAdjudicationBuilder]
 /// If this item is a group then the values here are a summary of the
 /// adjudication of the detail items. If this item is a simple product or
@@ -9013,6 +9179,12 @@ class ExplanationOfBenefitAdjudicationBuilder extends BackboneElementBuilder {
   /// A non-monetary value associated with the category. Mutually exclusive
   /// to the amount element above.
   FhirDecimalBuilder? value;
+
+  /// Converts a ExplanationOfBenefitAdjudicationBuilder to [ExplanationOfBenefitAdjudication]
+  ExplanationOfBenefitAdjudication build() =>
+      ExplanationOfBenefitAdjudication.fromJson(toJson());
+
+  /// Converts a [ExplanationOfBenefitAdjudicationBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -9399,6 +9571,13 @@ class ExplanationOfBenefitAdjudicationBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [ExplanationOfBenefitDetail] to a Builder
+extension BuilderExplanationOfBenefitDetail on ExplanationOfBenefitDetail {
+  /// Converts [ExplanationOfBenefitDetail] to a [ExplanationOfBenefitDetailBuilder]
+  ExplanationOfBenefitDetailBuilder get toBuilder =>
+      ExplanationOfBenefitDetailBuilder.fromJson(toJson());
+}
+
 /// [ExplanationOfBenefitDetailBuilder]
 /// Second-tier of goods and services.
 class ExplanationOfBenefitDetailBuilder extends BackboneElementBuilder {
@@ -9682,6 +9861,12 @@ class ExplanationOfBenefitDetailBuilder extends BackboneElementBuilder {
   /// [subDetail]
   /// Third-tier of goods and services.
   List<ExplanationOfBenefitSubDetailBuilder>? subDetail;
+
+  /// Converts a ExplanationOfBenefitDetailBuilder to [ExplanationOfBenefitDetail]
+  ExplanationOfBenefitDetail build() =>
+      ExplanationOfBenefitDetail.fromJson(toJson());
+
+  /// Converts a [ExplanationOfBenefitDetailBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -10418,6 +10603,14 @@ class ExplanationOfBenefitDetailBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [ExplanationOfBenefitSubDetail] to a Builder
+extension BuilderExplanationOfBenefitSubDetail
+    on ExplanationOfBenefitSubDetail {
+  /// Converts [ExplanationOfBenefitSubDetail] to a [ExplanationOfBenefitSubDetailBuilder]
+  ExplanationOfBenefitSubDetailBuilder get toBuilder =>
+      ExplanationOfBenefitSubDetailBuilder.fromJson(toJson());
+}
+
 /// [ExplanationOfBenefitSubDetailBuilder]
 /// Third-tier of goods and services.
 class ExplanationOfBenefitSubDetailBuilder extends BackboneElementBuilder {
@@ -10686,6 +10879,12 @@ class ExplanationOfBenefitSubDetailBuilder extends BackboneElementBuilder {
   /// [adjudication]
   /// The adjudication results.
   List<ExplanationOfBenefitAdjudicationBuilder>? adjudication;
+
+  /// Converts a ExplanationOfBenefitSubDetailBuilder to [ExplanationOfBenefitSubDetail]
+  ExplanationOfBenefitSubDetail build() =>
+      ExplanationOfBenefitSubDetail.fromJson(toJson());
+
+  /// Converts a [ExplanationOfBenefitSubDetailBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -11385,6 +11584,13 @@ class ExplanationOfBenefitSubDetailBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [ExplanationOfBenefitAddItem] to a Builder
+extension BuilderExplanationOfBenefitAddItem on ExplanationOfBenefitAddItem {
+  /// Converts [ExplanationOfBenefitAddItem] to a [ExplanationOfBenefitAddItemBuilder]
+  ExplanationOfBenefitAddItemBuilder get toBuilder =>
+      ExplanationOfBenefitAddItemBuilder.fromJson(toJson());
+}
+
 /// [ExplanationOfBenefitAddItemBuilder]
 /// The first-tier service adjudications for payor added product or service
 /// lines.
@@ -11743,6 +11949,12 @@ class ExplanationOfBenefitAddItemBuilder extends BackboneElementBuilder {
   /// [detail]
   /// The second-tier service adjudications for payor added services.
   List<ExplanationOfBenefitDetailBuilder>? detail;
+
+  /// Converts a ExplanationOfBenefitAddItemBuilder to [ExplanationOfBenefitAddItem]
+  ExplanationOfBenefitAddItem build() =>
+      ExplanationOfBenefitAddItem.fromJson(toJson());
+
+  /// Converts a [ExplanationOfBenefitAddItemBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -12759,6 +12971,13 @@ class ExplanationOfBenefitAddItemBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [ExplanationOfBenefitDetail1] to a Builder
+extension BuilderExplanationOfBenefitDetail1 on ExplanationOfBenefitDetail1 {
+  /// Converts [ExplanationOfBenefitDetail1] to a [ExplanationOfBenefitDetail1Builder]
+  ExplanationOfBenefitDetail1Builder get toBuilder =>
+      ExplanationOfBenefitDetail1Builder.fromJson(toJson());
+}
+
 /// [ExplanationOfBenefitDetail1Builder]
 /// The second-tier service adjudications for payor added services.
 class ExplanationOfBenefitDetail1Builder extends BackboneElementBuilder {
@@ -12976,6 +13195,12 @@ class ExplanationOfBenefitDetail1Builder extends BackboneElementBuilder {
   /// [subDetail]
   /// The third-tier service adjudications for payor added services.
   List<ExplanationOfBenefitSubDetailBuilder>? subDetail;
+
+  /// Converts a ExplanationOfBenefitDetail1Builder to [ExplanationOfBenefitDetail1]
+  ExplanationOfBenefitDetail1 build() =>
+      ExplanationOfBenefitDetail1.fromJson(toJson());
+
+  /// Converts a [ExplanationOfBenefitDetail1Builder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -13542,6 +13767,14 @@ class ExplanationOfBenefitDetail1Builder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [ExplanationOfBenefitSubDetail1] to a Builder
+extension BuilderExplanationOfBenefitSubDetail1
+    on ExplanationOfBenefitSubDetail1 {
+  /// Converts [ExplanationOfBenefitSubDetail1] to a [ExplanationOfBenefitSubDetail1Builder]
+  ExplanationOfBenefitSubDetail1Builder get toBuilder =>
+      ExplanationOfBenefitSubDetail1Builder.fromJson(toJson());
+}
+
 /// [ExplanationOfBenefitSubDetail1Builder]
 /// The third-tier service adjudications for payor added services.
 class ExplanationOfBenefitSubDetail1Builder extends BackboneElementBuilder {
@@ -13744,6 +13977,12 @@ class ExplanationOfBenefitSubDetail1Builder extends BackboneElementBuilder {
   /// [adjudication]
   /// The adjudication results.
   List<ExplanationOfBenefitAdjudicationBuilder>? adjudication;
+
+  /// Converts a ExplanationOfBenefitSubDetail1Builder to [ExplanationOfBenefitSubDetail1]
+  ExplanationOfBenefitSubDetail1 build() =>
+      ExplanationOfBenefitSubDetail1.fromJson(toJson());
+
+  /// Converts a [ExplanationOfBenefitSubDetail1Builder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -14273,6 +14512,13 @@ class ExplanationOfBenefitSubDetail1Builder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [ExplanationOfBenefitTotal] to a Builder
+extension BuilderExplanationOfBenefitTotal on ExplanationOfBenefitTotal {
+  /// Converts [ExplanationOfBenefitTotal] to a [ExplanationOfBenefitTotalBuilder]
+  ExplanationOfBenefitTotalBuilder get toBuilder =>
+      ExplanationOfBenefitTotalBuilder.fromJson(toJson());
+}
+
 /// [ExplanationOfBenefitTotalBuilder]
 /// Categorized monetary totals for the adjudication.
 class ExplanationOfBenefitTotalBuilder extends BackboneElementBuilder {
@@ -14395,6 +14641,12 @@ class ExplanationOfBenefitTotalBuilder extends BackboneElementBuilder {
   /// [amount]
   /// Monetary total amount associated with the category.
   MoneyBuilder? amount;
+
+  /// Converts a ExplanationOfBenefitTotalBuilder to [ExplanationOfBenefitTotal]
+  ExplanationOfBenefitTotal build() =>
+      ExplanationOfBenefitTotal.fromJson(toJson());
+
+  /// Converts a [ExplanationOfBenefitTotalBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -14717,6 +14969,13 @@ class ExplanationOfBenefitTotalBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [ExplanationOfBenefitPayment] to a Builder
+extension BuilderExplanationOfBenefitPayment on ExplanationOfBenefitPayment {
+  /// Converts [ExplanationOfBenefitPayment] to a [ExplanationOfBenefitPaymentBuilder]
+  ExplanationOfBenefitPaymentBuilder get toBuilder =>
+      ExplanationOfBenefitPaymentBuilder.fromJson(toJson());
+}
+
 /// [ExplanationOfBenefitPaymentBuilder]
 /// Payment details for the adjudication of the claim.
 class ExplanationOfBenefitPaymentBuilder extends BackboneElementBuilder {
@@ -14882,6 +15141,12 @@ class ExplanationOfBenefitPaymentBuilder extends BackboneElementBuilder {
   /// [identifier]
   /// Issuer's unique identifier for the payment instrument.
   IdentifierBuilder? identifier;
+
+  /// Converts a ExplanationOfBenefitPaymentBuilder to [ExplanationOfBenefitPayment]
+  ExplanationOfBenefitPayment build() =>
+      ExplanationOfBenefitPayment.fromJson(toJson());
+
+  /// Converts a [ExplanationOfBenefitPaymentBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -15332,6 +15597,14 @@ class ExplanationOfBenefitPaymentBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [ExplanationOfBenefitProcessNote] to a Builder
+extension BuilderExplanationOfBenefitProcessNote
+    on ExplanationOfBenefitProcessNote {
+  /// Converts [ExplanationOfBenefitProcessNote] to a [ExplanationOfBenefitProcessNoteBuilder]
+  ExplanationOfBenefitProcessNoteBuilder get toBuilder =>
+      ExplanationOfBenefitProcessNoteBuilder.fromJson(toJson());
+}
+
 /// [ExplanationOfBenefitProcessNoteBuilder]
 /// A note that describes or explains adjudication results in a human
 /// readable form.
@@ -15473,6 +15746,12 @@ class ExplanationOfBenefitProcessNoteBuilder extends BackboneElementBuilder {
   /// [language]
   /// A code to define the language used in the text of the note.
   CodeableConceptBuilder? language;
+
+  /// Converts a ExplanationOfBenefitProcessNoteBuilder to [ExplanationOfBenefitProcessNote]
+  ExplanationOfBenefitProcessNote build() =>
+      ExplanationOfBenefitProcessNote.fromJson(toJson());
+
+  /// Converts a [ExplanationOfBenefitProcessNoteBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -15859,6 +16138,14 @@ class ExplanationOfBenefitProcessNoteBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [ExplanationOfBenefitBenefitBalance] to a Builder
+extension BuilderExplanationOfBenefitBenefitBalance
+    on ExplanationOfBenefitBenefitBalance {
+  /// Converts [ExplanationOfBenefitBenefitBalance] to a [ExplanationOfBenefitBenefitBalanceBuilder]
+  ExplanationOfBenefitBenefitBalanceBuilder get toBuilder =>
+      ExplanationOfBenefitBenefitBalanceBuilder.fromJson(toJson());
+}
+
 /// [ExplanationOfBenefitBenefitBalanceBuilder]
 /// Balance by Benefit Category.
 class ExplanationOfBenefitBenefitBalanceBuilder extends BackboneElementBuilder {
@@ -16052,6 +16339,12 @@ class ExplanationOfBenefitBenefitBalanceBuilder extends BackboneElementBuilder {
   /// [financial]
   /// Benefits Used to date.
   List<ExplanationOfBenefitFinancialBuilder>? financial;
+
+  /// Converts a ExplanationOfBenefitBenefitBalanceBuilder to [ExplanationOfBenefitBenefitBalance]
+  ExplanationOfBenefitBenefitBalance build() =>
+      ExplanationOfBenefitBenefitBalance.fromJson(toJson());
+
+  /// Converts a [ExplanationOfBenefitBenefitBalanceBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -16572,6 +16865,14 @@ class ExplanationOfBenefitBenefitBalanceBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [ExplanationOfBenefitFinancial] to a Builder
+extension BuilderExplanationOfBenefitFinancial
+    on ExplanationOfBenefitFinancial {
+  /// Converts [ExplanationOfBenefitFinancial] to a [ExplanationOfBenefitFinancialBuilder]
+  ExplanationOfBenefitFinancialBuilder get toBuilder =>
+      ExplanationOfBenefitFinancialBuilder.fromJson(toJson());
+}
+
 /// [ExplanationOfBenefitFinancialBuilder]
 /// Benefits Used to date.
 class ExplanationOfBenefitFinancialBuilder extends BackboneElementBuilder {
@@ -16725,6 +17026,12 @@ class ExplanationOfBenefitFinancialBuilder extends BackboneElementBuilder {
 
   /// Getter for [usedMoney] as a MoneyBuilder
   MoneyBuilder? get usedMoney => usedX?.isAs<MoneyBuilder>();
+
+  /// Converts a ExplanationOfBenefitFinancialBuilder to [ExplanationOfBenefitFinancial]
+  ExplanationOfBenefitFinancial build() =>
+      ExplanationOfBenefitFinancial.fromJson(toJson());
+
+  /// Converts a [ExplanationOfBenefitFinancialBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

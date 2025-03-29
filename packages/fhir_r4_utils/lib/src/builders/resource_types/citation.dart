@@ -1,8 +1,42 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        Citation,
+        CitationSummary,
+        CitationClassification,
+        CitationStatusDate,
+        CitationRelatesTo,
+        CitationCitedArtifact,
+        CitationVersion,
+        CitationStatusDate1,
+        CitationTitle,
+        CitationAbstract,
+        CitationPart,
+        CitationRelatesTo1,
+        CitationPublicationForm,
+        CitationPublishedIn,
+        CitationPeriodicRelease,
+        CitationDateOfPublication,
+        CitationWebLocation,
+        CitationClassification1,
+        CitationWhoClassified,
+        CitationContributorship,
+        CitationEntry,
+        CitationAffiliationInfo,
+        CitationContributionInstance,
+        CitationSummary1;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [Citation] to a Builder
+extension BuilderCitation on Citation {
+  /// Converts [Citation] to a [CitationBuilder]
+  CitationBuilder get toBuilder => CitationBuilder.fromJson(toJson());
+}
 
 /// [CitationBuilder]
 /// The Citation Resource enables reference to any knowledge artifact for
@@ -552,6 +586,11 @@ class CitationBuilder extends DomainResourceBuilder {
   /// [citedArtifact]
   /// The article or artifact being described.
   CitationCitedArtifactBuilder? citedArtifact;
+
+  /// Converts a CitationBuilder to [Citation]
+  Citation build() => Citation.fromJson(toJson());
+
+  /// Converts a [CitationBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1973,6 +2012,13 @@ class CitationBuilder extends DomainResourceBuilder {
   }
 }
 
+/// Extension to change [CitationSummary] to a Builder
+extension BuilderCitationSummary on CitationSummary {
+  /// Converts [CitationSummary] to a [CitationSummaryBuilder]
+  CitationSummaryBuilder get toBuilder =>
+      CitationSummaryBuilder.fromJson(toJson());
+}
+
 /// [CitationSummaryBuilder]
 /// A human-readable display of the citation.
 class CitationSummaryBuilder extends BackboneElementBuilder {
@@ -2090,6 +2136,11 @@ class CitationSummaryBuilder extends BackboneElementBuilder {
   /// [text]
   /// The human-readable display of the citation.
   FhirMarkdownBuilder? text;
+
+  /// Converts a CitationSummaryBuilder to [CitationSummary]
+  CitationSummary build() => CitationSummary.fromJson(toJson());
+
+  /// Converts a [CitationSummaryBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2412,6 +2463,13 @@ class CitationSummaryBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [CitationClassification] to a Builder
+extension BuilderCitationClassification on CitationClassification {
+  /// Converts [CitationClassification] to a [CitationClassificationBuilder]
+  CitationClassificationBuilder get toBuilder =>
+      CitationClassificationBuilder.fromJson(toJson());
+}
+
 /// [CitationClassificationBuilder]
 /// The assignment to an organizing scheme.
 class CitationClassificationBuilder extends BackboneElementBuilder {
@@ -2534,6 +2592,11 @@ class CitationClassificationBuilder extends BackboneElementBuilder {
   /// [classifier]
   /// The specific classification value.
   List<CodeableConceptBuilder>? classifier;
+
+  /// Converts a CitationClassificationBuilder to [CitationClassification]
+  CitationClassification build() => CitationClassification.fromJson(toJson());
+
+  /// Converts a [CitationClassificationBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2861,6 +2924,13 @@ class CitationClassificationBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [CitationStatusDate] to a Builder
+extension BuilderCitationStatusDate on CitationStatusDate {
+  /// Converts [CitationStatusDate] to a [CitationStatusDateBuilder]
+  CitationStatusDateBuilder get toBuilder =>
+      CitationStatusDateBuilder.fromJson(toJson());
+}
+
 /// [CitationStatusDateBuilder]
 /// An effective date or period for a status of the citation.
 class CitationStatusDateBuilder extends BackboneElementBuilder {
@@ -2989,6 +3059,11 @@ class CitationStatusDateBuilder extends BackboneElementBuilder {
   /// [period]
   /// When the status started and/or ended.
   PeriodBuilder? period;
+
+  /// Converts a CitationStatusDateBuilder to [CitationStatusDate]
+  CitationStatusDate build() => CitationStatusDate.fromJson(toJson());
+
+  /// Converts a [CitationStatusDateBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3343,6 +3418,13 @@ class CitationStatusDateBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [CitationRelatesTo] to a Builder
+extension BuilderCitationRelatesTo on CitationRelatesTo {
+  /// Converts [CitationRelatesTo] to a [CitationRelatesToBuilder]
+  CitationRelatesToBuilder get toBuilder =>
+      CitationRelatesToBuilder.fromJson(toJson());
+}
+
 /// [CitationRelatesToBuilder]
 /// Artifact related to the Citation Resource.
 class CitationRelatesToBuilder extends BackboneElementBuilder {
@@ -3491,6 +3573,11 @@ class CitationRelatesToBuilder extends BackboneElementBuilder {
 
   /// Getter for [targetAttachment] as a AttachmentBuilder
   AttachmentBuilder? get targetAttachment => targetX?.isAs<AttachmentBuilder>();
+
+  /// Converts a CitationRelatesToBuilder to [CitationRelatesTo]
+  CitationRelatesTo build() => CitationRelatesTo.fromJson(toJson());
+
+  /// Converts a [CitationRelatesToBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3957,6 +4044,13 @@ class CitationRelatesToBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [CitationCitedArtifact] to a Builder
+extension BuilderCitationCitedArtifact on CitationCitedArtifact {
+  /// Converts [CitationCitedArtifact] to a [CitationCitedArtifactBuilder]
+  CitationCitedArtifactBuilder get toBuilder =>
+      CitationCitedArtifactBuilder.fromJson(toJson());
+}
+
 /// [CitationCitedArtifactBuilder]
 /// The article or artifact being described.
 class CitationCitedArtifactBuilder extends BackboneElementBuilder {
@@ -4267,6 +4361,11 @@ class CitationCitedArtifactBuilder extends BackboneElementBuilder {
   /// [note]
   /// Any additional information or content for the article or artifact.
   List<AnnotationBuilder>? note;
+
+  /// Converts a CitationCitedArtifactBuilder to [CitationCitedArtifact]
+  CitationCitedArtifact build() => CitationCitedArtifact.fromJson(toJson());
+
+  /// Converts a [CitationCitedArtifactBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -5060,6 +5159,13 @@ class CitationCitedArtifactBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [CitationVersion] to a Builder
+extension BuilderCitationVersion on CitationVersion {
+  /// Converts [CitationVersion] to a [CitationVersionBuilder]
+  CitationVersionBuilder get toBuilder =>
+      CitationVersionBuilder.fromJson(toJson());
+}
+
 /// [CitationVersionBuilder]
 /// The defined version of the cited artifact.
 class CitationVersionBuilder extends BackboneElementBuilder {
@@ -5177,6 +5283,11 @@ class CitationVersionBuilder extends BackboneElementBuilder {
   /// [baseCitation]
   /// Citation for the main version of the cited artifact.
   ReferenceBuilder? baseCitation;
+
+  /// Converts a CitationVersionBuilder to [CitationVersion]
+  CitationVersion build() => CitationVersion.fromJson(toJson());
+
+  /// Converts a [CitationVersionBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -5499,6 +5610,13 @@ class CitationVersionBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [CitationStatusDate1] to a Builder
+extension BuilderCitationStatusDate1 on CitationStatusDate1 {
+  /// Converts [CitationStatusDate1] to a [CitationStatusDate1Builder]
+  CitationStatusDate1Builder get toBuilder =>
+      CitationStatusDate1Builder.fromJson(toJson());
+}
+
 /// [CitationStatusDate1Builder]
 /// An effective date or period for a status of the cited artifact.
 class CitationStatusDate1Builder extends BackboneElementBuilder {
@@ -5627,6 +5745,11 @@ class CitationStatusDate1Builder extends BackboneElementBuilder {
   /// [period]
   /// When the status started and/or ended.
   PeriodBuilder? period;
+
+  /// Converts a CitationStatusDate1Builder to [CitationStatusDate1]
+  CitationStatusDate1 build() => CitationStatusDate1.fromJson(toJson());
+
+  /// Converts a [CitationStatusDate1Builder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -5981,6 +6104,12 @@ class CitationStatusDate1Builder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [CitationTitle] to a Builder
+extension BuilderCitationTitle on CitationTitle {
+  /// Converts [CitationTitle] to a [CitationTitleBuilder]
+  CitationTitleBuilder get toBuilder => CitationTitleBuilder.fromJson(toJson());
+}
+
 /// [CitationTitleBuilder]
 /// The title details of the article or artifact.
 class CitationTitleBuilder extends BackboneElementBuilder {
@@ -6113,6 +6242,11 @@ class CitationTitleBuilder extends BackboneElementBuilder {
   /// [text]
   /// The title of the article or artifact.
   FhirMarkdownBuilder? text;
+
+  /// Converts a CitationTitleBuilder to [CitationTitle]
+  CitationTitle build() => CitationTitle.fromJson(toJson());
+
+  /// Converts a [CitationTitleBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -6472,6 +6606,13 @@ class CitationTitleBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [CitationAbstract] to a Builder
+extension BuilderCitationAbstract on CitationAbstract {
+  /// Converts [CitationAbstract] to a [CitationAbstractBuilder]
+  CitationAbstractBuilder get toBuilder =>
+      CitationAbstractBuilder.fromJson(toJson());
+}
+
 /// [CitationAbstractBuilder]
 /// Summary of the article or artifact.
 class CitationAbstractBuilder extends BackboneElementBuilder {
@@ -6611,6 +6752,11 @@ class CitationAbstractBuilder extends BackboneElementBuilder {
   /// [copyright]
   /// Copyright notice for the abstract.
   FhirMarkdownBuilder? copyright;
+
+  /// Converts a CitationAbstractBuilder to [CitationAbstract]
+  CitationAbstract build() => CitationAbstract.fromJson(toJson());
+
+  /// Converts a [CitationAbstractBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -6997,6 +7143,12 @@ class CitationAbstractBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [CitationPart] to a Builder
+extension BuilderCitationPart on CitationPart {
+  /// Converts [CitationPart] to a [CitationPartBuilder]
+  CitationPartBuilder get toBuilder => CitationPartBuilder.fromJson(toJson());
+}
+
 /// [CitationPartBuilder]
 /// The component of the article or artifact.
 class CitationPartBuilder extends BackboneElementBuilder {
@@ -7125,6 +7277,11 @@ class CitationPartBuilder extends BackboneElementBuilder {
   /// [baseCitation]
   /// The citation for the full article or artifact.
   ReferenceBuilder? baseCitation;
+
+  /// Converts a CitationPartBuilder to [CitationPart]
+  CitationPart build() => CitationPart.fromJson(toJson());
+
+  /// Converts a [CitationPartBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -7479,6 +7636,13 @@ class CitationPartBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [CitationRelatesTo1] to a Builder
+extension BuilderCitationRelatesTo1 on CitationRelatesTo1 {
+  /// Converts [CitationRelatesTo1] to a [CitationRelatesTo1Builder]
+  CitationRelatesTo1Builder get toBuilder =>
+      CitationRelatesTo1Builder.fromJson(toJson());
+}
+
 /// [CitationRelatesTo1Builder]
 /// The artifact related to the cited artifact.
 class CitationRelatesTo1Builder extends BackboneElementBuilder {
@@ -7627,6 +7791,11 @@ class CitationRelatesTo1Builder extends BackboneElementBuilder {
 
   /// Getter for [targetAttachment] as a AttachmentBuilder
   AttachmentBuilder? get targetAttachment => targetX?.isAs<AttachmentBuilder>();
+
+  /// Converts a CitationRelatesTo1Builder to [CitationRelatesTo1]
+  CitationRelatesTo1 build() => CitationRelatesTo1.fromJson(toJson());
+
+  /// Converts a [CitationRelatesTo1Builder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -8093,6 +8262,13 @@ class CitationRelatesTo1Builder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [CitationPublicationForm] to a Builder
+extension BuilderCitationPublicationForm on CitationPublicationForm {
+  /// Converts [CitationPublicationForm] to a [CitationPublicationFormBuilder]
+  CitationPublicationFormBuilder get toBuilder =>
+      CitationPublicationFormBuilder.fromJson(toJson());
+}
+
 /// [CitationPublicationFormBuilder]
 /// If multiple, used to represent alternative forms of the article that
 /// are not separate citations.
@@ -8317,6 +8493,11 @@ class CitationPublicationFormBuilder extends BackboneElementBuilder {
   /// [copyright]
   /// Copyright notice for the full article or artifact.
   FhirMarkdownBuilder? copyright;
+
+  /// Converts a CitationPublicationFormBuilder to [CitationPublicationForm]
+  CitationPublicationForm build() => CitationPublicationForm.fromJson(toJson());
+
+  /// Converts a [CitationPublicationFormBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -8932,6 +9113,13 @@ class CitationPublicationFormBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [CitationPublishedIn] to a Builder
+extension BuilderCitationPublishedIn on CitationPublishedIn {
+  /// Converts [CitationPublishedIn] to a [CitationPublishedInBuilder]
+  CitationPublishedInBuilder get toBuilder =>
+      CitationPublishedInBuilder.fromJson(toJson());
+}
+
 /// [CitationPublishedInBuilder]
 /// The collection the cited article or artifact is published in.
 class CitationPublishedInBuilder extends BackboneElementBuilder {
@@ -9087,6 +9275,11 @@ class CitationPublishedInBuilder extends BackboneElementBuilder {
   /// [publisherLocation]
   /// Geographic location of the publisher.
   FhirStringBuilder? publisherLocation;
+
+  /// Converts a CitationPublishedInBuilder to [CitationPublishedIn]
+  CitationPublishedIn build() => CitationPublishedIn.fromJson(toJson());
+
+  /// Converts a [CitationPublishedInBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -9510,6 +9703,13 @@ class CitationPublishedInBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [CitationPeriodicRelease] to a Builder
+extension BuilderCitationPeriodicRelease on CitationPeriodicRelease {
+  /// Converts [CitationPeriodicRelease] to a [CitationPeriodicReleaseBuilder]
+  CitationPeriodicReleaseBuilder get toBuilder =>
+      CitationPeriodicReleaseBuilder.fromJson(toJson());
+}
+
 /// [CitationPeriodicReleaseBuilder]
 /// The specific issue in which the cited article resides.
 class CitationPeriodicReleaseBuilder extends BackboneElementBuilder {
@@ -9652,6 +9852,11 @@ class CitationPeriodicReleaseBuilder extends BackboneElementBuilder {
   /// [dateOfPublication]
   /// Defining the date on which the issue of the journal was published.
   CitationDateOfPublicationBuilder? dateOfPublication;
+
+  /// Converts a CitationPeriodicReleaseBuilder to [CitationPeriodicRelease]
+  CitationPeriodicRelease build() => CitationPeriodicRelease.fromJson(toJson());
+
+  /// Converts a [CitationPeriodicReleaseBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -10038,6 +10243,13 @@ class CitationPeriodicReleaseBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [CitationDateOfPublication] to a Builder
+extension BuilderCitationDateOfPublication on CitationDateOfPublication {
+  /// Converts [CitationDateOfPublication] to a [CitationDateOfPublicationBuilder]
+  CitationDateOfPublicationBuilder get toBuilder =>
+      CitationDateOfPublicationBuilder.fromJson(toJson());
+}
+
 /// [CitationDateOfPublicationBuilder]
 /// Defining the date on which the issue of the journal was published.
 class CitationDateOfPublicationBuilder extends BackboneElementBuilder {
@@ -10203,6 +10415,12 @@ class CitationDateOfPublicationBuilder extends BackboneElementBuilder {
   /// Text representation of the date of which the issue of the journal was
   /// published.
   FhirStringBuilder? text;
+
+  /// Converts a CitationDateOfPublicationBuilder to [CitationDateOfPublication]
+  CitationDateOfPublication build() =>
+      CitationDateOfPublication.fromJson(toJson());
+
+  /// Converts a [CitationDateOfPublicationBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -10653,6 +10871,13 @@ class CitationDateOfPublicationBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [CitationWebLocation] to a Builder
+extension BuilderCitationWebLocation on CitationWebLocation {
+  /// Converts [CitationWebLocation] to a [CitationWebLocationBuilder]
+  CitationWebLocationBuilder get toBuilder =>
+      CitationWebLocationBuilder.fromJson(toJson());
+}
+
 /// [CitationWebLocationBuilder]
 /// Used for any URL for the article or artifact cited.
 class CitationWebLocationBuilder extends BackboneElementBuilder {
@@ -10770,6 +10995,11 @@ class CitationWebLocationBuilder extends BackboneElementBuilder {
   /// [url]
   /// The specific URL.
   FhirUriBuilder? url;
+
+  /// Converts a CitationWebLocationBuilder to [CitationWebLocation]
+  CitationWebLocation build() => CitationWebLocation.fromJson(toJson());
+
+  /// Converts a [CitationWebLocationBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -11092,6 +11322,13 @@ class CitationWebLocationBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [CitationClassification1] to a Builder
+extension BuilderCitationClassification1 on CitationClassification1 {
+  /// Converts [CitationClassification1] to a [CitationClassification1Builder]
+  CitationClassification1Builder get toBuilder =>
+      CitationClassification1Builder.fromJson(toJson());
+}
+
 /// [CitationClassification1Builder]
 /// The assignment to an organizing scheme.
 class CitationClassification1Builder extends BackboneElementBuilder {
@@ -11225,6 +11462,11 @@ class CitationClassification1Builder extends BackboneElementBuilder {
   /// [whoClassified]
   /// Provenance and copyright of classification.
   CitationWhoClassifiedBuilder? whoClassified;
+
+  /// Converts a CitationClassification1Builder to [CitationClassification1]
+  CitationClassification1 build() => CitationClassification1.fromJson(toJson());
+
+  /// Converts a [CitationClassification1Builder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -11584,6 +11826,13 @@ class CitationClassification1Builder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [CitationWhoClassified] to a Builder
+extension BuilderCitationWhoClassified on CitationWhoClassified {
+  /// Converts [CitationWhoClassified] to a [CitationWhoClassifiedBuilder]
+  CitationWhoClassifiedBuilder get toBuilder =>
+      CitationWhoClassifiedBuilder.fromJson(toJson());
+}
+
 /// [CitationWhoClassifiedBuilder]
 /// Provenance and copyright of classification.
 class CitationWhoClassifiedBuilder extends BackboneElementBuilder {
@@ -11736,6 +11985,11 @@ class CitationWhoClassifiedBuilder extends BackboneElementBuilder {
   /// [freeToShare]
   /// Acceptable to re-use the classification.
   FhirBooleanBuilder? freeToShare;
+
+  /// Converts a CitationWhoClassifiedBuilder to [CitationWhoClassified]
+  CitationWhoClassified build() => CitationWhoClassified.fromJson(toJson());
+
+  /// Converts a [CitationWhoClassifiedBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -12154,6 +12408,13 @@ class CitationWhoClassifiedBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [CitationContributorship] to a Builder
+extension BuilderCitationContributorship on CitationContributorship {
+  /// Converts [CitationContributorship] to a [CitationContributorshipBuilder]
+  CitationContributorshipBuilder get toBuilder =>
+      CitationContributorshipBuilder.fromJson(toJson());
+}
+
 /// [CitationContributorshipBuilder]
 /// This element is used to list authors and other contributors, their
 /// contact information, specific contributions, and summary statements.
@@ -12293,6 +12554,11 @@ class CitationContributorshipBuilder extends BackboneElementBuilder {
   /// Used to record a display of the author/contributor list without
   /// separate coding for each list member.
   List<CitationSummaryBuilder>? summary;
+
+  /// Converts a CitationContributorshipBuilder to [CitationContributorship]
+  CitationContributorship build() => CitationContributorship.fromJson(toJson());
+
+  /// Converts a [CitationContributorshipBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -12657,6 +12923,12 @@ class CitationContributorshipBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [CitationEntry] to a Builder
+extension BuilderCitationEntry on CitationEntry {
+  /// Converts [CitationEntry] to a [CitationEntryBuilder]
+  CitationEntryBuilder get toBuilder => CitationEntryBuilder.fromJson(toJson());
+}
+
 /// [CitationEntryBuilder]
 /// An individual entity named in the author list or contributor list.
 class CitationEntryBuilder extends BackboneElementBuilder {
@@ -12910,6 +13182,11 @@ class CitationEntryBuilder extends BackboneElementBuilder {
   /// [listOrder]
   /// Used to code order of authors.
   FhirPositiveIntBuilder? listOrder;
+
+  /// Converts a CitationEntryBuilder to [CitationEntry]
+  CitationEntry build() => CitationEntry.fromJson(toJson());
+
+  /// Converts a [CitationEntryBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -13582,6 +13859,13 @@ class CitationEntryBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [CitationAffiliationInfo] to a Builder
+extension BuilderCitationAffiliationInfo on CitationAffiliationInfo {
+  /// Converts [CitationAffiliationInfo] to a [CitationAffiliationInfoBuilder]
+  CitationAffiliationInfoBuilder get toBuilder =>
+      CitationAffiliationInfoBuilder.fromJson(toJson());
+}
+
 /// [CitationAffiliationInfoBuilder]
 /// Organization affiliated with the entity.
 class CitationAffiliationInfoBuilder extends BackboneElementBuilder {
@@ -13717,6 +14001,11 @@ class CitationAffiliationInfoBuilder extends BackboneElementBuilder {
   /// [identifier]
   /// Identifier for the organization.
   List<IdentifierBuilder>? identifier;
+
+  /// Converts a CitationAffiliationInfoBuilder to [CitationAffiliationInfo]
+  CitationAffiliationInfo build() => CitationAffiliationInfo.fromJson(toJson());
+
+  /// Converts a [CitationAffiliationInfoBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -14076,6 +14365,13 @@ class CitationAffiliationInfoBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [CitationContributionInstance] to a Builder
+extension BuilderCitationContributionInstance on CitationContributionInstance {
+  /// Converts [CitationContributionInstance] to a [CitationContributionInstanceBuilder]
+  CitationContributionInstanceBuilder get toBuilder =>
+      CitationContributionInstanceBuilder.fromJson(toJson());
+}
+
 /// [CitationContributionInstanceBuilder]
 /// Contributions with accounting for time or number.
 class CitationContributionInstanceBuilder extends BackboneElementBuilder {
@@ -14196,6 +14492,12 @@ class CitationContributionInstanceBuilder extends BackboneElementBuilder {
   /// [time]
   /// The time that the contribution was made.
   FhirDateTimeBuilder? time;
+
+  /// Converts a CitationContributionInstanceBuilder to [CitationContributionInstance]
+  CitationContributionInstance build() =>
+      CitationContributionInstance.fromJson(toJson());
+
+  /// Converts a [CitationContributionInstanceBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -14518,6 +14820,13 @@ class CitationContributionInstanceBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [CitationSummary1] to a Builder
+extension BuilderCitationSummary1 on CitationSummary1 {
+  /// Converts [CitationSummary1] to a [CitationSummary1Builder]
+  CitationSummary1Builder get toBuilder =>
+      CitationSummary1Builder.fromJson(toJson());
+}
+
 /// [CitationSummary1Builder]
 /// Used to record a display of the author/contributor list without
 /// separate coding for each list member.
@@ -14660,6 +14969,11 @@ class CitationSummary1Builder extends BackboneElementBuilder {
   /// The display string for the author list, contributor list, or
   /// contributorship statement.
   FhirMarkdownBuilder? value;
+
+  /// Converts a CitationSummary1Builder to [CitationSummary1]
+  CitationSummary1 build() => CitationSummary1.fromJson(toJson());
+
+  /// Converts a [CitationSummary1Builder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

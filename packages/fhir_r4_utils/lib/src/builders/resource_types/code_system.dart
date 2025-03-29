@@ -1,8 +1,24 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        CodeSystem,
+        CodeSystemFilter,
+        CodeSystemProperty,
+        CodeSystemConcept,
+        CodeSystemDesignation,
+        CodeSystemProperty1;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [CodeSystem] to a Builder
+extension BuilderCodeSystem on CodeSystem {
+  /// Converts [CodeSystem] to a [CodeSystemBuilder]
+  CodeSystemBuilder get toBuilder => CodeSystemBuilder.fromJson(toJson());
+}
 
 /// [CodeSystemBuilder]
 /// The CodeSystem resource is used to declare the existence of and
@@ -435,6 +451,11 @@ class CodeSystemBuilder extends CanonicalResourceBuilder {
   /// inherently hierarchical, but the definitions must be consulted to
   /// determine what the meanings of the hierarchical relationships are.
   List<CodeSystemConceptBuilder>? concept;
+
+  /// Converts a CodeSystemBuilder to [CodeSystem]
+  CodeSystem build() => CodeSystem.fromJson(toJson());
+
+  /// Converts a [CodeSystemBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1725,6 +1746,13 @@ class CodeSystemBuilder extends CanonicalResourceBuilder {
   }
 }
 
+/// Extension to change [CodeSystemFilter] to a Builder
+extension BuilderCodeSystemFilter on CodeSystemFilter {
+  /// Converts [CodeSystemFilter] to a [CodeSystemFilterBuilder]
+  CodeSystemFilterBuilder get toBuilder =>
+      CodeSystemFilterBuilder.fromJson(toJson());
+}
+
 /// [CodeSystemFilterBuilder]
 /// A filter that can be used in a value set compose statement when
 /// selecting concepts using a filter.
@@ -1866,6 +1894,11 @@ class CodeSystemFilterBuilder extends BackboneElementBuilder {
   /// [value]
   /// A description of what the value for the filter should be.
   FhirStringBuilder? value;
+
+  /// Converts a CodeSystemFilterBuilder to [CodeSystemFilter]
+  CodeSystemFilter build() => CodeSystemFilter.fromJson(toJson());
+
+  /// Converts a [CodeSystemFilterBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2257,6 +2290,13 @@ class CodeSystemFilterBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [CodeSystemProperty] to a Builder
+extension BuilderCodeSystemProperty on CodeSystemProperty {
+  /// Converts [CodeSystemProperty] to a [CodeSystemPropertyBuilder]
+  CodeSystemPropertyBuilder get toBuilder =>
+      CodeSystemPropertyBuilder.fromJson(toJson());
+}
+
 /// [CodeSystemPropertyBuilder]
 /// A property defines an additional slot through which additional
 /// information can be provided about a concept.
@@ -2404,6 +2444,11 @@ class CodeSystemPropertyBuilder extends BackboneElementBuilder {
   /// code defined by the code system (e.g. a reference to another defined
   /// concept).
   PropertyTypeEnumBuilder? type;
+
+  /// Converts a CodeSystemPropertyBuilder to [CodeSystemProperty]
+  CodeSystemProperty build() => CodeSystemProperty.fromJson(toJson());
+
+  /// Converts a [CodeSystemPropertyBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2790,6 +2835,13 @@ class CodeSystemPropertyBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [CodeSystemConcept] to a Builder
+extension BuilderCodeSystemConcept on CodeSystemConcept {
+  /// Converts [CodeSystemConcept] to a [CodeSystemConceptBuilder]
+  CodeSystemConceptBuilder get toBuilder =>
+      CodeSystemConceptBuilder.fromJson(toJson());
+}
+
 /// [CodeSystemConceptBuilder]
 /// Concepts that are in the code system. The concept definitions are
 /// inherently hierarchical, but the definitions must be consulted to
@@ -2973,6 +3025,11 @@ class CodeSystemConceptBuilder extends BackboneElementBuilder {
   /// nature of the relationships is variable (is-a/contains/categorizes) -
   /// see hierarchyMeaning.
   List<CodeSystemConceptBuilder>? concept;
+
+  /// Converts a CodeSystemConceptBuilder to [CodeSystemConcept]
+  CodeSystemConcept build() => CodeSystemConcept.fromJson(toJson());
+
+  /// Converts a [CodeSystemConceptBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3438,6 +3495,13 @@ class CodeSystemConceptBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [CodeSystemDesignation] to a Builder
+extension BuilderCodeSystemDesignation on CodeSystemDesignation {
+  /// Converts [CodeSystemDesignation] to a [CodeSystemDesignationBuilder]
+  CodeSystemDesignationBuilder get toBuilder =>
+      CodeSystemDesignationBuilder.fromJson(toJson());
+}
+
 /// [CodeSystemDesignationBuilder]
 /// Additional representations for the concept - other languages, aliases,
 /// specialized purposes, used for particular purposes, etc.
@@ -3568,6 +3632,11 @@ class CodeSystemDesignationBuilder extends BackboneElementBuilder {
   /// [value]
   /// The text value for this designation.
   FhirStringBuilder? value;
+
+  /// Converts a CodeSystemDesignationBuilder to [CodeSystemDesignation]
+  CodeSystemDesignation build() => CodeSystemDesignation.fromJson(toJson());
+
+  /// Converts a [CodeSystemDesignationBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3922,6 +3991,13 @@ class CodeSystemDesignationBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [CodeSystemProperty1] to a Builder
+extension BuilderCodeSystemProperty1 on CodeSystemProperty1 {
+  /// Converts [CodeSystemProperty1] to a [CodeSystemProperty1Builder]
+  CodeSystemProperty1Builder get toBuilder =>
+      CodeSystemProperty1Builder.fromJson(toJson());
+}
+
 /// [CodeSystemProperty1Builder]
 /// A property value for this concept.
 class CodeSystemProperty1Builder extends BackboneElementBuilder {
@@ -4067,6 +4143,11 @@ class CodeSystemProperty1Builder extends BackboneElementBuilder {
 
   /// Getter for [valueDecimal] as a FhirDecimalBuilder
   FhirDecimalBuilder? get valueDecimal => valueX?.isAs<FhirDecimalBuilder>();
+
+  /// Converts a CodeSystemProperty1Builder to [CodeSystemProperty1]
+  CodeSystemProperty1 build() => CodeSystemProperty1.fromJson(toJson());
+
+  /// Converts a [CodeSystemProperty1Builder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

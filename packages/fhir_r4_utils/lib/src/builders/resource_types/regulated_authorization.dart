@@ -1,8 +1,21 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        RegulatedAuthorization,
+        RegulatedAuthorizationCase;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [RegulatedAuthorization] to a Builder
+extension BuilderRegulatedAuthorization on RegulatedAuthorization {
+  /// Converts [RegulatedAuthorization] to a [RegulatedAuthorizationBuilder]
+  RegulatedAuthorizationBuilder get toBuilder =>
+      RegulatedAuthorizationBuilder.fromJson(toJson());
+}
 
 /// [RegulatedAuthorizationBuilder]
 /// Regulatory approval, clearance or licencing related to a regulated
@@ -329,6 +342,11 @@ class RegulatedAuthorizationBuilder extends DomainResourceBuilder {
   /// and the workgroup is seeking implementer feedback on its use (see link
   /// at bottom of page).
   RegulatedAuthorizationCaseBuilder? case_;
+
+  /// Converts a RegulatedAuthorizationBuilder to [RegulatedAuthorization]
+  RegulatedAuthorization build() => RegulatedAuthorization.fromJson(toJson());
+
+  /// Converts a [RegulatedAuthorizationBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1220,6 +1238,13 @@ class RegulatedAuthorizationBuilder extends DomainResourceBuilder {
   }
 }
 
+/// Extension to change [RegulatedAuthorizationCase] to a Builder
+extension BuilderRegulatedAuthorizationCase on RegulatedAuthorizationCase {
+  /// Converts [RegulatedAuthorizationCase] to a [RegulatedAuthorizationCaseBuilder]
+  RegulatedAuthorizationCaseBuilder get toBuilder =>
+      RegulatedAuthorizationCaseBuilder.fromJson(toJson());
+}
+
 /// [RegulatedAuthorizationCaseBuilder]
 /// The case or regulatory procedure for granting or amending a regulated
 /// authorization. An authorization is granted in response to
@@ -1394,6 +1419,12 @@ class RegulatedAuthorizationCaseBuilder extends BackboneElementBuilder {
   /// authorization. The applications can be considered as steps within the
   /// longer running case or procedure for this authorization process.
   List<RegulatedAuthorizationCaseBuilder>? application;
+
+  /// Converts a RegulatedAuthorizationCaseBuilder to [RegulatedAuthorizationCase]
+  RegulatedAuthorizationCase build() =>
+      RegulatedAuthorizationCase.fromJson(toJson());
+
+  /// Converts a [RegulatedAuthorizationCaseBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

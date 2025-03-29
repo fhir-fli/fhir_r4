@@ -1,8 +1,14 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, StringExtensionForFHIR;
+    show yamlMapToJson, yamlToJson, StringExtensionForFHIR, Identifier;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [Identifier] to a Builder
+extension BuilderIdentifier on Identifier {
+  /// Converts [Identifier] to a [IdentifierBuilder]
+  IdentifierBuilder get toBuilder => IdentifierBuilder.fromJson(toJson());
+}
 
 /// [IdentifierBuilder]
 /// An identifier - identifies some entity uniquely and unambiguously.
@@ -171,6 +177,11 @@ class IdentifierBuilder extends DataTypeBuilder
   /// [assigner]
   /// Organization that issued/manages the identifier.
   ReferenceBuilder? assigner;
+
+  /// Converts a IdentifierBuilder to [Identifier]
+  Identifier build() => Identifier.fromJson(toJson());
+
+  /// Converts a [IdentifierBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

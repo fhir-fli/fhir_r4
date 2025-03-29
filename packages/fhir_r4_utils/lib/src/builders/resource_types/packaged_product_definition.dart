@@ -1,8 +1,25 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        PackagedProductDefinition,
+        PackagedProductDefinitionLegalStatusOfSupply,
+        PackagedProductDefinitionPackage,
+        PackagedProductDefinitionShelfLifeStorage,
+        PackagedProductDefinitionProperty,
+        PackagedProductDefinitionContainedItem;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [PackagedProductDefinition] to a Builder
+extension BuilderPackagedProductDefinition on PackagedProductDefinition {
+  /// Converts [PackagedProductDefinition] to a [PackagedProductDefinitionBuilder]
+  PackagedProductDefinitionBuilder get toBuilder =>
+      PackagedProductDefinitionBuilder.fromJson(toJson());
+}
 
 /// [PackagedProductDefinitionBuilder]
 /// A medically related item or items, in a container or package.
@@ -349,6 +366,12 @@ class PackagedProductDefinitionBuilder extends DomainResourceBuilder {
   /// with other packaging items within, or a packaging component, such as
   /// bottle cap (which is not a device or a medication manufactured item).
   PackagedProductDefinitionPackageBuilder? package;
+
+  /// Converts a PackagedProductDefinitionBuilder to [PackagedProductDefinition]
+  PackagedProductDefinition build() =>
+      PackagedProductDefinition.fromJson(toJson());
+
+  /// Converts a [PackagedProductDefinitionBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1260,6 +1283,14 @@ class PackagedProductDefinitionBuilder extends DomainResourceBuilder {
   }
 }
 
+/// Extension to change [PackagedProductDefinitionLegalStatusOfSupply] to a Builder
+extension BuilderPackagedProductDefinitionLegalStatusOfSupply
+    on PackagedProductDefinitionLegalStatusOfSupply {
+  /// Converts [PackagedProductDefinitionLegalStatusOfSupply] to a [PackagedProductDefinitionLegalStatusOfSupplyBuilder]
+  PackagedProductDefinitionLegalStatusOfSupplyBuilder get toBuilder =>
+      PackagedProductDefinitionLegalStatusOfSupplyBuilder.fromJson(toJson());
+}
+
 /// [PackagedProductDefinitionLegalStatusOfSupplyBuilder]
 /// The legal status of supply of the packaged item as classified by the
 /// regulator.
@@ -1382,6 +1413,12 @@ class PackagedProductDefinitionLegalStatusOfSupplyBuilder
   /// The place where the legal status of supply applies. When not specified,
   /// this indicates it is unknown in this context.
   CodeableConceptBuilder? jurisdiction;
+
+  /// Converts a PackagedProductDefinitionLegalStatusOfSupplyBuilder to [PackagedProductDefinitionLegalStatusOfSupply]
+  PackagedProductDefinitionLegalStatusOfSupply build() =>
+      PackagedProductDefinitionLegalStatusOfSupply.fromJson(toJson());
+
+  /// Converts a [PackagedProductDefinitionLegalStatusOfSupplyBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1705,6 +1742,14 @@ class PackagedProductDefinitionLegalStatusOfSupplyBuilder
   }
 }
 
+/// Extension to change [PackagedProductDefinitionPackage] to a Builder
+extension BuilderPackagedProductDefinitionPackage
+    on PackagedProductDefinitionPackage {
+  /// Converts [PackagedProductDefinitionPackage] to a [PackagedProductDefinitionPackageBuilder]
+  PackagedProductDefinitionPackageBuilder get toBuilder =>
+      PackagedProductDefinitionPackageBuilder.fromJson(toJson());
+}
+
 /// [PackagedProductDefinitionPackageBuilder]
 /// A packaging item, as a container for medically related items, possibly
 /// with other packaging items within, or a packaging component, such as
@@ -1952,6 +1997,12 @@ class PackagedProductDefinitionPackageBuilder extends BackboneElementBuilder {
   /// a single packaged product. See also
   /// PackagedProductDefinition.package.containedItem.item(PackagedProductDefinition).
   List<PackagedProductDefinitionPackageBuilder>? package;
+
+  /// Converts a PackagedProductDefinitionPackageBuilder to [PackagedProductDefinitionPackage]
+  PackagedProductDefinitionPackage build() =>
+      PackagedProductDefinitionPackage.fromJson(toJson());
+
+  /// Converts a [PackagedProductDefinitionPackageBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2572,6 +2623,14 @@ class PackagedProductDefinitionPackageBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [PackagedProductDefinitionShelfLifeStorage] to a Builder
+extension BuilderPackagedProductDefinitionShelfLifeStorage
+    on PackagedProductDefinitionShelfLifeStorage {
+  /// Converts [PackagedProductDefinitionShelfLifeStorage] to a [PackagedProductDefinitionShelfLifeStorageBuilder]
+  PackagedProductDefinitionShelfLifeStorageBuilder get toBuilder =>
+      PackagedProductDefinitionShelfLifeStorageBuilder.fromJson(toJson());
+}
+
 /// [PackagedProductDefinitionShelfLifeStorageBuilder]
 /// Shelf Life and storage information.
 class PackagedProductDefinitionShelfLifeStorageBuilder
@@ -2728,6 +2787,12 @@ class PackagedProductDefinitionShelfLifeStorageBuilder
   /// appropriate controlled vocabulary. The controlled term and the
   /// controlled term identifier shall be specified.
   List<CodeableConceptBuilder>? specialPrecautionsForStorage;
+
+  /// Converts a PackagedProductDefinitionShelfLifeStorageBuilder to [PackagedProductDefinitionShelfLifeStorage]
+  PackagedProductDefinitionShelfLifeStorage build() =>
+      PackagedProductDefinitionShelfLifeStorage.fromJson(toJson());
+
+  /// Converts a [PackagedProductDefinitionShelfLifeStorageBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3147,6 +3212,14 @@ class PackagedProductDefinitionShelfLifeStorageBuilder
   }
 }
 
+/// Extension to change [PackagedProductDefinitionProperty] to a Builder
+extension BuilderPackagedProductDefinitionProperty
+    on PackagedProductDefinitionProperty {
+  /// Converts [PackagedProductDefinitionProperty] to a [PackagedProductDefinitionPropertyBuilder]
+  PackagedProductDefinitionPropertyBuilder get toBuilder =>
+      PackagedProductDefinitionPropertyBuilder.fromJson(toJson());
+}
+
 /// [PackagedProductDefinitionPropertyBuilder]
 /// General characteristics of this item.
 class PackagedProductDefinitionPropertyBuilder extends BackboneElementBuilder {
@@ -3287,6 +3360,12 @@ class PackagedProductDefinitionPropertyBuilder extends BackboneElementBuilder {
 
   /// Getter for [valueAttachment] as a AttachmentBuilder
   AttachmentBuilder? get valueAttachment => valueX?.isAs<AttachmentBuilder>();
+
+  /// Converts a PackagedProductDefinitionPropertyBuilder to [PackagedProductDefinitionProperty]
+  PackagedProductDefinitionProperty build() =>
+      PackagedProductDefinitionProperty.fromJson(toJson());
+
+  /// Converts a [PackagedProductDefinitionPropertyBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3742,6 +3821,14 @@ class PackagedProductDefinitionPropertyBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [PackagedProductDefinitionContainedItem] to a Builder
+extension BuilderPackagedProductDefinitionContainedItem
+    on PackagedProductDefinitionContainedItem {
+  /// Converts [PackagedProductDefinitionContainedItem] to a [PackagedProductDefinitionContainedItemBuilder]
+  PackagedProductDefinitionContainedItemBuilder get toBuilder =>
+      PackagedProductDefinitionContainedItemBuilder.fromJson(toJson());
+}
+
 /// [PackagedProductDefinitionContainedItemBuilder]
 /// The item(s) within the packaging.
 class PackagedProductDefinitionContainedItemBuilder
@@ -3868,6 +3955,12 @@ class PackagedProductDefinitionContainedItemBuilder
   /// [amount]
   /// The number of this type of item within this packaging.
   QuantityBuilder? amount;
+
+  /// Converts a PackagedProductDefinitionContainedItemBuilder to [PackagedProductDefinitionContainedItem]
+  PackagedProductDefinitionContainedItem build() =>
+      PackagedProductDefinitionContainedItem.fromJson(toJson());
+
+  /// Converts a [PackagedProductDefinitionContainedItemBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

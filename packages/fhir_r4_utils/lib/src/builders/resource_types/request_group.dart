@@ -1,8 +1,22 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        RequestGroup,
+        RequestGroupAction,
+        RequestGroupCondition,
+        RequestGroupRelatedAction;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [RequestGroup] to a Builder
+extension BuilderRequestGroup on RequestGroup {
+  /// Converts [RequestGroup] to a [RequestGroupBuilder]
+  RequestGroupBuilder get toBuilder => RequestGroupBuilder.fromJson(toJson());
+}
 
 /// [RequestGroupBuilder]
 /// A group of related requests that can be used to capture intended
@@ -381,6 +395,11 @@ class RequestGroupBuilder extends DomainResourceBuilder {
   /// [action]
   /// The actions, if any, produced by the evaluation of the artifact.
   List<RequestGroupActionBuilder>? action;
+
+  /// Converts a RequestGroupBuilder to [RequestGroup]
+  RequestGroup build() => RequestGroup.fromJson(toJson());
+
+  /// Converts a [RequestGroupBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1426,6 +1445,13 @@ class RequestGroupBuilder extends DomainResourceBuilder {
   }
 }
 
+/// Extension to change [RequestGroupAction] to a Builder
+extension BuilderRequestGroupAction on RequestGroupAction {
+  /// Converts [RequestGroupAction] to a [RequestGroupActionBuilder]
+  RequestGroupActionBuilder get toBuilder =>
+      RequestGroupActionBuilder.fromJson(toJson());
+}
+
 /// [RequestGroupActionBuilder]
 /// The actions, if any, produced by the evaluation of the artifact.
 class RequestGroupActionBuilder extends BackboneElementBuilder {
@@ -1797,6 +1823,11 @@ class RequestGroupActionBuilder extends BackboneElementBuilder {
   /// [action]
   /// Sub actions.
   List<RequestGroupActionBuilder>? action;
+
+  /// Converts a RequestGroupActionBuilder to [RequestGroupAction]
+  RequestGroupAction build() => RequestGroupAction.fromJson(toJson());
+
+  /// Converts a [RequestGroupActionBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2850,6 +2881,13 @@ class RequestGroupActionBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [RequestGroupCondition] to a Builder
+extension BuilderRequestGroupCondition on RequestGroupCondition {
+  /// Converts [RequestGroupCondition] to a [RequestGroupConditionBuilder]
+  RequestGroupConditionBuilder get toBuilder =>
+      RequestGroupConditionBuilder.fromJson(toJson());
+}
+
 /// [RequestGroupConditionBuilder]
 /// An expression that describes applicability criteria, or start/stop
 /// conditions for the action.
@@ -2970,6 +3008,11 @@ class RequestGroupConditionBuilder extends BackboneElementBuilder {
   /// An expression that returns true or false, indicating whether or not the
   /// condition is satisfied.
   FhirExpressionBuilder? expression;
+
+  /// Converts a RequestGroupConditionBuilder to [RequestGroupCondition]
+  RequestGroupCondition build() => RequestGroupCondition.fromJson(toJson());
+
+  /// Converts a [RequestGroupConditionBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3292,6 +3335,13 @@ class RequestGroupConditionBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [RequestGroupRelatedAction] to a Builder
+extension BuilderRequestGroupRelatedAction on RequestGroupRelatedAction {
+  /// Converts [RequestGroupRelatedAction] to a [RequestGroupRelatedActionBuilder]
+  RequestGroupRelatedActionBuilder get toBuilder =>
+      RequestGroupRelatedActionBuilder.fromJson(toJson());
+}
+
 /// [RequestGroupRelatedActionBuilder]
 /// A relationship to another action such as "before" or "30-60 minutes
 /// after start of".
@@ -3433,6 +3483,12 @@ class RequestGroupRelatedActionBuilder extends BackboneElementBuilder {
 
   /// Getter for [offsetRange] as a RangeBuilder
   RangeBuilder? get offsetRange => offsetX?.isAs<RangeBuilder>();
+
+  /// Converts a RequestGroupRelatedActionBuilder to [RequestGroupRelatedAction]
+  RequestGroupRelatedAction build() =>
+      RequestGroupRelatedAction.fromJson(toJson());
+
+  /// Converts a [RequestGroupRelatedActionBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

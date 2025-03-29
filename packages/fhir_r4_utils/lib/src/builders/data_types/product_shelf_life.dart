@@ -1,8 +1,15 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, StringExtensionForFHIR;
+    show yamlMapToJson, yamlToJson, StringExtensionForFHIR, ProductShelfLife;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [ProductShelfLife] to a Builder
+extension BuilderProductShelfLife on ProductShelfLife {
+  /// Converts [ProductShelfLife] to a [ProductShelfLifeBuilder]
+  ProductShelfLifeBuilder get toBuilder =>
+      ProductShelfLifeBuilder.fromJson(toJson());
+}
 
 /// [ProductShelfLifeBuilder]
 /// The shelf-life and storage information for a medicinal product item or
@@ -159,6 +166,11 @@ class ProductShelfLifeBuilder extends BackboneTypeBuilder {
   /// appropriate controlled vocabulary The controlled term and the
   /// controlled term identifier shall be specified.
   List<CodeableConceptBuilder>? specialPrecautionsForStorage;
+
+  /// Converts a ProductShelfLifeBuilder to [ProductShelfLife]
+  ProductShelfLife build() => ProductShelfLife.fromJson(toJson());
+
+  /// Converts a [ProductShelfLifeBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

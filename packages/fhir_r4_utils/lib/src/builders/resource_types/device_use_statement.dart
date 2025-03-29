@@ -1,8 +1,20 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        DeviceUseStatement;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [DeviceUseStatement] to a Builder
+extension BuilderDeviceUseStatement on DeviceUseStatement {
+  /// Converts [DeviceUseStatement] to a [DeviceUseStatementBuilder]
+  DeviceUseStatementBuilder get toBuilder =>
+      DeviceUseStatementBuilder.fromJson(toJson());
+}
 
 /// [DeviceUseStatementBuilder]
 /// A record of a device being used by a patient where the record is the
@@ -329,6 +341,11 @@ class DeviceUseStatementBuilder extends DomainResourceBuilder {
   /// include for example a comment, an instruction, or a note associated
   /// with the statement.
   List<AnnotationBuilder>? note;
+
+  /// Converts a DeviceUseStatementBuilder to [DeviceUseStatement]
+  DeviceUseStatement build() => DeviceUseStatement.fromJson(toJson());
+
+  /// Converts a [DeviceUseStatementBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

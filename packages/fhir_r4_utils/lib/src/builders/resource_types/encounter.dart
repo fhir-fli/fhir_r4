@@ -1,8 +1,25 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        Encounter,
+        EncounterStatusHistory,
+        EncounterClassHistory,
+        EncounterParticipant,
+        EncounterDiagnosis,
+        EncounterHospitalization,
+        EncounterLocation;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [Encounter] to a Builder
+extension BuilderEncounter on Encounter {
+  /// Converts [Encounter] to a [EncounterBuilder]
+  EncounterBuilder get toBuilder => EncounterBuilder.fromJson(toJson());
+}
 
 /// [EncounterBuilder]
 /// An interaction between a patient and healthcare provider(s) for the
@@ -475,6 +492,11 @@ class EncounterBuilder extends DomainResourceBuilder {
   /// Another Encounter of which this encounter is a part of
   /// (administratively or in time).
   ReferenceBuilder? partOf;
+
+  /// Converts a EncounterBuilder to [Encounter]
+  Encounter build() => Encounter.fromJson(toJson());
+
+  /// Converts a [EncounterBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1699,6 +1721,13 @@ class EncounterBuilder extends DomainResourceBuilder {
   }
 }
 
+/// Extension to change [EncounterStatusHistory] to a Builder
+extension BuilderEncounterStatusHistory on EncounterStatusHistory {
+  /// Converts [EncounterStatusHistory] to a [EncounterStatusHistoryBuilder]
+  EncounterStatusHistoryBuilder get toBuilder =>
+      EncounterStatusHistoryBuilder.fromJson(toJson());
+}
+
 /// [EncounterStatusHistoryBuilder]
 /// The status history permits the encounter resource to contain the status
 /// history without needing to read through the historical versions of the
@@ -1820,6 +1849,11 @@ class EncounterStatusHistoryBuilder extends BackboneElementBuilder {
   /// [period]
   /// The time that the episode was in the specified status.
   PeriodBuilder? period;
+
+  /// Converts a EncounterStatusHistoryBuilder to [EncounterStatusHistory]
+  EncounterStatusHistory build() => EncounterStatusHistory.fromJson(toJson());
+
+  /// Converts a [EncounterStatusHistoryBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2142,6 +2176,13 @@ class EncounterStatusHistoryBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [EncounterClassHistory] to a Builder
+extension BuilderEncounterClassHistory on EncounterClassHistory {
+  /// Converts [EncounterClassHistory] to a [EncounterClassHistoryBuilder]
+  EncounterClassHistoryBuilder get toBuilder =>
+      EncounterClassHistoryBuilder.fromJson(toJson());
+}
+
 /// [EncounterClassHistoryBuilder]
 /// The class history permits the tracking of the encounters transitions
 /// without needing to go through the resource history. This would be used
@@ -2266,6 +2307,11 @@ class EncounterClassHistoryBuilder extends BackboneElementBuilder {
   /// [period]
   /// The time that the episode was in the specified class.
   PeriodBuilder? period;
+
+  /// Converts a EncounterClassHistoryBuilder to [EncounterClassHistory]
+  EncounterClassHistory build() => EncounterClassHistory.fromJson(toJson());
+
+  /// Converts a [EncounterClassHistoryBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2588,6 +2634,13 @@ class EncounterClassHistoryBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [EncounterParticipant] to a Builder
+extension BuilderEncounterParticipant on EncounterParticipant {
+  /// Converts [EncounterParticipant] to a [EncounterParticipantBuilder]
+  EncounterParticipantBuilder get toBuilder =>
+      EncounterParticipantBuilder.fromJson(toJson());
+}
+
 /// [EncounterParticipantBuilder]
 /// The list of people responsible for providing the service.
 class EncounterParticipantBuilder extends BackboneElementBuilder {
@@ -2722,6 +2775,11 @@ class EncounterParticipantBuilder extends BackboneElementBuilder {
   /// [individual]
   /// Persons involved in the encounter other than the patient.
   ReferenceBuilder? individual;
+
+  /// Converts a EncounterParticipantBuilder to [EncounterParticipant]
+  EncounterParticipant build() => EncounterParticipant.fromJson(toJson());
+
+  /// Converts a [EncounterParticipantBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3081,6 +3139,13 @@ class EncounterParticipantBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [EncounterDiagnosis] to a Builder
+extension BuilderEncounterDiagnosis on EncounterDiagnosis {
+  /// Converts [EncounterDiagnosis] to a [EncounterDiagnosisBuilder]
+  EncounterDiagnosisBuilder get toBuilder =>
+      EncounterDiagnosisBuilder.fromJson(toJson());
+}
+
 /// [EncounterDiagnosisBuilder]
 /// The list of diagnosis relevant to this encounter.
 class EncounterDiagnosisBuilder extends BackboneElementBuilder {
@@ -3213,6 +3278,11 @@ class EncounterDiagnosisBuilder extends BackboneElementBuilder {
   /// [rank]
   /// Ranking of the diagnosis (for each role type).
   FhirPositiveIntBuilder? rank;
+
+  /// Converts a EncounterDiagnosisBuilder to [EncounterDiagnosis]
+  EncounterDiagnosis build() => EncounterDiagnosis.fromJson(toJson());
+
+  /// Converts a [EncounterDiagnosisBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3567,6 +3637,13 @@ class EncounterDiagnosisBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [EncounterHospitalization] to a Builder
+extension BuilderEncounterHospitalization on EncounterHospitalization {
+  /// Converts [EncounterHospitalization] to a [EncounterHospitalizationBuilder]
+  EncounterHospitalizationBuilder get toBuilder =>
+      EncounterHospitalizationBuilder.fromJson(toJson());
+}
+
 /// [EncounterHospitalizationBuilder]
 /// Details about the admission to a healthcare service.
 class EncounterHospitalizationBuilder extends BackboneElementBuilder {
@@ -3775,6 +3852,12 @@ class EncounterHospitalizationBuilder extends BackboneElementBuilder {
   /// [dischargeDisposition]
   /// Category or kind of location after discharge.
   CodeableConceptBuilder? dischargeDisposition;
+
+  /// Converts a EncounterHospitalizationBuilder to [EncounterHospitalization]
+  EncounterHospitalization build() =>
+      EncounterHospitalization.fromJson(toJson());
+
+  /// Converts a [EncounterHospitalizationBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -4337,6 +4420,13 @@ class EncounterHospitalizationBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [EncounterLocation] to a Builder
+extension BuilderEncounterLocation on EncounterLocation {
+  /// Converts [EncounterLocation] to a [EncounterLocationBuilder]
+  EncounterLocationBuilder get toBuilder =>
+      EncounterLocationBuilder.fromJson(toJson());
+}
+
 /// [EncounterLocationBuilder]
 /// List of locations where the patient has been during this encounter.
 class EncounterLocationBuilder extends BackboneElementBuilder {
@@ -4479,6 +4569,11 @@ class EncounterLocationBuilder extends BackboneElementBuilder {
   /// [period]
   /// Time period during which the patient was present at the location.
   PeriodBuilder? period;
+
+  /// Converts a EncounterLocationBuilder to [EncounterLocation]
+  EncounterLocation build() => EncounterLocation.fromJson(toJson());
+
+  /// Converts a [EncounterLocationBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

@@ -1762,7 +1762,7 @@ class TestReportSetup extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory TestReportSetup.empty() => const TestReportSetup(
+  factory TestReportSetup.empty() => TestReportSetup(
         action: <TestReportAction>[],
       );
 
@@ -3704,7 +3704,7 @@ class TestReportTest extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory TestReportTest.empty() => const TestReportTest(
+  factory TestReportTest.empty() => TestReportTest(
         action: <TestReportAction>[],
       );
 
@@ -4707,7 +4707,7 @@ class TestReportTeardown extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory TestReportTeardown.empty() => const TestReportTeardown(
+  factory TestReportTeardown.empty() => TestReportTeardown(
         action: <TestReportAction>[],
       );
 

@@ -1,8 +1,30 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        SubstanceDefinition,
+        SubstanceDefinitionMoiety,
+        SubstanceDefinitionProperty,
+        SubstanceDefinitionMolecularWeight,
+        SubstanceDefinitionStructure,
+        SubstanceDefinitionRepresentation,
+        SubstanceDefinitionCode,
+        SubstanceDefinitionName,
+        SubstanceDefinitionOfficial,
+        SubstanceDefinitionRelationship,
+        SubstanceDefinitionSourceMaterial;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [SubstanceDefinition] to a Builder
+extension BuilderSubstanceDefinition on SubstanceDefinition {
+  /// Converts [SubstanceDefinition] to a [SubstanceDefinitionBuilder]
+  SubstanceDefinitionBuilder get toBuilder =>
+      SubstanceDefinitionBuilder.fromJson(toJson());
+}
 
 /// [SubstanceDefinitionBuilder]
 /// The detailed description of a substance, typically at a level beyond
@@ -410,6 +432,11 @@ class SubstanceDefinitionBuilder extends DomainResourceBuilder {
   /// [sourceMaterial]
   /// Material or taxonomic/anatomical source for the substance.
   SubstanceDefinitionSourceMaterialBuilder? sourceMaterial;
+
+  /// Converts a SubstanceDefinitionBuilder to [SubstanceDefinition]
+  SubstanceDefinition build() => SubstanceDefinition.fromJson(toJson());
+
+  /// Converts a [SubstanceDefinitionBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1506,6 +1533,13 @@ class SubstanceDefinitionBuilder extends DomainResourceBuilder {
   }
 }
 
+/// Extension to change [SubstanceDefinitionMoiety] to a Builder
+extension BuilderSubstanceDefinitionMoiety on SubstanceDefinitionMoiety {
+  /// Converts [SubstanceDefinitionMoiety] to a [SubstanceDefinitionMoietyBuilder]
+  SubstanceDefinitionMoietyBuilder get toBuilder =>
+      SubstanceDefinitionMoietyBuilder.fromJson(toJson());
+}
+
 /// [SubstanceDefinitionMoietyBuilder]
 /// Moiety, for structural modifications.
 class SubstanceDefinitionMoietyBuilder extends BackboneElementBuilder {
@@ -1703,6 +1737,12 @@ class SubstanceDefinitionMoietyBuilder extends BackboneElementBuilder {
   /// necessary to indicate whether the amount refers to, for example, a mole
   /// ratio or weight ratio.
   CodeableConceptBuilder? measurementType;
+
+  /// Converts a SubstanceDefinitionMoietyBuilder to [SubstanceDefinitionMoiety]
+  SubstanceDefinitionMoiety build() =>
+      SubstanceDefinitionMoiety.fromJson(toJson());
+
+  /// Converts a [SubstanceDefinitionMoietyBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2271,6 +2311,13 @@ class SubstanceDefinitionMoietyBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [SubstanceDefinitionProperty] to a Builder
+extension BuilderSubstanceDefinitionProperty on SubstanceDefinitionProperty {
+  /// Converts [SubstanceDefinitionProperty] to a [SubstanceDefinitionPropertyBuilder]
+  SubstanceDefinitionPropertyBuilder get toBuilder =>
+      SubstanceDefinitionPropertyBuilder.fromJson(toJson());
+}
+
 /// [SubstanceDefinitionPropertyBuilder]
 /// General specifications for this substance.
 class SubstanceDefinitionPropertyBuilder extends BackboneElementBuilder {
@@ -2411,6 +2458,12 @@ class SubstanceDefinitionPropertyBuilder extends BackboneElementBuilder {
 
   /// Getter for [valueAttachment] as a AttachmentBuilder
   AttachmentBuilder? get valueAttachment => valueX?.isAs<AttachmentBuilder>();
+
+  /// Converts a SubstanceDefinitionPropertyBuilder to [SubstanceDefinitionProperty]
+  SubstanceDefinitionProperty build() =>
+      SubstanceDefinitionProperty.fromJson(toJson());
+
+  /// Converts a [SubstanceDefinitionPropertyBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2865,6 +2918,14 @@ class SubstanceDefinitionPropertyBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [SubstanceDefinitionMolecularWeight] to a Builder
+extension BuilderSubstanceDefinitionMolecularWeight
+    on SubstanceDefinitionMolecularWeight {
+  /// Converts [SubstanceDefinitionMolecularWeight] to a [SubstanceDefinitionMolecularWeightBuilder]
+  SubstanceDefinitionMolecularWeightBuilder get toBuilder =>
+      SubstanceDefinitionMolecularWeightBuilder.fromJson(toJson());
+}
+
 /// [SubstanceDefinitionMolecularWeightBuilder]
 /// The molecular weight or weight range (for proteins, polymers or nucleic
 /// acids).
@@ -2999,6 +3060,12 @@ class SubstanceDefinitionMolecularWeightBuilder extends BackboneElementBuilder {
   /// single definite value for a given element is given, it would be
   /// captured in this field.
   QuantityBuilder? amount;
+
+  /// Converts a SubstanceDefinitionMolecularWeightBuilder to [SubstanceDefinitionMolecularWeight]
+  SubstanceDefinitionMolecularWeight build() =>
+      SubstanceDefinitionMolecularWeight.fromJson(toJson());
+
+  /// Converts a [SubstanceDefinitionMolecularWeightBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3354,6 +3421,13 @@ class SubstanceDefinitionMolecularWeightBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [SubstanceDefinitionStructure] to a Builder
+extension BuilderSubstanceDefinitionStructure on SubstanceDefinitionStructure {
+  /// Converts [SubstanceDefinitionStructure] to a [SubstanceDefinitionStructureBuilder]
+  SubstanceDefinitionStructureBuilder get toBuilder =>
+      SubstanceDefinitionStructureBuilder.fromJson(toJson());
+}
+
 /// [SubstanceDefinitionStructureBuilder]
 /// Structural information.
 class SubstanceDefinitionStructureBuilder extends BackboneElementBuilder {
@@ -3555,6 +3629,12 @@ class SubstanceDefinitionStructureBuilder extends BackboneElementBuilder {
   /// [representation]
   /// A depiction of the structure or characterization of the substance.
   List<SubstanceDefinitionRepresentationBuilder>? representation;
+
+  /// Converts a SubstanceDefinitionStructureBuilder to [SubstanceDefinitionStructure]
+  SubstanceDefinitionStructure build() =>
+      SubstanceDefinitionStructure.fromJson(toJson());
+
+  /// Converts a [SubstanceDefinitionStructureBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -4085,6 +4165,14 @@ class SubstanceDefinitionStructureBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [SubstanceDefinitionRepresentation] to a Builder
+extension BuilderSubstanceDefinitionRepresentation
+    on SubstanceDefinitionRepresentation {
+  /// Converts [SubstanceDefinitionRepresentation] to a [SubstanceDefinitionRepresentationBuilder]
+  SubstanceDefinitionRepresentationBuilder get toBuilder =>
+      SubstanceDefinitionRepresentationBuilder.fromJson(toJson());
+}
+
 /// [SubstanceDefinitionRepresentationBuilder]
 /// A depiction of the structure or characterization of the substance.
 class SubstanceDefinitionRepresentationBuilder extends BackboneElementBuilder {
@@ -4230,6 +4318,12 @@ class SubstanceDefinitionRepresentationBuilder extends BackboneElementBuilder {
   /// e.g. a molecular structure graphic of the substance, a JCAMP or AnIML
   /// file.
   ReferenceBuilder? document;
+
+  /// Converts a SubstanceDefinitionRepresentationBuilder to [SubstanceDefinitionRepresentation]
+  SubstanceDefinitionRepresentation build() =>
+      SubstanceDefinitionRepresentation.fromJson(toJson());
+
+  /// Converts a [SubstanceDefinitionRepresentationBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -4617,6 +4711,13 @@ class SubstanceDefinitionRepresentationBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [SubstanceDefinitionCode] to a Builder
+extension BuilderSubstanceDefinitionCode on SubstanceDefinitionCode {
+  /// Converts [SubstanceDefinitionCode] to a [SubstanceDefinitionCodeBuilder]
+  SubstanceDefinitionCodeBuilder get toBuilder =>
+      SubstanceDefinitionCodeBuilder.fromJson(toJson());
+}
+
 /// [SubstanceDefinitionCodeBuilder]
 /// Codes associated with the substance.
 class SubstanceDefinitionCodeBuilder extends BackboneElementBuilder {
@@ -4777,6 +4878,11 @@ class SubstanceDefinitionCodeBuilder extends BackboneElementBuilder {
   /// [source]
   /// Supporting literature.
   List<ReferenceBuilder>? source;
+
+  /// Converts a SubstanceDefinitionCodeBuilder to [SubstanceDefinitionCode]
+  SubstanceDefinitionCode build() => SubstanceDefinitionCode.fromJson(toJson());
+
+  /// Converts a [SubstanceDefinitionCodeBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -5205,6 +5311,13 @@ class SubstanceDefinitionCodeBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [SubstanceDefinitionName] to a Builder
+extension BuilderSubstanceDefinitionName on SubstanceDefinitionName {
+  /// Converts [SubstanceDefinitionName] to a [SubstanceDefinitionNameBuilder]
+  SubstanceDefinitionNameBuilder get toBuilder =>
+      SubstanceDefinitionNameBuilder.fromJson(toJson());
+}
+
 /// [SubstanceDefinitionNameBuilder]
 /// Names applicable to this substance.
 class SubstanceDefinitionNameBuilder extends BackboneElementBuilder {
@@ -5452,6 +5565,11 @@ class SubstanceDefinitionNameBuilder extends BackboneElementBuilder {
   /// [source]
   /// Supporting literature.
   List<ReferenceBuilder>? source;
+
+  /// Converts a SubstanceDefinitionNameBuilder to [SubstanceDefinitionName]
+  SubstanceDefinitionName build() => SubstanceDefinitionName.fromJson(toJson());
+
+  /// Converts a [SubstanceDefinitionNameBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -6097,6 +6215,13 @@ class SubstanceDefinitionNameBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [SubstanceDefinitionOfficial] to a Builder
+extension BuilderSubstanceDefinitionOfficial on SubstanceDefinitionOfficial {
+  /// Converts [SubstanceDefinitionOfficial] to a [SubstanceDefinitionOfficialBuilder]
+  SubstanceDefinitionOfficialBuilder get toBuilder =>
+      SubstanceDefinitionOfficialBuilder.fromJson(toJson());
+}
+
 /// [SubstanceDefinitionOfficialBuilder]
 /// Details of the official nature of this name.
 class SubstanceDefinitionOfficialBuilder extends BackboneElementBuilder {
@@ -6227,6 +6352,12 @@ class SubstanceDefinitionOfficialBuilder extends BackboneElementBuilder {
   /// [date]
   /// Date of the official name change.
   FhirDateTimeBuilder? date;
+
+  /// Converts a SubstanceDefinitionOfficialBuilder to [SubstanceDefinitionOfficial]
+  SubstanceDefinitionOfficial build() =>
+      SubstanceDefinitionOfficial.fromJson(toJson());
+
+  /// Converts a [SubstanceDefinitionOfficialBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -6581,6 +6712,14 @@ class SubstanceDefinitionOfficialBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [SubstanceDefinitionRelationship] to a Builder
+extension BuilderSubstanceDefinitionRelationship
+    on SubstanceDefinitionRelationship {
+  /// Converts [SubstanceDefinitionRelationship] to a [SubstanceDefinitionRelationshipBuilder]
+  SubstanceDefinitionRelationshipBuilder get toBuilder =>
+      SubstanceDefinitionRelationshipBuilder.fromJson(toJson());
+}
+
 /// [SubstanceDefinitionRelationshipBuilder]
 /// A link between this substance and another, with details of the
 /// relationship.
@@ -6791,6 +6930,12 @@ class SubstanceDefinitionRelationshipBuilder extends BackboneElementBuilder {
   /// [source]
   /// Supporting literature.
   List<ReferenceBuilder>? source;
+
+  /// Converts a SubstanceDefinitionRelationshipBuilder to [SubstanceDefinitionRelationship]
+  SubstanceDefinitionRelationship build() =>
+      SubstanceDefinitionRelationship.fromJson(toJson());
+
+  /// Converts a [SubstanceDefinitionRelationshipBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -7413,6 +7558,14 @@ class SubstanceDefinitionRelationshipBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [SubstanceDefinitionSourceMaterial] to a Builder
+extension BuilderSubstanceDefinitionSourceMaterial
+    on SubstanceDefinitionSourceMaterial {
+  /// Converts [SubstanceDefinitionSourceMaterial] to a [SubstanceDefinitionSourceMaterialBuilder]
+  SubstanceDefinitionSourceMaterialBuilder get toBuilder =>
+      SubstanceDefinitionSourceMaterialBuilder.fromJson(toJson());
+}
+
 /// [SubstanceDefinitionSourceMaterialBuilder]
 /// Material or taxonomic/anatomical source for the substance.
 class SubstanceDefinitionSourceMaterialBuilder extends BackboneElementBuilder {
@@ -7571,6 +7724,12 @@ class SubstanceDefinitionSourceMaterialBuilder extends BackboneElementBuilder {
   /// [countryOfOrigin]
   /// The country or countries where the material is harvested.
   List<CodeableConceptBuilder>? countryOfOrigin;
+
+  /// Converts a SubstanceDefinitionSourceMaterialBuilder to [SubstanceDefinitionSourceMaterial]
+  SubstanceDefinitionSourceMaterial build() =>
+      SubstanceDefinitionSourceMaterial.fromJson(toJson());
+
+  /// Converts a [SubstanceDefinitionSourceMaterialBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

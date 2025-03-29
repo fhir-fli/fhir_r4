@@ -1,8 +1,20 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        Practitioner,
+        PractitionerQualification;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [Practitioner] to a Builder
+extension BuilderPractitioner on Practitioner {
+  /// Converts [Practitioner] to a [PractitionerBuilder]
+  PractitionerBuilder get toBuilder => PractitionerBuilder.fromJson(toJson());
+}
 
 /// [PractitionerBuilder]
 /// A person who is directly or indirectly involved in the provisioning of
@@ -284,6 +296,11 @@ class PractitionerBuilder extends DomainResourceBuilder {
   /// [communication]
   /// A language the practitioner can use in patient communication.
   List<CodeableConceptBuilder>? communication;
+
+  /// Converts a PractitionerBuilder to [Practitioner]
+  Practitioner build() => Practitioner.fromJson(toJson());
+
+  /// Converts a [PractitionerBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1062,6 +1079,13 @@ class PractitionerBuilder extends DomainResourceBuilder {
   }
 }
 
+/// Extension to change [PractitionerQualification] to a Builder
+extension BuilderPractitionerQualification on PractitionerQualification {
+  /// Converts [PractitionerQualification] to a [PractitionerQualificationBuilder]
+  PractitionerQualificationBuilder get toBuilder =>
+      PractitionerQualificationBuilder.fromJson(toJson());
+}
+
 /// [PractitionerQualificationBuilder]
 /// The official certifications, training, and licenses that authorize or
 /// otherwise pertain to the provision of care by the practitioner. For
@@ -1209,6 +1233,12 @@ class PractitionerQualificationBuilder extends BackboneElementBuilder {
   /// [issuer]
   /// Organization that regulates and issues the qualification.
   ReferenceBuilder? issuer;
+
+  /// Converts a PractitionerQualificationBuilder to [PractitionerQualification]
+  PractitionerQualification build() =>
+      PractitionerQualification.fromJson(toJson());
+
+  /// Converts a [PractitionerQualificationBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

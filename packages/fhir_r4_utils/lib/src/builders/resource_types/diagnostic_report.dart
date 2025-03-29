@@ -1,8 +1,21 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        DiagnosticReport,
+        DiagnosticReportMedia;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [DiagnosticReport] to a Builder
+extension BuilderDiagnosticReport on DiagnosticReport {
+  /// Converts [DiagnosticReport] to a [DiagnosticReportBuilder]
+  DiagnosticReportBuilder get toBuilder =>
+      DiagnosticReportBuilder.fromJson(toJson());
+}
 
 /// [DiagnosticReportBuilder]
 /// The findings and interpretation of diagnostic tests performed on
@@ -416,6 +429,11 @@ class DiagnosticReportBuilder extends DomainResourceBuilder {
   /// diagnostic service. Multiple formats are allowed but they SHALL be
   /// semantically equivalent.
   List<AttachmentBuilder>? presentedForm;
+
+  /// Converts a DiagnosticReportBuilder to [DiagnosticReport]
+  DiagnosticReport build() => DiagnosticReport.fromJson(toJson());
+
+  /// Converts a [DiagnosticReportBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1524,6 +1542,13 @@ class DiagnosticReportBuilder extends DomainResourceBuilder {
   }
 }
 
+/// Extension to change [DiagnosticReportMedia] to a Builder
+extension BuilderDiagnosticReportMedia on DiagnosticReportMedia {
+  /// Converts [DiagnosticReportMedia] to a [DiagnosticReportMediaBuilder]
+  DiagnosticReportMediaBuilder get toBuilder =>
+      DiagnosticReportMediaBuilder.fromJson(toJson());
+}
+
 /// [DiagnosticReportMediaBuilder]
 /// A list of key images associated with this report. The images are
 /// generally created during the diagnostic process, and may be directly of
@@ -1646,6 +1671,11 @@ class DiagnosticReportMediaBuilder extends BackboneElementBuilder {
   /// [link]
   /// Reference to the image source.
   ReferenceBuilder? link;
+
+  /// Converts a DiagnosticReportMediaBuilder to [DiagnosticReportMedia]
+  DiagnosticReportMedia build() => DiagnosticReportMedia.fromJson(toJson());
+
+  /// Converts a [DiagnosticReportMediaBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

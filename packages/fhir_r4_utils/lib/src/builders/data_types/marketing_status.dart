@@ -1,8 +1,15 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, StringExtensionForFHIR;
+    show yamlMapToJson, yamlToJson, StringExtensionForFHIR, MarketingStatus;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [MarketingStatus] to a Builder
+extension BuilderMarketingStatus on MarketingStatus {
+  /// Converts [MarketingStatus] to a [MarketingStatusBuilder]
+  MarketingStatusBuilder get toBuilder =>
+      MarketingStatusBuilder.fromJson(toJson());
+}
 
 /// [MarketingStatusBuilder]
 /// The marketing status describes the date when a medicinal product is
@@ -175,6 +182,11 @@ class MarketingStatusBuilder extends BackboneTypeBuilder {
   /// refers to the release of the Medicinal Product into the distribution
   /// chain.
   FhirDateTimeBuilder? restoreDate;
+
+  /// Converts a MarketingStatusBuilder to [MarketingStatus]
+  MarketingStatus build() => MarketingStatus.fromJson(toJson());
+
+  /// Converts a [MarketingStatusBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

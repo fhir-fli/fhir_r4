@@ -1,8 +1,14 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, StringExtensionForFHIR;
+    show yamlMapToJson, yamlToJson, StringExtensionForFHIR, SampledData;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [SampledData] to a Builder
+extension BuilderSampledData on SampledData {
+  /// Converts [SampledData] to a [SampledDataBuilder]
+  SampledDataBuilder get toBuilder => SampledDataBuilder.fromJson(toJson());
+}
 
 /// [SampledDataBuilder]
 /// A series of measurements taken by a device, with upper and lower
@@ -187,6 +193,11 @@ class SampledDataBuilder extends DataTypeBuilder
   /// detection limit) and "U" (above detection limit) can also be used in
   /// place of a decimal value.
   FhirStringBuilder? data;
+
+  /// Converts a SampledDataBuilder to [SampledData]
+  SampledData build() => SampledData.fromJson(toJson());
+
+  /// Converts a [SampledDataBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

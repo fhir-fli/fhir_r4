@@ -59,7 +59,8 @@ abstract class BackboneTypeBuilder extends DataTypeBuilder {
   /// Removes modifier extensions by URL
   void removeModifierExtension(String url) {
     modifierExtension?.removeWhere(
-        (FhirExtensionBuilder ext) => ext.url?.equals(url) ?? false);
+      (FhirExtensionBuilder ext) => ext.url?.equals(url) ?? false,
+    );
   }
 
   @override

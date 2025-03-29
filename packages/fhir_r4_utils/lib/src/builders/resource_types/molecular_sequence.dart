@@ -1,8 +1,28 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        MolecularSequence,
+        MolecularSequenceReferenceSeq,
+        MolecularSequenceVariant,
+        MolecularSequenceQuality,
+        MolecularSequenceRoc,
+        MolecularSequenceRepository,
+        MolecularSequenceStructureVariant,
+        MolecularSequenceOuter,
+        MolecularSequenceInner;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [MolecularSequence] to a Builder
+extension BuilderMolecularSequence on MolecularSequence {
+  /// Converts [MolecularSequence] to a [MolecularSequenceBuilder]
+  MolecularSequenceBuilder get toBuilder =>
+      MolecularSequenceBuilder.fromJson(toJson());
+}
 
 /// [MolecularSequenceBuilder]
 /// Raw data describing a biological sequence.
@@ -353,6 +373,11 @@ class MolecularSequenceBuilder extends DomainResourceBuilder {
   /// [structureVariant]
   /// Information about chromosome structure variation.
   List<MolecularSequenceStructureVariantBuilder>? structureVariant;
+
+  /// Converts a MolecularSequenceBuilder to [MolecularSequence]
+  MolecularSequence build() => MolecularSequence.fromJson(toJson());
+
+  /// Converts a [MolecularSequenceBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1318,6 +1343,14 @@ class MolecularSequenceBuilder extends DomainResourceBuilder {
   }
 }
 
+/// Extension to change [MolecularSequenceReferenceSeq] to a Builder
+extension BuilderMolecularSequenceReferenceSeq
+    on MolecularSequenceReferenceSeq {
+  /// Converts [MolecularSequenceReferenceSeq] to a [MolecularSequenceReferenceSeqBuilder]
+  MolecularSequenceReferenceSeqBuilder get toBuilder =>
+      MolecularSequenceReferenceSeqBuilder.fromJson(toJson());
+}
+
 /// [MolecularSequenceReferenceSeqBuilder]
 /// A sequence that is used as a reference to describe variants that are
 /// present in a sequence analyzed.
@@ -1532,6 +1565,12 @@ class MolecularSequenceReferenceSeqBuilder extends BackboneElementBuilder {
   /// position. If the coordinate system is 1-base, then end is inclusive and
   /// includes the last position.
   FhirIntegerBuilder? windowEnd;
+
+  /// Converts a MolecularSequenceReferenceSeqBuilder to [MolecularSequenceReferenceSeq]
+  MolecularSequenceReferenceSeq build() =>
+      MolecularSequenceReferenceSeq.fromJson(toJson());
+
+  /// Converts a [MolecularSequenceReferenceSeqBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2078,6 +2117,13 @@ class MolecularSequenceReferenceSeqBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [MolecularSequenceVariant] to a Builder
+extension BuilderMolecularSequenceVariant on MolecularSequenceVariant {
+  /// Converts [MolecularSequenceVariant] to a [MolecularSequenceVariantBuilder]
+  MolecularSequenceVariantBuilder get toBuilder =>
+      MolecularSequenceVariantBuilder.fromJson(toJson());
+}
+
 /// [MolecularSequenceVariantBuilder]
 /// The definition of variant here originates from Sequence ontology
 /// ([variant_of](http://www.sequenceontology.org/browser/current_svn/term/variant_of)).
@@ -2263,6 +2309,12 @@ class MolecularSequenceVariantBuilder extends BackboneElementBuilder {
   /// [variantPointer]
   /// A pointer to an Observation containing variant information.
   ReferenceBuilder? variantPointer;
+
+  /// Converts a MolecularSequenceVariantBuilder to [MolecularSequenceVariant]
+  MolecularSequenceVariant build() =>
+      MolecularSequenceVariant.fromJson(toJson());
+
+  /// Converts a [MolecularSequenceVariantBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2713,6 +2765,13 @@ class MolecularSequenceVariantBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [MolecularSequenceQuality] to a Builder
+extension BuilderMolecularSequenceQuality on MolecularSequenceQuality {
+  /// Converts [MolecularSequenceQuality] to a [MolecularSequenceQualityBuilder]
+  MolecularSequenceQualityBuilder get toBuilder =>
+      MolecularSequenceQualityBuilder.fromJson(toJson());
+}
+
 /// [MolecularSequenceQualityBuilder]
 /// An experimental feature attribute that defines the quality of the
 /// feature in a quantitative way, such as a phred quality score
@@ -2998,6 +3057,12 @@ class MolecularSequenceQualityBuilder extends BackboneElementBuilder {
   /// Receiver Operator Characteristic (ROC) Curve to give
   /// sensitivity/specificity tradeoff.
   MolecularSequenceRocBuilder? roc;
+
+  /// Converts a MolecularSequenceQualityBuilder to [MolecularSequenceQuality]
+  MolecularSequenceQuality build() =>
+      MolecularSequenceQuality.fromJson(toJson());
+
+  /// Converts a [MolecularSequenceQualityBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3736,6 +3801,13 @@ class MolecularSequenceQualityBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [MolecularSequenceRoc] to a Builder
+extension BuilderMolecularSequenceRoc on MolecularSequenceRoc {
+  /// Converts [MolecularSequenceRoc] to a [MolecularSequenceRocBuilder]
+  MolecularSequenceRocBuilder get toBuilder =>
+      MolecularSequenceRocBuilder.fromJson(toJson());
+}
+
 /// [MolecularSequenceRocBuilder]
 /// Receiver Operator Characteristic (ROC) Curve to give
 /// sensitivity/specificity tradeoff.
@@ -3916,6 +3988,11 @@ class MolecularSequenceRocBuilder extends BackboneElementBuilder {
   /// Calculated fScore if the GQ score threshold was set to "score" field
   /// value.
   List<FhirDecimalBuilder>? fMeasure;
+
+  /// Converts a MolecularSequenceRocBuilder to [MolecularSequenceRoc]
+  MolecularSequenceRoc build() => MolecularSequenceRoc.fromJson(toJson());
+
+  /// Converts a [MolecularSequenceRocBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -4433,6 +4510,13 @@ class MolecularSequenceRocBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [MolecularSequenceRepository] to a Builder
+extension BuilderMolecularSequenceRepository on MolecularSequenceRepository {
+  /// Converts [MolecularSequenceRepository] to a [MolecularSequenceRepositoryBuilder]
+  MolecularSequenceRepositoryBuilder get toBuilder =>
+      MolecularSequenceRepositoryBuilder.fromJson(toJson());
+}
+
 /// [MolecularSequenceRepositoryBuilder]
 /// Configurations of the external repository. The repository shall store
 /// target's observedSeq or records related with target's observedSeq.
@@ -4603,6 +4687,12 @@ class MolecularSequenceRepositoryBuilder extends BackboneElementBuilder {
   /// [readsetId]
   /// Id of the read in this external repository.
   FhirStringBuilder? readsetId;
+
+  /// Converts a MolecularSequenceRepositoryBuilder to [MolecularSequenceRepository]
+  MolecularSequenceRepository build() =>
+      MolecularSequenceRepository.fromJson(toJson());
+
+  /// Converts a [MolecularSequenceRepositoryBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -5053,6 +5143,14 @@ class MolecularSequenceRepositoryBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [MolecularSequenceStructureVariant] to a Builder
+extension BuilderMolecularSequenceStructureVariant
+    on MolecularSequenceStructureVariant {
+  /// Converts [MolecularSequenceStructureVariant] to a [MolecularSequenceStructureVariantBuilder]
+  MolecularSequenceStructureVariantBuilder get toBuilder =>
+      MolecularSequenceStructureVariantBuilder.fromJson(toJson());
+}
+
 /// [MolecularSequenceStructureVariantBuilder]
 /// Information about chromosome structure variation.
 class MolecularSequenceStructureVariantBuilder extends BackboneElementBuilder {
@@ -5205,6 +5303,12 @@ class MolecularSequenceStructureVariantBuilder extends BackboneElementBuilder {
   /// [inner]
   /// Structural variant inner.
   MolecularSequenceInnerBuilder? inner;
+
+  /// Converts a MolecularSequenceStructureVariantBuilder to [MolecularSequenceStructureVariant]
+  MolecularSequenceStructureVariant build() =>
+      MolecularSequenceStructureVariant.fromJson(toJson());
+
+  /// Converts a [MolecularSequenceStructureVariantBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -5624,6 +5728,13 @@ class MolecularSequenceStructureVariantBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [MolecularSequenceOuter] to a Builder
+extension BuilderMolecularSequenceOuter on MolecularSequenceOuter {
+  /// Converts [MolecularSequenceOuter] to a [MolecularSequenceOuterBuilder]
+  MolecularSequenceOuterBuilder get toBuilder =>
+      MolecularSequenceOuterBuilder.fromJson(toJson());
+}
+
 /// [MolecularSequenceOuterBuilder]
 /// Structural variant outer.
 class MolecularSequenceOuterBuilder extends BackboneElementBuilder {
@@ -5746,6 +5857,11 @@ class MolecularSequenceOuterBuilder extends BackboneElementBuilder {
   /// coordinate system is 1-base, then end is inclusive and includes the
   /// last position.
   FhirIntegerBuilder? end;
+
+  /// Converts a MolecularSequenceOuterBuilder to [MolecularSequenceOuter]
+  MolecularSequenceOuter build() => MolecularSequenceOuter.fromJson(toJson());
+
+  /// Converts a [MolecularSequenceOuterBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -6068,6 +6184,13 @@ class MolecularSequenceOuterBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [MolecularSequenceInner] to a Builder
+extension BuilderMolecularSequenceInner on MolecularSequenceInner {
+  /// Converts [MolecularSequenceInner] to a [MolecularSequenceInnerBuilder]
+  MolecularSequenceInnerBuilder get toBuilder =>
+      MolecularSequenceInnerBuilder.fromJson(toJson());
+}
+
 /// [MolecularSequenceInnerBuilder]
 /// Structural variant inner.
 class MolecularSequenceInnerBuilder extends BackboneElementBuilder {
@@ -6190,6 +6313,11 @@ class MolecularSequenceInnerBuilder extends BackboneElementBuilder {
   /// coordinate system is 1-base, then end is inclusive and includes the
   /// last position.
   FhirIntegerBuilder? end;
+
+  /// Converts a MolecularSequenceInnerBuilder to [MolecularSequenceInner]
+  MolecularSequenceInner build() => MolecularSequenceInner.fromJson(toJson());
+
+  /// Converts a [MolecularSequenceInnerBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

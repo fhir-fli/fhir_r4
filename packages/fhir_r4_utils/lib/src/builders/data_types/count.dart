@@ -1,8 +1,14 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, StringExtensionForFHIR;
+    show yamlMapToJson, yamlToJson, StringExtensionForFHIR, Count;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [Count] to a Builder
+extension BuilderCount on Count {
+  /// Converts [Count] to a [CountBuilder]
+  CountBuilder get toBuilder => CountBuilder.fromJson(toJson());
+}
 
 /// [CountBuilder]
 /// A measured amount (or an amount that can potentially be measured). Note
@@ -136,6 +142,10 @@ class CountBuilder extends QuantityBuilder
   @override
   String get fhirType => 'Count';
 
+  /// Converts a CountBuilder to [Count]
+  Count build() => Count.fromJson(toJson());
+
+  /// Converts a [CountBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

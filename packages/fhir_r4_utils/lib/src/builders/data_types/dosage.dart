@@ -1,8 +1,19 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        StringExtensionForFHIR,
+        Dosage,
+        DosageDoseAndRate;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [Dosage] to a Builder
+extension BuilderDosage on Dosage {
+  /// Converts [Dosage] to a [DosageBuilder]
+  DosageBuilder get toBuilder => DosageBuilder.fromJson(toJson());
+}
 
 /// [DosageBuilder]
 /// Indicates how the medication is/was taken or should be taken by the
@@ -276,6 +287,11 @@ class DosageBuilder extends BackboneTypeBuilder
   /// [maxDosePerLifetime]
   /// Upper limit on medication per lifetime of the patient.
   QuantityBuilder? maxDosePerLifetime;
+
+  /// Converts a DosageBuilder to [Dosage]
+  Dosage build() => Dosage.fromJson(toJson());
+
+  /// Converts a [DosageBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1016,6 +1032,13 @@ class DosageBuilder extends BackboneTypeBuilder
   }
 }
 
+/// Extension to change [DosageDoseAndRate] to a Builder
+extension BuilderDosageDoseAndRate on DosageDoseAndRate {
+  /// Converts [DosageDoseAndRate] to a [DosageDoseAndRateBuilder]
+  DosageDoseAndRateBuilder get toBuilder =>
+      DosageDoseAndRateBuilder.fromJson(toJson());
+}
+
 /// [DosageDoseAndRateBuilder]
 /// The amount of medication administered.
 class DosageDoseAndRateBuilder extends ElementBuilder {
@@ -1152,6 +1175,11 @@ class DosageDoseAndRateBuilder extends ElementBuilder {
 
   /// Getter for [rateQuantity] as a QuantityBuilder
   QuantityBuilder? get rateQuantity => rateX?.isAs<QuantityBuilder>();
+
+  /// Converts a DosageDoseAndRateBuilder to [DosageDoseAndRate]
+  DosageDoseAndRate build() => DosageDoseAndRate.fromJson(toJson());
+
+  /// Converts a [DosageDoseAndRateBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

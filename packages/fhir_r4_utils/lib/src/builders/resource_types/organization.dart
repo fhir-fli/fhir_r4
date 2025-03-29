@@ -1,8 +1,20 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        Organization,
+        OrganizationContact;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [Organization] to a Builder
+extension BuilderOrganization on Organization {
+  /// Converts [Organization] to a [OrganizationBuilder]
+  OrganizationBuilder get toBuilder => OrganizationBuilder.fromJson(toJson());
+}
 
 /// [OrganizationBuilder]
 /// A formally or informally recognized grouping of people or organizations
@@ -278,6 +290,11 @@ class OrganizationBuilder extends DomainResourceBuilder {
   /// Technical endpoints providing access to services operated for the
   /// organization.
   List<ReferenceBuilder>? endpoint;
+
+  /// Converts a OrganizationBuilder to [Organization]
+  Organization build() => Organization.fromJson(toJson());
+
+  /// Converts a [OrganizationBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1056,6 +1073,13 @@ class OrganizationBuilder extends DomainResourceBuilder {
   }
 }
 
+/// Extension to change [OrganizationContact] to a Builder
+extension BuilderOrganizationContact on OrganizationContact {
+  /// Converts [OrganizationContact] to a [OrganizationContactBuilder]
+  OrganizationContactBuilder get toBuilder =>
+      OrganizationContactBuilder.fromJson(toJson());
+}
+
 /// [OrganizationContactBuilder]
 /// Contact for the organization for a certain purpose.
 class OrganizationContactBuilder extends BackboneElementBuilder {
@@ -1200,6 +1224,11 @@ class OrganizationContactBuilder extends BackboneElementBuilder {
   /// [address]
   /// Visiting or postal addresses for the contact.
   AddressBuilder? address;
+
+  /// Converts a OrganizationContactBuilder to [OrganizationContact]
+  OrganizationContact build() => OrganizationContact.fromJson(toJson());
+
+  /// Converts a [OrganizationContactBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

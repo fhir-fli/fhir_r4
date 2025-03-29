@@ -1,8 +1,14 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, StringExtensionForFHIR;
+    show yamlMapToJson, yamlToJson, StringExtensionForFHIR, Quantity;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [Quantity] to a Builder
+extension BuilderQuantity on Quantity {
+  /// Converts [Quantity] to a [QuantityBuilder]
+  QuantityBuilder get toBuilder => QuantityBuilder.fromJson(toJson());
+}
 
 /// [QuantityBuilder]
 /// A measured amount (or an amount that can potentially be measured). Note
@@ -196,6 +202,11 @@ class QuantityBuilder extends DataTypeBuilder
   /// A computer processable form of the unit in some unit representation
   /// system.
   FhirCodeBuilder? code;
+
+  /// Converts a QuantityBuilder to [Quantity]
+  Quantity build() => Quantity.fromJson(toJson());
+
+  /// Converts a [QuantityBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

@@ -1,8 +1,14 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, StringExtensionForFHIR;
+    show yamlMapToJson, yamlToJson, StringExtensionForFHIR, FhirDuration;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [FhirDuration] to a Builder
+extension BuilderFhirDuration on FhirDuration {
+  /// Converts [FhirDuration] to a [FhirDurationBuilder]
+  FhirDurationBuilder get toBuilder => FhirDurationBuilder.fromJson(toJson());
+}
 
 /// [FhirDurationBuilder]
 /// A length of time.
@@ -145,6 +151,10 @@ class FhirDurationBuilder extends QuantityBuilder
   @override
   String get fhirType => 'Duration';
 
+  /// Converts a FhirDurationBuilder to [FhirDuration]
+  FhirDuration build() => FhirDuration.fromJson(toJson());
+
+  /// Converts a [FhirDurationBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

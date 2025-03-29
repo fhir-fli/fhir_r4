@@ -1,8 +1,21 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        Account,
+        AccountCoverage,
+        AccountGuarantor;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [Account] to a Builder
+extension BuilderAccount on Account {
+  /// Converts [Account] to a [AccountBuilder]
+  AccountBuilder get toBuilder => AccountBuilder.fromJson(toJson());
+}
 
 /// [AccountBuilder]
 /// A financial tool for tracking value accrued for a particular purpose.
@@ -285,6 +298,11 @@ class AccountBuilder extends DomainResourceBuilder {
   /// [partOf]
   /// Reference to a parent Account.
   ReferenceBuilder? partOf;
+
+  /// Converts a AccountBuilder to [Account]
+  Account build() => Account.fromJson(toJson());
+
+  /// Converts a [AccountBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1080,6 +1098,13 @@ class AccountBuilder extends DomainResourceBuilder {
   }
 }
 
+/// Extension to change [AccountCoverage] to a Builder
+extension BuilderAccountCoverage on AccountCoverage {
+  /// Converts [AccountCoverage] to a [AccountCoverageBuilder]
+  AccountCoverageBuilder get toBuilder =>
+      AccountCoverageBuilder.fromJson(toJson());
+}
+
 /// [AccountCoverageBuilder]
 /// The party(s) that are responsible for covering the payment of this
 /// account, and what order should they be applied to the account.
@@ -1203,6 +1228,11 @@ class AccountCoverageBuilder extends BackboneElementBuilder {
   /// [priority]
   /// The priority of the coverage in the context of this account.
   FhirPositiveIntBuilder? priority;
+
+  /// Converts a AccountCoverageBuilder to [AccountCoverage]
+  AccountCoverage build() => AccountCoverage.fromJson(toJson());
+
+  /// Converts a [AccountCoverageBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1525,6 +1555,13 @@ class AccountCoverageBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [AccountGuarantor] to a Builder
+extension BuilderAccountGuarantor on AccountGuarantor {
+  /// Converts [AccountGuarantor] to a [AccountGuarantorBuilder]
+  AccountGuarantorBuilder get toBuilder =>
+      AccountGuarantorBuilder.fromJson(toJson());
+}
+
 /// [AccountGuarantorBuilder]
 /// The parties responsible for balancing the account if other payment
 /// options fall short.
@@ -1656,6 +1693,11 @@ class AccountGuarantorBuilder extends BackboneElementBuilder {
   /// The timeframe during which the guarantor accepts responsibility for the
   /// account.
   PeriodBuilder? period;
+
+  /// Converts a AccountGuarantorBuilder to [AccountGuarantor]
+  AccountGuarantor build() => AccountGuarantor.fromJson(toJson());
+
+  /// Converts a [AccountGuarantorBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

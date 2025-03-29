@@ -1,8 +1,20 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        CatalogEntry,
+        CatalogEntryRelatedEntry;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [CatalogEntry] to a Builder
+extension BuilderCatalogEntry on CatalogEntry {
+  /// Converts [CatalogEntry] to a [CatalogEntryBuilder]
+  CatalogEntryBuilder get toBuilder => CatalogEntryBuilder.fromJson(toJson());
+}
 
 /// [CatalogEntryBuilder]
 /// Catalog entries are wrappers that contextualize items included in a
@@ -312,6 +324,11 @@ class CatalogEntryBuilder extends DomainResourceBuilder {
   /// Used for example, to point to a substance, or to a device used to
   /// administer a medication.
   List<CatalogEntryRelatedEntryBuilder>? relatedEntry;
+
+  /// Converts a CatalogEntryBuilder to [CatalogEntry]
+  CatalogEntry build() => CatalogEntry.fromJson(toJson());
+
+  /// Converts a [CatalogEntryBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1189,6 +1206,13 @@ class CatalogEntryBuilder extends DomainResourceBuilder {
   }
 }
 
+/// Extension to change [CatalogEntryRelatedEntry] to a Builder
+extension BuilderCatalogEntryRelatedEntry on CatalogEntryRelatedEntry {
+  /// Converts [CatalogEntryRelatedEntry] to a [CatalogEntryRelatedEntryBuilder]
+  CatalogEntryRelatedEntryBuilder get toBuilder =>
+      CatalogEntryRelatedEntryBuilder.fromJson(toJson());
+}
+
 /// [CatalogEntryRelatedEntryBuilder]
 /// Used for example, to point to a substance, or to a device used to
 /// administer a medication.
@@ -1309,6 +1333,12 @@ class CatalogEntryRelatedEntryBuilder extends BackboneElementBuilder {
   /// [item]
   /// The reference to the related item.
   ReferenceBuilder? item;
+
+  /// Converts a CatalogEntryRelatedEntryBuilder to [CatalogEntryRelatedEntry]
+  CatalogEntryRelatedEntry build() =>
+      CatalogEntryRelatedEntry.fromJson(toJson());
+
+  /// Converts a [CatalogEntryRelatedEntryBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

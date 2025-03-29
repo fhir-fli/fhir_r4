@@ -1,8 +1,20 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        Subscription,
+        SubscriptionChannel;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [Subscription] to a Builder
+extension BuilderSubscription on Subscription {
+  /// Converts [Subscription] to a [SubscriptionBuilder]
+  SubscriptionBuilder get toBuilder => SubscriptionBuilder.fromJson(toJson());
+}
 
 /// [SubscriptionBuilder]
 /// The subscription resource is used to define a push-based subscription
@@ -229,6 +241,11 @@ class SubscriptionBuilder extends DomainResourceBuilder {
   /// Details where to send notifications when resources are received that
   /// meet the criteria.
   SubscriptionChannelBuilder? channel;
+
+  /// Converts a SubscriptionBuilder to [Subscription]
+  Subscription build() => Subscription.fromJson(toJson());
+
+  /// Converts a [SubscriptionBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -881,6 +898,13 @@ class SubscriptionBuilder extends DomainResourceBuilder {
   }
 }
 
+/// Extension to change [SubscriptionChannel] to a Builder
+extension BuilderSubscriptionChannel on SubscriptionChannel {
+  /// Converts [SubscriptionChannel] to a [SubscriptionChannelBuilder]
+  SubscriptionChannelBuilder get toBuilder =>
+      SubscriptionChannelBuilder.fromJson(toJson());
+}
+
 /// [SubscriptionChannelBuilder]
 /// Details where to send notifications when resources are received that
 /// meet the criteria.
@@ -1024,6 +1048,11 @@ class SubscriptionChannelBuilder extends BackboneElementBuilder {
   /// [header]
   /// Additional headers / information to send as part of the notification.
   List<FhirStringBuilder>? header;
+
+  /// Converts a SubscriptionChannelBuilder to [SubscriptionChannel]
+  SubscriptionChannel build() => SubscriptionChannel.fromJson(toJson());
+
+  /// Converts a [SubscriptionChannelBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

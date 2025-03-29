@@ -1,8 +1,19 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        PaymentNotice;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [PaymentNotice] to a Builder
+extension BuilderPaymentNotice on PaymentNotice {
+  /// Converts [PaymentNotice] to a [PaymentNoticeBuilder]
+  PaymentNoticeBuilder get toBuilder => PaymentNoticeBuilder.fromJson(toJson());
+}
 
 /// [PaymentNoticeBuilder]
 /// This resource provides the status of the payment for goods and services
@@ -277,6 +288,11 @@ class PaymentNoticeBuilder extends DomainResourceBuilder {
   /// [paymentStatus]
   /// A code indicating whether payment has been sent or cleared.
   CodeableConceptBuilder? paymentStatus;
+
+  /// Converts a PaymentNoticeBuilder to [PaymentNotice]
+  PaymentNotice build() => PaymentNotice.fromJson(toJson());
+
+  /// Converts a [PaymentNoticeBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

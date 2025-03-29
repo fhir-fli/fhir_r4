@@ -1,8 +1,14 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, StringExtensionForFHIR;
+    show yamlMapToJson, yamlToJson, StringExtensionForFHIR, Coding;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [Coding] to a Builder
+extension BuilderCoding on Coding {
+  /// Converts [Coding] to a [CodingBuilder]
+  CodingBuilder get toBuilder => CodingBuilder.fromJson(toJson());
+}
 
 /// [CodingBuilder]
 /// A reference to a code defined by a terminology system.
@@ -169,6 +175,11 @@ class CodingBuilder extends DataTypeBuilder
   /// Indicates that this coding was chosen by a user directly - e.g. off a
   /// pick list of available items (codes or displays).
   FhirBooleanBuilder? userSelected;
+
+  /// Converts a CodingBuilder to [Coding]
+  Coding build() => Coding.fromJson(toJson());
+
+  /// Converts a [CodingBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

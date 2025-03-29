@@ -1,5 +1,11 @@
 part of 'primitive_types.dart';
 
+/// Extension to convert a [FhirInstant] to a [FhirInstantBuilder]
+extension BuilderFhirInstant on FhirInstant {
+  /// Converts this instance to a [FhirInstantBuilder]
+  FhirInstantBuilder get toBuilder => FhirInstantBuilder.fromJson(toJson());
+}
+
 /// Extension to convert a [DateTime] to a [FhirInstantBuilder].
 extension FhirInstantBuilderExtension on DateTime {
   /// Converts a [DateTime] to a [FhirInstantBuilder].

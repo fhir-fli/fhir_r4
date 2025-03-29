@@ -1,8 +1,27 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        ClinicalUseDefinition,
+        ClinicalUseDefinitionContraindication,
+        ClinicalUseDefinitionOtherTherapy,
+        ClinicalUseDefinitionIndication,
+        ClinicalUseDefinitionInteraction,
+        ClinicalUseDefinitionInteractant,
+        ClinicalUseDefinitionUndesirableEffect,
+        ClinicalUseDefinitionWarning;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [ClinicalUseDefinition] to a Builder
+extension BuilderClinicalUseDefinition on ClinicalUseDefinition {
+  /// Converts [ClinicalUseDefinition] to a [ClinicalUseDefinitionBuilder]
+  ClinicalUseDefinitionBuilder get toBuilder =>
+      ClinicalUseDefinitionBuilder.fromJson(toJson());
+}
 
 /// [ClinicalUseDefinitionBuilder]
 /// A single issue - either an indication, contraindication, interaction or
@@ -289,6 +308,11 @@ class ClinicalUseDefinitionBuilder extends DomainResourceBuilder {
   /// operate heavy machinery', 'May cause drowsiness', or 'Get medical
   /// advice/attention if you feel unwell'.
   ClinicalUseDefinitionWarningBuilder? warning;
+
+  /// Converts a ClinicalUseDefinitionBuilder to [ClinicalUseDefinition]
+  ClinicalUseDefinition build() => ClinicalUseDefinition.fromJson(toJson());
+
+  /// Converts a [ClinicalUseDefinitionBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1086,6 +1110,14 @@ class ClinicalUseDefinitionBuilder extends DomainResourceBuilder {
   }
 }
 
+/// Extension to change [ClinicalUseDefinitionContraindication] to a Builder
+extension BuilderClinicalUseDefinitionContraindication
+    on ClinicalUseDefinitionContraindication {
+  /// Converts [ClinicalUseDefinitionContraindication] to a [ClinicalUseDefinitionContraindicationBuilder]
+  ClinicalUseDefinitionContraindicationBuilder get toBuilder =>
+      ClinicalUseDefinitionContraindicationBuilder.fromJson(toJson());
+}
+
 /// [ClinicalUseDefinitionContraindicationBuilder]
 /// Specifics for when this is a contraindication.
 class ClinicalUseDefinitionContraindicationBuilder
@@ -1253,6 +1285,12 @@ class ClinicalUseDefinitionContraindicationBuilder
   /// Information about the use of the medicinal product in relation to other
   /// therapies described as part of the contraindication.
   List<ClinicalUseDefinitionOtherTherapyBuilder>? otherTherapy;
+
+  /// Converts a ClinicalUseDefinitionContraindicationBuilder to [ClinicalUseDefinitionContraindication]
+  ClinicalUseDefinitionContraindication build() =>
+      ClinicalUseDefinitionContraindication.fromJson(toJson());
+
+  /// Converts a [ClinicalUseDefinitionContraindicationBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1688,6 +1726,14 @@ class ClinicalUseDefinitionContraindicationBuilder
   }
 }
 
+/// Extension to change [ClinicalUseDefinitionOtherTherapy] to a Builder
+extension BuilderClinicalUseDefinitionOtherTherapy
+    on ClinicalUseDefinitionOtherTherapy {
+  /// Converts [ClinicalUseDefinitionOtherTherapy] to a [ClinicalUseDefinitionOtherTherapyBuilder]
+  ClinicalUseDefinitionOtherTherapyBuilder get toBuilder =>
+      ClinicalUseDefinitionOtherTherapyBuilder.fromJson(toJson());
+}
+
 /// [ClinicalUseDefinitionOtherTherapyBuilder]
 /// Information about the use of the medicinal product in relation to other
 /// therapies described as part of the contraindication.
@@ -1809,6 +1855,12 @@ class ClinicalUseDefinitionOtherTherapyBuilder extends BackboneElementBuilder {
   /// Reference to a specific medication (active substance, medicinal product
   /// or class of products) as part of an indication or contraindication.
   CodeableReferenceBuilder? therapy;
+
+  /// Converts a ClinicalUseDefinitionOtherTherapyBuilder to [ClinicalUseDefinitionOtherTherapy]
+  ClinicalUseDefinitionOtherTherapy build() =>
+      ClinicalUseDefinitionOtherTherapy.fromJson(toJson());
+
+  /// Converts a [ClinicalUseDefinitionOtherTherapyBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2132,6 +2184,14 @@ class ClinicalUseDefinitionOtherTherapyBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [ClinicalUseDefinitionIndication] to a Builder
+extension BuilderClinicalUseDefinitionIndication
+    on ClinicalUseDefinitionIndication {
+  /// Converts [ClinicalUseDefinitionIndication] to a [ClinicalUseDefinitionIndicationBuilder]
+  ClinicalUseDefinitionIndicationBuilder get toBuilder =>
+      ClinicalUseDefinitionIndicationBuilder.fromJson(toJson());
+}
+
 /// [ClinicalUseDefinitionIndicationBuilder]
 /// Specifics for when this is an indication.
 class ClinicalUseDefinitionIndicationBuilder extends BackboneElementBuilder {
@@ -2333,6 +2393,12 @@ class ClinicalUseDefinitionIndicationBuilder extends BackboneElementBuilder {
   /// Information about the use of the medicinal product in relation to other
   /// therapies described as part of the indication.
   List<ClinicalUseDefinitionOtherTherapyBuilder>? otherTherapy;
+
+  /// Converts a ClinicalUseDefinitionIndicationBuilder to [ClinicalUseDefinitionIndication]
+  ClinicalUseDefinitionIndication build() =>
+      ClinicalUseDefinitionIndication.fromJson(toJson());
+
+  /// Converts a [ClinicalUseDefinitionIndicationBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2885,6 +2951,14 @@ class ClinicalUseDefinitionIndicationBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [ClinicalUseDefinitionInteraction] to a Builder
+extension BuilderClinicalUseDefinitionInteraction
+    on ClinicalUseDefinitionInteraction {
+  /// Converts [ClinicalUseDefinitionInteraction] to a [ClinicalUseDefinitionInteractionBuilder]
+  ClinicalUseDefinitionInteractionBuilder get toBuilder =>
+      ClinicalUseDefinitionInteractionBuilder.fromJson(toJson());
+}
+
 /// [ClinicalUseDefinitionInteractionBuilder]
 /// Specifics for when this is an interaction.
 class ClinicalUseDefinitionInteractionBuilder extends BackboneElementBuilder {
@@ -3047,6 +3121,12 @@ class ClinicalUseDefinitionInteractionBuilder extends BackboneElementBuilder {
   /// [management]
   /// Actions for managing the interaction.
   List<CodeableConceptBuilder>? management;
+
+  /// Converts a ClinicalUseDefinitionInteractionBuilder to [ClinicalUseDefinitionInteraction]
+  ClinicalUseDefinitionInteraction build() =>
+      ClinicalUseDefinitionInteraction.fromJson(toJson());
+
+  /// Converts a [ClinicalUseDefinitionInteractionBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3475,6 +3555,14 @@ class ClinicalUseDefinitionInteractionBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [ClinicalUseDefinitionInteractant] to a Builder
+extension BuilderClinicalUseDefinitionInteractant
+    on ClinicalUseDefinitionInteractant {
+  /// Converts [ClinicalUseDefinitionInteractant] to a [ClinicalUseDefinitionInteractantBuilder]
+  ClinicalUseDefinitionInteractantBuilder get toBuilder =>
+      ClinicalUseDefinitionInteractantBuilder.fromJson(toJson());
+}
+
 /// [ClinicalUseDefinitionInteractantBuilder]
 /// The specific medication, food, substance or laboratory test that
 /// interacts.
@@ -3593,6 +3681,12 @@ class ClinicalUseDefinitionInteractantBuilder extends BackboneElementBuilder {
   /// Getter for [itemCodeableConcept] as a CodeableConceptBuilder
   CodeableConceptBuilder? get itemCodeableConcept =>
       itemX?.isAs<CodeableConceptBuilder>();
+
+  /// Converts a ClinicalUseDefinitionInteractantBuilder to [ClinicalUseDefinitionInteractant]
+  ClinicalUseDefinitionInteractant build() =>
+      ClinicalUseDefinitionInteractant.fromJson(toJson());
+
+  /// Converts a [ClinicalUseDefinitionInteractantBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3937,6 +4031,14 @@ class ClinicalUseDefinitionInteractantBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [ClinicalUseDefinitionUndesirableEffect] to a Builder
+extension BuilderClinicalUseDefinitionUndesirableEffect
+    on ClinicalUseDefinitionUndesirableEffect {
+  /// Converts [ClinicalUseDefinitionUndesirableEffect] to a [ClinicalUseDefinitionUndesirableEffectBuilder]
+  ClinicalUseDefinitionUndesirableEffectBuilder get toBuilder =>
+      ClinicalUseDefinitionUndesirableEffectBuilder.fromJson(toJson());
+}
+
 /// [ClinicalUseDefinitionUndesirableEffectBuilder]
 /// Describe the possible undesirable effects (negative outcomes) from the
 /// use of the medicinal product as treatment.
@@ -4068,6 +4170,12 @@ class ClinicalUseDefinitionUndesirableEffectBuilder
   /// [frequencyOfOccurrence]
   /// How often the effect is seen.
   CodeableConceptBuilder? frequencyOfOccurrence;
+
+  /// Converts a ClinicalUseDefinitionUndesirableEffectBuilder to [ClinicalUseDefinitionUndesirableEffect]
+  ClinicalUseDefinitionUndesirableEffect build() =>
+      ClinicalUseDefinitionUndesirableEffect.fromJson(toJson());
+
+  /// Converts a [ClinicalUseDefinitionUndesirableEffectBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -4425,6 +4533,13 @@ class ClinicalUseDefinitionUndesirableEffectBuilder
   }
 }
 
+/// Extension to change [ClinicalUseDefinitionWarning] to a Builder
+extension BuilderClinicalUseDefinitionWarning on ClinicalUseDefinitionWarning {
+  /// Converts [ClinicalUseDefinitionWarning] to a [ClinicalUseDefinitionWarningBuilder]
+  ClinicalUseDefinitionWarningBuilder get toBuilder =>
+      ClinicalUseDefinitionWarningBuilder.fromJson(toJson());
+}
+
 /// [ClinicalUseDefinitionWarningBuilder]
 /// A critical piece of information about environmental, health or physical
 /// risks or hazards that serve as caution to the user. For example 'Do not
@@ -4546,6 +4661,12 @@ class ClinicalUseDefinitionWarningBuilder extends BackboneElementBuilder {
   /// [code]
   /// A coded or unformatted textual definition of this warning.
   CodeableConceptBuilder? code;
+
+  /// Converts a ClinicalUseDefinitionWarningBuilder to [ClinicalUseDefinitionWarning]
+  ClinicalUseDefinitionWarning build() =>
+      ClinicalUseDefinitionWarning.fromJson(toJson());
+
+  /// Converts a [ClinicalUseDefinitionWarningBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

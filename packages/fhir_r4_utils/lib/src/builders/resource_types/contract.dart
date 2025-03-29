@@ -1,8 +1,34 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        Contract,
+        ContractContentDefinition,
+        ContractTerm,
+        ContractSecurityLabel,
+        ContractOffer,
+        ContractParty,
+        ContractAnswer,
+        ContractAsset,
+        ContractContext,
+        ContractValuedItem,
+        ContractAction,
+        ContractSubject,
+        ContractSigner,
+        ContractFriendly,
+        ContractLegal,
+        ContractRule;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [Contract] to a Builder
+extension BuilderContract on Contract {
+  /// Converts [Contract] to a [ContractBuilder]
+  ContractBuilder get toBuilder => ContractBuilder.fromJson(toJson());
+}
 
 /// [ContractBuilder]
 /// Legally enforceable, formally recorded unilateral or bilateral
@@ -634,6 +660,11 @@ class ContractBuilder extends DomainResourceBuilder {
   /// Getter for [legallyBindingReference] as a ReferenceBuilder
   ReferenceBuilder? get legallyBindingReference =>
       legallyBindingX?.isAs<ReferenceBuilder>();
+
+  /// Converts a ContractBuilder to [Contract]
+  Contract build() => Contract.fromJson(toJson());
+
+  /// Converts a [ContractBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2292,6 +2323,13 @@ class ContractBuilder extends DomainResourceBuilder {
   }
 }
 
+/// Extension to change [ContractContentDefinition] to a Builder
+extension BuilderContractContentDefinition on ContractContentDefinition {
+  /// Converts [ContractContentDefinition] to a [ContractContentDefinitionBuilder]
+  ContractContentDefinitionBuilder get toBuilder =>
+      ContractContentDefinitionBuilder.fromJson(toJson());
+}
+
 /// [ContractContentDefinitionBuilder]
 /// Precusory content developed with a focus and intent of supporting the
 /// formation a Contract instance, which may be associated with and
@@ -2467,6 +2505,12 @@ class ContractContentDefinitionBuilder extends BackboneElementBuilder {
   /// statements are generally legal restrictions on the use and publishing
   /// of the Contract precursor content.
   FhirMarkdownBuilder? copyright;
+
+  /// Converts a ContractContentDefinitionBuilder to [ContractContentDefinition]
+  ContractContentDefinition build() =>
+      ContractContentDefinition.fromJson(toJson());
+
+  /// Converts a [ContractContentDefinitionBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2918,6 +2962,12 @@ class ContractContentDefinitionBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [ContractTerm] to a Builder
+extension BuilderContractTerm on ContractTerm {
+  /// Converts [ContractTerm] to a [ContractTermBuilder]
+  ContractTermBuilder get toBuilder => ContractTermBuilder.fromJson(toJson());
+}
+
 /// [ContractTermBuilder]
 /// One or more Contract Provisions, which may be related and conveyed as a
 /// group, and may contain nested groups.
@@ -3178,6 +3228,11 @@ class ContractTermBuilder extends BackboneElementBuilder {
   /// [group]
   /// Nested group of Contract Provisions.
   List<ContractTermBuilder>? group;
+
+  /// Converts a ContractTermBuilder to [ContractTerm]
+  ContractTerm build() => ContractTerm.fromJson(toJson());
+
+  /// Converts a [ContractTermBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3894,6 +3949,13 @@ class ContractTermBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [ContractSecurityLabel] to a Builder
+extension BuilderContractSecurityLabel on ContractSecurityLabel {
+  /// Converts [ContractSecurityLabel] to a [ContractSecurityLabelBuilder]
+  ContractSecurityLabelBuilder get toBuilder =>
+      ContractSecurityLabelBuilder.fromJson(toJson());
+}
+
 /// [ContractSecurityLabelBuilder]
 /// Security labels that protect the handling of information about the term
 /// and its elements, which may be specifically identified..
@@ -4047,6 +4109,11 @@ class ContractSecurityLabelBuilder extends BackboneElementBuilder {
   /// Security label privacy tag that species the manner in which term and/or
   /// term elements are to be protected.
   List<CodingBuilder>? control;
+
+  /// Converts a ContractSecurityLabelBuilder to [ContractSecurityLabel]
+  ContractSecurityLabel build() => ContractSecurityLabel.fromJson(toJson());
+
+  /// Converts a [ContractSecurityLabelBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -4448,6 +4515,12 @@ class ContractSecurityLabelBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [ContractOffer] to a Builder
+extension BuilderContractOffer on ContractOffer {
+  /// Converts [ContractOffer] to a [ContractOfferBuilder]
+  ContractOfferBuilder get toBuilder => ContractOfferBuilder.fromJson(toJson());
+}
+
 /// [ContractOfferBuilder]
 /// The matter of concern in the context of this provision of the agrement.
 class ContractOfferBuilder extends BackboneElementBuilder {
@@ -4675,6 +4748,11 @@ class ContractOfferBuilder extends BackboneElementBuilder {
   /// [securityLabelNumber]
   /// Security labels that protects the offer.
   List<FhirUnsignedIntBuilder>? securityLabelNumber;
+
+  /// Converts a ContractOfferBuilder to [ContractOffer]
+  ContractOffer build() => ContractOffer.fromJson(toJson());
+
+  /// Converts a [ContractOfferBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -5283,6 +5361,12 @@ class ContractOfferBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [ContractParty] to a Builder
+extension BuilderContractParty on ContractParty {
+  /// Converts [ContractParty] to a [ContractPartyBuilder]
+  ContractPartyBuilder get toBuilder => ContractPartyBuilder.fromJson(toJson());
+}
+
 /// [ContractPartyBuilder]
 /// Offer Recipient.
 class ContractPartyBuilder extends BackboneElementBuilder {
@@ -5404,6 +5488,11 @@ class ContractPartyBuilder extends BackboneElementBuilder {
   /// [role]
   /// How the party participates in the offer.
   CodeableConceptBuilder? role;
+
+  /// Converts a ContractPartyBuilder to [ContractParty]
+  ContractParty build() => ContractParty.fromJson(toJson());
+
+  /// Converts a [ContractPartyBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -5731,6 +5820,13 @@ class ContractPartyBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [ContractAnswer] to a Builder
+extension BuilderContractAnswer on ContractAnswer {
+  /// Converts [ContractAnswer] to a [ContractAnswerBuilder]
+  ContractAnswerBuilder get toBuilder =>
+      ContractAnswerBuilder.fromJson(toJson());
+}
+
 /// [ContractAnswerBuilder]
 /// Response to offer text.
 class ContractAnswerBuilder extends BackboneElementBuilder {
@@ -5888,6 +5984,11 @@ class ContractAnswerBuilder extends BackboneElementBuilder {
 
   /// Getter for [valueReference] as a ReferenceBuilder
   ReferenceBuilder? get valueReference => valueX?.isAs<ReferenceBuilder>();
+
+  /// Converts a ContractAnswerBuilder to [ContractAnswer]
+  ContractAnswer build() => ContractAnswer.fromJson(toJson());
+
+  /// Converts a [ContractAnswerBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -6485,6 +6586,12 @@ class ContractAnswerBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [ContractAsset] to a Builder
+extension BuilderContractAsset on ContractAsset {
+  /// Converts [ContractAsset] to a [ContractAssetBuilder]
+  ContractAssetBuilder get toBuilder => ContractAssetBuilder.fromJson(toJson());
+}
+
 /// [ContractAssetBuilder]
 /// Contract Term Asset List.
 class ContractAssetBuilder extends BackboneElementBuilder {
@@ -6788,6 +6895,11 @@ class ContractAssetBuilder extends BackboneElementBuilder {
   /// [valuedItem]
   /// Contract Valued Item List.
   List<ContractValuedItemBuilder>? valuedItem;
+
+  /// Converts a ContractAssetBuilder to [ContractAsset]
+  ContractAsset build() => ContractAsset.fromJson(toJson());
+
+  /// Converts a [ContractAssetBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -7581,6 +7693,13 @@ class ContractAssetBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [ContractContext] to a Builder
+extension BuilderContractContext on ContractContext {
+  /// Converts [ContractContext] to a [ContractContextBuilder]
+  ContractContextBuilder get toBuilder =>
+      ContractContextBuilder.fromJson(toJson());
+}
+
 /// [ContractContextBuilder]
 /// Circumstance of the asset.
 class ContractContextBuilder extends BackboneElementBuilder {
@@ -7716,6 +7835,11 @@ class ContractContextBuilder extends BackboneElementBuilder {
   /// [text]
   /// Context description.
   FhirStringBuilder? text;
+
+  /// Converts a ContractContextBuilder to [ContractContext]
+  ContractContext build() => ContractContext.fromJson(toJson());
+
+  /// Converts a [ContractContextBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -8075,6 +8199,13 @@ class ContractContextBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [ContractValuedItem] to a Builder
+extension BuilderContractValuedItem on ContractValuedItem {
+  /// Converts [ContractValuedItem] to a [ContractValuedItemBuilder]
+  ContractValuedItemBuilder get toBuilder =>
+      ContractValuedItemBuilder.fromJson(toJson());
+}
+
 /// [ContractValuedItemBuilder]
 /// Contract Valued Item List.
 class ContractValuedItemBuilder extends BackboneElementBuilder {
@@ -8349,6 +8480,11 @@ class ContractValuedItemBuilder extends BackboneElementBuilder {
   /// A set of security labels that define which terms are controlled by this
   /// condition.
   List<FhirUnsignedIntBuilder>? securityLabelNumber;
+
+  /// Converts a ContractValuedItemBuilder to [ContractValuedItem]
+  ContractValuedItem build() => ContractValuedItem.fromJson(toJson());
+
+  /// Converts a [ContractValuedItemBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -9119,6 +9255,13 @@ class ContractValuedItemBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [ContractAction] to a Builder
+extension BuilderContractAction on ContractAction {
+  /// Converts [ContractAction] to a [ContractActionBuilder]
+  ContractActionBuilder get toBuilder =>
+      ContractActionBuilder.fromJson(toJson());
+}
+
 /// [ContractActionBuilder]
 /// An actor taking a role in an activity for which it can be assigned some
 /// degree of responsibility for the activity taking place.
@@ -9504,6 +9647,11 @@ class ContractActionBuilder extends BackboneElementBuilder {
   /// [securityLabelNumber]
   /// Security labels that protects the action.
   List<FhirUnsignedIntBuilder>? securityLabelNumber;
+
+  /// Converts a ContractActionBuilder to [ContractAction]
+  ContractAction build() => ContractAction.fromJson(toJson());
+
+  /// Converts a [ContractActionBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -10577,6 +10725,13 @@ class ContractActionBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [ContractSubject] to a Builder
+extension BuilderContractSubject on ContractSubject {
+  /// Converts [ContractSubject] to a [ContractSubjectBuilder]
+  ContractSubjectBuilder get toBuilder =>
+      ContractSubjectBuilder.fromJson(toJson());
+}
+
 /// [ContractSubjectBuilder]
 /// Entity of the action.
 class ContractSubjectBuilder extends BackboneElementBuilder {
@@ -10698,6 +10853,11 @@ class ContractSubjectBuilder extends BackboneElementBuilder {
   /// [role]
   /// Role type of agent assigned roles in this Contract.
   CodeableConceptBuilder? role;
+
+  /// Converts a ContractSubjectBuilder to [ContractSubject]
+  ContractSubject build() => ContractSubject.fromJson(toJson());
+
+  /// Converts a [ContractSubjectBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -11025,6 +11185,13 @@ class ContractSubjectBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [ContractSigner] to a Builder
+extension BuilderContractSigner on ContractSigner {
+  /// Converts [ContractSigner] to a [ContractSignerBuilder]
+  ContractSignerBuilder get toBuilder =>
+      ContractSignerBuilder.fromJson(toJson());
+}
+
 /// [ContractSignerBuilder]
 /// Parties with legal standing in the Contract, including the principal
 /// parties, the grantor(s) and grantee(s), which are any person or
@@ -11160,6 +11327,11 @@ class ContractSignerBuilder extends BackboneElementBuilder {
   /// [signature]
   /// Legally binding Contract DSIG signature contents in Base64.
   List<SignatureBuilder>? signature;
+
+  /// Converts a ContractSignerBuilder to [ContractSigner]
+  ContractSigner build() => ContractSigner.fromJson(toJson());
+
+  /// Converts a [ContractSignerBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -11519,6 +11691,13 @@ class ContractSignerBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [ContractFriendly] to a Builder
+extension BuilderContractFriendly on ContractFriendly {
+  /// Converts [ContractFriendly] to a [ContractFriendlyBuilder]
+  ContractFriendlyBuilder get toBuilder =>
+      ContractFriendlyBuilder.fromJson(toJson());
+}
+
 /// [ContractFriendlyBuilder]
 /// The "patient friendly language" versionof the Contract in whole or in
 /// parts. "Patient friendly language" means the representation of the
@@ -11642,6 +11821,11 @@ class ContractFriendlyBuilder extends BackboneElementBuilder {
 
   /// Getter for [contentReference] as a ReferenceBuilder
   ReferenceBuilder? get contentReference => contentX?.isAs<ReferenceBuilder>();
+
+  /// Converts a ContractFriendlyBuilder to [ContractFriendly]
+  ContractFriendly build() => ContractFriendly.fromJson(toJson());
+
+  /// Converts a [ContractFriendlyBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -11986,6 +12170,12 @@ class ContractFriendlyBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [ContractLegal] to a Builder
+extension BuilderContractLegal on ContractLegal {
+  /// Converts [ContractLegal] to a [ContractLegalBuilder]
+  ContractLegalBuilder get toBuilder => ContractLegalBuilder.fromJson(toJson());
+}
+
 /// [ContractLegalBuilder]
 /// List of Legal expressions or representations of this Contract.
 class ContractLegalBuilder extends BackboneElementBuilder {
@@ -12101,6 +12291,11 @@ class ContractLegalBuilder extends BackboneElementBuilder {
 
   /// Getter for [contentReference] as a ReferenceBuilder
   ReferenceBuilder? get contentReference => contentX?.isAs<ReferenceBuilder>();
+
+  /// Converts a ContractLegalBuilder to [ContractLegal]
+  ContractLegal build() => ContractLegal.fromJson(toJson());
+
+  /// Converts a [ContractLegalBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -12445,6 +12640,12 @@ class ContractLegalBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [ContractRule] to a Builder
+extension BuilderContractRule on ContractRule {
+  /// Converts [ContractRule] to a [ContractRuleBuilder]
+  ContractRuleBuilder get toBuilder => ContractRuleBuilder.fromJson(toJson());
+}
+
 /// [ContractRuleBuilder]
 /// List of Computable Policy Rule Language Representations of this
 /// Contract.
@@ -12562,6 +12763,11 @@ class ContractRuleBuilder extends BackboneElementBuilder {
 
   /// Getter for [contentReference] as a ReferenceBuilder
   ReferenceBuilder? get contentReference => contentX?.isAs<ReferenceBuilder>();
+
+  /// Converts a ContractRuleBuilder to [ContractRule]
+  ContractRule build() => ContractRule.fromJson(toJson());
+
+  /// Converts a [ContractRuleBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

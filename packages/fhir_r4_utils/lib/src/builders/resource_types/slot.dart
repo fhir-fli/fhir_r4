@@ -1,8 +1,19 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        Slot;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [Slot] to a Builder
+extension BuilderSlot on Slot {
+  /// Converts [Slot] to a [SlotBuilder]
+  SlotBuilder get toBuilder => SlotBuilder.fromJson(toJson());
+}
 
 /// [SlotBuilder]
 /// A slot of time on a schedule that may be available for booking
@@ -285,6 +296,11 @@ class SlotBuilder extends DomainResourceBuilder {
   /// Comments on the slot to describe any extended information. Such as
   /// custom constraints on the slot.
   FhirStringBuilder? comment;
+
+  /// Converts a SlotBuilder to [Slot]
+  Slot build() => Slot.fromJson(toJson());
+
+  /// Converts a [SlotBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

@@ -1,8 +1,20 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        Linkage,
+        LinkageItem;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [Linkage] to a Builder
+extension BuilderLinkage on Linkage {
+  /// Converts [Linkage] to a [LinkageBuilder]
+  LinkageBuilder get toBuilder => LinkageBuilder.fromJson(toJson());
+}
 
 /// [LinkageBuilder]
 /// Identifies two or more records (resource instances) that refer to the
@@ -181,6 +193,11 @@ class LinkageBuilder extends DomainResourceBuilder {
   /// real-world occurrence as well as how the items should be evaluated
   /// within the collection of linked items.
   List<LinkageItemBuilder>? item;
+
+  /// Converts a LinkageBuilder to [Linkage]
+  Linkage build() => Linkage.fromJson(toJson());
+
+  /// Converts a [LinkageBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -705,6 +722,12 @@ class LinkageBuilder extends DomainResourceBuilder {
   }
 }
 
+/// Extension to change [LinkageItem] to a Builder
+extension BuilderLinkageItem on LinkageItem {
+  /// Converts [LinkageItem] to a [LinkageItemBuilder]
+  LinkageItemBuilder get toBuilder => LinkageItemBuilder.fromJson(toJson());
+}
+
 /// [LinkageItemBuilder]
 /// Identifies which record considered as the reference to the same
 /// real-world occurrence as well as how the items should be evaluated
@@ -825,6 +848,11 @@ class LinkageItemBuilder extends BackboneElementBuilder {
   /// [resource]
   /// The resource instance being linked as part of the group.
   ReferenceBuilder? resource;
+
+  /// Converts a LinkageItemBuilder to [LinkageItem]
+  LinkageItem build() => LinkageItem.fromJson(toJson());
+
+  /// Converts a [LinkageItemBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

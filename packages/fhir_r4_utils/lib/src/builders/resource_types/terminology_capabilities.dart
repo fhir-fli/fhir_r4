@@ -1,8 +1,30 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        TerminologyCapabilities,
+        TerminologyCapabilitiesSoftware,
+        TerminologyCapabilitiesImplementation,
+        TerminologyCapabilitiesCodeSystem,
+        TerminologyCapabilitiesVersion,
+        TerminologyCapabilitiesFilter,
+        TerminologyCapabilitiesExpansion,
+        TerminologyCapabilitiesParameter,
+        TerminologyCapabilitiesValidateCode,
+        TerminologyCapabilitiesTranslation,
+        TerminologyCapabilitiesClosure;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [TerminologyCapabilities] to a Builder
+extension BuilderTerminologyCapabilities on TerminologyCapabilities {
+  /// Converts [TerminologyCapabilities] to a [TerminologyCapabilitiesBuilder]
+  TerminologyCapabilitiesBuilder get toBuilder =>
+      TerminologyCapabilitiesBuilder.fromJson(toJson());
+}
 
 /// [TerminologyCapabilitiesBuilder]
 /// A TerminologyCapabilities resource documents a set of capabilities
@@ -406,6 +428,11 @@ class TerminologyCapabilitiesBuilder extends CanonicalResourceBuilder {
   /// [closure]
   /// Whether the $closure operation is supported.
   TerminologyCapabilitiesClosureBuilder? closure;
+
+  /// Converts a TerminologyCapabilitiesBuilder to [TerminologyCapabilities]
+  TerminologyCapabilities build() => TerminologyCapabilities.fromJson(toJson());
+
+  /// Converts a [TerminologyCapabilitiesBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1617,6 +1644,14 @@ class TerminologyCapabilitiesBuilder extends CanonicalResourceBuilder {
   }
 }
 
+/// Extension to change [TerminologyCapabilitiesSoftware] to a Builder
+extension BuilderTerminologyCapabilitiesSoftware
+    on TerminologyCapabilitiesSoftware {
+  /// Converts [TerminologyCapabilitiesSoftware] to a [TerminologyCapabilitiesSoftwareBuilder]
+  TerminologyCapabilitiesSoftwareBuilder get toBuilder =>
+      TerminologyCapabilitiesSoftwareBuilder.fromJson(toJson());
+}
+
 /// [TerminologyCapabilitiesSoftwareBuilder]
 /// Software that is covered by this terminology capability statement. It
 /// is used when the statement describes the capabilities of a particular
@@ -1737,6 +1772,12 @@ class TerminologyCapabilitiesSoftwareBuilder extends BackboneElementBuilder {
   /// [version]
   /// The version identifier for the software covered by this statement.
   FhirStringBuilder? version;
+
+  /// Converts a TerminologyCapabilitiesSoftwareBuilder to [TerminologyCapabilitiesSoftware]
+  TerminologyCapabilitiesSoftware build() =>
+      TerminologyCapabilitiesSoftware.fromJson(toJson());
+
+  /// Converts a [TerminologyCapabilitiesSoftwareBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2059,6 +2100,14 @@ class TerminologyCapabilitiesSoftwareBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [TerminologyCapabilitiesImplementation] to a Builder
+extension BuilderTerminologyCapabilitiesImplementation
+    on TerminologyCapabilitiesImplementation {
+  /// Converts [TerminologyCapabilitiesImplementation] to a [TerminologyCapabilitiesImplementationBuilder]
+  TerminologyCapabilitiesImplementationBuilder get toBuilder =>
+      TerminologyCapabilitiesImplementationBuilder.fromJson(toJson());
+}
+
 /// [TerminologyCapabilitiesImplementationBuilder]
 /// Identifies a specific implementation instance that is described by the
 /// terminology capability statement - i.e. a particular installation,
@@ -2181,6 +2230,12 @@ class TerminologyCapabilitiesImplementationBuilder
   /// [url]
   /// An absolute base URL for the implementation.
   FhirUrlBuilder? url;
+
+  /// Converts a TerminologyCapabilitiesImplementationBuilder to [TerminologyCapabilitiesImplementation]
+  TerminologyCapabilitiesImplementation build() =>
+      TerminologyCapabilitiesImplementation.fromJson(toJson());
+
+  /// Converts a [TerminologyCapabilitiesImplementationBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2504,6 +2559,14 @@ class TerminologyCapabilitiesImplementationBuilder
   }
 }
 
+/// Extension to change [TerminologyCapabilitiesCodeSystem] to a Builder
+extension BuilderTerminologyCapabilitiesCodeSystem
+    on TerminologyCapabilitiesCodeSystem {
+  /// Converts [TerminologyCapabilitiesCodeSystem] to a [TerminologyCapabilitiesCodeSystemBuilder]
+  TerminologyCapabilitiesCodeSystemBuilder get toBuilder =>
+      TerminologyCapabilitiesCodeSystemBuilder.fromJson(toJson());
+}
+
 /// [TerminologyCapabilitiesCodeSystemBuilder]
 /// Identifies a code system that is supported by the server. If there is a
 /// no code system URL, then this declares the general assumptions a client
@@ -2640,6 +2703,12 @@ class TerminologyCapabilitiesCodeSystemBuilder extends BackboneElementBuilder {
   /// [subsumption]
   /// True if subsumption is supported for this version of the code system.
   FhirBooleanBuilder? subsumption;
+
+  /// Converts a TerminologyCapabilitiesCodeSystemBuilder to [TerminologyCapabilitiesCodeSystem]
+  TerminologyCapabilitiesCodeSystem build() =>
+      TerminologyCapabilitiesCodeSystem.fromJson(toJson());
+
+  /// Converts a [TerminologyCapabilitiesCodeSystemBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3000,6 +3069,14 @@ class TerminologyCapabilitiesCodeSystemBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [TerminologyCapabilitiesVersion] to a Builder
+extension BuilderTerminologyCapabilitiesVersion
+    on TerminologyCapabilitiesVersion {
+  /// Converts [TerminologyCapabilitiesVersion] to a [TerminologyCapabilitiesVersionBuilder]
+  TerminologyCapabilitiesVersionBuilder get toBuilder =>
+      TerminologyCapabilitiesVersionBuilder.fromJson(toJson());
+}
+
 /// [TerminologyCapabilitiesVersionBuilder]
 /// For the code system, a list of versions that are supported by the
 /// server.
@@ -3168,6 +3245,12 @@ class TerminologyCapabilitiesVersionBuilder extends BackboneElementBuilder {
   /// [property]
   /// Properties supported for $lookup.
   List<FhirCodeBuilder>? property;
+
+  /// Converts a TerminologyCapabilitiesVersionBuilder to [TerminologyCapabilitiesVersion]
+  TerminologyCapabilitiesVersion build() =>
+      TerminologyCapabilitiesVersion.fromJson(toJson());
+
+  /// Converts a [TerminologyCapabilitiesVersionBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3633,6 +3716,14 @@ class TerminologyCapabilitiesVersionBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [TerminologyCapabilitiesFilter] to a Builder
+extension BuilderTerminologyCapabilitiesFilter
+    on TerminologyCapabilitiesFilter {
+  /// Converts [TerminologyCapabilitiesFilter] to a [TerminologyCapabilitiesFilterBuilder]
+  TerminologyCapabilitiesFilterBuilder get toBuilder =>
+      TerminologyCapabilitiesFilterBuilder.fromJson(toJson());
+}
+
 /// [TerminologyCapabilitiesFilterBuilder]
 /// Filter Properties supported.
 class TerminologyCapabilitiesFilterBuilder extends BackboneElementBuilder {
@@ -3751,6 +3842,12 @@ class TerminologyCapabilitiesFilterBuilder extends BackboneElementBuilder {
   /// [op]
   /// Operations supported for the property.
   List<FhirCodeBuilder>? op;
+
+  /// Converts a TerminologyCapabilitiesFilterBuilder to [TerminologyCapabilitiesFilter]
+  TerminologyCapabilitiesFilter build() =>
+      TerminologyCapabilitiesFilter.fromJson(toJson());
+
+  /// Converts a [TerminologyCapabilitiesFilterBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -4078,6 +4175,14 @@ class TerminologyCapabilitiesFilterBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [TerminologyCapabilitiesExpansion] to a Builder
+extension BuilderTerminologyCapabilitiesExpansion
+    on TerminologyCapabilitiesExpansion {
+  /// Converts [TerminologyCapabilitiesExpansion] to a [TerminologyCapabilitiesExpansionBuilder]
+  TerminologyCapabilitiesExpansionBuilder get toBuilder =>
+      TerminologyCapabilitiesExpansionBuilder.fromJson(toJson());
+}
+
 /// [TerminologyCapabilitiesExpansionBuilder]
 /// Information about the
 /// [ValueSet/$expand](valueset-operation-expand.html) operation.
@@ -4234,6 +4339,12 @@ class TerminologyCapabilitiesExpansionBuilder extends BackboneElementBuilder {
   /// [textFilter]
   /// Documentation about text searching works.
   FhirMarkdownBuilder? textFilter;
+
+  /// Converts a TerminologyCapabilitiesExpansionBuilder to [TerminologyCapabilitiesExpansion]
+  TerminologyCapabilitiesExpansion build() =>
+      TerminologyCapabilitiesExpansion.fromJson(toJson());
+
+  /// Converts a [TerminologyCapabilitiesExpansionBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -4657,6 +4768,14 @@ class TerminologyCapabilitiesExpansionBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [TerminologyCapabilitiesParameter] to a Builder
+extension BuilderTerminologyCapabilitiesParameter
+    on TerminologyCapabilitiesParameter {
+  /// Converts [TerminologyCapabilitiesParameter] to a [TerminologyCapabilitiesParameterBuilder]
+  TerminologyCapabilitiesParameterBuilder get toBuilder =>
+      TerminologyCapabilitiesParameterBuilder.fromJson(toJson());
+}
+
 /// [TerminologyCapabilitiesParameterBuilder]
 /// Supported expansion parameter.
 class TerminologyCapabilitiesParameterBuilder extends BackboneElementBuilder {
@@ -4775,6 +4894,12 @@ class TerminologyCapabilitiesParameterBuilder extends BackboneElementBuilder {
   /// [documentation]
   /// Description of support for parameter.
   FhirStringBuilder? documentation;
+
+  /// Converts a TerminologyCapabilitiesParameterBuilder to [TerminologyCapabilitiesParameter]
+  TerminologyCapabilitiesParameter build() =>
+      TerminologyCapabilitiesParameter.fromJson(toJson());
+
+  /// Converts a [TerminologyCapabilitiesParameterBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -5097,6 +5222,14 @@ class TerminologyCapabilitiesParameterBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [TerminologyCapabilitiesValidateCode] to a Builder
+extension BuilderTerminologyCapabilitiesValidateCode
+    on TerminologyCapabilitiesValidateCode {
+  /// Converts [TerminologyCapabilitiesValidateCode] to a [TerminologyCapabilitiesValidateCodeBuilder]
+  TerminologyCapabilitiesValidateCodeBuilder get toBuilder =>
+      TerminologyCapabilitiesValidateCodeBuilder.fromJson(toJson());
+}
+
 /// [TerminologyCapabilitiesValidateCodeBuilder]
 /// Information about the
 /// [ValueSet/$validate-code](valueset-operation-validate-code.html)
@@ -5207,6 +5340,12 @@ class TerminologyCapabilitiesValidateCodeBuilder
   /// [translations]
   /// Whether translations are validated.
   FhirBooleanBuilder? translations;
+
+  /// Converts a TerminologyCapabilitiesValidateCodeBuilder to [TerminologyCapabilitiesValidateCode]
+  TerminologyCapabilitiesValidateCode build() =>
+      TerminologyCapabilitiesValidateCode.fromJson(toJson());
+
+  /// Converts a [TerminologyCapabilitiesValidateCodeBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -5498,6 +5637,14 @@ class TerminologyCapabilitiesValidateCodeBuilder
   }
 }
 
+/// Extension to change [TerminologyCapabilitiesTranslation] to a Builder
+extension BuilderTerminologyCapabilitiesTranslation
+    on TerminologyCapabilitiesTranslation {
+  /// Converts [TerminologyCapabilitiesTranslation] to a [TerminologyCapabilitiesTranslationBuilder]
+  TerminologyCapabilitiesTranslationBuilder get toBuilder =>
+      TerminologyCapabilitiesTranslationBuilder.fromJson(toJson());
+}
+
 /// [TerminologyCapabilitiesTranslationBuilder]
 /// Information about the
 /// [ConceptMap/$translate](conceptmap-operation-translate.html) operation.
@@ -5606,6 +5753,12 @@ class TerminologyCapabilitiesTranslationBuilder extends BackboneElementBuilder {
   /// [needsMap]
   /// Whether the client must identify the map.
   FhirBooleanBuilder? needsMap;
+
+  /// Converts a TerminologyCapabilitiesTranslationBuilder to [TerminologyCapabilitiesTranslation]
+  TerminologyCapabilitiesTranslation build() =>
+      TerminologyCapabilitiesTranslation.fromJson(toJson());
+
+  /// Converts a [TerminologyCapabilitiesTranslationBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -5897,6 +6050,14 @@ class TerminologyCapabilitiesTranslationBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [TerminologyCapabilitiesClosure] to a Builder
+extension BuilderTerminologyCapabilitiesClosure
+    on TerminologyCapabilitiesClosure {
+  /// Converts [TerminologyCapabilitiesClosure] to a [TerminologyCapabilitiesClosureBuilder]
+  TerminologyCapabilitiesClosureBuilder get toBuilder =>
+      TerminologyCapabilitiesClosureBuilder.fromJson(toJson());
+}
+
 /// [TerminologyCapabilitiesClosureBuilder]
 /// Whether the $closure operation is supported.
 class TerminologyCapabilitiesClosureBuilder extends BackboneElementBuilder {
@@ -6004,6 +6165,12 @@ class TerminologyCapabilitiesClosureBuilder extends BackboneElementBuilder {
   /// [translation]
   /// If cross-system closure is supported.
   FhirBooleanBuilder? translation;
+
+  /// Converts a TerminologyCapabilitiesClosureBuilder to [TerminologyCapabilitiesClosure]
+  TerminologyCapabilitiesClosure build() =>
+      TerminologyCapabilitiesClosure.fromJson(toJson());
+
+  /// Converts a [TerminologyCapabilitiesClosureBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

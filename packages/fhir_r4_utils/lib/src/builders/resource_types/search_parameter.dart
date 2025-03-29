@@ -1,8 +1,21 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        SearchParameter,
+        SearchParameterComponent;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [SearchParameter] to a Builder
+extension BuilderSearchParameter on SearchParameter {
+  /// Converts [SearchParameter] to a [SearchParameterBuilder]
+  SearchParameterBuilder get toBuilder =>
+      SearchParameterBuilder.fromJson(toJson());
+}
 
 /// [SearchParameterBuilder]
 /// A search parameter that defines a named search item that can be used to
@@ -422,6 +435,11 @@ class SearchParameterBuilder extends CanonicalResourceBuilder {
   /// [component]
   /// Used to define the parts of a composite search parameter.
   List<SearchParameterComponentBuilder>? component;
+
+  /// Converts a SearchParameterBuilder to [SearchParameter]
+  SearchParameter build() => SearchParameter.fromJson(toJson());
+
+  /// Converts a [SearchParameterBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1722,6 +1740,13 @@ class SearchParameterBuilder extends CanonicalResourceBuilder {
   }
 }
 
+/// Extension to change [SearchParameterComponent] to a Builder
+extension BuilderSearchParameterComponent on SearchParameterComponent {
+  /// Converts [SearchParameterComponent] to a [SearchParameterComponentBuilder]
+  SearchParameterComponentBuilder get toBuilder =>
+      SearchParameterComponentBuilder.fromJson(toJson());
+}
+
 /// [SearchParameterComponentBuilder]
 /// Used to define the parts of a composite search parameter.
 class SearchParameterComponentBuilder extends BackboneElementBuilder {
@@ -1841,6 +1866,12 @@ class SearchParameterComponentBuilder extends BackboneElementBuilder {
   /// A sub-expression that defines how to extract values for this component
   /// from the output of the main SearchParameter.expression.
   FhirStringBuilder? expression;
+
+  /// Converts a SearchParameterComponentBuilder to [SearchParameterComponent]
+  SearchParameterComponent build() =>
+      SearchParameterComponent.fromJson(toJson());
+
+  /// Converts a [SearchParameterComponentBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

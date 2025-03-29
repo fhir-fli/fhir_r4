@@ -1,8 +1,21 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        RiskAssessment,
+        RiskAssessmentPrediction;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [RiskAssessment] to a Builder
+extension BuilderRiskAssessment on RiskAssessment {
+  /// Converts [RiskAssessment] to a [RiskAssessmentBuilder]
+  RiskAssessmentBuilder get toBuilder =>
+      RiskAssessmentBuilder.fromJson(toJson());
+}
 
 /// [RiskAssessmentBuilder]
 /// An assessment of the likely outcome(s) for a patient or other subject
@@ -365,6 +378,11 @@ class RiskAssessmentBuilder extends DomainResourceBuilder {
   /// [note]
   /// Additional comments about the risk assessment.
   List<AnnotationBuilder>? note;
+
+  /// Converts a RiskAssessmentBuilder to [RiskAssessment]
+  RiskAssessment build() => RiskAssessment.fromJson(toJson());
+
+  /// Converts a [RiskAssessmentBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1416,6 +1434,13 @@ class RiskAssessmentBuilder extends DomainResourceBuilder {
   }
 }
 
+/// Extension to change [RiskAssessmentPrediction] to a Builder
+extension BuilderRiskAssessmentPrediction on RiskAssessmentPrediction {
+  /// Converts [RiskAssessmentPrediction] to a [RiskAssessmentPredictionBuilder]
+  RiskAssessmentPredictionBuilder get toBuilder =>
+      RiskAssessmentPredictionBuilder.fromJson(toJson());
+}
+
 /// [RiskAssessmentPredictionBuilder]
 /// Describes the expected outcome for the subject.
 class RiskAssessmentPredictionBuilder extends BackboneElementBuilder {
@@ -1602,6 +1627,12 @@ class RiskAssessmentPredictionBuilder extends BackboneElementBuilder {
   /// [rationale]
   /// Additional information explaining the basis for the prediction.
   FhirStringBuilder? rationale;
+
+  /// Converts a RiskAssessmentPredictionBuilder to [RiskAssessmentPrediction]
+  RiskAssessmentPrediction build() =>
+      RiskAssessmentPrediction.fromJson(toJson());
+
+  /// Converts a [RiskAssessmentPredictionBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

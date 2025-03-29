@@ -1841,7 +1841,7 @@ class ParametersParameter extends BackboneElement {
           'TriggerDefinition',
           'UsageContext',
           'Dosage',
-          'FhirMeta',
+          'FhirMeta'
         ];
       case 'valueBase64Binary':
         return ['FhirBase64Binary'];

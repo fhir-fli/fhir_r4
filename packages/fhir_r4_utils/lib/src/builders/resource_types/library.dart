@@ -1,8 +1,19 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        Library;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [Library] to a Builder
+extension BuilderLibrary on Library {
+  /// Converts [Library] to a [LibraryBuilder]
+  LibraryBuilder get toBuilder => LibraryBuilder.fromJson(toJson());
+}
 
 /// [LibraryBuilder]
 /// The Library resource is a general-purpose container for knowledge asset
@@ -532,6 +543,11 @@ class LibraryBuilder extends CanonicalResourceBuilder {
   /// Either way, the contentType of the attachment determines how to
   /// interpret the content.
   List<AttachmentBuilder>? content;
+
+  /// Converts a LibraryBuilder to [Library]
+  Library build() => Library.fromJson(toJson());
+
+  /// Converts a [LibraryBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

@@ -1,8 +1,23 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        ChargeItemDefinition,
+        ChargeItemDefinitionApplicability,
+        ChargeItemDefinitionPropertyGroup,
+        ChargeItemDefinitionPriceComponent;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [ChargeItemDefinition] to a Builder
+extension BuilderChargeItemDefinition on ChargeItemDefinition {
+  /// Converts [ChargeItemDefinition] to a [ChargeItemDefinitionBuilder]
+  ChargeItemDefinitionBuilder get toBuilder =>
+      ChargeItemDefinitionBuilder.fromJson(toJson());
+}
 
 /// [ChargeItemDefinitionBuilder]
 /// The ChargeItemDefinition resource provides the properties that apply to
@@ -470,6 +485,11 @@ class ChargeItemDefinitionBuilder extends DomainResourceBuilder {
   /// no applicability rules are established for the group, then all
   /// properties always apply.
   List<ChargeItemDefinitionPropertyGroupBuilder>? propertyGroup;
+
+  /// Converts a ChargeItemDefinitionBuilder to [ChargeItemDefinition]
+  ChargeItemDefinition build() => ChargeItemDefinition.fromJson(toJson());
+
+  /// Converts a [ChargeItemDefinitionBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1679,6 +1699,14 @@ class ChargeItemDefinitionBuilder extends DomainResourceBuilder {
   }
 }
 
+/// Extension to change [ChargeItemDefinitionApplicability] to a Builder
+extension BuilderChargeItemDefinitionApplicability
+    on ChargeItemDefinitionApplicability {
+  /// Converts [ChargeItemDefinitionApplicability] to a [ChargeItemDefinitionApplicabilityBuilder]
+  ChargeItemDefinitionApplicabilityBuilder get toBuilder =>
+      ChargeItemDefinitionApplicabilityBuilder.fromJson(toJson());
+}
+
 /// [ChargeItemDefinitionApplicabilityBuilder]
 /// Expressions that describe applicability criteria for the billing code.
 class ChargeItemDefinitionApplicabilityBuilder extends BackboneElementBuilder {
@@ -1814,6 +1842,12 @@ class ChargeItemDefinitionApplicabilityBuilder extends BackboneElementBuilder {
   /// environment variable must be replaced at runtime with the ChargeItem
   /// resource to which this definition is applied.
   FhirStringBuilder? expression;
+
+  /// Converts a ChargeItemDefinitionApplicabilityBuilder to [ChargeItemDefinitionApplicability]
+  ChargeItemDefinitionApplicability build() =>
+      ChargeItemDefinitionApplicability.fromJson(toJson());
+
+  /// Converts a [ChargeItemDefinitionApplicabilityBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2169,6 +2203,14 @@ class ChargeItemDefinitionApplicabilityBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [ChargeItemDefinitionPropertyGroup] to a Builder
+extension BuilderChargeItemDefinitionPropertyGroup
+    on ChargeItemDefinitionPropertyGroup {
+  /// Converts [ChargeItemDefinitionPropertyGroup] to a [ChargeItemDefinitionPropertyGroupBuilder]
+  ChargeItemDefinitionPropertyGroupBuilder get toBuilder =>
+      ChargeItemDefinitionPropertyGroupBuilder.fromJson(toJson());
+}
+
 /// [ChargeItemDefinitionPropertyGroupBuilder]
 /// Group of properties which are applicable under the same conditions. If
 /// no applicability rules are established for the group, then all
@@ -2303,6 +2345,12 @@ class ChargeItemDefinitionPropertyGroupBuilder extends BackboneElementBuilder {
   /// The priceComponent element can be used to offer transparency to the
   /// recipient of the Invoice of how the prices have been calculated.
   List<ChargeItemDefinitionPriceComponentBuilder>? priceComponent;
+
+  /// Converts a ChargeItemDefinitionPropertyGroupBuilder to [ChargeItemDefinitionPropertyGroup]
+  ChargeItemDefinitionPropertyGroup build() =>
+      ChargeItemDefinitionPropertyGroup.fromJson(toJson());
+
+  /// Converts a [ChargeItemDefinitionPropertyGroupBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2636,6 +2684,14 @@ class ChargeItemDefinitionPropertyGroupBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [ChargeItemDefinitionPriceComponent] to a Builder
+extension BuilderChargeItemDefinitionPriceComponent
+    on ChargeItemDefinitionPriceComponent {
+  /// Converts [ChargeItemDefinitionPriceComponent] to a [ChargeItemDefinitionPriceComponentBuilder]
+  ChargeItemDefinitionPriceComponentBuilder get toBuilder =>
+      ChargeItemDefinitionPriceComponentBuilder.fromJson(toJson());
+}
+
 /// [ChargeItemDefinitionPriceComponentBuilder]
 /// The price for a ChargeItem may be calculated as a base price with
 /// surcharges/deductions that apply in certain conditions. A
@@ -2783,6 +2839,12 @@ class ChargeItemDefinitionPriceComponentBuilder extends BackboneElementBuilder {
   /// [amount]
   /// The amount calculated for this component.
   MoneyBuilder? amount;
+
+  /// Converts a ChargeItemDefinitionPriceComponentBuilder to [ChargeItemDefinitionPriceComponent]
+  ChargeItemDefinitionPriceComponent build() =>
+      ChargeItemDefinitionPriceComponent.fromJson(toJson());
+
+  /// Converts a [ChargeItemDefinitionPriceComponentBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

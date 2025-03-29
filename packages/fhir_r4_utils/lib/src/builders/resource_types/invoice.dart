@@ -1,8 +1,22 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        Invoice,
+        InvoiceParticipant,
+        InvoiceLineItem,
+        InvoicePriceComponent;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [Invoice] to a Builder
+extension BuilderInvoice on Invoice {
+  /// Converts [Invoice] to a [InvoiceBuilder]
+  InvoiceBuilder get toBuilder => InvoiceBuilder.fromJson(toJson());
+}
 
 /// [InvoiceBuilder]
 /// Invoice containing collected ChargeItems from an Account with
@@ -347,6 +361,11 @@ class InvoiceBuilder extends DomainResourceBuilder {
   /// Comments made about the invoice by the issuer, subject, or other
   /// participants.
   List<AnnotationBuilder>? note;
+
+  /// Converts a InvoiceBuilder to [Invoice]
+  Invoice build() => Invoice.fromJson(toJson());
+
+  /// Converts a [InvoiceBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1307,6 +1326,13 @@ class InvoiceBuilder extends DomainResourceBuilder {
   }
 }
 
+/// Extension to change [InvoiceParticipant] to a Builder
+extension BuilderInvoiceParticipant on InvoiceParticipant {
+  /// Converts [InvoiceParticipant] to a [InvoiceParticipantBuilder]
+  InvoiceParticipantBuilder get toBuilder =>
+      InvoiceParticipantBuilder.fromJson(toJson());
+}
+
 /// [InvoiceParticipantBuilder]
 /// Indicates who or what performed or participated in the charged service.
 class InvoiceParticipantBuilder extends BackboneElementBuilder {
@@ -1427,6 +1453,11 @@ class InvoiceParticipantBuilder extends BackboneElementBuilder {
   /// The device, practitioner, etc. who performed or participated in the
   /// service.
   ReferenceBuilder? actor;
+
+  /// Converts a InvoiceParticipantBuilder to [InvoiceParticipant]
+  InvoiceParticipant build() => InvoiceParticipant.fromJson(toJson());
+
+  /// Converts a [InvoiceParticipantBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1749,6 +1780,13 @@ class InvoiceParticipantBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [InvoiceLineItem] to a Builder
+extension BuilderInvoiceLineItem on InvoiceLineItem {
+  /// Converts [InvoiceLineItem] to a [InvoiceLineItemBuilder]
+  InvoiceLineItemBuilder get toBuilder =>
+      InvoiceLineItemBuilder.fromJson(toJson());
+}
+
 /// [InvoiceLineItemBuilder]
 /// Each line item represents one charge for goods and services rendered.
 /// Details such as date, code and amount are found in the referenced
@@ -1902,6 +1940,11 @@ class InvoiceLineItemBuilder extends BackboneElementBuilder {
   /// The priceComponent element can be used to offer transparency to the
   /// recipient of the Invoice as to how the prices have been calculated.
   List<InvoicePriceComponentBuilder>? priceComponent;
+
+  /// Converts a InvoiceLineItemBuilder to [InvoiceLineItem]
+  InvoiceLineItem build() => InvoiceLineItem.fromJson(toJson());
+
+  /// Converts a [InvoiceLineItemBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2315,6 +2358,13 @@ class InvoiceLineItemBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [InvoicePriceComponent] to a Builder
+extension BuilderInvoicePriceComponent on InvoicePriceComponent {
+  /// Converts [InvoicePriceComponent] to a [InvoicePriceComponentBuilder]
+  InvoicePriceComponentBuilder get toBuilder =>
+      InvoicePriceComponentBuilder.fromJson(toJson());
+}
+
 /// [InvoicePriceComponentBuilder]
 /// The price for a ChargeItem may be calculated as a base price with
 /// surcharges/deductions that apply in certain conditions. A
@@ -2462,6 +2512,11 @@ class InvoicePriceComponentBuilder extends BackboneElementBuilder {
   /// [amount]
   /// The amount calculated for this component.
   MoneyBuilder? amount;
+
+  /// Converts a InvoicePriceComponentBuilder to [InvoicePriceComponent]
+  InvoicePriceComponent build() => InvoicePriceComponent.fromJson(toJson());
+
+  /// Converts a [InvoicePriceComponentBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

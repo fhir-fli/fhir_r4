@@ -1,8 +1,27 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        ValueSet,
+        ValueSetCompose,
+        ValueSetInclude,
+        ValueSetConcept,
+        ValueSetDesignation,
+        ValueSetFilter,
+        ValueSetExpansion,
+        ValueSetParameter,
+        ValueSetContains;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [ValueSet] to a Builder
+extension BuilderValueSet on ValueSet {
+  /// Converts [ValueSet] to a [ValueSetBuilder]
+  ValueSetBuilder get toBuilder => ValueSetBuilder.fromJson(toJson());
+}
 
 /// [ValueSetBuilder]
 /// A ValueSet resource instance specifies a set of codes drawn from one or
@@ -328,6 +347,11 @@ class ValueSetBuilder extends CanonicalResourceBuilder {
   /// a simple collection of enumerated codes. This element holds the
   /// expansion, if it has been performed.
   ValueSetExpansionBuilder? expansion;
+
+  /// Converts a ValueSetBuilder to [ValueSet]
+  ValueSet build() => ValueSet.fromJson(toJson());
+
+  /// Converts a [ValueSetBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1347,6 +1371,13 @@ class ValueSetBuilder extends CanonicalResourceBuilder {
   }
 }
 
+/// Extension to change [ValueSetCompose] to a Builder
+extension BuilderValueSetCompose on ValueSetCompose {
+  /// Converts [ValueSetCompose] to a [ValueSetComposeBuilder]
+  ValueSetComposeBuilder get toBuilder =>
+      ValueSetComposeBuilder.fromJson(toJson());
+}
+
 /// [ValueSetComposeBuilder]
 /// A set of criteria that define the contents of the value set by
 /// including or excluding codes selected from the specified code system(s)
@@ -1506,6 +1537,11 @@ class ValueSetComposeBuilder extends BackboneElementBuilder {
   /// Exclude one or more codes from the value set based on code system
   /// filters and/or other value sets.
   List<ValueSetIncludeBuilder>? exclude;
+
+  /// Converts a ValueSetComposeBuilder to [ValueSetCompose]
+  ValueSetCompose build() => ValueSetCompose.fromJson(toJson());
+
+  /// Converts a [ValueSetComposeBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1902,6 +1938,13 @@ class ValueSetComposeBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [ValueSetInclude] to a Builder
+extension BuilderValueSetInclude on ValueSetInclude {
+  /// Converts [ValueSetInclude] to a [ValueSetIncludeBuilder]
+  ValueSetIncludeBuilder get toBuilder =>
+      ValueSetIncludeBuilder.fromJson(toJson());
+}
+
 /// [ValueSetIncludeBuilder]
 /// Include one or more codes from a code system or other value set(s).
 class ValueSetIncludeBuilder extends BackboneElementBuilder {
@@ -2068,6 +2111,11 @@ class ValueSetIncludeBuilder extends BackboneElementBuilder {
   /// ValueSet.url. If multiple value sets are specified this includes the
   /// union of the contents of all of the referenced value sets.
   List<FhirCanonicalBuilder>? valueSet;
+
+  /// Converts a ValueSetIncludeBuilder to [ValueSetInclude]
+  ValueSetInclude build() => ValueSetInclude.fromJson(toJson());
+
+  /// Converts a [ValueSetIncludeBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2501,6 +2549,13 @@ class ValueSetIncludeBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [ValueSetConcept] to a Builder
+extension BuilderValueSetConcept on ValueSetConcept {
+  /// Converts [ValueSetConcept] to a [ValueSetConceptBuilder]
+  ValueSetConceptBuilder get toBuilder =>
+      ValueSetConceptBuilder.fromJson(toJson());
+}
+
 /// [ValueSetConceptBuilder]
 /// Specifies a concept to be included or excluded.
 class ValueSetConceptBuilder extends BackboneElementBuilder {
@@ -2637,6 +2692,11 @@ class ValueSetConceptBuilder extends BackboneElementBuilder {
   /// - other languages, aliases, specialized purposes, used for particular
   /// purposes, etc.
   List<ValueSetDesignationBuilder>? designation;
+
+  /// Converts a ValueSetConceptBuilder to [ValueSetConcept]
+  ValueSetConcept build() => ValueSetConcept.fromJson(toJson());
+
+  /// Converts a [ValueSetConceptBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2996,6 +3056,13 @@ class ValueSetConceptBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [ValueSetDesignation] to a Builder
+extension BuilderValueSetDesignation on ValueSetDesignation {
+  /// Converts [ValueSetDesignation] to a [ValueSetDesignationBuilder]
+  ValueSetDesignationBuilder get toBuilder =>
+      ValueSetDesignationBuilder.fromJson(toJson());
+}
+
 /// [ValueSetDesignationBuilder]
 /// Additional representations for this concept when used in this value set
 /// - other languages, aliases, specialized purposes, used for particular
@@ -3126,6 +3193,11 @@ class ValueSetDesignationBuilder extends BackboneElementBuilder {
   /// [value]
   /// The text value for this designation.
   FhirStringBuilder? value;
+
+  /// Converts a ValueSetDesignationBuilder to [ValueSetDesignation]
+  ValueSetDesignation build() => ValueSetDesignation.fromJson(toJson());
+
+  /// Converts a [ValueSetDesignationBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3480,6 +3552,13 @@ class ValueSetDesignationBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [ValueSetFilter] to a Builder
+extension BuilderValueSetFilter on ValueSetFilter {
+  /// Converts [ValueSetFilter] to a [ValueSetFilterBuilder]
+  ValueSetFilterBuilder get toBuilder =>
+      ValueSetFilterBuilder.fromJson(toJson());
+}
+
 /// [ValueSetFilterBuilder]
 /// Select concepts by specify a matching criterion based on the properties
 /// (including relationships) defined by the system, or on filters defined
@@ -3617,6 +3696,11 @@ class ValueSetFilterBuilder extends BackboneElementBuilder {
   /// CodeSystem) when the operation is 'regex', or one of the values (true
   /// and false), when the operation is 'exists'.
   FhirStringBuilder? value;
+
+  /// Converts a ValueSetFilterBuilder to [ValueSetFilter]
+  ValueSetFilter build() => ValueSetFilter.fromJson(toJson());
+
+  /// Converts a [ValueSetFilterBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3971,6 +4055,13 @@ class ValueSetFilterBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [ValueSetExpansion] to a Builder
+extension BuilderValueSetExpansion on ValueSetExpansion {
+  /// Converts [ValueSetExpansion] to a [ValueSetExpansionBuilder]
+  ValueSetExpansionBuilder get toBuilder =>
+      ValueSetExpansionBuilder.fromJson(toJson());
+}
+
 /// [ValueSetExpansionBuilder]
 /// A value set can also be "expanded", where the value set is turned into
 /// a simple collection of enumerated codes. This element holds the
@@ -4153,6 +4244,11 @@ class ValueSetExpansionBuilder extends BackboneElementBuilder {
   /// [contains]
   /// The codes that are contained in the value set expansion.
   List<ValueSetContainsBuilder>? contains;
+
+  /// Converts a ValueSetExpansionBuilder to [ValueSetExpansion]
+  ValueSetExpansion build() => ValueSetExpansion.fromJson(toJson());
+
+  /// Converts a [ValueSetExpansionBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -4613,6 +4709,13 @@ class ValueSetExpansionBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [ValueSetParameter] to a Builder
+extension BuilderValueSetParameter on ValueSetParameter {
+  /// Converts [ValueSetParameter] to a [ValueSetParameterBuilder]
+  ValueSetParameterBuilder get toBuilder =>
+      ValueSetParameterBuilder.fromJson(toJson());
+}
+
 /// [ValueSetParameterBuilder]
 /// A parameter that controlled the expansion process. These parameters may
 /// be used by users of expanded value sets to check whether the expansion
@@ -4762,6 +4865,11 @@ class ValueSetParameterBuilder extends BackboneElementBuilder {
 
   /// Getter for [valueDateTime] as a FhirDateTimeBuilder
   FhirDateTimeBuilder? get valueDateTime => valueX?.isAs<FhirDateTimeBuilder>();
+
+  /// Converts a ValueSetParameterBuilder to [ValueSetParameter]
+  ValueSetParameter build() => ValueSetParameter.fromJson(toJson());
+
+  /// Converts a [ValueSetParameterBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -5266,6 +5374,13 @@ class ValueSetParameterBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [ValueSetContains] to a Builder
+extension BuilderValueSetContains on ValueSetContains {
+  /// Converts [ValueSetContains] to a [ValueSetContainsBuilder]
+  ValueSetContainsBuilder get toBuilder =>
+      ValueSetContainsBuilder.fromJson(toJson());
+}
+
 /// [ValueSetContainsBuilder]
 /// The codes that are contained in the value set expansion.
 class ValueSetContainsBuilder extends BackboneElementBuilder {
@@ -5473,6 +5588,11 @@ class ValueSetContainsBuilder extends BackboneElementBuilder {
   /// [contains]
   /// Other codes and entries contained under this entry in the hierarchy.
   List<ValueSetContainsBuilder>? contains;
+
+  /// Converts a ValueSetContainsBuilder to [ValueSetContains]
+  ValueSetContains build() => ValueSetContains.fromJson(toJson());
+
+  /// Converts a [ValueSetContainsBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

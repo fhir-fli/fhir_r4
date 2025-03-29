@@ -1,8 +1,14 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, StringExtensionForFHIR;
+    show yamlMapToJson, yamlToJson, StringExtensionForFHIR, Age;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [Age] to a Builder
+extension BuilderAge on Age {
+  /// Converts [Age] to a [AgeBuilder]
+  AgeBuilder get toBuilder => AgeBuilder.fromJson(toJson());
+}
 
 /// [AgeBuilder]
 /// A duration of time during which an organism (or a process) has existed.
@@ -143,6 +149,10 @@ class AgeBuilder extends QuantityBuilder
   @override
   String get fhirType => 'Age';
 
+  /// Converts a AgeBuilder to [Age]
+  Age build() => Age.fromJson(toJson());
+
+  /// Converts a [AgeBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

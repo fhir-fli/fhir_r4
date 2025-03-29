@@ -1,8 +1,22 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        ActivityDefinition,
+        ActivityDefinitionParticipant,
+        ActivityDefinitionDynamicValue;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [ActivityDefinition] to a Builder
+extension BuilderActivityDefinition on ActivityDefinition {
+  /// Converts [ActivityDefinition] to a [ActivityDefinitionBuilder]
+  ActivityDefinitionBuilder get toBuilder =>
+      ActivityDefinitionBuilder.fromJson(toJson());
+}
 
 /// [ActivityDefinitionBuilder]
 /// This resource allows for the definition of some activity to be
@@ -778,6 +792,11 @@ class ActivityDefinitionBuilder extends CanonicalResourceBuilder {
   /// used to specify an expression that calculated the weight, and the path
   /// on the request resource that would contain the result.
   List<ActivityDefinitionDynamicValueBuilder>? dynamicValue;
+
+  /// Converts a ActivityDefinitionBuilder to [ActivityDefinition]
+  ActivityDefinition build() => ActivityDefinition.fromJson(toJson());
+
+  /// Converts a [ActivityDefinitionBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3061,6 +3080,14 @@ class ActivityDefinitionBuilder extends CanonicalResourceBuilder {
   }
 }
 
+/// Extension to change [ActivityDefinitionParticipant] to a Builder
+extension BuilderActivityDefinitionParticipant
+    on ActivityDefinitionParticipant {
+  /// Converts [ActivityDefinitionParticipant] to a [ActivityDefinitionParticipantBuilder]
+  ActivityDefinitionParticipantBuilder get toBuilder =>
+      ActivityDefinitionParticipantBuilder.fromJson(toJson());
+}
+
 /// [ActivityDefinitionParticipantBuilder]
 /// Indicates who should participate in performing the action described.
 class ActivityDefinitionParticipantBuilder extends BackboneElementBuilder {
@@ -3180,6 +3207,12 @@ class ActivityDefinitionParticipantBuilder extends BackboneElementBuilder {
   /// The role the participant should play in performing the described
   /// action.
   CodeableConceptBuilder? role;
+
+  /// Converts a ActivityDefinitionParticipantBuilder to [ActivityDefinitionParticipant]
+  ActivityDefinitionParticipant build() =>
+      ActivityDefinitionParticipant.fromJson(toJson());
+
+  /// Converts a [ActivityDefinitionParticipantBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3502,6 +3535,14 @@ class ActivityDefinitionParticipantBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [ActivityDefinitionDynamicValue] to a Builder
+extension BuilderActivityDefinitionDynamicValue
+    on ActivityDefinitionDynamicValue {
+  /// Converts [ActivityDefinitionDynamicValue] to a [ActivityDefinitionDynamicValueBuilder]
+  ActivityDefinitionDynamicValueBuilder get toBuilder =>
+      ActivityDefinitionDynamicValueBuilder.fromJson(toJson());
+}
+
 /// [ActivityDefinitionDynamicValueBuilder]
 /// Dynamic values that will be evaluated to produce values for elements of
 /// the resulting resource. For example, if the dosage of a medication must
@@ -3632,6 +3673,12 @@ class ActivityDefinitionDynamicValueBuilder extends BackboneElementBuilder {
   /// [expression]
   /// An expression specifying the value of the customized element.
   FhirExpressionBuilder? expression;
+
+  /// Converts a ActivityDefinitionDynamicValueBuilder to [ActivityDefinitionDynamicValue]
+  ActivityDefinitionDynamicValue build() =>
+      ActivityDefinitionDynamicValue.fromJson(toJson());
+
+  /// Converts a [ActivityDefinitionDynamicValueBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

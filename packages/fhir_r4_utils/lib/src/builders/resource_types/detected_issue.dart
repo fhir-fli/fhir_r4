@@ -1,8 +1,21 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        DetectedIssue,
+        DetectedIssueEvidence,
+        DetectedIssueMitigation;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [DetectedIssue] to a Builder
+extension BuilderDetectedIssue on DetectedIssue {
+  /// Converts [DetectedIssue] to a [DetectedIssueBuilder]
+  DetectedIssueBuilder get toBuilder => DetectedIssueBuilder.fromJson(toJson());
+}
 
 /// [DetectedIssueBuilder]
 /// Indicates an actual or potential clinical issue with or between one or
@@ -309,6 +322,11 @@ class DetectedIssueBuilder extends DomainResourceBuilder {
   /// from manifesting. Can also reflect an observation of known mitigating
   /// factors that may reduce/eliminate the need for any action.
   List<DetectedIssueMitigationBuilder>? mitigation;
+
+  /// Converts a DetectedIssueBuilder to [DetectedIssue]
+  DetectedIssue build() => DetectedIssue.fromJson(toJson());
+
+  /// Converts a [DetectedIssueBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1190,6 +1208,13 @@ class DetectedIssueBuilder extends DomainResourceBuilder {
   }
 }
 
+/// Extension to change [DetectedIssueEvidence] to a Builder
+extension BuilderDetectedIssueEvidence on DetectedIssueEvidence {
+  /// Converts [DetectedIssueEvidence] to a [DetectedIssueEvidenceBuilder]
+  DetectedIssueEvidenceBuilder get toBuilder =>
+      DetectedIssueEvidenceBuilder.fromJson(toJson());
+}
+
 /// [DetectedIssueEvidenceBuilder]
 /// Supporting evidence or manifestations that provide the basis for
 /// identifying the detected issue such as a GuidanceResponse or
@@ -1319,6 +1344,11 @@ class DetectedIssueEvidenceBuilder extends BackboneElementBuilder {
   /// Links to resources that constitute evidence for the detected issue such
   /// as a GuidanceResponse or MeasureReport.
   List<ReferenceBuilder>? detail;
+
+  /// Converts a DetectedIssueEvidenceBuilder to [DetectedIssueEvidence]
+  DetectedIssueEvidence build() => DetectedIssueEvidence.fromJson(toJson());
+
+  /// Converts a [DetectedIssueEvidenceBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1651,6 +1681,13 @@ class DetectedIssueEvidenceBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [DetectedIssueMitigation] to a Builder
+extension BuilderDetectedIssueMitigation on DetectedIssueMitigation {
+  /// Converts [DetectedIssueMitigation] to a [DetectedIssueMitigationBuilder]
+  DetectedIssueMitigationBuilder get toBuilder =>
+      DetectedIssueMitigationBuilder.fromJson(toJson());
+}
+
 /// [DetectedIssueMitigationBuilder]
 /// Indicates an action that has been taken or is committed to reduce or
 /// eliminate the likelihood of the risk identified by the detected issue
@@ -1785,6 +1822,11 @@ class DetectedIssueMitigationBuilder extends BackboneElementBuilder {
   /// Identifies the practitioner who determined the mitigation and takes
   /// responsibility for the mitigation step occurring.
   ReferenceBuilder? author;
+
+  /// Converts a DetectedIssueMitigationBuilder to [DetectedIssueMitigation]
+  DetectedIssueMitigation build() => DetectedIssueMitigation.fromJson(toJson());
+
+  /// Converts a [DetectedIssueMitigationBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

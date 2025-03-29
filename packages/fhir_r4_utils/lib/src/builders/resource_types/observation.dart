@@ -1,8 +1,21 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        Observation,
+        ObservationReferenceRange,
+        ObservationComponent;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [Observation] to a Builder
+extension BuilderObservation on Observation {
+  /// Converts [Observation] to a [ObservationBuilder]
+  ObservationBuilder get toBuilder => ObservationBuilder.fromJson(toJson());
+}
 
 /// [ObservationBuilder]
 /// Measurements and simple assertions made about a patient, device or
@@ -553,6 +566,11 @@ class ObservationBuilder extends DomainResourceBuilder {
   /// observations for blood pressure measurement and multiple component
   /// observations for genetics observations.
   List<ObservationComponentBuilder>? component;
+
+  /// Converts a ObservationBuilder to [Observation]
+  Observation build() => Observation.fromJson(toJson());
+
+  /// Converts a [ObservationBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2193,6 +2211,13 @@ class ObservationBuilder extends DomainResourceBuilder {
   }
 }
 
+/// Extension to change [ObservationReferenceRange] to a Builder
+extension BuilderObservationReferenceRange on ObservationReferenceRange {
+  /// Converts [ObservationReferenceRange] to a [ObservationReferenceRangeBuilder]
+  ObservationReferenceRangeBuilder get toBuilder =>
+      ObservationReferenceRangeBuilder.fromJson(toJson());
+}
+
 /// [ObservationReferenceRangeBuilder]
 /// Guidance on how to interpret the value by comparison to a normal or
 /// recommended range. Multiple reference ranges are interpreted as an
@@ -2378,6 +2403,12 @@ class ObservationReferenceRangeBuilder extends BackboneElementBuilder {
   /// would be a reference value of "Negative" or a list or table of
   /// "normals".
   FhirStringBuilder? text;
+
+  /// Converts a ObservationReferenceRangeBuilder to [ObservationReferenceRange]
+  ObservationReferenceRange build() =>
+      ObservationReferenceRange.fromJson(toJson());
+
+  /// Converts a [ObservationReferenceRangeBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2833,6 +2864,13 @@ class ObservationReferenceRangeBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [ObservationComponent] to a Builder
+extension BuilderObservationComponent on ObservationComponent {
+  /// Converts [ObservationComponent] to a [ObservationComponentBuilder]
+  ObservationComponentBuilder get toBuilder =>
+      ObservationComponentBuilder.fromJson(toJson());
+}
+
 /// [ObservationComponentBuilder]
 /// Some observations have multiple component observations. These component
 /// observations are expressed as separate code value pairs that share the
@@ -3046,6 +3084,11 @@ class ObservationComponentBuilder extends BackboneElementBuilder {
   /// Guidance on how to interpret the value by comparison to a normal or
   /// recommended range.
   List<ObservationReferenceRangeBuilder>? referenceRange;
+
+  /// Converts a ObservationComponentBuilder to [ObservationComponent]
+  ObservationComponent build() => ObservationComponent.fromJson(toJson());
+
+  /// Converts a [ObservationComponentBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

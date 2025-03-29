@@ -1,8 +1,14 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, StringExtensionForFHIR;
+    show yamlMapToJson, yamlToJson, StringExtensionForFHIR, ContactDetail;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [ContactDetail] to a Builder
+extension BuilderContactDetail on ContactDetail {
+  /// Converts [ContactDetail] to a [ContactDetailBuilder]
+  ContactDetailBuilder get toBuilder => ContactDetailBuilder.fromJson(toJson());
+}
 
 /// [ContactDetailBuilder]
 /// Specifies contact information for a person or organization.
@@ -124,6 +130,11 @@ class ContactDetailBuilder extends DataTypeBuilder
   /// The contact details for the individual (if a name was provided) or the
   /// organization.
   List<ContactPointBuilder>? telecom;
+
+  /// Converts a ContactDetailBuilder to [ContactDetail]
+  ContactDetail build() => ContactDetail.fromJson(toJson());
+
+  /// Converts a [ContactDetailBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

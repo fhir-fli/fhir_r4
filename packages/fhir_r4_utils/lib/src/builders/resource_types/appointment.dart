@@ -1,8 +1,20 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        Appointment,
+        AppointmentParticipant;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [Appointment] to a Builder
+extension BuilderAppointment on Appointment {
+  /// Converts [Appointment] to a [AppointmentBuilder]
+  AppointmentBuilder get toBuilder => AppointmentBuilder.fromJson(toJson());
+}
 
 /// [AppointmentBuilder]
 /// A booking of a healthcare event among patient(s), practitioner(s),
@@ -466,6 +478,11 @@ class AppointmentBuilder extends DomainResourceBuilder {
   /// for the actual allocated time. However, in other situations the
   /// duration may be calculated by the scheduling system.
   List<PeriodBuilder>? requestedPeriod;
+
+  /// Converts a AppointmentBuilder to [Appointment]
+  Appointment build() => Appointment.fromJson(toJson());
+
+  /// Converts a [AppointmentBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1649,6 +1666,13 @@ class AppointmentBuilder extends DomainResourceBuilder {
   }
 }
 
+/// Extension to change [AppointmentParticipant] to a Builder
+extension BuilderAppointmentParticipant on AppointmentParticipant {
+  /// Converts [AppointmentParticipant] to a [AppointmentParticipantBuilder]
+  AppointmentParticipantBuilder get toBuilder =>
+      AppointmentParticipantBuilder.fromJson(toJson());
+}
+
 /// [AppointmentParticipantBuilder]
 /// List of participants involved in the appointment.
 class AppointmentParticipantBuilder extends BackboneElementBuilder {
@@ -1807,6 +1831,11 @@ class AppointmentParticipantBuilder extends BackboneElementBuilder {
   /// [period]
   /// Participation period of the actor.
   PeriodBuilder? period;
+
+  /// Converts a AppointmentParticipantBuilder to [AppointmentParticipant]
+  AppointmentParticipant build() => AppointmentParticipant.fromJson(toJson());
+
+  /// Converts a [AppointmentParticipantBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

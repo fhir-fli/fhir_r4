@@ -1,8 +1,36 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        MedicationKnowledge,
+        MedicationKnowledgeRelatedMedicationKnowledge,
+        MedicationKnowledgeMonograph,
+        MedicationKnowledgeIngredient,
+        MedicationKnowledgeCost,
+        MedicationKnowledgeMonitoringProgram,
+        MedicationKnowledgeAdministrationGuidelines,
+        MedicationKnowledgeDosage,
+        MedicationKnowledgePatientCharacteristics,
+        MedicationKnowledgeMedicineClassification,
+        MedicationKnowledgePackaging,
+        MedicationKnowledgeDrugCharacteristic,
+        MedicationKnowledgeRegulatory,
+        MedicationKnowledgeSubstitution,
+        MedicationKnowledgeSchedule,
+        MedicationKnowledgeMaxDispense,
+        MedicationKnowledgeKinetics;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [MedicationKnowledge] to a Builder
+extension BuilderMedicationKnowledge on MedicationKnowledge {
+  /// Converts [MedicationKnowledge] to a [MedicationKnowledgeBuilder]
+  MedicationKnowledgeBuilder get toBuilder =>
+      MedicationKnowledgeBuilder.fromJson(toJson());
+}
 
 /// [MedicationKnowledgeBuilder]
 /// Information about a medication that is used to support knowledge.
@@ -466,6 +494,11 @@ class MedicationKnowledgeBuilder extends DomainResourceBuilder {
   /// The time course of drug absorption, distribution, metabolism and
   /// excretion of a medication from the body.
   List<MedicationKnowledgeKineticsBuilder>? kinetics;
+
+  /// Converts a MedicationKnowledgeBuilder to [MedicationKnowledge]
+  MedicationKnowledge build() => MedicationKnowledge.fromJson(toJson());
+
+  /// Converts a [MedicationKnowledgeBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1689,6 +1722,14 @@ class MedicationKnowledgeBuilder extends DomainResourceBuilder {
   }
 }
 
+/// Extension to change [MedicationKnowledgeRelatedMedicationKnowledge] to a Builder
+extension BuilderMedicationKnowledgeRelatedMedicationKnowledge
+    on MedicationKnowledgeRelatedMedicationKnowledge {
+  /// Converts [MedicationKnowledgeRelatedMedicationKnowledge] to a [MedicationKnowledgeRelatedMedicationKnowledgeBuilder]
+  MedicationKnowledgeRelatedMedicationKnowledgeBuilder get toBuilder =>
+      MedicationKnowledgeRelatedMedicationKnowledgeBuilder.fromJson(toJson());
+}
+
 /// [MedicationKnowledgeRelatedMedicationKnowledgeBuilder]
 /// Associated or related knowledge about a medication.
 class MedicationKnowledgeRelatedMedicationKnowledgeBuilder
@@ -1813,6 +1854,12 @@ class MedicationKnowledgeRelatedMedicationKnowledgeBuilder
   /// [reference]
   /// Associated documentation about the associated medication knowledge.
   List<ReferenceBuilder>? reference;
+
+  /// Converts a MedicationKnowledgeRelatedMedicationKnowledgeBuilder to [MedicationKnowledgeRelatedMedicationKnowledge]
+  MedicationKnowledgeRelatedMedicationKnowledge build() =>
+      MedicationKnowledgeRelatedMedicationKnowledge.fromJson(toJson());
+
+  /// Converts a [MedicationKnowledgeRelatedMedicationKnowledgeBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2141,6 +2188,13 @@ class MedicationKnowledgeRelatedMedicationKnowledgeBuilder
   }
 }
 
+/// Extension to change [MedicationKnowledgeMonograph] to a Builder
+extension BuilderMedicationKnowledgeMonograph on MedicationKnowledgeMonograph {
+  /// Converts [MedicationKnowledgeMonograph] to a [MedicationKnowledgeMonographBuilder]
+  MedicationKnowledgeMonographBuilder get toBuilder =>
+      MedicationKnowledgeMonographBuilder.fromJson(toJson());
+}
+
 /// [MedicationKnowledgeMonographBuilder]
 /// Associated documentation about the medication.
 class MedicationKnowledgeMonographBuilder extends BackboneElementBuilder {
@@ -2260,6 +2314,12 @@ class MedicationKnowledgeMonographBuilder extends BackboneElementBuilder {
   /// [source]
   /// Associated documentation about the medication.
   ReferenceBuilder? source;
+
+  /// Converts a MedicationKnowledgeMonographBuilder to [MedicationKnowledgeMonograph]
+  MedicationKnowledgeMonograph build() =>
+      MedicationKnowledgeMonograph.fromJson(toJson());
+
+  /// Converts a [MedicationKnowledgeMonographBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2582,6 +2642,14 @@ class MedicationKnowledgeMonographBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [MedicationKnowledgeIngredient] to a Builder
+extension BuilderMedicationKnowledgeIngredient
+    on MedicationKnowledgeIngredient {
+  /// Converts [MedicationKnowledgeIngredient] to a [MedicationKnowledgeIngredientBuilder]
+  MedicationKnowledgeIngredientBuilder get toBuilder =>
+      MedicationKnowledgeIngredientBuilder.fromJson(toJson());
+}
+
 /// [MedicationKnowledgeIngredientBuilder]
 /// Identifies a particular constituent of interest in the product.
 class MedicationKnowledgeIngredientBuilder extends BackboneElementBuilder {
@@ -2725,6 +2793,12 @@ class MedicationKnowledgeIngredientBuilder extends BackboneElementBuilder {
   /// Medication. For example, 250 mg per tablet. This is expressed as a
   /// ratio where the numerator is 250mg and the denominator is 1 tablet.
   RatioBuilder? strength;
+
+  /// Converts a MedicationKnowledgeIngredientBuilder to [MedicationKnowledgeIngredient]
+  MedicationKnowledgeIngredient build() =>
+      MedicationKnowledgeIngredient.fromJson(toJson());
+
+  /// Converts a [MedicationKnowledgeIngredientBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3133,6 +3207,13 @@ class MedicationKnowledgeIngredientBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [MedicationKnowledgeCost] to a Builder
+extension BuilderMedicationKnowledgeCost on MedicationKnowledgeCost {
+  /// Converts [MedicationKnowledgeCost] to a [MedicationKnowledgeCostBuilder]
+  MedicationKnowledgeCostBuilder get toBuilder =>
+      MedicationKnowledgeCostBuilder.fromJson(toJson());
+}
+
 /// [MedicationKnowledgeCostBuilder]
 /// The price of the medication.
 class MedicationKnowledgeCostBuilder extends BackboneElementBuilder {
@@ -3263,6 +3344,11 @@ class MedicationKnowledgeCostBuilder extends BackboneElementBuilder {
   /// [cost]
   /// The price of the medication.
   MoneyBuilder? cost;
+
+  /// Converts a MedicationKnowledgeCostBuilder to [MedicationKnowledgeCost]
+  MedicationKnowledgeCost build() => MedicationKnowledgeCost.fromJson(toJson());
+
+  /// Converts a [MedicationKnowledgeCostBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3617,6 +3703,14 @@ class MedicationKnowledgeCostBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [MedicationKnowledgeMonitoringProgram] to a Builder
+extension BuilderMedicationKnowledgeMonitoringProgram
+    on MedicationKnowledgeMonitoringProgram {
+  /// Converts [MedicationKnowledgeMonitoringProgram] to a [MedicationKnowledgeMonitoringProgramBuilder]
+  MedicationKnowledgeMonitoringProgramBuilder get toBuilder =>
+      MedicationKnowledgeMonitoringProgramBuilder.fromJson(toJson());
+}
+
 /// [MedicationKnowledgeMonitoringProgramBuilder]
 /// The program under which the medication is reviewed.
 class MedicationKnowledgeMonitoringProgramBuilder
@@ -3736,6 +3830,12 @@ class MedicationKnowledgeMonitoringProgramBuilder
   /// [name]
   /// Name of the reviewing program.
   FhirStringBuilder? name;
+
+  /// Converts a MedicationKnowledgeMonitoringProgramBuilder to [MedicationKnowledgeMonitoringProgram]
+  MedicationKnowledgeMonitoringProgram build() =>
+      MedicationKnowledgeMonitoringProgram.fromJson(toJson());
+
+  /// Converts a [MedicationKnowledgeMonitoringProgramBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -4059,6 +4159,14 @@ class MedicationKnowledgeMonitoringProgramBuilder
   }
 }
 
+/// Extension to change [MedicationKnowledgeAdministrationGuidelines] to a Builder
+extension BuilderMedicationKnowledgeAdministrationGuidelines
+    on MedicationKnowledgeAdministrationGuidelines {
+  /// Converts [MedicationKnowledgeAdministrationGuidelines] to a [MedicationKnowledgeAdministrationGuidelinesBuilder]
+  MedicationKnowledgeAdministrationGuidelinesBuilder get toBuilder =>
+      MedicationKnowledgeAdministrationGuidelinesBuilder.fromJson(toJson());
+}
+
 /// [MedicationKnowledgeAdministrationGuidelinesBuilder]
 /// Guidelines for the administration of the medication.
 class MedicationKnowledgeAdministrationGuidelinesBuilder
@@ -4211,6 +4319,12 @@ class MedicationKnowledgeAdministrationGuidelinesBuilder
   /// guidelines (for example, height, weight, gender, etc.).
   List<MedicationKnowledgePatientCharacteristicsBuilder>?
       patientCharacteristics;
+
+  /// Converts a MedicationKnowledgeAdministrationGuidelinesBuilder to [MedicationKnowledgeAdministrationGuidelines]
+  MedicationKnowledgeAdministrationGuidelines build() =>
+      MedicationKnowledgeAdministrationGuidelines.fromJson(toJson());
+
+  /// Converts a [MedicationKnowledgeAdministrationGuidelinesBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -4635,6 +4749,13 @@ class MedicationKnowledgeAdministrationGuidelinesBuilder
   }
 }
 
+/// Extension to change [MedicationKnowledgeDosage] to a Builder
+extension BuilderMedicationKnowledgeDosage on MedicationKnowledgeDosage {
+  /// Converts [MedicationKnowledgeDosage] to a [MedicationKnowledgeDosageBuilder]
+  MedicationKnowledgeDosageBuilder get toBuilder =>
+      MedicationKnowledgeDosageBuilder.fromJson(toJson());
+}
+
 /// [MedicationKnowledgeDosageBuilder]
 /// Dosage for the medication for the specific guidelines.
 class MedicationKnowledgeDosageBuilder extends BackboneElementBuilder {
@@ -4758,6 +4879,12 @@ class MedicationKnowledgeDosageBuilder extends BackboneElementBuilder {
   /// [dosage]
   /// Dosage for the medication for the specific guidelines.
   List<DosageBuilder>? dosage;
+
+  /// Converts a MedicationKnowledgeDosageBuilder to [MedicationKnowledgeDosage]
+  MedicationKnowledgeDosage build() =>
+      MedicationKnowledgeDosage.fromJson(toJson());
+
+  /// Converts a [MedicationKnowledgeDosageBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -5085,6 +5212,14 @@ class MedicationKnowledgeDosageBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [MedicationKnowledgePatientCharacteristics] to a Builder
+extension BuilderMedicationKnowledgePatientCharacteristics
+    on MedicationKnowledgePatientCharacteristics {
+  /// Converts [MedicationKnowledgePatientCharacteristics] to a [MedicationKnowledgePatientCharacteristicsBuilder]
+  MedicationKnowledgePatientCharacteristicsBuilder get toBuilder =>
+      MedicationKnowledgePatientCharacteristicsBuilder.fromJson(toJson());
+}
+
 /// [MedicationKnowledgePatientCharacteristicsBuilder]
 /// Characteristics of the patient that are relevant to the administration
 /// guidelines (for example, height, weight, gender, etc.).
@@ -5220,6 +5355,12 @@ class MedicationKnowledgePatientCharacteristicsBuilder
   /// [value]
   /// The specific characteristic (e.g. height, weight, gender, etc.).
   List<FhirStringBuilder>? value;
+
+  /// Converts a MedicationKnowledgePatientCharacteristicsBuilder to [MedicationKnowledgePatientCharacteristics]
+  MedicationKnowledgePatientCharacteristics build() =>
+      MedicationKnowledgePatientCharacteristics.fromJson(toJson());
+
+  /// Converts a [MedicationKnowledgePatientCharacteristicsBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -5604,6 +5745,14 @@ class MedicationKnowledgePatientCharacteristicsBuilder
   }
 }
 
+/// Extension to change [MedicationKnowledgeMedicineClassification] to a Builder
+extension BuilderMedicationKnowledgeMedicineClassification
+    on MedicationKnowledgeMedicineClassification {
+  /// Converts [MedicationKnowledgeMedicineClassification] to a [MedicationKnowledgeMedicineClassificationBuilder]
+  MedicationKnowledgeMedicineClassificationBuilder get toBuilder =>
+      MedicationKnowledgeMedicineClassificationBuilder.fromJson(toJson());
+}
+
 /// [MedicationKnowledgeMedicineClassificationBuilder]
 /// Categorization of the medication within a formulary or classification
 /// system.
@@ -5730,6 +5879,12 @@ class MedicationKnowledgeMedicineClassificationBuilder
   /// Specific category assigned to the medication (e.g. anti-infective,
   /// anti-hypertensive, antibiotic, etc.).
   List<CodeableConceptBuilder>? classification;
+
+  /// Converts a MedicationKnowledgeMedicineClassificationBuilder to [MedicationKnowledgeMedicineClassification]
+  MedicationKnowledgeMedicineClassification build() =>
+      MedicationKnowledgeMedicineClassification.fromJson(toJson());
+
+  /// Converts a [MedicationKnowledgeMedicineClassificationBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -6058,6 +6213,13 @@ class MedicationKnowledgeMedicineClassificationBuilder
   }
 }
 
+/// Extension to change [MedicationKnowledgePackaging] to a Builder
+extension BuilderMedicationKnowledgePackaging on MedicationKnowledgePackaging {
+  /// Converts [MedicationKnowledgePackaging] to a [MedicationKnowledgePackagingBuilder]
+  MedicationKnowledgePackagingBuilder get toBuilder =>
+      MedicationKnowledgePackagingBuilder.fromJson(toJson());
+}
+
 /// [MedicationKnowledgePackagingBuilder]
 /// Information that only applies to packages (not products).
 class MedicationKnowledgePackagingBuilder extends BackboneElementBuilder {
@@ -6177,6 +6339,12 @@ class MedicationKnowledgePackagingBuilder extends BackboneElementBuilder {
   /// [quantity]
   /// The number of product units the package would contain if fully loaded.
   QuantityBuilder? quantity;
+
+  /// Converts a MedicationKnowledgePackagingBuilder to [MedicationKnowledgePackaging]
+  MedicationKnowledgePackaging build() =>
+      MedicationKnowledgePackaging.fromJson(toJson());
+
+  /// Converts a [MedicationKnowledgePackagingBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -6499,6 +6667,14 @@ class MedicationKnowledgePackagingBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [MedicationKnowledgeDrugCharacteristic] to a Builder
+extension BuilderMedicationKnowledgeDrugCharacteristic
+    on MedicationKnowledgeDrugCharacteristic {
+  /// Converts [MedicationKnowledgeDrugCharacteristic] to a [MedicationKnowledgeDrugCharacteristicBuilder]
+  MedicationKnowledgeDrugCharacteristicBuilder get toBuilder =>
+      MedicationKnowledgeDrugCharacteristicBuilder.fromJson(toJson());
+}
+
 /// [MedicationKnowledgeDrugCharacteristicBuilder]
 /// Specifies descriptive properties of the medicine, such as color, shape,
 /// imprints, etc.
@@ -6639,6 +6815,12 @@ class MedicationKnowledgeDrugCharacteristicBuilder
   /// Getter for [valueBase64Binary] as a FhirBase64BinaryBuilder
   FhirBase64BinaryBuilder? get valueBase64Binary =>
       valueX?.isAs<FhirBase64BinaryBuilder>();
+
+  /// Converts a MedicationKnowledgeDrugCharacteristicBuilder to [MedicationKnowledgeDrugCharacteristic]
+  MedicationKnowledgeDrugCharacteristic build() =>
+      MedicationKnowledgeDrugCharacteristic.fromJson(toJson());
+
+  /// Converts a [MedicationKnowledgeDrugCharacteristicBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -7069,6 +7251,14 @@ class MedicationKnowledgeDrugCharacteristicBuilder
   }
 }
 
+/// Extension to change [MedicationKnowledgeRegulatory] to a Builder
+extension BuilderMedicationKnowledgeRegulatory
+    on MedicationKnowledgeRegulatory {
+  /// Converts [MedicationKnowledgeRegulatory] to a [MedicationKnowledgeRegulatoryBuilder]
+  MedicationKnowledgeRegulatoryBuilder get toBuilder =>
+      MedicationKnowledgeRegulatoryBuilder.fromJson(toJson());
+}
+
 /// [MedicationKnowledgeRegulatoryBuilder]
 /// Regulatory information about a medication.
 class MedicationKnowledgeRegulatoryBuilder extends BackboneElementBuilder {
@@ -7220,6 +7410,12 @@ class MedicationKnowledgeRegulatoryBuilder extends BackboneElementBuilder {
   /// The maximum number of units of the medication that can be dispensed in
   /// a period.
   MedicationKnowledgeMaxDispenseBuilder? maxDispense;
+
+  /// Converts a MedicationKnowledgeRegulatoryBuilder to [MedicationKnowledgeRegulatory]
+  MedicationKnowledgeRegulatory build() =>
+      MedicationKnowledgeRegulatory.fromJson(toJson());
+
+  /// Converts a [MedicationKnowledgeRegulatoryBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -7616,6 +7812,14 @@ class MedicationKnowledgeRegulatoryBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [MedicationKnowledgeSubstitution] to a Builder
+extension BuilderMedicationKnowledgeSubstitution
+    on MedicationKnowledgeSubstitution {
+  /// Converts [MedicationKnowledgeSubstitution] to a [MedicationKnowledgeSubstitutionBuilder]
+  MedicationKnowledgeSubstitutionBuilder get toBuilder =>
+      MedicationKnowledgeSubstitutionBuilder.fromJson(toJson());
+}
+
 /// [MedicationKnowledgeSubstitutionBuilder]
 /// Specifies if changes are allowed when dispensing a medication from a
 /// regulatory perspective.
@@ -7736,6 +7940,12 @@ class MedicationKnowledgeSubstitutionBuilder extends BackboneElementBuilder {
   /// Specifies if regulation allows for changes in the medication when
   /// dispensing.
   FhirBooleanBuilder? allowed;
+
+  /// Converts a MedicationKnowledgeSubstitutionBuilder to [MedicationKnowledgeSubstitution]
+  MedicationKnowledgeSubstitution build() =>
+      MedicationKnowledgeSubstitution.fromJson(toJson());
+
+  /// Converts a [MedicationKnowledgeSubstitutionBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -8058,6 +8268,13 @@ class MedicationKnowledgeSubstitutionBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [MedicationKnowledgeSchedule] to a Builder
+extension BuilderMedicationKnowledgeSchedule on MedicationKnowledgeSchedule {
+  /// Converts [MedicationKnowledgeSchedule] to a [MedicationKnowledgeScheduleBuilder]
+  MedicationKnowledgeScheduleBuilder get toBuilder =>
+      MedicationKnowledgeScheduleBuilder.fromJson(toJson());
+}
+
 /// [MedicationKnowledgeScheduleBuilder]
 /// Specifies the schedule of a medication in jurisdiction.
 class MedicationKnowledgeScheduleBuilder extends BackboneElementBuilder {
@@ -8165,6 +8382,12 @@ class MedicationKnowledgeScheduleBuilder extends BackboneElementBuilder {
   /// [schedule]
   /// Specifies the specific drug schedule.
   CodeableConceptBuilder? schedule;
+
+  /// Converts a MedicationKnowledgeScheduleBuilder to [MedicationKnowledgeSchedule]
+  MedicationKnowledgeSchedule build() =>
+      MedicationKnowledgeSchedule.fromJson(toJson());
+
+  /// Converts a [MedicationKnowledgeScheduleBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -8455,6 +8678,14 @@ class MedicationKnowledgeScheduleBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [MedicationKnowledgeMaxDispense] to a Builder
+extension BuilderMedicationKnowledgeMaxDispense
+    on MedicationKnowledgeMaxDispense {
+  /// Converts [MedicationKnowledgeMaxDispense] to a [MedicationKnowledgeMaxDispenseBuilder]
+  MedicationKnowledgeMaxDispenseBuilder get toBuilder =>
+      MedicationKnowledgeMaxDispenseBuilder.fromJson(toJson());
+}
+
 /// [MedicationKnowledgeMaxDispenseBuilder]
 /// The maximum number of units of the medication that can be dispensed in
 /// a period.
@@ -8574,6 +8805,12 @@ class MedicationKnowledgeMaxDispenseBuilder extends BackboneElementBuilder {
   /// [period]
   /// The period that applies to the maximum number of units.
   FhirDurationBuilder? period;
+
+  /// Converts a MedicationKnowledgeMaxDispenseBuilder to [MedicationKnowledgeMaxDispense]
+  MedicationKnowledgeMaxDispense build() =>
+      MedicationKnowledgeMaxDispense.fromJson(toJson());
+
+  /// Converts a [MedicationKnowledgeMaxDispenseBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -8896,6 +9133,13 @@ class MedicationKnowledgeMaxDispenseBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [MedicationKnowledgeKinetics] to a Builder
+extension BuilderMedicationKnowledgeKinetics on MedicationKnowledgeKinetics {
+  /// Converts [MedicationKnowledgeKinetics] to a [MedicationKnowledgeKineticsBuilder]
+  MedicationKnowledgeKineticsBuilder get toBuilder =>
+      MedicationKnowledgeKineticsBuilder.fromJson(toJson());
+}
+
 /// [MedicationKnowledgeKineticsBuilder]
 /// The time course of drug absorption, distribution, metabolism and
 /// excretion of a medication from the body.
@@ -9035,6 +9279,12 @@ class MedicationKnowledgeKineticsBuilder extends BackboneElementBuilder {
   /// The time required for any specified property (e.g., the concentration
   /// of a substance in the body) to decrease by half.
   FhirDurationBuilder? halfLifePeriod;
+
+  /// Converts a MedicationKnowledgeKineticsBuilder to [MedicationKnowledgeKinetics]
+  MedicationKnowledgeKinetics build() =>
+      MedicationKnowledgeKinetics.fromJson(toJson());
+
+  /// Converts a [MedicationKnowledgeKineticsBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

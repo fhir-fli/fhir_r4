@@ -1,5 +1,11 @@
 part of 'primitive_types.dart';
 
+/// Extension to convert a [FhirXhtml] to a [FhirXhtmlBuilder]
+extension BuilderFhirXhtml on FhirXhtml {
+  /// Converts this instance to a [FhirXhtmlBuilder]
+  FhirXhtmlBuilder get toBuilder => FhirXhtmlBuilder.fromJson(toJson());
+}
+
 /// Extension to convert a [String] to a [FhirXhtmlBuilder].
 extension FhirXhtmlBuilderExtension on String {
   /// Converts a [String] to a [FhirXhtmlBuilder].

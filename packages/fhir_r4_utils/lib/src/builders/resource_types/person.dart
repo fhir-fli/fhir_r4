@@ -1,8 +1,20 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        Person,
+        PersonLink;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [Person] to a Builder
+extension BuilderPerson on Person {
+  /// Converts [Person] to a [PersonBuilder]
+  PersonBuilder get toBuilder => PersonBuilder.fromJson(toJson());
+}
 
 /// [PersonBuilder]
 /// Demographics and administrative information about a person independent
@@ -271,6 +283,11 @@ class PersonBuilder extends DomainResourceBuilder {
   /// [link]
   /// Link to a resource that concerns the same actual person.
   List<PersonLinkBuilder>? link;
+
+  /// Converts a PersonBuilder to [Person]
+  Person build() => Person.fromJson(toJson());
+
+  /// Converts a [PersonBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1039,6 +1056,12 @@ class PersonBuilder extends DomainResourceBuilder {
   }
 }
 
+/// Extension to change [PersonLink] to a Builder
+extension BuilderPersonLink on PersonLink {
+  /// Converts [PersonLink] to a [PersonLinkBuilder]
+  PersonLinkBuilder get toBuilder => PersonLinkBuilder.fromJson(toJson());
+}
+
 /// [PersonLinkBuilder]
 /// Link to a resource that concerns the same actual person.
 class PersonLinkBuilder extends BackboneElementBuilder {
@@ -1157,6 +1180,11 @@ class PersonLinkBuilder extends BackboneElementBuilder {
   /// Level of assurance that this link is associated with the target
   /// resource.
   IdentityAssuranceLevelBuilder? assurance;
+
+  /// Converts a PersonLinkBuilder to [PersonLink]
+  PersonLink build() => PersonLink.fromJson(toJson());
+
+  /// Converts a [PersonLinkBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

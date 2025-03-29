@@ -1,8 +1,21 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        Procedure,
+        ProcedurePerformer,
+        ProcedureFocalDevice;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [Procedure] to a Builder
+extension BuilderProcedure on Procedure {
+  /// Converts [Procedure] to a [ProcedureBuilder]
+  ProcedureBuilder get toBuilder => ProcedureBuilder.fromJson(toJson());
+}
 
 /// [ProcedureBuilder]
 /// An action that is or was performed on or for a patient. This can be a
@@ -561,6 +574,11 @@ class ProcedureBuilder extends DomainResourceBuilder {
   /// [usedCode]
   /// Identifies coded items that were used as part of the procedure.
   List<CodeableConceptBuilder>? usedCode;
+
+  /// Converts a ProcedureBuilder to [Procedure]
+  Procedure build() => Procedure.fromJson(toJson());
+
+  /// Converts a [ProcedureBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2098,6 +2116,13 @@ class ProcedureBuilder extends DomainResourceBuilder {
   }
 }
 
+/// Extension to change [ProcedurePerformer] to a Builder
+extension BuilderProcedurePerformer on ProcedurePerformer {
+  /// Converts [ProcedurePerformer] to a [ProcedurePerformerBuilder]
+  ProcedurePerformerBuilder get toBuilder =>
+      ProcedurePerformerBuilder.fromJson(toJson());
+}
+
 /// [ProcedurePerformerBuilder]
 /// Limited to "real" people rather than equipment.
 class ProcedurePerformerBuilder extends BackboneElementBuilder {
@@ -2227,6 +2252,11 @@ class ProcedurePerformerBuilder extends BackboneElementBuilder {
   /// [onBehalfOf]
   /// The organization the device or practitioner was acting on behalf of.
   ReferenceBuilder? onBehalfOf;
+
+  /// Converts a ProcedurePerformerBuilder to [ProcedurePerformer]
+  ProcedurePerformer build() => ProcedurePerformer.fromJson(toJson());
+
+  /// Converts a [ProcedurePerformerBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2581,6 +2611,13 @@ class ProcedurePerformerBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [ProcedureFocalDevice] to a Builder
+extension BuilderProcedureFocalDevice on ProcedureFocalDevice {
+  /// Converts [ProcedureFocalDevice] to a [ProcedureFocalDeviceBuilder]
+  ProcedureFocalDeviceBuilder get toBuilder =>
+      ProcedureFocalDeviceBuilder.fromJson(toJson());
+}
+
 /// [ProcedureFocalDeviceBuilder]
 /// A device that is implanted, removed or otherwise manipulated
 /// (calibration, battery replacement, fitting a prosthesis, attaching a
@@ -2700,6 +2737,11 @@ class ProcedureFocalDeviceBuilder extends BackboneElementBuilder {
   /// [manipulated]
   /// The device that was manipulated (changed) during the procedure.
   ReferenceBuilder? manipulated;
+
+  /// Converts a ProcedureFocalDeviceBuilder to [ProcedureFocalDevice]
+  ProcedureFocalDevice build() => ProcedureFocalDevice.fromJson(toJson());
+
+  /// Converts a [ProcedureFocalDeviceBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

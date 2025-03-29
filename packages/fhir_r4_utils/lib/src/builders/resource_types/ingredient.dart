@@ -1,8 +1,23 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        Ingredient,
+        IngredientManufacturer,
+        IngredientSubstance,
+        IngredientStrength,
+        IngredientReferenceStrength;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [Ingredient] to a Builder
+extension BuilderIngredient on Ingredient {
+  /// Converts [Ingredient] to a [IngredientBuilder]
+  IngredientBuilder get toBuilder => IngredientBuilder.fromJson(toJson());
+}
 
 /// [IngredientBuilder]
 /// An ingredient of a manufactured item or pharmaceutical product.
@@ -252,6 +267,11 @@ class IngredientBuilder extends DomainResourceBuilder {
   /// [substance]
   /// The substance that comprises this ingredient.
   IngredientSubstanceBuilder? substance;
+
+  /// Converts a IngredientBuilder to [Ingredient]
+  Ingredient build() => Ingredient.fromJson(toJson());
+
+  /// Converts a [IngredientBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -946,6 +966,13 @@ class IngredientBuilder extends DomainResourceBuilder {
   }
 }
 
+/// Extension to change [IngredientManufacturer] to a Builder
+extension BuilderIngredientManufacturer on IngredientManufacturer {
+  /// Converts [IngredientManufacturer] to a [IngredientManufacturerBuilder]
+  IngredientManufacturerBuilder get toBuilder =>
+      IngredientManufacturerBuilder.fromJson(toJson());
+}
+
 /// [IngredientManufacturerBuilder]
 /// The organization(s) that manufacture this ingredient. Can be used to
 /// indicate: 1) Organizations we are aware of that manufacture this
@@ -1072,6 +1099,11 @@ class IngredientManufacturerBuilder extends BackboneElementBuilder {
   /// [manufacturer]
   /// An organization that manufactures this ingredient.
   ReferenceBuilder? manufacturer;
+
+  /// Converts a IngredientManufacturerBuilder to [IngredientManufacturer]
+  IngredientManufacturer build() => IngredientManufacturer.fromJson(toJson());
+
+  /// Converts a [IngredientManufacturerBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1394,6 +1426,13 @@ class IngredientManufacturerBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [IngredientSubstance] to a Builder
+extension BuilderIngredientSubstance on IngredientSubstance {
+  /// Converts [IngredientSubstance] to a [IngredientSubstanceBuilder]
+  IngredientSubstanceBuilder get toBuilder =>
+      IngredientSubstanceBuilder.fromJson(toJson());
+}
+
 /// [IngredientSubstanceBuilder]
 /// The substance that comprises this ingredient.
 class IngredientSubstanceBuilder extends BackboneElementBuilder {
@@ -1519,6 +1558,11 @@ class IngredientSubstanceBuilder extends BackboneElementBuilder {
   /// different representations - mathematically equivalent - of a single
   /// strength.
   List<IngredientStrengthBuilder>? strength;
+
+  /// Converts a IngredientSubstanceBuilder to [IngredientSubstance]
+  IngredientSubstance build() => IngredientSubstance.fromJson(toJson());
+
+  /// Converts a [IngredientSubstanceBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1846,6 +1890,13 @@ class IngredientSubstanceBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [IngredientStrength] to a Builder
+extension BuilderIngredientStrength on IngredientStrength {
+  /// Converts [IngredientStrength] to a [IngredientStrengthBuilder]
+  IngredientStrengthBuilder get toBuilder =>
+      IngredientStrengthBuilder.fromJson(toJson());
+}
+
 /// [IngredientStrengthBuilder]
 /// The quantity of substance in the unit of presentation, or in the volume
 /// (or mass) of the single pharmaceutical product or manufactured item.
@@ -2068,6 +2119,11 @@ class IngredientStrengthBuilder extends BackboneElementBuilder {
   /// the active substance and active moiety are different, therefore both a
   /// strength and a reference strength are needed.
   List<IngredientReferenceStrengthBuilder>? referenceStrength;
+
+  /// Converts a IngredientStrengthBuilder to [IngredientStrength]
+  IngredientStrength build() => IngredientStrength.fromJson(toJson());
+
+  /// Converts a [IngredientStrengthBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2668,6 +2724,13 @@ class IngredientStrengthBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [IngredientReferenceStrength] to a Builder
+extension BuilderIngredientReferenceStrength on IngredientReferenceStrength {
+  /// Converts [IngredientReferenceStrength] to a [IngredientReferenceStrengthBuilder]
+  IngredientReferenceStrengthBuilder get toBuilder =>
+      IngredientReferenceStrengthBuilder.fromJson(toJson());
+}
+
 /// [IngredientReferenceStrengthBuilder]
 /// Strength expressed in terms of a reference substance. For when the
 /// ingredient strength is additionally expressed as equivalent to the
@@ -2828,6 +2891,12 @@ class IngredientReferenceStrengthBuilder extends BackboneElementBuilder {
   /// [country]
   /// The country or countries for which the strength range applies.
   List<CodeableConceptBuilder>? country;
+
+  /// Converts a IngredientReferenceStrengthBuilder to [IngredientReferenceStrength]
+  IngredientReferenceStrength build() =>
+      IngredientReferenceStrength.fromJson(toJson());
+
+  /// Converts a [IngredientReferenceStrengthBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

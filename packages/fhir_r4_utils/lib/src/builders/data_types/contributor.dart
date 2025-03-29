@@ -1,8 +1,14 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, StringExtensionForFHIR;
+    show yamlMapToJson, yamlToJson, StringExtensionForFHIR, Contributor;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [Contributor] to a Builder
+extension BuilderContributor on Contributor {
+  /// Converts [Contributor] to a [ContributorBuilder]
+  ContributorBuilder get toBuilder => ContributorBuilder.fromJson(toJson());
+}
 
 /// [ContributorBuilder]
 /// A contributor to the content of a knowledge asset, including authors,
@@ -137,6 +143,11 @@ class ContributorBuilder extends DataTypeBuilder
   /// Contact details to assist a user in finding and communicating with the
   /// contributor.
   List<ContactDetailBuilder>? contact;
+
+  /// Converts a ContributorBuilder to [Contributor]
+  Contributor build() => Contributor.fromJson(toJson());
+
+  /// Converts a [ContributorBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

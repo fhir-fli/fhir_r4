@@ -1,8 +1,22 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        Patient,
+        PatientContact,
+        PatientCommunication,
+        PatientLink;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [Patient] to a Builder
+extension BuilderPatient on Patient {
+  /// Converts [Patient] to a [PatientBuilder]
+  PatientBuilder get toBuilder => PatientBuilder.fromJson(toJson());
+}
 
 /// [PatientBuilder]
 /// Demographics and other administrative information about an individual
@@ -383,6 +397,11 @@ class PatientBuilder extends DomainResourceBuilder {
   /// [link]
   /// Link to another patient resource that concerns the same actual patient.
   List<PatientLinkBuilder>? link;
+
+  /// Converts a PatientBuilder to [Patient]
+  Patient build() => Patient.fromJson(toJson());
+
+  /// Converts a [PatientBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1471,6 +1490,13 @@ class PatientBuilder extends DomainResourceBuilder {
   }
 }
 
+/// Extension to change [PatientContact] to a Builder
+extension BuilderPatientContact on PatientContact {
+  /// Converts [PatientContact] to a [PatientContactBuilder]
+  PatientContactBuilder get toBuilder =>
+      PatientContactBuilder.fromJson(toJson());
+}
+
 /// [PatientContactBuilder]
 /// A contact party (e.g. guardian, partner, friend) for the patient.
 class PatientContactBuilder extends BackboneElementBuilder {
@@ -1656,6 +1682,11 @@ class PatientContactBuilder extends BackboneElementBuilder {
   /// The period during which this contact person or organization is valid to
   /// be contacted relating to this patient.
   PeriodBuilder? period;
+
+  /// Converts a PatientContactBuilder to [PatientContact]
+  PatientContact build() => PatientContact.fromJson(toJson());
+
+  /// Converts a [PatientContactBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2148,6 +2179,13 @@ class PatientContactBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [PatientCommunication] to a Builder
+extension BuilderPatientCommunication on PatientCommunication {
+  /// Converts [PatientCommunication] to a [PatientCommunicationBuilder]
+  PatientCommunicationBuilder get toBuilder =>
+      PatientCommunicationBuilder.fromJson(toJson());
+}
+
 /// [PatientCommunicationBuilder]
 /// A language which may be used to communicate with the patient about his
 /// or her health.
@@ -2270,6 +2308,11 @@ class PatientCommunicationBuilder extends BackboneElementBuilder {
   /// Indicates whether or not the patient prefers this language (over other
   /// languages he masters up a certain level).
   FhirBooleanBuilder? preferred;
+
+  /// Converts a PatientCommunicationBuilder to [PatientCommunication]
+  PatientCommunication build() => PatientCommunication.fromJson(toJson());
+
+  /// Converts a [PatientCommunicationBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2592,6 +2635,12 @@ class PatientCommunicationBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [PatientLink] to a Builder
+extension BuilderPatientLink on PatientLink {
+  /// Converts [PatientLink] to a [PatientLinkBuilder]
+  PatientLinkBuilder get toBuilder => PatientLinkBuilder.fromJson(toJson());
+}
+
 /// [PatientLinkBuilder]
 /// Link to another patient resource that concerns the same actual patient.
 class PatientLinkBuilder extends BackboneElementBuilder {
@@ -2710,6 +2759,11 @@ class PatientLinkBuilder extends BackboneElementBuilder {
   /// The type of link between this patient resource and another patient
   /// resource.
   LinkTypeBuilder? type;
+
+  /// Converts a PatientLinkBuilder to [PatientLink]
+  PatientLink build() => PatientLink.fromJson(toJson());
+
+  /// Converts a [PatientLinkBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

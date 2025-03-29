@@ -1,8 +1,20 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        ResearchDefinition;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [ResearchDefinition] to a Builder
+extension BuilderResearchDefinition on ResearchDefinition {
+  /// Converts [ResearchDefinition] to a [ResearchDefinitionBuilder]
+  ResearchDefinitionBuilder get toBuilder =>
+      ResearchDefinitionBuilder.fromJson(toJson());
+}
 
 /// [ResearchDefinitionBuilder]
 /// The ResearchDefinition resource describes the conditional state
@@ -624,6 +636,11 @@ class ResearchDefinitionBuilder extends DomainResourceBuilder {
   /// A reference to a ResearchElementDefinition resomece that defines the
   /// outcome for the research.
   ReferenceBuilder? outcome;
+
+  /// Converts a ResearchDefinitionBuilder to [ResearchDefinition]
+  ResearchDefinition build() => ResearchDefinition.fromJson(toJson());
+
+  /// Converts a [ResearchDefinitionBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

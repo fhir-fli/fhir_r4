@@ -1,8 +1,14 @@
 import 'dart:convert';
 
-import 'package:fhir_r4/fhir_r4.dart' show R4ResourceType;
+import 'package:fhir_r4/fhir_r4.dart' show R4ResourceType, Resource;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension for [Resource] to convert to a builder
+extension BuilderResource on Resource {
+  /// Converts the [Resource] to a [ResourceBuilder]
+  ResourceBuilder get toBuilder => ResourceBuilder.fromJson(toJson());
+}
 
 /// [ResourceBuilder] Base definition for all FHIR elements.
 abstract class ResourceBuilder extends FhirBaseBuilder {
@@ -119,8 +125,10 @@ abstract class ResourceBuilder extends FhirBaseBuilder {
 
   /// Updates the [meta] field of this Resource, updates the meta.lastUpdated
   /// field, adds 1 to the version number
-  ResourceBuilder updateVersion(
-          {FhirMetaBuilder? oldMeta, bool versionIdAsTime = false}) =>
+  ResourceBuilder updateVersion({
+    FhirMetaBuilder? oldMeta,
+    bool versionIdAsTime = false,
+  }) =>
       updateMeta(this, meta: oldMeta, versionIdAsTime: versionIdAsTime);
 
   /// Returns a [R4ResourceType] from a [String]

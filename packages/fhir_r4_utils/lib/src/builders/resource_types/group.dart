@@ -1,8 +1,21 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        FhirGroup,
+        GroupCharacteristic,
+        GroupMember;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [FhirGroup] to a Builder
+extension BuilderFhirGroup on FhirGroup {
+  /// Converts [FhirGroup] to a [FhirGroupBuilder]
+  FhirGroupBuilder get toBuilder => FhirGroupBuilder.fromJson(toJson());
+}
 
 /// [FhirGroupBuilder]
 /// Represents a defined collection of entities that may be discussed or
@@ -270,6 +283,11 @@ class FhirGroupBuilder extends DomainResourceBuilder {
   /// [member]
   /// Identifies the resource instances that are members of the group.
   List<GroupMemberBuilder>? member;
+
+  /// Converts a FhirGroupBuilder to [FhirGroup]
+  FhirGroup build() => FhirGroup.fromJson(toJson());
+
+  /// Converts a [FhirGroupBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1028,6 +1046,13 @@ class FhirGroupBuilder extends DomainResourceBuilder {
   }
 }
 
+/// Extension to change [GroupCharacteristic] to a Builder
+extension BuilderGroupCharacteristic on GroupCharacteristic {
+  /// Converts [GroupCharacteristic] to a [GroupCharacteristicBuilder]
+  GroupCharacteristicBuilder get toBuilder =>
+      GroupCharacteristicBuilder.fromJson(toJson());
+}
+
 /// [GroupCharacteristicBuilder]
 /// Identifies traits whose presence r absence is shared by members of the
 /// group.
@@ -1192,6 +1217,11 @@ class GroupCharacteristicBuilder extends BackboneElementBuilder {
   /// The period over which the characteristic is tested; e.g. the patient
   /// had an operation during the month of June.
   PeriodBuilder? period;
+
+  /// Converts a GroupCharacteristicBuilder to [GroupCharacteristic]
+  GroupCharacteristic build() => GroupCharacteristic.fromJson(toJson());
+
+  /// Converts a [GroupCharacteristicBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1710,6 +1740,12 @@ class GroupCharacteristicBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [GroupMember] to a Builder
+extension BuilderGroupMember on GroupMember {
+  /// Converts [GroupMember] to a [GroupMemberBuilder]
+  GroupMemberBuilder get toBuilder => GroupMemberBuilder.fromJson(toJson());
+}
+
 /// [GroupMemberBuilder]
 /// Identifies the resource instances that are members of the group.
 class GroupMemberBuilder extends BackboneElementBuilder {
@@ -1841,6 +1877,11 @@ class GroupMemberBuilder extends BackboneElementBuilder {
   /// A flag to indicate that the member is no longer in the group, but
   /// previously may have been a member.
   FhirBooleanBuilder? inactive;
+
+  /// Converts a GroupMemberBuilder to [GroupMember]
+  GroupMember build() => GroupMember.fromJson(toJson());
+
+  /// Converts a [GroupMemberBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

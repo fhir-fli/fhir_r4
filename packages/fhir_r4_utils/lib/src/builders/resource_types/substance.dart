@@ -1,8 +1,21 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        Substance,
+        SubstanceInstance,
+        SubstanceIngredient;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [Substance] to a Builder
+extension BuilderSubstance on Substance {
+  /// Converts [Substance] to a [SubstanceBuilder]
+  SubstanceBuilder get toBuilder => SubstanceBuilder.fromJson(toJson());
+}
 
 /// [SubstanceBuilder]
 /// A homogeneous material with a definite composition.
@@ -234,6 +247,11 @@ class SubstanceBuilder extends DomainResourceBuilder {
   /// [ingredient]
   /// A substance can be composed of other substances.
   List<SubstanceIngredientBuilder>? ingredient;
+
+  /// Converts a SubstanceBuilder to [Substance]
+  Substance build() => Substance.fromJson(toJson());
+
+  /// Converts a [SubstanceBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -901,6 +919,13 @@ class SubstanceBuilder extends DomainResourceBuilder {
   }
 }
 
+/// Extension to change [SubstanceInstance] to a Builder
+extension BuilderSubstanceInstance on SubstanceInstance {
+  /// Converts [SubstanceInstance] to a [SubstanceInstanceBuilder]
+  SubstanceInstanceBuilder get toBuilder =>
+      SubstanceInstanceBuilder.fromJson(toJson());
+}
+
 /// [SubstanceInstanceBuilder]
 /// Substance may be used to describe a kind of substance, or a specific
 /// package/container of the substance: an instance.
@@ -1032,6 +1057,11 @@ class SubstanceInstanceBuilder extends BackboneElementBuilder {
   /// [quantity]
   /// The amount of the substance.
   QuantityBuilder? quantity;
+
+  /// Converts a SubstanceInstanceBuilder to [SubstanceInstance]
+  SubstanceInstance build() => SubstanceInstance.fromJson(toJson());
+
+  /// Converts a [SubstanceInstanceBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1386,6 +1416,13 @@ class SubstanceInstanceBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [SubstanceIngredient] to a Builder
+extension BuilderSubstanceIngredient on SubstanceIngredient {
+  /// Converts [SubstanceIngredient] to a [SubstanceIngredientBuilder]
+  SubstanceIngredientBuilder get toBuilder =>
+      SubstanceIngredientBuilder.fromJson(toJson());
+}
+
 /// [SubstanceIngredientBuilder]
 /// A substance can be composed of other substances.
 class SubstanceIngredientBuilder extends BackboneElementBuilder {
@@ -1514,6 +1551,11 @@ class SubstanceIngredientBuilder extends BackboneElementBuilder {
   /// Getter for [substanceReference] as a ReferenceBuilder
   ReferenceBuilder? get substanceReference =>
       substanceX?.isAs<ReferenceBuilder>();
+
+  /// Converts a SubstanceIngredientBuilder to [SubstanceIngredient]
+  SubstanceIngredient build() => SubstanceIngredient.fromJson(toJson());
+
+  /// Converts a [SubstanceIngredientBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

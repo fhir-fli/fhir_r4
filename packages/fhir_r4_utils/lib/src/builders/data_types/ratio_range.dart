@@ -1,8 +1,14 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, StringExtensionForFHIR;
+    show yamlMapToJson, yamlToJson, StringExtensionForFHIR, RatioRange;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [RatioRange] to a Builder
+extension BuilderRatioRange on RatioRange {
+  /// Converts [RatioRange] to a [RatioRangeBuilder]
+  RatioRangeBuilder get toBuilder => RatioRangeBuilder.fromJson(toJson());
+}
 
 /// [RatioRangeBuilder]
 /// A range of ratios expressed as a low and high numerator and a
@@ -130,6 +136,11 @@ class RatioRangeBuilder extends DataTypeBuilder
   /// [denominator]
   /// The value of the denominator.
   QuantityBuilder? denominator;
+
+  /// Converts a RatioRangeBuilder to [RatioRange]
+  RatioRange build() => RatioRange.fromJson(toJson());
+
+  /// Converts a [RatioRangeBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

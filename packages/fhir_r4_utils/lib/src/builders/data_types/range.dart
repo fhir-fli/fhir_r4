@@ -1,8 +1,14 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, StringExtensionForFHIR;
+    show yamlMapToJson, yamlToJson, StringExtensionForFHIR, Range;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [Range] to a Builder
+extension BuilderRange on Range {
+  /// Converts [Range] to a [RangeBuilder]
+  RangeBuilder get toBuilder => RangeBuilder.fromJson(toJson());
+}
 
 /// [RangeBuilder]
 /// A set of ordered Quantities defined by a low and high limit.
@@ -149,6 +155,11 @@ class RangeBuilder extends DataTypeBuilder
   /// [high]
   /// The high limit. The boundary is inclusive.
   QuantityBuilder? high;
+
+  /// Converts a RangeBuilder to [Range]
+  Range build() => Range.fromJson(toJson());
+
+  /// Converts a [RangeBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

@@ -1,8 +1,33 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        CapabilityStatement,
+        CapabilityStatementSoftware,
+        CapabilityStatementImplementation,
+        CapabilityStatementRest,
+        CapabilityStatementSecurity,
+        CapabilityStatementResource,
+        CapabilityStatementInteraction,
+        CapabilityStatementSearchParam,
+        CapabilityStatementOperation,
+        CapabilityStatementInteraction1,
+        CapabilityStatementMessaging,
+        CapabilityStatementEndpoint,
+        CapabilityStatementSupportedMessage,
+        CapabilityStatementDocument;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [CapabilityStatement] to a Builder
+extension BuilderCapabilityStatement on CapabilityStatement {
+  /// Converts [CapabilityStatement] to a [CapabilityStatementBuilder]
+  CapabilityStatementBuilder get toBuilder =>
+      CapabilityStatementBuilder.fromJson(toJson());
+}
 
 /// [CapabilityStatementBuilder]
 /// A Capability Statement documents a set of capabilities (behaviors) of a
@@ -438,6 +463,11 @@ class CapabilityStatementBuilder extends CanonicalResourceBuilder {
   /// [document]
   /// A document definition.
   List<CapabilityStatementDocumentBuilder>? document;
+
+  /// Converts a CapabilityStatementBuilder to [CapabilityStatement]
+  CapabilityStatement build() => CapabilityStatement.fromJson(toJson());
+
+  /// Converts a [CapabilityStatementBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1748,6 +1778,13 @@ class CapabilityStatementBuilder extends CanonicalResourceBuilder {
   }
 }
 
+/// Extension to change [CapabilityStatementSoftware] to a Builder
+extension BuilderCapabilityStatementSoftware on CapabilityStatementSoftware {
+  /// Converts [CapabilityStatementSoftware] to a [CapabilityStatementSoftwareBuilder]
+  CapabilityStatementSoftwareBuilder get toBuilder =>
+      CapabilityStatementSoftwareBuilder.fromJson(toJson());
+}
+
 /// [CapabilityStatementSoftwareBuilder]
 /// Software that is covered by this capability statement. It is used when
 /// the capability statement describes the capabilities of a particular
@@ -1879,6 +1916,12 @@ class CapabilityStatementSoftwareBuilder extends BackboneElementBuilder {
   /// [releaseDate]
   /// Date this version of the software was released.
   FhirDateTimeBuilder? releaseDate;
+
+  /// Converts a CapabilityStatementSoftwareBuilder to [CapabilityStatementSoftware]
+  CapabilityStatementSoftware build() =>
+      CapabilityStatementSoftware.fromJson(toJson());
+
+  /// Converts a [CapabilityStatementSoftwareBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2233,6 +2276,14 @@ class CapabilityStatementSoftwareBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [CapabilityStatementImplementation] to a Builder
+extension BuilderCapabilityStatementImplementation
+    on CapabilityStatementImplementation {
+  /// Converts [CapabilityStatementImplementation] to a [CapabilityStatementImplementationBuilder]
+  CapabilityStatementImplementationBuilder get toBuilder =>
+      CapabilityStatementImplementationBuilder.fromJson(toJson());
+}
+
 /// [CapabilityStatementImplementationBuilder]
 /// Identifies a specific implementation instance that is described by the
 /// capability statement - i.e. a particular installation, rather than the
@@ -2367,6 +2418,12 @@ class CapabilityStatementImplementationBuilder extends BackboneElementBuilder {
   /// The organization responsible for the management of the instance and
   /// oversight of the data on the server at the specified URL.
   ReferenceBuilder? custodian;
+
+  /// Converts a CapabilityStatementImplementationBuilder to [CapabilityStatementImplementation]
+  CapabilityStatementImplementation build() =>
+      CapabilityStatementImplementation.fromJson(toJson());
+
+  /// Converts a [CapabilityStatementImplementationBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2722,6 +2779,13 @@ class CapabilityStatementImplementationBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [CapabilityStatementRest] to a Builder
+extension BuilderCapabilityStatementRest on CapabilityStatementRest {
+  /// Converts [CapabilityStatementRest] to a [CapabilityStatementRestBuilder]
+  CapabilityStatementRestBuilder get toBuilder =>
+      CapabilityStatementRestBuilder.fromJson(toJson());
+}
+
 /// [CapabilityStatementRestBuilder]
 /// A definition of the restful capabilities of the solution, if any.
 class CapabilityStatementRestBuilder extends BackboneElementBuilder {
@@ -2932,6 +2996,11 @@ class CapabilityStatementRestBuilder extends BackboneElementBuilder {
   /// that the system supports. The reference is to a CompartmentDefinition
   /// resource by its canonical URL .
   List<FhirCanonicalBuilder>? compartment;
+
+  /// Converts a CapabilityStatementRestBuilder to [CapabilityStatementRest]
+  CapabilityStatementRest build() => CapabilityStatementRest.fromJson(toJson());
+
+  /// Converts a [CapabilityStatementRestBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3471,6 +3540,13 @@ class CapabilityStatementRestBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [CapabilityStatementSecurity] to a Builder
+extension BuilderCapabilityStatementSecurity on CapabilityStatementSecurity {
+  /// Converts [CapabilityStatementSecurity] to a [CapabilityStatementSecurityBuilder]
+  CapabilityStatementSecurityBuilder get toBuilder =>
+      CapabilityStatementSecurityBuilder.fromJson(toJson());
+}
+
 /// [CapabilityStatementSecurityBuilder]
 /// Information about security implementation from an interface perspective
 /// - what a client needs to know.
@@ -3606,6 +3682,12 @@ class CapabilityStatementSecurityBuilder extends BackboneElementBuilder {
   /// [description]
   /// General description of how security works.
   FhirMarkdownBuilder? description;
+
+  /// Converts a CapabilityStatementSecurityBuilder to [CapabilityStatementSecurity]
+  CapabilityStatementSecurity build() =>
+      CapabilityStatementSecurity.fromJson(toJson());
+
+  /// Converts a [CapabilityStatementSecurityBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3965,6 +4047,13 @@ class CapabilityStatementSecurityBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [CapabilityStatementResource] to a Builder
+extension BuilderCapabilityStatementResource on CapabilityStatementResource {
+  /// Converts [CapabilityStatementResource] to a [CapabilityStatementResourceBuilder]
+  CapabilityStatementResourceBuilder get toBuilder =>
+      CapabilityStatementResourceBuilder.fromJson(toJson());
+}
+
 /// [CapabilityStatementResourceBuilder]
 /// A specification of the restful capabilities of the solution for a
 /// specific resource type.
@@ -4288,6 +4377,12 @@ class CapabilityStatementResourceBuilder extends BackboneElementBuilder {
   /// operation for details about how to invoke the operation, and the
   /// parameters.
   List<CapabilityStatementOperationBuilder>? operation;
+
+  /// Converts a CapabilityStatementResourceBuilder to [CapabilityStatementResource]
+  CapabilityStatementResource build() =>
+      CapabilityStatementResource.fromJson(toJson());
+
+  /// Converts a [CapabilityStatementResourceBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -5125,6 +5220,14 @@ class CapabilityStatementResourceBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [CapabilityStatementInteraction] to a Builder
+extension BuilderCapabilityStatementInteraction
+    on CapabilityStatementInteraction {
+  /// Converts [CapabilityStatementInteraction] to a [CapabilityStatementInteractionBuilder]
+  CapabilityStatementInteractionBuilder get toBuilder =>
+      CapabilityStatementInteractionBuilder.fromJson(toJson());
+}
+
 /// [CapabilityStatementInteractionBuilder]
 /// Identifies a restful operation supported by the solution.
 class CapabilityStatementInteractionBuilder extends BackboneElementBuilder {
@@ -5245,6 +5348,12 @@ class CapabilityStatementInteractionBuilder extends BackboneElementBuilder {
   /// 'delete is a logical delete' or 'updates are only allowed with version
   /// id' or 'creates permitted from pre-authorized certificates only'.
   FhirMarkdownBuilder? documentation;
+
+  /// Converts a CapabilityStatementInteractionBuilder to [CapabilityStatementInteraction]
+  CapabilityStatementInteraction build() =>
+      CapabilityStatementInteraction.fromJson(toJson());
+
+  /// Converts a [CapabilityStatementInteractionBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -5567,6 +5676,14 @@ class CapabilityStatementInteractionBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [CapabilityStatementSearchParam] to a Builder
+extension BuilderCapabilityStatementSearchParam
+    on CapabilityStatementSearchParam {
+  /// Converts [CapabilityStatementSearchParam] to a [CapabilityStatementSearchParamBuilder]
+  CapabilityStatementSearchParamBuilder get toBuilder =>
+      CapabilityStatementSearchParamBuilder.fromJson(toJson());
+}
+
 /// [CapabilityStatementSearchParamBuilder]
 /// Search parameters for implementations to support and/or make use of -
 /// either references to ones defined in the specification, or additional
@@ -5717,6 +5834,12 @@ class CapabilityStatementSearchParamBuilder extends BackboneElementBuilder {
   /// This allows documentation of any distinct behaviors about how the
   /// search parameter is used. For example, text matching algorithms.
   FhirMarkdownBuilder? documentation;
+
+  /// Converts a CapabilityStatementSearchParamBuilder to [CapabilityStatementSearchParam]
+  CapabilityStatementSearchParam build() =>
+      CapabilityStatementSearchParam.fromJson(toJson());
+
+  /// Converts a [CapabilityStatementSearchParamBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -6103,6 +6226,13 @@ class CapabilityStatementSearchParamBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [CapabilityStatementOperation] to a Builder
+extension BuilderCapabilityStatementOperation on CapabilityStatementOperation {
+  /// Converts [CapabilityStatementOperation] to a [CapabilityStatementOperationBuilder]
+  CapabilityStatementOperationBuilder get toBuilder =>
+      CapabilityStatementOperationBuilder.fromJson(toJson());
+}
+
 /// [CapabilityStatementOperationBuilder]
 /// Definition of an operation or a named query together with its
 /// parameters and their meaning and type. Consult the definition of the
@@ -6247,6 +6377,12 @@ class CapabilityStatementOperationBuilder extends BackboneElementBuilder {
   /// behavior, possibly detailing different behavior for system, type and
   /// instance-level invocation of the operation.
   FhirMarkdownBuilder? documentation;
+
+  /// Converts a CapabilityStatementOperationBuilder to [CapabilityStatementOperation]
+  CapabilityStatementOperation build() =>
+      CapabilityStatementOperation.fromJson(toJson());
+
+  /// Converts a [CapabilityStatementOperationBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -6601,6 +6737,14 @@ class CapabilityStatementOperationBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [CapabilityStatementInteraction1] to a Builder
+extension BuilderCapabilityStatementInteraction1
+    on CapabilityStatementInteraction1 {
+  /// Converts [CapabilityStatementInteraction1] to a [CapabilityStatementInteraction1Builder]
+  CapabilityStatementInteraction1Builder get toBuilder =>
+      CapabilityStatementInteraction1Builder.fromJson(toJson());
+}
+
 /// [CapabilityStatementInteraction1Builder]
 /// A specification of restful operations supported by the system.
 class CapabilityStatementInteraction1Builder extends BackboneElementBuilder {
@@ -6721,6 +6865,12 @@ class CapabilityStatementInteraction1Builder extends BackboneElementBuilder {
   /// limitations on the kind of transactions allowed, or information about
   /// system wide search is implemented.
   FhirMarkdownBuilder? documentation;
+
+  /// Converts a CapabilityStatementInteraction1Builder to [CapabilityStatementInteraction1]
+  CapabilityStatementInteraction1 build() =>
+      CapabilityStatementInteraction1.fromJson(toJson());
+
+  /// Converts a [CapabilityStatementInteraction1Builder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -7043,6 +7193,13 @@ class CapabilityStatementInteraction1Builder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [CapabilityStatementMessaging] to a Builder
+extension BuilderCapabilityStatementMessaging on CapabilityStatementMessaging {
+  /// Converts [CapabilityStatementMessaging] to a [CapabilityStatementMessagingBuilder]
+  CapabilityStatementMessagingBuilder get toBuilder =>
+      CapabilityStatementMessagingBuilder.fromJson(toJson());
+}
+
 /// [CapabilityStatementMessagingBuilder]
 /// A description of the messaging capabilities of the solution.
 class CapabilityStatementMessagingBuilder extends BackboneElementBuilder {
@@ -7198,6 +7355,12 @@ class CapabilityStatementMessagingBuilder extends BackboneElementBuilder {
   /// References to message definitions for messages this system can send or
   /// receive.
   List<CapabilityStatementSupportedMessageBuilder>? supportedMessage;
+
+  /// Converts a CapabilityStatementMessagingBuilder to [CapabilityStatementMessaging]
+  CapabilityStatementMessaging build() =>
+      CapabilityStatementMessaging.fromJson(toJson());
+
+  /// Converts a [CapabilityStatementMessagingBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -7594,6 +7757,13 @@ class CapabilityStatementMessagingBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [CapabilityStatementEndpoint] to a Builder
+extension BuilderCapabilityStatementEndpoint on CapabilityStatementEndpoint {
+  /// Converts [CapabilityStatementEndpoint] to a [CapabilityStatementEndpointBuilder]
+  CapabilityStatementEndpointBuilder get toBuilder =>
+      CapabilityStatementEndpointBuilder.fromJson(toJson());
+}
+
 /// [CapabilityStatementEndpointBuilder]
 /// An endpoint (network accessible address) to which messages and/or
 /// replies are to be sent.
@@ -7715,6 +7885,12 @@ class CapabilityStatementEndpointBuilder extends BackboneElementBuilder {
   /// The network address of the endpoint. For solutions that do not use
   /// network addresses for routing, it can be just an identifier.
   FhirUrlBuilder? address;
+
+  /// Converts a CapabilityStatementEndpointBuilder to [CapabilityStatementEndpoint]
+  CapabilityStatementEndpoint build() =>
+      CapabilityStatementEndpoint.fromJson(toJson());
+
+  /// Converts a [CapabilityStatementEndpointBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -8037,6 +8213,14 @@ class CapabilityStatementEndpointBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [CapabilityStatementSupportedMessage] to a Builder
+extension BuilderCapabilityStatementSupportedMessage
+    on CapabilityStatementSupportedMessage {
+  /// Converts [CapabilityStatementSupportedMessage] to a [CapabilityStatementSupportedMessageBuilder]
+  CapabilityStatementSupportedMessageBuilder get toBuilder =>
+      CapabilityStatementSupportedMessageBuilder.fromJson(toJson());
+}
+
 /// [CapabilityStatementSupportedMessageBuilder]
 /// References to message definitions for messages this system can send or
 /// receive.
@@ -8159,6 +8343,12 @@ class CapabilityStatementSupportedMessageBuilder
   /// Points to a message definition that identifies the messaging event,
   /// message structure, allowed responses, etc.
   FhirCanonicalBuilder? definition;
+
+  /// Converts a CapabilityStatementSupportedMessageBuilder to [CapabilityStatementSupportedMessage]
+  CapabilityStatementSupportedMessage build() =>
+      CapabilityStatementSupportedMessage.fromJson(toJson());
+
+  /// Converts a [CapabilityStatementSupportedMessageBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -8482,6 +8672,13 @@ class CapabilityStatementSupportedMessageBuilder
   }
 }
 
+/// Extension to change [CapabilityStatementDocument] to a Builder
+extension BuilderCapabilityStatementDocument on CapabilityStatementDocument {
+  /// Converts [CapabilityStatementDocument] to a [CapabilityStatementDocumentBuilder]
+  CapabilityStatementDocumentBuilder get toBuilder =>
+      CapabilityStatementDocumentBuilder.fromJson(toJson());
+}
+
 /// [CapabilityStatementDocumentBuilder]
 /// A document definition.
 class CapabilityStatementDocumentBuilder extends BackboneElementBuilder {
@@ -8615,6 +8812,12 @@ class CapabilityStatementDocumentBuilder extends BackboneElementBuilder {
   /// A profile on the document Bundle that constrains which resources are
   /// present, and their contents.
   FhirCanonicalBuilder? profile;
+
+  /// Converts a CapabilityStatementDocumentBuilder to [CapabilityStatementDocument]
+  CapabilityStatementDocument build() =>
+      CapabilityStatementDocument.fromJson(toJson());
+
+  /// Converts a [CapabilityStatementDocumentBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

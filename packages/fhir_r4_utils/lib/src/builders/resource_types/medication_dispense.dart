@@ -1,8 +1,22 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        MedicationDispense,
+        MedicationDispensePerformer,
+        MedicationDispenseSubstitution;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [MedicationDispense] to a Builder
+extension BuilderMedicationDispense on MedicationDispense {
+  /// Converts [MedicationDispense] to a [MedicationDispenseBuilder]
+  MedicationDispenseBuilder get toBuilder =>
+      MedicationDispenseBuilder.fromJson(toJson());
+}
 
 /// [MedicationDispenseBuilder]
 /// Indicates that a medication product is to be or has been dispensed for
@@ -497,6 +511,11 @@ class MedicationDispenseBuilder extends DomainResourceBuilder {
   /// A summary of the events of interest that have occurred, such as when
   /// the dispense was verified.
   List<ReferenceBuilder>? eventHistory;
+
+  /// Converts a MedicationDispenseBuilder to [MedicationDispense]
+  MedicationDispense build() => MedicationDispense.fromJson(toJson());
+
+  /// Converts a [MedicationDispenseBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1851,6 +1870,13 @@ class MedicationDispenseBuilder extends DomainResourceBuilder {
   }
 }
 
+/// Extension to change [MedicationDispensePerformer] to a Builder
+extension BuilderMedicationDispensePerformer on MedicationDispensePerformer {
+  /// Converts [MedicationDispensePerformer] to a [MedicationDispensePerformerBuilder]
+  MedicationDispensePerformerBuilder get toBuilder =>
+      MedicationDispensePerformerBuilder.fromJson(toJson());
+}
+
 /// [MedicationDispensePerformerBuilder]
 /// Indicates who or what performed the event.
 class MedicationDispensePerformerBuilder extends BackboneElementBuilder {
@@ -1971,6 +1997,12 @@ class MedicationDispensePerformerBuilder extends BackboneElementBuilder {
   /// The device, practitioner, etc. who performed the action. It should be
   /// assumed that the actor is the dispenser of the medication.
   ReferenceBuilder? actor;
+
+  /// Converts a MedicationDispensePerformerBuilder to [MedicationDispensePerformer]
+  MedicationDispensePerformer build() =>
+      MedicationDispensePerformer.fromJson(toJson());
+
+  /// Converts a [MedicationDispensePerformerBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2293,6 +2325,14 @@ class MedicationDispensePerformerBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [MedicationDispenseSubstitution] to a Builder
+extension BuilderMedicationDispenseSubstitution
+    on MedicationDispenseSubstitution {
+  /// Converts [MedicationDispenseSubstitution] to a [MedicationDispenseSubstitutionBuilder]
+  MedicationDispenseSubstitutionBuilder get toBuilder =>
+      MedicationDispenseSubstitutionBuilder.fromJson(toJson());
+}
+
 /// [MedicationDispenseSubstitutionBuilder]
 /// Indicates whether or not substitution was made as part of the dispense.
 /// In some cases, substitution will be expected but does not happen, in
@@ -2449,6 +2489,12 @@ class MedicationDispenseSubstitutionBuilder extends BackboneElementBuilder {
   /// The person or organization that has primary responsibility for the
   /// substitution.
   List<ReferenceBuilder>? responsibleParty;
+
+  /// Converts a MedicationDispenseSubstitutionBuilder to [MedicationDispenseSubstitution]
+  MedicationDispenseSubstitution build() =>
+      MedicationDispenseSubstitution.fromJson(toJson());
+
+  /// Converts a [MedicationDispenseSubstitutionBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

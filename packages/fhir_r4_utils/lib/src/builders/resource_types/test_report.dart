@@ -1,8 +1,28 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        TestReport,
+        TestReportParticipant,
+        TestReportSetup,
+        TestReportAction,
+        TestReportOperation,
+        TestReportAssert,
+        TestReportTest,
+        TestReportAction1,
+        TestReportTeardown,
+        TestReportAction2;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [TestReport] to a Builder
+extension BuilderTestReport on TestReport {
+  /// Converts [TestReport] to a [TestReportBuilder]
+  TestReportBuilder get toBuilder => TestReportBuilder.fromJson(toJson());
+}
 
 /// [TestReportBuilder]
 /// A summary of information based on the results of executing a
@@ -286,6 +306,11 @@ class TestReportBuilder extends DomainResourceBuilder {
   /// The results of the series of operations required to clean up after all
   /// the tests were executed (successfully or otherwise).
   TestReportTeardownBuilder? teardown;
+
+  /// Converts a TestReportBuilder to [TestReport]
+  TestReport build() => TestReport.fromJson(toJson());
+
+  /// Converts a [TestReportBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1103,6 +1128,13 @@ class TestReportBuilder extends DomainResourceBuilder {
   }
 }
 
+/// Extension to change [TestReportParticipant] to a Builder
+extension BuilderTestReportParticipant on TestReportParticipant {
+  /// Converts [TestReportParticipant] to a [TestReportParticipantBuilder]
+  TestReportParticipantBuilder get toBuilder =>
+      TestReportParticipantBuilder.fromJson(toJson());
+}
+
 /// [TestReportParticipantBuilder]
 /// A participant in the test execution, either the execution engine, a
 /// client, or a server.
@@ -1233,6 +1265,11 @@ class TestReportParticipantBuilder extends BackboneElementBuilder {
   /// [display]
   /// The display name of the participant.
   FhirStringBuilder? display;
+
+  /// Converts a TestReportParticipantBuilder to [TestReportParticipant]
+  TestReportParticipant build() => TestReportParticipant.fromJson(toJson());
+
+  /// Converts a [TestReportParticipantBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1587,6 +1624,13 @@ class TestReportParticipantBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [TestReportSetup] to a Builder
+extension BuilderTestReportSetup on TestReportSetup {
+  /// Converts [TestReportSetup] to a [TestReportSetupBuilder]
+  TestReportSetupBuilder get toBuilder =>
+      TestReportSetupBuilder.fromJson(toJson());
+}
+
 /// [TestReportSetupBuilder]
 /// The results of the series of required setup operations before the tests
 /// were executed.
@@ -1698,6 +1742,11 @@ class TestReportSetupBuilder extends BackboneElementBuilder {
   /// [action]
   /// Action would contain either an operation or an assertion.
   List<TestReportActionBuilder>? action;
+
+  /// Converts a TestReportSetupBuilder to [TestReportSetup]
+  TestReportSetup build() => TestReportSetup.fromJson(toJson());
+
+  /// Converts a [TestReportSetupBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1993,6 +2042,13 @@ class TestReportSetupBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [TestReportAction] to a Builder
+extension BuilderTestReportAction on TestReportAction {
+  /// Converts [TestReportAction] to a [TestReportActionBuilder]
+  TestReportActionBuilder get toBuilder =>
+      TestReportActionBuilder.fromJson(toJson());
+}
+
 /// [TestReportActionBuilder]
 /// Action would contain either an operation or an assertion.
 class TestReportActionBuilder extends BackboneElementBuilder {
@@ -2110,6 +2166,11 @@ class TestReportActionBuilder extends BackboneElementBuilder {
   /// [assert_]
   /// The results of the assertion performed on the previous operations.
   TestReportAssertBuilder? assert_;
+
+  /// Converts a TestReportActionBuilder to [TestReportAction]
+  TestReportAction build() => TestReportAction.fromJson(toJson());
+
+  /// Converts a [TestReportActionBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2432,6 +2493,13 @@ class TestReportActionBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [TestReportOperation] to a Builder
+extension BuilderTestReportOperation on TestReportOperation {
+  /// Converts [TestReportOperation] to a [TestReportOperationBuilder]
+  TestReportOperationBuilder get toBuilder =>
+      TestReportOperationBuilder.fromJson(toJson());
+}
+
 /// [TestReportOperationBuilder]
 /// The operation performed.
 class TestReportOperationBuilder extends BackboneElementBuilder {
@@ -2560,6 +2628,11 @@ class TestReportOperationBuilder extends BackboneElementBuilder {
   /// [detail]
   /// A link to further details on the result.
   FhirUriBuilder? detail;
+
+  /// Converts a TestReportOperationBuilder to [TestReportOperation]
+  TestReportOperation build() => TestReportOperation.fromJson(toJson());
+
+  /// Converts a [TestReportOperationBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2914,6 +2987,13 @@ class TestReportOperationBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [TestReportAssert] to a Builder
+extension BuilderTestReportAssert on TestReportAssert {
+  /// Converts [TestReportAssert] to a [TestReportAssertBuilder]
+  TestReportAssertBuilder get toBuilder =>
+      TestReportAssertBuilder.fromJson(toJson());
+}
+
 /// [TestReportAssertBuilder]
 /// The results of the assertion performed on the previous operations.
 class TestReportAssertBuilder extends BackboneElementBuilder {
@@ -3042,6 +3122,11 @@ class TestReportAssertBuilder extends BackboneElementBuilder {
   /// [detail]
   /// A link to further details on the result.
   FhirStringBuilder? detail;
+
+  /// Converts a TestReportAssertBuilder to [TestReportAssert]
+  TestReportAssert build() => TestReportAssert.fromJson(toJson());
+
+  /// Converts a [TestReportAssertBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3396,6 +3481,13 @@ class TestReportAssertBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [TestReportTest] to a Builder
+extension BuilderTestReportTest on TestReportTest {
+  /// Converts [TestReportTest] to a [TestReportTestBuilder]
+  TestReportTestBuilder get toBuilder =>
+      TestReportTestBuilder.fromJson(toJson());
+}
+
 /// [TestReportTestBuilder]
 /// A test executed from the test script.
 class TestReportTestBuilder extends BackboneElementBuilder {
@@ -3530,6 +3622,11 @@ class TestReportTestBuilder extends BackboneElementBuilder {
   /// [action]
   /// Action would contain either an operation or an assertion.
   List<TestReportActionBuilder>? action;
+
+  /// Converts a TestReportTestBuilder to [TestReportTest]
+  TestReportTest build() => TestReportTest.fromJson(toJson());
+
+  /// Converts a [TestReportTestBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3889,6 +3986,13 @@ class TestReportTestBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [TestReportAction1] to a Builder
+extension BuilderTestReportAction1 on TestReportAction1 {
+  /// Converts [TestReportAction1] to a [TestReportAction1Builder]
+  TestReportAction1Builder get toBuilder =>
+      TestReportAction1Builder.fromJson(toJson());
+}
+
 /// [TestReportAction1Builder]
 /// Action would contain either an operation or an assertion.
 class TestReportAction1Builder extends BackboneElementBuilder {
@@ -4006,6 +4110,11 @@ class TestReportAction1Builder extends BackboneElementBuilder {
   /// [assert_]
   /// The results of the assertion performed on the previous operations.
   TestReportAssertBuilder? assert_;
+
+  /// Converts a TestReportAction1Builder to [TestReportAction1]
+  TestReportAction1 build() => TestReportAction1.fromJson(toJson());
+
+  /// Converts a [TestReportAction1Builder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -4328,6 +4437,13 @@ class TestReportAction1Builder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [TestReportTeardown] to a Builder
+extension BuilderTestReportTeardown on TestReportTeardown {
+  /// Converts [TestReportTeardown] to a [TestReportTeardownBuilder]
+  TestReportTeardownBuilder get toBuilder =>
+      TestReportTeardownBuilder.fromJson(toJson());
+}
+
 /// [TestReportTeardownBuilder]
 /// The results of the series of operations required to clean up after all
 /// the tests were executed (successfully or otherwise).
@@ -4439,6 +4555,11 @@ class TestReportTeardownBuilder extends BackboneElementBuilder {
   /// [action]
   /// The teardown action will only contain an operation.
   List<TestReportActionBuilder>? action;
+
+  /// Converts a TestReportTeardownBuilder to [TestReportTeardown]
+  TestReportTeardown build() => TestReportTeardown.fromJson(toJson());
+
+  /// Converts a [TestReportTeardownBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -4734,6 +4855,13 @@ class TestReportTeardownBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [TestReportAction2] to a Builder
+extension BuilderTestReportAction2 on TestReportAction2 {
+  /// Converts [TestReportAction2] to a [TestReportAction2Builder]
+  TestReportAction2Builder get toBuilder =>
+      TestReportAction2Builder.fromJson(toJson());
+}
+
 /// [TestReportAction2Builder]
 /// The teardown action will only contain an operation.
 class TestReportAction2Builder extends BackboneElementBuilder {
@@ -4840,6 +4968,11 @@ class TestReportAction2Builder extends BackboneElementBuilder {
   /// [operation]
   /// An operation would involve a REST request to a server.
   TestReportOperationBuilder? operation;
+
+  /// Converts a TestReportAction2Builder to [TestReportAction2]
+  TestReportAction2 build() => TestReportAction2.fromJson(toJson());
+
+  /// Converts a [TestReportAction2Builder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

@@ -1,8 +1,20 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        GuidanceResponse;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [GuidanceResponse] to a Builder
+extension BuilderGuidanceResponse on GuidanceResponse {
+  /// Converts [GuidanceResponse] to a [GuidanceResponseBuilder]
+  GuidanceResponseBuilder get toBuilder =>
+      GuidanceResponseBuilder.fromJson(toJson());
+}
 
 /// [GuidanceResponseBuilder]
 /// A guidance response is the formal response to a guidance request,
@@ -373,6 +385,11 @@ class GuidanceResponseBuilder extends DomainResourceBuilder {
   /// to proceed with the evaluation. A subsequent request to the service
   /// should include this data.
   List<DataRequirementBuilder>? dataRequirement;
+
+  /// Converts a GuidanceResponseBuilder to [GuidanceResponse]
+  GuidanceResponse build() => GuidanceResponse.fromJson(toJson());
+
+  /// Converts a [GuidanceResponseBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

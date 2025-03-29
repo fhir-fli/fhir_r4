@@ -1,8 +1,20 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        EventDefinition;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [EventDefinition] to a Builder
+extension BuilderEventDefinition on EventDefinition {
+  /// Converts [EventDefinition] to a [EventDefinitionBuilder]
+  EventDefinitionBuilder get toBuilder =>
+      EventDefinitionBuilder.fromJson(toJson());
+}
 
 /// [EventDefinitionBuilder]
 /// The EventDefinition resource provides a reusable description of when a
@@ -484,6 +496,11 @@ class EventDefinitionBuilder extends CanonicalResourceBuilder {
   /// trigger condition is specified, the event fires whenever any one of the
   /// trigger conditions is met.
   List<TriggerDefinitionBuilder>? trigger;
+
+  /// Converts a EventDefinitionBuilder to [EventDefinition]
+  EventDefinition build() => EventDefinition.fromJson(toJson());
+
+  /// Converts a [EventDefinitionBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

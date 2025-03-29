@@ -1,8 +1,20 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        DeviceRequest,
+        DeviceRequestParameter;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [DeviceRequest] to a Builder
+extension BuilderDeviceRequest on DeviceRequest {
+  /// Converts [DeviceRequest] to a [DeviceRequestBuilder]
+  DeviceRequestBuilder get toBuilder => DeviceRequestBuilder.fromJson(toJson());
+}
 
 /// [DeviceRequestBuilder]
 /// Represents a request for a patient to employ a medical device. The
@@ -487,6 +499,11 @@ class DeviceRequestBuilder extends DomainResourceBuilder {
   /// [relevantHistory]
   /// Key events in the history of the request.
   List<ReferenceBuilder>? relevantHistory;
+
+  /// Converts a DeviceRequestBuilder to [DeviceRequest]
+  DeviceRequest build() => DeviceRequest.fromJson(toJson());
+
+  /// Converts a [DeviceRequestBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1871,6 +1888,13 @@ class DeviceRequestBuilder extends DomainResourceBuilder {
   }
 }
 
+/// Extension to change [DeviceRequestParameter] to a Builder
+extension BuilderDeviceRequestParameter on DeviceRequestParameter {
+  /// Converts [DeviceRequestParameter] to a [DeviceRequestParameterBuilder]
+  DeviceRequestParameterBuilder get toBuilder =>
+      DeviceRequestParameterBuilder.fromJson(toJson());
+}
+
 /// [DeviceRequestParameterBuilder]
 /// Specific parameters for the ordered item. For example, the prism value
 /// for lenses.
@@ -2007,6 +2031,11 @@ class DeviceRequestParameterBuilder extends BackboneElementBuilder {
 
   /// Getter for [valueBoolean] as a FhirBooleanBuilder
   FhirBooleanBuilder? get valueBoolean => valueX?.isAs<FhirBooleanBuilder>();
+
+  /// Converts a DeviceRequestParameterBuilder to [DeviceRequestParameter]
+  DeviceRequestParameter build() => DeviceRequestParameter.fromJson(toJson());
+
+  /// Converts a [DeviceRequestParameterBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

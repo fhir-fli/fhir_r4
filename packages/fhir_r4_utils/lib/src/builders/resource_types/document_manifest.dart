@@ -1,8 +1,21 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        DocumentManifest,
+        DocumentManifestRelated;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [DocumentManifest] to a Builder
+extension BuilderDocumentManifest on DocumentManifest {
+  /// Converts [DocumentManifest] to a [DocumentManifestBuilder]
+  DocumentManifestBuilder get toBuilder =>
+      DocumentManifestBuilder.fromJson(toJson());
+}
 
 /// [DocumentManifestBuilder]
 /// A collection of documents compiled for a purpose together with metadata
@@ -305,6 +318,11 @@ class DocumentManifestBuilder extends DomainResourceBuilder {
   /// [related]
   /// Related identifiers or resources associated with the DocumentManifest.
   List<DocumentManifestRelatedBuilder>? related;
+
+  /// Converts a DocumentManifestBuilder to [DocumentManifest]
+  DocumentManifest build() => DocumentManifest.fromJson(toJson());
+
+  /// Converts a [DocumentManifestBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1137,6 +1155,13 @@ class DocumentManifestBuilder extends DomainResourceBuilder {
   }
 }
 
+/// Extension to change [DocumentManifestRelated] to a Builder
+extension BuilderDocumentManifestRelated on DocumentManifestRelated {
+  /// Converts [DocumentManifestRelated] to a [DocumentManifestRelatedBuilder]
+  DocumentManifestRelatedBuilder get toBuilder =>
+      DocumentManifestRelatedBuilder.fromJson(toJson());
+}
+
 /// [DocumentManifestRelatedBuilder]
 /// Related identifiers or resources associated with the DocumentManifest.
 class DocumentManifestRelatedBuilder extends BackboneElementBuilder {
@@ -1257,6 +1282,11 @@ class DocumentManifestRelatedBuilder extends BackboneElementBuilder {
   /// Related Resource to this DocumentManifest. For example, Order,
   /// ServiceRequest, Procedure, EligibilityRequest, etc.
   ReferenceBuilder? ref;
+
+  /// Converts a DocumentManifestRelatedBuilder to [DocumentManifestRelated]
+  DocumentManifestRelated build() => DocumentManifestRelated.fromJson(toJson());
+
+  /// Converts a [DocumentManifestRelatedBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

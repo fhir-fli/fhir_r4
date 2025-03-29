@@ -1,8 +1,21 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        Location,
+        LocationPosition,
+        LocationHoursOfOperation;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [Location] to a Builder
+extension BuilderLocation on Location {
+  /// Converts [Location] to a [LocationBuilder]
+  LocationBuilder get toBuilder => LocationBuilder.fromJson(toJson());
+}
 
 /// [LocationBuilder]
 /// Details and position information for a physical place where services
@@ -363,6 +376,11 @@ class LocationBuilder extends DomainResourceBuilder {
   /// Technical endpoints providing access to services operated for the
   /// location.
   List<ReferenceBuilder>? endpoint;
+
+  /// Converts a LocationBuilder to [Location]
+  Location build() => Location.fromJson(toJson());
+
+  /// Converts a [LocationBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1361,6 +1379,13 @@ class LocationBuilder extends DomainResourceBuilder {
   }
 }
 
+/// Extension to change [LocationPosition] to a Builder
+extension BuilderLocationPosition on LocationPosition {
+  /// Converts [LocationPosition] to a [LocationPositionBuilder]
+  LocationPositionBuilder get toBuilder =>
+      LocationPositionBuilder.fromJson(toJson());
+}
+
 /// [LocationPositionBuilder]
 /// The absolute geographic location of the Location, expressed using the
 /// WGS84 datum (This is the same co-ordinate system used in KML).
@@ -1493,6 +1518,11 @@ class LocationPositionBuilder extends BackboneElementBuilder {
   /// Altitude. The value domain and the interpretation are the same as for
   /// the text of the altitude element in KML (see notes below).
   FhirDecimalBuilder? altitude;
+
+  /// Converts a LocationPositionBuilder to [LocationPosition]
+  LocationPosition build() => LocationPosition.fromJson(toJson());
+
+  /// Converts a [LocationPositionBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1847,6 +1877,13 @@ class LocationPositionBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [LocationHoursOfOperation] to a Builder
+extension BuilderLocationHoursOfOperation on LocationHoursOfOperation {
+  /// Converts [LocationHoursOfOperation] to a [LocationHoursOfOperationBuilder]
+  LocationHoursOfOperationBuilder get toBuilder =>
+      LocationHoursOfOperationBuilder.fromJson(toJson());
+}
+
 /// [LocationHoursOfOperationBuilder]
 /// What days/times during a week is this location usually open.
 class LocationHoursOfOperationBuilder extends BackboneElementBuilder {
@@ -1988,6 +2025,12 @@ class LocationHoursOfOperationBuilder extends BackboneElementBuilder {
   /// [closingTime]
   /// Time that the Location closes.
   FhirTimeBuilder? closingTime;
+
+  /// Converts a LocationHoursOfOperationBuilder to [LocationHoursOfOperation]
+  LocationHoursOfOperation build() =>
+      LocationHoursOfOperation.fromJson(toJson());
+
+  /// Converts a [LocationHoursOfOperationBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

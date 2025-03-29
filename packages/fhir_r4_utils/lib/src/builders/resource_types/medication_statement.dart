@@ -1,8 +1,20 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        MedicationStatement;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [MedicationStatement] to a Builder
+extension BuilderMedicationStatement on MedicationStatement {
+  /// Converts [MedicationStatement] to a [MedicationStatementBuilder]
+  MedicationStatementBuilder get toBuilder =>
+      MedicationStatementBuilder.fromJson(toJson());
+}
 
 /// [MedicationStatementBuilder]
 /// A record of a medication that is being consumed by a patient. A
@@ -428,6 +440,11 @@ class MedicationStatementBuilder extends DomainResourceBuilder {
   /// [dosage]
   /// Indicates how the medication is/was or should be taken by the patient.
   List<DosageBuilder>? dosage;
+
+  /// Converts a MedicationStatementBuilder to [MedicationStatement]
+  MedicationStatement build() => MedicationStatement.fromJson(toJson());
+
+  /// Converts a [MedicationStatementBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

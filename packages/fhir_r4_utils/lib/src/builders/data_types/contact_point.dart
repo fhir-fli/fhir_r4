@@ -1,8 +1,14 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, StringExtensionForFHIR;
+    show yamlMapToJson, yamlToJson, StringExtensionForFHIR, ContactPoint;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [ContactPoint] to a Builder
+extension BuilderContactPoint on ContactPoint {
+  /// Converts [ContactPoint] to a [ContactPointBuilder]
+  ContactPointBuilder get toBuilder => ContactPointBuilder.fromJson(toJson());
+}
 
 /// [ContactPointBuilder]
 /// Details for all kinds of technology mediated contact points for a
@@ -157,6 +163,11 @@ class ContactPointBuilder extends DataTypeBuilder
   /// [period]
   /// Time period when the contact point was/is in use.
   PeriodBuilder? period;
+
+  /// Converts a ContactPointBuilder to [ContactPoint]
+  ContactPoint build() => ContactPoint.fromJson(toJson());
+
+  /// Converts a [ContactPointBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

@@ -1,8 +1,14 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, StringExtensionForFHIR;
+    show yamlMapToJson, yamlToJson, StringExtensionForFHIR, FhirMeta;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [FhirMeta] to a Builder
+extension BuilderFhirMeta on FhirMeta {
+  /// Converts [FhirMeta] to a [FhirMetaBuilder]
+  FhirMetaBuilder get toBuilder => FhirMetaBuilder.fromJson(toJson());
+}
 
 /// [FhirMetaBuilder]
 /// The metadata about a resource. This is content in the resource that is
@@ -181,6 +187,11 @@ class FhirMetaBuilder extends DataTypeBuilder
   /// required to consider the tags when interpreting the meaning of a
   /// resource.
   List<CodingBuilder>? tag;
+
+  /// Converts a FhirMetaBuilder to [FhirMeta]
+  FhirMeta build() => FhirMeta.fromJson(toJson());
+
+  /// Converts a [FhirMetaBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

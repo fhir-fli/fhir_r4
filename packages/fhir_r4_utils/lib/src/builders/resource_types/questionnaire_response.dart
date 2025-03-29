@@ -1,8 +1,22 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        QuestionnaireResponse,
+        QuestionnaireResponseItem,
+        QuestionnaireResponseAnswer;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [QuestionnaireResponse] to a Builder
+extension BuilderQuestionnaireResponse on QuestionnaireResponse {
+  /// Converts [QuestionnaireResponse] to a [QuestionnaireResponseBuilder]
+  QuestionnaireResponseBuilder get toBuilder =>
+      QuestionnaireResponseBuilder.fromJson(toJson());
+}
 
 /// [QuestionnaireResponseBuilder]
 /// A structured set of questions and their answers. The questions are
@@ -287,6 +301,11 @@ class QuestionnaireResponseBuilder extends DomainResourceBuilder {
   /// A group or question item from the original questionnaire for which
   /// answers are provided.
   List<QuestionnaireResponseItemBuilder>? item;
+
+  /// Converts a QuestionnaireResponseBuilder to [QuestionnaireResponse]
+  QuestionnaireResponse build() => QuestionnaireResponse.fromJson(toJson());
+
+  /// Converts a [QuestionnaireResponseBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1077,6 +1096,13 @@ class QuestionnaireResponseBuilder extends DomainResourceBuilder {
   }
 }
 
+/// Extension to change [QuestionnaireResponseItem] to a Builder
+extension BuilderQuestionnaireResponseItem on QuestionnaireResponseItem {
+  /// Converts [QuestionnaireResponseItem] to a [QuestionnaireResponseItemBuilder]
+  QuestionnaireResponseItemBuilder get toBuilder =>
+      QuestionnaireResponseItemBuilder.fromJson(toJson());
+}
+
 /// [QuestionnaireResponseItemBuilder]
 /// A group or question item from the original questionnaire for which
 /// answers are provided.
@@ -1240,6 +1266,12 @@ class QuestionnaireResponseItemBuilder extends BackboneElementBuilder {
   /// [item]
   /// Questions or sub-groups nested beneath a question or group.
   List<QuestionnaireResponseItemBuilder>? item;
+
+  /// Converts a QuestionnaireResponseItemBuilder to [QuestionnaireResponseItem]
+  QuestionnaireResponseItem build() =>
+      QuestionnaireResponseItem.fromJson(toJson());
+
+  /// Converts a [QuestionnaireResponseItemBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1668,6 +1700,13 @@ class QuestionnaireResponseItemBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [QuestionnaireResponseAnswer] to a Builder
+extension BuilderQuestionnaireResponseAnswer on QuestionnaireResponseAnswer {
+  /// Converts [QuestionnaireResponseAnswer] to a [QuestionnaireResponseAnswerBuilder]
+  QuestionnaireResponseAnswerBuilder get toBuilder =>
+      QuestionnaireResponseAnswerBuilder.fromJson(toJson());
+}
+
 /// [QuestionnaireResponseAnswerBuilder]
 /// The respondent's answer(s) to the question.
 class QuestionnaireResponseAnswerBuilder extends BackboneElementBuilder {
@@ -1840,6 +1879,12 @@ class QuestionnaireResponseAnswerBuilder extends BackboneElementBuilder {
   /// [item]
   /// Nested groups and/or questions found within this particular answer.
   List<QuestionnaireResponseItemBuilder>? item;
+
+  /// Converts a QuestionnaireResponseAnswerBuilder to [QuestionnaireResponseAnswer]
+  QuestionnaireResponseAnswer build() =>
+      QuestionnaireResponseAnswer.fromJson(toJson());
+
+  /// Converts a [QuestionnaireResponseAnswerBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

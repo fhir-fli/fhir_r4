@@ -1,8 +1,19 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        Schedule;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [Schedule] to a Builder
+extension BuilderSchedule on Schedule {
+  /// Converts [Schedule] to a [ScheduleBuilder]
+  ScheduleBuilder get toBuilder => ScheduleBuilder.fromJson(toJson());
+}
 
 /// [ScheduleBuilder]
 /// A container for slots of time that may be available for booking
@@ -256,6 +267,11 @@ class ScheduleBuilder extends DomainResourceBuilder {
   /// Comments on the availability to describe any extended information. Such
   /// as custom constraints on the slots that may be associated.
   FhirStringBuilder? comment;
+
+  /// Converts a ScheduleBuilder to [Schedule]
+  Schedule build() => Schedule.fromJson(toJson());
+
+  /// Converts a [ScheduleBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

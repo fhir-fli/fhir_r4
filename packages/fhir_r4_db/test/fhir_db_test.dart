@@ -517,7 +517,9 @@ Future<void> main() async {
               final fileContents = File(file).readAsStringSync();
               for (final content in fileContents.split('\n')) {
                 if (content.isNotEmpty) {
-                  final resource = Resource.fromJson(jsonDecode(content));
+                  final resource = Resource.fromJson(
+                    jsonDecode(content) as Map<String, dynamic>,
+                  );
                   resources.add(resource);
                 }
               }

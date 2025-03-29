@@ -1,8 +1,35 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        TestScript,
+        TestScriptOrigin,
+        TestScriptDestination,
+        TestScriptMetadata,
+        TestScriptLink,
+        TestScriptCapability,
+        TestScriptFixture,
+        TestScriptVariable,
+        TestScriptSetup,
+        TestScriptAction,
+        TestScriptOperation,
+        TestScriptRequestHeader,
+        TestScriptAssert,
+        TestScriptTest,
+        TestScriptAction1,
+        TestScriptTeardown,
+        TestScriptAction2;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [TestScript] to a Builder
+extension BuilderTestScript on TestScript {
+  /// Converts [TestScript] to a [TestScriptBuilder]
+  TestScriptBuilder get toBuilder => TestScriptBuilder.fromJson(toJson());
+}
 
 /// [TestScriptBuilder]
 /// A structured set of tests against a FHIR server or client
@@ -477,6 +504,11 @@ class TestScriptBuilder extends DomainResourceBuilder {
   /// A series of operations required to clean up after all the tests are
   /// executed (successfully or otherwise).
   TestScriptTeardownBuilder? teardown;
+
+  /// Converts a TestScriptBuilder to [TestScript]
+  TestScript build() => TestScript.fromJson(toJson());
+
+  /// Converts a [TestScriptBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1713,6 +1745,13 @@ class TestScriptBuilder extends DomainResourceBuilder {
   }
 }
 
+/// Extension to change [TestScriptOrigin] to a Builder
+extension BuilderTestScriptOrigin on TestScriptOrigin {
+  /// Converts [TestScriptOrigin] to a [TestScriptOriginBuilder]
+  TestScriptOriginBuilder get toBuilder =>
+      TestScriptOriginBuilder.fromJson(toJson());
+}
+
 /// [TestScriptOriginBuilder]
 /// An abstract server used in operations within this test script in the
 /// origin element.
@@ -1832,6 +1871,11 @@ class TestScriptOriginBuilder extends BackboneElementBuilder {
   /// [profile]
   /// The type of origin profile the test system supports.
   CodingBuilder? profile;
+
+  /// Converts a TestScriptOriginBuilder to [TestScriptOrigin]
+  TestScriptOrigin build() => TestScriptOrigin.fromJson(toJson());
+
+  /// Converts a [TestScriptOriginBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2154,6 +2198,13 @@ class TestScriptOriginBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [TestScriptDestination] to a Builder
+extension BuilderTestScriptDestination on TestScriptDestination {
+  /// Converts [TestScriptDestination] to a [TestScriptDestinationBuilder]
+  TestScriptDestinationBuilder get toBuilder =>
+      TestScriptDestinationBuilder.fromJson(toJson());
+}
+
 /// [TestScriptDestinationBuilder]
 /// An abstract server used in operations within this test script in the
 /// destination element.
@@ -2274,6 +2325,11 @@ class TestScriptDestinationBuilder extends BackboneElementBuilder {
   /// [profile]
   /// The type of destination profile the test system supports.
   CodingBuilder? profile;
+
+  /// Converts a TestScriptDestinationBuilder to [TestScriptDestination]
+  TestScriptDestination build() => TestScriptDestination.fromJson(toJson());
+
+  /// Converts a [TestScriptDestinationBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2596,6 +2652,13 @@ class TestScriptDestinationBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [TestScriptMetadata] to a Builder
+extension BuilderTestScriptMetadata on TestScriptMetadata {
+  /// Converts [TestScriptMetadata] to a [TestScriptMetadataBuilder]
+  TestScriptMetadataBuilder get toBuilder =>
+      TestScriptMetadataBuilder.fromJson(toJson());
+}
+
 /// [TestScriptMetadataBuilder]
 /// The required capability must exist and are assumed to function
 /// correctly on the FHIR server being tested.
@@ -2723,6 +2786,11 @@ class TestScriptMetadataBuilder extends BackboneElementBuilder {
   /// Capabilities that must exist and are assumed to function correctly on
   /// the FHIR server being tested.
   List<TestScriptCapabilityBuilder>? capability;
+
+  /// Converts a TestScriptMetadataBuilder to [TestScriptMetadata]
+  TestScriptMetadata build() => TestScriptMetadata.fromJson(toJson());
+
+  /// Converts a [TestScriptMetadataBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3055,6 +3123,13 @@ class TestScriptMetadataBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [TestScriptLink] to a Builder
+extension BuilderTestScriptLink on TestScriptLink {
+  /// Converts [TestScriptLink] to a [TestScriptLinkBuilder]
+  TestScriptLinkBuilder get toBuilder =>
+      TestScriptLinkBuilder.fromJson(toJson());
+}
+
 /// [TestScriptLinkBuilder]
 /// A link to the FHIR specification that this test is covering.
 class TestScriptLinkBuilder extends BackboneElementBuilder {
@@ -3173,6 +3248,11 @@ class TestScriptLinkBuilder extends BackboneElementBuilder {
   /// [description]
   /// Short description of the link.
   FhirStringBuilder? description;
+
+  /// Converts a TestScriptLinkBuilder to [TestScriptLink]
+  TestScriptLink build() => TestScriptLink.fromJson(toJson());
+
+  /// Converts a [TestScriptLinkBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3495,6 +3575,13 @@ class TestScriptLinkBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [TestScriptCapability] to a Builder
+extension BuilderTestScriptCapability on TestScriptCapability {
+  /// Converts [TestScriptCapability] to a [TestScriptCapabilityBuilder]
+  TestScriptCapabilityBuilder get toBuilder =>
+      TestScriptCapabilityBuilder.fromJson(toJson());
+}
+
 /// [TestScriptCapabilityBuilder]
 /// Capabilities that must exist and are assumed to function correctly on
 /// the FHIR server being tested.
@@ -3674,6 +3761,11 @@ class TestScriptCapabilityBuilder extends BackboneElementBuilder {
   /// successfully. If server does not meet at a minimum the referenced
   /// capability statement, then all tests in this script are skipped.
   FhirCanonicalBuilder? capabilities;
+
+  /// Converts a TestScriptCapabilityBuilder to [TestScriptCapability]
+  TestScriptCapability build() => TestScriptCapability.fromJson(toJson());
+
+  /// Converts a [TestScriptCapabilityBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -4166,6 +4258,13 @@ class TestScriptCapabilityBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [TestScriptFixture] to a Builder
+extension BuilderTestScriptFixture on TestScriptFixture {
+  /// Converts [TestScriptFixture] to a [TestScriptFixtureBuilder]
+  TestScriptFixtureBuilder get toBuilder =>
+      TestScriptFixtureBuilder.fromJson(toJson());
+}
+
 /// [TestScriptFixtureBuilder]
 /// Fixture in the test script - by reference (uri). All fixtures are
 /// required for the test script to execute.
@@ -4302,6 +4401,11 @@ class TestScriptFixtureBuilder extends BackboneElementBuilder {
   /// Reference to the resource (containing the contents of the resource
   /// needed for operations).
   ReferenceBuilder? resource;
+
+  /// Converts a TestScriptFixtureBuilder to [TestScriptFixture]
+  TestScriptFixture build() => TestScriptFixture.fromJson(toJson());
+
+  /// Converts a [TestScriptFixtureBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -4656,6 +4760,13 @@ class TestScriptFixtureBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [TestScriptVariable] to a Builder
+extension BuilderTestScriptVariable on TestScriptVariable {
+  /// Converts [TestScriptVariable] to a [TestScriptVariableBuilder]
+  TestScriptVariableBuilder get toBuilder =>
+      TestScriptVariableBuilder.fromJson(toJson());
+}
+
 /// [TestScriptVariableBuilder]
 /// Variable is set based either on element value in response body or on
 /// header field value in the response headers.
@@ -4848,6 +4959,11 @@ class TestScriptVariableBuilder extends BackboneElementBuilder {
   /// Fixture to evaluate the XPath/JSONPath expression or the headerField
   /// against within this variable.
   FhirIdBuilder? sourceId;
+
+  /// Converts a TestScriptVariableBuilder to [TestScriptVariable]
+  TestScriptVariable build() => TestScriptVariable.fromJson(toJson());
+
+  /// Converts a [TestScriptVariableBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -5362,6 +5478,13 @@ class TestScriptVariableBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [TestScriptSetup] to a Builder
+extension BuilderTestScriptSetup on TestScriptSetup {
+  /// Converts [TestScriptSetup] to a [TestScriptSetupBuilder]
+  TestScriptSetupBuilder get toBuilder =>
+      TestScriptSetupBuilder.fromJson(toJson());
+}
+
 /// [TestScriptSetupBuilder]
 /// A series of required setup operations before tests are executed.
 class TestScriptSetupBuilder extends BackboneElementBuilder {
@@ -5472,6 +5595,11 @@ class TestScriptSetupBuilder extends BackboneElementBuilder {
   /// [action]
   /// Action would contain either an operation or an assertion.
   List<TestScriptActionBuilder>? action;
+
+  /// Converts a TestScriptSetupBuilder to [TestScriptSetup]
+  TestScriptSetup build() => TestScriptSetup.fromJson(toJson());
+
+  /// Converts a [TestScriptSetupBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -5767,6 +5895,13 @@ class TestScriptSetupBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [TestScriptAction] to a Builder
+extension BuilderTestScriptAction on TestScriptAction {
+  /// Converts [TestScriptAction] to a [TestScriptActionBuilder]
+  TestScriptActionBuilder get toBuilder =>
+      TestScriptActionBuilder.fromJson(toJson());
+}
+
 /// [TestScriptActionBuilder]
 /// Action would contain either an operation or an assertion.
 class TestScriptActionBuilder extends BackboneElementBuilder {
@@ -5885,6 +6020,11 @@ class TestScriptActionBuilder extends BackboneElementBuilder {
   /// Evaluates the results of previous operations to determine if the server
   /// under test behaves appropriately.
   TestScriptAssertBuilder? assert_;
+
+  /// Converts a TestScriptActionBuilder to [TestScriptAction]
+  TestScriptAction build() => TestScriptAction.fromJson(toJson());
+
+  /// Converts a [TestScriptActionBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -6207,6 +6347,13 @@ class TestScriptActionBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [TestScriptOperation] to a Builder
+extension BuilderTestScriptOperation on TestScriptOperation {
+  /// Converts [TestScriptOperation] to a [TestScriptOperationBuilder]
+  TestScriptOperationBuilder get toBuilder =>
+      TestScriptOperationBuilder.fromJson(toJson());
+}
+
 /// [TestScriptOperationBuilder]
 /// The operation to perform.
 class TestScriptOperationBuilder extends BackboneElementBuilder {
@@ -6503,6 +6650,11 @@ class TestScriptOperationBuilder extends BackboneElementBuilder {
   /// [url]
   /// Complete request URL.
   FhirStringBuilder? url;
+
+  /// Converts a TestScriptOperationBuilder to [TestScriptOperation]
+  TestScriptOperation build() => TestScriptOperation.fromJson(toJson());
+
+  /// Converts a [TestScriptOperationBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -7310,6 +7462,13 @@ class TestScriptOperationBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [TestScriptRequestHeader] to a Builder
+extension BuilderTestScriptRequestHeader on TestScriptRequestHeader {
+  /// Converts [TestScriptRequestHeader] to a [TestScriptRequestHeaderBuilder]
+  TestScriptRequestHeaderBuilder get toBuilder =>
+      TestScriptRequestHeaderBuilder.fromJson(toJson());
+}
+
 /// [TestScriptRequestHeaderBuilder]
 /// Header elements would be used to set HTTP headers.
 class TestScriptRequestHeaderBuilder extends BackboneElementBuilder {
@@ -7428,6 +7587,11 @@ class TestScriptRequestHeaderBuilder extends BackboneElementBuilder {
   /// [value]
   /// The value of the header e.g. "application/fhir+xml".
   FhirStringBuilder? value;
+
+  /// Converts a TestScriptRequestHeaderBuilder to [TestScriptRequestHeader]
+  TestScriptRequestHeader build() => TestScriptRequestHeader.fromJson(toJson());
+
+  /// Converts a [TestScriptRequestHeaderBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -7748,6 +7912,13 @@ class TestScriptRequestHeaderBuilder extends BackboneElementBuilder {
     }
     return true;
   }
+}
+
+/// Extension to change [TestScriptAssert] to a Builder
+extension BuilderTestScriptAssert on TestScriptAssert {
+  /// Converts [TestScriptAssert] to a [TestScriptAssertBuilder]
+  TestScriptAssertBuilder get toBuilder =>
+      TestScriptAssertBuilder.fromJson(toJson());
 }
 
 /// [TestScriptAssertBuilder]
@@ -8106,6 +8277,11 @@ class TestScriptAssertBuilder extends BackboneElementBuilder {
   /// Whether or not the test execution will produce a warning only on error
   /// for this assert.
   FhirBooleanBuilder? warningOnly;
+
+  /// Converts a TestScriptAssertBuilder to [TestScriptAssert]
+  TestScriptAssert build() => TestScriptAssert.fromJson(toJson());
+
+  /// Converts a [TestScriptAssertBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -9069,6 +9245,13 @@ class TestScriptAssertBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [TestScriptTest] to a Builder
+extension BuilderTestScriptTest on TestScriptTest {
+  /// Converts [TestScriptTest] to a [TestScriptTestBuilder]
+  TestScriptTestBuilder get toBuilder =>
+      TestScriptTestBuilder.fromJson(toJson());
+}
+
 /// [TestScriptTestBuilder]
 /// A test in this script.
 class TestScriptTestBuilder extends BackboneElementBuilder {
@@ -9203,6 +9386,11 @@ class TestScriptTestBuilder extends BackboneElementBuilder {
   /// [action]
   /// Action would contain either an operation or an assertion.
   List<TestScriptActionBuilder>? action;
+
+  /// Converts a TestScriptTestBuilder to [TestScriptTest]
+  TestScriptTest build() => TestScriptTest.fromJson(toJson());
+
+  /// Converts a [TestScriptTestBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -9562,6 +9750,13 @@ class TestScriptTestBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [TestScriptAction1] to a Builder
+extension BuilderTestScriptAction1 on TestScriptAction1 {
+  /// Converts [TestScriptAction1] to a [TestScriptAction1Builder]
+  TestScriptAction1Builder get toBuilder =>
+      TestScriptAction1Builder.fromJson(toJson());
+}
+
 /// [TestScriptAction1Builder]
 /// Action would contain either an operation or an assertion.
 class TestScriptAction1Builder extends BackboneElementBuilder {
@@ -9680,6 +9875,11 @@ class TestScriptAction1Builder extends BackboneElementBuilder {
   /// Evaluates the results of previous operations to determine if the server
   /// under test behaves appropriately.
   TestScriptAssertBuilder? assert_;
+
+  /// Converts a TestScriptAction1Builder to [TestScriptAction1]
+  TestScriptAction1 build() => TestScriptAction1.fromJson(toJson());
+
+  /// Converts a [TestScriptAction1Builder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -10002,6 +10202,13 @@ class TestScriptAction1Builder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [TestScriptTeardown] to a Builder
+extension BuilderTestScriptTeardown on TestScriptTeardown {
+  /// Converts [TestScriptTeardown] to a [TestScriptTeardownBuilder]
+  TestScriptTeardownBuilder get toBuilder =>
+      TestScriptTeardownBuilder.fromJson(toJson());
+}
+
 /// [TestScriptTeardownBuilder]
 /// A series of operations required to clean up after all the tests are
 /// executed (successfully or otherwise).
@@ -10113,6 +10320,11 @@ class TestScriptTeardownBuilder extends BackboneElementBuilder {
   /// [action]
   /// The teardown action will only contain an operation.
   List<TestScriptActionBuilder>? action;
+
+  /// Converts a TestScriptTeardownBuilder to [TestScriptTeardown]
+  TestScriptTeardown build() => TestScriptTeardown.fromJson(toJson());
+
+  /// Converts a [TestScriptTeardownBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -10408,6 +10620,13 @@ class TestScriptTeardownBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [TestScriptAction2] to a Builder
+extension BuilderTestScriptAction2 on TestScriptAction2 {
+  /// Converts [TestScriptAction2] to a [TestScriptAction2Builder]
+  TestScriptAction2Builder get toBuilder =>
+      TestScriptAction2Builder.fromJson(toJson());
+}
+
 /// [TestScriptAction2Builder]
 /// The teardown action will only contain an operation.
 class TestScriptAction2Builder extends BackboneElementBuilder {
@@ -10514,6 +10733,11 @@ class TestScriptAction2Builder extends BackboneElementBuilder {
   /// [operation]
   /// An operation would involve a REST request to a server.
   TestScriptOperationBuilder? operation;
+
+  /// Converts a TestScriptAction2Builder to [TestScriptAction2]
+  TestScriptAction2 build() => TestScriptAction2.fromJson(toJson());
+
+  /// Converts a [TestScriptAction2Builder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

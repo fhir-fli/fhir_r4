@@ -1,8 +1,14 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, StringExtensionForFHIR;
+    show yamlMapToJson, yamlToJson, StringExtensionForFHIR, Population;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [Population] to a Builder
+extension BuilderPopulation on Population {
+  /// Converts [Population] to a [PopulationBuilder]
+  PopulationBuilder get toBuilder => PopulationBuilder.fromJson(toJson());
+}
 
 /// [PopulationBuilder]
 /// A populatioof people with some set of grouping criteria.
@@ -152,6 +158,11 @@ class PopulationBuilder extends BackboneTypeBuilder {
   /// The existing physiological conditions of the specific population to
   /// which this applies.
   CodeableConceptBuilder? physiologicalCondition;
+
+  /// Converts a PopulationBuilder to [Population]
+  Population build() => Population.fromJson(toJson());
+
+  /// Converts a [PopulationBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

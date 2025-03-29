@@ -1,8 +1,25 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        SubscriptionTopic,
+        SubscriptionTopicResourceTrigger,
+        SubscriptionTopicQueryCriteria,
+        SubscriptionTopicEventTrigger,
+        SubscriptionTopicCanFilterBy,
+        SubscriptionTopicNotificationShape;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [SubscriptionTopic] to a Builder
+extension BuilderSubscriptionTopic on SubscriptionTopic {
+  /// Converts [SubscriptionTopic] to a [SubscriptionTopicBuilder]
+  SubscriptionTopicBuilder get toBuilder =>
+      SubscriptionTopicBuilder.fromJson(toJson());
+}
 
 /// [SubscriptionTopicBuilder]
 /// Describes a stream of resource state changes or events and annotated
@@ -393,6 +410,11 @@ class SubscriptionTopicBuilder extends CanonicalResourceBuilder {
   /// List of properties to describe the shape (e.g., resources) included in
   /// notifications from this Subscription Topic.
   List<SubscriptionTopicNotificationShapeBuilder>? notificationShape;
+
+  /// Converts a SubscriptionTopicBuilder to [SubscriptionTopic]
+  SubscriptionTopic build() => SubscriptionTopic.fromJson(toJson());
+
+  /// Converts a [SubscriptionTopicBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1565,6 +1587,14 @@ class SubscriptionTopicBuilder extends CanonicalResourceBuilder {
   }
 }
 
+/// Extension to change [SubscriptionTopicResourceTrigger] to a Builder
+extension BuilderSubscriptionTopicResourceTrigger
+    on SubscriptionTopicResourceTrigger {
+  /// Converts [SubscriptionTopicResourceTrigger] to a [SubscriptionTopicResourceTriggerBuilder]
+  SubscriptionTopicResourceTriggerBuilder get toBuilder =>
+      SubscriptionTopicResourceTriggerBuilder.fromJson(toJson());
+}
+
 /// [SubscriptionTopicResourceTriggerBuilder]
 /// A definition of a resource-based event that triggers a notification
 /// based on the SubscriptionTopic. The criteria may be just a human
@@ -1735,6 +1765,12 @@ class SubscriptionTopicResourceTriggerBuilder extends BackboneElementBuilder {
   /// The FHIRPath based rules that the server should use to determine when
   /// to trigger a notification for this topic.
   FhirStringBuilder? fhirPathCriteria;
+
+  /// Converts a SubscriptionTopicResourceTriggerBuilder to [SubscriptionTopicResourceTrigger]
+  SubscriptionTopicResourceTrigger build() =>
+      SubscriptionTopicResourceTrigger.fromJson(toJson());
+
+  /// Converts a [SubscriptionTopicResourceTriggerBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2158,6 +2194,14 @@ class SubscriptionTopicResourceTriggerBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [SubscriptionTopicQueryCriteria] to a Builder
+extension BuilderSubscriptionTopicQueryCriteria
+    on SubscriptionTopicQueryCriteria {
+  /// Converts [SubscriptionTopicQueryCriteria] to a [SubscriptionTopicQueryCriteriaBuilder]
+  SubscriptionTopicQueryCriteriaBuilder get toBuilder =>
+      SubscriptionTopicQueryCriteriaBuilder.fromJson(toJson());
+}
+
 /// [SubscriptionTopicQueryCriteriaBuilder]
 /// The FHIR query based rules that the server should use to determine when
 /// to trigger a notification for this subscription topic.
@@ -2318,6 +2362,12 @@ class SubscriptionTopicQueryCriteriaBuilder extends BackboneElementBuilder {
   /// to trigger a notification for this topic. Otherwise a notification for
   /// this topic will be triggered if either one evaluates to true.
   FhirBooleanBuilder? requireBoth;
+
+  /// Converts a SubscriptionTopicQueryCriteriaBuilder to [SubscriptionTopicQueryCriteria]
+  SubscriptionTopicQueryCriteria build() =>
+      SubscriptionTopicQueryCriteria.fromJson(toJson());
+
+  /// Converts a [SubscriptionTopicQueryCriteriaBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2736,6 +2786,14 @@ class SubscriptionTopicQueryCriteriaBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [SubscriptionTopicEventTrigger] to a Builder
+extension BuilderSubscriptionTopicEventTrigger
+    on SubscriptionTopicEventTrigger {
+  /// Converts [SubscriptionTopicEventTrigger] to a [SubscriptionTopicEventTriggerBuilder]
+  SubscriptionTopicEventTriggerBuilder get toBuilder =>
+      SubscriptionTopicEventTriggerBuilder.fromJson(toJson());
+}
+
 /// [SubscriptionTopicEventTriggerBuilder]
 /// Event definition which can be used to trigger the SubscriptionTopic.
 class SubscriptionTopicEventTriggerBuilder extends BackboneElementBuilder {
@@ -2875,6 +2933,12 @@ class SubscriptionTopicEventTriggerBuilder extends BackboneElementBuilder {
   /// information, see <a
   /// href="elementdefinition-definitions.html#ElementDefinition.type.code">ElementDefinition.type.code</a>.
   FhirUriBuilder? resource;
+
+  /// Converts a SubscriptionTopicEventTriggerBuilder to [SubscriptionTopicEventTrigger]
+  SubscriptionTopicEventTrigger build() =>
+      SubscriptionTopicEventTrigger.fromJson(toJson());
+
+  /// Converts a [SubscriptionTopicEventTriggerBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3229,6 +3293,13 @@ class SubscriptionTopicEventTriggerBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [SubscriptionTopicCanFilterBy] to a Builder
+extension BuilderSubscriptionTopicCanFilterBy on SubscriptionTopicCanFilterBy {
+  /// Converts [SubscriptionTopicCanFilterBy] to a [SubscriptionTopicCanFilterByBuilder]
+  SubscriptionTopicCanFilterByBuilder get toBuilder =>
+      SubscriptionTopicCanFilterByBuilder.fromJson(toJson());
+}
+
 /// [SubscriptionTopicCanFilterByBuilder]
 /// List of properties by which Subscriptions on the SubscriptionTopic can
 /// be filtered. May be defined Search Parameters (e.g., Encounter.patient)
@@ -3397,6 +3468,12 @@ class SubscriptionTopicCanFilterByBuilder extends BackboneElementBuilder {
   /// modifiers SHALL be a strict subset of the modifiers defined on that
   /// SearchParameter.
   List<SubscriptionSearchModifierBuilder>? modifier;
+
+  /// Converts a SubscriptionTopicCanFilterByBuilder to [SubscriptionTopicCanFilterBy]
+  SubscriptionTopicCanFilterBy build() =>
+      SubscriptionTopicCanFilterBy.fromJson(toJson());
+
+  /// Converts a [SubscriptionTopicCanFilterByBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3820,6 +3897,14 @@ class SubscriptionTopicCanFilterByBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [SubscriptionTopicNotificationShape] to a Builder
+extension BuilderSubscriptionTopicNotificationShape
+    on SubscriptionTopicNotificationShape {
+  /// Converts [SubscriptionTopicNotificationShape] to a [SubscriptionTopicNotificationShapeBuilder]
+  SubscriptionTopicNotificationShapeBuilder get toBuilder =>
+      SubscriptionTopicNotificationShapeBuilder.fromJson(toJson());
+}
+
 /// [SubscriptionTopicNotificationShapeBuilder]
 /// List of properties to describe the shape (e.g., resources) included in
 /// notifications from this Subscription Topic.
@@ -3963,6 +4048,12 @@ class SubscriptionTopicNotificationShapeBuilder extends BackboneElementBuilder {
   /// receive these additional resources, but SHALL function properly without
   /// them.
   List<FhirStringBuilder>? revInclude;
+
+  /// Converts a SubscriptionTopicNotificationShapeBuilder to [SubscriptionTopicNotificationShape]
+  SubscriptionTopicNotificationShape build() =>
+      SubscriptionTopicNotificationShape.fromJson(toJson());
+
+  /// Converts a [SubscriptionTopicNotificationShapeBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

@@ -1,8 +1,14 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, StringExtensionForFHIR;
+    show yamlMapToJson, yamlToJson, StringExtensionForFHIR, FhirExtension;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [FhirExtension] to a Builder
+extension BuilderFhirExtension on FhirExtension {
+  /// Converts [FhirExtension] to a [FhirExtensionBuilder]
+  FhirExtensionBuilder get toBuilder => FhirExtensionBuilder.fromJson(toJson());
+}
 
 /// [FhirExtensionBuilder]
 /// Optional Extension Element - found in all resources.
@@ -331,6 +337,11 @@ class FhirExtensionBuilder extends DataTypeBuilder {
 
   /// Getter for [valueDosage] as a DosageBuilder
   DosageBuilder? get valueDosage => valueX?.isAs<DosageBuilder>();
+
+  /// Converts a FhirExtensionBuilder to [FhirExtension]
+  FhirExtension build() => FhirExtension.fromJson(toJson());
+
+  /// Converts a [FhirExtensionBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

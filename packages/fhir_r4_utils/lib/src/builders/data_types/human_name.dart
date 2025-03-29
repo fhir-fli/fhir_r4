@@ -1,8 +1,14 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, StringExtensionForFHIR;
+    show yamlMapToJson, yamlToJson, StringExtensionForFHIR, HumanName;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [HumanName] to a Builder
+extension BuilderHumanName on HumanName {
+  /// Converts [HumanName] to a [HumanNameBuilder]
+  HumanNameBuilder get toBuilder => HumanNameBuilder.fromJson(toJson());
+}
 
 /// [HumanNameBuilder]
 /// A human's name with the ability to identify parts and usage.
@@ -182,6 +188,11 @@ class HumanNameBuilder extends DataTypeBuilder
   /// Indicates the period of time when this name was valid for the named
   /// person.
   PeriodBuilder? period;
+
+  /// Converts a HumanNameBuilder to [HumanName]
+  HumanName build() => HumanName.fromJson(toJson());
+
+  /// Converts a [HumanNameBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

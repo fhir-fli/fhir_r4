@@ -1,8 +1,24 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        Consent,
+        ConsentPolicy,
+        ConsentVerification,
+        ConsentProvision,
+        ConsentActor,
+        ConsentData;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [Consent] to a Builder
+extension BuilderConsent on Consent {
+  /// Converts [Consent] to a [ConsentBuilder]
+  ConsentBuilder get toBuilder => ConsentBuilder.fromJson(toJson());
+}
 
 /// [ConsentBuilder]
 /// A record of a healthcare consumer’s choices, which permits or denies
@@ -331,6 +347,11 @@ class ConsentBuilder extends DomainResourceBuilder {
   /// An exception to the base policy of this consent. An exception can be an
   /// addition or removal of access permissions.
   ConsentProvisionBuilder? provision;
+
+  /// Converts a ConsentBuilder to [Consent]
+  Consent build() => Consent.fromJson(toJson());
+
+  /// Converts a [ConsentBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1254,6 +1275,12 @@ class ConsentBuilder extends DomainResourceBuilder {
   }
 }
 
+/// Extension to change [ConsentPolicy] to a Builder
+extension BuilderConsentPolicy on ConsentPolicy {
+  /// Converts [ConsentPolicy] to a [ConsentPolicyBuilder]
+  ConsentPolicyBuilder get toBuilder => ConsentPolicyBuilder.fromJson(toJson());
+}
+
 /// [ConsentPolicyBuilder]
 /// The references to the policies that are included in this consent scope.
 /// Policies may be organizational, but are often defined jurisdictionally,
@@ -1376,6 +1403,11 @@ class ConsentPolicyBuilder extends BackboneElementBuilder {
   /// Policies may be organizational, but are often defined jurisdictionally,
   /// or in law.
   FhirUriBuilder? uri;
+
+  /// Converts a ConsentPolicyBuilder to [ConsentPolicy]
+  ConsentPolicy build() => ConsentPolicy.fromJson(toJson());
+
+  /// Converts a [ConsentPolicyBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1698,6 +1730,13 @@ class ConsentPolicyBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [ConsentVerification] to a Builder
+extension BuilderConsentVerification on ConsentVerification {
+  /// Converts [ConsentVerification] to a [ConsentVerificationBuilder]
+  ConsentVerificationBuilder get toBuilder =>
+      ConsentVerificationBuilder.fromJson(toJson());
+}
+
 /// [ConsentVerificationBuilder]
 /// Whether a treatment instruction (e.g. artificial respiration yes or no)
 /// was verified with the patient, his/her family or another authorized
@@ -1829,6 +1868,11 @@ class ConsentVerificationBuilder extends BackboneElementBuilder {
   /// [verificationDate]
   /// Date verification was collected.
   FhirDateTimeBuilder? verificationDate;
+
+  /// Converts a ConsentVerificationBuilder to [ConsentVerification]
+  ConsentVerification build() => ConsentVerification.fromJson(toJson());
+
+  /// Converts a [ConsentVerificationBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2183,6 +2227,13 @@ class ConsentVerificationBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [ConsentProvision] to a Builder
+extension BuilderConsentProvision on ConsentProvision {
+  /// Converts [ConsentProvision] to a [ConsentProvisionBuilder]
+  ConsentProvisionBuilder get toBuilder =>
+      ConsentProvisionBuilder.fromJson(toJson());
+}
+
 /// [ConsentProvisionBuilder]
 /// An exception to the base policy of this consent. An exception can be an
 /// addition or removal of access permissions.
@@ -2440,6 +2491,11 @@ class ConsentProvisionBuilder extends BackboneElementBuilder {
   /// [provision]
   /// Rules which provide exceptions to the base rule or subrules.
   List<ConsentProvisionBuilder>? provision;
+
+  /// Converts a ConsentProvisionBuilder to [ConsentProvision]
+  ConsentProvision build() => ConsentProvision.fromJson(toJson());
+
+  /// Converts a [ConsentProvisionBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3090,6 +3146,12 @@ class ConsentProvisionBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [ConsentActor] to a Builder
+extension BuilderConsentActor on ConsentActor {
+  /// Converts [ConsentActor] to a [ConsentActorBuilder]
+  ConsentActorBuilder get toBuilder => ConsentActorBuilder.fromJson(toJson());
+}
+
 /// [ConsentActorBuilder]
 /// Who or what is controlled by this rule. Use group to identify a set of
 /// actors by some property they share (e.g. 'admitting officers').
@@ -3211,6 +3273,11 @@ class ConsentActorBuilder extends BackboneElementBuilder {
   /// group to identify a set of actors by some property they share (e.g.
   /// 'admitting officers').
   ReferenceBuilder? reference;
+
+  /// Converts a ConsentActorBuilder to [ConsentActor]
+  ConsentActor build() => ConsentActor.fromJson(toJson());
+
+  /// Converts a [ConsentActorBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3533,6 +3600,12 @@ class ConsentActorBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [ConsentData] to a Builder
+extension BuilderConsentData on ConsentData {
+  /// Converts [ConsentData] to a [ConsentDataBuilder]
+  ConsentDataBuilder get toBuilder => ConsentDataBuilder.fromJson(toJson());
+}
+
 /// [ConsentDataBuilder]
 /// The resources controlled by this rule if specific resources are
 /// referenced.
@@ -3653,6 +3726,11 @@ class ConsentDataBuilder extends BackboneElementBuilder {
   /// A reference to a specific resource that defines which resources are
   /// covered by this consent.
   ReferenceBuilder? reference;
+
+  /// Converts a ConsentDataBuilder to [ConsentData]
+  ConsentData build() => ConsentData.fromJson(toJson());
+
+  /// Converts a [ConsentDataBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

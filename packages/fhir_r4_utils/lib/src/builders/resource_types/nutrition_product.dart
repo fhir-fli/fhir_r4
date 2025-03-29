@@ -1,8 +1,24 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        NutritionProduct,
+        NutritionProductNutrient,
+        NutritionProductIngredient,
+        NutritionProductProductCharacteristic,
+        NutritionProductInstance;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [NutritionProduct] to a Builder
+extension BuilderNutritionProduct on NutritionProduct {
+  /// Converts [NutritionProduct] to a [NutritionProductBuilder]
+  NutritionProductBuilder get toBuilder =>
+      NutritionProductBuilder.fromJson(toJson());
+}
 
 /// [NutritionProductBuilder]
 /// A food or fluid product that is consumed by patients.
@@ -281,6 +297,11 @@ class NutritionProductBuilder extends DomainResourceBuilder {
   /// [note]
   /// Comments made about the product.
   List<AnnotationBuilder>? note;
+
+  /// Converts a NutritionProductBuilder to [NutritionProduct]
+  NutritionProduct build() => NutritionProduct.fromJson(toJson());
+
+  /// Converts a [NutritionProductBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1061,6 +1082,13 @@ class NutritionProductBuilder extends DomainResourceBuilder {
   }
 }
 
+/// Extension to change [NutritionProductNutrient] to a Builder
+extension BuilderNutritionProductNutrient on NutritionProductNutrient {
+  /// Converts [NutritionProductNutrient] to a [NutritionProductNutrientBuilder]
+  NutritionProductNutrientBuilder get toBuilder =>
+      NutritionProductNutrientBuilder.fromJson(toJson());
+}
+
 /// [NutritionProductNutrientBuilder]
 /// The product's nutritional information expressed by the nutrients.
 class NutritionProductNutrientBuilder extends BackboneElementBuilder {
@@ -1184,6 +1212,12 @@ class NutritionProductNutrientBuilder extends BackboneElementBuilder {
   /// The amount of nutrient expressed in one or more units: X per pack / per
   /// serving / per dose.
   List<RatioBuilder>? amount;
+
+  /// Converts a NutritionProductNutrientBuilder to [NutritionProductNutrient]
+  NutritionProductNutrient build() =>
+      NutritionProductNutrient.fromJson(toJson());
+
+  /// Converts a [NutritionProductNutrientBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1511,6 +1545,13 @@ class NutritionProductNutrientBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [NutritionProductIngredient] to a Builder
+extension BuilderNutritionProductIngredient on NutritionProductIngredient {
+  /// Converts [NutritionProductIngredient] to a [NutritionProductIngredientBuilder]
+  NutritionProductIngredientBuilder get toBuilder =>
+      NutritionProductIngredientBuilder.fromJson(toJson());
+}
+
 /// [NutritionProductIngredientBuilder]
 /// Ingredients contained in this product.
 class NutritionProductIngredientBuilder extends BackboneElementBuilder {
@@ -1633,6 +1674,12 @@ class NutritionProductIngredientBuilder extends BackboneElementBuilder {
   /// [amount]
   /// The amount of ingredient that is in the product.
   List<RatioBuilder>? amount;
+
+  /// Converts a NutritionProductIngredientBuilder to [NutritionProductIngredient]
+  NutritionProductIngredient build() =>
+      NutritionProductIngredient.fromJson(toJson());
+
+  /// Converts a [NutritionProductIngredientBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1960,6 +2007,14 @@ class NutritionProductIngredientBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [NutritionProductProductCharacteristic] to a Builder
+extension BuilderNutritionProductProductCharacteristic
+    on NutritionProductProductCharacteristic {
+  /// Converts [NutritionProductProductCharacteristic] to a [NutritionProductProductCharacteristicBuilder]
+  NutritionProductProductCharacteristicBuilder get toBuilder =>
+      NutritionProductProductCharacteristicBuilder.fromJson(toJson());
+}
+
 /// [NutritionProductProductCharacteristicBuilder]
 /// Specifies descriptive properties of the nutrition product.
 class NutritionProductProductCharacteristicBuilder
@@ -2107,6 +2162,12 @@ class NutritionProductProductCharacteristicBuilder
 
   /// Getter for [valueBoolean] as a FhirBooleanBuilder
   FhirBooleanBuilder? get valueBoolean => valueX?.isAs<FhirBooleanBuilder>();
+
+  /// Converts a NutritionProductProductCharacteristicBuilder to [NutritionProductProductCharacteristic]
+  NutritionProductProductCharacteristic build() =>
+      NutritionProductProductCharacteristic.fromJson(toJson());
+
+  /// Converts a [NutritionProductProductCharacteristicBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2587,6 +2648,13 @@ class NutritionProductProductCharacteristicBuilder
   }
 }
 
+/// Extension to change [NutritionProductInstance] to a Builder
+extension BuilderNutritionProductInstance on NutritionProductInstance {
+  /// Converts [NutritionProductInstance] to a [NutritionProductInstanceBuilder]
+  NutritionProductInstanceBuilder get toBuilder =>
+      NutritionProductInstanceBuilder.fromJson(toJson());
+}
+
 /// [NutritionProductInstanceBuilder]
 /// Conveys instance-level information about this product item. One or
 /// several physical, countable instances or occurrences of the product.
@@ -2746,6 +2814,12 @@ class NutritionProductInstanceBuilder extends BackboneElementBuilder {
   /// The time after which the product is no longer expected to be in proper
   /// condition, or its use is not advised or not allowed.
   FhirDateTimeBuilder? useBy;
+
+  /// Converts a NutritionProductInstanceBuilder to [NutritionProductInstance]
+  NutritionProductInstance build() =>
+      NutritionProductInstance.fromJson(toJson());
+
+  /// Converts a [NutritionProductInstanceBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

@@ -1,8 +1,22 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        PractitionerRole,
+        PractitionerRoleAvailableTime,
+        PractitionerRoleNotAvailable;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [PractitionerRole] to a Builder
+extension BuilderPractitionerRole on PractitionerRole {
+  /// Converts [PractitionerRole] to a [PractitionerRoleBuilder]
+  PractitionerRoleBuilder get toBuilder =>
+      PractitionerRoleBuilder.fromJson(toJson());
+}
 
 /// [PractitionerRoleBuilder]
 /// A specific set of Roles/Locations/specialties/services that a
@@ -339,6 +353,11 @@ class PractitionerRoleBuilder extends DomainResourceBuilder {
   /// Technical endpoints providing access to services operated for the
   /// practitioner with this role.
   List<ReferenceBuilder>? endpoint;
+
+  /// Converts a PractitionerRoleBuilder to [PractitionerRole]
+  PractitionerRole build() => PractitionerRole.fromJson(toJson());
+
+  /// Converts a [PractitionerRoleBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1256,6 +1275,14 @@ class PractitionerRoleBuilder extends DomainResourceBuilder {
   }
 }
 
+/// Extension to change [PractitionerRoleAvailableTime] to a Builder
+extension BuilderPractitionerRoleAvailableTime
+    on PractitionerRoleAvailableTime {
+  /// Converts [PractitionerRoleAvailableTime] to a [PractitionerRoleAvailableTimeBuilder]
+  PractitionerRoleAvailableTimeBuilder get toBuilder =>
+      PractitionerRoleAvailableTimeBuilder.fromJson(toJson());
+}
+
 /// [PractitionerRoleAvailableTimeBuilder]
 /// A collection of times the practitioner is available or performing this
 /// role at the location and/or healthcareservice.
@@ -1401,6 +1428,12 @@ class PractitionerRoleAvailableTimeBuilder extends BackboneElementBuilder {
   /// The closing time of day. Note: If the AllDay flag is set, then this
   /// time is ignored.
   FhirTimeBuilder? availableEndTime;
+
+  /// Converts a PractitionerRoleAvailableTimeBuilder to [PractitionerRoleAvailableTime]
+  PractitionerRoleAvailableTime build() =>
+      PractitionerRoleAvailableTime.fromJson(toJson());
+
+  /// Converts a [PractitionerRoleAvailableTimeBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1792,6 +1825,13 @@ class PractitionerRoleAvailableTimeBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [PractitionerRoleNotAvailable] to a Builder
+extension BuilderPractitionerRoleNotAvailable on PractitionerRoleNotAvailable {
+  /// Converts [PractitionerRoleNotAvailable] to a [PractitionerRoleNotAvailableBuilder]
+  PractitionerRoleNotAvailableBuilder get toBuilder =>
+      PractitionerRoleNotAvailableBuilder.fromJson(toJson());
+}
+
 /// [PractitionerRoleNotAvailableBuilder]
 /// The practitioner is not available or performing this role during this
 /// period of time due to the provided reason.
@@ -1913,6 +1953,12 @@ class PractitionerRoleNotAvailableBuilder extends BackboneElementBuilder {
   /// Service is not available (seasonally or for a public holiday) from this
   /// date.
   PeriodBuilder? during;
+
+  /// Converts a PractitionerRoleNotAvailableBuilder to [PractitionerRoleNotAvailable]
+  PractitionerRoleNotAvailable build() =>
+      PractitionerRoleNotAvailable.fromJson(toJson());
+
+  /// Converts a [PractitionerRoleNotAvailableBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

@@ -1,8 +1,25 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        AdministrableProductDefinition,
+        AdministrableProductDefinitionProperty,
+        AdministrableProductDefinitionRouteOfAdministration,
+        AdministrableProductDefinitionTargetSpecies,
+        AdministrableProductDefinitionWithdrawalPeriod;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [AdministrableProductDefinition] to a Builder
+extension BuilderAdministrableProductDefinition
+    on AdministrableProductDefinition {
+  /// Converts [AdministrableProductDefinition] to a [AdministrableProductDefinitionBuilder]
+  AdministrableProductDefinitionBuilder get toBuilder =>
+      AdministrableProductDefinitionBuilder.fromJson(toJson());
+}
 
 /// [AdministrableProductDefinitionBuilder]
 /// A medicinal product in the final form which is suitable for
@@ -310,6 +327,12 @@ class AdministrableProductDefinitionBuilder extends DomainResourceBuilder {
   /// already uses MedicinalProductDefinition.route (and vice versa).
   List<AdministrableProductDefinitionRouteOfAdministrationBuilder>?
       routeOfAdministration;
+
+  /// Converts a AdministrableProductDefinitionBuilder to [AdministrableProductDefinition]
+  AdministrableProductDefinition build() =>
+      AdministrableProductDefinition.fromJson(toJson());
+
+  /// Converts a [AdministrableProductDefinitionBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1089,6 +1112,14 @@ class AdministrableProductDefinitionBuilder extends DomainResourceBuilder {
   }
 }
 
+/// Extension to change [AdministrableProductDefinitionProperty] to a Builder
+extension BuilderAdministrableProductDefinitionProperty
+    on AdministrableProductDefinitionProperty {
+  /// Converts [AdministrableProductDefinitionProperty] to a [AdministrableProductDefinitionPropertyBuilder]
+  AdministrableProductDefinitionPropertyBuilder get toBuilder =>
+      AdministrableProductDefinitionPropertyBuilder.fromJson(toJson());
+}
+
 /// [AdministrableProductDefinitionPropertyBuilder]
 /// Characteristics e.g. a product's onset of action.
 class AdministrableProductDefinitionPropertyBuilder
@@ -1241,6 +1272,12 @@ class AdministrableProductDefinitionPropertyBuilder
   /// [status]
   /// The status of characteristic e.g. assigned or pending.
   CodeableConceptBuilder? status;
+
+  /// Converts a AdministrableProductDefinitionPropertyBuilder to [AdministrableProductDefinitionProperty]
+  AdministrableProductDefinitionProperty build() =>
+      AdministrableProductDefinitionProperty.fromJson(toJson());
+
+  /// Converts a [AdministrableProductDefinitionPropertyBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1728,6 +1765,15 @@ class AdministrableProductDefinitionPropertyBuilder
   }
 }
 
+/// Extension to change [AdministrableProductDefinitionRouteOfAdministration] to a Builder
+extension BuilderAdministrableProductDefinitionRouteOfAdministration
+    on AdministrableProductDefinitionRouteOfAdministration {
+  /// Converts [AdministrableProductDefinitionRouteOfAdministration] to a [AdministrableProductDefinitionRouteOfAdministrationBuilder]
+  AdministrableProductDefinitionRouteOfAdministrationBuilder get toBuilder =>
+      AdministrableProductDefinitionRouteOfAdministrationBuilder.fromJson(
+          toJson());
+}
+
 /// [AdministrableProductDefinitionRouteOfAdministrationBuilder]
 /// The path by which the product is taken into or makes contact with the
 /// body. In some regions this is referred to as the licenced or approved
@@ -1916,6 +1962,12 @@ class AdministrableProductDefinitionRouteOfAdministrationBuilder
   /// [targetSpecies]
   /// A species for which this route applies.
   List<AdministrableProductDefinitionTargetSpeciesBuilder>? targetSpecies;
+
+  /// Converts a AdministrableProductDefinitionRouteOfAdministrationBuilder to [AdministrableProductDefinitionRouteOfAdministration]
+  AdministrableProductDefinitionRouteOfAdministration build() =>
+      AdministrableProductDefinitionRouteOfAdministration.fromJson(toJson());
+
+  /// Converts a [AdministrableProductDefinitionRouteOfAdministrationBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2409,6 +2461,14 @@ class AdministrableProductDefinitionRouteOfAdministrationBuilder
   }
 }
 
+/// Extension to change [AdministrableProductDefinitionTargetSpecies] to a Builder
+extension BuilderAdministrableProductDefinitionTargetSpecies
+    on AdministrableProductDefinitionTargetSpecies {
+  /// Converts [AdministrableProductDefinitionTargetSpecies] to a [AdministrableProductDefinitionTargetSpeciesBuilder]
+  AdministrableProductDefinitionTargetSpeciesBuilder get toBuilder =>
+      AdministrableProductDefinitionTargetSpeciesBuilder.fromJson(toJson());
+}
+
 /// [AdministrableProductDefinitionTargetSpeciesBuilder]
 /// A species for which this route applies.
 class AdministrableProductDefinitionTargetSpeciesBuilder
@@ -2536,6 +2596,12 @@ class AdministrableProductDefinitionTargetSpeciesBuilder
   /// A species specific time during which consumption of animal product is
   /// not appropriate.
   List<AdministrableProductDefinitionWithdrawalPeriodBuilder>? withdrawalPeriod;
+
+  /// Converts a AdministrableProductDefinitionTargetSpeciesBuilder to [AdministrableProductDefinitionTargetSpecies]
+  AdministrableProductDefinitionTargetSpecies build() =>
+      AdministrableProductDefinitionTargetSpecies.fromJson(toJson());
+
+  /// Converts a [AdministrableProductDefinitionTargetSpeciesBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2868,6 +2934,14 @@ class AdministrableProductDefinitionTargetSpeciesBuilder
   }
 }
 
+/// Extension to change [AdministrableProductDefinitionWithdrawalPeriod] to a Builder
+extension BuilderAdministrableProductDefinitionWithdrawalPeriod
+    on AdministrableProductDefinitionWithdrawalPeriod {
+  /// Converts [AdministrableProductDefinitionWithdrawalPeriod] to a [AdministrableProductDefinitionWithdrawalPeriodBuilder]
+  AdministrableProductDefinitionWithdrawalPeriodBuilder get toBuilder =>
+      AdministrableProductDefinitionWithdrawalPeriodBuilder.fromJson(toJson());
+}
+
 /// [AdministrableProductDefinitionWithdrawalPeriodBuilder]
 /// A species specific time during which consumption of animal product is
 /// not appropriate.
@@ -3003,6 +3077,12 @@ class AdministrableProductDefinitionWithdrawalPeriodBuilder
   /// [supportingInformation]
   /// Extra information about the withdrawal period.
   FhirStringBuilder? supportingInformation;
+
+  /// Converts a AdministrableProductDefinitionWithdrawalPeriodBuilder to [AdministrableProductDefinitionWithdrawalPeriod]
+  AdministrableProductDefinitionWithdrawalPeriod build() =>
+      AdministrableProductDefinitionWithdrawalPeriod.fromJson(toJson());
+
+  /// Converts a [AdministrableProductDefinitionWithdrawalPeriodBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

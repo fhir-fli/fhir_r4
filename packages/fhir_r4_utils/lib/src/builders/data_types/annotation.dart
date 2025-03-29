@@ -1,8 +1,14 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, StringExtensionForFHIR;
+    show yamlMapToJson, yamlToJson, StringExtensionForFHIR, Annotation;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [Annotation] to a Builder
+extension BuilderAnnotation on Annotation {
+  /// Converts [Annotation] to a [AnnotationBuilder]
+  AnnotationBuilder get toBuilder => AnnotationBuilder.fromJson(toJson());
+}
 
 /// [AnnotationBuilder]
 /// A text note which also contains information about who made the
@@ -139,6 +145,11 @@ class AnnotationBuilder extends DataTypeBuilder
   /// [text]
   /// The text of the annotation in markdown format.
   FhirMarkdownBuilder? text;
+
+  /// Converts a AnnotationBuilder to [Annotation]
+  Annotation build() => Annotation.fromJson(toJson());
+
+  /// Converts a [AnnotationBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

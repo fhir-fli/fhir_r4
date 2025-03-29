@@ -1,8 +1,24 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        CoverageEligibilityRequest,
+        CoverageEligibilityRequestSupportingInfo,
+        CoverageEligibilityRequestInsurance,
+        CoverageEligibilityRequestItem,
+        CoverageEligibilityRequestDiagnosis;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [CoverageEligibilityRequest] to a Builder
+extension BuilderCoverageEligibilityRequest on CoverageEligibilityRequest {
+  /// Converts [CoverageEligibilityRequest] to a [CoverageEligibilityRequestBuilder]
+  CoverageEligibilityRequestBuilder get toBuilder =>
+      CoverageEligibilityRequestBuilder.fromJson(toJson());
+}
 
 /// [CoverageEligibilityRequestBuilder]
 /// The CoverageEligibilityRequest provides patient and insurance coverage
@@ -333,6 +349,12 @@ class CoverageEligibilityRequestBuilder extends DomainResourceBuilder {
   /// and/or an authorization prior to service delivery may be required by
   /// the payor.
   List<CoverageEligibilityRequestItemBuilder>? item;
+
+  /// Converts a CoverageEligibilityRequestBuilder to [CoverageEligibilityRequest]
+  CoverageEligibilityRequest build() =>
+      CoverageEligibilityRequest.fromJson(toJson());
+
+  /// Converts a [CoverageEligibilityRequestBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1283,6 +1305,14 @@ class CoverageEligibilityRequestBuilder extends DomainResourceBuilder {
   }
 }
 
+/// Extension to change [CoverageEligibilityRequestSupportingInfo] to a Builder
+extension BuilderCoverageEligibilityRequestSupportingInfo
+    on CoverageEligibilityRequestSupportingInfo {
+  /// Converts [CoverageEligibilityRequestSupportingInfo] to a [CoverageEligibilityRequestSupportingInfoBuilder]
+  CoverageEligibilityRequestSupportingInfoBuilder get toBuilder =>
+      CoverageEligibilityRequestSupportingInfoBuilder.fromJson(toJson());
+}
+
 /// [CoverageEligibilityRequestSupportingInfoBuilder]
 /// Additional information codes regarding exceptions, special
 /// considerations, the condition, situation, prior or concurrent issues.
@@ -1417,6 +1447,12 @@ class CoverageEligibilityRequestSupportingInfoBuilder
   /// The supporting materials are applicable for all detail items,
   /// product/servce categories and specific billing codes.
   FhirBooleanBuilder? appliesToAll;
+
+  /// Converts a CoverageEligibilityRequestSupportingInfoBuilder to [CoverageEligibilityRequestSupportingInfo]
+  CoverageEligibilityRequestSupportingInfo build() =>
+      CoverageEligibilityRequestSupportingInfo.fromJson(toJson());
+
+  /// Converts a [CoverageEligibilityRequestSupportingInfoBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1772,6 +1808,14 @@ class CoverageEligibilityRequestSupportingInfoBuilder
   }
 }
 
+/// Extension to change [CoverageEligibilityRequestInsurance] to a Builder
+extension BuilderCoverageEligibilityRequestInsurance
+    on CoverageEligibilityRequestInsurance {
+  /// Converts [CoverageEligibilityRequestInsurance] to a [CoverageEligibilityRequestInsuranceBuilder]
+  CoverageEligibilityRequestInsuranceBuilder get toBuilder =>
+      CoverageEligibilityRequestInsuranceBuilder.fromJson(toJson());
+}
+
 /// [CoverageEligibilityRequestInsuranceBuilder]
 /// Financial instruments for reimbursement for the health care products
 /// and services.
@@ -1908,6 +1952,12 @@ class CoverageEligibilityRequestInsuranceBuilder
   /// A business agreement number established between the provider and the
   /// insurer for special business processing purposes.
   FhirStringBuilder? businessArrangement;
+
+  /// Converts a CoverageEligibilityRequestInsuranceBuilder to [CoverageEligibilityRequestInsurance]
+  CoverageEligibilityRequestInsurance build() =>
+      CoverageEligibilityRequestInsurance.fromJson(toJson());
+
+  /// Converts a [CoverageEligibilityRequestInsuranceBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2263,6 +2313,14 @@ class CoverageEligibilityRequestInsuranceBuilder
   }
 }
 
+/// Extension to change [CoverageEligibilityRequestItem] to a Builder
+extension BuilderCoverageEligibilityRequestItem
+    on CoverageEligibilityRequestItem {
+  /// Converts [CoverageEligibilityRequestItem] to a [CoverageEligibilityRequestItemBuilder]
+  CoverageEligibilityRequestItemBuilder get toBuilder =>
+      CoverageEligibilityRequestItemBuilder.fromJson(toJson());
+}
+
 /// [CoverageEligibilityRequestItemBuilder]
 /// Service categories or billable services for which benefit details
 /// and/or an authorization prior to service delivery may be required by
@@ -2489,6 +2547,12 @@ class CoverageEligibilityRequestItemBuilder extends BackboneElementBuilder {
   /// [detail]
   /// The plan/proposal/order describing the proposed service in detail.
   List<ReferenceBuilder>? detail;
+
+  /// Converts a CoverageEligibilityRequestItemBuilder to [CoverageEligibilityRequestItem]
+  CoverageEligibilityRequestItem build() =>
+      CoverageEligibilityRequestItem.fromJson(toJson());
+
+  /// Converts a [CoverageEligibilityRequestItemBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3088,6 +3152,14 @@ class CoverageEligibilityRequestItemBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [CoverageEligibilityRequestDiagnosis] to a Builder
+extension BuilderCoverageEligibilityRequestDiagnosis
+    on CoverageEligibilityRequestDiagnosis {
+  /// Converts [CoverageEligibilityRequestDiagnosis] to a [CoverageEligibilityRequestDiagnosisBuilder]
+  CoverageEligibilityRequestDiagnosisBuilder get toBuilder =>
+      CoverageEligibilityRequestDiagnosisBuilder.fromJson(toJson());
+}
+
 /// [CoverageEligibilityRequestDiagnosisBuilder]
 /// Patient diagnosis for which care is sought.
 class CoverageEligibilityRequestDiagnosisBuilder
@@ -3208,6 +3280,12 @@ class CoverageEligibilityRequestDiagnosisBuilder
   /// Getter for [diagnosisReference] as a ReferenceBuilder
   ReferenceBuilder? get diagnosisReference =>
       diagnosisX?.isAs<ReferenceBuilder>();
+
+  /// Converts a CoverageEligibilityRequestDiagnosisBuilder to [CoverageEligibilityRequestDiagnosis]
+  CoverageEligibilityRequestDiagnosis build() =>
+      CoverageEligibilityRequestDiagnosis.fromJson(toJson());
+
+  /// Converts a [CoverageEligibilityRequestDiagnosisBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

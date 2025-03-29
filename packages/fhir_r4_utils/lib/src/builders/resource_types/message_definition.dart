@@ -1,8 +1,22 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        MessageDefinition,
+        MessageDefinitionFocus,
+        MessageDefinitionAllowedResponse;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [MessageDefinition] to a Builder
+extension BuilderMessageDefinition on MessageDefinition {
+  /// Converts [MessageDefinition] to a [MessageDefinitionBuilder]
+  MessageDefinitionBuilder get toBuilder =>
+      MessageDefinitionBuilder.fromJson(toJson());
+}
 
 /// [MessageDefinitionBuilder]
 /// Defines the characteristics of a message that can be shared between
@@ -414,6 +428,11 @@ class MessageDefinitionBuilder extends CanonicalResourceBuilder {
   /// building the document. The GraphDefinition can also specify profiles
   /// that apply to the various resources.
   List<FhirCanonicalBuilder>? graph;
+
+  /// Converts a MessageDefinitionBuilder to [MessageDefinition]
+  MessageDefinition build() => MessageDefinition.fromJson(toJson());
+
+  /// Converts a [MessageDefinitionBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1704,6 +1723,13 @@ class MessageDefinitionBuilder extends CanonicalResourceBuilder {
   }
 }
 
+/// Extension to change [MessageDefinitionFocus] to a Builder
+extension BuilderMessageDefinitionFocus on MessageDefinitionFocus {
+  /// Converts [MessageDefinitionFocus] to a [MessageDefinitionFocusBuilder]
+  MessageDefinitionFocusBuilder get toBuilder =>
+      MessageDefinitionFocusBuilder.fromJson(toJson());
+}
+
 /// [MessageDefinitionFocusBuilder]
 /// Identifies the resource (or resources) that are being addressed by the
 /// event. For example, the Encounter for an admit message or two Account
@@ -1851,6 +1877,11 @@ class MessageDefinitionFocusBuilder extends BackboneElementBuilder {
   /// pointed to by a message in order for it to be valid against this
   /// MessageDefinition.
   FhirStringBuilder? max;
+
+  /// Converts a MessageDefinitionFocusBuilder to [MessageDefinitionFocus]
+  MessageDefinitionFocus build() => MessageDefinitionFocus.fromJson(toJson());
+
+  /// Converts a [MessageDefinitionFocusBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2237,6 +2268,14 @@ class MessageDefinitionFocusBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [MessageDefinitionAllowedResponse] to a Builder
+extension BuilderMessageDefinitionAllowedResponse
+    on MessageDefinitionAllowedResponse {
+  /// Converts [MessageDefinitionAllowedResponse] to a [MessageDefinitionAllowedResponseBuilder]
+  MessageDefinitionAllowedResponseBuilder get toBuilder =>
+      MessageDefinitionAllowedResponseBuilder.fromJson(toJson());
+}
+
 /// [MessageDefinitionAllowedResponseBuilder]
 /// Indicates what types of messages may be sent as an application-level
 /// response to this message.
@@ -2358,6 +2397,12 @@ class MessageDefinitionAllowedResponseBuilder extends BackboneElementBuilder {
   /// Provides a description of the circumstances in which this response
   /// should be used (as opposed to one of the alternative responses).
   FhirMarkdownBuilder? situation;
+
+  /// Converts a MessageDefinitionAllowedResponseBuilder to [MessageDefinitionAllowedResponse]
+  MessageDefinitionAllowedResponse build() =>
+      MessageDefinitionAllowedResponse.fromJson(toJson());
+
+  /// Converts a [MessageDefinitionAllowedResponseBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

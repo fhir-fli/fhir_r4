@@ -1,8 +1,19 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        Flag;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [Flag] to a Builder
+extension BuilderFlag on Flag {
+  /// Converts [Flag] to a [FlagBuilder]
+  FlagBuilder get toBuilder => FlagBuilder.fromJson(toJson());
+}
 
 /// [FlagBuilder]
 /// Prospective warnings of potential issues when providing care to the
@@ -243,6 +254,11 @@ class FlagBuilder extends DomainResourceBuilder {
   /// [author]
   /// The person, organization or device that created the flag.
   ReferenceBuilder? author;
+
+  /// Converts a FlagBuilder to [Flag]
+  Flag build() => Flag.fromJson(toJson());
+
+  /// Converts a [FlagBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

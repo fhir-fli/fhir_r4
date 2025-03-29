@@ -1,8 +1,23 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, R4ResourceType, StringExtensionForFHIR;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        EvidenceVariable,
+        EvidenceVariableCharacteristic,
+        EvidenceVariableTimeFromStart,
+        EvidenceVariableCategory;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [EvidenceVariable] to a Builder
+extension BuilderEvidenceVariable on EvidenceVariable {
+  /// Converts [EvidenceVariable] to a [EvidenceVariableBuilder]
+  EvidenceVariableBuilder get toBuilder =>
+      EvidenceVariableBuilder.fromJson(toJson());
+}
 
 /// [EvidenceVariableBuilder]
 /// The EvidenceVariable resource describes an element that knowledge
@@ -491,6 +506,11 @@ class EvidenceVariableBuilder extends DomainResourceBuilder {
   /// A grouping (or set of values) described along with other groupings to
   /// specify the set of groupings allowed for the variable.
   List<EvidenceVariableCategoryBuilder>? category;
+
+  /// Converts a EvidenceVariableBuilder to [EvidenceVariable]
+  EvidenceVariable build() => EvidenceVariable.fromJson(toJson());
+
+  /// Converts a [EvidenceVariableBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1738,6 +1758,14 @@ class EvidenceVariableBuilder extends DomainResourceBuilder {
   }
 }
 
+/// Extension to change [EvidenceVariableCharacteristic] to a Builder
+extension BuilderEvidenceVariableCharacteristic
+    on EvidenceVariableCharacteristic {
+  /// Converts [EvidenceVariableCharacteristic] to a [EvidenceVariableCharacteristicBuilder]
+  EvidenceVariableCharacteristicBuilder get toBuilder =>
+      EvidenceVariableCharacteristicBuilder.fromJson(toJson());
+}
+
 /// [EvidenceVariableCharacteristicBuilder]
 /// A characteristic that defines the members of the evidence element.
 /// Multiple characteristics are applied with "and" semantics.
@@ -1941,6 +1969,12 @@ class EvidenceVariableCharacteristicBuilder extends BackboneElementBuilder {
   /// Indicates how elements are aggregated within the study effective
   /// period.
   GroupMeasureBuilder? groupMeasure;
+
+  /// Converts a EvidenceVariableCharacteristicBuilder to [EvidenceVariableCharacteristic]
+  EvidenceVariableCharacteristic build() =>
+      EvidenceVariableCharacteristic.fromJson(toJson());
+
+  /// Converts a [EvidenceVariableCharacteristicBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2530,6 +2564,14 @@ class EvidenceVariableCharacteristicBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [EvidenceVariableTimeFromStart] to a Builder
+extension BuilderEvidenceVariableTimeFromStart
+    on EvidenceVariableTimeFromStart {
+  /// Converts [EvidenceVariableTimeFromStart] to a [EvidenceVariableTimeFromStartBuilder]
+  EvidenceVariableTimeFromStartBuilder get toBuilder =>
+      EvidenceVariableTimeFromStartBuilder.fromJson(toJson());
+}
+
 /// [EvidenceVariableTimeFromStartBuilder]
 /// Indicates duration, period, or point of observation from the
 /// participant's study entry.
@@ -2677,6 +2719,12 @@ class EvidenceVariableTimeFromStartBuilder extends BackboneElementBuilder {
   /// A human-readable string to clarify or explain concepts about the
   /// resource.
   List<AnnotationBuilder>? note;
+
+  /// Converts a EvidenceVariableTimeFromStartBuilder to [EvidenceVariableTimeFromStart]
+  EvidenceVariableTimeFromStart build() =>
+      EvidenceVariableTimeFromStart.fromJson(toJson());
+
+  /// Converts a [EvidenceVariableTimeFromStartBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3068,6 +3116,13 @@ class EvidenceVariableTimeFromStartBuilder extends BackboneElementBuilder {
   }
 }
 
+/// Extension to change [EvidenceVariableCategory] to a Builder
+extension BuilderEvidenceVariableCategory on EvidenceVariableCategory {
+  /// Converts [EvidenceVariableCategory] to a [EvidenceVariableCategoryBuilder]
+  EvidenceVariableCategoryBuilder get toBuilder =>
+      EvidenceVariableCategoryBuilder.fromJson(toJson());
+}
+
 /// [EvidenceVariableCategoryBuilder]
 /// A grouping (or set of values) described along with other groupings to
 /// specify the set of groupings allowed for the variable.
@@ -3201,6 +3256,12 @@ class EvidenceVariableCategoryBuilder extends BackboneElementBuilder {
 
   /// Getter for [valueRange] as a RangeBuilder
   RangeBuilder? get valueRange => valueX?.isAs<RangeBuilder>();
+
+  /// Converts a EvidenceVariableCategoryBuilder to [EvidenceVariableCategory]
+  EvidenceVariableCategory build() =>
+      EvidenceVariableCategory.fromJson(toJson());
+
+  /// Converts a [EvidenceVariableCategoryBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

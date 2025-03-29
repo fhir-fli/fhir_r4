@@ -1,8 +1,15 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, StringExtensionForFHIR;
+    show yamlMapToJson, yamlToJson, StringExtensionForFHIR, CodeableReference;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
+
+/// Extension to change [CodeableReference] to a Builder
+extension BuilderCodeableReference on CodeableReference {
+  /// Converts [CodeableReference] to a [CodeableReferenceBuilder]
+  CodeableReferenceBuilder get toBuilder =>
+      CodeableReferenceBuilder.fromJson(toJson());
+}
 
 /// [CodeableReferenceBuilder]
 /// A reference to a resource (by instance), or instead, a reference to a
@@ -118,6 +125,11 @@ class CodeableReferenceBuilder extends DataTypeBuilder
   /// A reference to a resource the provides exact details about the
   /// information being referenced.
   ReferenceBuilder? reference;
+
+  /// Converts a CodeableReferenceBuilder to [CodeableReference]
+  CodeableReference build() => CodeableReference.fromJson(toJson());
+
+  /// Converts a [CodeableReferenceBuilder] to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
