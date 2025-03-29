@@ -116,14 +116,15 @@ class ElementBuilder extends FhirBaseBuilder {
   /// Getter for the first extension by url
   List<FhirExtensionBuilder> getExtensionsByUrl(String url) {
     return extension_
-            ?.where((FhirExtensionBuilder ext) => ext.url.equals(url))
+            ?.where((FhirExtensionBuilder ext) => ext.url?.equals(url) ?? false)
             .toList() ??
         <FhirExtensionBuilder>[];
   }
 
   /// Method to check if an extension exists by url
   bool hasExtensionByUrl(String url) {
-    return extension_?.any((FhirExtensionBuilder ext) => ext.url.equals(url)) ??
+    return extension_?.any(
+            (FhirExtensionBuilder ext) => ext.url?.equals(url) ?? false) ??
         false;
   }
 
@@ -134,7 +135,8 @@ class ElementBuilder extends FhirBaseBuilder {
 
   /// Method to remove an extension by url
   void removeExtension(String url) {
-    extension_?.removeWhere((FhirExtensionBuilder ext) => ext.url.equals(url));
+    extension_?.removeWhere(
+        (FhirExtensionBuilder ext) => ext.url?.equals(url) ?? false);
   }
 
   /// Implementing the getProperty method
