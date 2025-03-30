@@ -1,15 +1,15 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
-        R4ResourceType,
-        StringExtensionForFHIR,
         CoverageEligibilityRequest,
-        CoverageEligibilityRequestSupportingInfo,
+        CoverageEligibilityRequestDiagnosis,
         CoverageEligibilityRequestInsurance,
         CoverageEligibilityRequestItem,
-        CoverageEligibilityRequestDiagnosis;
+        CoverageEligibilityRequestSupportingInfo,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -343,11 +343,14 @@ class CoverageEligibilityRequestBuilder extends DomainResourceBuilder {
   /// the payor.
   List<CoverageEligibilityRequestItemBuilder>? item;
 
-  /// Converts a CoverageEligibilityRequestBuilder to [CoverageEligibilityRequest]
+  /// converts a [CoverageEligibilityRequestBuilder]
+  /// to [CoverageEligibilityRequest]
+  @override
   CoverageEligibilityRequest build() =>
       CoverageEligibilityRequest.fromJson(toJson());
 
-  /// Converts a [CoverageEligibilityRequestBuilder] to a [Map<String, dynamic>]
+  /// converts a [CoverageEligibilityRequestBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1068,7 +1071,7 @@ class CoverageEligibilityRequestBuilder extends DomainResourceBuilder {
     if (priority) this.priority = null;
     if (purpose) this.purpose = null;
     if (patient) this.patient = null;
-    if (serviced) this.servicedX = null;
+    if (serviced) servicedX = null;
     if (created) this.created = null;
     if (enterer) this.enterer = null;
     if (provider) this.provider = null;
@@ -1134,9 +1137,7 @@ class CoverageEligibilityRequestBuilder extends DomainResourceBuilder {
       supportingInfo: supportingInfo ?? this.supportingInfo,
       insurance: insurance ?? this.insurance,
       item: item ?? this.item,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1433,11 +1434,14 @@ class CoverageEligibilityRequestSupportingInfoBuilder
   /// product/servce categories and specific billing codes.
   FhirBooleanBuilder? appliesToAll;
 
-  /// Converts a CoverageEligibilityRequestSupportingInfoBuilder to [CoverageEligibilityRequestSupportingInfo]
+  /// converts a [CoverageEligibilityRequestSupportingInfoBuilder]
+  /// to [CoverageEligibilityRequestSupportingInfo]
+  @override
   CoverageEligibilityRequestSupportingInfo build() =>
       CoverageEligibilityRequestSupportingInfo.fromJson(toJson());
 
-  /// Converts a [CoverageEligibilityRequestSupportingInfoBuilder] to a [Map<String, dynamic>]
+  /// converts a [CoverageEligibilityRequestSupportingInfoBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1725,9 +1729,7 @@ class CoverageEligibilityRequestSupportingInfoBuilder
       sequence: sequence ?? this.sequence,
       information: information ?? this.information,
       appliesToAll: appliesToAll ?? this.appliesToAll,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1930,11 +1932,14 @@ class CoverageEligibilityRequestInsuranceBuilder
   /// insurer for special business processing purposes.
   FhirStringBuilder? businessArrangement;
 
-  /// Converts a CoverageEligibilityRequestInsuranceBuilder to [CoverageEligibilityRequestInsurance]
+  /// converts a [CoverageEligibilityRequestInsuranceBuilder]
+  /// to [CoverageEligibilityRequestInsurance]
+  @override
   CoverageEligibilityRequestInsurance build() =>
       CoverageEligibilityRequestInsurance.fromJson(toJson());
 
-  /// Converts a [CoverageEligibilityRequestInsuranceBuilder] to a [Map<String, dynamic>]
+  /// converts a [CoverageEligibilityRequestInsuranceBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2222,9 +2227,7 @@ class CoverageEligibilityRequestInsuranceBuilder
       focal: focal ?? this.focal,
       coverage: coverage ?? this.coverage,
       businessArrangement: businessArrangement ?? this.businessArrangement,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -2517,11 +2520,14 @@ class CoverageEligibilityRequestItemBuilder extends BackboneElementBuilder {
   /// The plan/proposal/order describing the proposed service in detail.
   List<ReferenceBuilder>? detail;
 
-  /// Converts a CoverageEligibilityRequestItemBuilder to [CoverageEligibilityRequestItem]
+  /// converts a [CoverageEligibilityRequestItemBuilder]
+  /// to [CoverageEligibilityRequestItem]
+  @override
   CoverageEligibilityRequestItem build() =>
       CoverageEligibilityRequestItem.fromJson(toJson());
 
-  /// Converts a [CoverageEligibilityRequestItemBuilder] to a [Map<String, dynamic>]
+  /// converts a [CoverageEligibilityRequestItemBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3011,9 +3017,7 @@ class CoverageEligibilityRequestItemBuilder extends BackboneElementBuilder {
       facility: facility ?? this.facility,
       diagnosis: diagnosis ?? this.diagnosis,
       detail: detail ?? this.detail,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -3242,11 +3246,14 @@ class CoverageEligibilityRequestDiagnosisBuilder
   ReferenceBuilder? get diagnosisReference =>
       diagnosisX?.isAs<ReferenceBuilder>();
 
-  /// Converts a CoverageEligibilityRequestDiagnosisBuilder to [CoverageEligibilityRequestDiagnosis]
+  /// converts a [CoverageEligibilityRequestDiagnosisBuilder]
+  /// to [CoverageEligibilityRequestDiagnosis]
+  @override
   CoverageEligibilityRequestDiagnosis build() =>
       CoverageEligibilityRequestDiagnosis.fromJson(toJson());
 
-  /// Converts a [CoverageEligibilityRequestDiagnosisBuilder] to a [Map<String, dynamic>]
+  /// converts a [CoverageEligibilityRequestDiagnosisBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3512,7 +3519,7 @@ class CoverageEligibilityRequestDiagnosisBuilder
     if (id) this.id = null;
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
-    if (diagnosis) this.diagnosisX = null;
+    if (diagnosis) diagnosisX = null;
   }
 
   @override
@@ -3536,9 +3543,7 @@ class CoverageEligibilityRequestDiagnosisBuilder
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       diagnosisX: diagnosisX ?? this.diagnosisX,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

@@ -1,19 +1,19 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
         R4ResourceType,
         StringExtensionForFHIR,
         StructureMap,
-        StructureMapStructure,
+        StructureMapDependent,
         StructureMapGroup,
         StructureMapInput,
+        StructureMapParameter,
         StructureMapRule,
         StructureMapSource,
+        StructureMapStructure,
         StructureMapTarget,
-        StructureMapParameter,
-        StructureMapDependent;
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -345,10 +345,13 @@ class StructureMapBuilder extends CanonicalResourceBuilder {
   /// maintenance.
   List<StructureMapGroupBuilder>? group;
 
-  /// Converts a StructureMapBuilder to [StructureMap]
+  /// converts a [StructureMapBuilder]
+  /// to [StructureMap]
+  @override
   StructureMap build() => StructureMap.fromJson(toJson());
 
-  /// Converts a [StructureMapBuilder] to a [Map<String, dynamic>]
+  /// converts a [StructureMapBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1195,9 +1198,7 @@ class StructureMapBuilder extends CanonicalResourceBuilder {
       structure: structure ?? this.structure,
       import_: import_ ?? this.import_,
       group: group ?? this.group,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1526,10 +1527,13 @@ class StructureMapStructureBuilder extends BackboneElementBuilder {
   /// Documentation that describes how the structure is used in the mapping.
   FhirStringBuilder? documentation;
 
-  /// Converts a StructureMapStructureBuilder to [StructureMapStructure]
+  /// converts a [StructureMapStructureBuilder]
+  /// to [StructureMapStructure]
+  @override
   StructureMapStructure build() => StructureMapStructure.fromJson(toJson());
 
-  /// Converts a [StructureMapStructureBuilder] to a [Map<String, dynamic>]
+  /// converts a [StructureMapStructureBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1842,9 +1846,7 @@ class StructureMapStructureBuilder extends BackboneElementBuilder {
       mode: mode ?? this.mode,
       alias: alias ?? this.alias,
       documentation: documentation ?? this.documentation,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -2090,10 +2092,13 @@ class StructureMapGroupBuilder extends BackboneElementBuilder {
   /// Transform Rule from source to target.
   List<StructureMapRuleBuilder>? rule;
 
-  /// Converts a StructureMapGroupBuilder to [StructureMapGroup]
+  /// converts a [StructureMapGroupBuilder]
+  /// to [StructureMapGroup]
+  @override
   StructureMapGroup build() => StructureMapGroup.fromJson(toJson());
 
-  /// Converts a [StructureMapGroupBuilder] to a [Map<String, dynamic>]
+  /// converts a [StructureMapGroupBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2468,9 +2473,7 @@ class StructureMapGroupBuilder extends BackboneElementBuilder {
       documentation: documentation ?? this.documentation,
       input: input ?? this.input,
       rule: rule ?? this.rule,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -2695,10 +2698,13 @@ class StructureMapInputBuilder extends BackboneElementBuilder {
   /// Documentation for this instance of data.
   FhirStringBuilder? documentation;
 
-  /// Converts a StructureMapInputBuilder to [StructureMapInput]
+  /// converts a [StructureMapInputBuilder]
+  /// to [StructureMapInput]
+  @override
   StructureMapInput build() => StructureMapInput.fromJson(toJson());
 
-  /// Converts a [StructureMapInputBuilder] to a [Map<String, dynamic>]
+  /// converts a [StructureMapInputBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3011,9 +3017,7 @@ class StructureMapInputBuilder extends BackboneElementBuilder {
       type: type ?? this.type,
       mode: mode ?? this.mode,
       documentation: documentation ?? this.documentation,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -3263,10 +3267,13 @@ class StructureMapRuleBuilder extends BackboneElementBuilder {
   /// Documentation for this instance of data.
   FhirStringBuilder? documentation;
 
-  /// Converts a StructureMapRuleBuilder to [StructureMapRule]
+  /// converts a [StructureMapRuleBuilder]
+  /// to [StructureMapRule]
+  @override
   StructureMapRule build() => StructureMapRule.fromJson(toJson());
 
-  /// Converts a [StructureMapRuleBuilder] to a [Map<String, dynamic>]
+  /// converts a [StructureMapRuleBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3651,9 +3658,7 @@ class StructureMapRuleBuilder extends BackboneElementBuilder {
       rule: rule ?? this.rule,
       dependent: dependent ?? this.dependent,
       documentation: documentation ?? this.documentation,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -4199,10 +4204,13 @@ class StructureMapSourceBuilder extends BackboneElementBuilder {
   /// log when content matching the source rule is found.
   FhirStringBuilder? logMessage;
 
-  /// Converts a StructureMapSourceBuilder to [StructureMapSource]
+  /// converts a [StructureMapSourceBuilder]
+  /// to [StructureMapSource]
+  @override
   StructureMapSource build() => StructureMapSource.fromJson(toJson());
 
-  /// Converts a [StructureMapSourceBuilder] to a [Map<String, dynamic>]
+  /// converts a [StructureMapSourceBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -5434,7 +5442,7 @@ class StructureMapSourceBuilder extends BackboneElementBuilder {
           'TriggerDefinitionBuilder',
           'UsageContextBuilder',
           'DosageBuilder',
-          'FhirMetaBuilder'
+          'FhirMetaBuilder',
         ];
       case 'defaultValueBase64Binary':
         return ['FhirBase64BinaryBuilder'];
@@ -5905,7 +5913,7 @@ class StructureMapSourceBuilder extends BackboneElementBuilder {
     if (min) this.min = null;
     if (max) this.max = null;
     if (type) this.type = null;
-    if (defaultValue) this.defaultValueX = null;
+    if (defaultValue) defaultValueX = null;
     if (element) this.element = null;
     if (listMode) this.listMode = null;
     if (variable) this.variable = null;
@@ -5954,9 +5962,7 @@ class StructureMapSourceBuilder extends BackboneElementBuilder {
       condition: condition ?? this.condition,
       check: check ?? this.check,
       logMessage: logMessage ?? this.logMessage,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -6259,10 +6265,13 @@ class StructureMapTargetBuilder extends BackboneElementBuilder {
   /// Parameters to the transform.
   List<StructureMapParameterBuilder>? parameter;
 
-  /// Converts a StructureMapTargetBuilder to [StructureMapTarget]
+  /// converts a [StructureMapTargetBuilder]
+  /// to [StructureMapTarget]
+  @override
   StructureMapTarget build() => StructureMapTarget.fromJson(toJson());
 
-  /// Converts a [StructureMapTargetBuilder] to a [Map<String, dynamic>]
+  /// converts a [StructureMapTargetBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -6689,9 +6698,7 @@ class StructureMapTargetBuilder extends BackboneElementBuilder {
       listRuleId: listRuleId ?? this.listRuleId,
       transform: transform ?? this.transform,
       parameter: parameter ?? this.parameter,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -6915,10 +6922,13 @@ class StructureMapParameterBuilder extends BackboneElementBuilder {
   /// Getter for [valueDecimal] as a FhirDecimalBuilder
   FhirDecimalBuilder? get valueDecimal => valueX?.isAs<FhirDecimalBuilder>();
 
-  /// Converts a StructureMapParameterBuilder to [StructureMapParameter]
+  /// converts a [StructureMapParameterBuilder]
+  /// to [StructureMapParameter]
+  @override
   StructureMapParameter build() => StructureMapParameter.fromJson(toJson());
 
-  /// Converts a [StructureMapParameterBuilder] to a [Map<String, dynamic>]
+  /// converts a [StructureMapParameterBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -7182,7 +7192,7 @@ class StructureMapParameterBuilder extends BackboneElementBuilder {
           'FhirStringBuilder',
           'FhirBooleanBuilder',
           'FhirIntegerBuilder',
-          'FhirDecimalBuilder'
+          'FhirDecimalBuilder',
         ];
       case 'valueId':
         return ['FhirIdBuilder'];
@@ -7262,7 +7272,7 @@ class StructureMapParameterBuilder extends BackboneElementBuilder {
     if (id) this.id = null;
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
-    if (value) this.valueX = null;
+    if (value) valueX = null;
   }
 
   @override
@@ -7285,9 +7295,7 @@ class StructureMapParameterBuilder extends BackboneElementBuilder {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       valueX: valueX ?? this.valueX,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -7460,10 +7468,13 @@ class StructureMapDependentBuilder extends BackboneElementBuilder {
   /// Variable to pass to the rule or group.
   List<FhirStringBuilder>? variable;
 
-  /// Converts a StructureMapDependentBuilder to [StructureMapDependent]
+  /// converts a [StructureMapDependentBuilder]
+  /// to [StructureMapDependent]
+  @override
   StructureMapDependent build() => StructureMapDependent.fromJson(toJson());
 
-  /// Converts a [StructureMapDependentBuilder] to a [Map<String, dynamic>]
+  /// converts a [StructureMapDependentBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -7729,9 +7740,7 @@ class StructureMapDependentBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       name: name ?? this.name,
       variable: variable ?? this.variable,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

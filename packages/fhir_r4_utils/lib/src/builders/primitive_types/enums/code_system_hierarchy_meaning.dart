@@ -47,9 +47,11 @@ class CodeSystemHierarchyMeaningBuilder extends FhirCodeEnumBuilder {
   factory CodeSystemHierarchyMeaningBuilder.empty() =>
       CodeSystemHierarchyMeaningBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [CodeSystemHierarchyMeaningBuilder] from JSON.
+  /// Factory constructor to create [CodeSystemHierarchyMeaningBuilder]
+  /// from JSON.
   factory CodeSystemHierarchyMeaningBuilder.fromJson(
-      Map<String, dynamic> json) {
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -130,7 +132,9 @@ class CodeSystemHierarchyMeaningBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   CodeSystemHierarchyMeaningBuilder withElement(ElementBuilder? newElement) {
     return CodeSystemHierarchyMeaningBuilder._(
-        validatedValue: value, element: newElement);
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

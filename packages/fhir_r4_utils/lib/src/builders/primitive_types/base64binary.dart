@@ -2,7 +2,8 @@ part of 'primitive_types.dart';
 
 /// Extension to convert a [String] to [FhirBase64BinaryBuilder]
 extension FhirBase64BinaryBuilderExtension on String {
-  /// Converts a [String] to [FhirBase64BinaryBuilder]
+  /// converts a [[String]]
+  /// to [FhirBase64BinaryBuilder]
   FhirBase64BinaryBuilder get toFhirBase64BinaryBuilder =>
       FhirBase64BinaryBuilder(this);
 }
@@ -223,7 +224,8 @@ class FhirBase64BinaryBuilder extends PrimitiveTypeBuilder<String?>
 
   /// Converts a list of FhirBase64Binary to JSON-compatible map
   static Map<String, dynamic> toJsonList(
-          List<FhirBase64BinaryBuilder> binaries) =>
+    List<FhirBase64BinaryBuilder> binaries,
+  ) =>
       {
         'value': binaries.map((b) => b.input).toList(),
         '_value': binaries.map((b) => b.element?.toJson()).toList(),

@@ -1,12 +1,12 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
         R4ResourceType,
         StringExtensionForFHIR,
         Subscription,
-        SubscriptionChannel;
+        SubscriptionChannel,
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -236,10 +236,13 @@ class SubscriptionBuilder extends DomainResourceBuilder {
   /// meet the criteria.
   SubscriptionChannelBuilder? channel;
 
-  /// Converts a SubscriptionBuilder to [Subscription]
+  /// converts a [SubscriptionBuilder]
+  /// to [Subscription]
+  @override
   Subscription build() => Subscription.fromJson(toJson());
 
-  /// Converts a [SubscriptionBuilder] to a [Map<String, dynamic>]
+  /// converts a [SubscriptionBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -770,9 +773,7 @@ class SubscriptionBuilder extends DomainResourceBuilder {
       criteria: criteria ?? this.criteria,
       error: error ?? this.error,
       channel: channel ?? this.channel,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1036,10 +1037,13 @@ class SubscriptionChannelBuilder extends BackboneElementBuilder {
   /// Additional headers / information to send as part of the notification.
   List<FhirStringBuilder>? header;
 
-  /// Converts a SubscriptionChannelBuilder to [SubscriptionChannel]
+  /// converts a [SubscriptionChannelBuilder]
+  /// to [SubscriptionChannel]
+  @override
   SubscriptionChannel build() => SubscriptionChannel.fromJson(toJson());
 
-  /// Converts a [SubscriptionChannelBuilder] to a [Map<String, dynamic>]
+  /// converts a [SubscriptionChannelBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1357,9 +1361,7 @@ class SubscriptionChannelBuilder extends BackboneElementBuilder {
       endpoint: endpoint ?? this.endpoint,
       payload: payload ?? this.payload,
       header: header ?? this.header,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

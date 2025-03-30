@@ -1,13 +1,13 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
+        MessageDefinition,
+        MessageDefinitionAllowedResponse,
+        MessageDefinitionFocus,
         R4ResourceType,
         StringExtensionForFHIR,
-        MessageDefinition,
-        MessageDefinitionFocus,
-        MessageDefinitionAllowedResponse;
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -422,10 +422,13 @@ class MessageDefinitionBuilder extends CanonicalResourceBuilder {
   /// that apply to the various resources.
   List<FhirCanonicalBuilder>? graph;
 
-  /// Converts a MessageDefinitionBuilder to [MessageDefinition]
+  /// converts a [MessageDefinitionBuilder]
+  /// to [MessageDefinition]
+  @override
   MessageDefinition build() => MessageDefinition.fromJson(toJson());
 
-  /// Converts a [MessageDefinitionBuilder] to a [Map<String, dynamic>]
+  /// converts a [MessageDefinitionBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1409,7 +1412,7 @@ class MessageDefinitionBuilder extends CanonicalResourceBuilder {
     if (copyright) this.copyright = null;
     if (base) this.base = null;
     if (parent) this.parent = null;
-    if (event) this.eventX = null;
+    if (event) eventX = null;
     if (category) this.category = null;
     if (focus) this.focus = null;
     if (responseRequired) this.responseRequired = null;
@@ -1492,9 +1495,7 @@ class MessageDefinitionBuilder extends CanonicalResourceBuilder {
       responseRequired: responseRequired ?? this.responseRequired,
       allowedResponse: allowedResponse ?? this.allowedResponse,
       graph: graph ?? this.graph,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1864,10 +1865,13 @@ class MessageDefinitionFocusBuilder extends BackboneElementBuilder {
   /// MessageDefinition.
   FhirStringBuilder? max;
 
-  /// Converts a MessageDefinitionFocusBuilder to [MessageDefinitionFocus]
+  /// converts a [MessageDefinitionFocusBuilder]
+  /// to [MessageDefinitionFocus]
+  @override
   MessageDefinitionFocus build() => MessageDefinitionFocus.fromJson(toJson());
 
-  /// Converts a [MessageDefinitionFocusBuilder] to a [Map<String, dynamic>]
+  /// converts a [MessageDefinitionFocusBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2180,9 +2184,7 @@ class MessageDefinitionFocusBuilder extends BackboneElementBuilder {
       profile: profile ?? this.profile,
       min: min ?? this.min,
       max: max ?? this.max,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -2376,11 +2378,14 @@ class MessageDefinitionAllowedResponseBuilder extends BackboneElementBuilder {
   /// should be used (as opposed to one of the alternative responses).
   FhirMarkdownBuilder? situation;
 
-  /// Converts a MessageDefinitionAllowedResponseBuilder to [MessageDefinitionAllowedResponse]
+  /// converts a [MessageDefinitionAllowedResponseBuilder]
+  /// to [MessageDefinitionAllowedResponse]
+  @override
   MessageDefinitionAllowedResponse build() =>
       MessageDefinitionAllowedResponse.fromJson(toJson());
 
-  /// Converts a [MessageDefinitionAllowedResponseBuilder] to a [Map<String, dynamic>]
+  /// converts a [MessageDefinitionAllowedResponseBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2641,9 +2646,7 @@ class MessageDefinitionAllowedResponseBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       message: message ?? this.message,
       situation: situation ?? this.situation,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

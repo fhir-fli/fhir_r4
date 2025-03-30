@@ -48,7 +48,8 @@ class CodeSystemContentModeBuilder extends FhirCodeEnumBuilder {
   factory CodeSystemContentModeBuilder.empty() =>
       CodeSystemContentModeBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [CodeSystemContentModeBuilder] from JSON.
+  /// Factory constructor to create [CodeSystemContentModeBuilder]
+  /// from JSON.
   factory CodeSystemContentModeBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
@@ -137,7 +138,9 @@ class CodeSystemContentModeBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   CodeSystemContentModeBuilder withElement(ElementBuilder? newElement) {
     return CodeSystemContentModeBuilder._(
-        validatedValue: value, element: newElement);
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

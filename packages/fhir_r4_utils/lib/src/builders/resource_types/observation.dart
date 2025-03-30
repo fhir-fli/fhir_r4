@@ -1,13 +1,13 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
+        Observation,
+        ObservationComponent,
+        ObservationReferenceRange,
         R4ResourceType,
         StringExtensionForFHIR,
-        Observation,
-        ObservationReferenceRange,
-        ObservationComponent;
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -561,10 +561,13 @@ class ObservationBuilder extends DomainResourceBuilder {
   /// observations for genetics observations.
   List<ObservationComponentBuilder>? component;
 
-  /// Converts a ObservationBuilder to [Observation]
+  /// converts a [ObservationBuilder]
+  /// to [Observation]
+  @override
   Observation build() => Observation.fromJson(toJson());
 
-  /// Converts a [ObservationBuilder] to a [Map<String, dynamic>]
+  /// converts a [ObservationBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1519,7 +1522,7 @@ class ObservationBuilder extends DomainResourceBuilder {
           'FhirDateTimeBuilder',
           'PeriodBuilder',
           'TimingBuilder',
-          'FhirInstantBuilder'
+          'FhirInstantBuilder',
         ];
       case 'effectiveDateTime':
         return ['FhirDateTimeBuilder'];
@@ -1546,7 +1549,7 @@ class ObservationBuilder extends DomainResourceBuilder {
           'SampledDataBuilder',
           'FhirTimeBuilder',
           'FhirDateTimeBuilder',
-          'PeriodBuilder'
+          'PeriodBuilder',
         ];
       case 'valueQuantity':
         return ['QuantityBuilder'];
@@ -1889,10 +1892,10 @@ class ObservationBuilder extends DomainResourceBuilder {
     if (subject) this.subject = null;
     if (focus) this.focus = null;
     if (encounter) this.encounter = null;
-    if (effective) this.effectiveX = null;
+    if (effective) effectiveX = null;
     if (issued) this.issued = null;
     if (performer) this.performer = null;
-    if (value) this.valueX = null;
+    if (value) valueX = null;
     if (dataAbsentReason) this.dataAbsentReason = null;
     if (interpretation) this.interpretation = null;
     if (note) this.note = null;
@@ -1981,9 +1984,7 @@ class ObservationBuilder extends DomainResourceBuilder {
       hasMember: hasMember ?? this.hasMember,
       derivedFrom: derivedFrom ?? this.derivedFrom,
       component: component ?? this.component,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -2391,11 +2392,14 @@ class ObservationReferenceRangeBuilder extends BackboneElementBuilder {
   /// "normals".
   FhirStringBuilder? text;
 
-  /// Converts a ObservationReferenceRangeBuilder to [ObservationReferenceRange]
+  /// converts a [ObservationReferenceRangeBuilder]
+  /// to [ObservationReferenceRange]
+  @override
   ObservationReferenceRange build() =>
       ObservationReferenceRange.fromJson(toJson());
 
-  /// Converts a [ObservationReferenceRangeBuilder] to a [Map<String, dynamic>]
+  /// converts a [ObservationReferenceRangeBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2765,9 +2769,7 @@ class ObservationReferenceRangeBuilder extends BackboneElementBuilder {
       appliesTo: appliesTo ?? this.appliesTo,
       age: age ?? this.age,
       text: text ?? this.text,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -3065,10 +3067,13 @@ class ObservationComponentBuilder extends BackboneElementBuilder {
   /// recommended range.
   List<ObservationReferenceRangeBuilder>? referenceRange;
 
-  /// Converts a ObservationComponentBuilder to [ObservationComponent]
+  /// converts a [ObservationComponentBuilder]
+  /// to [ObservationComponent]
+  @override
   ObservationComponent build() => ObservationComponent.fromJson(toJson());
 
-  /// Converts a [ObservationComponentBuilder] to a [Map<String, dynamic>]
+  /// converts a [ObservationComponentBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3512,7 +3517,7 @@ class ObservationComponentBuilder extends BackboneElementBuilder {
           'SampledDataBuilder',
           'FhirTimeBuilder',
           'FhirDateTimeBuilder',
-          'PeriodBuilder'
+          'PeriodBuilder',
         ];
       case 'valueQuantity':
         return ['QuantityBuilder'];
@@ -3665,7 +3670,7 @@ class ObservationComponentBuilder extends BackboneElementBuilder {
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
     if (code) this.code = null;
-    if (value) this.valueX = null;
+    if (value) valueX = null;
     if (dataAbsentReason) this.dataAbsentReason = null;
     if (interpretation) this.interpretation = null;
     if (referenceRange) this.referenceRange = null;
@@ -3699,9 +3704,7 @@ class ObservationComponentBuilder extends BackboneElementBuilder {
       dataAbsentReason: dataAbsentReason ?? this.dataAbsentReason,
       interpretation: interpretation ?? this.interpretation,
       referenceRange: referenceRange ?? this.referenceRange,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

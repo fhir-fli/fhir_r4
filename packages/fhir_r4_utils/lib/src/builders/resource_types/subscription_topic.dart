@@ -1,16 +1,16 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
         R4ResourceType,
         StringExtensionForFHIR,
         SubscriptionTopic,
-        SubscriptionTopicResourceTrigger,
-        SubscriptionTopicQueryCriteria,
-        SubscriptionTopicEventTrigger,
         SubscriptionTopicCanFilterBy,
-        SubscriptionTopicNotificationShape;
+        SubscriptionTopicEventTrigger,
+        SubscriptionTopicNotificationShape,
+        SubscriptionTopicQueryCriteria,
+        SubscriptionTopicResourceTrigger,
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -404,10 +404,13 @@ class SubscriptionTopicBuilder extends CanonicalResourceBuilder {
   /// notifications from this Subscription Topic.
   List<SubscriptionTopicNotificationShapeBuilder>? notificationShape;
 
-  /// Converts a SubscriptionTopicBuilder to [SubscriptionTopic]
+  /// converts a [SubscriptionTopicBuilder]
+  /// to [SubscriptionTopic]
+  @override
   SubscriptionTopic build() => SubscriptionTopic.fromJson(toJson());
 
-  /// Converts a [SubscriptionTopicBuilder] to a [Map<String, dynamic>]
+  /// converts a [SubscriptionTopicBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1368,9 +1371,7 @@ class SubscriptionTopicBuilder extends CanonicalResourceBuilder {
       eventTrigger: eventTrigger ?? this.eventTrigger,
       canFilterBy: canFilterBy ?? this.canFilterBy,
       notificationShape: notificationShape ?? this.notificationShape,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1751,11 +1752,14 @@ class SubscriptionTopicResourceTriggerBuilder extends BackboneElementBuilder {
   /// to trigger a notification for this topic.
   FhirStringBuilder? fhirPathCriteria;
 
-  /// Converts a SubscriptionTopicResourceTriggerBuilder to [SubscriptionTopicResourceTrigger]
+  /// converts a [SubscriptionTopicResourceTriggerBuilder]
+  /// to [SubscriptionTopicResourceTrigger]
+  @override
   SubscriptionTopicResourceTrigger build() =>
       SubscriptionTopicResourceTrigger.fromJson(toJson());
 
-  /// Converts a [SubscriptionTopicResourceTriggerBuilder] to a [Map<String, dynamic>]
+  /// converts a [SubscriptionTopicResourceTriggerBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2099,9 +2103,7 @@ class SubscriptionTopicResourceTriggerBuilder extends BackboneElementBuilder {
       supportedInteraction: supportedInteraction ?? this.supportedInteraction,
       queryCriteria: queryCriteria ?? this.queryCriteria,
       fhirPathCriteria: fhirPathCriteria ?? this.fhirPathCriteria,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -2340,11 +2342,14 @@ class SubscriptionTopicQueryCriteriaBuilder extends BackboneElementBuilder {
   /// this topic will be triggered if either one evaluates to true.
   FhirBooleanBuilder? requireBoth;
 
-  /// Converts a SubscriptionTopicQueryCriteriaBuilder to [SubscriptionTopicQueryCriteria]
+  /// converts a [SubscriptionTopicQueryCriteriaBuilder]
+  /// to [SubscriptionTopicQueryCriteria]
+  @override
   SubscriptionTopicQueryCriteria build() =>
       SubscriptionTopicQueryCriteria.fromJson(toJson());
 
-  /// Converts a [SubscriptionTopicQueryCriteriaBuilder] to a [Map<String, dynamic>]
+  /// converts a [SubscriptionTopicQueryCriteriaBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2683,9 +2688,7 @@ class SubscriptionTopicQueryCriteriaBuilder extends BackboneElementBuilder {
       current: current ?? this.current,
       resultForDelete: resultForDelete ?? this.resultForDelete,
       requireBoth: requireBoth ?? this.requireBoth,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -2903,11 +2906,14 @@ class SubscriptionTopicEventTriggerBuilder extends BackboneElementBuilder {
   /// href="elementdefinition-definitions.html#ElementDefinition.type.code">ElementDefinition.type.code</a>.
   FhirUriBuilder? resource;
 
-  /// Converts a SubscriptionTopicEventTriggerBuilder to [SubscriptionTopicEventTrigger]
+  /// converts a [SubscriptionTopicEventTriggerBuilder]
+  /// to [SubscriptionTopicEventTrigger]
+  @override
   SubscriptionTopicEventTrigger build() =>
       SubscriptionTopicEventTrigger.fromJson(toJson());
 
-  /// Converts a [SubscriptionTopicEventTriggerBuilder] to a [Map<String, dynamic>]
+  /// converts a [SubscriptionTopicEventTriggerBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3194,9 +3200,7 @@ class SubscriptionTopicEventTriggerBuilder extends BackboneElementBuilder {
       description: description ?? this.description,
       event: event ?? this.event,
       resource: resource ?? this.resource,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -3431,11 +3435,14 @@ class SubscriptionTopicCanFilterByBuilder extends BackboneElementBuilder {
   /// SearchParameter.
   List<SubscriptionSearchModifierBuilder>? modifier;
 
-  /// Converts a SubscriptionTopicCanFilterByBuilder to [SubscriptionTopicCanFilterBy]
+  /// converts a [SubscriptionTopicCanFilterByBuilder]
+  /// to [SubscriptionTopicCanFilterBy]
+  @override
   SubscriptionTopicCanFilterBy build() =>
       SubscriptionTopicCanFilterBy.fromJson(toJson());
 
-  /// Converts a [SubscriptionTopicCanFilterByBuilder] to a [Map<String, dynamic>]
+  /// converts a [SubscriptionTopicCanFilterByBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3779,9 +3786,7 @@ class SubscriptionTopicCanFilterByBuilder extends BackboneElementBuilder {
       filterParameter: filterParameter ?? this.filterParameter,
       filterDefinition: filterDefinition ?? this.filterDefinition,
       modifier: modifier ?? this.modifier,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -4003,11 +4008,14 @@ class SubscriptionTopicNotificationShapeBuilder extends BackboneElementBuilder {
   /// them.
   List<FhirStringBuilder>? revInclude;
 
-  /// Converts a SubscriptionTopicNotificationShapeBuilder to [SubscriptionTopicNotificationShape]
+  /// converts a [SubscriptionTopicNotificationShapeBuilder]
+  /// to [SubscriptionTopicNotificationShape]
+  @override
   SubscriptionTopicNotificationShape build() =>
       SubscriptionTopicNotificationShape.fromJson(toJson());
 
-  /// Converts a [SubscriptionTopicNotificationShapeBuilder] to a [Map<String, dynamic>]
+  /// converts a [SubscriptionTopicNotificationShapeBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -4305,9 +4313,7 @@ class SubscriptionTopicNotificationShapeBuilder extends BackboneElementBuilder {
       resource: resource ?? this.resource,
       include: include ?? this.include,
       revInclude: revInclude ?? this.revInclude,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

@@ -48,7 +48,8 @@ class AllergyIntoleranceTypeBuilder extends FhirCodeEnumBuilder {
   factory AllergyIntoleranceTypeBuilder.empty() =>
       AllergyIntoleranceTypeBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [AllergyIntoleranceTypeBuilder] from JSON.
+  /// Factory constructor to create [AllergyIntoleranceTypeBuilder]
+  /// from JSON.
   factory AllergyIntoleranceTypeBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
@@ -107,7 +108,9 @@ class AllergyIntoleranceTypeBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   AllergyIntoleranceTypeBuilder withElement(ElementBuilder? newElement) {
     return AllergyIntoleranceTypeBuilder._(
-        validatedValue: value, element: newElement);
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

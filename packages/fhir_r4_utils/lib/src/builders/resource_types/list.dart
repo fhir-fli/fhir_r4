@@ -1,12 +1,12 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
+        FhirList,
+        ListEntry,
         R4ResourceType,
         StringExtensionForFHIR,
-        FhirList,
-        ListEntry;
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -307,10 +307,13 @@ class FhirListBuilder extends DomainResourceBuilder {
   /// If the list is empty, why the list is empty.
   CodeableConceptBuilder? emptyReason;
 
-  /// Converts a FhirListBuilder to [FhirList]
+  /// converts a [FhirListBuilder]
+  /// to [FhirList]
+  @override
   FhirList build() => FhirList.fromJson(toJson());
 
-  /// Converts a [FhirListBuilder] to a [Map<String, dynamic>]
+  /// converts a [FhirListBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1007,9 +1010,7 @@ class FhirListBuilder extends DomainResourceBuilder {
       note: note ?? this.note,
       entry: entry ?? this.entry,
       emptyReason: emptyReason ?? this.emptyReason,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1306,10 +1307,13 @@ class ListEntryBuilder extends BackboneElementBuilder {
   /// A reference to the actual resource from which data was derived.
   ReferenceBuilder? item;
 
-  /// Converts a ListEntryBuilder to [ListEntry]
+  /// converts a [ListEntryBuilder]
+  /// to [ListEntry]
+  @override
   ListEntry build() => ListEntry.fromJson(toJson());
 
-  /// Converts a [ListEntryBuilder] to a [Map<String, dynamic>]
+  /// converts a [ListEntryBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1622,9 +1626,7 @@ class ListEntryBuilder extends BackboneElementBuilder {
       deleted: deleted ?? this.deleted,
       date: date ?? this.date,
       item: item ?? this.item,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

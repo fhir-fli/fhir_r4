@@ -48,7 +48,8 @@ class RequestPriorityBuilder extends FhirCodeEnumBuilder {
   factory RequestPriorityBuilder.empty() =>
       RequestPriorityBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [RequestPriorityBuilder] from JSON.
+  /// Factory constructor to create [RequestPriorityBuilder]
+  /// from JSON.
   factory RequestPriorityBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;

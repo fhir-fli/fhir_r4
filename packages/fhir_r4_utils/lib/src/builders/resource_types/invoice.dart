@@ -1,14 +1,14 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
+        Invoice,
+        InvoiceLineItem,
+        InvoiceParticipant,
+        InvoicePriceComponent,
         R4ResourceType,
         StringExtensionForFHIR,
-        Invoice,
-        InvoiceParticipant,
-        InvoiceLineItem,
-        InvoicePriceComponent;
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -356,10 +356,13 @@ class InvoiceBuilder extends DomainResourceBuilder {
   /// participants.
   List<AnnotationBuilder>? note;
 
-  /// Converts a InvoiceBuilder to [Invoice]
+  /// converts a [InvoiceBuilder]
+  /// to [Invoice]
+  @override
   Invoice build() => Invoice.fromJson(toJson());
 
-  /// Converts a [InvoiceBuilder] to a [Map<String, dynamic>]
+  /// converts a [InvoiceBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1144,9 +1147,7 @@ class InvoiceBuilder extends DomainResourceBuilder {
       totalGross: totalGross ?? this.totalGross,
       paymentTerms: paymentTerms ?? this.paymentTerms,
       note: note ?? this.note,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1441,10 +1442,13 @@ class InvoiceParticipantBuilder extends BackboneElementBuilder {
   /// service.
   ReferenceBuilder? actor;
 
-  /// Converts a InvoiceParticipantBuilder to [InvoiceParticipant]
+  /// converts a [InvoiceParticipantBuilder]
+  /// to [InvoiceParticipant]
+  @override
   InvoiceParticipant build() => InvoiceParticipant.fromJson(toJson());
 
-  /// Converts a [InvoiceParticipantBuilder] to a [Map<String, dynamic>]
+  /// converts a [InvoiceParticipantBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1705,9 +1709,7 @@ class InvoiceParticipantBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       role: role ?? this.role,
       actor: actor ?? this.actor,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1921,10 +1923,13 @@ class InvoiceLineItemBuilder extends BackboneElementBuilder {
   /// recipient of the Invoice as to how the prices have been calculated.
   List<InvoicePriceComponentBuilder>? priceComponent;
 
-  /// Converts a InvoiceLineItemBuilder to [InvoiceLineItem]
+  /// converts a [InvoiceLineItemBuilder]
+  /// to [InvoiceLineItem]
+  @override
   InvoiceLineItem build() => InvoiceLineItem.fromJson(toJson());
 
-  /// Converts a [InvoiceLineItemBuilder] to a [Map<String, dynamic>]
+  /// converts a [InvoiceLineItemBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2242,7 +2247,7 @@ class InvoiceLineItemBuilder extends BackboneElementBuilder {
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
     if (sequence) this.sequence = null;
-    if (chargeItem) this.chargeItemX = null;
+    if (chargeItem) chargeItemX = null;
     if (priceComponent) this.priceComponent = null;
   }
 
@@ -2270,9 +2275,7 @@ class InvoiceLineItemBuilder extends BackboneElementBuilder {
       sequence: sequence ?? this.sequence,
       chargeItemX: chargeItemX ?? this.chargeItemX,
       priceComponent: priceComponent ?? this.priceComponent,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -2486,10 +2489,13 @@ class InvoicePriceComponentBuilder extends BackboneElementBuilder {
   /// The amount calculated for this component.
   MoneyBuilder? amount;
 
-  /// Converts a InvoicePriceComponentBuilder to [InvoicePriceComponent]
+  /// converts a [InvoicePriceComponentBuilder]
+  /// to [InvoicePriceComponent]
+  @override
   InvoicePriceComponent build() => InvoicePriceComponent.fromJson(toJson());
 
-  /// Converts a [InvoicePriceComponentBuilder] to a [Map<String, dynamic>]
+  /// converts a [InvoicePriceComponentBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2802,9 +2808,7 @@ class InvoicePriceComponentBuilder extends BackboneElementBuilder {
       code: code ?? this.code,
       factor: factor ?? this.factor,
       amount: amount ?? this.amount,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

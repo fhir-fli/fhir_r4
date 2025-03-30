@@ -48,9 +48,11 @@ class MessageheaderResponseRequestBuilder extends FhirCodeEnumBuilder {
   factory MessageheaderResponseRequestBuilder.empty() =>
       MessageheaderResponseRequestBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [MessageheaderResponseRequestBuilder] from JSON.
+  /// Factory constructor to create [MessageheaderResponseRequestBuilder]
+  /// from JSON.
   factory MessageheaderResponseRequestBuilder.fromJson(
-      Map<String, dynamic> json) {
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -132,7 +134,9 @@ class MessageheaderResponseRequestBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   MessageheaderResponseRequestBuilder withElement(ElementBuilder? newElement) {
     return MessageheaderResponseRequestBuilder._(
-        validatedValue: value, element: newElement);
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

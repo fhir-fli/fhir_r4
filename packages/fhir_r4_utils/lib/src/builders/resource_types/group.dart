@@ -1,13 +1,13 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
-        R4ResourceType,
-        StringExtensionForFHIR,
         FhirGroup,
         GroupCharacteristic,
-        GroupMember;
+        GroupMember,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -278,10 +278,13 @@ class FhirGroupBuilder extends DomainResourceBuilder {
   /// Identifies the resource instances that are members of the group.
   List<GroupMemberBuilder>? member;
 
-  /// Converts a FhirGroupBuilder to [FhirGroup]
+  /// converts a [FhirGroupBuilder]
+  /// to [FhirGroup]
+  @override
   FhirGroup build() => FhirGroup.fromJson(toJson());
 
-  /// Converts a [FhirGroupBuilder] to a [Map<String, dynamic>]
+  /// converts a [FhirGroupBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -900,9 +903,7 @@ class FhirGroupBuilder extends DomainResourceBuilder {
       managingEntity: managingEntity ?? this.managingEntity,
       characteristic: characteristic ?? this.characteristic,
       member: member ?? this.member,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1205,10 +1206,13 @@ class GroupCharacteristicBuilder extends BackboneElementBuilder {
   /// had an operation during the month of June.
   PeriodBuilder? period;
 
-  /// Converts a GroupCharacteristicBuilder to [GroupCharacteristic]
+  /// converts a [GroupCharacteristicBuilder]
+  /// to [GroupCharacteristic]
+  @override
   GroupCharacteristic build() => GroupCharacteristic.fromJson(toJson());
 
-  /// Converts a [GroupCharacteristicBuilder] to a [Map<String, dynamic>]
+  /// converts a [GroupCharacteristicBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1519,7 +1523,7 @@ class GroupCharacteristicBuilder extends BackboneElementBuilder {
           'FhirBooleanBuilder',
           'QuantityBuilder',
           'RangeBuilder',
-          'ReferenceBuilder'
+          'ReferenceBuilder',
         ];
       case 'valueCodeableConcept':
         return ['CodeableConceptBuilder'];
@@ -1622,7 +1626,7 @@ class GroupCharacteristicBuilder extends BackboneElementBuilder {
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
     if (code) this.code = null;
-    if (value) this.valueX = null;
+    if (value) valueX = null;
     if (exclude) this.exclude = null;
     if (period) this.period = null;
   }
@@ -1653,9 +1657,7 @@ class GroupCharacteristicBuilder extends BackboneElementBuilder {
       valueX: valueX ?? this.valueX,
       exclude: exclude ?? this.exclude,
       period: period ?? this.period,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1859,10 +1861,13 @@ class GroupMemberBuilder extends BackboneElementBuilder {
   /// previously may have been a member.
   FhirBooleanBuilder? inactive;
 
-  /// Converts a GroupMemberBuilder to [GroupMember]
+  /// converts a [GroupMemberBuilder]
+  /// to [GroupMember]
+  @override
   GroupMember build() => GroupMember.fromJson(toJson());
 
-  /// Converts a [GroupMemberBuilder] to a [Map<String, dynamic>]
+  /// converts a [GroupMemberBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2149,9 +2154,7 @@ class GroupMemberBuilder extends BackboneElementBuilder {
       entity: entity ?? this.entity,
       period: period ?? this.period,
       inactive: inactive ?? this.inactive,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

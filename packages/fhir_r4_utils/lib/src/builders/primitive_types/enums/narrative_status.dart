@@ -47,7 +47,8 @@ class NarrativeStatusBuilder extends FhirCodeEnumBuilder {
   factory NarrativeStatusBuilder.empty() =>
       NarrativeStatusBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [NarrativeStatusBuilder] from JSON.
+  /// Factory constructor to create [NarrativeStatusBuilder]
+  /// from JSON.
   factory NarrativeStatusBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;

@@ -17,9 +17,11 @@ class LocalResourceCache extends ResourceCache {
   final Map<String, CanonicalResource> _cache = {};
 
   @override
-  Future<CanonicalResource?> getCanonicalResource(String url,
-      [String? version]) async {
-    CanonicalResource? cr = _cache[url];
+  Future<CanonicalResource?> getCanonicalResource(
+    String url, [
+    String? version,
+  ]) async {
+    var cr = _cache[url];
     if (cr is CanonicalResource) {
       return cr;
     } else if (version != null) {
@@ -34,9 +36,11 @@ class LocalResourceCache extends ResourceCache {
   }
 
   @override
-  Future<StructureDefinition?> getStructureDefinition(String url,
-      [String? version]) async {
-    CanonicalResource? sd = _cache[url];
+  Future<StructureDefinition?> getStructureDefinition(
+    String url, [
+    String? version,
+  ]) async {
+    var sd = _cache[url];
     if (sd is StructureDefinition) {
       return sd;
     }
@@ -61,8 +65,10 @@ class LocalResourceCache extends ResourceCache {
   }
 
   @override
-  Future<void> saveCanonicalResource(CanonicalResource resource,
-      [bool withVersion = false]) async {
+  Future<void> saveCanonicalResource(
+    CanonicalResource resource, [
+    bool withVersion = false,
+  ]) async {
     if (resource.url == null) {
       throw ArgumentError('Resource must have a url');
     }

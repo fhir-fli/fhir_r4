@@ -1,12 +1,12 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
+        CompartmentDefinition,
+        CompartmentDefinitionResource,
         R4ResourceType,
         StringExtensionForFHIR,
-        CompartmentDefinition,
-        CompartmentDefinitionResource;
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -342,10 +342,13 @@ class CompartmentDefinitionBuilder extends DomainResourceBuilder {
   /// Information about how a resource is related to the compartment.
   List<CompartmentDefinitionResourceBuilder>? resource;
 
-  /// Converts a CompartmentDefinitionBuilder to [CompartmentDefinition]
+  /// converts a [CompartmentDefinitionBuilder]
+  /// to [CompartmentDefinition]
+  @override
   CompartmentDefinition build() => CompartmentDefinition.fromJson(toJson());
 
-  /// Converts a [CompartmentDefinitionBuilder] to a [Map<String, dynamic>]
+  /// converts a [CompartmentDefinitionBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1068,9 +1071,7 @@ class CompartmentDefinitionBuilder extends DomainResourceBuilder {
       code: code ?? this.code,
       search: search ?? this.search,
       resource: resource ?? this.resource,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1364,11 +1365,14 @@ class CompartmentDefinitionResourceBuilder extends BackboneElementBuilder {
   /// Additional documentation about the resource and compartment.
   FhirStringBuilder? documentation;
 
-  /// Converts a CompartmentDefinitionResourceBuilder to [CompartmentDefinitionResource]
+  /// converts a [CompartmentDefinitionResourceBuilder]
+  /// to [CompartmentDefinitionResource]
+  @override
   CompartmentDefinitionResource build() =>
       CompartmentDefinitionResource.fromJson(toJson());
 
-  /// Converts a [CompartmentDefinitionResourceBuilder] to a [Map<String, dynamic>]
+  /// converts a [CompartmentDefinitionResourceBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1660,9 +1664,7 @@ class CompartmentDefinitionResourceBuilder extends BackboneElementBuilder {
       code: code ?? this.code,
       param: param ?? this.param,
       documentation: documentation ?? this.documentation,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

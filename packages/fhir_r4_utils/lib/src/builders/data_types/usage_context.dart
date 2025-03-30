@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, StringExtensionForFHIR, UsageContext;
+    show StringExtensionForFHIR, UsageContext, yamlMapToJson, yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -142,10 +142,13 @@ class UsageContextBuilder extends DataTypeBuilder
   /// Getter for [valueReference] as a ReferenceBuilder
   ReferenceBuilder? get valueReference => valueX?.isAs<ReferenceBuilder>();
 
-  /// Converts a UsageContextBuilder to [UsageContext]
+  /// converts a [UsageContextBuilder]
+  /// to [UsageContext]
+  @override
   UsageContext build() => UsageContext.fromJson(toJson());
 
-  /// Converts a [UsageContextBuilder] to a [Map<String, dynamic>]
+  /// converts a [UsageContextBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -386,7 +389,7 @@ class UsageContextBuilder extends DataTypeBuilder
           'CodeableConceptBuilder',
           'QuantityBuilder',
           'RangeBuilder',
-          'ReferenceBuilder'
+          'ReferenceBuilder',
         ];
       case 'valueCodeableConcept':
         return ['CodeableConceptBuilder'];
@@ -459,7 +462,7 @@ class UsageContextBuilder extends DataTypeBuilder
     if (id) this.id = null;
     if (extension_) this.extension_ = null;
     if (code) this.code = null;
-    if (value) this.valueX = null;
+    if (value) valueX = null;
   }
 
   @override
@@ -482,9 +485,7 @@ class UsageContextBuilder extends DataTypeBuilder
       extension_: extension_ ?? this.extension_,
       code: code ?? this.code,
       valueX: valueX ?? this.valueX,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

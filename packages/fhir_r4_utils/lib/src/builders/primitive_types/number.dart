@@ -1,7 +1,8 @@
 part of 'primitive_types.dart';
 
 /// Abstract class representing a FHIR number type, which could be an
-/// integer or a decimal. Extends [PrimitiveTypeBuilder] and implements [Comparable].
+/// integer or a decimal. Extends [PrimitiveTypeBuilder] and
+/// implements [Comparable].
 abstract class FhirNumberBuilder extends PrimitiveTypeBuilder<num?>
     implements Comparable<FhirNumberBuilder> {
   /// Private underscore constructor for child classes.
@@ -205,25 +206,26 @@ abstract class FhirNumberBuilder extends PrimitiveTypeBuilder<num?>
     return value!.compareTo(other.value!);
   }
 
-  /// Adds [other] to this [FhirNumberBuilder]. The result is a [FhirIntegerBuilder], if
-  /// both this number and [other] is a [FhirIntegerBuilder] otherwise the result is
-  /// a [FhirDecimalBuilder].
+  /// Adds [other] to this [FhirNumberBuilder]. The result is a
+  /// [FhirIntegerBuilder], if both this number and [other] is a
+  /// [FhirIntegerBuilder] otherwise the result is a [FhirDecimalBuilder].
   FhirNumberBuilder? operator +(Object other) =>
       _operateOrNull(other, (a, b) => a + b);
 
-  /// Subtracts [other] from this [FhirNumberBuilder]. The result is a [FhirIntegerBuilder],
-  /// if both this number and [other] is a [FhirIntegerBuilder] otherwise the result
-  /// is a [FhirDecimalBuilder].
+  /// Subtracts [other] from this [FhirNumberBuilder]. The result is a
+  /// [FhirIntegerBuilder], if both this number and [other] is a
+  /// [FhirIntegerBuilder] otherwise the result is a [FhirDecimalBuilder].
   FhirNumberBuilder? operator -(Object other) =>
       _operateOrNull(other, (a, b) => a - b);
 
-  /// Multiples [other] and this [FhirNumberBuilder]. The result is a [FhirIntegerBuilder]
-  /// if both this number and [other] is a [FhirIntegerBuilder] otherwise the result
-  /// is a [FhirDecimalBuilder].
+  /// Multiples [other] and this [FhirNumberBuilder]. The result is a
+  /// [FhirIntegerBuilder] if both this number and [other] is a
+  /// [FhirIntegerBuilder] otherwise the result is a [FhirDecimalBuilder].
   FhirNumberBuilder? operator *(Object other) =>
       _operateOrNull(other, (a, b) => a * b);
 
-  /// Dived this [FhirNumberBuilder] by [other], the result is a [FhirDecimalBuilder].
+  /// Dived this [FhirNumberBuilder] by [other],
+  /// the result is a [FhirDecimalBuilder].
   FhirNumberBuilder? operator /(Object other) =>
       _operateOrNull(other, (a, b) => a / b);
 
@@ -265,9 +267,9 @@ abstract class FhirNumberBuilder extends PrimitiveTypeBuilder<num?>
   /// Then `a ~/ b` corresponds to `a.remainder(b)`
   /// such that `a == (a ~/ b) * b + a.remainder(b)`.
   ///
-  /// If either operand is a [FhirDecimalBuilder], then the other operand is converted
-  /// to a double before performing the division and truncation of the result.
-  /// Then `a ~/ b` is equivalent to `(a / b).truncate()`.
+  /// If either operand is a [FhirDecimalBuilder], then the other operand is
+  /// converted to a double before performing the division and truncation of
+  /// the result. Then `a ~/ b` is equivalent to `(a / b).truncate()`.
   /// This means that the intermediate result of the double division
   /// must be a finite integer (not an infinity or [double.nan]).
   FhirNumberBuilder? operator ~/(Object other) =>
@@ -366,7 +368,9 @@ abstract class FhirNumberBuilder extends PrimitiveTypeBuilder<num?>
       value != null && _extractValue(other) != null;
 
   FhirNumberBuilder? _operateOrNull(
-      Object other, num Function(num, num) operation) {
+    Object other,
+    num Function(num, num) operation,
+  ) {
     if (!_bothNonNull(other)) return null;
     final otherVal = _extractValue(other)!;
     return FhirNumberBuilder.fromNum(value: operation(value!, otherVal));

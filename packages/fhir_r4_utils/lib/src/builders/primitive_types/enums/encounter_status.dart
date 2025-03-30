@@ -47,7 +47,8 @@ class EncounterStatusBuilder extends FhirCodeEnumBuilder {
   factory EncounterStatusBuilder.empty() =>
       EncounterStatusBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [EncounterStatusBuilder] from JSON.
+  /// Factory constructor to create [EncounterStatusBuilder]
+  /// from JSON.
   factory EncounterStatusBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;

@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, StringExtensionForFHIR, MarketingStatus;
+    show MarketingStatus, StringExtensionForFHIR, yamlMapToJson, yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -176,10 +176,13 @@ class MarketingStatusBuilder extends BackboneTypeBuilder {
   /// chain.
   FhirDateTimeBuilder? restoreDate;
 
-  /// Converts a MarketingStatusBuilder to [MarketingStatus]
+  /// converts a [MarketingStatusBuilder]
+  /// to [MarketingStatus]
+  @override
   MarketingStatus build() => MarketingStatus.fromJson(toJson());
 
-  /// Converts a [MarketingStatusBuilder] to a [Map<String, dynamic>]
+  /// converts a [MarketingStatusBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -518,9 +521,7 @@ class MarketingStatusBuilder extends BackboneTypeBuilder {
       status: status ?? this.status,
       dateRange: dateRange ?? this.dateRange,
       restoreDate: restoreDate ?? this.restoreDate,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

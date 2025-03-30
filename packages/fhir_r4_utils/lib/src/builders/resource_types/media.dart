@@ -1,11 +1,11 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
+        Media,
         R4ResourceType,
         StringExtensionForFHIR,
-        Media;
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -432,10 +432,13 @@ class MediaBuilder extends DomainResourceBuilder {
   /// participants.
   List<AnnotationBuilder>? note;
 
-  /// Converts a MediaBuilder to [Media]
+  /// converts a [MediaBuilder]
+  /// to [Media]
+  @override
   Media build() => Media.fromJson(toJson());
 
-  /// Converts a [MediaBuilder] to a [Map<String, dynamic>]
+  /// converts a [MediaBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1344,7 +1347,7 @@ class MediaBuilder extends DomainResourceBuilder {
     if (view) this.view = null;
     if (subject) this.subject = null;
     if (encounter) this.encounter = null;
-    if (created) this.createdX = null;
+    if (created) createdX = null;
     if (issued) this.issued = null;
     if (operator_) this.operator_ = null;
     if (reasonCode) this.reasonCode = null;
@@ -1430,9 +1433,7 @@ class MediaBuilder extends DomainResourceBuilder {
       duration: duration ?? this.duration,
       content: content ?? this.content,
       note: note ?? this.note,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

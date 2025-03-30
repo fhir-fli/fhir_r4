@@ -47,7 +47,8 @@ class AuditEventOutcomeBuilder extends FhirCodeEnumBuilder {
   factory AuditEventOutcomeBuilder.empty() =>
       AuditEventOutcomeBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [AuditEventOutcomeBuilder] from JSON.
+  /// Factory constructor to create [AuditEventOutcomeBuilder]
+  /// from JSON.
   factory AuditEventOutcomeBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
@@ -120,7 +121,9 @@ class AuditEventOutcomeBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   AuditEventOutcomeBuilder withElement(ElementBuilder? newElement) {
     return AuditEventOutcomeBuilder._(
-        validatedValue: value, element: newElement);
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

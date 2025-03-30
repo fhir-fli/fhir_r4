@@ -1,3 +1,4 @@
+export 'searches.dart';
 export 'searches/search_account.dart';
 export 'searches/search_activitydefinition.dart';
 export 'searches/search_administrableproductdefinition.dart';
@@ -133,4 +134,3 @@ export 'searches/search_testscript.dart';
 export 'searches/search_valueset.dart';
 export 'searches/search_verificationresult.dart';
 export 'searches/search_visionprescription.dart';
-export 'searches.dart';

@@ -48,7 +48,8 @@ class ClinicalImpressionStatusBuilder extends FhirCodeEnumBuilder {
   factory ClinicalImpressionStatusBuilder.empty() =>
       ClinicalImpressionStatusBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [ClinicalImpressionStatusBuilder] from JSON.
+  /// Factory constructor to create [ClinicalImpressionStatusBuilder]
+  /// from JSON.
   factory ClinicalImpressionStatusBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
@@ -173,7 +174,9 @@ class ClinicalImpressionStatusBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   ClinicalImpressionStatusBuilder withElement(ElementBuilder? newElement) {
     return ClinicalImpressionStatusBuilder._(
-        validatedValue: value, element: newElement);
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

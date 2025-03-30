@@ -1,12 +1,12 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
         R4ResourceType,
-        StringExtensionForFHIR,
         RiskAssessment,
-        RiskAssessmentPrediction;
+        RiskAssessmentPrediction,
+        StringExtensionForFHIR,
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -372,10 +372,13 @@ class RiskAssessmentBuilder extends DomainResourceBuilder {
   /// Additional comments about the risk assessment.
   List<AnnotationBuilder>? note;
 
-  /// Converts a RiskAssessmentBuilder to [RiskAssessment]
+  /// converts a [RiskAssessmentBuilder]
+  /// to [RiskAssessment]
+  @override
   RiskAssessment build() => RiskAssessment.fromJson(toJson());
 
-  /// Converts a [RiskAssessmentBuilder] to a [Map<String, dynamic>]
+  /// converts a [RiskAssessmentBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1173,7 +1176,7 @@ class RiskAssessmentBuilder extends DomainResourceBuilder {
     if (code) this.code = null;
     if (subject) this.subject = null;
     if (encounter) this.encounter = null;
-    if (occurrence) this.occurrenceX = null;
+    if (occurrence) occurrenceX = null;
     if (condition) this.condition = null;
     if (performer) this.performer = null;
     if (reasonCode) this.reasonCode = null;
@@ -1245,9 +1248,7 @@ class RiskAssessmentBuilder extends DomainResourceBuilder {
       prediction: prediction ?? this.prediction,
       mitigation: mitigation ?? this.mitigation,
       note: note ?? this.note,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1614,11 +1615,14 @@ class RiskAssessmentPredictionBuilder extends BackboneElementBuilder {
   /// Additional information explaining the basis for the prediction.
   FhirStringBuilder? rationale;
 
-  /// Converts a RiskAssessmentPredictionBuilder to [RiskAssessmentPrediction]
+  /// converts a [RiskAssessmentPredictionBuilder]
+  /// to [RiskAssessmentPrediction]
+  @override
   RiskAssessmentPrediction build() =>
       RiskAssessmentPrediction.fromJson(toJson());
 
-  /// Converts a [RiskAssessmentPredictionBuilder] to a [Map<String, dynamic>]
+  /// converts a [RiskAssessmentPredictionBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2054,10 +2058,10 @@ class RiskAssessmentPredictionBuilder extends BackboneElementBuilder {
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
     if (outcome) this.outcome = null;
-    if (probability) this.probabilityX = null;
+    if (probability) probabilityX = null;
     if (qualitativeRisk) this.qualitativeRisk = null;
     if (relativeRisk) this.relativeRisk = null;
-    if (when) this.whenX = null;
+    if (when) whenX = null;
     if (rationale) this.rationale = null;
   }
 
@@ -2091,9 +2095,7 @@ class RiskAssessmentPredictionBuilder extends BackboneElementBuilder {
       relativeRisk: relativeRisk ?? this.relativeRisk,
       whenX: whenX ?? this.whenX,
       rationale: rationale ?? this.rationale,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

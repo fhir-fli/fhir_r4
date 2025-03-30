@@ -1,15 +1,15 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
-        R4ResourceType,
-        StringExtensionForFHIR,
         BiologicallyDerivedProduct,
         BiologicallyDerivedProductCollection,
-        BiologicallyDerivedProductProcessing,
         BiologicallyDerivedProductManipulation,
-        BiologicallyDerivedProductStorage;
+        BiologicallyDerivedProductProcessing,
+        BiologicallyDerivedProductStorage,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -305,11 +305,14 @@ class BiologicallyDerivedProductBuilder extends DomainResourceBuilder {
   /// Product storage.
   List<BiologicallyDerivedProductStorageBuilder>? storage;
 
-  /// Converts a BiologicallyDerivedProductBuilder to [BiologicallyDerivedProduct]
+  /// converts a [BiologicallyDerivedProductBuilder]
+  /// to [BiologicallyDerivedProduct]
+  @override
   BiologicallyDerivedProduct build() =>
       BiologicallyDerivedProduct.fromJson(toJson());
 
-  /// Converts a [BiologicallyDerivedProductBuilder] to a [Map<String, dynamic>]
+  /// converts a [BiologicallyDerivedProductBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -964,9 +967,7 @@ class BiologicallyDerivedProductBuilder extends DomainResourceBuilder {
       processing: processing ?? this.processing,
       manipulation: manipulation ?? this.manipulation,
       storage: storage ?? this.storage,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1252,11 +1253,14 @@ class BiologicallyDerivedProductCollectionBuilder
   /// Getter for [collectedPeriod] as a PeriodBuilder
   PeriodBuilder? get collectedPeriod => collectedX?.isAs<PeriodBuilder>();
 
-  /// Converts a BiologicallyDerivedProductCollectionBuilder to [BiologicallyDerivedProductCollection]
+  /// converts a [BiologicallyDerivedProductCollectionBuilder]
+  /// to [BiologicallyDerivedProductCollection]
+  @override
   BiologicallyDerivedProductCollection build() =>
       BiologicallyDerivedProductCollection.fromJson(toJson());
 
-  /// Converts a [BiologicallyDerivedProductCollectionBuilder] to a [Map<String, dynamic>]
+  /// converts a [BiologicallyDerivedProductCollectionBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1570,7 +1574,7 @@ class BiologicallyDerivedProductCollectionBuilder
     if (modifierExtension) this.modifierExtension = null;
     if (collector) this.collector = null;
     if (source) this.source = null;
-    if (collected) this.collectedX = null;
+    if (collected) collectedX = null;
   }
 
   @override
@@ -1598,9 +1602,7 @@ class BiologicallyDerivedProductCollectionBuilder
       collector: collector ?? this.collector,
       source: source ?? this.source,
       collectedX: collectedX ?? this.collectedX,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1819,11 +1821,14 @@ class BiologicallyDerivedProductProcessingBuilder
   /// Getter for [timePeriod] as a PeriodBuilder
   PeriodBuilder? get timePeriod => timeX?.isAs<PeriodBuilder>();
 
-  /// Converts a BiologicallyDerivedProductProcessingBuilder to [BiologicallyDerivedProductProcessing]
+  /// converts a [BiologicallyDerivedProductProcessingBuilder]
+  /// to [BiologicallyDerivedProductProcessing]
+  @override
   BiologicallyDerivedProductProcessing build() =>
       BiologicallyDerivedProductProcessing.fromJson(toJson());
 
-  /// Converts a [BiologicallyDerivedProductProcessingBuilder] to a [Map<String, dynamic>]
+  /// converts a [BiologicallyDerivedProductProcessingBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2161,7 +2166,7 @@ class BiologicallyDerivedProductProcessingBuilder
     if (description) this.description = null;
     if (procedure) this.procedure = null;
     if (additive) this.additive = null;
-    if (time) this.timeX = null;
+    if (time) timeX = null;
   }
 
   @override
@@ -2191,9 +2196,7 @@ class BiologicallyDerivedProductProcessingBuilder
       procedure: procedure ?? this.procedure,
       additive: additive ?? this.additive,
       timeX: timeX ?? this.timeX,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -2396,11 +2399,14 @@ class BiologicallyDerivedProductManipulationBuilder
   /// Getter for [timePeriod] as a PeriodBuilder
   PeriodBuilder? get timePeriod => timeX?.isAs<PeriodBuilder>();
 
-  /// Converts a BiologicallyDerivedProductManipulationBuilder to [BiologicallyDerivedProductManipulation]
+  /// converts a [BiologicallyDerivedProductManipulationBuilder]
+  /// to [BiologicallyDerivedProductManipulation]
+  @override
   BiologicallyDerivedProductManipulation build() =>
       BiologicallyDerivedProductManipulation.fromJson(toJson());
 
-  /// Converts a [BiologicallyDerivedProductManipulationBuilder] to a [Map<String, dynamic>]
+  /// converts a [BiologicallyDerivedProductManipulationBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2690,7 +2696,7 @@ class BiologicallyDerivedProductManipulationBuilder
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
     if (description) this.description = null;
-    if (time) this.timeX = null;
+    if (time) timeX = null;
   }
 
   @override
@@ -2716,9 +2722,7 @@ class BiologicallyDerivedProductManipulationBuilder
       modifierExtension: modifierExtension ?? this.modifierExtension,
       description: description ?? this.description,
       timeX: timeX ?? this.timeX,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -2920,11 +2924,14 @@ class BiologicallyDerivedProductStorageBuilder extends BackboneElementBuilder {
   /// Storage timeperiod.
   PeriodBuilder? duration;
 
-  /// Converts a BiologicallyDerivedProductStorageBuilder to [BiologicallyDerivedProductStorage]
+  /// converts a [BiologicallyDerivedProductStorageBuilder]
+  /// to [BiologicallyDerivedProductStorage]
+  @override
   BiologicallyDerivedProductStorage build() =>
       BiologicallyDerivedProductStorage.fromJson(toJson());
 
-  /// Converts a [BiologicallyDerivedProductStorageBuilder] to a [Map<String, dynamic>]
+  /// converts a [BiologicallyDerivedProductStorageBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3238,9 +3245,7 @@ class BiologicallyDerivedProductStorageBuilder extends BackboneElementBuilder {
       temperature: temperature ?? this.temperature,
       scale: scale ?? this.scale,
       duration: duration ?? this.duration,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

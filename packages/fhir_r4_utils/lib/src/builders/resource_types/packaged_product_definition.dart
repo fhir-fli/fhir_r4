@@ -1,16 +1,16 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
-        R4ResourceType,
-        StringExtensionForFHIR,
         PackagedProductDefinition,
+        PackagedProductDefinitionContainedItem,
         PackagedProductDefinitionLegalStatusOfSupply,
         PackagedProductDefinitionPackage,
-        PackagedProductDefinitionShelfLifeStorage,
         PackagedProductDefinitionProperty,
-        PackagedProductDefinitionContainedItem;
+        PackagedProductDefinitionShelfLifeStorage,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -360,11 +360,14 @@ class PackagedProductDefinitionBuilder extends DomainResourceBuilder {
   /// bottle cap (which is not a device or a medication manufactured item).
   PackagedProductDefinitionPackageBuilder? package;
 
-  /// Converts a PackagedProductDefinitionBuilder to [PackagedProductDefinition]
+  /// converts a [PackagedProductDefinitionBuilder]
+  /// to [PackagedProductDefinition]
+  @override
   PackagedProductDefinition build() =>
       PackagedProductDefinition.fromJson(toJson());
 
-  /// Converts a [PackagedProductDefinitionBuilder] to a [Map<String, dynamic>]
+  /// converts a [PackagedProductDefinitionBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1112,9 +1115,7 @@ class PackagedProductDefinitionBuilder extends DomainResourceBuilder {
       copackagedIndicator: copackagedIndicator ?? this.copackagedIndicator,
       manufacturer: manufacturer ?? this.manufacturer,
       package: package ?? this.package,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1399,11 +1400,14 @@ class PackagedProductDefinitionLegalStatusOfSupplyBuilder
   /// this indicates it is unknown in this context.
   CodeableConceptBuilder? jurisdiction;
 
-  /// Converts a PackagedProductDefinitionLegalStatusOfSupplyBuilder to [PackagedProductDefinitionLegalStatusOfSupply]
+  /// converts a [PackagedProductDefinitionLegalStatusOfSupplyBuilder]
+  /// to [PackagedProductDefinitionLegalStatusOfSupply]
+  @override
   PackagedProductDefinitionLegalStatusOfSupply build() =>
       PackagedProductDefinitionLegalStatusOfSupply.fromJson(toJson());
 
-  /// Converts a [PackagedProductDefinitionLegalStatusOfSupplyBuilder] to a [Map<String, dynamic>]
+  /// converts a [PackagedProductDefinitionLegalStatusOfSupplyBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1665,9 +1669,7 @@ class PackagedProductDefinitionLegalStatusOfSupplyBuilder
       modifierExtension: modifierExtension ?? this.modifierExtension,
       code: code ?? this.code,
       jurisdiction: jurisdiction ?? this.jurisdiction,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1975,11 +1977,14 @@ class PackagedProductDefinitionPackageBuilder extends BackboneElementBuilder {
   /// PackagedProductDefinition.package.containedItem.item(PackagedProductDefinition).
   List<PackagedProductDefinitionPackageBuilder>? package;
 
-  /// Converts a PackagedProductDefinitionPackageBuilder to [PackagedProductDefinitionPackage]
+  /// converts a [PackagedProductDefinitionPackageBuilder]
+  /// to [PackagedProductDefinitionPackage]
+  @override
   PackagedProductDefinitionPackage build() =>
       PackagedProductDefinitionPackage.fromJson(toJson());
 
-  /// Converts a [PackagedProductDefinitionPackageBuilder] to a [Map<String, dynamic>]
+  /// converts a [PackagedProductDefinitionPackageBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2490,9 +2495,7 @@ class PackagedProductDefinitionPackageBuilder extends BackboneElementBuilder {
       property: property ?? this.property,
       containedItem: containedItem ?? this.containedItem,
       package: package ?? this.package,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -2757,11 +2760,14 @@ class PackagedProductDefinitionShelfLifeStorageBuilder
   /// controlled term identifier shall be specified.
   List<CodeableConceptBuilder>? specialPrecautionsForStorage;
 
-  /// Converts a PackagedProductDefinitionShelfLifeStorageBuilder to [PackagedProductDefinitionShelfLifeStorage]
+  /// converts a [PackagedProductDefinitionShelfLifeStorageBuilder]
+  /// to [PackagedProductDefinitionShelfLifeStorage]
+  @override
   PackagedProductDefinitionShelfLifeStorage build() =>
       PackagedProductDefinitionShelfLifeStorage.fromJson(toJson());
 
-  /// Converts a [PackagedProductDefinitionShelfLifeStorageBuilder] to a [Map<String, dynamic>]
+  /// converts a [PackagedProductDefinitionShelfLifeStorageBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2983,7 +2989,7 @@ class PackagedProductDefinitionShelfLifeStorageBuilder
             // Add single element to existing list or create new list
             specialPrecautionsForStorage = [
               ...(specialPrecautionsForStorage ?? []),
-              child
+              child,
             ];
             return;
           } else {
@@ -3083,7 +3089,7 @@ class PackagedProductDefinitionShelfLifeStorageBuilder
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
     if (type) this.type = null;
-    if (period) this.periodX = null;
+    if (period) periodX = null;
     if (specialPrecautionsForStorage) this.specialPrecautionsForStorage = null;
   }
 
@@ -3113,9 +3119,7 @@ class PackagedProductDefinitionShelfLifeStorageBuilder
       periodX: periodX ?? this.periodX,
       specialPrecautionsForStorage:
           specialPrecautionsForStorage ?? this.specialPrecautionsForStorage,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -3322,11 +3326,14 @@ class PackagedProductDefinitionPropertyBuilder extends BackboneElementBuilder {
   /// Getter for [valueAttachment] as a AttachmentBuilder
   AttachmentBuilder? get valueAttachment => valueX?.isAs<AttachmentBuilder>();
 
-  /// Converts a PackagedProductDefinitionPropertyBuilder to [PackagedProductDefinitionProperty]
+  /// converts a [PackagedProductDefinitionPropertyBuilder]
+  /// to [PackagedProductDefinitionProperty]
+  @override
   PackagedProductDefinitionProperty build() =>
       PackagedProductDefinitionProperty.fromJson(toJson());
 
-  /// Converts a [PackagedProductDefinitionPropertyBuilder] to a [Map<String, dynamic>]
+  /// converts a [PackagedProductDefinitionPropertyBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3607,7 +3614,7 @@ class PackagedProductDefinitionPropertyBuilder extends BackboneElementBuilder {
           'QuantityBuilder',
           'FhirDateBuilder',
           'FhirBooleanBuilder',
-          'AttachmentBuilder'
+          'AttachmentBuilder',
         ];
       case 'valueCodeableConcept':
         return ['CodeableConceptBuilder'];
@@ -3694,7 +3701,7 @@ class PackagedProductDefinitionPropertyBuilder extends BackboneElementBuilder {
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
     if (type) this.type = null;
-    if (value) this.valueX = null;
+    if (value) valueX = null;
   }
 
   @override
@@ -3720,9 +3727,7 @@ class PackagedProductDefinitionPropertyBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       type: type ?? this.type,
       valueX: valueX ?? this.valueX,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -3909,11 +3914,14 @@ class PackagedProductDefinitionContainedItemBuilder
   /// The number of this type of item within this packaging.
   QuantityBuilder? amount;
 
-  /// Converts a PackagedProductDefinitionContainedItemBuilder to [PackagedProductDefinitionContainedItem]
+  /// converts a [PackagedProductDefinitionContainedItemBuilder]
+  /// to [PackagedProductDefinitionContainedItem]
+  @override
   PackagedProductDefinitionContainedItem build() =>
       PackagedProductDefinitionContainedItem.fromJson(toJson());
 
-  /// Converts a [PackagedProductDefinitionContainedItemBuilder] to a [Map<String, dynamic>]
+  /// converts a [PackagedProductDefinitionContainedItemBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -4175,9 +4183,7 @@ class PackagedProductDefinitionContainedItemBuilder
       modifierExtension: modifierExtension ?? this.modifierExtension,
       item: item ?? this.item,
       amount: amount ?? this.amount,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

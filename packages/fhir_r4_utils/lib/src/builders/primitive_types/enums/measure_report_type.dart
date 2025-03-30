@@ -47,7 +47,8 @@ class MeasureReportTypeBuilder extends FhirCodeEnumBuilder {
   factory MeasureReportTypeBuilder.empty() =>
       MeasureReportTypeBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [MeasureReportTypeBuilder] from JSON.
+  /// Factory constructor to create [MeasureReportTypeBuilder]
+  /// from JSON.
   factory MeasureReportTypeBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
@@ -120,7 +121,9 @@ class MeasureReportTypeBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   MeasureReportTypeBuilder withElement(ElementBuilder? newElement) {
     return MeasureReportTypeBuilder._(
-        validatedValue: value, element: newElement);
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

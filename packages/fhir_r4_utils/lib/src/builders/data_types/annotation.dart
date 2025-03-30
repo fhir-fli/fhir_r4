@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, StringExtensionForFHIR, Annotation;
+    show Annotation, StringExtensionForFHIR, yamlMapToJson, yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -140,10 +140,13 @@ class AnnotationBuilder extends DataTypeBuilder
   /// The text of the annotation in markdown format.
   FhirMarkdownBuilder? text;
 
-  /// Converts a AnnotationBuilder to [Annotation]
+  /// converts a [AnnotationBuilder]
+  /// to [Annotation]
+  @override
   Annotation build() => Annotation.fromJson(toJson());
 
-  /// Converts a [AnnotationBuilder] to a [Map<String, dynamic>]
+  /// converts a [AnnotationBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -426,7 +429,7 @@ class AnnotationBuilder extends DataTypeBuilder
   }) {
     if (id) this.id = null;
     if (extension_) this.extension_ = null;
-    if (author) this.authorX = null;
+    if (author) authorX = null;
     if (time) this.time = null;
     if (text) this.text = null;
   }
@@ -453,9 +456,7 @@ class AnnotationBuilder extends DataTypeBuilder
       authorX: authorX ?? this.authorX,
       time: time ?? this.time,
       text: text ?? this.text,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

@@ -1,12 +1,12 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
+        DeviceRequest,
+        DeviceRequestParameter,
         R4ResourceType,
         StringExtensionForFHIR,
-        DeviceRequest,
-        DeviceRequestParameter;
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -494,10 +494,13 @@ class DeviceRequestBuilder extends DomainResourceBuilder {
   /// Key events in the history of the request.
   List<ReferenceBuilder>? relevantHistory;
 
-  /// Converts a DeviceRequestBuilder to [DeviceRequest]
+  /// converts a [DeviceRequestBuilder]
+  /// to [DeviceRequest]
+  @override
   DeviceRequest build() => DeviceRequest.fromJson(toJson());
 
-  /// Converts a [DeviceRequestBuilder] to a [Map<String, dynamic>]
+  /// converts a [DeviceRequestBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1565,11 +1568,11 @@ class DeviceRequestBuilder extends DomainResourceBuilder {
     if (status) this.status = null;
     if (intent) this.intent = null;
     if (priority) this.priority = null;
-    if (code) this.codeX = null;
+    if (code) codeX = null;
     if (parameter) this.parameter = null;
     if (subject) this.subject = null;
     if (encounter) this.encounter = null;
-    if (occurrence) this.occurrenceX = null;
+    if (occurrence) occurrenceX = null;
     if (authoredOn) this.authoredOn = null;
     if (requester) this.requester = null;
     if (performerType) this.performerType = null;
@@ -1658,9 +1661,7 @@ class DeviceRequestBuilder extends DomainResourceBuilder {
       supportingInfo: supportingInfo ?? this.supportingInfo,
       note: note ?? this.note,
       relevantHistory: relevantHistory ?? this.relevantHistory,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -2019,10 +2020,13 @@ class DeviceRequestParameterBuilder extends BackboneElementBuilder {
   /// Getter for [valueBoolean] as a FhirBooleanBuilder
   FhirBooleanBuilder? get valueBoolean => valueX?.isAs<FhirBooleanBuilder>();
 
-  /// Converts a DeviceRequestParameterBuilder to [DeviceRequestParameter]
+  /// converts a [DeviceRequestParameterBuilder]
+  /// to [DeviceRequestParameter]
+  @override
   DeviceRequestParameter build() => DeviceRequestParameter.fromJson(toJson());
 
-  /// Converts a [DeviceRequestParameterBuilder] to a [Map<String, dynamic>]
+  /// converts a [DeviceRequestParameterBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2285,7 +2289,7 @@ class DeviceRequestParameterBuilder extends BackboneElementBuilder {
           'CodeableConceptBuilder',
           'QuantityBuilder',
           'RangeBuilder',
-          'FhirBooleanBuilder'
+          'FhirBooleanBuilder',
         ];
       case 'valueCodeableConcept':
         return ['CodeableConceptBuilder'];
@@ -2365,7 +2369,7 @@ class DeviceRequestParameterBuilder extends BackboneElementBuilder {
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
     if (code) this.code = null;
-    if (value) this.valueX = null;
+    if (value) valueX = null;
   }
 
   @override
@@ -2390,9 +2394,7 @@ class DeviceRequestParameterBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       code: code ?? this.code,
       valueX: valueX ?? this.valueX,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

@@ -47,9 +47,11 @@ class SubscriptionNotificationTypeBuilder extends FhirCodeEnumBuilder {
   factory SubscriptionNotificationTypeBuilder.empty() =>
       SubscriptionNotificationTypeBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [SubscriptionNotificationTypeBuilder] from JSON.
+  /// Factory constructor to create [SubscriptionNotificationTypeBuilder]
+  /// from JSON.
   factory SubscriptionNotificationTypeBuilder.fromJson(
-      Map<String, dynamic> json) {
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -142,7 +144,9 @@ class SubscriptionNotificationTypeBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   SubscriptionNotificationTypeBuilder withElement(ElementBuilder? newElement) {
     return SubscriptionNotificationTypeBuilder._(
-        validatedValue: value, element: newElement);
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

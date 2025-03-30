@@ -47,9 +47,11 @@ class MessageSignificanceCategoryBuilder extends FhirCodeEnumBuilder {
   factory MessageSignificanceCategoryBuilder.empty() =>
       MessageSignificanceCategoryBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [MessageSignificanceCategoryBuilder] from JSON.
+  /// Factory constructor to create [MessageSignificanceCategoryBuilder]
+  /// from JSON.
   factory MessageSignificanceCategoryBuilder.fromJson(
-      Map<String, dynamic> json) {
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -120,7 +122,9 @@ class MessageSignificanceCategoryBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   MessageSignificanceCategoryBuilder withElement(ElementBuilder? newElement) {
     return MessageSignificanceCategoryBuilder._(
-        validatedValue: value, element: newElement);
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

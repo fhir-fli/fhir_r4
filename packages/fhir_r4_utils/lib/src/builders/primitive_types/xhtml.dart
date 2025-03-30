@@ -13,15 +13,16 @@ class FhirXhtmlBuilder extends PrimitiveTypeBuilder<String?> {
   /// null => throw.
   FhirXhtmlBuilder._({
     required String? validatedValue,
-    this.element,
-    this.id,
-    this.extension_,
-    this.disallowExtensions,
-    this.objectPath = 'Xhtml',
+    super.element,
+    super.id,
+    super.extension_,
+    super.disallowExtensions,
+    super.objectPath = 'Xhtml',
   }) : super._(value: validatedValue) {
     if (value == null && element == null) {
       throw ArgumentError(
-          'A value or element is required for FhirXhtmlBuilder');
+        'A value or element is required for FhirXhtmlBuilder',
+      );
     }
   }
 
@@ -71,7 +72,8 @@ class FhirXhtmlBuilder extends PrimitiveTypeBuilder<String?> {
   factory FhirXhtmlBuilder.empty() =>
       FhirXhtmlBuilder(null, element: ElementBuilder.empty());
 
-  /// Factory constructor to create [FhirXhtmlBuilder] from JSON.
+  /// Factory constructor to create [FhirXhtmlBuilder]
+  /// from JSON.
   factory FhirXhtmlBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
@@ -153,21 +155,6 @@ class FhirXhtmlBuilder extends PrimitiveTypeBuilder<String?> {
 
     return true;
   }
-
-  /// Element property
-  ElementBuilder? element;
-
-  /// ID property
-  FhirStringBuilder? id;
-
-  /// Extensions property
-  List<FhirExtensionBuilder>? extension_;
-
-  /// DisallowExtensions property
-  bool? disallowExtensions;
-
-  /// ObjectPath property
-  String? objectPath;
 
   /// Allowed elements for XHTML.
   static final List<String> _allowedElements = [

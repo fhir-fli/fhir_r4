@@ -1,19 +1,19 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
         R4ResourceType,
         StringExtensionForFHIR,
         ValueSet,
         ValueSetCompose,
-        ValueSetInclude,
         ValueSetConcept,
+        ValueSetContains,
         ValueSetDesignation,
-        ValueSetFilter,
         ValueSetExpansion,
+        ValueSetFilter,
+        ValueSetInclude,
         ValueSetParameter,
-        ValueSetContains;
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -342,10 +342,13 @@ class ValueSetBuilder extends CanonicalResourceBuilder {
   /// expansion, if it has been performed.
   ValueSetExpansionBuilder? expansion;
 
-  /// Converts a ValueSetBuilder to [ValueSet]
+  /// converts a [ValueSetBuilder]
+  /// to [ValueSet]
+  @override
   ValueSet build() => ValueSet.fromJson(toJson());
 
-  /// Converts a [ValueSetBuilder] to a [Map<String, dynamic>]
+  /// converts a [ValueSetBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1177,9 +1180,7 @@ class ValueSetBuilder extends CanonicalResourceBuilder {
       copyright: copyright ?? this.copyright,
       compose: compose ?? this.compose,
       expansion: expansion ?? this.expansion,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1525,10 +1526,13 @@ class ValueSetComposeBuilder extends BackboneElementBuilder {
   /// filters and/or other value sets.
   List<ValueSetIncludeBuilder>? exclude;
 
-  /// Converts a ValueSetComposeBuilder to [ValueSetCompose]
+  /// converts a [ValueSetComposeBuilder]
+  /// to [ValueSetCompose]
+  @override
   ValueSetCompose build() => ValueSetCompose.fromJson(toJson());
 
-  /// Converts a [ValueSetComposeBuilder] to a [Map<String, dynamic>]
+  /// converts a [ValueSetComposeBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1851,9 +1855,7 @@ class ValueSetComposeBuilder extends BackboneElementBuilder {
       inactive: inactive ?? this.inactive,
       include: include ?? this.include,
       exclude: exclude ?? this.exclude,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -2092,10 +2094,13 @@ class ValueSetIncludeBuilder extends BackboneElementBuilder {
   /// union of the contents of all of the referenced value sets.
   List<FhirCanonicalBuilder>? valueSet;
 
-  /// Converts a ValueSetIncludeBuilder to [ValueSetInclude]
+  /// converts a [ValueSetIncludeBuilder]
+  /// to [ValueSetInclude]
+  @override
   ValueSetInclude build() => ValueSetInclude.fromJson(toJson());
 
-  /// Converts a [ValueSetIncludeBuilder] to a [Map<String, dynamic>]
+  /// converts a [ValueSetIncludeBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2449,9 +2454,7 @@ class ValueSetIncludeBuilder extends BackboneElementBuilder {
       concept: concept ?? this.concept,
       filter: filter ?? this.filter,
       valueSet: valueSet ?? this.valueSet,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -2666,10 +2669,13 @@ class ValueSetConceptBuilder extends BackboneElementBuilder {
   /// purposes, etc.
   List<ValueSetDesignationBuilder>? designation;
 
-  /// Converts a ValueSetConceptBuilder to [ValueSetConcept]
+  /// converts a [ValueSetConceptBuilder]
+  /// to [ValueSetConcept]
+  @override
   ValueSetConcept build() => ValueSetConcept.fromJson(toJson());
 
-  /// Converts a [ValueSetConceptBuilder] to a [Map<String, dynamic>]
+  /// converts a [ValueSetConceptBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2961,9 +2967,7 @@ class ValueSetConceptBuilder extends BackboneElementBuilder {
       code: code ?? this.code,
       display: display ?? this.display,
       designation: designation ?? this.designation,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -3160,10 +3164,13 @@ class ValueSetDesignationBuilder extends BackboneElementBuilder {
   /// The text value for this designation.
   FhirStringBuilder? value;
 
-  /// Converts a ValueSetDesignationBuilder to [ValueSetDesignation]
+  /// converts a [ValueSetDesignationBuilder]
+  /// to [ValueSetDesignation]
+  @override
   ValueSetDesignation build() => ValueSetDesignation.fromJson(toJson());
 
-  /// Converts a [ValueSetDesignationBuilder] to a [Map<String, dynamic>]
+  /// converts a [ValueSetDesignationBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3450,9 +3457,7 @@ class ValueSetDesignationBuilder extends BackboneElementBuilder {
       language: language ?? this.language,
       use: use ?? this.use,
       value: value ?? this.value,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -3656,10 +3661,13 @@ class ValueSetFilterBuilder extends BackboneElementBuilder {
   /// and false), when the operation is 'exists'.
   FhirStringBuilder? value;
 
-  /// Converts a ValueSetFilterBuilder to [ValueSetFilter]
+  /// converts a [ValueSetFilterBuilder]
+  /// to [ValueSetFilter]
+  @override
   ValueSetFilter build() => ValueSetFilter.fromJson(toJson());
 
-  /// Converts a [ValueSetFilterBuilder] to a [Map<String, dynamic>]
+  /// converts a [ValueSetFilterBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3946,9 +3954,7 @@ class ValueSetFilterBuilder extends BackboneElementBuilder {
       property: property ?? this.property,
       op: op ?? this.op,
       value: value ?? this.value,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -4197,10 +4203,13 @@ class ValueSetExpansionBuilder extends BackboneElementBuilder {
   /// The codes that are contained in the value set expansion.
   List<ValueSetContainsBuilder>? contains;
 
-  /// Converts a ValueSetExpansionBuilder to [ValueSetExpansion]
+  /// converts a [ValueSetExpansionBuilder]
+  /// to [ValueSetExpansion]
+  @override
   ValueSetExpansion build() => ValueSetExpansion.fromJson(toJson());
 
-  /// Converts a [ValueSetExpansionBuilder] to a [Map<String, dynamic>]
+  /// converts a [ValueSetExpansionBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -4575,9 +4584,7 @@ class ValueSetExpansionBuilder extends BackboneElementBuilder {
       offset: offset ?? this.offset,
       parameter: parameter ?? this.parameter,
       contains: contains ?? this.contains,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -4811,10 +4818,13 @@ class ValueSetParameterBuilder extends BackboneElementBuilder {
   /// Getter for [valueDateTime] as a FhirDateTimeBuilder
   FhirDateTimeBuilder? get valueDateTime => valueX?.isAs<FhirDateTimeBuilder>();
 
-  /// Converts a ValueSetParameterBuilder to [ValueSetParameter]
+  /// converts a [ValueSetParameterBuilder]
+  /// to [ValueSetParameter]
+  @override
   ValueSetParameter build() => ValueSetParameter.fromJson(toJson());
 
-  /// Converts a [ValueSetParameterBuilder] to a [Map<String, dynamic>]
+  /// converts a [ValueSetParameterBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -5131,7 +5141,7 @@ class ValueSetParameterBuilder extends BackboneElementBuilder {
           'FhirDecimalBuilder',
           'FhirUriBuilder',
           'FhirCodeBuilder',
-          'FhirDateTimeBuilder'
+          'FhirDateTimeBuilder',
         ];
       case 'valueString':
         return ['FhirStringBuilder'];
@@ -5232,7 +5242,7 @@ class ValueSetParameterBuilder extends BackboneElementBuilder {
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
     if (name) this.name = null;
-    if (value) this.valueX = null;
+    if (value) valueX = null;
   }
 
   @override
@@ -5257,9 +5267,7 @@ class ValueSetParameterBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       name: name ?? this.name,
       valueX: valueX ?? this.valueX,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -5527,10 +5535,13 @@ class ValueSetContainsBuilder extends BackboneElementBuilder {
   /// Other codes and entries contained under this entry in the hierarchy.
   List<ValueSetContainsBuilder>? contains;
 
-  /// Converts a ValueSetContainsBuilder to [ValueSetContains]
+  /// converts a [ValueSetContainsBuilder]
+  /// to [ValueSetContains]
+  @override
   ValueSetContains build() => ValueSetContains.fromJson(toJson());
 
-  /// Converts a [ValueSetContainsBuilder] to a [Map<String, dynamic>]
+  /// converts a [ValueSetContainsBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -5957,9 +5968,7 @@ class ValueSetContainsBuilder extends BackboneElementBuilder {
       display: display ?? this.display,
       designation: designation ?? this.designation,
       contains: contains ?? this.contains,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

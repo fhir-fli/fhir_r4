@@ -1,14 +1,14 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
+        Patient,
+        PatientCommunication,
+        PatientContact,
+        PatientLink,
         R4ResourceType,
         StringExtensionForFHIR,
-        Patient,
-        PatientContact,
-        PatientCommunication,
-        PatientLink;
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -392,10 +392,13 @@ class PatientBuilder extends DomainResourceBuilder {
   /// Link to another patient resource that concerns the same actual patient.
   List<PatientLinkBuilder>? link;
 
-  /// Converts a PatientBuilder to [Patient]
+  /// converts a [PatientBuilder]
+  /// to [Patient]
+  @override
   Patient build() => Patient.fromJson(toJson());
 
-  /// Converts a [PatientBuilder] to a [Map<String, dynamic>]
+  /// converts a [PatientBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1237,10 +1240,10 @@ class PatientBuilder extends DomainResourceBuilder {
     if (telecom) this.telecom = null;
     if (gender) this.gender = null;
     if (birthDate) this.birthDate = null;
-    if (deceased) this.deceasedX = null;
+    if (deceased) deceasedX = null;
     if (address) this.address = null;
     if (maritalStatus) this.maritalStatus = null;
-    if (multipleBirth) this.multipleBirthX = null;
+    if (multipleBirth) multipleBirthX = null;
     if (photo) this.photo = null;
     if (contact) this.contact = null;
     if (communication) this.communication = null;
@@ -1308,9 +1311,7 @@ class PatientBuilder extends DomainResourceBuilder {
       generalPractitioner: generalPractitioner ?? this.generalPractitioner,
       managingOrganization: managingOrganization ?? this.managingOrganization,
       link: link ?? this.link,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1670,10 +1671,13 @@ class PatientContactBuilder extends BackboneElementBuilder {
   /// be contacted relating to this patient.
   PeriodBuilder? period;
 
-  /// Converts a PatientContactBuilder to [PatientContact]
+  /// converts a [PatientContactBuilder]
+  /// to [PatientContact]
+  @override
   PatientContact build() => PatientContact.fromJson(toJson());
 
-  /// Converts a [PatientContactBuilder] to a [Map<String, dynamic>]
+  /// converts a [PatientContactBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2074,9 +2078,7 @@ class PatientContactBuilder extends BackboneElementBuilder {
       gender: gender ?? this.gender,
       organization: organization ?? this.organization,
       period: period ?? this.period,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -2289,10 +2291,13 @@ class PatientCommunicationBuilder extends BackboneElementBuilder {
   /// languages he masters up a certain level).
   FhirBooleanBuilder? preferred;
 
-  /// Converts a PatientCommunicationBuilder to [PatientCommunication]
+  /// converts a [PatientCommunicationBuilder]
+  /// to [PatientCommunication]
+  @override
   PatientCommunication build() => PatientCommunication.fromJson(toJson());
 
-  /// Converts a [PatientCommunicationBuilder] to a [Map<String, dynamic>]
+  /// converts a [PatientCommunicationBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2553,9 +2558,7 @@ class PatientCommunicationBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       language: language ?? this.language,
       preferred: preferred ?? this.preferred,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -2734,10 +2737,13 @@ class PatientLinkBuilder extends BackboneElementBuilder {
   /// resource.
   LinkTypeBuilder? type;
 
-  /// Converts a PatientLinkBuilder to [PatientLink]
+  /// converts a [PatientLinkBuilder]
+  /// to [PatientLink]
+  @override
   PatientLink build() => PatientLink.fromJson(toJson());
 
-  /// Converts a [PatientLinkBuilder] to a [Map<String, dynamic>]
+  /// converts a [PatientLinkBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2998,9 +3004,7 @@ class PatientLinkBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       other: other ?? this.other,
       type: type ?? this.type,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

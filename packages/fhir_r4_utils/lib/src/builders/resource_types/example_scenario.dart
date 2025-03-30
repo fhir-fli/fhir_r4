@@ -1,19 +1,19 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
-        R4ResourceType,
-        StringExtensionForFHIR,
         ExampleScenario,
         ExampleScenarioActor,
-        ExampleScenarioInstance,
-        ExampleScenarioVersion,
+        ExampleScenarioAlternative,
         ExampleScenarioContainedInstance,
+        ExampleScenarioInstance,
+        ExampleScenarioOperation,
         ExampleScenarioProcess,
         ExampleScenarioStep,
-        ExampleScenarioOperation,
-        ExampleScenarioAlternative;
+        ExampleScenarioVersion,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -401,10 +401,13 @@ class ExampleScenarioBuilder extends DomainResourceBuilder {
   /// Another nested workflow.
   List<FhirCanonicalBuilder>? workflow;
 
-  /// Converts a ExampleScenarioBuilder to [ExampleScenario]
+  /// converts a [ExampleScenarioBuilder]
+  /// to [ExampleScenario]
+  @override
   ExampleScenario build() => ExampleScenario.fromJson(toJson());
 
-  /// Converts a [ExampleScenarioBuilder] to a [Map<String, dynamic>]
+  /// converts a [ExampleScenarioBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1230,9 +1233,7 @@ class ExampleScenarioBuilder extends DomainResourceBuilder {
       instance: instance ?? this.instance,
       process: process ?? this.process,
       workflow: workflow ?? this.workflow,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1552,10 +1553,13 @@ class ExampleScenarioActorBuilder extends BackboneElementBuilder {
   /// The description of the actor.
   FhirMarkdownBuilder? description;
 
-  /// Converts a ExampleScenarioActorBuilder to [ExampleScenarioActor]
+  /// converts a [ExampleScenarioActorBuilder]
+  /// to [ExampleScenarioActor]
+  @override
   ExampleScenarioActor build() => ExampleScenarioActor.fromJson(toJson());
 
-  /// Converts a [ExampleScenarioActorBuilder] to a [Map<String, dynamic>]
+  /// converts a [ExampleScenarioActorBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1868,9 +1872,7 @@ class ExampleScenarioActorBuilder extends BackboneElementBuilder {
       type: type ?? this.type,
       name: name ?? this.name,
       description: description ?? this.description,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -2114,10 +2116,13 @@ class ExampleScenarioInstanceBuilder extends BackboneElementBuilder {
   /// a bundle).
   List<ExampleScenarioContainedInstanceBuilder>? containedInstance;
 
-  /// Converts a ExampleScenarioInstanceBuilder to [ExampleScenarioInstance]
+  /// converts a [ExampleScenarioInstanceBuilder]
+  /// to [ExampleScenarioInstance]
+  @override
   ExampleScenarioInstance build() => ExampleScenarioInstance.fromJson(toJson());
 
-  /// Converts a [ExampleScenarioInstanceBuilder] to a [Map<String, dynamic>]
+  /// converts a [ExampleScenarioInstanceBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2492,9 +2497,7 @@ class ExampleScenarioInstanceBuilder extends BackboneElementBuilder {
       description: description ?? this.description,
       version: version ?? this.version,
       containedInstance: containedInstance ?? this.containedInstance,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -2697,10 +2700,13 @@ class ExampleScenarioVersionBuilder extends BackboneElementBuilder {
   /// The description of the resource version.
   FhirMarkdownBuilder? description;
 
-  /// Converts a ExampleScenarioVersionBuilder to [ExampleScenarioVersion]
+  /// converts a [ExampleScenarioVersionBuilder]
+  /// to [ExampleScenarioVersion]
+  @override
   ExampleScenarioVersion build() => ExampleScenarioVersion.fromJson(toJson());
 
-  /// Converts a [ExampleScenarioVersionBuilder] to a [Map<String, dynamic>]
+  /// converts a [ExampleScenarioVersionBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2961,9 +2967,7 @@ class ExampleScenarioVersionBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       versionId: versionId ?? this.versionId,
       description: description ?? this.description,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -3143,11 +3147,14 @@ class ExampleScenarioContainedInstanceBuilder extends BackboneElementBuilder {
   /// A specific version of a resource contained in the instance.
   FhirStringBuilder? versionId;
 
-  /// Converts a ExampleScenarioContainedInstanceBuilder to [ExampleScenarioContainedInstance]
+  /// converts a [ExampleScenarioContainedInstanceBuilder]
+  /// to [ExampleScenarioContainedInstance]
+  @override
   ExampleScenarioContainedInstance build() =>
       ExampleScenarioContainedInstance.fromJson(toJson());
 
-  /// Converts a [ExampleScenarioContainedInstanceBuilder] to a [Map<String, dynamic>]
+  /// converts a [ExampleScenarioContainedInstanceBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3408,9 +3415,7 @@ class ExampleScenarioContainedInstanceBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       resourceId: resourceId ?? this.resourceId,
       versionId: versionId ?? this.versionId,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -3626,10 +3631,13 @@ class ExampleScenarioProcessBuilder extends BackboneElementBuilder {
   /// Each step of the process.
   List<ExampleScenarioStepBuilder>? step;
 
-  /// Converts a ExampleScenarioProcessBuilder to [ExampleScenarioProcess]
+  /// converts a [ExampleScenarioProcessBuilder]
+  /// to [ExampleScenarioProcess]
+  @override
   ExampleScenarioProcess build() => ExampleScenarioProcess.fromJson(toJson());
 
-  /// Converts a [ExampleScenarioProcessBuilder] to a [Map<String, dynamic>]
+  /// converts a [ExampleScenarioProcessBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3973,9 +3981,7 @@ class ExampleScenarioProcessBuilder extends BackboneElementBuilder {
       preConditions: preConditions ?? this.preConditions,
       postConditions: postConditions ?? this.postConditions,
       step: step ?? this.step,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -4202,10 +4208,13 @@ class ExampleScenarioStepBuilder extends BackboneElementBuilder {
   /// operations on the base step in exceptional/atypical circumstances.
   List<ExampleScenarioAlternativeBuilder>? alternative;
 
-  /// Converts a ExampleScenarioStepBuilder to [ExampleScenarioStep]
+  /// converts a [ExampleScenarioStepBuilder]
+  /// to [ExampleScenarioStep]
+  @override
   ExampleScenarioStep build() => ExampleScenarioStep.fromJson(toJson());
 
-  /// Converts a [ExampleScenarioStepBuilder] to a [Map<String, dynamic>]
+  /// converts a [ExampleScenarioStepBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -4528,9 +4537,7 @@ class ExampleScenarioStepBuilder extends BackboneElementBuilder {
       pause: pause ?? this.pause,
       operation: operation ?? this.operation,
       alternative: alternative ?? this.alternative,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -4809,11 +4816,14 @@ class ExampleScenarioOperationBuilder extends BackboneElementBuilder {
   /// Each resource instance used by the responder.
   ExampleScenarioContainedInstanceBuilder? response;
 
-  /// Converts a ExampleScenarioOperationBuilder to [ExampleScenarioOperation]
+  /// converts a [ExampleScenarioOperationBuilder]
+  /// to [ExampleScenarioOperation]
+  @override
   ExampleScenarioOperation build() =>
       ExampleScenarioOperation.fromJson(toJson());
 
-  /// Converts a [ExampleScenarioOperationBuilder] to a [Map<String, dynamic>]
+  /// converts a [ExampleScenarioOperationBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -5282,9 +5292,7 @@ class ExampleScenarioOperationBuilder extends BackboneElementBuilder {
       receiverActive: receiverActive ?? this.receiverActive,
       request: request ?? this.request,
       response: response ?? this.response,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -5529,11 +5537,14 @@ class ExampleScenarioAlternativeBuilder extends BackboneElementBuilder {
   /// What happens in each alternative option.
   List<ExampleScenarioStepBuilder>? step;
 
-  /// Converts a ExampleScenarioAlternativeBuilder to [ExampleScenarioAlternative]
+  /// converts a [ExampleScenarioAlternativeBuilder]
+  /// to [ExampleScenarioAlternative]
+  @override
   ExampleScenarioAlternative build() =>
       ExampleScenarioAlternative.fromJson(toJson());
 
-  /// Converts a [ExampleScenarioAlternativeBuilder] to a [Map<String, dynamic>]
+  /// converts a [ExampleScenarioAlternativeBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -5825,9 +5836,7 @@ class ExampleScenarioAlternativeBuilder extends BackboneElementBuilder {
       title: title ?? this.title,
       description: description ?? this.description,
       step: step ?? this.step,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

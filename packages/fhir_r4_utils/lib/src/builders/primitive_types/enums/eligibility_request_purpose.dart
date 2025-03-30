@@ -47,7 +47,8 @@ class EligibilityRequestPurposeBuilder extends FhirCodeEnumBuilder {
   factory EligibilityRequestPurposeBuilder.empty() =>
       EligibilityRequestPurposeBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [EligibilityRequestPurposeBuilder] from JSON.
+  /// Factory constructor to create [EligibilityRequestPurposeBuilder]
+  /// from JSON.
   factory EligibilityRequestPurposeBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
@@ -129,7 +130,9 @@ class EligibilityRequestPurposeBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   EligibilityRequestPurposeBuilder withElement(ElementBuilder? newElement) {
     return EligibilityRequestPurposeBuilder._(
-        validatedValue: value, element: newElement);
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

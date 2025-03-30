@@ -47,7 +47,8 @@ class GuidanceResponseStatusBuilder extends FhirCodeEnumBuilder {
   factory GuidanceResponseStatusBuilder.empty() =>
       GuidanceResponseStatusBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [GuidanceResponseStatusBuilder] from JSON.
+  /// Factory constructor to create [GuidanceResponseStatusBuilder]
+  /// from JSON.
   factory GuidanceResponseStatusBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
@@ -150,7 +151,9 @@ class GuidanceResponseStatusBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   GuidanceResponseStatusBuilder withElement(ElementBuilder? newElement) {
     return GuidanceResponseStatusBuilder._(
-        validatedValue: value, element: newElement);
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

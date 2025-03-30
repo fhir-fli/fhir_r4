@@ -1,13 +1,13 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
+        ActivityDefinition,
+        ActivityDefinitionDynamicValue,
+        ActivityDefinitionParticipant,
         R4ResourceType,
         StringExtensionForFHIR,
-        ActivityDefinition,
-        ActivityDefinitionParticipant,
-        ActivityDefinitionDynamicValue;
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -786,10 +786,13 @@ class ActivityDefinitionBuilder extends CanonicalResourceBuilder {
   /// on the request resource that would contain the result.
   List<ActivityDefinitionDynamicValueBuilder>? dynamicValue;
 
-  /// Converts a ActivityDefinitionBuilder to [ActivityDefinition]
+  /// converts a [ActivityDefinitionBuilder]
+  /// to [ActivityDefinition]
+  @override
   ActivityDefinition build() => ActivityDefinition.fromJson(toJson());
 
-  /// Converts a [ActivityDefinitionBuilder] to a [Map<String, dynamic>]
+  /// converts a [ActivityDefinitionBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1967,7 +1970,7 @@ class ActivityDefinitionBuilder extends CanonicalResourceBuilder {
             // Add single element to existing list or create new list
             observationResultRequirement = [
               ...(observationResultRequirement ?? []),
-              child
+              child,
             ];
             return;
           } else {
@@ -2044,7 +2047,7 @@ class ActivityDefinitionBuilder extends CanonicalResourceBuilder {
         return [
           'CodeableConceptBuilder',
           'ReferenceBuilder',
-          'FhirCanonicalBuilder'
+          'FhirCanonicalBuilder',
         ];
       case 'subjectCodeableConcept':
         return ['CodeableConceptBuilder'];
@@ -2110,7 +2113,7 @@ class ActivityDefinitionBuilder extends CanonicalResourceBuilder {
           'AgeBuilder',
           'PeriodBuilder',
           'RangeBuilder',
-          'FhirDurationBuilder'
+          'FhirDurationBuilder',
         ];
       case 'timingTiming':
         return ['TimingBuilder'];
@@ -2556,7 +2559,7 @@ class ActivityDefinitionBuilder extends CanonicalResourceBuilder {
     if (subtitle) this.subtitle = null;
     if (status) this.status = null;
     if (experimental) this.experimental = null;
-    if (subject) this.subjectX = null;
+    if (subject) subjectX = null;
     if (date) this.date = null;
     if (publisher) this.publisher = null;
     if (contact) this.contact = null;
@@ -2582,10 +2585,10 @@ class ActivityDefinitionBuilder extends CanonicalResourceBuilder {
     if (intent) this.intent = null;
     if (priority) this.priority = null;
     if (doNotPerform) this.doNotPerform = null;
-    if (timing) this.timingX = null;
+    if (timing) timingX = null;
     if (location) this.location = null;
     if (participant) this.participant = null;
-    if (product) this.productX = null;
+    if (product) productX = null;
     if (quantity) this.quantity = null;
     if (dosage) this.dosage = null;
     if (bodySite) this.bodySite = null;
@@ -2717,9 +2720,7 @@ class ActivityDefinitionBuilder extends CanonicalResourceBuilder {
           observationResultRequirement ?? this.observationResultRequirement,
       transform: transform ?? this.transform,
       dynamicValue: dynamicValue ?? this.dynamicValue,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -3193,11 +3194,14 @@ class ActivityDefinitionParticipantBuilder extends BackboneElementBuilder {
   /// action.
   CodeableConceptBuilder? role;
 
-  /// Converts a ActivityDefinitionParticipantBuilder to [ActivityDefinitionParticipant]
+  /// converts a [ActivityDefinitionParticipantBuilder]
+  /// to [ActivityDefinitionParticipant]
+  @override
   ActivityDefinitionParticipant build() =>
       ActivityDefinitionParticipant.fromJson(toJson());
 
-  /// Converts a [ActivityDefinitionParticipantBuilder] to a [Map<String, dynamic>]
+  /// converts a [ActivityDefinitionParticipantBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3458,9 +3462,7 @@ class ActivityDefinitionParticipantBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       type: type ?? this.type,
       role: role ?? this.role,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -3651,11 +3653,14 @@ class ActivityDefinitionDynamicValueBuilder extends BackboneElementBuilder {
   /// An expression specifying the value of the customized element.
   FhirExpressionBuilder? expression;
 
-  /// Converts a ActivityDefinitionDynamicValueBuilder to [ActivityDefinitionDynamicValue]
+  /// converts a [ActivityDefinitionDynamicValueBuilder]
+  /// to [ActivityDefinitionDynamicValue]
+  @override
   ActivityDefinitionDynamicValue build() =>
       ActivityDefinitionDynamicValue.fromJson(toJson());
 
-  /// Converts a [ActivityDefinitionDynamicValueBuilder] to a [Map<String, dynamic>]
+  /// converts a [ActivityDefinitionDynamicValueBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3916,9 +3921,7 @@ class ActivityDefinitionDynamicValueBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       path: path ?? this.path,
       expression: expression ?? this.expression,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

@@ -1,12 +1,12 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
+        Organization,
+        OrganizationContact,
         R4ResourceType,
         StringExtensionForFHIR,
-        Organization,
-        OrganizationContact;
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -285,10 +285,13 @@ class OrganizationBuilder extends DomainResourceBuilder {
   /// organization.
   List<ReferenceBuilder>? endpoint;
 
-  /// Converts a OrganizationBuilder to [Organization]
+  /// converts a [OrganizationBuilder]
+  /// to [Organization]
+  @override
   Organization build() => Organization.fromJson(toJson());
 
-  /// Converts a [OrganizationBuilder] to a [Map<String, dynamic>]
+  /// converts a [OrganizationBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -927,9 +930,7 @@ class OrganizationBuilder extends DomainResourceBuilder {
       partOf: partOf ?? this.partOf,
       contact: contact ?? this.contact,
       endpoint: endpoint ?? this.endpoint,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1212,10 +1213,13 @@ class OrganizationContactBuilder extends BackboneElementBuilder {
   /// Visiting or postal addresses for the contact.
   AddressBuilder? address;
 
-  /// Converts a OrganizationContactBuilder to [OrganizationContact]
+  /// converts a [OrganizationContactBuilder]
+  /// to [OrganizationContact]
+  @override
   OrganizationContact build() => OrganizationContact.fromJson(toJson());
 
-  /// Converts a [OrganizationContactBuilder] to a [Map<String, dynamic>]
+  /// converts a [OrganizationContactBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1533,9 +1537,7 @@ class OrganizationContactBuilder extends BackboneElementBuilder {
       name: name ?? this.name,
       telecom: telecom ?? this.telecom,
       address: address ?? this.address,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

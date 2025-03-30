@@ -47,7 +47,8 @@ class AssertionResponseTypesBuilder extends FhirCodeEnumBuilder {
   factory AssertionResponseTypesBuilder.empty() =>
       AssertionResponseTypesBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [AssertionResponseTypesBuilder] from JSON.
+  /// Factory constructor to create [AssertionResponseTypesBuilder]
+  /// from JSON.
   factory AssertionResponseTypesBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
@@ -213,7 +214,9 @@ class AssertionResponseTypesBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   AssertionResponseTypesBuilder withElement(ElementBuilder? newElement) {
     return AssertionResponseTypesBuilder._(
-        validatedValue: value, element: newElement);
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

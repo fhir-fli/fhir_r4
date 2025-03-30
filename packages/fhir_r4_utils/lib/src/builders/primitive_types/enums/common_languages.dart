@@ -48,7 +48,8 @@ class CommonLanguagesBuilder extends FhirCodeEnumBuilder {
   factory CommonLanguagesBuilder.empty() =>
       CommonLanguagesBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [CommonLanguagesBuilder] from JSON.
+  /// Factory constructor to create [CommonLanguagesBuilder]
+  /// from JSON.
   factory CommonLanguagesBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;

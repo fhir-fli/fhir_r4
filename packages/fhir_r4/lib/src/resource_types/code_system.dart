@@ -4799,7 +4799,7 @@ class CodeSystemProperty1 extends BackboneElement {
           'FhirInteger',
           'FhirBoolean',
           'FhirDateTime',
-          'FhirDecimal'
+          'FhirDecimal',
         ];
       case 'valueCode':
         return ['FhirCode'];

@@ -1,11 +1,11 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
+        MedicationStatement,
         R4ResourceType,
         StringExtensionForFHIR,
-        MedicationStatement;
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -434,10 +434,13 @@ class MedicationStatementBuilder extends DomainResourceBuilder {
   /// Indicates how the medication is/was or should be taken by the patient.
   List<DosageBuilder>? dosage;
 
-  /// Converts a MedicationStatementBuilder to [MedicationStatement]
+  /// converts a [MedicationStatementBuilder]
+  /// to [MedicationStatement]
+  @override
   MedicationStatement build() => MedicationStatement.fromJson(toJson());
 
-  /// Converts a [MedicationStatementBuilder] to a [Map<String, dynamic>]
+  /// converts a [MedicationStatementBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1302,10 +1305,10 @@ class MedicationStatementBuilder extends DomainResourceBuilder {
     if (status) this.status = null;
     if (statusReason) this.statusReason = null;
     if (category) this.category = null;
-    if (medication) this.medicationX = null;
+    if (medication) medicationX = null;
     if (subject) this.subject = null;
     if (context) this.context = null;
-    if (effective) this.effectiveX = null;
+    if (effective) effectiveX = null;
     if (dateAsserted) this.dateAsserted = null;
     if (informationSource) this.informationSource = null;
     if (derivedFrom) this.derivedFrom = null;
@@ -1376,9 +1379,7 @@ class MedicationStatementBuilder extends DomainResourceBuilder {
       reasonReference: reasonReference ?? this.reasonReference,
       note: note ?? this.note,
       dosage: dosage ?? this.dosage,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

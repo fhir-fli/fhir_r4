@@ -47,7 +47,8 @@ class SpecimenStatusBuilder extends FhirCodeEnumBuilder {
   factory SpecimenStatusBuilder.empty() =>
       SpecimenStatusBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [SpecimenStatusBuilder] from JSON.
+  /// Factory constructor to create [SpecimenStatusBuilder]
+  /// from JSON.
   factory SpecimenStatusBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;

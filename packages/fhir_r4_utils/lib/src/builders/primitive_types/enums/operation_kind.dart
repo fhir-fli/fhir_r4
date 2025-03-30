@@ -47,7 +47,8 @@ class OperationKindBuilder extends FhirCodeEnumBuilder {
   factory OperationKindBuilder.empty() =>
       OperationKindBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [OperationKindBuilder] from JSON.
+  /// Factory constructor to create [OperationKindBuilder]
+  /// from JSON.
   factory OperationKindBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;

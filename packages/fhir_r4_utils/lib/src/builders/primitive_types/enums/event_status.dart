@@ -47,7 +47,8 @@ class EventStatusBuilder extends FhirCodeEnumBuilder {
   factory EventStatusBuilder.empty() =>
       EventStatusBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [EventStatusBuilder] from JSON.
+  /// Factory constructor to create [EventStatusBuilder]
+  /// from JSON.
   factory EventStatusBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;

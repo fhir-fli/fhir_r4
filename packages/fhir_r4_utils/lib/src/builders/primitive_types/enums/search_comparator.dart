@@ -47,7 +47,8 @@ class SearchComparatorBuilder extends FhirCodeEnumBuilder {
   factory SearchComparatorBuilder.empty() =>
       SearchComparatorBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [SearchComparatorBuilder] from JSON.
+  /// Factory constructor to create [SearchComparatorBuilder]
+  /// from JSON.
   factory SearchComparatorBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
@@ -165,7 +166,9 @@ class SearchComparatorBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   SearchComparatorBuilder withElement(ElementBuilder? newElement) {
     return SearchComparatorBuilder._(
-        validatedValue: value, element: newElement);
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

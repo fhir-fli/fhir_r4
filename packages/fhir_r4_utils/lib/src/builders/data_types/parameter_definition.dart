@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, StringExtensionForFHIR, ParameterDefinition;
+    show ParameterDefinition, StringExtensionForFHIR, yamlMapToJson, yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -183,10 +183,13 @@ class ParameterDefinitionBuilder extends DataTypeBuilder
   /// to, or that the output data will conform to.
   FhirCanonicalBuilder? profile;
 
-  /// Converts a ParameterDefinitionBuilder to [ParameterDefinition]
+  /// converts a [ParameterDefinitionBuilder]
+  /// to [ParameterDefinition]
+  @override
   ParameterDefinition build() => ParameterDefinition.fromJson(toJson());
 
-  /// Converts a [ParameterDefinitionBuilder] to a [Map<String, dynamic>]
+  /// converts a [ParameterDefinitionBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -546,9 +549,7 @@ class ParameterDefinitionBuilder extends DataTypeBuilder
       documentation: documentation ?? this.documentation,
       type: type ?? this.type,
       profile: profile ?? this.profile,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

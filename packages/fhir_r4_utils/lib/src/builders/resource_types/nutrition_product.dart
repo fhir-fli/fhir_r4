@@ -1,15 +1,15 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
+        NutritionProduct,
+        NutritionProductIngredient,
+        NutritionProductInstance,
+        NutritionProductNutrient,
+        NutritionProductProductCharacteristic,
         R4ResourceType,
         StringExtensionForFHIR,
-        NutritionProduct,
-        NutritionProductNutrient,
-        NutritionProductIngredient,
-        NutritionProductProductCharacteristic,
-        NutritionProductInstance;
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -291,10 +291,13 @@ class NutritionProductBuilder extends DomainResourceBuilder {
   /// Comments made about the product.
   List<AnnotationBuilder>? note;
 
-  /// Converts a NutritionProductBuilder to [NutritionProduct]
+  /// converts a [NutritionProductBuilder]
+  /// to [NutritionProduct]
+  @override
   NutritionProduct build() => NutritionProduct.fromJson(toJson());
 
-  /// Converts a [NutritionProductBuilder] to a [Map<String, dynamic>]
+  /// converts a [NutritionProductBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -935,9 +938,7 @@ class NutritionProductBuilder extends DomainResourceBuilder {
           productCharacteristic ?? this.productCharacteristic,
       instance: instance ?? this.instance,
       note: note ?? this.note,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1199,11 +1200,14 @@ class NutritionProductNutrientBuilder extends BackboneElementBuilder {
   /// serving / per dose.
   List<RatioBuilder>? amount;
 
-  /// Converts a NutritionProductNutrientBuilder to [NutritionProductNutrient]
+  /// converts a [NutritionProductNutrientBuilder]
+  /// to [NutritionProductNutrient]
+  @override
   NutritionProductNutrient build() =>
       NutritionProductNutrient.fromJson(toJson());
 
-  /// Converts a [NutritionProductNutrientBuilder] to a [Map<String, dynamic>]
+  /// converts a [NutritionProductNutrientBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1469,9 +1473,7 @@ class NutritionProductNutrientBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       item: item ?? this.item,
       amount: amount ?? this.amount,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1654,11 +1656,14 @@ class NutritionProductIngredientBuilder extends BackboneElementBuilder {
   /// The amount of ingredient that is in the product.
   List<RatioBuilder>? amount;
 
-  /// Converts a NutritionProductIngredientBuilder to [NutritionProductIngredient]
+  /// converts a [NutritionProductIngredientBuilder]
+  /// to [NutritionProductIngredient]
+  @override
   NutritionProductIngredient build() =>
       NutritionProductIngredient.fromJson(toJson());
 
-  /// Converts a [NutritionProductIngredientBuilder] to a [Map<String, dynamic>]
+  /// converts a [NutritionProductIngredientBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1924,9 +1929,7 @@ class NutritionProductIngredientBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       item: item ?? this.item,
       amount: amount ?? this.amount,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -2134,11 +2137,14 @@ class NutritionProductProductCharacteristicBuilder
   /// Getter for [valueBoolean] as a FhirBooleanBuilder
   FhirBooleanBuilder? get valueBoolean => valueX?.isAs<FhirBooleanBuilder>();
 
-  /// Converts a NutritionProductProductCharacteristicBuilder to [NutritionProductProductCharacteristic]
+  /// converts a [NutritionProductProductCharacteristicBuilder]
+  /// to [NutritionProductProductCharacteristic]
+  @override
   NutritionProductProductCharacteristic build() =>
       NutritionProductProductCharacteristic.fromJson(toJson());
 
-  /// Converts a [NutritionProductProductCharacteristicBuilder] to a [Map<String, dynamic>]
+  /// converts a [NutritionProductProductCharacteristicBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2437,7 +2443,7 @@ class NutritionProductProductCharacteristicBuilder
           'QuantityBuilder',
           'FhirBase64BinaryBuilder',
           'AttachmentBuilder',
-          'FhirBooleanBuilder'
+          'FhirBooleanBuilder',
         ];
       case 'valueCodeableConcept':
         return ['CodeableConceptBuilder'];
@@ -2531,7 +2537,7 @@ class NutritionProductProductCharacteristicBuilder
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
     if (type) this.type = null;
-    if (value) this.valueX = null;
+    if (value) valueX = null;
   }
 
   @override
@@ -2557,9 +2563,7 @@ class NutritionProductProductCharacteristicBuilder
       modifierExtension: modifierExtension ?? this.modifierExtension,
       type: type ?? this.type,
       valueX: valueX ?? this.valueX,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -2779,11 +2783,14 @@ class NutritionProductInstanceBuilder extends BackboneElementBuilder {
   /// condition, or its use is not advised or not allowed.
   FhirDateTimeBuilder? useBy;
 
-  /// Converts a NutritionProductInstanceBuilder to [NutritionProductInstance]
+  /// converts a [NutritionProductInstanceBuilder]
+  /// to [NutritionProductInstance]
+  @override
   NutritionProductInstance build() =>
       NutritionProductInstance.fromJson(toJson());
 
-  /// Converts a [NutritionProductInstanceBuilder] to a [Map<String, dynamic>]
+  /// converts a [NutritionProductInstanceBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3127,9 +3134,7 @@ class NutritionProductInstanceBuilder extends BackboneElementBuilder {
       lotNumber: lotNumber ?? this.lotNumber,
       expiry: expiry ?? this.expiry,
       useBy: useBy ?? this.useBy,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

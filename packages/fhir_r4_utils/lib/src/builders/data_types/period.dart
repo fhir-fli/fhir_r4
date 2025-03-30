@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, StringExtensionForFHIR, Period;
+    show Period, StringExtensionForFHIR, yamlMapToJson, yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -171,10 +171,13 @@ class PeriodBuilder extends DataTypeBuilder
   /// that period is expected/planned to end at that time.
   FhirDateTimeBuilder? end;
 
-  /// Converts a PeriodBuilder to [Period]
+  /// converts a [PeriodBuilder]
+  /// to [Period]
+  @override
   Period build() => Period.fromJson(toJson());
 
-  /// Converts a [PeriodBuilder] to a [Map<String, dynamic>]
+  /// converts a [PeriodBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -404,9 +407,7 @@ class PeriodBuilder extends DataTypeBuilder
       extension_: extension_ ?? this.extension_,
       start: start ?? this.start,
       end: end ?? this.end,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

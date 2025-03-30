@@ -1,13 +1,13 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
+        ClinicalImpression,
+        ClinicalImpressionFinding,
+        ClinicalImpressionInvestigation,
         R4ResourceType,
         StringExtensionForFHIR,
-        ClinicalImpression,
-        ClinicalImpressionInvestigation,
-        ClinicalImpressionFinding;
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -432,10 +432,13 @@ class ClinicalImpressionBuilder extends DomainResourceBuilder {
   /// author could also appear.
   List<AnnotationBuilder>? note;
 
-  /// Converts a ClinicalImpressionBuilder to [ClinicalImpression]
+  /// converts a [ClinicalImpressionBuilder]
+  /// to [ClinicalImpression]
+  @override
   ClinicalImpression build() => ClinicalImpression.fromJson(toJson());
 
-  /// Converts a [ClinicalImpressionBuilder] to a [Map<String, dynamic>]
+  /// converts a [ClinicalImpressionBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -990,7 +993,7 @@ class ClinicalImpressionBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             prognosisCodeableConcept = [
               ...(prognosisCodeableConcept ?? []),
-              child
+              child,
             ];
             return;
           } else {
@@ -1319,7 +1322,7 @@ class ClinicalImpressionBuilder extends DomainResourceBuilder {
     if (description) this.description = null;
     if (subject) this.subject = null;
     if (encounter) this.encounter = null;
-    if (effective) this.effectiveX = null;
+    if (effective) effectiveX = null;
     if (date) this.date = null;
     if (assessor) this.assessor = null;
     if (previous) this.previous = null;
@@ -1402,9 +1405,7 @@ class ClinicalImpressionBuilder extends DomainResourceBuilder {
       prognosisReference: prognosisReference ?? this.prognosisReference,
       supportingInfo: supportingInfo ?? this.supportingInfo,
       note: note ?? this.note,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1732,11 +1733,14 @@ class ClinicalImpressionInvestigationBuilder extends BackboneElementBuilder {
   /// A record of a specific investigation that was undertaken.
   List<ReferenceBuilder>? item;
 
-  /// Converts a ClinicalImpressionInvestigationBuilder to [ClinicalImpressionInvestigation]
+  /// converts a [ClinicalImpressionInvestigationBuilder]
+  /// to [ClinicalImpressionInvestigation]
+  @override
   ClinicalImpressionInvestigation build() =>
       ClinicalImpressionInvestigation.fromJson(toJson());
 
-  /// Converts a [ClinicalImpressionInvestigationBuilder] to a [Map<String, dynamic>]
+  /// converts a [ClinicalImpressionInvestigationBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2002,9 +2006,7 @@ class ClinicalImpressionInvestigationBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       code: code ?? this.code,
       item: item ?? this.item,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -2197,11 +2199,14 @@ class ClinicalImpressionFindingBuilder extends BackboneElementBuilder {
   /// Which investigations support finding or diagnosis.
   FhirStringBuilder? basis;
 
-  /// Converts a ClinicalImpressionFindingBuilder to [ClinicalImpressionFinding]
+  /// converts a [ClinicalImpressionFindingBuilder]
+  /// to [ClinicalImpressionFinding]
+  @override
   ClinicalImpressionFinding build() =>
       ClinicalImpressionFinding.fromJson(toJson());
 
-  /// Converts a [ClinicalImpressionFindingBuilder] to a [Map<String, dynamic>]
+  /// converts a [ClinicalImpressionFindingBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2488,9 +2493,7 @@ class ClinicalImpressionFindingBuilder extends BackboneElementBuilder {
       itemCodeableConcept: itemCodeableConcept ?? this.itemCodeableConcept,
       itemReference: itemReference ?? this.itemReference,
       basis: basis ?? this.basis,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

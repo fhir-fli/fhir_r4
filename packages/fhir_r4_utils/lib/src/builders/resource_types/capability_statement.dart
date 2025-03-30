@@ -1,24 +1,24 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
-        R4ResourceType,
-        StringExtensionForFHIR,
         CapabilityStatement,
-        CapabilityStatementSoftware,
+        CapabilityStatementDocument,
+        CapabilityStatementEndpoint,
         CapabilityStatementImplementation,
-        CapabilityStatementRest,
-        CapabilityStatementSecurity,
-        CapabilityStatementResource,
         CapabilityStatementInteraction,
-        CapabilityStatementSearchParam,
-        CapabilityStatementOperation,
         CapabilityStatementInteraction1,
         CapabilityStatementMessaging,
-        CapabilityStatementEndpoint,
+        CapabilityStatementOperation,
+        CapabilityStatementResource,
+        CapabilityStatementRest,
+        CapabilityStatementSearchParam,
+        CapabilityStatementSecurity,
+        CapabilityStatementSoftware,
         CapabilityStatementSupportedMessage,
-        CapabilityStatementDocument;
+        R4ResourceType,
+        StringExtensionForFHIR,
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -457,10 +457,13 @@ class CapabilityStatementBuilder extends CanonicalResourceBuilder {
   /// A document definition.
   List<CapabilityStatementDocumentBuilder>? document;
 
-  /// Converts a CapabilityStatementBuilder to [CapabilityStatement]
+  /// converts a [CapabilityStatementBuilder]
+  /// to [CapabilityStatement]
+  @override
   CapabilityStatement build() => CapabilityStatement.fromJson(toJson());
 
-  /// Converts a [CapabilityStatementBuilder] to a [Map<String, dynamic>]
+  /// converts a [CapabilityStatementBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1535,9 +1538,7 @@ class CapabilityStatementBuilder extends CanonicalResourceBuilder {
       rest: rest ?? this.rest,
       messaging: messaging ?? this.messaging,
       document: document ?? this.document,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1903,11 +1904,14 @@ class CapabilityStatementSoftwareBuilder extends BackboneElementBuilder {
   /// Date this version of the software was released.
   FhirDateTimeBuilder? releaseDate;
 
-  /// Converts a CapabilityStatementSoftwareBuilder to [CapabilityStatementSoftware]
+  /// converts a [CapabilityStatementSoftwareBuilder]
+  /// to [CapabilityStatementSoftware]
+  @override
   CapabilityStatementSoftware build() =>
       CapabilityStatementSoftware.fromJson(toJson());
 
-  /// Converts a [CapabilityStatementSoftwareBuilder] to a [Map<String, dynamic>]
+  /// converts a [CapabilityStatementSoftwareBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2194,9 +2198,7 @@ class CapabilityStatementSoftwareBuilder extends BackboneElementBuilder {
       name: name ?? this.name,
       version: version ?? this.version,
       releaseDate: releaseDate ?? this.releaseDate,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -2397,11 +2399,14 @@ class CapabilityStatementImplementationBuilder extends BackboneElementBuilder {
   /// oversight of the data on the server at the specified URL.
   ReferenceBuilder? custodian;
 
-  /// Converts a CapabilityStatementImplementationBuilder to [CapabilityStatementImplementation]
+  /// converts a [CapabilityStatementImplementationBuilder]
+  /// to [CapabilityStatementImplementation]
+  @override
   CapabilityStatementImplementation build() =>
       CapabilityStatementImplementation.fromJson(toJson());
 
-  /// Converts a [CapabilityStatementImplementationBuilder] to a [Map<String, dynamic>]
+  /// converts a [CapabilityStatementImplementationBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2689,9 +2694,7 @@ class CapabilityStatementImplementationBuilder extends BackboneElementBuilder {
       description: description ?? this.description,
       url: url ?? this.url,
       custodian: custodian ?? this.custodian,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -2968,10 +2971,13 @@ class CapabilityStatementRestBuilder extends BackboneElementBuilder {
   /// resource by its canonical URL .
   List<FhirCanonicalBuilder>? compartment;
 
-  /// Converts a CapabilityStatementRestBuilder to [CapabilityStatementRest]
+  /// converts a [CapabilityStatementRestBuilder]
+  /// to [CapabilityStatementRest]
+  @override
   CapabilityStatementRest build() => CapabilityStatementRest.fromJson(toJson());
 
-  /// Converts a [CapabilityStatementRestBuilder] to a [Map<String, dynamic>]
+  /// converts a [CapabilityStatementRestBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3413,9 +3419,7 @@ class CapabilityStatementRestBuilder extends BackboneElementBuilder {
       searchParam: searchParam ?? this.searchParam,
       operation: operation ?? this.operation,
       compartment: compartment ?? this.compartment,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -3647,11 +3651,14 @@ class CapabilityStatementSecurityBuilder extends BackboneElementBuilder {
   /// General description of how security works.
   FhirMarkdownBuilder? description;
 
-  /// Converts a CapabilityStatementSecurityBuilder to [CapabilityStatementSecurity]
+  /// converts a [CapabilityStatementSecurityBuilder]
+  /// to [CapabilityStatementSecurity]
+  @override
   CapabilityStatementSecurity build() =>
       CapabilityStatementSecurity.fromJson(toJson());
 
-  /// Converts a [CapabilityStatementSecurityBuilder] to a [Map<String, dynamic>]
+  /// converts a [CapabilityStatementSecurityBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3943,9 +3950,7 @@ class CapabilityStatementSecurityBuilder extends BackboneElementBuilder {
       cors: cors ?? this.cors,
       service: service ?? this.service,
       description: description ?? this.description,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -4335,11 +4340,14 @@ class CapabilityStatementResourceBuilder extends BackboneElementBuilder {
   /// parameters.
   List<CapabilityStatementOperationBuilder>? operation;
 
-  /// Converts a CapabilityStatementResourceBuilder to [CapabilityStatementResource]
+  /// converts a [CapabilityStatementResourceBuilder]
+  /// to [CapabilityStatementResource]
+  @override
   CapabilityStatementResource build() =>
       CapabilityStatementResource.fromJson(toJson());
 
-  /// Converts a [CapabilityStatementResourceBuilder] to a [Map<String, dynamic>]
+  /// converts a [CapabilityStatementResourceBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -5025,9 +5033,7 @@ class CapabilityStatementResourceBuilder extends BackboneElementBuilder {
       searchRevInclude: searchRevInclude ?? this.searchRevInclude,
       searchParam: searchParam ?? this.searchParam,
       operation: operation ?? this.operation,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -5298,11 +5304,14 @@ class CapabilityStatementInteractionBuilder extends BackboneElementBuilder {
   /// id' or 'creates permitted from pre-authorized certificates only'.
   FhirMarkdownBuilder? documentation;
 
-  /// Converts a CapabilityStatementInteractionBuilder to [CapabilityStatementInteraction]
+  /// converts a [CapabilityStatementInteractionBuilder]
+  /// to [CapabilityStatementInteraction]
+  @override
   CapabilityStatementInteraction build() =>
       CapabilityStatementInteraction.fromJson(toJson());
 
-  /// Converts a [CapabilityStatementInteractionBuilder] to a [Map<String, dynamic>]
+  /// converts a [CapabilityStatementInteractionBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -5563,9 +5572,7 @@ class CapabilityStatementInteractionBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       code: code ?? this.code,
       documentation: documentation ?? this.documentation,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -5776,11 +5783,14 @@ class CapabilityStatementSearchParamBuilder extends BackboneElementBuilder {
   /// search parameter is used. For example, text matching algorithms.
   FhirMarkdownBuilder? documentation;
 
-  /// Converts a CapabilityStatementSearchParamBuilder to [CapabilityStatementSearchParam]
+  /// converts a [CapabilityStatementSearchParamBuilder]
+  /// to [CapabilityStatementSearchParam]
+  @override
   CapabilityStatementSearchParam build() =>
       CapabilityStatementSearchParam.fromJson(toJson());
 
-  /// Converts a [CapabilityStatementSearchParamBuilder] to a [Map<String, dynamic>]
+  /// converts a [CapabilityStatementSearchParamBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -6093,9 +6103,7 @@ class CapabilityStatementSearchParamBuilder extends BackboneElementBuilder {
       definition: definition ?? this.definition,
       type: type ?? this.type,
       documentation: documentation ?? this.documentation,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -6312,11 +6320,14 @@ class CapabilityStatementOperationBuilder extends BackboneElementBuilder {
   /// instance-level invocation of the operation.
   FhirMarkdownBuilder? documentation;
 
-  /// Converts a CapabilityStatementOperationBuilder to [CapabilityStatementOperation]
+  /// converts a [CapabilityStatementOperationBuilder]
+  /// to [CapabilityStatementOperation]
+  @override
   CapabilityStatementOperation build() =>
       CapabilityStatementOperation.fromJson(toJson());
 
-  /// Converts a [CapabilityStatementOperationBuilder] to a [Map<String, dynamic>]
+  /// converts a [CapabilityStatementOperationBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -6603,9 +6614,7 @@ class CapabilityStatementOperationBuilder extends BackboneElementBuilder {
       name: name ?? this.name,
       definition: definition ?? this.definition,
       documentation: documentation ?? this.documentation,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -6792,11 +6801,14 @@ class CapabilityStatementInteraction1Builder extends BackboneElementBuilder {
   /// system wide search is implemented.
   FhirMarkdownBuilder? documentation;
 
-  /// Converts a CapabilityStatementInteraction1Builder to [CapabilityStatementInteraction1]
+  /// converts a [CapabilityStatementInteraction1Builder]
+  /// to [CapabilityStatementInteraction1]
+  @override
   CapabilityStatementInteraction1 build() =>
       CapabilityStatementInteraction1.fromJson(toJson());
 
-  /// Converts a [CapabilityStatementInteraction1Builder] to a [Map<String, dynamic>]
+  /// converts a [CapabilityStatementInteraction1Builder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -7057,9 +7069,7 @@ class CapabilityStatementInteraction1Builder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       code: code ?? this.code,
       documentation: documentation ?? this.documentation,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -7275,11 +7285,14 @@ class CapabilityStatementMessagingBuilder extends BackboneElementBuilder {
   /// receive.
   List<CapabilityStatementSupportedMessageBuilder>? supportedMessage;
 
-  /// Converts a CapabilityStatementMessagingBuilder to [CapabilityStatementMessaging]
+  /// converts a [CapabilityStatementMessagingBuilder]
+  /// to [CapabilityStatementMessaging]
+  @override
   CapabilityStatementMessaging build() =>
       CapabilityStatementMessaging.fromJson(toJson());
 
-  /// Converts a [CapabilityStatementMessagingBuilder] to a [Map<String, dynamic>]
+  /// converts a [CapabilityStatementMessagingBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -7602,9 +7615,7 @@ class CapabilityStatementMessagingBuilder extends BackboneElementBuilder {
       reliableCache: reliableCache ?? this.reliableCache,
       documentation: documentation ?? this.documentation,
       supportedMessage: supportedMessage ?? this.supportedMessage,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -7798,11 +7809,14 @@ class CapabilityStatementEndpointBuilder extends BackboneElementBuilder {
   /// network addresses for routing, it can be just an identifier.
   FhirUrlBuilder? address;
 
-  /// Converts a CapabilityStatementEndpointBuilder to [CapabilityStatementEndpoint]
+  /// converts a [CapabilityStatementEndpointBuilder]
+  /// to [CapabilityStatementEndpoint]
+  @override
   CapabilityStatementEndpoint build() =>
       CapabilityStatementEndpoint.fromJson(toJson());
 
-  /// Converts a [CapabilityStatementEndpointBuilder] to a [Map<String, dynamic>]
+  /// converts a [CapabilityStatementEndpointBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -8063,9 +8077,7 @@ class CapabilityStatementEndpointBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       protocol: protocol ?? this.protocol,
       address: address ?? this.address,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -8248,11 +8260,14 @@ class CapabilityStatementSupportedMessageBuilder
   /// message structure, allowed responses, etc.
   FhirCanonicalBuilder? definition;
 
-  /// Converts a CapabilityStatementSupportedMessageBuilder to [CapabilityStatementSupportedMessage]
+  /// converts a [CapabilityStatementSupportedMessageBuilder]
+  /// to [CapabilityStatementSupportedMessage]
+  @override
   CapabilityStatementSupportedMessage build() =>
       CapabilityStatementSupportedMessage.fromJson(toJson());
 
-  /// Converts a [CapabilityStatementSupportedMessageBuilder] to a [Map<String, dynamic>]
+  /// converts a [CapabilityStatementSupportedMessageBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -8514,9 +8529,7 @@ class CapabilityStatementSupportedMessageBuilder
       modifierExtension: modifierExtension ?? this.modifierExtension,
       mode: mode ?? this.mode,
       definition: definition ?? this.definition,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -8710,11 +8723,14 @@ class CapabilityStatementDocumentBuilder extends BackboneElementBuilder {
   /// present, and their contents.
   FhirCanonicalBuilder? profile;
 
-  /// Converts a CapabilityStatementDocumentBuilder to [CapabilityStatementDocument]
+  /// converts a [CapabilityStatementDocumentBuilder]
+  /// to [CapabilityStatementDocument]
+  @override
   CapabilityStatementDocument build() =>
       CapabilityStatementDocument.fromJson(toJson());
 
-  /// Converts a [CapabilityStatementDocumentBuilder] to a [Map<String, dynamic>]
+  /// converts a [CapabilityStatementDocumentBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -9001,9 +9017,7 @@ class CapabilityStatementDocumentBuilder extends BackboneElementBuilder {
       mode: mode ?? this.mode,
       documentation: documentation ?? this.documentation,
       profile: profile ?? this.profile,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

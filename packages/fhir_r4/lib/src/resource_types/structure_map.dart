@@ -5690,7 +5690,7 @@ class StructureMapSource extends BackboneElement {
           'TriggerDefinition',
           'UsageContext',
           'Dosage',
-          'FhirMeta'
+          'FhirMeta',
         ];
       case 'defaultValueBase64Binary':
         return ['FhirBase64Binary'];
@@ -7602,7 +7602,7 @@ class StructureMapParameter extends BackboneElement {
           'FhirString',
           'FhirBoolean',
           'FhirInteger',
-          'FhirDecimal'
+          'FhirDecimal',
         ];
       case 'valueId':
         return ['FhirId'];

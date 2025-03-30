@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, StringExtensionForFHIR, FhirMeta;
+    show FhirMeta, StringExtensionForFHIR, yamlMapToJson, yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -182,10 +182,13 @@ class FhirMetaBuilder extends DataTypeBuilder
   /// resource.
   List<CodingBuilder>? tag;
 
-  /// Converts a FhirMetaBuilder to [FhirMeta]
+  /// converts a [FhirMetaBuilder]
+  /// to [FhirMeta]
+  @override
   FhirMeta build() => FhirMeta.fromJson(toJson());
 
-  /// Converts a [FhirMetaBuilder] to a [Map<String, dynamic>]
+  /// converts a [FhirMetaBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -534,9 +537,7 @@ class FhirMetaBuilder extends DataTypeBuilder
       profile: profile ?? this.profile,
       security: security ?? this.security,
       tag: tag ?? this.tag,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

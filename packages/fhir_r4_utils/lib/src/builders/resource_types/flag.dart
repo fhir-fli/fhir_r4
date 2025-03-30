@@ -1,11 +1,11 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
+        Flag,
         R4ResourceType,
         StringExtensionForFHIR,
-        Flag;
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -249,10 +249,13 @@ class FlagBuilder extends DomainResourceBuilder {
   /// The person, organization or device that created the flag.
   ReferenceBuilder? author;
 
-  /// Converts a FlagBuilder to [Flag]
+  /// converts a [FlagBuilder]
+  /// to [Flag]
+  @override
   Flag build() => Flag.fromJson(toJson());
 
-  /// Converts a [FlagBuilder] to a [Map<String, dynamic>]
+  /// converts a [FlagBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -814,9 +817,7 @@ class FlagBuilder extends DomainResourceBuilder {
       period: period ?? this.period,
       encounter: encounter ?? this.encounter,
       author: author ?? this.author,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

@@ -3380,7 +3380,7 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
           'CodeableConcept',
           'FhirCanonical',
           'FhirExpression',
-          'DataRequirement'
+          'DataRequirement',
         ];
       case 'definitionCodeableConcept':
         return ['CodeableConcept'];

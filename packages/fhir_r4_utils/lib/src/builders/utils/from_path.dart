@@ -44,7 +44,8 @@ FhirBaseBuilder? fromPath(String? path, dynamic value) {
       return value is! Map<String, dynamic>
           ? null
           : AdministrableProductDefinitionRouteOfAdministrationBuilder.fromJson(
-              value);
+              value,
+            );
     case 'administrableproductdefinition.routeofadministration.targetspecies':
       return value is! Map<String, dynamic>
           ? null
@@ -53,7 +54,8 @@ FhirBaseBuilder? fromPath(String? path, dynamic value) {
       return value is! Map<String, dynamic>
           ? null
           : AdministrableProductDefinitionWithdrawalPeriodBuilder.fromJson(
-              value);
+              value,
+            );
     case 'adverseevent':
       return value is! Map<String, dynamic>
           ? null
@@ -1506,7 +1508,8 @@ FhirBaseBuilder? fromPath(String? path, dynamic value) {
       return value is! Map<String, dynamic>
           ? null
           : MedicationKnowledgeRelatedMedicationKnowledgeBuilder.fromJson(
-              value);
+              value,
+            );
     case 'medicationknowledge.monograph':
       return value is! Map<String, dynamic>
           ? null

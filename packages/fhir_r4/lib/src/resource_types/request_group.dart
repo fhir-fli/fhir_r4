@@ -2621,7 +2621,7 @@ class RequestGroupAction extends BackboneElement {
           'Period',
           'FhirDuration',
           'Range',
-          'Timing'
+          'Timing',
         ];
       case 'timingDateTime':
         return ['FhirDateTime'];

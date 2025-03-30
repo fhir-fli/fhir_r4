@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, StringExtensionForFHIR, Reference;
+    show Reference, StringExtensionForFHIR, yamlMapToJson, yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -238,10 +238,13 @@ class ReferenceBuilder extends DataTypeBuilder
   /// resource reference.
   FhirStringBuilder? display;
 
-  /// Converts a ReferenceBuilder to [Reference]
+  /// converts a [ReferenceBuilder]
+  /// to [Reference]
+  @override
   Reference build() => Reference.fromJson(toJson());
 
-  /// Converts a [ReferenceBuilder] to a [Map<String, dynamic>]
+  /// converts a [ReferenceBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -523,9 +526,7 @@ class ReferenceBuilder extends DataTypeBuilder
       type: type ?? this.type,
       identifier: identifier ?? this.identifier,
       display: display ?? this.display,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

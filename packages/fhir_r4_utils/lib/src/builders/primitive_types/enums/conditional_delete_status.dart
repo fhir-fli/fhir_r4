@@ -47,7 +47,8 @@ class ConditionalDeleteStatusBuilder extends FhirCodeEnumBuilder {
   factory ConditionalDeleteStatusBuilder.empty() =>
       ConditionalDeleteStatusBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [ConditionalDeleteStatusBuilder] from JSON.
+  /// Factory constructor to create [ConditionalDeleteStatusBuilder]
+  /// from JSON.
   factory ConditionalDeleteStatusBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
@@ -117,7 +118,9 @@ class ConditionalDeleteStatusBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   ConditionalDeleteStatusBuilder withElement(ElementBuilder? newElement) {
     return ConditionalDeleteStatusBuilder._(
-        validatedValue: value, element: newElement);
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

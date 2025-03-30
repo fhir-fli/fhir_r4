@@ -47,7 +47,8 @@ class StructureMapContextTypeBuilder extends FhirCodeEnumBuilder {
   factory StructureMapContextTypeBuilder.empty() =>
       StructureMapContextTypeBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [StructureMapContextTypeBuilder] from JSON.
+  /// Factory constructor to create [StructureMapContextTypeBuilder]
+  /// from JSON.
   factory StructureMapContextTypeBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
@@ -103,7 +104,9 @@ class StructureMapContextTypeBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   StructureMapContextTypeBuilder withElement(ElementBuilder? newElement) {
     return StructureMapContextTypeBuilder._(
-        validatedValue: value, element: newElement);
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

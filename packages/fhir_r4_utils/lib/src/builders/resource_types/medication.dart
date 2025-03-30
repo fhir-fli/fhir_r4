@@ -1,13 +1,13 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
+        Medication,
+        MedicationBatch,
+        MedicationIngredient,
         R4ResourceType,
         StringExtensionForFHIR,
-        Medication,
-        MedicationIngredient,
-        MedicationBatch;
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -255,10 +255,13 @@ class MedicationBuilder extends DomainResourceBuilder {
   /// Information that only applies to packages (not products).
   MedicationBatchBuilder? batch;
 
-  /// Converts a MedicationBuilder to [Medication]
+  /// converts a [MedicationBuilder]
+  /// to [Medication]
+  @override
   Medication build() => Medication.fromJson(toJson());
 
-  /// Converts a [MedicationBuilder] to a [Map<String, dynamic>]
+  /// converts a [MedicationBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -820,9 +823,7 @@ class MedicationBuilder extends DomainResourceBuilder {
       amount: amount ?? this.amount,
       ingredient: ingredient ?? this.ingredient,
       batch: batch ?? this.batch,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1090,10 +1091,13 @@ class MedicationIngredientBuilder extends BackboneElementBuilder {
   /// ratio where the numerator is 250mg and the denominator is 1 tablet.
   RatioBuilder? strength;
 
-  /// Converts a MedicationIngredientBuilder to [MedicationIngredient]
+  /// converts a [MedicationIngredientBuilder]
+  /// to [MedicationIngredient]
+  @override
   MedicationIngredient build() => MedicationIngredient.fromJson(toJson());
 
-  /// Converts a [MedicationIngredientBuilder] to a [Map<String, dynamic>]
+  /// converts a [MedicationIngredientBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1405,7 +1409,7 @@ class MedicationIngredientBuilder extends BackboneElementBuilder {
     if (id) this.id = null;
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
-    if (item) this.itemX = null;
+    if (item) itemX = null;
     if (isActive) this.isActive = null;
     if (strength) this.strength = null;
   }
@@ -1434,9 +1438,7 @@ class MedicationIngredientBuilder extends BackboneElementBuilder {
       itemX: itemX ?? this.itemX,
       isActive: isActive ?? this.isActive,
       strength: strength ?? this.strength,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1620,10 +1622,13 @@ class MedicationBatchBuilder extends BackboneElementBuilder {
   /// When this specific batch of product will expire.
   FhirDateTimeBuilder? expirationDate;
 
-  /// Converts a MedicationBatchBuilder to [MedicationBatch]
+  /// converts a [MedicationBatchBuilder]
+  /// to [MedicationBatch]
+  @override
   MedicationBatch build() => MedicationBatch.fromJson(toJson());
 
-  /// Converts a [MedicationBatchBuilder] to a [Map<String, dynamic>]
+  /// converts a [MedicationBatchBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1884,9 +1889,7 @@ class MedicationBatchBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       lotNumber: lotNumber ?? this.lotNumber,
       expirationDate: expirationDate ?? this.expirationDate,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

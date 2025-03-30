@@ -1,13 +1,13 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
         R4ResourceType,
         StringExtensionForFHIR,
         Substance,
+        SubstanceIngredient,
         SubstanceInstance,
-        SubstanceIngredient;
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -242,10 +242,13 @@ class SubstanceBuilder extends DomainResourceBuilder {
   /// A substance can be composed of other substances.
   List<SubstanceIngredientBuilder>? ingredient;
 
-  /// Converts a SubstanceBuilder to [Substance]
+  /// converts a [SubstanceBuilder]
+  /// to [Substance]
+  @override
   Substance build() => Substance.fromJson(toJson());
 
-  /// Converts a [SubstanceBuilder] to a [Map<String, dynamic>]
+  /// converts a [SubstanceBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -791,9 +794,7 @@ class SubstanceBuilder extends DomainResourceBuilder {
       description: description ?? this.description,
       instance: instance ?? this.instance,
       ingredient: ingredient ?? this.ingredient,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1045,10 +1046,13 @@ class SubstanceInstanceBuilder extends BackboneElementBuilder {
   /// The amount of the substance.
   QuantityBuilder? quantity;
 
-  /// Converts a SubstanceInstanceBuilder to [SubstanceInstance]
+  /// converts a [SubstanceInstanceBuilder]
+  /// to [SubstanceInstance]
+  @override
   SubstanceInstance build() => SubstanceInstance.fromJson(toJson());
 
-  /// Converts a [SubstanceInstanceBuilder] to a [Map<String, dynamic>]
+  /// converts a [SubstanceInstanceBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1335,9 +1339,7 @@ class SubstanceInstanceBuilder extends BackboneElementBuilder {
       identifier: identifier ?? this.identifier,
       expiry: expiry ?? this.expiry,
       quantity: quantity ?? this.quantity,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1532,10 +1534,13 @@ class SubstanceIngredientBuilder extends BackboneElementBuilder {
   ReferenceBuilder? get substanceReference =>
       substanceX?.isAs<ReferenceBuilder>();
 
-  /// Converts a SubstanceIngredientBuilder to [SubstanceIngredient]
+  /// converts a [SubstanceIngredientBuilder]
+  /// to [SubstanceIngredient]
+  @override
   SubstanceIngredient build() => SubstanceIngredient.fromJson(toJson());
 
-  /// Converts a [SubstanceIngredientBuilder] to a [Map<String, dynamic>]
+  /// converts a [SubstanceIngredientBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1825,7 +1830,7 @@ class SubstanceIngredientBuilder extends BackboneElementBuilder {
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
     if (quantity) this.quantity = null;
-    if (substance) this.substanceX = null;
+    if (substance) substanceX = null;
   }
 
   @override
@@ -1850,9 +1855,7 @@ class SubstanceIngredientBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       quantity: quantity ?? this.quantity,
       substanceX: substanceX ?? this.substanceX,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

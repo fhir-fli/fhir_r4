@@ -1,17 +1,17 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
-        R4ResourceType,
-        StringExtensionForFHIR,
         MeasureReport,
+        MeasureReportComponent,
         MeasureReportGroup,
         MeasureReportPopulation,
+        MeasureReportPopulation1,
         MeasureReportStratifier,
         MeasureReportStratum,
-        MeasureReportComponent,
-        MeasureReportPopulation1;
+        R4ResourceType,
+        StringExtensionForFHIR,
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -298,10 +298,13 @@ class MeasureReportBuilder extends DomainResourceBuilder {
   /// calculation of this measure.
   List<ReferenceBuilder>? evaluatedResource;
 
-  /// Converts a MeasureReportBuilder to [MeasureReport]
+  /// converts a [MeasureReportBuilder]
+  /// to [MeasureReport]
+  @override
   MeasureReport build() => MeasureReport.fromJson(toJson());
 
-  /// Converts a [MeasureReportBuilder] to a [Map<String, dynamic>]
+  /// converts a [MeasureReportBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -946,9 +949,7 @@ class MeasureReportBuilder extends DomainResourceBuilder {
       improvementNotation: improvementNotation ?? this.improvementNotation,
       group: group ?? this.group,
       evaluatedResource: evaluatedResource ?? this.evaluatedResource,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1246,10 +1247,13 @@ class MeasureReportGroupBuilder extends BackboneElementBuilder {
   /// stratifier group for each stratifier defined by the measure.
   List<MeasureReportStratifierBuilder>? stratifier;
 
-  /// Converts a MeasureReportGroupBuilder to [MeasureReportGroup]
+  /// converts a [MeasureReportGroupBuilder]
+  /// to [MeasureReportGroup]
+  @override
   MeasureReportGroup build() => MeasureReportGroup.fromJson(toJson());
 
-  /// Converts a [MeasureReportGroupBuilder] to a [Map<String, dynamic>]
+  /// converts a [MeasureReportGroupBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1572,9 +1576,7 @@ class MeasureReportGroupBuilder extends BackboneElementBuilder {
       population: population ?? this.population,
       measureScore: measureScore ?? this.measureScore,
       stratifier: stratifier ?? this.stratifier,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1778,10 +1780,13 @@ class MeasureReportPopulationBuilder extends BackboneElementBuilder {
   /// one for each subject in this population.
   ReferenceBuilder? subjectResults;
 
-  /// Converts a MeasureReportPopulationBuilder to [MeasureReportPopulation]
+  /// converts a [MeasureReportPopulationBuilder]
+  /// to [MeasureReportPopulation]
+  @override
   MeasureReportPopulation build() => MeasureReportPopulation.fromJson(toJson());
 
-  /// Converts a [MeasureReportPopulationBuilder] to a [Map<String, dynamic>]
+  /// converts a [MeasureReportPopulationBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2068,9 +2073,7 @@ class MeasureReportPopulationBuilder extends BackboneElementBuilder {
       code: code ?? this.code,
       count: count ?? this.count,
       subjectResults: subjectResults ?? this.subjectResults,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -2266,10 +2269,13 @@ class MeasureReportStratifierBuilder extends BackboneElementBuilder {
   /// there will be four strata, one for each possible gender value.
   List<MeasureReportStratumBuilder>? stratum;
 
-  /// Converts a MeasureReportStratifierBuilder to [MeasureReportStratifier]
+  /// converts a [MeasureReportStratifierBuilder]
+  /// to [MeasureReportStratifier]
+  @override
   MeasureReportStratifier build() => MeasureReportStratifier.fromJson(toJson());
 
-  /// Converts a [MeasureReportStratifierBuilder] to a [Map<String, dynamic>]
+  /// converts a [MeasureReportStratifierBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2540,9 +2546,7 @@ class MeasureReportStratifierBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       code: code ?? this.code,
       stratum: stratum ?? this.stratum,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -2757,10 +2761,13 @@ class MeasureReportStratumBuilder extends BackboneElementBuilder {
   /// stratum.
   QuantityBuilder? measureScore;
 
-  /// Converts a MeasureReportStratumBuilder to [MeasureReportStratum]
+  /// converts a [MeasureReportStratumBuilder]
+  /// to [MeasureReportStratum]
+  @override
   MeasureReportStratum build() => MeasureReportStratum.fromJson(toJson());
 
-  /// Converts a [MeasureReportStratumBuilder] to a [Map<String, dynamic>]
+  /// converts a [MeasureReportStratumBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3083,9 +3090,7 @@ class MeasureReportStratumBuilder extends BackboneElementBuilder {
       component: component ?? this.component,
       population: population ?? this.population,
       measureScore: measureScore ?? this.measureScore,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -3276,10 +3281,13 @@ class MeasureReportComponentBuilder extends BackboneElementBuilder {
   /// The stratum component value.
   CodeableConceptBuilder? value;
 
-  /// Converts a MeasureReportComponentBuilder to [MeasureReportComponent]
+  /// converts a [MeasureReportComponentBuilder]
+  /// to [MeasureReportComponent]
+  @override
   MeasureReportComponent build() => MeasureReportComponent.fromJson(toJson());
 
-  /// Converts a [MeasureReportComponentBuilder] to a [Map<String, dynamic>]
+  /// converts a [MeasureReportComponentBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3540,9 +3548,7 @@ class MeasureReportComponentBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       code: code ?? this.code,
       value: value ?? this.value,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -3734,11 +3740,14 @@ class MeasureReportPopulation1Builder extends BackboneElementBuilder {
   /// one for each subject in this population in this stratum.
   ReferenceBuilder? subjectResults;
 
-  /// Converts a MeasureReportPopulation1Builder to [MeasureReportPopulation1]
+  /// converts a [MeasureReportPopulation1Builder]
+  /// to [MeasureReportPopulation1]
+  @override
   MeasureReportPopulation1 build() =>
       MeasureReportPopulation1.fromJson(toJson());
 
-  /// Converts a [MeasureReportPopulation1Builder] to a [Map<String, dynamic>]
+  /// converts a [MeasureReportPopulation1Builder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -4025,9 +4034,7 @@ class MeasureReportPopulation1Builder extends BackboneElementBuilder {
       code: code ?? this.code,
       count: count ?? this.count,
       subjectResults: subjectResults ?? this.subjectResults,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

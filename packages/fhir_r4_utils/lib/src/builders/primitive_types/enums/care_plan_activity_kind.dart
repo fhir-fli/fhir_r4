@@ -48,7 +48,8 @@ class CarePlanActivityKindBuilder extends FhirCodeEnumBuilder {
   factory CarePlanActivityKindBuilder.empty() =>
       CarePlanActivityKindBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [CarePlanActivityKindBuilder] from JSON.
+  /// Factory constructor to create [CarePlanActivityKindBuilder]
+  /// from JSON.
   factory CarePlanActivityKindBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
@@ -1612,7 +1613,9 @@ class CarePlanActivityKindBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   CarePlanActivityKindBuilder withElement(ElementBuilder? newElement) {
     return CarePlanActivityKindBuilder._(
-        validatedValue: value, element: newElement);
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

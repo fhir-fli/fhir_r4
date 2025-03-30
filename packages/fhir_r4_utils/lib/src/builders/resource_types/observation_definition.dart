@@ -1,13 +1,13 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
+        ObservationDefinition,
+        ObservationDefinitionQualifiedInterval,
+        ObservationDefinitionQuantitativeDetails,
         R4ResourceType,
         StringExtensionForFHIR,
-        ObservationDefinition,
-        ObservationDefinitionQuantitativeDetails,
-        ObservationDefinitionQualifiedInterval;
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -314,10 +314,13 @@ class ObservationDefinitionBuilder extends DomainResourceBuilder {
   /// this ObservationDefinition.
   ReferenceBuilder? criticalCodedValueSet;
 
-  /// Converts a ObservationDefinitionBuilder to [ObservationDefinition]
+  /// converts a [ObservationDefinitionBuilder]
+  /// to [ObservationDefinition]
+  @override
   ObservationDefinition build() => ObservationDefinition.fromJson(toJson());
 
-  /// Converts a [ObservationDefinitionBuilder] to a [Map<String, dynamic>]
+  /// converts a [ObservationDefinitionBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1023,9 +1026,7 @@ class ObservationDefinitionBuilder extends DomainResourceBuilder {
           abnormalCodedValueSet ?? this.abnormalCodedValueSet,
       criticalCodedValueSet:
           criticalCodedValueSet ?? this.criticalCodedValueSet,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1327,11 +1328,14 @@ class ObservationDefinitionQuantitativeDetailsBuilder
   /// observations are of type Quantity.
   FhirIntegerBuilder? decimalPrecision;
 
-  /// Converts a ObservationDefinitionQuantitativeDetailsBuilder to [ObservationDefinitionQuantitativeDetails]
+  /// converts a [ObservationDefinitionQuantitativeDetailsBuilder]
+  /// to [ObservationDefinitionQuantitativeDetails]
+  @override
   ObservationDefinitionQuantitativeDetails build() =>
       ObservationDefinitionQuantitativeDetails.fromJson(toJson());
 
-  /// Converts a [ObservationDefinitionQuantitativeDetailsBuilder] to a [Map<String, dynamic>]
+  /// converts a [ObservationDefinitionQuantitativeDetailsBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1645,9 +1649,7 @@ class ObservationDefinitionQuantitativeDetailsBuilder
       unit: unit ?? this.unit,
       conversionFactor: conversionFactor ?? this.conversionFactor,
       decimalPrecision: decimalPrecision ?? this.decimalPrecision,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1916,11 +1918,14 @@ class ObservationDefinitionQualifiedIntervalBuilder
   /// Text based condition for which the reference range is valid.
   FhirStringBuilder? condition;
 
-  /// Converts a ObservationDefinitionQualifiedIntervalBuilder to [ObservationDefinitionQualifiedInterval]
+  /// converts a [ObservationDefinitionQualifiedIntervalBuilder]
+  /// to [ObservationDefinitionQualifiedInterval]
+  @override
   ObservationDefinitionQualifiedInterval build() =>
       ObservationDefinitionQualifiedInterval.fromJson(toJson());
 
-  /// Converts a [ObservationDefinitionQualifiedIntervalBuilder] to a [Map<String, dynamic>]
+  /// converts a [ObservationDefinitionQualifiedIntervalBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2343,9 +2348,7 @@ class ObservationDefinitionQualifiedIntervalBuilder
       age: age ?? this.age,
       gestationalAge: gestationalAge ?? this.gestationalAge,
       condition: condition ?? this.condition,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

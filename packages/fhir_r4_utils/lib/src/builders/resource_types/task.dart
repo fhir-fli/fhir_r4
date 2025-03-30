@@ -1,14 +1,14 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
         R4ResourceType,
         StringExtensionForFHIR,
         Task,
-        TaskRestriction,
         TaskInput,
-        TaskOutput;
+        TaskOutput,
+        TaskRestriction,
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -548,10 +548,13 @@ class TaskBuilder extends DomainResourceBuilder {
   /// Outputs produced by the Task.
   List<TaskOutputBuilder>? output;
 
-  /// Converts a TaskBuilder to [Task]
+  /// converts a [TaskBuilder]
+  /// to [Task]
+  @override
   Task build() => Task.fromJson(toJson());
 
-  /// Converts a [TaskBuilder] to a [Map<String, dynamic>]
+  /// converts a [TaskBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1747,9 +1750,7 @@ class TaskBuilder extends DomainResourceBuilder {
       restriction: restriction ?? this.restriction,
       input: input ?? this.input,
       output: output ?? this.output,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -2150,10 +2151,13 @@ class TaskRestrictionBuilder extends BackboneElementBuilder {
   /// recipient/target, for whom is fulfillment sought?
   List<ReferenceBuilder>? recipient;
 
-  /// Converts a TaskRestrictionBuilder to [TaskRestriction]
+  /// converts a [TaskRestrictionBuilder]
+  /// to [TaskRestriction]
+  @override
   TaskRestriction build() => TaskRestriction.fromJson(toJson());
 
-  /// Converts a [TaskRestrictionBuilder] to a [Map<String, dynamic>]
+  /// converts a [TaskRestrictionBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2445,9 +2449,7 @@ class TaskRestrictionBuilder extends BackboneElementBuilder {
       repetitions: repetitions ?? this.repetitions,
       period: period ?? this.period,
       recipient: recipient ?? this.recipient,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -2847,10 +2849,13 @@ class TaskInputBuilder extends BackboneElementBuilder {
   /// Getter for [valueMeta] as a FhirMetaBuilder
   FhirMetaBuilder? get valueMeta => valueX?.isAs<FhirMetaBuilder>();
 
-  /// Converts a TaskInputBuilder to [TaskInput]
+  /// converts a [TaskInputBuilder]
+  /// to [TaskInput]
+  @override
   TaskInput build() => TaskInput.fromJson(toJson());
 
-  /// Converts a [TaskInputBuilder] to a [Map<String, dynamic>]
+  /// converts a [TaskInputBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3941,7 +3946,7 @@ class TaskInputBuilder extends BackboneElementBuilder {
           'TriggerDefinitionBuilder',
           'UsageContextBuilder',
           'DosageBuilder',
-          'FhirMetaBuilder'
+          'FhirMetaBuilder',
         ];
       case 'valueBase64Binary':
         return ['FhirBase64BinaryBuilder'];
@@ -4343,7 +4348,7 @@ class TaskInputBuilder extends BackboneElementBuilder {
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
     if (type) this.type = null;
-    if (value) this.valueX = null;
+    if (value) valueX = null;
   }
 
   @override
@@ -4368,9 +4373,7 @@ class TaskInputBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       type: type ?? this.type,
       valueX: valueX ?? this.valueX,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -4763,10 +4766,13 @@ class TaskOutputBuilder extends BackboneElementBuilder {
   /// Getter for [valueMeta] as a FhirMetaBuilder
   FhirMetaBuilder? get valueMeta => valueX?.isAs<FhirMetaBuilder>();
 
-  /// Converts a TaskOutputBuilder to [TaskOutput]
+  /// converts a [TaskOutputBuilder]
+  /// to [TaskOutput]
+  @override
   TaskOutput build() => TaskOutput.fromJson(toJson());
 
-  /// Converts a [TaskOutputBuilder] to a [Map<String, dynamic>]
+  /// converts a [TaskOutputBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -5857,7 +5863,7 @@ class TaskOutputBuilder extends BackboneElementBuilder {
           'TriggerDefinitionBuilder',
           'UsageContextBuilder',
           'DosageBuilder',
-          'FhirMetaBuilder'
+          'FhirMetaBuilder',
         ];
       case 'valueBase64Binary':
         return ['FhirBase64BinaryBuilder'];
@@ -6259,7 +6265,7 @@ class TaskOutputBuilder extends BackboneElementBuilder {
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
     if (type) this.type = null;
-    if (value) this.valueX = null;
+    if (value) valueX = null;
   }
 
   @override
@@ -6284,9 +6290,7 @@ class TaskOutputBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       type: type ?? this.type,
       valueX: valueX ?? this.valueX,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

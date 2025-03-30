@@ -47,7 +47,8 @@ class FHIRSubstanceStatusBuilder extends FhirCodeEnumBuilder {
   factory FHIRSubstanceStatusBuilder.empty() =>
       FHIRSubstanceStatusBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [FHIRSubstanceStatusBuilder] from JSON.
+  /// Factory constructor to create [FHIRSubstanceStatusBuilder]
+  /// from JSON.
   factory FHIRSubstanceStatusBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
@@ -112,7 +113,9 @@ class FHIRSubstanceStatusBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   FHIRSubstanceStatusBuilder withElement(ElementBuilder? newElement) {
     return FHIRSubstanceStatusBuilder._(
-        validatedValue: value, element: newElement);
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

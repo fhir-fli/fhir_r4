@@ -47,7 +47,8 @@ class ActionGroupingBehaviorBuilder extends FhirCodeEnumBuilder {
   factory ActionGroupingBehaviorBuilder.empty() =>
       ActionGroupingBehaviorBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [ActionGroupingBehaviorBuilder] from JSON.
+  /// Factory constructor to create [ActionGroupingBehaviorBuilder]
+  /// from JSON.
   factory ActionGroupingBehaviorBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
@@ -117,7 +118,9 @@ class ActionGroupingBehaviorBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   ActionGroupingBehaviorBuilder withElement(ElementBuilder? newElement) {
     return ActionGroupingBehaviorBuilder._(
-        validatedValue: value, element: newElement);
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

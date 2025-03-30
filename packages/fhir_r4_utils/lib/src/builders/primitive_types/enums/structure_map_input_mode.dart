@@ -47,7 +47,8 @@ class StructureMapInputModeBuilder extends FhirCodeEnumBuilder {
   factory StructureMapInputModeBuilder.empty() =>
       StructureMapInputModeBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [StructureMapInputModeBuilder] from JSON.
+  /// Factory constructor to create [StructureMapInputModeBuilder]
+  /// from JSON.
   factory StructureMapInputModeBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
@@ -102,7 +103,9 @@ class StructureMapInputModeBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   StructureMapInputModeBuilder withElement(ElementBuilder? newElement) {
     return StructureMapInputModeBuilder._(
-        validatedValue: value, element: newElement);
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

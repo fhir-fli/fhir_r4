@@ -3574,7 +3574,7 @@ class QuestionnaireEnableWhen extends BackboneElement {
           'FhirString',
           'Coding',
           'Quantity',
-          'Reference'
+          'Reference',
         ];
       case 'answerBoolean':
         return ['FhirBoolean'];
@@ -4261,7 +4261,7 @@ class QuestionnaireAnswerOption extends BackboneElement {
           'FhirTime',
           'FhirString',
           'Coding',
-          'Reference'
+          'Reference',
         ];
       case 'valueInteger':
         return ['FhirInteger'];
@@ -4993,7 +4993,7 @@ class QuestionnaireInitial extends BackboneElement {
           'Attachment',
           'Coding',
           'Quantity',
-          'Reference'
+          'Reference',
         ];
       case 'valueBoolean':
         return ['FhirBoolean'];

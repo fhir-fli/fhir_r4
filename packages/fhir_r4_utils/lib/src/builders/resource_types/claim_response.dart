@@ -1,23 +1,23 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
-        R4ResourceType,
-        StringExtensionForFHIR,
         ClaimResponse,
-        ClaimResponseItem,
+        ClaimResponseAddItem,
         ClaimResponseAdjudication,
         ClaimResponseDetail,
-        ClaimResponseSubDetail,
-        ClaimResponseAddItem,
         ClaimResponseDetail1,
-        ClaimResponseSubDetail1,
-        ClaimResponseTotal,
+        ClaimResponseError,
+        ClaimResponseInsurance,
+        ClaimResponseItem,
         ClaimResponsePayment,
         ClaimResponseProcessNote,
-        ClaimResponseInsurance,
-        ClaimResponseError;
+        ClaimResponseSubDetail,
+        ClaimResponseSubDetail1,
+        ClaimResponseTotal,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -509,10 +509,13 @@ class ClaimResponseBuilder extends DomainResourceBuilder {
   /// Errors encountered during the processing of the adjudication.
   List<ClaimResponseErrorBuilder>? error;
 
-  /// Converts a ClaimResponseBuilder to [ClaimResponse]
+  /// converts a [ClaimResponseBuilder]
+  /// to [ClaimResponse]
+  @override
   ClaimResponse build() => ClaimResponse.fromJson(toJson());
 
-  /// Converts a [ClaimResponseBuilder] to a [Map<String, dynamic>]
+  /// converts a [ClaimResponseBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1603,9 +1606,7 @@ class ClaimResponseBuilder extends DomainResourceBuilder {
       communicationRequest: communicationRequest ?? this.communicationRequest,
       insurance: insurance ?? this.insurance,
       error: error ?? this.error,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1998,10 +1999,13 @@ class ClaimResponseItemBuilder extends BackboneElementBuilder {
   /// sub-details which are simple items.
   List<ClaimResponseDetailBuilder>? detail;
 
-  /// Converts a ClaimResponseItemBuilder to [ClaimResponseItem]
+  /// converts a [ClaimResponseItemBuilder]
+  /// to [ClaimResponseItem]
+  @override
   ClaimResponseItem build() => ClaimResponseItem.fromJson(toJson());
 
-  /// Converts a [ClaimResponseItemBuilder] to a [Map<String, dynamic>]
+  /// converts a [ClaimResponseItemBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2329,9 +2333,7 @@ class ClaimResponseItemBuilder extends BackboneElementBuilder {
       noteNumber: noteNumber ?? this.noteNumber,
       adjudication: adjudication ?? this.adjudication,
       detail: detail ?? this.detail,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -2553,11 +2555,14 @@ class ClaimResponseAdjudicationBuilder extends BackboneElementBuilder {
   /// to the amount element above.
   FhirDecimalBuilder? value;
 
-  /// Converts a ClaimResponseAdjudicationBuilder to [ClaimResponseAdjudication]
+  /// converts a [ClaimResponseAdjudicationBuilder]
+  /// to [ClaimResponseAdjudication]
+  @override
   ClaimResponseAdjudication build() =>
       ClaimResponseAdjudication.fromJson(toJson());
 
-  /// Converts a [ClaimResponseAdjudicationBuilder] to a [Map<String, dynamic>]
+  /// converts a [ClaimResponseAdjudicationBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2870,9 +2875,7 @@ class ClaimResponseAdjudicationBuilder extends BackboneElementBuilder {
       reason: reason ?? this.reason,
       amount: amount ?? this.amount,
       value: value ?? this.value,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -3094,10 +3097,13 @@ class ClaimResponseDetailBuilder extends BackboneElementBuilder {
   /// A sub-detail adjudication of a simple product or service.
   List<ClaimResponseSubDetailBuilder>? subDetail;
 
-  /// Converts a ClaimResponseDetailBuilder to [ClaimResponseDetail]
+  /// converts a [ClaimResponseDetailBuilder]
+  /// to [ClaimResponseDetail]
+  @override
   ClaimResponseDetail build() => ClaimResponseDetail.fromJson(toJson());
 
-  /// Converts a [ClaimResponseDetailBuilder] to a [Map<String, dynamic>]
+  /// converts a [ClaimResponseDetailBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3425,9 +3431,7 @@ class ClaimResponseDetailBuilder extends BackboneElementBuilder {
       noteNumber: noteNumber ?? this.noteNumber,
       adjudication: adjudication ?? this.adjudication,
       subDetail: subDetail ?? this.subDetail,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -3634,10 +3638,13 @@ class ClaimResponseSubDetailBuilder extends BackboneElementBuilder {
   /// The adjudication results.
   List<ClaimResponseAdjudicationBuilder>? adjudication;
 
-  /// Converts a ClaimResponseSubDetailBuilder to [ClaimResponseSubDetail]
+  /// converts a [ClaimResponseSubDetailBuilder]
+  /// to [ClaimResponseSubDetail]
+  @override
   ClaimResponseSubDetail build() => ClaimResponseSubDetail.fromJson(toJson());
 
-  /// Converts a [ClaimResponseSubDetailBuilder] to a [Map<String, dynamic>]
+  /// converts a [ClaimResponseSubDetailBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3934,9 +3941,7 @@ class ClaimResponseSubDetailBuilder extends BackboneElementBuilder {
       subDetailSequence: subDetailSequence ?? this.subDetailSequence,
       noteNumber: noteNumber ?? this.noteNumber,
       adjudication: adjudication ?? this.adjudication,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -4360,10 +4365,13 @@ class ClaimResponseAddItemBuilder extends BackboneElementBuilder {
   /// The second-tier service adjudications for payor added services.
   List<ClaimResponseDetailBuilder>? detail;
 
-  /// Converts a ClaimResponseAddItemBuilder to [ClaimResponseAddItem]
+  /// converts a [ClaimResponseAddItemBuilder]
+  /// to [ClaimResponseAddItem]
+  @override
   ClaimResponseAddItem build() => ClaimResponseAddItem.fromJson(toJson());
 
-  /// Converts a [ClaimResponseAddItemBuilder] to a [Map<String, dynamic>]
+  /// converts a [ClaimResponseAddItemBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -5155,8 +5163,8 @@ class ClaimResponseAddItemBuilder extends BackboneElementBuilder {
     if (productOrService) this.productOrService = null;
     if (modifier) this.modifier = null;
     if (programCode) this.programCode = null;
-    if (serviced) this.servicedX = null;
-    if (location) this.locationX = null;
+    if (serviced) servicedX = null;
+    if (location) locationX = null;
     if (quantity) this.quantity = null;
     if (unitPrice) this.unitPrice = null;
     if (factor) this.factor = null;
@@ -5222,9 +5230,7 @@ class ClaimResponseAddItemBuilder extends BackboneElementBuilder {
       noteNumber: noteNumber ?? this.noteNumber,
       adjudication: adjudication ?? this.adjudication,
       detail: detail ?? this.detail,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -5597,10 +5603,13 @@ class ClaimResponseDetail1Builder extends BackboneElementBuilder {
   /// The third-tier service adjudications for payor added services.
   List<ClaimResponseSubDetailBuilder>? subDetail;
 
-  /// Converts a ClaimResponseDetail1Builder to [ClaimResponseDetail1]
+  /// converts a [ClaimResponseDetail1Builder]
+  /// to [ClaimResponseDetail1]
+  @override
   ClaimResponseDetail1 build() => ClaimResponseDetail1.fromJson(toJson());
 
-  /// Converts a [ClaimResponseDetail1Builder] to a [Map<String, dynamic>]
+  /// converts a [ClaimResponseDetail1Builder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -6063,9 +6072,7 @@ class ClaimResponseDetail1Builder extends BackboneElementBuilder {
       noteNumber: noteNumber ?? this.noteNumber,
       adjudication: adjudication ?? this.adjudication,
       subDetail: subDetail ?? this.subDetail,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -6370,10 +6377,13 @@ class ClaimResponseSubDetail1Builder extends BackboneElementBuilder {
   /// The adjudication results.
   List<ClaimResponseAdjudicationBuilder>? adjudication;
 
-  /// Converts a ClaimResponseSubDetail1Builder to [ClaimResponseSubDetail1]
+  /// converts a [ClaimResponseSubDetail1Builder]
+  /// to [ClaimResponseSubDetail1]
+  @override
   ClaimResponseSubDetail1 build() => ClaimResponseSubDetail1.fromJson(toJson());
 
-  /// Converts a [ClaimResponseSubDetail1Builder] to a [Map<String, dynamic>]
+  /// converts a [ClaimResponseSubDetail1Builder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -6805,9 +6815,7 @@ class ClaimResponseSubDetail1Builder extends BackboneElementBuilder {
       net: net ?? this.net,
       noteNumber: noteNumber ?? this.noteNumber,
       adjudication: adjudication ?? this.adjudication,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -7025,10 +7033,13 @@ class ClaimResponseTotalBuilder extends BackboneElementBuilder {
   /// Monetary total amount associated with the category.
   MoneyBuilder? amount;
 
-  /// Converts a ClaimResponseTotalBuilder to [ClaimResponseTotal]
+  /// converts a [ClaimResponseTotalBuilder]
+  /// to [ClaimResponseTotal]
+  @override
   ClaimResponseTotal build() => ClaimResponseTotal.fromJson(toJson());
 
-  /// Converts a [ClaimResponseTotalBuilder] to a [Map<String, dynamic>]
+  /// converts a [ClaimResponseTotalBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -7289,9 +7300,7 @@ class ClaimResponseTotalBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       category: category ?? this.category,
       amount: amount ?? this.amount,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -7516,10 +7525,13 @@ class ClaimResponsePaymentBuilder extends BackboneElementBuilder {
   /// Issuer's unique identifier for the payment instrument.
   IdentifierBuilder? identifier;
 
-  /// Converts a ClaimResponsePaymentBuilder to [ClaimResponsePayment]
+  /// converts a [ClaimResponsePaymentBuilder]
+  /// to [ClaimResponsePayment]
+  @override
   ClaimResponsePayment build() => ClaimResponsePayment.fromJson(toJson());
 
-  /// Converts a [ClaimResponsePaymentBuilder] to a [Map<String, dynamic>]
+  /// converts a [ClaimResponsePaymentBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -7884,9 +7896,7 @@ class ClaimResponsePaymentBuilder extends BackboneElementBuilder {
       date: date ?? this.date,
       amount: amount ?? this.amount,
       identifier: identifier ?? this.identifier,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -8112,11 +8122,14 @@ class ClaimResponseProcessNoteBuilder extends BackboneElementBuilder {
   /// A code to define the language used in the text of the note.
   CodeableConceptBuilder? language;
 
-  /// Converts a ClaimResponseProcessNoteBuilder to [ClaimResponseProcessNote]
+  /// converts a [ClaimResponseProcessNoteBuilder]
+  /// to [ClaimResponseProcessNote]
+  @override
   ClaimResponseProcessNote build() =>
       ClaimResponseProcessNote.fromJson(toJson());
 
-  /// Converts a [ClaimResponseProcessNoteBuilder] to a [Map<String, dynamic>]
+  /// converts a [ClaimResponseProcessNoteBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -8429,9 +8442,7 @@ class ClaimResponseProcessNoteBuilder extends BackboneElementBuilder {
       type: type ?? this.type,
       text: text ?? this.text,
       language: language ?? this.language,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -8663,10 +8674,13 @@ class ClaimResponseInsuranceBuilder extends BackboneElementBuilder {
   /// specified in this insurance.
   ReferenceBuilder? claimResponse;
 
-  /// Converts a ClaimResponseInsuranceBuilder to [ClaimResponseInsurance]
+  /// converts a [ClaimResponseInsuranceBuilder]
+  /// to [ClaimResponseInsurance]
+  @override
   ClaimResponseInsurance build() => ClaimResponseInsurance.fromJson(toJson());
 
-  /// Converts a [ClaimResponseInsuranceBuilder] to a [Map<String, dynamic>]
+  /// converts a [ClaimResponseInsuranceBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -9005,9 +9019,7 @@ class ClaimResponseInsuranceBuilder extends BackboneElementBuilder {
       coverage: coverage ?? this.coverage,
       businessArrangement: businessArrangement ?? this.businessArrangement,
       claimResponse: claimResponse ?? this.claimResponse,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -9232,10 +9244,13 @@ class ClaimResponseErrorBuilder extends BackboneElementBuilder {
   /// claim could not be adjudicated.
   CodeableConceptBuilder? code;
 
-  /// Converts a ClaimResponseErrorBuilder to [ClaimResponseError]
+  /// converts a [ClaimResponseErrorBuilder]
+  /// to [ClaimResponseError]
+  @override
   ClaimResponseError build() => ClaimResponseError.fromJson(toJson());
 
-  /// Converts a [ClaimResponseErrorBuilder] to a [Map<String, dynamic>]
+  /// converts a [ClaimResponseErrorBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -9548,9 +9563,7 @@ class ClaimResponseErrorBuilder extends BackboneElementBuilder {
       detailSequence: detailSequence ?? this.detailSequence,
       subDetailSequence: subDetailSequence ?? this.subDetailSequence,
       code: code ?? this.code,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

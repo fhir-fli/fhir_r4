@@ -1,13 +1,13 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
-        R4ResourceType,
-        StringExtensionForFHIR,
         PaymentReconciliation,
         PaymentReconciliationDetail,
-        PaymentReconciliationProcessNote;
+        PaymentReconciliationProcessNote,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -330,10 +330,13 @@ class PaymentReconciliationBuilder extends DomainResourceBuilder {
   /// form.
   List<PaymentReconciliationProcessNoteBuilder>? processNote;
 
-  /// Converts a PaymentReconciliationBuilder to [PaymentReconciliation]
+  /// converts a [PaymentReconciliationBuilder]
+  /// to [PaymentReconciliation]
+  @override
   PaymentReconciliation build() => PaymentReconciliation.fromJson(toJson());
 
-  /// Converts a [PaymentReconciliationBuilder] to a [Map<String, dynamic>]
+  /// converts a [PaymentReconciliationBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1082,9 +1085,7 @@ class PaymentReconciliationBuilder extends DomainResourceBuilder {
       detail: detail ?? this.detail,
       formCode: formCode ?? this.formCode,
       processNote: processNote ?? this.processNote,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1465,11 +1466,14 @@ class PaymentReconciliationDetailBuilder extends BackboneElementBuilder {
   /// The monetary amount allocated from the total payment to the payable.
   MoneyBuilder? amount;
 
-  /// Converts a PaymentReconciliationDetailBuilder to [PaymentReconciliationDetail]
+  /// converts a [PaymentReconciliationDetailBuilder]
+  /// to [PaymentReconciliationDetail]
+  @override
   PaymentReconciliationDetail build() =>
       PaymentReconciliationDetail.fromJson(toJson());
 
-  /// Converts a [PaymentReconciliationDetailBuilder] to a [Map<String, dynamic>]
+  /// converts a [PaymentReconciliationDetailBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1938,9 +1942,7 @@ class PaymentReconciliationDetailBuilder extends BackboneElementBuilder {
       responsible: responsible ?? this.responsible,
       payee: payee ?? this.payee,
       amount: amount ?? this.amount,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -2168,11 +2170,14 @@ class PaymentReconciliationProcessNoteBuilder extends BackboneElementBuilder {
   /// The explanation or description associated with the processing.
   FhirStringBuilder? text;
 
-  /// Converts a PaymentReconciliationProcessNoteBuilder to [PaymentReconciliationProcessNote]
+  /// converts a [PaymentReconciliationProcessNoteBuilder]
+  /// to [PaymentReconciliationProcessNote]
+  @override
   PaymentReconciliationProcessNote build() =>
       PaymentReconciliationProcessNote.fromJson(toJson());
 
-  /// Converts a [PaymentReconciliationProcessNoteBuilder] to a [Map<String, dynamic>]
+  /// converts a [PaymentReconciliationProcessNoteBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2433,9 +2438,7 @@ class PaymentReconciliationProcessNoteBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       type: type ?? this.type,
       text: text ?? this.text,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

@@ -46,7 +46,8 @@ class DaysOfWeekBuilder extends FhirCodeEnumBuilder {
   /// Create empty [DaysOfWeekBuilder] with element only
   factory DaysOfWeekBuilder.empty() => DaysOfWeekBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [DaysOfWeekBuilder] from JSON.
+  /// Factory constructor to create [DaysOfWeekBuilder]
+  /// from JSON.
   factory DaysOfWeekBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;

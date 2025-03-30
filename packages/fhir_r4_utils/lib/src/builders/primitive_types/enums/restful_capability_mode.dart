@@ -47,7 +47,8 @@ class RestfulCapabilityModeBuilder extends FhirCodeEnumBuilder {
   factory RestfulCapabilityModeBuilder.empty() =>
       RestfulCapabilityModeBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [RestfulCapabilityModeBuilder] from JSON.
+  /// Factory constructor to create [RestfulCapabilityModeBuilder]
+  /// from JSON.
   factory RestfulCapabilityModeBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
@@ -104,7 +105,9 @@ class RestfulCapabilityModeBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   RestfulCapabilityModeBuilder withElement(ElementBuilder? newElement) {
     return RestfulCapabilityModeBuilder._(
-        validatedValue: value, element: newElement);
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

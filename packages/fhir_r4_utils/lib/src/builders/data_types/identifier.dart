@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, StringExtensionForFHIR, Identifier;
+    show Identifier, StringExtensionForFHIR, yamlMapToJson, yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -172,10 +172,13 @@ class IdentifierBuilder extends DataTypeBuilder
   /// Organization that issued/manages the identifier.
   ReferenceBuilder? assigner;
 
-  /// Converts a IdentifierBuilder to [Identifier]
+  /// converts a [IdentifierBuilder]
+  /// to [Identifier]
+  @override
   Identifier build() => Identifier.fromJson(toJson());
 
-  /// Converts a [IdentifierBuilder] to a [Map<String, dynamic>]
+  /// converts a [IdentifierBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -509,9 +512,7 @@ class IdentifierBuilder extends DataTypeBuilder
       value: value ?? this.value,
       period: period ?? this.period,
       assigner: assigner ?? this.assigner,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

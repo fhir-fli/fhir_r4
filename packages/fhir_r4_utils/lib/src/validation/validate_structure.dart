@@ -522,7 +522,9 @@ Future<ValidationResults> _checkEnumerations(
       element.binding?.valueSet != null) {
     // Fetch the allowed codes from the specified ValueSet.
     final allowedCodes = await getValueSetCodes(
-        element.binding!.valueSet.toString(), resourceCache);
+      element.binding!.valueSet.toString(),
+      resourceCache,
+    );
     if (!allowedCodes.contains(value)) {
       results.addResult(
         node,

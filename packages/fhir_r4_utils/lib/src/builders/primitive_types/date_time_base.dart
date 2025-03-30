@@ -317,7 +317,9 @@ abstract class FhirDateTimeBaseBuilder extends PrimitiveTypeBuilder<String>
   }
 
   int? _compareWithPrecision(
-      FhirDateTimeBaseBuilder lhs, FhirDateTimeBaseBuilder rhs) {
+    FhirDateTimeBaseBuilder lhs,
+    FhirDateTimeBaseBuilder rhs,
+  ) {
     if (lhs.year != null || rhs.year != null) {
       if (lhs.year == null || rhs.year == null) {
         return null;
@@ -715,7 +717,8 @@ abstract class FhirDateTimeBaseBuilder extends PrimitiveTypeBuilder<String>
     );
   }
 
-  /// Factory constructor to create a [FhirDateTimeBaseBuilder] from individual units.
+  /// Factory constructor to create a [FhirDateTimeBaseBuilder]
+  /// from individual units.
   static FhirDateTimeBaseBuilder fromUnits<T>({
     required int year,
     required bool isUtc,
@@ -749,7 +752,8 @@ abstract class FhirDateTimeBaseBuilder extends PrimitiveTypeBuilder<String>
   FhirDateTimeBaseBuilder fromJson<T>(String json) =>
       constructor<T>(input: json);
 
-  /// Factory constructor to create a [FhirDateTimeBaseBuilder] from a [DateTime].
+  /// Factory constructor to create a [FhirDateTimeBaseBuilder]
+  /// from a [DateTime].
   InvalidTypes<FhirDateTimeBaseBuilder> comparisonError(
     Comparator comparator,
     Object o,

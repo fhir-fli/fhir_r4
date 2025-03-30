@@ -82,7 +82,9 @@ extension GetUrl on StructureDefinition {
 /// Handles recursive includes for ValueSets and hierarchical concepts
 /// within CodeSystems.
 Future<Set<String>> getValueSetCodes(
-    String valueSetUrl, ResourceCache resourceCache) async {
+  String valueSetUrl,
+  ResourceCache resourceCache,
+) async {
   final resource = await resourceCache.getCanonicalResource(valueSetUrl);
   if (resource == null) {
     throw Exception('Resource not found at $valueSetUrl');

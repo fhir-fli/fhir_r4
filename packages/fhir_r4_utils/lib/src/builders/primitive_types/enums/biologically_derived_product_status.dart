@@ -47,9 +47,11 @@ class BiologicallyDerivedProductStatusBuilder extends FhirCodeEnumBuilder {
   factory BiologicallyDerivedProductStatusBuilder.empty() =>
       BiologicallyDerivedProductStatusBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [BiologicallyDerivedProductStatusBuilder] from JSON.
+  /// Factory constructor to create [BiologicallyDerivedProductStatusBuilder]
+  /// from JSON.
   factory BiologicallyDerivedProductStatusBuilder.fromJson(
-      Map<String, dynamic> json) {
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -106,9 +108,12 @@ class BiologicallyDerivedProductStatusBuilder extends FhirCodeEnumBuilder {
 
   /// Returns the enum value with an element attached
   BiologicallyDerivedProductStatusBuilder withElement(
-      ElementBuilder? newElement) {
+    ElementBuilder? newElement,
+  ) {
     return BiologicallyDerivedProductStatusBuilder._(
-        validatedValue: value, element: newElement);
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

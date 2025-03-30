@@ -47,7 +47,8 @@ class RequestStatusBuilder extends FhirCodeEnumBuilder {
   factory RequestStatusBuilder.empty() =>
       RequestStatusBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [RequestStatusBuilder] from JSON.
+  /// Factory constructor to create [RequestStatusBuilder]
+  /// from JSON.
   factory RequestStatusBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;

@@ -46,7 +46,8 @@ class GroupTypeBuilder extends FhirCodeEnumBuilder {
   /// Create empty [GroupTypeBuilder] with element only
   factory GroupTypeBuilder.empty() => GroupTypeBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [GroupTypeBuilder] from JSON.
+  /// Factory constructor to create [GroupTypeBuilder]
+  /// from JSON.
   factory GroupTypeBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;

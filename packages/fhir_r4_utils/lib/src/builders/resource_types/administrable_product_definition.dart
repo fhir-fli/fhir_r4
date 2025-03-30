@@ -1,15 +1,15 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
-        R4ResourceType,
-        StringExtensionForFHIR,
         AdministrableProductDefinition,
         AdministrableProductDefinitionProperty,
         AdministrableProductDefinitionRouteOfAdministration,
         AdministrableProductDefinitionTargetSpecies,
-        AdministrableProductDefinitionWithdrawalPeriod;
+        AdministrableProductDefinitionWithdrawalPeriod,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -320,11 +320,14 @@ class AdministrableProductDefinitionBuilder extends DomainResourceBuilder {
   List<AdministrableProductDefinitionRouteOfAdministrationBuilder>?
       routeOfAdministration;
 
-  /// Converts a AdministrableProductDefinitionBuilder to [AdministrableProductDefinition]
+  /// converts a [AdministrableProductDefinitionBuilder]
+  /// to [AdministrableProductDefinition]
+  @override
   AdministrableProductDefinition build() =>
       AdministrableProductDefinition.fromJson(toJson());
 
-  /// Converts a [AdministrableProductDefinitionBuilder] to a [Map<String, dynamic>]
+  /// converts a [AdministrableProductDefinitionBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -964,9 +967,7 @@ class AdministrableProductDefinitionBuilder extends DomainResourceBuilder {
       property: property ?? this.property,
       routeOfAdministration:
           routeOfAdministration ?? this.routeOfAdministration,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1257,11 +1258,14 @@ class AdministrableProductDefinitionPropertyBuilder
   /// The status of characteristic e.g. assigned or pending.
   CodeableConceptBuilder? status;
 
-  /// Converts a AdministrableProductDefinitionPropertyBuilder to [AdministrableProductDefinitionProperty]
+  /// converts a [AdministrableProductDefinitionPropertyBuilder]
+  /// to [AdministrableProductDefinitionProperty]
+  @override
   AdministrableProductDefinitionProperty build() =>
       AdministrableProductDefinitionProperty.fromJson(toJson());
 
-  /// Converts a [AdministrableProductDefinitionPropertyBuilder] to a [Map<String, dynamic>]
+  /// converts a [AdministrableProductDefinitionPropertyBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1557,7 +1561,7 @@ class AdministrableProductDefinitionPropertyBuilder
           'QuantityBuilder',
           'FhirDateBuilder',
           'FhirBooleanBuilder',
-          'AttachmentBuilder'
+          'AttachmentBuilder',
         ];
       case 'valueCodeableConcept':
         return ['CodeableConceptBuilder'];
@@ -1652,7 +1656,7 @@ class AdministrableProductDefinitionPropertyBuilder
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
     if (type) this.type = null;
-    if (value) this.valueX = null;
+    if (value) valueX = null;
     if (status) this.status = null;
   }
 
@@ -1681,9 +1685,7 @@ class AdministrableProductDefinitionPropertyBuilder
       type: type ?? this.type,
       valueX: valueX ?? this.valueX,
       status: status ?? this.status,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1938,11 +1940,14 @@ class AdministrableProductDefinitionRouteOfAdministrationBuilder
   /// A species for which this route applies.
   List<AdministrableProductDefinitionTargetSpeciesBuilder>? targetSpecies;
 
-  /// Converts a AdministrableProductDefinitionRouteOfAdministrationBuilder to [AdministrableProductDefinitionRouteOfAdministration]
+  /// converts a [AdministrableProductDefinitionRouteOfAdministrationBuilder]
+  /// to [AdministrableProductDefinitionRouteOfAdministration]
+  @override
   AdministrableProductDefinitionRouteOfAdministration build() =>
       AdministrableProductDefinitionRouteOfAdministration.fromJson(toJson());
 
-  /// Converts a [AdministrableProductDefinitionRouteOfAdministrationBuilder] to a [Map<String, dynamic>]
+  /// converts a [AdministrableProductDefinitionRouteOfAdministrationBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2344,9 +2349,7 @@ class AdministrableProductDefinitionRouteOfAdministrationBuilder
           maxDosePerTreatmentPeriod ?? this.maxDosePerTreatmentPeriod,
       maxTreatmentPeriod: maxTreatmentPeriod ?? this.maxTreatmentPeriod,
       targetSpecies: targetSpecies ?? this.targetSpecies,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -2564,11 +2567,14 @@ class AdministrableProductDefinitionTargetSpeciesBuilder
   /// not appropriate.
   List<AdministrableProductDefinitionWithdrawalPeriodBuilder>? withdrawalPeriod;
 
-  /// Converts a AdministrableProductDefinitionTargetSpeciesBuilder to [AdministrableProductDefinitionTargetSpecies]
+  /// converts a [AdministrableProductDefinitionTargetSpeciesBuilder]
+  /// to [AdministrableProductDefinitionTargetSpecies]
+  @override
   AdministrableProductDefinitionTargetSpecies build() =>
       AdministrableProductDefinitionTargetSpecies.fromJson(toJson());
 
-  /// Converts a [AdministrableProductDefinitionTargetSpeciesBuilder] to a [Map<String, dynamic>]
+  /// converts a [AdministrableProductDefinitionTargetSpeciesBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2839,9 +2845,7 @@ class AdministrableProductDefinitionTargetSpeciesBuilder
       modifierExtension: modifierExtension ?? this.modifierExtension,
       code: code ?? this.code,
       withdrawalPeriod: withdrawalPeriod ?? this.withdrawalPeriod,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -3014,7 +3018,8 @@ class AdministrableProductDefinitionWithdrawalPeriodBuilder
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
       return AdministrableProductDefinitionWithdrawalPeriodBuilder.fromJson(
-          json);
+        json,
+      );
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -3037,11 +3042,14 @@ class AdministrableProductDefinitionWithdrawalPeriodBuilder
   /// Extra information about the withdrawal period.
   FhirStringBuilder? supportingInformation;
 
-  /// Converts a AdministrableProductDefinitionWithdrawalPeriodBuilder to [AdministrableProductDefinitionWithdrawalPeriod]
+  /// converts a [AdministrableProductDefinitionWithdrawalPeriodBuilder]
+  /// to [AdministrableProductDefinitionWithdrawalPeriod]
+  @override
   AdministrableProductDefinitionWithdrawalPeriod build() =>
       AdministrableProductDefinitionWithdrawalPeriod.fromJson(toJson());
 
-  /// Converts a [AdministrableProductDefinitionWithdrawalPeriodBuilder] to a [Map<String, dynamic>]
+  /// converts a [AdministrableProductDefinitionWithdrawalPeriodBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3330,9 +3338,7 @@ class AdministrableProductDefinitionWithdrawalPeriodBuilder
       value: value ?? this.value,
       supportingInformation:
           supportingInformation ?? this.supportingInformation,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

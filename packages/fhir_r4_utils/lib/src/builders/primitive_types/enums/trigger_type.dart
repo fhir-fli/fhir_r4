@@ -47,7 +47,8 @@ class TriggerTypeBuilder extends FhirCodeEnumBuilder {
   factory TriggerTypeBuilder.empty() =>
       TriggerTypeBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [TriggerTypeBuilder] from JSON.
+  /// Factory constructor to create [TriggerTypeBuilder]
+  /// from JSON.
   factory TriggerTypeBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;

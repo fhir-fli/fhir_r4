@@ -1,11 +1,11 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
+        EventDefinition,
         R4ResourceType,
         StringExtensionForFHIR,
-        EventDefinition;
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -490,10 +490,13 @@ class EventDefinitionBuilder extends CanonicalResourceBuilder {
   /// trigger conditions is met.
   List<TriggerDefinitionBuilder>? trigger;
 
-  /// Converts a EventDefinitionBuilder to [EventDefinition]
+  /// converts a [EventDefinitionBuilder]
+  /// to [EventDefinition]
+  @override
   EventDefinition build() => EventDefinition.fromJson(toJson());
 
-  /// Converts a [EventDefinitionBuilder] to a [Map<String, dynamic>]
+  /// converts a [EventDefinitionBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1569,7 +1572,7 @@ class EventDefinitionBuilder extends CanonicalResourceBuilder {
     if (subtitle) this.subtitle = null;
     if (status) this.status = null;
     if (experimental) this.experimental = null;
-    if (subject) this.subjectX = null;
+    if (subject) subjectX = null;
     if (date) this.date = null;
     if (publisher) this.publisher = null;
     if (contact) this.contact = null;
@@ -1674,9 +1677,7 @@ class EventDefinitionBuilder extends CanonicalResourceBuilder {
       endorser: endorser ?? this.endorser,
       relatedArtifact: relatedArtifact ?? this.relatedArtifact,
       trigger: trigger ?? this.trigger,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

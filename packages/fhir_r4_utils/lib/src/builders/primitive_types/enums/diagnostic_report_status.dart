@@ -47,7 +47,8 @@ class DiagnosticReportStatusBuilder extends FhirCodeEnumBuilder {
   factory DiagnosticReportStatusBuilder.empty() =>
       DiagnosticReportStatusBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [DiagnosticReportStatusBuilder] from JSON.
+  /// Factory constructor to create [DiagnosticReportStatusBuilder]
+  /// from JSON.
   factory DiagnosticReportStatusBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
@@ -193,7 +194,9 @@ class DiagnosticReportStatusBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   DiagnosticReportStatusBuilder withElement(ElementBuilder? newElement) {
     return DiagnosticReportStatusBuilder._(
-        validatedValue: value, element: newElement);
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

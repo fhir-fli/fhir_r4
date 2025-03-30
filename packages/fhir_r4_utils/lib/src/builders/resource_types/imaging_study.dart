@@ -1,14 +1,14 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
+        ImagingStudy,
+        ImagingStudyInstance,
+        ImagingStudyPerformer,
+        ImagingStudySeries,
         R4ResourceType,
         StringExtensionForFHIR,
-        ImagingStudy,
-        ImagingStudySeries,
-        ImagingStudyPerformer,
-        ImagingStudyInstance;
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -432,10 +432,13 @@ class ImagingStudyBuilder extends DomainResourceBuilder {
   /// Each study has one or more series of images or other content.
   List<ImagingStudySeriesBuilder>? series;
 
-  /// Converts a ImagingStudyBuilder to [ImagingStudy]
+  /// converts a [ImagingStudyBuilder]
+  /// to [ImagingStudy]
+  @override
   ImagingStudy build() => ImagingStudy.fromJson(toJson());
 
-  /// Converts a [ImagingStudyBuilder] to a [Map<String, dynamic>]
+  /// converts a [ImagingStudyBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1349,9 +1352,7 @@ class ImagingStudyBuilder extends DomainResourceBuilder {
       note: note ?? this.note,
       description: description ?? this.description,
       series: series ?? this.series,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1807,10 +1808,13 @@ class ImagingStudySeriesBuilder extends BackboneElementBuilder {
   /// state.
   List<ImagingStudyInstanceBuilder>? instance;
 
-  /// Converts a ImagingStudySeriesBuilder to [ImagingStudySeries]
+  /// converts a [ImagingStudySeriesBuilder]
+  /// to [ImagingStudySeries]
+  @override
   ImagingStudySeries build() => ImagingStudySeries.fromJson(toJson());
 
-  /// Converts a [ImagingStudySeriesBuilder] to a [Map<String, dynamic>]
+  /// converts a [ImagingStudySeriesBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2351,9 +2355,7 @@ class ImagingStudySeriesBuilder extends BackboneElementBuilder {
       started: started ?? this.started,
       performer: performer ?? this.performer,
       instance: instance ?? this.instance,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -2592,10 +2594,13 @@ class ImagingStudyPerformerBuilder extends BackboneElementBuilder {
   /// Indicates who or what performed the series.
   ReferenceBuilder? actor;
 
-  /// Converts a ImagingStudyPerformerBuilder to [ImagingStudyPerformer]
+  /// converts a [ImagingStudyPerformerBuilder]
+  /// to [ImagingStudyPerformer]
+  @override
   ImagingStudyPerformer build() => ImagingStudyPerformer.fromJson(toJson());
 
-  /// Converts a [ImagingStudyPerformerBuilder] to a [Map<String, dynamic>]
+  /// converts a [ImagingStudyPerformerBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2856,9 +2861,7 @@ class ImagingStudyPerformerBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       function_: function_ ?? this.function_,
       actor: actor ?? this.actor,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -3059,10 +3062,13 @@ class ImagingStudyInstanceBuilder extends BackboneElementBuilder {
   /// The description of the instance.
   FhirStringBuilder? title;
 
-  /// Converts a ImagingStudyInstanceBuilder to [ImagingStudyInstance]
+  /// converts a [ImagingStudyInstanceBuilder]
+  /// to [ImagingStudyInstance]
+  @override
   ImagingStudyInstance build() => ImagingStudyInstance.fromJson(toJson());
 
-  /// Converts a [ImagingStudyInstanceBuilder] to a [Map<String, dynamic>]
+  /// converts a [ImagingStudyInstanceBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3375,9 +3381,7 @@ class ImagingStudyInstanceBuilder extends BackboneElementBuilder {
       sopClass: sopClass ?? this.sopClass,
       number: number ?? this.number,
       title: title ?? this.title,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

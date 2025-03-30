@@ -6906,7 +6906,7 @@ class ContractAnswer extends BackboneElement {
           'Attachment',
           'Coding',
           'Quantity',
-          'Reference'
+          'Reference',
         ];
       case 'valueBoolean':
         return ['FhirBoolean'];
@@ -11756,7 +11756,7 @@ class ContractSubject extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory ContractSubject.empty() => ContractSubject(
+  factory ContractSubject.empty() => const ContractSubject(
         reference: <Reference>[],
       );
 

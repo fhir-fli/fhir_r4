@@ -47,7 +47,8 @@ class GraphCompartmentRuleBuilder extends FhirCodeEnumBuilder {
   factory GraphCompartmentRuleBuilder.empty() =>
       GraphCompartmentRuleBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [GraphCompartmentRuleBuilder] from JSON.
+  /// Factory constructor to create [GraphCompartmentRuleBuilder]
+  /// from JSON.
   factory GraphCompartmentRuleBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
@@ -124,7 +125,9 @@ class GraphCompartmentRuleBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   GraphCompartmentRuleBuilder withElement(ElementBuilder? newElement) {
     return GraphCompartmentRuleBuilder._(
-        validatedValue: value, element: newElement);
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

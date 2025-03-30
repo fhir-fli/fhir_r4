@@ -46,7 +46,8 @@ class AddressUseBuilder extends FhirCodeEnumBuilder {
   /// Create empty [AddressUseBuilder] with element only
   factory AddressUseBuilder.empty() => AddressUseBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [AddressUseBuilder] from JSON.
+  /// Factory constructor to create [AddressUseBuilder]
+  /// from JSON.
   factory AddressUseBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;

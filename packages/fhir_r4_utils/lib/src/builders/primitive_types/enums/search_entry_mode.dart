@@ -49,7 +49,8 @@ class SearchEntryModeBuilder extends FhirCodeEnumBuilder {
   factory SearchEntryModeBuilder.empty() =>
       SearchEntryModeBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [SearchEntryModeBuilder] from JSON.
+  /// Factory constructor to create [SearchEntryModeBuilder]
+  /// from JSON.
   factory SearchEntryModeBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;

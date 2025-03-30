@@ -48,9 +48,11 @@ class BiologicallyDerivedProductStorageScaleBuilder
   factory BiologicallyDerivedProductStorageScaleBuilder.empty() =>
       BiologicallyDerivedProductStorageScaleBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [BiologicallyDerivedProductStorageScaleBuilder] from JSON.
+  /// Factory constructor to create [BiologicallyDerivedProductStorageScaleBuilder]
+  /// from JSON.
   factory BiologicallyDerivedProductStorageScaleBuilder.fromJson(
-      Map<String, dynamic> json) {
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -120,9 +122,12 @@ class BiologicallyDerivedProductStorageScaleBuilder
 
   /// Returns the enum value with an element attached
   BiologicallyDerivedProductStorageScaleBuilder withElement(
-      ElementBuilder? newElement) {
+    ElementBuilder? newElement,
+  ) {
     return BiologicallyDerivedProductStorageScaleBuilder._(
-        validatedValue: value, element: newElement);
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

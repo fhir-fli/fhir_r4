@@ -1,6 +1,6 @@
 import 'package:collection/collection.dart' show DeepCollectionEquality;
 import 'package:fhir_r4/fhir_r4.dart'
-    show Element, FhirString, FhirExtension, FhirBase;
+    show Element, FhirBase, FhirExtension, FhirString;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 
 /// [TLeft5]
@@ -174,7 +174,8 @@ class TLeft5Builder extends ElementBuilder {
   @override
   String get fhirType => 'TLeft5';
 
-  /// Converts a TLeft5Builder to [TLeft5]
+  /// converts a [TLeft5Builder]
+  /// to [TLeft5]
   @override
   TLeft5 build() => TLeft5.fromJson(toJson());
 

@@ -8,7 +8,8 @@ extension FhirIntegerBuilderExtension on num {
       : int.tryParse(toString()) != null
           ? FhirIntegerBuilder(int.parse(toString()))
           : throw FormatException(
-              'Invalid input for FhirIntegerBuilder: $this');
+              'Invalid input for FhirIntegerBuilder: $this',
+            );
 }
 
 /// Represents the FHIR primitive type `integer`.
@@ -41,11 +42,11 @@ class FhirIntegerBuilder extends FhirNumberBuilder
   FhirIntegerBuilder._({
     required int? validatedValue,
     this.input,
-    this.element,
-    this.id,
-    this.extension_,
-    this.disallowExtensions,
-    this.objectPath = 'Integer',
+    super.element,
+    super.id,
+    super.extension_,
+    super.disallowExtensions,
+    super.objectPath = 'Integer',
   }) : super._(validatedValue: validatedValue);
 
   /// Public factory constructor that does any parsing/validation,
@@ -64,7 +65,8 @@ class FhirIntegerBuilder extends FhirNumberBuilder
 
     if (rawInput == null && element == null) {
       throw ArgumentError(
-          'A value or element is required for FhirIntegerBuilder.');
+        'A value or element is required for FhirIntegerBuilder.',
+      );
     } else if (rawInput is num) {
       if (rawInput is! int) {
         throw ArgumentError('Invalid input for FhirIntegerBuilder: $rawInput');
@@ -96,7 +98,8 @@ class FhirIntegerBuilder extends FhirNumberBuilder
   factory FhirIntegerBuilder.empty() =>
       FhirIntegerBuilder(null, element: ElementBuilder.empty());
 
-  /// Factory constructor to create [FhirIntegerBuilder] from JSON input.
+  /// Factory constructor to create [FhirIntegerBuilder]
+  /// from JSON.input.
   factory FhirIntegerBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as num?;
     final elemJson = json['_value'] as Map<String, dynamic>?;
@@ -135,21 +138,6 @@ class FhirIntegerBuilder extends FhirNumberBuilder
 
   /// The original input value (for serialization purposes)
   num? input;
-
-  /// Element property
-  ElementBuilder? element;
-
-  /// ID property
-  FhirStringBuilder? id;
-
-  /// Extensions property
-  List<FhirExtensionBuilder>? extension_;
-
-  /// DisallowExtensions property
-  bool? disallowExtensions;
-
-  /// ObjectPath property
-  String? objectPath;
 
   /// Returns the FHIR type as a string.
   @override

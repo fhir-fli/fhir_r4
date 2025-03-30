@@ -1,14 +1,14 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
         R4ResourceType,
-        StringExtensionForFHIR,
         RequestGroup,
         RequestGroupAction,
         RequestGroupCondition,
-        RequestGroupRelatedAction;
+        RequestGroupRelatedAction,
+        StringExtensionForFHIR,
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -390,10 +390,13 @@ class RequestGroupBuilder extends DomainResourceBuilder {
   /// The actions, if any, produced by the evaluation of the artifact.
   List<RequestGroupActionBuilder>? action;
 
-  /// Converts a RequestGroupBuilder to [RequestGroup]
+  /// converts a [RequestGroupBuilder]
+  /// to [RequestGroup]
+  @override
   RequestGroup build() => RequestGroup.fromJson(toJson());
 
-  /// Converts a [RequestGroupBuilder] to a [Map<String, dynamic>]
+  /// converts a [RequestGroupBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1251,9 +1254,7 @@ class RequestGroupBuilder extends DomainResourceBuilder {
       reasonReference: reasonReference ?? this.reasonReference,
       note: note ?? this.note,
       action: action ?? this.action,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1811,10 +1812,13 @@ class RequestGroupActionBuilder extends BackboneElementBuilder {
   /// Sub actions.
   List<RequestGroupActionBuilder>? action;
 
-  /// Converts a RequestGroupActionBuilder to [RequestGroupAction]
+  /// converts a [RequestGroupActionBuilder]
+  /// to [RequestGroupAction]
+  @override
   RequestGroupAction build() => RequestGroupAction.fromJson(toJson());
 
-  /// Converts a [RequestGroupActionBuilder] to a [Map<String, dynamic>]
+  /// converts a [RequestGroupActionBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2414,7 +2418,7 @@ class RequestGroupActionBuilder extends BackboneElementBuilder {
           'PeriodBuilder',
           'FhirDurationBuilder',
           'RangeBuilder',
-          'TimingBuilder'
+          'TimingBuilder',
         ];
       case 'timingDateTime':
         return ['FhirDateTimeBuilder'];
@@ -2636,7 +2640,7 @@ class RequestGroupActionBuilder extends BackboneElementBuilder {
     if (documentation) this.documentation = null;
     if (condition) this.condition = null;
     if (relatedAction) this.relatedAction = null;
-    if (timing) this.timingX = null;
+    if (timing) timingX = null;
     if (participant) this.participant = null;
     if (type) this.type = null;
     if (groupingBehavior) this.groupingBehavior = null;
@@ -2704,9 +2708,7 @@ class RequestGroupActionBuilder extends BackboneElementBuilder {
       cardinalityBehavior: cardinalityBehavior ?? this.cardinalityBehavior,
       resource: resource ?? this.resource,
       action: action ?? this.action,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -2989,10 +2991,13 @@ class RequestGroupConditionBuilder extends BackboneElementBuilder {
   /// condition is satisfied.
   FhirExpressionBuilder? expression;
 
-  /// Converts a RequestGroupConditionBuilder to [RequestGroupCondition]
+  /// converts a [RequestGroupConditionBuilder]
+  /// to [RequestGroupCondition]
+  @override
   RequestGroupCondition build() => RequestGroupCondition.fromJson(toJson());
 
-  /// Converts a [RequestGroupConditionBuilder] to a [Map<String, dynamic>]
+  /// converts a [RequestGroupConditionBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3253,9 +3258,7 @@ class RequestGroupConditionBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       kind: kind ?? this.kind,
       expression: expression ?? this.expression,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -3457,11 +3460,14 @@ class RequestGroupRelatedActionBuilder extends BackboneElementBuilder {
   /// Getter for [offsetRange] as a RangeBuilder
   RangeBuilder? get offsetRange => offsetX?.isAs<RangeBuilder>();
 
-  /// Converts a RequestGroupRelatedActionBuilder to [RequestGroupRelatedAction]
+  /// converts a [RequestGroupRelatedActionBuilder]
+  /// to [RequestGroupRelatedAction]
+  @override
   RequestGroupRelatedAction build() =>
       RequestGroupRelatedAction.fromJson(toJson());
 
-  /// Converts a [RequestGroupRelatedActionBuilder] to a [Map<String, dynamic>]
+  /// converts a [RequestGroupRelatedActionBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3775,7 +3781,7 @@ class RequestGroupRelatedActionBuilder extends BackboneElementBuilder {
     if (modifierExtension) this.modifierExtension = null;
     if (actionId) this.actionId = null;
     if (relationship) this.relationship = null;
-    if (offset) this.offsetX = null;
+    if (offset) offsetX = null;
   }
 
   @override
@@ -3802,9 +3808,7 @@ class RequestGroupRelatedActionBuilder extends BackboneElementBuilder {
       actionId: actionId ?? this.actionId,
       relationship: relationship ?? this.relationship,
       offsetX: offsetX ?? this.offsetX,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

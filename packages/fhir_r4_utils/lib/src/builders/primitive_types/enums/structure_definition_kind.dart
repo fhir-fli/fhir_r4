@@ -47,7 +47,8 @@ class StructureDefinitionKindBuilder extends FhirCodeEnumBuilder {
   factory StructureDefinitionKindBuilder.empty() =>
       StructureDefinitionKindBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [StructureDefinitionKindBuilder] from JSON.
+  /// Factory constructor to create [StructureDefinitionKindBuilder]
+  /// from JSON.
   factory StructureDefinitionKindBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
@@ -128,7 +129,9 @@ class StructureDefinitionKindBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   StructureDefinitionKindBuilder withElement(ElementBuilder? newElement) {
     return StructureDefinitionKindBuilder._(
-        validatedValue: value, element: newElement);
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

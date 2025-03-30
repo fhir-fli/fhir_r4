@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, StringExtensionForFHIR, Count;
+    show Count, StringExtensionForFHIR, yamlMapToJson, yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -136,10 +136,13 @@ class CountBuilder extends QuantityBuilder
   @override
   String get fhirType => 'Count';
 
-  /// Converts a CountBuilder to [Count]
+  /// converts a [CountBuilder]
+  /// to [Count]
+  @override
   Count build() => Count.fromJson(toJson());
 
-  /// Converts a [CountBuilder] to a [Map<String, dynamic>]
+  /// converts a [CountBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -447,9 +450,7 @@ class CountBuilder extends QuantityBuilder
       unit: unit ?? this.unit,
       system: system ?? this.system,
       code: code ?? this.code,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

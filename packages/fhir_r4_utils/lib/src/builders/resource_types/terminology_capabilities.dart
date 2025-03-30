@@ -1,21 +1,21 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
         R4ResourceType,
         StringExtensionForFHIR,
         TerminologyCapabilities,
-        TerminologyCapabilitiesSoftware,
-        TerminologyCapabilitiesImplementation,
+        TerminologyCapabilitiesClosure,
         TerminologyCapabilitiesCodeSystem,
-        TerminologyCapabilitiesVersion,
-        TerminologyCapabilitiesFilter,
         TerminologyCapabilitiesExpansion,
+        TerminologyCapabilitiesFilter,
+        TerminologyCapabilitiesImplementation,
         TerminologyCapabilitiesParameter,
-        TerminologyCapabilitiesValidateCode,
+        TerminologyCapabilitiesSoftware,
         TerminologyCapabilitiesTranslation,
-        TerminologyCapabilitiesClosure;
+        TerminologyCapabilitiesValidateCode,
+        TerminologyCapabilitiesVersion,
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -422,10 +422,13 @@ class TerminologyCapabilitiesBuilder extends CanonicalResourceBuilder {
   /// Whether the $closure operation is supported.
   TerminologyCapabilitiesClosureBuilder? closure;
 
-  /// Converts a TerminologyCapabilitiesBuilder to [TerminologyCapabilities]
+  /// converts a [TerminologyCapabilitiesBuilder]
+  /// to [TerminologyCapabilities]
+  @override
   TerminologyCapabilities build() => TerminologyCapabilities.fromJson(toJson());
 
-  /// Converts a [TerminologyCapabilitiesBuilder] to a [Map<String, dynamic>]
+  /// converts a [TerminologyCapabilitiesBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1413,9 +1416,7 @@ class TerminologyCapabilitiesBuilder extends CanonicalResourceBuilder {
       validateCode: validateCode ?? this.validateCode,
       translation: translation ?? this.translation,
       closure: closure ?? this.closure,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1758,11 +1759,14 @@ class TerminologyCapabilitiesSoftwareBuilder extends BackboneElementBuilder {
   /// The version identifier for the software covered by this statement.
   FhirStringBuilder? version;
 
-  /// Converts a TerminologyCapabilitiesSoftwareBuilder to [TerminologyCapabilitiesSoftware]
+  /// converts a [TerminologyCapabilitiesSoftwareBuilder]
+  /// to [TerminologyCapabilitiesSoftware]
+  @override
   TerminologyCapabilitiesSoftware build() =>
       TerminologyCapabilitiesSoftware.fromJson(toJson());
 
-  /// Converts a [TerminologyCapabilitiesSoftwareBuilder] to a [Map<String, dynamic>]
+  /// converts a [TerminologyCapabilitiesSoftwareBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2023,9 +2027,7 @@ class TerminologyCapabilitiesSoftwareBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       name: name ?? this.name,
       version: version ?? this.version,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -2208,11 +2210,14 @@ class TerminologyCapabilitiesImplementationBuilder
   /// An absolute base URL for the implementation.
   FhirUrlBuilder? url;
 
-  /// Converts a TerminologyCapabilitiesImplementationBuilder to [TerminologyCapabilitiesImplementation]
+  /// converts a [TerminologyCapabilitiesImplementationBuilder]
+  /// to [TerminologyCapabilitiesImplementation]
+  @override
   TerminologyCapabilitiesImplementation build() =>
       TerminologyCapabilitiesImplementation.fromJson(toJson());
 
-  /// Converts a [TerminologyCapabilitiesImplementationBuilder] to a [Map<String, dynamic>]
+  /// converts a [TerminologyCapabilitiesImplementationBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2474,9 +2479,7 @@ class TerminologyCapabilitiesImplementationBuilder
       modifierExtension: modifierExtension ?? this.modifierExtension,
       description: description ?? this.description,
       url: url ?? this.url,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -2673,11 +2676,14 @@ class TerminologyCapabilitiesCodeSystemBuilder extends BackboneElementBuilder {
   /// True if subsumption is supported for this version of the code system.
   FhirBooleanBuilder? subsumption;
 
-  /// Converts a TerminologyCapabilitiesCodeSystemBuilder to [TerminologyCapabilitiesCodeSystem]
+  /// converts a [TerminologyCapabilitiesCodeSystemBuilder]
+  /// to [TerminologyCapabilitiesCodeSystem]
+  @override
   TerminologyCapabilitiesCodeSystem build() =>
       TerminologyCapabilitiesCodeSystem.fromJson(toJson());
 
-  /// Converts a [TerminologyCapabilitiesCodeSystemBuilder] to a [Map<String, dynamic>]
+  /// converts a [TerminologyCapabilitiesCodeSystemBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2970,9 +2976,7 @@ class TerminologyCapabilitiesCodeSystemBuilder extends BackboneElementBuilder {
       uri: uri ?? this.uri,
       version: version ?? this.version,
       subsumption: subsumption ?? this.subsumption,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -3207,11 +3211,14 @@ class TerminologyCapabilitiesVersionBuilder extends BackboneElementBuilder {
   /// Properties supported for $lookup.
   List<FhirCodeBuilder>? property;
 
-  /// Converts a TerminologyCapabilitiesVersionBuilder to [TerminologyCapabilitiesVersion]
+  /// converts a [TerminologyCapabilitiesVersionBuilder]
+  /// to [TerminologyCapabilitiesVersion]
+  @override
   TerminologyCapabilitiesVersion build() =>
       TerminologyCapabilitiesVersion.fromJson(toJson());
 
-  /// Converts a [TerminologyCapabilitiesVersionBuilder] to a [Map<String, dynamic>]
+  /// converts a [TerminologyCapabilitiesVersionBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3591,9 +3598,7 @@ class TerminologyCapabilitiesVersionBuilder extends BackboneElementBuilder {
       language: language ?? this.language,
       filter: filter ?? this.filter,
       property: property ?? this.property,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -3796,11 +3801,14 @@ class TerminologyCapabilitiesFilterBuilder extends BackboneElementBuilder {
   /// Operations supported for the property.
   List<FhirCodeBuilder>? op;
 
-  /// Converts a TerminologyCapabilitiesFilterBuilder to [TerminologyCapabilitiesFilter]
+  /// converts a [TerminologyCapabilitiesFilterBuilder]
+  /// to [TerminologyCapabilitiesFilter]
+  @override
   TerminologyCapabilitiesFilter build() =>
       TerminologyCapabilitiesFilter.fromJson(toJson());
 
-  /// Converts a [TerminologyCapabilitiesFilterBuilder] to a [Map<String, dynamic>]
+  /// converts a [TerminologyCapabilitiesFilterBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -4066,9 +4074,7 @@ class TerminologyCapabilitiesFilterBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       code: code ?? this.code,
       op: op ?? this.op,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -4285,11 +4291,14 @@ class TerminologyCapabilitiesExpansionBuilder extends BackboneElementBuilder {
   /// Documentation about text searching works.
   FhirMarkdownBuilder? textFilter;
 
-  /// Converts a TerminologyCapabilitiesExpansionBuilder to [TerminologyCapabilitiesExpansion]
+  /// converts a [TerminologyCapabilitiesExpansionBuilder]
+  /// to [TerminologyCapabilitiesExpansion]
+  @override
   TerminologyCapabilitiesExpansion build() =>
       TerminologyCapabilitiesExpansion.fromJson(toJson());
 
-  /// Converts a [TerminologyCapabilitiesExpansionBuilder] to a [Map<String, dynamic>]
+  /// converts a [TerminologyCapabilitiesExpansionBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -4633,9 +4642,7 @@ class TerminologyCapabilitiesExpansionBuilder extends BackboneElementBuilder {
       incomplete: incomplete ?? this.incomplete,
       parameter: parameter ?? this.parameter,
       textFilter: textFilter ?? this.textFilter,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -4832,11 +4839,14 @@ class TerminologyCapabilitiesParameterBuilder extends BackboneElementBuilder {
   /// Description of support for parameter.
   FhirStringBuilder? documentation;
 
-  /// Converts a TerminologyCapabilitiesParameterBuilder to [TerminologyCapabilitiesParameter]
+  /// converts a [TerminologyCapabilitiesParameterBuilder]
+  /// to [TerminologyCapabilitiesParameter]
+  @override
   TerminologyCapabilitiesParameter build() =>
       TerminologyCapabilitiesParameter.fromJson(toJson());
 
-  /// Converts a [TerminologyCapabilitiesParameterBuilder] to a [Map<String, dynamic>]
+  /// converts a [TerminologyCapabilitiesParameterBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -5097,9 +5107,7 @@ class TerminologyCapabilitiesParameterBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       name: name ?? this.name,
       documentation: documentation ?? this.documentation,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -5270,11 +5278,14 @@ class TerminologyCapabilitiesValidateCodeBuilder
   /// Whether translations are validated.
   FhirBooleanBuilder? translations;
 
-  /// Converts a TerminologyCapabilitiesValidateCodeBuilder to [TerminologyCapabilitiesValidateCode]
+  /// converts a [TerminologyCapabilitiesValidateCodeBuilder]
+  /// to [TerminologyCapabilitiesValidateCode]
+  @override
   TerminologyCapabilitiesValidateCode build() =>
       TerminologyCapabilitiesValidateCode.fromJson(toJson());
 
-  /// Converts a [TerminologyCapabilitiesValidateCodeBuilder] to a [Map<String, dynamic>]
+  /// converts a [TerminologyCapabilitiesValidateCodeBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -5510,9 +5521,7 @@ class TerminologyCapabilitiesValidateCodeBuilder
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       translations: translations ?? this.translations,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -5675,11 +5684,14 @@ class TerminologyCapabilitiesTranslationBuilder extends BackboneElementBuilder {
   /// Whether the client must identify the map.
   FhirBooleanBuilder? needsMap;
 
-  /// Converts a TerminologyCapabilitiesTranslationBuilder to [TerminologyCapabilitiesTranslation]
+  /// converts a [TerminologyCapabilitiesTranslationBuilder]
+  /// to [TerminologyCapabilitiesTranslation]
+  @override
   TerminologyCapabilitiesTranslation build() =>
       TerminologyCapabilitiesTranslation.fromJson(toJson());
 
-  /// Converts a [TerminologyCapabilitiesTranslationBuilder] to a [Map<String, dynamic>]
+  /// converts a [TerminologyCapabilitiesTranslationBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -5915,9 +5927,7 @@ class TerminologyCapabilitiesTranslationBuilder extends BackboneElementBuilder {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       needsMap: needsMap ?? this.needsMap,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -6079,11 +6089,14 @@ class TerminologyCapabilitiesClosureBuilder extends BackboneElementBuilder {
   /// If cross-system closure is supported.
   FhirBooleanBuilder? translation;
 
-  /// Converts a TerminologyCapabilitiesClosureBuilder to [TerminologyCapabilitiesClosure]
+  /// converts a [TerminologyCapabilitiesClosureBuilder]
+  /// to [TerminologyCapabilitiesClosure]
+  @override
   TerminologyCapabilitiesClosure build() =>
       TerminologyCapabilitiesClosure.fromJson(toJson());
 
-  /// Converts a [TerminologyCapabilitiesClosureBuilder] to a [Map<String, dynamic>]
+  /// converts a [TerminologyCapabilitiesClosureBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -6318,9 +6331,7 @@ class TerminologyCapabilitiesClosureBuilder extends BackboneElementBuilder {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       translation: translation ?? this.translation,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

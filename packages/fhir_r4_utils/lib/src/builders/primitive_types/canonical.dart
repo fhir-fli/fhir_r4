@@ -41,11 +41,11 @@ class FhirCanonicalBuilder extends PrimitiveTypeBuilder<Uri>
   FhirCanonicalBuilder._({
     required Uri? validatedUri,
     this.input,
-    this.element,
-    this.id,
-    this.extension_,
-    this.disallowExtensions,
-    this.objectPath = 'Canonical',
+    super.element,
+    super.id,
+    super.extension_,
+    super.disallowExtensions,
+    super.objectPath = 'Canonical',
   }) : super._(value: validatedUri);
 
   /// Single public factory for creating a [FhirCanonicalBuilder].
@@ -66,7 +66,8 @@ class FhirCanonicalBuilder extends PrimitiveTypeBuilder<Uri>
     String? originalString;
     if (rawInput == null && element == null) {
       throw ArgumentError(
-          'A value or element is required for FhirCanonicalBuilder.');
+        'A value or element is required for FhirCanonicalBuilder.',
+      );
     } else if (rawInput is String) {
       finalUri = _validateCanonical(rawInput);
       originalString = rawInput;
@@ -159,21 +160,6 @@ class FhirCanonicalBuilder extends PrimitiveTypeBuilder<Uri>
   /// The original input value (for serialization)
   String? input;
 
-  /// Element property
-  ElementBuilder? element;
-
-  /// ID property
-  FhirStringBuilder? id;
-
-  /// Extensions property
-  List<FhirExtensionBuilder>? extension_;
-
-  /// DisallowExtensions property
-  bool? disallowExtensions;
-
-  /// ObjectPath property
-  String? objectPath;
-
   /// Boolean checks
   bool get valueOnly => value != null && element == null;
 
@@ -194,7 +180,8 @@ class FhirCanonicalBuilder extends PrimitiveTypeBuilder<Uri>
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [FhirCanonicalBuilder] instances
+  /// Converts a list of JSON values to a list of
+  /// [FhirCanonicalBuilder] instances
   static List<FhirCanonicalBuilder> fromJsonList(
     List<dynamic> values,
     List<dynamic>? elements,
@@ -215,7 +202,8 @@ class FhirCanonicalBuilder extends PrimitiveTypeBuilder<Uri>
 
   /// Converts a list of [FhirCanonicalBuilder] to a JSON map
   static Map<String, dynamic> toJsonList(
-          List<FhirCanonicalBuilder> canonicals) =>
+    List<FhirCanonicalBuilder> canonicals,
+  ) =>
       {
         'value': canonicals.map((c) => c.input).toList(),
         '_value': canonicals.map((c) => c.element?.toJson()).toList(),

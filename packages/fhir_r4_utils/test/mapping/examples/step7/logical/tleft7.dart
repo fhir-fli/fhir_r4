@@ -1,6 +1,6 @@
 import 'package:collection/collection.dart';
 import 'package:fhir_r4/fhir_r4.dart'
-    show Element, BackboneElement, FhirString, FhirExtension, FhirBase;
+    show BackboneElement, Element, FhirBase, FhirExtension, FhirString;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 
 /// [TLeft7]
@@ -244,8 +244,9 @@ class TLeft7Builder extends ElementBuilder {
       id: json['id'] != null ? FhirStringBuilder(json['id'] as String) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List)
-              .map((e) =>
-                  FhirExtensionBuilder.fromJson(e as Map<String, dynamic>))
+              .map(
+                (e) => FhirExtensionBuilder.fromJson(e as Map<String, dynamic>),
+              )
               .toList()
           : null,
       aa: json['aa'] != null
@@ -263,7 +264,8 @@ class TLeft7Builder extends ElementBuilder {
   @override
   String get fhirType => 'TLeft7';
 
-  /// Converts a TLeft7Builder to [TLeft7]
+  /// converts a [TLeft7Builder]
+  /// to [TLeft7]
   @override
   TLeft7 build() => TLeft7.fromJson(toJson());
 
@@ -500,14 +502,16 @@ class TLeft7AaBuilder extends BackboneElementBuilder {
       id: json['id'] != null ? FhirStringBuilder(json['id'] as String) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List)
-              .map((e) =>
-                  FhirExtensionBuilder.fromJson(e as Map<String, dynamic>))
+              .map(
+                (e) => FhirExtensionBuilder.fromJson(e as Map<String, dynamic>),
+              )
               .toList()
           : null,
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List)
-              .map((e) =>
-                  FhirExtensionBuilder.fromJson(e as Map<String, dynamic>))
+              .map(
+                (e) => FhirExtensionBuilder.fromJson(e as Map<String, dynamic>),
+              )
               .toList()
           : null,
       ab: json['ab'] != null ? FhirStringBuilder(json['ab'] as String) : null,
@@ -521,7 +525,8 @@ class TLeft7AaBuilder extends BackboneElementBuilder {
   @override
   String get fhirType => 'TLeft7Aa';
 
-  /// Converts a TLeft7AaBuilder to [TLeft7Aa]
+  /// converts a [TLeft7AaBuilder]
+  /// to [TLeft7Aa]
   @override
   TLeft7Aa build() => TLeft7Aa.fromJson(toJson());
 
@@ -758,7 +763,9 @@ class TLeft7AaBuilder extends BackboneElementBuilder {
     return id == other.id &&
         listEquals<FhirBaseBuilder>(extension_, other.extension_) &&
         listEquals<FhirBaseBuilder>(
-            modifierExtension, other.modifierExtension) &&
+          modifierExtension,
+          other.modifierExtension,
+        ) &&
         ab == other.ab;
   }
 

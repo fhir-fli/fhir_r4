@@ -1,34 +1,34 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
-        R4ResourceType,
-        StringExtensionForFHIR,
         Citation,
-        CitationSummary,
-        CitationClassification,
-        CitationStatusDate,
-        CitationRelatesTo,
-        CitationCitedArtifact,
-        CitationVersion,
-        CitationStatusDate1,
-        CitationTitle,
         CitationAbstract,
+        CitationAffiliationInfo,
+        CitationCitedArtifact,
+        CitationClassification,
+        CitationClassification1,
+        CitationContributionInstance,
+        CitationContributorship,
+        CitationDateOfPublication,
+        CitationEntry,
         CitationPart,
-        CitationRelatesTo1,
+        CitationPeriodicRelease,
         CitationPublicationForm,
         CitationPublishedIn,
-        CitationPeriodicRelease,
-        CitationDateOfPublication,
+        CitationRelatesTo,
+        CitationRelatesTo1,
+        CitationStatusDate,
+        CitationStatusDate1,
+        CitationSummary,
+        CitationSummary1,
+        CitationTitle,
+        CitationVersion,
         CitationWebLocation,
-        CitationClassification1,
         CitationWhoClassified,
-        CitationContributorship,
-        CitationEntry,
-        CitationAffiliationInfo,
-        CitationContributionInstance,
-        CitationSummary1;
+        R4ResourceType,
+        StringExtensionForFHIR,
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -581,10 +581,13 @@ class CitationBuilder extends DomainResourceBuilder {
   /// The article or artifact being described.
   CitationCitedArtifactBuilder? citedArtifact;
 
-  /// Converts a CitationBuilder to [Citation]
+  /// converts a [CitationBuilder]
+  /// to [Citation]
+  @override
   Citation build() => Citation.fromJson(toJson());
 
-  /// Converts a [CitationBuilder] to a [Map<String, dynamic>]
+  /// converts a [CitationBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1752,9 +1755,7 @@ class CitationBuilder extends DomainResourceBuilder {
       statusDate: statusDate ?? this.statusDate,
       relatesTo: relatesTo ?? this.relatesTo,
       citedArtifact: citedArtifact ?? this.citedArtifact,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -2124,10 +2125,13 @@ class CitationSummaryBuilder extends BackboneElementBuilder {
   /// The human-readable display of the citation.
   FhirMarkdownBuilder? text;
 
-  /// Converts a CitationSummaryBuilder to [CitationSummary]
+  /// converts a [CitationSummaryBuilder]
+  /// to [CitationSummary]
+  @override
   CitationSummary build() => CitationSummary.fromJson(toJson());
 
-  /// Converts a [CitationSummaryBuilder] to a [Map<String, dynamic>]
+  /// converts a [CitationSummaryBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2388,9 +2392,7 @@ class CitationSummaryBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       style: style ?? this.style,
       text: text ?? this.text,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -2573,10 +2575,13 @@ class CitationClassificationBuilder extends BackboneElementBuilder {
   /// The specific classification value.
   List<CodeableConceptBuilder>? classifier;
 
-  /// Converts a CitationClassificationBuilder to [CitationClassification]
+  /// converts a [CitationClassificationBuilder]
+  /// to [CitationClassification]
+  @override
   CitationClassification build() => CitationClassification.fromJson(toJson());
 
-  /// Converts a [CitationClassificationBuilder] to a [Map<String, dynamic>]
+  /// converts a [CitationClassificationBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2842,9 +2847,7 @@ class CitationClassificationBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       type: type ?? this.type,
       classifier: classifier ?? this.classifier,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -3033,10 +3036,13 @@ class CitationStatusDateBuilder extends BackboneElementBuilder {
   /// When the status started and/or ended.
   PeriodBuilder? period;
 
-  /// Converts a CitationStatusDateBuilder to [CitationStatusDate]
+  /// converts a [CitationStatusDateBuilder]
+  /// to [CitationStatusDate]
+  @override
   CitationStatusDate build() => CitationStatusDate.fromJson(toJson());
 
-  /// Converts a [CitationStatusDateBuilder] to a [Map<String, dynamic>]
+  /// converts a [CitationStatusDateBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3323,9 +3329,7 @@ class CitationStatusDateBuilder extends BackboneElementBuilder {
       activity: activity ?? this.activity,
       actual: actual ?? this.actual,
       period: period ?? this.period,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -3540,10 +3544,13 @@ class CitationRelatesToBuilder extends BackboneElementBuilder {
   /// Getter for [targetAttachment] as a AttachmentBuilder
   AttachmentBuilder? get targetAttachment => targetX?.isAs<AttachmentBuilder>();
 
-  /// Converts a CitationRelatesToBuilder to [CitationRelatesTo]
+  /// converts a [CitationRelatesToBuilder]
+  /// to [CitationRelatesTo]
+  @override
   CitationRelatesTo build() => CitationRelatesTo.fromJson(toJson());
 
-  /// Converts a [CitationRelatesToBuilder] to a [Map<String, dynamic>]
+  /// converts a [CitationRelatesToBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3828,7 +3835,7 @@ class CitationRelatesToBuilder extends BackboneElementBuilder {
           'FhirUriBuilder',
           'IdentifierBuilder',
           'ReferenceBuilder',
-          'AttachmentBuilder'
+          'AttachmentBuilder',
         ];
       case 'targetUri':
         return ['FhirUriBuilder'];
@@ -3915,7 +3922,7 @@ class CitationRelatesToBuilder extends BackboneElementBuilder {
     if (modifierExtension) this.modifierExtension = null;
     if (relationshipType) this.relationshipType = null;
     if (targetClassifier) this.targetClassifier = null;
-    if (target) this.targetX = null;
+    if (target) targetX = null;
   }
 
   @override
@@ -3942,9 +3949,7 @@ class CitationRelatesToBuilder extends BackboneElementBuilder {
       relationshipType: relationshipType ?? this.relationshipType,
       targetClassifier: targetClassifier ?? this.targetClassifier,
       targetX: targetX ?? this.targetX,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -4321,10 +4326,13 @@ class CitationCitedArtifactBuilder extends BackboneElementBuilder {
   /// Any additional information or content for the article or artifact.
   List<AnnotationBuilder>? note;
 
-  /// Converts a CitationCitedArtifactBuilder to [CitationCitedArtifact]
+  /// converts a [CitationCitedArtifactBuilder]
+  /// to [CitationCitedArtifact]
+  @override
   CitationCitedArtifact build() => CitationCitedArtifact.fromJson(toJson());
 
-  /// Converts a [CitationCitedArtifactBuilder] to a [Map<String, dynamic>]
+  /// converts a [CitationCitedArtifactBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -4978,9 +4986,7 @@ class CitationCitedArtifactBuilder extends BackboneElementBuilder {
       classification: classification ?? this.classification,
       contributorship: contributorship ?? this.contributorship,
       note: note ?? this.note,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -5236,10 +5242,13 @@ class CitationVersionBuilder extends BackboneElementBuilder {
   /// Citation for the main version of the cited artifact.
   ReferenceBuilder? baseCitation;
 
-  /// Converts a CitationVersionBuilder to [CitationVersion]
+  /// converts a [CitationVersionBuilder]
+  /// to [CitationVersion]
+  @override
   CitationVersion build() => CitationVersion.fromJson(toJson());
 
-  /// Converts a [CitationVersionBuilder] to a [Map<String, dynamic>]
+  /// converts a [CitationVersionBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -5500,9 +5509,7 @@ class CitationVersionBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       value: value ?? this.value,
       baseCitation: baseCitation ?? this.baseCitation,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -5691,10 +5698,13 @@ class CitationStatusDate1Builder extends BackboneElementBuilder {
   /// When the status started and/or ended.
   PeriodBuilder? period;
 
-  /// Converts a CitationStatusDate1Builder to [CitationStatusDate1]
+  /// converts a [CitationStatusDate1Builder]
+  /// to [CitationStatusDate1]
+  @override
   CitationStatusDate1 build() => CitationStatusDate1.fromJson(toJson());
 
-  /// Converts a [CitationStatusDate1Builder] to a [Map<String, dynamic>]
+  /// converts a [CitationStatusDate1Builder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -5981,9 +5991,7 @@ class CitationStatusDate1Builder extends BackboneElementBuilder {
       activity: activity ?? this.activity,
       actual: actual ?? this.actual,
       period: period ?? this.period,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -6182,10 +6190,13 @@ class CitationTitleBuilder extends BackboneElementBuilder {
   /// The title of the article or artifact.
   FhirMarkdownBuilder? text;
 
-  /// Converts a CitationTitleBuilder to [CitationTitle]
+  /// converts a [CitationTitleBuilder]
+  /// to [CitationTitle]
+  @override
   CitationTitle build() => CitationTitle.fromJson(toJson());
 
-  /// Converts a [CitationTitleBuilder] to a [Map<String, dynamic>]
+  /// converts a [CitationTitleBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -6477,9 +6488,7 @@ class CitationTitleBuilder extends BackboneElementBuilder {
       type: type ?? this.type,
       language: language ?? this.language,
       text: text ?? this.text,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -6685,10 +6694,13 @@ class CitationAbstractBuilder extends BackboneElementBuilder {
   /// Copyright notice for the abstract.
   FhirMarkdownBuilder? copyright;
 
-  /// Converts a CitationAbstractBuilder to [CitationAbstract]
+  /// converts a [CitationAbstractBuilder]
+  /// to [CitationAbstract]
+  @override
   CitationAbstract build() => CitationAbstract.fromJson(toJson());
 
-  /// Converts a [CitationAbstractBuilder] to a [Map<String, dynamic>]
+  /// converts a [CitationAbstractBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -7001,9 +7013,7 @@ class CitationAbstractBuilder extends BackboneElementBuilder {
       language: language ?? this.language,
       text: text ?? this.text,
       copyright: copyright ?? this.copyright,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -7204,10 +7214,13 @@ class CitationPartBuilder extends BackboneElementBuilder {
   /// The citation for the full article or artifact.
   ReferenceBuilder? baseCitation;
 
-  /// Converts a CitationPartBuilder to [CitationPart]
+  /// converts a [CitationPartBuilder]
+  /// to [CitationPart]
+  @override
   CitationPart build() => CitationPart.fromJson(toJson());
 
-  /// Converts a [CitationPartBuilder] to a [Map<String, dynamic>]
+  /// converts a [CitationPartBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -7494,9 +7507,7 @@ class CitationPartBuilder extends BackboneElementBuilder {
       type: type ?? this.type,
       value: value ?? this.value,
       baseCitation: baseCitation ?? this.baseCitation,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -7711,10 +7722,13 @@ class CitationRelatesTo1Builder extends BackboneElementBuilder {
   /// Getter for [targetAttachment] as a AttachmentBuilder
   AttachmentBuilder? get targetAttachment => targetX?.isAs<AttachmentBuilder>();
 
-  /// Converts a CitationRelatesTo1Builder to [CitationRelatesTo1]
+  /// converts a [CitationRelatesTo1Builder]
+  /// to [CitationRelatesTo1]
+  @override
   CitationRelatesTo1 build() => CitationRelatesTo1.fromJson(toJson());
 
-  /// Converts a [CitationRelatesTo1Builder] to a [Map<String, dynamic>]
+  /// converts a [CitationRelatesTo1Builder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -7999,7 +8013,7 @@ class CitationRelatesTo1Builder extends BackboneElementBuilder {
           'FhirUriBuilder',
           'IdentifierBuilder',
           'ReferenceBuilder',
-          'AttachmentBuilder'
+          'AttachmentBuilder',
         ];
       case 'targetUri':
         return ['FhirUriBuilder'];
@@ -8086,7 +8100,7 @@ class CitationRelatesTo1Builder extends BackboneElementBuilder {
     if (modifierExtension) this.modifierExtension = null;
     if (relationshipType) this.relationshipType = null;
     if (targetClassifier) this.targetClassifier = null;
-    if (target) this.targetX = null;
+    if (target) targetX = null;
   }
 
   @override
@@ -8113,9 +8127,7 @@ class CitationRelatesTo1Builder extends BackboneElementBuilder {
       relationshipType: relationshipType ?? this.relationshipType,
       targetClassifier: targetClassifier ?? this.targetClassifier,
       targetX: targetX ?? this.targetX,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -8406,10 +8418,13 @@ class CitationPublicationFormBuilder extends BackboneElementBuilder {
   /// Copyright notice for the full article or artifact.
   FhirMarkdownBuilder? copyright;
 
-  /// Converts a CitationPublicationFormBuilder to [CitationPublicationForm]
+  /// converts a [CitationPublicationFormBuilder]
+  /// to [CitationPublicationForm]
+  @override
   CitationPublicationForm build() => CitationPublicationForm.fromJson(toJson());
 
-  /// Converts a [CitationPublicationFormBuilder] to a [Map<String, dynamic>]
+  /// converts a [CitationPublicationFormBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -8909,9 +8924,7 @@ class CitationPublicationFormBuilder extends BackboneElementBuilder {
       lastPage: lastPage ?? this.lastPage,
       pageCount: pageCount ?? this.pageCount,
       copyright: copyright ?? this.copyright,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -9181,10 +9194,13 @@ class CitationPublishedInBuilder extends BackboneElementBuilder {
   /// Geographic location of the publisher.
   FhirStringBuilder? publisherLocation;
 
-  /// Converts a CitationPublishedInBuilder to [CitationPublishedIn]
+  /// converts a [CitationPublishedInBuilder]
+  /// to [CitationPublishedIn]
+  @override
   CitationPublishedIn build() => CitationPublishedIn.fromJson(toJson());
 
-  /// Converts a [CitationPublishedInBuilder] to a [Map<String, dynamic>]
+  /// converts a [CitationPublishedInBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -9528,9 +9544,7 @@ class CitationPublishedInBuilder extends BackboneElementBuilder {
       title: title ?? this.title,
       publisher: publisher ?? this.publisher,
       publisherLocation: publisherLocation ?? this.publisherLocation,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -9751,10 +9765,13 @@ class CitationPeriodicReleaseBuilder extends BackboneElementBuilder {
   /// Defining the date on which the issue of the journal was published.
   CitationDateOfPublicationBuilder? dateOfPublication;
 
-  /// Converts a CitationPeriodicReleaseBuilder to [CitationPeriodicRelease]
+  /// converts a [CitationPeriodicReleaseBuilder]
+  /// to [CitationPeriodicRelease]
+  @override
   CitationPeriodicRelease build() => CitationPeriodicRelease.fromJson(toJson());
 
-  /// Converts a [CitationPeriodicReleaseBuilder] to a [Map<String, dynamic>]
+  /// converts a [CitationPeriodicReleaseBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -10067,9 +10084,7 @@ class CitationPeriodicReleaseBuilder extends BackboneElementBuilder {
       volume: volume ?? this.volume,
       issue: issue ?? this.issue,
       dateOfPublication: dateOfPublication ?? this.dateOfPublication,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -10307,11 +10322,14 @@ class CitationDateOfPublicationBuilder extends BackboneElementBuilder {
   /// published.
   FhirStringBuilder? text;
 
-  /// Converts a CitationDateOfPublicationBuilder to [CitationDateOfPublication]
+  /// converts a [CitationDateOfPublicationBuilder]
+  /// to [CitationDateOfPublication]
+  @override
   CitationDateOfPublication build() =>
       CitationDateOfPublication.fromJson(toJson());
 
-  /// Converts a [CitationDateOfPublicationBuilder] to a [Map<String, dynamic>]
+  /// converts a [CitationDateOfPublicationBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -10676,9 +10694,7 @@ class CitationDateOfPublicationBuilder extends BackboneElementBuilder {
       day: day ?? this.day,
       season: season ?? this.season,
       text: text ?? this.text,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -10880,10 +10896,13 @@ class CitationWebLocationBuilder extends BackboneElementBuilder {
   /// The specific URL.
   FhirUriBuilder? url;
 
-  /// Converts a CitationWebLocationBuilder to [CitationWebLocation]
+  /// converts a [CitationWebLocationBuilder]
+  /// to [CitationWebLocation]
+  @override
   CitationWebLocation build() => CitationWebLocation.fromJson(toJson());
 
-  /// Converts a [CitationWebLocationBuilder] to a [Map<String, dynamic>]
+  /// converts a [CitationWebLocationBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -11144,9 +11163,7 @@ class CitationWebLocationBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       type: type ?? this.type,
       url: url ?? this.url,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -11340,10 +11357,13 @@ class CitationClassification1Builder extends BackboneElementBuilder {
   /// Provenance and copyright of classification.
   CitationWhoClassifiedBuilder? whoClassified;
 
-  /// Converts a CitationClassification1Builder to [CitationClassification1]
+  /// converts a [CitationClassification1Builder]
+  /// to [CitationClassification1]
+  @override
   CitationClassification1 build() => CitationClassification1.fromJson(toJson());
 
-  /// Converts a [CitationClassification1Builder] to a [Map<String, dynamic>]
+  /// converts a [CitationClassification1Builder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -11635,9 +11655,7 @@ class CitationClassification1Builder extends BackboneElementBuilder {
       type: type ?? this.type,
       classifier: classifier ?? this.classifier,
       whoClassified: whoClassified ?? this.whoClassified,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -11856,10 +11874,13 @@ class CitationWhoClassifiedBuilder extends BackboneElementBuilder {
   /// Acceptable to re-use the classification.
   FhirBooleanBuilder? freeToShare;
 
-  /// Converts a CitationWhoClassifiedBuilder to [CitationWhoClassified]
+  /// converts a [CitationWhoClassifiedBuilder]
+  /// to [CitationWhoClassified]
+  @override
   CitationWhoClassified build() => CitationWhoClassified.fromJson(toJson());
 
-  /// Converts a [CitationWhoClassifiedBuilder] to a [Map<String, dynamic>]
+  /// converts a [CitationWhoClassifiedBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -12198,9 +12219,7 @@ class CitationWhoClassifiedBuilder extends BackboneElementBuilder {
       publisher: publisher ?? this.publisher,
       classifierCopyright: classifierCopyright ?? this.classifierCopyright,
       freeToShare: freeToShare ?? this.freeToShare,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -12418,10 +12437,13 @@ class CitationContributorshipBuilder extends BackboneElementBuilder {
   /// separate coding for each list member.
   List<CitationSummaryBuilder>? summary;
 
-  /// Converts a CitationContributorshipBuilder to [CitationContributorship]
+  /// converts a [CitationContributorshipBuilder]
+  /// to [CitationContributorship]
+  @override
   CitationContributorship build() => CitationContributorship.fromJson(toJson());
 
-  /// Converts a [CitationContributorshipBuilder] to a [Map<String, dynamic>]
+  /// converts a [CitationContributorshipBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -12718,9 +12740,7 @@ class CitationContributorshipBuilder extends BackboneElementBuilder {
       complete: complete ?? this.complete,
       entry: entry ?? this.entry,
       summary: summary ?? this.summary,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -13040,10 +13060,13 @@ class CitationEntryBuilder extends BackboneElementBuilder {
   /// Used to code order of authors.
   FhirPositiveIntBuilder? listOrder;
 
-  /// Converts a CitationEntryBuilder to [CitationEntry]
+  /// converts a [CitationEntryBuilder]
+  /// to [CitationEntry]
+  @override
   CitationEntry build() => CitationEntry.fromJson(toJson());
 
-  /// Converts a [CitationEntryBuilder] to a [Map<String, dynamic>]
+  /// converts a [CitationEntryBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -13594,9 +13617,7 @@ class CitationEntryBuilder extends BackboneElementBuilder {
       contributionInstance: contributionInstance ?? this.contributionInstance,
       correspondingContact: correspondingContact ?? this.correspondingContact,
       listOrder: listOrder ?? this.listOrder,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -13852,10 +13873,13 @@ class CitationAffiliationInfoBuilder extends BackboneElementBuilder {
   /// Identifier for the organization.
   List<IdentifierBuilder>? identifier;
 
-  /// Converts a CitationAffiliationInfoBuilder to [CitationAffiliationInfo]
+  /// converts a [CitationAffiliationInfoBuilder]
+  /// to [CitationAffiliationInfo]
+  @override
   CitationAffiliationInfo build() => CitationAffiliationInfo.fromJson(toJson());
 
-  /// Converts a [CitationAffiliationInfoBuilder] to a [Map<String, dynamic>]
+  /// converts a [CitationAffiliationInfoBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -14147,9 +14171,7 @@ class CitationAffiliationInfoBuilder extends BackboneElementBuilder {
       affiliation: affiliation ?? this.affiliation,
       role: role ?? this.role,
       identifier: identifier ?? this.identifier,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -14336,11 +14358,14 @@ class CitationContributionInstanceBuilder extends BackboneElementBuilder {
   /// The time that the contribution was made.
   FhirDateTimeBuilder? time;
 
-  /// Converts a CitationContributionInstanceBuilder to [CitationContributionInstance]
+  /// converts a [CitationContributionInstanceBuilder]
+  /// to [CitationContributionInstance]
+  @override
   CitationContributionInstance build() =>
       CitationContributionInstance.fromJson(toJson());
 
-  /// Converts a [CitationContributionInstanceBuilder] to a [Map<String, dynamic>]
+  /// converts a [CitationContributionInstanceBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -14601,9 +14626,7 @@ class CitationContributionInstanceBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       type: type ?? this.type,
       time: time ?? this.time,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -14806,10 +14829,13 @@ class CitationSummary1Builder extends BackboneElementBuilder {
   /// contributorship statement.
   FhirMarkdownBuilder? value;
 
-  /// Converts a CitationSummary1Builder to [CitationSummary1]
+  /// converts a [CitationSummary1Builder]
+  /// to [CitationSummary1]
+  @override
   CitationSummary1 build() => CitationSummary1.fromJson(toJson());
 
-  /// Converts a [CitationSummary1Builder] to a [Map<String, dynamic>]
+  /// converts a [CitationSummary1Builder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -15122,9 +15148,7 @@ class CitationSummary1Builder extends BackboneElementBuilder {
       style: style ?? this.style,
       source: source ?? this.source,
       value: value ?? this.value,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

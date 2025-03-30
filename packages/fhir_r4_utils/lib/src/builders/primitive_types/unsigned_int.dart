@@ -81,15 +81,19 @@ class FhirUnsignedIntBuilder extends FhirNumberBuilder
   factory FhirUnsignedIntBuilder.empty() =>
       FhirUnsignedIntBuilder(null, element: ElementBuilder.empty());
 
-  /// Factory constructor to create [FhirUnsignedIntBuilder] from JSON input.
+  /// Factory constructor to create [FhirUnsignedIntBuilder]
+  /// from JSON.input.
   factory FhirUnsignedIntBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as num?;
     final elemJson = json['_value'] as Map<String, dynamic>?;
     final element = elemJson == null ? null : ElementBuilder.fromJson(elemJson);
     final objectPath = json['objectPath'] as String? ?? 'PositiveInt';
 
-    return FhirUnsignedIntBuilder(value,
-        element: element, objectPath: objectPath);
+    return FhirUnsignedIntBuilder(
+      value,
+      element: element,
+      objectPath: objectPath,
+    );
   }
 
   /// Factory constructor to create [FhirUnsignedIntBuilder] from YAML input.
@@ -109,8 +113,8 @@ class FhirUnsignedIntBuilder extends FhirNumberBuilder
     }
   }
 
-  /// Static method to try parsing input as [FhirUnsignedIntBuilder], returns `null`
-  /// if unsuccessful.
+  /// Static method to try parsing input as [FhirUnsignedIntBuilder],
+  /// returns `null` if unsuccessful.
   static FhirUnsignedIntBuilder? tryParse(dynamic input) {
     try {
       return FhirUnsignedIntBuilder(input);
@@ -179,8 +183,10 @@ class FhirUnsignedIntBuilder extends FhirNumberBuilder
 
   // Clone / copyWith
   @override
-  FhirUnsignedIntBuilder clone() => FhirUnsignedIntBuilder(value,
-      element: element?.clone() as ElementBuilder?);
+  FhirUnsignedIntBuilder clone() => FhirUnsignedIntBuilder(
+        value,
+        element: element?.clone() as ElementBuilder?,
+      );
 
   /// Sets disallowExtensions to true.
   FhirUnsignedIntBuilder noExtensions() => copyWith(disallowExtensions: true);

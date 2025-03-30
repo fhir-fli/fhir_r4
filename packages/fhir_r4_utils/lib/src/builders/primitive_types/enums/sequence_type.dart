@@ -47,7 +47,8 @@ class SequenceTypeBuilder extends FhirCodeEnumBuilder {
   factory SequenceTypeBuilder.empty() =>
       SequenceTypeBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [SequenceTypeBuilder] from JSON.
+  /// Factory constructor to create [SequenceTypeBuilder]
+  /// from JSON.
   factory SequenceTypeBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;

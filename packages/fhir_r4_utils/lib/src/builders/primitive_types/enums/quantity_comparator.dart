@@ -47,7 +47,8 @@ class QuantityComparatorBuilder extends FhirCodeEnumBuilder {
   factory QuantityComparatorBuilder.empty() =>
       QuantityComparatorBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [QuantityComparatorBuilder] from JSON.
+  /// Factory constructor to create [QuantityComparatorBuilder]
+  /// from JSON.
   factory QuantityComparatorBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
@@ -120,7 +121,9 @@ class QuantityComparatorBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   QuantityComparatorBuilder withElement(ElementBuilder? newElement) {
     return QuantityComparatorBuilder._(
-        validatedValue: value, element: newElement);
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

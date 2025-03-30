@@ -1,12 +1,12 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
+        Practitioner,
+        PractitionerQualification,
         R4ResourceType,
         StringExtensionForFHIR,
-        Practitioner,
-        PractitionerQualification;
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -291,10 +291,13 @@ class PractitionerBuilder extends DomainResourceBuilder {
   /// A language the practitioner can use in patient communication.
   List<CodeableConceptBuilder>? communication;
 
-  /// Converts a PractitionerBuilder to [Practitioner]
+  /// converts a [PractitionerBuilder]
+  /// to [Practitioner]
+  @override
   Practitioner build() => Practitioner.fromJson(toJson());
 
-  /// Converts a [PractitionerBuilder] to a [Map<String, dynamic>]
+  /// converts a [PractitionerBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -933,9 +936,7 @@ class PractitionerBuilder extends DomainResourceBuilder {
       photo: photo ?? this.photo,
       qualification: qualification ?? this.qualification,
       communication: communication ?? this.communication,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1221,11 +1222,14 @@ class PractitionerQualificationBuilder extends BackboneElementBuilder {
   /// Organization that regulates and issues the qualification.
   ReferenceBuilder? issuer;
 
-  /// Converts a PractitionerQualificationBuilder to [PractitionerQualification]
+  /// converts a [PractitionerQualificationBuilder]
+  /// to [PractitionerQualification]
+  @override
   PractitionerQualification build() =>
       PractitionerQualification.fromJson(toJson());
 
-  /// Converts a [PractitionerQualificationBuilder] to a [Map<String, dynamic>]
+  /// converts a [PractitionerQualificationBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1543,9 +1547,7 @@ class PractitionerQualificationBuilder extends BackboneElementBuilder {
       code: code ?? this.code,
       period: period ?? this.period,
       issuer: issuer ?? this.issuer,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

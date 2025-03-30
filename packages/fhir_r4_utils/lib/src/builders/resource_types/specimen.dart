@@ -1,14 +1,14 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
         R4ResourceType,
-        StringExtensionForFHIR,
         Specimen,
         SpecimenCollection,
+        SpecimenContainer,
         SpecimenProcessing,
-        SpecimenContainer;
+        StringExtensionForFHIR,
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -327,10 +327,13 @@ class SpecimenBuilder extends DomainResourceBuilder {
   /// frozen).
   List<AnnotationBuilder>? note;
 
-  /// Converts a SpecimenBuilder to [Specimen]
+  /// converts a [SpecimenBuilder]
+  /// to [Specimen]
+  @override
   Specimen build() => Specimen.fromJson(toJson());
 
-  /// Converts a [SpecimenBuilder] to a [Map<String, dynamic>]
+  /// converts a [SpecimenBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1047,9 +1050,7 @@ class SpecimenBuilder extends DomainResourceBuilder {
       container: container ?? this.container,
       condition: condition ?? this.condition,
       note: note ?? this.note,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1405,10 +1406,13 @@ class SpecimenCollectionBuilder extends BackboneElementBuilder {
   FhirDurationBuilder? get fastingStatusDuration =>
       fastingStatusX?.isAs<FhirDurationBuilder>();
 
-  /// Converts a SpecimenCollectionBuilder to [SpecimenCollection]
+  /// converts a [SpecimenCollectionBuilder]
+  /// to [SpecimenCollection]
+  @override
   SpecimenCollection build() => SpecimenCollection.fromJson(toJson());
 
-  /// Converts a [SpecimenCollectionBuilder] to a [Map<String, dynamic>]
+  /// converts a [SpecimenCollectionBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1867,12 +1871,12 @@ class SpecimenCollectionBuilder extends BackboneElementBuilder {
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
     if (collector) this.collector = null;
-    if (collected) this.collectedX = null;
+    if (collected) collectedX = null;
     if (duration) this.duration = null;
     if (quantity) this.quantity = null;
     if (method) this.method = null;
     if (bodySite) this.bodySite = null;
-    if (fastingStatus) this.fastingStatusX = null;
+    if (fastingStatus) fastingStatusX = null;
   }
 
   @override
@@ -1907,9 +1911,7 @@ class SpecimenCollectionBuilder extends BackboneElementBuilder {
       method: method ?? this.method,
       bodySite: bodySite ?? this.bodySite,
       fastingStatusX: fastingStatusX ?? this.fastingStatusX,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -2153,10 +2155,13 @@ class SpecimenProcessingBuilder extends BackboneElementBuilder {
   /// Getter for [timePeriod] as a PeriodBuilder
   PeriodBuilder? get timePeriod => timeX?.isAs<PeriodBuilder>();
 
-  /// Converts a SpecimenProcessingBuilder to [SpecimenProcessing]
+  /// converts a [SpecimenProcessingBuilder]
+  /// to [SpecimenProcessing]
+  @override
   SpecimenProcessing build() => SpecimenProcessing.fromJson(toJson());
 
-  /// Converts a [SpecimenProcessingBuilder] to a [Map<String, dynamic>]
+  /// converts a [SpecimenProcessingBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2499,7 +2504,7 @@ class SpecimenProcessingBuilder extends BackboneElementBuilder {
     if (description) this.description = null;
     if (procedure) this.procedure = null;
     if (additive) this.additive = null;
-    if (time) this.timeX = null;
+    if (time) timeX = null;
   }
 
   @override
@@ -2528,9 +2533,7 @@ class SpecimenProcessingBuilder extends BackboneElementBuilder {
       procedure: procedure ?? this.procedure,
       additive: additive ?? this.additive,
       timeX: timeX ?? this.timeX,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -2784,10 +2787,13 @@ class SpecimenContainerBuilder extends BackboneElementBuilder {
   ReferenceBuilder? get additiveReference =>
       additiveX?.isAs<ReferenceBuilder>();
 
-  /// Converts a SpecimenContainerBuilder to [SpecimenContainer]
+  /// converts a [SpecimenContainerBuilder]
+  /// to [SpecimenContainer]
+  @override
   SpecimenContainer build() => SpecimenContainer.fromJson(toJson());
 
-  /// Converts a [SpecimenContainerBuilder] to a [Map<String, dynamic>]
+  /// converts a [SpecimenContainerBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3178,7 +3184,7 @@ class SpecimenContainerBuilder extends BackboneElementBuilder {
     if (type) this.type = null;
     if (capacity) this.capacity = null;
     if (specimenQuantity) this.specimenQuantity = null;
-    if (additive) this.additiveX = null;
+    if (additive) additiveX = null;
   }
 
   @override
@@ -3211,9 +3217,7 @@ class SpecimenContainerBuilder extends BackboneElementBuilder {
       capacity: capacity ?? this.capacity,
       specimenQuantity: specimenQuantity ?? this.specimenQuantity,
       additiveX: additiveX ?? this.additiveX,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

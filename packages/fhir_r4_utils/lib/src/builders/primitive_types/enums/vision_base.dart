@@ -46,7 +46,8 @@ class VisionBaseBuilder extends FhirCodeEnumBuilder {
   /// Create empty [VisionBaseBuilder] with element only
   factory VisionBaseBuilder.empty() => VisionBaseBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [VisionBaseBuilder] from JSON.
+  /// Factory constructor to create [VisionBaseBuilder]
+  /// from JSON.
   factory VisionBaseBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;

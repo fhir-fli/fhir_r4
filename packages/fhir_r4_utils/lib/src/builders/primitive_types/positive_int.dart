@@ -8,7 +8,8 @@ extension FhirPositiveIntBuilderExtension on num {
       : int.tryParse(toString()) != null
           ? FhirPositiveIntBuilder(int.parse(toString()))
           : throw FormatException(
-              'Invalid input for FhirPositiveIntBuilder: $this');
+              'Invalid input for FhirPositiveIntBuilder: $this',
+            );
 }
 
 /// Represents the FHIR primitive type `positiveInt`.
@@ -35,11 +36,11 @@ class FhirPositiveIntBuilder extends FhirNumberBuilder
   FhirPositiveIntBuilder._({
     required int? validatedValue,
     this.input,
-    this.element,
-    this.id,
-    this.extension_,
-    this.disallowExtensions,
-    this.objectPath = 'PositiveInt',
+    super.element,
+    super.id,
+    super.extension_,
+    super.disallowExtensions,
+    super.objectPath = 'PositiveInt',
   }) : super._(validatedValue: validatedValue);
 
   /// Public factory constructor that does validation
@@ -84,15 +85,19 @@ class FhirPositiveIntBuilder extends FhirNumberBuilder
   factory FhirPositiveIntBuilder.empty() =>
       FhirPositiveIntBuilder(null, element: ElementBuilder.empty());
 
-  /// Factory constructor to create [FhirPositiveIntBuilder] from JSON input.
+  /// Factory constructor to create [FhirPositiveIntBuilder]
+  /// from JSON.input.
   factory FhirPositiveIntBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as num?;
     final elemJson = json['_value'] as Map<String, dynamic>?;
     final element = elemJson == null ? null : ElementBuilder.fromJson(elemJson);
     final objectPath = json['objectPath'] as String? ?? 'PositiveInt';
 
-    return FhirPositiveIntBuilder(value,
-        element: element, objectPath: objectPath);
+    return FhirPositiveIntBuilder(
+      value,
+      element: element,
+      objectPath: objectPath,
+    );
   }
 
   /// Factory constructor to create [FhirPositiveIntBuilder] from YAML input.
@@ -107,13 +112,14 @@ class FhirPositiveIntBuilder extends FhirNumberBuilder
       );
     } else {
       throw const FormatException(
-        'Invalid input for FhirPositiveIntBuilder: not a valid YAML string or map.',
+        'Invalid input for FhirPositiveIntBuilder: '
+        'not a valid YAML string or map.',
       );
     }
   }
 
-  /// Static method to try parsing input as [FhirPositiveIntBuilder], returns `null`
-  /// if unsuccessful.
+  /// Static method to try parsing input as [FhirPositiveIntBuilder],
+  /// returns `null` if unsuccessful.
   static FhirPositiveIntBuilder? tryParse(dynamic input) {
     try {
       return FhirPositiveIntBuilder(input);
@@ -134,21 +140,6 @@ class FhirPositiveIntBuilder extends FhirNumberBuilder
 
   /// The original input value (for serialization purposes)
   num? input;
-
-  /// Element property
-  ElementBuilder? element;
-
-  /// ID property
-  FhirStringBuilder? id;
-
-  /// Extensions property
-  List<FhirExtensionBuilder>? extension_;
-
-  /// DisallowExtensions property
-  bool? disallowExtensions;
-
-  /// ObjectPath property
-  String? objectPath;
 
   /// Returns the FHIR type as a string.
   @override
@@ -196,8 +187,10 @@ class FhirPositiveIntBuilder extends FhirNumberBuilder
 
   // Clone / copyWith
   @override
-  FhirPositiveIntBuilder clone() => FhirPositiveIntBuilder(value,
-      element: element?.clone() as ElementBuilder?);
+  FhirPositiveIntBuilder clone() => FhirPositiveIntBuilder(
+        value,
+        element: element?.clone() as ElementBuilder?,
+      );
 
   /// Sets disallowExtensions to true.
   FhirPositiveIntBuilder noExtensions() => copyWith(disallowExtensions: true);

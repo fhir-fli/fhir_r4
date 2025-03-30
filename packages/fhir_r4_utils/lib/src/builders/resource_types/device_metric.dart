@@ -1,12 +1,12 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
+        DeviceMetric,
+        DeviceMetricCalibration,
         R4ResourceType,
         StringExtensionForFHIR,
-        DeviceMetric,
-        DeviceMetricCalibration;
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -291,10 +291,13 @@ class DeviceMetricBuilder extends DomainResourceBuilder {
   /// required to be performed.
   List<DeviceMetricCalibrationBuilder>? calibration;
 
-  /// Converts a DeviceMetricBuilder to [DeviceMetric]
+  /// converts a [DeviceMetricBuilder]
+  /// to [DeviceMetric]
+  @override
   DeviceMetric build() => DeviceMetric.fromJson(toJson());
 
-  /// Converts a [DeviceMetricBuilder] to a [Map<String, dynamic>]
+  /// converts a [DeviceMetricBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -908,9 +911,7 @@ class DeviceMetricBuilder extends DomainResourceBuilder {
       category: category ?? this.category,
       measurementPeriod: measurementPeriod ?? this.measurementPeriod,
       calibration: calibration ?? this.calibration,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1179,10 +1180,13 @@ class DeviceMetricCalibrationBuilder extends BackboneElementBuilder {
   /// Describes the time last calibration has been performed.
   FhirInstantBuilder? time;
 
-  /// Converts a DeviceMetricCalibrationBuilder to [DeviceMetricCalibration]
+  /// converts a [DeviceMetricCalibrationBuilder]
+  /// to [DeviceMetricCalibration]
+  @override
   DeviceMetricCalibration build() => DeviceMetricCalibration.fromJson(toJson());
 
-  /// Converts a [DeviceMetricCalibrationBuilder] to a [Map<String, dynamic>]
+  /// converts a [DeviceMetricCalibrationBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1469,9 +1473,7 @@ class DeviceMetricCalibrationBuilder extends BackboneElementBuilder {
       type: type ?? this.type,
       state: state ?? this.state,
       time: time ?? this.time,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

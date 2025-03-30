@@ -1,13 +1,13 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
-        R4ResourceType,
-        StringExtensionForFHIR,
         Account,
         AccountCoverage,
-        AccountGuarantor;
+        AccountGuarantor,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -293,10 +293,13 @@ class AccountBuilder extends DomainResourceBuilder {
   /// Reference to a parent Account.
   ReferenceBuilder? partOf;
 
-  /// Converts a AccountBuilder to [Account]
+  /// converts a [AccountBuilder]
+  /// to [Account]
+  @override
   Account build() => Account.fromJson(toJson());
 
-  /// Converts a [AccountBuilder] to a [Map<String, dynamic>]
+  /// converts a [AccountBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -946,9 +949,7 @@ class AccountBuilder extends DomainResourceBuilder {
       description: description ?? this.description,
       guarantor: guarantor ?? this.guarantor,
       partOf: partOf ?? this.partOf,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1216,10 +1217,13 @@ class AccountCoverageBuilder extends BackboneElementBuilder {
   /// The priority of the coverage in the context of this account.
   FhirPositiveIntBuilder? priority;
 
-  /// Converts a AccountCoverageBuilder to [AccountCoverage]
+  /// converts a [AccountCoverageBuilder]
+  /// to [AccountCoverage]
+  @override
   AccountCoverage build() => AccountCoverage.fromJson(toJson());
 
-  /// Converts a [AccountCoverageBuilder] to a [Map<String, dynamic>]
+  /// converts a [AccountCoverageBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1480,9 +1484,7 @@ class AccountCoverageBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       coverage: coverage ?? this.coverage,
       priority: priority ?? this.priority,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1674,10 +1676,13 @@ class AccountGuarantorBuilder extends BackboneElementBuilder {
   /// account.
   PeriodBuilder? period;
 
-  /// Converts a AccountGuarantorBuilder to [AccountGuarantor]
+  /// converts a [AccountGuarantorBuilder]
+  /// to [AccountGuarantor]
+  @override
   AccountGuarantor build() => AccountGuarantor.fromJson(toJson());
 
-  /// Converts a [AccountGuarantorBuilder] to a [Map<String, dynamic>]
+  /// converts a [AccountGuarantorBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1964,9 +1969,7 @@ class AccountGuarantorBuilder extends BackboneElementBuilder {
       party: party ?? this.party,
       onHold: onHold ?? this.onHold,
       period: period ?? this.period,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

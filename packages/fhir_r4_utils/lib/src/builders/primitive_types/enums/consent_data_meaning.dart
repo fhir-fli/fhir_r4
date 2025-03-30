@@ -48,7 +48,8 @@ class ConsentDataMeaningBuilder extends FhirCodeEnumBuilder {
   factory ConsentDataMeaningBuilder.empty() =>
       ConsentDataMeaningBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [ConsentDataMeaningBuilder] from JSON.
+  /// Factory constructor to create [ConsentDataMeaningBuilder]
+  /// from JSON.
   factory ConsentDataMeaningBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
@@ -125,7 +126,9 @@ class ConsentDataMeaningBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   ConsentDataMeaningBuilder withElement(ElementBuilder? newElement) {
     return ConsentDataMeaningBuilder._(
-        validatedValue: value, element: newElement);
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

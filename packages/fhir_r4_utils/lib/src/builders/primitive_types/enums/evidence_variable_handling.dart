@@ -48,7 +48,8 @@ class EvidenceVariableHandlingBuilder extends FhirCodeEnumBuilder {
   factory EvidenceVariableHandlingBuilder.empty() =>
       EvidenceVariableHandlingBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [EvidenceVariableHandlingBuilder] from JSON.
+  /// Factory constructor to create [EvidenceVariableHandlingBuilder]
+  /// from JSON.
   factory EvidenceVariableHandlingBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
@@ -125,7 +126,9 @@ class EvidenceVariableHandlingBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   EvidenceVariableHandlingBuilder withElement(ElementBuilder? newElement) {
     return EvidenceVariableHandlingBuilder._(
-        validatedValue: value, element: newElement);
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

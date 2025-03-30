@@ -1,13 +1,13 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
-        R4ResourceType,
-        StringExtensionForFHIR,
         PractitionerRole,
         PractitionerRoleAvailableTime,
-        PractitionerRoleNotAvailable;
+        PractitionerRoleNotAvailable,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -347,10 +347,13 @@ class PractitionerRoleBuilder extends DomainResourceBuilder {
   /// practitioner with this role.
   List<ReferenceBuilder>? endpoint;
 
-  /// Converts a PractitionerRoleBuilder to [PractitionerRole]
+  /// converts a [PractitionerRoleBuilder]
+  /// to [PractitionerRole]
+  @override
   PractitionerRole build() => PractitionerRole.fromJson(toJson());
 
-  /// Converts a [PractitionerRoleBuilder] to a [Map<String, dynamic>]
+  /// converts a [PractitionerRoleBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1104,9 +1107,7 @@ class PractitionerRoleBuilder extends DomainResourceBuilder {
       availabilityExceptions:
           availabilityExceptions ?? this.availabilityExceptions,
       endpoint: endpoint ?? this.endpoint,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1414,11 +1415,14 @@ class PractitionerRoleAvailableTimeBuilder extends BackboneElementBuilder {
   /// time is ignored.
   FhirTimeBuilder? availableEndTime;
 
-  /// Converts a PractitionerRoleAvailableTimeBuilder to [PractitionerRoleAvailableTime]
+  /// converts a [PractitionerRoleAvailableTimeBuilder]
+  /// to [PractitionerRoleAvailableTime]
+  @override
   PractitionerRoleAvailableTime build() =>
       PractitionerRoleAvailableTime.fromJson(toJson());
 
-  /// Converts a [PractitionerRoleAvailableTimeBuilder] to a [Map<String, dynamic>]
+  /// converts a [PractitionerRoleAvailableTimeBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1736,9 +1740,7 @@ class PractitionerRoleAvailableTimeBuilder extends BackboneElementBuilder {
       allDay: allDay ?? this.allDay,
       availableStartTime: availableStartTime ?? this.availableStartTime,
       availableEndTime: availableEndTime ?? this.availableEndTime,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1932,11 +1934,14 @@ class PractitionerRoleNotAvailableBuilder extends BackboneElementBuilder {
   /// date.
   PeriodBuilder? during;
 
-  /// Converts a PractitionerRoleNotAvailableBuilder to [PractitionerRoleNotAvailable]
+  /// converts a [PractitionerRoleNotAvailableBuilder]
+  /// to [PractitionerRoleNotAvailable]
+  @override
   PractitionerRoleNotAvailable build() =>
       PractitionerRoleNotAvailable.fromJson(toJson());
 
-  /// Converts a [PractitionerRoleNotAvailableBuilder] to a [Map<String, dynamic>]
+  /// converts a [PractitionerRoleNotAvailableBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2197,9 +2202,7 @@ class PractitionerRoleNotAvailableBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       description: description ?? this.description,
       during: during ?? this.during,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

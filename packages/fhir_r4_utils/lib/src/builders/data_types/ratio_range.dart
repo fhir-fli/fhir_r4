@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, StringExtensionForFHIR, RatioRange;
+    show RatioRange, StringExtensionForFHIR, yamlMapToJson, yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -131,10 +131,13 @@ class RatioRangeBuilder extends DataTypeBuilder
   /// The value of the denominator.
   QuantityBuilder? denominator;
 
-  /// Converts a RatioRangeBuilder to [RatioRange]
+  /// converts a [RatioRangeBuilder]
+  /// to [RatioRange]
+  @override
   RatioRange build() => RatioRange.fromJson(toJson());
 
-  /// Converts a [RatioRangeBuilder] to a [Map<String, dynamic>]
+  /// converts a [RatioRangeBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -390,9 +393,7 @@ class RatioRangeBuilder extends DataTypeBuilder
       lowNumerator: lowNumerator ?? this.lowNumerator,
       highNumerator: highNumerator ?? this.highNumerator,
       denominator: denominator ?? this.denominator,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

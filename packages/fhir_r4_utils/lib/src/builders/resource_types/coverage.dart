@@ -1,14 +1,14 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
-        R4ResourceType,
-        StringExtensionForFHIR,
         Coverage,
         CoverageClass,
         CoverageCostToBeneficiary,
-        CoverageException;
+        CoverageException,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -373,10 +373,13 @@ class CoverageBuilder extends DomainResourceBuilder {
   /// The policy(s) which constitute this insurance coverage.
   List<ReferenceBuilder>? contract;
 
-  /// Converts a CoverageBuilder to [Coverage]
+  /// converts a [CoverageBuilder]
+  /// to [Coverage]
+  @override
   Coverage build() => Coverage.fromJson(toJson());
 
-  /// Converts a [CoverageBuilder] to a [Map<String, dynamic>]
+  /// converts a [CoverageBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1187,9 +1190,7 @@ class CoverageBuilder extends DomainResourceBuilder {
       costToBeneficiary: costToBeneficiary ?? this.costToBeneficiary,
       subrogation: subrogation ?? this.subrogation,
       contract: contract ?? this.contract,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1500,10 +1501,13 @@ class CoverageClassBuilder extends BackboneElementBuilder {
   /// A short description for the class.
   FhirStringBuilder? name;
 
-  /// Converts a CoverageClassBuilder to [CoverageClass]
+  /// converts a [CoverageClassBuilder]
+  /// to [CoverageClass]
+  @override
   CoverageClass build() => CoverageClass.fromJson(toJson());
 
-  /// Converts a [CoverageClassBuilder] to a [Map<String, dynamic>]
+  /// converts a [CoverageClassBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1790,9 +1794,7 @@ class CoverageClassBuilder extends BackboneElementBuilder {
       type: type ?? this.type,
       value: value ?? this.value,
       name: name ?? this.name,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -2004,11 +2006,14 @@ class CoverageCostToBeneficiaryBuilder extends BackboneElementBuilder {
   /// and their effective periods.
   List<CoverageExceptionBuilder>? exception;
 
-  /// Converts a CoverageCostToBeneficiaryBuilder to [CoverageCostToBeneficiary]
+  /// converts a [CoverageCostToBeneficiaryBuilder]
+  /// to [CoverageCostToBeneficiary]
+  @override
   CoverageCostToBeneficiary build() =>
       CoverageCostToBeneficiary.fromJson(toJson());
 
-  /// Converts a [CoverageCostToBeneficiaryBuilder] to a [Map<String, dynamic>]
+  /// converts a [CoverageCostToBeneficiaryBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2326,7 +2331,7 @@ class CoverageCostToBeneficiaryBuilder extends BackboneElementBuilder {
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
     if (type) this.type = null;
-    if (value) this.valueX = null;
+    if (value) valueX = null;
     if (exception) this.exception = null;
   }
 
@@ -2354,9 +2359,7 @@ class CoverageCostToBeneficiaryBuilder extends BackboneElementBuilder {
       type: type ?? this.type,
       valueX: valueX ?? this.valueX,
       exception: exception ?? this.exception,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -2541,10 +2544,13 @@ class CoverageExceptionBuilder extends BackboneElementBuilder {
   /// The timeframe during when the exception is in force.
   PeriodBuilder? period;
 
-  /// Converts a CoverageExceptionBuilder to [CoverageException]
+  /// converts a [CoverageExceptionBuilder]
+  /// to [CoverageException]
+  @override
   CoverageException build() => CoverageException.fromJson(toJson());
 
-  /// Converts a [CoverageExceptionBuilder] to a [Map<String, dynamic>]
+  /// converts a [CoverageExceptionBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2805,9 +2811,7 @@ class CoverageExceptionBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       type: type ?? this.type,
       period: period ?? this.period,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

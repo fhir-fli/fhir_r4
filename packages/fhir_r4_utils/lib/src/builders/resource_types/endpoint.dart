@@ -1,11 +1,11 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
+        FhirEndpoint,
         R4ResourceType,
         StringExtensionForFHIR,
-        FhirEndpoint;
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -290,10 +290,13 @@ class FhirEndpointBuilder extends DomainResourceBuilder {
   /// Additional headers / information to send as part of the notification.
   List<FhirStringBuilder>? header;
 
-  /// Converts a FhirEndpointBuilder to [FhirEndpoint]
+  /// converts a [FhirEndpointBuilder]
+  /// to [FhirEndpoint]
+  @override
   FhirEndpoint build() => FhirEndpoint.fromJson(toJson());
 
-  /// Converts a [FhirEndpointBuilder] to a [Map<String, dynamic>]
+  /// converts a [FhirEndpointBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -948,9 +951,7 @@ class FhirEndpointBuilder extends DomainResourceBuilder {
       payloadMimeType: payloadMimeType ?? this.payloadMimeType,
       address: address ?? this.address,
       header: header ?? this.header,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

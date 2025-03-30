@@ -1,17 +1,17 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
-        R4ResourceType,
-        StringExtensionForFHIR,
         Encounter,
-        EncounterStatusHistory,
         EncounterClassHistory,
-        EncounterParticipant,
         EncounterDiagnosis,
         EncounterHospitalization,
-        EncounterLocation;
+        EncounterLocation,
+        EncounterParticipant,
+        EncounterStatusHistory,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -487,10 +487,13 @@ class EncounterBuilder extends DomainResourceBuilder {
   /// (administratively or in time).
   ReferenceBuilder? partOf;
 
-  /// Converts a EncounterBuilder to [Encounter]
+  /// converts a [EncounterBuilder]
+  /// to [Encounter]
+  @override
   Encounter build() => Encounter.fromJson(toJson());
 
-  /// Converts a [EncounterBuilder] to a [Map<String, dynamic>]
+  /// converts a [EncounterBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1497,9 +1500,7 @@ class EncounterBuilder extends DomainResourceBuilder {
       location: location ?? this.location,
       serviceProvider: serviceProvider ?? this.serviceProvider,
       partOf: partOf ?? this.partOf,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1837,10 +1838,13 @@ class EncounterStatusHistoryBuilder extends BackboneElementBuilder {
   /// The time that the episode was in the specified status.
   PeriodBuilder? period;
 
-  /// Converts a EncounterStatusHistoryBuilder to [EncounterStatusHistory]
+  /// converts a [EncounterStatusHistoryBuilder]
+  /// to [EncounterStatusHistory]
+  @override
   EncounterStatusHistory build() => EncounterStatusHistory.fromJson(toJson());
 
-  /// Converts a [EncounterStatusHistoryBuilder] to a [Map<String, dynamic>]
+  /// converts a [EncounterStatusHistoryBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2101,9 +2105,7 @@ class EncounterStatusHistoryBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       status: status ?? this.status,
       period: period ?? this.period,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -2288,10 +2290,13 @@ class EncounterClassHistoryBuilder extends BackboneElementBuilder {
   /// The time that the episode was in the specified class.
   PeriodBuilder? period;
 
-  /// Converts a EncounterClassHistoryBuilder to [EncounterClassHistory]
+  /// converts a [EncounterClassHistoryBuilder]
+  /// to [EncounterClassHistory]
+  @override
   EncounterClassHistory build() => EncounterClassHistory.fromJson(toJson());
 
-  /// Converts a [EncounterClassHistoryBuilder] to a [Map<String, dynamic>]
+  /// converts a [EncounterClassHistoryBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2552,9 +2557,7 @@ class EncounterClassHistoryBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       class_: class_ ?? this.class_,
       period: period ?? this.period,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -2749,10 +2752,13 @@ class EncounterParticipantBuilder extends BackboneElementBuilder {
   /// Persons involved in the encounter other than the patient.
   ReferenceBuilder? individual;
 
-  /// Converts a EncounterParticipantBuilder to [EncounterParticipant]
+  /// converts a [EncounterParticipantBuilder]
+  /// to [EncounterParticipant]
+  @override
   EncounterParticipant build() => EncounterParticipant.fromJson(toJson());
 
-  /// Converts a [EncounterParticipantBuilder] to a [Map<String, dynamic>]
+  /// converts a [EncounterParticipantBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3044,9 +3050,7 @@ class EncounterParticipantBuilder extends BackboneElementBuilder {
       type: type ?? this.type,
       period: period ?? this.period,
       individual: individual ?? this.individual,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -3245,10 +3249,13 @@ class EncounterDiagnosisBuilder extends BackboneElementBuilder {
   /// Ranking of the diagnosis (for each role type).
   FhirPositiveIntBuilder? rank;
 
-  /// Converts a EncounterDiagnosisBuilder to [EncounterDiagnosis]
+  /// converts a [EncounterDiagnosisBuilder]
+  /// to [EncounterDiagnosis]
+  @override
   EncounterDiagnosis build() => EncounterDiagnosis.fromJson(toJson());
 
-  /// Converts a [EncounterDiagnosisBuilder] to a [Map<String, dynamic>]
+  /// converts a [EncounterDiagnosisBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3535,9 +3542,7 @@ class EncounterDiagnosisBuilder extends BackboneElementBuilder {
       condition: condition ?? this.condition,
       use: use ?? this.use,
       rank: rank ?? this.rank,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -3812,11 +3817,14 @@ class EncounterHospitalizationBuilder extends BackboneElementBuilder {
   /// Category or kind of location after discharge.
   CodeableConceptBuilder? dischargeDisposition;
 
-  /// Converts a EncounterHospitalizationBuilder to [EncounterHospitalization]
+  /// converts a [EncounterHospitalizationBuilder]
+  /// to [EncounterHospitalization]
+  @override
   EncounterHospitalization build() =>
       EncounterHospitalization.fromJson(toJson());
 
-  /// Converts a [EncounterHospitalizationBuilder] to a [Map<String, dynamic>]
+  /// converts a [EncounterHospitalizationBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -4275,9 +4283,7 @@ class EncounterHospitalizationBuilder extends BackboneElementBuilder {
       specialArrangement: specialArrangement ?? this.specialArrangement,
       destination: destination ?? this.destination,
       dischargeDisposition: dischargeDisposition ?? this.dischargeDisposition,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -4522,10 +4528,13 @@ class EncounterLocationBuilder extends BackboneElementBuilder {
   /// Time period during which the patient was present at the location.
   PeriodBuilder? period;
 
-  /// Converts a EncounterLocationBuilder to [EncounterLocation]
+  /// converts a [EncounterLocationBuilder]
+  /// to [EncounterLocation]
+  @override
   EncounterLocation build() => EncounterLocation.fromJson(toJson());
 
-  /// Converts a [EncounterLocationBuilder] to a [Map<String, dynamic>]
+  /// converts a [EncounterLocationBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -4838,9 +4847,7 @@ class EncounterLocationBuilder extends BackboneElementBuilder {
       status: status ?? this.status,
       physicalType: physicalType ?? this.physicalType,
       period: period ?? this.period,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

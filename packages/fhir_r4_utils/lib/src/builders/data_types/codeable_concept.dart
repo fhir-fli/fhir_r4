@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, StringExtensionForFHIR, CodeableConcept;
+    show CodeableConcept, StringExtensionForFHIR, yamlMapToJson, yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -195,10 +195,13 @@ class CodeableConceptBuilder extends DataTypeBuilder
   /// meaning of the user.
   FhirStringBuilder? text;
 
-  /// Converts a CodeableConceptBuilder to [CodeableConcept]
+  /// converts a [CodeableConceptBuilder]
+  /// to [CodeableConcept]
+  @override
   CodeableConcept build() => CodeableConcept.fromJson(toJson());
 
-  /// Converts a [CodeableConceptBuilder] to a [Map<String, dynamic>]
+  /// converts a [CodeableConceptBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -433,9 +436,7 @@ class CodeableConceptBuilder extends DataTypeBuilder
       extension_: extension_ ?? this.extension_,
       coding: coding ?? this.coding,
       text: text ?? this.text,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

@@ -47,7 +47,8 @@ class ObservationStatusBuilder extends FhirCodeEnumBuilder {
   factory ObservationStatusBuilder.empty() =>
       ObservationStatusBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [ObservationStatusBuilder] from JSON.
+  /// Factory constructor to create [ObservationStatusBuilder]
+  /// from JSON.
   factory ObservationStatusBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
@@ -156,7 +157,9 @@ class ObservationStatusBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   ObservationStatusBuilder withElement(ElementBuilder? newElement) {
     return ObservationStatusBuilder._(
-        validatedValue: value, element: newElement);
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

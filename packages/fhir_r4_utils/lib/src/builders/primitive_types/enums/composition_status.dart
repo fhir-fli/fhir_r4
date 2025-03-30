@@ -47,7 +47,8 @@ class CompositionStatusBuilder extends FhirCodeEnumBuilder {
   factory CompositionStatusBuilder.empty() =>
       CompositionStatusBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [CompositionStatusBuilder] from JSON.
+  /// Factory constructor to create [CompositionStatusBuilder]
+  /// from JSON.
   factory CompositionStatusBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
@@ -120,7 +121,9 @@ class CompositionStatusBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   CompositionStatusBuilder withElement(ElementBuilder? newElement) {
     return CompositionStatusBuilder._(
-        validatedValue: value, element: newElement);
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

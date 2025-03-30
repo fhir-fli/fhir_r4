@@ -1,11 +1,11 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
+        AppointmentResponse,
         R4ResourceType,
         StringExtensionForFHIR,
-        AppointmentResponse;
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -252,10 +252,13 @@ class AppointmentResponseBuilder extends DomainResourceBuilder {
   /// Additional comments about the appointment.
   FhirStringBuilder? comment;
 
-  /// Converts a AppointmentResponseBuilder to [AppointmentResponse]
+  /// converts a [AppointmentResponseBuilder]
+  /// to [AppointmentResponse]
+  @override
   AppointmentResponse build() => AppointmentResponse.fromJson(toJson());
 
-  /// Converts a [AppointmentResponseBuilder] to a [Map<String, dynamic>]
+  /// converts a [AppointmentResponseBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -817,9 +820,7 @@ class AppointmentResponseBuilder extends DomainResourceBuilder {
       actor: actor ?? this.actor,
       participantStatus: participantStatus ?? this.participantStatus,
       comment: comment ?? this.comment,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

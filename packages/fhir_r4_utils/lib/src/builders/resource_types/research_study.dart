@@ -1,13 +1,13 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
         R4ResourceType,
-        StringExtensionForFHIR,
         ResearchStudy,
         ResearchStudyArm,
-        ResearchStudyObjective;
+        ResearchStudyObjective,
+        StringExtensionForFHIR,
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -503,10 +503,13 @@ class ResearchStudyBuilder extends DomainResourceBuilder {
   /// study.
   List<ResearchStudyObjectiveBuilder>? objective;
 
-  /// Converts a ResearchStudyBuilder to [ResearchStudy]
+  /// converts a [ResearchStudyBuilder]
+  /// to [ResearchStudy]
+  @override
   ResearchStudy build() => ResearchStudy.fromJson(toJson());
 
-  /// Converts a [ResearchStudyBuilder] to a [Map<String, dynamic>]
+  /// converts a [ResearchStudyBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1550,9 +1553,7 @@ class ResearchStudyBuilder extends DomainResourceBuilder {
       note: note ?? this.note,
       arm: arm ?? this.arm,
       objective: objective ?? this.objective,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1907,10 +1908,13 @@ class ResearchStudyArmBuilder extends BackboneElementBuilder {
   /// followed by a subject adhering to this arm.
   FhirStringBuilder? description;
 
-  /// Converts a ResearchStudyArmBuilder to [ResearchStudyArm]
+  /// converts a [ResearchStudyArmBuilder]
+  /// to [ResearchStudyArm]
+  @override
   ResearchStudyArm build() => ResearchStudyArm.fromJson(toJson());
 
-  /// Converts a [ResearchStudyArmBuilder] to a [Map<String, dynamic>]
+  /// converts a [ResearchStudyArmBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2197,9 +2201,7 @@ class ResearchStudyArmBuilder extends BackboneElementBuilder {
       name: name ?? this.name,
       type: type ?? this.type,
       description: description ?? this.description,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -2386,10 +2388,13 @@ class ResearchStudyObjectiveBuilder extends BackboneElementBuilder {
   /// The kind of study objective.
   CodeableConceptBuilder? type;
 
-  /// Converts a ResearchStudyObjectiveBuilder to [ResearchStudyObjective]
+  /// converts a [ResearchStudyObjectiveBuilder]
+  /// to [ResearchStudyObjective]
+  @override
   ResearchStudyObjective build() => ResearchStudyObjective.fromJson(toJson());
 
-  /// Converts a [ResearchStudyObjectiveBuilder] to a [Map<String, dynamic>]
+  /// converts a [ResearchStudyObjectiveBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2650,9 +2655,7 @@ class ResearchStudyObjectiveBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       name: name ?? this.name,
       type: type ?? this.type,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

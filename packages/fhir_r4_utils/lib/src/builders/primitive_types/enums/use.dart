@@ -46,7 +46,8 @@ class UseBuilder extends FhirCodeEnumBuilder {
   /// Create empty [UseBuilder] with element only
   factory UseBuilder.empty() => UseBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [UseBuilder] from JSON.
+  /// Factory constructor to create [UseBuilder]
+  /// from JSON.
   factory UseBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;

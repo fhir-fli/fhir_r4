@@ -1,12 +1,12 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
+        Parameters,
+        ParametersParameter,
         R4ResourceType,
         StringExtensionForFHIR,
-        Parameters,
-        ParametersParameter;
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -122,10 +122,13 @@ class ParametersBuilder extends ResourceBuilder {
   /// A parameter passed to or received from the operation.
   List<ParametersParameterBuilder>? parameter;
 
-  /// Converts a ParametersBuilder to [Parameters]
+  /// converts a [ParametersBuilder]
+  /// to [Parameters]
+  @override
   Parameters build() => Parameters.fromJson(toJson());
 
-  /// Converts a [ParametersBuilder] to a [Map<String, dynamic>]
+  /// converts a [ParametersBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -381,9 +384,7 @@ class ParametersBuilder extends ResourceBuilder {
       implicitRules: implicitRules ?? this.implicitRules,
       language: language ?? this.language,
       parameter: parameter ?? this.parameter,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -802,10 +803,13 @@ class ParametersParameterBuilder extends BackboneElementBuilder {
   /// A named part of a multi-part parameter.
   List<ParametersParameterBuilder>? part_;
 
-  /// Converts a ParametersParameterBuilder to [ParametersParameter]
+  /// converts a [ParametersParameterBuilder]
+  /// to [ParametersParameter]
+  @override
   ParametersParameter build() => ParametersParameter.fromJson(toJson());
 
-  /// Converts a [ParametersParameterBuilder] to a [Map<String, dynamic>]
+  /// converts a [ParametersParameterBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1931,7 +1935,7 @@ class ParametersParameterBuilder extends BackboneElementBuilder {
           'TriggerDefinitionBuilder',
           'UsageContextBuilder',
           'DosageBuilder',
-          'FhirMetaBuilder'
+          'FhirMetaBuilder',
         ];
       case 'valueBase64Binary':
         return ['FhirBase64BinaryBuilder'];
@@ -2349,7 +2353,7 @@ class ParametersParameterBuilder extends BackboneElementBuilder {
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
     if (name) this.name = null;
-    if (value) this.valueX = null;
+    if (value) valueX = null;
     if (resource) this.resource = null;
     if (part_) this.part_ = null;
   }
@@ -2380,9 +2384,7 @@ class ParametersParameterBuilder extends BackboneElementBuilder {
       valueX: valueX ?? this.valueX,
       resource: resource ?? this.resource,
       part_: part_ ?? this.part_,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

@@ -1,18 +1,18 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
-        StringExtensionForFHIR,
         ElementDefinition,
-        ElementDefinitionSlicing,
-        ElementDefinitionDiscriminator,
         ElementDefinitionBase,
-        ElementDefinitionType,
-        ElementDefinitionExample,
-        ElementDefinitionConstraint,
         ElementDefinitionBinding,
-        ElementDefinitionMapping;
+        ElementDefinitionConstraint,
+        ElementDefinitionDiscriminator,
+        ElementDefinitionExample,
+        ElementDefinitionMapping,
+        ElementDefinitionSlicing,
+        ElementDefinitionType,
+        StringExtensionForFHIR,
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -1378,10 +1378,13 @@ class ElementDefinitionBuilder extends BackboneTypeBuilder {
   /// corresponds to this element.
   List<ElementDefinitionMappingBuilder>? mapping;
 
-  /// Converts a ElementDefinitionBuilder to [ElementDefinition]
+  /// converts a [ElementDefinitionBuilder]
+  /// to [ElementDefinition]
+  @override
   ElementDefinition build() => ElementDefinition.fromJson(toJson());
 
-  /// Converts a [ElementDefinitionBuilder] to a [Map<String, dynamic>]
+  /// converts a [ElementDefinitionBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -5114,7 +5117,7 @@ class ElementDefinitionBuilder extends BackboneTypeBuilder {
           'RelatedArtifactBuilder',
           'TriggerDefinitionBuilder',
           'UsageContextBuilder',
-          'DosageBuilder'
+          'DosageBuilder',
         ];
       case 'defaultValueBase64Binary':
         return ['FhirBase64BinaryBuilder'];
@@ -5275,7 +5278,7 @@ class ElementDefinitionBuilder extends BackboneTypeBuilder {
           'RelatedArtifactBuilder',
           'TriggerDefinitionBuilder',
           'UsageContextBuilder',
-          'DosageBuilder'
+          'DosageBuilder',
         ];
       case 'fixedBase64Binary':
         return ['FhirBase64BinaryBuilder'];
@@ -5432,7 +5435,7 @@ class ElementDefinitionBuilder extends BackboneTypeBuilder {
           'RelatedArtifactBuilder',
           'TriggerDefinitionBuilder',
           'UsageContextBuilder',
-          'DosageBuilder'
+          'DosageBuilder',
         ];
       case 'patternBase64Binary':
         return ['FhirBase64BinaryBuilder'];
@@ -5549,7 +5552,7 @@ class ElementDefinitionBuilder extends BackboneTypeBuilder {
           'FhirIntegerBuilder',
           'FhirPositiveIntBuilder',
           'FhirUnsignedIntBuilder',
-          'QuantityBuilder'
+          'QuantityBuilder',
         ];
       case 'minValueDate':
         return ['FhirDateBuilder'];
@@ -5580,7 +5583,7 @@ class ElementDefinitionBuilder extends BackboneTypeBuilder {
           'FhirIntegerBuilder',
           'FhirPositiveIntBuilder',
           'FhirUnsignedIntBuilder',
-          'QuantityBuilder'
+          'QuantityBuilder',
         ];
       case 'maxValueDate':
         return ['FhirDateBuilder'];
@@ -6719,14 +6722,14 @@ class ElementDefinitionBuilder extends BackboneTypeBuilder {
     if (base) this.base = null;
     if (contentReference) this.contentReference = null;
     if (type) this.type = null;
-    if (defaultValue) this.defaultValueX = null;
+    if (defaultValue) defaultValueX = null;
     if (meaningWhenMissing) this.meaningWhenMissing = null;
     if (orderMeaning) this.orderMeaning = null;
-    if (fixed) this.fixedX = null;
-    if (pattern) this.patternX = null;
+    if (fixed) fixedX = null;
+    if (pattern) patternX = null;
     if (example) this.example = null;
-    if (minValue) this.minValueX = null;
-    if (maxValue) this.maxValueX = null;
+    if (minValue) minValueX = null;
+    if (maxValue) maxValueX = null;
     if (maxLength) this.maxLength = null;
     if (condition) this.condition = null;
     if (constraint) this.constraint = null;
@@ -6824,9 +6827,7 @@ class ElementDefinitionBuilder extends BackboneTypeBuilder {
       isSummary: isSummary ?? this.isSummary,
       binding: binding ?? this.binding,
       mapping: mapping ?? this.mapping,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -7228,11 +7229,14 @@ class ElementDefinitionSlicingBuilder extends ElementBuilder {
   /// allowed at the end.
   SlicingRulesBuilder? rules;
 
-  /// Converts a ElementDefinitionSlicingBuilder to [ElementDefinitionSlicing]
+  /// converts a [ElementDefinitionSlicingBuilder]
+  /// to [ElementDefinitionSlicing]
+  @override
   ElementDefinitionSlicing build() =>
       ElementDefinitionSlicing.fromJson(toJson());
 
-  /// Converts a [ElementDefinitionSlicingBuilder] to a [Map<String, dynamic>]
+  /// converts a [ElementDefinitionSlicingBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -7519,9 +7523,7 @@ class ElementDefinitionSlicingBuilder extends ElementBuilder {
       description: description ?? this.description,
       ordered: ordered ?? this.ordered,
       rules: rules ?? this.rules,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -7701,11 +7703,14 @@ class ElementDefinitionDiscriminatorBuilder extends ElementBuilder {
   /// on which discrimination is based.
   FhirStringBuilder? path;
 
-  /// Converts a ElementDefinitionDiscriminatorBuilder to [ElementDefinitionDiscriminator]
+  /// converts a [ElementDefinitionDiscriminatorBuilder]
+  /// to [ElementDefinitionDiscriminator]
+  @override
   ElementDefinitionDiscriminator build() =>
       ElementDefinitionDiscriminator.fromJson(toJson());
 
-  /// Converts a [ElementDefinitionDiscriminatorBuilder] to a [Map<String, dynamic>]
+  /// converts a [ElementDefinitionDiscriminatorBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -7935,9 +7940,7 @@ class ElementDefinitionDiscriminatorBuilder extends ElementBuilder {
       extension_: extension_ ?? this.extension_,
       type: type ?? this.type,
       path: path ?? this.path,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -8121,10 +8124,13 @@ class ElementDefinitionBaseBuilder extends ElementBuilder {
   /// Maximum cardinality of the base element identified by the path.
   FhirStringBuilder? max;
 
-  /// Converts a ElementDefinitionBaseBuilder to [ElementDefinitionBase]
+  /// converts a [ElementDefinitionBaseBuilder]
+  /// to [ElementDefinitionBase]
+  @override
   ElementDefinitionBase build() => ElementDefinitionBase.fromJson(toJson());
 
-  /// Converts a [ElementDefinitionBaseBuilder] to a [Map<String, dynamic>]
+  /// converts a [ElementDefinitionBaseBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -8380,9 +8386,7 @@ class ElementDefinitionBaseBuilder extends ElementBuilder {
       path: path ?? this.path,
       min: min ?? this.min,
       max: max ?? this.max,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -8604,10 +8608,13 @@ class ElementDefinitionTypeBuilder extends ElementBuilder {
   /// independent, or whether either can be used.
   ReferenceVersionRulesBuilder? versioning;
 
-  /// Converts a ElementDefinitionTypeBuilder to [ElementDefinitionType]
+  /// converts a [ElementDefinitionTypeBuilder]
+  /// to [ElementDefinitionType]
+  @override
   ElementDefinitionType build() => ElementDefinitionType.fromJson(toJson());
 
-  /// Converts a [ElementDefinitionTypeBuilder] to a [Map<String, dynamic>]
+  /// converts a [ElementDefinitionTypeBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -8930,9 +8937,7 @@ class ElementDefinitionTypeBuilder extends ElementBuilder {
       targetProfile: targetProfile ?? this.targetProfile,
       aggregation: aggregation ?? this.aggregation,
       versioning: versioning ?? this.versioning,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -9335,11 +9340,14 @@ class ElementDefinitionExampleBuilder extends ElementBuilder {
   /// Getter for [valueDosage] as a DosageBuilder
   DosageBuilder? get valueDosage => valueX?.isAs<DosageBuilder>();
 
-  /// Converts a ElementDefinitionExampleBuilder to [ElementDefinitionExample]
+  /// converts a [ElementDefinitionExampleBuilder]
+  /// to [ElementDefinitionExample]
+  @override
   ElementDefinitionExample build() =>
       ElementDefinitionExample.fromJson(toJson());
 
-  /// Converts a [ElementDefinitionExampleBuilder] to a [Map<String, dynamic>]
+  /// converts a [ElementDefinitionExampleBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -10426,7 +10434,7 @@ class ElementDefinitionExampleBuilder extends ElementBuilder {
           'RelatedArtifactBuilder',
           'TriggerDefinitionBuilder',
           'UsageContextBuilder',
-          'DosageBuilder'
+          'DosageBuilder',
         ];
       case 'valueBase64Binary':
         return ['FhirBase64BinaryBuilder'];
@@ -10828,7 +10836,7 @@ class ElementDefinitionExampleBuilder extends ElementBuilder {
     if (id) this.id = null;
     if (extension_) this.extension_ = null;
     if (label) this.label = null;
-    if (value) this.valueX = null;
+    if (value) valueX = null;
   }
 
   @override
@@ -10851,9 +10859,7 @@ class ElementDefinitionExampleBuilder extends ElementBuilder {
       extension_: extension_ ?? this.extension_,
       label: label ?? this.label,
       valueX: valueX ?? this.valueX,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -11078,11 +11084,14 @@ class ElementDefinitionConstraintBuilder extends ElementBuilder {
   /// purposes.
   FhirCanonicalBuilder? source;
 
-  /// Converts a ElementDefinitionConstraintBuilder to [ElementDefinitionConstraint]
+  /// converts a [ElementDefinitionConstraintBuilder]
+  /// to [ElementDefinitionConstraint]
+  @override
   ElementDefinitionConstraint build() =>
       ElementDefinitionConstraint.fromJson(toJson());
 
-  /// Converts a [ElementDefinitionConstraintBuilder] to a [Map<String, dynamic>]
+  /// converts a [ElementDefinitionConstraintBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -11442,9 +11451,7 @@ class ElementDefinitionConstraintBuilder extends ElementBuilder {
       expression: expression ?? this.expression,
       xpath: xpath ?? this.xpath,
       source: source ?? this.source,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -11651,11 +11658,14 @@ class ElementDefinitionBindingBuilder extends ElementBuilder {
   /// refers to.
   FhirCanonicalBuilder? valueSet;
 
-  /// Converts a ElementDefinitionBindingBuilder to [ElementDefinitionBinding]
+  /// converts a [ElementDefinitionBindingBuilder]
+  /// to [ElementDefinitionBinding]
+  @override
   ElementDefinitionBinding build() =>
       ElementDefinitionBinding.fromJson(toJson());
 
-  /// Converts a [ElementDefinitionBindingBuilder] to a [Map<String, dynamic>]
+  /// converts a [ElementDefinitionBindingBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -11911,9 +11921,7 @@ class ElementDefinitionBindingBuilder extends ElementBuilder {
       strength: strength ?? this.strength,
       description: description ?? this.description,
       valueSet: valueSet ?? this.valueSet,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -12105,11 +12113,14 @@ class ElementDefinitionMappingBuilder extends ElementBuilder {
   /// Comments that provide information about the mapping or its use.
   FhirStringBuilder? comment;
 
-  /// Converts a ElementDefinitionMappingBuilder to [ElementDefinitionMapping]
+  /// converts a [ElementDefinitionMappingBuilder]
+  /// to [ElementDefinitionMapping]
+  @override
   ElementDefinitionMapping build() =>
       ElementDefinitionMapping.fromJson(toJson());
 
-  /// Converts a [ElementDefinitionMappingBuilder] to a [Map<String, dynamic>]
+  /// converts a [ElementDefinitionMappingBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -12391,9 +12402,7 @@ class ElementDefinitionMappingBuilder extends ElementBuilder {
       language: language ?? this.language,
       map: map ?? this.map,
       comment: comment ?? this.comment,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

@@ -1,13 +1,13 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
+        EpisodeOfCare,
+        EpisodeOfCareDiagnosis,
+        EpisodeOfCareStatusHistory,
         R4ResourceType,
         StringExtensionForFHIR,
-        EpisodeOfCare,
-        EpisodeOfCareStatusHistory,
-        EpisodeOfCareDiagnosis;
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -319,10 +319,13 @@ class EpisodeOfCareBuilder extends DomainResourceBuilder {
   /// EpisodeOfCare.
   List<ReferenceBuilder>? account;
 
-  /// Converts a EpisodeOfCareBuilder to [EpisodeOfCare]
+  /// converts a [EpisodeOfCareBuilder]
+  /// to [EpisodeOfCare]
+  @override
   EpisodeOfCare build() => EpisodeOfCare.fromJson(toJson());
 
-  /// Converts a [EpisodeOfCareBuilder] to a [Map<String, dynamic>]
+  /// converts a [EpisodeOfCareBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1013,9 +1016,7 @@ class EpisodeOfCareBuilder extends DomainResourceBuilder {
       careManager: careManager ?? this.careManager,
       team: team ?? this.team,
       account: account ?? this.account,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1285,11 +1286,14 @@ class EpisodeOfCareStatusHistoryBuilder extends BackboneElementBuilder {
   /// The period during this EpisodeOfCare that the specific status applied.
   PeriodBuilder? period;
 
-  /// Converts a EpisodeOfCareStatusHistoryBuilder to [EpisodeOfCareStatusHistory]
+  /// converts a [EpisodeOfCareStatusHistoryBuilder]
+  /// to [EpisodeOfCareStatusHistory]
+  @override
   EpisodeOfCareStatusHistory build() =>
       EpisodeOfCareStatusHistory.fromJson(toJson());
 
-  /// Converts a [EpisodeOfCareStatusHistoryBuilder] to a [Map<String, dynamic>]
+  /// converts a [EpisodeOfCareStatusHistoryBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1550,9 +1554,7 @@ class EpisodeOfCareStatusHistoryBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       status: status ?? this.status,
       period: period ?? this.period,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1744,10 +1746,13 @@ class EpisodeOfCareDiagnosisBuilder extends BackboneElementBuilder {
   /// Ranking of the diagnosis (for each role type).
   FhirPositiveIntBuilder? rank;
 
-  /// Converts a EpisodeOfCareDiagnosisBuilder to [EpisodeOfCareDiagnosis]
+  /// converts a [EpisodeOfCareDiagnosisBuilder]
+  /// to [EpisodeOfCareDiagnosis]
+  @override
   EpisodeOfCareDiagnosis build() => EpisodeOfCareDiagnosis.fromJson(toJson());
 
-  /// Converts a [EpisodeOfCareDiagnosisBuilder] to a [Map<String, dynamic>]
+  /// converts a [EpisodeOfCareDiagnosisBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2034,9 +2039,7 @@ class EpisodeOfCareDiagnosisBuilder extends BackboneElementBuilder {
       condition: condition ?? this.condition,
       role: role ?? this.role,
       rank: rank ?? this.rank,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

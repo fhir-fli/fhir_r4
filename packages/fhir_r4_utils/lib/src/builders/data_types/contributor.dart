@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, StringExtensionForFHIR, Contributor;
+    show Contributor, StringExtensionForFHIR, yamlMapToJson, yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -138,10 +138,13 @@ class ContributorBuilder extends DataTypeBuilder
   /// contributor.
   List<ContactDetailBuilder>? contact;
 
-  /// Converts a ContributorBuilder to [Contributor]
+  /// converts a [ContributorBuilder]
+  /// to [Contributor]
+  @override
   Contributor build() => Contributor.fromJson(toJson());
 
-  /// Converts a [ContributorBuilder] to a [Map<String, dynamic>]
+  /// converts a [ContributorBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -402,9 +405,7 @@ class ContributorBuilder extends DataTypeBuilder
       type: type ?? this.type,
       name: name ?? this.name,
       contact: contact ?? this.contact,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

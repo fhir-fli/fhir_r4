@@ -1,15 +1,15 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
+        Immunization,
+        ImmunizationEducation,
+        ImmunizationPerformer,
+        ImmunizationProtocolApplied,
+        ImmunizationReaction,
         R4ResourceType,
         StringExtensionForFHIR,
-        Immunization,
-        ImmunizationPerformer,
-        ImmunizationEducation,
-        ImmunizationReaction,
-        ImmunizationProtocolApplied;
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -524,10 +524,13 @@ class ImmunizationBuilder extends DomainResourceBuilder {
   /// who administered the dose.
   List<ImmunizationProtocolAppliedBuilder>? protocolApplied;
 
-  /// Converts a ImmunizationBuilder to [Immunization]
+  /// converts a [ImmunizationBuilder]
+  /// to [Immunization]
+  @override
   Immunization build() => Immunization.fromJson(toJson());
 
-  /// Converts a [ImmunizationBuilder] to a [Map<String, dynamic>]
+  /// converts a [ImmunizationBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1596,7 +1599,7 @@ class ImmunizationBuilder extends DomainResourceBuilder {
     if (vaccineCode) this.vaccineCode = null;
     if (patient) this.patient = null;
     if (encounter) this.encounter = null;
-    if (occurrence) this.occurrenceX = null;
+    if (occurrence) occurrenceX = null;
     if (recorded) this.recorded = null;
     if (primarySource) this.primarySource = null;
     if (reportOrigin) this.reportOrigin = null;
@@ -1703,9 +1706,7 @@ class ImmunizationBuilder extends DomainResourceBuilder {
       fundingSource: fundingSource ?? this.fundingSource,
       reaction: reaction ?? this.reaction,
       protocolApplied: protocolApplied ?? this.protocolApplied,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -2071,10 +2072,13 @@ class ImmunizationPerformerBuilder extends BackboneElementBuilder {
   /// The practitioner or organization who performed the action.
   ReferenceBuilder? actor;
 
-  /// Converts a ImmunizationPerformerBuilder to [ImmunizationPerformer]
+  /// converts a [ImmunizationPerformerBuilder]
+  /// to [ImmunizationPerformer]
+  @override
   ImmunizationPerformer build() => ImmunizationPerformer.fromJson(toJson());
 
-  /// Converts a [ImmunizationPerformerBuilder] to a [Map<String, dynamic>]
+  /// converts a [ImmunizationPerformerBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2335,9 +2339,7 @@ class ImmunizationPerformerBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       function_: function_ ?? this.function_,
       actor: actor ?? this.actor,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -2540,10 +2542,13 @@ class ImmunizationEducationBuilder extends BackboneElementBuilder {
   /// Date the educational material was given to the patient.
   FhirDateTimeBuilder? presentationDate;
 
-  /// Converts a ImmunizationEducationBuilder to [ImmunizationEducation]
+  /// converts a [ImmunizationEducationBuilder]
+  /// to [ImmunizationEducation]
+  @override
   ImmunizationEducation build() => ImmunizationEducation.fromJson(toJson());
 
-  /// Converts a [ImmunizationEducationBuilder] to a [Map<String, dynamic>]
+  /// converts a [ImmunizationEducationBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2856,9 +2861,7 @@ class ImmunizationEducationBuilder extends BackboneElementBuilder {
       reference: reference ?? this.reference,
       publicationDate: publicationDate ?? this.publicationDate,
       presentationDate: presentationDate ?? this.presentationDate,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -3060,10 +3063,13 @@ class ImmunizationReactionBuilder extends BackboneElementBuilder {
   /// Self-reported indicator.
   FhirBooleanBuilder? reported;
 
-  /// Converts a ImmunizationReactionBuilder to [ImmunizationReaction]
+  /// converts a [ImmunizationReactionBuilder]
+  /// to [ImmunizationReaction]
+  @override
   ImmunizationReaction build() => ImmunizationReaction.fromJson(toJson());
 
-  /// Converts a [ImmunizationReactionBuilder] to a [Map<String, dynamic>]
+  /// converts a [ImmunizationReactionBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3350,9 +3356,7 @@ class ImmunizationReactionBuilder extends BackboneElementBuilder {
       date: date ?? this.date,
       detail: detail ?? this.detail,
       reported: reported ?? this.reported,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -3599,11 +3603,14 @@ class ImmunizationProtocolAppliedBuilder extends BackboneElementBuilder {
   FhirStringBuilder? get seriesDosesString =>
       seriesDosesX?.isAs<FhirStringBuilder>();
 
-  /// Converts a ImmunizationProtocolAppliedBuilder to [ImmunizationProtocolApplied]
+  /// converts a [ImmunizationProtocolAppliedBuilder]
+  /// to [ImmunizationProtocolApplied]
+  @override
   ImmunizationProtocolApplied build() =>
       ImmunizationProtocolApplied.fromJson(toJson());
 
-  /// Converts a [ImmunizationProtocolAppliedBuilder] to a [Map<String, dynamic>]
+  /// converts a [ImmunizationProtocolAppliedBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -4023,8 +4030,8 @@ class ImmunizationProtocolAppliedBuilder extends BackboneElementBuilder {
     if (series) this.series = null;
     if (authority) this.authority = null;
     if (targetDisease) this.targetDisease = null;
-    if (doseNumber) this.doseNumberX = null;
-    if (seriesDoses) this.seriesDosesX = null;
+    if (doseNumber) doseNumberX = null;
+    if (seriesDoses) seriesDosesX = null;
   }
 
   @override
@@ -4055,9 +4062,7 @@ class ImmunizationProtocolAppliedBuilder extends BackboneElementBuilder {
       targetDisease: targetDisease ?? this.targetDisease,
       doseNumberX: doseNumberX ?? this.doseNumberX,
       seriesDosesX: seriesDosesX ?? this.seriesDosesX,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

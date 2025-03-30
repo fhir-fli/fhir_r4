@@ -48,7 +48,8 @@ class CriteriaNotExistsBehaviorBuilder extends FhirCodeEnumBuilder {
   factory CriteriaNotExistsBehaviorBuilder.empty() =>
       CriteriaNotExistsBehaviorBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [CriteriaNotExistsBehaviorBuilder] from JSON.
+  /// Factory constructor to create [CriteriaNotExistsBehaviorBuilder]
+  /// from JSON.
   factory CriteriaNotExistsBehaviorBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
@@ -108,7 +109,9 @@ class CriteriaNotExistsBehaviorBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   CriteriaNotExistsBehaviorBuilder withElement(ElementBuilder? newElement) {
     return CriteriaNotExistsBehaviorBuilder._(
-        validatedValue: value, element: newElement);
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

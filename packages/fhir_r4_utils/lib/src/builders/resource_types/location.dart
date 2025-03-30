@@ -1,13 +1,13 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
+        Location,
+        LocationHoursOfOperation,
+        LocationPosition,
         R4ResourceType,
         StringExtensionForFHIR,
-        Location,
-        LocationPosition,
-        LocationHoursOfOperation;
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -371,10 +371,13 @@ class LocationBuilder extends DomainResourceBuilder {
   /// location.
   List<ReferenceBuilder>? endpoint;
 
-  /// Converts a LocationBuilder to [Location]
+  /// converts a [LocationBuilder]
+  /// to [Location]
+  @override
   Location build() => Location.fromJson(toJson());
 
-  /// Converts a [LocationBuilder] to a [Map<String, dynamic>]
+  /// converts a [LocationBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1191,9 +1194,7 @@ class LocationBuilder extends DomainResourceBuilder {
       availabilityExceptions:
           availabilityExceptions ?? this.availabilityExceptions,
       endpoint: endpoint ?? this.endpoint,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1506,10 +1507,13 @@ class LocationPositionBuilder extends BackboneElementBuilder {
   /// the text of the altitude element in KML (see notes below).
   FhirDecimalBuilder? altitude;
 
-  /// Converts a LocationPositionBuilder to [LocationPosition]
+  /// converts a [LocationPositionBuilder]
+  /// to [LocationPosition]
+  @override
   LocationPosition build() => LocationPosition.fromJson(toJson());
 
-  /// Converts a [LocationPositionBuilder] to a [Map<String, dynamic>]
+  /// converts a [LocationPositionBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1796,9 +1800,7 @@ class LocationPositionBuilder extends BackboneElementBuilder {
       longitude: longitude ?? this.longitude,
       latitude: latitude ?? this.latitude,
       altitude: altitude ?? this.altitude,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -2006,11 +2008,14 @@ class LocationHoursOfOperationBuilder extends BackboneElementBuilder {
   /// Time that the Location closes.
   FhirTimeBuilder? closingTime;
 
-  /// Converts a LocationHoursOfOperationBuilder to [LocationHoursOfOperation]
+  /// converts a [LocationHoursOfOperationBuilder]
+  /// to [LocationHoursOfOperation]
+  @override
   LocationHoursOfOperation build() =>
       LocationHoursOfOperation.fromJson(toJson());
 
-  /// Converts a [LocationHoursOfOperationBuilder] to a [Map<String, dynamic>]
+  /// converts a [LocationHoursOfOperationBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2328,9 +2333,7 @@ class LocationHoursOfOperationBuilder extends BackboneElementBuilder {
       allDay: allDay ?? this.allDay,
       openingTime: openingTime ?? this.openingTime,
       closingTime: closingTime ?? this.closingTime,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

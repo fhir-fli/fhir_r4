@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, StringExtensionForFHIR, Signature;
+    show Signature, StringExtensionForFHIR, yamlMapToJson, yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -194,10 +194,13 @@ class SignatureBuilder extends DataTypeBuilder
   /// recorded electronically this element would be empty.
   FhirBase64BinaryBuilder? data;
 
-  /// Converts a SignatureBuilder to [Signature]
+  /// converts a [SignatureBuilder]
+  /// to [Signature]
+  @override
   Signature build() => Signature.fromJson(toJson());
 
-  /// Converts a [SignatureBuilder] to a [Map<String, dynamic>]
+  /// converts a [SignatureBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -562,9 +565,7 @@ class SignatureBuilder extends DataTypeBuilder
       targetFormat: targetFormat ?? this.targetFormat,
       sigFormat: sigFormat ?? this.sigFormat,
       data: data ?? this.data,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

@@ -50,7 +50,8 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
   factory SPDXLicenseBuilder.empty() =>
       SPDXLicenseBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [SPDXLicenseBuilder] from JSON.
+  /// Factory constructor to create [SPDXLicenseBuilder]
+  /// from JSON.
   factory SPDXLicenseBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;

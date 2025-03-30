@@ -29,11 +29,11 @@ class FhirCodeBuilder extends PrimitiveTypeBuilder<String>
   FhirCodeBuilder._({
     required String? validatedValue,
     this.input,
-    this.element,
-    this.id,
-    this.extension_,
-    this.disallowExtensions,
-    this.objectPath = 'Code',
+    super.element,
+    super.id,
+    super.extension_,
+    super.disallowExtensions,
+    super.objectPath = 'Code',
   }) : super._(value: validatedValue) {
     if (value == null && element == null) {
       throw ArgumentError('A value or element is required for FhirCodeBuilder');
@@ -136,21 +136,6 @@ class FhirCodeBuilder extends PrimitiveTypeBuilder<String>
 
   /// The original input value (for serialization purposes)
   String? input;
-
-  /// Element property
-  ElementBuilder? element;
-
-  /// ID property
-  FhirStringBuilder? id;
-
-  /// Extensions property
-  List<FhirExtensionBuilder>? extension_;
-
-  /// DisallowExtensions property
-  bool? disallowExtensions;
-
-  /// ObjectPath property
-  String? objectPath;
 
   /// Boolean checks for the presence of a value only
   bool get valueOnly => value != null && element == null;

@@ -47,7 +47,8 @@ class TestReportStatusBuilder extends FhirCodeEnumBuilder {
   factory TestReportStatusBuilder.empty() =>
       TestReportStatusBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [TestReportStatusBuilder] from JSON.
+  /// Factory constructor to create [TestReportStatusBuilder]
+  /// from JSON.
   factory TestReportStatusBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
@@ -129,7 +130,9 @@ class TestReportStatusBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   TestReportStatusBuilder withElement(ElementBuilder? newElement) {
     return TestReportStatusBuilder._(
-        validatedValue: value, element: newElement);
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

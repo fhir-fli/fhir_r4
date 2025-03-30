@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, StringExtensionForFHIR, SampledData;
+    show SampledData, StringExtensionForFHIR, yamlMapToJson, yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -188,10 +188,13 @@ class SampledDataBuilder extends DataTypeBuilder
   /// place of a decimal value.
   FhirStringBuilder? data;
 
-  /// Converts a SampledDataBuilder to [SampledData]
+  /// converts a [SampledDataBuilder]
+  /// to [SampledData]
+  @override
   SampledData build() => SampledData.fromJson(toJson());
 
-  /// Converts a [SampledDataBuilder] to a [Map<String, dynamic>]
+  /// converts a [SampledDataBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -551,9 +554,7 @@ class SampledDataBuilder extends DataTypeBuilder
       upperLimit: upperLimit ?? this.upperLimit,
       dimensions: dimensions ?? this.dimensions,
       data: data ?? this.data,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

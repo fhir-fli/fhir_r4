@@ -1,15 +1,15 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
-        R4ResourceType,
-        StringExtensionForFHIR,
         EvidenceReport,
-        EvidenceReportSubject,
         EvidenceReportCharacteristic,
         EvidenceReportRelatesTo,
-        EvidenceReportSection;
+        EvidenceReportSection,
+        EvidenceReportSubject,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -429,10 +429,13 @@ class EvidenceReportBuilder extends DomainResourceBuilder {
   /// The root of the sections that make up the composition.
   List<EvidenceReportSectionBuilder>? section;
 
-  /// Converts a EvidenceReportBuilder to [EvidenceReport]
+  /// converts a [EvidenceReportBuilder]
+  /// to [EvidenceReport]
+  @override
   EvidenceReport build() => EvidenceReport.fromJson(toJson());
 
-  /// Converts a [EvidenceReportBuilder] to a [Map<String, dynamic>]
+  /// converts a [EvidenceReportBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1280,7 +1283,7 @@ class EvidenceReportBuilder extends DomainResourceBuilder {
     if (useContext) this.useContext = null;
     if (identifier) this.identifier = null;
     if (relatedIdentifier) this.relatedIdentifier = null;
-    if (citeAs) this.citeAsX = null;
+    if (citeAs) citeAsX = null;
     if (type) this.type = null;
     if (note) this.note = null;
     if (relatedArtifact) this.relatedArtifact = null;
@@ -1358,9 +1361,7 @@ class EvidenceReportBuilder extends DomainResourceBuilder {
       endorser: endorser ?? this.endorser,
       relatesTo: relatesTo ?? this.relatesTo,
       section: section ?? this.section,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1674,10 +1675,13 @@ class EvidenceReportSubjectBuilder extends BackboneElementBuilder {
   /// Used for general notes and annotations not coded elsewhere.
   List<AnnotationBuilder>? note;
 
-  /// Converts a EvidenceReportSubjectBuilder to [EvidenceReportSubject]
+  /// converts a [EvidenceReportSubjectBuilder]
+  /// to [EvidenceReportSubject]
+  @override
   EvidenceReportSubject build() => EvidenceReportSubject.fromJson(toJson());
 
-  /// Converts a [EvidenceReportSubjectBuilder] to a [Map<String, dynamic>]
+  /// converts a [EvidenceReportSubjectBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1948,9 +1952,7 @@ class EvidenceReportSubjectBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       characteristic: characteristic ?? this.characteristic,
       note: note ?? this.note,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -2173,11 +2175,14 @@ class EvidenceReportCharacteristicBuilder extends BackboneElementBuilder {
   /// Timeframe for the characteristic.
   PeriodBuilder? period;
 
-  /// Converts a EvidenceReportCharacteristicBuilder to [EvidenceReportCharacteristic]
+  /// converts a [EvidenceReportCharacteristicBuilder]
+  /// to [EvidenceReportCharacteristic]
+  @override
   EvidenceReportCharacteristic build() =>
       EvidenceReportCharacteristic.fromJson(toJson());
 
-  /// Converts a [EvidenceReportCharacteristicBuilder] to a [Map<String, dynamic>]
+  /// converts a [EvidenceReportCharacteristicBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2488,7 +2493,7 @@ class EvidenceReportCharacteristicBuilder extends BackboneElementBuilder {
           'CodeableConceptBuilder',
           'FhirBooleanBuilder',
           'QuantityBuilder',
-          'RangeBuilder'
+          'RangeBuilder',
         ];
       case 'valueReference':
         return ['ReferenceBuilder'];
@@ -2591,7 +2596,7 @@ class EvidenceReportCharacteristicBuilder extends BackboneElementBuilder {
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
     if (code) this.code = null;
-    if (value) this.valueX = null;
+    if (value) valueX = null;
     if (exclude) this.exclude = null;
     if (period) this.period = null;
   }
@@ -2622,9 +2627,7 @@ class EvidenceReportCharacteristicBuilder extends BackboneElementBuilder {
       valueX: valueX ?? this.valueX,
       exclude: exclude ?? this.exclude,
       period: period ?? this.period,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -2826,10 +2829,13 @@ class EvidenceReportRelatesToBuilder extends BackboneElementBuilder {
   /// Getter for [targetReference] as a ReferenceBuilder
   ReferenceBuilder? get targetReference => targetX?.isAs<ReferenceBuilder>();
 
-  /// Converts a EvidenceReportRelatesToBuilder to [EvidenceReportRelatesTo]
+  /// converts a [EvidenceReportRelatesToBuilder]
+  /// to [EvidenceReportRelatesTo]
+  @override
   EvidenceReportRelatesTo build() => EvidenceReportRelatesTo.fromJson(toJson());
 
-  /// Converts a [EvidenceReportRelatesToBuilder] to a [Map<String, dynamic>]
+  /// converts a [EvidenceReportRelatesToBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3119,7 +3125,7 @@ class EvidenceReportRelatesToBuilder extends BackboneElementBuilder {
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
     if (code) this.code = null;
-    if (target) this.targetX = null;
+    if (target) targetX = null;
   }
 
   @override
@@ -3144,9 +3150,7 @@ class EvidenceReportRelatesToBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       code: code ?? this.code,
       targetX: targetX ?? this.targetX,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -3469,10 +3473,13 @@ class EvidenceReportSectionBuilder extends BackboneElementBuilder {
   /// A nested sub-section within this section.
   List<EvidenceReportSectionBuilder>? section;
 
-  /// Converts a EvidenceReportSectionBuilder to [EvidenceReportSection]
+  /// converts a [EvidenceReportSectionBuilder]
+  /// to [EvidenceReportSection]
+  @override
   EvidenceReportSection build() => EvidenceReportSection.fromJson(toJson());
 
-  /// Converts a [EvidenceReportSectionBuilder] to a [Map<String, dynamic>]
+  /// converts a [EvidenceReportSectionBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -4018,9 +4025,7 @@ class EvidenceReportSectionBuilder extends BackboneElementBuilder {
       entryQuantity: entryQuantity ?? this.entryQuantity,
       emptyReason: emptyReason ?? this.emptyReason,
       section: section ?? this.section,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

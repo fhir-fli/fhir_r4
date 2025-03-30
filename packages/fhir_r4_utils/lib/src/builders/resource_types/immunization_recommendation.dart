@@ -1,13 +1,13 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
+        ImmunizationRecommendation,
+        ImmunizationRecommendationDateCriterion,
+        ImmunizationRecommendationRecommendation,
         R4ResourceType,
         StringExtensionForFHIR,
-        ImmunizationRecommendation,
-        ImmunizationRecommendationRecommendation,
-        ImmunizationRecommendationDateCriterion;
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -212,11 +212,14 @@ class ImmunizationRecommendationBuilder extends DomainResourceBuilder {
   /// Vaccine administration recommendations.
   List<ImmunizationRecommendationRecommendationBuilder>? recommendation;
 
-  /// Converts a ImmunizationRecommendationBuilder to [ImmunizationRecommendation]
+  /// converts a [ImmunizationRecommendationBuilder]
+  /// to [ImmunizationRecommendation]
+  @override
   ImmunizationRecommendation build() =>
       ImmunizationRecommendation.fromJson(toJson());
 
-  /// Converts a [ImmunizationRecommendationBuilder] to a [Map<String, dynamic>]
+  /// converts a [ImmunizationRecommendationBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -700,9 +703,7 @@ class ImmunizationRecommendationBuilder extends DomainResourceBuilder {
       date: date ?? this.date,
       authority: authority ?? this.authority,
       recommendation: recommendation ?? this.recommendation,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1096,11 +1097,14 @@ class ImmunizationRecommendationRecommendationBuilder
   /// allergy/intolerance information.
   List<ReferenceBuilder>? supportingPatientInformation;
 
-  /// Converts a ImmunizationRecommendationRecommendationBuilder to [ImmunizationRecommendationRecommendation]
+  /// converts a [ImmunizationRecommendationRecommendationBuilder]
+  /// to [ImmunizationRecommendationRecommendation]
+  @override
   ImmunizationRecommendationRecommendation build() =>
       ImmunizationRecommendationRecommendation.fromJson(toJson());
 
-  /// Converts a [ImmunizationRecommendationRecommendationBuilder] to a [Map<String, dynamic>]
+  /// converts a [ImmunizationRecommendationRecommendationBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1370,7 +1374,7 @@ class ImmunizationRecommendationRecommendationBuilder
             // Add single element to existing list or create new list
             contraindicatedVaccineCode = [
               ...(contraindicatedVaccineCode ?? []),
-              child
+              child,
             ];
             return;
           } else {
@@ -1528,7 +1532,7 @@ class ImmunizationRecommendationRecommendationBuilder
             // Add single element to existing list or create new list
             supportingPatientInformation = [
               ...(supportingPatientInformation ?? []),
-              child
+              child,
             ];
             return;
           } else {
@@ -1719,8 +1723,8 @@ class ImmunizationRecommendationRecommendationBuilder
     if (dateCriterion) this.dateCriterion = null;
     if (description) this.description = null;
     if (series) this.series = null;
-    if (doseNumber) this.doseNumberX = null;
-    if (seriesDoses) this.seriesDosesX = null;
+    if (doseNumber) doseNumberX = null;
+    if (seriesDoses) seriesDosesX = null;
     if (supportingImmunization) this.supportingImmunization = null;
     if (supportingPatientInformation) this.supportingPatientInformation = null;
   }
@@ -1771,9 +1775,7 @@ class ImmunizationRecommendationRecommendationBuilder
           supportingImmunization ?? this.supportingImmunization,
       supportingPatientInformation:
           supportingPatientInformation ?? this.supportingPatientInformation,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -2016,11 +2018,14 @@ class ImmunizationRecommendationDateCriterionBuilder
   /// The date whose meaning is specified by dateCriterion.code.
   FhirDateTimeBuilder? value;
 
-  /// Converts a ImmunizationRecommendationDateCriterionBuilder to [ImmunizationRecommendationDateCriterion]
+  /// converts a [ImmunizationRecommendationDateCriterionBuilder]
+  /// to [ImmunizationRecommendationDateCriterion]
+  @override
   ImmunizationRecommendationDateCriterion build() =>
       ImmunizationRecommendationDateCriterion.fromJson(toJson());
 
-  /// Converts a [ImmunizationRecommendationDateCriterionBuilder] to a [Map<String, dynamic>]
+  /// converts a [ImmunizationRecommendationDateCriterionBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2282,9 +2287,7 @@ class ImmunizationRecommendationDateCriterionBuilder
       modifierExtension: modifierExtension ?? this.modifierExtension,
       code: code ?? this.code,
       value: value ?? this.value,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

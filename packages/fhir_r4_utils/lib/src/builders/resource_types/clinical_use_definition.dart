@@ -1,18 +1,18 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
-        R4ResourceType,
-        StringExtensionForFHIR,
         ClinicalUseDefinition,
         ClinicalUseDefinitionContraindication,
-        ClinicalUseDefinitionOtherTherapy,
         ClinicalUseDefinitionIndication,
-        ClinicalUseDefinitionInteraction,
         ClinicalUseDefinitionInteractant,
+        ClinicalUseDefinitionInteraction,
+        ClinicalUseDefinitionOtherTherapy,
         ClinicalUseDefinitionUndesirableEffect,
-        ClinicalUseDefinitionWarning;
+        ClinicalUseDefinitionWarning,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -302,10 +302,13 @@ class ClinicalUseDefinitionBuilder extends DomainResourceBuilder {
   /// advice/attention if you feel unwell'.
   ClinicalUseDefinitionWarningBuilder? warning;
 
-  /// Converts a ClinicalUseDefinitionBuilder to [ClinicalUseDefinition]
+  /// converts a [ClinicalUseDefinitionBuilder]
+  /// to [ClinicalUseDefinition]
+  @override
   ClinicalUseDefinition build() => ClinicalUseDefinition.fromJson(toJson());
 
-  /// Converts a [ClinicalUseDefinitionBuilder] to a [Map<String, dynamic>]
+  /// converts a [ClinicalUseDefinitionBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -957,9 +960,7 @@ class ClinicalUseDefinitionBuilder extends DomainResourceBuilder {
       population: population ?? this.population,
       undesirableEffect: undesirableEffect ?? this.undesirableEffect,
       warning: warning ?? this.warning,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1271,11 +1272,14 @@ class ClinicalUseDefinitionContraindicationBuilder
   /// therapies described as part of the contraindication.
   List<ClinicalUseDefinitionOtherTherapyBuilder>? otherTherapy;
 
-  /// Converts a ClinicalUseDefinitionContraindicationBuilder to [ClinicalUseDefinitionContraindication]
+  /// converts a [ClinicalUseDefinitionContraindicationBuilder]
+  /// to [ClinicalUseDefinitionContraindication]
+  @override
   ClinicalUseDefinitionContraindication build() =>
       ClinicalUseDefinitionContraindication.fromJson(toJson());
 
-  /// Converts a [ClinicalUseDefinitionContraindicationBuilder] to a [Map<String, dynamic>]
+  /// converts a [ClinicalUseDefinitionContraindicationBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1631,9 +1635,7 @@ class ClinicalUseDefinitionContraindicationBuilder
       comorbidity: comorbidity ?? this.comorbidity,
       indication: indication ?? this.indication,
       otherTherapy: otherTherapy ?? this.otherTherapy,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1833,11 +1835,14 @@ class ClinicalUseDefinitionOtherTherapyBuilder extends BackboneElementBuilder {
   /// or class of products) as part of an indication or contraindication.
   CodeableReferenceBuilder? therapy;
 
-  /// Converts a ClinicalUseDefinitionOtherTherapyBuilder to [ClinicalUseDefinitionOtherTherapy]
+  /// converts a [ClinicalUseDefinitionOtherTherapyBuilder]
+  /// to [ClinicalUseDefinitionOtherTherapy]
+  @override
   ClinicalUseDefinitionOtherTherapy build() =>
       ClinicalUseDefinitionOtherTherapy.fromJson(toJson());
 
-  /// Converts a [ClinicalUseDefinitionOtherTherapyBuilder] to a [Map<String, dynamic>]
+  /// converts a [ClinicalUseDefinitionOtherTherapyBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2099,9 +2104,7 @@ class ClinicalUseDefinitionOtherTherapyBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       relationshipType: relationshipType ?? this.relationshipType,
       therapy: therapy ?? this.therapy,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -2363,11 +2366,14 @@ class ClinicalUseDefinitionIndicationBuilder extends BackboneElementBuilder {
   /// therapies described as part of the indication.
   List<ClinicalUseDefinitionOtherTherapyBuilder>? otherTherapy;
 
-  /// Converts a ClinicalUseDefinitionIndicationBuilder to [ClinicalUseDefinitionIndication]
+  /// converts a [ClinicalUseDefinitionIndicationBuilder]
+  /// to [ClinicalUseDefinitionIndication]
+  @override
   ClinicalUseDefinitionIndication build() =>
       ClinicalUseDefinitionIndication.fromJson(toJson());
 
-  /// Converts a [ClinicalUseDefinitionIndicationBuilder] to a [Map<String, dynamic>]
+  /// converts a [ClinicalUseDefinitionIndicationBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2790,7 +2796,7 @@ class ClinicalUseDefinitionIndicationBuilder extends BackboneElementBuilder {
     if (diseaseStatus) this.diseaseStatus = null;
     if (comorbidity) this.comorbidity = null;
     if (intendedEffect) this.intendedEffect = null;
-    if (duration) this.durationX = null;
+    if (duration) durationX = null;
     if (undesirableEffect) this.undesirableEffect = null;
     if (otherTherapy) this.otherTherapy = null;
   }
@@ -2828,9 +2834,7 @@ class ClinicalUseDefinitionIndicationBuilder extends BackboneElementBuilder {
       durationX: durationX ?? this.durationX,
       undesirableEffect: undesirableEffect ?? this.undesirableEffect,
       otherTherapy: otherTherapy ?? this.otherTherapy,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -3083,11 +3087,14 @@ class ClinicalUseDefinitionInteractionBuilder extends BackboneElementBuilder {
   /// Actions for managing the interaction.
   List<CodeableConceptBuilder>? management;
 
-  /// Converts a ClinicalUseDefinitionInteractionBuilder to [ClinicalUseDefinitionInteraction]
+  /// converts a [ClinicalUseDefinitionInteractionBuilder]
+  /// to [ClinicalUseDefinitionInteraction]
+  @override
   ClinicalUseDefinitionInteraction build() =>
       ClinicalUseDefinitionInteraction.fromJson(toJson());
 
-  /// Converts a [ClinicalUseDefinitionInteractionBuilder] to a [Map<String, dynamic>]
+  /// converts a [ClinicalUseDefinitionInteractionBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3436,9 +3443,7 @@ class ClinicalUseDefinitionInteractionBuilder extends BackboneElementBuilder {
       effect: effect ?? this.effect,
       incidence: incidence ?? this.incidence,
       management: management ?? this.management,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -3635,11 +3640,14 @@ class ClinicalUseDefinitionInteractantBuilder extends BackboneElementBuilder {
   CodeableConceptBuilder? get itemCodeableConcept =>
       itemX?.isAs<CodeableConceptBuilder>();
 
-  /// Converts a ClinicalUseDefinitionInteractantBuilder to [ClinicalUseDefinitionInteractant]
+  /// converts a [ClinicalUseDefinitionInteractantBuilder]
+  /// to [ClinicalUseDefinitionInteractant]
+  @override
   ClinicalUseDefinitionInteractant build() =>
       ClinicalUseDefinitionInteractant.fromJson(toJson());
 
-  /// Converts a [ClinicalUseDefinitionInteractantBuilder] to a [Map<String, dynamic>]
+  /// converts a [ClinicalUseDefinitionInteractantBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3905,7 +3913,7 @@ class ClinicalUseDefinitionInteractantBuilder extends BackboneElementBuilder {
     if (id) this.id = null;
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
-    if (item) this.itemX = null;
+    if (item) itemX = null;
   }
 
   @override
@@ -3928,9 +3936,7 @@ class ClinicalUseDefinitionInteractantBuilder extends BackboneElementBuilder {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       itemX: itemX ?? this.itemX,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -4116,11 +4122,14 @@ class ClinicalUseDefinitionUndesirableEffectBuilder
   /// How often the effect is seen.
   CodeableConceptBuilder? frequencyOfOccurrence;
 
-  /// Converts a ClinicalUseDefinitionUndesirableEffectBuilder to [ClinicalUseDefinitionUndesirableEffect]
+  /// converts a [ClinicalUseDefinitionUndesirableEffectBuilder]
+  /// to [ClinicalUseDefinitionUndesirableEffect]
+  @override
   ClinicalUseDefinitionUndesirableEffect build() =>
       ClinicalUseDefinitionUndesirableEffect.fromJson(toJson());
 
-  /// Converts a [ClinicalUseDefinitionUndesirableEffectBuilder] to a [Map<String, dynamic>]
+  /// converts a [ClinicalUseDefinitionUndesirableEffectBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -4410,9 +4419,7 @@ class ClinicalUseDefinitionUndesirableEffectBuilder
       classification: classification ?? this.classification,
       frequencyOfOccurrence:
           frequencyOfOccurrence ?? this.frequencyOfOccurrence,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -4600,11 +4607,14 @@ class ClinicalUseDefinitionWarningBuilder extends BackboneElementBuilder {
   /// A coded or unformatted textual definition of this warning.
   CodeableConceptBuilder? code;
 
-  /// Converts a ClinicalUseDefinitionWarningBuilder to [ClinicalUseDefinitionWarning]
+  /// converts a [ClinicalUseDefinitionWarningBuilder]
+  /// to [ClinicalUseDefinitionWarning]
+  @override
   ClinicalUseDefinitionWarning build() =>
       ClinicalUseDefinitionWarning.fromJson(toJson());
 
-  /// Converts a [ClinicalUseDefinitionWarningBuilder] to a [Map<String, dynamic>]
+  /// converts a [ClinicalUseDefinitionWarningBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -4865,9 +4875,7 @@ class ClinicalUseDefinitionWarningBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       description: description ?? this.description,
       code: code ?? this.code,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

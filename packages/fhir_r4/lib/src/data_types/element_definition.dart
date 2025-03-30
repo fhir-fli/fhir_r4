@@ -4754,7 +4754,7 @@ class ElementDefinition extends BackboneType {
           'RelatedArtifact',
           'TriggerDefinition',
           'UsageContext',
-          'Dosage'
+          'Dosage',
         ];
       case 'defaultValueBase64Binary':
         return ['FhirBase64Binary'];
@@ -4915,7 +4915,7 @@ class ElementDefinition extends BackboneType {
           'RelatedArtifact',
           'TriggerDefinition',
           'UsageContext',
-          'Dosage'
+          'Dosage',
         ];
       case 'fixedBase64Binary':
         return ['FhirBase64Binary'];
@@ -5072,7 +5072,7 @@ class ElementDefinition extends BackboneType {
           'RelatedArtifact',
           'TriggerDefinition',
           'UsageContext',
-          'Dosage'
+          'Dosage',
         ];
       case 'patternBase64Binary':
         return ['FhirBase64Binary'];
@@ -5189,7 +5189,7 @@ class ElementDefinition extends BackboneType {
           'FhirInteger',
           'FhirPositiveInt',
           'FhirUnsignedInt',
-          'Quantity'
+          'Quantity',
         ];
       case 'minValueDate':
         return ['FhirDate'];
@@ -5220,7 +5220,7 @@ class ElementDefinition extends BackboneType {
           'FhirInteger',
           'FhirPositiveInt',
           'FhirUnsignedInt',
-          'Quantity'
+          'Quantity',
         ];
       case 'maxValueDate':
         return ['FhirDate'];
@@ -10393,7 +10393,7 @@ class ElementDefinitionExample extends Element {
           'RelatedArtifact',
           'TriggerDefinition',
           'UsageContext',
-          'Dosage'
+          'Dosage',
         ];
       case 'valueBase64Binary':
         return ['FhirBase64Binary'];

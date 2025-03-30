@@ -1,13 +1,13 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
-        StringExtensionForFHIR,
         DataRequirement,
         DataRequirementCodeFilter,
         DataRequirementDateFilter,
-        DataRequirementSort;
+        DataRequirementSort,
+        StringExtensionForFHIR,
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -237,10 +237,13 @@ class DataRequirementBuilder extends DataTypeBuilder
   /// Specifies the order of the results to be returned.
   List<DataRequirementSortBuilder>? sort;
 
-  /// Converts a DataRequirementBuilder to [DataRequirement]
+  /// converts a [DataRequirementBuilder]
+  /// to [DataRequirement]
+  @override
   DataRequirement build() => DataRequirement.fromJson(toJson());
 
-  /// Converts a [DataRequirementBuilder] to a [Map<String, dynamic>]
+  /// converts a [DataRequirementBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -665,7 +668,7 @@ class DataRequirementBuilder extends DataTypeBuilder
     if (extension_) this.extension_ = null;
     if (type) this.type = null;
     if (profile) this.profile = null;
-    if (subject) this.subjectX = null;
+    if (subject) subjectX = null;
     if (mustSupport) this.mustSupport = null;
     if (codeFilter) this.codeFilter = null;
     if (dateFilter) this.dateFilter = null;
@@ -705,9 +708,7 @@ class DataRequirementBuilder extends DataTypeBuilder
       dateFilter: dateFilter ?? this.dateFilter,
       limit: limit ?? this.limit,
       sort: sort ?? this.sort,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -950,11 +951,14 @@ class DataRequirementCodeFilterBuilder extends ElementBuilder {
   /// items matching a code in the value set or one of the specified codes.
   List<CodingBuilder>? code;
 
-  /// Converts a DataRequirementCodeFilterBuilder to [DataRequirementCodeFilter]
+  /// converts a [DataRequirementCodeFilterBuilder]
+  /// to [DataRequirementCodeFilter]
+  @override
   DataRequirementCodeFilter build() =>
       DataRequirementCodeFilter.fromJson(toJson());
 
-  /// Converts a [DataRequirementCodeFilterBuilder] to a [Map<String, dynamic>]
+  /// converts a [DataRequirementCodeFilterBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1241,9 +1245,7 @@ class DataRequirementCodeFilterBuilder extends ElementBuilder {
       searchParam: searchParam ?? this.searchParam,
       valueSet: valueSet ?? this.valueSet,
       code: code ?? this.code,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1459,11 +1461,14 @@ class DataRequirementDateFilterBuilder extends ElementBuilder {
   /// Getter for [valueDuration] as a FhirDurationBuilder
   FhirDurationBuilder? get valueDuration => valueX?.isAs<FhirDurationBuilder>();
 
-  /// Converts a DataRequirementDateFilterBuilder to [DataRequirementDateFilter]
+  /// converts a [DataRequirementDateFilterBuilder]
+  /// to [DataRequirementDateFilter]
+  @override
   DataRequirementDateFilter build() =>
       DataRequirementDateFilter.fromJson(toJson());
 
-  /// Converts a [DataRequirementDateFilterBuilder] to a [Map<String, dynamic>]
+  /// converts a [DataRequirementDateFilterBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1772,7 +1777,7 @@ class DataRequirementDateFilterBuilder extends ElementBuilder {
     if (extension_) this.extension_ = null;
     if (path) this.path = null;
     if (searchParam) this.searchParam = null;
-    if (value) this.valueX = null;
+    if (value) valueX = null;
   }
 
   @override
@@ -1797,9 +1802,7 @@ class DataRequirementDateFilterBuilder extends ElementBuilder {
       path: path ?? this.path,
       searchParam: searchParam ?? this.searchParam,
       valueX: valueX ?? this.valueX,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1969,10 +1972,13 @@ class DataRequirementSortBuilder extends ElementBuilder {
   /// The direction of the sort, ascending or descending.
   SortDirectionBuilder? direction;
 
-  /// Converts a DataRequirementSortBuilder to [DataRequirementSort]
+  /// converts a [DataRequirementSortBuilder]
+  /// to [DataRequirementSort]
+  @override
   DataRequirementSort build() => DataRequirementSort.fromJson(toJson());
 
-  /// Converts a [DataRequirementSortBuilder] to a [Map<String, dynamic>]
+  /// converts a [DataRequirementSortBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2202,9 +2208,7 @@ class DataRequirementSortBuilder extends ElementBuilder {
       extension_: extension_ ?? this.extension_,
       path: path ?? this.path,
       direction: direction ?? this.direction,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

@@ -1,12 +1,12 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
+        CommunicationRequest,
+        CommunicationRequestPayload,
         R4ResourceType,
         StringExtensionForFHIR,
-        CommunicationRequest,
-        CommunicationRequestPayload;
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -461,10 +461,13 @@ class CommunicationRequestBuilder extends DomainResourceBuilder {
   /// subject or other participants.
   List<AnnotationBuilder>? note;
 
-  /// Converts a CommunicationRequestBuilder to [CommunicationRequest]
+  /// converts a [CommunicationRequestBuilder]
+  /// to [CommunicationRequest]
+  @override
   CommunicationRequest build() => CommunicationRequest.fromJson(toJson());
 
-  /// Converts a [CommunicationRequestBuilder] to a [Map<String, dynamic>]
+  /// converts a [CommunicationRequestBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1408,7 +1411,7 @@ class CommunicationRequestBuilder extends DomainResourceBuilder {
     if (about) this.about = null;
     if (encounter) this.encounter = null;
     if (payload) this.payload = null;
-    if (occurrence) this.occurrenceX = null;
+    if (occurrence) occurrenceX = null;
     if (authoredOn) this.authoredOn = null;
     if (requester) this.requester = null;
     if (recipient) this.recipient = null;
@@ -1489,9 +1492,7 @@ class CommunicationRequestBuilder extends DomainResourceBuilder {
       reasonCode: reasonCode ?? this.reasonCode,
       reasonReference: reasonReference ?? this.reasonReference,
       note: note ?? this.note,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1825,11 +1826,14 @@ class CommunicationRequestPayloadBuilder extends BackboneElementBuilder {
   /// Getter for [contentReference] as a ReferenceBuilder
   ReferenceBuilder? get contentReference => contentX?.isAs<ReferenceBuilder>();
 
-  /// Converts a CommunicationRequestPayloadBuilder to [CommunicationRequestPayload]
+  /// converts a [CommunicationRequestPayloadBuilder]
+  /// to [CommunicationRequestPayload]
+  @override
   CommunicationRequestPayload build() =>
       CommunicationRequestPayload.fromJson(toJson());
 
-  /// Converts a [CommunicationRequestPayloadBuilder] to a [Map<String, dynamic>]
+  /// converts a [CommunicationRequestPayloadBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2119,7 +2123,7 @@ class CommunicationRequestPayloadBuilder extends BackboneElementBuilder {
     if (id) this.id = null;
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
-    if (content) this.contentX = null;
+    if (content) contentX = null;
   }
 
   @override
@@ -2142,9 +2146,7 @@ class CommunicationRequestPayloadBuilder extends BackboneElementBuilder {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       contentX: contentX ?? this.contentX,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

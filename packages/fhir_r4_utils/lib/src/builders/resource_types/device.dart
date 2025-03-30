@@ -1,16 +1,16 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
+        Device,
+        DeviceDeviceName,
+        DeviceProperty,
+        DeviceSpecialization,
+        DeviceUdiCarrier,
+        DeviceVersion,
         R4ResourceType,
         StringExtensionForFHIR,
-        Device,
-        DeviceUdiCarrier,
-        DeviceDeviceName,
-        DeviceSpecialization,
-        DeviceVersion,
-        DeviceProperty;
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -495,10 +495,13 @@ class DeviceBuilder extends DomainResourceBuilder {
   /// The device that this device is attached to or is part of.
   ReferenceBuilder? parent;
 
-  /// Converts a DeviceBuilder to [Device]
+  /// converts a [DeviceBuilder]
+  /// to [Device]
+  @override
   Device build() => Device.fromJson(toJson());
 
-  /// Converts a [DeviceBuilder] to a [Map<String, dynamic>]
+  /// converts a [DeviceBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1568,9 +1571,7 @@ class DeviceBuilder extends DomainResourceBuilder {
       note: note ?? this.note,
       safety: safety ?? this.safety,
       parent: parent ?? this.parent,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1988,10 +1989,13 @@ class DeviceUdiCarrierBuilder extends BackboneElementBuilder {
   /// A coded entry to indicate how the data was entered.
   UDIEntryTypeBuilder? entryType;
 
-  /// Converts a DeviceUdiCarrierBuilder to [DeviceUdiCarrier]
+  /// converts a [DeviceUdiCarrierBuilder]
+  /// to [DeviceUdiCarrier]
+  @override
   DeviceUdiCarrier build() => DeviceUdiCarrier.fromJson(toJson());
 
-  /// Converts a [DeviceUdiCarrierBuilder] to a [Map<String, dynamic>]
+  /// converts a [DeviceUdiCarrierBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2356,9 +2360,7 @@ class DeviceUdiCarrierBuilder extends BackboneElementBuilder {
       carrierAIDC: carrierAIDC ?? this.carrierAIDC,
       carrierHRF: carrierHRF ?? this.carrierHRF,
       entryType: entryType ?? this.entryType,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -2565,10 +2567,13 @@ class DeviceDeviceNameBuilder extends BackboneElementBuilder {
   /// ManufactureDeviceName | ModelName.
   DeviceNameTypeBuilder? type;
 
-  /// Converts a DeviceDeviceNameBuilder to [DeviceDeviceName]
+  /// converts a [DeviceDeviceNameBuilder]
+  /// to [DeviceDeviceName]
+  @override
   DeviceDeviceName build() => DeviceDeviceName.fromJson(toJson());
 
-  /// Converts a [DeviceDeviceNameBuilder] to a [Map<String, dynamic>]
+  /// converts a [DeviceDeviceNameBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2829,9 +2834,7 @@ class DeviceDeviceNameBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       name: name ?? this.name,
       type: type ?? this.type,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -3011,10 +3014,13 @@ class DeviceSpecializationBuilder extends BackboneElementBuilder {
   /// The version of the standard that is used to operate and communicate.
   FhirStringBuilder? version;
 
-  /// Converts a DeviceSpecializationBuilder to [DeviceSpecialization]
+  /// converts a [DeviceSpecializationBuilder]
+  /// to [DeviceSpecialization]
+  @override
   DeviceSpecialization build() => DeviceSpecialization.fromJson(toJson());
 
-  /// Converts a [DeviceSpecializationBuilder] to a [Map<String, dynamic>]
+  /// converts a [DeviceSpecializationBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3275,9 +3281,7 @@ class DeviceSpecializationBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       systemType: systemType ?? this.systemType,
       version: version ?? this.version,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -3467,10 +3471,13 @@ class DeviceVersionBuilder extends BackboneElementBuilder {
   /// The version text.
   FhirStringBuilder? value;
 
-  /// Converts a DeviceVersionBuilder to [DeviceVersion]
+  /// converts a [DeviceVersionBuilder]
+  /// to [DeviceVersion]
+  @override
   DeviceVersion build() => DeviceVersion.fromJson(toJson());
 
-  /// Converts a [DeviceVersionBuilder] to a [Map<String, dynamic>]
+  /// converts a [DeviceVersionBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3757,9 +3764,7 @@ class DeviceVersionBuilder extends BackboneElementBuilder {
       type: type ?? this.type,
       component: component ?? this.component,
       value: value ?? this.value,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -3964,10 +3969,13 @@ class DevicePropertyBuilder extends BackboneElementBuilder {
   /// Property value as a code, e.g., NTP4 (synced to NTP).
   List<CodeableConceptBuilder>? valueCode;
 
-  /// Converts a DevicePropertyBuilder to [DeviceProperty]
+  /// converts a [DevicePropertyBuilder]
+  /// to [DeviceProperty]
+  @override
   DeviceProperty build() => DeviceProperty.fromJson(toJson());
 
-  /// Converts a [DevicePropertyBuilder] to a [Map<String, dynamic>]
+  /// converts a [DevicePropertyBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -4264,9 +4272,7 @@ class DevicePropertyBuilder extends BackboneElementBuilder {
       type: type ?? this.type,
       valueQuantity: valueQuantity ?? this.valueQuantity,
       valueCode: valueCode ?? this.valueCode,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

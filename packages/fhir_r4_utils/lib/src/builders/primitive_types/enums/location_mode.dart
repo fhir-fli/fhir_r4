@@ -48,7 +48,8 @@ class LocationModeBuilder extends FhirCodeEnumBuilder {
   factory LocationModeBuilder.empty() =>
       LocationModeBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [LocationModeBuilder] from JSON.
+  /// Factory constructor to create [LocationModeBuilder]
+  /// from JSON.
   factory LocationModeBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;

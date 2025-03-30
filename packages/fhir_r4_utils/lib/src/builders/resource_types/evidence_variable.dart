@@ -1,14 +1,14 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
-        R4ResourceType,
-        StringExtensionForFHIR,
         EvidenceVariable,
+        EvidenceVariableCategory,
         EvidenceVariableCharacteristic,
         EvidenceVariableTimeFromStart,
-        EvidenceVariableCategory;
+        R4ResourceType,
+        StringExtensionForFHIR,
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -500,10 +500,13 @@ class EvidenceVariableBuilder extends DomainResourceBuilder {
   /// specify the set of groupings allowed for the variable.
   List<EvidenceVariableCategoryBuilder>? category;
 
-  /// Converts a EvidenceVariableBuilder to [EvidenceVariable]
+  /// converts a [EvidenceVariableBuilder]
+  /// to [EvidenceVariable]
+  @override
   EvidenceVariable build() => EvidenceVariable.fromJson(toJson());
 
-  /// Converts a [EvidenceVariableBuilder] to a [Map<String, dynamic>]
+  /// converts a [EvidenceVariableBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1527,9 +1530,7 @@ class EvidenceVariableBuilder extends DomainResourceBuilder {
       characteristic: characteristic ?? this.characteristic,
       handling: handling ?? this.handling,
       category: category ?? this.category,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1955,11 +1956,14 @@ class EvidenceVariableCharacteristicBuilder extends BackboneElementBuilder {
   /// period.
   GroupMeasureBuilder? groupMeasure;
 
-  /// Converts a EvidenceVariableCharacteristicBuilder to [EvidenceVariableCharacteristic]
+  /// converts a [EvidenceVariableCharacteristicBuilder]
+  /// to [EvidenceVariableCharacteristic]
+  @override
   EvidenceVariableCharacteristic build() =>
       EvidenceVariableCharacteristic.fromJson(toJson());
 
-  /// Converts a [EvidenceVariableCharacteristicBuilder] to a [Map<String, dynamic>]
+  /// converts a [EvidenceVariableCharacteristicBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2297,7 +2301,7 @@ class EvidenceVariableCharacteristicBuilder extends BackboneElementBuilder {
           'ReferenceBuilder',
           'FhirCanonicalBuilder',
           'CodeableConceptBuilder',
-          'FhirExpressionBuilder'
+          'FhirExpressionBuilder',
         ];
       case 'definitionReference':
         return ['ReferenceBuilder'];
@@ -2417,7 +2421,7 @@ class EvidenceVariableCharacteristicBuilder extends BackboneElementBuilder {
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
     if (description) this.description = null;
-    if (definition) this.definitionX = null;
+    if (definition) definitionX = null;
     if (method) this.method = null;
     if (device) this.device = null;
     if (exclude) this.exclude = null;
@@ -2457,9 +2461,7 @@ class EvidenceVariableCharacteristicBuilder extends BackboneElementBuilder {
       exclude: exclude ?? this.exclude,
       timeFromStart: timeFromStart ?? this.timeFromStart,
       groupMeasure: groupMeasure ?? this.groupMeasure,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -2697,11 +2699,14 @@ class EvidenceVariableTimeFromStartBuilder extends BackboneElementBuilder {
   /// resource.
   List<AnnotationBuilder>? note;
 
-  /// Converts a EvidenceVariableTimeFromStartBuilder to [EvidenceVariableTimeFromStart]
+  /// converts a [EvidenceVariableTimeFromStartBuilder]
+  /// to [EvidenceVariableTimeFromStart]
+  @override
   EvidenceVariableTimeFromStart build() =>
       EvidenceVariableTimeFromStart.fromJson(toJson());
 
-  /// Converts a [EvidenceVariableTimeFromStartBuilder] to a [Map<String, dynamic>]
+  /// converts a [EvidenceVariableTimeFromStartBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3019,9 +3024,7 @@ class EvidenceVariableTimeFromStartBuilder extends BackboneElementBuilder {
       quantity: quantity ?? this.quantity,
       range: range ?? this.range,
       note: note ?? this.note,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -3227,11 +3230,14 @@ class EvidenceVariableCategoryBuilder extends BackboneElementBuilder {
   /// Getter for [valueRange] as a RangeBuilder
   RangeBuilder? get valueRange => valueX?.isAs<RangeBuilder>();
 
-  /// Converts a EvidenceVariableCategoryBuilder to [EvidenceVariableCategory]
+  /// converts a [EvidenceVariableCategoryBuilder]
+  /// to [EvidenceVariableCategory]
+  @override
   EvidenceVariableCategory build() =>
       EvidenceVariableCategory.fromJson(toJson());
 
-  /// Converts a [EvidenceVariableCategoryBuilder] to a [Map<String, dynamic>]
+  /// converts a [EvidenceVariableCategoryBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3545,7 +3551,7 @@ class EvidenceVariableCategoryBuilder extends BackboneElementBuilder {
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
     if (name) this.name = null;
-    if (value) this.valueX = null;
+    if (value) valueX = null;
   }
 
   @override
@@ -3570,9 +3576,7 @@ class EvidenceVariableCategoryBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       name: name ?? this.name,
       valueX: valueX ?? this.valueX,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

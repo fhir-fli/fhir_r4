@@ -1,27 +1,27 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
+        MedicationKnowledge,
+        MedicationKnowledgeAdministrationGuidelines,
+        MedicationKnowledgeCost,
+        MedicationKnowledgeDosage,
+        MedicationKnowledgeDrugCharacteristic,
+        MedicationKnowledgeIngredient,
+        MedicationKnowledgeKinetics,
+        MedicationKnowledgeMaxDispense,
+        MedicationKnowledgeMedicineClassification,
+        MedicationKnowledgeMonitoringProgram,
+        MedicationKnowledgeMonograph,
+        MedicationKnowledgePackaging,
+        MedicationKnowledgePatientCharacteristics,
+        MedicationKnowledgeRegulatory,
+        MedicationKnowledgeRelatedMedicationKnowledge,
+        MedicationKnowledgeSchedule,
+        MedicationKnowledgeSubstitution,
         R4ResourceType,
         StringExtensionForFHIR,
-        MedicationKnowledge,
-        MedicationKnowledgeRelatedMedicationKnowledge,
-        MedicationKnowledgeMonograph,
-        MedicationKnowledgeIngredient,
-        MedicationKnowledgeCost,
-        MedicationKnowledgeMonitoringProgram,
-        MedicationKnowledgeAdministrationGuidelines,
-        MedicationKnowledgeDosage,
-        MedicationKnowledgePatientCharacteristics,
-        MedicationKnowledgeMedicineClassification,
-        MedicationKnowledgePackaging,
-        MedicationKnowledgeDrugCharacteristic,
-        MedicationKnowledgeRegulatory,
-        MedicationKnowledgeSubstitution,
-        MedicationKnowledgeSchedule,
-        MedicationKnowledgeMaxDispense,
-        MedicationKnowledgeKinetics;
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -488,10 +488,13 @@ class MedicationKnowledgeBuilder extends DomainResourceBuilder {
   /// excretion of a medication from the body.
   List<MedicationKnowledgeKineticsBuilder>? kinetics;
 
-  /// Converts a MedicationKnowledgeBuilder to [MedicationKnowledge]
+  /// converts a [MedicationKnowledgeBuilder]
+  /// to [MedicationKnowledge]
+  @override
   MedicationKnowledge build() => MedicationKnowledge.fromJson(toJson());
 
-  /// Converts a [MedicationKnowledgeBuilder] to a [Map<String, dynamic>]
+  /// converts a [MedicationKnowledgeBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -908,7 +911,7 @@ class MedicationKnowledgeBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             relatedMedicationKnowledge = [
               ...(relatedMedicationKnowledge ?? []),
-              child
+              child,
             ];
             return;
           } else {
@@ -1034,7 +1037,7 @@ class MedicationKnowledgeBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             administrationGuidelines = [
               ...(administrationGuidelines ?? []),
-              child
+              child,
             ];
             return;
           } else {
@@ -1503,9 +1506,7 @@ class MedicationKnowledgeBuilder extends DomainResourceBuilder {
       contraindication: contraindication ?? this.contraindication,
       regulatory: regulatory ?? this.regulatory,
       kinetics: kinetics ?? this.kinetics,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1822,7 +1823,8 @@ class MedicationKnowledgeRelatedMedicationKnowledgeBuilder
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
       return MedicationKnowledgeRelatedMedicationKnowledgeBuilder.fromJson(
-          json);
+        json,
+      );
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -1840,11 +1842,14 @@ class MedicationKnowledgeRelatedMedicationKnowledgeBuilder
   /// Associated documentation about the associated medication knowledge.
   List<ReferenceBuilder>? reference;
 
-  /// Converts a MedicationKnowledgeRelatedMedicationKnowledgeBuilder to [MedicationKnowledgeRelatedMedicationKnowledge]
+  /// converts a [MedicationKnowledgeRelatedMedicationKnowledgeBuilder]
+  /// to [MedicationKnowledgeRelatedMedicationKnowledge]
+  @override
   MedicationKnowledgeRelatedMedicationKnowledge build() =>
       MedicationKnowledgeRelatedMedicationKnowledge.fromJson(toJson());
 
-  /// Converts a [MedicationKnowledgeRelatedMedicationKnowledgeBuilder] to a [Map<String, dynamic>]
+  /// converts a [MedicationKnowledgeRelatedMedicationKnowledgeBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2111,9 +2116,7 @@ class MedicationKnowledgeRelatedMedicationKnowledgeBuilder
       modifierExtension: modifierExtension ?? this.modifierExtension,
       type: type ?? this.type,
       reference: reference ?? this.reference,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -2293,11 +2296,14 @@ class MedicationKnowledgeMonographBuilder extends BackboneElementBuilder {
   /// Associated documentation about the medication.
   ReferenceBuilder? source;
 
-  /// Converts a MedicationKnowledgeMonographBuilder to [MedicationKnowledgeMonograph]
+  /// converts a [MedicationKnowledgeMonographBuilder]
+  /// to [MedicationKnowledgeMonograph]
+  @override
   MedicationKnowledgeMonograph build() =>
       MedicationKnowledgeMonograph.fromJson(toJson());
 
-  /// Converts a [MedicationKnowledgeMonographBuilder] to a [Map<String, dynamic>]
+  /// converts a [MedicationKnowledgeMonographBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2558,9 +2564,7 @@ class MedicationKnowledgeMonographBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       type: type ?? this.type,
       source: source ?? this.source,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -2764,11 +2768,14 @@ class MedicationKnowledgeIngredientBuilder extends BackboneElementBuilder {
   /// ratio where the numerator is 250mg and the denominator is 1 tablet.
   RatioBuilder? strength;
 
-  /// Converts a MedicationKnowledgeIngredientBuilder to [MedicationKnowledgeIngredient]
+  /// converts a [MedicationKnowledgeIngredientBuilder]
+  /// to [MedicationKnowledgeIngredient]
+  @override
   MedicationKnowledgeIngredient build() =>
       MedicationKnowledgeIngredient.fromJson(toJson());
 
-  /// Converts a [MedicationKnowledgeIngredientBuilder] to a [Map<String, dynamic>]
+  /// converts a [MedicationKnowledgeIngredientBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3080,7 +3087,7 @@ class MedicationKnowledgeIngredientBuilder extends BackboneElementBuilder {
     if (id) this.id = null;
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
-    if (item) this.itemX = null;
+    if (item) itemX = null;
     if (isActive) this.isActive = null;
     if (strength) this.strength = null;
   }
@@ -3109,9 +3116,7 @@ class MedicationKnowledgeIngredientBuilder extends BackboneElementBuilder {
       itemX: itemX ?? this.itemX,
       isActive: isActive ?? this.isActive,
       strength: strength ?? this.strength,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -3308,10 +3313,13 @@ class MedicationKnowledgeCostBuilder extends BackboneElementBuilder {
   /// The price of the medication.
   MoneyBuilder? cost;
 
-  /// Converts a MedicationKnowledgeCostBuilder to [MedicationKnowledgeCost]
+  /// converts a [MedicationKnowledgeCostBuilder]
+  /// to [MedicationKnowledgeCost]
+  @override
   MedicationKnowledgeCost build() => MedicationKnowledgeCost.fromJson(toJson());
 
-  /// Converts a [MedicationKnowledgeCostBuilder] to a [Map<String, dynamic>]
+  /// converts a [MedicationKnowledgeCostBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3598,9 +3606,7 @@ class MedicationKnowledgeCostBuilder extends BackboneElementBuilder {
       type: type ?? this.type,
       source: source ?? this.source,
       cost: cost ?? this.cost,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -3786,11 +3792,14 @@ class MedicationKnowledgeMonitoringProgramBuilder
   /// Name of the reviewing program.
   FhirStringBuilder? name;
 
-  /// Converts a MedicationKnowledgeMonitoringProgramBuilder to [MedicationKnowledgeMonitoringProgram]
+  /// converts a [MedicationKnowledgeMonitoringProgramBuilder]
+  /// to [MedicationKnowledgeMonitoringProgram]
+  @override
   MedicationKnowledgeMonitoringProgram build() =>
       MedicationKnowledgeMonitoringProgram.fromJson(toJson());
 
-  /// Converts a [MedicationKnowledgeMonitoringProgramBuilder] to a [Map<String, dynamic>]
+  /// converts a [MedicationKnowledgeMonitoringProgramBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -4052,9 +4061,7 @@ class MedicationKnowledgeMonitoringProgramBuilder
       modifierExtension: modifierExtension ?? this.modifierExtension,
       type: type ?? this.type,
       name: name ?? this.name,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -4267,11 +4274,14 @@ class MedicationKnowledgeAdministrationGuidelinesBuilder
   List<MedicationKnowledgePatientCharacteristicsBuilder>?
       patientCharacteristics;
 
-  /// Converts a MedicationKnowledgeAdministrationGuidelinesBuilder to [MedicationKnowledgeAdministrationGuidelines]
+  /// converts a [MedicationKnowledgeAdministrationGuidelinesBuilder]
+  /// to [MedicationKnowledgeAdministrationGuidelines]
+  @override
   MedicationKnowledgeAdministrationGuidelines build() =>
       MedicationKnowledgeAdministrationGuidelines.fromJson(toJson());
 
-  /// Converts a [MedicationKnowledgeAdministrationGuidelinesBuilder] to a [Map<String, dynamic>]
+  /// converts a [MedicationKnowledgeAdministrationGuidelinesBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -4597,7 +4607,7 @@ class MedicationKnowledgeAdministrationGuidelinesBuilder
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
     if (dosage) this.dosage = null;
-    if (indication) this.indicationX = null;
+    if (indication) indicationX = null;
     if (patientCharacteristics) this.patientCharacteristics = null;
   }
 
@@ -4628,9 +4638,7 @@ class MedicationKnowledgeAdministrationGuidelinesBuilder
       indicationX: indicationX ?? this.indicationX,
       patientCharacteristics:
           patientCharacteristics ?? this.patientCharacteristics,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -4820,11 +4828,14 @@ class MedicationKnowledgeDosageBuilder extends BackboneElementBuilder {
   /// Dosage for the medication for the specific guidelines.
   List<DosageBuilder>? dosage;
 
-  /// Converts a MedicationKnowledgeDosageBuilder to [MedicationKnowledgeDosage]
+  /// converts a [MedicationKnowledgeDosageBuilder]
+  /// to [MedicationKnowledgeDosage]
+  @override
   MedicationKnowledgeDosage build() =>
       MedicationKnowledgeDosage.fromJson(toJson());
 
-  /// Converts a [MedicationKnowledgeDosageBuilder] to a [Map<String, dynamic>]
+  /// converts a [MedicationKnowledgeDosageBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -5090,9 +5101,7 @@ class MedicationKnowledgeDosageBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       type: type ?? this.type,
       dosage: dosage ?? this.dosage,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -5288,11 +5297,14 @@ class MedicationKnowledgePatientCharacteristicsBuilder
   /// The specific characteristic (e.g. height, weight, gender, etc.).
   List<FhirStringBuilder>? value;
 
-  /// Converts a MedicationKnowledgePatientCharacteristicsBuilder to [MedicationKnowledgePatientCharacteristics]
+  /// converts a [MedicationKnowledgePatientCharacteristicsBuilder]
+  /// to [MedicationKnowledgePatientCharacteristics]
+  @override
   MedicationKnowledgePatientCharacteristics build() =>
       MedicationKnowledgePatientCharacteristics.fromJson(toJson());
 
-  /// Converts a [MedicationKnowledgePatientCharacteristicsBuilder] to a [Map<String, dynamic>]
+  /// converts a [MedicationKnowledgePatientCharacteristicsBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -5587,7 +5599,7 @@ class MedicationKnowledgePatientCharacteristicsBuilder
     if (id) this.id = null;
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
-    if (characteristic) this.characteristicX = null;
+    if (characteristic) characteristicX = null;
     if (value) this.value = null;
   }
 
@@ -5615,9 +5627,7 @@ class MedicationKnowledgePatientCharacteristicsBuilder
       modifierExtension: modifierExtension ?? this.modifierExtension,
       characteristicX: characteristicX ?? this.characteristicX,
       value: value ?? this.value,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -5804,11 +5814,14 @@ class MedicationKnowledgeMedicineClassificationBuilder
   /// anti-hypertensive, antibiotic, etc.).
   List<CodeableConceptBuilder>? classification;
 
-  /// Converts a MedicationKnowledgeMedicineClassificationBuilder to [MedicationKnowledgeMedicineClassification]
+  /// converts a [MedicationKnowledgeMedicineClassificationBuilder]
+  /// to [MedicationKnowledgeMedicineClassification]
+  @override
   MedicationKnowledgeMedicineClassification build() =>
       MedicationKnowledgeMedicineClassification.fromJson(toJson());
 
-  /// Converts a [MedicationKnowledgeMedicineClassificationBuilder] to a [Map<String, dynamic>]
+  /// converts a [MedicationKnowledgeMedicineClassificationBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -6075,9 +6088,7 @@ class MedicationKnowledgeMedicineClassificationBuilder
       modifierExtension: modifierExtension ?? this.modifierExtension,
       type: type ?? this.type,
       classification: classification ?? this.classification,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -6257,11 +6268,14 @@ class MedicationKnowledgePackagingBuilder extends BackboneElementBuilder {
   /// The number of product units the package would contain if fully loaded.
   QuantityBuilder? quantity;
 
-  /// Converts a MedicationKnowledgePackagingBuilder to [MedicationKnowledgePackaging]
+  /// converts a [MedicationKnowledgePackagingBuilder]
+  /// to [MedicationKnowledgePackaging]
+  @override
   MedicationKnowledgePackaging build() =>
       MedicationKnowledgePackaging.fromJson(toJson());
 
-  /// Converts a [MedicationKnowledgePackagingBuilder] to a [Map<String, dynamic>]
+  /// converts a [MedicationKnowledgePackagingBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -6522,9 +6536,7 @@ class MedicationKnowledgePackagingBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       type: type ?? this.type,
       quantity: quantity ?? this.quantity,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -6725,11 +6737,14 @@ class MedicationKnowledgeDrugCharacteristicBuilder
   FhirBase64BinaryBuilder? get valueBase64Binary =>
       valueX?.isAs<FhirBase64BinaryBuilder>();
 
-  /// Converts a MedicationKnowledgeDrugCharacteristicBuilder to [MedicationKnowledgeDrugCharacteristic]
+  /// converts a [MedicationKnowledgeDrugCharacteristicBuilder]
+  /// to [MedicationKnowledgeDrugCharacteristic]
+  @override
   MedicationKnowledgeDrugCharacteristic build() =>
       MedicationKnowledgeDrugCharacteristic.fromJson(toJson());
 
-  /// Converts a [MedicationKnowledgeDrugCharacteristicBuilder] to a [Map<String, dynamic>]
+  /// converts a [MedicationKnowledgeDrugCharacteristicBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -6992,7 +7007,7 @@ class MedicationKnowledgeDrugCharacteristicBuilder
           'CodeableConceptBuilder',
           'FhirStringBuilder',
           'QuantityBuilder',
-          'FhirBase64BinaryBuilder'
+          'FhirBase64BinaryBuilder',
         ];
       case 'valueCodeableConcept':
         return ['CodeableConceptBuilder'];
@@ -7072,7 +7087,7 @@ class MedicationKnowledgeDrugCharacteristicBuilder
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
     if (type) this.type = null;
-    if (value) this.valueX = null;
+    if (value) valueX = null;
   }
 
   @override
@@ -7098,9 +7113,7 @@ class MedicationKnowledgeDrugCharacteristicBuilder
       modifierExtension: modifierExtension ?? this.modifierExtension,
       type: type ?? this.type,
       valueX: valueX ?? this.valueX,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -7312,11 +7325,14 @@ class MedicationKnowledgeRegulatoryBuilder extends BackboneElementBuilder {
   /// a period.
   MedicationKnowledgeMaxDispenseBuilder? maxDispense;
 
-  /// Converts a MedicationKnowledgeRegulatoryBuilder to [MedicationKnowledgeRegulatory]
+  /// converts a [MedicationKnowledgeRegulatoryBuilder]
+  /// to [MedicationKnowledgeRegulatory]
+  @override
   MedicationKnowledgeRegulatory build() =>
       MedicationKnowledgeRegulatory.fromJson(toJson());
 
-  /// Converts a [MedicationKnowledgeRegulatoryBuilder] to a [Map<String, dynamic>]
+  /// converts a [MedicationKnowledgeRegulatoryBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -7639,9 +7655,7 @@ class MedicationKnowledgeRegulatoryBuilder extends BackboneElementBuilder {
       substitution: substitution ?? this.substitution,
       schedule: schedule ?? this.schedule,
       maxDispense: maxDispense ?? this.maxDispense,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -7834,11 +7848,14 @@ class MedicationKnowledgeSubstitutionBuilder extends BackboneElementBuilder {
   /// dispensing.
   FhirBooleanBuilder? allowed;
 
-  /// Converts a MedicationKnowledgeSubstitutionBuilder to [MedicationKnowledgeSubstitution]
+  /// converts a [MedicationKnowledgeSubstitutionBuilder]
+  /// to [MedicationKnowledgeSubstitution]
+  @override
   MedicationKnowledgeSubstitution build() =>
       MedicationKnowledgeSubstitution.fromJson(toJson());
 
-  /// Converts a [MedicationKnowledgeSubstitutionBuilder] to a [Map<String, dynamic>]
+  /// converts a [MedicationKnowledgeSubstitutionBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -8099,9 +8116,7 @@ class MedicationKnowledgeSubstitutionBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       type: type ?? this.type,
       allowed: allowed ?? this.allowed,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -8269,11 +8284,14 @@ class MedicationKnowledgeScheduleBuilder extends BackboneElementBuilder {
   /// Specifies the specific drug schedule.
   CodeableConceptBuilder? schedule;
 
-  /// Converts a MedicationKnowledgeScheduleBuilder to [MedicationKnowledgeSchedule]
+  /// converts a [MedicationKnowledgeScheduleBuilder]
+  /// to [MedicationKnowledgeSchedule]
+  @override
   MedicationKnowledgeSchedule build() =>
       MedicationKnowledgeSchedule.fromJson(toJson());
 
-  /// Converts a [MedicationKnowledgeScheduleBuilder] to a [Map<String, dynamic>]
+  /// converts a [MedicationKnowledgeScheduleBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -8508,9 +8526,7 @@ class MedicationKnowledgeScheduleBuilder extends BackboneElementBuilder {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       schedule: schedule ?? this.schedule,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -8684,11 +8700,14 @@ class MedicationKnowledgeMaxDispenseBuilder extends BackboneElementBuilder {
   /// The period that applies to the maximum number of units.
   FhirDurationBuilder? period;
 
-  /// Converts a MedicationKnowledgeMaxDispenseBuilder to [MedicationKnowledgeMaxDispense]
+  /// converts a [MedicationKnowledgeMaxDispenseBuilder]
+  /// to [MedicationKnowledgeMaxDispense]
+  @override
   MedicationKnowledgeMaxDispense build() =>
       MedicationKnowledgeMaxDispense.fromJson(toJson());
 
-  /// Converts a [MedicationKnowledgeMaxDispenseBuilder] to a [Map<String, dynamic>]
+  /// converts a [MedicationKnowledgeMaxDispenseBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -8949,9 +8968,7 @@ class MedicationKnowledgeMaxDispenseBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       quantity: quantity ?? this.quantity,
       period: period ?? this.period,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -9151,11 +9168,14 @@ class MedicationKnowledgeKineticsBuilder extends BackboneElementBuilder {
   /// of a substance in the body) to decrease by half.
   FhirDurationBuilder? halfLifePeriod;
 
-  /// Converts a MedicationKnowledgeKineticsBuilder to [MedicationKnowledgeKinetics]
+  /// converts a [MedicationKnowledgeKineticsBuilder]
+  /// to [MedicationKnowledgeKinetics]
+  @override
   MedicationKnowledgeKinetics build() =>
       MedicationKnowledgeKinetics.fromJson(toJson());
 
-  /// Converts a [MedicationKnowledgeKineticsBuilder] to a [Map<String, dynamic>]
+  /// converts a [MedicationKnowledgeKineticsBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -9452,9 +9472,7 @@ class MedicationKnowledgeKineticsBuilder extends BackboneElementBuilder {
       areaUnderCurve: areaUnderCurve ?? this.areaUnderCurve,
       lethalDose50: lethalDose50 ?? this.lethalDose50,
       halfLifePeriod: halfLifePeriod ?? this.halfLifePeriod,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

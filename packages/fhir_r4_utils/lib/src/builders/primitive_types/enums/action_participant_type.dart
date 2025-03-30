@@ -47,7 +47,8 @@ class ActionParticipantTypeBuilder extends FhirCodeEnumBuilder {
   factory ActionParticipantTypeBuilder.empty() =>
       ActionParticipantTypeBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [ActionParticipantTypeBuilder] from JSON.
+  /// Factory constructor to create [ActionParticipantTypeBuilder]
+  /// from JSON.
   factory ActionParticipantTypeBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
@@ -126,7 +127,9 @@ class ActionParticipantTypeBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   ActionParticipantTypeBuilder withElement(ElementBuilder? newElement) {
     return ActionParticipantTypeBuilder._(
-        validatedValue: value, element: newElement);
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

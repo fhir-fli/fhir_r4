@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, StringExtensionForFHIR, Quantity;
+    show Quantity, StringExtensionForFHIR, yamlMapToJson, yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -197,10 +197,13 @@ class QuantityBuilder extends DataTypeBuilder
   /// system.
   FhirCodeBuilder? code;
 
-  /// Converts a QuantityBuilder to [Quantity]
+  /// converts a [QuantityBuilder]
+  /// to [Quantity]
+  @override
   Quantity build() => Quantity.fromJson(toJson());
 
-  /// Converts a [QuantityBuilder] to a [Map<String, dynamic>]
+  /// converts a [QuantityBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -508,9 +511,7 @@ class QuantityBuilder extends DataTypeBuilder
       unit: unit ?? this.unit,
       system: system ?? this.system,
       code: code ?? this.code,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

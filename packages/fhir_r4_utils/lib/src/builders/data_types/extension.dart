@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, StringExtensionForFHIR, FhirExtension;
+    show FhirExtension, StringExtensionForFHIR, yamlMapToJson, yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -332,10 +332,13 @@ class FhirExtensionBuilder extends DataTypeBuilder {
   /// Getter for [valueDosage] as a DosageBuilder
   DosageBuilder? get valueDosage => valueX?.isAs<DosageBuilder>();
 
-  /// Converts a FhirExtensionBuilder to [FhirExtension]
+  /// converts a [FhirExtensionBuilder]
+  /// to [FhirExtension]
+  @override
   FhirExtension build() => FhirExtension.fromJson(toJson());
 
-  /// Converts a [FhirExtensionBuilder] to a [Map<String, dynamic>]
+  /// converts a [FhirExtensionBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1422,7 +1425,7 @@ class FhirExtensionBuilder extends DataTypeBuilder {
           'RelatedArtifactBuilder',
           'TriggerDefinitionBuilder',
           'UsageContextBuilder',
-          'DosageBuilder'
+          'DosageBuilder',
         ];
       case 'valueBase64Binary':
         return ['FhirBase64BinaryBuilder'];
@@ -1824,7 +1827,7 @@ class FhirExtensionBuilder extends DataTypeBuilder {
     if (id) this.id = null;
     if (extension_) this.extension_ = null;
     if (url) this.url = null;
-    if (value) this.valueX = null;
+    if (value) valueX = null;
   }
 
   @override
@@ -1847,9 +1850,7 @@ class FhirExtensionBuilder extends DataTypeBuilder {
       extension_: extension_ ?? this.extension_,
       url: url ?? this.url,
       valueX: valueX ?? this.valueX,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

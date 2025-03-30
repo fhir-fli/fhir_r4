@@ -47,7 +47,8 @@ class DocumentModeBuilder extends FhirCodeEnumBuilder {
   factory DocumentModeBuilder.empty() =>
       DocumentModeBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [DocumentModeBuilder] from JSON.
+  /// Factory constructor to create [DocumentModeBuilder]
+  /// from JSON.
   factory DocumentModeBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;

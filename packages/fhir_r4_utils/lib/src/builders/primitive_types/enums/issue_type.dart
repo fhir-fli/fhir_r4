@@ -46,7 +46,8 @@ class IssueTypeBuilder extends FhirCodeEnumBuilder {
   /// Create empty [IssueTypeBuilder] with element only
   factory IssueTypeBuilder.empty() => IssueTypeBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [IssueTypeBuilder] from JSON.
+  /// Factory constructor to create [IssueTypeBuilder]
+  /// from JSON.
   factory IssueTypeBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;

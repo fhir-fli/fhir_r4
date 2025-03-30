@@ -1,5 +1,5 @@
 import 'package:fhir_r4/fhir_r4.dart'
-    show Element, FhirString, FhirExtension, FhirBase;
+    show Element, FhirBase, FhirExtension, FhirString;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 
 /// [TLeft2]
@@ -149,7 +149,8 @@ class TLeft2Builder extends ElementBuilder {
   @override
   String get fhirType => 'TLeft2';
 
-  /// Converts a TLeft2Builder to [TLeft2]
+  /// converts a [TLeft2Builder]
+  /// to [TLeft2]
   @override
   TLeft2 build() => TLeft2.fromJson(toJson());
 

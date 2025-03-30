@@ -1,11 +1,11 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
         R4ResourceType,
+        ServiceRequest,
         StringExtensionForFHIR,
-        ServiceRequest;
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -653,10 +653,13 @@ class ServiceRequestBuilder extends DomainResourceBuilder {
   /// Key events in the history of the request.
   List<ReferenceBuilder>? relevantHistory;
 
-  /// Converts a ServiceRequestBuilder to [ServiceRequest]
+  /// converts a [ServiceRequestBuilder]
+  /// to [ServiceRequest]
+  @override
   ServiceRequest build() => ServiceRequest.fromJson(toJson());
 
-  /// Converts a [ServiceRequestBuilder] to a [Map<String, dynamic>]
+  /// converts a [ServiceRequestBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2043,11 +2046,11 @@ class ServiceRequestBuilder extends DomainResourceBuilder {
     if (doNotPerform) this.doNotPerform = null;
     if (code) this.code = null;
     if (orderDetail) this.orderDetail = null;
-    if (quantity) this.quantityX = null;
+    if (quantity) quantityX = null;
     if (subject) this.subject = null;
     if (encounter) this.encounter = null;
-    if (occurrence) this.occurrenceX = null;
-    if (asNeeded) this.asNeededX = null;
+    if (occurrence) occurrenceX = null;
+    if (asNeeded) asNeededX = null;
     if (authoredOn) this.authoredOn = null;
     if (requester) this.requester = null;
     if (performerType) this.performerType = null;
@@ -2159,9 +2162,7 @@ class ServiceRequestBuilder extends DomainResourceBuilder {
       note: note ?? this.note,
       patientInstruction: patientInstruction ?? this.patientInstruction,
       relevantHistory: relevantHistory ?? this.relevantHistory,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

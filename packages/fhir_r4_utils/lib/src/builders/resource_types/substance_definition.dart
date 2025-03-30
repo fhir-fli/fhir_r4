@@ -1,21 +1,21 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
         R4ResourceType,
         StringExtensionForFHIR,
         SubstanceDefinition,
-        SubstanceDefinitionMoiety,
-        SubstanceDefinitionProperty,
-        SubstanceDefinitionMolecularWeight,
-        SubstanceDefinitionStructure,
-        SubstanceDefinitionRepresentation,
         SubstanceDefinitionCode,
+        SubstanceDefinitionMoiety,
+        SubstanceDefinitionMolecularWeight,
         SubstanceDefinitionName,
         SubstanceDefinitionOfficial,
+        SubstanceDefinitionProperty,
         SubstanceDefinitionRelationship,
-        SubstanceDefinitionSourceMaterial;
+        SubstanceDefinitionRepresentation,
+        SubstanceDefinitionSourceMaterial,
+        SubstanceDefinitionStructure,
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -426,10 +426,13 @@ class SubstanceDefinitionBuilder extends DomainResourceBuilder {
   /// Material or taxonomic/anatomical source for the substance.
   SubstanceDefinitionSourceMaterialBuilder? sourceMaterial;
 
-  /// Converts a SubstanceDefinitionBuilder to [SubstanceDefinition]
+  /// converts a [SubstanceDefinitionBuilder]
+  /// to [SubstanceDefinition]
+  @override
   SubstanceDefinition build() => SubstanceDefinition.fromJson(toJson());
 
-  /// Converts a [SubstanceDefinitionBuilder] to a [Map<String, dynamic>]
+  /// converts a [SubstanceDefinitionBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1332,9 +1335,7 @@ class SubstanceDefinitionBuilder extends DomainResourceBuilder {
       name: name ?? this.name,
       relationship: relationship ?? this.relationship,
       sourceMaterial: sourceMaterial ?? this.sourceMaterial,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1724,11 +1725,14 @@ class SubstanceDefinitionMoietyBuilder extends BackboneElementBuilder {
   /// ratio or weight ratio.
   CodeableConceptBuilder? measurementType;
 
-  /// Converts a SubstanceDefinitionMoietyBuilder to [SubstanceDefinitionMoiety]
+  /// converts a [SubstanceDefinitionMoietyBuilder]
+  /// to [SubstanceDefinitionMoiety]
+  @override
   SubstanceDefinitionMoiety build() =>
       SubstanceDefinitionMoiety.fromJson(toJson());
 
-  /// Converts a [SubstanceDefinitionMoietyBuilder] to a [Map<String, dynamic>]
+  /// converts a [SubstanceDefinitionMoietyBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2161,7 +2165,7 @@ class SubstanceDefinitionMoietyBuilder extends BackboneElementBuilder {
     if (stereochemistry) this.stereochemistry = null;
     if (opticalActivity) this.opticalActivity = null;
     if (molecularFormula) this.molecularFormula = null;
-    if (amount) this.amountX = null;
+    if (amount) amountX = null;
     if (measurementType) this.measurementType = null;
   }
 
@@ -2199,9 +2203,7 @@ class SubstanceDefinitionMoietyBuilder extends BackboneElementBuilder {
       molecularFormula: molecularFormula ?? this.molecularFormula,
       amountX: amountX ?? this.amountX,
       measurementType: measurementType ?? this.measurementType,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -2438,11 +2440,14 @@ class SubstanceDefinitionPropertyBuilder extends BackboneElementBuilder {
   /// Getter for [valueAttachment] as a AttachmentBuilder
   AttachmentBuilder? get valueAttachment => valueX?.isAs<AttachmentBuilder>();
 
-  /// Converts a SubstanceDefinitionPropertyBuilder to [SubstanceDefinitionProperty]
+  /// converts a [SubstanceDefinitionPropertyBuilder]
+  /// to [SubstanceDefinitionProperty]
+  @override
   SubstanceDefinitionProperty build() =>
       SubstanceDefinitionProperty.fromJson(toJson());
 
-  /// Converts a [SubstanceDefinitionPropertyBuilder] to a [Map<String, dynamic>]
+  /// converts a [SubstanceDefinitionPropertyBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2723,7 +2728,7 @@ class SubstanceDefinitionPropertyBuilder extends BackboneElementBuilder {
           'QuantityBuilder',
           'FhirDateBuilder',
           'FhirBooleanBuilder',
-          'AttachmentBuilder'
+          'AttachmentBuilder',
         ];
       case 'valueCodeableConcept':
         return ['CodeableConceptBuilder'];
@@ -2810,7 +2815,7 @@ class SubstanceDefinitionPropertyBuilder extends BackboneElementBuilder {
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
     if (type) this.type = null;
-    if (value) this.valueX = null;
+    if (value) valueX = null;
   }
 
   @override
@@ -2835,9 +2840,7 @@ class SubstanceDefinitionPropertyBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       type: type ?? this.type,
       valueX: valueX ?? this.valueX,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -3032,11 +3035,14 @@ class SubstanceDefinitionMolecularWeightBuilder extends BackboneElementBuilder {
   /// captured in this field.
   QuantityBuilder? amount;
 
-  /// Converts a SubstanceDefinitionMolecularWeightBuilder to [SubstanceDefinitionMolecularWeight]
+  /// converts a [SubstanceDefinitionMolecularWeightBuilder]
+  /// to [SubstanceDefinitionMolecularWeight]
+  @override
   SubstanceDefinitionMolecularWeight build() =>
       SubstanceDefinitionMolecularWeight.fromJson(toJson());
 
-  /// Converts a [SubstanceDefinitionMolecularWeightBuilder] to a [Map<String, dynamic>]
+  /// converts a [SubstanceDefinitionMolecularWeightBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3324,9 +3330,7 @@ class SubstanceDefinitionMolecularWeightBuilder extends BackboneElementBuilder {
       method: method ?? this.method,
       type: type ?? this.type,
       amount: amount ?? this.amount,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -3594,11 +3598,14 @@ class SubstanceDefinitionStructureBuilder extends BackboneElementBuilder {
   /// A depiction of the structure or characterization of the substance.
   List<SubstanceDefinitionRepresentationBuilder>? representation;
 
-  /// Converts a SubstanceDefinitionStructureBuilder to [SubstanceDefinitionStructure]
+  /// converts a [SubstanceDefinitionStructureBuilder]
+  /// to [SubstanceDefinitionStructure]
+  @override
   SubstanceDefinitionStructure build() =>
       SubstanceDefinitionStructure.fromJson(toJson());
 
-  /// Converts a [SubstanceDefinitionStructureBuilder] to a [Map<String, dynamic>]
+  /// converts a [SubstanceDefinitionStructureBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -4031,9 +4038,7 @@ class SubstanceDefinitionStructureBuilder extends BackboneElementBuilder {
       technique: technique ?? this.technique,
       sourceDocument: sourceDocument ?? this.sourceDocument,
       representation: representation ?? this.representation,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -4275,11 +4280,14 @@ class SubstanceDefinitionRepresentationBuilder extends BackboneElementBuilder {
   /// file.
   ReferenceBuilder? document;
 
-  /// Converts a SubstanceDefinitionRepresentationBuilder to [SubstanceDefinitionRepresentation]
+  /// converts a [SubstanceDefinitionRepresentationBuilder]
+  /// to [SubstanceDefinitionRepresentation]
+  @override
   SubstanceDefinitionRepresentation build() =>
       SubstanceDefinitionRepresentation.fromJson(toJson());
 
-  /// Converts a [SubstanceDefinitionRepresentationBuilder] to a [Map<String, dynamic>]
+  /// converts a [SubstanceDefinitionRepresentationBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -4593,9 +4601,7 @@ class SubstanceDefinitionRepresentationBuilder extends BackboneElementBuilder {
       representation: representation ?? this.representation,
       format: format ?? this.format,
       document: document ?? this.document,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -4828,10 +4834,13 @@ class SubstanceDefinitionCodeBuilder extends BackboneElementBuilder {
   /// Supporting literature.
   List<ReferenceBuilder>? source;
 
-  /// Converts a SubstanceDefinitionCodeBuilder to [SubstanceDefinitionCode]
+  /// converts a [SubstanceDefinitionCodeBuilder]
+  /// to [SubstanceDefinitionCode]
+  @override
   SubstanceDefinitionCode build() => SubstanceDefinitionCode.fromJson(toJson());
 
-  /// Converts a [SubstanceDefinitionCodeBuilder] to a [Map<String, dynamic>]
+  /// converts a [SubstanceDefinitionCodeBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -5180,9 +5189,7 @@ class SubstanceDefinitionCodeBuilder extends BackboneElementBuilder {
       statusDate: statusDate ?? this.statusDate,
       note: note ?? this.note,
       source: source ?? this.source,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -5508,10 +5515,13 @@ class SubstanceDefinitionNameBuilder extends BackboneElementBuilder {
   /// Supporting literature.
   List<ReferenceBuilder>? source;
 
-  /// Converts a SubstanceDefinitionNameBuilder to [SubstanceDefinitionName]
+  /// converts a [SubstanceDefinitionNameBuilder]
+  /// to [SubstanceDefinitionName]
+  @override
   SubstanceDefinitionName build() => SubstanceDefinitionName.fromJson(toJson());
 
-  /// Converts a [SubstanceDefinitionNameBuilder] to a [Map<String, dynamic>]
+  /// converts a [SubstanceDefinitionNameBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -6041,9 +6051,7 @@ class SubstanceDefinitionNameBuilder extends BackboneElementBuilder {
       translation: translation ?? this.translation,
       official: official ?? this.official,
       source: source ?? this.source,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -6288,11 +6296,14 @@ class SubstanceDefinitionOfficialBuilder extends BackboneElementBuilder {
   /// Date of the official name change.
   FhirDateTimeBuilder? date;
 
-  /// Converts a SubstanceDefinitionOfficialBuilder to [SubstanceDefinitionOfficial]
+  /// converts a [SubstanceDefinitionOfficialBuilder]
+  /// to [SubstanceDefinitionOfficial]
+  @override
   SubstanceDefinitionOfficial build() =>
       SubstanceDefinitionOfficial.fromJson(toJson());
 
-  /// Converts a [SubstanceDefinitionOfficialBuilder] to a [Map<String, dynamic>]
+  /// converts a [SubstanceDefinitionOfficialBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -6579,9 +6590,7 @@ class SubstanceDefinitionOfficialBuilder extends BackboneElementBuilder {
       authority: authority ?? this.authority,
       status: status ?? this.status,
       date: date ?? this.date,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -6858,11 +6867,14 @@ class SubstanceDefinitionRelationshipBuilder extends BackboneElementBuilder {
   /// Supporting literature.
   List<ReferenceBuilder>? source;
 
-  /// Converts a SubstanceDefinitionRelationshipBuilder to [SubstanceDefinitionRelationship]
+  /// converts a [SubstanceDefinitionRelationshipBuilder]
+  /// to [SubstanceDefinitionRelationship]
+  @override
   SubstanceDefinitionRelationship build() =>
       SubstanceDefinitionRelationship.fromJson(toJson());
 
-  /// Converts a [SubstanceDefinitionRelationshipBuilder] to a [Map<String, dynamic>]
+  /// converts a [SubstanceDefinitionRelationshipBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -6898,7 +6910,9 @@ class SubstanceDefinitionRelationshipBuilder extends BackboneElementBuilder {
     if (substanceDefinitionX != null) {
       final fhirType = substanceDefinitionX!.fhirType;
       addField(
-          'substanceDefinition${fhirType.capitalize()}', substanceDefinitionX);
+        'substanceDefinition${fhirType.capitalize()}',
+        substanceDefinitionX,
+      );
     }
 
     addField('type', type);
@@ -7351,10 +7365,10 @@ class SubstanceDefinitionRelationshipBuilder extends BackboneElementBuilder {
     if (id) this.id = null;
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
-    if (substanceDefinition) this.substanceDefinitionX = null;
+    if (substanceDefinition) substanceDefinitionX = null;
     if (type) this.type = null;
     if (isDefining) this.isDefining = null;
-    if (amount) this.amountX = null;
+    if (amount) amountX = null;
     if (ratioHighLimitAmount) this.ratioHighLimitAmount = null;
     if (comparator) this.comparator = null;
     if (source) this.source = null;
@@ -7393,9 +7407,7 @@ class SubstanceDefinitionRelationshipBuilder extends BackboneElementBuilder {
       ratioHighLimitAmount: ratioHighLimitAmount ?? this.ratioHighLimitAmount,
       comparator: comparator ?? this.comparator,
       source: source ?? this.source,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -7644,11 +7656,14 @@ class SubstanceDefinitionSourceMaterialBuilder extends BackboneElementBuilder {
   /// The country or countries where the material is harvested.
   List<CodeableConceptBuilder>? countryOfOrigin;
 
-  /// Converts a SubstanceDefinitionSourceMaterialBuilder to [SubstanceDefinitionSourceMaterial]
+  /// converts a [SubstanceDefinitionSourceMaterialBuilder]
+  /// to [SubstanceDefinitionSourceMaterial]
+  @override
   SubstanceDefinitionSourceMaterial build() =>
       SubstanceDefinitionSourceMaterial.fromJson(toJson());
 
-  /// Converts a [SubstanceDefinitionSourceMaterialBuilder] to a [Map<String, dynamic>]
+  /// converts a [SubstanceDefinitionSourceMaterialBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -7993,9 +8008,7 @@ class SubstanceDefinitionSourceMaterialBuilder extends BackboneElementBuilder {
       species: species ?? this.species,
       part_: part_ ?? this.part_,
       countryOfOrigin: countryOfOrigin ?? this.countryOfOrigin,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

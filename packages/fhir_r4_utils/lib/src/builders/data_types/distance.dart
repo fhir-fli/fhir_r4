@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, StringExtensionForFHIR, Distance;
+    show Distance, StringExtensionForFHIR, yamlMapToJson, yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -133,10 +133,13 @@ class DistanceBuilder extends QuantityBuilder
   @override
   String get fhirType => 'Distance';
 
-  /// Converts a DistanceBuilder to [Distance]
+  /// converts a [DistanceBuilder]
+  /// to [Distance]
+  @override
   Distance build() => Distance.fromJson(toJson());
 
-  /// Converts a [DistanceBuilder] to a [Map<String, dynamic>]
+  /// converts a [DistanceBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -444,9 +447,7 @@ class DistanceBuilder extends QuantityBuilder
       unit: unit ?? this.unit,
       system: system ?? this.system,
       code: code ?? this.code,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

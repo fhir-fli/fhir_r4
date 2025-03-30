@@ -47,7 +47,8 @@ class EncounterLocationStatusBuilder extends FhirCodeEnumBuilder {
   factory EncounterLocationStatusBuilder.empty() =>
       EncounterLocationStatusBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [EncounterLocationStatusBuilder] from JSON.
+  /// Factory constructor to create [EncounterLocationStatusBuilder]
+  /// from JSON.
   factory EncounterLocationStatusBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
@@ -128,7 +129,9 @@ class EncounterLocationStatusBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   EncounterLocationStatusBuilder withElement(ElementBuilder? newElement) {
     return EncounterLocationStatusBuilder._(
-        validatedValue: value, element: newElement);
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

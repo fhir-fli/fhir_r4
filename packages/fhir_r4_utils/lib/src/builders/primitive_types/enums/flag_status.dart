@@ -47,7 +47,8 @@ class FlagStatusBuilder extends FhirCodeEnumBuilder {
   /// Create empty [FlagStatusBuilder] with element only
   factory FlagStatusBuilder.empty() => FlagStatusBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [FlagStatusBuilder] from JSON.
+  /// Factory constructor to create [FlagStatusBuilder]
+  /// from JSON.
   factory FlagStatusBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;

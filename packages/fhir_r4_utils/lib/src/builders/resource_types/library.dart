@@ -1,11 +1,11 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
+        Library,
         R4ResourceType,
         StringExtensionForFHIR,
-        Library;
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -538,10 +538,13 @@ class LibraryBuilder extends CanonicalResourceBuilder {
   /// interpret the content.
   List<AttachmentBuilder>? content;
 
-  /// Converts a LibraryBuilder to [Library]
+  /// converts a [LibraryBuilder]
+  /// to [Library]
+  @override
   Library build() => Library.fromJson(toJson());
 
-  /// Converts a [LibraryBuilder] to a [Map<String, dynamic>]
+  /// converts a [LibraryBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1697,7 +1700,7 @@ class LibraryBuilder extends CanonicalResourceBuilder {
     if (status) this.status = null;
     if (experimental) this.experimental = null;
     if (type) this.type = null;
-    if (subject) this.subjectX = null;
+    if (subject) subjectX = null;
     if (date) this.date = null;
     if (publisher) this.publisher = null;
     if (contact) this.contact = null;
@@ -1810,9 +1813,7 @@ class LibraryBuilder extends CanonicalResourceBuilder {
       parameter: parameter ?? this.parameter,
       dataRequirement: dataRequirement ?? this.dataRequirement,
       content: content ?? this.content,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

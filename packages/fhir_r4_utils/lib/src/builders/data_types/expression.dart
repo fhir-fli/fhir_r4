@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, StringExtensionForFHIR, FhirExpression;
+    show FhirExpression, StringExtensionForFHIR, yamlMapToJson, yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -160,10 +160,13 @@ class FhirExpressionBuilder extends DataTypeBuilder
   /// A URI that defines where the expression is found.
   FhirUriBuilder? reference;
 
-  /// Converts a FhirExpressionBuilder to [FhirExpression]
+  /// converts a [FhirExpressionBuilder]
+  /// to [FhirExpression]
+  @override
   FhirExpression build() => FhirExpression.fromJson(toJson());
 
-  /// Converts a [FhirExpressionBuilder] to a [Map<String, dynamic>]
+  /// converts a [FhirExpressionBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -471,9 +474,7 @@ class FhirExpressionBuilder extends DataTypeBuilder
       language: language ?? this.language,
       expression: expression ?? this.expression,
       reference: reference ?? this.reference,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

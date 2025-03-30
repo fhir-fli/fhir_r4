@@ -47,7 +47,8 @@ class PropertyRepresentationBuilder extends FhirCodeEnumBuilder {
   factory PropertyRepresentationBuilder.empty() =>
       PropertyRepresentationBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [PropertyRepresentationBuilder] from JSON.
+  /// Factory constructor to create [PropertyRepresentationBuilder]
+  /// from JSON.
   factory PropertyRepresentationBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
@@ -138,7 +139,9 @@ class PropertyRepresentationBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   PropertyRepresentationBuilder withElement(ElementBuilder? newElement) {
     return PropertyRepresentationBuilder._(
-        validatedValue: value, element: newElement);
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

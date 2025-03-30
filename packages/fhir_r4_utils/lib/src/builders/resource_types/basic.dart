@@ -1,11 +1,11 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
+        Basic,
         R4ResourceType,
         StringExtensionForFHIR,
-        Basic;
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -209,10 +209,13 @@ class BasicBuilder extends DomainResourceBuilder {
   /// Indicates who was responsible for creating the resource instance.
   ReferenceBuilder? author;
 
-  /// Converts a BasicBuilder to [Basic]
+  /// converts a [BasicBuilder]
+  /// to [Basic]
+  @override
   Basic build() => Basic.fromJson(toJson());
 
-  /// Converts a [BasicBuilder] to a [Map<String, dynamic>]
+  /// converts a [BasicBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -691,9 +694,7 @@ class BasicBuilder extends DomainResourceBuilder {
       subject: subject ?? this.subject,
       created: created ?? this.created,
       author: author ?? this.author,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

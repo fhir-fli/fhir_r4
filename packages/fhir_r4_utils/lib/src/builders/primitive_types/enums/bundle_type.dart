@@ -46,7 +46,8 @@ class BundleTypeBuilder extends FhirCodeEnumBuilder {
   /// Create empty [BundleTypeBuilder] with element only
   factory BundleTypeBuilder.empty() => BundleTypeBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [BundleTypeBuilder] from JSON.
+  /// Factory constructor to create [BundleTypeBuilder]
+  /// from JSON.
   factory BundleTypeBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;

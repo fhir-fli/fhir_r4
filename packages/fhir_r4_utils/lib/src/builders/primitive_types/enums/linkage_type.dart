@@ -48,7 +48,8 @@ class LinkageTypeBuilder extends FhirCodeEnumBuilder {
   factory LinkageTypeBuilder.empty() =>
       LinkageTypeBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [LinkageTypeBuilder] from JSON.
+  /// Factory constructor to create [LinkageTypeBuilder]
+  /// from JSON.
   factory LinkageTypeBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;

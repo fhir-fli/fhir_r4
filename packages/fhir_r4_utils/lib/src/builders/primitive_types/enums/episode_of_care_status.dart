@@ -47,7 +47,8 @@ class EpisodeOfCareStatusBuilder extends FhirCodeEnumBuilder {
   factory EpisodeOfCareStatusBuilder.empty() =>
       EpisodeOfCareStatusBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [EpisodeOfCareStatusBuilder] from JSON.
+  /// Factory constructor to create [EpisodeOfCareStatusBuilder]
+  /// from JSON.
   factory EpisodeOfCareStatusBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
@@ -155,7 +156,9 @@ class EpisodeOfCareStatusBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   EpisodeOfCareStatusBuilder withElement(ElementBuilder? newElement) {
     return EpisodeOfCareStatusBuilder._(
-        validatedValue: value, element: newElement);
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

@@ -47,7 +47,8 @@ class FilterOperatorBuilder extends FhirCodeEnumBuilder {
   factory FilterOperatorBuilder.empty() =>
       FilterOperatorBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [FilterOperatorBuilder] from JSON.
+  /// Factory constructor to create [FilterOperatorBuilder]
+  /// from JSON.
   factory FilterOperatorBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;

@@ -1,6 +1,6 @@
 import 'package:collection/collection.dart';
 import 'package:fhir_r4/fhir_r4.dart'
-    show Element, FhirString, FhirExtension, FhirBase;
+    show Element, FhirBase, FhirExtension, FhirString;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 
 /// [TLeft3]
@@ -178,7 +178,8 @@ class TLeft3Builder extends ElementBuilder {
   @override
   String get fhirType => 'TLeft3';
 
-  /// Converts a TLeft3Builder to [TLeft3]
+  /// converts a [TLeft3Builder]
+  /// to [TLeft3]
   @override
   TLeft3 build() => TLeft3.fromJson(toJson());
 

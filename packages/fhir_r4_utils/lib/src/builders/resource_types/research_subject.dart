@@ -1,11 +1,11 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
         R4ResourceType,
+        ResearchSubject,
         StringExtensionForFHIR,
-        ResearchSubject;
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -240,10 +240,13 @@ class ResearchSubjectBuilder extends DomainResourceBuilder {
   /// study.
   ReferenceBuilder? consent;
 
-  /// Converts a ResearchSubjectBuilder to [ResearchSubject]
+  /// converts a [ResearchSubjectBuilder]
+  /// to [ResearchSubject]
+  @override
   ResearchSubject build() => ResearchSubject.fromJson(toJson());
 
-  /// Converts a [ResearchSubjectBuilder] to a [Map<String, dynamic>]
+  /// converts a [ResearchSubjectBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -800,9 +803,7 @@ class ResearchSubjectBuilder extends DomainResourceBuilder {
       assignedArm: assignedArm ?? this.assignedArm,
       actualArm: actualArm ?? this.actualArm,
       consent: consent ?? this.consent,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, StringExtensionForFHIR, Ratio;
+    show Ratio, StringExtensionForFHIR, yamlMapToJson, yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -132,10 +132,13 @@ class RatioBuilder extends DataTypeBuilder
   /// The value of the denominator.
   QuantityBuilder? denominator;
 
-  /// Converts a RatioBuilder to [Ratio]
+  /// converts a [RatioBuilder]
+  /// to [Ratio]
+  @override
   Ratio build() => Ratio.fromJson(toJson());
 
-  /// Converts a [RatioBuilder] to a [Map<String, dynamic>]
+  /// converts a [RatioBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -365,9 +368,7 @@ class RatioBuilder extends DataTypeBuilder
       extension_: extension_ ?? this.extension_,
       numerator: numerator ?? this.numerator,
       denominator: denominator ?? this.denominator,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

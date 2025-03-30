@@ -1,14 +1,14 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
-        R4ResourceType,
-        StringExtensionForFHIR,
         ChargeItemDefinition,
         ChargeItemDefinitionApplicability,
+        ChargeItemDefinitionPriceComponent,
         ChargeItemDefinitionPropertyGroup,
-        ChargeItemDefinitionPriceComponent;
+        R4ResourceType,
+        StringExtensionForFHIR,
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -479,10 +479,13 @@ class ChargeItemDefinitionBuilder extends DomainResourceBuilder {
   /// properties always apply.
   List<ChargeItemDefinitionPropertyGroupBuilder>? propertyGroup;
 
-  /// Converts a ChargeItemDefinitionBuilder to [ChargeItemDefinition]
+  /// converts a [ChargeItemDefinitionBuilder]
+  /// to [ChargeItemDefinition]
+  @override
   ChargeItemDefinition build() => ChargeItemDefinition.fromJson(toJson());
 
-  /// Converts a [ChargeItemDefinitionBuilder] to a [Map<String, dynamic>]
+  /// converts a [ChargeItemDefinitionBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1474,9 +1477,7 @@ class ChargeItemDefinitionBuilder extends DomainResourceBuilder {
       instance: instance ?? this.instance,
       applicability: applicability ?? this.applicability,
       propertyGroup: propertyGroup ?? this.propertyGroup,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1828,11 +1829,14 @@ class ChargeItemDefinitionApplicabilityBuilder extends BackboneElementBuilder {
   /// resource to which this definition is applied.
   FhirStringBuilder? expression;
 
-  /// Converts a ChargeItemDefinitionApplicabilityBuilder to [ChargeItemDefinitionApplicability]
+  /// converts a [ChargeItemDefinitionApplicabilityBuilder]
+  /// to [ChargeItemDefinitionApplicability]
+  @override
   ChargeItemDefinitionApplicability build() =>
       ChargeItemDefinitionApplicability.fromJson(toJson());
 
-  /// Converts a [ChargeItemDefinitionApplicabilityBuilder] to a [Map<String, dynamic>]
+  /// converts a [ChargeItemDefinitionApplicabilityBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2120,9 +2124,7 @@ class ChargeItemDefinitionApplicabilityBuilder extends BackboneElementBuilder {
       description: description ?? this.description,
       language: language ?? this.language,
       expression: expression ?? this.expression,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -2323,11 +2325,14 @@ class ChargeItemDefinitionPropertyGroupBuilder extends BackboneElementBuilder {
   /// recipient of the Invoice of how the prices have been calculated.
   List<ChargeItemDefinitionPriceComponentBuilder>? priceComponent;
 
-  /// Converts a ChargeItemDefinitionPropertyGroupBuilder to [ChargeItemDefinitionPropertyGroup]
+  /// converts a [ChargeItemDefinitionPropertyGroupBuilder]
+  /// to [ChargeItemDefinitionPropertyGroup]
+  @override
   ChargeItemDefinitionPropertyGroup build() =>
       ChargeItemDefinitionPropertyGroup.fromJson(toJson());
 
-  /// Converts a [ChargeItemDefinitionPropertyGroupBuilder] to a [Map<String, dynamic>]
+  /// converts a [ChargeItemDefinitionPropertyGroupBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2599,9 +2604,7 @@ class ChargeItemDefinitionPropertyGroupBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       applicability: applicability ?? this.applicability,
       priceComponent: priceComponent ?? this.priceComponent,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -2809,11 +2812,14 @@ class ChargeItemDefinitionPriceComponentBuilder extends BackboneElementBuilder {
   /// The amount calculated for this component.
   MoneyBuilder? amount;
 
-  /// Converts a ChargeItemDefinitionPriceComponentBuilder to [ChargeItemDefinitionPriceComponent]
+  /// converts a [ChargeItemDefinitionPriceComponentBuilder]
+  /// to [ChargeItemDefinitionPriceComponent]
+  @override
   ChargeItemDefinitionPriceComponent build() =>
       ChargeItemDefinitionPriceComponent.fromJson(toJson());
 
-  /// Converts a [ChargeItemDefinitionPriceComponentBuilder] to a [Map<String, dynamic>]
+  /// converts a [ChargeItemDefinitionPriceComponentBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3127,9 +3133,7 @@ class ChargeItemDefinitionPriceComponentBuilder extends BackboneElementBuilder {
       code: code ?? this.code,
       factor: factor ?? this.factor,
       amount: amount ?? this.amount,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

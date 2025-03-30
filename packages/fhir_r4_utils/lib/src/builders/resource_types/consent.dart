@@ -1,16 +1,16 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
+        Consent,
+        ConsentActor,
+        ConsentData,
+        ConsentPolicy,
+        ConsentProvision,
+        ConsentVerification,
         R4ResourceType,
         StringExtensionForFHIR,
-        Consent,
-        ConsentPolicy,
-        ConsentVerification,
-        ConsentProvision,
-        ConsentActor,
-        ConsentData;
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -342,10 +342,13 @@ class ConsentBuilder extends DomainResourceBuilder {
   /// addition or removal of access permissions.
   ConsentProvisionBuilder? provision;
 
-  /// Converts a ConsentBuilder to [Consent]
+  /// converts a [ConsentBuilder]
+  /// to [Consent]
+  @override
   Consent build() => Consent.fromJson(toJson());
 
-  /// Converts a [ConsentBuilder] to a [Map<String, dynamic>]
+  /// converts a [ConsentBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1051,7 +1054,7 @@ class ConsentBuilder extends DomainResourceBuilder {
     if (dateTime) this.dateTime = null;
     if (performer) this.performer = null;
     if (organization) this.organization = null;
-    if (source) this.sourceX = null;
+    if (source) sourceX = null;
     if (policy) this.policy = null;
     if (policyRule) this.policyRule = null;
     if (verification) this.verification = null;
@@ -1111,9 +1114,7 @@ class ConsentBuilder extends DomainResourceBuilder {
       policyRule: policyRule ?? this.policyRule,
       verification: verification ?? this.verification,
       provision: provision ?? this.provision,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1392,10 +1393,13 @@ class ConsentPolicyBuilder extends BackboneElementBuilder {
   /// or in law.
   FhirUriBuilder? uri;
 
-  /// Converts a ConsentPolicyBuilder to [ConsentPolicy]
+  /// converts a [ConsentPolicyBuilder]
+  /// to [ConsentPolicy]
+  @override
   ConsentPolicy build() => ConsentPolicy.fromJson(toJson());
 
-  /// Converts a [ConsentPolicyBuilder] to a [Map<String, dynamic>]
+  /// converts a [ConsentPolicyBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1656,9 +1660,7 @@ class ConsentPolicyBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       authority: authority ?? this.authority,
       uri: uri ?? this.uri,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1850,10 +1852,13 @@ class ConsentVerificationBuilder extends BackboneElementBuilder {
   /// Date verification was collected.
   FhirDateTimeBuilder? verificationDate;
 
-  /// Converts a ConsentVerificationBuilder to [ConsentVerification]
+  /// converts a [ConsentVerificationBuilder]
+  /// to [ConsentVerification]
+  @override
   ConsentVerification build() => ConsentVerification.fromJson(toJson());
 
-  /// Converts a [ConsentVerificationBuilder] to a [Map<String, dynamic>]
+  /// converts a [ConsentVerificationBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2140,9 +2145,7 @@ class ConsentVerificationBuilder extends BackboneElementBuilder {
       verified: verified ?? this.verified,
       verifiedWith: verifiedWith ?? this.verifiedWith,
       verificationDate: verificationDate ?? this.verificationDate,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -2466,10 +2469,13 @@ class ConsentProvisionBuilder extends BackboneElementBuilder {
   /// Rules which provide exceptions to the base rule or subrules.
   List<ConsentProvisionBuilder>? provision;
 
-  /// Converts a ConsentProvisionBuilder to [ConsentProvision]
+  /// converts a [ConsentProvisionBuilder]
+  /// to [ConsentProvision]
+  @override
   ConsentProvision build() => ConsentProvision.fromJson(toJson());
 
-  /// Converts a [ConsentProvisionBuilder] to a [Map<String, dynamic>]
+  /// converts a [ConsentProvisionBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3004,9 +3010,7 @@ class ConsentProvisionBuilder extends BackboneElementBuilder {
       dataPeriod: dataPeriod ?? this.dataPeriod,
       data: data ?? this.data,
       provision: provision ?? this.provision,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -3242,10 +3246,13 @@ class ConsentActorBuilder extends BackboneElementBuilder {
   /// 'admitting officers').
   ReferenceBuilder? reference;
 
-  /// Converts a ConsentActorBuilder to [ConsentActor]
+  /// converts a [ConsentActorBuilder]
+  /// to [ConsentActor]
+  @override
   ConsentActor build() => ConsentActor.fromJson(toJson());
 
-  /// Converts a [ConsentActorBuilder] to a [Map<String, dynamic>]
+  /// converts a [ConsentActorBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3506,9 +3513,7 @@ class ConsentActorBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       role: role ?? this.role,
       reference: reference ?? this.reference,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -3689,10 +3694,13 @@ class ConsentDataBuilder extends BackboneElementBuilder {
   /// covered by this consent.
   ReferenceBuilder? reference;
 
-  /// Converts a ConsentDataBuilder to [ConsentData]
+  /// converts a [ConsentDataBuilder]
+  /// to [ConsentData]
+  @override
   ConsentData build() => ConsentData.fromJson(toJson());
 
-  /// Converts a [ConsentDataBuilder] to a [Map<String, dynamic>]
+  /// converts a [ConsentDataBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3953,9 +3961,7 @@ class ConsentDataBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       meaning: meaning ?? this.meaning,
       reference: reference ?? this.reference,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

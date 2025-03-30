@@ -1,11 +1,11 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
         R4ResourceType,
+        Schedule,
         StringExtensionForFHIR,
-        Schedule;
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -262,10 +262,13 @@ class ScheduleBuilder extends DomainResourceBuilder {
   /// as custom constraints on the slots that may be associated.
   FhirStringBuilder? comment;
 
-  /// Converts a ScheduleBuilder to [Schedule]
+  /// converts a [ScheduleBuilder]
+  /// to [Schedule]
+  @override
   Schedule build() => Schedule.fromJson(toJson());
 
-  /// Converts a [ScheduleBuilder] to a [Map<String, dynamic>]
+  /// converts a [ScheduleBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -842,9 +845,7 @@ class ScheduleBuilder extends DomainResourceBuilder {
       actor: actor ?? this.actor,
       planningHorizon: planningHorizon ?? this.planningHorizon,
       comment: comment ?? this.comment,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

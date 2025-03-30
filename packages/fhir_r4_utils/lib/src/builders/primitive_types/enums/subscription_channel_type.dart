@@ -47,7 +47,8 @@ class SubscriptionChannelTypeBuilder extends FhirCodeEnumBuilder {
   factory SubscriptionChannelTypeBuilder.empty() =>
       SubscriptionChannelTypeBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [SubscriptionChannelTypeBuilder] from JSON.
+  /// Factory constructor to create [SubscriptionChannelTypeBuilder]
+  /// from JSON.
   factory SubscriptionChannelTypeBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
@@ -138,7 +139,9 @@ class SubscriptionChannelTypeBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   SubscriptionChannelTypeBuilder withElement(ElementBuilder? newElement) {
     return SubscriptionChannelTypeBuilder._(
-        validatedValue: value, element: newElement);
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

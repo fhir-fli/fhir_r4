@@ -30,15 +30,16 @@ class FhirInteger64Builder extends PrimitiveTypeBuilder<BigInt?>
   FhirInteger64Builder._({
     required BigInt? validatedValue,
     this.input,
-    this.element,
-    this.id,
-    this.extension_,
-    this.disallowExtensions,
-    this.objectPath = 'Integer64',
+    super.element,
+    super.id,
+    super.extension_,
+    super.disallowExtensions,
+    super.objectPath = 'Integer64',
   }) : super._(value: validatedValue) {
     if (value == null && element == null) {
       throw ArgumentError(
-          'A value or element is required for FhirInteger64Builder');
+        'A value or element is required for FhirInteger64Builder',
+      );
     }
   }
 
@@ -150,8 +151,8 @@ class FhirInteger64Builder extends PrimitiveTypeBuilder<BigInt?>
                 jsonDecode(jsonEncode(yaml)) as Map<String, dynamic>,
               )
             : throw const FormatException(
-                'Invalid input for FhirInteger64Builder: must be YAML string or map.',
-              );
+                'Invalid input for FhirInteger64Builder: '
+                'must be YAML string or map.');
   }
 
   /// Attempts to parse the input as [FhirInteger64Builder].
@@ -178,21 +179,6 @@ class FhirInteger64Builder extends PrimitiveTypeBuilder<BigInt?>
   /// The original input value.
   BigInt? input;
 
-  /// Element property
-  ElementBuilder? element;
-
-  /// ID property
-  FhirStringBuilder? id;
-
-  /// Extensions property
-  List<FhirExtensionBuilder>? extension_;
-
-  /// DisallowExtensions property
-  bool? disallowExtensions;
-
-  /// ObjectPath property
-  String? objectPath;
-
   /// Returns the FHIR type as 'integer64'.
   @override
   String get fhirType => 'integer64';
@@ -208,7 +194,8 @@ class FhirInteger64Builder extends PrimitiveTypeBuilder<BigInt?>
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to [FhirInteger64Builder] instances.
+  /// converts a [list of JSON values]
+  /// to [FhirInteger64Builder] instances.
   static List<FhirInteger64Builder> fromJsonList(
     List<dynamic> values,
     List<dynamic>? elements,

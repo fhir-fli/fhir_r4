@@ -33,11 +33,11 @@ class FhirDecimalBuilder extends FhirNumberBuilder
     required super.validatedValue,
     required bool isInt,
     this.input,
-    this.element,
-    this.id,
-    this.extension_,
-    this.disallowExtensions,
-    this.objectPath = 'Decimal',
+    super.element,
+    super.id,
+    super.extension_,
+    super.disallowExtensions,
+    super.objectPath = 'Decimal',
   })  : _isInt = isInt,
         super._();
 
@@ -58,7 +58,8 @@ class FhirDecimalBuilder extends FhirNumberBuilder
 
     if (rawInput == null && element == null) {
       throw ArgumentError(
-          'A value or element is required for FhirDecimalBuilder.');
+        'A value or element is required for FhirDecimalBuilder.',
+      );
     }
     if (rawInput is num) {
       finalNum = rawInput;
@@ -85,7 +86,8 @@ class FhirDecimalBuilder extends FhirNumberBuilder
     );
   }
 
-  /// Factory constructor to create a [FhirDecimalBuilder] from a [FhirIntegerBuilder].
+  /// Factory constructor to create a [FhirDecimalBuilder]
+  /// from a [FhirIntegerBuilder].
   factory FhirDecimalBuilder.fromFhirInteger(
     FhirIntegerBuilder integer, {
     ElementBuilder? element,
@@ -132,8 +134,8 @@ class FhirDecimalBuilder extends FhirNumberBuilder
     }
   }
 
-  /// Attempts to parse a [dynamic] input as [FhirDecimalBuilder], returns `null` if
-  /// parsing fails.
+  /// Attempts to parse a [dynamic] input as [FhirDecimalBuilder],
+  /// returns `null` if parsing fails.
   static FhirDecimalBuilder? tryParse(dynamic input) {
     try {
       return FhirDecimalBuilder(input);
@@ -144,21 +146,6 @@ class FhirDecimalBuilder extends FhirNumberBuilder
 
   /// The original input value (stored for serialization purposes).
   num? input;
-
-  /// Element property
-  ElementBuilder? element;
-
-  /// ID property
-  FhirStringBuilder? id;
-
-  /// Extensions property
-  List<FhirExtensionBuilder>? extension_;
-
-  /// DisallowExtensions property
-  bool? disallowExtensions;
-
-  /// ObjectPath property
-  String? objectPath;
 
   /// Boolean flag to track if the input was originally an integer.
   bool _isInt; // rename from isInt → private?
@@ -195,7 +182,8 @@ class FhirDecimalBuilder extends FhirNumberBuilder
       other.value == value &&
       other.element == element;
 
-  /// Overrides equality operator for comparing two [FhirDecimalBuilder] instances.
+  /// Overrides equality operator for comparing two
+  /// [FhirDecimalBuilder] instances.
   @override
   // ignore: avoid_equals_and_hash_code_on_mutable_classes
   bool operator ==(Object other) =>

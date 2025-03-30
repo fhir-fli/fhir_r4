@@ -1,13 +1,13 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
+        QuestionnaireResponse,
+        QuestionnaireResponseAnswer,
+        QuestionnaireResponseItem,
         R4ResourceType,
         StringExtensionForFHIR,
-        QuestionnaireResponse,
-        QuestionnaireResponseItem,
-        QuestionnaireResponseAnswer;
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -295,10 +295,13 @@ class QuestionnaireResponseBuilder extends DomainResourceBuilder {
   /// answers are provided.
   List<QuestionnaireResponseItemBuilder>? item;
 
-  /// Converts a QuestionnaireResponseBuilder to [QuestionnaireResponse]
+  /// converts a [QuestionnaireResponseBuilder]
+  /// to [QuestionnaireResponse]
+  @override
   QuestionnaireResponse build() => QuestionnaireResponse.fromJson(toJson());
 
-  /// Converts a [QuestionnaireResponseBuilder] to a [Map<String, dynamic>]
+  /// converts a [QuestionnaireResponseBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -943,9 +946,7 @@ class QuestionnaireResponseBuilder extends DomainResourceBuilder {
       author: author ?? this.author,
       source: source ?? this.source,
       item: item ?? this.item,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1253,11 +1254,14 @@ class QuestionnaireResponseItemBuilder extends BackboneElementBuilder {
   /// Questions or sub-groups nested beneath a question or group.
   List<QuestionnaireResponseItemBuilder>? item;
 
-  /// Converts a QuestionnaireResponseItemBuilder to [QuestionnaireResponseItem]
+  /// converts a [QuestionnaireResponseItemBuilder]
+  /// to [QuestionnaireResponseItem]
+  @override
   QuestionnaireResponseItem build() =>
       QuestionnaireResponseItem.fromJson(toJson());
 
-  /// Converts a [QuestionnaireResponseItemBuilder] to a [Map<String, dynamic>]
+  /// converts a [QuestionnaireResponseItemBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1606,9 +1610,7 @@ class QuestionnaireResponseItemBuilder extends BackboneElementBuilder {
       text: text ?? this.text,
       answer: answer ?? this.answer,
       item: item ?? this.item,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1859,11 +1861,14 @@ class QuestionnaireResponseAnswerBuilder extends BackboneElementBuilder {
   /// Nested groups and/or questions found within this particular answer.
   List<QuestionnaireResponseItemBuilder>? item;
 
-  /// Converts a QuestionnaireResponseAnswerBuilder to [QuestionnaireResponseAnswer]
+  /// converts a [QuestionnaireResponseAnswerBuilder]
+  /// to [QuestionnaireResponseAnswer]
+  @override
   QuestionnaireResponseAnswer build() =>
       QuestionnaireResponseAnswer.fromJson(toJson());
 
-  /// Converts a [QuestionnaireResponseAnswerBuilder] to a [Map<String, dynamic>]
+  /// converts a [QuestionnaireResponseAnswerBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2273,7 +2278,7 @@ class QuestionnaireResponseAnswerBuilder extends BackboneElementBuilder {
           'AttachmentBuilder',
           'CodingBuilder',
           'QuantityBuilder',
-          'ReferenceBuilder'
+          'ReferenceBuilder',
         ];
       case 'valueBoolean':
         return ['FhirBooleanBuilder'];
@@ -2410,7 +2415,7 @@ class QuestionnaireResponseAnswerBuilder extends BackboneElementBuilder {
     if (id) this.id = null;
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
-    if (value) this.valueX = null;
+    if (value) valueX = null;
     if (item) this.item = null;
   }
 
@@ -2436,9 +2441,7 @@ class QuestionnaireResponseAnswerBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       valueX: valueX ?? this.valueX,
       item: item ?? this.item,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

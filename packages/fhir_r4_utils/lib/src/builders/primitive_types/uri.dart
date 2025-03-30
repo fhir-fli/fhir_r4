@@ -41,11 +41,11 @@ class FhirUriBuilder extends PrimitiveTypeBuilder<Uri>
   FhirUriBuilder._({
     required Uri? validatedUri,
     this.input,
-    this.element,
-    this.id,
-    this.extension_,
-    this.disallowExtensions,
-    this.objectPath = 'Canonical',
+    super.element,
+    super.id,
+    super.extension_,
+    super.disallowExtensions,
+    super.objectPath = 'Canonical',
   }) : super._(value: validatedUri);
 
   /// Single public factory for creating a [FhirUriBuilder].
@@ -157,21 +157,6 @@ class FhirUriBuilder extends PrimitiveTypeBuilder<Uri>
 
   /// The original input value (for serialization)
   String? input;
-
-  /// Element property
-  ElementBuilder? element;
-
-  /// ID property
-  FhirStringBuilder? id;
-
-  /// Extensions property
-  List<FhirExtensionBuilder>? extension_;
-
-  /// DisallowExtensions property
-  bool? disallowExtensions;
-
-  /// ObjectPath property
-  String? objectPath;
 
   /// Boolean checks
   bool get valueOnly => value != null && element == null;

@@ -1,12 +1,12 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
+        CatalogEntry,
+        CatalogEntryRelatedEntry,
         R4ResourceType,
         StringExtensionForFHIR,
-        CatalogEntry,
-        CatalogEntryRelatedEntry;
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -319,10 +319,13 @@ class CatalogEntryBuilder extends DomainResourceBuilder {
   /// administer a medication.
   List<CatalogEntryRelatedEntryBuilder>? relatedEntry;
 
-  /// Converts a CatalogEntryBuilder to [CatalogEntry]
+  /// converts a [CatalogEntryBuilder]
+  /// to [CatalogEntry]
+  @override
   CatalogEntry build() => CatalogEntry.fromJson(toJson());
 
-  /// Converts a [CatalogEntryBuilder] to a [Map<String, dynamic>]
+  /// converts a [CatalogEntryBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -729,7 +732,7 @@ class CatalogEntryBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             additionalCharacteristic = [
               ...(additionalCharacteristic ?? []),
-              child
+              child,
             ];
             return;
           } else {
@@ -746,7 +749,7 @@ class CatalogEntryBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             additionalClassification = [
               ...(additionalClassification ?? []),
-              child
+              child,
             ];
             return;
           } else {
@@ -1042,9 +1045,7 @@ class CatalogEntryBuilder extends DomainResourceBuilder {
       additionalClassification:
           additionalClassification ?? this.additionalClassification,
       relatedEntry: relatedEntry ?? this.relatedEntry,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1321,11 +1322,14 @@ class CatalogEntryRelatedEntryBuilder extends BackboneElementBuilder {
   /// The reference to the related item.
   ReferenceBuilder? item;
 
-  /// Converts a CatalogEntryRelatedEntryBuilder to [CatalogEntryRelatedEntry]
+  /// converts a [CatalogEntryRelatedEntryBuilder]
+  /// to [CatalogEntryRelatedEntry]
+  @override
   CatalogEntryRelatedEntry build() =>
       CatalogEntryRelatedEntry.fromJson(toJson());
 
-  /// Converts a [CatalogEntryRelatedEntryBuilder] to a [Map<String, dynamic>]
+  /// converts a [CatalogEntryRelatedEntryBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1586,9 +1590,7 @@ class CatalogEntryRelatedEntryBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       relationtype: relationtype ?? this.relationtype,
       item: item ?? this.item,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

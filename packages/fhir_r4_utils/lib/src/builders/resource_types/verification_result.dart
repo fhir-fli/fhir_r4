@@ -1,14 +1,14 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
         R4ResourceType,
         StringExtensionForFHIR,
         VerificationResult,
-        VerificationResultPrimarySource,
         VerificationResultAttestation,
-        VerificationResultValidator;
+        VerificationResultPrimarySource,
+        VerificationResultValidator,
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -323,10 +323,13 @@ class VerificationResultBuilder extends DomainResourceBuilder {
   /// Information about the entity validating information.
   List<VerificationResultValidatorBuilder>? validator;
 
-  /// Converts a VerificationResultBuilder to [VerificationResult]
+  /// converts a [VerificationResultBuilder]
+  /// to [VerificationResult]
+  @override
   VerificationResult build() => VerificationResult.fromJson(toJson());
 
-  /// Converts a [VerificationResultBuilder] to a [Map<String, dynamic>]
+  /// converts a [VerificationResultBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1059,9 +1062,7 @@ class VerificationResultBuilder extends DomainResourceBuilder {
       primarySource: primarySource ?? this.primarySource,
       attestation: attestation ?? this.attestation,
       validator: validator ?? this.validator,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1414,11 +1415,14 @@ class VerificationResultPrimarySourceBuilder extends BackboneElementBuilder {
   /// changes; any changes; as defined by source).
   List<CodeableConceptBuilder>? pushTypeAvailable;
 
-  /// Converts a VerificationResultPrimarySourceBuilder to [VerificationResultPrimarySource]
+  /// converts a [VerificationResultPrimarySourceBuilder]
+  /// to [VerificationResultPrimarySource]
+  @override
   VerificationResultPrimarySource build() =>
       VerificationResultPrimarySource.fromJson(toJson());
 
-  /// Converts a [VerificationResultPrimarySourceBuilder] to a [Map<String, dynamic>]
+  /// converts a [VerificationResultPrimarySourceBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1824,9 +1828,7 @@ class VerificationResultPrimarySourceBuilder extends BackboneElementBuilder {
       validationDate: validationDate ?? this.validationDate,
       canPushUpdates: canPushUpdates ?? this.canPushUpdates,
       pushTypeAvailable: pushTypeAvailable ?? this.pushTypeAvailable,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -2107,11 +2109,14 @@ class VerificationResultAttestationBuilder extends BackboneElementBuilder {
   /// the information.
   SignatureBuilder? sourceSignature;
 
-  /// Converts a VerificationResultAttestationBuilder to [VerificationResultAttestation]
+  /// converts a [VerificationResultAttestationBuilder]
+  /// to [VerificationResultAttestation]
+  @override
   VerificationResultAttestation build() =>
       VerificationResultAttestation.fromJson(toJson());
 
-  /// Converts a [VerificationResultAttestationBuilder] to a [Map<String, dynamic>]
+  /// converts a [VerificationResultAttestationBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2530,9 +2535,7 @@ class VerificationResultAttestationBuilder extends BackboneElementBuilder {
           proxyIdentityCertificate ?? this.proxyIdentityCertificate,
       proxySignature: proxySignature ?? this.proxySignature,
       sourceSignature: sourceSignature ?? this.sourceSignature,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -2759,11 +2762,14 @@ class VerificationResultValidatorBuilder extends BackboneElementBuilder {
   /// information.
   SignatureBuilder? attestationSignature;
 
-  /// Converts a VerificationResultValidatorBuilder to [VerificationResultValidator]
+  /// converts a [VerificationResultValidatorBuilder]
+  /// to [VerificationResultValidator]
+  @override
   VerificationResultValidator build() =>
       VerificationResultValidator.fromJson(toJson());
 
-  /// Converts a [VerificationResultValidatorBuilder] to a [Map<String, dynamic>]
+  /// converts a [VerificationResultValidatorBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3050,9 +3056,7 @@ class VerificationResultValidatorBuilder extends BackboneElementBuilder {
       organization: organization ?? this.organization,
       identityCertificate: identityCertificate ?? this.identityCertificate,
       attestationSignature: attestationSignature ?? this.attestationSignature,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

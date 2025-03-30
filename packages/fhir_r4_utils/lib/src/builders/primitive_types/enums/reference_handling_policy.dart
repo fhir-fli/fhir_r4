@@ -47,7 +47,8 @@ class ReferenceHandlingPolicyBuilder extends FhirCodeEnumBuilder {
   factory ReferenceHandlingPolicyBuilder.empty() =>
       ReferenceHandlingPolicyBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [ReferenceHandlingPolicyBuilder] from JSON.
+  /// Factory constructor to create [ReferenceHandlingPolicyBuilder]
+  /// from JSON.
   factory ReferenceHandlingPolicyBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
@@ -139,7 +140,9 @@ class ReferenceHandlingPolicyBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   ReferenceHandlingPolicyBuilder withElement(ElementBuilder? newElement) {
     return ReferenceHandlingPolicyBuilder._(
-        validatedValue: value, element: newElement);
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

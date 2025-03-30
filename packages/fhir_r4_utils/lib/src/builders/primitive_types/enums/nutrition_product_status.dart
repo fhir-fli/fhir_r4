@@ -47,7 +47,8 @@ class NutritionProductStatusBuilder extends FhirCodeEnumBuilder {
   factory NutritionProductStatusBuilder.empty() =>
       NutritionProductStatusBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [NutritionProductStatusBuilder] from JSON.
+  /// Factory constructor to create [NutritionProductStatusBuilder]
+  /// from JSON.
   factory NutritionProductStatusBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
@@ -116,7 +117,9 @@ class NutritionProductStatusBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   NutritionProductStatusBuilder withElement(ElementBuilder? newElement) {
     return NutritionProductStatusBuilder._(
-        validatedValue: value, element: newElement);
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

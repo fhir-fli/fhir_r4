@@ -48,7 +48,8 @@ class ResearchElementTypeBuilder extends FhirCodeEnumBuilder {
   factory ResearchElementTypeBuilder.empty() =>
       ResearchElementTypeBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [ResearchElementTypeBuilder] from JSON.
+  /// Factory constructor to create [ResearchElementTypeBuilder]
+  /// from JSON.
   factory ResearchElementTypeBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
@@ -115,7 +116,9 @@ class ResearchElementTypeBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   ResearchElementTypeBuilder withElement(ElementBuilder? newElement) {
     return ResearchElementTypeBuilder._(
-        validatedValue: value, element: newElement);
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

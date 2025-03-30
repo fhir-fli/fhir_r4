@@ -47,7 +47,8 @@ class ParticipantRequiredBuilder extends FhirCodeEnumBuilder {
   factory ParticipantRequiredBuilder.empty() =>
       ParticipantRequiredBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [ParticipantRequiredBuilder] from JSON.
+  /// Factory constructor to create [ParticipantRequiredBuilder]
+  /// from JSON.
   factory ParticipantRequiredBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
@@ -112,7 +113,9 @@ class ParticipantRequiredBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   ParticipantRequiredBuilder withElement(ElementBuilder? newElement) {
     return ParticipantRequiredBuilder._(
-        validatedValue: value, element: newElement);
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

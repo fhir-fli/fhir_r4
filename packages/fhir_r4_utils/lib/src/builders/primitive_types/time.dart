@@ -93,7 +93,8 @@ class FhirTimeBuilder extends PrimitiveTypeBuilder<String>
   factory FhirTimeBuilder.empty() =>
       FhirTimeBuilder(null, element: ElementBuilder.empty());
 
-  /// Factory constructor to create [FhirTimeBuilder] from JSON.
+  /// Factory constructor to create [FhirTimeBuilder]
+  /// from JSON.
   factory FhirTimeBuilder.fromJson(Map<String, dynamic> json) {
     final val = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
@@ -114,7 +115,8 @@ class FhirTimeBuilder extends PrimitiveTypeBuilder<String>
                 jsonDecode(jsonEncode(yaml)) as Map<String, dynamic>,
               )
             : throw const FormatException(
-                'Invalid YAML format for FhirTimeBuilder');
+                'Invalid YAML format for FhirTimeBuilder',
+              );
   }
 
   /// Method to attempt parsing the input into a [FhirTimeBuilder]. Returns [null] if
@@ -148,18 +150,23 @@ class FhirTimeBuilder extends PrimitiveTypeBuilder<String>
   }
 
   /// Element property
+  @override
   ElementBuilder? element;
 
   /// ID property
+  @override
   FhirStringBuilder? id;
 
   /// Extensions property
+  @override
   List<FhirExtensionBuilder>? extension_;
 
   /// DisallowExtensions property
+  @override
   bool? disallowExtensions;
 
   /// ObjectPath property
+  @override
   String? objectPath;
 
   /// Returns the FHIR type, which is 'time' for this class.
@@ -253,8 +260,8 @@ class FhirTimeBuilder extends PrimitiveTypeBuilder<String>
     );
   }
 
-  /// Private method to compare this [FhirTimeBuilder] with another [FhirTimeBuilder] or
-  /// [String] using a specified [Comparator].
+  /// Private method to compare this [FhirTimeBuilder] with another
+  /// [FhirTimeBuilder] or [String] using a specified [Comparator].
   bool? _compare(Comparator comparator, Object other) {
     final rhs = other is FhirTimeBuilder
         ? other
@@ -340,14 +347,17 @@ class FhirTimeBuilder extends PrimitiveTypeBuilder<String>
   // ignore: avoid_equals_and_hash_code_on_mutable_classes
   bool operator ==(Object other) => _compare(Comparator.equal, other) ?? false;
 
-  /// Checks equality between this [FhirTimeBuilder] and another [FhirTimeBuilder].
+  /// Checks equality between this [FhirTimeBuilder]
+  /// and another [FhirTimeBuilder].
   @override
   bool equals(Object other) => _compare(Comparator.equal, other) ?? false;
 
-  /// Greater-than comparison operator for comparing two [FhirTimeBuilder] objects.
+  /// Greater-than comparison operator for comparing two
+  /// [FhirTimeBuilder] objects.
   bool? operator >(Object other) => _compare(Comparator.greaterThan, other);
 
-  /// Greater-than-or-equal comparison operator for two [FhirTimeBuilder] objects.
+  /// Greater-than-or-equal comparison operator for two
+  /// [FhirTimeBuilder] objects.
   bool? operator >=(Object other) =>
       _compare(Comparator.greaterThanEqual, other);
 
@@ -363,21 +373,25 @@ class FhirTimeBuilder extends PrimitiveTypeBuilder<String>
   /// Checks if this [FhirTimeBuilder] is before another [FhirTimeBuilder].
   bool? isBefore(Object other) => _compare(Comparator.lessThan, other);
 
-  /// Checks if this [FhirTimeBuilder] is the same or after another [FhirTimeBuilder].
+  /// Checks if this [FhirTimeBuilder] is the same or after
+  /// another [FhirTimeBuilder].
   bool? isSameOrAfter(Object other) =>
       _compare(Comparator.greaterThanEqual, other);
 
-  /// Checks if this [FhirTimeBuilder] is the same or before another [FhirTimeBuilder].
+  /// Checks if this [FhirTimeBuilder] is the same or before
+  /// another [FhirTimeBuilder].
   bool? isSameOrBefore(Object other) =>
       _compare(Comparator.lessThanEqual, other);
 
   /// Checks if this [FhirTimeBuilder] is the same as another [FhirTimeBuilder].
   bool? isEqual(Object other) => _compare(Comparator.equal, other);
 
-  /// Checks if this [FhirTimeBuilder] is equivalent to another [FhirTimeBuilder].
+  /// Checks if this [FhirTimeBuilder]
+  /// is equivalent to another [FhirTimeBuilder].
   bool? isEquivalent(Object other) => _compare(Comparator.equivalent, other);
 
-  /// Comparison method to compare this [FhirTimeBuilder] with another [FhirTimeBuilder].
+  /// Comparison method to compare this [FhirTimeBuilder]
+  /// with another [FhirTimeBuilder].
   @override
   int compareTo(FhirTimeBuilder other) => (this > other ?? false)
       ? 1
@@ -406,7 +420,8 @@ class FhirTimeBuilder extends PrimitiveTypeBuilder<String>
     };
   }
 
-  /// Creates a copy of the current [FhirTimeBuilder] with optional new properties.
+  /// Creates a copy of the current [FhirTimeBuilder]
+  /// with optional new properties.
   @override
   FhirTimeBuilder copyWith({
     String? newValue,
@@ -444,11 +459,12 @@ class FhirTimeBuilder extends PrimitiveTypeBuilder<String>
   FhirTimeBuilder clone() =>
       FhirTimeBuilder(value, element: element?.clone() as ElementBuilder?);
 
-  /// Updates the precision of the [FhirTimeBuilder] to the specified [precision].
+  /// Updates the precision of the [FhirTimeBuilder]
+  /// to the specified [precision].
   ///
   /// If the current [FhirTimeBuilder] has a higher precision than requested,
-  /// the excess precision is truncated. If the current [FhirTimeBuilder] has a lower
-  /// precision than requested, missing parts are filled with `0`.
+  /// the excess precision is truncated. If the current [FhirTimeBuilder] has
+  /// a lower precision than requested, missing parts are filled with `0`.
   ///
   /// Throws an [ArgumentError] if the requested precision is not a valid
   /// time precision.

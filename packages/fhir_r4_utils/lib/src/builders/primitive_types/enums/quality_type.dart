@@ -47,7 +47,8 @@ class QualityTypeBuilder extends FhirCodeEnumBuilder {
   factory QualityTypeBuilder.empty() =>
       QualityTypeBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [QualityTypeBuilder] from JSON.
+  /// Factory constructor to create [QualityTypeBuilder]
+  /// from JSON.
   factory QualityTypeBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;

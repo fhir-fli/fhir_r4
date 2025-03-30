@@ -1,11 +1,11 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
+        DeviceUseStatement,
         R4ResourceType,
         StringExtensionForFHIR,
-        DeviceUseStatement;
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -335,10 +335,13 @@ class DeviceUseStatementBuilder extends DomainResourceBuilder {
   /// with the statement.
   List<AnnotationBuilder>? note;
 
-  /// Converts a DeviceUseStatementBuilder to [DeviceUseStatement]
+  /// converts a [DeviceUseStatementBuilder]
+  /// to [DeviceUseStatement]
+  @override
   DeviceUseStatement build() => DeviceUseStatement.fromJson(toJson());
 
-  /// Converts a [DeviceUseStatementBuilder] to a [Map<String, dynamic>]
+  /// converts a [DeviceUseStatementBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1065,7 +1068,7 @@ class DeviceUseStatementBuilder extends DomainResourceBuilder {
     if (status) this.status = null;
     if (subject) this.subject = null;
     if (derivedFrom) this.derivedFrom = null;
-    if (timing) this.timingX = null;
+    if (timing) timingX = null;
     if (recordedOn) this.recordedOn = null;
     if (source) this.source = null;
     if (device) this.device = null;
@@ -1128,9 +1131,7 @@ class DeviceUseStatementBuilder extends DomainResourceBuilder {
       reasonReference: reasonReference ?? this.reasonReference,
       bodySite: bodySite ?? this.bodySite,
       note: note ?? this.note,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

@@ -47,7 +47,8 @@ class EventTimingBuilder extends FhirCodeEnumBuilder {
   factory EventTimingBuilder.empty() =>
       EventTimingBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [EventTimingBuilder] from JSON.
+  /// Factory constructor to create [EventTimingBuilder]
+  /// from JSON.
   factory EventTimingBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;

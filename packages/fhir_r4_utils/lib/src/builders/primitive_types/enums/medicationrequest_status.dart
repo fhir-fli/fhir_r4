@@ -47,7 +47,8 @@ class MedicationrequestStatusBuilder extends FhirCodeEnumBuilder {
   factory MedicationrequestStatusBuilder.empty() =>
       MedicationrequestStatusBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [MedicationrequestStatusBuilder] from JSON.
+  /// Factory constructor to create [MedicationrequestStatusBuilder]
+  /// from JSON.
   factory MedicationrequestStatusBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
@@ -172,7 +173,9 @@ class MedicationrequestStatusBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   MedicationrequestStatusBuilder withElement(ElementBuilder? newElement) {
     return MedicationrequestStatusBuilder._(
-        validatedValue: value, element: newElement);
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

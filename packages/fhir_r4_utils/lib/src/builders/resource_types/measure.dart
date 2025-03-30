@@ -1,16 +1,16 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
-        R4ResourceType,
-        StringExtensionForFHIR,
         Measure,
+        MeasureComponent,
         MeasureGroup,
         MeasurePopulation,
         MeasureStratifier,
-        MeasureComponent,
-        MeasureSupplementalData;
+        MeasureSupplementalData,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -664,10 +664,13 @@ class MeasureBuilder extends CanonicalResourceBuilder {
   /// or a valid FHIR Resource Path.
   List<MeasureSupplementalDataBuilder>? supplementalData;
 
-  /// Converts a MeasureBuilder to [Measure]
+  /// converts a [MeasureBuilder]
+  /// to [Measure]
+  @override
   Measure build() => Measure.fromJson(toJson());
 
-  /// Converts a [MeasureBuilder] to a [Map<String, dynamic>]
+  /// converts a [MeasureBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -746,7 +749,9 @@ class MeasureBuilder extends CanonicalResourceBuilder {
     addField('rateAggregation', rateAggregation);
     addField('rationale', rationale);
     addField(
-        'clinicalRecommendationStatement', clinicalRecommendationStatement);
+      'clinicalRecommendationStatement',
+      clinicalRecommendationStatement,
+    );
     addField('improvementNotation', improvementNotation);
     addField('definition', definition);
     addField('guidance', guidance);
@@ -2063,7 +2068,7 @@ class MeasureBuilder extends CanonicalResourceBuilder {
     if (subtitle) this.subtitle = null;
     if (status) this.status = null;
     if (experimental) this.experimental = null;
-    if (subject) this.subjectX = null;
+    if (subject) subjectX = null;
     if (date) this.date = null;
     if (publisher) this.publisher = null;
     if (contact) this.contact = null;
@@ -2090,8 +2095,9 @@ class MeasureBuilder extends CanonicalResourceBuilder {
     if (riskAdjustment) this.riskAdjustment = null;
     if (rateAggregation) this.rateAggregation = null;
     if (rationale) this.rationale = null;
-    if (clinicalRecommendationStatement)
+    if (clinicalRecommendationStatement) {
       this.clinicalRecommendationStatement = null;
+    }
     if (improvementNotation) this.improvementNotation = null;
     if (definition) this.definition = null;
     if (guidance) this.guidance = null;
@@ -2209,9 +2215,7 @@ class MeasureBuilder extends CanonicalResourceBuilder {
       guidance: guidance ?? this.guidance,
       group: group ?? this.group,
       supplementalData: supplementalData ?? this.supplementalData,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -2687,10 +2691,13 @@ class MeasureGroupBuilder extends BackboneElementBuilder {
   /// valid FHIR Resource Path.
   List<MeasureStratifierBuilder>? stratifier;
 
-  /// Converts a MeasureGroupBuilder to [MeasureGroup]
+  /// converts a [MeasureGroupBuilder]
+  /// to [MeasureGroup]
+  @override
   MeasureGroup build() => MeasureGroup.fromJson(toJson());
 
-  /// Converts a [MeasureGroupBuilder] to a [Map<String, dynamic>]
+  /// converts a [MeasureGroupBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3013,9 +3020,7 @@ class MeasureGroupBuilder extends BackboneElementBuilder {
       description: description ?? this.description,
       population: population ?? this.population,
       stratifier: stratifier ?? this.stratifier,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -3217,10 +3222,13 @@ class MeasurePopulationBuilder extends BackboneElementBuilder {
   /// the name of an expression in a library.
   FhirExpressionBuilder? criteria;
 
-  /// Converts a MeasurePopulationBuilder to [MeasurePopulation]
+  /// converts a [MeasurePopulationBuilder]
+  /// to [MeasurePopulation]
+  @override
   MeasurePopulation build() => MeasurePopulation.fromJson(toJson());
 
-  /// Converts a [MeasurePopulationBuilder] to a [Map<String, dynamic>]
+  /// converts a [MeasurePopulationBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3507,9 +3515,7 @@ class MeasurePopulationBuilder extends BackboneElementBuilder {
       code: code ?? this.code,
       description: description ?? this.description,
       criteria: criteria ?? this.criteria,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -3728,10 +3734,13 @@ class MeasureStratifierBuilder extends BackboneElementBuilder {
   /// referenced library or a valid FHIR Resource Path.
   List<MeasureComponentBuilder>? component;
 
-  /// Converts a MeasureStratifierBuilder to [MeasureStratifier]
+  /// converts a [MeasureStratifierBuilder]
+  /// to [MeasureStratifier]
+  @override
   MeasureStratifier build() => MeasureStratifier.fromJson(toJson());
 
-  /// Converts a [MeasureStratifierBuilder] to a [Map<String, dynamic>]
+  /// converts a [MeasureStratifierBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -4049,9 +4058,7 @@ class MeasureStratifierBuilder extends BackboneElementBuilder {
       description: description ?? this.description,
       criteria: criteria ?? this.criteria,
       component: component ?? this.component,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -4260,10 +4267,13 @@ class MeasureComponentBuilder extends BackboneElementBuilder {
   /// element.
   FhirExpressionBuilder? criteria;
 
-  /// Converts a MeasureComponentBuilder to [MeasureComponent]
+  /// converts a [MeasureComponentBuilder]
+  /// to [MeasureComponent]
+  @override
   MeasureComponent build() => MeasureComponent.fromJson(toJson());
 
-  /// Converts a [MeasureComponentBuilder] to a [Map<String, dynamic>]
+  /// converts a [MeasureComponentBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -4550,9 +4560,7 @@ class MeasureComponentBuilder extends BackboneElementBuilder {
       code: code ?? this.code,
       description: description ?? this.description,
       criteria: criteria ?? this.criteria,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -4776,10 +4784,13 @@ class MeasureSupplementalDataBuilder extends BackboneElementBuilder {
   /// be returned for this element.
   FhirExpressionBuilder? criteria;
 
-  /// Converts a MeasureSupplementalDataBuilder to [MeasureSupplementalData]
+  /// converts a [MeasureSupplementalDataBuilder]
+  /// to [MeasureSupplementalData]
+  @override
   MeasureSupplementalData build() => MeasureSupplementalData.fromJson(toJson());
 
-  /// Converts a [MeasureSupplementalDataBuilder] to a [Map<String, dynamic>]
+  /// converts a [MeasureSupplementalDataBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -5097,9 +5108,7 @@ class MeasureSupplementalDataBuilder extends BackboneElementBuilder {
       usage: usage ?? this.usage,
       description: description ?? this.description,
       criteria: criteria ?? this.criteria,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

@@ -1,12 +1,12 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
+        OperationOutcome,
+        OperationOutcomeIssue,
         R4ResourceType,
         StringExtensionForFHIR,
-        OperationOutcome,
-        OperationOutcomeIssue;
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -162,10 +162,13 @@ class OperationOutcomeBuilder extends DomainResourceBuilder {
   /// action.
   List<OperationOutcomeIssueBuilder>? issue;
 
-  /// Converts a OperationOutcomeBuilder to [OperationOutcome]
+  /// converts a [OperationOutcomeBuilder]
+  /// to [OperationOutcome]
+  @override
   OperationOutcome build() => OperationOutcome.fromJson(toJson());
 
-  /// Converts a [OperationOutcomeBuilder] to a [Map<String, dynamic>]
+  /// converts a [OperationOutcomeBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -540,9 +543,7 @@ class OperationOutcomeBuilder extends DomainResourceBuilder {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       issue: issue ?? this.issue,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -805,10 +806,13 @@ class OperationOutcomeIssueBuilder extends BackboneElementBuilder {
   /// to be raised.
   List<FhirStringBuilder>? expression;
 
-  /// Converts a OperationOutcomeIssueBuilder to [OperationOutcomeIssue]
+  /// converts a [OperationOutcomeIssueBuilder]
+  /// to [OperationOutcomeIssue]
+  @override
   OperationOutcomeIssue build() => OperationOutcomeIssue.fromJson(toJson());
 
-  /// Converts a [OperationOutcomeIssueBuilder] to a [Map<String, dynamic>]
+  /// converts a [OperationOutcomeIssueBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1183,9 +1187,7 @@ class OperationOutcomeIssueBuilder extends BackboneElementBuilder {
       diagnostics: diagnostics ?? this.diagnostics,
       location: location ?? this.location,
       expression: expression ?? this.expression,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

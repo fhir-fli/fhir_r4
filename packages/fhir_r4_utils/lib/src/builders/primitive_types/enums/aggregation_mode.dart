@@ -47,7 +47,8 @@ class AggregationModeBuilder extends FhirCodeEnumBuilder {
   factory AggregationModeBuilder.empty() =>
       AggregationModeBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [AggregationModeBuilder] from JSON.
+  /// Factory constructor to create [AggregationModeBuilder]
+  /// from JSON.
   factory AggregationModeBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;

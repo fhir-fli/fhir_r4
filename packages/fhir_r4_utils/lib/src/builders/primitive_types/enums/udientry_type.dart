@@ -47,7 +47,8 @@ class UDIEntryTypeBuilder extends FhirCodeEnumBuilder {
   factory UDIEntryTypeBuilder.empty() =>
       UDIEntryTypeBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [UDIEntryTypeBuilder] from JSON.
+  /// Factory constructor to create [UDIEntryTypeBuilder]
+  /// from JSON.
   factory UDIEntryTypeBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;

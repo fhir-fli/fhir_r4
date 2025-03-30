@@ -47,7 +47,8 @@ class SearchParamTypeBuilder extends FhirCodeEnumBuilder {
   factory SearchParamTypeBuilder.empty() =>
       SearchParamTypeBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [SearchParamTypeBuilder] from JSON.
+  /// Factory constructor to create [SearchParamTypeBuilder]
+  /// from JSON.
   factory SearchParamTypeBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;

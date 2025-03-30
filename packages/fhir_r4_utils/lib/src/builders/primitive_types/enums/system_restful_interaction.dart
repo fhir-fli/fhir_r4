@@ -47,7 +47,8 @@ class SystemRestfulInteractionBuilder extends FhirCodeEnumBuilder {
   factory SystemRestfulInteractionBuilder.empty() =>
       SystemRestfulInteractionBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [SystemRestfulInteractionBuilder] from JSON.
+  /// Factory constructor to create [SystemRestfulInteractionBuilder]
+  /// from JSON.
   factory SystemRestfulInteractionBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
@@ -271,7 +272,9 @@ class SystemRestfulInteractionBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   SystemRestfulInteractionBuilder withElement(ElementBuilder? newElement) {
     return SystemRestfulInteractionBuilder._(
-        validatedValue: value, element: newElement);
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

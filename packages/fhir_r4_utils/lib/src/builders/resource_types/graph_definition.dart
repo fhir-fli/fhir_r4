@@ -1,14 +1,14 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
-        R4ResourceType,
-        StringExtensionForFHIR,
         GraphDefinition,
+        GraphDefinitionCompartment,
         GraphDefinitionLink,
         GraphDefinitionTarget,
-        GraphDefinitionCompartment;
+        R4ResourceType,
+        StringExtensionForFHIR,
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -294,10 +294,13 @@ class GraphDefinitionBuilder extends CanonicalResourceBuilder {
   /// Links this graph makes rules about.
   List<GraphDefinitionLinkBuilder>? link;
 
-  /// Converts a GraphDefinitionBuilder to [GraphDefinition]
+  /// converts a [GraphDefinitionBuilder]
+  /// to [GraphDefinition]
+  @override
   GraphDefinition build() => GraphDefinition.fromJson(toJson());
 
-  /// Converts a [GraphDefinitionBuilder] to a [Map<String, dynamic>]
+  /// converts a [GraphDefinitionBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1051,9 +1054,7 @@ class GraphDefinitionBuilder extends CanonicalResourceBuilder {
       start: start ?? this.start,
       profile: profile ?? this.profile,
       link: link ?? this.link,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1389,10 +1390,13 @@ class GraphDefinitionLinkBuilder extends BackboneElementBuilder {
   /// Potential target for the link.
   List<GraphDefinitionTargetBuilder>? target;
 
-  /// Converts a GraphDefinitionLinkBuilder to [GraphDefinitionLink]
+  /// converts a [GraphDefinitionLinkBuilder]
+  /// to [GraphDefinitionLink]
+  @override
   GraphDefinitionLink build() => GraphDefinitionLink.fromJson(toJson());
 
-  /// Converts a [GraphDefinitionLinkBuilder] to a [Map<String, dynamic>]
+  /// converts a [GraphDefinitionLinkBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1762,9 +1766,7 @@ class GraphDefinitionLinkBuilder extends BackboneElementBuilder {
       max: max ?? this.max,
       description: description ?? this.description,
       target: target ?? this.target,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -2008,10 +2010,13 @@ class GraphDefinitionTargetBuilder extends BackboneElementBuilder {
   /// Additional links from target resource.
   List<GraphDefinitionLinkBuilder>? link;
 
-  /// Converts a GraphDefinitionTargetBuilder to [GraphDefinitionTarget]
+  /// converts a [GraphDefinitionTargetBuilder]
+  /// to [GraphDefinitionTarget]
+  @override
   GraphDefinitionTarget build() => GraphDefinitionTarget.fromJson(toJson());
 
-  /// Converts a [GraphDefinitionTargetBuilder] to a [Map<String, dynamic>]
+  /// converts a [GraphDefinitionTargetBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2360,9 +2365,7 @@ class GraphDefinitionTargetBuilder extends BackboneElementBuilder {
       profile: profile ?? this.profile,
       compartment: compartment ?? this.compartment,
       link: link ?? this.link,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -2594,11 +2597,14 @@ class GraphDefinitionCompartmentBuilder extends BackboneElementBuilder {
   /// Documentation for FHIRPath expression.
   FhirStringBuilder? description;
 
-  /// Converts a GraphDefinitionCompartmentBuilder to [GraphDefinitionCompartment]
+  /// converts a [GraphDefinitionCompartmentBuilder]
+  /// to [GraphDefinitionCompartment]
+  @override
   GraphDefinitionCompartment build() =>
       GraphDefinitionCompartment.fromJson(toJson());
 
-  /// Converts a [GraphDefinitionCompartmentBuilder] to a [Map<String, dynamic>]
+  /// converts a [GraphDefinitionCompartmentBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2937,9 +2943,7 @@ class GraphDefinitionCompartmentBuilder extends BackboneElementBuilder {
       rule: rule ?? this.rule,
       expression: expression ?? this.expression,
       description: description ?? this.description,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

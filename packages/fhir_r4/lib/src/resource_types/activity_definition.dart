@@ -2185,7 +2185,7 @@ class ActivityDefinition extends CanonicalResource {
           'Age',
           'Period',
           'Range',
-          'FhirDuration'
+          'FhirDuration',
         ];
       case 'timingTiming':
         return ['Timing'];

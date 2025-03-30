@@ -46,7 +46,8 @@ class NoteTypeBuilder extends FhirCodeEnumBuilder {
   /// Create empty [NoteTypeBuilder] with element only
   factory NoteTypeBuilder.empty() => NoteTypeBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [NoteTypeBuilder] from JSON.
+  /// Factory constructor to create [NoteTypeBuilder]
+  /// from JSON.
   factory NoteTypeBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;

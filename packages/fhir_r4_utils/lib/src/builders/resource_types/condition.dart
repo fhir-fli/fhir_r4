@@ -1,13 +1,13 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
+        Condition,
+        ConditionEvidence,
+        ConditionStage,
         R4ResourceType,
         StringExtensionForFHIR,
-        Condition,
-        ConditionStage,
-        ConditionEvidence;
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -417,10 +417,13 @@ class ConditionBuilder extends DomainResourceBuilder {
   /// and prognosis.
   List<AnnotationBuilder>? note;
 
-  /// Converts a ConditionBuilder to [Condition]
+  /// converts a [ConditionBuilder]
+  /// to [Condition]
+  @override
   Condition build() => Condition.fromJson(toJson());
 
-  /// Converts a [ConditionBuilder] to a [Map<String, dynamic>]
+  /// converts a [ConditionBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1156,7 +1159,7 @@ class ConditionBuilder extends DomainResourceBuilder {
           'AgeBuilder',
           'PeriodBuilder',
           'RangeBuilder',
-          'FhirStringBuilder'
+          'FhirStringBuilder',
         ];
       case 'onsetDateTime':
         return ['FhirDateTimeBuilder'];
@@ -1175,7 +1178,7 @@ class ConditionBuilder extends DomainResourceBuilder {
           'AgeBuilder',
           'PeriodBuilder',
           'RangeBuilder',
-          'FhirStringBuilder'
+          'FhirStringBuilder',
         ];
       case 'abatementDateTime':
         return ['FhirDateTimeBuilder'];
@@ -1429,8 +1432,8 @@ class ConditionBuilder extends DomainResourceBuilder {
     if (bodySite) this.bodySite = null;
     if (subject) this.subject = null;
     if (encounter) this.encounter = null;
-    if (onset) this.onsetX = null;
-    if (abatement) this.abatementX = null;
+    if (onset) onsetX = null;
+    if (abatement) abatementX = null;
     if (recordedDate) this.recordedDate = null;
     if (recorder) this.recorder = null;
     if (asserter) this.asserter = null;
@@ -1500,9 +1503,7 @@ class ConditionBuilder extends DomainResourceBuilder {
       stage: stage ?? this.stage,
       evidence: evidence ?? this.evidence,
       note: note ?? this.note,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1818,10 +1819,13 @@ class ConditionStageBuilder extends BackboneElementBuilder {
   /// The kind of staging, such as pathological or clinical staging.
   CodeableConceptBuilder? type;
 
-  /// Converts a ConditionStageBuilder to [ConditionStage]
+  /// converts a [ConditionStageBuilder]
+  /// to [ConditionStage]
+  @override
   ConditionStage build() => ConditionStage.fromJson(toJson());
 
-  /// Converts a [ConditionStageBuilder] to a [Map<String, dynamic>]
+  /// converts a [ConditionStageBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2113,9 +2117,7 @@ class ConditionStageBuilder extends BackboneElementBuilder {
       summary: summary ?? this.summary,
       assessment: assessment ?? this.assessment,
       type: type ?? this.type,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -2309,10 +2311,13 @@ class ConditionEvidenceBuilder extends BackboneElementBuilder {
   /// Links to other relevant information, including pathology reports.
   List<ReferenceBuilder>? detail;
 
-  /// Converts a ConditionEvidenceBuilder to [ConditionEvidence]
+  /// converts a [ConditionEvidenceBuilder]
+  /// to [ConditionEvidence]
+  @override
   ConditionEvidence build() => ConditionEvidence.fromJson(toJson());
 
-  /// Converts a [ConditionEvidenceBuilder] to a [Map<String, dynamic>]
+  /// converts a [ConditionEvidenceBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2583,9 +2588,7 @@ class ConditionEvidenceBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       code: code ?? this.code,
       detail: detail ?? this.detail,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

@@ -1,12 +1,12 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
         R4ResourceType,
-        StringExtensionForFHIR,
         RegulatedAuthorization,
-        RegulatedAuthorizationCase;
+        RegulatedAuthorizationCase,
+        StringExtensionForFHIR,
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -336,10 +336,13 @@ class RegulatedAuthorizationBuilder extends DomainResourceBuilder {
   /// at bottom of page).
   RegulatedAuthorizationCaseBuilder? case_;
 
-  /// Converts a RegulatedAuthorizationBuilder to [RegulatedAuthorization]
+  /// converts a [RegulatedAuthorizationBuilder]
+  /// to [RegulatedAuthorization]
+  @override
   RegulatedAuthorization build() => RegulatedAuthorization.fromJson(toJson());
 
-  /// Converts a [RegulatedAuthorizationBuilder] to a [Map<String, dynamic>]
+  /// converts a [RegulatedAuthorizationBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1067,9 +1070,7 @@ class RegulatedAuthorizationBuilder extends DomainResourceBuilder {
       holder: holder ?? this.holder,
       regulator: regulator ?? this.regulator,
       case_: case_ ?? this.case_,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1406,11 +1407,14 @@ class RegulatedAuthorizationCaseBuilder extends BackboneElementBuilder {
   /// longer running case or procedure for this authorization process.
   List<RegulatedAuthorizationCaseBuilder>? application;
 
-  /// Converts a RegulatedAuthorizationCaseBuilder to [RegulatedAuthorizationCase]
+  /// converts a [RegulatedAuthorizationCaseBuilder]
+  /// to [RegulatedAuthorizationCase]
+  @override
   RegulatedAuthorizationCase build() =>
       RegulatedAuthorizationCase.fromJson(toJson());
 
-  /// Converts a [RegulatedAuthorizationCaseBuilder] to a [Map<String, dynamic>]
+  /// converts a [RegulatedAuthorizationCaseBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1776,7 +1780,7 @@ class RegulatedAuthorizationCaseBuilder extends BackboneElementBuilder {
     if (identifier) this.identifier = null;
     if (type) this.type = null;
     if (status) this.status = null;
-    if (date) this.dateX = null;
+    if (date) dateX = null;
     if (application) this.application = null;
   }
 
@@ -1808,9 +1812,7 @@ class RegulatedAuthorizationCaseBuilder extends BackboneElementBuilder {
       status: status ?? this.status,
       dateX: dateX ?? this.dateX,
       application: application ?? this.application,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

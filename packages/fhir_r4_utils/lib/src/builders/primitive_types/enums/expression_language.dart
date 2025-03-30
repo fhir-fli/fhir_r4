@@ -47,7 +47,8 @@ class ExpressionLanguageBuilder extends FhirCodeEnumBuilder {
   factory ExpressionLanguageBuilder.empty() =>
       ExpressionLanguageBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [ExpressionLanguageBuilder] from JSON.
+  /// Factory constructor to create [ExpressionLanguageBuilder]
+  /// from JSON.
   factory ExpressionLanguageBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
@@ -132,7 +133,9 @@ class ExpressionLanguageBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   ExpressionLanguageBuilder withElement(ElementBuilder? newElement) {
     return ExpressionLanguageBuilder._(
-        validatedValue: value, element: newElement);
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

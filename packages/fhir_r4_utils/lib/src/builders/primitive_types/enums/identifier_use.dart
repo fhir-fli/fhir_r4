@@ -47,7 +47,8 @@ class IdentifierUseBuilder extends FhirCodeEnumBuilder {
   factory IdentifierUseBuilder.empty() =>
       IdentifierUseBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [IdentifierUseBuilder] from JSON.
+  /// Factory constructor to create [IdentifierUseBuilder]
+  /// from JSON.
   factory IdentifierUseBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;

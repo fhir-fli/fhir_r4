@@ -1,13 +1,13 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
-        R4ResourceType,
-        StringExtensionForFHIR,
         CarePlan,
         CarePlanActivity,
-        CarePlanDetail;
+        CarePlanDetail,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -475,10 +475,13 @@ class CarePlanBuilder extends DomainResourceBuilder {
   /// General notes about the care plan not covered elsewhere.
   List<AnnotationBuilder>? note;
 
-  /// Converts a CarePlanBuilder to [CarePlan]
+  /// converts a [CarePlanBuilder]
+  /// to [CarePlan]
+  @override
   CarePlan build() => CarePlan.fromJson(toJson());
 
-  /// Converts a [CarePlanBuilder] to a [Map<String, dynamic>]
+  /// converts a [CarePlanBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1491,9 +1494,7 @@ class CarePlanBuilder extends DomainResourceBuilder {
       goal: goal ?? this.goal,
       activity: activity ?? this.activity,
       note: note ?? this.note,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1883,10 +1884,13 @@ class CarePlanActivityBuilder extends BackboneElementBuilder {
   /// such as procedure etc.
   CarePlanDetailBuilder? detail;
 
-  /// Converts a CarePlanActivityBuilder to [CarePlanActivity]
+  /// converts a [CarePlanActivityBuilder]
+  /// to [CarePlanActivity]
+  @override
   CarePlanActivity build() => CarePlanActivity.fromJson(toJson());
 
-  /// Converts a [CarePlanActivityBuilder] to a [Map<String, dynamic>]
+  /// converts a [CarePlanActivityBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2241,9 +2245,7 @@ class CarePlanActivityBuilder extends BackboneElementBuilder {
       progress: progress ?? this.progress,
       reference: reference ?? this.reference,
       detail: detail ?? this.detail,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -2671,10 +2673,13 @@ class CarePlanDetailBuilder extends BackboneElementBuilder {
   /// route, etc.
   FhirStringBuilder? description;
 
-  /// Converts a CarePlanDetailBuilder to [CarePlanDetail]
+  /// converts a [CarePlanDetailBuilder]
+  /// to [CarePlanDetail]
+  @override
   CarePlanDetail build() => CarePlanDetail.fromJson(toJson());
 
-  /// Converts a [CarePlanDetailBuilder] to a [Map<String, dynamic>]
+  /// converts a [CarePlanDetailBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3426,10 +3431,10 @@ class CarePlanDetailBuilder extends BackboneElementBuilder {
     if (status) this.status = null;
     if (statusReason) this.statusReason = null;
     if (doNotPerform) this.doNotPerform = null;
-    if (scheduled) this.scheduledX = null;
+    if (scheduled) scheduledX = null;
     if (location) this.location = null;
     if (performer) this.performer = null;
-    if (product) this.productX = null;
+    if (product) productX = null;
     if (dailyAmount) this.dailyAmount = null;
     if (quantity) this.quantity = null;
     if (description) this.description = null;
@@ -3488,9 +3493,7 @@ class CarePlanDetailBuilder extends BackboneElementBuilder {
       dailyAmount: dailyAmount ?? this.dailyAmount,
       quantity: quantity ?? this.quantity,
       description: description ?? this.description,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

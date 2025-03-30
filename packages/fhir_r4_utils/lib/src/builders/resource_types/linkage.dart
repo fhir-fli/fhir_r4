@@ -1,12 +1,12 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
+        Linkage,
+        LinkageItem,
         R4ResourceType,
         StringExtensionForFHIR,
-        Linkage,
-        LinkageItem;
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -188,10 +188,13 @@ class LinkageBuilder extends DomainResourceBuilder {
   /// within the collection of linked items.
   List<LinkageItemBuilder>? item;
 
-  /// Converts a LinkageBuilder to [Linkage]
+  /// converts a [LinkageBuilder]
+  /// to [Linkage]
+  @override
   Linkage build() => Linkage.fromJson(toJson());
 
-  /// Converts a [LinkageBuilder] to a [Map<String, dynamic>]
+  /// converts a [LinkageBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -618,9 +621,7 @@ class LinkageBuilder extends DomainResourceBuilder {
       active: active ?? this.active,
       author: author ?? this.author,
       item: item ?? this.item,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -837,10 +838,13 @@ class LinkageItemBuilder extends BackboneElementBuilder {
   /// The resource instance being linked as part of the group.
   ReferenceBuilder? resource;
 
-  /// Converts a LinkageItemBuilder to [LinkageItem]
+  /// converts a [LinkageItemBuilder]
+  /// to [LinkageItem]
+  @override
   LinkageItem build() => LinkageItem.fromJson(toJson());
 
-  /// Converts a [LinkageItemBuilder] to a [Map<String, dynamic>]
+  /// converts a [LinkageItemBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1101,9 +1105,7 @@ class LinkageItemBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       type: type ?? this.type,
       resource: resource ?? this.resource,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

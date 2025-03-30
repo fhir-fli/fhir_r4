@@ -1,17 +1,17 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
+        DeviceDefinition,
+        DeviceDefinitionCapability,
+        DeviceDefinitionDeviceName,
+        DeviceDefinitionMaterial,
+        DeviceDefinitionProperty,
+        DeviceDefinitionSpecialization,
+        DeviceDefinitionUdiDeviceIdentifier,
         R4ResourceType,
         StringExtensionForFHIR,
-        DeviceDefinition,
-        DeviceDefinitionUdiDeviceIdentifier,
-        DeviceDefinitionDeviceName,
-        DeviceDefinitionSpecialization,
-        DeviceDefinitionCapability,
-        DeviceDefinitionProperty,
-        DeviceDefinitionMaterial;
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -466,10 +466,13 @@ class DeviceDefinitionBuilder extends DomainResourceBuilder {
   /// A substance used to create the material(s) of which the device is made.
   List<DeviceDefinitionMaterialBuilder>? material;
 
-  /// Converts a DeviceDefinitionBuilder to [DeviceDefinition]
+  /// converts a [DeviceDefinitionBuilder]
+  /// to [DeviceDefinition]
+  @override
   DeviceDefinition build() => DeviceDefinition.fromJson(toJson());
 
-  /// Converts a [DeviceDefinitionBuilder] to a [Map<String, dynamic>]
+  /// converts a [DeviceDefinitionBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1411,7 +1414,7 @@ class DeviceDefinitionBuilder extends DomainResourceBuilder {
     if (modifierExtension) this.modifierExtension = null;
     if (identifier) this.identifier = null;
     if (udiDeviceIdentifier) this.udiDeviceIdentifier = null;
-    if (manufacturer) this.manufacturerX = null;
+    if (manufacturer) manufacturerX = null;
     if (deviceName) this.deviceName = null;
     if (modelNumber) this.modelNumber = null;
     if (type) this.type = null;
@@ -1505,9 +1508,7 @@ class DeviceDefinitionBuilder extends DomainResourceBuilder {
       quantity: quantity ?? this.quantity,
       parentDevice: parentDevice ?? this.parentDevice,
       material: material ?? this.material,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1853,11 +1854,14 @@ class DeviceDefinitionUdiDeviceIdentifierBuilder
   /// The jurisdiction to which the deviceIdentifier applies.
   FhirUriBuilder? jurisdiction;
 
-  /// Converts a DeviceDefinitionUdiDeviceIdentifierBuilder to [DeviceDefinitionUdiDeviceIdentifier]
+  /// converts a [DeviceDefinitionUdiDeviceIdentifierBuilder]
+  /// to [DeviceDefinitionUdiDeviceIdentifier]
+  @override
   DeviceDefinitionUdiDeviceIdentifier build() =>
       DeviceDefinitionUdiDeviceIdentifier.fromJson(toJson());
 
-  /// Converts a [DeviceDefinitionUdiDeviceIdentifierBuilder] to a [Map<String, dynamic>]
+  /// converts a [DeviceDefinitionUdiDeviceIdentifierBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2145,9 +2149,7 @@ class DeviceDefinitionUdiDeviceIdentifierBuilder
       deviceIdentifier: deviceIdentifier ?? this.deviceIdentifier,
       issuer: issuer ?? this.issuer,
       jurisdiction: jurisdiction ?? this.jurisdiction,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -2334,11 +2336,14 @@ class DeviceDefinitionDeviceNameBuilder extends BackboneElementBuilder {
   /// ManufactureDeviceName | ModelName.
   DeviceNameTypeBuilder? type;
 
-  /// Converts a DeviceDefinitionDeviceNameBuilder to [DeviceDefinitionDeviceName]
+  /// converts a [DeviceDefinitionDeviceNameBuilder]
+  /// to [DeviceDefinitionDeviceName]
+  @override
   DeviceDefinitionDeviceName build() =>
       DeviceDefinitionDeviceName.fromJson(toJson());
 
-  /// Converts a [DeviceDefinitionDeviceNameBuilder] to a [Map<String, dynamic>]
+  /// converts a [DeviceDefinitionDeviceNameBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2599,9 +2604,7 @@ class DeviceDefinitionDeviceNameBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       name: name ?? this.name,
       type: type ?? this.type,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -2782,11 +2785,14 @@ class DeviceDefinitionSpecializationBuilder extends BackboneElementBuilder {
   /// The version of the standard that is used to operate and communicate.
   FhirStringBuilder? version;
 
-  /// Converts a DeviceDefinitionSpecializationBuilder to [DeviceDefinitionSpecialization]
+  /// converts a [DeviceDefinitionSpecializationBuilder]
+  /// to [DeviceDefinitionSpecialization]
+  @override
   DeviceDefinitionSpecialization build() =>
       DeviceDefinitionSpecialization.fromJson(toJson());
 
-  /// Converts a [DeviceDefinitionSpecializationBuilder] to a [Map<String, dynamic>]
+  /// converts a [DeviceDefinitionSpecializationBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3047,9 +3053,7 @@ class DeviceDefinitionSpecializationBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       systemType: systemType ?? this.systemType,
       version: version ?? this.version,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -3232,11 +3236,14 @@ class DeviceDefinitionCapabilityBuilder extends BackboneElementBuilder {
   /// Description of capability.
   List<CodeableConceptBuilder>? description;
 
-  /// Converts a DeviceDefinitionCapabilityBuilder to [DeviceDefinitionCapability]
+  /// converts a [DeviceDefinitionCapabilityBuilder]
+  /// to [DeviceDefinitionCapability]
+  @override
   DeviceDefinitionCapability build() =>
       DeviceDefinitionCapability.fromJson(toJson());
 
-  /// Converts a [DeviceDefinitionCapabilityBuilder] to a [Map<String, dynamic>]
+  /// converts a [DeviceDefinitionCapabilityBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3502,9 +3509,7 @@ class DeviceDefinitionCapabilityBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       type: type ?? this.type,
       description: description ?? this.description,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -3704,11 +3709,14 @@ class DeviceDefinitionPropertyBuilder extends BackboneElementBuilder {
   /// Property value as a code, e.g., NTP4 (synced to NTP).
   List<CodeableConceptBuilder>? valueCode;
 
-  /// Converts a DeviceDefinitionPropertyBuilder to [DeviceDefinitionProperty]
+  /// converts a [DeviceDefinitionPropertyBuilder]
+  /// to [DeviceDefinitionProperty]
+  @override
   DeviceDefinitionProperty build() =>
       DeviceDefinitionProperty.fromJson(toJson());
 
-  /// Converts a [DeviceDefinitionPropertyBuilder] to a [Map<String, dynamic>]
+  /// converts a [DeviceDefinitionPropertyBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -4005,9 +4013,7 @@ class DeviceDefinitionPropertyBuilder extends BackboneElementBuilder {
       type: type ?? this.type,
       valueQuantity: valueQuantity ?? this.valueQuantity,
       valueCode: valueCode ?? this.valueCode,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -4203,11 +4209,14 @@ class DeviceDefinitionMaterialBuilder extends BackboneElementBuilder {
   /// Whether the substance is a known or suspected allergen.
   FhirBooleanBuilder? allergenicIndicator;
 
-  /// Converts a DeviceDefinitionMaterialBuilder to [DeviceDefinitionMaterial]
+  /// converts a [DeviceDefinitionMaterialBuilder]
+  /// to [DeviceDefinitionMaterial]
+  @override
   DeviceDefinitionMaterial build() =>
       DeviceDefinitionMaterial.fromJson(toJson());
 
-  /// Converts a [DeviceDefinitionMaterialBuilder] to a [Map<String, dynamic>]
+  /// converts a [DeviceDefinitionMaterialBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -4494,9 +4503,7 @@ class DeviceDefinitionMaterialBuilder extends BackboneElementBuilder {
       substance: substance ?? this.substance,
       alternate: alternate ?? this.alternate,
       allergenicIndicator: allergenicIndicator ?? this.allergenicIndicator,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

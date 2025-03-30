@@ -1,27 +1,27 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
         R4ResourceType,
         StringExtensionForFHIR,
         TestScript,
-        TestScriptOrigin,
-        TestScriptDestination,
-        TestScriptMetadata,
-        TestScriptLink,
-        TestScriptCapability,
-        TestScriptFixture,
-        TestScriptVariable,
-        TestScriptSetup,
         TestScriptAction,
-        TestScriptOperation,
-        TestScriptRequestHeader,
-        TestScriptAssert,
-        TestScriptTest,
         TestScriptAction1,
+        TestScriptAction2,
+        TestScriptAssert,
+        TestScriptCapability,
+        TestScriptDestination,
+        TestScriptFixture,
+        TestScriptLink,
+        TestScriptMetadata,
+        TestScriptOperation,
+        TestScriptOrigin,
+        TestScriptRequestHeader,
+        TestScriptSetup,
         TestScriptTeardown,
-        TestScriptAction2;
+        TestScriptTest,
+        TestScriptVariable,
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -499,10 +499,13 @@ class TestScriptBuilder extends DomainResourceBuilder {
   /// executed (successfully or otherwise).
   TestScriptTeardownBuilder? teardown;
 
-  /// Converts a TestScriptBuilder to [TestScript]
+  /// converts a [TestScriptBuilder]
+  /// to [TestScript]
+  @override
   TestScript build() => TestScript.fromJson(toJson());
 
-  /// Converts a [TestScriptBuilder] to a [Map<String, dynamic>]
+  /// converts a [TestScriptBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1515,9 +1518,7 @@ class TestScriptBuilder extends DomainResourceBuilder {
       setup: setup ?? this.setup,
       test: test ?? this.test,
       teardown: teardown ?? this.teardown,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1859,10 +1860,13 @@ class TestScriptOriginBuilder extends BackboneElementBuilder {
   /// The type of origin profile the test system supports.
   CodingBuilder? profile;
 
-  /// Converts a TestScriptOriginBuilder to [TestScriptOrigin]
+  /// converts a [TestScriptOriginBuilder]
+  /// to [TestScriptOrigin]
+  @override
   TestScriptOrigin build() => TestScriptOrigin.fromJson(toJson());
 
-  /// Converts a [TestScriptOriginBuilder] to a [Map<String, dynamic>]
+  /// converts a [TestScriptOriginBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2123,9 +2127,7 @@ class TestScriptOriginBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       index: index ?? this.index,
       profile: profile ?? this.profile,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -2306,10 +2308,13 @@ class TestScriptDestinationBuilder extends BackboneElementBuilder {
   /// The type of destination profile the test system supports.
   CodingBuilder? profile;
 
-  /// Converts a TestScriptDestinationBuilder to [TestScriptDestination]
+  /// converts a [TestScriptDestinationBuilder]
+  /// to [TestScriptDestination]
+  @override
   TestScriptDestination build() => TestScriptDestination.fromJson(toJson());
 
-  /// Converts a [TestScriptDestinationBuilder] to a [Map<String, dynamic>]
+  /// converts a [TestScriptDestinationBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2570,9 +2575,7 @@ class TestScriptDestinationBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       index: index ?? this.index,
       profile: profile ?? this.profile,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -2760,10 +2763,13 @@ class TestScriptMetadataBuilder extends BackboneElementBuilder {
   /// the FHIR server being tested.
   List<TestScriptCapabilityBuilder>? capability;
 
-  /// Converts a TestScriptMetadataBuilder to [TestScriptMetadata]
+  /// converts a [TestScriptMetadataBuilder]
+  /// to [TestScriptMetadata]
+  @override
   TestScriptMetadata build() => TestScriptMetadata.fromJson(toJson());
 
-  /// Converts a [TestScriptMetadataBuilder] to a [Map<String, dynamic>]
+  /// converts a [TestScriptMetadataBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3034,9 +3040,7 @@ class TestScriptMetadataBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       link: link ?? this.link,
       capability: capability ?? this.capability,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -3215,10 +3219,13 @@ class TestScriptLinkBuilder extends BackboneElementBuilder {
   /// Short description of the link.
   FhirStringBuilder? description;
 
-  /// Converts a TestScriptLinkBuilder to [TestScriptLink]
+  /// converts a [TestScriptLinkBuilder]
+  /// to [TestScriptLink]
+  @override
   TestScriptLink build() => TestScriptLink.fromJson(toJson());
 
-  /// Converts a [TestScriptLinkBuilder] to a [Map<String, dynamic>]
+  /// converts a [TestScriptLinkBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3479,9 +3486,7 @@ class TestScriptLinkBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       url: url ?? this.url,
       description: description ?? this.description,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -3721,10 +3726,13 @@ class TestScriptCapabilityBuilder extends BackboneElementBuilder {
   /// capability statement, then all tests in this script are skipped.
   FhirCanonicalBuilder? capabilities;
 
-  /// Converts a TestScriptCapabilityBuilder to [TestScriptCapability]
+  /// converts a [TestScriptCapabilityBuilder]
+  /// to [TestScriptCapability]
+  @override
   TestScriptCapability build() => TestScriptCapability.fromJson(toJson());
 
-  /// Converts a [TestScriptCapabilityBuilder] to a [Map<String, dynamic>]
+  /// converts a [TestScriptCapabilityBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -4125,9 +4133,7 @@ class TestScriptCapabilityBuilder extends BackboneElementBuilder {
       destination: destination ?? this.destination,
       link: link ?? this.link,
       capabilities: capabilities ?? this.capabilities,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -4354,10 +4360,13 @@ class TestScriptFixtureBuilder extends BackboneElementBuilder {
   /// needed for operations).
   ReferenceBuilder? resource;
 
-  /// Converts a TestScriptFixtureBuilder to [TestScriptFixture]
+  /// converts a [TestScriptFixtureBuilder]
+  /// to [TestScriptFixture]
+  @override
   TestScriptFixture build() => TestScriptFixture.fromJson(toJson());
 
-  /// Converts a [TestScriptFixtureBuilder] to a [Map<String, dynamic>]
+  /// converts a [TestScriptFixtureBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -4644,9 +4653,7 @@ class TestScriptFixtureBuilder extends BackboneElementBuilder {
       autocreate: autocreate ?? this.autocreate,
       autodelete: autodelete ?? this.autodelete,
       resource: resource ?? this.resource,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -4905,10 +4912,13 @@ class TestScriptVariableBuilder extends BackboneElementBuilder {
   /// against within this variable.
   FhirIdBuilder? sourceId;
 
-  /// Converts a TestScriptVariableBuilder to [TestScriptVariable]
+  /// converts a [TestScriptVariableBuilder]
+  /// to [TestScriptVariable]
+  @override
   TestScriptVariable build() => TestScriptVariable.fromJson(toJson());
 
-  /// Converts a [TestScriptVariableBuilder] to a [Map<String, dynamic>]
+  /// converts a [TestScriptVariableBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -5325,9 +5335,7 @@ class TestScriptVariableBuilder extends BackboneElementBuilder {
       hint: hint ?? this.hint,
       path: path ?? this.path,
       sourceId: sourceId ?? this.sourceId,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -5534,10 +5542,13 @@ class TestScriptSetupBuilder extends BackboneElementBuilder {
   /// Action would contain either an operation or an assertion.
   List<TestScriptActionBuilder>? action;
 
-  /// Converts a TestScriptSetupBuilder to [TestScriptSetup]
+  /// converts a [TestScriptSetupBuilder]
+  /// to [TestScriptSetup]
+  @override
   TestScriptSetup build() => TestScriptSetup.fromJson(toJson());
 
-  /// Converts a [TestScriptSetupBuilder] to a [Map<String, dynamic>]
+  /// converts a [TestScriptSetupBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -5777,9 +5788,7 @@ class TestScriptSetupBuilder extends BackboneElementBuilder {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       action: action ?? this.action,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -5952,10 +5961,13 @@ class TestScriptActionBuilder extends BackboneElementBuilder {
   /// under test behaves appropriately.
   TestScriptAssertBuilder? assert_;
 
-  /// Converts a TestScriptActionBuilder to [TestScriptAction]
+  /// converts a [TestScriptActionBuilder]
+  /// to [TestScriptAction]
+  @override
   TestScriptAction build() => TestScriptAction.fromJson(toJson());
 
-  /// Converts a [TestScriptActionBuilder] to a [Map<String, dynamic>]
+  /// converts a [TestScriptActionBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -6216,9 +6228,7 @@ class TestScriptActionBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       operation: operation ?? this.operation,
       assert_: assert_ ?? this.assert_,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -6575,10 +6585,13 @@ class TestScriptOperationBuilder extends BackboneElementBuilder {
   /// Complete request URL.
   FhirStringBuilder? url;
 
-  /// Converts a TestScriptOperationBuilder to [TestScriptOperation]
+  /// converts a [TestScriptOperationBuilder]
+  /// to [TestScriptOperation]
+  @override
   TestScriptOperation build() => TestScriptOperation.fromJson(toJson());
 
-  /// Converts a [TestScriptOperationBuilder] to a [Map<String, dynamic>]
+  /// converts a [TestScriptOperationBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -7234,9 +7247,7 @@ class TestScriptOperationBuilder extends BackboneElementBuilder {
       sourceId: sourceId ?? this.sourceId,
       targetId: targetId ?? this.targetId,
       url: url ?? this.url,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -7505,10 +7516,13 @@ class TestScriptRequestHeaderBuilder extends BackboneElementBuilder {
   /// The value of the header e.g. "application/fhir+xml".
   FhirStringBuilder? value;
 
-  /// Converts a TestScriptRequestHeaderBuilder to [TestScriptRequestHeader]
+  /// converts a [TestScriptRequestHeaderBuilder]
+  /// to [TestScriptRequestHeader]
+  @override
   TestScriptRequestHeader build() => TestScriptRequestHeader.fromJson(toJson());
 
-  /// Converts a [TestScriptRequestHeaderBuilder] to a [Map<String, dynamic>]
+  /// converts a [TestScriptRequestHeaderBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -7769,9 +7783,7 @@ class TestScriptRequestHeaderBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       field: field ?? this.field,
       value: value ?? this.value,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -8188,10 +8200,13 @@ class TestScriptAssertBuilder extends BackboneElementBuilder {
   /// for this assert.
   FhirBooleanBuilder? warningOnly;
 
-  /// Converts a TestScriptAssertBuilder to [TestScriptAssert]
+  /// converts a [TestScriptAssertBuilder]
+  /// to [TestScriptAssert]
+  @override
   TestScriptAssert build() => TestScriptAssert.fromJson(toJson());
 
-  /// Converts a [TestScriptAssertBuilder] to a [Map<String, dynamic>]
+  /// converts a [TestScriptAssertBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -8973,9 +8988,7 @@ class TestScriptAssertBuilder extends BackboneElementBuilder {
       validateProfileId: validateProfileId ?? this.validateProfileId,
       value: value ?? this.value,
       warningOnly: warningOnly ?? this.warningOnly,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -9290,10 +9303,13 @@ class TestScriptTestBuilder extends BackboneElementBuilder {
   /// Action would contain either an operation or an assertion.
   List<TestScriptActionBuilder>? action;
 
-  /// Converts a TestScriptTestBuilder to [TestScriptTest]
+  /// converts a [TestScriptTestBuilder]
+  /// to [TestScriptTest]
+  @override
   TestScriptTest build() => TestScriptTest.fromJson(toJson());
 
-  /// Converts a [TestScriptTestBuilder] to a [Map<String, dynamic>]
+  /// converts a [TestScriptTestBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -9585,9 +9601,7 @@ class TestScriptTestBuilder extends BackboneElementBuilder {
       name: name ?? this.name,
       description: description ?? this.description,
       action: action ?? this.action,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -9772,10 +9786,13 @@ class TestScriptAction1Builder extends BackboneElementBuilder {
   /// under test behaves appropriately.
   TestScriptAssertBuilder? assert_;
 
-  /// Converts a TestScriptAction1Builder to [TestScriptAction1]
+  /// converts a [TestScriptAction1Builder]
+  /// to [TestScriptAction1]
+  @override
   TestScriptAction1 build() => TestScriptAction1.fromJson(toJson());
 
-  /// Converts a [TestScriptAction1Builder] to a [Map<String, dynamic>]
+  /// converts a [TestScriptAction1Builder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -10036,9 +10053,7 @@ class TestScriptAction1Builder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       operation: operation ?? this.operation,
       assert_: assert_ ?? this.assert_,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -10210,10 +10225,13 @@ class TestScriptTeardownBuilder extends BackboneElementBuilder {
   /// The teardown action will only contain an operation.
   List<TestScriptActionBuilder>? action;
 
-  /// Converts a TestScriptTeardownBuilder to [TestScriptTeardown]
+  /// converts a [TestScriptTeardownBuilder]
+  /// to [TestScriptTeardown]
+  @override
   TestScriptTeardown build() => TestScriptTeardown.fromJson(toJson());
 
-  /// Converts a [TestScriptTeardownBuilder] to a [Map<String, dynamic>]
+  /// converts a [TestScriptTeardownBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -10453,9 +10471,7 @@ class TestScriptTeardownBuilder extends BackboneElementBuilder {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       action: action ?? this.action,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -10616,10 +10632,13 @@ class TestScriptAction2Builder extends BackboneElementBuilder {
   /// An operation would involve a REST request to a server.
   TestScriptOperationBuilder? operation;
 
-  /// Converts a TestScriptAction2Builder to [TestScriptAction2]
+  /// converts a [TestScriptAction2Builder]
+  /// to [TestScriptAction2]
+  @override
   TestScriptAction2 build() => TestScriptAction2.fromJson(toJson());
 
-  /// Converts a [TestScriptAction2Builder] to a [Map<String, dynamic>]
+  /// converts a [TestScriptAction2Builder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -10854,9 +10873,7 @@ class TestScriptAction2Builder extends BackboneElementBuilder {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       operation: operation ?? this.operation,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

@@ -47,7 +47,8 @@ class ResearchSubjectStatusBuilder extends FhirCodeEnumBuilder {
   factory ResearchSubjectStatusBuilder.empty() =>
       ResearchSubjectStatusBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [ResearchSubjectStatusBuilder] from JSON.
+  /// Factory constructor to create [ResearchSubjectStatusBuilder]
+  /// from JSON.
   factory ResearchSubjectStatusBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
@@ -225,7 +226,9 @@ class ResearchSubjectStatusBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   ResearchSubjectStatusBuilder withElement(ElementBuilder? newElement) {
     return ResearchSubjectStatusBuilder._(
-        validatedValue: value, element: newElement);
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

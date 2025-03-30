@@ -47,7 +47,8 @@ class SortDirectionBuilder extends FhirCodeEnumBuilder {
   factory SortDirectionBuilder.empty() =>
       SortDirectionBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [SortDirectionBuilder] from JSON.
+  /// Factory constructor to create [SortDirectionBuilder]
+  /// from JSON.
   factory SortDirectionBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;

@@ -1,12 +1,12 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
+        Person,
+        PersonLink,
         R4ResourceType,
         StringExtensionForFHIR,
-        Person,
-        PersonLink;
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -278,10 +278,13 @@ class PersonBuilder extends DomainResourceBuilder {
   /// Link to a resource that concerns the same actual person.
   List<PersonLinkBuilder>? link;
 
-  /// Converts a PersonBuilder to [Person]
+  /// converts a [PersonBuilder]
+  /// to [Person]
+  @override
   Person build() => Person.fromJson(toJson());
 
-  /// Converts a [PersonBuilder] to a [Map<String, dynamic>]
+  /// converts a [PersonBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -910,9 +913,7 @@ class PersonBuilder extends DomainResourceBuilder {
       managingOrganization: managingOrganization ?? this.managingOrganization,
       active: active ?? this.active,
       link: link ?? this.link,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1169,10 +1170,13 @@ class PersonLinkBuilder extends BackboneElementBuilder {
   /// resource.
   IdentityAssuranceLevelBuilder? assurance;
 
-  /// Converts a PersonLinkBuilder to [PersonLink]
+  /// converts a [PersonLinkBuilder]
+  /// to [PersonLink]
+  @override
   PersonLink build() => PersonLink.fromJson(toJson());
 
-  /// Converts a [PersonLinkBuilder] to a [Map<String, dynamic>]
+  /// converts a [PersonLinkBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1433,9 +1437,7 @@ class PersonLinkBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       target: target ?? this.target,
       assurance: assurance ?? this.assurance,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

@@ -46,7 +46,8 @@ class NameUseBuilder extends FhirCodeEnumBuilder {
   /// Create empty [NameUseBuilder] with element only
   factory NameUseBuilder.empty() => NameUseBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [NameUseBuilder] from JSON.
+  /// Factory constructor to create [NameUseBuilder]
+  /// from JSON.
   factory NameUseBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;

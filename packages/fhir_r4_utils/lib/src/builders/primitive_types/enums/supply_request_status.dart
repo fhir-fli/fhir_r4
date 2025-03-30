@@ -47,7 +47,8 @@ class SupplyRequestStatusBuilder extends FhirCodeEnumBuilder {
   factory SupplyRequestStatusBuilder.empty() =>
       SupplyRequestStatusBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [SupplyRequestStatusBuilder] from JSON.
+  /// Factory constructor to create [SupplyRequestStatusBuilder]
+  /// from JSON.
   factory SupplyRequestStatusBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
@@ -155,7 +156,9 @@ class SupplyRequestStatusBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   SupplyRequestStatusBuilder withElement(ElementBuilder? newElement) {
     return SupplyRequestStatusBuilder._(
-        validatedValue: value, element: newElement);
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

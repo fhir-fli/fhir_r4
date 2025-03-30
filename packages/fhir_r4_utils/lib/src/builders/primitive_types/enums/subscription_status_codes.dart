@@ -47,7 +47,8 @@ class SubscriptionStatusCodesBuilder extends FhirCodeEnumBuilder {
   factory SubscriptionStatusCodesBuilder.empty() =>
       SubscriptionStatusCodesBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [SubscriptionStatusCodesBuilder] from JSON.
+  /// Factory constructor to create [SubscriptionStatusCodesBuilder]
+  /// from JSON.
   factory SubscriptionStatusCodesBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
@@ -123,7 +124,9 @@ class SubscriptionStatusCodesBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   SubscriptionStatusCodesBuilder withElement(ElementBuilder? newElement) {
     return SubscriptionStatusCodesBuilder._(
-        validatedValue: value, element: newElement);
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

@@ -2656,7 +2656,7 @@ class ImplementationGuideDefinition extends BackboneElement {
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
   factory ImplementationGuideDefinition.empty() =>
-      ImplementationGuideDefinition(
+      const ImplementationGuideDefinition(
         resource: <ImplementationGuideResource>[],
       );
 
@@ -6165,7 +6165,8 @@ class ImplementationGuideManifest extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory ImplementationGuideManifest.empty() => ImplementationGuideManifest(
+  factory ImplementationGuideManifest.empty() =>
+      const ImplementationGuideManifest(
         resource: <ImplementationGuideResource1>[],
       );
 

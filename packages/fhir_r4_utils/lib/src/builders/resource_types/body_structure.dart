@@ -1,11 +1,11 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
+        BodyStructure,
         R4ResourceType,
         StringExtensionForFHIR,
-        BodyStructure;
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -250,10 +250,13 @@ class BodyStructureBuilder extends DomainResourceBuilder {
   /// The person to which the body site belongs.
   ReferenceBuilder? patient;
 
-  /// Converts a BodyStructureBuilder to [BodyStructure]
+  /// converts a [BodyStructureBuilder]
+  /// to [BodyStructure]
+  @override
   BodyStructure build() => BodyStructure.fromJson(toJson());
 
-  /// Converts a [BodyStructureBuilder] to a [Map<String, dynamic>]
+  /// converts a [BodyStructureBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -820,9 +823,7 @@ class BodyStructureBuilder extends DomainResourceBuilder {
       description: description ?? this.description,
       image: image ?? this.image,
       patient: patient ?? this.patient,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

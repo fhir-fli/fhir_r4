@@ -47,7 +47,8 @@ class FHIRVersionBuilder extends FhirCodeEnumBuilder {
   factory FHIRVersionBuilder.empty() =>
       FHIRVersionBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [FHIRVersionBuilder] from JSON.
+  /// Factory constructor to create [FHIRVersionBuilder]
+  /// from JSON.
   factory FHIRVersionBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;

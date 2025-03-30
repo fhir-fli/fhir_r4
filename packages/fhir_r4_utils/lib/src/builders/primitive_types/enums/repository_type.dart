@@ -47,7 +47,8 @@ class RepositoryTypeBuilder extends FhirCodeEnumBuilder {
   factory RepositoryTypeBuilder.empty() =>
       RepositoryTypeBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [RepositoryTypeBuilder] from JSON.
+  /// Factory constructor to create [RepositoryTypeBuilder]
+  /// from JSON.
   factory RepositoryTypeBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;

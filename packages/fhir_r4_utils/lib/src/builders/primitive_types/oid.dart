@@ -23,11 +23,11 @@ class FhirOidBuilder extends PrimitiveTypeBuilder<String>
   /// we throw an error.
   FhirOidBuilder._({
     required String? validatedValue,
-    this.element,
-    this.id,
-    this.extension_,
-    this.disallowExtensions,
-    this.objectPath = 'Oid',
+    super.element,
+    super.id,
+    super.extension_,
+    super.disallowExtensions,
+    super.objectPath = 'Oid',
   }) : super._(value: validatedValue) {
     if (value == null && element == null) {
       throw ArgumentError('A value or element is required for FhirOidBuilder');
@@ -61,7 +61,8 @@ class FhirOidBuilder extends PrimitiveTypeBuilder<String>
   factory FhirOidBuilder.empty() =>
       FhirOidBuilder(null, element: ElementBuilder.empty());
 
-  /// Factory constructor to create [FhirOidBuilder] from JSON.
+  /// Factory constructor to create [FhirOidBuilder]
+  /// from JSON.
   factory FhirOidBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elemJson = json['_value'] as Map<String, dynamic>?;
@@ -81,10 +82,12 @@ class FhirOidBuilder extends PrimitiveTypeBuilder<String>
                 jsonDecode(jsonEncode(yaml)) as Map<String, dynamic>,
               )
             : throw const FormatException(
-                'Invalid YAML format for FhirOidBuilder');
+                'Invalid YAML format for FhirOidBuilder',
+              );
   }
 
-  /// Attempts to parse the input as a [FhirOidBuilder], returns `null` if it fails.
+  /// Attempts to parse the input as a [FhirOidBuilder],
+  /// returns `null` if it fails.
   static FhirOidBuilder? tryParse(dynamic input) {
     try {
       return input is String ? FhirOidBuilder(input) : null;
@@ -104,21 +107,6 @@ class FhirOidBuilder extends PrimitiveTypeBuilder<String>
     }
     throw FormatException('Invalid FhirOid: $input');
   }
-
-  /// Element property
-  ElementBuilder? element;
-
-  /// ID property
-  FhirStringBuilder? id;
-
-  /// Extensions property
-  List<FhirExtensionBuilder>? extension_;
-
-  /// DisallowExtensions property
-  bool? disallowExtensions;
-
-  /// ObjectPath property
-  String? objectPath;
 
   /// Returns the FHIR type as 'oid'.
   @override

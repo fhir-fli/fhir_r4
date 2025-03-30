@@ -1,11 +1,11 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
-        StringExtensionForFHIR,
         Dosage,
-        DosageDoseAndRate;
+        DosageDoseAndRate,
+        StringExtensionForFHIR,
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -282,10 +282,13 @@ class DosageBuilder extends BackboneTypeBuilder
   /// Upper limit on medication per lifetime of the patient.
   QuantityBuilder? maxDosePerLifetime;
 
-  /// Converts a DosageBuilder to [Dosage]
+  /// converts a [DosageBuilder]
+  /// to [Dosage]
+  @override
   Dosage build() => Dosage.fromJson(toJson());
 
-  /// Converts a [DosageBuilder] to a [Map<String, dynamic>]
+  /// converts a [DosageBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -842,7 +845,7 @@ class DosageBuilder extends BackboneTypeBuilder
     if (additionalInstruction) this.additionalInstruction = null;
     if (patientInstruction) this.patientInstruction = null;
     if (timing) this.timing = null;
-    if (asNeeded) this.asNeededX = null;
+    if (asNeeded) asNeededX = null;
     if (site) this.site = null;
     if (route) this.route = null;
     if (method) this.method = null;
@@ -898,9 +901,7 @@ class DosageBuilder extends BackboneTypeBuilder
       maxDosePerAdministration:
           maxDosePerAdministration ?? this.maxDosePerAdministration,
       maxDosePerLifetime: maxDosePerLifetime ?? this.maxDosePerLifetime,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1163,10 +1164,13 @@ class DosageDoseAndRateBuilder extends ElementBuilder {
   /// Getter for [rateQuantity] as a QuantityBuilder
   QuantityBuilder? get rateQuantity => rateX?.isAs<QuantityBuilder>();
 
-  /// Converts a DosageDoseAndRateBuilder to [DosageDoseAndRate]
+  /// converts a [DosageDoseAndRateBuilder]
+  /// to [DosageDoseAndRate]
+  @override
   DosageDoseAndRate build() => DosageDoseAndRate.fromJson(toJson());
 
-  /// Converts a [DosageDoseAndRateBuilder] to a [Map<String, dynamic>]
+  /// converts a [DosageDoseAndRateBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1528,8 +1532,8 @@ class DosageDoseAndRateBuilder extends ElementBuilder {
     if (id) this.id = null;
     if (extension_) this.extension_ = null;
     if (type) this.type = null;
-    if (dose) this.doseX = null;
-    if (rate) this.rateX = null;
+    if (dose) doseX = null;
+    if (rate) rateX = null;
   }
 
   @override
@@ -1554,9 +1558,7 @@ class DosageDoseAndRateBuilder extends ElementBuilder {
       type: type ?? this.type,
       doseX: doseX ?? this.doseX,
       rateX: rateX ?? this.rateX,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

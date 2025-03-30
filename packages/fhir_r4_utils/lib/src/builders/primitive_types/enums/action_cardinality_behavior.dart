@@ -48,7 +48,8 @@ class ActionCardinalityBehaviorBuilder extends FhirCodeEnumBuilder {
   factory ActionCardinalityBehaviorBuilder.empty() =>
       ActionCardinalityBehaviorBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [ActionCardinalityBehaviorBuilder] from JSON.
+  /// Factory constructor to create [ActionCardinalityBehaviorBuilder]
+  /// from JSON.
   factory ActionCardinalityBehaviorBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
@@ -108,7 +109,9 @@ class ActionCardinalityBehaviorBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   ActionCardinalityBehaviorBuilder withElement(ElementBuilder? newElement) {
     return ActionCardinalityBehaviorBuilder._(
-        validatedValue: value, element: newElement);
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

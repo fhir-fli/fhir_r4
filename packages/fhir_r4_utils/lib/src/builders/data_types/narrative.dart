@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, StringExtensionForFHIR, Narrative;
+    show Narrative, StringExtensionForFHIR, yamlMapToJson, yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -113,10 +113,13 @@ class NarrativeBuilder extends DataTypeBuilder {
   /// The actual narrative content, a stripped down version of XHTML.
   FhirXhtmlBuilder? div;
 
-  /// Converts a NarrativeBuilder to [Narrative]
+  /// converts a [NarrativeBuilder]
+  /// to [Narrative]
+  @override
   Narrative build() => Narrative.fromJson(toJson());
 
-  /// Converts a [NarrativeBuilder] to a [Map<String, dynamic>]
+  /// converts a [NarrativeBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -346,9 +349,7 @@ class NarrativeBuilder extends DataTypeBuilder {
       extension_: extension_ ?? this.extension_,
       status: status ?? this.status,
       div: div ?? this.div,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

@@ -1,12 +1,12 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
+        DocumentManifest,
+        DocumentManifestRelated,
         R4ResourceType,
         StringExtensionForFHIR,
-        DocumentManifest,
-        DocumentManifestRelated;
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -312,10 +312,13 @@ class DocumentManifestBuilder extends DomainResourceBuilder {
   /// Related identifiers or resources associated with the DocumentManifest.
   List<DocumentManifestRelatedBuilder>? related;
 
-  /// Converts a DocumentManifestBuilder to [DocumentManifest]
+  /// converts a [DocumentManifestBuilder]
+  /// to [DocumentManifest]
+  @override
   DocumentManifest build() => DocumentManifest.fromJson(toJson());
 
-  /// Converts a [DocumentManifestBuilder] to a [Map<String, dynamic>]
+  /// converts a [DocumentManifestBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -996,9 +999,7 @@ class DocumentManifestBuilder extends DomainResourceBuilder {
       description: description ?? this.description,
       content: content ?? this.content,
       related: related ?? this.related,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1269,10 +1270,13 @@ class DocumentManifestRelatedBuilder extends BackboneElementBuilder {
   /// ServiceRequest, Procedure, EligibilityRequest, etc.
   ReferenceBuilder? ref;
 
-  /// Converts a DocumentManifestRelatedBuilder to [DocumentManifestRelated]
+  /// converts a [DocumentManifestRelatedBuilder]
+  /// to [DocumentManifestRelated]
+  @override
   DocumentManifestRelated build() => DocumentManifestRelated.fromJson(toJson());
 
-  /// Converts a [DocumentManifestRelatedBuilder] to a [Map<String, dynamic>]
+  /// converts a [DocumentManifestRelatedBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1533,9 +1537,7 @@ class DocumentManifestRelatedBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       identifier: identifier ?? this.identifier,
       ref: ref ?? this.ref,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

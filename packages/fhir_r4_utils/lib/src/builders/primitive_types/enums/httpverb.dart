@@ -47,7 +47,8 @@ class HTTPVerbBuilder extends FhirCodeEnumBuilder {
   /// Create empty [HTTPVerbBuilder] with element only
   factory HTTPVerbBuilder.empty() => HTTPVerbBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [HTTPVerbBuilder] from JSON.
+  /// Factory constructor to create [HTTPVerbBuilder]
+  /// from JSON.
   factory HTTPVerbBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;

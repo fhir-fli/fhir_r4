@@ -48,7 +48,8 @@ class GoalLifecycleStatusBuilder extends FhirCodeEnumBuilder {
   factory GoalLifecycleStatusBuilder.empty() =>
       GoalLifecycleStatusBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [GoalLifecycleStatusBuilder] from JSON.
+  /// Factory constructor to create [GoalLifecycleStatusBuilder]
+  /// from JSON.
   factory GoalLifecycleStatusBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
@@ -167,7 +168,9 @@ class GoalLifecycleStatusBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   GoalLifecycleStatusBuilder withElement(ElementBuilder? newElement) {
     return GoalLifecycleStatusBuilder._(
-        validatedValue: value, element: newElement);
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

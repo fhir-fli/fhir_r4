@@ -1,15 +1,15 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
-        R4ResourceType,
-        StringExtensionForFHIR,
         Composition,
         CompositionAttester,
-        CompositionRelatesTo,
         CompositionEvent,
-        CompositionSection;
+        CompositionRelatesTo,
+        CompositionSection,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -362,10 +362,13 @@ class CompositionBuilder extends DomainResourceBuilder {
   /// The root of the sections that make up the composition.
   List<CompositionSectionBuilder>? section;
 
-  /// Converts a CompositionBuilder to [Composition]
+  /// converts a [CompositionBuilder]
+  /// to [Composition]
+  @override
   Composition build() => Composition.fromJson(toJson());
 
-  /// Converts a [CompositionBuilder] to a [Map<String, dynamic>]
+  /// converts a [CompositionBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1129,9 +1132,7 @@ class CompositionBuilder extends DomainResourceBuilder {
       relatesTo: relatesTo ?? this.relatesTo,
       event: event ?? this.event,
       section: section ?? this.section,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1429,10 +1430,13 @@ class CompositionAttesterBuilder extends BackboneElementBuilder {
   /// Who attested the composition in the specified way.
   ReferenceBuilder? party;
 
-  /// Converts a CompositionAttesterBuilder to [CompositionAttester]
+  /// converts a [CompositionAttesterBuilder]
+  /// to [CompositionAttester]
+  @override
   CompositionAttester build() => CompositionAttester.fromJson(toJson());
 
-  /// Converts a [CompositionAttesterBuilder] to a [Map<String, dynamic>]
+  /// converts a [CompositionAttesterBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1719,9 +1723,7 @@ class CompositionAttesterBuilder extends BackboneElementBuilder {
       mode: mode ?? this.mode,
       time: time ?? this.time,
       party: party ?? this.party,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1915,10 +1917,13 @@ class CompositionRelatesToBuilder extends BackboneElementBuilder {
   /// Getter for [targetReference] as a ReferenceBuilder
   ReferenceBuilder? get targetReference => targetX?.isAs<ReferenceBuilder>();
 
-  /// Converts a CompositionRelatesToBuilder to [CompositionRelatesTo]
+  /// converts a [CompositionRelatesToBuilder]
+  /// to [CompositionRelatesTo]
+  @override
   CompositionRelatesTo build() => CompositionRelatesTo.fromJson(toJson());
 
-  /// Converts a [CompositionRelatesToBuilder] to a [Map<String, dynamic>]
+  /// converts a [CompositionRelatesToBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2208,7 +2213,7 @@ class CompositionRelatesToBuilder extends BackboneElementBuilder {
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
     if (code) this.code = null;
-    if (target) this.targetX = null;
+    if (target) targetX = null;
   }
 
   @override
@@ -2233,9 +2238,7 @@ class CompositionRelatesToBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       code: code ?? this.code,
       targetX: targetX ?? this.targetX,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -2441,10 +2444,13 @@ class CompositionEventBuilder extends BackboneElementBuilder {
   /// appendectomy.
   List<ReferenceBuilder>? detail;
 
-  /// Converts a CompositionEventBuilder to [CompositionEvent]
+  /// converts a [CompositionEventBuilder]
+  /// to [CompositionEvent]
+  @override
   CompositionEvent build() => CompositionEvent.fromJson(toJson());
 
-  /// Converts a [CompositionEventBuilder] to a [Map<String, dynamic>]
+  /// converts a [CompositionEventBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2741,9 +2747,7 @@ class CompositionEventBuilder extends BackboneElementBuilder {
       code: code ?? this.code,
       period: period ?? this.period,
       detail: detail ?? this.detail,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -3048,10 +3052,13 @@ class CompositionSectionBuilder extends BackboneElementBuilder {
   /// A nested sub-section within this section.
   List<CompositionSectionBuilder>? section;
 
-  /// Converts a CompositionSectionBuilder to [CompositionSection]
+  /// converts a [CompositionSectionBuilder]
+  /// to [CompositionSection]
+  @override
   CompositionSection build() => CompositionSection.fromJson(toJson());
 
-  /// Converts a [CompositionSectionBuilder] to a [Map<String, dynamic>]
+  /// converts a [CompositionSectionBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3535,9 +3542,7 @@ class CompositionSectionBuilder extends BackboneElementBuilder {
       entry: entry ?? this.entry,
       emptyReason: emptyReason ?? this.emptyReason,
       section: section ?? this.section,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

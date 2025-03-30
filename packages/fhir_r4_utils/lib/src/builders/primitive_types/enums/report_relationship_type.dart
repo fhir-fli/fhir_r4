@@ -47,7 +47,8 @@ class ReportRelationshipTypeBuilder extends FhirCodeEnumBuilder {
   factory ReportRelationshipTypeBuilder.empty() =>
       ReportRelationshipTypeBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [ReportRelationshipTypeBuilder] from JSON.
+  /// Factory constructor to create [ReportRelationshipTypeBuilder]
+  /// from JSON.
   factory ReportRelationshipTypeBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
@@ -171,7 +172,9 @@ class ReportRelationshipTypeBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   ReportRelationshipTypeBuilder withElement(ElementBuilder? newElement) {
     return ReportRelationshipTypeBuilder._(
-        validatedValue: value, element: newElement);
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

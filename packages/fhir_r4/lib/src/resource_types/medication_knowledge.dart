@@ -7440,7 +7440,7 @@ class MedicationKnowledgeDrugCharacteristic extends BackboneElement {
           'CodeableConcept',
           'FhirString',
           'Quantity',
-          'FhirBase64Binary'
+          'FhirBase64Binary',
         ];
       case 'valueCodeableConcept':
         return ['CodeableConcept'];

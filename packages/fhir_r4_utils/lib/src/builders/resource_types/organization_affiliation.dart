@@ -1,11 +1,11 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
+        OrganizationAffiliation,
         R4ResourceType,
         StringExtensionForFHIR,
-        OrganizationAffiliation;
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -321,10 +321,13 @@ class OrganizationAffiliationBuilder extends DomainResourceBuilder {
   /// role.
   List<ReferenceBuilder>? endpoint;
 
-  /// Converts a OrganizationAffiliationBuilder to [OrganizationAffiliation]
+  /// converts a [OrganizationAffiliationBuilder]
+  /// to [OrganizationAffiliation]
+  @override
   OrganizationAffiliation build() => OrganizationAffiliation.fromJson(toJson());
 
-  /// Converts a [OrganizationAffiliationBuilder] to a [Map<String, dynamic>]
+  /// converts a [OrganizationAffiliationBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1021,9 +1024,7 @@ class OrganizationAffiliationBuilder extends DomainResourceBuilder {
       healthcareService: healthcareService ?? this.healthcareService,
       telecom: telecom ?? this.telecom,
       endpoint: endpoint ?? this.endpoint,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

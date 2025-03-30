@@ -48,7 +48,8 @@ class VariableTypeBuilder extends FhirCodeEnumBuilder {
   factory VariableTypeBuilder.empty() =>
       VariableTypeBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [VariableTypeBuilder] from JSON.
+  /// Factory constructor to create [VariableTypeBuilder]
+  /// from JSON.
   factory VariableTypeBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;

@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, StringExtensionForFHIR, ProductShelfLife;
+    show ProductShelfLife, StringExtensionForFHIR, yamlMapToJson, yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -160,10 +160,13 @@ class ProductShelfLifeBuilder extends BackboneTypeBuilder {
   /// controlled term identifier shall be specified.
   List<CodeableConceptBuilder>? specialPrecautionsForStorage;
 
-  /// Converts a ProductShelfLifeBuilder to [ProductShelfLife]
+  /// converts a [ProductShelfLifeBuilder]
+  /// to [ProductShelfLife]
+  @override
   ProductShelfLife build() => ProductShelfLife.fromJson(toJson());
 
-  /// Converts a [ProductShelfLifeBuilder] to a [Map<String, dynamic>]
+  /// converts a [ProductShelfLifeBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -357,7 +360,7 @@ class ProductShelfLifeBuilder extends BackboneTypeBuilder {
             // Add single element to existing list or create new list
             specialPrecautionsForStorage = [
               ...(specialPrecautionsForStorage ?? []),
-              child
+              child,
             ];
             return;
           } else {
@@ -485,9 +488,7 @@ class ProductShelfLifeBuilder extends BackboneTypeBuilder {
       period: period ?? this.period,
       specialPrecautionsForStorage:
           specialPrecautionsForStorage ?? this.specialPrecautionsForStorage,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

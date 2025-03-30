@@ -1,16 +1,16 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
+        Bundle,
+        BundleEntry,
+        BundleLink,
+        BundleRequest,
+        BundleResponse,
+        BundleSearch,
         R4ResourceType,
         StringExtensionForFHIR,
-        Bundle,
-        BundleLink,
-        BundleEntry,
-        BundleSearch,
-        BundleRequest,
-        BundleResponse;
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -200,10 +200,13 @@ class BundleBuilder extends ResourceBuilder {
   /// Digital Signature - base64 encoded. XML-DSig or a JWT.
   SignatureBuilder? signature;
 
-  /// Converts a BundleBuilder to [Bundle]
+  /// converts a [BundleBuilder]
+  /// to [Bundle]
+  @override
   Bundle build() => Bundle.fromJson(toJson());
 
-  /// Converts a [BundleBuilder] to a [Map<String, dynamic>]
+  /// converts a [BundleBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -620,9 +623,7 @@ class BundleBuilder extends ResourceBuilder {
       link: link ?? this.link,
       entry: entry ?? this.entry,
       signature: signature ?? this.signature,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -837,10 +838,13 @@ class BundleLinkBuilder extends BackboneElementBuilder {
   /// The reference details for the link.
   FhirUriBuilder? url;
 
-  /// Converts a BundleLinkBuilder to [BundleLink]
+  /// converts a [BundleLinkBuilder]
+  /// to [BundleLink]
+  @override
   BundleLink build() => BundleLink.fromJson(toJson());
 
-  /// Converts a [BundleLinkBuilder] to a [Map<String, dynamic>]
+  /// converts a [BundleLinkBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1101,9 +1105,7 @@ class BundleLinkBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       relation: relation ?? this.relation,
       url: url ?? this.url,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1344,10 +1346,13 @@ class BundleEntryBuilder extends BackboneElementBuilder {
   /// an operation where when returning history.
   BundleResponseBuilder? response;
 
-  /// Converts a BundleEntryBuilder to [BundleEntry]
+  /// converts a [BundleEntryBuilder]
+  /// to [BundleEntry]
+  @override
   BundleEntry build() => BundleEntry.fromJson(toJson());
 
-  /// Converts a [BundleEntryBuilder] to a [Map<String, dynamic>]
+  /// converts a [BundleEntryBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1717,9 +1722,7 @@ class BundleEntryBuilder extends BackboneElementBuilder {
       search: search ?? this.search,
       request: request ?? this.request,
       response: response ?? this.response,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1924,10 +1927,13 @@ class BundleSearchBuilder extends BackboneElementBuilder {
   /// When searching, the server's search ranking score for the entry.
   FhirDecimalBuilder? score;
 
-  /// Converts a BundleSearchBuilder to [BundleSearch]
+  /// converts a [BundleSearchBuilder]
+  /// to [BundleSearch]
+  @override
   BundleSearch build() => BundleSearch.fromJson(toJson());
 
-  /// Converts a [BundleSearchBuilder] to a [Map<String, dynamic>]
+  /// converts a [BundleSearchBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2188,9 +2194,7 @@ class BundleSearchBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       mode: mode ?? this.mode,
       score: score ?? this.score,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -2424,10 +2428,13 @@ class BundleRequestBuilder extends BackboneElementBuilder {
   /// portion of the URL - what follows the "?" (not including the "?").
   FhirStringBuilder? ifNoneExist;
 
-  /// Converts a BundleRequestBuilder to [BundleRequest]
+  /// converts a [BundleRequestBuilder]
+  /// to [BundleRequest]
+  @override
   BundleRequest build() => BundleRequest.fromJson(toJson());
 
-  /// Converts a [BundleRequestBuilder] to a [Map<String, dynamic>]
+  /// converts a [BundleRequestBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2792,9 +2799,7 @@ class BundleRequestBuilder extends BackboneElementBuilder {
       ifModifiedSince: ifModifiedSince ?? this.ifModifiedSince,
       ifMatch: ifMatch ?? this.ifMatch,
       ifNoneExist: ifNoneExist ?? this.ifNoneExist,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -3038,10 +3043,13 @@ class BundleResponseBuilder extends BackboneElementBuilder {
   /// processing this entry in a batch or transaction.
   ResourceBuilder? outcome;
 
-  /// Converts a BundleResponseBuilder to [BundleResponse]
+  /// converts a [BundleResponseBuilder]
+  /// to [BundleResponse]
+  @override
   BundleResponse build() => BundleResponse.fromJson(toJson());
 
-  /// Converts a [BundleResponseBuilder] to a [Map<String, dynamic>]
+  /// converts a [BundleResponseBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3380,9 +3388,7 @@ class BundleResponseBuilder extends BackboneElementBuilder {
       etag: etag ?? this.etag,
       lastModified: lastModified ?? this.lastModified,
       outcome: outcome ?? this.outcome,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

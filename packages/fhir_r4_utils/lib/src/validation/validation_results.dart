@@ -110,7 +110,8 @@ class ValidationResults {
   }
 
   fhir.OperationOutcomeIssue _makeOperationOutcomeIssue(
-          ValidationDiagnostics e) =>
+    ValidationDiagnostics e,
+  ) =>
       fhir.OperationOutcomeIssue(
         severity: fhir.IssueSeverity.fromJson({'value': e.severity.toJson()}),
         code: fhir.IssueType.processing,

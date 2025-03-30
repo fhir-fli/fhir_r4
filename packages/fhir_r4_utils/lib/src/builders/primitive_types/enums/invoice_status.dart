@@ -47,7 +47,8 @@ class InvoiceStatusBuilder extends FhirCodeEnumBuilder {
   factory InvoiceStatusBuilder.empty() =>
       InvoiceStatusBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [InvoiceStatusBuilder] from JSON.
+  /// Factory constructor to create [InvoiceStatusBuilder]
+  /// from JSON.
   factory InvoiceStatusBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;

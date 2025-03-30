@@ -48,7 +48,8 @@ class RequestIntentBuilder extends FhirCodeEnumBuilder {
   factory RequestIntentBuilder.empty() =>
       RequestIntentBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [RequestIntentBuilder] from JSON.
+  /// Factory constructor to create [RequestIntentBuilder]
+  /// from JSON.
   factory RequestIntentBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;

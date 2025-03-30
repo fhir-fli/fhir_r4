@@ -47,7 +47,8 @@ class ActionRelationshipTypeBuilder extends FhirCodeEnumBuilder {
   factory ActionRelationshipTypeBuilder.empty() =>
       ActionRelationshipTypeBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [ActionRelationshipTypeBuilder] from JSON.
+  /// Factory constructor to create [ActionRelationshipTypeBuilder]
+  /// from JSON.
   factory ActionRelationshipTypeBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
@@ -181,7 +182,9 @@ class ActionRelationshipTypeBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   ActionRelationshipTypeBuilder withElement(ElementBuilder? newElement) {
     return ActionRelationshipTypeBuilder._(
-        validatedValue: value, element: newElement);
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

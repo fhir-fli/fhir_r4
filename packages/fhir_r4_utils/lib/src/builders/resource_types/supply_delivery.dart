@@ -1,12 +1,12 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
         R4ResourceType,
         StringExtensionForFHIR,
         SupplyDelivery,
-        SupplyDeliverySuppliedItem;
+        SupplyDeliverySuppliedItem,
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -303,10 +303,13 @@ class SupplyDeliveryBuilder extends DomainResourceBuilder {
   /// Identifies the person who picked up the Supply.
   List<ReferenceBuilder>? receiver;
 
-  /// Converts a SupplyDeliveryBuilder to [SupplyDelivery]
+  /// converts a [SupplyDeliveryBuilder]
+  /// to [SupplyDelivery]
+  @override
   SupplyDelivery build() => SupplyDelivery.fromJson(toJson());
 
-  /// Converts a [SupplyDeliveryBuilder] to a [Map<String, dynamic>]
+  /// converts a [SupplyDeliveryBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -979,7 +982,7 @@ class SupplyDeliveryBuilder extends DomainResourceBuilder {
     if (patient) this.patient = null;
     if (type) this.type = null;
     if (suppliedItem) this.suppliedItem = null;
-    if (occurrence) this.occurrenceX = null;
+    if (occurrence) occurrenceX = null;
     if (supplier) this.supplier = null;
     if (destination) this.destination = null;
     if (receiver) this.receiver = null;
@@ -1034,9 +1037,7 @@ class SupplyDeliveryBuilder extends DomainResourceBuilder {
       supplier: supplier ?? this.supplier,
       destination: destination ?? this.destination,
       receiver: receiver ?? this.receiver,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1311,11 +1312,14 @@ class SupplyDeliverySuppliedItemBuilder extends BackboneElementBuilder {
   /// Getter for [itemReference] as a ReferenceBuilder
   ReferenceBuilder? get itemReference => itemX?.isAs<ReferenceBuilder>();
 
-  /// Converts a SupplyDeliverySuppliedItemBuilder to [SupplyDeliverySuppliedItem]
+  /// converts a [SupplyDeliverySuppliedItemBuilder]
+  /// to [SupplyDeliverySuppliedItem]
+  @override
   SupplyDeliverySuppliedItem build() =>
       SupplyDeliverySuppliedItem.fromJson(toJson());
 
-  /// Converts a [SupplyDeliverySuppliedItemBuilder] to a [Map<String, dynamic>]
+  /// converts a [SupplyDeliverySuppliedItemBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1605,7 +1609,7 @@ class SupplyDeliverySuppliedItemBuilder extends BackboneElementBuilder {
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
     if (quantity) this.quantity = null;
-    if (item) this.itemX = null;
+    if (item) itemX = null;
   }
 
   @override
@@ -1630,9 +1634,7 @@ class SupplyDeliverySuppliedItemBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       quantity: quantity ?? this.quantity,
       itemX: itemX ?? this.itemX,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

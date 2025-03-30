@@ -1,15 +1,15 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
-        R4ResourceType,
-        StringExtensionForFHIR,
         Ingredient,
         IngredientManufacturer,
-        IngredientSubstance,
+        IngredientReferenceStrength,
         IngredientStrength,
-        IngredientReferenceStrength;
+        IngredientSubstance,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -262,10 +262,13 @@ class IngredientBuilder extends DomainResourceBuilder {
   /// The substance that comprises this ingredient.
   IngredientSubstanceBuilder? substance;
 
-  /// Converts a IngredientBuilder to [Ingredient]
+  /// converts a [IngredientBuilder]
+  /// to [Ingredient]
+  @override
   Ingredient build() => Ingredient.fromJson(toJson());
 
-  /// Converts a [IngredientBuilder] to a [Map<String, dynamic>]
+  /// converts a [IngredientBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -832,9 +835,7 @@ class IngredientBuilder extends DomainResourceBuilder {
       allergenicIndicator: allergenicIndicator ?? this.allergenicIndicator,
       manufacturer: manufacturer ?? this.manufacturer,
       substance: substance ?? this.substance,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1087,10 +1088,13 @@ class IngredientManufacturerBuilder extends BackboneElementBuilder {
   /// An organization that manufactures this ingredient.
   ReferenceBuilder? manufacturer;
 
-  /// Converts a IngredientManufacturerBuilder to [IngredientManufacturer]
+  /// converts a [IngredientManufacturerBuilder]
+  /// to [IngredientManufacturer]
+  @override
   IngredientManufacturer build() => IngredientManufacturer.fromJson(toJson());
 
-  /// Converts a [IngredientManufacturerBuilder] to a [Map<String, dynamic>]
+  /// converts a [IngredientManufacturerBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1351,9 +1355,7 @@ class IngredientManufacturerBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       role: role ?? this.role,
       manufacturer: manufacturer ?? this.manufacturer,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1539,10 +1541,13 @@ class IngredientSubstanceBuilder extends BackboneElementBuilder {
   /// strength.
   List<IngredientStrengthBuilder>? strength;
 
-  /// Converts a IngredientSubstanceBuilder to [IngredientSubstance]
+  /// converts a [IngredientSubstanceBuilder]
+  /// to [IngredientSubstance]
+  @override
   IngredientSubstance build() => IngredientSubstance.fromJson(toJson());
 
-  /// Converts a [IngredientSubstanceBuilder] to a [Map<String, dynamic>]
+  /// converts a [IngredientSubstanceBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1808,9 +1813,7 @@ class IngredientSubstanceBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       code: code ?? this.code,
       strength: strength ?? this.strength,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -2093,10 +2096,13 @@ class IngredientStrengthBuilder extends BackboneElementBuilder {
   /// strength and a reference strength are needed.
   List<IngredientReferenceStrengthBuilder>? referenceStrength;
 
-  /// Converts a IngredientStrengthBuilder to [IngredientStrength]
+  /// converts a [IngredientStrengthBuilder]
+  /// to [IngredientStrength]
+  @override
   IngredientStrength build() => IngredientStrength.fromJson(toJson());
 
-  /// Converts a [IngredientStrengthBuilder] to a [Map<String, dynamic>]
+  /// converts a [IngredientStrengthBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2564,9 +2570,9 @@ class IngredientStrengthBuilder extends BackboneElementBuilder {
     if (id) this.id = null;
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
-    if (presentation) this.presentationX = null;
+    if (presentation) presentationX = null;
     if (textPresentation) this.textPresentation = null;
-    if (concentration) this.concentrationX = null;
+    if (concentration) concentrationX = null;
     if (textConcentration) this.textConcentration = null;
     if (measurementPoint) this.measurementPoint = null;
     if (country) this.country = null;
@@ -2605,9 +2611,7 @@ class IngredientStrengthBuilder extends BackboneElementBuilder {
       measurementPoint: measurementPoint ?? this.measurementPoint,
       country: country ?? this.country,
       referenceStrength: referenceStrength ?? this.referenceStrength,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -2858,11 +2862,14 @@ class IngredientReferenceStrengthBuilder extends BackboneElementBuilder {
   /// The country or countries for which the strength range applies.
   List<CodeableConceptBuilder>? country;
 
-  /// Converts a IngredientReferenceStrengthBuilder to [IngredientReferenceStrength]
+  /// converts a [IngredientReferenceStrengthBuilder]
+  /// to [IngredientReferenceStrength]
+  @override
   IngredientReferenceStrength build() =>
       IngredientReferenceStrength.fromJson(toJson());
 
-  /// Converts a [IngredientReferenceStrengthBuilder] to a [Map<String, dynamic>]
+  /// converts a [IngredientReferenceStrengthBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3203,7 +3210,7 @@ class IngredientReferenceStrengthBuilder extends BackboneElementBuilder {
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
     if (substance) this.substance = null;
-    if (strength) this.strengthX = null;
+    if (strength) strengthX = null;
     if (measurementPoint) this.measurementPoint = null;
     if (country) this.country = null;
   }
@@ -3234,9 +3241,7 @@ class IngredientReferenceStrengthBuilder extends BackboneElementBuilder {
       strengthX: strengthX ?? this.strengthX,
       measurementPoint: measurementPoint ?? this.measurementPoint,
       country: country ?? this.country,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

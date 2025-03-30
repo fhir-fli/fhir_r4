@@ -2,7 +2,8 @@ part of 'primitive_types.dart';
 
 /// Extension to convert a [bool] to [FhirBooleanBuilder]
 extension FhirBooleanBuilderExtension on bool {
-  /// Converts a [bool] to [FhirBooleanBuilder]
+  /// converts a [[bool]]
+  /// to [FhirBooleanBuilder]
   FhirBooleanBuilder get toFhirBooleanBuilder => FhirBooleanBuilder(this);
 }
 
@@ -54,11 +55,11 @@ class FhirBooleanBuilder extends PrimitiveTypeBuilder<bool>
   /// Private child constructor, uses the parent's `_internal` constructor.
   FhirBooleanBuilder._({
     required bool? validatedValue,
-    this.element,
-    this.id,
-    this.extension_,
-    this.disallowExtensions,
-    this.objectPath = 'Boolean',
+    super.element,
+    super.id,
+    super.extension_,
+    super.disallowExtensions,
+    super.objectPath = 'Boolean',
   }) : super._(value: validatedValue);
 
   /// Single public factory for creating a [FhirBooleanBuilder].
@@ -75,7 +76,8 @@ class FhirBooleanBuilder extends PrimitiveTypeBuilder<bool>
     bool? finalValue;
     if (input == null && element == null) {
       throw ArgumentError(
-          'FhirBooleanBuilder requires a bool value or an element.');
+        'FhirBooleanBuilder requires a bool value or an element.',
+      );
     } else if (input is bool) {
       finalValue = input;
     } else if (input is String) {
@@ -152,21 +154,6 @@ class FhirBooleanBuilder extends PrimitiveTypeBuilder<bool>
     }
   }
 
-  /// Element property
-  ElementBuilder? element;
-
-  /// ID property
-  FhirStringBuilder? id;
-
-  /// Extensions property
-  List<FhirExtensionBuilder>? extension_;
-
-  /// DisallowExtensions property
-  bool? disallowExtensions;
-
-  /// ObjectPath property
-  String? objectPath;
-
   /// Boolean getter to determine if only a value is present
   bool get valueOnly => value != null && element == null;
 
@@ -193,7 +180,8 @@ class FhirBooleanBuilder extends PrimitiveTypeBuilder<bool>
     };
   }
 
-  /// Converts a list of JSON values to a list of [FhirBooleanBuilder] instances.
+  /// Converts a list of JSON values to a list of [
+  /// FhirBooleanBuilder] instances.
   static List<FhirBooleanBuilder> fromJsonList(
     List<dynamic> values,
     List<dynamic>? elements,

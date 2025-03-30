@@ -1,6 +1,6 @@
 import 'package:collection/collection.dart';
 import 'package:fhir_r4/fhir_r4.dart'
-    show Element, FhirString, FhirInteger, FhirExtension, FhirBase;
+    show Element, FhirBase, FhirExtension, FhirInteger, FhirString;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 
 /// [TRight6]
@@ -158,7 +158,8 @@ class TRight6 extends Element {
             return copyWith(a23: child);
           } else {
             throw Exception(
-                'Invalid child type (${child is FhirBase ? child.fhirType : child.runtimeType}) for $childName');
+              'Invalid child type (${child is FhirBase ? child.fhirType : child.runtimeType}) for $childName',
+            );
           }
         }
       default:
@@ -224,7 +225,8 @@ class TRight6Builder extends ElementBuilder {
   @override
   String get fhirType => 'TRight6';
 
-  /// Converts a TRight6Builder to [TRight6]
+  /// converts a [TRight6Builder]
+  /// to [TRight6]
   @override
   TRight6 build() => TRight6.fromJson(toJson());
 

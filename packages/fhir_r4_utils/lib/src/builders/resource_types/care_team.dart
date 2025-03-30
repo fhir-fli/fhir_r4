@@ -1,12 +1,12 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
+        CareTeam,
+        CareTeamParticipant,
         R4ResourceType,
         StringExtensionForFHIR,
-        CareTeam,
-        CareTeamParticipant;
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -331,10 +331,13 @@ class CareTeamBuilder extends DomainResourceBuilder {
   /// Comments made about the CareTeam.
   List<AnnotationBuilder>? note;
 
-  /// Converts a CareTeamBuilder to [CareTeam]
+  /// converts a [CareTeamBuilder]
+  /// to [CareTeam]
+  @override
   CareTeam build() => CareTeam.fromJson(toJson());
 
-  /// Converts a [CareTeamBuilder] to a [Map<String, dynamic>]
+  /// converts a [CareTeamBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1056,9 +1059,7 @@ class CareTeamBuilder extends DomainResourceBuilder {
       managingOrganization: managingOrganization ?? this.managingOrganization,
       telecom: telecom ?? this.telecom,
       note: note ?? this.note,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1363,10 +1364,13 @@ class CareTeamParticipantBuilder extends BackboneElementBuilder {
   /// to) come into effect and end.
   PeriodBuilder? period;
 
-  /// Converts a CareTeamParticipantBuilder to [CareTeamParticipant]
+  /// converts a [CareTeamParticipantBuilder]
+  /// to [CareTeamParticipant]
+  @override
   CareTeamParticipant build() => CareTeamParticipant.fromJson(toJson());
 
-  /// Converts a [CareTeamParticipantBuilder] to a [Map<String, dynamic>]
+  /// converts a [CareTeamParticipantBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1684,9 +1688,7 @@ class CareTeamParticipantBuilder extends BackboneElementBuilder {
       member: member ?? this.member,
       onBehalfOf: onBehalfOf ?? this.onBehalfOf,
       period: period ?? this.period,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

@@ -1,14 +1,14 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
+        HealthcareService,
+        HealthcareServiceAvailableTime,
+        HealthcareServiceEligibility,
+        HealthcareServiceNotAvailable,
         R4ResourceType,
         StringExtensionForFHIR,
-        HealthcareService,
-        HealthcareServiceEligibility,
-        HealthcareServiceAvailableTime,
-        HealthcareServiceNotAvailable;
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -499,10 +499,13 @@ class HealthcareServiceBuilder extends DomainResourceBuilder {
   /// specific healthcare services defined at this resource.
   List<ReferenceBuilder>? endpoint;
 
-  /// Converts a HealthcareServiceBuilder to [HealthcareService]
+  /// converts a [HealthcareServiceBuilder]
+  /// to [HealthcareService]
+  @override
   HealthcareService build() => HealthcareService.fromJson(toJson());
 
-  /// Converts a [HealthcareServiceBuilder] to a [Map<String, dynamic>]
+  /// converts a [HealthcareServiceBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1551,9 +1554,7 @@ class HealthcareServiceBuilder extends DomainResourceBuilder {
       availabilityExceptions:
           availabilityExceptions ?? this.availabilityExceptions,
       endpoint: endpoint ?? this.endpoint,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1895,11 +1896,14 @@ class HealthcareServiceEligibilityBuilder extends BackboneElementBuilder {
   /// Describes the eligibility conditions for the service.
   FhirMarkdownBuilder? comment;
 
-  /// Converts a HealthcareServiceEligibilityBuilder to [HealthcareServiceEligibility]
+  /// converts a [HealthcareServiceEligibilityBuilder]
+  /// to [HealthcareServiceEligibility]
+  @override
   HealthcareServiceEligibility build() =>
       HealthcareServiceEligibility.fromJson(toJson());
 
-  /// Converts a [HealthcareServiceEligibilityBuilder] to a [Map<String, dynamic>]
+  /// converts a [HealthcareServiceEligibilityBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2160,9 +2164,7 @@ class HealthcareServiceEligibilityBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       code: code ?? this.code,
       comment: comment ?? this.comment,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -2367,11 +2369,14 @@ class HealthcareServiceAvailableTimeBuilder extends BackboneElementBuilder {
   /// time is ignored.
   FhirTimeBuilder? availableEndTime;
 
-  /// Converts a HealthcareServiceAvailableTimeBuilder to [HealthcareServiceAvailableTime]
+  /// converts a [HealthcareServiceAvailableTimeBuilder]
+  /// to [HealthcareServiceAvailableTime]
+  @override
   HealthcareServiceAvailableTime build() =>
       HealthcareServiceAvailableTime.fromJson(toJson());
 
-  /// Converts a [HealthcareServiceAvailableTimeBuilder] to a [Map<String, dynamic>]
+  /// converts a [HealthcareServiceAvailableTimeBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2689,9 +2694,7 @@ class HealthcareServiceAvailableTimeBuilder extends BackboneElementBuilder {
       allDay: allDay ?? this.allDay,
       availableStartTime: availableStartTime ?? this.availableStartTime,
       availableEndTime: availableEndTime ?? this.availableEndTime,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -2885,11 +2888,14 @@ class HealthcareServiceNotAvailableBuilder extends BackboneElementBuilder {
   /// date.
   PeriodBuilder? during;
 
-  /// Converts a HealthcareServiceNotAvailableBuilder to [HealthcareServiceNotAvailable]
+  /// converts a [HealthcareServiceNotAvailableBuilder]
+  /// to [HealthcareServiceNotAvailable]
+  @override
   HealthcareServiceNotAvailable build() =>
       HealthcareServiceNotAvailable.fromJson(toJson());
 
-  /// Converts a [HealthcareServiceNotAvailableBuilder] to a [Map<String, dynamic>]
+  /// converts a [HealthcareServiceNotAvailableBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3150,9 +3156,7 @@ class HealthcareServiceNotAvailableBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       description: description ?? this.description,
       during: during ?? this.during,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

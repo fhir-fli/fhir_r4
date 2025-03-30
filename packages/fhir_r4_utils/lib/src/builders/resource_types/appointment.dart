@@ -1,12 +1,12 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
+        Appointment,
+        AppointmentParticipant,
         R4ResourceType,
         StringExtensionForFHIR,
-        Appointment,
-        AppointmentParticipant;
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -473,10 +473,13 @@ class AppointmentBuilder extends DomainResourceBuilder {
   /// duration may be calculated by the scheduling system.
   List<PeriodBuilder>? requestedPeriod;
 
-  /// Converts a AppointmentBuilder to [Appointment]
+  /// converts a [AppointmentBuilder]
+  /// to [Appointment]
+  @override
   Appointment build() => Appointment.fromJson(toJson());
 
-  /// Converts a [AppointmentBuilder] to a [Map<String, dynamic>]
+  /// converts a [AppointmentBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1448,9 +1451,7 @@ class AppointmentBuilder extends DomainResourceBuilder {
       basedOn: basedOn ?? this.basedOn,
       participant: participant ?? this.participant,
       requestedPeriod: requestedPeriod ?? this.requestedPeriod,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1819,10 +1820,13 @@ class AppointmentParticipantBuilder extends BackboneElementBuilder {
   /// Participation period of the actor.
   PeriodBuilder? period;
 
-  /// Converts a AppointmentParticipantBuilder to [AppointmentParticipant]
+  /// converts a [AppointmentParticipantBuilder]
+  /// to [AppointmentParticipant]
+  @override
   AppointmentParticipant build() => AppointmentParticipant.fromJson(toJson());
 
-  /// Converts a [AppointmentParticipantBuilder] to a [Map<String, dynamic>]
+  /// converts a [AppointmentParticipantBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2166,9 +2170,7 @@ class AppointmentParticipantBuilder extends BackboneElementBuilder {
       required_: required_ ?? this.required_,
       status: status ?? this.status,
       period: period ?? this.period,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

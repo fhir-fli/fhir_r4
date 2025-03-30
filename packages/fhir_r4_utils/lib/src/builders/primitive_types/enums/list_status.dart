@@ -46,7 +46,8 @@ class ListStatusBuilder extends FhirCodeEnumBuilder {
   /// Create empty [ListStatusBuilder] with element only
   factory ListStatusBuilder.empty() => ListStatusBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [ListStatusBuilder] from JSON.
+  /// Factory constructor to create [ListStatusBuilder]
+  /// from JSON.
   factory ListStatusBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;

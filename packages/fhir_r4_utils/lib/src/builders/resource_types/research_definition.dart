@@ -1,11 +1,11 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
         R4ResourceType,
+        ResearchDefinition,
         StringExtensionForFHIR,
-        ResearchDefinition;
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -630,10 +630,13 @@ class ResearchDefinitionBuilder extends DomainResourceBuilder {
   /// outcome for the research.
   ReferenceBuilder? outcome;
 
-  /// Converts a ResearchDefinitionBuilder to [ResearchDefinition]
+  /// converts a [ResearchDefinitionBuilder]
+  /// to [ResearchDefinition]
+  @override
   ResearchDefinition build() => ResearchDefinition.fromJson(toJson());
 
-  /// Converts a [ResearchDefinitionBuilder] to a [Map<String, dynamic>]
+  /// converts a [ResearchDefinitionBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1853,7 +1856,7 @@ class ResearchDefinitionBuilder extends DomainResourceBuilder {
     if (subtitle) this.subtitle = null;
     if (status) this.status = null;
     if (experimental) this.experimental = null;
-    if (subject) this.subjectX = null;
+    if (subject) subjectX = null;
     if (date) this.date = null;
     if (publisher) this.publisher = null;
     if (contact) this.contact = null;
@@ -1975,9 +1978,7 @@ class ResearchDefinitionBuilder extends DomainResourceBuilder {
       exposure: exposure ?? this.exposure,
       exposureAlternative: exposureAlternative ?? this.exposureAlternative,
       outcome: outcome ?? this.outcome,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

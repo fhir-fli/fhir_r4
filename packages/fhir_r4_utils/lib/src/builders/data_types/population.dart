@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, StringExtensionForFHIR, Population;
+    show Population, StringExtensionForFHIR, yamlMapToJson, yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -153,10 +153,13 @@ class PopulationBuilder extends BackboneTypeBuilder {
   /// which this applies.
   CodeableConceptBuilder? physiologicalCondition;
 
-  /// Converts a PopulationBuilder to [Population]
+  /// converts a [PopulationBuilder]
+  /// to [Population]
+  @override
   Population build() => Population.fromJson(toJson());
 
-  /// Converts a [PopulationBuilder] to a [Map<String, dynamic>]
+  /// converts a [PopulationBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -491,7 +494,7 @@ class PopulationBuilder extends BackboneTypeBuilder {
     if (id) this.id = null;
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
-    if (age) this.ageX = null;
+    if (age) ageX = null;
     if (gender) this.gender = null;
     if (race) this.race = null;
     if (physiologicalCondition) this.physiologicalCondition = null;
@@ -524,9 +527,7 @@ class PopulationBuilder extends BackboneTypeBuilder {
       race: race ?? this.race,
       physiologicalCondition:
           physiologicalCondition ?? this.physiologicalCondition,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

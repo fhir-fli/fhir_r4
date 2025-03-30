@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, StringExtensionForFHIR, Money;
+    show Money, StringExtensionForFHIR, yamlMapToJson, yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -125,10 +125,13 @@ class MoneyBuilder extends DataTypeBuilder
   /// ISO 4217 Currency Code.
   FhirCodeBuilder? currency;
 
-  /// Converts a MoneyBuilder to [Money]
+  /// converts a [MoneyBuilder]
+  /// to [Money]
+  @override
   Money build() => Money.fromJson(toJson());
 
-  /// Converts a [MoneyBuilder] to a [Map<String, dynamic>]
+  /// converts a [MoneyBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -358,9 +361,7 @@ class MoneyBuilder extends DataTypeBuilder
       extension_: extension_ ?? this.extension_,
       value: value ?? this.value,
       currency: currency ?? this.currency,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

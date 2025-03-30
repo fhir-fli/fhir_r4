@@ -47,7 +47,8 @@ class SlicingRulesBuilder extends FhirCodeEnumBuilder {
   factory SlicingRulesBuilder.empty() =>
       SlicingRulesBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [SlicingRulesBuilder] from JSON.
+  /// Factory constructor to create [SlicingRulesBuilder]
+  /// from JSON.
   factory SlicingRulesBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;

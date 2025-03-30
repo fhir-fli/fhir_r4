@@ -1,12 +1,12 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
+        Communication,
+        CommunicationPayload,
         R4ResourceType,
         StringExtensionForFHIR,
-        Communication,
-        CommunicationPayload;
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -471,10 +471,13 @@ class CommunicationBuilder extends DomainResourceBuilder {
   /// receiver or other interested parties.
   List<AnnotationBuilder>? note;
 
-  /// Converts a CommunicationBuilder to [Communication]
+  /// converts a [CommunicationBuilder]
+  /// to [Communication]
+  @override
   Communication build() => Communication.fromJson(toJson());
 
-  /// Converts a [CommunicationBuilder] to a [Map<String, dynamic>]
+  /// converts a [CommunicationBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1487,9 +1490,7 @@ class CommunicationBuilder extends DomainResourceBuilder {
       reasonReference: reasonReference ?? this.reasonReference,
       payload: payload ?? this.payload,
       note: note ?? this.note,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1828,10 +1829,13 @@ class CommunicationPayloadBuilder extends BackboneElementBuilder {
   /// Getter for [contentReference] as a ReferenceBuilder
   ReferenceBuilder? get contentReference => contentX?.isAs<ReferenceBuilder>();
 
-  /// Converts a CommunicationPayloadBuilder to [CommunicationPayload]
+  /// converts a [CommunicationPayloadBuilder]
+  /// to [CommunicationPayload]
+  @override
   CommunicationPayload build() => CommunicationPayload.fromJson(toJson());
 
-  /// Converts a [CommunicationPayloadBuilder] to a [Map<String, dynamic>]
+  /// converts a [CommunicationPayloadBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2121,7 +2125,7 @@ class CommunicationPayloadBuilder extends BackboneElementBuilder {
     if (id) this.id = null;
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
-    if (content) this.contentX = null;
+    if (content) contentX = null;
   }
 
   @override
@@ -2144,9 +2148,7 @@ class CommunicationPayloadBuilder extends BackboneElementBuilder {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       contentX: contentX ?? this.contentX,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

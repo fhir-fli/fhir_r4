@@ -49,7 +49,8 @@ class BiologicallyDerivedProductStorageScale extends FhirCodeEnum {
 
   /// Factory constructor to create [BiologicallyDerivedProductStorageScale] from JSON.
   factory BiologicallyDerivedProductStorageScale.fromJson(
-      Map<String, dynamic> json) {
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;

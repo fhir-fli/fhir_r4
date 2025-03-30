@@ -1,6 +1,6 @@
 import 'package:collection/collection.dart';
 import 'package:fhir_r4/fhir_r4.dart'
-    show Element, FhirString, FhirCode, FhirExtension, FhirBase;
+    show Element, FhirBase, FhirCode, FhirExtension, FhirString;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 
 /// [TRight8]
@@ -174,7 +174,8 @@ class TRight8Builder extends ElementBuilder {
   @override
   String get fhirType => 'TRight8';
 
-  /// Converts a TRight8Builder to [TRight8]
+  /// converts a [TRight8Builder]
+  /// to [TRight8]
   @override
   TRight8 build() => TRight8.fromJson(toJson());
 

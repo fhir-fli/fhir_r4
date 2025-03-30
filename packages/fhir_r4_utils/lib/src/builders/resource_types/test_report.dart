@@ -1,20 +1,20 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
         R4ResourceType,
         StringExtensionForFHIR,
         TestReport,
+        TestReportAction,
+        TestReportAction1,
+        TestReportAction2,
+        TestReportAssert,
+        TestReportOperation,
         TestReportParticipant,
         TestReportSetup,
-        TestReportAction,
-        TestReportOperation,
-        TestReportAssert,
-        TestReportTest,
-        TestReportAction1,
         TestReportTeardown,
-        TestReportAction2;
+        TestReportTest,
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -301,10 +301,13 @@ class TestReportBuilder extends DomainResourceBuilder {
   /// the tests were executed (successfully or otherwise).
   TestReportTeardownBuilder? teardown;
 
-  /// Converts a TestReportBuilder to [TestReport]
+  /// converts a [TestReportBuilder]
+  /// to [TestReport]
+  @override
   TestReport build() => TestReport.fromJson(toJson());
 
-  /// Converts a [TestReportBuilder] to a [Map<String, dynamic>]
+  /// converts a [TestReportBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -970,9 +973,7 @@ class TestReportBuilder extends DomainResourceBuilder {
       setup: setup ?? this.setup,
       test: test ?? this.test,
       teardown: teardown ?? this.teardown,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1253,10 +1254,13 @@ class TestReportParticipantBuilder extends BackboneElementBuilder {
   /// The display name of the participant.
   FhirStringBuilder? display;
 
-  /// Converts a TestReportParticipantBuilder to [TestReportParticipant]
+  /// converts a [TestReportParticipantBuilder]
+  /// to [TestReportParticipant]
+  @override
   TestReportParticipant build() => TestReportParticipant.fromJson(toJson());
 
-  /// Converts a [TestReportParticipantBuilder] to a [Map<String, dynamic>]
+  /// converts a [TestReportParticipantBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1543,9 +1547,7 @@ class TestReportParticipantBuilder extends BackboneElementBuilder {
       type: type ?? this.type,
       uri: uri ?? this.uri,
       display: display ?? this.display,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1723,10 +1725,13 @@ class TestReportSetupBuilder extends BackboneElementBuilder {
   /// Action would contain either an operation or an assertion.
   List<TestReportActionBuilder>? action;
 
-  /// Converts a TestReportSetupBuilder to [TestReportSetup]
+  /// converts a [TestReportSetupBuilder]
+  /// to [TestReportSetup]
+  @override
   TestReportSetup build() => TestReportSetup.fromJson(toJson());
 
-  /// Converts a [TestReportSetupBuilder] to a [Map<String, dynamic>]
+  /// converts a [TestReportSetupBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1966,9 +1971,7 @@ class TestReportSetupBuilder extends BackboneElementBuilder {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       action: action ?? this.action,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -2140,10 +2143,13 @@ class TestReportActionBuilder extends BackboneElementBuilder {
   /// The results of the assertion performed on the previous operations.
   TestReportAssertBuilder? assert_;
 
-  /// Converts a TestReportActionBuilder to [TestReportAction]
+  /// converts a [TestReportActionBuilder]
+  /// to [TestReportAction]
+  @override
   TestReportAction build() => TestReportAction.fromJson(toJson());
 
-  /// Converts a [TestReportActionBuilder] to a [Map<String, dynamic>]
+  /// converts a [TestReportActionBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2404,9 +2410,7 @@ class TestReportActionBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       operation: operation ?? this.operation,
       assert_: assert_ ?? this.assert_,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -2595,10 +2599,13 @@ class TestReportOperationBuilder extends BackboneElementBuilder {
   /// A link to further details on the result.
   FhirUriBuilder? detail;
 
-  /// Converts a TestReportOperationBuilder to [TestReportOperation]
+  /// converts a [TestReportOperationBuilder]
+  /// to [TestReportOperation]
+  @override
   TestReportOperation build() => TestReportOperation.fromJson(toJson());
 
-  /// Converts a [TestReportOperationBuilder] to a [Map<String, dynamic>]
+  /// converts a [TestReportOperationBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2885,9 +2892,7 @@ class TestReportOperationBuilder extends BackboneElementBuilder {
       result: result ?? this.result,
       message: message ?? this.message,
       detail: detail ?? this.detail,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -3082,10 +3087,13 @@ class TestReportAssertBuilder extends BackboneElementBuilder {
   /// A link to further details on the result.
   FhirStringBuilder? detail;
 
-  /// Converts a TestReportAssertBuilder to [TestReportAssert]
+  /// converts a [TestReportAssertBuilder]
+  /// to [TestReportAssert]
+  @override
   TestReportAssert build() => TestReportAssert.fromJson(toJson());
 
-  /// Converts a [TestReportAssertBuilder] to a [Map<String, dynamic>]
+  /// converts a [TestReportAssertBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3372,9 +3380,7 @@ class TestReportAssertBuilder extends BackboneElementBuilder {
       result: result ?? this.result,
       message: message ?? this.message,
       detail: detail ?? this.detail,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -3575,10 +3581,13 @@ class TestReportTestBuilder extends BackboneElementBuilder {
   /// Action would contain either an operation or an assertion.
   List<TestReportActionBuilder>? action;
 
-  /// Converts a TestReportTestBuilder to [TestReportTest]
+  /// converts a [TestReportTestBuilder]
+  /// to [TestReportTest]
+  @override
   TestReportTest build() => TestReportTest.fromJson(toJson());
 
-  /// Converts a [TestReportTestBuilder] to a [Map<String, dynamic>]
+  /// converts a [TestReportTestBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3870,9 +3879,7 @@ class TestReportTestBuilder extends BackboneElementBuilder {
       name: name ?? this.name,
       description: description ?? this.description,
       action: action ?? this.action,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -4056,10 +4063,13 @@ class TestReportAction1Builder extends BackboneElementBuilder {
   /// The results of the assertion performed on the previous operations.
   TestReportAssertBuilder? assert_;
 
-  /// Converts a TestReportAction1Builder to [TestReportAction1]
+  /// converts a [TestReportAction1Builder]
+  /// to [TestReportAction1]
+  @override
   TestReportAction1 build() => TestReportAction1.fromJson(toJson());
 
-  /// Converts a [TestReportAction1Builder] to a [Map<String, dynamic>]
+  /// converts a [TestReportAction1Builder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -4320,9 +4330,7 @@ class TestReportAction1Builder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       operation: operation ?? this.operation,
       assert_: assert_ ?? this.assert_,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -4494,10 +4502,13 @@ class TestReportTeardownBuilder extends BackboneElementBuilder {
   /// The teardown action will only contain an operation.
   List<TestReportActionBuilder>? action;
 
-  /// Converts a TestReportTeardownBuilder to [TestReportTeardown]
+  /// converts a [TestReportTeardownBuilder]
+  /// to [TestReportTeardown]
+  @override
   TestReportTeardown build() => TestReportTeardown.fromJson(toJson());
 
-  /// Converts a [TestReportTeardownBuilder] to a [Map<String, dynamic>]
+  /// converts a [TestReportTeardownBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -4737,9 +4748,7 @@ class TestReportTeardownBuilder extends BackboneElementBuilder {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       action: action ?? this.action,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -4900,10 +4909,13 @@ class TestReportAction2Builder extends BackboneElementBuilder {
   /// An operation would involve a REST request to a server.
   TestReportOperationBuilder? operation;
 
-  /// Converts a TestReportAction2Builder to [TestReportAction2]
+  /// converts a [TestReportAction2Builder]
+  /// to [TestReportAction2]
+  @override
   TestReportAction2 build() => TestReportAction2.fromJson(toJson());
 
-  /// Converts a [TestReportAction2Builder] to a [Map<String, dynamic>]
+  /// converts a [TestReportAction2Builder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -5138,9 +5150,7 @@ class TestReportAction2Builder extends BackboneElementBuilder {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       operation: operation ?? this.operation,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

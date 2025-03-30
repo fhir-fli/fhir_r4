@@ -47,7 +47,8 @@ class ContactPointSystemBuilder extends FhirCodeEnumBuilder {
   factory ContactPointSystemBuilder.empty() =>
       ContactPointSystemBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [ContactPointSystemBuilder] from JSON.
+  /// Factory constructor to create [ContactPointSystemBuilder]
+  /// from JSON.
   factory ContactPointSystemBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
@@ -154,7 +155,9 @@ class ContactPointSystemBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   ContactPointSystemBuilder withElement(ElementBuilder? newElement) {
     return ContactPointSystemBuilder._(
-        validatedValue: value, element: newElement);
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

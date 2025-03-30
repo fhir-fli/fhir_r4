@@ -48,7 +48,8 @@ class CarePlanIntentBuilder extends FhirCodeEnumBuilder {
   factory CarePlanIntentBuilder.empty() =>
       CarePlanIntentBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [CarePlanIntentBuilder] from JSON.
+  /// Factory constructor to create [CarePlanIntentBuilder]
+  /// from JSON.
   factory CarePlanIntentBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;

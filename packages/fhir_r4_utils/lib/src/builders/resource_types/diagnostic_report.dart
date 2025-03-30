@@ -1,12 +1,12 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
+        DiagnosticReport,
+        DiagnosticReportMedia,
         R4ResourceType,
         StringExtensionForFHIR,
-        DiagnosticReport,
-        DiagnosticReportMedia;
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -423,10 +423,13 @@ class DiagnosticReportBuilder extends DomainResourceBuilder {
   /// semantically equivalent.
   List<AttachmentBuilder>? presentedForm;
 
-  /// Converts a DiagnosticReportBuilder to [DiagnosticReport]
+  /// converts a [DiagnosticReportBuilder]
+  /// to [DiagnosticReport]
+  @override
   DiagnosticReport build() => DiagnosticReport.fromJson(toJson());
 
-  /// Converts a [DiagnosticReportBuilder] to a [Map<String, dynamic>]
+  /// converts a [DiagnosticReportBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1271,7 +1274,7 @@ class DiagnosticReportBuilder extends DomainResourceBuilder {
     if (code) this.code = null;
     if (subject) this.subject = null;
     if (encounter) this.encounter = null;
-    if (effective) this.effectiveX = null;
+    if (effective) effectiveX = null;
     if (issued) this.issued = null;
     if (performer) this.performer = null;
     if (resultsInterpreter) this.resultsInterpreter = null;
@@ -1347,9 +1350,7 @@ class DiagnosticReportBuilder extends DomainResourceBuilder {
       conclusion: conclusion ?? this.conclusion,
       conclusionCode: conclusionCode ?? this.conclusionCode,
       presentedForm: presentedForm ?? this.presentedForm,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1658,10 +1659,13 @@ class DiagnosticReportMediaBuilder extends BackboneElementBuilder {
   /// Reference to the image source.
   ReferenceBuilder? link;
 
-  /// Converts a DiagnosticReportMediaBuilder to [DiagnosticReportMedia]
+  /// converts a [DiagnosticReportMediaBuilder]
+  /// to [DiagnosticReportMedia]
+  @override
   DiagnosticReportMedia build() => DiagnosticReportMedia.fromJson(toJson());
 
-  /// Converts a [DiagnosticReportMediaBuilder] to a [Map<String, dynamic>]
+  /// converts a [DiagnosticReportMediaBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1922,9 +1926,7 @@ class DiagnosticReportMediaBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       comment: comment ?? this.comment,
       link: link ?? this.link,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

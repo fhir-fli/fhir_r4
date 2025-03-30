@@ -48,7 +48,8 @@ class BindingStrengthBuilder extends FhirCodeEnumBuilder {
   factory BindingStrengthBuilder.empty() =>
       BindingStrengthBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [BindingStrengthBuilder] from JSON.
+  /// Factory constructor to create [BindingStrengthBuilder]
+  /// from JSON.
   factory BindingStrengthBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;

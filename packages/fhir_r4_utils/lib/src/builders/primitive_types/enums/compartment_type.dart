@@ -47,7 +47,8 @@ class CompartmentTypeBuilder extends FhirCodeEnumBuilder {
   factory CompartmentTypeBuilder.empty() =>
       CompartmentTypeBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [CompartmentTypeBuilder] from JSON.
+  /// Factory constructor to create [CompartmentTypeBuilder]
+  /// from JSON.
   factory CompartmentTypeBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;

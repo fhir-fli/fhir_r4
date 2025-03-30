@@ -47,7 +47,8 @@ class ImagingStudyStatusBuilder extends FhirCodeEnumBuilder {
   factory ImagingStudyStatusBuilder.empty() =>
       ImagingStudyStatusBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [ImagingStudyStatusBuilder] from JSON.
+  /// Factory constructor to create [ImagingStudyStatusBuilder]
+  /// from JSON.
   factory ImagingStudyStatusBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
@@ -130,7 +131,9 @@ class ImagingStudyStatusBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   ImagingStudyStatusBuilder withElement(ElementBuilder? newElement) {
     return ImagingStudyStatusBuilder._(
-        validatedValue: value, element: newElement);
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

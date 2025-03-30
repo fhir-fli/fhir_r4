@@ -30,11 +30,11 @@ class FhirUuidBuilder extends PrimitiveTypeBuilder<UuidValue?>
   /// we throw an [ArgumentError].
   FhirUuidBuilder._({
     required UuidValue? validatedValue,
-    this.element,
-    this.id,
-    this.extension_,
-    this.disallowExtensions,
-    this.objectPath = 'Uuid',
+    super.element,
+    super.id,
+    super.extension_,
+    super.disallowExtensions,
+    super.objectPath = 'Uuid',
   }) : super._(value: validatedValue) {
     if (value == null && element == null) {
       throw ArgumentError('A value or element is required for FhirUuidBuilder');
@@ -87,7 +87,8 @@ class FhirUuidBuilder extends PrimitiveTypeBuilder<UuidValue?>
   factory FhirUuidBuilder.empty() =>
       FhirUuidBuilder(null, element: ElementBuilder.empty());
 
-  /// Factory constructor to create [FhirUuidBuilder] from JSON.
+  /// Factory constructor to create [FhirUuidBuilder]
+  /// from JSON.
   factory FhirUuidBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
@@ -145,21 +146,6 @@ class FhirUuidBuilder extends PrimitiveTypeBuilder<UuidValue?>
     }
   }
 
-  /// Element property
-  ElementBuilder? element;
-
-  /// ID property
-  FhirStringBuilder? id;
-
-  /// Extensions property
-  List<FhirExtensionBuilder>? extension_;
-
-  /// DisallowExtensions property
-  bool? disallowExtensions;
-
-  /// ObjectPath property
-  String? objectPath;
-
   /// Validates if a provided UUID string is valid.
   static bool isValidUuid(String uuid) {
     return Uuid.isValidUUID(fromString: uuid);
@@ -182,8 +168,8 @@ class FhirUuidBuilder extends PrimitiveTypeBuilder<UuidValue?>
     }
     if (other is! FhirUuidBuilder && other is! Uuid && other is! String) {
       throw ArgumentError(
-          'Bitwise operations are only supported with FhirUuidBuilder, Uuid, or '
-          'UUID strings');
+          'Bitwise operations are only supported with FhirUuidBuilder, '
+          'Uuid, or UUID strings');
     }
 
     // Parse the first UUID into bytes
@@ -209,8 +195,8 @@ class FhirUuidBuilder extends PrimitiveTypeBuilder<UuidValue?>
     }
     if (other is! FhirUuidBuilder && other is! Uuid && other is! String) {
       throw ArgumentError(
-          'Bitwise operations are only supported with FhirUuidBuilder, Uuid, or '
-          'UUID strings');
+          'Bitwise operations are only supported with FhirUuidBuilder, Uuid, '
+          'or UUID strings');
     }
 
     // Parse the first UUID into bytes
@@ -236,8 +222,8 @@ class FhirUuidBuilder extends PrimitiveTypeBuilder<UuidValue?>
     }
     if (other is! FhirUuidBuilder && other is! Uuid && other is! String) {
       throw ArgumentError(
-          'Bitwise operations are only supported with FhirUuidBuilder, Uuid, or '
-          'UUID strings');
+          'Bitwise operations are only supported with FhirUuidBuilder, Uuid, '
+          'or UUID strings');
     }
 
     // Parse the first UUID into bytes
@@ -272,8 +258,8 @@ class FhirUuidBuilder extends PrimitiveTypeBuilder<UuidValue?>
       return Uuid.parse(other.value!.uuid);
     } else {
       throw ArgumentError(
-          'Bitwise operations are only supported with FhirUuidBuilder, Uuid, or '
-          'UUID strings');
+          'Bitwise operations are only supported with FhirUuidBuilder, Uuid, '
+          'or UUID strings');
     }
   }
 
@@ -320,7 +306,8 @@ class FhirUuidBuilder extends PrimitiveTypeBuilder<UuidValue?>
   // ignore: avoid_equals_and_hash_code_on_mutable_classes
   bool operator ==(Object other) => equals(other);
 
-  /// Checks equality with [FhirUuidBuilder], [UuidValue], or a valid UUID String.
+  /// Checks equality with [FhirUuidBuilder], [UuidValue],
+  /// or a valid UUID String.
   @override
   bool equals(Object other) =>
       identical(this, other) ||

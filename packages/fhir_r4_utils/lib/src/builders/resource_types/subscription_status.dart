@@ -1,12 +1,12 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
         R4ResourceType,
         StringExtensionForFHIR,
         SubscriptionStatus,
-        SubscriptionStatusNotificationEvent;
+        SubscriptionStatusNotificationEvent,
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -239,10 +239,13 @@ class SubscriptionStatusBuilder extends DomainResourceBuilder {
   /// notification.
   List<CodeableConceptBuilder>? error;
 
-  /// Converts a SubscriptionStatusBuilder to [SubscriptionStatus]
+  /// converts a [SubscriptionStatusBuilder]
+  /// to [SubscriptionStatus]
+  @override
   SubscriptionStatus build() => SubscriptionStatus.fromJson(toJson());
 
-  /// Converts a [SubscriptionStatusBuilder] to a [Map<String, dynamic>]
+  /// converts a [SubscriptionStatusBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -779,9 +782,7 @@ class SubscriptionStatusBuilder extends DomainResourceBuilder {
       subscription: subscription ?? this.subscription,
       topic: topic ?? this.topic,
       error: error ?? this.error,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1054,11 +1055,14 @@ class SubscriptionStatusNotificationEventBuilder
   /// non-FHIR objects.
   List<ReferenceBuilder>? additionalContext;
 
-  /// Converts a SubscriptionStatusNotificationEventBuilder to [SubscriptionStatusNotificationEvent]
+  /// converts a [SubscriptionStatusNotificationEventBuilder]
+  /// to [SubscriptionStatusNotificationEvent]
+  @override
   SubscriptionStatusNotificationEvent build() =>
       SubscriptionStatusNotificationEvent.fromJson(toJson());
 
-  /// Converts a [SubscriptionStatusNotificationEventBuilder] to a [Map<String, dynamic>]
+  /// converts a [SubscriptionStatusNotificationEventBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1377,9 +1381,7 @@ class SubscriptionStatusNotificationEventBuilder
       timestamp: timestamp ?? this.timestamp,
       focus: focus ?? this.focus,
       additionalContext: additionalContext ?? this.additionalContext,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

@@ -4246,7 +4246,7 @@ class ClaimSupportingInfo extends BackboneElement {
           'FhirString',
           'Quantity',
           'Attachment',
-          'Reference'
+          'Reference',
         ];
       case 'valueBoolean':
         return ['FhirBoolean'];

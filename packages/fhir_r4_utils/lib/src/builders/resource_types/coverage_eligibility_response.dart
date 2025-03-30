@@ -1,15 +1,15 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
-        R4ResourceType,
-        StringExtensionForFHIR,
         CoverageEligibilityResponse,
+        CoverageEligibilityResponseBenefit,
+        CoverageEligibilityResponseError,
         CoverageEligibilityResponseInsurance,
         CoverageEligibilityResponseItem,
-        CoverageEligibilityResponseBenefit,
-        CoverageEligibilityResponseError;
+        R4ResourceType,
+        StringExtensionForFHIR,
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -345,11 +345,14 @@ class CoverageEligibilityResponseBuilder extends DomainResourceBuilder {
   /// Errors encountered during the processing of the request.
   List<CoverageEligibilityResponseErrorBuilder>? error;
 
-  /// Converts a CoverageEligibilityResponseBuilder to [CoverageEligibilityResponse]
+  /// converts a [CoverageEligibilityResponseBuilder]
+  /// to [CoverageEligibilityResponse]
+  @override
   CoverageEligibilityResponse build() =>
       CoverageEligibilityResponse.fromJson(toJson());
 
-  /// Converts a [CoverageEligibilityResponseBuilder] to a [Map<String, dynamic>]
+  /// converts a [CoverageEligibilityResponseBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1087,7 +1090,7 @@ class CoverageEligibilityResponseBuilder extends DomainResourceBuilder {
     if (status) this.status = null;
     if (purpose) this.purpose = null;
     if (patient) this.patient = null;
-    if (serviced) this.servicedX = null;
+    if (serviced) servicedX = null;
     if (created) this.created = null;
     if (requestor) this.requestor = null;
     if (request) this.request = null;
@@ -1157,9 +1160,7 @@ class CoverageEligibilityResponseBuilder extends DomainResourceBuilder {
       preAuthRef: preAuthRef ?? this.preAuthRef,
       form: form ?? this.form,
       error: error ?? this.error,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1480,11 +1481,14 @@ class CoverageEligibilityResponseInsuranceBuilder
   /// category or service.
   List<CoverageEligibilityResponseItemBuilder>? item;
 
-  /// Converts a CoverageEligibilityResponseInsuranceBuilder to [CoverageEligibilityResponseInsurance]
+  /// converts a [CoverageEligibilityResponseInsuranceBuilder]
+  /// to [CoverageEligibilityResponseInsurance]
+  @override
   CoverageEligibilityResponseInsurance build() =>
       CoverageEligibilityResponseInsurance.fromJson(toJson());
 
-  /// Converts a [CoverageEligibilityResponseInsuranceBuilder] to a [Map<String, dynamic>]
+  /// converts a [CoverageEligibilityResponseInsuranceBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1803,9 +1807,7 @@ class CoverageEligibilityResponseInsuranceBuilder
       inforce: inforce ?? this.inforce,
       benefitPeriod: benefitPeriod ?? this.benefitPeriod,
       item: item ?? this.item,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -2153,11 +2155,14 @@ class CoverageEligibilityResponseItemBuilder extends BackboneElementBuilder {
   /// regarding the preauthorization.
   FhirUriBuilder? authorizationUrl;
 
-  /// Converts a CoverageEligibilityResponseItemBuilder to [CoverageEligibilityResponseItem]
+  /// converts a [CoverageEligibilityResponseItemBuilder]
+  /// to [CoverageEligibilityResponseItem]
+  @override
   CoverageEligibilityResponseItem build() =>
       CoverageEligibilityResponseItem.fromJson(toJson());
 
-  /// Converts a [CoverageEligibilityResponseItemBuilder] to a [Map<String, dynamic>]
+  /// converts a [CoverageEligibilityResponseItemBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2502,7 +2507,7 @@ class CoverageEligibilityResponseItemBuilder extends BackboneElementBuilder {
             // Add single element to existing list or create new list
             authorizationSupporting = [
               ...(authorizationSupporting ?? []),
-              child
+              child,
             ];
             return;
           } else {
@@ -2750,9 +2755,7 @@ class CoverageEligibilityResponseItemBuilder extends BackboneElementBuilder {
       authorizationSupporting:
           authorizationSupporting ?? this.authorizationSupporting,
       authorizationUrl: authorizationUrl ?? this.authorizationUrl,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -3042,11 +3045,14 @@ class CoverageEligibilityResponseBenefitBuilder extends BackboneElementBuilder {
   /// Getter for [usedMoney] as a MoneyBuilder
   MoneyBuilder? get usedMoney => usedX?.isAs<MoneyBuilder>();
 
-  /// Converts a CoverageEligibilityResponseBenefitBuilder to [CoverageEligibilityResponseBenefit]
+  /// converts a [CoverageEligibilityResponseBenefitBuilder]
+  /// to [CoverageEligibilityResponseBenefit]
+  @override
   CoverageEligibilityResponseBenefit build() =>
       CoverageEligibilityResponseBenefit.fromJson(toJson());
 
-  /// Converts a [CoverageEligibilityResponseBenefitBuilder] to a [Map<String, dynamic>]
+  /// converts a [CoverageEligibilityResponseBenefitBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3461,8 +3467,8 @@ class CoverageEligibilityResponseBenefitBuilder extends BackboneElementBuilder {
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
     if (type) this.type = null;
-    if (allowed) this.allowedX = null;
-    if (used) this.usedX = null;
+    if (allowed) allowedX = null;
+    if (used) usedX = null;
   }
 
   @override
@@ -3490,9 +3496,7 @@ class CoverageEligibilityResponseBenefitBuilder extends BackboneElementBuilder {
       type: type ?? this.type,
       allowedX: allowedX ?? this.allowedX,
       usedX: usedX ?? this.usedX,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -3667,11 +3671,14 @@ class CoverageEligibilityResponseErrorBuilder extends BackboneElementBuilder {
   /// eligibility check could not be performed.
   CodeableConceptBuilder? code;
 
-  /// Converts a CoverageEligibilityResponseErrorBuilder to [CoverageEligibilityResponseError]
+  /// converts a [CoverageEligibilityResponseErrorBuilder]
+  /// to [CoverageEligibilityResponseError]
+  @override
   CoverageEligibilityResponseError build() =>
       CoverageEligibilityResponseError.fromJson(toJson());
 
-  /// Converts a [CoverageEligibilityResponseErrorBuilder] to a [Map<String, dynamic>]
+  /// converts a [CoverageEligibilityResponseErrorBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3906,9 +3913,7 @@ class CoverageEligibilityResponseErrorBuilder extends BackboneElementBuilder {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       code: code ?? this.code,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

@@ -47,7 +47,8 @@ class UnitsOfTimeBuilder extends FhirCodeEnumBuilder {
   factory UnitsOfTimeBuilder.empty() =>
       UnitsOfTimeBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [UnitsOfTimeBuilder] from JSON.
+  /// Factory constructor to create [UnitsOfTimeBuilder]
+  /// from JSON.
   factory UnitsOfTimeBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;

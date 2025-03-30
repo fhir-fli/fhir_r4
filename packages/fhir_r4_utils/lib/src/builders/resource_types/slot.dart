@@ -1,11 +1,11 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
         R4ResourceType,
+        Slot,
         StringExtensionForFHIR,
-        Slot;
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -291,10 +291,13 @@ class SlotBuilder extends DomainResourceBuilder {
   /// custom constraints on the slot.
   FhirStringBuilder? comment;
 
-  /// Converts a SlotBuilder to [Slot]
+  /// converts a [SlotBuilder]
+  /// to [Slot]
+  @override
   Slot build() => Slot.fromJson(toJson());
 
-  /// Converts a [SlotBuilder] to a [Map<String, dynamic>]
+  /// converts a [SlotBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -944,9 +947,7 @@ class SlotBuilder extends DomainResourceBuilder {
       end: end ?? this.end,
       overbooked: overbooked ?? this.overbooked,
       comment: comment ?? this.comment,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

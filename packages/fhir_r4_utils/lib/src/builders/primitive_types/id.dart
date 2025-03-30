@@ -23,11 +23,11 @@ class FhirIdBuilder extends PrimitiveTypeBuilder<String>
   /// but checks if both [validatedValue] and [element] are null afterward.
   FhirIdBuilder._({
     required String? validatedValue,
-    this.element,
-    this.id,
-    this.extension_,
-    this.disallowExtensions,
-    this.objectPath = 'Id',
+    super.element,
+    super.id,
+    super.extension_,
+    super.disallowExtensions,
+    super.objectPath = 'Id',
   }) : super._(value: validatedValue) {
     // Retain the original runtime check: if no value & no element => throw.
     if (value == null && element == null) {
@@ -62,7 +62,8 @@ class FhirIdBuilder extends PrimitiveTypeBuilder<String>
   factory FhirIdBuilder.empty() =>
       FhirIdBuilder(null, element: ElementBuilder.empty());
 
-  /// Factory constructor to create [FhirIdBuilder] from JSON input.
+  /// Factory constructor to create [FhirIdBuilder]
+  /// from JSON.input.
   factory FhirIdBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
@@ -106,21 +107,6 @@ class FhirIdBuilder extends PrimitiveTypeBuilder<String>
     if (regex.hasMatch(input)) return input;
     throw FormatException('Invalid FhirId:$input');
   }
-
-  /// Element property
-  ElementBuilder? element;
-
-  /// ID property
-  FhirStringBuilder? id;
-
-  /// Extensions property
-  List<FhirExtensionBuilder>? extension_;
-
-  /// DisallowExtensions property
-  bool? disallowExtensions;
-
-  /// ObjectPath property
-  String? objectPath;
 
   /// Boolean checks for the presence of a value only.
   bool get valueOnly => value != null && element == null;

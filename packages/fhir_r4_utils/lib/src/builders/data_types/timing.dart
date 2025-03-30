@@ -1,11 +1,11 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
         StringExtensionForFHIR,
         Timing,
-        TimingRepeat;
+        TimingRepeat,
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -173,10 +173,13 @@ class TimingBuilder extends BackboneTypeBuilder
   /// code (and is not contained in the code).
   CodeableConceptBuilder? code;
 
-  /// Converts a TimingBuilder to [Timing]
+  /// converts a [TimingBuilder]
+  /// to [Timing]
+  @override
   Timing build() => Timing.fromJson(toJson());
 
-  /// Converts a [TimingBuilder] to a [Map<String, dynamic>]
+  /// converts a [TimingBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -468,9 +471,7 @@ class TimingBuilder extends BackboneTypeBuilder
       event: event ?? this.event,
       repeat: repeat ?? this.repeat,
       code: code ?? this.code,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -819,10 +820,13 @@ class TimingRepeatBuilder extends ElementBuilder {
   /// offset is assumed to be after the event.
   FhirUnsignedIntBuilder? offset;
 
-  /// Converts a TimingRepeatBuilder to [TimingRepeat]
+  /// converts a [TimingRepeatBuilder]
+  /// to [TimingRepeat]
+  @override
   TimingRepeat build() => TimingRepeat.fromJson(toJson());
 
-  /// Converts a [TimingRepeatBuilder] to a [Map<String, dynamic>]
+  /// converts a [TimingRepeatBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1420,7 +1424,7 @@ class TimingRepeatBuilder extends ElementBuilder {
   }) {
     if (id) this.id = null;
     if (extension_) this.extension_ = null;
-    if (bounds) this.boundsX = null;
+    if (bounds) boundsX = null;
     if (count) this.count = null;
     if (countMax) this.countMax = null;
     if (duration) this.duration = null;
@@ -1483,9 +1487,7 @@ class TimingRepeatBuilder extends ElementBuilder {
       timeOfDay: timeOfDay ?? this.timeOfDay,
       when: when ?? this.when,
       offset: offset ?? this.offset,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

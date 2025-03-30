@@ -1,12 +1,12 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
+        AllergyIntolerance,
+        AllergyIntoleranceReaction,
         R4ResourceType,
         StringExtensionForFHIR,
-        AllergyIntolerance,
-        AllergyIntoleranceReaction;
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -384,10 +384,13 @@ class AllergyIntoleranceBuilder extends DomainResourceBuilder {
   /// identified substance.
   List<AllergyIntoleranceReactionBuilder>? reaction;
 
-  /// Converts a AllergyIntoleranceBuilder to [AllergyIntolerance]
+  /// converts a [AllergyIntoleranceBuilder]
+  /// to [AllergyIntolerance]
+  @override
   AllergyIntolerance build() => AllergyIntolerance.fromJson(toJson());
 
-  /// Converts a [AllergyIntoleranceBuilder] to a [Map<String, dynamic>]
+  /// converts a [AllergyIntoleranceBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1005,7 +1008,7 @@ class AllergyIntoleranceBuilder extends DomainResourceBuilder {
           'AgeBuilder',
           'PeriodBuilder',
           'RangeBuilder',
-          'FhirStringBuilder'
+          'FhirStringBuilder',
         ];
       case 'onsetDateTime':
         return ['FhirDateTimeBuilder'];
@@ -1231,7 +1234,7 @@ class AllergyIntoleranceBuilder extends DomainResourceBuilder {
     if (code) this.code = null;
     if (patient) this.patient = null;
     if (encounter) this.encounter = null;
-    if (onset) this.onsetX = null;
+    if (onset) onsetX = null;
     if (recordedDate) this.recordedDate = null;
     if (recorder) this.recorder = null;
     if (asserter) this.asserter = null;
@@ -1299,9 +1302,7 @@ class AllergyIntoleranceBuilder extends DomainResourceBuilder {
       lastOccurrence: lastOccurrence ?? this.lastOccurrence,
       note: note ?? this.note,
       reaction: reaction ?? this.reaction,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1673,11 +1674,14 @@ class AllergyIntoleranceReactionBuilder extends BackboneElementBuilder {
   /// fields.
   List<AnnotationBuilder>? note;
 
-  /// Converts a AllergyIntoleranceReactionBuilder to [AllergyIntoleranceReaction]
+  /// converts a [AllergyIntoleranceReactionBuilder]
+  /// to [AllergyIntoleranceReaction]
+  @override
   AllergyIntoleranceReaction build() =>
       AllergyIntoleranceReaction.fromJson(toJson());
 
-  /// Converts a [AllergyIntoleranceReactionBuilder] to a [Map<String, dynamic>]
+  /// converts a [AllergyIntoleranceReactionBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2078,9 +2082,7 @@ class AllergyIntoleranceReactionBuilder extends BackboneElementBuilder {
       severity: severity ?? this.severity,
       exposureRoute: exposureRoute ?? this.exposureRoute,
       note: note ?? this.note,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

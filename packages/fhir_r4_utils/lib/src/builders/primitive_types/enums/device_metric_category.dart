@@ -47,7 +47,8 @@ class DeviceMetricCategoryBuilder extends FhirCodeEnumBuilder {
   factory DeviceMetricCategoryBuilder.empty() =>
       DeviceMetricCategoryBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [DeviceMetricCategoryBuilder] from JSON.
+  /// Factory constructor to create [DeviceMetricCategoryBuilder]
+  /// from JSON.
   factory DeviceMetricCategoryBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
@@ -123,7 +124,9 @@ class DeviceMetricCategoryBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   DeviceMetricCategoryBuilder withElement(ElementBuilder? newElement) {
     return DeviceMetricCategoryBuilder._(
-        validatedValue: value, element: newElement);
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

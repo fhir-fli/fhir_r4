@@ -48,7 +48,8 @@ class XPathUsageTypeBuilder extends FhirCodeEnumBuilder {
   factory XPathUsageTypeBuilder.empty() =>
       XPathUsageTypeBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [XPathUsageTypeBuilder] from JSON.
+  /// Factory constructor to create [XPathUsageTypeBuilder]
+  /// from JSON.
   factory XPathUsageTypeBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;

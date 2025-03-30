@@ -10,11 +10,8 @@ abstract class PrimitiveTypeBuilder<T> extends DataTypeBuilder {
     super.id,
     List<FhirExtensionBuilder>? extension_,
     super.disallowExtensions,
-    String objectPath = 'PrimitiveType',
-  }) : super(
-          extension_: _mergeExtensions(extension_, element),
-          objectPath: objectPath,
-        );
+    super.objectPath = 'PrimitiveType',
+  }) : super(extension_: _mergeExtensions(extension_, element));
 
   /// The primitive value (nullable)
   T? value;

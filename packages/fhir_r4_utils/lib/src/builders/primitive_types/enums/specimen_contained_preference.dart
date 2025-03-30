@@ -47,9 +47,11 @@ class SpecimenContainedPreferenceBuilder extends FhirCodeEnumBuilder {
   factory SpecimenContainedPreferenceBuilder.empty() =>
       SpecimenContainedPreferenceBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [SpecimenContainedPreferenceBuilder] from JSON.
+  /// Factory constructor to create [SpecimenContainedPreferenceBuilder]
+  /// from JSON.
   factory SpecimenContainedPreferenceBuilder.fromJson(
-      Map<String, dynamic> json) {
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -109,7 +111,9 @@ class SpecimenContainedPreferenceBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   SpecimenContainedPreferenceBuilder withElement(ElementBuilder? newElement) {
     return SpecimenContainedPreferenceBuilder._(
-        validatedValue: value, element: newElement);
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

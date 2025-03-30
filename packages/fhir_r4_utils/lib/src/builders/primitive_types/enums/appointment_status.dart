@@ -47,7 +47,8 @@ class AppointmentStatusBuilder extends FhirCodeEnumBuilder {
   factory AppointmentStatusBuilder.empty() =>
       AppointmentStatusBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [AppointmentStatusBuilder] from JSON.
+  /// Factory constructor to create [AppointmentStatusBuilder]
+  /// from JSON.
   factory AppointmentStatusBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
@@ -174,7 +175,9 @@ class AppointmentStatusBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   AppointmentStatusBuilder withElement(ElementBuilder? newElement) {
     return AppointmentStatusBuilder._(
-        validatedValue: value, element: newElement);
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

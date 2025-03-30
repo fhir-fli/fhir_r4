@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, StringExtensionForFHIR, Address;
+    show Address, StringExtensionForFHIR, yamlMapToJson, yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -227,10 +227,13 @@ class AddressBuilder extends DataTypeBuilder
   /// Time period when address was/is in use.
   PeriodBuilder? period;
 
-  /// Converts a AddressBuilder to [Address]
+  /// converts a [AddressBuilder]
+  /// to [Address]
+  @override
   Address build() => Address.fromJson(toJson());
 
-  /// Converts a [AddressBuilder] to a [Map<String, dynamic>]
+  /// converts a [AddressBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -673,9 +676,7 @@ class AddressBuilder extends DataTypeBuilder
       postalCode: postalCode ?? this.postalCode,
       country: country ?? this.country,
       period: period ?? this.period,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

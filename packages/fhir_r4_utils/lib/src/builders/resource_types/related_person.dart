@@ -1,12 +1,12 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
         R4ResourceType,
-        StringExtensionForFHIR,
         RelatedPerson,
-        RelatedPersonCommunication;
+        RelatedPersonCommunication,
+        StringExtensionForFHIR,
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -312,10 +312,13 @@ class RelatedPersonBuilder extends DomainResourceBuilder {
   /// health.
   List<RelatedPersonCommunicationBuilder>? communication;
 
-  /// Converts a RelatedPersonBuilder to [RelatedPerson]
+  /// converts a [RelatedPersonBuilder]
+  /// to [RelatedPerson]
+  @override
   RelatedPerson build() => RelatedPerson.fromJson(toJson());
 
-  /// Converts a [RelatedPersonBuilder] to a [Map<String, dynamic>]
+  /// converts a [RelatedPersonBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1006,9 +1009,7 @@ class RelatedPersonBuilder extends DomainResourceBuilder {
       photo: photo ?? this.photo,
       period: period ?? this.period,
       communication: communication ?? this.communication,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1282,11 +1283,14 @@ class RelatedPersonCommunicationBuilder extends BackboneElementBuilder {
   /// languages he masters up a certain level).
   FhirBooleanBuilder? preferred;
 
-  /// Converts a RelatedPersonCommunicationBuilder to [RelatedPersonCommunication]
+  /// converts a [RelatedPersonCommunicationBuilder]
+  /// to [RelatedPersonCommunication]
+  @override
   RelatedPersonCommunication build() =>
       RelatedPersonCommunication.fromJson(toJson());
 
-  /// Converts a [RelatedPersonCommunicationBuilder] to a [Map<String, dynamic>]
+  /// converts a [RelatedPersonCommunicationBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1547,9 +1551,7 @@ class RelatedPersonCommunicationBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       language: language ?? this.language,
       preferred: preferred ?? this.preferred,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

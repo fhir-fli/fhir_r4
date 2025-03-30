@@ -46,7 +46,8 @@ class SlotStatusBuilder extends FhirCodeEnumBuilder {
   /// Create empty [SlotStatusBuilder] with element only
   factory SlotStatusBuilder.empty() => SlotStatusBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [SlotStatusBuilder] from JSON.
+  /// Factory constructor to create [SlotStatusBuilder]
+  /// from JSON.
   factory SlotStatusBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;

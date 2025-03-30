@@ -47,7 +47,8 @@ class QuestionnaireItemOperatorBuilder extends FhirCodeEnumBuilder {
   factory QuestionnaireItemOperatorBuilder.empty() =>
       QuestionnaireItemOperatorBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [QuestionnaireItemOperatorBuilder] from JSON.
+  /// Factory constructor to create [QuestionnaireItemOperatorBuilder]
+  /// from JSON.
   factory QuestionnaireItemOperatorBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
@@ -162,7 +163,9 @@ class QuestionnaireItemOperatorBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   QuestionnaireItemOperatorBuilder withElement(ElementBuilder? newElement) {
     return QuestionnaireItemOperatorBuilder._(
-        validatedValue: value, element: newElement);
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

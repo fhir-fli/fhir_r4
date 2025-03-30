@@ -47,7 +47,8 @@ class ContributorTypeBuilder extends FhirCodeEnumBuilder {
   factory ContributorTypeBuilder.empty() =>
       ContributorTypeBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [ContributorTypeBuilder] from JSON.
+  /// Factory constructor to create [ContributorTypeBuilder]
+  /// from JSON.
   factory ContributorTypeBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;

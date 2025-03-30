@@ -1,15 +1,15 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
         R4ResourceType,
         StringExtensionForFHIR,
         StructureDefinition,
-        StructureDefinitionMapping,
         StructureDefinitionContext,
+        StructureDefinitionDifferential,
+        StructureDefinitionMapping,
         StructureDefinitionSnapshot,
-        StructureDefinitionDifferential;
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -465,10 +465,13 @@ class StructureDefinitionBuilder extends CanonicalResourceBuilder {
   /// StructureDefinition - a statement of differences that it applies.
   StructureDefinitionDifferentialBuilder? differential;
 
-  /// Converts a StructureDefinitionBuilder to [StructureDefinition]
+  /// converts a [StructureDefinitionBuilder]
+  /// to [StructureDefinition]
+  @override
   StructureDefinition build() => StructureDefinition.fromJson(toJson());
 
-  /// Converts a [StructureDefinitionBuilder] to a [Map<String, dynamic>]
+  /// converts a [StructureDefinitionBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1554,9 +1557,7 @@ class StructureDefinitionBuilder extends CanonicalResourceBuilder {
       derivation: derivation ?? this.derivation,
       snapshot: snapshot ?? this.snapshot,
       differential: differential ?? this.differential,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1940,11 +1941,14 @@ class StructureDefinitionMappingBuilder extends BackboneElementBuilder {
   /// limitations, and other important notes for usage.
   FhirStringBuilder? comment;
 
-  /// Converts a StructureDefinitionMappingBuilder to [StructureDefinitionMapping]
+  /// converts a [StructureDefinitionMappingBuilder]
+  /// to [StructureDefinitionMapping]
+  @override
   StructureDefinitionMapping build() =>
       StructureDefinitionMapping.fromJson(toJson());
 
-  /// Converts a [StructureDefinitionMappingBuilder] to a [Map<String, dynamic>]
+  /// converts a [StructureDefinitionMappingBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2257,9 +2261,7 @@ class StructureDefinitionMappingBuilder extends BackboneElementBuilder {
       uri: uri ?? this.uri,
       name: name ?? this.name,
       comment: comment ?? this.comment,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -2452,11 +2454,14 @@ class StructureDefinitionContextBuilder extends BackboneElementBuilder {
   /// An expression that defines where an extension can be used in resources.
   FhirStringBuilder? expression;
 
-  /// Converts a StructureDefinitionContextBuilder to [StructureDefinitionContext]
+  /// converts a [StructureDefinitionContextBuilder]
+  /// to [StructureDefinitionContext]
+  @override
   StructureDefinitionContext build() =>
       StructureDefinitionContext.fromJson(toJson());
 
-  /// Converts a [StructureDefinitionContextBuilder] to a [Map<String, dynamic>]
+  /// converts a [StructureDefinitionContextBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2717,9 +2722,7 @@ class StructureDefinitionContextBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       type: type ?? this.type,
       expression: expression ?? this.expression,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -2892,11 +2895,14 @@ class StructureDefinitionSnapshotBuilder extends BackboneElementBuilder {
   /// Captures constraints on each element within the resource.
   List<ElementDefinitionBuilder>? element;
 
-  /// Converts a StructureDefinitionSnapshotBuilder to [StructureDefinitionSnapshot]
+  /// converts a [StructureDefinitionSnapshotBuilder]
+  /// to [StructureDefinitionSnapshot]
+  @override
   StructureDefinitionSnapshot build() =>
       StructureDefinitionSnapshot.fromJson(toJson());
 
-  /// Converts a [StructureDefinitionSnapshotBuilder] to a [Map<String, dynamic>]
+  /// converts a [StructureDefinitionSnapshotBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3136,9 +3142,7 @@ class StructureDefinitionSnapshotBuilder extends BackboneElementBuilder {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       element: element ?? this.element,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -3305,11 +3309,14 @@ class StructureDefinitionDifferentialBuilder extends BackboneElementBuilder {
   /// Captures constraints on each element within the resource.
   List<ElementDefinitionBuilder>? element;
 
-  /// Converts a StructureDefinitionDifferentialBuilder to [StructureDefinitionDifferential]
+  /// converts a [StructureDefinitionDifferentialBuilder]
+  /// to [StructureDefinitionDifferential]
+  @override
   StructureDefinitionDifferential build() =>
       StructureDefinitionDifferential.fromJson(toJson());
 
-  /// Converts a [StructureDefinitionDifferentialBuilder] to a [Map<String, dynamic>]
+  /// converts a [StructureDefinitionDifferentialBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3549,9 +3556,7 @@ class StructureDefinitionDifferentialBuilder extends BackboneElementBuilder {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       element: element ?? this.element,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

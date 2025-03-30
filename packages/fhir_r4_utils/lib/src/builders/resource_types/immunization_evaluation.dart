@@ -1,11 +1,11 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
+        ImmunizationEvaluation,
         R4ResourceType,
         StringExtensionForFHIR,
-        ImmunizationEvaluation;
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -326,10 +326,13 @@ class ImmunizationEvaluationBuilder extends DomainResourceBuilder {
   FhirStringBuilder? get seriesDosesString =>
       seriesDosesX?.isAs<FhirStringBuilder>();
 
-  /// Converts a ImmunizationEvaluationBuilder to [ImmunizationEvaluation]
+  /// converts a [ImmunizationEvaluationBuilder]
+  /// to [ImmunizationEvaluation]
+  @override
   ImmunizationEvaluation build() => ImmunizationEvaluation.fromJson(toJson());
 
-  /// Converts a [ImmunizationEvaluationBuilder] to a [Map<String, dynamic>]
+  /// converts a [ImmunizationEvaluationBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1072,8 +1075,8 @@ class ImmunizationEvaluationBuilder extends DomainResourceBuilder {
     if (doseStatusReason) this.doseStatusReason = null;
     if (description) this.description = null;
     if (series) this.series = null;
-    if (doseNumber) this.doseNumberX = null;
-    if (seriesDoses) this.seriesDosesX = null;
+    if (doseNumber) doseNumberX = null;
+    if (seriesDoses) seriesDosesX = null;
   }
 
   @override
@@ -1129,9 +1132,7 @@ class ImmunizationEvaluationBuilder extends DomainResourceBuilder {
       series: series ?? this.series,
       doseNumberX: doseNumberX ?? this.doseNumberX,
       seriesDosesX: seriesDosesX ?? this.seriesDosesX,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

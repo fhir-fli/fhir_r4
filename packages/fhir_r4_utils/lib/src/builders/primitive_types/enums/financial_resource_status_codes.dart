@@ -47,9 +47,11 @@ class FinancialResourceStatusCodesBuilder extends FhirCodeEnumBuilder {
   factory FinancialResourceStatusCodesBuilder.empty() =>
       FinancialResourceStatusCodesBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [FinancialResourceStatusCodesBuilder] from JSON.
+  /// Factory constructor to create [FinancialResourceStatusCodesBuilder]
+  /// from JSON.
   factory FinancialResourceStatusCodesBuilder.fromJson(
-      Map<String, dynamic> json) {
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -127,7 +129,9 @@ class FinancialResourceStatusCodesBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   FinancialResourceStatusCodesBuilder withElement(ElementBuilder? newElement) {
     return FinancialResourceStatusCodesBuilder._(
-        validatedValue: value, element: newElement);
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

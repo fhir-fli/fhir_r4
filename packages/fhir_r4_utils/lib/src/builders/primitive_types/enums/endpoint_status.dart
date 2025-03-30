@@ -47,7 +47,8 @@ class EndpointStatusBuilder extends FhirCodeEnumBuilder {
   factory EndpointStatusBuilder.empty() =>
       EndpointStatusBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [EndpointStatusBuilder] from JSON.
+  /// Factory constructor to create [EndpointStatusBuilder]
+  /// from JSON.
   factory EndpointStatusBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;

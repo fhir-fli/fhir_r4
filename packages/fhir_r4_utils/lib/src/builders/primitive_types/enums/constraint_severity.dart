@@ -47,7 +47,8 @@ class ConstraintSeverityBuilder extends FhirCodeEnumBuilder {
   factory ConstraintSeverityBuilder.empty() =>
       ConstraintSeverityBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [ConstraintSeverityBuilder] from JSON.
+  /// Factory constructor to create [ConstraintSeverityBuilder]
+  /// from JSON.
   factory ConstraintSeverityBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
@@ -102,7 +103,9 @@ class ConstraintSeverityBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   ConstraintSeverityBuilder withElement(ElementBuilder? newElement) {
     return ConstraintSeverityBuilder._(
-        validatedValue: value, element: newElement);
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

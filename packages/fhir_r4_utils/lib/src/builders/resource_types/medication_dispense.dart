@@ -1,13 +1,13 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
-        R4ResourceType,
-        StringExtensionForFHIR,
         MedicationDispense,
         MedicationDispensePerformer,
-        MedicationDispenseSubstitution;
+        MedicationDispenseSubstitution,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -505,10 +505,13 @@ class MedicationDispenseBuilder extends DomainResourceBuilder {
   /// the dispense was verified.
   List<ReferenceBuilder>? eventHistory;
 
-  /// Converts a MedicationDispenseBuilder to [MedicationDispense]
+  /// converts a [MedicationDispenseBuilder]
+  /// to [MedicationDispense]
+  @override
   MedicationDispense build() => MedicationDispense.fromJson(toJson());
 
-  /// Converts a [MedicationDispenseBuilder] to a [Map<String, dynamic>]
+  /// converts a [MedicationDispenseBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1079,7 +1082,7 @@ class MedicationDispenseBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             authorizingPrescription = [
               ...(authorizingPrescription ?? []),
-              child
+              child,
             ];
             return;
           } else {
@@ -1539,9 +1542,9 @@ class MedicationDispenseBuilder extends DomainResourceBuilder {
     if (identifier) this.identifier = null;
     if (partOf) this.partOf = null;
     if (status) this.status = null;
-    if (statusReason) this.statusReasonX = null;
+    if (statusReason) statusReasonX = null;
     if (category) this.category = null;
-    if (medication) this.medicationX = null;
+    if (medication) medicationX = null;
     if (subject) this.subject = null;
     if (context) this.context = null;
     if (supportingInformation) this.supportingInformation = null;
@@ -1639,9 +1642,7 @@ class MedicationDispenseBuilder extends DomainResourceBuilder {
       substitution: substitution ?? this.substitution,
       detectedIssue: detectedIssue ?? this.detectedIssue,
       eventHistory: eventHistory ?? this.eventHistory,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1984,11 +1985,14 @@ class MedicationDispensePerformerBuilder extends BackboneElementBuilder {
   /// assumed that the actor is the dispenser of the medication.
   ReferenceBuilder? actor;
 
-  /// Converts a MedicationDispensePerformerBuilder to [MedicationDispensePerformer]
+  /// converts a [MedicationDispensePerformerBuilder]
+  /// to [MedicationDispensePerformer]
+  @override
   MedicationDispensePerformer build() =>
       MedicationDispensePerformer.fromJson(toJson());
 
-  /// Converts a [MedicationDispensePerformerBuilder] to a [Map<String, dynamic>]
+  /// converts a [MedicationDispensePerformerBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2249,9 +2253,7 @@ class MedicationDispensePerformerBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       function_: function_ ?? this.function_,
       actor: actor ?? this.actor,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -2468,11 +2470,14 @@ class MedicationDispenseSubstitutionBuilder extends BackboneElementBuilder {
   /// substitution.
   List<ReferenceBuilder>? responsibleParty;
 
-  /// Converts a MedicationDispenseSubstitutionBuilder to [MedicationDispenseSubstitution]
+  /// converts a [MedicationDispenseSubstitutionBuilder]
+  /// to [MedicationDispenseSubstitution]
+  @override
   MedicationDispenseSubstitution build() =>
       MedicationDispenseSubstitution.fromJson(toJson());
 
-  /// Converts a [MedicationDispenseSubstitutionBuilder] to a [Map<String, dynamic>]
+  /// converts a [MedicationDispenseSubstitutionBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2795,9 +2800,7 @@ class MedicationDispenseSubstitutionBuilder extends BackboneElementBuilder {
       type: type ?? this.type,
       reason: reason ?? this.reason,
       responsibleParty: responsibleParty ?? this.responsibleParty,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

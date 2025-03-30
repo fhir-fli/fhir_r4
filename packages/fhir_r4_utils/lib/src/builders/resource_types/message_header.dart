@@ -1,14 +1,14 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
-        R4ResourceType,
-        StringExtensionForFHIR,
         MessageHeader,
         MessageHeaderDestination,
+        MessageHeaderResponse,
         MessageHeaderSource,
-        MessageHeaderResponse;
+        R4ResourceType,
+        StringExtensionForFHIR,
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -302,10 +302,13 @@ class MessageHeaderBuilder extends DomainResourceBuilder {
   /// Permanent link to the MessageDefinition for this message.
   FhirCanonicalBuilder? definition;
 
-  /// Converts a MessageHeaderBuilder to [MessageHeader]
+  /// converts a [MessageHeaderBuilder]
+  /// to [MessageHeader]
+  @override
   MessageHeader build() => MessageHeader.fromJson(toJson());
 
-  /// Converts a [MessageHeaderBuilder] to a [Map<String, dynamic>]
+  /// converts a [MessageHeaderBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -937,7 +940,7 @@ class MessageHeaderBuilder extends DomainResourceBuilder {
     if (contained) this.contained = null;
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
-    if (event) this.eventX = null;
+    if (event) eventX = null;
     if (destination) this.destination = null;
     if (sender) this.sender = null;
     if (enterer) this.enterer = null;
@@ -999,9 +1002,7 @@ class MessageHeaderBuilder extends DomainResourceBuilder {
       response: response ?? this.response,
       focus: focus ?? this.focus,
       definition: definition ?? this.definition,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1289,11 +1290,14 @@ class MessageHeaderDestinationBuilder extends BackboneElementBuilder {
   /// sufficient.
   ReferenceBuilder? receiver;
 
-  /// Converts a MessageHeaderDestinationBuilder to [MessageHeaderDestination]
+  /// converts a [MessageHeaderDestinationBuilder]
+  /// to [MessageHeaderDestination]
+  @override
   MessageHeaderDestination build() =>
       MessageHeaderDestination.fromJson(toJson());
 
-  /// Converts a [MessageHeaderDestinationBuilder] to a [Map<String, dynamic>]
+  /// converts a [MessageHeaderDestinationBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1606,9 +1610,7 @@ class MessageHeaderDestinationBuilder extends BackboneElementBuilder {
       target: target ?? this.target,
       endpoint: endpoint ?? this.endpoint,
       receiver: receiver ?? this.receiver,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1833,10 +1835,13 @@ class MessageHeaderSourceBuilder extends BackboneElementBuilder {
   /// Identifies the routing target to send acknowledgements to.
   FhirUrlBuilder? endpoint;
 
-  /// Converts a MessageHeaderSourceBuilder to [MessageHeaderSource]
+  /// converts a [MessageHeaderSourceBuilder]
+  /// to [MessageHeaderSource]
+  @override
   MessageHeaderSource build() => MessageHeaderSource.fromJson(toJson());
 
-  /// Converts a [MessageHeaderSourceBuilder] to a [Map<String, dynamic>]
+  /// converts a [MessageHeaderSourceBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2175,9 +2180,7 @@ class MessageHeaderSourceBuilder extends BackboneElementBuilder {
       version: version ?? this.version,
       contact: contact ?? this.contact,
       endpoint: endpoint ?? this.endpoint,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -2388,10 +2391,13 @@ class MessageHeaderResponseBuilder extends BackboneElementBuilder {
   /// Full details of any issues found in the message.
   ReferenceBuilder? details;
 
-  /// Converts a MessageHeaderResponseBuilder to [MessageHeaderResponse]
+  /// converts a [MessageHeaderResponseBuilder]
+  /// to [MessageHeaderResponse]
+  @override
   MessageHeaderResponse build() => MessageHeaderResponse.fromJson(toJson());
 
-  /// Converts a [MessageHeaderResponseBuilder] to a [Map<String, dynamic>]
+  /// converts a [MessageHeaderResponseBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2678,9 +2684,7 @@ class MessageHeaderResponseBuilder extends BackboneElementBuilder {
       identifier: identifier ?? this.identifier,
       code: code ?? this.code,
       details: details ?? this.details,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

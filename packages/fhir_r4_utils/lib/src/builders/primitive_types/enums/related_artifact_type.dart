@@ -47,7 +47,8 @@ class RelatedArtifactTypeBuilder extends FhirCodeEnumBuilder {
   factory RelatedArtifactTypeBuilder.empty() =>
       RelatedArtifactTypeBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [RelatedArtifactTypeBuilder] from JSON.
+  /// Factory constructor to create [RelatedArtifactTypeBuilder]
+  /// from JSON.
   factory RelatedArtifactTypeBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
@@ -166,7 +167,9 @@ class RelatedArtifactTypeBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   RelatedArtifactTypeBuilder withElement(ElementBuilder? newElement) {
     return RelatedArtifactTypeBuilder._(
-        validatedValue: value, element: newElement);
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

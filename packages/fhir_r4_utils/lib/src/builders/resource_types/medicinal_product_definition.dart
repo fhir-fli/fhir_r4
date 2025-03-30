@@ -1,18 +1,18 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
-        R4ResourceType,
-        StringExtensionForFHIR,
         MedicinalProductDefinition,
+        MedicinalProductDefinitionCharacteristic,
         MedicinalProductDefinitionContact,
-        MedicinalProductDefinitionName,
-        MedicinalProductDefinitionNamePart,
         MedicinalProductDefinitionCountryLanguage,
         MedicinalProductDefinitionCrossReference,
+        MedicinalProductDefinitionName,
+        MedicinalProductDefinitionNamePart,
         MedicinalProductDefinitionOperation,
-        MedicinalProductDefinitionCharacteristic;
+        R4ResourceType,
+        StringExtensionForFHIR,
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -590,11 +590,14 @@ class MedicinalProductDefinitionBuilder extends DomainResourceBuilder {
   /// "modified release", "parallel import".
   List<MedicinalProductDefinitionCharacteristicBuilder>? characteristic;
 
-  /// Converts a MedicinalProductDefinitionBuilder to [MedicinalProductDefinition]
+  /// converts a [MedicinalProductDefinitionBuilder]
+  /// to [MedicinalProductDefinition]
+  @override
   MedicinalProductDefinition build() =>
       MedicinalProductDefinition.fromJson(toJson());
 
-  /// Converts a [MedicinalProductDefinitionBuilder] to a [Map<String, dynamic>]
+  /// converts a [MedicinalProductDefinitionBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1155,7 +1158,7 @@ class MedicinalProductDefinitionBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             packagedMedicinalProduct = [
               ...(packagedMedicinalProduct ?? []),
-              child
+              child,
             ];
             return;
           } else {
@@ -1648,13 +1651,15 @@ class MedicinalProductDefinitionBuilder extends DomainResourceBuilder {
     if (status) this.status = null;
     if (statusDate) this.statusDate = null;
     if (description) this.description = null;
-    if (combinedPharmaceuticalDoseForm)
+    if (combinedPharmaceuticalDoseForm) {
       this.combinedPharmaceuticalDoseForm = null;
+    }
     if (route) this.route = null;
     if (indication) this.indication = null;
     if (legalStatusOfSupply) this.legalStatusOfSupply = null;
-    if (additionalMonitoringIndicator)
+    if (additionalMonitoringIndicator) {
       this.additionalMonitoringIndicator = null;
+    }
     if (specialMeasures) this.specialMeasures = null;
     if (pediatricUseIndicator) this.pediatricUseIndicator = null;
     if (classification) this.classification = null;
@@ -1760,9 +1765,7 @@ class MedicinalProductDefinitionBuilder extends DomainResourceBuilder {
       crossReference: crossReference ?? this.crossReference,
       operation: operation ?? this.operation,
       characteristic: characteristic ?? this.characteristic,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -2128,11 +2131,14 @@ class MedicinalProductDefinitionContactBuilder extends BackboneElementBuilder {
   /// A product specific contact, person (in a role), or an organization.
   ReferenceBuilder? contact;
 
-  /// Converts a MedicinalProductDefinitionContactBuilder to [MedicinalProductDefinitionContact]
+  /// converts a [MedicinalProductDefinitionContactBuilder]
+  /// to [MedicinalProductDefinitionContact]
+  @override
   MedicinalProductDefinitionContact build() =>
       MedicinalProductDefinitionContact.fromJson(toJson());
 
-  /// Converts a [MedicinalProductDefinitionContactBuilder] to a [Map<String, dynamic>]
+  /// converts a [MedicinalProductDefinitionContactBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2394,9 +2400,7 @@ class MedicinalProductDefinitionContactBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       type: type ?? this.type,
       contact: contact ?? this.contact,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -2606,11 +2610,14 @@ class MedicinalProductDefinitionNameBuilder extends BackboneElementBuilder {
   /// language.
   List<MedicinalProductDefinitionCountryLanguageBuilder>? countryLanguage;
 
-  /// Converts a MedicinalProductDefinitionNameBuilder to [MedicinalProductDefinitionName]
+  /// converts a [MedicinalProductDefinitionNameBuilder]
+  /// to [MedicinalProductDefinitionName]
+  @override
   MedicinalProductDefinitionName build() =>
       MedicinalProductDefinitionName.fromJson(toJson());
 
-  /// Converts a [MedicinalProductDefinitionNameBuilder] to a [Map<String, dynamic>]
+  /// converts a [MedicinalProductDefinitionNameBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2935,9 +2942,7 @@ class MedicinalProductDefinitionNameBuilder extends BackboneElementBuilder {
       type: type ?? this.type,
       namePart: namePart ?? this.namePart,
       countryLanguage: countryLanguage ?? this.countryLanguage,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -3128,11 +3133,14 @@ class MedicinalProductDefinitionNamePartBuilder extends BackboneElementBuilder {
   /// Identifying type for this part of the name (e.g. strength part).
   CodeableConceptBuilder? type;
 
-  /// Converts a MedicinalProductDefinitionNamePartBuilder to [MedicinalProductDefinitionNamePart]
+  /// converts a [MedicinalProductDefinitionNamePartBuilder]
+  /// to [MedicinalProductDefinitionNamePart]
+  @override
   MedicinalProductDefinitionNamePart build() =>
       MedicinalProductDefinitionNamePart.fromJson(toJson());
 
-  /// Converts a [MedicinalProductDefinitionNamePartBuilder] to a [Map<String, dynamic>]
+  /// converts a [MedicinalProductDefinitionNamePartBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3394,9 +3402,7 @@ class MedicinalProductDefinitionNamePartBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       part_: part_ ?? this.part_,
       type: type ?? this.type,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -3589,11 +3595,14 @@ class MedicinalProductDefinitionCountryLanguageBuilder
   /// Language code for this name.
   CodeableConceptBuilder? language;
 
-  /// Converts a MedicinalProductDefinitionCountryLanguageBuilder to [MedicinalProductDefinitionCountryLanguage]
+  /// converts a [MedicinalProductDefinitionCountryLanguageBuilder]
+  /// to [MedicinalProductDefinitionCountryLanguage]
+  @override
   MedicinalProductDefinitionCountryLanguage build() =>
       MedicinalProductDefinitionCountryLanguage.fromJson(toJson());
 
-  /// Converts a [MedicinalProductDefinitionCountryLanguageBuilder] to a [Map<String, dynamic>]
+  /// converts a [MedicinalProductDefinitionCountryLanguageBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3881,9 +3890,7 @@ class MedicinalProductDefinitionCountryLanguageBuilder
       country: country ?? this.country,
       jurisdiction: jurisdiction ?? this.jurisdiction,
       language: language ?? this.language,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -4073,11 +4080,14 @@ class MedicinalProductDefinitionCrossReferenceBuilder
   /// parallel import version.
   CodeableConceptBuilder? type;
 
-  /// Converts a MedicinalProductDefinitionCrossReferenceBuilder to [MedicinalProductDefinitionCrossReference]
+  /// converts a [MedicinalProductDefinitionCrossReferenceBuilder]
+  /// to [MedicinalProductDefinitionCrossReference]
+  @override
   MedicinalProductDefinitionCrossReference build() =>
       MedicinalProductDefinitionCrossReference.fromJson(toJson());
 
-  /// Converts a [MedicinalProductDefinitionCrossReferenceBuilder] to a [Map<String, dynamic>]
+  /// converts a [MedicinalProductDefinitionCrossReferenceBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -4339,9 +4349,7 @@ class MedicinalProductDefinitionCrossReferenceBuilder
       modifierExtension: modifierExtension ?? this.modifierExtension,
       product: product ?? this.product,
       type: type ?? this.type,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -4553,11 +4561,14 @@ class MedicinalProductDefinitionOperationBuilder
   /// considered proprietary or confidential.
   CodeableConceptBuilder? confidentialityIndicator;
 
-  /// Converts a MedicinalProductDefinitionOperationBuilder to [MedicinalProductDefinitionOperation]
+  /// converts a [MedicinalProductDefinitionOperationBuilder]
+  /// to [MedicinalProductDefinitionOperation]
+  @override
   MedicinalProductDefinitionOperation build() =>
       MedicinalProductDefinitionOperation.fromJson(toJson());
 
-  /// Converts a [MedicinalProductDefinitionOperationBuilder] to a [Map<String, dynamic>]
+  /// converts a [MedicinalProductDefinitionOperationBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -4877,9 +4888,7 @@ class MedicinalProductDefinitionOperationBuilder
       organization: organization ?? this.organization,
       confidentialityIndicator:
           confidentialityIndicator ?? this.confidentialityIndicator,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -5094,11 +5103,14 @@ class MedicinalProductDefinitionCharacteristicBuilder
   /// Getter for [valueAttachment] as a AttachmentBuilder
   AttachmentBuilder? get valueAttachment => valueX?.isAs<AttachmentBuilder>();
 
-  /// Converts a MedicinalProductDefinitionCharacteristicBuilder to [MedicinalProductDefinitionCharacteristic]
+  /// converts a [MedicinalProductDefinitionCharacteristicBuilder]
+  /// to [MedicinalProductDefinitionCharacteristic]
+  @override
   MedicinalProductDefinitionCharacteristic build() =>
       MedicinalProductDefinitionCharacteristic.fromJson(toJson());
 
-  /// Converts a [MedicinalProductDefinitionCharacteristicBuilder] to a [Map<String, dynamic>]
+  /// converts a [MedicinalProductDefinitionCharacteristicBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -5379,7 +5391,7 @@ class MedicinalProductDefinitionCharacteristicBuilder
           'QuantityBuilder',
           'FhirDateBuilder',
           'FhirBooleanBuilder',
-          'AttachmentBuilder'
+          'AttachmentBuilder',
         ];
       case 'valueCodeableConcept':
         return ['CodeableConceptBuilder'];
@@ -5466,7 +5478,7 @@ class MedicinalProductDefinitionCharacteristicBuilder
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
     if (type) this.type = null;
-    if (value) this.valueX = null;
+    if (value) valueX = null;
   }
 
   @override
@@ -5492,9 +5504,7 @@ class MedicinalProductDefinitionCharacteristicBuilder
       modifierExtension: modifierExtension ?? this.modifierExtension,
       type: type ?? this.type,
       valueX: valueX ?? this.valueX,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

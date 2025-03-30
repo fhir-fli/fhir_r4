@@ -1,16 +1,16 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
-        R4ResourceType,
-        StringExtensionForFHIR,
         AuditEvent,
         AuditEventAgent,
+        AuditEventDetail,
+        AuditEventEntity,
         AuditEventNetwork,
         AuditEventSource,
-        AuditEventEntity,
-        AuditEventDetail;
+        R4ResourceType,
+        StringExtensionForFHIR,
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -292,10 +292,13 @@ class AuditEventBuilder extends DomainResourceBuilder {
   /// Specific instances of data or objects that have been accessed.
   List<AuditEventEntityBuilder>? entity;
 
-  /// Converts a AuditEventBuilder to [AuditEvent]
+  /// converts a [AuditEventBuilder]
+  /// to [AuditEvent]
+  @override
   AuditEvent build() => AuditEvent.fromJson(toJson());
 
-  /// Converts a [AuditEventBuilder] to a [Map<String, dynamic>]
+  /// converts a [AuditEventBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -945,9 +948,7 @@ class AuditEventBuilder extends DomainResourceBuilder {
       agent: agent ?? this.agent,
       source: source ?? this.source,
       entity: entity ?? this.entity,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1329,10 +1330,13 @@ class AuditEventAgentBuilder extends BackboneElementBuilder {
   /// during the event being recorded.
   List<CodeableConceptBuilder>? purposeOfUse;
 
-  /// Converts a AuditEventAgentBuilder to [AuditEventAgent]
+  /// converts a [AuditEventAgentBuilder]
+  /// to [AuditEventAgent]
+  @override
   AuditEventAgent build() => AuditEventAgent.fromJson(toJson());
 
-  /// Converts a [AuditEventAgentBuilder] to a [Map<String, dynamic>]
+  /// converts a [AuditEventAgentBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1842,9 +1846,7 @@ class AuditEventAgentBuilder extends BackboneElementBuilder {
       media: media ?? this.media,
       network: network ?? this.network,
       purposeOfUse: purposeOfUse ?? this.purposeOfUse,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -2079,10 +2081,13 @@ class AuditEventNetworkBuilder extends BackboneElementBuilder {
   /// audit event.
   AuditEventAgentNetworkTypeBuilder? type;
 
-  /// Converts a AuditEventNetworkBuilder to [AuditEventNetwork]
+  /// converts a [AuditEventNetworkBuilder]
+  /// to [AuditEventNetwork]
+  @override
   AuditEventNetwork build() => AuditEventNetwork.fromJson(toJson());
 
-  /// Converts a [AuditEventNetworkBuilder] to a [Map<String, dynamic>]
+  /// converts a [AuditEventNetworkBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2343,9 +2348,7 @@ class AuditEventNetworkBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       address: address ?? this.address,
       type: type ?? this.type,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -2540,10 +2543,13 @@ class AuditEventSourceBuilder extends BackboneElementBuilder {
   /// Code specifying the type of source where event originated.
   List<CodingBuilder>? type;
 
-  /// Converts a AuditEventSourceBuilder to [AuditEventSource]
+  /// converts a [AuditEventSourceBuilder]
+  /// to [AuditEventSource]
+  @override
   AuditEventSource build() => AuditEventSource.fromJson(toJson());
 
-  /// Converts a [AuditEventSourceBuilder] to a [Map<String, dynamic>]
+  /// converts a [AuditEventSourceBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2835,9 +2841,7 @@ class AuditEventSourceBuilder extends BackboneElementBuilder {
       site: site ?? this.site,
       observer: observer ?? this.observer,
       type: type ?? this.type,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -3109,10 +3113,13 @@ class AuditEventEntityBuilder extends BackboneElementBuilder {
   /// entity.
   List<AuditEventDetailBuilder>? detail;
 
-  /// Converts a AuditEventEntityBuilder to [AuditEventEntity]
+  /// converts a [AuditEventEntityBuilder]
+  /// to [AuditEventEntity]
+  @override
   AuditEventEntity build() => AuditEventEntity.fromJson(toJson());
 
-  /// Converts a [AuditEventEntityBuilder] to a [Map<String, dynamic>]
+  /// converts a [AuditEventEntityBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3565,9 +3572,7 @@ class AuditEventEntityBuilder extends BackboneElementBuilder {
       description: description ?? this.description,
       query: query ?? this.query,
       detail: detail ?? this.detail,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -3797,10 +3802,13 @@ class AuditEventDetailBuilder extends BackboneElementBuilder {
   FhirBase64BinaryBuilder? get valueBase64Binary =>
       valueX?.isAs<FhirBase64BinaryBuilder>();
 
-  /// Converts a AuditEventDetailBuilder to [AuditEventDetail]
+  /// converts a [AuditEventDetailBuilder]
+  /// to [AuditEventDetail]
+  @override
   AuditEventDetail build() => AuditEventDetail.fromJson(toJson());
 
-  /// Converts a [AuditEventDetailBuilder] to a [Map<String, dynamic>]
+  /// converts a [AuditEventDetailBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -4090,7 +4098,7 @@ class AuditEventDetailBuilder extends BackboneElementBuilder {
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
     if (type) this.type = null;
-    if (value) this.valueX = null;
+    if (value) valueX = null;
   }
 
   @override
@@ -4115,9 +4123,7 @@ class AuditEventDetailBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       type: type ?? this.type,
       valueX: valueX ?? this.valueX,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

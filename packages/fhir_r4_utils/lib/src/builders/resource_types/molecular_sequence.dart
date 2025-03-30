@@ -1,19 +1,19 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
+        MolecularSequence,
+        MolecularSequenceInner,
+        MolecularSequenceOuter,
+        MolecularSequenceQuality,
+        MolecularSequenceReferenceSeq,
+        MolecularSequenceRepository,
+        MolecularSequenceRoc,
+        MolecularSequenceStructureVariant,
+        MolecularSequenceVariant,
         R4ResourceType,
         StringExtensionForFHIR,
-        MolecularSequence,
-        MolecularSequenceReferenceSeq,
-        MolecularSequenceVariant,
-        MolecularSequenceQuality,
-        MolecularSequenceRoc,
-        MolecularSequenceRepository,
-        MolecularSequenceStructureVariant,
-        MolecularSequenceOuter,
-        MolecularSequenceInner;
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -367,10 +367,13 @@ class MolecularSequenceBuilder extends DomainResourceBuilder {
   /// Information about chromosome structure variation.
   List<MolecularSequenceStructureVariantBuilder>? structureVariant;
 
-  /// Converts a MolecularSequenceBuilder to [MolecularSequence]
+  /// converts a [MolecularSequenceBuilder]
+  /// to [MolecularSequence]
+  @override
   MolecularSequence build() => MolecularSequence.fromJson(toJson());
 
-  /// Converts a [MolecularSequenceBuilder] to a [Map<String, dynamic>]
+  /// converts a [MolecularSequenceBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1160,9 +1163,7 @@ class MolecularSequenceBuilder extends DomainResourceBuilder {
       repository: repository ?? this.repository,
       pointer: pointer ?? this.pointer,
       structureVariant: structureVariant ?? this.structureVariant,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1551,11 +1552,14 @@ class MolecularSequenceReferenceSeqBuilder extends BackboneElementBuilder {
   /// includes the last position.
   FhirIntegerBuilder? windowEnd;
 
-  /// Converts a MolecularSequenceReferenceSeqBuilder to [MolecularSequenceReferenceSeq]
+  /// converts a [MolecularSequenceReferenceSeqBuilder]
+  /// to [MolecularSequenceReferenceSeq]
+  @override
   MolecularSequenceReferenceSeq build() =>
       MolecularSequenceReferenceSeq.fromJson(toJson());
 
-  /// Converts a [MolecularSequenceReferenceSeqBuilder] to a [Map<String, dynamic>]
+  /// converts a [MolecularSequenceReferenceSeqBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1998,9 +2002,7 @@ class MolecularSequenceReferenceSeqBuilder extends BackboneElementBuilder {
       strand: strand ?? this.strand,
       windowStart: windowStart ?? this.windowStart,
       windowEnd: windowEnd ?? this.windowEnd,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -2288,11 +2290,14 @@ class MolecularSequenceVariantBuilder extends BackboneElementBuilder {
   /// A pointer to an Observation containing variant information.
   ReferenceBuilder? variantPointer;
 
-  /// Converts a MolecularSequenceVariantBuilder to [MolecularSequenceVariant]
+  /// converts a [MolecularSequenceVariantBuilder]
+  /// to [MolecularSequenceVariant]
+  @override
   MolecularSequenceVariant build() =>
       MolecularSequenceVariant.fromJson(toJson());
 
-  /// Converts a [MolecularSequenceVariantBuilder] to a [Map<String, dynamic>]
+  /// converts a [MolecularSequenceVariantBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2657,9 +2662,7 @@ class MolecularSequenceVariantBuilder extends BackboneElementBuilder {
       referenceAllele: referenceAllele ?? this.referenceAllele,
       cigar: cigar ?? this.cigar,
       variantPointer: variantPointer ?? this.variantPointer,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -3029,11 +3032,14 @@ class MolecularSequenceQualityBuilder extends BackboneElementBuilder {
   /// sensitivity/specificity tradeoff.
   MolecularSequenceRocBuilder? roc;
 
-  /// Converts a MolecularSequenceQualityBuilder to [MolecularSequenceQuality]
+  /// converts a [MolecularSequenceQualityBuilder]
+  /// to [MolecularSequenceQuality]
+  @override
   MolecularSequenceQuality build() =>
       MolecularSequenceQuality.fromJson(toJson());
 
-  /// Converts a [MolecularSequenceQualityBuilder] to a [Map<String, dynamic>]
+  /// converts a [MolecularSequenceQualityBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3632,9 +3638,7 @@ class MolecularSequenceQualityBuilder extends BackboneElementBuilder {
       recall: recall ?? this.recall,
       fScore: fScore ?? this.fScore,
       roc: roc ?? this.roc,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -3953,10 +3957,13 @@ class MolecularSequenceRocBuilder extends BackboneElementBuilder {
   /// value.
   List<FhirDecimalBuilder>? fMeasure;
 
-  /// Converts a MolecularSequenceRocBuilder to [MolecularSequenceRoc]
+  /// converts a [MolecularSequenceRocBuilder]
+  /// to [MolecularSequenceRoc]
+  @override
   MolecularSequenceRoc build() => MolecularSequenceRoc.fromJson(toJson());
 
-  /// Converts a [MolecularSequenceRocBuilder] to a [Map<String, dynamic>]
+  /// converts a [MolecularSequenceRocBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -4382,9 +4389,7 @@ class MolecularSequenceRocBuilder extends BackboneElementBuilder {
       precision: precision ?? this.precision,
       sensitivity: sensitivity ?? this.sensitivity,
       fMeasure: fMeasure ?? this.fMeasure,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -4645,11 +4650,14 @@ class MolecularSequenceRepositoryBuilder extends BackboneElementBuilder {
   /// Id of the read in this external repository.
   FhirStringBuilder? readsetId;
 
-  /// Converts a MolecularSequenceRepositoryBuilder to [MolecularSequenceRepository]
+  /// converts a [MolecularSequenceRepositoryBuilder]
+  /// to [MolecularSequenceRepository]
+  @override
   MolecularSequenceRepository build() =>
       MolecularSequenceRepository.fromJson(toJson());
 
-  /// Converts a [MolecularSequenceRepositoryBuilder] to a [Map<String, dynamic>]
+  /// converts a [MolecularSequenceRepositoryBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -5014,9 +5022,7 @@ class MolecularSequenceRepositoryBuilder extends BackboneElementBuilder {
       datasetId: datasetId ?? this.datasetId,
       variantsetId: variantsetId ?? this.variantsetId,
       readsetId: readsetId ?? this.readsetId,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -5253,11 +5259,14 @@ class MolecularSequenceStructureVariantBuilder extends BackboneElementBuilder {
   /// Structural variant inner.
   MolecularSequenceInnerBuilder? inner;
 
-  /// Converts a MolecularSequenceStructureVariantBuilder to [MolecularSequenceStructureVariant]
+  /// converts a [MolecularSequenceStructureVariantBuilder]
+  /// to [MolecularSequenceStructureVariant]
+  @override
   MolecularSequenceStructureVariant build() =>
       MolecularSequenceStructureVariant.fromJson(toJson());
 
-  /// Converts a [MolecularSequenceStructureVariantBuilder] to a [Map<String, dynamic>]
+  /// converts a [MolecularSequenceStructureVariantBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -5597,9 +5606,7 @@ class MolecularSequenceStructureVariantBuilder extends BackboneElementBuilder {
       length: length ?? this.length,
       outer: outer ?? this.outer,
       inner: inner ?? this.inner,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -5800,10 +5807,13 @@ class MolecularSequenceOuterBuilder extends BackboneElementBuilder {
   /// last position.
   FhirIntegerBuilder? end;
 
-  /// Converts a MolecularSequenceOuterBuilder to [MolecularSequenceOuter]
+  /// converts a [MolecularSequenceOuterBuilder]
+  /// to [MolecularSequenceOuter]
+  @override
   MolecularSequenceOuter build() => MolecularSequenceOuter.fromJson(toJson());
 
-  /// Converts a [MolecularSequenceOuterBuilder] to a [Map<String, dynamic>]
+  /// converts a [MolecularSequenceOuterBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -6064,9 +6074,7 @@ class MolecularSequenceOuterBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       start: start ?? this.start,
       end: end ?? this.end,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -6249,10 +6257,13 @@ class MolecularSequenceInnerBuilder extends BackboneElementBuilder {
   /// last position.
   FhirIntegerBuilder? end;
 
-  /// Converts a MolecularSequenceInnerBuilder to [MolecularSequenceInner]
+  /// converts a [MolecularSequenceInnerBuilder]
+  /// to [MolecularSequenceInner]
+  @override
   MolecularSequenceInner build() => MolecularSequenceInner.fromJson(toJson());
 
-  /// Converts a [MolecularSequenceInnerBuilder] to a [Map<String, dynamic>]
+  /// converts a [MolecularSequenceInnerBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -6513,9 +6524,7 @@ class MolecularSequenceInnerBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       start: start ?? this.start,
       end: end ?? this.end,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

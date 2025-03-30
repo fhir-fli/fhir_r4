@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, StringExtensionForFHIR, ContactDetail;
+    show ContactDetail, StringExtensionForFHIR, yamlMapToJson, yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -125,10 +125,13 @@ class ContactDetailBuilder extends DataTypeBuilder
   /// organization.
   List<ContactPointBuilder>? telecom;
 
-  /// Converts a ContactDetailBuilder to [ContactDetail]
+  /// converts a [ContactDetailBuilder]
+  /// to [ContactDetail]
+  @override
   ContactDetail build() => ContactDetail.fromJson(toJson());
 
-  /// Converts a [ContactDetailBuilder] to a [Map<String, dynamic>]
+  /// converts a [ContactDetailBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -363,9 +366,7 @@ class ContactDetailBuilder extends DataTypeBuilder
       extension_: extension_ ?? this.extension_,
       name: name ?? this.name,
       telecom: telecom ?? this.telecom,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

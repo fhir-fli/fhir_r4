@@ -46,7 +46,8 @@ class TaskIntentBuilder extends FhirCodeEnumBuilder {
   /// Create empty [TaskIntentBuilder] with element only
   factory TaskIntentBuilder.empty() => TaskIntentBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [TaskIntentBuilder] from JSON.
+  /// Factory constructor to create [TaskIntentBuilder]
+  /// from JSON.
   factory TaskIntentBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;

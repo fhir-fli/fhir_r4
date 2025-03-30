@@ -1,13 +1,13 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
         R4ResourceType,
         StringExtensionForFHIR,
         VisionPrescription,
         VisionPrescriptionLensSpecification,
-        VisionPrescriptionPrism;
+        VisionPrescriptionPrism,
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -248,10 +248,13 @@ class VisionPrescriptionBuilder extends DomainResourceBuilder {
   /// the authorization for the fullfillment by certified professionals.
   List<VisionPrescriptionLensSpecificationBuilder>? lensSpecification;
 
-  /// Converts a VisionPrescriptionBuilder to [VisionPrescription]
+  /// converts a [VisionPrescriptionBuilder]
+  /// to [VisionPrescription]
+  @override
   VisionPrescription build() => VisionPrescription.fromJson(toJson());
 
-  /// Converts a [VisionPrescriptionBuilder] to a [Map<String, dynamic>]
+  /// converts a [VisionPrescriptionBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -813,9 +816,7 @@ class VisionPrescriptionBuilder extends DomainResourceBuilder {
       dateWritten: dateWritten ?? this.dateWritten,
       prescriber: prescriber ?? this.prescriber,
       lensSpecification: lensSpecification ?? this.lensSpecification,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1204,11 +1205,14 @@ class VisionPrescriptionLensSpecificationBuilder
   /// Notes for special requirements such as coatings and lens materials.
   List<AnnotationBuilder>? note;
 
-  /// Converts a VisionPrescriptionLensSpecificationBuilder to [VisionPrescriptionLensSpecification]
+  /// converts a [VisionPrescriptionLensSpecificationBuilder]
+  /// to [VisionPrescriptionLensSpecification]
+  @override
   VisionPrescriptionLensSpecification build() =>
       VisionPrescriptionLensSpecification.fromJson(toJson());
 
-  /// Converts a [VisionPrescriptionLensSpecificationBuilder] to a [Map<String, dynamic>]
+  /// converts a [VisionPrescriptionLensSpecificationBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1792,9 +1796,7 @@ class VisionPrescriptionLensSpecificationBuilder
       color: color ?? this.color,
       brand: brand ?? this.brand,
       note: note ?? this.note,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -2045,10 +2047,13 @@ class VisionPrescriptionPrismBuilder extends BackboneElementBuilder {
   /// The relative base, or reference lens edge, for the prism.
   VisionBaseBuilder? base;
 
-  /// Converts a VisionPrescriptionPrismBuilder to [VisionPrescriptionPrism]
+  /// converts a [VisionPrescriptionPrismBuilder]
+  /// to [VisionPrescriptionPrism]
+  @override
   VisionPrescriptionPrism build() => VisionPrescriptionPrism.fromJson(toJson());
 
-  /// Converts a [VisionPrescriptionPrismBuilder] to a [Map<String, dynamic>]
+  /// converts a [VisionPrescriptionPrismBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2309,9 +2314,7 @@ class VisionPrescriptionPrismBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       amount: amount ?? this.amount,
       base: base ?? this.base,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, StringExtensionForFHIR, Age;
+    show Age, StringExtensionForFHIR, yamlMapToJson, yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -143,10 +143,13 @@ class AgeBuilder extends QuantityBuilder
   @override
   String get fhirType => 'Age';
 
-  /// Converts a AgeBuilder to [Age]
+  /// converts a [AgeBuilder]
+  /// to [Age]
+  @override
   Age build() => Age.fromJson(toJson());
 
-  /// Converts a [AgeBuilder] to a [Map<String, dynamic>]
+  /// converts a [AgeBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -454,9 +457,7 @@ class AgeBuilder extends QuantityBuilder
       unit: unit ?? this.unit,
       system: system ?? this.system,
       code: code ?? this.code,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

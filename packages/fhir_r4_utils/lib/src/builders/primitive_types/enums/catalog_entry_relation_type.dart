@@ -47,7 +47,8 @@ class CatalogEntryRelationTypeBuilder extends FhirCodeEnumBuilder {
   factory CatalogEntryRelationTypeBuilder.empty() =>
       CatalogEntryRelationTypeBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [CatalogEntryRelationTypeBuilder] from JSON.
+  /// Factory constructor to create [CatalogEntryRelationTypeBuilder]
+  /// from JSON.
   factory CatalogEntryRelationTypeBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
@@ -104,7 +105,9 @@ class CatalogEntryRelationTypeBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   CatalogEntryRelationTypeBuilder withElement(ElementBuilder? newElement) {
     return CatalogEntryRelationTypeBuilder._(
-        validatedValue: value, element: newElement);
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

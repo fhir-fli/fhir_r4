@@ -1,16 +1,16 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
-        R4ResourceType,
-        StringExtensionForFHIR,
         CodeSystem,
-        CodeSystemFilter,
-        CodeSystemProperty,
         CodeSystemConcept,
         CodeSystemDesignation,
-        CodeSystemProperty1;
+        CodeSystemFilter,
+        CodeSystemProperty,
+        CodeSystemProperty1,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -446,10 +446,13 @@ class CodeSystemBuilder extends CanonicalResourceBuilder {
   /// determine what the meanings of the hierarchical relationships are.
   List<CodeSystemConceptBuilder>? concept;
 
-  /// Converts a CodeSystemBuilder to [CodeSystem]
+  /// converts a [CodeSystemBuilder]
+  /// to [CodeSystem]
+  @override
   CodeSystem build() => CodeSystem.fromJson(toJson());
 
-  /// Converts a [CodeSystemBuilder] to a [Map<String, dynamic>]
+  /// converts a [CodeSystemBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1504,9 +1507,7 @@ class CodeSystemBuilder extends CanonicalResourceBuilder {
       filter: filter ?? this.filter,
       property: property ?? this.property,
       concept: concept ?? this.concept,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1882,10 +1883,13 @@ class CodeSystemFilterBuilder extends BackboneElementBuilder {
   /// A description of what the value for the filter should be.
   FhirStringBuilder? value;
 
-  /// Converts a CodeSystemFilterBuilder to [CodeSystemFilter]
+  /// converts a [CodeSystemFilterBuilder]
+  /// to [CodeSystemFilter]
+  @override
   CodeSystemFilter build() => CodeSystemFilter.fromJson(toJson());
 
-  /// Converts a [CodeSystemFilterBuilder] to a [Map<String, dynamic>]
+  /// converts a [CodeSystemFilterBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2203,9 +2207,7 @@ class CodeSystemFilterBuilder extends BackboneElementBuilder {
       description: description ?? this.description,
       operator_: operator_ ?? this.operator_,
       value: value ?? this.value,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -2425,10 +2427,13 @@ class CodeSystemPropertyBuilder extends BackboneElementBuilder {
   /// concept).
   PropertyTypeEnumBuilder? type;
 
-  /// Converts a CodeSystemPropertyBuilder to [CodeSystemProperty]
+  /// converts a [CodeSystemPropertyBuilder]
+  /// to [CodeSystemProperty]
+  @override
   CodeSystemProperty build() => CodeSystemProperty.fromJson(toJson());
 
-  /// Converts a [CodeSystemPropertyBuilder] to a [Map<String, dynamic>]
+  /// converts a [CodeSystemPropertyBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2741,9 +2746,7 @@ class CodeSystemPropertyBuilder extends BackboneElementBuilder {
       uri: uri ?? this.uri,
       description: description ?? this.description,
       type: type ?? this.type,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -2999,10 +3002,13 @@ class CodeSystemConceptBuilder extends BackboneElementBuilder {
   /// see hierarchyMeaning.
   List<CodeSystemConceptBuilder>? concept;
 
-  /// Converts a CodeSystemConceptBuilder to [CodeSystemConcept]
+  /// converts a [CodeSystemConceptBuilder]
+  /// to [CodeSystemConcept]
+  @override
   CodeSystemConcept build() => CodeSystemConcept.fromJson(toJson());
 
-  /// Converts a [CodeSystemConceptBuilder] to a [Map<String, dynamic>]
+  /// converts a [CodeSystemConceptBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3382,9 +3388,7 @@ class CodeSystemConceptBuilder extends BackboneElementBuilder {
       designation: designation ?? this.designation,
       property: property ?? this.property,
       concept: concept ?? this.concept,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -3599,10 +3603,13 @@ class CodeSystemDesignationBuilder extends BackboneElementBuilder {
   /// The text value for this designation.
   FhirStringBuilder? value;
 
-  /// Converts a CodeSystemDesignationBuilder to [CodeSystemDesignation]
+  /// converts a [CodeSystemDesignationBuilder]
+  /// to [CodeSystemDesignation]
+  @override
   CodeSystemDesignation build() => CodeSystemDesignation.fromJson(toJson());
 
-  /// Converts a [CodeSystemDesignationBuilder] to a [Map<String, dynamic>]
+  /// converts a [CodeSystemDesignationBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3889,9 +3896,7 @@ class CodeSystemDesignationBuilder extends BackboneElementBuilder {
       language: language ?? this.language,
       use: use ?? this.use,
       value: value ?? this.value,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -4103,10 +4108,13 @@ class CodeSystemProperty1Builder extends BackboneElementBuilder {
   /// Getter for [valueDecimal] as a FhirDecimalBuilder
   FhirDecimalBuilder? get valueDecimal => valueX?.isAs<FhirDecimalBuilder>();
 
-  /// Converts a CodeSystemProperty1Builder to [CodeSystemProperty1]
+  /// converts a [CodeSystemProperty1Builder]
+  /// to [CodeSystemProperty1]
+  @override
   CodeSystemProperty1 build() => CodeSystemProperty1.fromJson(toJson());
 
-  /// Converts a [CodeSystemProperty1Builder] to a [Map<String, dynamic>]
+  /// converts a [CodeSystemProperty1Builder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -4423,7 +4431,7 @@ class CodeSystemProperty1Builder extends BackboneElementBuilder {
           'FhirIntegerBuilder',
           'FhirBooleanBuilder',
           'FhirDateTimeBuilder',
-          'FhirDecimalBuilder'
+          'FhirDecimalBuilder',
         ];
       case 'valueCode':
         return ['FhirCodeBuilder'];
@@ -4524,7 +4532,7 @@ class CodeSystemProperty1Builder extends BackboneElementBuilder {
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
     if (code) this.code = null;
-    if (value) this.valueX = null;
+    if (value) valueX = null;
   }
 
   @override
@@ -4549,9 +4557,7 @@ class CodeSystemProperty1Builder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       code: code ?? this.code,
       valueX: valueX ?? this.valueX,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

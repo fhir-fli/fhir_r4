@@ -47,7 +47,8 @@ class AccountStatusBuilder extends FhirCodeEnumBuilder {
   factory AccountStatusBuilder.empty() =>
       AccountStatusBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [AccountStatusBuilder] from JSON.
+  /// Factory constructor to create [AccountStatusBuilder]
+  /// from JSON.
   factory AccountStatusBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;

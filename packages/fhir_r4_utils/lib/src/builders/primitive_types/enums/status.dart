@@ -46,7 +46,8 @@ class StatusBuilder extends FhirCodeEnumBuilder {
   /// Create empty [StatusBuilder] with element only
   factory StatusBuilder.empty() => StatusBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [StatusBuilder] from JSON.
+  /// Factory constructor to create [StatusBuilder]
+  /// from JSON.
   factory StatusBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;

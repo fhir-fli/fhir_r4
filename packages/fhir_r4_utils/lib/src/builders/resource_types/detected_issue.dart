@@ -1,13 +1,13 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
-        R4ResourceType,
-        StringExtensionForFHIR,
         DetectedIssue,
         DetectedIssueEvidence,
-        DetectedIssueMitigation;
+        DetectedIssueMitigation,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -317,10 +317,13 @@ class DetectedIssueBuilder extends DomainResourceBuilder {
   /// factors that may reduce/eliminate the need for any action.
   List<DetectedIssueMitigationBuilder>? mitigation;
 
-  /// Converts a DetectedIssueBuilder to [DetectedIssue]
+  /// converts a [DetectedIssueBuilder]
+  /// to [DetectedIssue]
+  @override
   DetectedIssue build() => DetectedIssue.fromJson(toJson());
 
-  /// Converts a [DetectedIssueBuilder] to a [Map<String, dynamic>]
+  /// converts a [DetectedIssueBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -990,7 +993,7 @@ class DetectedIssueBuilder extends DomainResourceBuilder {
     if (code) this.code = null;
     if (severity) this.severity = null;
     if (patient) this.patient = null;
-    if (identified) this.identifiedX = null;
+    if (identified) identifiedX = null;
     if (author) this.author = null;
     if (implicated) this.implicated = null;
     if (evidence) this.evidence = null;
@@ -1050,9 +1053,7 @@ class DetectedIssueBuilder extends DomainResourceBuilder {
       detail: detail ?? this.detail,
       reference: reference ?? this.reference,
       mitigation: mitigation ?? this.mitigation,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1332,10 +1333,13 @@ class DetectedIssueEvidenceBuilder extends BackboneElementBuilder {
   /// as a GuidanceResponse or MeasureReport.
   List<ReferenceBuilder>? detail;
 
-  /// Converts a DetectedIssueEvidenceBuilder to [DetectedIssueEvidence]
+  /// converts a [DetectedIssueEvidenceBuilder]
+  /// to [DetectedIssueEvidence]
+  @override
   DetectedIssueEvidence build() => DetectedIssueEvidence.fromJson(toJson());
 
-  /// Converts a [DetectedIssueEvidenceBuilder] to a [Map<String, dynamic>]
+  /// converts a [DetectedIssueEvidenceBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1606,9 +1610,7 @@ class DetectedIssueEvidenceBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       code: code ?? this.code,
       detail: detail ?? this.detail,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1803,10 +1805,13 @@ class DetectedIssueMitigationBuilder extends BackboneElementBuilder {
   /// responsibility for the mitigation step occurring.
   ReferenceBuilder? author;
 
-  /// Converts a DetectedIssueMitigationBuilder to [DetectedIssueMitigation]
+  /// converts a [DetectedIssueMitigationBuilder]
+  /// to [DetectedIssueMitigation]
+  @override
   DetectedIssueMitigation build() => DetectedIssueMitigation.fromJson(toJson());
 
-  /// Converts a [DetectedIssueMitigationBuilder] to a [Map<String, dynamic>]
+  /// converts a [DetectedIssueMitigationBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2093,9 +2098,7 @@ class DetectedIssueMitigationBuilder extends BackboneElementBuilder {
       action: action ?? this.action,
       date: date ?? this.date,
       author: author ?? this.author,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

@@ -48,7 +48,8 @@ class ReferenceVersionRulesBuilder extends FhirCodeEnumBuilder {
   factory ReferenceVersionRulesBuilder.empty() =>
       ReferenceVersionRulesBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [ReferenceVersionRulesBuilder] from JSON.
+  /// Factory constructor to create [ReferenceVersionRulesBuilder]
+  /// from JSON.
   factory ReferenceVersionRulesBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
@@ -116,7 +117,9 @@ class ReferenceVersionRulesBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   ReferenceVersionRulesBuilder withElement(ElementBuilder? newElement) {
     return ReferenceVersionRulesBuilder._(
-        validatedValue: value, element: newElement);
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

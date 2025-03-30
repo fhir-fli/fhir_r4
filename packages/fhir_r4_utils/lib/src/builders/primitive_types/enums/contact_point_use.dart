@@ -47,7 +47,8 @@ class ContactPointUseBuilder extends FhirCodeEnumBuilder {
   factory ContactPointUseBuilder.empty() =>
       ContactPointUseBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [ContactPointUseBuilder] from JSON.
+  /// Factory constructor to create [ContactPointUseBuilder]
+  /// from JSON.
   factory ContactPointUseBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;

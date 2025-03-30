@@ -47,7 +47,8 @@ class GroupMeasureBuilder extends FhirCodeEnumBuilder {
   factory GroupMeasureBuilder.empty() =>
       GroupMeasureBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [GroupMeasureBuilder] from JSON.
+  /// Factory constructor to create [GroupMeasureBuilder]
+  /// from JSON.
   factory GroupMeasureBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;

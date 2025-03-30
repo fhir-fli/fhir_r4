@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, StringExtensionForFHIR, Coding;
+    show Coding, StringExtensionForFHIR, yamlMapToJson, yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -170,10 +170,13 @@ class CodingBuilder extends DataTypeBuilder
   /// pick list of available items (codes or displays).
   FhirBooleanBuilder? userSelected;
 
-  /// Converts a CodingBuilder to [Coding]
+  /// converts a [CodingBuilder]
+  /// to [Coding]
+  @override
   Coding build() => Coding.fromJson(toJson());
 
-  /// Converts a [CodingBuilder] to a [Map<String, dynamic>]
+  /// converts a [CodingBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -481,9 +484,7 @@ class CodingBuilder extends DataTypeBuilder
       code: code ?? this.code,
       display: display ?? this.display,
       userSelected: userSelected ?? this.userSelected,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

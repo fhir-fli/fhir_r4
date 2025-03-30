@@ -1,13 +1,13 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
+        Procedure,
+        ProcedureFocalDevice,
+        ProcedurePerformer,
         R4ResourceType,
         StringExtensionForFHIR,
-        Procedure,
-        ProcedurePerformer,
-        ProcedureFocalDevice;
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -569,10 +569,13 @@ class ProcedureBuilder extends DomainResourceBuilder {
   /// Identifies coded items that were used as part of the procedure.
   List<CodeableConceptBuilder>? usedCode;
 
-  /// Converts a ProcedureBuilder to [Procedure]
+  /// converts a [ProcedureBuilder]
+  /// to [Procedure]
+  @override
   Procedure build() => Procedure.fromJson(toJson());
 
-  /// Converts a [ProcedureBuilder] to a [Map<String, dynamic>]
+  /// converts a [ProcedureBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1439,7 +1442,7 @@ class ProcedureBuilder extends DomainResourceBuilder {
           'PeriodBuilder',
           'FhirStringBuilder',
           'AgeBuilder',
-          'RangeBuilder'
+          'RangeBuilder',
         ];
       case 'performedDateTime':
         return ['FhirDateTimeBuilder'];
@@ -1759,7 +1762,7 @@ class ProcedureBuilder extends DomainResourceBuilder {
     if (code) this.code = null;
     if (subject) this.subject = null;
     if (encounter) this.encounter = null;
-    if (performed) this.performedX = null;
+    if (performed) performedX = null;
     if (recorder) this.recorder = null;
     if (asserter) this.asserter = null;
     if (performer) this.performer = null;
@@ -1862,9 +1865,7 @@ class ProcedureBuilder extends DomainResourceBuilder {
       focalDevice: focalDevice ?? this.focalDevice,
       usedReference: usedReference ?? this.usedReference,
       usedCode: usedCode ?? this.usedCode,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -2240,10 +2241,13 @@ class ProcedurePerformerBuilder extends BackboneElementBuilder {
   /// The organization the device or practitioner was acting on behalf of.
   ReferenceBuilder? onBehalfOf;
 
-  /// Converts a ProcedurePerformerBuilder to [ProcedurePerformer]
+  /// converts a [ProcedurePerformerBuilder]
+  /// to [ProcedurePerformer]
+  @override
   ProcedurePerformer build() => ProcedurePerformer.fromJson(toJson());
 
-  /// Converts a [ProcedurePerformerBuilder] to a [Map<String, dynamic>]
+  /// converts a [ProcedurePerformerBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2530,9 +2534,7 @@ class ProcedurePerformerBuilder extends BackboneElementBuilder {
       function_: function_ ?? this.function_,
       actor: actor ?? this.actor,
       onBehalfOf: onBehalfOf ?? this.onBehalfOf,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -2718,10 +2720,13 @@ class ProcedureFocalDeviceBuilder extends BackboneElementBuilder {
   /// The device that was manipulated (changed) during the procedure.
   ReferenceBuilder? manipulated;
 
-  /// Converts a ProcedureFocalDeviceBuilder to [ProcedureFocalDevice]
+  /// converts a [ProcedureFocalDeviceBuilder]
+  /// to [ProcedureFocalDevice]
+  @override
   ProcedureFocalDevice build() => ProcedureFocalDevice.fromJson(toJson());
 
-  /// Converts a [ProcedureFocalDeviceBuilder] to a [Map<String, dynamic>]
+  /// converts a [ProcedureFocalDeviceBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2982,9 +2987,7 @@ class ProcedureFocalDeviceBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       action: action ?? this.action,
       manipulated: manipulated ?? this.manipulated,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

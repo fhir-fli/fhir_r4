@@ -66,15 +66,16 @@ class FhirStringBuilder extends PrimitiveTypeBuilder<String>
   /// [element] are null, we throw an error.
   FhirStringBuilder._({
     required String? validatedValue,
-    this.element,
-    this.id,
-    this.extension_,
-    this.disallowExtensions,
-    this.objectPath = 'String',
+    super.element,
+    super.id,
+    super.extension_,
+    super.disallowExtensions,
+    super.objectPath = 'String',
   }) : super._(value: validatedValue) {
     if (value == null && element == null) {
       throw ArgumentError(
-          'A value or element is required for FhirStringBuilder');
+        'A value or element is required for FhirStringBuilder',
+      );
     }
   }
 
@@ -103,7 +104,8 @@ class FhirStringBuilder extends PrimitiveTypeBuilder<String>
   factory FhirStringBuilder.empty() =>
       FhirStringBuilder(null, element: ElementBuilder.empty());
 
-  /// Factory constructor to create [FhirStringBuilder] from JSON.
+  /// Factory constructor to create [FhirStringBuilder]
+  /// from JSON.
   factory FhirStringBuilder.fromJson(Map<String, dynamic> json) {
     final val = json['value'] as String?;
     final elemJson = json['_value'] as Map<String, dynamic>?;
@@ -123,7 +125,8 @@ class FhirStringBuilder extends PrimitiveTypeBuilder<String>
                 jsonDecode(jsonEncode(yaml)) as Map<String, dynamic>,
               )
             : throw const FormatException(
-                'Invalid YAML format for FhirStringBuilder');
+                'Invalid YAML format for FhirStringBuilder',
+              );
   }
 
   /// Attempts to parse the input and return a [FhirStringBuilder].
@@ -137,21 +140,6 @@ class FhirStringBuilder extends PrimitiveTypeBuilder<String>
     }
     return null;
   }
-
-  /// Element property
-  ElementBuilder? element;
-
-  /// ID property
-  FhirStringBuilder? id;
-
-  /// Extensions property
-  List<FhirExtensionBuilder>? extension_;
-
-  /// DisallowExtensions property
-  bool? disallowExtensions;
-
-  /// ObjectPath property
-  String? objectPath;
 
   /// Returns the FHIR type as 'string'.
   @override

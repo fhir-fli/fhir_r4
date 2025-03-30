@@ -47,7 +47,8 @@ class ResponseTypeBuilder extends FhirCodeEnumBuilder {
   factory ResponseTypeBuilder.empty() =>
       ResponseTypeBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [ResponseTypeBuilder] from JSON.
+  /// Factory constructor to create [ResponseTypeBuilder]
+  /// from JSON.
   factory ResponseTypeBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;

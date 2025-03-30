@@ -46,7 +46,8 @@ class StrandTypeBuilder extends FhirCodeEnumBuilder {
   /// Create empty [StrandTypeBuilder] with element only
   factory StrandTypeBuilder.empty() => StrandTypeBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [StrandTypeBuilder] from JSON.
+  /// Factory constructor to create [StrandTypeBuilder]
+  /// from JSON.
   factory StrandTypeBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;

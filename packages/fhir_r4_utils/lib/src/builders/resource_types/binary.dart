@@ -1,11 +1,11 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
+        Binary,
         R4ResourceType,
         StringExtensionForFHIR,
-        Binary;
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -150,10 +150,13 @@ class BinaryBuilder extends ResourceBuilder {
   /// The actual content, base64 encoded.
   FhirBase64BinaryBuilder? data;
 
-  /// Converts a BinaryBuilder to [Binary]
+  /// converts a [BinaryBuilder]
+  /// to [Binary]
+  @override
   Binary build() => Binary.fromJson(toJson());
 
-  /// Converts a [BinaryBuilder] to a [Map<String, dynamic>]
+  /// converts a [BinaryBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -456,9 +459,7 @@ class BinaryBuilder extends ResourceBuilder {
       contentType: contentType ?? this.contentType,
       securityContext: securityContext ?? this.securityContext,
       data: data ?? this.data,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

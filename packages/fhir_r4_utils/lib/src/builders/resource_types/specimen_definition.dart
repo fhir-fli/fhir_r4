@@ -1,15 +1,15 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
         R4ResourceType,
-        StringExtensionForFHIR,
         SpecimenDefinition,
-        SpecimenDefinitionTypeTested,
-        SpecimenDefinitionContainer,
         SpecimenDefinitionAdditive,
-        SpecimenDefinitionHandling;
+        SpecimenDefinitionContainer,
+        SpecimenDefinitionHandling,
+        SpecimenDefinitionTypeTested,
+        StringExtensionForFHIR,
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -227,10 +227,13 @@ class SpecimenDefinitionBuilder extends DomainResourceBuilder {
   /// laboratory.
   List<SpecimenDefinitionTypeTestedBuilder>? typeTested;
 
-  /// Converts a SpecimenDefinitionBuilder to [SpecimenDefinition]
+  /// converts a [SpecimenDefinitionBuilder]
+  /// to [SpecimenDefinition]
+  @override
   SpecimenDefinition build() => SpecimenDefinition.fromJson(toJson());
 
-  /// Converts a [SpecimenDefinitionBuilder] to a [Map<String, dynamic>]
+  /// converts a [SpecimenDefinitionBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -745,9 +748,7 @@ class SpecimenDefinitionBuilder extends DomainResourceBuilder {
       timeAspect: timeAspect ?? this.timeAspect,
       collection: collection ?? this.collection,
       typeTested: typeTested ?? this.typeTested,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1059,11 +1060,14 @@ class SpecimenDefinitionTypeTestedBuilder extends BackboneElementBuilder {
   /// defined temperature interval, prior the testing process.
   List<SpecimenDefinitionHandlingBuilder>? handling;
 
-  /// Converts a SpecimenDefinitionTypeTestedBuilder to [SpecimenDefinitionTypeTested]
+  /// converts a [SpecimenDefinitionTypeTestedBuilder]
+  /// to [SpecimenDefinitionTypeTested]
+  @override
   SpecimenDefinitionTypeTested build() =>
       SpecimenDefinitionTypeTested.fromJson(toJson());
 
-  /// Converts a [SpecimenDefinitionTypeTestedBuilder] to a [Map<String, dynamic>]
+  /// converts a [SpecimenDefinitionTypeTestedBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1490,9 +1494,7 @@ class SpecimenDefinitionTypeTestedBuilder extends BackboneElementBuilder {
       retentionTime: retentionTime ?? this.retentionTime,
       rejectionCriterion: rejectionCriterion ?? this.rejectionCriterion,
       handling: handling ?? this.handling,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1790,11 +1792,14 @@ class SpecimenDefinitionContainerBuilder extends BackboneElementBuilder {
   /// kind of specimen.
   FhirStringBuilder? preparation;
 
-  /// Converts a SpecimenDefinitionContainerBuilder to [SpecimenDefinitionContainer]
+  /// converts a [SpecimenDefinitionContainerBuilder]
+  /// to [SpecimenDefinitionContainer]
+  @override
   SpecimenDefinitionContainer build() =>
       SpecimenDefinitionContainer.fromJson(toJson());
 
-  /// Converts a [SpecimenDefinitionContainerBuilder] to a [Map<String, dynamic>]
+  /// converts a [SpecimenDefinitionContainerBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2231,7 +2236,7 @@ class SpecimenDefinitionContainerBuilder extends BackboneElementBuilder {
     if (cap) this.cap = null;
     if (description) this.description = null;
     if (capacity) this.capacity = null;
-    if (minimumVolume) this.minimumVolumeX = null;
+    if (minimumVolume) minimumVolumeX = null;
     if (additive) this.additive = null;
     if (preparation) this.preparation = null;
   }
@@ -2270,9 +2275,7 @@ class SpecimenDefinitionContainerBuilder extends BackboneElementBuilder {
       minimumVolumeX: minimumVolumeX ?? this.minimumVolumeX,
       additive: additive ?? this.additive,
       preparation: preparation ?? this.preparation,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -2489,11 +2492,14 @@ class SpecimenDefinitionAdditiveBuilder extends BackboneElementBuilder {
   ReferenceBuilder? get additiveReference =>
       additiveX?.isAs<ReferenceBuilder>();
 
-  /// Converts a SpecimenDefinitionAdditiveBuilder to [SpecimenDefinitionAdditive]
+  /// converts a [SpecimenDefinitionAdditiveBuilder]
+  /// to [SpecimenDefinitionAdditive]
+  @override
   SpecimenDefinitionAdditive build() =>
       SpecimenDefinitionAdditive.fromJson(toJson());
 
-  /// Converts a [SpecimenDefinitionAdditiveBuilder] to a [Map<String, dynamic>]
+  /// converts a [SpecimenDefinitionAdditiveBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2759,7 +2765,7 @@ class SpecimenDefinitionAdditiveBuilder extends BackboneElementBuilder {
     if (id) this.id = null;
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
-    if (additive) this.additiveX = null;
+    if (additive) additiveX = null;
   }
 
   @override
@@ -2782,9 +2788,7 @@ class SpecimenDefinitionAdditiveBuilder extends BackboneElementBuilder {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       additiveX: additiveX ?? this.additiveX,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -2984,11 +2988,14 @@ class SpecimenDefinitionHandlingBuilder extends BackboneElementBuilder {
   /// the specimen. For instance, 'Protect from light exposure'.
   FhirStringBuilder? instruction;
 
-  /// Converts a SpecimenDefinitionHandlingBuilder to [SpecimenDefinitionHandling]
+  /// converts a [SpecimenDefinitionHandlingBuilder]
+  /// to [SpecimenDefinitionHandling]
+  @override
   SpecimenDefinitionHandling build() =>
       SpecimenDefinitionHandling.fromJson(toJson());
 
-  /// Converts a [SpecimenDefinitionHandlingBuilder] to a [Map<String, dynamic>]
+  /// converts a [SpecimenDefinitionHandlingBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3301,9 +3308,7 @@ class SpecimenDefinitionHandlingBuilder extends BackboneElementBuilder {
       temperatureRange: temperatureRange ?? this.temperatureRange,
       maxDuration: maxDuration ?? this.maxDuration,
       instruction: instruction ?? this.instruction,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

@@ -1,12 +1,12 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
+        NamingSystem,
+        NamingSystemUniqueId,
         R4ResourceType,
         StringExtensionForFHIR,
-        NamingSystem,
-        NamingSystemUniqueId;
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -327,10 +327,13 @@ class NamingSystemBuilder extends DomainResourceBuilder {
   /// electronic exchange.
   List<NamingSystemUniqueIdBuilder>? uniqueId;
 
-  /// Converts a NamingSystemBuilder to [NamingSystem]
+  /// converts a [NamingSystemBuilder]
+  /// to [NamingSystem]
+  @override
   NamingSystem build() => NamingSystem.fromJson(toJson());
 
-  /// Converts a [NamingSystemBuilder] to a [Map<String, dynamic>]
+  /// converts a [NamingSystemBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1032,9 +1035,7 @@ class NamingSystemBuilder extends DomainResourceBuilder {
       jurisdiction: jurisdiction ?? this.jurisdiction,
       usage: usage ?? this.usage,
       uniqueId: uniqueId ?? this.uniqueId,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1347,10 +1348,13 @@ class NamingSystemUniqueIdBuilder extends BackboneElementBuilder {
   /// identifier might be non-deterministic.
   PeriodBuilder? period;
 
-  /// Converts a NamingSystemUniqueIdBuilder to [NamingSystemUniqueId]
+  /// converts a [NamingSystemUniqueIdBuilder]
+  /// to [NamingSystemUniqueId]
+  @override
   NamingSystemUniqueId build() => NamingSystemUniqueId.fromJson(toJson());
 
-  /// Converts a [NamingSystemUniqueIdBuilder] to a [Map<String, dynamic>]
+  /// converts a [NamingSystemUniqueIdBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1689,9 +1693,7 @@ class NamingSystemUniqueIdBuilder extends BackboneElementBuilder {
       preferred: preferred ?? this.preferred,
       comment: comment ?? this.comment,
       period: period ?? this.period,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

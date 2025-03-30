@@ -47,7 +47,8 @@ class AdverseEventActualityBuilder extends FhirCodeEnumBuilder {
   factory AdverseEventActualityBuilder.empty() =>
       AdverseEventActualityBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [AdverseEventActualityBuilder] from JSON.
+  /// Factory constructor to create [AdverseEventActualityBuilder]
+  /// from JSON.
   factory AdverseEventActualityBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
@@ -105,7 +106,9 @@ class AdverseEventActualityBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   AdverseEventActualityBuilder withElement(ElementBuilder? newElement) {
     return AdverseEventActualityBuilder._(
-        validatedValue: value, element: newElement);
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

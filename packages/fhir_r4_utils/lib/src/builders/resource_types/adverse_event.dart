@@ -1,13 +1,13 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
+        AdverseEvent,
+        AdverseEventCausality,
+        AdverseEventSuspectEntity,
         R4ResourceType,
         StringExtensionForFHIR,
-        AdverseEvent,
-        AdverseEventSuspectEntity,
-        AdverseEventCausality;
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -415,10 +415,13 @@ class AdverseEventBuilder extends DomainResourceBuilder {
   /// AdverseEvent.study.
   List<ReferenceBuilder>? study;
 
-  /// Converts a AdverseEventBuilder to [AdverseEvent]
+  /// converts a [AdverseEventBuilder]
+  /// to [AdverseEvent]
+  @override
   AdverseEvent build() => AdverseEvent.fromJson(toJson());
 
-  /// Converts a [AdverseEventBuilder] to a [Map<String, dynamic>]
+  /// converts a [AdverseEventBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1318,9 +1321,7 @@ class AdverseEventBuilder extends DomainResourceBuilder {
           subjectMedicalHistory ?? this.subjectMedicalHistory,
       referenceDocument: referenceDocument ?? this.referenceDocument,
       study: study ?? this.study,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1644,11 +1645,14 @@ class AdverseEventSuspectEntityBuilder extends BackboneElementBuilder {
   /// Information on the possible cause of the event.
   List<AdverseEventCausalityBuilder>? causality;
 
-  /// Converts a AdverseEventSuspectEntityBuilder to [AdverseEventSuspectEntity]
+  /// converts a [AdverseEventSuspectEntityBuilder]
+  /// to [AdverseEventSuspectEntity]
+  @override
   AdverseEventSuspectEntity build() =>
       AdverseEventSuspectEntity.fromJson(toJson());
 
-  /// Converts a [AdverseEventSuspectEntityBuilder] to a [Map<String, dynamic>]
+  /// converts a [AdverseEventSuspectEntityBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1914,9 +1918,7 @@ class AdverseEventSuspectEntityBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       instance: instance ?? this.instance,
       causality: causality ?? this.causality,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -2117,10 +2119,13 @@ class AdverseEventCausalityBuilder extends BackboneElementBuilder {
   /// ProbabilityScale | Bayesian | Checklist.
   CodeableConceptBuilder? method;
 
-  /// Converts a AdverseEventCausalityBuilder to [AdverseEventCausality]
+  /// converts a [AdverseEventCausalityBuilder]
+  /// to [AdverseEventCausality]
+  @override
   AdverseEventCausality build() => AdverseEventCausality.fromJson(toJson());
 
-  /// Converts a [AdverseEventCausalityBuilder] to a [Map<String, dynamic>]
+  /// converts a [AdverseEventCausalityBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2433,9 +2438,7 @@ class AdverseEventCausalityBuilder extends BackboneElementBuilder {
       productRelatedness: productRelatedness ?? this.productRelatedness,
       author: author ?? this.author,
       method: method ?? this.method,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

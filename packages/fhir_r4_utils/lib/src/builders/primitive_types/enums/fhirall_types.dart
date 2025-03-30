@@ -48,7 +48,8 @@ class FHIRAllTypesBuilder extends FhirCodeEnumBuilder {
   factory FHIRAllTypesBuilder.empty() =>
       FHIRAllTypesBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [FHIRAllTypesBuilder] from JSON.
+  /// Factory constructor to create [FHIRAllTypesBuilder]
+  /// from JSON.
   factory FHIRAllTypesBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;

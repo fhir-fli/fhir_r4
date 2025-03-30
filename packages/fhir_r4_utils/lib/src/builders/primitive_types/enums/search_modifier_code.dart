@@ -47,7 +47,8 @@ class SearchModifierCodeBuilder extends FhirCodeEnumBuilder {
   factory SearchModifierCodeBuilder.empty() =>
       SearchModifierCodeBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [SearchModifierCodeBuilder] from JSON.
+  /// Factory constructor to create [SearchModifierCodeBuilder]
+  /// from JSON.
   factory SearchModifierCodeBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
@@ -204,7 +205,9 @@ class SearchModifierCodeBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   SearchModifierCodeBuilder withElement(ElementBuilder? newElement) {
     return SearchModifierCodeBuilder._(
-        validatedValue: value, element: newElement);
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

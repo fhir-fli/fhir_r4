@@ -2530,7 +2530,7 @@ class EvidenceVariableCharacteristic extends BackboneElement {
           'Reference',
           'FhirCanonical',
           'CodeableConcept',
-          'FhirExpression'
+          'FhirExpression',
         ];
       case 'definitionReference':
         return ['Reference'];

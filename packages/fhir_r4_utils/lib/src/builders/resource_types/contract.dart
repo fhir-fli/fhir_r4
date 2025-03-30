@@ -1,26 +1,26 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
-        R4ResourceType,
-        StringExtensionForFHIR,
         Contract,
-        ContractContentDefinition,
-        ContractTerm,
-        ContractSecurityLabel,
-        ContractOffer,
-        ContractParty,
+        ContractAction,
         ContractAnswer,
         ContractAsset,
+        ContractContentDefinition,
         ContractContext,
-        ContractValuedItem,
-        ContractAction,
-        ContractSubject,
-        ContractSigner,
         ContractFriendly,
         ContractLegal,
-        ContractRule;
+        ContractOffer,
+        ContractParty,
+        ContractRule,
+        ContractSecurityLabel,
+        ContractSigner,
+        ContractSubject,
+        ContractTerm,
+        ContractValuedItem,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -655,10 +655,13 @@ class ContractBuilder extends DomainResourceBuilder {
   ReferenceBuilder? get legallyBindingReference =>
       legallyBindingX?.isAs<ReferenceBuilder>();
 
-  /// Converts a ContractBuilder to [Contract]
+  /// converts a [ContractBuilder]
+  /// to [Contract]
+  @override
   Contract build() => Contract.fromJson(toJson());
 
-  /// Converts a [ContractBuilder] to a [Map<String, dynamic>]
+  /// converts a [ContractBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1931,7 +1934,7 @@ class ContractBuilder extends DomainResourceBuilder {
     if (alias) this.alias = null;
     if (author) this.author = null;
     if (scope) this.scope = null;
-    if (topic) this.topicX = null;
+    if (topic) topicX = null;
     if (type) this.type = null;
     if (subType) this.subType = null;
     if (contentDefinition) this.contentDefinition = null;
@@ -1942,7 +1945,7 @@ class ContractBuilder extends DomainResourceBuilder {
     if (friendly) this.friendly = null;
     if (legal) this.legal = null;
     if (rule) this.rule = null;
-    if (legallyBinding) this.legallyBindingX = null;
+    if (legallyBinding) legallyBindingX = null;
   }
 
   @override
@@ -2039,9 +2042,7 @@ class ContractBuilder extends DomainResourceBuilder {
       legal: legal ?? this.legal,
       rule: rule ?? this.rule,
       legallyBindingX: legallyBindingX ?? this.legallyBindingX,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -2493,11 +2494,14 @@ class ContractContentDefinitionBuilder extends BackboneElementBuilder {
   /// of the Contract precursor content.
   FhirMarkdownBuilder? copyright;
 
-  /// Converts a ContractContentDefinitionBuilder to [ContractContentDefinition]
+  /// converts a [ContractContentDefinitionBuilder]
+  /// to [ContractContentDefinition]
+  @override
   ContractContentDefinition build() =>
       ContractContentDefinition.fromJson(toJson());
 
-  /// Converts a [ContractContentDefinitionBuilder] to a [Map<String, dynamic>]
+  /// converts a [ContractContentDefinitionBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2863,9 +2867,7 @@ class ContractContentDefinitionBuilder extends BackboneElementBuilder {
       publicationDate: publicationDate ?? this.publicationDate,
       publicationStatus: publicationStatus ?? this.publicationStatus,
       copyright: copyright ?? this.copyright,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -3210,10 +3212,13 @@ class ContractTermBuilder extends BackboneElementBuilder {
   /// Nested group of Contract Provisions.
   List<ContractTermBuilder>? group;
 
-  /// Converts a ContractTermBuilder to [ContractTerm]
+  /// converts a [ContractTermBuilder]
+  /// to [ContractTerm]
+  @override
   ContractTerm build() => ContractTerm.fromJson(toJson());
 
-  /// Converts a [ContractTermBuilder] to a [Map<String, dynamic>]
+  /// converts a [ContractTermBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3755,7 +3760,7 @@ class ContractTermBuilder extends BackboneElementBuilder {
     if (identifier) this.identifier = null;
     if (issued) this.issued = null;
     if (applies) this.applies = null;
-    if (topic) this.topicX = null;
+    if (topic) topicX = null;
     if (type) this.type = null;
     if (subType) this.subType = null;
     if (text) this.text = null;
@@ -3808,9 +3813,7 @@ class ContractTermBuilder extends BackboneElementBuilder {
       asset: asset ?? this.asset,
       action: action ?? this.action,
       group: group ?? this.group,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -4084,10 +4087,13 @@ class ContractSecurityLabelBuilder extends BackboneElementBuilder {
   /// term elements are to be protected.
   List<CodingBuilder>? control;
 
-  /// Converts a ContractSecurityLabelBuilder to [ContractSecurityLabel]
+  /// converts a [ContractSecurityLabelBuilder]
+  /// to [ContractSecurityLabel]
+  @override
   ContractSecurityLabel build() => ContractSecurityLabel.fromJson(toJson());
 
-  /// Converts a [ContractSecurityLabelBuilder] to a [Map<String, dynamic>]
+  /// converts a [ContractSecurityLabelBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -4415,9 +4421,7 @@ class ContractSecurityLabelBuilder extends BackboneElementBuilder {
       classification: classification ?? this.classification,
       category: category ?? this.category,
       control: control ?? this.control,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -4717,10 +4721,13 @@ class ContractOfferBuilder extends BackboneElementBuilder {
   /// Security labels that protects the offer.
   List<FhirUnsignedIntBuilder>? securityLabelNumber;
 
-  /// Converts a ContractOfferBuilder to [ContractOffer]
+  /// converts a [ContractOfferBuilder]
+  /// to [ContractOffer]
+  @override
   ContractOffer build() => ContractOffer.fromJson(toJson());
 
-  /// Converts a [ContractOfferBuilder] to a [Map<String, dynamic>]
+  /// converts a [ContractOfferBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -5219,9 +5226,7 @@ class ContractOfferBuilder extends BackboneElementBuilder {
       text: text ?? this.text,
       linkId: linkId ?? this.linkId,
       securityLabelNumber: securityLabelNumber ?? this.securityLabelNumber,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -5451,10 +5456,13 @@ class ContractPartyBuilder extends BackboneElementBuilder {
   /// How the party participates in the offer.
   CodeableConceptBuilder? role;
 
-  /// Converts a ContractPartyBuilder to [ContractParty]
+  /// converts a [ContractPartyBuilder]
+  /// to [ContractParty]
+  @override
   ContractParty build() => ContractParty.fromJson(toJson());
 
-  /// Converts a [ContractPartyBuilder] to a [Map<String, dynamic>]
+  /// converts a [ContractPartyBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -5720,9 +5728,7 @@ class ContractPartyBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       reference: reference ?? this.reference,
       role: role ?? this.role,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -5940,10 +5946,13 @@ class ContractAnswerBuilder extends BackboneElementBuilder {
   /// Getter for [valueReference] as a ReferenceBuilder
   ReferenceBuilder? get valueReference => valueX?.isAs<ReferenceBuilder>();
 
-  /// Converts a ContractAnswerBuilder to [ContractAnswer]
+  /// converts a [ContractAnswerBuilder]
+  /// to [ContractAnswer]
+  @override
   ContractAnswer build() => ContractAnswer.fromJson(toJson());
 
-  /// Converts a [ContractAnswerBuilder] to a [Map<String, dynamic>]
+  /// converts a [ContractAnswerBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -6333,7 +6342,7 @@ class ContractAnswerBuilder extends BackboneElementBuilder {
           'AttachmentBuilder',
           'CodingBuilder',
           'QuantityBuilder',
-          'ReferenceBuilder'
+          'ReferenceBuilder',
         ];
       case 'valueBoolean':
         return ['FhirBooleanBuilder'];
@@ -6462,7 +6471,7 @@ class ContractAnswerBuilder extends BackboneElementBuilder {
     if (id) this.id = null;
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
-    if (value) this.valueX = null;
+    if (value) valueX = null;
   }
 
   @override
@@ -6485,9 +6494,7 @@ class ContractAnswerBuilder extends BackboneElementBuilder {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       valueX: valueX ?? this.valueX,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -6845,10 +6852,13 @@ class ContractAssetBuilder extends BackboneElementBuilder {
   /// Contract Valued Item List.
   List<ContractValuedItemBuilder>? valuedItem;
 
-  /// Converts a ContractAssetBuilder to [ContractAsset]
+  /// converts a [ContractAssetBuilder]
+  /// to [ContractAsset]
+  @override
   ContractAsset build() => ContractAsset.fromJson(toJson());
 
-  /// Converts a [ContractAssetBuilder] to a [Map<String, dynamic>]
+  /// converts a [ContractAssetBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -7502,9 +7512,7 @@ class ContractAssetBuilder extends BackboneElementBuilder {
       answer: answer ?? this.answer,
       securityLabelNumber: securityLabelNumber ?? this.securityLabelNumber,
       valuedItem: valuedItem ?? this.valuedItem,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -7778,10 +7786,13 @@ class ContractContextBuilder extends BackboneElementBuilder {
   /// Context description.
   FhirStringBuilder? text;
 
-  /// Converts a ContractContextBuilder to [ContractContext]
+  /// converts a [ContractContextBuilder]
+  /// to [ContractContext]
+  @override
   ContractContext build() => ContractContext.fromJson(toJson());
 
-  /// Converts a [ContractContextBuilder] to a [Map<String, dynamic>]
+  /// converts a [ContractContextBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -8073,9 +8084,7 @@ class ContractContextBuilder extends BackboneElementBuilder {
       reference: reference ?? this.reference,
       code: code ?? this.code,
       text: text ?? this.text,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -8416,10 +8425,13 @@ class ContractValuedItemBuilder extends BackboneElementBuilder {
   /// condition.
   List<FhirUnsignedIntBuilder>? securityLabelNumber;
 
-  /// Converts a ContractValuedItemBuilder to [ContractValuedItem]
+  /// converts a [ContractValuedItemBuilder]
+  /// to [ContractValuedItem]
+  @override
   ContractValuedItem build() => ContractValuedItem.fromJson(toJson());
 
-  /// Converts a [ContractValuedItemBuilder] to a [Map<String, dynamic>]
+  /// converts a [ContractValuedItemBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -8994,7 +9006,7 @@ class ContractValuedItemBuilder extends BackboneElementBuilder {
     if (id) this.id = null;
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
-    if (entity) this.entityX = null;
+    if (entity) entityX = null;
     if (identifier) this.identifier = null;
     if (effectiveTime) this.effectiveTime = null;
     if (quantity) this.quantity = null;
@@ -9056,9 +9068,7 @@ class ContractValuedItemBuilder extends BackboneElementBuilder {
       recipient: recipient ?? this.recipient,
       linkId: linkId ?? this.linkId,
       securityLabelNumber: securityLabelNumber ?? this.securityLabelNumber,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -9576,10 +9586,13 @@ class ContractActionBuilder extends BackboneElementBuilder {
   /// Security labels that protects the action.
   List<FhirUnsignedIntBuilder>? securityLabelNumber;
 
-  /// Converts a ContractActionBuilder to [ContractAction]
+  /// converts a [ContractActionBuilder]
+  /// to [ContractAction]
+  @override
   ContractAction build() => ContractAction.fromJson(toJson());
 
-  /// Converts a [ContractActionBuilder] to a [Map<String, dynamic>]
+  /// converts a [ContractActionBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -10402,7 +10415,7 @@ class ContractActionBuilder extends BackboneElementBuilder {
     if (status) this.status = null;
     if (context) this.context = null;
     if (contextLinkId) this.contextLinkId = null;
-    if (occurrence) this.occurrenceX = null;
+    if (occurrence) occurrenceX = null;
     if (requester) this.requester = null;
     if (requesterLinkId) this.requesterLinkId = null;
     if (performerType) this.performerType = null;
@@ -10477,9 +10490,7 @@ class ContractActionBuilder extends BackboneElementBuilder {
       reasonLinkId: reasonLinkId ?? this.reasonLinkId,
       note: note ?? this.note,
       securityLabelNumber: securityLabelNumber ?? this.securityLabelNumber,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -10775,10 +10786,13 @@ class ContractSubjectBuilder extends BackboneElementBuilder {
   /// Role type of agent assigned roles in this Contract.
   CodeableConceptBuilder? role;
 
-  /// Converts a ContractSubjectBuilder to [ContractSubject]
+  /// converts a [ContractSubjectBuilder]
+  /// to [ContractSubject]
+  @override
   ContractSubject build() => ContractSubject.fromJson(toJson());
 
-  /// Converts a [ContractSubjectBuilder] to a [Map<String, dynamic>]
+  /// converts a [ContractSubjectBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -11044,9 +11058,7 @@ class ContractSubjectBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       reference: reference ?? this.reference,
       role: role ?? this.role,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -11242,10 +11254,13 @@ class ContractSignerBuilder extends BackboneElementBuilder {
   /// Legally binding Contract DSIG signature contents in Base64.
   List<SignatureBuilder>? signature;
 
-  /// Converts a ContractSignerBuilder to [ContractSigner]
+  /// converts a [ContractSignerBuilder]
+  /// to [ContractSigner]
+  @override
   ContractSigner build() => ContractSigner.fromJson(toJson());
 
-  /// Converts a [ContractSignerBuilder] to a [Map<String, dynamic>]
+  /// converts a [ContractSignerBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -11537,9 +11552,7 @@ class ContractSignerBuilder extends BackboneElementBuilder {
       type: type ?? this.type,
       party: party ?? this.party,
       signature: signature ?? this.signature,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -11729,10 +11742,13 @@ class ContractFriendlyBuilder extends BackboneElementBuilder {
   /// Getter for [contentReference] as a ReferenceBuilder
   ReferenceBuilder? get contentReference => contentX?.isAs<ReferenceBuilder>();
 
-  /// Converts a ContractFriendlyBuilder to [ContractFriendly]
+  /// converts a [ContractFriendlyBuilder]
+  /// to [ContractFriendly]
+  @override
   ContractFriendly build() => ContractFriendly.fromJson(toJson());
 
-  /// Converts a [ContractFriendlyBuilder] to a [Map<String, dynamic>]
+  /// converts a [ContractFriendlyBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -11998,7 +12014,7 @@ class ContractFriendlyBuilder extends BackboneElementBuilder {
     if (id) this.id = null;
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
-    if (content) this.contentX = null;
+    if (content) contentX = null;
   }
 
   @override
@@ -12021,9 +12037,7 @@ class ContractFriendlyBuilder extends BackboneElementBuilder {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       contentX: contentX ?? this.contentX,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -12193,10 +12207,13 @@ class ContractLegalBuilder extends BackboneElementBuilder {
   /// Getter for [contentReference] as a ReferenceBuilder
   ReferenceBuilder? get contentReference => contentX?.isAs<ReferenceBuilder>();
 
-  /// Converts a ContractLegalBuilder to [ContractLegal]
+  /// converts a [ContractLegalBuilder]
+  /// to [ContractLegal]
+  @override
   ContractLegal build() => ContractLegal.fromJson(toJson());
 
-  /// Converts a [ContractLegalBuilder] to a [Map<String, dynamic>]
+  /// converts a [ContractLegalBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -12462,7 +12479,7 @@ class ContractLegalBuilder extends BackboneElementBuilder {
     if (id) this.id = null;
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
-    if (content) this.contentX = null;
+    if (content) contentX = null;
   }
 
   @override
@@ -12485,9 +12502,7 @@ class ContractLegalBuilder extends BackboneElementBuilder {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       contentX: contentX ?? this.contentX,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -12659,10 +12674,13 @@ class ContractRuleBuilder extends BackboneElementBuilder {
   /// Getter for [contentReference] as a ReferenceBuilder
   ReferenceBuilder? get contentReference => contentX?.isAs<ReferenceBuilder>();
 
-  /// Converts a ContractRuleBuilder to [ContractRule]
+  /// converts a [ContractRuleBuilder]
+  /// to [ContractRule]
+  @override
   ContractRule build() => ContractRule.fromJson(toJson());
 
-  /// Converts a [ContractRuleBuilder] to a [Map<String, dynamic>]
+  /// converts a [ContractRuleBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -12928,7 +12946,7 @@ class ContractRuleBuilder extends BackboneElementBuilder {
     if (id) this.id = null;
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
-    if (content) this.contentX = null;
+    if (content) contentX = null;
   }
 
   @override
@@ -12951,9 +12969,7 @@ class ContractRuleBuilder extends BackboneElementBuilder {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       contentX: contentX ?? this.contentX,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

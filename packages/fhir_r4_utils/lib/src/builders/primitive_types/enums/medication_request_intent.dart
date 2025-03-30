@@ -47,7 +47,8 @@ class MedicationRequestIntentBuilder extends FhirCodeEnumBuilder {
   factory MedicationRequestIntentBuilder.empty() =>
       MedicationRequestIntentBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [MedicationRequestIntentBuilder] from JSON.
+  /// Factory constructor to create [MedicationRequestIntentBuilder]
+  /// from JSON.
   factory MedicationRequestIntentBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
@@ -171,7 +172,9 @@ class MedicationRequestIntentBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   MedicationRequestIntentBuilder withElement(ElementBuilder? newElement) {
     return MedicationRequestIntentBuilder._(
-        validatedValue: value, element: newElement);
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

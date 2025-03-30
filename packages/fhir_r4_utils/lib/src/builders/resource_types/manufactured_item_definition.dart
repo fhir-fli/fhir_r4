@@ -1,12 +1,12 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
+        ManufacturedItemDefinition,
+        ManufacturedItemDefinitionProperty,
         R4ResourceType,
         StringExtensionForFHIR,
-        ManufacturedItemDefinition,
-        ManufacturedItemDefinitionProperty;
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -247,11 +247,14 @@ class ManufacturedItemDefinitionBuilder extends DomainResourceBuilder {
   /// General characteristics of this item.
   List<ManufacturedItemDefinitionPropertyBuilder>? property;
 
-  /// Converts a ManufacturedItemDefinitionBuilder to [ManufacturedItemDefinition]
+  /// converts a [ManufacturedItemDefinitionBuilder]
+  /// to [ManufacturedItemDefinition]
+  @override
   ManufacturedItemDefinition build() =>
       ManufacturedItemDefinition.fromJson(toJson());
 
-  /// Converts a [ManufacturedItemDefinitionBuilder] to a [Map<String, dynamic>]
+  /// converts a [ManufacturedItemDefinitionBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -797,9 +800,7 @@ class ManufacturedItemDefinitionBuilder extends DomainResourceBuilder {
       manufacturer: manufacturer ?? this.manufacturer,
       ingredient: ingredient ?? this.ingredient,
       property: property ?? this.property,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1060,11 +1061,14 @@ class ManufacturedItemDefinitionPropertyBuilder extends BackboneElementBuilder {
   /// Getter for [valueAttachment] as a AttachmentBuilder
   AttachmentBuilder? get valueAttachment => valueX?.isAs<AttachmentBuilder>();
 
-  /// Converts a ManufacturedItemDefinitionPropertyBuilder to [ManufacturedItemDefinitionProperty]
+  /// converts a [ManufacturedItemDefinitionPropertyBuilder]
+  /// to [ManufacturedItemDefinitionProperty]
+  @override
   ManufacturedItemDefinitionProperty build() =>
       ManufacturedItemDefinitionProperty.fromJson(toJson());
 
-  /// Converts a [ManufacturedItemDefinitionPropertyBuilder] to a [Map<String, dynamic>]
+  /// converts a [ManufacturedItemDefinitionPropertyBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1345,7 +1349,7 @@ class ManufacturedItemDefinitionPropertyBuilder extends BackboneElementBuilder {
           'QuantityBuilder',
           'FhirDateBuilder',
           'FhirBooleanBuilder',
-          'AttachmentBuilder'
+          'AttachmentBuilder',
         ];
       case 'valueCodeableConcept':
         return ['CodeableConceptBuilder'];
@@ -1432,7 +1436,7 @@ class ManufacturedItemDefinitionPropertyBuilder extends BackboneElementBuilder {
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
     if (type) this.type = null;
-    if (value) this.valueX = null;
+    if (value) valueX = null;
   }
 
   @override
@@ -1458,9 +1462,7 @@ class ManufacturedItemDefinitionPropertyBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       type: type ?? this.type,
       valueX: valueX ?? this.valueX,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

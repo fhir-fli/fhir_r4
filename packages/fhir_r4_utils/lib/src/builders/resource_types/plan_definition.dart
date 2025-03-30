@@ -1,18 +1,18 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
-        R4ResourceType,
-        StringExtensionForFHIR,
         PlanDefinition,
-        PlanDefinitionGoal,
-        PlanDefinitionTarget,
         PlanDefinitionAction,
         PlanDefinitionCondition,
-        PlanDefinitionRelatedAction,
+        PlanDefinitionDynamicValue,
+        PlanDefinitionGoal,
         PlanDefinitionParticipant,
-        PlanDefinitionDynamicValue;
+        PlanDefinitionRelatedAction,
+        PlanDefinitionTarget,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -555,10 +555,13 @@ class PlanDefinitionBuilder extends CanonicalResourceBuilder {
   /// performed on a drug product as defined in the quality specification.
   List<PlanDefinitionActionBuilder>? action;
 
-  /// Converts a PlanDefinitionBuilder to [PlanDefinition]
+  /// converts a [PlanDefinitionBuilder]
+  /// to [PlanDefinition]
+  @override
   PlanDefinition build() => PlanDefinition.fromJson(toJson());
 
-  /// Converts a [PlanDefinitionBuilder] to a [Map<String, dynamic>]
+  /// converts a [PlanDefinitionBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1410,7 +1413,7 @@ class PlanDefinitionBuilder extends CanonicalResourceBuilder {
         return [
           'CodeableConceptBuilder',
           'ReferenceBuilder',
-          'FhirCanonicalBuilder'
+          'FhirCanonicalBuilder',
         ];
       case 'subjectCodeableConcept':
         return ['CodeableConceptBuilder'];
@@ -1742,7 +1745,7 @@ class PlanDefinitionBuilder extends CanonicalResourceBuilder {
     if (type) this.type = null;
     if (status) this.status = null;
     if (experimental) this.experimental = null;
-    if (subject) this.subjectX = null;
+    if (subject) subjectX = null;
     if (date) this.date = null;
     if (publisher) this.publisher = null;
     if (contact) this.contact = null;
@@ -1855,9 +1858,7 @@ class PlanDefinitionBuilder extends CanonicalResourceBuilder {
       library_: library_ ?? this.library_,
       goal: goal ?? this.goal,
       action: action ?? this.action,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -2317,10 +2318,13 @@ class PlanDefinitionGoalBuilder extends BackboneElementBuilder {
   /// Indicates what should be done and within what timeframe.
   List<PlanDefinitionTargetBuilder>? target;
 
-  /// Converts a PlanDefinitionGoalBuilder to [PlanDefinitionGoal]
+  /// converts a [PlanDefinitionGoalBuilder]
+  /// to [PlanDefinitionGoal]
+  @override
   PlanDefinitionGoal build() => PlanDefinitionGoal.fromJson(toJson());
 
-  /// Converts a [PlanDefinitionGoalBuilder] to a [Map<String, dynamic>]
+  /// converts a [PlanDefinitionGoalBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2726,9 +2730,7 @@ class PlanDefinitionGoalBuilder extends BackboneElementBuilder {
       addresses: addresses ?? this.addresses,
       documentation: documentation ?? this.documentation,
       target: target ?? this.target,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -2968,10 +2970,13 @@ class PlanDefinitionTargetBuilder extends BackboneElementBuilder {
   /// should be met.
   FhirDurationBuilder? due;
 
-  /// Converts a PlanDefinitionTargetBuilder to [PlanDefinitionTarget]
+  /// converts a [PlanDefinitionTargetBuilder]
+  /// to [PlanDefinitionTarget]
+  @override
   PlanDefinitionTarget build() => PlanDefinitionTarget.fromJson(toJson());
 
-  /// Converts a [PlanDefinitionTargetBuilder] to a [Map<String, dynamic>]
+  /// converts a [PlanDefinitionTargetBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3308,7 +3313,7 @@ class PlanDefinitionTargetBuilder extends BackboneElementBuilder {
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
     if (measure) this.measure = null;
-    if (detail) this.detailX = null;
+    if (detail) detailX = null;
     if (due) this.due = null;
   }
 
@@ -3336,9 +3341,7 @@ class PlanDefinitionTargetBuilder extends BackboneElementBuilder {
       measure: measure ?? this.measure,
       detailX: detailX ?? this.detailX,
       due: due ?? this.due,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -3936,10 +3939,13 @@ class PlanDefinitionActionBuilder extends BackboneElementBuilder {
   /// most one may be chosen as part of realizing the action definition.
   List<PlanDefinitionActionBuilder>? action;
 
-  /// Converts a PlanDefinitionActionBuilder to [PlanDefinitionAction]
+  /// converts a [PlanDefinitionActionBuilder]
+  /// to [PlanDefinitionAction]
+  @override
   PlanDefinitionAction build() => PlanDefinitionAction.fromJson(toJson());
 
-  /// Converts a [PlanDefinitionActionBuilder] to a [Map<String, dynamic>]
+  /// converts a [PlanDefinitionActionBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -4787,7 +4793,7 @@ class PlanDefinitionActionBuilder extends BackboneElementBuilder {
         return [
           'CodeableConceptBuilder',
           'ReferenceBuilder',
-          'FhirCanonicalBuilder'
+          'FhirCanonicalBuilder',
         ];
       case 'subjectCodeableConcept':
         return ['CodeableConceptBuilder'];
@@ -4813,7 +4819,7 @@ class PlanDefinitionActionBuilder extends BackboneElementBuilder {
           'PeriodBuilder',
           'FhirDurationBuilder',
           'RangeBuilder',
-          'TimingBuilder'
+          'TimingBuilder',
         ];
       case 'timingDateTime':
         return ['FhirDateTimeBuilder'];
@@ -5111,13 +5117,13 @@ class PlanDefinitionActionBuilder extends BackboneElementBuilder {
     if (reason) this.reason = null;
     if (documentation) this.documentation = null;
     if (goalId) this.goalId = null;
-    if (subject) this.subjectX = null;
+    if (subject) subjectX = null;
     if (trigger) this.trigger = null;
     if (condition) this.condition = null;
     if (input) this.input = null;
     if (output) this.output = null;
     if (relatedAction) this.relatedAction = null;
-    if (timing) this.timingX = null;
+    if (timing) timingX = null;
     if (participant) this.participant = null;
     if (type) this.type = null;
     if (groupingBehavior) this.groupingBehavior = null;
@@ -5125,7 +5131,7 @@ class PlanDefinitionActionBuilder extends BackboneElementBuilder {
     if (requiredBehavior) this.requiredBehavior = null;
     if (precheckBehavior) this.precheckBehavior = null;
     if (cardinalityBehavior) this.cardinalityBehavior = null;
-    if (definition) this.definitionX = null;
+    if (definition) definitionX = null;
     if (transform) this.transform = null;
     if (dynamicValue) this.dynamicValue = null;
     if (action) this.action = null;
@@ -5203,9 +5209,7 @@ class PlanDefinitionActionBuilder extends BackboneElementBuilder {
       transform: transform ?? this.transform,
       dynamicValue: dynamicValue ?? this.dynamicValue,
       action: action ?? this.action,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -5536,10 +5540,13 @@ class PlanDefinitionConditionBuilder extends BackboneElementBuilder {
   /// condition is satisfied.
   FhirExpressionBuilder? expression;
 
-  /// Converts a PlanDefinitionConditionBuilder to [PlanDefinitionCondition]
+  /// converts a [PlanDefinitionConditionBuilder]
+  /// to [PlanDefinitionCondition]
+  @override
   PlanDefinitionCondition build() => PlanDefinitionCondition.fromJson(toJson());
 
-  /// Converts a [PlanDefinitionConditionBuilder] to a [Map<String, dynamic>]
+  /// converts a [PlanDefinitionConditionBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -5800,9 +5807,7 @@ class PlanDefinitionConditionBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       kind: kind ?? this.kind,
       expression: expression ?? this.expression,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -6004,11 +6009,14 @@ class PlanDefinitionRelatedActionBuilder extends BackboneElementBuilder {
   /// Getter for [offsetRange] as a RangeBuilder
   RangeBuilder? get offsetRange => offsetX?.isAs<RangeBuilder>();
 
-  /// Converts a PlanDefinitionRelatedActionBuilder to [PlanDefinitionRelatedAction]
+  /// converts a [PlanDefinitionRelatedActionBuilder]
+  /// to [PlanDefinitionRelatedAction]
+  @override
   PlanDefinitionRelatedAction build() =>
       PlanDefinitionRelatedAction.fromJson(toJson());
 
-  /// Converts a [PlanDefinitionRelatedActionBuilder] to a [Map<String, dynamic>]
+  /// converts a [PlanDefinitionRelatedActionBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -6322,7 +6330,7 @@ class PlanDefinitionRelatedActionBuilder extends BackboneElementBuilder {
     if (modifierExtension) this.modifierExtension = null;
     if (actionId) this.actionId = null;
     if (relationship) this.relationship = null;
-    if (offset) this.offsetX = null;
+    if (offset) offsetX = null;
   }
 
   @override
@@ -6349,9 +6357,7 @@ class PlanDefinitionRelatedActionBuilder extends BackboneElementBuilder {
       actionId: actionId ?? this.actionId,
       relationship: relationship ?? this.relationship,
       offsetX: offsetX ?? this.offsetX,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -6537,11 +6543,14 @@ class PlanDefinitionParticipantBuilder extends BackboneElementBuilder {
   /// action.
   CodeableConceptBuilder? role;
 
-  /// Converts a PlanDefinitionParticipantBuilder to [PlanDefinitionParticipant]
+  /// converts a [PlanDefinitionParticipantBuilder]
+  /// to [PlanDefinitionParticipant]
+  @override
   PlanDefinitionParticipant build() =>
       PlanDefinitionParticipant.fromJson(toJson());
 
-  /// Converts a [PlanDefinitionParticipantBuilder] to a [Map<String, dynamic>]
+  /// converts a [PlanDefinitionParticipantBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -6802,9 +6811,7 @@ class PlanDefinitionParticipantBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       type: type ?? this.type,
       role: role ?? this.role,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -6995,11 +7002,14 @@ class PlanDefinitionDynamicValueBuilder extends BackboneElementBuilder {
   /// An expression specifying the value of the customized element.
   FhirExpressionBuilder? expression;
 
-  /// Converts a PlanDefinitionDynamicValueBuilder to [PlanDefinitionDynamicValue]
+  /// converts a [PlanDefinitionDynamicValueBuilder]
+  /// to [PlanDefinitionDynamicValue]
+  @override
   PlanDefinitionDynamicValue build() =>
       PlanDefinitionDynamicValue.fromJson(toJson());
 
-  /// Converts a [PlanDefinitionDynamicValueBuilder] to a [Map<String, dynamic>]
+  /// converts a [PlanDefinitionDynamicValueBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -7260,9 +7270,7 @@ class PlanDefinitionDynamicValueBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       path: path ?? this.path,
       expression: expression ?? this.expression,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

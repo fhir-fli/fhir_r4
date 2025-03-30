@@ -47,7 +47,8 @@ class ObservationRangeCategoryBuilder extends FhirCodeEnumBuilder {
   factory ObservationRangeCategoryBuilder.empty() =>
       ObservationRangeCategoryBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [ObservationRangeCategoryBuilder] from JSON.
+  /// Factory constructor to create [ObservationRangeCategoryBuilder]
+  /// from JSON.
   factory ObservationRangeCategoryBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
@@ -117,7 +118,9 @@ class ObservationRangeCategoryBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   ObservationRangeCategoryBuilder withElement(ElementBuilder? newElement) {
     return ObservationRangeCategoryBuilder._(
-        validatedValue: value, element: newElement);
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

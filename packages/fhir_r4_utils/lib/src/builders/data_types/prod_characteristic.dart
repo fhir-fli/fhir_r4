@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, StringExtensionForFHIR, ProdCharacteristic;
+    show ProdCharacteristic, StringExtensionForFHIR, yamlMapToJson, yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -251,10 +251,13 @@ class ProdCharacteristicBuilder extends BackboneTypeBuilder {
   /// shall be used.
   CodeableConceptBuilder? scoring;
 
-  /// Converts a ProdCharacteristicBuilder to [ProdCharacteristic]
+  /// converts a [ProdCharacteristicBuilder]
+  /// to [ProdCharacteristic]
+  @override
   ProdCharacteristic build() => ProdCharacteristic.fromJson(toJson());
 
-  /// Converts a [ProdCharacteristicBuilder] to a [Map<String, dynamic>]
+  /// converts a [ProdCharacteristicBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -764,9 +767,7 @@ class ProdCharacteristicBuilder extends BackboneTypeBuilder {
       imprint: imprint ?? this.imprint,
       image: image ?? this.image,
       scoring: scoring ?? this.scoring,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

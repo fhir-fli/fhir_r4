@@ -1,31 +1,31 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
+        ExplanationOfBenefit,
+        ExplanationOfBenefitAccident,
+        ExplanationOfBenefitAddItem,
+        ExplanationOfBenefitAdjudication,
+        ExplanationOfBenefitBenefitBalance,
+        ExplanationOfBenefitCareTeam,
+        ExplanationOfBenefitDetail,
+        ExplanationOfBenefitDetail1,
+        ExplanationOfBenefitDiagnosis,
+        ExplanationOfBenefitFinancial,
+        ExplanationOfBenefitInsurance,
+        ExplanationOfBenefitItem,
+        ExplanationOfBenefitPayee,
+        ExplanationOfBenefitPayment,
+        ExplanationOfBenefitProcedure,
+        ExplanationOfBenefitProcessNote,
+        ExplanationOfBenefitRelated,
+        ExplanationOfBenefitSubDetail,
+        ExplanationOfBenefitSubDetail1,
+        ExplanationOfBenefitSupportingInfo,
+        ExplanationOfBenefitTotal,
         R4ResourceType,
         StringExtensionForFHIR,
-        ExplanationOfBenefit,
-        ExplanationOfBenefitRelated,
-        ExplanationOfBenefitPayee,
-        ExplanationOfBenefitCareTeam,
-        ExplanationOfBenefitSupportingInfo,
-        ExplanationOfBenefitDiagnosis,
-        ExplanationOfBenefitProcedure,
-        ExplanationOfBenefitInsurance,
-        ExplanationOfBenefitAccident,
-        ExplanationOfBenefitItem,
-        ExplanationOfBenefitAdjudication,
-        ExplanationOfBenefitDetail,
-        ExplanationOfBenefitSubDetail,
-        ExplanationOfBenefitAddItem,
-        ExplanationOfBenefitDetail1,
-        ExplanationOfBenefitSubDetail1,
-        ExplanationOfBenefitTotal,
-        ExplanationOfBenefitPayment,
-        ExplanationOfBenefitProcessNote,
-        ExplanationOfBenefitBenefitBalance,
-        ExplanationOfBenefitFinancial;
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -727,10 +727,13 @@ class ExplanationOfBenefitBuilder extends DomainResourceBuilder {
   /// Balance by Benefit Category.
   List<ExplanationOfBenefitBenefitBalanceBuilder>? benefitBalance;
 
-  /// Converts a ExplanationOfBenefitBuilder to [ExplanationOfBenefit]
+  /// converts a [ExplanationOfBenefitBuilder]
+  /// to [ExplanationOfBenefit]
+  @override
   ExplanationOfBenefit build() => ExplanationOfBenefit.fromJson(toJson());
 
-  /// Converts a [ExplanationOfBenefitBuilder] to a [Map<String, dynamic>]
+  /// converts a [ExplanationOfBenefitBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2268,9 +2271,7 @@ class ExplanationOfBenefitBuilder extends DomainResourceBuilder {
       processNote: processNote ?? this.processNote,
       benefitPeriod: benefitPeriod ?? this.benefitPeriod,
       benefitBalance: benefitBalance ?? this.benefitBalance,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -2738,11 +2739,14 @@ class ExplanationOfBenefitRelatedBuilder extends BackboneElementBuilder {
   /// particular claim pertains.
   IdentifierBuilder? reference;
 
-  /// Converts a ExplanationOfBenefitRelatedBuilder to [ExplanationOfBenefitRelated]
+  /// converts a [ExplanationOfBenefitRelatedBuilder]
+  /// to [ExplanationOfBenefitRelated]
+  @override
   ExplanationOfBenefitRelated build() =>
       ExplanationOfBenefitRelated.fromJson(toJson());
 
-  /// Converts a [ExplanationOfBenefitRelatedBuilder] to a [Map<String, dynamic>]
+  /// converts a [ExplanationOfBenefitRelatedBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3029,9 +3033,7 @@ class ExplanationOfBenefitRelatedBuilder extends BackboneElementBuilder {
       claim: claim ?? this.claim,
       relationship: relationship ?? this.relationship,
       reference: reference ?? this.reference,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -3218,11 +3220,14 @@ class ExplanationOfBenefitPayeeBuilder extends BackboneElementBuilder {
   /// made.
   ReferenceBuilder? party;
 
-  /// Converts a ExplanationOfBenefitPayeeBuilder to [ExplanationOfBenefitPayee]
+  /// converts a [ExplanationOfBenefitPayeeBuilder]
+  /// to [ExplanationOfBenefitPayee]
+  @override
   ExplanationOfBenefitPayee build() =>
       ExplanationOfBenefitPayee.fromJson(toJson());
 
-  /// Converts a [ExplanationOfBenefitPayeeBuilder] to a [Map<String, dynamic>]
+  /// converts a [ExplanationOfBenefitPayeeBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3483,9 +3488,7 @@ class ExplanationOfBenefitPayeeBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       type: type ?? this.type,
       party: party ?? this.party,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -3700,11 +3703,14 @@ class ExplanationOfBenefitCareTeamBuilder extends BackboneElementBuilder {
   /// service.
   CodeableConceptBuilder? qualification;
 
-  /// Converts a ExplanationOfBenefitCareTeamBuilder to [ExplanationOfBenefitCareTeam]
+  /// converts a [ExplanationOfBenefitCareTeamBuilder]
+  /// to [ExplanationOfBenefitCareTeam]
+  @override
   ExplanationOfBenefitCareTeam build() =>
       ExplanationOfBenefitCareTeam.fromJson(toJson());
 
-  /// Converts a [ExplanationOfBenefitCareTeamBuilder] to a [Map<String, dynamic>]
+  /// converts a [ExplanationOfBenefitCareTeamBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -4043,9 +4049,7 @@ class ExplanationOfBenefitCareTeamBuilder extends BackboneElementBuilder {
       responsible: responsible ?? this.responsible,
       role: role ?? this.role,
       qualification: qualification ?? this.qualification,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -4323,11 +4327,14 @@ class ExplanationOfBenefitSupportingInfoBuilder extends BackboneElementBuilder {
   /// addition to the content.
   CodingBuilder? reason;
 
-  /// Converts a ExplanationOfBenefitSupportingInfoBuilder to [ExplanationOfBenefitSupportingInfo]
+  /// converts a [ExplanationOfBenefitSupportingInfoBuilder]
+  /// to [ExplanationOfBenefitSupportingInfo]
+  @override
   ExplanationOfBenefitSupportingInfo build() =>
       ExplanationOfBenefitSupportingInfo.fromJson(toJson());
 
-  /// Converts a [ExplanationOfBenefitSupportingInfoBuilder] to a [Map<String, dynamic>]
+  /// converts a [ExplanationOfBenefitSupportingInfoBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -4721,7 +4728,7 @@ class ExplanationOfBenefitSupportingInfoBuilder extends BackboneElementBuilder {
           'FhirStringBuilder',
           'QuantityBuilder',
           'AttachmentBuilder',
-          'ReferenceBuilder'
+          'ReferenceBuilder',
         ];
       case 'valueBoolean':
         return ['FhirBooleanBuilder'];
@@ -4843,8 +4850,8 @@ class ExplanationOfBenefitSupportingInfoBuilder extends BackboneElementBuilder {
     if (sequence) this.sequence = null;
     if (category) this.category = null;
     if (code) this.code = null;
-    if (timing) this.timingX = null;
-    if (value) this.valueX = null;
+    if (timing) timingX = null;
+    if (value) valueX = null;
     if (reason) this.reason = null;
   }
 
@@ -4879,9 +4886,7 @@ class ExplanationOfBenefitSupportingInfoBuilder extends BackboneElementBuilder {
       timingX: timingX ?? this.timingX,
       valueX: valueX ?? this.valueX,
       reason: reason ?? this.reason,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -5136,11 +5141,14 @@ class ExplanationOfBenefitDiagnosisBuilder extends BackboneElementBuilder {
   /// is based on a predetermined grouping code system.
   CodeableConceptBuilder? packageCode;
 
-  /// Converts a ExplanationOfBenefitDiagnosisBuilder to [ExplanationOfBenefitDiagnosis]
+  /// converts a [ExplanationOfBenefitDiagnosisBuilder]
+  /// to [ExplanationOfBenefitDiagnosis]
+  @override
   ExplanationOfBenefitDiagnosis build() =>
       ExplanationOfBenefitDiagnosis.fromJson(toJson());
 
-  /// Converts a [ExplanationOfBenefitDiagnosisBuilder] to a [Map<String, dynamic>]
+  /// converts a [ExplanationOfBenefitDiagnosisBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -5504,7 +5512,7 @@ class ExplanationOfBenefitDiagnosisBuilder extends BackboneElementBuilder {
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
     if (sequence) this.sequence = null;
-    if (diagnosis) this.diagnosisX = null;
+    if (diagnosis) diagnosisX = null;
     if (type) this.type = null;
     if (onAdmission) this.onAdmission = null;
     if (packageCode) this.packageCode = null;
@@ -5538,9 +5546,7 @@ class ExplanationOfBenefitDiagnosisBuilder extends BackboneElementBuilder {
       type: type ?? this.type,
       onAdmission: onAdmission ?? this.onAdmission,
       packageCode: packageCode ?? this.packageCode,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -5791,11 +5797,14 @@ class ExplanationOfBenefitProcedureBuilder extends BackboneElementBuilder {
   /// Unique Device Identifiers associated with this line item.
   List<ReferenceBuilder>? udi;
 
-  /// Converts a ExplanationOfBenefitProcedureBuilder to [ExplanationOfBenefitProcedure]
+  /// converts a [ExplanationOfBenefitProcedureBuilder]
+  /// to [ExplanationOfBenefitProcedure]
+  @override
   ExplanationOfBenefitProcedure build() =>
       ExplanationOfBenefitProcedure.fromJson(toJson());
 
-  /// Converts a [ExplanationOfBenefitProcedureBuilder] to a [Map<String, dynamic>]
+  /// converts a [ExplanationOfBenefitProcedureBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -6166,7 +6175,7 @@ class ExplanationOfBenefitProcedureBuilder extends BackboneElementBuilder {
     if (sequence) this.sequence = null;
     if (type) this.type = null;
     if (date) this.date = null;
-    if (procedure) this.procedureX = null;
+    if (procedure) procedureX = null;
     if (udi) this.udi = null;
   }
 
@@ -6198,9 +6207,7 @@ class ExplanationOfBenefitProcedureBuilder extends BackboneElementBuilder {
       date: date ?? this.date,
       procedureX: procedureX ?? this.procedureX,
       udi: udi ?? this.udi,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -6415,11 +6422,14 @@ class ExplanationOfBenefitInsuranceBuilder extends BackboneElementBuilder {
   /// to the prior authorization.
   List<FhirStringBuilder>? preAuthRef;
 
-  /// Converts a ExplanationOfBenefitInsuranceBuilder to [ExplanationOfBenefitInsurance]
+  /// converts a [ExplanationOfBenefitInsuranceBuilder]
+  /// to [ExplanationOfBenefitInsurance]
+  @override
   ExplanationOfBenefitInsurance build() =>
       ExplanationOfBenefitInsurance.fromJson(toJson());
 
-  /// Converts a [ExplanationOfBenefitInsuranceBuilder] to a [Map<String, dynamic>]
+  /// converts a [ExplanationOfBenefitInsuranceBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -6711,9 +6721,7 @@ class ExplanationOfBenefitInsuranceBuilder extends BackboneElementBuilder {
       focal: focal ?? this.focal,
       coverage: coverage ?? this.coverage,
       preAuthRef: preAuthRef ?? this.preAuthRef,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -6923,11 +6931,14 @@ class ExplanationOfBenefitAccidentBuilder extends BackboneElementBuilder {
   ReferenceBuilder? get locationReference =>
       locationX?.isAs<ReferenceBuilder>();
 
-  /// Converts a ExplanationOfBenefitAccidentBuilder to [ExplanationOfBenefitAccident]
+  /// converts a [ExplanationOfBenefitAccidentBuilder]
+  /// to [ExplanationOfBenefitAccident]
+  @override
   ExplanationOfBenefitAccident build() =>
       ExplanationOfBenefitAccident.fromJson(toJson());
 
-  /// Converts a [ExplanationOfBenefitAccidentBuilder] to a [Map<String, dynamic>]
+  /// converts a [ExplanationOfBenefitAccidentBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -7241,7 +7252,7 @@ class ExplanationOfBenefitAccidentBuilder extends BackboneElementBuilder {
     if (modifierExtension) this.modifierExtension = null;
     if (date) this.date = null;
     if (type) this.type = null;
-    if (location) this.locationX = null;
+    if (location) locationX = null;
   }
 
   @override
@@ -7268,9 +7279,7 @@ class ExplanationOfBenefitAccidentBuilder extends BackboneElementBuilder {
       date: date ?? this.date,
       type: type ?? this.type,
       locationX: locationX ?? this.locationX,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -7758,11 +7767,14 @@ class ExplanationOfBenefitItemBuilder extends BackboneElementBuilder {
   /// Second-tier of goods and services.
   List<ExplanationOfBenefitDetailBuilder>? detail;
 
-  /// Converts a ExplanationOfBenefitItemBuilder to [ExplanationOfBenefitItem]
+  /// converts a [ExplanationOfBenefitItemBuilder]
+  /// to [ExplanationOfBenefitItem]
+  @override
   ExplanationOfBenefitItem build() =>
       ExplanationOfBenefitItem.fromJson(toJson());
 
-  /// Converts a [ExplanationOfBenefitItemBuilder] to a [Map<String, dynamic>]
+  /// converts a [ExplanationOfBenefitItemBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -8682,8 +8694,8 @@ class ExplanationOfBenefitItemBuilder extends BackboneElementBuilder {
     if (productOrService) this.productOrService = null;
     if (modifier) this.modifier = null;
     if (programCode) this.programCode = null;
-    if (serviced) this.servicedX = null;
-    if (location) this.locationX = null;
+    if (serviced) servicedX = null;
+    if (location) locationX = null;
     if (quantity) this.quantity = null;
     if (unitPrice) this.unitPrice = null;
     if (factor) this.factor = null;
@@ -8761,9 +8773,7 @@ class ExplanationOfBenefitItemBuilder extends BackboneElementBuilder {
       noteNumber: noteNumber ?? this.noteNumber,
       adjudication: adjudication ?? this.adjudication,
       detail: detail ?? this.detail,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -9098,11 +9108,14 @@ class ExplanationOfBenefitAdjudicationBuilder extends BackboneElementBuilder {
   /// to the amount element above.
   FhirDecimalBuilder? value;
 
-  /// Converts a ExplanationOfBenefitAdjudicationBuilder to [ExplanationOfBenefitAdjudication]
+  /// converts a [ExplanationOfBenefitAdjudicationBuilder]
+  /// to [ExplanationOfBenefitAdjudication]
+  @override
   ExplanationOfBenefitAdjudication build() =>
       ExplanationOfBenefitAdjudication.fromJson(toJson());
 
-  /// Converts a [ExplanationOfBenefitAdjudicationBuilder] to a [Map<String, dynamic>]
+  /// converts a [ExplanationOfBenefitAdjudicationBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -9415,9 +9428,7 @@ class ExplanationOfBenefitAdjudicationBuilder extends BackboneElementBuilder {
       reason: reason ?? this.reason,
       amount: amount ?? this.amount,
       value: value ?? this.value,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -9773,11 +9784,14 @@ class ExplanationOfBenefitDetailBuilder extends BackboneElementBuilder {
   /// Third-tier of goods and services.
   List<ExplanationOfBenefitSubDetailBuilder>? subDetail;
 
-  /// Converts a ExplanationOfBenefitDetailBuilder to [ExplanationOfBenefitDetail]
+  /// converts a [ExplanationOfBenefitDetailBuilder]
+  /// to [ExplanationOfBenefitDetail]
+  @override
   ExplanationOfBenefitDetail build() =>
       ExplanationOfBenefitDetail.fromJson(toJson());
 
-  /// Converts a [ExplanationOfBenefitDetailBuilder] to a [Map<String, dynamic>]
+  /// converts a [ExplanationOfBenefitDetailBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -10380,9 +10394,7 @@ class ExplanationOfBenefitDetailBuilder extends BackboneElementBuilder {
       noteNumber: noteNumber ?? this.noteNumber,
       adjudication: adjudication ?? this.adjudication,
       subDetail: subDetail ?? this.subDetail,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -10783,11 +10795,14 @@ class ExplanationOfBenefitSubDetailBuilder extends BackboneElementBuilder {
   /// The adjudication results.
   List<ExplanationOfBenefitAdjudicationBuilder>? adjudication;
 
-  /// Converts a ExplanationOfBenefitSubDetailBuilder to [ExplanationOfBenefitSubDetail]
+  /// converts a [ExplanationOfBenefitSubDetailBuilder]
+  /// to [ExplanationOfBenefitSubDetail]
+  @override
   ExplanationOfBenefitSubDetail build() =>
       ExplanationOfBenefitSubDetail.fromJson(toJson());
 
-  /// Converts a [ExplanationOfBenefitSubDetailBuilder] to a [Map<String, dynamic>]
+  /// converts a [ExplanationOfBenefitSubDetailBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -11359,9 +11374,7 @@ class ExplanationOfBenefitSubDetailBuilder extends BackboneElementBuilder {
       udi: udi ?? this.udi,
       noteNumber: noteNumber ?? this.noteNumber,
       adjudication: adjudication ?? this.adjudication,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -11846,11 +11859,14 @@ class ExplanationOfBenefitAddItemBuilder extends BackboneElementBuilder {
   /// The second-tier service adjudications for payor added services.
   List<ExplanationOfBenefitDetailBuilder>? detail;
 
-  /// Converts a ExplanationOfBenefitAddItemBuilder to [ExplanationOfBenefitAddItem]
+  /// converts a [ExplanationOfBenefitAddItemBuilder]
+  /// to [ExplanationOfBenefitAddItem]
+  @override
   ExplanationOfBenefitAddItem build() =>
       ExplanationOfBenefitAddItem.fromJson(toJson());
 
-  /// Converts a [ExplanationOfBenefitAddItemBuilder] to a [Map<String, dynamic>]
+  /// converts a [ExplanationOfBenefitAddItemBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -12642,8 +12658,8 @@ class ExplanationOfBenefitAddItemBuilder extends BackboneElementBuilder {
     if (productOrService) this.productOrService = null;
     if (modifier) this.modifier = null;
     if (programCode) this.programCode = null;
-    if (serviced) this.servicedX = null;
-    if (location) this.locationX = null;
+    if (serviced) servicedX = null;
+    if (location) locationX = null;
     if (quantity) this.quantity = null;
     if (unitPrice) this.unitPrice = null;
     if (factor) this.factor = null;
@@ -12709,9 +12725,7 @@ class ExplanationOfBenefitAddItemBuilder extends BackboneElementBuilder {
       noteNumber: noteNumber ?? this.noteNumber,
       adjudication: adjudication ?? this.adjudication,
       detail: detail ?? this.detail,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -13085,11 +13099,14 @@ class ExplanationOfBenefitDetail1Builder extends BackboneElementBuilder {
   /// The third-tier service adjudications for payor added services.
   List<ExplanationOfBenefitSubDetailBuilder>? subDetail;
 
-  /// Converts a ExplanationOfBenefitDetail1Builder to [ExplanationOfBenefitDetail1]
+  /// converts a [ExplanationOfBenefitDetail1Builder]
+  /// to [ExplanationOfBenefitDetail1]
+  @override
   ExplanationOfBenefitDetail1 build() =>
       ExplanationOfBenefitDetail1.fromJson(toJson());
 
-  /// Converts a [ExplanationOfBenefitDetail1Builder] to a [Map<String, dynamic>]
+  /// converts a [ExplanationOfBenefitDetail1Builder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -13552,9 +13569,7 @@ class ExplanationOfBenefitDetail1Builder extends BackboneElementBuilder {
       noteNumber: noteNumber ?? this.noteNumber,
       adjudication: adjudication ?? this.adjudication,
       subDetail: subDetail ?? this.subDetail,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -13859,11 +13874,14 @@ class ExplanationOfBenefitSubDetail1Builder extends BackboneElementBuilder {
   /// The adjudication results.
   List<ExplanationOfBenefitAdjudicationBuilder>? adjudication;
 
-  /// Converts a ExplanationOfBenefitSubDetail1Builder to [ExplanationOfBenefitSubDetail1]
+  /// converts a [ExplanationOfBenefitSubDetail1Builder]
+  /// to [ExplanationOfBenefitSubDetail1]
+  @override
   ExplanationOfBenefitSubDetail1 build() =>
       ExplanationOfBenefitSubDetail1.fromJson(toJson());
 
-  /// Converts a [ExplanationOfBenefitSubDetail1Builder] to a [Map<String, dynamic>]
+  /// converts a [ExplanationOfBenefitSubDetail1Builder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -14295,9 +14313,7 @@ class ExplanationOfBenefitSubDetail1Builder extends BackboneElementBuilder {
       net: net ?? this.net,
       noteNumber: noteNumber ?? this.noteNumber,
       adjudication: adjudication ?? this.adjudication,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -14516,11 +14532,14 @@ class ExplanationOfBenefitTotalBuilder extends BackboneElementBuilder {
   /// Monetary total amount associated with the category.
   MoneyBuilder? amount;
 
-  /// Converts a ExplanationOfBenefitTotalBuilder to [ExplanationOfBenefitTotal]
+  /// converts a [ExplanationOfBenefitTotalBuilder]
+  /// to [ExplanationOfBenefitTotal]
+  @override
   ExplanationOfBenefitTotal build() =>
       ExplanationOfBenefitTotal.fromJson(toJson());
 
-  /// Converts a [ExplanationOfBenefitTotalBuilder] to a [Map<String, dynamic>]
+  /// converts a [ExplanationOfBenefitTotalBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -14781,9 +14800,7 @@ class ExplanationOfBenefitTotalBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       category: category ?? this.category,
       amount: amount ?? this.amount,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -15009,11 +15026,14 @@ class ExplanationOfBenefitPaymentBuilder extends BackboneElementBuilder {
   /// Issuer's unique identifier for the payment instrument.
   IdentifierBuilder? identifier;
 
-  /// Converts a ExplanationOfBenefitPaymentBuilder to [ExplanationOfBenefitPayment]
+  /// converts a [ExplanationOfBenefitPaymentBuilder]
+  /// to [ExplanationOfBenefitPayment]
+  @override
   ExplanationOfBenefitPayment build() =>
       ExplanationOfBenefitPayment.fromJson(toJson());
 
-  /// Converts a [ExplanationOfBenefitPaymentBuilder] to a [Map<String, dynamic>]
+  /// converts a [ExplanationOfBenefitPaymentBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -15378,9 +15398,7 @@ class ExplanationOfBenefitPaymentBuilder extends BackboneElementBuilder {
       date: date ?? this.date,
       amount: amount ?? this.amount,
       identifier: identifier ?? this.identifier,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -15606,11 +15624,14 @@ class ExplanationOfBenefitProcessNoteBuilder extends BackboneElementBuilder {
   /// A code to define the language used in the text of the note.
   CodeableConceptBuilder? language;
 
-  /// Converts a ExplanationOfBenefitProcessNoteBuilder to [ExplanationOfBenefitProcessNote]
+  /// converts a [ExplanationOfBenefitProcessNoteBuilder]
+  /// to [ExplanationOfBenefitProcessNote]
+  @override
   ExplanationOfBenefitProcessNote build() =>
       ExplanationOfBenefitProcessNote.fromJson(toJson());
 
-  /// Converts a [ExplanationOfBenefitProcessNoteBuilder] to a [Map<String, dynamic>]
+  /// converts a [ExplanationOfBenefitProcessNoteBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -15923,9 +15944,7 @@ class ExplanationOfBenefitProcessNoteBuilder extends BackboneElementBuilder {
       type: type ?? this.type,
       text: text ?? this.text,
       language: language ?? this.language,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -16191,11 +16210,14 @@ class ExplanationOfBenefitBenefitBalanceBuilder extends BackboneElementBuilder {
   /// Benefits Used to date.
   List<ExplanationOfBenefitFinancialBuilder>? financial;
 
-  /// Converts a ExplanationOfBenefitBenefitBalanceBuilder to [ExplanationOfBenefitBenefitBalance]
+  /// converts a [ExplanationOfBenefitBenefitBalanceBuilder]
+  /// to [ExplanationOfBenefitBenefitBalance]
+  @override
   ExplanationOfBenefitBenefitBalance build() =>
       ExplanationOfBenefitBenefitBalance.fromJson(toJson());
 
-  /// Converts a [ExplanationOfBenefitBenefitBalanceBuilder] to a [Map<String, dynamic>]
+  /// converts a [ExplanationOfBenefitBenefitBalanceBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -16618,9 +16640,7 @@ class ExplanationOfBenefitBenefitBalanceBuilder extends BackboneElementBuilder {
       unit: unit ?? this.unit,
       term: term ?? this.term,
       financial: financial ?? this.financial,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -16870,11 +16890,14 @@ class ExplanationOfBenefitFinancialBuilder extends BackboneElementBuilder {
   /// Getter for [usedMoney] as a MoneyBuilder
   MoneyBuilder? get usedMoney => usedX?.isAs<MoneyBuilder>();
 
-  /// Converts a ExplanationOfBenefitFinancialBuilder to [ExplanationOfBenefitFinancial]
+  /// converts a [ExplanationOfBenefitFinancialBuilder]
+  /// to [ExplanationOfBenefitFinancial]
+  @override
   ExplanationOfBenefitFinancial build() =>
       ExplanationOfBenefitFinancial.fromJson(toJson());
 
-  /// Converts a [ExplanationOfBenefitFinancialBuilder] to a [Map<String, dynamic>]
+  /// converts a [ExplanationOfBenefitFinancialBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -17265,8 +17288,8 @@ class ExplanationOfBenefitFinancialBuilder extends BackboneElementBuilder {
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
     if (type) this.type = null;
-    if (allowed) this.allowedX = null;
-    if (used) this.usedX = null;
+    if (allowed) allowedX = null;
+    if (used) usedX = null;
   }
 
   @override
@@ -17293,9 +17316,7 @@ class ExplanationOfBenefitFinancialBuilder extends BackboneElementBuilder {
       type: type ?? this.type,
       allowedX: allowedX ?? this.allowedX,
       usedX: usedX ?? this.usedX,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

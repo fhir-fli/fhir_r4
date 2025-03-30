@@ -96,9 +96,9 @@ abstract class FhirBulk {
   /// it was made for ndJson strings), and converts them into the bytes for a
   /// .zip file.
   ///
-  /// Each function takes a Map<String, String> value as an argument. It assumes
-  /// that each value should be stored in a different file, and the key is the
-  /// filename with an ndjson extension.
+  /// Each function takes a Map`<`String, String`>` value as an argument. It
+  /// assumes that each value should be stored in a different file, and the
+  /// key is the filename with an ndjson extension.
   ///
   /// Thus if you pass a map of
   /// {patients: patientNdJson, practitioner: practitionerNdJson}

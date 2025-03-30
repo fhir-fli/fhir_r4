@@ -47,7 +47,8 @@ class ConditionalReadStatusBuilder extends FhirCodeEnumBuilder {
   factory ConditionalReadStatusBuilder.empty() =>
       ConditionalReadStatusBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [ConditionalReadStatusBuilder] from JSON.
+  /// Factory constructor to create [ConditionalReadStatusBuilder]
+  /// from JSON.
   factory ConditionalReadStatusBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
@@ -128,7 +129,9 @@ class ConditionalReadStatusBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   ConditionalReadStatusBuilder withElement(ElementBuilder? newElement) {
     return ConditionalReadStatusBuilder._(
-        validatedValue: value, element: newElement);
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

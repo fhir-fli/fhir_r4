@@ -48,7 +48,8 @@ class DetectedIssueSeverityBuilder extends FhirCodeEnumBuilder {
   factory DetectedIssueSeverityBuilder.empty() =>
       DetectedIssueSeverityBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [DetectedIssueSeverityBuilder] from JSON.
+  /// Factory constructor to create [DetectedIssueSeverityBuilder]
+  /// from JSON.
   factory DetectedIssueSeverityBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
@@ -115,7 +116,9 @@ class DetectedIssueSeverityBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   DetectedIssueSeverityBuilder withElement(ElementBuilder? newElement) {
     return DetectedIssueSeverityBuilder._(
-        validatedValue: value, element: newElement);
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

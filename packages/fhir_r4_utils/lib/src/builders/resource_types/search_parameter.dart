@@ -1,12 +1,12 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
         R4ResourceType,
-        StringExtensionForFHIR,
         SearchParameter,
-        SearchParameterComponent;
+        SearchParameterComponent,
+        StringExtensionForFHIR,
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -429,10 +429,13 @@ class SearchParameterBuilder extends CanonicalResourceBuilder {
   /// Used to define the parts of a composite search parameter.
   List<SearchParameterComponentBuilder>? component;
 
-  /// Converts a SearchParameterBuilder to [SearchParameter]
+  /// converts a [SearchParameterBuilder]
+  /// to [SearchParameter]
+  @override
   SearchParameter build() => SearchParameter.fromJson(toJson());
 
-  /// Converts a [SearchParameterBuilder] to a [Map<String, dynamic>]
+  /// converts a [SearchParameterBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1497,9 +1500,7 @@ class SearchParameterBuilder extends CanonicalResourceBuilder {
       modifier: modifier ?? this.modifier,
       chain: chain ?? this.chain,
       component: component ?? this.component,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1853,11 +1854,14 @@ class SearchParameterComponentBuilder extends BackboneElementBuilder {
   /// from the output of the main SearchParameter.expression.
   FhirStringBuilder? expression;
 
-  /// Converts a SearchParameterComponentBuilder to [SearchParameterComponent]
+  /// converts a [SearchParameterComponentBuilder]
+  /// to [SearchParameterComponent]
+  @override
   SearchParameterComponent build() =>
       SearchParameterComponent.fromJson(toJson());
 
-  /// Converts a [SearchParameterComponentBuilder] to a [Map<String, dynamic>]
+  /// converts a [SearchParameterComponentBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2118,9 +2122,7 @@ class SearchParameterComponentBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       definition: definition ?? this.definition,
       expression: expression ?? this.expression,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

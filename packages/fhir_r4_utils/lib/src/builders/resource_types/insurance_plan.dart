@@ -1,20 +1,20 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
-        R4ResourceType,
-        StringExtensionForFHIR,
         InsurancePlan,
-        InsurancePlanContact,
-        InsurancePlanCoverage,
         InsurancePlanBenefit,
+        InsurancePlanBenefit1,
+        InsurancePlanContact,
+        InsurancePlanCost,
+        InsurancePlanCoverage,
+        InsurancePlanGeneralCost,
         InsurancePlanLimit,
         InsurancePlanPlan,
-        InsurancePlanGeneralCost,
         InsurancePlanSpecificCost,
-        InsurancePlanBenefit1,
-        InsurancePlanCost;
+        R4ResourceType,
+        StringExtensionForFHIR,
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -350,10 +350,13 @@ class InsurancePlanBuilder extends DomainResourceBuilder {
   /// Details about an insurance plan.
   List<InsurancePlanPlanBuilder>? plan;
 
-  /// Converts a InsurancePlanBuilder to [InsurancePlan]
+  /// converts a [InsurancePlanBuilder]
+  /// to [InsurancePlan]
+  @override
   InsurancePlan build() => InsurancePlan.fromJson(toJson());
 
-  /// Converts a [InsurancePlanBuilder] to a [Map<String, dynamic>]
+  /// converts a [InsurancePlanBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1106,9 +1109,7 @@ class InsurancePlanBuilder extends DomainResourceBuilder {
       network: network ?? this.network,
       coverage: coverage ?? this.coverage,
       plan: plan ?? this.plan,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1415,10 +1416,13 @@ class InsurancePlanContactBuilder extends BackboneElementBuilder {
   /// Visiting or postal addresses for the contact.
   AddressBuilder? address;
 
-  /// Converts a InsurancePlanContactBuilder to [InsurancePlanContact]
+  /// converts a [InsurancePlanContactBuilder]
+  /// to [InsurancePlanContact]
+  @override
   InsurancePlanContact build() => InsurancePlanContact.fromJson(toJson());
 
-  /// Converts a [InsurancePlanContactBuilder] to a [Map<String, dynamic>]
+  /// converts a [InsurancePlanContactBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1736,9 +1740,7 @@ class InsurancePlanContactBuilder extends BackboneElementBuilder {
       name: name ?? this.name,
       telecom: telecom ?? this.telecom,
       address: address ?? this.address,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1949,10 +1951,13 @@ class InsurancePlanCoverageBuilder extends BackboneElementBuilder {
   /// Specific benefits under this type of coverage.
   List<InsurancePlanBenefitBuilder>? benefit;
 
-  /// Converts a InsurancePlanCoverageBuilder to [InsurancePlanCoverage]
+  /// converts a [InsurancePlanCoverageBuilder]
+  /// to [InsurancePlanCoverage]
+  @override
   InsurancePlanCoverage build() => InsurancePlanCoverage.fromJson(toJson());
 
-  /// Converts a [InsurancePlanCoverageBuilder] to a [Map<String, dynamic>]
+  /// converts a [InsurancePlanCoverageBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2249,9 +2254,7 @@ class InsurancePlanCoverageBuilder extends BackboneElementBuilder {
       type: type ?? this.type,
       network: network ?? this.network,
       benefit: benefit ?? this.benefit,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -2450,10 +2453,13 @@ class InsurancePlanBenefitBuilder extends BackboneElementBuilder {
   /// The specific limits on the benefit.
   List<InsurancePlanLimitBuilder>? limit;
 
-  /// Converts a InsurancePlanBenefitBuilder to [InsurancePlanBenefit]
+  /// converts a [InsurancePlanBenefitBuilder]
+  /// to [InsurancePlanBenefit]
+  @override
   InsurancePlanBenefit build() => InsurancePlanBenefit.fromJson(toJson());
 
-  /// Converts a [InsurancePlanBenefitBuilder] to a [Map<String, dynamic>]
+  /// converts a [InsurancePlanBenefitBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2745,9 +2751,7 @@ class InsurancePlanBenefitBuilder extends BackboneElementBuilder {
       type: type ?? this.type,
       requirement: requirement ?? this.requirement,
       limit: limit ?? this.limit,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -2932,10 +2936,13 @@ class InsurancePlanLimitBuilder extends BackboneElementBuilder {
   /// The specific limit on the benefit.
   CodeableConceptBuilder? code;
 
-  /// Converts a InsurancePlanLimitBuilder to [InsurancePlanLimit]
+  /// converts a [InsurancePlanLimitBuilder]
+  /// to [InsurancePlanLimit]
+  @override
   InsurancePlanLimit build() => InsurancePlanLimit.fromJson(toJson());
 
-  /// Converts a [InsurancePlanLimitBuilder] to a [Map<String, dynamic>]
+  /// converts a [InsurancePlanLimitBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3196,9 +3203,7 @@ class InsurancePlanLimitBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       value: value ?? this.value,
       code: code ?? this.code,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -3443,10 +3448,13 @@ class InsurancePlanPlanBuilder extends BackboneElementBuilder {
   /// Costs associated with the coverage provided by the product.
   List<InsurancePlanSpecificCostBuilder>? specificCost;
 
-  /// Converts a InsurancePlanPlanBuilder to [InsurancePlanPlan]
+  /// converts a [InsurancePlanPlanBuilder]
+  /// to [InsurancePlanPlan]
+  @override
   InsurancePlanPlan build() => InsurancePlanPlan.fromJson(toJson());
 
-  /// Converts a [InsurancePlanPlanBuilder] to a [Map<String, dynamic>]
+  /// converts a [InsurancePlanPlanBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3836,9 +3844,7 @@ class InsurancePlanPlanBuilder extends BackboneElementBuilder {
       network: network ?? this.network,
       generalCost: generalCost ?? this.generalCost,
       specificCost: specificCost ?? this.specificCost,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -4064,11 +4070,14 @@ class InsurancePlanGeneralCostBuilder extends BackboneElementBuilder {
   /// plan.
   FhirStringBuilder? comment;
 
-  /// Converts a InsurancePlanGeneralCostBuilder to [InsurancePlanGeneralCost]
+  /// converts a [InsurancePlanGeneralCostBuilder]
+  /// to [InsurancePlanGeneralCost]
+  @override
   InsurancePlanGeneralCost build() =>
       InsurancePlanGeneralCost.fromJson(toJson());
 
-  /// Converts a [InsurancePlanGeneralCostBuilder] to a [Map<String, dynamic>]
+  /// converts a [InsurancePlanGeneralCostBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -4381,9 +4390,7 @@ class InsurancePlanGeneralCostBuilder extends BackboneElementBuilder {
       groupSize: groupSize ?? this.groupSize,
       cost: cost ?? this.cost,
       comment: comment ?? this.comment,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -4579,11 +4586,14 @@ class InsurancePlanSpecificCostBuilder extends BackboneElementBuilder {
   /// List of the specific benefits under this category of benefit.
   List<InsurancePlanBenefitBuilder>? benefit;
 
-  /// Converts a InsurancePlanSpecificCostBuilder to [InsurancePlanSpecificCost]
+  /// converts a [InsurancePlanSpecificCostBuilder]
+  /// to [InsurancePlanSpecificCost]
+  @override
   InsurancePlanSpecificCost build() =>
       InsurancePlanSpecificCost.fromJson(toJson());
 
-  /// Converts a [InsurancePlanSpecificCostBuilder] to a [Map<String, dynamic>]
+  /// converts a [InsurancePlanSpecificCostBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -4849,9 +4859,7 @@ class InsurancePlanSpecificCostBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       category: category ?? this.category,
       benefit: benefit ?? this.benefit,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -5035,10 +5043,13 @@ class InsurancePlanBenefit1Builder extends BackboneElementBuilder {
   /// List of the costs associated with a specific benefit.
   List<InsurancePlanCostBuilder>? cost;
 
-  /// Converts a InsurancePlanBenefit1Builder to [InsurancePlanBenefit1]
+  /// converts a [InsurancePlanBenefit1Builder]
+  /// to [InsurancePlanBenefit1]
+  @override
   InsurancePlanBenefit1 build() => InsurancePlanBenefit1.fromJson(toJson());
 
-  /// Converts a [InsurancePlanBenefit1Builder] to a [Map<String, dynamic>]
+  /// converts a [InsurancePlanBenefit1Builder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -5304,9 +5315,7 @@ class InsurancePlanBenefit1Builder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       type: type ?? this.type,
       cost: cost ?? this.cost,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -5514,10 +5523,13 @@ class InsurancePlanCostBuilder extends BackboneElementBuilder {
   /// percentages rather than currency, e.g. 10% coinsurance).
   QuantityBuilder? value;
 
-  /// Converts a InsurancePlanCostBuilder to [InsurancePlanCost]
+  /// converts a [InsurancePlanCostBuilder]
+  /// to [InsurancePlanCost]
+  @override
   InsurancePlanCost build() => InsurancePlanCost.fromJson(toJson());
 
-  /// Converts a [InsurancePlanCostBuilder] to a [Map<String, dynamic>]
+  /// converts a [InsurancePlanCostBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -5835,9 +5847,7 @@ class InsurancePlanCostBuilder extends BackboneElementBuilder {
       applicability: applicability ?? this.applicability,
       qualifiers: qualifiers ?? this.qualifiers,
       value: value ?? this.value,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

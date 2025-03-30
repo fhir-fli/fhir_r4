@@ -1,16 +1,16 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
+        ConceptMap,
+        ConceptMapDependsOn,
+        ConceptMapElement,
+        ConceptMapGroup,
+        ConceptMapTarget,
+        ConceptMapUnmapped,
         R4ResourceType,
         StringExtensionForFHIR,
-        ConceptMap,
-        ConceptMapGroup,
-        ConceptMapElement,
-        ConceptMapTarget,
-        ConceptMapDependsOn,
-        ConceptMapUnmapped;
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -354,10 +354,13 @@ class ConceptMapBuilder extends CanonicalResourceBuilder {
   /// A group of mappings that all have the same source and target system.
   List<ConceptMapGroupBuilder>? group;
 
-  /// Converts a ConceptMapBuilder to [ConceptMap]
+  /// converts a [ConceptMapBuilder]
+  /// to [ConceptMap]
+  @override
   ConceptMap build() => ConceptMap.fromJson(toJson());
 
-  /// Converts a [ConceptMapBuilder] to a [Map<String, dynamic>]
+  /// converts a [ConceptMapBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1229,8 +1232,8 @@ class ConceptMapBuilder extends CanonicalResourceBuilder {
     if (jurisdiction) this.jurisdiction = null;
     if (purpose) this.purpose = null;
     if (copyright) this.copyright = null;
-    if (source) this.sourceX = null;
-    if (target) this.targetX = null;
+    if (source) sourceX = null;
+    if (target) targetX = null;
     if (group) this.group = null;
   }
 
@@ -1297,9 +1300,7 @@ class ConceptMapBuilder extends CanonicalResourceBuilder {
       sourceX: sourceX ?? this.sourceX,
       targetX: targetX ?? this.targetX,
       group: group ?? this.group,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1658,10 +1659,13 @@ class ConceptMapGroupBuilder extends BackboneElementBuilder {
   /// ignored in a code is specified to have equivalence = unmatched.
   ConceptMapUnmappedBuilder? unmapped;
 
-  /// Converts a ConceptMapGroupBuilder to [ConceptMapGroup]
+  /// converts a [ConceptMapGroupBuilder]
+  /// to [ConceptMapGroup]
+  @override
   ConceptMapGroup build() => ConceptMapGroup.fromJson(toJson());
 
-  /// Converts a [ConceptMapGroupBuilder] to a [Map<String, dynamic>]
+  /// converts a [ConceptMapGroupBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2031,9 +2035,7 @@ class ConceptMapGroupBuilder extends BackboneElementBuilder {
       targetVersion: targetVersion ?? this.targetVersion,
       element: element ?? this.element,
       unmapped: unmapped ?? this.unmapped,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -2252,10 +2254,13 @@ class ConceptMapElementBuilder extends BackboneElementBuilder {
   /// A concept from the target value set that this concept maps to.
   List<ConceptMapTargetBuilder>? target;
 
-  /// Converts a ConceptMapElementBuilder to [ConceptMapElement]
+  /// converts a [ConceptMapElementBuilder]
+  /// to [ConceptMapElement]
+  @override
   ConceptMapElement build() => ConceptMapElement.fromJson(toJson());
 
-  /// Converts a [ConceptMapElementBuilder] to a [Map<String, dynamic>]
+  /// converts a [ConceptMapElementBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2547,9 +2552,7 @@ class ConceptMapElementBuilder extends BackboneElementBuilder {
       code: code ?? this.code,
       display: display ?? this.display,
       target: target ?? this.target,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -2795,10 +2798,13 @@ class ConceptMapTargetBuilder extends BackboneElementBuilder {
   /// equivalence cannot be relied on.
   List<ConceptMapDependsOnBuilder>? product;
 
-  /// Converts a ConceptMapTargetBuilder to [ConceptMapTarget]
+  /// converts a [ConceptMapTargetBuilder]
+  /// to [ConceptMapTarget]
+  @override
   ConceptMapTarget build() => ConceptMapTarget.fromJson(toJson());
 
-  /// Converts a [ConceptMapTargetBuilder] to a [Map<String, dynamic>]
+  /// converts a [ConceptMapTargetBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3173,9 +3179,7 @@ class ConceptMapTargetBuilder extends BackboneElementBuilder {
       comment: comment ?? this.comment,
       dependsOn: dependsOn ?? this.dependsOn,
       product: product ?? this.product,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -3407,10 +3411,13 @@ class ConceptMapDependsOnBuilder extends BackboneElementBuilder {
   /// when editing the concept map.
   FhirStringBuilder? display;
 
-  /// Converts a ConceptMapDependsOnBuilder to [ConceptMapDependsOn]
+  /// converts a [ConceptMapDependsOnBuilder]
+  /// to [ConceptMapDependsOn]
+  @override
   ConceptMapDependsOn build() => ConceptMapDependsOn.fromJson(toJson());
 
-  /// Converts a [ConceptMapDependsOnBuilder] to a [Map<String, dynamic>]
+  /// converts a [ConceptMapDependsOnBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3723,9 +3730,7 @@ class ConceptMapDependsOnBuilder extends BackboneElementBuilder {
       system: system ?? this.system,
       value: value ?? this.value,
       display: display ?? this.display,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -3948,10 +3953,13 @@ class ConceptMapUnmappedBuilder extends BackboneElementBuilder {
   /// mapping for the source concept.
   FhirCanonicalBuilder? url;
 
-  /// Converts a ConceptMapUnmappedBuilder to [ConceptMapUnmapped]
+  /// converts a [ConceptMapUnmappedBuilder]
+  /// to [ConceptMapUnmapped]
+  @override
   ConceptMapUnmapped build() => ConceptMapUnmapped.fromJson(toJson());
 
-  /// Converts a [ConceptMapUnmappedBuilder] to a [Map<String, dynamic>]
+  /// converts a [ConceptMapUnmappedBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -4264,9 +4272,7 @@ class ConceptMapUnmappedBuilder extends BackboneElementBuilder {
       code: code ?? this.code,
       display: display ?? this.display,
       url: url ?? this.url,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

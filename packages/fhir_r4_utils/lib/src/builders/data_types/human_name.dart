@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, StringExtensionForFHIR, HumanName;
+    show HumanName, StringExtensionForFHIR, yamlMapToJson, yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -183,10 +183,13 @@ class HumanNameBuilder extends DataTypeBuilder
   /// person.
   PeriodBuilder? period;
 
-  /// Converts a HumanNameBuilder to [HumanName]
+  /// converts a [HumanNameBuilder]
+  /// to [HumanName]
+  @override
   HumanName build() => HumanName.fromJson(toJson());
 
-  /// Converts a [HumanNameBuilder] to a [Map<String, dynamic>]
+  /// converts a [HumanNameBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -561,9 +564,7 @@ class HumanNameBuilder extends DataTypeBuilder
       prefix: prefix ?? this.prefix,
       suffix: suffix ?? this.suffix,
       period: period ?? this.period,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

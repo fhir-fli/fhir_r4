@@ -47,7 +47,8 @@ class ActionPrecheckBehaviorBuilder extends FhirCodeEnumBuilder {
   factory ActionPrecheckBehaviorBuilder.empty() =>
       ActionPrecheckBehaviorBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [ActionPrecheckBehaviorBuilder] from JSON.
+  /// Factory constructor to create [ActionPrecheckBehaviorBuilder]
+  /// from JSON.
   factory ActionPrecheckBehaviorBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
@@ -104,7 +105,9 @@ class ActionPrecheckBehaviorBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   ActionPrecheckBehaviorBuilder withElement(ElementBuilder? newElement) {
     return ActionPrecheckBehaviorBuilder._(
-        validatedValue: value, element: newElement);
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

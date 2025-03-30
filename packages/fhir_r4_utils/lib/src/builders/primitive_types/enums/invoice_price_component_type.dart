@@ -47,7 +47,8 @@ class InvoicePriceComponentTypeBuilder extends FhirCodeEnumBuilder {
   factory InvoicePriceComponentTypeBuilder.empty() =>
       InvoicePriceComponentTypeBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [InvoicePriceComponentTypeBuilder] from JSON.
+  /// Factory constructor to create [InvoicePriceComponentTypeBuilder]
+  /// from JSON.
   factory InvoicePriceComponentTypeBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
@@ -151,7 +152,9 @@ class InvoicePriceComponentTypeBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   InvoicePriceComponentTypeBuilder withElement(ElementBuilder? newElement) {
     return InvoicePriceComponentTypeBuilder._(
-        validatedValue: value, element: newElement);
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

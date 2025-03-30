@@ -1,14 +1,14 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
+        DocumentReference,
+        DocumentReferenceContent,
+        DocumentReferenceContext,
+        DocumentReferenceRelatesTo,
         R4ResourceType,
         StringExtensionForFHIR,
-        DocumentReference,
-        DocumentReferenceRelatesTo,
-        DocumentReferenceContent,
-        DocumentReferenceContext;
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -371,10 +371,13 @@ class DocumentReferenceBuilder extends DomainResourceBuilder {
   /// The clinical context in which the document was prepared.
   DocumentReferenceContextBuilder? context;
 
-  /// Converts a DocumentReferenceBuilder to [DocumentReference]
+  /// converts a [DocumentReferenceBuilder]
+  /// to [DocumentReference]
+  @override
   DocumentReference build() => DocumentReference.fromJson(toJson());
 
-  /// Converts a [DocumentReferenceBuilder] to a [Map<String, dynamic>]
+  /// converts a [DocumentReferenceBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1164,9 +1167,7 @@ class DocumentReferenceBuilder extends DomainResourceBuilder {
       securityLabel: securityLabel ?? this.securityLabel,
       content: content ?? this.content,
       context: context ?? this.context,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1460,11 +1461,14 @@ class DocumentReferenceRelatesToBuilder extends BackboneElementBuilder {
   /// The target document of this relationship.
   ReferenceBuilder? target;
 
-  /// Converts a DocumentReferenceRelatesToBuilder to [DocumentReferenceRelatesTo]
+  /// converts a [DocumentReferenceRelatesToBuilder]
+  /// to [DocumentReferenceRelatesTo]
+  @override
   DocumentReferenceRelatesTo build() =>
       DocumentReferenceRelatesTo.fromJson(toJson());
 
-  /// Converts a [DocumentReferenceRelatesToBuilder] to a [Map<String, dynamic>]
+  /// converts a [DocumentReferenceRelatesToBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1725,9 +1729,7 @@ class DocumentReferenceRelatesToBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       code: code ?? this.code,
       target: target ?? this.target,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1910,11 +1912,14 @@ class DocumentReferenceContentBuilder extends BackboneElementBuilder {
   /// mimeType.
   CodingBuilder? format;
 
-  /// Converts a DocumentReferenceContentBuilder to [DocumentReferenceContent]
+  /// converts a [DocumentReferenceContentBuilder]
+  /// to [DocumentReferenceContent]
+  @override
   DocumentReferenceContent build() =>
       DocumentReferenceContent.fromJson(toJson());
 
-  /// Converts a [DocumentReferenceContentBuilder] to a [Map<String, dynamic>]
+  /// converts a [DocumentReferenceContentBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2175,9 +2180,7 @@ class DocumentReferenceContentBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       attachment: attachment ?? this.attachment,
       format: format ?? this.format,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -2431,11 +2434,14 @@ class DocumentReferenceContextBuilder extends BackboneElementBuilder {
   /// Related identifiers or resources associated with the DocumentReference.
   List<ReferenceBuilder>? related;
 
-  /// Converts a DocumentReferenceContextBuilder to [DocumentReferenceContext]
+  /// converts a [DocumentReferenceContextBuilder]
+  /// to [DocumentReferenceContext]
+  @override
   DocumentReferenceContext build() =>
       DocumentReferenceContext.fromJson(toJson());
 
-  /// Converts a [DocumentReferenceContextBuilder] to a [Map<String, dynamic>]
+  /// converts a [DocumentReferenceContextBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2841,9 +2847,7 @@ class DocumentReferenceContextBuilder extends BackboneElementBuilder {
       practiceSetting: practiceSetting ?? this.practiceSetting,
       sourcePatientInfo: sourcePatientInfo ?? this.sourcePatientInfo,
       related: related ?? this.related,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

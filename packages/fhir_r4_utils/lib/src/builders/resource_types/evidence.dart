@@ -1,18 +1,18 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
-        R4ResourceType,
-        StringExtensionForFHIR,
         Evidence,
-        EvidenceVariableDefinition,
-        EvidenceStatistic,
-        EvidenceSampleSize,
         EvidenceAttributeEstimate,
+        EvidenceCertainty,
         EvidenceModelCharacteristic,
         EvidenceModelCharacteristicVariable,
-        EvidenceCertainty;
+        EvidenceSampleSize,
+        EvidenceStatistic,
+        EvidenceVariableDefinition,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -519,10 +519,13 @@ class EvidenceBuilder extends DomainResourceBuilder {
   /// evidence.
   List<EvidenceCertaintyBuilder>? certainty;
 
-  /// Converts a EvidenceBuilder to [Evidence]
+  /// converts a [EvidenceBuilder]
+  /// to [Evidence]
+  @override
   Evidence build() => Evidence.fromJson(toJson());
 
-  /// Converts a [EvidenceBuilder] to a [Map<String, dynamic>]
+  /// converts a [EvidenceBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1530,7 +1533,7 @@ class EvidenceBuilder extends DomainResourceBuilder {
     if (identifier) this.identifier = null;
     if (version) this.version = null;
     if (title) this.title = null;
-    if (citeAs) this.citeAsX = null;
+    if (citeAs) citeAsX = null;
     if (status) this.status = null;
     if (date) this.date = null;
     if (useContext) this.useContext = null;
@@ -1630,9 +1633,7 @@ class EvidenceBuilder extends DomainResourceBuilder {
       studyType: studyType ?? this.studyType,
       statistic: statistic ?? this.statistic,
       certainty: certainty ?? this.certainty,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -2029,11 +2030,14 @@ class EvidenceVariableDefinitionBuilder extends BackboneElementBuilder {
   /// variable.
   CodeableConceptBuilder? directnessMatch;
 
-  /// Converts a EvidenceVariableDefinitionBuilder to [EvidenceVariableDefinition]
+  /// converts a [EvidenceVariableDefinitionBuilder]
+  /// to [EvidenceVariableDefinition]
+  @override
   EvidenceVariableDefinition build() =>
       EvidenceVariableDefinition.fromJson(toJson());
 
-  /// Converts a [EvidenceVariableDefinitionBuilder] to a [Map<String, dynamic>]
+  /// converts a [EvidenceVariableDefinitionBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2403,9 +2407,7 @@ class EvidenceVariableDefinitionBuilder extends BackboneElementBuilder {
       observed: observed ?? this.observed,
       intended: intended ?? this.intended,
       directnessMatch: directnessMatch ?? this.directnessMatch,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -2712,10 +2714,13 @@ class EvidenceStatisticBuilder extends BackboneElementBuilder {
   /// A component of the method to generate the statistic.
   List<EvidenceModelCharacteristicBuilder>? modelCharacteristic;
 
-  /// Converts a EvidenceStatisticBuilder to [EvidenceStatistic]
+  /// converts a [EvidenceStatisticBuilder]
+  /// to [EvidenceStatistic]
+  @override
   EvidenceStatistic build() => EvidenceStatistic.fromJson(toJson());
 
-  /// Converts a [EvidenceStatisticBuilder] to a [Map<String, dynamic>]
+  /// converts a [EvidenceStatisticBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3199,9 +3204,7 @@ class EvidenceStatisticBuilder extends BackboneElementBuilder {
       sampleSize: sampleSize ?? this.sampleSize,
       attributeEstimate: attributeEstimate ?? this.attributeEstimate,
       modelCharacteristic: modelCharacteristic ?? this.modelCharacteristic,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -3465,10 +3468,13 @@ class EvidenceSampleSizeBuilder extends BackboneElementBuilder {
   /// Number of participants with known results for measured variables.
   FhirUnsignedIntBuilder? knownDataCount;
 
-  /// Converts a EvidenceSampleSizeBuilder to [EvidenceSampleSize]
+  /// converts a [EvidenceSampleSizeBuilder]
+  /// to [EvidenceSampleSize]
+  @override
   EvidenceSampleSize build() => EvidenceSampleSize.fromJson(toJson());
 
-  /// Converts a [EvidenceSampleSizeBuilder] to a [Map<String, dynamic>]
+  /// converts a [EvidenceSampleSizeBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3812,9 +3818,7 @@ class EvidenceSampleSizeBuilder extends BackboneElementBuilder {
       numberOfStudies: numberOfStudies ?? this.numberOfStudies,
       numberOfParticipants: numberOfParticipants ?? this.numberOfParticipants,
       knownDataCount: knownDataCount ?? this.knownDataCount,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -4078,11 +4082,14 @@ class EvidenceAttributeEstimateBuilder extends BackboneElementBuilder {
   /// attribute estimate.
   List<EvidenceAttributeEstimateBuilder>? attributeEstimate;
 
-  /// Converts a EvidenceAttributeEstimateBuilder to [EvidenceAttributeEstimate]
+  /// converts a [EvidenceAttributeEstimateBuilder]
+  /// to [EvidenceAttributeEstimate]
+  @override
   EvidenceAttributeEstimate build() =>
       EvidenceAttributeEstimate.fromJson(toJson());
 
-  /// Converts a [EvidenceAttributeEstimateBuilder] to a [Map<String, dynamic>]
+  /// converts a [EvidenceAttributeEstimateBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -4483,9 +4490,7 @@ class EvidenceAttributeEstimateBuilder extends BackboneElementBuilder {
       level: level ?? this.level,
       range: range ?? this.range,
       attributeEstimate: attributeEstimate ?? this.attributeEstimate,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -4725,11 +4730,14 @@ class EvidenceModelCharacteristicBuilder extends BackboneElementBuilder {
   /// An attribute of the statistic used as a model characteristic.
   List<EvidenceAttributeEstimateBuilder>? attributeEstimate;
 
-  /// Converts a EvidenceModelCharacteristicBuilder to [EvidenceModelCharacteristic]
+  /// converts a [EvidenceModelCharacteristicBuilder]
+  /// to [EvidenceModelCharacteristic]
+  @override
   EvidenceModelCharacteristic build() =>
       EvidenceModelCharacteristic.fromJson(toJson());
 
-  /// Converts a [EvidenceModelCharacteristicBuilder] to a [Map<String, dynamic>]
+  /// converts a [EvidenceModelCharacteristicBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -5052,9 +5060,7 @@ class EvidenceModelCharacteristicBuilder extends BackboneElementBuilder {
       value: value ?? this.value,
       variable: variable ?? this.variable,
       attributeEstimate: attributeEstimate ?? this.attributeEstimate,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -5291,11 +5297,14 @@ class EvidenceModelCharacteristicVariableBuilder
   /// Range of values for grouping of ordinal or polychotomous variables.
   List<RangeBuilder>? valueRange;
 
-  /// Converts a EvidenceModelCharacteristicVariableBuilder to [EvidenceModelCharacteristicVariable]
+  /// converts a [EvidenceModelCharacteristicVariableBuilder]
+  /// to [EvidenceModelCharacteristicVariable]
+  @override
   EvidenceModelCharacteristicVariable build() =>
       EvidenceModelCharacteristicVariable.fromJson(toJson());
 
-  /// Converts a [EvidenceModelCharacteristicVariableBuilder] to a [Map<String, dynamic>]
+  /// converts a [EvidenceModelCharacteristicVariableBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -5650,9 +5659,7 @@ class EvidenceModelCharacteristicVariableBuilder
       valueCategory: valueCategory ?? this.valueCategory,
       valueQuantity: valueQuantity ?? this.valueQuantity,
       valueRange: valueRange ?? this.valueRange,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -5901,10 +5908,13 @@ class EvidenceCertaintyBuilder extends BackboneElementBuilder {
   /// A domain or subdomain of certainty.
   List<EvidenceCertaintyBuilder>? subcomponent;
 
-  /// Converts a EvidenceCertaintyBuilder to [EvidenceCertainty]
+  /// converts a [EvidenceCertaintyBuilder]
+  /// to [EvidenceCertainty]
+  @override
   EvidenceCertainty build() => EvidenceCertainty.fromJson(toJson());
 
-  /// Converts a [EvidenceCertaintyBuilder] to a [Map<String, dynamic>]
+  /// converts a [EvidenceCertaintyBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -6279,9 +6289,7 @@ class EvidenceCertaintyBuilder extends BackboneElementBuilder {
       rating: rating ?? this.rating,
       rater: rater ?? this.rater,
       subcomponent: subcomponent ?? this.subcomponent,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

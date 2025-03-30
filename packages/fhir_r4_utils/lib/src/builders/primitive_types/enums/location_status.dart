@@ -47,7 +47,8 @@ class LocationStatusBuilder extends FhirCodeEnumBuilder {
   factory LocationStatusBuilder.empty() =>
       LocationStatusBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [LocationStatusBuilder] from JSON.
+  /// Factory constructor to create [LocationStatusBuilder]
+  /// from JSON.
   factory LocationStatusBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;

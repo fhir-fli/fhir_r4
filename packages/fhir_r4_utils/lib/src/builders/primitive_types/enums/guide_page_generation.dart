@@ -47,7 +47,8 @@ class GuidePageGenerationBuilder extends FhirCodeEnumBuilder {
   factory GuidePageGenerationBuilder.empty() =>
       GuidePageGenerationBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [GuidePageGenerationBuilder] from JSON.
+  /// Factory constructor to create [GuidePageGenerationBuilder]
+  /// from JSON.
   factory GuidePageGenerationBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
@@ -124,7 +125,9 @@ class GuidePageGenerationBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   GuidePageGenerationBuilder withElement(ElementBuilder? newElement) {
     return GuidePageGenerationBuilder._(
-        validatedValue: value, element: newElement);
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

@@ -1,15 +1,15 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
+        Questionnaire,
+        QuestionnaireAnswerOption,
+        QuestionnaireEnableWhen,
+        QuestionnaireInitial,
+        QuestionnaireItem,
         R4ResourceType,
         StringExtensionForFHIR,
-        Questionnaire,
-        QuestionnaireItem,
-        QuestionnaireEnableWhen,
-        QuestionnaireAnswerOption,
-        QuestionnaireInitial;
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -392,10 +392,13 @@ class QuestionnaireBuilder extends CanonicalResourceBuilder {
   /// of the questionnaire.
   List<QuestionnaireItemBuilder>? item;
 
-  /// Converts a QuestionnaireBuilder to [Questionnaire]
+  /// converts a [QuestionnaireBuilder]
+  /// to [Questionnaire]
+  @override
   Questionnaire build() => Questionnaire.fromJson(toJson());
 
-  /// Converts a [QuestionnaireBuilder] to a [Map<String, dynamic>]
+  /// converts a [QuestionnaireBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1351,9 +1354,7 @@ class QuestionnaireBuilder extends CanonicalResourceBuilder {
       effectivePeriod: effectivePeriod ?? this.effectivePeriod,
       code: code ?? this.code,
       item: item ?? this.item,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1890,10 +1891,13 @@ class QuestionnaireItemBuilder extends BackboneElementBuilder {
   /// group.
   List<QuestionnaireItemBuilder>? item;
 
-  /// Converts a QuestionnaireItemBuilder to [QuestionnaireItem]
+  /// converts a [QuestionnaireItemBuilder]
+  /// to [QuestionnaireItem]
+  @override
   QuestionnaireItem build() => QuestionnaireItem.fromJson(toJson());
 
-  /// Converts a [QuestionnaireItemBuilder] to a [Map<String, dynamic>]
+  /// converts a [QuestionnaireItemBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2543,9 +2547,7 @@ class QuestionnaireItemBuilder extends BackboneElementBuilder {
       answerOption: answerOption ?? this.answerOption,
       initial: initial ?? this.initial,
       item: item ?? this.item,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -2865,10 +2867,13 @@ class QuestionnaireEnableWhenBuilder extends BackboneElementBuilder {
   /// Getter for [answerReference] as a ReferenceBuilder
   ReferenceBuilder? get answerReference => answerX?.isAs<ReferenceBuilder>();
 
-  /// Converts a QuestionnaireEnableWhenBuilder to [QuestionnaireEnableWhen]
+  /// converts a [QuestionnaireEnableWhenBuilder]
+  /// to [QuestionnaireEnableWhen]
+  @override
   QuestionnaireEnableWhen build() => QuestionnaireEnableWhen.fromJson(toJson());
 
-  /// Converts a [QuestionnaireEnableWhenBuilder] to a [Map<String, dynamic>]
+  /// converts a [QuestionnaireEnableWhenBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3256,7 +3261,7 @@ class QuestionnaireEnableWhenBuilder extends BackboneElementBuilder {
           'FhirStringBuilder',
           'CodingBuilder',
           'QuantityBuilder',
-          'ReferenceBuilder'
+          'ReferenceBuilder',
         ];
       case 'answerBoolean':
         return ['FhirBooleanBuilder'];
@@ -3385,7 +3390,7 @@ class QuestionnaireEnableWhenBuilder extends BackboneElementBuilder {
     if (modifierExtension) this.modifierExtension = null;
     if (question) this.question = null;
     if (operator_) this.operator_ = null;
-    if (answer) this.answerX = null;
+    if (answer) answerX = null;
   }
 
   @override
@@ -3412,9 +3417,7 @@ class QuestionnaireEnableWhenBuilder extends BackboneElementBuilder {
       question: question ?? this.question,
       operator_: operator_ ?? this.operator_,
       answerX: answerX ?? this.answerX,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -3625,11 +3628,14 @@ class QuestionnaireAnswerOptionBuilder extends BackboneElementBuilder {
   /// possible answers is initially shown.
   FhirBooleanBuilder? initialSelected;
 
-  /// Converts a QuestionnaireAnswerOptionBuilder to [QuestionnaireAnswerOption]
+  /// converts a [QuestionnaireAnswerOptionBuilder]
+  /// to [QuestionnaireAnswerOption]
+  @override
   QuestionnaireAnswerOption build() =>
       QuestionnaireAnswerOption.fromJson(toJson());
 
-  /// Converts a [QuestionnaireAnswerOptionBuilder] to a [Map<String, dynamic>]
+  /// converts a [QuestionnaireAnswerOptionBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3926,7 +3932,7 @@ class QuestionnaireAnswerOptionBuilder extends BackboneElementBuilder {
           'FhirTimeBuilder',
           'FhirStringBuilder',
           'CodingBuilder',
-          'ReferenceBuilder'
+          'ReferenceBuilder',
         ];
       case 'valueInteger':
         return ['FhirIntegerBuilder'];
@@ -4021,7 +4027,7 @@ class QuestionnaireAnswerOptionBuilder extends BackboneElementBuilder {
     if (id) this.id = null;
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
-    if (value) this.valueX = null;
+    if (value) valueX = null;
     if (initialSelected) this.initialSelected = null;
   }
 
@@ -4047,9 +4053,7 @@ class QuestionnaireAnswerOptionBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       valueX: valueX ?? this.valueX,
       initialSelected: initialSelected ?? this.initialSelected,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -4265,10 +4269,13 @@ class QuestionnaireInitialBuilder extends BackboneElementBuilder {
   /// Getter for [valueReference] as a ReferenceBuilder
   ReferenceBuilder? get valueReference => valueX?.isAs<ReferenceBuilder>();
 
-  /// Converts a QuestionnaireInitialBuilder to [QuestionnaireInitial]
+  /// converts a [QuestionnaireInitialBuilder]
+  /// to [QuestionnaireInitial]
+  @override
   QuestionnaireInitial build() => QuestionnaireInitial.fromJson(toJson());
 
-  /// Converts a [QuestionnaireInitialBuilder] to a [Map<String, dynamic>]
+  /// converts a [QuestionnaireInitialBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -4658,7 +4665,7 @@ class QuestionnaireInitialBuilder extends BackboneElementBuilder {
           'AttachmentBuilder',
           'CodingBuilder',
           'QuantityBuilder',
-          'ReferenceBuilder'
+          'ReferenceBuilder',
         ];
       case 'valueBoolean':
         return ['FhirBooleanBuilder'];
@@ -4787,7 +4794,7 @@ class QuestionnaireInitialBuilder extends BackboneElementBuilder {
     if (id) this.id = null;
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
-    if (value) this.valueX = null;
+    if (value) valueX = null;
   }
 
   @override
@@ -4810,9 +4817,7 @@ class QuestionnaireInitialBuilder extends BackboneElementBuilder {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       valueX: valueX ?? this.valueX,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

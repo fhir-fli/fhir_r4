@@ -48,7 +48,8 @@ class EnableWhenBehaviorBuilder extends FhirCodeEnumBuilder {
   factory EnableWhenBehaviorBuilder.empty() =>
       EnableWhenBehaviorBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [EnableWhenBehaviorBuilder] from JSON.
+  /// Factory constructor to create [EnableWhenBehaviorBuilder]
+  /// from JSON.
   factory EnableWhenBehaviorBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
@@ -105,7 +106,9 @@ class EnableWhenBehaviorBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   EnableWhenBehaviorBuilder withElement(ElementBuilder? newElement) {
     return EnableWhenBehaviorBuilder._(
-        validatedValue: value, element: newElement);
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

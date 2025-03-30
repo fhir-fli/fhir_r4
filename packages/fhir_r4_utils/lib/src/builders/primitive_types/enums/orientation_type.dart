@@ -47,7 +47,8 @@ class OrientationTypeBuilder extends FhirCodeEnumBuilder {
   factory OrientationTypeBuilder.empty() =>
       OrientationTypeBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [OrientationTypeBuilder] from JSON.
+  /// Factory constructor to create [OrientationTypeBuilder]
+  /// from JSON.
   factory OrientationTypeBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;

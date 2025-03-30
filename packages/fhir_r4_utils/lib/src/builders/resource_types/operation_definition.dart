@@ -1,15 +1,15 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
+        OperationDefinition,
+        OperationDefinitionBinding,
+        OperationDefinitionOverload,
+        OperationDefinitionParameter,
+        OperationDefinitionReferencedFrom,
         R4ResourceType,
         StringExtensionForFHIR,
-        OperationDefinition,
-        OperationDefinitionParameter,
-        OperationDefinitionBinding,
-        OperationDefinitionReferencedFrom,
-        OperationDefinitionOverload;
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -431,10 +431,13 @@ class OperationDefinitionBuilder extends CanonicalResourceBuilder {
   /// parameter sets for this operation.
   List<OperationDefinitionOverloadBuilder>? overload;
 
-  /// Converts a OperationDefinitionBuilder to [OperationDefinition]
+  /// converts a [OperationDefinitionBuilder]
+  /// to [OperationDefinition]
+  @override
   OperationDefinition build() => OperationDefinition.fromJson(toJson());
 
-  /// Converts a [OperationDefinitionBuilder] to a [Map<String, dynamic>]
+  /// converts a [OperationDefinitionBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1484,9 +1487,7 @@ class OperationDefinitionBuilder extends CanonicalResourceBuilder {
       outputProfile: outputProfile ?? this.outputProfile,
       parameter: parameter ?? this.parameter,
       overload: overload ?? this.overload,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1958,11 +1959,14 @@ class OperationDefinitionParameterBuilder extends BackboneElementBuilder {
   /// The parts of a nested Parameter.
   List<OperationDefinitionParameterBuilder>? part_;
 
-  /// Converts a OperationDefinitionParameterBuilder to [OperationDefinitionParameter]
+  /// converts a [OperationDefinitionParameterBuilder]
+  /// to [OperationDefinitionParameter]
+  @override
   OperationDefinitionParameter build() =>
       OperationDefinitionParameter.fromJson(toJson());
 
-  /// Converts a [OperationDefinitionParameterBuilder] to a [Map<String, dynamic>]
+  /// converts a [OperationDefinitionParameterBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2472,9 +2476,7 @@ class OperationDefinitionParameterBuilder extends BackboneElementBuilder {
       binding: binding ?? this.binding,
       referencedFrom: referencedFrom ?? this.referencedFrom,
       part_: part_ ?? this.part_,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -2711,11 +2713,14 @@ class OperationDefinitionBindingBuilder extends BackboneElementBuilder {
   /// set) that identifies the set of codes to be used.
   FhirCanonicalBuilder? valueSet;
 
-  /// Converts a OperationDefinitionBindingBuilder to [OperationDefinitionBinding]
+  /// converts a [OperationDefinitionBindingBuilder]
+  /// to [OperationDefinitionBinding]
+  @override
   OperationDefinitionBinding build() =>
       OperationDefinitionBinding.fromJson(toJson());
 
-  /// Converts a [OperationDefinitionBindingBuilder] to a [Map<String, dynamic>]
+  /// converts a [OperationDefinitionBindingBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2976,9 +2981,7 @@ class OperationDefinitionBindingBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       strength: strength ?? this.strength,
       valueSet: valueSet ?? this.valueSet,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -3161,11 +3164,14 @@ class OperationDefinitionReferencedFromBuilder extends BackboneElementBuilder {
   /// resolve to this resource.
   FhirStringBuilder? sourceId;
 
-  /// Converts a OperationDefinitionReferencedFromBuilder to [OperationDefinitionReferencedFrom]
+  /// converts a [OperationDefinitionReferencedFromBuilder]
+  /// to [OperationDefinitionReferencedFrom]
+  @override
   OperationDefinitionReferencedFrom build() =>
       OperationDefinitionReferencedFrom.fromJson(toJson());
 
-  /// Converts a [OperationDefinitionReferencedFromBuilder] to a [Map<String, dynamic>]
+  /// converts a [OperationDefinitionReferencedFromBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3427,9 +3433,7 @@ class OperationDefinitionReferencedFromBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       source: source ?? this.source,
       sourceId: sourceId ?? this.sourceId,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -3610,11 +3614,14 @@ class OperationDefinitionOverloadBuilder extends BackboneElementBuilder {
   /// Comments to go on overload.
   FhirStringBuilder? comment;
 
-  /// Converts a OperationDefinitionOverloadBuilder to [OperationDefinitionOverload]
+  /// converts a [OperationDefinitionOverloadBuilder]
+  /// to [OperationDefinitionOverload]
+  @override
   OperationDefinitionOverload build() =>
       OperationDefinitionOverload.fromJson(toJson());
 
-  /// Converts a [OperationDefinitionOverloadBuilder] to a [Map<String, dynamic>]
+  /// converts a [OperationDefinitionOverloadBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3880,9 +3887,7 @@ class OperationDefinitionOverloadBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       parameterName: parameterName ?? this.parameterName,
       comment: comment ?? this.comment,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

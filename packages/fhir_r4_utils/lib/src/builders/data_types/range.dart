@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, StringExtensionForFHIR, Range;
+    show Range, StringExtensionForFHIR, yamlMapToJson, yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -150,10 +150,13 @@ class RangeBuilder extends DataTypeBuilder
   /// The high limit. The boundary is inclusive.
   QuantityBuilder? high;
 
-  /// Converts a RangeBuilder to [Range]
+  /// converts a [RangeBuilder]
+  /// to [Range]
+  @override
   Range build() => Range.fromJson(toJson());
 
-  /// Converts a [RangeBuilder] to a [Map<String, dynamic>]
+  /// converts a [RangeBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -383,9 +386,7 @@ class RangeBuilder extends DataTypeBuilder
       extension_: extension_ ?? this.extension_,
       low: low ?? this.low,
       high: high ?? this.high,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

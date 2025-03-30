@@ -48,7 +48,8 @@ class ConsentProvisionTypeBuilder extends FhirCodeEnumBuilder {
   factory ConsentProvisionTypeBuilder.empty() =>
       ConsentProvisionTypeBuilder._(validatedValue: '');
 
-  /// Factory constructor to create [ConsentProvisionTypeBuilder] from JSON.
+  /// Factory constructor to create [ConsentProvisionTypeBuilder]
+  /// from JSON.
   factory ConsentProvisionTypeBuilder.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
@@ -105,7 +106,9 @@ class ConsentProvisionTypeBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   ConsentProvisionTypeBuilder withElement(ElementBuilder? newElement) {
     return ConsentProvisionTypeBuilder._(
-        validatedValue: value, element: newElement);
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

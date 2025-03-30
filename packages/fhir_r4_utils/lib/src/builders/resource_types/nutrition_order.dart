@@ -1,17 +1,17 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
+        NutritionOrder,
+        NutritionOrderAdministration,
+        NutritionOrderEnteralFormula,
+        NutritionOrderNutrient,
+        NutritionOrderOralDiet,
+        NutritionOrderSupplement,
+        NutritionOrderTexture,
         R4ResourceType,
         StringExtensionForFHIR,
-        NutritionOrder,
-        NutritionOrderOralDiet,
-        NutritionOrderNutrient,
-        NutritionOrderTexture,
-        NutritionOrderSupplement,
-        NutritionOrderEnteralFormula,
-        NutritionOrderAdministration;
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -391,10 +391,13 @@ class NutritionOrderBuilder extends DomainResourceBuilder {
   /// or other participants.
   List<AnnotationBuilder>? note;
 
-  /// Converts a NutritionOrderBuilder to [NutritionOrder]
+  /// converts a [NutritionOrderBuilder]
+  /// to [NutritionOrder]
+  @override
   NutritionOrder build() => NutritionOrder.fromJson(toJson());
 
-  /// Converts a [NutritionOrderBuilder] to a [Map<String, dynamic>]
+  /// converts a [NutritionOrderBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1227,9 +1230,7 @@ class NutritionOrderBuilder extends DomainResourceBuilder {
       supplement: supplement ?? this.supplement,
       enteralFormula: enteralFormula ?? this.enteralFormula,
       note: note ?? this.note,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1599,10 +1600,13 @@ class NutritionOrderOralDietBuilder extends BackboneElementBuilder {
   /// oral diet.
   FhirStringBuilder? instruction;
 
-  /// Converts a NutritionOrderOralDietBuilder to [NutritionOrderOralDiet]
+  /// converts a [NutritionOrderOralDietBuilder]
+  /// to [NutritionOrderOralDiet]
+  @override
   NutritionOrderOralDiet build() => NutritionOrderOralDiet.fromJson(toJson());
 
-  /// Converts a [NutritionOrderOralDietBuilder] to a [Map<String, dynamic>]
+  /// converts a [NutritionOrderOralDietBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1992,9 +1996,7 @@ class NutritionOrderOralDietBuilder extends BackboneElementBuilder {
       texture: texture ?? this.texture,
       fluidConsistencyType: fluidConsistencyType ?? this.fluidConsistencyType,
       instruction: instruction ?? this.instruction,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -2198,10 +2200,13 @@ class NutritionOrderNutrientBuilder extends BackboneElementBuilder {
   /// The quantity of the specified nutrient to include in diet.
   QuantityBuilder? amount;
 
-  /// Converts a NutritionOrderNutrientBuilder to [NutritionOrderNutrient]
+  /// converts a [NutritionOrderNutrientBuilder]
+  /// to [NutritionOrderNutrient]
+  @override
   NutritionOrderNutrient build() => NutritionOrderNutrient.fromJson(toJson());
 
-  /// Converts a [NutritionOrderNutrientBuilder] to a [Map<String, dynamic>]
+  /// converts a [NutritionOrderNutrientBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2462,9 +2467,7 @@ class NutritionOrderNutrientBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       modifier: modifier ?? this.modifier,
       amount: amount ?? this.amount,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -2646,10 +2649,13 @@ class NutritionOrderTextureBuilder extends BackboneElementBuilder {
   /// applies to. This could be all foods types.
   CodeableConceptBuilder? foodType;
 
-  /// Converts a NutritionOrderTextureBuilder to [NutritionOrderTexture]
+  /// converts a [NutritionOrderTextureBuilder]
+  /// to [NutritionOrderTexture]
+  @override
   NutritionOrderTexture build() => NutritionOrderTexture.fromJson(toJson());
 
-  /// Converts a [NutritionOrderTextureBuilder] to a [Map<String, dynamic>]
+  /// converts a [NutritionOrderTextureBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2910,9 +2916,7 @@ class NutritionOrderTextureBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       modifier: modifier ?? this.modifier,
       foodType: foodType ?? this.foodType,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -3134,11 +3138,14 @@ class NutritionOrderSupplementBuilder extends BackboneElementBuilder {
   /// oral supplement.
   FhirStringBuilder? instruction;
 
-  /// Converts a NutritionOrderSupplementBuilder to [NutritionOrderSupplement]
+  /// converts a [NutritionOrderSupplementBuilder]
+  /// to [NutritionOrderSupplement]
+  @override
   NutritionOrderSupplement build() =>
       NutritionOrderSupplement.fromJson(toJson());
 
-  /// Converts a [NutritionOrderSupplementBuilder] to a [Map<String, dynamic>]
+  /// converts a [NutritionOrderSupplementBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3482,9 +3489,7 @@ class NutritionOrderSupplementBuilder extends BackboneElementBuilder {
       schedule: schedule ?? this.schedule,
       quantity: quantity ?? this.quantity,
       instruction: instruction ?? this.instruction,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -3779,11 +3784,14 @@ class NutritionOrderEnteralFormulaBuilder extends BackboneElementBuilder {
   /// instructions or information.
   FhirStringBuilder? administrationInstruction;
 
-  /// Converts a NutritionOrderEnteralFormulaBuilder to [NutritionOrderEnteralFormula]
+  /// converts a [NutritionOrderEnteralFormulaBuilder]
+  /// to [NutritionOrderEnteralFormula]
+  @override
   NutritionOrderEnteralFormula build() =>
       NutritionOrderEnteralFormula.fromJson(toJson());
 
-  /// Converts a [NutritionOrderEnteralFormulaBuilder] to a [Map<String, dynamic>]
+  /// converts a [NutritionOrderEnteralFormulaBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -4234,9 +4242,7 @@ class NutritionOrderEnteralFormulaBuilder extends BackboneElementBuilder {
       maxVolumeToDeliver: maxVolumeToDeliver ?? this.maxVolumeToDeliver,
       administrationInstruction:
           administrationInstruction ?? this.administrationInstruction,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -4484,11 +4490,14 @@ class NutritionOrderAdministrationBuilder extends BackboneElementBuilder {
   /// Getter for [rateRatio] as a RatioBuilder
   RatioBuilder? get rateRatio => rateX?.isAs<RatioBuilder>();
 
-  /// Converts a NutritionOrderAdministrationBuilder to [NutritionOrderAdministration]
+  /// converts a [NutritionOrderAdministrationBuilder]
+  /// to [NutritionOrderAdministration]
+  @override
   NutritionOrderAdministration build() =>
       NutritionOrderAdministration.fromJson(toJson());
 
-  /// Converts a [NutritionOrderAdministrationBuilder] to a [Map<String, dynamic>]
+  /// converts a [NutritionOrderAdministrationBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -4802,7 +4811,7 @@ class NutritionOrderAdministrationBuilder extends BackboneElementBuilder {
     if (modifierExtension) this.modifierExtension = null;
     if (schedule) this.schedule = null;
     if (quantity) this.quantity = null;
-    if (rate) this.rateX = null;
+    if (rate) rateX = null;
   }
 
   @override
@@ -4829,9 +4838,7 @@ class NutritionOrderAdministrationBuilder extends BackboneElementBuilder {
       schedule: schedule ?? this.schedule,
       quantity: quantity ?? this.quantity,
       rateX: rateX ?? this.rateX,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

@@ -1,22 +1,22 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
-        R4ResourceType,
-        StringExtensionForFHIR,
         ImplementationGuide,
+        ImplementationGuideDefinition,
         ImplementationGuideDependsOn,
         ImplementationGuideGlobal,
-        ImplementationGuideDefinition,
         ImplementationGuideGrouping,
-        ImplementationGuideResource,
-        ImplementationGuidePage,
-        ImplementationGuideParameter,
-        ImplementationGuideTemplate,
         ImplementationGuideManifest,
+        ImplementationGuidePage,
+        ImplementationGuidePage1,
+        ImplementationGuideParameter,
+        ImplementationGuideResource,
         ImplementationGuideResource1,
-        ImplementationGuidePage1;
+        ImplementationGuideTemplate,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -375,10 +375,13 @@ class ImplementationGuideBuilder extends CanonicalResourceBuilder {
   /// publication tooling.
   ImplementationGuideManifestBuilder? manifest;
 
-  /// Converts a ImplementationGuideBuilder to [ImplementationGuide]
+  /// converts a [ImplementationGuideBuilder]
+  /// to [ImplementationGuide]
+  @override
   ImplementationGuide build() => ImplementationGuide.fromJson(toJson());
 
-  /// Converts a [ImplementationGuideBuilder] to a [Map<String, dynamic>]
+  /// converts a [ImplementationGuideBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1272,9 +1275,7 @@ class ImplementationGuideBuilder extends CanonicalResourceBuilder {
       global: global ?? this.global,
       definition: definition ?? this.definition,
       manifest: manifest ?? this.manifest,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -1606,11 +1607,14 @@ class ImplementationGuideDependsOnBuilder extends BackboneElementBuilder {
   /// required to understand the IG correctly.
   FhirStringBuilder? version;
 
-  /// Converts a ImplementationGuideDependsOnBuilder to [ImplementationGuideDependsOn]
+  /// converts a [ImplementationGuideDependsOnBuilder]
+  /// to [ImplementationGuideDependsOn]
+  @override
   ImplementationGuideDependsOn build() =>
       ImplementationGuideDependsOn.fromJson(toJson());
 
-  /// Converts a [ImplementationGuideDependsOnBuilder] to a [Map<String, dynamic>]
+  /// converts a [ImplementationGuideDependsOnBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1897,9 +1901,7 @@ class ImplementationGuideDependsOnBuilder extends BackboneElementBuilder {
       uri: uri ?? this.uri,
       packageId: packageId ?? this.packageId,
       version: version ?? this.version,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -2085,11 +2087,14 @@ class ImplementationGuideGlobalBuilder extends BackboneElementBuilder {
   /// A reference to the profile that all instances must conform to.
   FhirCanonicalBuilder? profile;
 
-  /// Converts a ImplementationGuideGlobalBuilder to [ImplementationGuideGlobal]
+  /// converts a [ImplementationGuideGlobalBuilder]
+  /// to [ImplementationGuideGlobal]
+  @override
   ImplementationGuideGlobal build() =>
       ImplementationGuideGlobal.fromJson(toJson());
 
-  /// Converts a [ImplementationGuideGlobalBuilder] to a [Map<String, dynamic>]
+  /// converts a [ImplementationGuideGlobalBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2350,9 +2355,7 @@ class ImplementationGuideGlobalBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       type: type ?? this.type,
       profile: profile ?? this.profile,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -2586,11 +2589,14 @@ class ImplementationGuideDefinitionBuilder extends BackboneElementBuilder {
   /// A template for building resources.
   List<ImplementationGuideTemplateBuilder>? template;
 
-  /// Converts a ImplementationGuideDefinitionBuilder to [ImplementationGuideDefinition]
+  /// converts a [ImplementationGuideDefinitionBuilder]
+  /// to [ImplementationGuideDefinition]
+  @override
   ImplementationGuideDefinition build() =>
       ImplementationGuideDefinition.fromJson(toJson());
 
-  /// Converts a [ImplementationGuideDefinitionBuilder] to a [Map<String, dynamic>]
+  /// converts a [ImplementationGuideDefinitionBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2949,9 +2955,7 @@ class ImplementationGuideDefinitionBuilder extends BackboneElementBuilder {
       page: page ?? this.page,
       parameter: parameter ?? this.parameter,
       template: template ?? this.template,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -3150,11 +3154,14 @@ class ImplementationGuideGroupingBuilder extends BackboneElementBuilder {
   /// Human readable text describing the package.
   FhirStringBuilder? description;
 
-  /// Converts a ImplementationGuideGroupingBuilder to [ImplementationGuideGrouping]
+  /// converts a [ImplementationGuideGroupingBuilder]
+  /// to [ImplementationGuideGrouping]
+  @override
   ImplementationGuideGrouping build() =>
       ImplementationGuideGrouping.fromJson(toJson());
 
-  /// Converts a [ImplementationGuideGroupingBuilder] to a [Map<String, dynamic>]
+  /// converts a [ImplementationGuideGroupingBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3415,9 +3422,7 @@ class ImplementationGuideGroupingBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       name: name ?? this.name,
       description: description ?? this.description,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -3661,11 +3666,14 @@ class ImplementationGuideResourceBuilder extends BackboneElementBuilder {
   /// Reference to the id of the grouping this resource appears in.
   FhirIdBuilder? groupingId;
 
-  /// Converts a ImplementationGuideResourceBuilder to [ImplementationGuideResource]
+  /// converts a [ImplementationGuideResourceBuilder]
+  /// to [ImplementationGuideResource]
+  @override
   ImplementationGuideResource build() =>
       ImplementationGuideResource.fromJson(toJson());
 
-  /// Converts a [ImplementationGuideResourceBuilder] to a [Map<String, dynamic>]
+  /// converts a [ImplementationGuideResourceBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -4055,7 +4063,7 @@ class ImplementationGuideResourceBuilder extends BackboneElementBuilder {
     if (fhirVersion) this.fhirVersion = null;
     if (name) this.name = null;
     if (description) this.description = null;
-    if (example) this.exampleX = null;
+    if (example) exampleX = null;
     if (groupingId) this.groupingId = null;
   }
 
@@ -4089,9 +4097,7 @@ class ImplementationGuideResourceBuilder extends BackboneElementBuilder {
       description: description ?? this.description,
       exampleX: exampleX ?? this.exampleX,
       groupingId: groupingId ?? this.groupingId,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -4330,10 +4336,13 @@ class ImplementationGuidePageBuilder extends BackboneElementBuilder {
   /// Nested Pages/Sections under this page.
   List<ImplementationGuidePageBuilder>? page;
 
-  /// Converts a ImplementationGuidePageBuilder to [ImplementationGuidePage]
+  /// converts a [ImplementationGuidePageBuilder]
+  /// to [ImplementationGuidePage]
+  @override
   ImplementationGuidePage build() => ImplementationGuidePage.fromJson(toJson());
 
-  /// Converts a [ImplementationGuidePageBuilder] to a [Map<String, dynamic>]
+  /// converts a [ImplementationGuidePageBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -4673,7 +4682,7 @@ class ImplementationGuidePageBuilder extends BackboneElementBuilder {
     if (id) this.id = null;
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
-    if (name) this.nameX = null;
+    if (name) nameX = null;
     if (title) this.title = null;
     if (generation) this.generation = null;
     if (page) this.page = null;
@@ -4705,9 +4714,7 @@ class ImplementationGuidePageBuilder extends BackboneElementBuilder {
       title: title ?? this.title,
       generation: generation ?? this.generation,
       page: page ?? this.page,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -4900,11 +4907,14 @@ class ImplementationGuideParameterBuilder extends BackboneElementBuilder {
   /// Value for named type.
   FhirStringBuilder? value;
 
-  /// Converts a ImplementationGuideParameterBuilder to [ImplementationGuideParameter]
+  /// converts a [ImplementationGuideParameterBuilder]
+  /// to [ImplementationGuideParameter]
+  @override
   ImplementationGuideParameter build() =>
       ImplementationGuideParameter.fromJson(toJson());
 
-  /// Converts a [ImplementationGuideParameterBuilder] to a [Map<String, dynamic>]
+  /// converts a [ImplementationGuideParameterBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -5165,9 +5175,7 @@ class ImplementationGuideParameterBuilder extends BackboneElementBuilder {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       code: code ?? this.code,
       value: value ?? this.value,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -5357,11 +5365,14 @@ class ImplementationGuideTemplateBuilder extends BackboneElementBuilder {
   /// The scope in which the template applies.
   FhirStringBuilder? scope;
 
-  /// Converts a ImplementationGuideTemplateBuilder to [ImplementationGuideTemplate]
+  /// converts a [ImplementationGuideTemplateBuilder]
+  /// to [ImplementationGuideTemplate]
+  @override
   ImplementationGuideTemplate build() =>
       ImplementationGuideTemplate.fromJson(toJson());
 
-  /// Converts a [ImplementationGuideTemplateBuilder] to a [Map<String, dynamic>]
+  /// converts a [ImplementationGuideTemplateBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -5648,9 +5659,7 @@ class ImplementationGuideTemplateBuilder extends BackboneElementBuilder {
       code: code ?? this.code,
       source: source ?? this.source,
       scope: scope ?? this.scope,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -5883,11 +5892,14 @@ class ImplementationGuideManifestBuilder extends BackboneElementBuilder {
   /// the target of a hyperlink in a derived IG.
   List<FhirStringBuilder>? other;
 
-  /// Converts a ImplementationGuideManifestBuilder to [ImplementationGuideManifest]
+  /// converts a [ImplementationGuideManifestBuilder]
+  /// to [ImplementationGuideManifest]
+  @override
   ImplementationGuideManifest build() =>
       ImplementationGuideManifest.fromJson(toJson());
 
-  /// Converts a [ImplementationGuideManifestBuilder] to a [Map<String, dynamic>]
+  /// converts a [ImplementationGuideManifestBuilder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -6246,9 +6258,7 @@ class ImplementationGuideManifestBuilder extends BackboneElementBuilder {
       page: page ?? this.page,
       image: image ?? this.image,
       other: other ?? this.other,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -6472,11 +6482,14 @@ class ImplementationGuideResource1Builder extends BackboneElementBuilder {
   /// The relative path for primary page for this resource within the IG.
   FhirUrlBuilder? relativePath;
 
-  /// Converts a ImplementationGuideResource1Builder to [ImplementationGuideResource1]
+  /// converts a [ImplementationGuideResource1Builder]
+  /// to [ImplementationGuideResource1]
+  @override
   ImplementationGuideResource1 build() =>
       ImplementationGuideResource1.fromJson(toJson());
 
-  /// Converts a [ImplementationGuideResource1Builder] to a [Map<String, dynamic>]
+  /// converts a [ImplementationGuideResource1Builder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -6789,7 +6802,7 @@ class ImplementationGuideResource1Builder extends BackboneElementBuilder {
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
     if (reference) this.reference = null;
-    if (example) this.exampleX = null;
+    if (example) exampleX = null;
     if (relativePath) this.relativePath = null;
   }
 
@@ -6817,9 +6830,7 @@ class ImplementationGuideResource1Builder extends BackboneElementBuilder {
       reference: reference ?? this.reference,
       exampleX: exampleX ?? this.exampleX,
       relativePath: relativePath ?? this.relativePath,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;
@@ -7015,11 +7026,14 @@ class ImplementationGuidePage1Builder extends BackboneElementBuilder {
   /// The name of an anchor available on the page.
   List<FhirStringBuilder>? anchor;
 
-  /// Converts a ImplementationGuidePage1Builder to [ImplementationGuidePage1]
+  /// converts a [ImplementationGuidePage1Builder]
+  /// to [ImplementationGuidePage1]
+  @override
   ImplementationGuidePage1 build() =>
       ImplementationGuidePage1.fromJson(toJson());
 
-  /// Converts a [ImplementationGuidePage1Builder] to a [Map<String, dynamic>]
+  /// converts a [ImplementationGuidePage1Builder]
+  /// to [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -7311,9 +7325,7 @@ class ImplementationGuidePage1Builder extends BackboneElementBuilder {
       name: name ?? this.name,
       title: title ?? this.title,
       anchor: anchor ?? this.anchor,
-    );
-
-    newResult.objectPath = newObjectPath;
+    )..objectPath = newObjectPath;
     // Copy user data and annotations
     if (userData != null) {
       newResult.userData = userData;

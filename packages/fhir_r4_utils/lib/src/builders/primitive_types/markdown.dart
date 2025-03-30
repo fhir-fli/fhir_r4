@@ -24,15 +24,16 @@ class FhirMarkdownBuilder extends PrimitiveTypeBuilder<String>
   /// [element] are null => throw.
   FhirMarkdownBuilder._({
     required String? validatedValue,
-    this.element,
-    this.id,
-    this.extension_,
-    this.disallowExtensions,
-    this.objectPath = 'Markdown',
+    super.element,
+    super.id,
+    super.extension_,
+    super.disallowExtensions,
+    super.objectPath = 'Markdown',
   }) : super._(value: validatedValue) {
     if (value == null && element == null) {
       throw ArgumentError(
-          'A value or element is required for FhirMarkdownBuilder');
+        'A value or element is required for FhirMarkdownBuilder',
+      );
     }
   }
 
@@ -86,8 +87,8 @@ class FhirMarkdownBuilder extends PrimitiveTypeBuilder<String>
               );
   }
 
-  /// Tries to parse the input into a [FhirMarkdownBuilder], returning `null` if it
-  /// fails.
+  /// Tries to parse the input into a [FhirMarkdownBuilder],
+  /// returning `null` if it fails.
   static FhirMarkdownBuilder? tryParse(dynamic input) {
     try {
       return input is String ? FhirMarkdownBuilder(input) : null;
@@ -108,21 +109,6 @@ class FhirMarkdownBuilder extends PrimitiveTypeBuilder<String>
     }
     throw FormatException('Invalid FhirMarkdown: $input');
   }
-
-  /// Element property
-  ElementBuilder? element;
-
-  /// ID property
-  FhirStringBuilder? id;
-
-  /// Extensions property
-  List<FhirExtensionBuilder>? extension_;
-
-  /// DisallowExtensions property
-  bool? disallowExtensions;
-
-  /// ObjectPath property
-  String? objectPath;
 
   /// Returns the FHIR type as 'markdown'.
   @override
@@ -230,7 +216,8 @@ class FhirMarkdownBuilder extends PrimitiveTypeBuilder<String>
     });
   }
 
-  /// Converts a list of [FhirMarkdownBuilder] instances to a JSON-compatible map.
+  /// Converts a list of [FhirMarkdownBuilder]
+  /// instances to a JSON-compatible map.
   static Map<String, dynamic> toJsonList(List<FhirMarkdownBuilder> markdowns) {
     return {
       'value': markdowns.map((markdown) => markdown.value).toList(),
