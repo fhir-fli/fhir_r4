@@ -45,7 +45,7 @@ class FhirUriBuilder extends PrimitiveTypeBuilder<Uri>
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.objectPath = 'Canonical',
+    super.objectPath = 'Uri',
   }) : super._(value: validatedUri);
 
   /// Single public factory for creating a [FhirUriBuilder].
@@ -56,7 +56,7 @@ class FhirUriBuilder extends PrimitiveTypeBuilder<Uri>
     FhirStringBuilder? id,
     List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
-    String? objectPath = 'Canonical',
+    String? objectPath = 'Uri',
   }) {
     // 1) Validate/parse
     //    - If rawInput is null and no element, throw
@@ -111,7 +111,7 @@ class FhirUriBuilder extends PrimitiveTypeBuilder<Uri>
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
         elementJson == null ? null : ElementBuilder.fromJson(elementJson);
-    final objectPath = json['objectPath'] as String? ?? 'Canonical';
+    final objectPath = json['objectPath'] as String? ?? 'Uri';
 
     return FhirUriBuilder(
       value,

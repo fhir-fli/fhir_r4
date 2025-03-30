@@ -7,7 +7,7 @@ extension FhirIdExtension on String {
 }
 
 /// Represents the FHIR primitive type `id`.
-class FhirId extends PrimitiveType<String>
+class FhirId extends FhirString
     implements
         ValueXParametersParameter,
         DefaultValueXStructureMapSource,
@@ -22,13 +22,13 @@ class FhirId extends PrimitiveType<String>
   /// Private underscore constructor that performs no external validation,
   /// but checks if both [validatedValue] and [element] are null afterward.
   FhirId._({
-    required String? validatedValue,
+    required super.validatedValue,
     super.element,
     super.id,
     super.extension_,
     super.disallowExtensions,
     super.objectPath = 'Id',
-  }) : super._(value: validatedValue) {
+  }) : super._() {
     // Retain the original runtime check: if no value & no element => throw.
     if (value == null && element == null) {
       throw ArgumentError('A value or element is required for FhirId');

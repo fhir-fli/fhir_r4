@@ -45,7 +45,7 @@ class FhirUri extends PrimitiveType<Uri>
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.objectPath = 'Canonical',
+    super.objectPath = 'Uri',
   }) : super._(value: validatedUri);
 
   /// Single public factory for creating a [FhirUri].
@@ -56,7 +56,7 @@ class FhirUri extends PrimitiveType<Uri>
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
-    String objectPath = 'Canonical',
+    String objectPath = 'Uri',
   }) {
     // 1) Validate/parse
     //    - If rawInput is null and no element, throw
@@ -109,7 +109,7 @@ class FhirUri extends PrimitiveType<Uri>
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson == null ? null : Element.fromJson(elementJson);
-    final objectPath = json['objectPath'] as String? ?? 'Canonical';
+    final objectPath = json['objectPath'] as String? ?? 'Uri';
 
     return FhirUri(
       value,

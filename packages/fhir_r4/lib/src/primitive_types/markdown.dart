@@ -7,7 +7,7 @@ extension FhirMarkdownExtension on String {
 }
 
 /// This class represents the FHIR primitive type `markdown`.
-class FhirMarkdown extends PrimitiveType<String>
+class FhirMarkdown extends FhirString
     implements
         CiteAsXEvidence,
         CiteAsXEvidenceReport,
@@ -23,13 +23,13 @@ class FhirMarkdown extends PrimitiveType<String>
   /// Private underscore constructor that enforces if both [validatedValue] and
   /// [element] are null => throw.
   FhirMarkdown._({
-    required String? validatedValue,
+    required super.validatedValue,
     super.element,
     super.id,
     super.extension_,
     super.disallowExtensions,
     super.objectPath = 'Markdown',
-  }) : super._(value: validatedValue) {
+  }) : super._() {
     if (value == null && element == null) {
       throw ArgumentError('A value or element is required for FhirMarkdown');
     }

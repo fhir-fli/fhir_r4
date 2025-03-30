@@ -6,8 +6,14 @@ extension FhirOidBuilderExtension on String {
   FhirOidBuilder get toFhirOidBuilder => FhirOidBuilder(this);
 }
 
+/// Extension to convert a [Uri] to a [FhirOid]
+extension FhirOidUriExtension on Uri {
+  /// Converts a [Uri] to a [FhirOid]
+  FhirOidBuilder get toFhirOidBuilder => FhirOidBuilder.fromUri(this);
+}
+
 /// [FhirOidBuilder] represents a validated OID value in the FHIR standard.
-class FhirOidBuilder extends PrimitiveTypeBuilder<String>
+class FhirOidBuilder extends FhirUriBuilder
     implements
         ValueXParametersParameterBuilder,
         DefaultValueXStructureMapSourceBuilder,
@@ -22,13 +28,14 @@ class FhirOidBuilder extends PrimitiveTypeBuilder<String>
   /// but ensures that if [validatedValue] is null and [element] is null,
   /// we throw an error.
   FhirOidBuilder._({
-    required String? validatedValue,
+    required super.validatedUri,
+    super.input,
     super.element,
     super.id,
     super.extension_,
     super.disallowExtensions,
     super.objectPath = 'Oid',
-  }) : super._(value: validatedValue) {
+  }) : super._() {
     if (value == null && element == null) {
       throw ArgumentError('A value or element is required for FhirOidBuilder');
     }
@@ -37,18 +44,37 @@ class FhirOidBuilder extends PrimitiveTypeBuilder<String>
   /// Constructs a [FhirOidBuilder] from a String input with validation.
   // ignore: sort_unnamed_constructors_first
   factory FhirOidBuilder(
-    String? input, {
+    dynamic rawInput, {
     ElementBuilder? element,
     FhirStringBuilder? id,
     List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
     String? objectPath = 'Oid',
   }) {
-    // If not null, validate. Otherwise remain null if also no element.
-    final validated = _validateOid(input);
+    // 1) Validate/parse
+    //    - If rawInput is null and no element, throw
+    //    - If rawInput is a string, parse it as Uri
+    //    - If rawInput is a Uri, we can accept it directly
+    Uri? finalUri;
+    String? originalString;
+    if (rawInput == null && element == null) {
+      throw ArgumentError('A value or element is required for FhirUri.');
+    } else if (rawInput is String) {
+      finalUri = _validateOid(rawInput);
+      originalString = rawInput;
+    } else if (rawInput is Uri) {
+      finalUri = rawInput;
+      originalString = rawInput.toString();
+    } else if (rawInput != null) {
+      throw ArgumentError(
+        'FhirUri only supports a String or Uri, got: $rawInput',
+      );
+    }
 
+    // 2) Construct via the private underscore constructor
     return FhirOidBuilder._(
-      validatedValue: validated,
+      validatedUri: finalUri,
+      input: originalString,
       element: element,
       id: id,
       extension_: extension_,
@@ -60,6 +86,17 @@ class FhirOidBuilder extends PrimitiveTypeBuilder<String>
   /// Creates empty [FhirOidBuilder] object
   factory FhirOidBuilder.empty() =>
       FhirOidBuilder(null, element: ElementBuilder.empty());
+
+  /// Constructs a [FhirOid] from a [Oid] object
+  factory FhirOidBuilder.fromUri(
+    Uri input, [
+    ElementBuilder? element,
+  ]) {
+    return FhirOidBuilder(
+      input,
+      element: element,
+    );
+  }
 
   /// Factory constructor to create [FhirOidBuilder]
   /// from JSON.
@@ -97,13 +134,13 @@ class FhirOidBuilder extends PrimitiveTypeBuilder<String>
   }
 
   /// Validates if the input matches the OID pattern.
-  static String? _validateOid(String? input) {
+  static Uri? _validateOid(String? input) {
     if (input == null) {
       return null;
     }
     final pattern = RegExp(r'^urn:oid:[0-2](\.(0|[1-9][0-9]*))+$');
     if (pattern.hasMatch(input)) {
-      return input;
+      return Uri.tryParse(input);
     }
     throw FormatException('Invalid FhirOid: $input');
   }
@@ -147,7 +184,7 @@ class FhirOidBuilder extends PrimitiveTypeBuilder<String>
   bool operator ==(Object other) =>
       identical(this, other) ||
       (other is FhirOidBuilder && other.value == value) ||
-      (other is String && other == value);
+      (other is String && other == value.toString());
 
   /// Overrides the `hashCode` for use in hash-based collections.
   @override
@@ -164,7 +201,7 @@ class FhirOidBuilder extends PrimitiveTypeBuilder<String>
   /// Creates a modified copy with updated properties.
   @override
   FhirOidBuilder copyWith({
-    String? newValue,
+    Uri? newValue,
     ElementBuilder? element,
     FhirStringBuilder? id,
     List<FhirExtensionBuilder>? extension_,
@@ -176,7 +213,7 @@ class FhirOidBuilder extends PrimitiveTypeBuilder<String>
     String? objectPath,
   }) {
     return FhirOidBuilder(
-      newValue ?? value,
+      newValue?.toString() ?? input,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
@@ -190,9 +227,6 @@ class FhirOidBuilder extends PrimitiveTypeBuilder<String>
       objectPath: objectPath ?? this.objectPath,
     );
   }
-
-  /// Returns a new [FhirOidBuilder] with extensions disallowed.
-  FhirOidBuilder noExtensions() => copyWith(disallowExtensions: true);
 
   /// Converts a list of JSON values to a list of [FhirOidBuilder] instances.
   static List<FhirOidBuilder> fromJsonList(

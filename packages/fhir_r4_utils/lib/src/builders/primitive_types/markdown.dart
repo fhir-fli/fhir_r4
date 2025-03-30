@@ -7,7 +7,7 @@ extension FhirMarkdownBuilderExtension on String {
 }
 
 /// This class represents the FHIR primitive type `markdown`.
-class FhirMarkdownBuilder extends PrimitiveTypeBuilder<String>
+class FhirMarkdownBuilder extends FhirStringBuilder
     implements
         CiteAsXEvidenceBuilder,
         CiteAsXEvidenceReportBuilder,
@@ -23,13 +23,13 @@ class FhirMarkdownBuilder extends PrimitiveTypeBuilder<String>
   /// Private underscore constructor that enforces if both [validatedValue] and
   /// [element] are null => throw.
   FhirMarkdownBuilder._({
-    required String? validatedValue,
+    required super.validatedValue,
     super.element,
     super.id,
     super.extension_,
     super.disallowExtensions,
     super.objectPath = 'Markdown',
-  }) : super._(value: validatedValue) {
+  }) : super._() {
     if (value == null && element == null) {
       throw ArgumentError(
         'A value or element is required for FhirMarkdownBuilder',
@@ -193,10 +193,8 @@ class FhirMarkdownBuilder extends PrimitiveTypeBuilder<String>
     );
   }
 
-  /// Returns a new [FhirMarkdownBuilder] with extensions disallowed.
-  FhirMarkdownBuilder noExtensions() => copyWith(disallowExtensions: true);
-
-  /// Converts a list of JSON values to a list of [FhirMarkdownBuilder] instances.
+  /// Converts a list of JSON values to a list of [FhirMarkdownBuilder]
+  /// instances.
   static List<FhirMarkdownBuilder> fromJsonList(
     List<dynamic> values,
     List<dynamic>? elements,

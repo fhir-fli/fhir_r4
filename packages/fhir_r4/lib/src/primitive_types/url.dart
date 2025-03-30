@@ -13,7 +13,7 @@ extension FhirUrlUriExtension on Uri {
 }
 
 /// Represents a canonical URL in FHIR as a [PrimitiveType] of [Uri]
-class FhirUrl extends PrimitiveType<Uri>
+class FhirUrl extends FhirUri
     implements
         NameXImplementationGuidePage,
         ValueXParametersParameter,
@@ -28,14 +28,14 @@ class FhirUrl extends PrimitiveType<Uri>
   /// Private underscore constructor that takes a validated [Uri?] plus the
   /// original input string.
   FhirUrl._({
-    required Uri? validatedUri,
-    this.input,
+    required super.validatedUri,
+    super.input,
     super.element,
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.objectPath = 'Canonical',
-  }) : super._(value: validatedUri);
+    super.objectPath = 'Url',
+  }) : super._();
 
   /// Single public factory for creating a [FhirUrl].
   // ignore: sort_unnamed_constructors_first
@@ -45,7 +45,7 @@ class FhirUrl extends PrimitiveType<Uri>
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
-    String objectPath = 'Canonical',
+    String objectPath = 'Url',
   }) {
     // 1) Validate/parse
     //    - If rawInput is null and no element, throw
@@ -98,7 +98,7 @@ class FhirUrl extends PrimitiveType<Uri>
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson == null ? null : Element.fromJson(elementJson);
-    final objectPath = json['objectPath'] as String? ?? 'Canonical';
+    final objectPath = json['objectPath'] as String? ?? 'Url';
 
     return FhirUrl(
       value,
@@ -141,18 +141,6 @@ class FhirUrl extends PrimitiveType<Uri>
     if (parsed != null) return parsed;
     throw FormatException('Invalid Canonical String: $raw');
   }
-
-  /// The original input value (for serialization)
-  final String? input;
-
-  /// Boolean checks
-  bool get valueOnly => value != null && element == null;
-
-  /// Boolean checks
-  bool get hasElementOnly => value == null && element != null;
-
-  /// Boolean checks
-  bool get valueAndElement => value != null && element != null;
 
   /// Converts this instance to JSON with standardized keys
   @override
@@ -259,9 +247,6 @@ class FhirUrl extends PrimitiveType<Uri>
     );
   }
 
-  /// Sets [disallowExtensions] to true
-  FhirUrl noExtensions() => copyWith(disallowExtensions: true);
-
   @override
   FhirUrl createProperty(String propertyName) => this;
 
@@ -282,27 +267,6 @@ class FhirUrl extends PrimitiveType<Uri>
   // ──────────────────────────────────────────────────────────────────────────
   // Additional convenience getters (unchanged from your code)
   // ──────────────────────────────────────────────────────────────────────────
-
-  /// Returns the list of path segments in the canonical URL
-  List<String>? get pathSegments => value?.pathSegments;
-
-  /// Converts the canonical URL to a file path string
-  String? toFilePath({bool? windows}) => value?.toFilePath(windows: windows);
-
-  /// Returns host of the canonical URL
-  String? get host => value?.host;
-
-  /// Returns the userinfo part of the canonical URL
-  String? get userInfo => value?.userInfo;
-
-  /// Returns the port of the canonical URL
-  int? get port => value?.port;
-
-  /// Resturns the authority of the canonical URL
-  String? get authority => value?.authority;
-
-  /// Returns the query parameters of the canonical URL
-  String? get query => value?.query;
 
   /// Splits the [query] into a map according to the rules specified for FORM
   /// post in the HTML 4.01 specification section 17.13.4. Each key and value

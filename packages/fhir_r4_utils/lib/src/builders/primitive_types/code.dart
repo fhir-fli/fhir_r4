@@ -7,7 +7,7 @@ extension FhirCodeBuilderExtension on String {
 }
 
 /// FHIR primitive type `code`
-class FhirCodeBuilder extends PrimitiveTypeBuilder<String>
+class FhirCodeBuilder extends FhirStringBuilder
     implements
         ValueXCodeSystemPropertyBuilder,
         ValueXParametersParameterBuilder,
@@ -27,14 +27,14 @@ class FhirCodeBuilder extends PrimitiveTypeBuilder<String>
   /// Typically, any string validation (like `_validateCode`)
   /// is done before calling `_`.
   FhirCodeBuilder._({
-    required String? validatedValue,
+    required super.validatedValue,
     this.input,
     super.element,
     super.id,
     super.extension_,
     super.disallowExtensions,
     super.objectPath = 'Code',
-  }) : super._(value: validatedValue) {
+  }) : super._() {
     if (value == null && element == null) {
       throw ArgumentError('A value or element is required for FhirCodeBuilder');
     }
@@ -224,9 +224,6 @@ class FhirCodeBuilder extends PrimitiveTypeBuilder<String>
         if (input != null) 'value': input,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Returns a new [FhirCodeBuilder] with extensions disallowed.
-  FhirCodeBuilder noExtensions() => copyWith(disallowExtensions: true);
 
   /// Creates an empty property in the object
   @override

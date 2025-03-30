@@ -7,7 +7,7 @@ extension FhirIdBuilderExtension on String {
 }
 
 /// Represents the FHIR primitive type `id`.
-class FhirIdBuilder extends PrimitiveTypeBuilder<String>
+class FhirIdBuilder extends FhirStringBuilder
     implements
         ValueXParametersParameterBuilder,
         DefaultValueXStructureMapSourceBuilder,
@@ -22,13 +22,13 @@ class FhirIdBuilder extends PrimitiveTypeBuilder<String>
   /// Private underscore constructor that performs no external validation,
   /// but checks if both [validatedValue] and [element] are null afterward.
   FhirIdBuilder._({
-    required String? validatedValue,
+    required super.validatedValue,
     super.element,
     super.id,
     super.extension_,
     super.disallowExtensions,
     super.objectPath = 'Id',
-  }) : super._(value: validatedValue) {
+  }) : super._() {
     // Retain the original runtime check: if no value & no element => throw.
     if (value == null && element == null) {
       throw ArgumentError('A value or element is required for FhirIdBuilder');
@@ -225,9 +225,6 @@ class FhirIdBuilder extends PrimitiveTypeBuilder<String>
       objectPath: objectPath ?? this.objectPath,
     );
   }
-
-  /// Returns a new [FhirIdBuilder] with extensions disallowed.
-  FhirIdBuilder noExtensions() => copyWith(disallowExtensions: true);
 
   /// Creates an empty property in the object
   @override

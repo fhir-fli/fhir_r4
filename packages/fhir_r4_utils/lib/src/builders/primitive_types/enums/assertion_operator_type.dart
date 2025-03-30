@@ -141,8 +141,9 @@ class AssertionOperatorTypeBuilder extends FhirCodeEnumBuilder {
     display: 'notEmpty'.toFhirStringBuilder,
   );
 
-  /// contains
-  static AssertionOperatorTypeBuilder contains = AssertionOperatorTypeBuilder._(
+  /// contains_
+  static AssertionOperatorTypeBuilder contains_ =
+      AssertionOperatorTypeBuilder._(
     validatedValue: 'contains',
     system:
         'http://hl7.org/fhir/ValueSet/assert-operator-codes'.toFhirUriBuilder,
@@ -183,7 +184,7 @@ class AssertionOperatorTypeBuilder extends FhirCodeEnumBuilder {
     lessThan,
     empty_,
     notEmpty,
-    contains,
+    contains_,
     notContains,
     eval,
   ];
