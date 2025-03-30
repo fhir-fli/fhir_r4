@@ -14,8 +14,8 @@ import 'examples/step4/export.dart';
 import 'examples/step5/export.dart';
 // import 'examples/step6/export.dart';
 import 'examples/step7/export.dart';
-// import 'examples/step8/export.dart';
-// import 'examples/step9/export.dart';
+import 'examples/step8/export.dart';
+import 'examples/step9/export.dart';
 
 Future<void> main() async {
   final resourceCache = LocalResourceCache();
@@ -412,12 +412,32 @@ Future<void> main() async {
       ..saveCanonicalResource(structureDefinitionTLeft7)
       ..saveCanonicalResource(structureDefinitionTRight7);
 
+    FhirBaseBuilder? testEmptyFromType(String type) {
+      final fhirType = type.toLowerCase();
+      switch (fhirType) {
+        case 'tleft7':
+        case 'tleft7builder':
+          return TLeft7Builder.empty();
+        case 'tleft7aa':
+        case 'tleft7aabuilder':
+          return TLeft7AaBuilder.empty();
+        case 'tright7':
+        case 'tright7builder':
+          return TRight7Builder.empty();
+        case 'tright7aa':
+        case 'tright7aabuilder':
+          return TRight7AaBuilder.empty();
+      }
+      return null;
+    }
+
     test('Test Step 7 Source 7', () async {
       final result = await fhirMappingEngine(
         TLeft7.fromJson(source7).toBuilder,
         structureMapStep7,
         resourceCache,
         TRight7.empty().toBuilder,
+        testEmptyFromType,
       );
       expect(result?.toJson(), equals(resultStep7Source7));
     });
@@ -428,75 +448,73 @@ Future<void> main() async {
         structureMapStep7b,
         resourceCache,
         TRight7.empty().toBuilder,
+        testEmptyFromType,
       );
       expect(result?.toJson(), equals(resultStep7bSource7));
     });
   });
 
-  // group('8', () {
-  //   resourceCache
-  //     ..saveCanonicalResource(
-  //       resource: structureDefinitionTLeft8,
-  //     )
-  //     ..saveCanonicalResource(
-  //       resource: structureDefinitionTRight8,
-  //     );
+  group('8', () {
+    resourceCache
+      ..saveCanonicalResource(structureDefinitionTLeft8)
+      ..saveCanonicalResource(structureDefinitionTRight8);
 
-  //   test('Test Step 8 Source 8', () async {
-  //     final result = await fhirMappingEngine(
-  //       TLeft8.fromJson(source8),
-  //       structureMapStep8,
-  //       resourceCache,
-  //     );
-  //     expect(result?.toJson(), equals(resultStep8Source8));
-  //   });
-  // });
+    test('Test Step 8 Source 8', () async {
+      final result = await fhirMappingEngine(
+        TLeft8.fromJson(source8).toBuilder,
+        structureMapStep8,
+        resourceCache,
+        TRight8.empty().toBuilder,
+      );
+      expect(result?.toJson(), equals(resultStep8Source8));
+    });
+  });
 
-  // group('9', () {
-  //   resourceCache
-  //     ..saveCanonicalResource(
-  //       resource: structureDefinitionTLeft9,
-  //     )
-  //     ..saveCanonicalResource(
-  //       resource: structureDefinitionTRight9,
-  //     );
+  group('9', () {
+    resourceCache
+      ..saveCanonicalResource(structureDefinitionTLeft9)
+      ..saveCanonicalResource(structureDefinitionTRight9);
 
-  //   test('Test Step 9 Source 9', () async {
-  //     final result = await fhirMappingEngine(
-  //       TLeft9.fromJson(source9),
-  //       structureMapStep9,
-  //       resourceCache,
-  //     );
-  //     expect(result?.toJson(), equals(resultStep9Source9));
-  //   });
+    test('Test Step 9 Source 9', () async {
+      final result = await fhirMappingEngine(
+        TLeft9.fromJson(source9).toBuilder,
+        structureMapStep9,
+        resourceCache,
+        TRight9.empty().toBuilder,
+      );
+      expect(result?.toJson(), equals(resultStep9Source9));
+    });
 
-  //   test('Test Step 9 Source 9b', () async {
-  //     final result = await fhirMappingEngine(
-  //       TLeft9.fromJson(source9b),
-  //       structureMapStep9,
-  //       resourceCache,
-  //     );
-  //     expect(result?.toJson(), equals(resultStep9Source9b));
-  //   });
+    // test('Test Step 9 Source 9b', () async {
+    //   final result = await fhirMappingEngine(
+    //     TLeft9.fromJson(source9b).toBuilder,
+    //     structureMapStep9,
+    //     resourceCache,
+    //     TRight9.empty().toBuilder,
+    //   );
+    //   expect(result?.toJson(), equals(resultStep9Source9b));
+    // });
 
-  //   test('Test Step 9check Source 9', () async {
-  //     final result = await fhirMappingEngine(
-  //       TLeft9.fromJson(source9),
-  //       structureMapStep9check,
-  //       resourceCache,
-  //     );
-  //     expect(result?.toJson(), equals(resultStep9checkSource9));
-  //   });
+    // test('Test Step 9check Source 9', () async {
+    //   final result = await fhirMappingEngine(
+    //     TLeft9.fromJson(source9).toBuilder,
+    //     structureMapStep9check,
+    //     resourceCache,
+    //     TRight9.empty().toBuilder,
+    //   );
+    //   expect(result?.toJson(), equals(resultStep9checkSource9));
+    // });
 
-  //   test('Test Step 9check Source 9b', () async {
-  //     final result = await fhirMappingEngine(
-  //       TLeft9.fromJson(source9b),
-  //       structureMapStep9check,
-  //       resourceCache,
-  //     );
-  //     expect(result?.toJson(), equals(resultStep9checkSource9b));
-  //   });
-  // });
+    // test('Test Step 9check Source 9b', () async {
+    //   final result = await fhirMappingEngine(
+    //     TLeft9.fromJson(source9b).toBuilder,
+    //     structureMapStep9check,
+    //     resourceCache,
+    //     TRight9.empty().toBuilder,
+    //   );
+    //   expect(result?.toJson(), equals(resultStep9checkSource9b));
+    // });
+  });
 
   // // TODO(Dokotela): - final answer is correct, but types are not
   // group('10', () {

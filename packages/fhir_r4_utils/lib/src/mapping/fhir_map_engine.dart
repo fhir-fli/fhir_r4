@@ -46,9 +46,11 @@ Future<FhirBase?> fhirMappingEngine(
   FhirBaseBuilder source,
   StructureMap map,
   ResourceCache cache,
-  FhirBaseBuilder? target,
-) async {
-  final mapEngine = FhirMapEngine(cache, map);
+  FhirBaseBuilder? target, [
+  FhirBaseBuilder? Function(String)? testEmptyFromType,
+]) async {
+  final mapEngine = FhirMapEngine(cache, map)
+    ..testEmptyFromType = testEmptyFromType;
   final transform = await mapEngine.transformBuilder('', source, map, target);
   return transform;
 }
@@ -67,6 +69,7 @@ class FhirMapEngine {
   late final IEvaluationContext? services;
   late final FHIRPathEngine fpe;
   int rules = 0;
+  FhirBaseBuilder? Function(String)? testEmptyFromType;
 
   static const String MAP_WHERE_CHECK = 'map.where.check';
   static const String MAP_WHERE_LOG = 'map.where.log';
@@ -291,7 +294,7 @@ class FhirMapEngine {
         }
       } else if (rule.dependent?.isNotEmpty ?? false) {
         for (final dependent in rule.dependent ?? <StructureMapDependent>[]) {
-          _executeDependency(
+          await _executeDependency(
             '$indent  ',
             context,
             map,
@@ -349,14 +352,14 @@ class FhirMapEngine {
     }
   }
 
-  void _executeDependency(
+  Future<void> _executeDependency(
     String indent,
     TransformContext context,
     StructureMap? map,
     MappingVariables vin,
     StructureMapGroup? group,
     StructureMapDependent dependent,
-  ) {
+  ) async {
     final rg = _resolveGroupReference(map, group, dependent.name.value!);
 
     if (rg.target!.input.length != dependent.variable.length) {
@@ -382,12 +385,9 @@ class FhirMapEngine {
               "named '$varVal' has no value (vars = ${vin.summary()})",
         );
       }
-
       v.add(mode, input.name.toString(), vv);
     }
-
-    // Execute the resolved group
-    _executeGroup(
+    await _executeGroup(
       '$indent  ',
       context,
       rg.targetMap,
@@ -999,8 +999,11 @@ class FhirMapEngine {
       if (tgt.listMode?.contains(StructureMapTargetListMode.share) ?? false) {
         v = sharedVars.get(MappingVariableMode.SHARED, tgt.listRuleId?.value);
         if (v == null) {
-          dest.createProperty(tgt.element?.value ?? '');
-          v = dest.getChildByName(tgt.element?.value ?? '');
+          final types = dest.typeByElementName(tgt.element!.value!);
+          if (types.isNotEmpty) {
+            v = _typeFactory(types.first);
+            dest.setChildByName(tgt.element!.value!, v);
+          }
           if (tgt.listRuleId != null && v != null) {
             sharedVars.add(
               MappingVariableMode.SHARED,
@@ -1010,23 +1013,23 @@ class FhirMapEngine {
           }
         }
       } else if (tgt.element != null) {
-        dest.createProperty(tgt.element!.value!);
-        v = dest.getChildByName(tgt.element!.value!);
-        if (v == null) {
-          final types = dest.typeByElementName(tgt.element!.value!);
-          if (types.isNotEmpty) {
-            v = _typeFactory(types.first);
-          }
+        final types = dest.typeByElementName(tgt.element!.value!);
+        if (types.isNotEmpty) {
+          v = _typeFactory(types.first);
+          dest.setChildByName(tgt.element!.value!, v);
         }
       } else {
         v = dest;
       }
     }
 
+    print('variable: ${tgt.variable}');
+    print('v: ${v?.toJson()}');
+
     if (tgt.variable != null && v != null) {
       vars.add(MappingVariableMode.OUTPUT, tgt.variable!.value!, v);
     }
-    // print('vars: ${vars.summary()}');
+    print('vars: ${vars.summary()}');
     print('sharedVars: ${sharedVars.summary()}');
   }
 
@@ -1546,6 +1549,12 @@ class FhirMapEngine {
   FhirBaseBuilder _typeFactory(String tn) {
     final newObject = emptyFromType(tn);
     if (newObject == null) {
+      if (testEmptyFromType != null) {
+        final testObject = testEmptyFromType!(tn);
+        if (testObject != null) {
+          return testObject;
+        }
+      }
       throw FHIRException(message: 'Unable to create object of type $tn');
     }
     return newObject;

@@ -12,6 +12,9 @@ class TRight9 extends Element {
     super.objectPath = 'TRight9',
   });
 
+  /// factory constructor for an empty object
+  factory TRight9.empty() = TRight9;
+
   /// FromJson Factory Constructor
   factory TRight9.fromJson(Map<String, dynamic> json) {
     const objectPath = 'TRight9';
