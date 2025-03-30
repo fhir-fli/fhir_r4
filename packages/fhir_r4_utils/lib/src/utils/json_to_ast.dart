@@ -317,21 +317,21 @@ class Node {
     stringBuffer.writeln('$indent$runtimeType - Type: $type, Path: $path');
 
     // Handle specific node types
-    switch (runtimeType) {
-      case LiteralNode:
+    switch (this) {
+      case LiteralNode _:
         final value = (this as LiteralNode).value;
         stringBuffer.writeln('$indent  Value: $value');
-      case PropertyNode:
+      case PropertyNode _:
         final propertyNode = this as PropertyNode;
         stringBuffer.writeln('$indent  Key: ${propertyNode.key?.value}');
         if (propertyNode.value != null) {
           stringBuffer.write(propertyNode.value!.printNode(depth: depth + 1));
         }
-      case ObjectNode:
+      case ObjectNode _:
         for (final property in (this as ObjectNode).children) {
           stringBuffer.write(property.printNode(depth: depth + 1));
         }
-      case ArrayNode:
+      case ArrayNode _:
         for (final child in (this as ArrayNode).children) {
           stringBuffer.write(child.printNode(depth: depth + 1));
         }

@@ -34,11 +34,11 @@ class FhirTimeBuilder extends PrimitiveTypeBuilder<String>
   /// [element] are null, throwing an [ArgumentError] if so.
   FhirTimeBuilder._({
     required String? validatedValue,
-    this.element,
-    this.id,
-    this.extension_,
-    this.disallowExtensions,
-    this.objectPath = 'Time',
+    super.element,
+    super.id,
+    super.extension_,
+    super.disallowExtensions,
+    super.objectPath = 'Time',
   }) : super._(value: validatedValue) {
     if (value == null && element == null) {
       throw ArgumentError('A value or element is required for FhirTimeBuilder');
@@ -68,8 +68,8 @@ class FhirTimeBuilder extends PrimitiveTypeBuilder<String>
     );
   }
 
-  /// Factory method to construct [FhirTimeBuilder] from time units (hour, minute,
-  /// second, millisecond).
+  /// Factory method to construct [FhirTimeBuilder] from time units
+  /// (hour, minute, second, millisecond).
   factory FhirTimeBuilder.fromUnits({
     int? hour,
     int? minute,
@@ -119,8 +119,8 @@ class FhirTimeBuilder extends PrimitiveTypeBuilder<String>
               );
   }
 
-  /// Method to attempt parsing the input into a [FhirTimeBuilder]. Returns [null] if
-  /// parsing fails.
+  /// Method to attempt parsing the input into a [FhirTimeBuilder].
+  /// Returns [null] if parsing fails.
   static FhirTimeBuilder? tryParse(dynamic input) {
     if (input is String) {
       try {
@@ -148,26 +148,6 @@ class FhirTimeBuilder extends PrimitiveTypeBuilder<String>
       throw FormatException('Invalid time format: $input');
     }
   }
-
-  /// Element property
-  @override
-  ElementBuilder? element;
-
-  /// ID property
-  @override
-  FhirStringBuilder? id;
-
-  /// Extensions property
-  @override
-  List<FhirExtensionBuilder>? extension_;
-
-  /// DisallowExtensions property
-  @override
-  bool? disallowExtensions;
-
-  /// ObjectPath property
-  @override
-  String? objectPath;
 
   /// Returns the FHIR type, which is 'time' for this class.
   @override
@@ -198,7 +178,8 @@ class FhirTimeBuilder extends PrimitiveTypeBuilder<String>
           : null;
 
   /// Adds the given time units (hours, minutes, seconds, milliseconds) to the
-  /// current [FhirTimeBuilder] and returns a new [FhirTimeBuilder] with the updated value.
+  /// current [FhirTimeBuilder] and returns a new [FhirTimeBuilder]
+  /// with the updated value.
   FhirTimeBuilder plus({
     int hours = 0,
     int minutes = 0,
@@ -222,8 +203,8 @@ class FhirTimeBuilder extends PrimitiveTypeBuilder<String>
   }
 
   /// Subtracts the given time units (hours, minutes, seconds, milliseconds)
-  /// from the current [FhirTimeBuilder] and returns a new [FhirTimeBuilder] with the updated
-  /// value.
+  /// from the current [FhirTimeBuilder] and returns a new [FhirTimeBuilder]
+  /// with the updated value.
   FhirTimeBuilder subtract({
     int? hours,
     int? minutes,

@@ -183,9 +183,6 @@ class FhirMarkdown extends FhirString
     );
   }
 
-  /// Returns a new [FhirMarkdown] with extensions disallowed.
-  FhirMarkdown noExtensions() => copyWith(disallowExtensions: true);
-
   /// Converts a list of JSON values to a list of [FhirMarkdown] instances.
   static List<FhirMarkdown> fromJsonList(
     List<dynamic> values,

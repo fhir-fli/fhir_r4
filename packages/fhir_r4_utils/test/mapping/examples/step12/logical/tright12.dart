@@ -870,7 +870,9 @@ class TRight12az1Builder extends BackboneElementBuilder {
     return id == other.id &&
         listEquals<FhirBaseBuilder>(extension_, other.extension_) &&
         listEquals<FhirBaseBuilder>(
-            modifierExtension, other.modifierExtension) &&
+          modifierExtension,
+          other.modifierExtension,
+        ) &&
         az2 == other.az2 &&
         az3 == other.az3;
   }
