@@ -7,7 +7,7 @@ final resultStep9checkSource9b = {
     {
       'severity': 'error',
       'code': 'processing',
-      'diagnostics': 'Rule \'i\', Check condition failed, src.m<2',
+      'diagnostics': 'Rule \'i\', Check condition failed, src.m < 2',
     }
   ],
 };

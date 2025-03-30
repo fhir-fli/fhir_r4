@@ -485,35 +485,35 @@ Future<void> main() async {
       expect(result?.toJson(), equals(resultStep9Source9));
     });
 
-    // test('Test Step 9 Source 9b', () async {
-    //   final result = await fhirMappingEngine(
-    //     TLeft9.fromJson(source9b).toBuilder,
-    //     structureMapStep9,
-    //     resourceCache,
-    //     TRight9.empty().toBuilder,
-    //   );
-    //   expect(result?.toJson(), equals(resultStep9Source9b));
-    // });
+    test('Test Step 9 Source 9b', () async {
+      final result = await fhirMappingEngine(
+        TLeft9.fromJson(source9b).toBuilder,
+        structureMapStep9,
+        resourceCache,
+        TRight9.empty().toBuilder,
+      );
+      expect(result?.toJson(), equals(resultStep9Source9b));
+    });
 
-    // test('Test Step 9check Source 9', () async {
-    //   final result = await fhirMappingEngine(
-    //     TLeft9.fromJson(source9).toBuilder,
-    //     structureMapStep9check,
-    //     resourceCache,
-    //     TRight9.empty().toBuilder,
-    //   );
-    //   expect(result?.toJson(), equals(resultStep9checkSource9));
-    // });
+    test('Test Step 9check Source 9', () async {
+      final result = await fhirMappingEngine(
+        TLeft9.fromJson(source9).toBuilder,
+        structureMapStep9check,
+        resourceCache,
+        TRight9.empty().toBuilder,
+      );
+      expect(result?.toJson(), equals(resultStep9checkSource9));
+    });
 
-    // test('Test Step 9check Source 9b', () async {
-    //   final result = await fhirMappingEngine(
-    //     TLeft9.fromJson(source9b).toBuilder,
-    //     structureMapStep9check,
-    //     resourceCache,
-    //     TRight9.empty().toBuilder,
-    //   );
-    //   expect(result?.toJson(), equals(resultStep9checkSource9b));
-    // });
+    test('Test Step 9check Source 9b', () async {
+      final result = await fhirMappingEngine(
+        TLeft9.fromJson(source9b).toBuilder,
+        structureMapStep9check,
+        resourceCache,
+        TRight9.empty().toBuilder,
+      );
+      expect(result?.toJson(), equals(resultStep9checkSource9b));
+    });
   });
 
   // // TODO(Dokotela): - final answer is correct, but types are not

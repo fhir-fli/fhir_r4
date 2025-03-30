@@ -47,10 +47,10 @@ Future<FhirBase?> fhirMappingEngine(
   StructureMap map,
   ResourceCache cache,
   FhirBaseBuilder? target, [
-  FhirBaseBuilder? Function(String)? testEmptyFromType,
+  FhirBaseBuilder? Function(String)? extendedEmptyFromType,
 ]) async {
   final mapEngine = FhirMapEngine(cache, map)
-    ..testEmptyFromType = testEmptyFromType;
+    ..extendedEmptyFromType = extendedEmptyFromType;
   final transform = await mapEngine.transformBuilder('', source, map, target);
   return transform;
 }
@@ -69,7 +69,7 @@ class FhirMapEngine {
   late final IEvaluationContext? services;
   late final FHIRPathEngine fpe;
   int rules = 0;
-  FhirBaseBuilder? Function(String)? testEmptyFromType;
+  FhirBaseBuilder? Function(String)? extendedEmptyFromType;
 
   static const String MAP_WHERE_CHECK = 'map.where.check';
   static const String MAP_WHERE_LOG = 'map.where.log';
@@ -149,7 +149,7 @@ class FhirMapEngine {
     try {
       await _executeGroup('', context, map, vars, g, true);
       final result = vars.getOutputVar(targetName);
-      print('Final result: ${result?.toJson()}');
+
       if (result == null) {
         throw FHIRException(message: 'No output found');
       } else {
@@ -277,8 +277,6 @@ class FhirMapEngine {
           atRoot,
           vars,
         );
-        print('AFTER PROCESSING TARGET');
-        print('vars: ${vars.summary()}');
       }
       if (rule.rule?.isNotEmpty ?? false) {
         for (final childrule in rule.rule ?? <StructureMapRule>[]) {
@@ -777,19 +775,15 @@ class FhirMapEngine {
         final srcBase = vars.get(MappingVariableMode.INPUT, src.context.value);
         final children = srcBase?.listChildrenNames();
         for (final child in children ?? <String>[]) {
-          print('child: $child');
           final varBase = vars.get(MappingVariableMode.INPUT, child);
           if (varBase == null) {
             final childItem = srcBase!.getChildByName(child);
-            print(childItem?.toJson());
+
             if (childItem != null) {
               varsForSource.add(MappingVariableMode.INPUT, child, childItem);
             }
           }
         }
-
-        print('Condition VarsForSource');
-        print(varsForSource.summary());
 
         final bool passed = fpe.evaluateToBoolean(
           varsForSource,
@@ -798,8 +792,6 @@ class FhirMapEngine {
           item.build(),
           expr,
         );
-
-        print('passed: $passed');
 
         if (!passed) {
           remove.add(item);
@@ -985,7 +977,6 @@ class FhirMapEngine {
 
           // print('dest pr: ${dest.toJson()}');
           dest.setChildByName(tgt.element!.value!, v);
-          print('dest after setChildByName: ${dest.toJson()}');
 
           sharedVars.add(MappingVariableMode.OUTPUT, tgt.context!.value!, dest);
         } catch (e) {
@@ -1023,14 +1014,9 @@ class FhirMapEngine {
       }
     }
 
-    print('variable: ${tgt.variable}');
-    print('v: ${v?.toJson()}');
-
     if (tgt.variable != null && v != null) {
       vars.add(MappingVariableMode.OUTPUT, tgt.variable!.value!, v);
     }
-    print('vars: ${vars.summary()}');
-    print('sharedVars: ${sharedVars.summary()}');
   }
 
   Future<FhirBaseBuilder?> _runTransform(
@@ -1257,7 +1243,7 @@ class FhirMapEngine {
               );
             }
             final String t = _getParamString(vars, tgt.parameter![1]) ?? '';
-            print('type: $t');
+
             try {
               switch (t.toLowerCase()) {
                 case 'string':
@@ -1547,17 +1533,19 @@ class FhirMapEngine {
   }
 
   FhirBaseBuilder _typeFactory(String tn) {
-    final newObject = emptyFromType(tn);
-    if (newObject == null) {
-      if (testEmptyFromType != null) {
-        final testObject = testEmptyFromType!(tn);
-        if (testObject != null) {
-          return testObject;
-        }
+    FhirBaseBuilder? newObject;
+    if (extendedEmptyFromType != null) {
+      newObject = extendedEmptyFromType!(tn);
+      if (newObject != null) {
+        return newObject;
       }
-      throw FHIRException(message: 'Unable to create object of type $tn');
     }
-    return newObject;
+
+    newObject = emptyFromType(tn);
+    if (newObject != null) {
+      return newObject;
+    }
+    throw FHIRException(message: 'Unable to create object of type $tn');
   }
 
   Future<CodingBuilder> _buildCoding(String uri, String code) async {
@@ -1652,10 +1640,8 @@ class FhirMapEngine {
     MappingVariables vars,
     StructureMapParameter parameter,
   ) {
-    print('vars: ${vars.summary()}');
-    print('parameter: ${parameter.toJson()}');
     final FhirBaseBuilder? b = _getParam(vars, parameter);
-    print('b: ${b?.toJson()}');
+
     if (b == null || b is! PrimitiveTypeBuilder || b.value is! String?) {
       return null;
     }
@@ -1667,15 +1653,12 @@ class FhirMapEngine {
     StructureMapParameter parameter,
   ) {
     final DataType p = parameter.valueX;
-    print(p.runtimeType);
-    print('p: ${p.toJson()}');
+
     if (p is! FhirId) {
-      print(p.toBuilder.runtimeType);
-      print('p.toBuilder: ${p.toBuilder.toJson()}');
       return p.toBuilder;
     } else {
       final String n = p.toString();
-      print('n  : $n');
+
       FhirBaseBuilder? b = vars.get(MappingVariableMode.INPUT, n);
       b ??= vars.get(MappingVariableMode.OUTPUT, n);
       if (b == null) {
