@@ -1099,8 +1099,14 @@ class FhirMapEngine {
               );
             }
 
-            return _typeFactory(tn);
+            final createdObject = _typeFactory(tn);
+            if (createdObject is ResourceBuilder &&
+                createdObject.fhirType != 'Parameters') {
+              createdObject.id = const Uuid().v4().toFhirIdBuilder;
+            }
+            return createdObject;
 
+            // TODO(Dokotela): implement services
             // FhirBase res;
 
             // if (services != null) {
@@ -1551,6 +1557,17 @@ class FhirMapEngine {
     newObject = emptyFromType(tn);
     if (newObject != null) {
       return newObject;
+    }
+
+    // TODO(Dokotela): think about how much more robust this should be
+    if (tn.contains('StructureDefinition/')) {
+      final String type = tn.split('StructureDefinition/').last;
+      if (type.isNotEmpty) {
+        newObject = emptyFromType(type);
+        if (newObject != null) {
+          return newObject;
+        }
+      }
     }
     throw FHIRException(message: 'Unable to create object of type $tn');
   }

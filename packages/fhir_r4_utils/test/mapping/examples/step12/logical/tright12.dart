@@ -14,6 +14,9 @@ class TRight12 extends Element {
     super.objectPath = 'TRight12',
   });
 
+  /// Factory constructor for an empty [TRight12]
+  factory TRight12.empty() => const TRight12();
+
   factory TRight12.fromJson(Map<String, dynamic> json) {
     const objectPath = 'TRight12';
     return TRight12(
@@ -391,9 +394,20 @@ class TRight12Builder extends ElementBuilder {
           if (child is FhirStringBuilder) {
             id = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirStringBuilder.tryParse(stringValue);
+              if (converted != null) {
+                id = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'extension':
         {
@@ -405,9 +419,8 @@ class TRight12Builder extends ElementBuilder {
             // Add single element to existing list or create new list
             extension_ = [...(extension_ ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'az1':
         {
@@ -419,9 +432,8 @@ class TRight12Builder extends ElementBuilder {
             // Add single element to existing list or create new list
             az1 = [...(az1 ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       default:
         throw Exception('Cannot set child value for $childName');
@@ -696,9 +708,20 @@ class TRight12az1Builder extends BackboneElementBuilder {
           if (child is FhirStringBuilder) {
             id = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirStringBuilder.tryParse(stringValue);
+              if (converted != null) {
+                id = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'extension':
         {
@@ -710,9 +733,8 @@ class TRight12az1Builder extends BackboneElementBuilder {
             // Add single element to existing list or create new list
             extension_ = [...(extension_ ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'modifierExtension':
         {
@@ -724,27 +746,48 @@ class TRight12az1Builder extends BackboneElementBuilder {
             // Add single element to existing list or create new list
             modifierExtension = [...(modifierExtension ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'az2':
         {
           if (child is FhirStringBuilder) {
             az2 = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirStringBuilder.tryParse(stringValue);
+              if (converted != null) {
+                az2 = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'az3':
         {
           if (child is FhirStringBuilder) {
             az3 = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirStringBuilder.tryParse(stringValue);
+              if (converted != null) {
+                az3 = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       default:
         throw Exception('Cannot set child value for $childName');

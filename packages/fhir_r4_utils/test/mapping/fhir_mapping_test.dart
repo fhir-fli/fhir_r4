@@ -6,8 +6,8 @@ import 'package:test/test.dart';
 import 'examples/step1/export.dart';
 // import 'examples/step10/export.dart';
 import 'examples/step11/export.dart';
-// import 'examples/step12/export.dart';
-// import 'examples/step13/export.dart';
+import 'examples/step12/export.dart';
+import 'examples/step13/export.dart';
 import 'examples/step2/export.dart';
 import 'examples/step3/export.dart';
 import 'examples/step4/export.dart';
@@ -585,56 +585,63 @@ Future<void> main() async {
     });
   });
 
-  // group('Step 12', () {
-  //   resourceCache
-  //     ..saveCanonicalResource(
-  //       resource: structureDefinitionTLeft12,
-  //     )
-  //     ..saveCanonicalResource(
-  //       resource: structureDefinitionTRight12,
-  //     );
+  group('Step 12', () {
+    resourceCache
+      ..saveCanonicalResource(structureDefinitionTLeft12)
+      ..saveCanonicalResource(structureDefinitionTRight12);
 
-  //   test('Step 12 Source 12', () async {
-  //     final result = await fhirMappingEngine(
-  //       TLeft12.fromJson(source12),
-  //       structureMapStep12,
-  //       resourceCache,
-  //     );
-  //     expect(result?.toJson(), equals(resultStep12Source12));
-  //   });
-  // });
+    FhirBaseBuilder? testEmptyFromType(String type) {
+      final fhirType = type.toLowerCase();
+      switch (fhirType) {
+        case 'tright12az1':
+        case 'tright12az1builder':
+          return TRight12az1Builder.empty();
+      }
+      return null;
+    }
 
-  // group('Step 13', () {
-  //   resourceCache
-  //     ..saveCanonicalResource(
-  //       resource: structureDefinitionTLeft13,
-  //     )
-  //     ..saveCanonicalResource(
-  //       resource: structureDefinitionTRight13,
-  //     );
+    test('Step 12 Source 12', () async {
+      final result = await fhirMappingEngine(
+        TLeft12.fromJson(source12).toBuilder,
+        structureMapStep12,
+        resourceCache,
+        TRight12.empty().toBuilder,
+        testEmptyFromType,
+      );
+      expect(result?.toJson(), equals(resultStep12Source12));
+    });
+  });
 
-  //   test('Step 13', () async {
-  //     final result = await fhirMappingEngine(
-  //       TLeft13.fromJson(source13),
-  //       structureMapStep13,
-  //       resourceCache,
-  //     );
+  group('Step 13', () {
+    resourceCache
+      ..saveCanonicalResource(structureDefinitionTLeft13)
+      ..saveCanonicalResource(structureDefinitionTRight13);
 
-  //     // Extract the generated ID from the actual result
-  //     final f2 = result?.toJson()['f2'];
-  //     final firstF2 = f2 is List && f2.isNotEmpty ? f2[0] : null;
-  //     final resultBasicId =
-  //         firstF2 is Map<String, dynamic> ? firstF2['id'] : null;
+    test('Step 13', () async {
+      final result = await fhirMappingEngine(
+        TLeft13.fromJson(source13).toBuilder,
+        structureMapStep13,
+        resourceCache,
+        TRight13.empty().toBuilder,
+      );
 
-  //     // Update the expected result with the generated ID
-  //     final expectedResult = Map<String, dynamic>.from(resultStep13Source13);
-  //     // ignore: avoid_dynamic_calls
-  //     expectedResult['f2'][0]['id'] = resultBasicId;
-  //     expectedResult['ptr'] = ['Basic/$resultBasicId'];
+      print('result: ${prettyPrintJson(result?.toJson() ?? {})}');
 
-  //     expect(result?.toJson(), equals(expectedResult));
-  //   });
-  // });
+      // Extract the generated ID from the actual result
+      final f2 = result?.toJson()['f2'];
+      final firstF2 = f2 is List && f2.isNotEmpty ? f2[0] : null;
+      final resultBasicId =
+          firstF2 is Map<String, dynamic> ? firstF2['id'] : null;
+
+      // Update the expected result with the generated ID
+      final expectedResult = Map<String, dynamic>.from(resultStep13Source13);
+      // ignore: avoid_dynamic_calls
+      expectedResult['f2'][0]['id'] = resultBasicId;
+      expectedResult['ptr'] = ['Basic/$resultBasicId'];
+
+      expect(result?.toJson(), equals(expectedResult));
+    });
+  });
 
   // group('Step 14', () {
   //   test('Step 14', () async {

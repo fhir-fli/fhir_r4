@@ -3,7 +3,10 @@ import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 /// This function accepts a dynamic value, and a String type and attmpts
 /// to create that FhirType
 FhirBaseBuilder? emptyFromType(String type) {
-  final fhirType = type.toLowerCase();
+  var fhirType = type.toLowerCase();
+  if (fhirType.endsWith('builder')) {
+    fhirType = fhirType.substring(0, fhirType.length - 7);
+  }
   switch (fhirType) {
     case 'fhirbase64binary':
       return FhirBase64BinaryBuilder.empty();
