@@ -11,12 +11,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [FhirGroup] to a Builder
-extension BuilderFhirGroup on FhirGroup {
-  /// Converts [FhirGroup] to a [FhirGroupBuilder]
-  FhirGroupBuilder get toBuilder => FhirGroupBuilder.fromJson(toJson());
-}
-
 /// [FhirGroupBuilder]
 /// Represents a defined collection of entities that may be discussed or
 /// acted upon collectively but which are not expected to act collectively,
@@ -1046,13 +1040,6 @@ class FhirGroupBuilder extends DomainResourceBuilder {
   }
 }
 
-/// Extension to change [GroupCharacteristic] to a Builder
-extension BuilderGroupCharacteristic on GroupCharacteristic {
-  /// Converts [GroupCharacteristic] to a [GroupCharacteristicBuilder]
-  GroupCharacteristicBuilder get toBuilder =>
-      GroupCharacteristicBuilder.fromJson(toJson());
-}
-
 /// [GroupCharacteristicBuilder]
 /// Identifies traits whose presence r absence is shared by members of the
 /// group.
@@ -1738,12 +1725,6 @@ class GroupCharacteristicBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [GroupMember] to a Builder
-extension BuilderGroupMember on GroupMember {
-  /// Converts [GroupMember] to a [GroupMemberBuilder]
-  GroupMemberBuilder get toBuilder => GroupMemberBuilder.fromJson(toJson());
 }
 
 /// [GroupMemberBuilder]

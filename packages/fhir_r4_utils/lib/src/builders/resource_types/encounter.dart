@@ -15,12 +15,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [Encounter] to a Builder
-extension BuilderEncounter on Encounter {
-  /// Converts [Encounter] to a [EncounterBuilder]
-  EncounterBuilder get toBuilder => EncounterBuilder.fromJson(toJson());
-}
-
 /// [EncounterBuilder]
 /// An interaction between a patient and healthcare provider(s) for the
 /// purpose of providing healthcare service(s) or assessing the health
@@ -1721,13 +1715,6 @@ class EncounterBuilder extends DomainResourceBuilder {
   }
 }
 
-/// Extension to change [EncounterStatusHistory] to a Builder
-extension BuilderEncounterStatusHistory on EncounterStatusHistory {
-  /// Converts [EncounterStatusHistory] to a [EncounterStatusHistoryBuilder]
-  EncounterStatusHistoryBuilder get toBuilder =>
-      EncounterStatusHistoryBuilder.fromJson(toJson());
-}
-
 /// [EncounterStatusHistoryBuilder]
 /// The status history permits the encounter resource to contain the status
 /// history without needing to read through the historical versions of the
@@ -2174,13 +2161,6 @@ class EncounterStatusHistoryBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [EncounterClassHistory] to a Builder
-extension BuilderEncounterClassHistory on EncounterClassHistory {
-  /// Converts [EncounterClassHistory] to a [EncounterClassHistoryBuilder]
-  EncounterClassHistoryBuilder get toBuilder =>
-      EncounterClassHistoryBuilder.fromJson(toJson());
 }
 
 /// [EncounterClassHistoryBuilder]
@@ -2632,13 +2612,6 @@ class EncounterClassHistoryBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [EncounterParticipant] to a Builder
-extension BuilderEncounterParticipant on EncounterParticipant {
-  /// Converts [EncounterParticipant] to a [EncounterParticipantBuilder]
-  EncounterParticipantBuilder get toBuilder =>
-      EncounterParticipantBuilder.fromJson(toJson());
 }
 
 /// [EncounterParticipantBuilder]
@@ -3139,13 +3112,6 @@ class EncounterParticipantBuilder extends BackboneElementBuilder {
   }
 }
 
-/// Extension to change [EncounterDiagnosis] to a Builder
-extension BuilderEncounterDiagnosis on EncounterDiagnosis {
-  /// Converts [EncounterDiagnosis] to a [EncounterDiagnosisBuilder]
-  EncounterDiagnosisBuilder get toBuilder =>
-      EncounterDiagnosisBuilder.fromJson(toJson());
-}
-
 /// [EncounterDiagnosisBuilder]
 /// The list of diagnosis relevant to this encounter.
 class EncounterDiagnosisBuilder extends BackboneElementBuilder {
@@ -3635,13 +3601,6 @@ class EncounterDiagnosisBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [EncounterHospitalization] to a Builder
-extension BuilderEncounterHospitalization on EncounterHospitalization {
-  /// Converts [EncounterHospitalization] to a [EncounterHospitalizationBuilder]
-  EncounterHospitalizationBuilder get toBuilder =>
-      EncounterHospitalizationBuilder.fromJson(toJson());
 }
 
 /// [EncounterHospitalizationBuilder]
@@ -4418,13 +4377,6 @@ class EncounterHospitalizationBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [EncounterLocation] to a Builder
-extension BuilderEncounterLocation on EncounterLocation {
-  /// Converts [EncounterLocation] to a [EncounterLocationBuilder]
-  EncounterLocationBuilder get toBuilder =>
-      EncounterLocationBuilder.fromJson(toJson());
 }
 
 /// [EncounterLocationBuilder]

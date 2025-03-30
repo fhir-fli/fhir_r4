@@ -10,13 +10,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [SearchParameter] to a Builder
-extension BuilderSearchParameter on SearchParameter {
-  /// Converts [SearchParameter] to a [SearchParameterBuilder]
-  SearchParameterBuilder get toBuilder =>
-      SearchParameterBuilder.fromJson(toJson());
-}
-
 /// [SearchParameterBuilder]
 /// A search parameter that defines a named search item that can be used to
 /// search/filter on a resource.
@@ -1738,13 +1731,6 @@ class SearchParameterBuilder extends CanonicalResourceBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [SearchParameterComponent] to a Builder
-extension BuilderSearchParameterComponent on SearchParameterComponent {
-  /// Converts [SearchParameterComponent] to a [SearchParameterComponentBuilder]
-  SearchParameterComponentBuilder get toBuilder =>
-      SearchParameterComponentBuilder.fromJson(toJson());
 }
 
 /// [SearchParameterComponentBuilder]

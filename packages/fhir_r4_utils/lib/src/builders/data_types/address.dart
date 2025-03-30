@@ -4,12 +4,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [Address] to a Builder
-extension BuilderAddress on Address {
-  /// Converts [Address] to a [AddressBuilder]
-  AddressBuilder get toBuilder => AddressBuilder.fromJson(toJson());
-}
-
 /// [AddressBuilder]
 /// An address expressed using postal conventions (as opposed to GPS or
 /// other location definition formats). This data type may be used to

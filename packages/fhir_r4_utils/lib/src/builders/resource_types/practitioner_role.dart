@@ -11,13 +11,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [PractitionerRole] to a Builder
-extension BuilderPractitionerRole on PractitionerRole {
-  /// Converts [PractitionerRole] to a [PractitionerRoleBuilder]
-  PractitionerRoleBuilder get toBuilder =>
-      PractitionerRoleBuilder.fromJson(toJson());
-}
-
 /// [PractitionerRoleBuilder]
 /// A specific set of Roles/Locations/specialties/services that a
 /// practitioner may perform at an organization for a period of time.
@@ -1275,14 +1268,6 @@ class PractitionerRoleBuilder extends DomainResourceBuilder {
   }
 }
 
-/// Extension to change [PractitionerRoleAvailableTime] to a Builder
-extension BuilderPractitionerRoleAvailableTime
-    on PractitionerRoleAvailableTime {
-  /// Converts [PractitionerRoleAvailableTime] to a [PractitionerRoleAvailableTimeBuilder]
-  PractitionerRoleAvailableTimeBuilder get toBuilder =>
-      PractitionerRoleAvailableTimeBuilder.fromJson(toJson());
-}
-
 /// [PractitionerRoleAvailableTimeBuilder]
 /// A collection of times the practitioner is available or performing this
 /// role at the location and/or healthcareservice.
@@ -1823,13 +1808,6 @@ class PractitionerRoleAvailableTimeBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [PractitionerRoleNotAvailable] to a Builder
-extension BuilderPractitionerRoleNotAvailable on PractitionerRoleNotAvailable {
-  /// Converts [PractitionerRoleNotAvailable] to a [PractitionerRoleNotAvailableBuilder]
-  PractitionerRoleNotAvailableBuilder get toBuilder =>
-      PractitionerRoleNotAvailableBuilder.fromJson(toJson());
 }
 
 /// [PractitionerRoleNotAvailableBuilder]

@@ -13,13 +13,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [CoverageEligibilityResponse] to a Builder
-extension BuilderCoverageEligibilityResponse on CoverageEligibilityResponse {
-  /// Converts [CoverageEligibilityResponse] to a [CoverageEligibilityResponseBuilder]
-  CoverageEligibilityResponseBuilder get toBuilder =>
-      CoverageEligibilityResponseBuilder.fromJson(toJson());
-}
-
 /// [CoverageEligibilityResponseBuilder]
 /// This resource provides eligibility and plan details from the processing
 /// of an CoverageEligibilityRequest resource.
@@ -1334,14 +1327,6 @@ class CoverageEligibilityResponseBuilder extends DomainResourceBuilder {
   }
 }
 
-/// Extension to change [CoverageEligibilityResponseInsurance] to a Builder
-extension BuilderCoverageEligibilityResponseInsurance
-    on CoverageEligibilityResponseInsurance {
-  /// Converts [CoverageEligibilityResponseInsurance] to a [CoverageEligibilityResponseInsuranceBuilder]
-  CoverageEligibilityResponseInsuranceBuilder get toBuilder =>
-      CoverageEligibilityResponseInsuranceBuilder.fromJson(toJson());
-}
-
 /// [CoverageEligibilityResponseInsuranceBuilder]
 /// Financial instruments for reimbursement for the health care products
 /// and services.
@@ -1890,14 +1875,6 @@ class CoverageEligibilityResponseInsuranceBuilder
     }
     return true;
   }
-}
-
-/// Extension to change [CoverageEligibilityResponseItem] to a Builder
-extension BuilderCoverageEligibilityResponseItem
-    on CoverageEligibilityResponseItem {
-  /// Converts [CoverageEligibilityResponseItem] to a [CoverageEligibilityResponseItemBuilder]
-  CoverageEligibilityResponseItemBuilder get toBuilder =>
-      CoverageEligibilityResponseItemBuilder.fromJson(toJson());
 }
 
 /// [CoverageEligibilityResponseItemBuilder]
@@ -2907,14 +2884,6 @@ class CoverageEligibilityResponseItemBuilder extends BackboneElementBuilder {
   }
 }
 
-/// Extension to change [CoverageEligibilityResponseBenefit] to a Builder
-extension BuilderCoverageEligibilityResponseBenefit
-    on CoverageEligibilityResponseBenefit {
-  /// Converts [CoverageEligibilityResponseBenefit] to a [CoverageEligibilityResponseBenefitBuilder]
-  CoverageEligibilityResponseBenefitBuilder get toBuilder =>
-      CoverageEligibilityResponseBenefitBuilder.fromJson(toJson());
-}
-
 /// [CoverageEligibilityResponseBenefitBuilder]
 /// Benefits used to date.
 class CoverageEligibilityResponseBenefitBuilder extends BackboneElementBuilder {
@@ -3587,14 +3556,6 @@ class CoverageEligibilityResponseBenefitBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [CoverageEligibilityResponseError] to a Builder
-extension BuilderCoverageEligibilityResponseError
-    on CoverageEligibilityResponseError {
-  /// Converts [CoverageEligibilityResponseError] to a [CoverageEligibilityResponseErrorBuilder]
-  CoverageEligibilityResponseErrorBuilder get toBuilder =>
-      CoverageEligibilityResponseErrorBuilder.fromJson(toJson());
 }
 
 /// [CoverageEligibilityResponseErrorBuilder]

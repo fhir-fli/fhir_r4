@@ -11,12 +11,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [Account] to a Builder
-extension BuilderAccount on Account {
-  /// Converts [Account] to a [AccountBuilder]
-  AccountBuilder get toBuilder => AccountBuilder.fromJson(toJson());
-}
-
 /// [AccountBuilder]
 /// A financial tool for tracking value accrued for a particular purpose.
 /// In the healthcare field, used to track charges for a patient, cost
@@ -1098,13 +1092,6 @@ class AccountBuilder extends DomainResourceBuilder {
   }
 }
 
-/// Extension to change [AccountCoverage] to a Builder
-extension BuilderAccountCoverage on AccountCoverage {
-  /// Converts [AccountCoverage] to a [AccountCoverageBuilder]
-  AccountCoverageBuilder get toBuilder =>
-      AccountCoverageBuilder.fromJson(toJson());
-}
-
 /// [AccountCoverageBuilder]
 /// The party(s) that are responsible for covering the payment of this
 /// account, and what order should they be applied to the account.
@@ -1553,13 +1540,6 @@ class AccountCoverageBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [AccountGuarantor] to a Builder
-extension BuilderAccountGuarantor on AccountGuarantor {
-  /// Converts [AccountGuarantor] to a [AccountGuarantorBuilder]
-  AccountGuarantorBuilder get toBuilder =>
-      AccountGuarantorBuilder.fromJson(toJson());
 }
 
 /// [AccountGuarantorBuilder]

@@ -10,12 +10,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [Linkage] to a Builder
-extension BuilderLinkage on Linkage {
-  /// Converts [Linkage] to a [LinkageBuilder]
-  LinkageBuilder get toBuilder => LinkageBuilder.fromJson(toJson());
-}
-
 /// [LinkageBuilder]
 /// Identifies two or more records (resource instances) that refer to the
 /// same real-world "occurrence".
@@ -720,12 +714,6 @@ class LinkageBuilder extends DomainResourceBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [LinkageItem] to a Builder
-extension BuilderLinkageItem on LinkageItem {
-  /// Converts [LinkageItem] to a [LinkageItemBuilder]
-  LinkageItemBuilder get toBuilder => LinkageItemBuilder.fromJson(toJson());
 }
 
 /// [LinkageItemBuilder]

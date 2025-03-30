@@ -14,12 +14,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [Measure] to a Builder
-extension BuilderMeasure on Measure {
-  /// Converts [Measure] to a [MeasureBuilder]
-  MeasureBuilder get toBuilder => MeasureBuilder.fromJson(toJson());
-}
-
 /// [MeasureBuilder]
 /// The Measure resource provides the definition of a quality measure.
 class MeasureBuilder extends CanonicalResourceBuilder {
@@ -2541,12 +2535,6 @@ class MeasureBuilder extends CanonicalResourceBuilder {
   }
 }
 
-/// Extension to change [MeasureGroup] to a Builder
-extension BuilderMeasureGroup on MeasureGroup {
-  /// Converts [MeasureGroup] to a [MeasureGroupBuilder]
-  MeasureGroupBuilder get toBuilder => MeasureGroupBuilder.fromJson(toJson());
-}
-
 /// [MeasureGroupBuilder]
 /// A group of population criteria for the measure.
 class MeasureGroupBuilder extends BackboneElementBuilder {
@@ -3099,13 +3087,6 @@ class MeasureGroupBuilder extends BackboneElementBuilder {
   }
 }
 
-/// Extension to change [MeasurePopulation] to a Builder
-extension BuilderMeasurePopulation on MeasurePopulation {
-  /// Converts [MeasurePopulation] to a [MeasurePopulationBuilder]
-  MeasurePopulationBuilder get toBuilder =>
-      MeasurePopulationBuilder.fromJson(toJson());
-}
-
 /// [MeasurePopulationBuilder]
 /// A population criteria for the measure.
 class MeasurePopulationBuilder extends BackboneElementBuilder {
@@ -3592,13 +3573,6 @@ class MeasurePopulationBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [MeasureStratifier] to a Builder
-extension BuilderMeasureStratifier on MeasureStratifier {
-  /// Converts [MeasureStratifier] to a [MeasureStratifierBuilder]
-  MeasureStratifierBuilder get toBuilder =>
-      MeasureStratifierBuilder.fromJson(toJson());
 }
 
 /// [MeasureStratifierBuilder]
@@ -4149,13 +4123,6 @@ class MeasureStratifierBuilder extends BackboneElementBuilder {
   }
 }
 
-/// Extension to change [MeasureComponent] to a Builder
-extension BuilderMeasureComponent on MeasureComponent {
-  /// Converts [MeasureComponent] to a [MeasureComponentBuilder]
-  MeasureComponentBuilder get toBuilder =>
-      MeasureComponentBuilder.fromJson(toJson());
-}
-
 /// [MeasureComponentBuilder]
 /// A component of the stratifier criteria for the measure report,
 /// specified as either the name of a valid CQL expression defined within a
@@ -4649,13 +4616,6 @@ class MeasureComponentBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [MeasureSupplementalData] to a Builder
-extension BuilderMeasureSupplementalData on MeasureSupplementalData {
-  /// Converts [MeasureSupplementalData] to a [MeasureSupplementalDataBuilder]
-  MeasureSupplementalDataBuilder get toBuilder =>
-      MeasureSupplementalDataBuilder.fromJson(toJson());
 }
 
 /// [MeasureSupplementalDataBuilder]

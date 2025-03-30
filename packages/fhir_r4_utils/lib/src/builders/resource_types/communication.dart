@@ -10,12 +10,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [Communication] to a Builder
-extension BuilderCommunication on Communication {
-  /// Converts [Communication] to a [CommunicationBuilder]
-  CommunicationBuilder get toBuilder => CommunicationBuilder.fromJson(toJson());
-}
-
 /// [CommunicationBuilder]
 /// An occurrence of information being transmitted; e.g. an alert that was
 /// sent to a responsible provider, a public health agency that was
@@ -1709,13 +1703,6 @@ class CommunicationBuilder extends DomainResourceBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [CommunicationPayload] to a Builder
-extension BuilderCommunicationPayload on CommunicationPayload {
-  /// Converts [CommunicationPayload] to a [CommunicationPayloadBuilder]
-  CommunicationPayloadBuilder get toBuilder =>
-      CommunicationPayloadBuilder.fromJson(toJson());
 }
 
 /// [CommunicationPayloadBuilder]

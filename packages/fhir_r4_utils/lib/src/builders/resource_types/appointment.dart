@@ -10,12 +10,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [Appointment] to a Builder
-extension BuilderAppointment on Appointment {
-  /// Converts [Appointment] to a [AppointmentBuilder]
-  AppointmentBuilder get toBuilder => AppointmentBuilder.fromJson(toJson());
-}
-
 /// [AppointmentBuilder]
 /// A booking of a healthcare event among patient(s), practitioner(s),
 /// related person(s) and/or device(s) for a specific date/time. This may
@@ -1664,13 +1658,6 @@ class AppointmentBuilder extends DomainResourceBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [AppointmentParticipant] to a Builder
-extension BuilderAppointmentParticipant on AppointmentParticipant {
-  /// Converts [AppointmentParticipant] to a [AppointmentParticipantBuilder]
-  AppointmentParticipantBuilder get toBuilder =>
-      AppointmentParticipantBuilder.fromJson(toJson());
 }
 
 /// [AppointmentParticipantBuilder]

@@ -10,12 +10,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [SupplyRequest] to a Builder
-extension BuilderSupplyRequest on SupplyRequest {
-  /// Converts [SupplyRequest] to a [SupplyRequestBuilder]
-  SupplyRequestBuilder get toBuilder => SupplyRequestBuilder.fromJson(toJson());
-}
-
 /// [SupplyRequestBuilder]
 /// A record of a request for a medication, substance or device used in the
 /// healthcare setting.
@@ -1428,13 +1422,6 @@ class SupplyRequestBuilder extends DomainResourceBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [SupplyRequestParameter] to a Builder
-extension BuilderSupplyRequestParameter on SupplyRequestParameter {
-  /// Converts [SupplyRequestParameter] to a [SupplyRequestParameterBuilder]
-  SupplyRequestParameterBuilder get toBuilder =>
-      SupplyRequestParameterBuilder.fromJson(toJson());
 }
 
 /// [SupplyRequestParameterBuilder]

@@ -11,12 +11,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [Location] to a Builder
-extension BuilderLocation on Location {
-  /// Converts [Location] to a [LocationBuilder]
-  LocationBuilder get toBuilder => LocationBuilder.fromJson(toJson());
-}
-
 /// [LocationBuilder]
 /// Details and position information for a physical place where services
 /// are provided and resources and participants may be stored, found,
@@ -1379,13 +1373,6 @@ class LocationBuilder extends DomainResourceBuilder {
   }
 }
 
-/// Extension to change [LocationPosition] to a Builder
-extension BuilderLocationPosition on LocationPosition {
-  /// Converts [LocationPosition] to a [LocationPositionBuilder]
-  LocationPositionBuilder get toBuilder =>
-      LocationPositionBuilder.fromJson(toJson());
-}
-
 /// [LocationPositionBuilder]
 /// The absolute geographic location of the Location, expressed using the
 /// WGS84 datum (This is the same co-ordinate system used in KML).
@@ -1875,13 +1862,6 @@ class LocationPositionBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [LocationHoursOfOperation] to a Builder
-extension BuilderLocationHoursOfOperation on LocationHoursOfOperation {
-  /// Converts [LocationHoursOfOperation] to a [LocationHoursOfOperationBuilder]
-  LocationHoursOfOperationBuilder get toBuilder =>
-      LocationHoursOfOperationBuilder.fromJson(toJson());
 }
 
 /// [LocationHoursOfOperationBuilder]

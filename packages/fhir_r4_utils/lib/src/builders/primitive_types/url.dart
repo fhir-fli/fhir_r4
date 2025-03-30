@@ -1,11 +1,5 @@
 part of 'primitive_types.dart';
 
-/// Extension to convert a [FhirUrl] to a [FhirUrlBuilder]
-extension BuilderFhirUrl on FhirUrl {
-  /// Converts this instance to a [FhirUrlBuilder]
-  FhirUrlBuilder get toBuilder => FhirUrlBuilder.fromJson(toJson());
-}
-
 /// Extension to convert a [String] to a [FhirUrlBuilder]
 extension FhirUrlBuilderExtension on String {
   /// Converts a [String] to a [FhirUrlBuilder]
@@ -176,6 +170,10 @@ class FhirUrlBuilder extends PrimitiveTypeBuilder<Uri>
 
   /// Boolean checks
   bool get valueAndElement => value != null && element != null;
+
+  /// Converts this instance to a [FhirUrl] object
+  @override
+  FhirUrl build() => FhirUrl.fromJson(toJson());
 
   /// Converts this instance to JSON with standardized keys
   @override

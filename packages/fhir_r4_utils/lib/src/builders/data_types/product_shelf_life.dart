@@ -4,13 +4,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [ProductShelfLife] to a Builder
-extension BuilderProductShelfLife on ProductShelfLife {
-  /// Converts [ProductShelfLife] to a [ProductShelfLifeBuilder]
-  ProductShelfLifeBuilder get toBuilder =>
-      ProductShelfLifeBuilder.fromJson(toJson());
-}
-
 /// [ProductShelfLifeBuilder]
 /// The shelf-life and storage information for a medicinal product item or
 /// container can be described using this class.

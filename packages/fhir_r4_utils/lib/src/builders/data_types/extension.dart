@@ -4,12 +4,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [FhirExtension] to a Builder
-extension BuilderFhirExtension on FhirExtension {
-  /// Converts [FhirExtension] to a [FhirExtensionBuilder]
-  FhirExtensionBuilder get toBuilder => FhirExtensionBuilder.fromJson(toJson());
-}
-
 /// [FhirExtensionBuilder]
 /// Optional Extension Element - found in all resources.
 class FhirExtensionBuilder extends DataTypeBuilder {

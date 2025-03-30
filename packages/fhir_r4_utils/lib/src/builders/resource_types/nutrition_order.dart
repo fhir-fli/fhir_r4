@@ -15,13 +15,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [NutritionOrder] to a Builder
-extension BuilderNutritionOrder on NutritionOrder {
-  /// Converts [NutritionOrder] to a [NutritionOrderBuilder]
-  NutritionOrderBuilder get toBuilder =>
-      NutritionOrderBuilder.fromJson(toJson());
-}
-
 /// [NutritionOrderBuilder]
 /// A request to supply a diet, formula feeding (enteral) or oral
 /// nutritional supplement to a patient/resident.
@@ -1416,13 +1409,6 @@ class NutritionOrderBuilder extends DomainResourceBuilder {
   }
 }
 
-/// Extension to change [NutritionOrderOralDiet] to a Builder
-extension BuilderNutritionOrderOralDiet on NutritionOrderOralDiet {
-  /// Converts [NutritionOrderOralDiet] to a [NutritionOrderOralDietBuilder]
-  NutritionOrderOralDietBuilder get toBuilder =>
-      NutritionOrderOralDietBuilder.fromJson(toJson());
-}
-
 /// [NutritionOrderOralDietBuilder]
 /// Diet given orally in contrast to enteral (tube) feeding.
 class NutritionOrderOralDietBuilder extends BackboneElementBuilder {
@@ -2092,13 +2078,6 @@ class NutritionOrderOralDietBuilder extends BackboneElementBuilder {
   }
 }
 
-/// Extension to change [NutritionOrderNutrient] to a Builder
-extension BuilderNutritionOrderNutrient on NutritionOrderNutrient {
-  /// Converts [NutritionOrderNutrient] to a [NutritionOrderNutrientBuilder]
-  NutritionOrderNutrientBuilder get toBuilder =>
-      NutritionOrderNutrientBuilder.fromJson(toJson());
-}
-
 /// [NutritionOrderNutrientBuilder]
 /// Class that defines the quantity and type of nutrient modifications (for
 /// example carbohydrate, fiber or sodium) required for the oral diet.
@@ -2543,13 +2522,6 @@ class NutritionOrderNutrientBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [NutritionOrderTexture] to a Builder
-extension BuilderNutritionOrderTexture on NutritionOrderTexture {
-  /// Converts [NutritionOrderTexture] to a [NutritionOrderTextureBuilder]
-  NutritionOrderTextureBuilder get toBuilder =>
-      NutritionOrderTextureBuilder.fromJson(toJson());
 }
 
 /// [NutritionOrderTextureBuilder]
@@ -2998,13 +2970,6 @@ class NutritionOrderTextureBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [NutritionOrderSupplement] to a Builder
-extension BuilderNutritionOrderSupplement on NutritionOrderSupplement {
-  /// Converts [NutritionOrderSupplement] to a [NutritionOrderSupplementBuilder]
-  NutritionOrderSupplementBuilder get toBuilder =>
-      NutritionOrderSupplementBuilder.fromJson(toJson());
 }
 
 /// [NutritionOrderSupplementBuilder]
@@ -3595,13 +3560,6 @@ class NutritionOrderSupplementBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [NutritionOrderEnteralFormula] to a Builder
-extension BuilderNutritionOrderEnteralFormula on NutritionOrderEnteralFormula {
-  /// Converts [NutritionOrderEnteralFormula] to a [NutritionOrderEnteralFormulaBuilder]
-  NutritionOrderEnteralFormulaBuilder get toBuilder =>
-      NutritionOrderEnteralFormulaBuilder.fromJson(toJson());
 }
 
 /// [NutritionOrderEnteralFormulaBuilder]
@@ -4378,13 +4336,6 @@ class NutritionOrderEnteralFormulaBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [NutritionOrderAdministration] to a Builder
-extension BuilderNutritionOrderAdministration on NutritionOrderAdministration {
-  /// Converts [NutritionOrderAdministration] to a [NutritionOrderAdministrationBuilder]
-  NutritionOrderAdministrationBuilder get toBuilder =>
-      NutritionOrderAdministrationBuilder.fromJson(toJson());
 }
 
 /// [NutritionOrderAdministrationBuilder]

@@ -10,13 +10,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [RiskAssessment] to a Builder
-extension BuilderRiskAssessment on RiskAssessment {
-  /// Converts [RiskAssessment] to a [RiskAssessmentBuilder]
-  RiskAssessmentBuilder get toBuilder =>
-      RiskAssessmentBuilder.fromJson(toJson());
-}
-
 /// [RiskAssessmentBuilder]
 /// An assessment of the likely outcome(s) for a patient or other subject
 /// as well as the likelihood of each outcome.
@@ -1432,13 +1425,6 @@ class RiskAssessmentBuilder extends DomainResourceBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [RiskAssessmentPrediction] to a Builder
-extension BuilderRiskAssessmentPrediction on RiskAssessmentPrediction {
-  /// Converts [RiskAssessmentPrediction] to a [RiskAssessmentPredictionBuilder]
-  RiskAssessmentPredictionBuilder get toBuilder =>
-      RiskAssessmentPredictionBuilder.fromJson(toJson());
 }
 
 /// [RiskAssessmentPredictionBuilder]

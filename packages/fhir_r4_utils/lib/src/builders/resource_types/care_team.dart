@@ -10,12 +10,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [CareTeam] to a Builder
-extension BuilderCareTeam on CareTeam {
-  /// Converts [CareTeam] to a [CareTeamBuilder]
-  CareTeamBuilder get toBuilder => CareTeamBuilder.fromJson(toJson());
-}
-
 /// [CareTeamBuilder]
 /// The Care Team includes all the people and organizations who plan to
 /// participate in the coordination and delivery of care for a patient.
@@ -1218,13 +1212,6 @@ class CareTeamBuilder extends DomainResourceBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [CareTeamParticipant] to a Builder
-extension BuilderCareTeamParticipant on CareTeamParticipant {
-  /// Converts [CareTeamParticipant] to a [CareTeamParticipantBuilder]
-  CareTeamParticipantBuilder get toBuilder =>
-      CareTeamParticipantBuilder.fromJson(toJson());
 }
 
 /// [CareTeamParticipantBuilder]

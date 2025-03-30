@@ -11,13 +11,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [ImmunizationRecommendation] to a Builder
-extension BuilderImmunizationRecommendation on ImmunizationRecommendation {
-  /// Converts [ImmunizationRecommendation] to a [ImmunizationRecommendationBuilder]
-  ImmunizationRecommendationBuilder get toBuilder =>
-      ImmunizationRecommendationBuilder.fromJson(toJson());
-}
-
 /// [ImmunizationRecommendationBuilder]
 /// A patient's point-in-time set of recommendations (i.e. forecasting)
 /// according to a published schedule with optional supporting
@@ -815,14 +808,6 @@ class ImmunizationRecommendationBuilder extends DomainResourceBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [ImmunizationRecommendationRecommendation] to a Builder
-extension BuilderImmunizationRecommendationRecommendation
-    on ImmunizationRecommendationRecommendation {
-  /// Converts [ImmunizationRecommendationRecommendation] to a [ImmunizationRecommendationRecommendationBuilder]
-  ImmunizationRecommendationRecommendationBuilder get toBuilder =>
-      ImmunizationRecommendationRecommendationBuilder.fromJson(toJson());
 }
 
 /// [ImmunizationRecommendationRecommendationBuilder]
@@ -1906,14 +1891,6 @@ class ImmunizationRecommendationRecommendationBuilder
     }
     return true;
   }
-}
-
-/// Extension to change [ImmunizationRecommendationDateCriterion] to a Builder
-extension BuilderImmunizationRecommendationDateCriterion
-    on ImmunizationRecommendationDateCriterion {
-  /// Converts [ImmunizationRecommendationDateCriterion] to a [ImmunizationRecommendationDateCriterionBuilder]
-  ImmunizationRecommendationDateCriterionBuilder get toBuilder =>
-      ImmunizationRecommendationDateCriterionBuilder.fromJson(toJson());
 }
 
 /// [ImmunizationRecommendationDateCriterionBuilder]

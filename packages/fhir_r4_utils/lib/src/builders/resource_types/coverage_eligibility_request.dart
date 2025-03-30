@@ -13,13 +13,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [CoverageEligibilityRequest] to a Builder
-extension BuilderCoverageEligibilityRequest on CoverageEligibilityRequest {
-  /// Converts [CoverageEligibilityRequest] to a [CoverageEligibilityRequestBuilder]
-  CoverageEligibilityRequestBuilder get toBuilder =>
-      CoverageEligibilityRequestBuilder.fromJson(toJson());
-}
-
 /// [CoverageEligibilityRequestBuilder]
 /// The CoverageEligibilityRequest provides patient and insurance coverage
 /// information to an insurer for them to respond, in the form of an
@@ -1305,14 +1298,6 @@ class CoverageEligibilityRequestBuilder extends DomainResourceBuilder {
   }
 }
 
-/// Extension to change [CoverageEligibilityRequestSupportingInfo] to a Builder
-extension BuilderCoverageEligibilityRequestSupportingInfo
-    on CoverageEligibilityRequestSupportingInfo {
-  /// Converts [CoverageEligibilityRequestSupportingInfo] to a [CoverageEligibilityRequestSupportingInfoBuilder]
-  CoverageEligibilityRequestSupportingInfoBuilder get toBuilder =>
-      CoverageEligibilityRequestSupportingInfoBuilder.fromJson(toJson());
-}
-
 /// [CoverageEligibilityRequestSupportingInfoBuilder]
 /// Additional information codes regarding exceptions, special
 /// considerations, the condition, situation, prior or concurrent issues.
@@ -1806,14 +1791,6 @@ class CoverageEligibilityRequestSupportingInfoBuilder
     }
     return true;
   }
-}
-
-/// Extension to change [CoverageEligibilityRequestInsurance] to a Builder
-extension BuilderCoverageEligibilityRequestInsurance
-    on CoverageEligibilityRequestInsurance {
-  /// Converts [CoverageEligibilityRequestInsurance] to a [CoverageEligibilityRequestInsuranceBuilder]
-  CoverageEligibilityRequestInsuranceBuilder get toBuilder =>
-      CoverageEligibilityRequestInsuranceBuilder.fromJson(toJson());
 }
 
 /// [CoverageEligibilityRequestInsuranceBuilder]
@@ -2311,14 +2288,6 @@ class CoverageEligibilityRequestInsuranceBuilder
     }
     return true;
   }
-}
-
-/// Extension to change [CoverageEligibilityRequestItem] to a Builder
-extension BuilderCoverageEligibilityRequestItem
-    on CoverageEligibilityRequestItem {
-  /// Converts [CoverageEligibilityRequestItem] to a [CoverageEligibilityRequestItemBuilder]
-  CoverageEligibilityRequestItemBuilder get toBuilder =>
-      CoverageEligibilityRequestItemBuilder.fromJson(toJson());
 }
 
 /// [CoverageEligibilityRequestItemBuilder]
@@ -3150,14 +3119,6 @@ class CoverageEligibilityRequestItemBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [CoverageEligibilityRequestDiagnosis] to a Builder
-extension BuilderCoverageEligibilityRequestDiagnosis
-    on CoverageEligibilityRequestDiagnosis {
-  /// Converts [CoverageEligibilityRequestDiagnosis] to a [CoverageEligibilityRequestDiagnosisBuilder]
-  CoverageEligibilityRequestDiagnosisBuilder get toBuilder =>
-      CoverageEligibilityRequestDiagnosisBuilder.fromJson(toJson());
 }
 
 /// [CoverageEligibilityRequestDiagnosisBuilder]

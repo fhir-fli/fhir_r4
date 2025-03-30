@@ -9,13 +9,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [ResearchDefinition] to a Builder
-extension BuilderResearchDefinition on ResearchDefinition {
-  /// Converts [ResearchDefinition] to a [ResearchDefinitionBuilder]
-  ResearchDefinitionBuilder get toBuilder =>
-      ResearchDefinitionBuilder.fromJson(toJson());
-}
-
 /// [ResearchDefinitionBuilder]
 /// The ResearchDefinition resource describes the conditional state
 /// (population and any exposures being compared within the population) and

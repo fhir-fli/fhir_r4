@@ -15,13 +15,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [DeviceDefinition] to a Builder
-extension BuilderDeviceDefinition on DeviceDefinition {
-  /// Converts [DeviceDefinition] to a [DeviceDefinitionBuilder]
-  DeviceDefinitionBuilder get toBuilder =>
-      DeviceDefinitionBuilder.fromJson(toJson());
-}
-
 /// [DeviceDefinitionBuilder]
 /// The characteristics, operational status and capabilities of a
 /// medical-related component of a medical device.
@@ -1724,14 +1717,6 @@ class DeviceDefinitionBuilder extends DomainResourceBuilder {
   }
 }
 
-/// Extension to change [DeviceDefinitionUdiDeviceIdentifier] to a Builder
-extension BuilderDeviceDefinitionUdiDeviceIdentifier
-    on DeviceDefinitionUdiDeviceIdentifier {
-  /// Converts [DeviceDefinitionUdiDeviceIdentifier] to a [DeviceDefinitionUdiDeviceIdentifierBuilder]
-  DeviceDefinitionUdiDeviceIdentifierBuilder get toBuilder =>
-      DeviceDefinitionUdiDeviceIdentifierBuilder.fromJson(toJson());
-}
-
 /// [DeviceDefinitionUdiDeviceIdentifierBuilder]
 /// Unique device identifier (UDI) assigned to device label or package.
 /// Note that the Device may include multiple udiCarriers as it either may
@@ -2228,13 +2213,6 @@ class DeviceDefinitionUdiDeviceIdentifierBuilder
   }
 }
 
-/// Extension to change [DeviceDefinitionDeviceName] to a Builder
-extension BuilderDeviceDefinitionDeviceName on DeviceDefinitionDeviceName {
-  /// Converts [DeviceDefinitionDeviceName] to a [DeviceDefinitionDeviceNameBuilder]
-  DeviceDefinitionDeviceNameBuilder get toBuilder =>
-      DeviceDefinitionDeviceNameBuilder.fromJson(toJson());
-}
-
 /// [DeviceDefinitionDeviceNameBuilder]
 /// A name given to the device to identify it.
 class DeviceDefinitionDeviceNameBuilder extends BackboneElementBuilder {
@@ -2683,14 +2661,6 @@ class DeviceDefinitionDeviceNameBuilder extends BackboneElementBuilder {
   }
 }
 
-/// Extension to change [DeviceDefinitionSpecialization] to a Builder
-extension BuilderDeviceDefinitionSpecialization
-    on DeviceDefinitionSpecialization {
-  /// Converts [DeviceDefinitionSpecialization] to a [DeviceDefinitionSpecializationBuilder]
-  DeviceDefinitionSpecializationBuilder get toBuilder =>
-      DeviceDefinitionSpecializationBuilder.fromJson(toJson());
-}
-
 /// [DeviceDefinitionSpecializationBuilder]
 /// The capabilities supported on a device, the standards to which the
 /// device conforms for a particular purpose, and used for the
@@ -3137,13 +3107,6 @@ class DeviceDefinitionSpecializationBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [DeviceDefinitionCapability] to a Builder
-extension BuilderDeviceDefinitionCapability on DeviceDefinitionCapability {
-  /// Converts [DeviceDefinitionCapability] to a [DeviceDefinitionCapabilityBuilder]
-  DeviceDefinitionCapabilityBuilder get toBuilder =>
-      DeviceDefinitionCapabilityBuilder.fromJson(toJson());
 }
 
 /// [DeviceDefinitionCapabilityBuilder]
@@ -3599,13 +3562,6 @@ class DeviceDefinitionCapabilityBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [DeviceDefinitionProperty] to a Builder
-extension BuilderDeviceDefinitionProperty on DeviceDefinitionProperty {
-  /// Converts [DeviceDefinitionProperty] to a [DeviceDefinitionPropertyBuilder]
-  DeviceDefinitionPropertyBuilder get toBuilder =>
-      DeviceDefinitionPropertyBuilder.fromJson(toJson());
 }
 
 /// [DeviceDefinitionPropertyBuilder]
@@ -4115,13 +4071,6 @@ class DeviceDefinitionPropertyBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [DeviceDefinitionMaterial] to a Builder
-extension BuilderDeviceDefinitionMaterial on DeviceDefinitionMaterial {
-  /// Converts [DeviceDefinitionMaterial] to a [DeviceDefinitionMaterialBuilder]
-  DeviceDefinitionMaterialBuilder get toBuilder =>
-      DeviceDefinitionMaterialBuilder.fromJson(toJson());
 }
 
 /// [DeviceDefinitionMaterialBuilder]

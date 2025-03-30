@@ -13,13 +13,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [NutritionProduct] to a Builder
-extension BuilderNutritionProduct on NutritionProduct {
-  /// Converts [NutritionProduct] to a [NutritionProductBuilder]
-  NutritionProductBuilder get toBuilder =>
-      NutritionProductBuilder.fromJson(toJson());
-}
-
 /// [NutritionProductBuilder]
 /// A food or fluid product that is consumed by patients.
 class NutritionProductBuilder extends DomainResourceBuilder {
@@ -1082,13 +1075,6 @@ class NutritionProductBuilder extends DomainResourceBuilder {
   }
 }
 
-/// Extension to change [NutritionProductNutrient] to a Builder
-extension BuilderNutritionProductNutrient on NutritionProductNutrient {
-  /// Converts [NutritionProductNutrient] to a [NutritionProductNutrientBuilder]
-  NutritionProductNutrientBuilder get toBuilder =>
-      NutritionProductNutrientBuilder.fromJson(toJson());
-}
-
 /// [NutritionProductNutrientBuilder]
 /// The product's nutritional information expressed by the nutrients.
 class NutritionProductNutrientBuilder extends BackboneElementBuilder {
@@ -1545,13 +1531,6 @@ class NutritionProductNutrientBuilder extends BackboneElementBuilder {
   }
 }
 
-/// Extension to change [NutritionProductIngredient] to a Builder
-extension BuilderNutritionProductIngredient on NutritionProductIngredient {
-  /// Converts [NutritionProductIngredient] to a [NutritionProductIngredientBuilder]
-  NutritionProductIngredientBuilder get toBuilder =>
-      NutritionProductIngredientBuilder.fromJson(toJson());
-}
-
 /// [NutritionProductIngredientBuilder]
 /// Ingredients contained in this product.
 class NutritionProductIngredientBuilder extends BackboneElementBuilder {
@@ -2005,14 +1984,6 @@ class NutritionProductIngredientBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [NutritionProductProductCharacteristic] to a Builder
-extension BuilderNutritionProductProductCharacteristic
-    on NutritionProductProductCharacteristic {
-  /// Converts [NutritionProductProductCharacteristic] to a [NutritionProductProductCharacteristicBuilder]
-  NutritionProductProductCharacteristicBuilder get toBuilder =>
-      NutritionProductProductCharacteristicBuilder.fromJson(toJson());
 }
 
 /// [NutritionProductProductCharacteristicBuilder]
@@ -2646,13 +2617,6 @@ class NutritionProductProductCharacteristicBuilder
     }
     return true;
   }
-}
-
-/// Extension to change [NutritionProductInstance] to a Builder
-extension BuilderNutritionProductInstance on NutritionProductInstance {
-  /// Converts [NutritionProductInstance] to a [NutritionProductInstanceBuilder]
-  NutritionProductInstanceBuilder get toBuilder =>
-      NutritionProductInstanceBuilder.fromJson(toJson());
 }
 
 /// [NutritionProductInstanceBuilder]

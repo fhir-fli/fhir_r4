@@ -13,12 +13,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [Immunization] to a Builder
-extension BuilderImmunization on Immunization {
-  /// Converts [Immunization] to a [ImmunizationBuilder]
-  ImmunizationBuilder get toBuilder => ImmunizationBuilder.fromJson(toJson());
-}
-
 /// [ImmunizationBuilder]
 /// Describes the event of a patient being administered a vaccine or a
 /// record of an immunization as reported by a patient, a clinician or
@@ -1957,13 +1951,6 @@ class ImmunizationBuilder extends DomainResourceBuilder {
   }
 }
 
-/// Extension to change [ImmunizationPerformer] to a Builder
-extension BuilderImmunizationPerformer on ImmunizationPerformer {
-  /// Converts [ImmunizationPerformer] to a [ImmunizationPerformerBuilder]
-  ImmunizationPerformerBuilder get toBuilder =>
-      ImmunizationPerformerBuilder.fromJson(toJson());
-}
-
 /// [ImmunizationPerformerBuilder]
 /// Indicates who performed the immunization event.
 class ImmunizationPerformerBuilder extends BackboneElementBuilder {
@@ -2408,13 +2395,6 @@ class ImmunizationPerformerBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [ImmunizationEducation] to a Builder
-extension BuilderImmunizationEducation on ImmunizationEducation {
-  /// Converts [ImmunizationEducation] to a [ImmunizationEducationBuilder]
-  ImmunizationEducationBuilder get toBuilder =>
-      ImmunizationEducationBuilder.fromJson(toJson());
 }
 
 /// [ImmunizationEducationBuilder]
@@ -2950,13 +2930,6 @@ class ImmunizationEducationBuilder extends BackboneElementBuilder {
   }
 }
 
-/// Extension to change [ImmunizationReaction] to a Builder
-extension BuilderImmunizationReaction on ImmunizationReaction {
-  /// Converts [ImmunizationReaction] to a [ImmunizationReactionBuilder]
-  ImmunizationReactionBuilder get toBuilder =>
-      ImmunizationReactionBuilder.fromJson(toJson());
-}
-
 /// [ImmunizationReactionBuilder]
 /// Categorical data indicating that an adverse event is associated in time
 /// to an immunization.
@@ -3443,13 +3416,6 @@ class ImmunizationReactionBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [ImmunizationProtocolApplied] to a Builder
-extension BuilderImmunizationProtocolApplied on ImmunizationProtocolApplied {
-  /// Converts [ImmunizationProtocolApplied] to a [ImmunizationProtocolAppliedBuilder]
-  ImmunizationProtocolAppliedBuilder get toBuilder =>
-      ImmunizationProtocolAppliedBuilder.fromJson(toJson());
 }
 
 /// [ImmunizationProtocolAppliedBuilder]

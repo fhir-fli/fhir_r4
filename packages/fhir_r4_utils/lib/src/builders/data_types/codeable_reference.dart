@@ -4,13 +4,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [CodeableReference] to a Builder
-extension BuilderCodeableReference on CodeableReference {
-  /// Converts [CodeableReference] to a [CodeableReferenceBuilder]
-  CodeableReferenceBuilder get toBuilder =>
-      CodeableReferenceBuilder.fromJson(toJson());
-}
-
 /// [CodeableReferenceBuilder]
 /// A reference to a resource (by instance), or instead, a reference to a
 /// concept defined in a terminology or ontology (by class).

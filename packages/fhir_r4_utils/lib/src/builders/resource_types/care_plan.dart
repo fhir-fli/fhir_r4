@@ -11,12 +11,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [CarePlan] to a Builder
-extension BuilderCarePlan on CarePlan {
-  /// Converts [CarePlan] to a [CarePlanBuilder]
-  CarePlanBuilder get toBuilder => CarePlanBuilder.fromJson(toJson());
-}
-
 /// [CarePlanBuilder]
 /// Describes the intention of how one or more practitioners intend to
 /// deliver care for a particular patient, group or community for a period
@@ -1715,13 +1709,6 @@ class CarePlanBuilder extends DomainResourceBuilder {
   }
 }
 
-/// Extension to change [CarePlanActivity] to a Builder
-extension BuilderCarePlanActivity on CarePlanActivity {
-  /// Converts [CarePlanActivity] to a [CarePlanActivityBuilder]
-  CarePlanActivityBuilder get toBuilder =>
-      CarePlanActivityBuilder.fromJson(toJson());
-}
-
 /// [CarePlanActivityBuilder]
 /// Identifies a planned action to occur as part of the plan. For example,
 /// a medication to be used, lab tests to perform, self-monitoring,
@@ -2332,13 +2319,6 @@ class CarePlanActivityBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [CarePlanDetail] to a Builder
-extension BuilderCarePlanDetail on CarePlanDetail {
-  /// Converts [CarePlanDetail] to a [CarePlanDetailBuilder]
-  CarePlanDetailBuilder get toBuilder =>
-      CarePlanDetailBuilder.fromJson(toJson());
 }
 
 /// [CarePlanDetailBuilder]

@@ -13,13 +13,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [SpecimenDefinition] to a Builder
-extension BuilderSpecimenDefinition on SpecimenDefinition {
-  /// Converts [SpecimenDefinition] to a [SpecimenDefinitionBuilder]
-  SpecimenDefinitionBuilder get toBuilder =>
-      SpecimenDefinitionBuilder.fromJson(toJson());
-}
-
 /// [SpecimenDefinitionBuilder]
 /// A kind of specimen with associated set of requirements.
 class SpecimenDefinitionBuilder extends DomainResourceBuilder {
@@ -868,13 +861,6 @@ class SpecimenDefinitionBuilder extends DomainResourceBuilder {
   }
 }
 
-/// Extension to change [SpecimenDefinitionTypeTested] to a Builder
-extension BuilderSpecimenDefinitionTypeTested on SpecimenDefinitionTypeTested {
-  /// Converts [SpecimenDefinitionTypeTested] to a [SpecimenDefinitionTypeTestedBuilder]
-  SpecimenDefinitionTypeTestedBuilder get toBuilder =>
-      SpecimenDefinitionTypeTestedBuilder.fromJson(toJson());
-}
-
 /// [SpecimenDefinitionTypeTestedBuilder]
 /// Specimen conditioned in a container as expected by the testing
 /// laboratory.
@@ -1600,13 +1586,6 @@ class SpecimenDefinitionTypeTestedBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [SpecimenDefinitionContainer] to a Builder
-extension BuilderSpecimenDefinitionContainer on SpecimenDefinitionContainer {
-  /// Converts [SpecimenDefinitionContainer] to a [SpecimenDefinitionContainerBuilder]
-  SpecimenDefinitionContainerBuilder get toBuilder =>
-      SpecimenDefinitionContainerBuilder.fromJson(toJson());
 }
 
 /// [SpecimenDefinitionContainerBuilder]
@@ -2389,13 +2368,6 @@ class SpecimenDefinitionContainerBuilder extends BackboneElementBuilder {
   }
 }
 
-/// Extension to change [SpecimenDefinitionAdditive] to a Builder
-extension BuilderSpecimenDefinitionAdditive on SpecimenDefinitionAdditive {
-  /// Converts [SpecimenDefinitionAdditive] to a [SpecimenDefinitionAdditiveBuilder]
-  SpecimenDefinitionAdditiveBuilder get toBuilder =>
-      SpecimenDefinitionAdditiveBuilder.fromJson(toJson());
-}
-
 /// [SpecimenDefinitionAdditiveBuilder]
 /// Substance introduced in the kind of container to preserve, maintain or
 /// enhance the specimen. Examples: Formalin, Citrate, EDTA.
@@ -2864,13 +2836,6 @@ class SpecimenDefinitionAdditiveBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [SpecimenDefinitionHandling] to a Builder
-extension BuilderSpecimenDefinitionHandling on SpecimenDefinitionHandling {
-  /// Converts [SpecimenDefinitionHandling] to a [SpecimenDefinitionHandlingBuilder]
-  SpecimenDefinitionHandlingBuilder get toBuilder =>
-      SpecimenDefinitionHandlingBuilder.fromJson(toJson());
 }
 
 /// [SpecimenDefinitionHandlingBuilder]

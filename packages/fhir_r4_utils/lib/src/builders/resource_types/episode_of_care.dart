@@ -11,12 +11,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [EpisodeOfCare] to a Builder
-extension BuilderEpisodeOfCare on EpisodeOfCare {
-  /// Converts [EpisodeOfCare] to a [EpisodeOfCareBuilder]
-  EpisodeOfCareBuilder get toBuilder => EpisodeOfCareBuilder.fromJson(toJson());
-}
-
 /// [EpisodeOfCareBuilder]
 /// An association between a patient and an organization / healthcare
 /// provider(s) during which time encounters may occur. The managing
@@ -1171,13 +1165,6 @@ class EpisodeOfCareBuilder extends DomainResourceBuilder {
   }
 }
 
-/// Extension to change [EpisodeOfCareStatusHistory] to a Builder
-extension BuilderEpisodeOfCareStatusHistory on EpisodeOfCareStatusHistory {
-  /// Converts [EpisodeOfCareStatusHistory] to a [EpisodeOfCareStatusHistoryBuilder]
-  EpisodeOfCareStatusHistoryBuilder get toBuilder =>
-      EpisodeOfCareStatusHistoryBuilder.fromJson(toJson());
-}
-
 /// [EpisodeOfCareStatusHistoryBuilder]
 /// The history of statuses that the EpisodeOfCare has been through
 /// (without requiring processing the history of the resource).
@@ -1623,13 +1610,6 @@ class EpisodeOfCareStatusHistoryBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [EpisodeOfCareDiagnosis] to a Builder
-extension BuilderEpisodeOfCareDiagnosis on EpisodeOfCareDiagnosis {
-  /// Converts [EpisodeOfCareDiagnosis] to a [EpisodeOfCareDiagnosisBuilder]
-  EpisodeOfCareDiagnosisBuilder get toBuilder =>
-      EpisodeOfCareDiagnosisBuilder.fromJson(toJson());
 }
 
 /// [EpisodeOfCareDiagnosisBuilder]

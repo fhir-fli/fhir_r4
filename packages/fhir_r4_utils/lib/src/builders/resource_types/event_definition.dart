@@ -9,13 +9,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [EventDefinition] to a Builder
-extension BuilderEventDefinition on EventDefinition {
-  /// Converts [EventDefinition] to a [EventDefinitionBuilder]
-  EventDefinitionBuilder get toBuilder =>
-      EventDefinitionBuilder.fromJson(toJson());
-}
-
 /// [EventDefinitionBuilder]
 /// The EventDefinition resource provides a reusable description of when a
 /// particular event can occur.

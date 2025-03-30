@@ -12,12 +12,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [Task] to a Builder
-extension BuilderTask on Task {
-  /// Converts [Task] to a [TaskBuilder]
-  TaskBuilder get toBuilder => TaskBuilder.fromJson(toJson());
-}
-
 /// [TaskBuilder]
 /// A task to be performed.
 class TaskBuilder extends DomainResourceBuilder {
@@ -2019,13 +2013,6 @@ class TaskBuilder extends DomainResourceBuilder {
   }
 }
 
-/// Extension to change [TaskRestriction] to a Builder
-extension BuilderTaskRestriction on TaskRestriction {
-  /// Converts [TaskRestriction] to a [TaskRestrictionBuilder]
-  TaskRestrictionBuilder get toBuilder =>
-      TaskRestrictionBuilder.fromJson(toJson());
-}
-
 /// [TaskRestrictionBuilder]
 /// If the Task.focus is a request resource and the task is seeking
 /// fulfillment (i.e. is asking for the request to be actioned), this
@@ -2524,12 +2511,6 @@ class TaskRestrictionBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [TaskInput] to a Builder
-extension BuilderTaskInput on TaskInput {
-  /// Converts [TaskInput] to a [TaskInputBuilder]
-  TaskInputBuilder get toBuilder => TaskInputBuilder.fromJson(toJson());
 }
 
 /// [TaskInputBuilder]
@@ -4447,12 +4428,6 @@ class TaskInputBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [TaskOutput] to a Builder
-extension BuilderTaskOutput on TaskOutput {
-  /// Converts [TaskOutput] to a [TaskOutputBuilder]
-  TaskOutputBuilder get toBuilder => TaskOutputBuilder.fromJson(toJson());
 }
 
 /// [TaskOutputBuilder]

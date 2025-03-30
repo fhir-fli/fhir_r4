@@ -13,13 +13,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [BiologicallyDerivedProduct] to a Builder
-extension BuilderBiologicallyDerivedProduct on BiologicallyDerivedProduct {
-  /// Converts [BiologicallyDerivedProduct] to a [BiologicallyDerivedProductBuilder]
-  BiologicallyDerivedProductBuilder get toBuilder =>
-      BiologicallyDerivedProductBuilder.fromJson(toJson());
-}
-
 /// [BiologicallyDerivedProductBuilder]
 /// A material substance originating from a biological entity intended to
 /// be transplanted or infused
@@ -1117,14 +1110,6 @@ class BiologicallyDerivedProductBuilder extends DomainResourceBuilder {
   }
 }
 
-/// Extension to change [BiologicallyDerivedProductCollection] to a Builder
-extension BuilderBiologicallyDerivedProductCollection
-    on BiologicallyDerivedProductCollection {
-  /// Converts [BiologicallyDerivedProductCollection] to a [BiologicallyDerivedProductCollectionBuilder]
-  BiologicallyDerivedProductCollectionBuilder get toBuilder =>
-      BiologicallyDerivedProductCollectionBuilder.fromJson(toJson());
-}
-
 /// [BiologicallyDerivedProductCollectionBuilder]
 /// How this product was collected.
 class BiologicallyDerivedProductCollectionBuilder
@@ -1679,14 +1664,6 @@ class BiologicallyDerivedProductCollectionBuilder
     }
     return true;
   }
-}
-
-/// Extension to change [BiologicallyDerivedProductProcessing] to a Builder
-extension BuilderBiologicallyDerivedProductProcessing
-    on BiologicallyDerivedProductProcessing {
-  /// Converts [BiologicallyDerivedProductProcessing] to a [BiologicallyDerivedProductProcessingBuilder]
-  BiologicallyDerivedProductProcessingBuilder get toBuilder =>
-      BiologicallyDerivedProductProcessingBuilder.fromJson(toJson());
 }
 
 /// [BiologicallyDerivedProductProcessingBuilder]
@@ -2288,14 +2265,6 @@ class BiologicallyDerivedProductProcessingBuilder
   }
 }
 
-/// Extension to change [BiologicallyDerivedProductManipulation] to a Builder
-extension BuilderBiologicallyDerivedProductManipulation
-    on BiologicallyDerivedProductManipulation {
-  /// Converts [BiologicallyDerivedProductManipulation] to a [BiologicallyDerivedProductManipulationBuilder]
-  BiologicallyDerivedProductManipulationBuilder get toBuilder =>
-      BiologicallyDerivedProductManipulationBuilder.fromJson(toJson());
-}
-
 /// [BiologicallyDerivedProductManipulationBuilder]
 /// Any manipulation of product post-collection that is intended to alter
 /// the product. For example a buffy-coat enrichment or CD8 reduction of
@@ -2807,14 +2776,6 @@ class BiologicallyDerivedProductManipulationBuilder
     }
     return true;
   }
-}
-
-/// Extension to change [BiologicallyDerivedProductStorage] to a Builder
-extension BuilderBiologicallyDerivedProductStorage
-    on BiologicallyDerivedProductStorage {
-  /// Converts [BiologicallyDerivedProductStorage] to a [BiologicallyDerivedProductStorageBuilder]
-  BiologicallyDerivedProductStorageBuilder get toBuilder =>
-      BiologicallyDerivedProductStorageBuilder.fromJson(toJson());
 }
 
 /// [BiologicallyDerivedProductStorageBuilder]

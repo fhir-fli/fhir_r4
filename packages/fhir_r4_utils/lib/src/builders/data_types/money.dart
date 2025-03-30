@@ -4,12 +4,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [Money] to a Builder
-extension BuilderMoney on Money {
-  /// Converts [Money] to a [MoneyBuilder]
-  MoneyBuilder get toBuilder => MoneyBuilder.fromJson(toJson());
-}
-
 /// [MoneyBuilder]
 /// An amount of economic utility in some recognized currency.
 class MoneyBuilder extends DataTypeBuilder

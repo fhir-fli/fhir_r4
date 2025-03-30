@@ -19,13 +19,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [SubstanceDefinition] to a Builder
-extension BuilderSubstanceDefinition on SubstanceDefinition {
-  /// Converts [SubstanceDefinition] to a [SubstanceDefinitionBuilder]
-  SubstanceDefinitionBuilder get toBuilder =>
-      SubstanceDefinitionBuilder.fromJson(toJson());
-}
-
 /// [SubstanceDefinitionBuilder]
 /// The detailed description of a substance, typically at a level beyond
 /// what is used for prescribing.
@@ -1533,13 +1526,6 @@ class SubstanceDefinitionBuilder extends DomainResourceBuilder {
   }
 }
 
-/// Extension to change [SubstanceDefinitionMoiety] to a Builder
-extension BuilderSubstanceDefinitionMoiety on SubstanceDefinitionMoiety {
-  /// Converts [SubstanceDefinitionMoiety] to a [SubstanceDefinitionMoietyBuilder]
-  SubstanceDefinitionMoietyBuilder get toBuilder =>
-      SubstanceDefinitionMoietyBuilder.fromJson(toJson());
-}
-
 /// [SubstanceDefinitionMoietyBuilder]
 /// Moiety, for structural modifications.
 class SubstanceDefinitionMoietyBuilder extends BackboneElementBuilder {
@@ -2311,13 +2297,6 @@ class SubstanceDefinitionMoietyBuilder extends BackboneElementBuilder {
   }
 }
 
-/// Extension to change [SubstanceDefinitionProperty] to a Builder
-extension BuilderSubstanceDefinitionProperty on SubstanceDefinitionProperty {
-  /// Converts [SubstanceDefinitionProperty] to a [SubstanceDefinitionPropertyBuilder]
-  SubstanceDefinitionPropertyBuilder get toBuilder =>
-      SubstanceDefinitionPropertyBuilder.fromJson(toJson());
-}
-
 /// [SubstanceDefinitionPropertyBuilder]
 /// General specifications for this substance.
 class SubstanceDefinitionPropertyBuilder extends BackboneElementBuilder {
@@ -2918,14 +2897,6 @@ class SubstanceDefinitionPropertyBuilder extends BackboneElementBuilder {
   }
 }
 
-/// Extension to change [SubstanceDefinitionMolecularWeight] to a Builder
-extension BuilderSubstanceDefinitionMolecularWeight
-    on SubstanceDefinitionMolecularWeight {
-  /// Converts [SubstanceDefinitionMolecularWeight] to a [SubstanceDefinitionMolecularWeightBuilder]
-  SubstanceDefinitionMolecularWeightBuilder get toBuilder =>
-      SubstanceDefinitionMolecularWeightBuilder.fromJson(toJson());
-}
-
 /// [SubstanceDefinitionMolecularWeightBuilder]
 /// The molecular weight or weight range (for proteins, polymers or nucleic
 /// acids).
@@ -3419,13 +3390,6 @@ class SubstanceDefinitionMolecularWeightBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [SubstanceDefinitionStructure] to a Builder
-extension BuilderSubstanceDefinitionStructure on SubstanceDefinitionStructure {
-  /// Converts [SubstanceDefinitionStructure] to a [SubstanceDefinitionStructureBuilder]
-  SubstanceDefinitionStructureBuilder get toBuilder =>
-      SubstanceDefinitionStructureBuilder.fromJson(toJson());
 }
 
 /// [SubstanceDefinitionStructureBuilder]
@@ -4165,14 +4129,6 @@ class SubstanceDefinitionStructureBuilder extends BackboneElementBuilder {
   }
 }
 
-/// Extension to change [SubstanceDefinitionRepresentation] to a Builder
-extension BuilderSubstanceDefinitionRepresentation
-    on SubstanceDefinitionRepresentation {
-  /// Converts [SubstanceDefinitionRepresentation] to a [SubstanceDefinitionRepresentationBuilder]
-  SubstanceDefinitionRepresentationBuilder get toBuilder =>
-      SubstanceDefinitionRepresentationBuilder.fromJson(toJson());
-}
-
 /// [SubstanceDefinitionRepresentationBuilder]
 /// A depiction of the structure or characterization of the substance.
 class SubstanceDefinitionRepresentationBuilder extends BackboneElementBuilder {
@@ -4709,13 +4665,6 @@ class SubstanceDefinitionRepresentationBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [SubstanceDefinitionCode] to a Builder
-extension BuilderSubstanceDefinitionCode on SubstanceDefinitionCode {
-  /// Converts [SubstanceDefinitionCode] to a [SubstanceDefinitionCodeBuilder]
-  SubstanceDefinitionCodeBuilder get toBuilder =>
-      SubstanceDefinitionCodeBuilder.fromJson(toJson());
 }
 
 /// [SubstanceDefinitionCodeBuilder]
@@ -5309,13 +5258,6 @@ class SubstanceDefinitionCodeBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [SubstanceDefinitionName] to a Builder
-extension BuilderSubstanceDefinitionName on SubstanceDefinitionName {
-  /// Converts [SubstanceDefinitionName] to a [SubstanceDefinitionNameBuilder]
-  SubstanceDefinitionNameBuilder get toBuilder =>
-      SubstanceDefinitionNameBuilder.fromJson(toJson());
 }
 
 /// [SubstanceDefinitionNameBuilder]
@@ -6215,13 +6157,6 @@ class SubstanceDefinitionNameBuilder extends BackboneElementBuilder {
   }
 }
 
-/// Extension to change [SubstanceDefinitionOfficial] to a Builder
-extension BuilderSubstanceDefinitionOfficial on SubstanceDefinitionOfficial {
-  /// Converts [SubstanceDefinitionOfficial] to a [SubstanceDefinitionOfficialBuilder]
-  SubstanceDefinitionOfficialBuilder get toBuilder =>
-      SubstanceDefinitionOfficialBuilder.fromJson(toJson());
-}
-
 /// [SubstanceDefinitionOfficialBuilder]
 /// Details of the official nature of this name.
 class SubstanceDefinitionOfficialBuilder extends BackboneElementBuilder {
@@ -6710,14 +6645,6 @@ class SubstanceDefinitionOfficialBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [SubstanceDefinitionRelationship] to a Builder
-extension BuilderSubstanceDefinitionRelationship
-    on SubstanceDefinitionRelationship {
-  /// Converts [SubstanceDefinitionRelationship] to a [SubstanceDefinitionRelationshipBuilder]
-  SubstanceDefinitionRelationshipBuilder get toBuilder =>
-      SubstanceDefinitionRelationshipBuilder.fromJson(toJson());
 }
 
 /// [SubstanceDefinitionRelationshipBuilder]
@@ -7556,14 +7483,6 @@ class SubstanceDefinitionRelationshipBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [SubstanceDefinitionSourceMaterial] to a Builder
-extension BuilderSubstanceDefinitionSourceMaterial
-    on SubstanceDefinitionSourceMaterial {
-  /// Converts [SubstanceDefinitionSourceMaterial] to a [SubstanceDefinitionSourceMaterialBuilder]
-  SubstanceDefinitionSourceMaterialBuilder get toBuilder =>
-      SubstanceDefinitionSourceMaterialBuilder.fromJson(toJson());
 }
 
 /// [SubstanceDefinitionSourceMaterialBuilder]

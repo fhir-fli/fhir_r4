@@ -1,11 +1,5 @@
 part of 'primitive_types.dart';
 
-/// Extension to convert a [FhirTime] to a [FhirTimeBuilder]
-extension BuilderFhirTime on FhirTime {
-  /// Converts this instance to a [FhirTimeBuilder]
-  FhirTimeBuilder get toBuilder => FhirTimeBuilder.fromJson(toJson());
-}
-
 /// Extension on String to convert a String to [FhirTimeBuilder].
 extension FhirTimeBuilderExtension on String {
   /// Converts a String to a [FhirTimeBuilder] object.
@@ -398,6 +392,10 @@ class FhirTimeBuilder extends PrimitiveTypeBuilder<String>
   /// Retrieves the primitive value of the object.
   @override
   String? get primitiveValue => value?.toString();
+
+  /// Converts this instance to a [FhirTime] object
+  @override
+  FhirTime build() => FhirTime.fromJson(toJson());
 
   /// Converts [FhirTimeBuilder] to a JSON map.
   @override

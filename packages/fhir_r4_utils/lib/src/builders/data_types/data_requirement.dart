@@ -11,13 +11,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [DataRequirement] to a Builder
-extension BuilderDataRequirement on DataRequirement {
-  /// Converts [DataRequirement] to a [DataRequirementBuilder]
-  DataRequirementBuilder get toBuilder =>
-      DataRequirementBuilder.fromJson(toJson());
-}
-
 /// [DataRequirementBuilder]
 /// Describes a required data item for evaluation in terms of the type of
 /// data, and optional code or date-based filters of the data.
@@ -804,13 +797,6 @@ class DataRequirementBuilder extends DataTypeBuilder
   }
 }
 
-/// Extension to change [DataRequirementCodeFilter] to a Builder
-extension BuilderDataRequirementCodeFilter on DataRequirementCodeFilter {
-  /// Converts [DataRequirementCodeFilter] to a [DataRequirementCodeFilterBuilder]
-  DataRequirementCodeFilterBuilder get toBuilder =>
-      DataRequirementCodeFilterBuilder.fromJson(toJson());
-}
-
 /// [DataRequirementCodeFilterBuilder]
 /// Code filters specify additional constraints on the data, specifying the
 /// value set of interest for a particular element of the data. Each code
@@ -1321,13 +1307,6 @@ class DataRequirementCodeFilterBuilder extends ElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [DataRequirementDateFilter] to a Builder
-extension BuilderDataRequirementDateFilter on DataRequirementDateFilter {
-  /// Converts [DataRequirementDateFilter] to a [DataRequirementDateFilterBuilder]
-  DataRequirementDateFilterBuilder get toBuilder =>
-      DataRequirementDateFilterBuilder.fromJson(toJson());
 }
 
 /// [DataRequirementDateFilterBuilder]
@@ -1878,13 +1857,6 @@ class DataRequirementDateFilterBuilder extends ElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [DataRequirementSort] to a Builder
-extension BuilderDataRequirementSort on DataRequirementSort {
-  /// Converts [DataRequirementSort] to a [DataRequirementSortBuilder]
-  DataRequirementSortBuilder get toBuilder =>
-      DataRequirementSortBuilder.fromJson(toJson());
 }
 
 /// [DataRequirementSortBuilder]

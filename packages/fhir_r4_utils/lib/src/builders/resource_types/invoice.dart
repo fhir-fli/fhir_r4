@@ -12,12 +12,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [Invoice] to a Builder
-extension BuilderInvoice on Invoice {
-  /// Converts [Invoice] to a [InvoiceBuilder]
-  InvoiceBuilder get toBuilder => InvoiceBuilder.fromJson(toJson());
-}
-
 /// [InvoiceBuilder]
 /// Invoice containing collected ChargeItems from an Account with
 /// calculated individual and total price for Billing purpose.
@@ -1326,13 +1320,6 @@ class InvoiceBuilder extends DomainResourceBuilder {
   }
 }
 
-/// Extension to change [InvoiceParticipant] to a Builder
-extension BuilderInvoiceParticipant on InvoiceParticipant {
-  /// Converts [InvoiceParticipant] to a [InvoiceParticipantBuilder]
-  InvoiceParticipantBuilder get toBuilder =>
-      InvoiceParticipantBuilder.fromJson(toJson());
-}
-
 /// [InvoiceParticipantBuilder]
 /// Indicates who or what performed or participated in the charged service.
 class InvoiceParticipantBuilder extends BackboneElementBuilder {
@@ -1778,13 +1765,6 @@ class InvoiceParticipantBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [InvoiceLineItem] to a Builder
-extension BuilderInvoiceLineItem on InvoiceLineItem {
-  /// Converts [InvoiceLineItem] to a [InvoiceLineItemBuilder]
-  InvoiceLineItemBuilder get toBuilder =>
-      InvoiceLineItemBuilder.fromJson(toJson());
 }
 
 /// [InvoiceLineItemBuilder]
@@ -2356,13 +2336,6 @@ class InvoiceLineItemBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [InvoicePriceComponent] to a Builder
-extension BuilderInvoicePriceComponent on InvoicePriceComponent {
-  /// Converts [InvoicePriceComponent] to a [InvoicePriceComponentBuilder]
-  InvoicePriceComponentBuilder get toBuilder =>
-      InvoicePriceComponentBuilder.fromJson(toJson());
 }
 
 /// [InvoicePriceComponentBuilder]

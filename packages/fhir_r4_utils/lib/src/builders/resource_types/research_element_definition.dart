@@ -10,13 +10,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [ResearchElementDefinition] to a Builder
-extension BuilderResearchElementDefinition on ResearchElementDefinition {
-  /// Converts [ResearchElementDefinition] to a [ResearchElementDefinitionBuilder]
-  ResearchElementDefinitionBuilder get toBuilder =>
-      ResearchElementDefinitionBuilder.fromJson(toJson());
-}
-
 /// [ResearchElementDefinitionBuilder]
 /// The ResearchElementDefinition resource describes a "PICO" element that
 /// knowledge (evidence, assertion, recommendation) is about.
@@ -2235,14 +2228,6 @@ class ResearchElementDefinitionBuilder extends DomainResourceBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [ResearchElementDefinitionCharacteristic] to a Builder
-extension BuilderResearchElementDefinitionCharacteristic
-    on ResearchElementDefinitionCharacteristic {
-  /// Converts [ResearchElementDefinitionCharacteristic] to a [ResearchElementDefinitionCharacteristicBuilder]
-  ResearchElementDefinitionCharacteristicBuilder get toBuilder =>
-      ResearchElementDefinitionCharacteristicBuilder.fromJson(toJson());
 }
 
 /// [ResearchElementDefinitionCharacteristicBuilder]

@@ -24,12 +24,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [Contract] to a Builder
-extension BuilderContract on Contract {
-  /// Converts [Contract] to a [ContractBuilder]
-  ContractBuilder get toBuilder => ContractBuilder.fromJson(toJson());
-}
-
 /// [ContractBuilder]
 /// Legally enforceable, formally recorded unilateral or bilateral
 /// directive i.e., a policy or agreement.
@@ -2323,13 +2317,6 @@ class ContractBuilder extends DomainResourceBuilder {
   }
 }
 
-/// Extension to change [ContractContentDefinition] to a Builder
-extension BuilderContractContentDefinition on ContractContentDefinition {
-  /// Converts [ContractContentDefinition] to a [ContractContentDefinitionBuilder]
-  ContractContentDefinitionBuilder get toBuilder =>
-      ContractContentDefinitionBuilder.fromJson(toJson());
-}
-
 /// [ContractContentDefinitionBuilder]
 /// Precusory content developed with a focus and intent of supporting the
 /// formation a Contract instance, which may be associated with and
@@ -2960,12 +2947,6 @@ class ContractContentDefinitionBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [ContractTerm] to a Builder
-extension BuilderContractTerm on ContractTerm {
-  /// Converts [ContractTerm] to a [ContractTermBuilder]
-  ContractTermBuilder get toBuilder => ContractTermBuilder.fromJson(toJson());
 }
 
 /// [ContractTermBuilder]
@@ -3949,13 +3930,6 @@ class ContractTermBuilder extends BackboneElementBuilder {
   }
 }
 
-/// Extension to change [ContractSecurityLabel] to a Builder
-extension BuilderContractSecurityLabel on ContractSecurityLabel {
-  /// Converts [ContractSecurityLabel] to a [ContractSecurityLabelBuilder]
-  ContractSecurityLabelBuilder get toBuilder =>
-      ContractSecurityLabelBuilder.fromJson(toJson());
-}
-
 /// [ContractSecurityLabelBuilder]
 /// Security labels that protect the handling of information about the term
 /// and its elements, which may be specifically identified..
@@ -4513,12 +4487,6 @@ class ContractSecurityLabelBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [ContractOffer] to a Builder
-extension BuilderContractOffer on ContractOffer {
-  /// Converts [ContractOffer] to a [ContractOfferBuilder]
-  ContractOfferBuilder get toBuilder => ContractOfferBuilder.fromJson(toJson());
 }
 
 /// [ContractOfferBuilder]
@@ -5361,12 +5329,6 @@ class ContractOfferBuilder extends BackboneElementBuilder {
   }
 }
 
-/// Extension to change [ContractParty] to a Builder
-extension BuilderContractParty on ContractParty {
-  /// Converts [ContractParty] to a [ContractPartyBuilder]
-  ContractPartyBuilder get toBuilder => ContractPartyBuilder.fromJson(toJson());
-}
-
 /// [ContractPartyBuilder]
 /// Offer Recipient.
 class ContractPartyBuilder extends BackboneElementBuilder {
@@ -5818,13 +5780,6 @@ class ContractPartyBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [ContractAnswer] to a Builder
-extension BuilderContractAnswer on ContractAnswer {
-  /// Converts [ContractAnswer] to a [ContractAnswerBuilder]
-  ContractAnswerBuilder get toBuilder =>
-      ContractAnswerBuilder.fromJson(toJson());
 }
 
 /// [ContractAnswerBuilder]
@@ -6584,12 +6539,6 @@ class ContractAnswerBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [ContractAsset] to a Builder
-extension BuilderContractAsset on ContractAsset {
-  /// Converts [ContractAsset] to a [ContractAssetBuilder]
-  ContractAssetBuilder get toBuilder => ContractAssetBuilder.fromJson(toJson());
 }
 
 /// [ContractAssetBuilder]
@@ -7693,13 +7642,6 @@ class ContractAssetBuilder extends BackboneElementBuilder {
   }
 }
 
-/// Extension to change [ContractContext] to a Builder
-extension BuilderContractContext on ContractContext {
-  /// Converts [ContractContext] to a [ContractContextBuilder]
-  ContractContextBuilder get toBuilder =>
-      ContractContextBuilder.fromJson(toJson());
-}
-
 /// [ContractContextBuilder]
 /// Circumstance of the asset.
 class ContractContextBuilder extends BackboneElementBuilder {
@@ -8197,13 +8139,6 @@ class ContractContextBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [ContractValuedItem] to a Builder
-extension BuilderContractValuedItem on ContractValuedItem {
-  /// Converts [ContractValuedItem] to a [ContractValuedItemBuilder]
-  ContractValuedItemBuilder get toBuilder =>
-      ContractValuedItemBuilder.fromJson(toJson());
 }
 
 /// [ContractValuedItemBuilder]
@@ -9253,13 +9188,6 @@ class ContractValuedItemBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [ContractAction] to a Builder
-extension BuilderContractAction on ContractAction {
-  /// Converts [ContractAction] to a [ContractActionBuilder]
-  ContractActionBuilder get toBuilder =>
-      ContractActionBuilder.fromJson(toJson());
 }
 
 /// [ContractActionBuilder]
@@ -10725,13 +10653,6 @@ class ContractActionBuilder extends BackboneElementBuilder {
   }
 }
 
-/// Extension to change [ContractSubject] to a Builder
-extension BuilderContractSubject on ContractSubject {
-  /// Converts [ContractSubject] to a [ContractSubjectBuilder]
-  ContractSubjectBuilder get toBuilder =>
-      ContractSubjectBuilder.fromJson(toJson());
-}
-
 /// [ContractSubjectBuilder]
 /// Entity of the action.
 class ContractSubjectBuilder extends BackboneElementBuilder {
@@ -11183,13 +11104,6 @@ class ContractSubjectBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [ContractSigner] to a Builder
-extension BuilderContractSigner on ContractSigner {
-  /// Converts [ContractSigner] to a [ContractSignerBuilder]
-  ContractSignerBuilder get toBuilder =>
-      ContractSignerBuilder.fromJson(toJson());
 }
 
 /// [ContractSignerBuilder]
@@ -11691,13 +11605,6 @@ class ContractSignerBuilder extends BackboneElementBuilder {
   }
 }
 
-/// Extension to change [ContractFriendly] to a Builder
-extension BuilderContractFriendly on ContractFriendly {
-  /// Converts [ContractFriendly] to a [ContractFriendlyBuilder]
-  ContractFriendlyBuilder get toBuilder =>
-      ContractFriendlyBuilder.fromJson(toJson());
-}
-
 /// [ContractFriendlyBuilder]
 /// The "patient friendly language" versionof the Contract in whole or in
 /// parts. "Patient friendly language" means the representation of the
@@ -12170,12 +12077,6 @@ class ContractFriendlyBuilder extends BackboneElementBuilder {
   }
 }
 
-/// Extension to change [ContractLegal] to a Builder
-extension BuilderContractLegal on ContractLegal {
-  /// Converts [ContractLegal] to a [ContractLegalBuilder]
-  ContractLegalBuilder get toBuilder => ContractLegalBuilder.fromJson(toJson());
-}
-
 /// [ContractLegalBuilder]
 /// List of Legal expressions or representations of this Contract.
 class ContractLegalBuilder extends BackboneElementBuilder {
@@ -12638,12 +12539,6 @@ class ContractLegalBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [ContractRule] to a Builder
-extension BuilderContractRule on ContractRule {
-  /// Converts [ContractRule] to a [ContractRuleBuilder]
-  ContractRuleBuilder get toBuilder => ContractRuleBuilder.fromJson(toJson());
 }
 
 /// [ContractRuleBuilder]

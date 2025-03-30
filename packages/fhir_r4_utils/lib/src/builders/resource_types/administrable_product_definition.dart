@@ -13,14 +13,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [AdministrableProductDefinition] to a Builder
-extension BuilderAdministrableProductDefinition
-    on AdministrableProductDefinition {
-  /// Converts [AdministrableProductDefinition] to a [AdministrableProductDefinitionBuilder]
-  AdministrableProductDefinitionBuilder get toBuilder =>
-      AdministrableProductDefinitionBuilder.fromJson(toJson());
-}
-
 /// [AdministrableProductDefinitionBuilder]
 /// A medicinal product in the final form which is suitable for
 /// administering to a patient (after any mixing of multiple components,
@@ -1112,14 +1104,6 @@ class AdministrableProductDefinitionBuilder extends DomainResourceBuilder {
   }
 }
 
-/// Extension to change [AdministrableProductDefinitionProperty] to a Builder
-extension BuilderAdministrableProductDefinitionProperty
-    on AdministrableProductDefinitionProperty {
-  /// Converts [AdministrableProductDefinitionProperty] to a [AdministrableProductDefinitionPropertyBuilder]
-  AdministrableProductDefinitionPropertyBuilder get toBuilder =>
-      AdministrableProductDefinitionPropertyBuilder.fromJson(toJson());
-}
-
 /// [AdministrableProductDefinitionPropertyBuilder]
 /// Characteristics e.g. a product's onset of action.
 class AdministrableProductDefinitionPropertyBuilder
@@ -1763,15 +1747,6 @@ class AdministrableProductDefinitionPropertyBuilder
     }
     return true;
   }
-}
-
-/// Extension to change [AdministrableProductDefinitionRouteOfAdministration] to a Builder
-extension BuilderAdministrableProductDefinitionRouteOfAdministration
-    on AdministrableProductDefinitionRouteOfAdministration {
-  /// Converts [AdministrableProductDefinitionRouteOfAdministration] to a [AdministrableProductDefinitionRouteOfAdministrationBuilder]
-  AdministrableProductDefinitionRouteOfAdministrationBuilder get toBuilder =>
-      AdministrableProductDefinitionRouteOfAdministrationBuilder.fromJson(
-          toJson());
 }
 
 /// [AdministrableProductDefinitionRouteOfAdministrationBuilder]
@@ -2461,14 +2436,6 @@ class AdministrableProductDefinitionRouteOfAdministrationBuilder
   }
 }
 
-/// Extension to change [AdministrableProductDefinitionTargetSpecies] to a Builder
-extension BuilderAdministrableProductDefinitionTargetSpecies
-    on AdministrableProductDefinitionTargetSpecies {
-  /// Converts [AdministrableProductDefinitionTargetSpecies] to a [AdministrableProductDefinitionTargetSpeciesBuilder]
-  AdministrableProductDefinitionTargetSpeciesBuilder get toBuilder =>
-      AdministrableProductDefinitionTargetSpeciesBuilder.fromJson(toJson());
-}
-
 /// [AdministrableProductDefinitionTargetSpeciesBuilder]
 /// A species for which this route applies.
 class AdministrableProductDefinitionTargetSpeciesBuilder
@@ -2932,14 +2899,6 @@ class AdministrableProductDefinitionTargetSpeciesBuilder
     }
     return true;
   }
-}
-
-/// Extension to change [AdministrableProductDefinitionWithdrawalPeriod] to a Builder
-extension BuilderAdministrableProductDefinitionWithdrawalPeriod
-    on AdministrableProductDefinitionWithdrawalPeriod {
-  /// Converts [AdministrableProductDefinitionWithdrawalPeriod] to a [AdministrableProductDefinitionWithdrawalPeriodBuilder]
-  AdministrableProductDefinitionWithdrawalPeriodBuilder get toBuilder =>
-      AdministrableProductDefinitionWithdrawalPeriodBuilder.fromJson(toJson());
 }
 
 /// [AdministrableProductDefinitionWithdrawalPeriodBuilder]

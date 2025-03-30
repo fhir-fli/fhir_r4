@@ -1,11 +1,5 @@
 part of 'primitive_types.dart';
 
-/// Extension to convert a [FhirInteger64] to a [FhirInteger64Builder]
-extension BuilderFhirInteger64 on FhirInteger64 {
-  /// Converts this instance to a [FhirInteger64Builder]
-  FhirInteger64Builder get toBuilder => FhirInteger64Builder.fromJson(toJson());
-}
-
 /// Extension to convert a [num] to a [FhirInteger64Builder].
 extension FhirInteger64BuilderNumExtension on num {
   /// Converts a [num] to a [FhirInteger64Builder].
@@ -202,6 +196,10 @@ class FhirInteger64Builder extends PrimitiveTypeBuilder<BigInt?>
   /// Returns the FHIR type as 'integer64'.
   @override
   String get fhirType => 'integer64';
+
+  /// Converts this instance to a [FhirInteger64] object
+  @override
+  FhirInteger64 build() => FhirInteger64.fromJson(toJson());
 
   /// Serializes the instance to JSON.
   @override

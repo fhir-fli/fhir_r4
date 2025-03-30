@@ -13,12 +13,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [Composition] to a Builder
-extension BuilderComposition on Composition {
-  /// Converts [Composition] to a [CompositionBuilder]
-  CompositionBuilder get toBuilder => CompositionBuilder.fromJson(toJson());
-}
-
 /// [CompositionBuilder]
 /// A set of healthcare-related information that is assembled together into
 /// a single logical package that provides a single coherent statement of
@@ -1305,13 +1299,6 @@ class CompositionBuilder extends DomainResourceBuilder {
   }
 }
 
-/// Extension to change [CompositionAttester] to a Builder
-extension BuilderCompositionAttester on CompositionAttester {
-  /// Converts [CompositionAttester] to a [CompositionAttesterBuilder]
-  CompositionAttesterBuilder get toBuilder =>
-      CompositionAttesterBuilder.fromJson(toJson());
-}
-
 /// [CompositionAttesterBuilder]
 /// A participant who has attested to the accuracy of the
 /// composition/document.
@@ -1798,13 +1785,6 @@ class CompositionAttesterBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [CompositionRelatesTo] to a Builder
-extension BuilderCompositionRelatesTo on CompositionRelatesTo {
-  /// Converts [CompositionRelatesTo] to a [CompositionRelatesToBuilder]
-  CompositionRelatesToBuilder get toBuilder =>
-      CompositionRelatesToBuilder.fromJson(toJson());
 }
 
 /// [CompositionRelatesToBuilder]
@@ -2313,13 +2293,6 @@ class CompositionRelatesToBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [CompositionEvent] to a Builder
-extension BuilderCompositionEvent on CompositionEvent {
-  /// Converts [CompositionEvent] to a [CompositionEventBuilder]
-  CompositionEventBuilder get toBuilder =>
-      CompositionEventBuilder.fromJson(toJson());
 }
 
 /// [CompositionEventBuilder]
@@ -2834,13 +2807,6 @@ class CompositionEventBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [CompositionSection] to a Builder
-extension BuilderCompositionSection on CompositionSection {
-  /// Converts [CompositionSection] to a [CompositionSectionBuilder]
-  CompositionSectionBuilder get toBuilder =>
-      CompositionSectionBuilder.fromJson(toJson());
 }
 
 /// [CompositionSectionBuilder]

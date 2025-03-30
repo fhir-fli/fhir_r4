@@ -9,13 +9,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [AppointmentResponse] to a Builder
-extension BuilderAppointmentResponse on AppointmentResponse {
-  /// Converts [AppointmentResponse] to a [AppointmentResponseBuilder]
-  AppointmentResponseBuilder get toBuilder =>
-      AppointmentResponseBuilder.fromJson(toJson());
-}
-
 /// [AppointmentResponseBuilder]
 /// A reply to an appointment request for a patient and/or practitioner(s),
 /// such as a confirmation or rejection.

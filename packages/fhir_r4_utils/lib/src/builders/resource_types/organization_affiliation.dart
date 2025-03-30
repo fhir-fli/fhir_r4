@@ -9,13 +9,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [OrganizationAffiliation] to a Builder
-extension BuilderOrganizationAffiliation on OrganizationAffiliation {
-  /// Converts [OrganizationAffiliation] to a [OrganizationAffiliationBuilder]
-  OrganizationAffiliationBuilder get toBuilder =>
-      OrganizationAffiliationBuilder.fromJson(toJson());
-}
-
 /// [OrganizationAffiliationBuilder]
 /// Defines an affiliation/assotiation/relationship between 2 distinct
 /// oganizations, that is not a part-of relationship/sub-division

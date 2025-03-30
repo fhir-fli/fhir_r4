@@ -10,12 +10,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [CatalogEntry] to a Builder
-extension BuilderCatalogEntry on CatalogEntry {
-  /// Converts [CatalogEntry] to a [CatalogEntryBuilder]
-  CatalogEntryBuilder get toBuilder => CatalogEntryBuilder.fromJson(toJson());
-}
-
 /// [CatalogEntryBuilder]
 /// Catalog entries are wrappers that contextualize items included in a
 /// catalog.
@@ -1204,13 +1198,6 @@ class CatalogEntryBuilder extends DomainResourceBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [CatalogEntryRelatedEntry] to a Builder
-extension BuilderCatalogEntryRelatedEntry on CatalogEntryRelatedEntry {
-  /// Converts [CatalogEntryRelatedEntry] to a [CatalogEntryRelatedEntryBuilder]
-  CatalogEntryRelatedEntryBuilder get toBuilder =>
-      CatalogEntryRelatedEntryBuilder.fromJson(toJson());
 }
 
 /// [CatalogEntryRelatedEntryBuilder]

@@ -16,13 +16,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [PlanDefinition] to a Builder
-extension BuilderPlanDefinition on PlanDefinition {
-  /// Converts [PlanDefinition] to a [PlanDefinitionBuilder]
-  PlanDefinitionBuilder get toBuilder =>
-      PlanDefinitionBuilder.fromJson(toJson());
-}
-
 /// [PlanDefinitionBuilder]
 /// This resource allows for the definition of various types of plans as a
 /// sharable, consumable, and executable artifact. The resource is general
@@ -2128,13 +2121,6 @@ class PlanDefinitionBuilder extends CanonicalResourceBuilder {
   }
 }
 
-/// Extension to change [PlanDefinitionGoal] to a Builder
-extension BuilderPlanDefinitionGoal on PlanDefinitionGoal {
-  /// Converts [PlanDefinitionGoal] to a [PlanDefinitionGoalBuilder]
-  PlanDefinitionGoalBuilder get toBuilder =>
-      PlanDefinitionGoalBuilder.fromJson(toJson());
-}
-
 /// [PlanDefinitionGoalBuilder]
 /// A goal describes an expected outcome that activities within the plan
 /// are intended to achieve. For example, weight loss, restoring an
@@ -2832,13 +2818,6 @@ class PlanDefinitionGoalBuilder extends BackboneElementBuilder {
   }
 }
 
-/// Extension to change [PlanDefinitionTarget] to a Builder
-extension BuilderPlanDefinitionTarget on PlanDefinitionTarget {
-  /// Converts [PlanDefinitionTarget] to a [PlanDefinitionTargetBuilder]
-  PlanDefinitionTargetBuilder get toBuilder =>
-      PlanDefinitionTargetBuilder.fromJson(toJson());
-}
-
 /// [PlanDefinitionTargetBuilder]
 /// Indicates what should be done and within what timeframe.
 class PlanDefinitionTargetBuilder extends BackboneElementBuilder {
@@ -3423,13 +3402,6 @@ class PlanDefinitionTargetBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [PlanDefinitionAction] to a Builder
-extension BuilderPlanDefinitionAction on PlanDefinitionAction {
-  /// Converts [PlanDefinitionAction] to a [PlanDefinitionActionBuilder]
-  PlanDefinitionActionBuilder get toBuilder =>
-      PlanDefinitionActionBuilder.fromJson(toJson());
 }
 
 /// [PlanDefinitionActionBuilder]
@@ -5443,13 +5415,6 @@ class PlanDefinitionActionBuilder extends BackboneElementBuilder {
   }
 }
 
-/// Extension to change [PlanDefinitionCondition] to a Builder
-extension BuilderPlanDefinitionCondition on PlanDefinitionCondition {
-  /// Converts [PlanDefinitionCondition] to a [PlanDefinitionConditionBuilder]
-  PlanDefinitionConditionBuilder get toBuilder =>
-      PlanDefinitionConditionBuilder.fromJson(toJson());
-}
-
 /// [PlanDefinitionConditionBuilder]
 /// An expression that describes applicability criteria or start/stop
 /// conditions for the action.
@@ -5895,13 +5860,6 @@ class PlanDefinitionConditionBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [PlanDefinitionRelatedAction] to a Builder
-extension BuilderPlanDefinitionRelatedAction on PlanDefinitionRelatedAction {
-  /// Converts [PlanDefinitionRelatedAction] to a [PlanDefinitionRelatedActionBuilder]
-  PlanDefinitionRelatedActionBuilder get toBuilder =>
-      PlanDefinitionRelatedActionBuilder.fromJson(toJson());
 }
 
 /// [PlanDefinitionRelatedActionBuilder]
@@ -6459,13 +6417,6 @@ class PlanDefinitionRelatedActionBuilder extends BackboneElementBuilder {
   }
 }
 
-/// Extension to change [PlanDefinitionParticipant] to a Builder
-extension BuilderPlanDefinitionParticipant on PlanDefinitionParticipant {
-  /// Converts [PlanDefinitionParticipant] to a [PlanDefinitionParticipantBuilder]
-  PlanDefinitionParticipantBuilder get toBuilder =>
-      PlanDefinitionParticipantBuilder.fromJson(toJson());
-}
-
 /// [PlanDefinitionParticipantBuilder]
 /// Indicates who should participate in performing the action described.
 class PlanDefinitionParticipantBuilder extends BackboneElementBuilder {
@@ -6911,13 +6862,6 @@ class PlanDefinitionParticipantBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [PlanDefinitionDynamicValue] to a Builder
-extension BuilderPlanDefinitionDynamicValue on PlanDefinitionDynamicValue {
-  /// Converts [PlanDefinitionDynamicValue] to a [PlanDefinitionDynamicValueBuilder]
-  PlanDefinitionDynamicValueBuilder get toBuilder =>
-      PlanDefinitionDynamicValueBuilder.fromJson(toJson());
 }
 
 /// [PlanDefinitionDynamicValueBuilder]

@@ -12,12 +12,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [Patient] to a Builder
-extension BuilderPatient on Patient {
-  /// Converts [Patient] to a [PatientBuilder]
-  PatientBuilder get toBuilder => PatientBuilder.fromJson(toJson());
-}
-
 /// [PatientBuilder]
 /// Demographics and other administrative information about an individual
 /// or animal receiving care or other health-related services.
@@ -1490,13 +1484,6 @@ class PatientBuilder extends DomainResourceBuilder {
   }
 }
 
-/// Extension to change [PatientContact] to a Builder
-extension BuilderPatientContact on PatientContact {
-  /// Converts [PatientContact] to a [PatientContactBuilder]
-  PatientContactBuilder get toBuilder =>
-      PatientContactBuilder.fromJson(toJson());
-}
-
 /// [PatientContactBuilder]
 /// A contact party (e.g. guardian, partner, friend) for the patient.
 class PatientContactBuilder extends BackboneElementBuilder {
@@ -2179,13 +2166,6 @@ class PatientContactBuilder extends BackboneElementBuilder {
   }
 }
 
-/// Extension to change [PatientCommunication] to a Builder
-extension BuilderPatientCommunication on PatientCommunication {
-  /// Converts [PatientCommunication] to a [PatientCommunicationBuilder]
-  PatientCommunicationBuilder get toBuilder =>
-      PatientCommunicationBuilder.fromJson(toJson());
-}
-
 /// [PatientCommunicationBuilder]
 /// A language which may be used to communicate with the patient about his
 /// or her health.
@@ -2633,12 +2613,6 @@ class PatientCommunicationBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [PatientLink] to a Builder
-extension BuilderPatientLink on PatientLink {
-  /// Converts [PatientLink] to a [PatientLinkBuilder]
-  PatientLinkBuilder get toBuilder => PatientLinkBuilder.fromJson(toJson());
 }
 
 /// [PatientLinkBuilder]

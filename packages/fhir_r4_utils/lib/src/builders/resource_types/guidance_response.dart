@@ -9,13 +9,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [GuidanceResponse] to a Builder
-extension BuilderGuidanceResponse on GuidanceResponse {
-  /// Converts [GuidanceResponse] to a [GuidanceResponseBuilder]
-  GuidanceResponseBuilder get toBuilder =>
-      GuidanceResponseBuilder.fromJson(toJson());
-}
-
 /// [GuidanceResponseBuilder]
 /// A guidance response is the formal response to a guidance request,
 /// including any output parameters returned by the evaluation, as well as

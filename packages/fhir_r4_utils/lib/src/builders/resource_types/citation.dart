@@ -32,12 +32,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [Citation] to a Builder
-extension BuilderCitation on Citation {
-  /// Converts [Citation] to a [CitationBuilder]
-  CitationBuilder get toBuilder => CitationBuilder.fromJson(toJson());
-}
-
 /// [CitationBuilder]
 /// The Citation Resource enables reference to any knowledge artifact for
 /// purposes of identification and attribution. The Citation Resource
@@ -2012,13 +2006,6 @@ class CitationBuilder extends DomainResourceBuilder {
   }
 }
 
-/// Extension to change [CitationSummary] to a Builder
-extension BuilderCitationSummary on CitationSummary {
-  /// Converts [CitationSummary] to a [CitationSummaryBuilder]
-  CitationSummaryBuilder get toBuilder =>
-      CitationSummaryBuilder.fromJson(toJson());
-}
-
 /// [CitationSummaryBuilder]
 /// A human-readable display of the citation.
 class CitationSummaryBuilder extends BackboneElementBuilder {
@@ -2461,13 +2448,6 @@ class CitationSummaryBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [CitationClassification] to a Builder
-extension BuilderCitationClassification on CitationClassification {
-  /// Converts [CitationClassification] to a [CitationClassificationBuilder]
-  CitationClassificationBuilder get toBuilder =>
-      CitationClassificationBuilder.fromJson(toJson());
 }
 
 /// [CitationClassificationBuilder]
@@ -2922,13 +2902,6 @@ class CitationClassificationBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [CitationStatusDate] to a Builder
-extension BuilderCitationStatusDate on CitationStatusDate {
-  /// Converts [CitationStatusDate] to a [CitationStatusDateBuilder]
-  CitationStatusDateBuilder get toBuilder =>
-      CitationStatusDateBuilder.fromJson(toJson());
 }
 
 /// [CitationStatusDateBuilder]
@@ -3416,13 +3389,6 @@ class CitationStatusDateBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [CitationRelatesTo] to a Builder
-extension BuilderCitationRelatesTo on CitationRelatesTo {
-  /// Converts [CitationRelatesTo] to a [CitationRelatesToBuilder]
-  CitationRelatesToBuilder get toBuilder =>
-      CitationRelatesToBuilder.fromJson(toJson());
 }
 
 /// [CitationRelatesToBuilder]
@@ -4042,13 +4008,6 @@ class CitationRelatesToBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [CitationCitedArtifact] to a Builder
-extension BuilderCitationCitedArtifact on CitationCitedArtifact {
-  /// Converts [CitationCitedArtifact] to a [CitationCitedArtifactBuilder]
-  CitationCitedArtifactBuilder get toBuilder =>
-      CitationCitedArtifactBuilder.fromJson(toJson());
 }
 
 /// [CitationCitedArtifactBuilder]
@@ -5159,13 +5118,6 @@ class CitationCitedArtifactBuilder extends BackboneElementBuilder {
   }
 }
 
-/// Extension to change [CitationVersion] to a Builder
-extension BuilderCitationVersion on CitationVersion {
-  /// Converts [CitationVersion] to a [CitationVersionBuilder]
-  CitationVersionBuilder get toBuilder =>
-      CitationVersionBuilder.fromJson(toJson());
-}
-
 /// [CitationVersionBuilder]
 /// The defined version of the cited artifact.
 class CitationVersionBuilder extends BackboneElementBuilder {
@@ -5608,13 +5560,6 @@ class CitationVersionBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [CitationStatusDate1] to a Builder
-extension BuilderCitationStatusDate1 on CitationStatusDate1 {
-  /// Converts [CitationStatusDate1] to a [CitationStatusDate1Builder]
-  CitationStatusDate1Builder get toBuilder =>
-      CitationStatusDate1Builder.fromJson(toJson());
 }
 
 /// [CitationStatusDate1Builder]
@@ -6102,12 +6047,6 @@ class CitationStatusDate1Builder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [CitationTitle] to a Builder
-extension BuilderCitationTitle on CitationTitle {
-  /// Converts [CitationTitle] to a [CitationTitleBuilder]
-  CitationTitleBuilder get toBuilder => CitationTitleBuilder.fromJson(toJson());
 }
 
 /// [CitationTitleBuilder]
@@ -6604,13 +6543,6 @@ class CitationTitleBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [CitationAbstract] to a Builder
-extension BuilderCitationAbstract on CitationAbstract {
-  /// Converts [CitationAbstract] to a [CitationAbstractBuilder]
-  CitationAbstractBuilder get toBuilder =>
-      CitationAbstractBuilder.fromJson(toJson());
 }
 
 /// [CitationAbstractBuilder]
@@ -7143,12 +7075,6 @@ class CitationAbstractBuilder extends BackboneElementBuilder {
   }
 }
 
-/// Extension to change [CitationPart] to a Builder
-extension BuilderCitationPart on CitationPart {
-  /// Converts [CitationPart] to a [CitationPartBuilder]
-  CitationPartBuilder get toBuilder => CitationPartBuilder.fromJson(toJson());
-}
-
 /// [CitationPartBuilder]
 /// The component of the article or artifact.
 class CitationPartBuilder extends BackboneElementBuilder {
@@ -7634,13 +7560,6 @@ class CitationPartBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [CitationRelatesTo1] to a Builder
-extension BuilderCitationRelatesTo1 on CitationRelatesTo1 {
-  /// Converts [CitationRelatesTo1] to a [CitationRelatesTo1Builder]
-  CitationRelatesTo1Builder get toBuilder =>
-      CitationRelatesTo1Builder.fromJson(toJson());
 }
 
 /// [CitationRelatesTo1Builder]
@@ -8260,13 +8179,6 @@ class CitationRelatesTo1Builder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [CitationPublicationForm] to a Builder
-extension BuilderCitationPublicationForm on CitationPublicationForm {
-  /// Converts [CitationPublicationForm] to a [CitationPublicationFormBuilder]
-  CitationPublicationFormBuilder get toBuilder =>
-      CitationPublicationFormBuilder.fromJson(toJson());
 }
 
 /// [CitationPublicationFormBuilder]
@@ -9113,13 +9025,6 @@ class CitationPublicationFormBuilder extends BackboneElementBuilder {
   }
 }
 
-/// Extension to change [CitationPublishedIn] to a Builder
-extension BuilderCitationPublishedIn on CitationPublishedIn {
-  /// Converts [CitationPublishedIn] to a [CitationPublishedInBuilder]
-  CitationPublishedInBuilder get toBuilder =>
-      CitationPublishedInBuilder.fromJson(toJson());
-}
-
 /// [CitationPublishedInBuilder]
 /// The collection the cited article or artifact is published in.
 class CitationPublishedInBuilder extends BackboneElementBuilder {
@@ -9703,13 +9608,6 @@ class CitationPublishedInBuilder extends BackboneElementBuilder {
   }
 }
 
-/// Extension to change [CitationPeriodicRelease] to a Builder
-extension BuilderCitationPeriodicRelease on CitationPeriodicRelease {
-  /// Converts [CitationPeriodicRelease] to a [CitationPeriodicReleaseBuilder]
-  CitationPeriodicReleaseBuilder get toBuilder =>
-      CitationPeriodicReleaseBuilder.fromJson(toJson());
-}
-
 /// [CitationPeriodicReleaseBuilder]
 /// The specific issue in which the cited article resides.
 class CitationPeriodicReleaseBuilder extends BackboneElementBuilder {
@@ -10241,13 +10139,6 @@ class CitationPeriodicReleaseBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [CitationDateOfPublication] to a Builder
-extension BuilderCitationDateOfPublication on CitationDateOfPublication {
-  /// Converts [CitationDateOfPublication] to a [CitationDateOfPublicationBuilder]
-  CitationDateOfPublicationBuilder get toBuilder =>
-      CitationDateOfPublicationBuilder.fromJson(toJson());
 }
 
 /// [CitationDateOfPublicationBuilder]
@@ -10871,13 +10762,6 @@ class CitationDateOfPublicationBuilder extends BackboneElementBuilder {
   }
 }
 
-/// Extension to change [CitationWebLocation] to a Builder
-extension BuilderCitationWebLocation on CitationWebLocation {
-  /// Converts [CitationWebLocation] to a [CitationWebLocationBuilder]
-  CitationWebLocationBuilder get toBuilder =>
-      CitationWebLocationBuilder.fromJson(toJson());
-}
-
 /// [CitationWebLocationBuilder]
 /// Used for any URL for the article or artifact cited.
 class CitationWebLocationBuilder extends BackboneElementBuilder {
@@ -11320,13 +11204,6 @@ class CitationWebLocationBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [CitationClassification1] to a Builder
-extension BuilderCitationClassification1 on CitationClassification1 {
-  /// Converts [CitationClassification1] to a [CitationClassification1Builder]
-  CitationClassification1Builder get toBuilder =>
-      CitationClassification1Builder.fromJson(toJson());
 }
 
 /// [CitationClassification1Builder]
@@ -11824,13 +11701,6 @@ class CitationClassification1Builder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [CitationWhoClassified] to a Builder
-extension BuilderCitationWhoClassified on CitationWhoClassified {
-  /// Converts [CitationWhoClassified] to a [CitationWhoClassifiedBuilder]
-  CitationWhoClassifiedBuilder get toBuilder =>
-      CitationWhoClassifiedBuilder.fromJson(toJson());
 }
 
 /// [CitationWhoClassifiedBuilder]
@@ -12408,13 +12278,6 @@ class CitationWhoClassifiedBuilder extends BackboneElementBuilder {
   }
 }
 
-/// Extension to change [CitationContributorship] to a Builder
-extension BuilderCitationContributorship on CitationContributorship {
-  /// Converts [CitationContributorship] to a [CitationContributorshipBuilder]
-  CitationContributorshipBuilder get toBuilder =>
-      CitationContributorshipBuilder.fromJson(toJson());
-}
-
 /// [CitationContributorshipBuilder]
 /// This element is used to list authors and other contributors, their
 /// contact information, specific contributions, and summary statements.
@@ -12921,12 +12784,6 @@ class CitationContributorshipBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [CitationEntry] to a Builder
-extension BuilderCitationEntry on CitationEntry {
-  /// Converts [CitationEntry] to a [CitationEntryBuilder]
-  CitationEntryBuilder get toBuilder => CitationEntryBuilder.fromJson(toJson());
 }
 
 /// [CitationEntryBuilder]
@@ -13859,13 +13716,6 @@ class CitationEntryBuilder extends BackboneElementBuilder {
   }
 }
 
-/// Extension to change [CitationAffiliationInfo] to a Builder
-extension BuilderCitationAffiliationInfo on CitationAffiliationInfo {
-  /// Converts [CitationAffiliationInfo] to a [CitationAffiliationInfoBuilder]
-  CitationAffiliationInfoBuilder get toBuilder =>
-      CitationAffiliationInfoBuilder.fromJson(toJson());
-}
-
 /// [CitationAffiliationInfoBuilder]
 /// Organization affiliated with the entity.
 class CitationAffiliationInfoBuilder extends BackboneElementBuilder {
@@ -14365,13 +14215,6 @@ class CitationAffiliationInfoBuilder extends BackboneElementBuilder {
   }
 }
 
-/// Extension to change [CitationContributionInstance] to a Builder
-extension BuilderCitationContributionInstance on CitationContributionInstance {
-  /// Converts [CitationContributionInstance] to a [CitationContributionInstanceBuilder]
-  CitationContributionInstanceBuilder get toBuilder =>
-      CitationContributionInstanceBuilder.fromJson(toJson());
-}
-
 /// [CitationContributionInstanceBuilder]
 /// Contributions with accounting for time or number.
 class CitationContributionInstanceBuilder extends BackboneElementBuilder {
@@ -14818,13 +14661,6 @@ class CitationContributionInstanceBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [CitationSummary1] to a Builder
-extension BuilderCitationSummary1 on CitationSummary1 {
-  /// Converts [CitationSummary1] to a [CitationSummary1Builder]
-  CitationSummary1Builder get toBuilder =>
-      CitationSummary1Builder.fromJson(toJson());
 }
 
 /// [CitationSummary1Builder]

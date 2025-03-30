@@ -11,12 +11,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [DetectedIssue] to a Builder
-extension BuilderDetectedIssue on DetectedIssue {
-  /// Converts [DetectedIssue] to a [DetectedIssueBuilder]
-  DetectedIssueBuilder get toBuilder => DetectedIssueBuilder.fromJson(toJson());
-}
-
 /// [DetectedIssueBuilder]
 /// Indicates an actual or potential clinical issue with or between one or
 /// more active or proposed clinical actions for a patient; e.g. Drug-drug
@@ -1208,13 +1202,6 @@ class DetectedIssueBuilder extends DomainResourceBuilder {
   }
 }
 
-/// Extension to change [DetectedIssueEvidence] to a Builder
-extension BuilderDetectedIssueEvidence on DetectedIssueEvidence {
-  /// Converts [DetectedIssueEvidence] to a [DetectedIssueEvidenceBuilder]
-  DetectedIssueEvidenceBuilder get toBuilder =>
-      DetectedIssueEvidenceBuilder.fromJson(toJson());
-}
-
 /// [DetectedIssueEvidenceBuilder]
 /// Supporting evidence or manifestations that provide the basis for
 /// identifying the detected issue such as a GuidanceResponse or
@@ -1679,13 +1666,6 @@ class DetectedIssueEvidenceBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [DetectedIssueMitigation] to a Builder
-extension BuilderDetectedIssueMitigation on DetectedIssueMitigation {
-  /// Converts [DetectedIssueMitigation] to a [DetectedIssueMitigationBuilder]
-  DetectedIssueMitigationBuilder get toBuilder =>
-      DetectedIssueMitigationBuilder.fromJson(toJson());
 }
 
 /// [DetectedIssueMitigationBuilder]

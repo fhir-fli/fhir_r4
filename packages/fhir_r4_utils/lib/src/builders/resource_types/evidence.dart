@@ -16,12 +16,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [Evidence] to a Builder
-extension BuilderEvidence on Evidence {
-  /// Converts [Evidence] to a [EvidenceBuilder]
-  EvidenceBuilder get toBuilder => EvidenceBuilder.fromJson(toJson());
-}
-
 /// [EvidenceBuilder]
 /// The Evidence Resource provides a machine-interpretable expression of an
 /// evidence concept including the evidence variables (eg population,
@@ -1866,13 +1860,6 @@ class EvidenceBuilder extends DomainResourceBuilder {
   }
 }
 
-/// Extension to change [EvidenceVariableDefinition] to a Builder
-extension BuilderEvidenceVariableDefinition on EvidenceVariableDefinition {
-  /// Converts [EvidenceVariableDefinition] to a [EvidenceVariableDefinitionBuilder]
-  EvidenceVariableDefinitionBuilder get toBuilder =>
-      EvidenceVariableDefinitionBuilder.fromJson(toJson());
-}
-
 /// [EvidenceVariableDefinitionBuilder]
 /// Evidence variable such as population, exposure, or outcome.
 class EvidenceVariableDefinitionBuilder extends BackboneElementBuilder {
@@ -2500,13 +2487,6 @@ class EvidenceVariableDefinitionBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [EvidenceStatistic] to a Builder
-extension BuilderEvidenceStatistic on EvidenceStatistic {
-  /// Converts [EvidenceStatistic] to a [EvidenceStatisticBuilder]
-  EvidenceStatisticBuilder get toBuilder =>
-      EvidenceStatisticBuilder.fromJson(toJson());
 }
 
 /// [EvidenceStatisticBuilder]
@@ -3329,13 +3309,6 @@ class EvidenceStatisticBuilder extends BackboneElementBuilder {
   }
 }
 
-/// Extension to change [EvidenceSampleSize] to a Builder
-extension BuilderEvidenceSampleSize on EvidenceSampleSize {
-  /// Converts [EvidenceSampleSize] to a [EvidenceSampleSizeBuilder]
-  EvidenceSampleSizeBuilder get toBuilder =>
-      EvidenceSampleSizeBuilder.fromJson(toJson());
-}
-
 /// [EvidenceSampleSizeBuilder]
 /// Number of samples in the statistic.
 class EvidenceSampleSizeBuilder extends BackboneElementBuilder {
@@ -3917,13 +3890,6 @@ class EvidenceSampleSizeBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [EvidenceAttributeEstimate] to a Builder
-extension BuilderEvidenceAttributeEstimate on EvidenceAttributeEstimate {
-  /// Converts [EvidenceAttributeEstimate] to a [EvidenceAttributeEstimateBuilder]
-  EvidenceAttributeEstimateBuilder get toBuilder =>
-      EvidenceAttributeEstimateBuilder.fromJson(toJson());
 }
 
 /// [EvidenceAttributeEstimateBuilder]
@@ -4609,13 +4575,6 @@ class EvidenceAttributeEstimateBuilder extends BackboneElementBuilder {
   }
 }
 
-/// Extension to change [EvidenceModelCharacteristic] to a Builder
-extension BuilderEvidenceModelCharacteristic on EvidenceModelCharacteristic {
-  /// Converts [EvidenceModelCharacteristic] to a [EvidenceModelCharacteristicBuilder]
-  EvidenceModelCharacteristicBuilder get toBuilder =>
-      EvidenceModelCharacteristicBuilder.fromJson(toJson());
-}
-
 /// [EvidenceModelCharacteristicBuilder]
 /// A component of the method to generate the statistic.
 class EvidenceModelCharacteristicBuilder extends BackboneElementBuilder {
@@ -5165,14 +5124,6 @@ class EvidenceModelCharacteristicBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [EvidenceModelCharacteristicVariable] to a Builder
-extension BuilderEvidenceModelCharacteristicVariable
-    on EvidenceModelCharacteristicVariable {
-  /// Converts [EvidenceModelCharacteristicVariable] to a [EvidenceModelCharacteristicVariableBuilder]
-  EvidenceModelCharacteristicVariableBuilder get toBuilder =>
-      EvidenceModelCharacteristicVariableBuilder.fromJson(toJson());
 }
 
 /// [EvidenceModelCharacteristicVariableBuilder]
@@ -5777,13 +5728,6 @@ class EvidenceModelCharacteristicVariableBuilder
     }
     return true;
   }
-}
-
-/// Extension to change [EvidenceCertainty] to a Builder
-extension BuilderEvidenceCertainty on EvidenceCertainty {
-  /// Converts [EvidenceCertainty] to a [EvidenceCertaintyBuilder]
-  EvidenceCertaintyBuilder get toBuilder =>
-      EvidenceCertaintyBuilder.fromJson(toJson());
 }
 
 /// [EvidenceCertaintyBuilder]

@@ -14,13 +14,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [SubscriptionTopic] to a Builder
-extension BuilderSubscriptionTopic on SubscriptionTopic {
-  /// Converts [SubscriptionTopic] to a [SubscriptionTopicBuilder]
-  SubscriptionTopicBuilder get toBuilder =>
-      SubscriptionTopicBuilder.fromJson(toJson());
-}
-
 /// [SubscriptionTopicBuilder]
 /// Describes a stream of resource state changes or events and annotated
 /// with labels useful to filter projections from this topic.
@@ -1587,14 +1580,6 @@ class SubscriptionTopicBuilder extends CanonicalResourceBuilder {
   }
 }
 
-/// Extension to change [SubscriptionTopicResourceTrigger] to a Builder
-extension BuilderSubscriptionTopicResourceTrigger
-    on SubscriptionTopicResourceTrigger {
-  /// Converts [SubscriptionTopicResourceTrigger] to a [SubscriptionTopicResourceTriggerBuilder]
-  SubscriptionTopicResourceTriggerBuilder get toBuilder =>
-      SubscriptionTopicResourceTriggerBuilder.fromJson(toJson());
-}
-
 /// [SubscriptionTopicResourceTriggerBuilder]
 /// A definition of a resource-based event that triggers a notification
 /// based on the SubscriptionTopic. The criteria may be just a human
@@ -2194,14 +2179,6 @@ class SubscriptionTopicResourceTriggerBuilder extends BackboneElementBuilder {
   }
 }
 
-/// Extension to change [SubscriptionTopicQueryCriteria] to a Builder
-extension BuilderSubscriptionTopicQueryCriteria
-    on SubscriptionTopicQueryCriteria {
-  /// Converts [SubscriptionTopicQueryCriteria] to a [SubscriptionTopicQueryCriteriaBuilder]
-  SubscriptionTopicQueryCriteriaBuilder get toBuilder =>
-      SubscriptionTopicQueryCriteriaBuilder.fromJson(toJson());
-}
-
 /// [SubscriptionTopicQueryCriteriaBuilder]
 /// The FHIR query based rules that the server should use to determine when
 /// to trigger a notification for this subscription topic.
@@ -2786,14 +2763,6 @@ class SubscriptionTopicQueryCriteriaBuilder extends BackboneElementBuilder {
   }
 }
 
-/// Extension to change [SubscriptionTopicEventTrigger] to a Builder
-extension BuilderSubscriptionTopicEventTrigger
-    on SubscriptionTopicEventTrigger {
-  /// Converts [SubscriptionTopicEventTrigger] to a [SubscriptionTopicEventTriggerBuilder]
-  SubscriptionTopicEventTriggerBuilder get toBuilder =>
-      SubscriptionTopicEventTriggerBuilder.fromJson(toJson());
-}
-
 /// [SubscriptionTopicEventTriggerBuilder]
 /// Event definition which can be used to trigger the SubscriptionTopic.
 class SubscriptionTopicEventTriggerBuilder extends BackboneElementBuilder {
@@ -3291,13 +3260,6 @@ class SubscriptionTopicEventTriggerBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [SubscriptionTopicCanFilterBy] to a Builder
-extension BuilderSubscriptionTopicCanFilterBy on SubscriptionTopicCanFilterBy {
-  /// Converts [SubscriptionTopicCanFilterBy] to a [SubscriptionTopicCanFilterByBuilder]
-  SubscriptionTopicCanFilterByBuilder get toBuilder =>
-      SubscriptionTopicCanFilterByBuilder.fromJson(toJson());
 }
 
 /// [SubscriptionTopicCanFilterByBuilder]
@@ -3895,14 +3857,6 @@ class SubscriptionTopicCanFilterByBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [SubscriptionTopicNotificationShape] to a Builder
-extension BuilderSubscriptionTopicNotificationShape
-    on SubscriptionTopicNotificationShape {
-  /// Converts [SubscriptionTopicNotificationShape] to a [SubscriptionTopicNotificationShapeBuilder]
-  SubscriptionTopicNotificationShapeBuilder get toBuilder =>
-      SubscriptionTopicNotificationShapeBuilder.fromJson(toJson());
 }
 
 /// [SubscriptionTopicNotificationShapeBuilder]

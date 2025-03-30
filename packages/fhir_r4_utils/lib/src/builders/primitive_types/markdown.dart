@@ -1,11 +1,5 @@
 part of 'primitive_types.dart';
 
-/// Extension to convert a [FhirMarkdown] to a [FhirMarkdownBuilder]
-extension BuilderFhirMarkdown on FhirMarkdown {
-  /// Converts this instance to a [FhirMarkdownBuilder]
-  FhirMarkdownBuilder get toBuilder => FhirMarkdownBuilder.fromJson(toJson());
-}
-
 /// Extension to convert a [String] to [FhirMarkdownBuilder].
 extension FhirMarkdownBuilderExtension on String {
   /// Converts a [String] to a [FhirMarkdownBuilder].
@@ -133,6 +127,10 @@ class FhirMarkdownBuilder extends PrimitiveTypeBuilder<String>
   /// Returns the FHIR type as 'markdown'.
   @override
   String get fhirType => 'markdown';
+
+  /// Converts this instance to a [FhirMarkdown] object
+  @override
+  FhirMarkdown build() => FhirMarkdown.fromJson(toJson());
 
   /// Serializes the instance to JSON with standardized keys.
   @override

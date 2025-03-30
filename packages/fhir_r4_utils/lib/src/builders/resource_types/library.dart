@@ -9,12 +9,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [Library] to a Builder
-extension BuilderLibrary on Library {
-  /// Converts [Library] to a [LibraryBuilder]
-  LibraryBuilder get toBuilder => LibraryBuilder.fromJson(toJson());
-}
-
 /// [LibraryBuilder]
 /// The Library resource is a general-purpose container for knowledge asset
 /// definitions. It can be used to describe and expose existing knowledge

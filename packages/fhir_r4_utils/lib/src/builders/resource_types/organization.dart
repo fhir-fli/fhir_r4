@@ -10,12 +10,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [Organization] to a Builder
-extension BuilderOrganization on Organization {
-  /// Converts [Organization] to a [OrganizationBuilder]
-  OrganizationBuilder get toBuilder => OrganizationBuilder.fromJson(toJson());
-}
-
 /// [OrganizationBuilder]
 /// A formally or informally recognized grouping of people or organizations
 /// formed for the purpose of achieving some form of collective action.
@@ -1071,13 +1065,6 @@ class OrganizationBuilder extends DomainResourceBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [OrganizationContact] to a Builder
-extension BuilderOrganizationContact on OrganizationContact {
-  /// Converts [OrganizationContact] to a [OrganizationContactBuilder]
-  OrganizationContactBuilder get toBuilder =>
-      OrganizationContactBuilder.fromJson(toJson());
 }
 
 /// [OrganizationContactBuilder]

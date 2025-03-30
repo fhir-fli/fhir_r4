@@ -17,12 +17,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [StructureMap] to a Builder
-extension BuilderStructureMap on StructureMap {
-  /// Converts [StructureMap] to a [StructureMapBuilder]
-  StructureMapBuilder get toBuilder => StructureMapBuilder.fromJson(toJson());
-}
-
 /// [StructureMapBuilder]
 /// A Map of relationships between 2 structures that can be used to
 /// transform data.
@@ -1389,13 +1383,6 @@ class StructureMapBuilder extends CanonicalResourceBuilder {
   }
 }
 
-/// Extension to change [StructureMapStructure] to a Builder
-extension BuilderStructureMapStructure on StructureMapStructure {
-  /// Converts [StructureMapStructure] to a [StructureMapStructureBuilder]
-  StructureMapStructureBuilder get toBuilder =>
-      StructureMapStructureBuilder.fromJson(toJson());
-}
-
 /// [StructureMapStructureBuilder]
 /// A structure definition used by this map. The structure definition may
 /// describe instances that are converted, or the instances that are
@@ -1927,13 +1914,6 @@ class StructureMapStructureBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [StructureMapGroup] to a Builder
-extension BuilderStructureMapGroup on StructureMapGroup {
-  /// Converts [StructureMapGroup] to a [StructureMapGroupBuilder]
-  StructureMapGroupBuilder get toBuilder =>
-      StructureMapGroupBuilder.fromJson(toJson());
 }
 
 /// [StructureMapGroupBuilder]
@@ -2574,13 +2554,6 @@ class StructureMapGroupBuilder extends BackboneElementBuilder {
   }
 }
 
-/// Extension to change [StructureMapInput] to a Builder
-extension BuilderStructureMapInput on StructureMapInput {
-  /// Converts [StructureMapInput] to a [StructureMapInputBuilder]
-  StructureMapInputBuilder get toBuilder =>
-      StructureMapInputBuilder.fromJson(toJson());
-}
-
 /// [StructureMapInputBuilder]
 /// A name assigned to an instance of data. The instance must be provided
 /// when the mapping is invoked.
@@ -3110,13 +3083,6 @@ class StructureMapInputBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [StructureMapRule] to a Builder
-extension BuilderStructureMapRule on StructureMapRule {
-  /// Converts [StructureMapRule] to a [StructureMapRuleBuilder]
-  StructureMapRuleBuilder get toBuilder =>
-      StructureMapRuleBuilder.fromJson(toJson());
 }
 
 /// [StructureMapRuleBuilder]
@@ -3769,13 +3735,6 @@ class StructureMapRuleBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [StructureMapSource] to a Builder
-extension BuilderStructureMapSource on StructureMapSource {
-  /// Converts [StructureMapSource] to a [StructureMapSourceBuilder]
-  StructureMapSourceBuilder get toBuilder =>
-      StructureMapSourceBuilder.fromJson(toJson());
 }
 
 /// [StructureMapSourceBuilder]
@@ -6111,13 +6070,6 @@ class StructureMapSourceBuilder extends BackboneElementBuilder {
   }
 }
 
-/// Extension to change [StructureMapTarget] to a Builder
-extension BuilderStructureMapTarget on StructureMapTarget {
-  /// Converts [StructureMapTarget] to a [StructureMapTargetBuilder]
-  StructureMapTargetBuilder get toBuilder =>
-      StructureMapTargetBuilder.fromJson(toJson());
-}
-
 /// [StructureMapTargetBuilder]
 /// Content to create because of this mapping rule.
 class StructureMapTargetBuilder extends BackboneElementBuilder {
@@ -6835,13 +6787,6 @@ class StructureMapTargetBuilder extends BackboneElementBuilder {
   }
 }
 
-/// Extension to change [StructureMapParameter] to a Builder
-extension BuilderStructureMapParameter on StructureMapParameter {
-  /// Converts [StructureMapParameter] to a [StructureMapParameterBuilder]
-  StructureMapParameterBuilder get toBuilder =>
-      StructureMapParameterBuilder.fromJson(toJson());
-}
-
 /// [StructureMapParameterBuilder]
 /// Parameters to the transform.
 class StructureMapParameterBuilder extends BackboneElementBuilder {
@@ -7394,13 +7339,6 @@ class StructureMapParameterBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [StructureMapDependent] to a Builder
-extension BuilderStructureMapDependent on StructureMapDependent {
-  /// Converts [StructureMapDependent] to a [StructureMapDependentBuilder]
-  StructureMapDependentBuilder get toBuilder =>
-      StructureMapDependentBuilder.fromJson(toJson());
 }
 
 /// [StructureMapDependentBuilder]

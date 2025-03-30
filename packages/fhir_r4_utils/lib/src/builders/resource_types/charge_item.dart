@@ -10,12 +10,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [ChargeItem] to a Builder
-extension BuilderChargeItem on ChargeItem {
-  /// Converts [ChargeItem] to a [ChargeItemBuilder]
-  ChargeItemBuilder get toBuilder => ChargeItemBuilder.fromJson(toJson());
-}
-
 /// [ChargeItemBuilder]
 /// The resource ChargeItem describes the provision of healthcare provider
 /// products for a certain patient, therefore referring not only to the
@@ -1958,13 +1952,6 @@ class ChargeItemBuilder extends DomainResourceBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [ChargeItemPerformer] to a Builder
-extension BuilderChargeItemPerformer on ChargeItemPerformer {
-  /// Converts [ChargeItemPerformer] to a [ChargeItemPerformerBuilder]
-  ChargeItemPerformerBuilder get toBuilder =>
-      ChargeItemPerformerBuilder.fromJson(toJson());
 }
 
 /// [ChargeItemPerformerBuilder]

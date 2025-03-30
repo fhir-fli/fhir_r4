@@ -4,12 +4,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [Contributor] to a Builder
-extension BuilderContributor on Contributor {
-  /// Converts [Contributor] to a [ContributorBuilder]
-  ContributorBuilder get toBuilder => ContributorBuilder.fromJson(toJson());
-}
-
 /// [ContributorBuilder]
 /// A contributor to the content of a knowledge asset, including authors,
 /// editors, reviewers, and endorsers.

@@ -9,13 +9,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [ServiceRequest] to a Builder
-extension BuilderServiceRequest on ServiceRequest {
-  /// Converts [ServiceRequest] to a [ServiceRequestBuilder]
-  ServiceRequestBuilder get toBuilder =>
-      ServiceRequestBuilder.fromJson(toJson());
-}
-
 /// [ServiceRequestBuilder]
 /// A record of a request for service such as diagnostic investigations,
 /// treatments, or operations to be performed.

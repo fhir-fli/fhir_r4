@@ -10,13 +10,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [SupplyDelivery] to a Builder
-extension BuilderSupplyDelivery on SupplyDelivery {
-  /// Converts [SupplyDelivery] to a [SupplyDeliveryBuilder]
-  SupplyDeliveryBuilder get toBuilder =>
-      SupplyDeliveryBuilder.fromJson(toJson());
-}
-
 /// [SupplyDeliveryBuilder]
 /// Record of delivery of what is supplied.
 class SupplyDeliveryBuilder extends DomainResourceBuilder {
@@ -1185,13 +1178,6 @@ class SupplyDeliveryBuilder extends DomainResourceBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [SupplyDeliverySuppliedItem] to a Builder
-extension BuilderSupplyDeliverySuppliedItem on SupplyDeliverySuppliedItem {
-  /// Converts [SupplyDeliverySuppliedItem] to a [SupplyDeliverySuppliedItemBuilder]
-  SupplyDeliverySuppliedItemBuilder get toBuilder =>
-      SupplyDeliverySuppliedItemBuilder.fromJson(toJson());
 }
 
 /// [SupplyDeliverySuppliedItemBuilder]

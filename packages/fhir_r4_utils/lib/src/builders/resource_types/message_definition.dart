@@ -11,13 +11,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [MessageDefinition] to a Builder
-extension BuilderMessageDefinition on MessageDefinition {
-  /// Converts [MessageDefinition] to a [MessageDefinitionBuilder]
-  MessageDefinitionBuilder get toBuilder =>
-      MessageDefinitionBuilder.fromJson(toJson());
-}
-
 /// [MessageDefinitionBuilder]
 /// Defines the characteristics of a message that can be shared between
 /// systems, including the type of event that initiates the message, the
@@ -1723,13 +1716,6 @@ class MessageDefinitionBuilder extends CanonicalResourceBuilder {
   }
 }
 
-/// Extension to change [MessageDefinitionFocus] to a Builder
-extension BuilderMessageDefinitionFocus on MessageDefinitionFocus {
-  /// Converts [MessageDefinitionFocus] to a [MessageDefinitionFocusBuilder]
-  MessageDefinitionFocusBuilder get toBuilder =>
-      MessageDefinitionFocusBuilder.fromJson(toJson());
-}
-
 /// [MessageDefinitionFocusBuilder]
 /// Identifies the resource (or resources) that are being addressed by the
 /// event. For example, the Encounter for an admit message or two Account
@@ -2266,14 +2252,6 @@ class MessageDefinitionFocusBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [MessageDefinitionAllowedResponse] to a Builder
-extension BuilderMessageDefinitionAllowedResponse
-    on MessageDefinitionAllowedResponse {
-  /// Converts [MessageDefinitionAllowedResponse] to a [MessageDefinitionAllowedResponseBuilder]
-  MessageDefinitionAllowedResponseBuilder get toBuilder =>
-      MessageDefinitionAllowedResponseBuilder.fromJson(toJson());
 }
 
 /// [MessageDefinitionAllowedResponseBuilder]

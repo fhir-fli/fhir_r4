@@ -11,12 +11,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [AdverseEvent] to a Builder
-extension BuilderAdverseEvent on AdverseEvent {
-  /// Converts [AdverseEvent] to a [AdverseEventBuilder]
-  AdverseEventBuilder get toBuilder => AdverseEventBuilder.fromJson(toJson());
-}
-
 /// [AdverseEventBuilder]
 /// Actual or potential/avoided event causing unintended physical injury
 /// resulting from or contributed to by medical care, a research study or
@@ -1524,13 +1518,6 @@ class AdverseEventBuilder extends DomainResourceBuilder {
   }
 }
 
-/// Extension to change [AdverseEventSuspectEntity] to a Builder
-extension BuilderAdverseEventSuspectEntity on AdverseEventSuspectEntity {
-  /// Converts [AdverseEventSuspectEntity] to a [AdverseEventSuspectEntityBuilder]
-  AdverseEventSuspectEntityBuilder get toBuilder =>
-      AdverseEventSuspectEntityBuilder.fromJson(toJson());
-}
-
 /// [AdverseEventSuspectEntityBuilder]
 /// Describes the entity that is suspected to have caused the adverse
 /// event.
@@ -1987,13 +1974,6 @@ class AdverseEventSuspectEntityBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [AdverseEventCausality] to a Builder
-extension BuilderAdverseEventCausality on AdverseEventCausality {
-  /// Converts [AdverseEventCausality] to a [AdverseEventCausalityBuilder]
-  AdverseEventCausalityBuilder get toBuilder =>
-      AdverseEventCausalityBuilder.fromJson(toJson());
 }
 
 /// [AdverseEventCausalityBuilder]

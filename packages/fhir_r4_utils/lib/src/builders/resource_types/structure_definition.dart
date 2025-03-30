@@ -13,13 +13,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [StructureDefinition] to a Builder
-extension BuilderStructureDefinition on StructureDefinition {
-  /// Converts [StructureDefinition] to a [StructureDefinitionBuilder]
-  StructureDefinitionBuilder get toBuilder =>
-      StructureDefinitionBuilder.fromJson(toJson());
-}
-
 /// [StructureDefinitionBuilder]
 /// A definition of a FHIR structure. This resource is used to describe the
 /// underlying resources, data types defined in FHIR, and also for
@@ -1803,13 +1796,6 @@ class StructureDefinitionBuilder extends CanonicalResourceBuilder {
   }
 }
 
-/// Extension to change [StructureDefinitionMapping] to a Builder
-extension BuilderStructureDefinitionMapping on StructureDefinitionMapping {
-  /// Converts [StructureDefinitionMapping] to a [StructureDefinitionMappingBuilder]
-  StructureDefinitionMappingBuilder get toBuilder =>
-      StructureDefinitionMappingBuilder.fromJson(toJson());
-}
-
 /// [StructureDefinitionMappingBuilder]
 /// An external specification that the content is mapped to.
 class StructureDefinitionMappingBuilder extends BackboneElementBuilder {
@@ -2345,13 +2331,6 @@ class StructureDefinitionMappingBuilder extends BackboneElementBuilder {
   }
 }
 
-/// Extension to change [StructureDefinitionContext] to a Builder
-extension BuilderStructureDefinitionContext on StructureDefinitionContext {
-  /// Converts [StructureDefinitionContext] to a [StructureDefinitionContextBuilder]
-  StructureDefinitionContextBuilder get toBuilder =>
-      StructureDefinitionContextBuilder.fromJson(toJson());
-}
-
 /// [StructureDefinitionContextBuilder]
 /// Identifies the types of resource or data type elements to which the
 /// extension can be applied.
@@ -2800,13 +2779,6 @@ class StructureDefinitionContextBuilder extends BackboneElementBuilder {
   }
 }
 
-/// Extension to change [StructureDefinitionSnapshot] to a Builder
-extension BuilderStructureDefinitionSnapshot on StructureDefinitionSnapshot {
-  /// Converts [StructureDefinitionSnapshot] to a [StructureDefinitionSnapshotBuilder]
-  StructureDefinitionSnapshotBuilder get toBuilder =>
-      StructureDefinitionSnapshotBuilder.fromJson(toJson());
-}
-
 /// [StructureDefinitionSnapshotBuilder]
 /// A snapshot view is expressed in a standalone form that can be used and
 /// interpreted without considering the base StructureDefinition.
@@ -3218,14 +3190,6 @@ class StructureDefinitionSnapshotBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [StructureDefinitionDifferential] to a Builder
-extension BuilderStructureDefinitionDifferential
-    on StructureDefinitionDifferential {
-  /// Converts [StructureDefinitionDifferential] to a [StructureDefinitionDifferentialBuilder]
-  StructureDefinitionDifferentialBuilder get toBuilder =>
-      StructureDefinitionDifferentialBuilder.fromJson(toJson());
 }
 
 /// [StructureDefinitionDifferentialBuilder]

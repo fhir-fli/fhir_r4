@@ -26,10 +26,10 @@ Future<void> main() async {
 
     test('Test Step 1', () async {
       final result = await fhirMappingEngine(
-        TLeft1.fromJson(source1),
+        TLeft1.fromJson(source1).toBuilder,
         structureMapStep1,
         resourceCache,
-        TRight1.empty(),
+        TRight1.empty().toBuilder,
       );
 
       expect(result?.toJson(), equals(resultStep1Source1));
@@ -55,10 +55,10 @@ Future<void> main() async {
 
     test('Test Step 2', () async {
       final result = await fhirMappingEngine(
-        TLeft2.fromJson(source2),
+        TLeft2.fromJson(source2).toBuilder,
         structureMapStep2,
         resourceCache,
-        TRight2.empty(),
+        TRight2.empty().toBuilder,
       );
       expect(
         result?.toJson(),
@@ -74,10 +74,10 @@ Future<void> main() async {
 
     test('Test Step 3a Source 3', () async {
       final result = await fhirMappingEngine(
-        TLeft3.fromJson(source3),
+        TLeft3.fromJson(source3).toBuilder,
         structureMapStep3a,
         resourceCache,
-        TRight3.empty(),
+        TRight3.empty().toBuilder,
       );
       expect(
         result?.toJson(),
@@ -87,10 +87,10 @@ Future<void> main() async {
 
     test('Test Step 3a Source 3min', () async {
       final result = await fhirMappingEngine(
-        TLeft3.fromJson(source3min),
+        TLeft3.fromJson(source3min).toBuilder,
         structureMapStep3a,
         resourceCache,
-        TRight3.empty(),
+        TRight3.empty().toBuilder,
       );
       expect(
         result?.toJson(),
@@ -100,10 +100,10 @@ Future<void> main() async {
 
     test('Test Step 3b Source 3', () async {
       final result = await fhirMappingEngine(
-        TLeft3.fromJson(source3),
+        TLeft3.fromJson(source3).toBuilder,
         structureMapStep3b,
         resourceCache,
-        TRight3.empty(),
+        TRight3.empty().toBuilder,
       );
       expect(
         result?.toJson(),
@@ -113,10 +113,10 @@ Future<void> main() async {
 
     test('Test Step 3b Source 3min', () async {
       final result = await fhirMappingEngine(
-        TLeft3.fromJson(source3min),
+        TLeft3.fromJson(source3min).toBuilder,
         structureMapStep3b,
         resourceCache,
-        TRight3.empty(),
+        TRight3.empty().toBuilder,
       );
       expect(
         result?.toJson(),
@@ -126,10 +126,10 @@ Future<void> main() async {
 
     test('Test Step 3c Source 3', () async {
       final result = await fhirMappingEngine(
-        TLeft3.fromJson(source3),
+        TLeft3.fromJson(source3).toBuilder,
         structureMapStep3c,
         resourceCache,
-        TRight3.empty(),
+        TRight3.empty().toBuilder,
       );
       expect(
         result?.toJson(),
@@ -138,10 +138,10 @@ Future<void> main() async {
     });
     test('Test Step 3c Source 3min', () async {
       final result = await fhirMappingEngine(
-        TLeft3.fromJson(source3min),
+        TLeft3.fromJson(source3min).toBuilder,
         structureMapStep3c,
         resourceCache,
-        TRight3.empty(),
+        TRight3.empty().toBuilder,
       );
       expect(
         result?.toJson(),
@@ -157,10 +157,10 @@ Future<void> main() async {
 
     test('Test Step 4a Source 4', () async {
       final result = await fhirMappingEngine(
-        TLeft4.fromJson(source4),
+        TLeft4.fromJson(source4).toBuilder,
         structureMapStep4a,
         resourceCache,
-        TRight4.empty(),
+        TRight4.empty().toBuilder,
       );
       expect(
         result?.toJson(),
@@ -170,10 +170,10 @@ Future<void> main() async {
 
     test('Test Step 4a Source 4b', () async {
       final result = await fhirMappingEngine(
-        TLeft4.fromJson(source4b),
+        TLeft4.fromJson(source4b).toBuilder,
         structureMapStep4a,
         resourceCache,
-        TRight4.empty(),
+        TRight4.empty().toBuilder,
       );
       expect(
         result?.toJson(),
@@ -183,10 +183,10 @@ Future<void> main() async {
 
     test('Test Step 4b Source 4', () async {
       final result = await fhirMappingEngine(
-        TLeft4.fromJson(source4),
+        TLeft4.fromJson(source4).toBuilder,
         structureMapStep4b,
         resourceCache,
-        TRight4.empty(),
+        TRight4.empty().toBuilder,
       );
       expect(
         result?.toJson(),
@@ -196,10 +196,10 @@ Future<void> main() async {
 
     test('Test Step 4b Source 4b', () async {
       final result = await fhirMappingEngine(
-        TLeft4.fromJson(source4b),
+        TLeft4.fromJson(source4b).toBuilder,
         structureMapStep4b,
         resourceCache,
-        TRight4.empty(),
+        TRight4.empty().toBuilder,
       );
       expect(
         result?.toJson(),
@@ -223,10 +223,10 @@ Future<void> main() async {
 
     test('Test Step 4b2 Source 4b', () async {
       final result = await fhirMappingEngine(
-        TLeft4.fromJson(source4b),
+        TLeft4.fromJson(source4b).toBuilder,
         structureMapStep4b2,
         resourceCache,
-        TRight4.empty(),
+        TRight4.empty().toBuilder,
       );
       expect(
         result?.toJson(),
@@ -250,10 +250,10 @@ Future<void> main() async {
 
     test('Test Step 4b3 Source 4b', () async {
       final result = await fhirMappingEngine(
-        TLeft4.fromJson(source4b),
+        TLeft4.fromJson(source4b).toBuilder,
         structureMapStep4b3,
         resourceCache,
-        TRight4.empty(),
+        TRight4.empty().toBuilder,
       );
       expect(
         result?.toJson(),
@@ -263,10 +263,10 @@ Future<void> main() async {
 
     test('Test Step 4c Source 4', () async {
       final result = await fhirMappingEngine(
-        TLeft4.fromJson(source4),
+        TLeft4.fromJson(source4).toBuilder,
         structureMapStep4c,
         resourceCache,
-        TRight4.empty(),
+        TRight4.empty().toBuilder,
       );
       expect(
         result?.toJson(),
@@ -276,10 +276,10 @@ Future<void> main() async {
 
     test('Test Step 4c Source 4b', () async {
       final result = await fhirMappingEngine(
-        TLeft4.fromJson(source4b),
+        TLeft4.fromJson(source4b).toBuilder,
         structureMapStep4c,
         resourceCache,
-        TRight4.empty(),
+        TRight4.empty().toBuilder,
       );
       expect(
         result?.toJson(),
@@ -295,10 +295,10 @@ Future<void> main() async {
 
     test('Test Step 5', () async {
       final result = await fhirMappingEngine(
-        TLeft5.fromJson(source5),
+        TLeft5.fromJson(source5).toBuilder,
         structureMapStep5,
         resourceCache,
-        TRight5.empty(),
+        TRight5.empty().toBuilder,
       );
 
       expect(
@@ -308,10 +308,10 @@ Future<void> main() async {
     });
     test('Test Step 5b', () async {
       final result = await fhirMappingEngine(
-        TLeft5.fromJson(source5b),
+        TLeft5.fromJson(source5b).toBuilder,
         structureMapStep5,
         resourceCache,
-        TRight5.empty(),
+        TRight5.empty().toBuilder,
       );
       expect(
         result?.toJson(),
@@ -414,24 +414,23 @@ Future<void> main() async {
 
     test('Test Step 7 Source 7', () async {
       final result = await fhirMappingEngine(
-        TLeft7.fromJson(source7),
+        TLeft7.fromJson(source7).toBuilder,
         structureMapStep7,
         resourceCache,
-        TRight7.empty(),
-        TRight7Aa.empty(),
+        TRight7.empty().toBuilder,
       );
       expect(result?.toJson(), equals(resultStep7Source7));
     });
 
-    // test('Test Step 7b Source 7', () async {
-    //   final result = await fhirMappingEngine(
-    //     TLeft7.fromJson(source7),
-    //     structureMapStep7b,
-    //     resourceCache,
-    //     TRight7.empty(),
-    //   );
-    //   expect(result?.toJson(), equals(resultStep7bSource7));
-    // });
+    test('Test Step 7b Source 7', () async {
+      final result = await fhirMappingEngine(
+        TLeft7.fromJson(source7).toBuilder,
+        structureMapStep7b,
+        resourceCache,
+        TRight7.empty().toBuilder,
+      );
+      expect(result?.toJson(), equals(resultStep7bSource7));
+    });
   });
 
   // group('8', () {

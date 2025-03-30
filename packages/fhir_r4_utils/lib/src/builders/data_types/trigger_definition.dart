@@ -4,13 +4,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [TriggerDefinition] to a Builder
-extension BuilderTriggerDefinition on TriggerDefinition {
-  /// Converts [TriggerDefinition] to a [TriggerDefinitionBuilder]
-  TriggerDefinitionBuilder get toBuilder =>
-      TriggerDefinitionBuilder.fromJson(toJson());
-}
-
 /// [TriggerDefinitionBuilder]
 /// A description of a triggering event. Triggering events can be named
 /// events, data events, or periodic, as determined by the type element.

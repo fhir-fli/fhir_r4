@@ -20,12 +20,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [Claim] to a Builder
-extension BuilderClaim on Claim {
-  /// Converts [Claim] to a [ClaimBuilder]
-  ClaimBuilder get toBuilder => ClaimBuilder.fromJson(toJson());
-}
-
 /// [ClaimBuilder]
 /// A provider issued list of professional services and products which have
 /// been provided, or are to be provided, to a patient which is sent to an
@@ -1843,12 +1837,6 @@ class ClaimBuilder extends DomainResourceBuilder {
   }
 }
 
-/// Extension to change [ClaimRelated] to a Builder
-extension BuilderClaimRelated on ClaimRelated {
-  /// Converts [ClaimRelated] to a [ClaimRelatedBuilder]
-  ClaimRelatedBuilder get toBuilder => ClaimRelatedBuilder.fromJson(toJson());
-}
-
 /// [ClaimRelatedBuilder]
 /// Other claims which are related to this claim such as prior submissions
 /// or claims for related services or for the same event.
@@ -2338,12 +2326,6 @@ class ClaimRelatedBuilder extends BackboneElementBuilder {
   }
 }
 
-/// Extension to change [ClaimPayee] to a Builder
-extension BuilderClaimPayee on ClaimPayee {
-  /// Converts [ClaimPayee] to a [ClaimPayeeBuilder]
-  ClaimPayeeBuilder get toBuilder => ClaimPayeeBuilder.fromJson(toJson());
-}
-
 /// [ClaimPayeeBuilder]
 /// The party to be reimbursed for cost of the products and services
 /// according to the terms of the policy.
@@ -2788,12 +2770,6 @@ class ClaimPayeeBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [ClaimCareTeam] to a Builder
-extension BuilderClaimCareTeam on ClaimCareTeam {
-  /// Converts [ClaimCareTeam] to a [ClaimCareTeamBuilder]
-  ClaimCareTeamBuilder get toBuilder => ClaimCareTeamBuilder.fromJson(toJson());
 }
 
 /// [ClaimCareTeamBuilder]
@@ -3370,13 +3346,6 @@ class ClaimCareTeamBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [ClaimSupportingInfo] to a Builder
-extension BuilderClaimSupportingInfo on ClaimSupportingInfo {
-  /// Converts [ClaimSupportingInfo] to a [ClaimSupportingInfoBuilder]
-  ClaimSupportingInfoBuilder get toBuilder =>
-      ClaimSupportingInfoBuilder.fromJson(toJson());
 }
 
 /// [ClaimSupportingInfoBuilder]
@@ -4216,13 +4185,6 @@ class ClaimSupportingInfoBuilder extends BackboneElementBuilder {
   }
 }
 
-/// Extension to change [ClaimDiagnosis] to a Builder
-extension BuilderClaimDiagnosis on ClaimDiagnosis {
-  /// Converts [ClaimDiagnosis] to a [ClaimDiagnosisBuilder]
-  ClaimDiagnosisBuilder get toBuilder =>
-      ClaimDiagnosisBuilder.fromJson(toJson());
-}
-
 /// [ClaimDiagnosisBuilder]
 /// Information about diagnoses relevant to the claim items.
 class ClaimDiagnosisBuilder extends BackboneElementBuilder {
@@ -4871,13 +4833,6 @@ class ClaimDiagnosisBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [ClaimProcedure] to a Builder
-extension BuilderClaimProcedure on ClaimProcedure {
-  /// Converts [ClaimProcedure] to a [ClaimProcedureBuilder]
-  ClaimProcedureBuilder get toBuilder =>
-      ClaimProcedureBuilder.fromJson(toJson());
 }
 
 /// [ClaimProcedureBuilder]
@@ -5535,13 +5490,6 @@ class ClaimProcedureBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [ClaimInsurance] to a Builder
-extension BuilderClaimInsurance on ClaimInsurance {
-  /// Converts [ClaimInsurance] to a [ClaimInsuranceBuilder]
-  ClaimInsuranceBuilder get toBuilder =>
-      ClaimInsuranceBuilder.fromJson(toJson());
 }
 
 /// [ClaimInsuranceBuilder]
@@ -6219,12 +6167,6 @@ class ClaimInsuranceBuilder extends BackboneElementBuilder {
   }
 }
 
-/// Extension to change [ClaimAccident] to a Builder
-extension BuilderClaimAccident on ClaimAccident {
-  /// Converts [ClaimAccident] to a [ClaimAccidentBuilder]
-  ClaimAccidentBuilder get toBuilder => ClaimAccidentBuilder.fromJson(toJson());
-}
-
 /// [ClaimAccidentBuilder]
 /// Details of an accident which resulted in injuries which required the
 /// products and services listed in the claim.
@@ -6777,12 +6719,6 @@ class ClaimAccidentBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [ClaimItem] to a Builder
-extension BuilderClaimItem on ClaimItem {
-  /// Converts [ClaimItem] to a [ClaimItemBuilder]
-  ClaimItemBuilder get toBuilder => ClaimItemBuilder.fromJson(toJson());
 }
 
 /// [ClaimItemBuilder]
@@ -8292,12 +8228,6 @@ class ClaimItemBuilder extends BackboneElementBuilder {
   }
 }
 
-/// Extension to change [ClaimDetail] to a Builder
-extension BuilderClaimDetail on ClaimDetail {
-  /// Converts [ClaimDetail] to a [ClaimDetailBuilder]
-  ClaimDetailBuilder get toBuilder => ClaimDetailBuilder.fromJson(toJson());
-}
-
 /// [ClaimDetailBuilder]
 /// A claim detail line. Either a simple (a product or service) or a
 /// 'group' of sub-details which are simple items.
@@ -9219,13 +9149,6 @@ class ClaimDetailBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [ClaimSubDetail] to a Builder
-extension BuilderClaimSubDetail on ClaimSubDetail {
-  /// Converts [ClaimSubDetail] to a [ClaimSubDetailBuilder]
-  ClaimSubDetailBuilder get toBuilder =>
-      ClaimSubDetailBuilder.fromJson(toJson());
 }
 
 /// [ClaimSubDetailBuilder]

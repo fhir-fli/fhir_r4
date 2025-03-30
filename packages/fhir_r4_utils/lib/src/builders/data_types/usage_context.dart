@@ -4,12 +4,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [UsageContext] to a Builder
-extension BuilderUsageContext on UsageContext {
-  /// Converts [UsageContext] to a [UsageContextBuilder]
-  UsageContextBuilder get toBuilder => UsageContextBuilder.fromJson(toJson());
-}
-
 /// [UsageContextBuilder]
 /// Specifies clinical/business/etc. metadata that can be used to retrieve,
 /// index and/or categorize an artifact. This metadata can either be

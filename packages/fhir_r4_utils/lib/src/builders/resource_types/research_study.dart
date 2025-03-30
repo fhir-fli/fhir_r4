@@ -11,12 +11,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [ResearchStudy] to a Builder
-extension BuilderResearchStudy on ResearchStudy {
-  /// Converts [ResearchStudy] to a [ResearchStudyBuilder]
-  ResearchStudyBuilder get toBuilder => ResearchStudyBuilder.fromJson(toJson());
-}
-
 /// [ResearchStudyBuilder]
 /// A process where a researcher or organization plans and then executes a
 /// series of steps intended to increase the field of healthcare-related
@@ -1780,13 +1774,6 @@ class ResearchStudyBuilder extends DomainResourceBuilder {
   }
 }
 
-/// Extension to change [ResearchStudyArm] to a Builder
-extension BuilderResearchStudyArm on ResearchStudyArm {
-  /// Converts [ResearchStudyArm] to a [ResearchStudyArmBuilder]
-  ResearchStudyArmBuilder get toBuilder =>
-      ResearchStudyArmBuilder.fromJson(toJson());
-}
-
 /// [ResearchStudyArmBuilder]
 /// Describes an expected sequence of events for one of the participants of
 /// a study. E.g. Exposure to drug A, wash-out, exposure to drug B,
@@ -2276,13 +2263,6 @@ class ResearchStudyArmBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [ResearchStudyObjective] to a Builder
-extension BuilderResearchStudyObjective on ResearchStudyObjective {
-  /// Converts [ResearchStudyObjective] to a [ResearchStudyObjectiveBuilder]
-  ResearchStudyObjectiveBuilder get toBuilder =>
-      ResearchStudyObjectiveBuilder.fromJson(toJson());
 }
 
 /// [ResearchStudyObjectiveBuilder]

@@ -14,12 +14,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [Consent] to a Builder
-extension BuilderConsent on Consent {
-  /// Converts [Consent] to a [ConsentBuilder]
-  ConsentBuilder get toBuilder => ConsentBuilder.fromJson(toJson());
-}
-
 /// [ConsentBuilder]
 /// A record of a healthcare consumer’s choices, which permits or denies
 /// identified recipient(s) or recipient role(s) to perform one or more
@@ -1275,12 +1269,6 @@ class ConsentBuilder extends DomainResourceBuilder {
   }
 }
 
-/// Extension to change [ConsentPolicy] to a Builder
-extension BuilderConsentPolicy on ConsentPolicy {
-  /// Converts [ConsentPolicy] to a [ConsentPolicyBuilder]
-  ConsentPolicyBuilder get toBuilder => ConsentPolicyBuilder.fromJson(toJson());
-}
-
 /// [ConsentPolicyBuilder]
 /// The references to the policies that are included in this consent scope.
 /// Policies may be organizational, but are often defined jurisdictionally,
@@ -1728,13 +1716,6 @@ class ConsentPolicyBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [ConsentVerification] to a Builder
-extension BuilderConsentVerification on ConsentVerification {
-  /// Converts [ConsentVerification] to a [ConsentVerificationBuilder]
-  ConsentVerificationBuilder get toBuilder =>
-      ConsentVerificationBuilder.fromJson(toJson());
 }
 
 /// [ConsentVerificationBuilder]
@@ -2225,13 +2206,6 @@ class ConsentVerificationBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [ConsentProvision] to a Builder
-extension BuilderConsentProvision on ConsentProvision {
-  /// Converts [ConsentProvision] to a [ConsentProvisionBuilder]
-  ConsentProvisionBuilder get toBuilder =>
-      ConsentProvisionBuilder.fromJson(toJson());
 }
 
 /// [ConsentProvisionBuilder]
@@ -3146,12 +3120,6 @@ class ConsentProvisionBuilder extends BackboneElementBuilder {
   }
 }
 
-/// Extension to change [ConsentActor] to a Builder
-extension BuilderConsentActor on ConsentActor {
-  /// Converts [ConsentActor] to a [ConsentActorBuilder]
-  ConsentActorBuilder get toBuilder => ConsentActorBuilder.fromJson(toJson());
-}
-
 /// [ConsentActorBuilder]
 /// Who or what is controlled by this rule. Use group to identify a set of
 /// actors by some property they share (e.g. 'admitting officers').
@@ -3598,12 +3566,6 @@ class ConsentActorBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [ConsentData] to a Builder
-extension BuilderConsentData on ConsentData {
-  /// Converts [ConsentData] to a [ConsentDataBuilder]
-  ConsentDataBuilder get toBuilder => ConsentDataBuilder.fromJson(toJson());
 }
 
 /// [ConsentDataBuilder]

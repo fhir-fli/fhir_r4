@@ -4,13 +4,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [ParameterDefinition] to a Builder
-extension BuilderParameterDefinition on ParameterDefinition {
-  /// Converts [ParameterDefinition] to a [ParameterDefinitionBuilder]
-  ParameterDefinitionBuilder get toBuilder =>
-      ParameterDefinitionBuilder.fromJson(toJson());
-}
-
 /// [ParameterDefinitionBuilder]
 /// The parameters to the module. This collection specifies both the input
 /// and output parameters. Input parameters are provided by the caller as

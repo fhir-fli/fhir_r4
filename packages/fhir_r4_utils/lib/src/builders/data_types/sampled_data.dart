@@ -4,12 +4,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [SampledData] to a Builder
-extension BuilderSampledData on SampledData {
-  /// Converts [SampledData] to a [SampledDataBuilder]
-  SampledDataBuilder get toBuilder => SampledDataBuilder.fromJson(toJson());
-}
-
 /// [SampledDataBuilder]
 /// A series of measurements taken by a device, with upper and lower
 /// limits. There may be more than one dimension in the data.

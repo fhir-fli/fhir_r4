@@ -17,13 +17,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [ExampleScenario] to a Builder
-extension BuilderExampleScenario on ExampleScenario {
-  /// Converts [ExampleScenario] to a [ExampleScenarioBuilder]
-  ExampleScenarioBuilder get toBuilder =>
-      ExampleScenarioBuilder.fromJson(toJson());
-}
-
 /// [ExampleScenarioBuilder]
 /// Example of workflow instance.
 class ExampleScenarioBuilder extends DomainResourceBuilder {
@@ -1419,13 +1412,6 @@ class ExampleScenarioBuilder extends DomainResourceBuilder {
   }
 }
 
-/// Extension to change [ExampleScenarioActor] to a Builder
-extension BuilderExampleScenarioActor on ExampleScenarioActor {
-  /// Converts [ExampleScenarioActor] to a [ExampleScenarioActorBuilder]
-  ExampleScenarioActorBuilder get toBuilder =>
-      ExampleScenarioActorBuilder.fromJson(toJson());
-}
-
 /// [ExampleScenarioActorBuilder]
 /// Actor participating in the resource.
 class ExampleScenarioActorBuilder extends BackboneElementBuilder {
@@ -1954,13 +1940,6 @@ class ExampleScenarioActorBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [ExampleScenarioInstance] to a Builder
-extension BuilderExampleScenarioInstance on ExampleScenarioInstance {
-  /// Converts [ExampleScenarioInstance] to a [ExampleScenarioInstanceBuilder]
-  ExampleScenarioInstanceBuilder get toBuilder =>
-      ExampleScenarioInstanceBuilder.fromJson(toJson());
 }
 
 /// [ExampleScenarioInstanceBuilder]
@@ -2599,13 +2578,6 @@ class ExampleScenarioInstanceBuilder extends BackboneElementBuilder {
   }
 }
 
-/// Extension to change [ExampleScenarioVersion] to a Builder
-extension BuilderExampleScenarioVersion on ExampleScenarioVersion {
-  /// Converts [ExampleScenarioVersion] to a [ExampleScenarioVersionBuilder]
-  ExampleScenarioVersionBuilder get toBuilder =>
-      ExampleScenarioVersionBuilder.fromJson(toJson());
-}
-
 /// [ExampleScenarioVersionBuilder]
 /// A specific version of the resource.
 class ExampleScenarioVersionBuilder extends BackboneElementBuilder {
@@ -3049,14 +3021,6 @@ class ExampleScenarioVersionBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [ExampleScenarioContainedInstance] to a Builder
-extension BuilderExampleScenarioContainedInstance
-    on ExampleScenarioContainedInstance {
-  /// Converts [ExampleScenarioContainedInstance] to a [ExampleScenarioContainedInstanceBuilder]
-  ExampleScenarioContainedInstanceBuilder get toBuilder =>
-      ExampleScenarioContainedInstanceBuilder.fromJson(toJson());
 }
 
 /// [ExampleScenarioContainedInstanceBuilder]
@@ -3504,13 +3468,6 @@ class ExampleScenarioContainedInstanceBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [ExampleScenarioProcess] to a Builder
-extension BuilderExampleScenarioProcess on ExampleScenarioProcess {
-  /// Converts [ExampleScenarioProcess] to a [ExampleScenarioProcessBuilder]
-  ExampleScenarioProcessBuilder get toBuilder =>
-      ExampleScenarioProcessBuilder.fromJson(toJson());
 }
 
 /// [ExampleScenarioProcessBuilder]
@@ -4096,13 +4053,6 @@ class ExampleScenarioProcessBuilder extends BackboneElementBuilder {
   }
 }
 
-/// Extension to change [ExampleScenarioStep] to a Builder
-extension BuilderExampleScenarioStep on ExampleScenarioStep {
-  /// Converts [ExampleScenarioStep] to a [ExampleScenarioStepBuilder]
-  ExampleScenarioStepBuilder get toBuilder =>
-      ExampleScenarioStepBuilder.fromJson(toJson());
-}
-
 /// [ExampleScenarioStepBuilder]
 /// Each step of the process.
 class ExampleScenarioStepBuilder extends BackboneElementBuilder {
@@ -4650,13 +4600,6 @@ class ExampleScenarioStepBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [ExampleScenarioOperation] to a Builder
-extension BuilderExampleScenarioOperation on ExampleScenarioOperation {
-  /// Converts [ExampleScenarioOperation] to a [ExampleScenarioOperationBuilder]
-  ExampleScenarioOperationBuilder get toBuilder =>
-      ExampleScenarioOperationBuilder.fromJson(toJson());
 }
 
 /// [ExampleScenarioOperationBuilder]
@@ -5447,13 +5390,6 @@ class ExampleScenarioOperationBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [ExampleScenarioAlternative] to a Builder
-extension BuilderExampleScenarioAlternative on ExampleScenarioAlternative {
-  /// Converts [ExampleScenarioAlternative] to a [ExampleScenarioAlternativeBuilder]
-  ExampleScenarioAlternativeBuilder get toBuilder =>
-      ExampleScenarioAlternativeBuilder.fromJson(toJson());
 }
 
 /// [ExampleScenarioAlternativeBuilder]

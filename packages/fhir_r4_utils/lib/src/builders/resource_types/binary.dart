@@ -9,12 +9,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [Binary] to a Builder
-extension BuilderBinary on Binary {
-  /// Converts [Binary] to a [BinaryBuilder]
-  BinaryBuilder get toBuilder => BinaryBuilder.fromJson(toJson());
-}
-
 /// [BinaryBuilder]
 /// A resource that represents the data of a single raw artifact as digital
 /// content accessible in its native format. A Binary resource can contain

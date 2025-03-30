@@ -16,13 +16,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [MedicinalProductDefinition] to a Builder
-extension BuilderMedicinalProductDefinition on MedicinalProductDefinition {
-  /// Converts [MedicinalProductDefinition] to a [MedicinalProductDefinitionBuilder]
-  MedicinalProductDefinitionBuilder get toBuilder =>
-      MedicinalProductDefinitionBuilder.fromJson(toJson());
-}
-
 /// [MedicinalProductDefinitionBuilder]
 /// A medicinal product, being a substance or combination of substances
 /// that is intended to treat, prevent or diagnose a disease, or to
@@ -2015,14 +2008,6 @@ class MedicinalProductDefinitionBuilder extends DomainResourceBuilder {
   }
 }
 
-/// Extension to change [MedicinalProductDefinitionContact] to a Builder
-extension BuilderMedicinalProductDefinitionContact
-    on MedicinalProductDefinitionContact {
-  /// Converts [MedicinalProductDefinitionContact] to a [MedicinalProductDefinitionContactBuilder]
-  MedicinalProductDefinitionContactBuilder get toBuilder =>
-      MedicinalProductDefinitionContactBuilder.fromJson(toJson());
-}
-
 /// [MedicinalProductDefinitionContactBuilder]
 /// A product specific contact, person (in a role), or an organization.
 class MedicinalProductDefinitionContactBuilder extends BackboneElementBuilder {
@@ -2469,14 +2454,6 @@ class MedicinalProductDefinitionContactBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [MedicinalProductDefinitionName] to a Builder
-extension BuilderMedicinalProductDefinitionName
-    on MedicinalProductDefinitionName {
-  /// Converts [MedicinalProductDefinitionName] to a [MedicinalProductDefinitionNameBuilder]
-  MedicinalProductDefinitionNameBuilder get toBuilder =>
-      MedicinalProductDefinitionNameBuilder.fromJson(toJson());
 }
 
 /// [MedicinalProductDefinitionNameBuilder]
@@ -3032,14 +3009,6 @@ class MedicinalProductDefinitionNameBuilder extends BackboneElementBuilder {
   }
 }
 
-/// Extension to change [MedicinalProductDefinitionNamePart] to a Builder
-extension BuilderMedicinalProductDefinitionNamePart
-    on MedicinalProductDefinitionNamePart {
-  /// Converts [MedicinalProductDefinitionNamePart] to a [MedicinalProductDefinitionNamePartBuilder]
-  MedicinalProductDefinitionNamePartBuilder get toBuilder =>
-      MedicinalProductDefinitionNamePartBuilder.fromJson(toJson());
-}
-
 /// [MedicinalProductDefinitionNamePartBuilder]
 /// Coding words or phrases of the name.
 class MedicinalProductDefinitionNamePartBuilder extends BackboneElementBuilder {
@@ -3485,14 +3454,6 @@ class MedicinalProductDefinitionNamePartBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [MedicinalProductDefinitionCountryLanguage] to a Builder
-extension BuilderMedicinalProductDefinitionCountryLanguage
-    on MedicinalProductDefinitionCountryLanguage {
-  /// Converts [MedicinalProductDefinitionCountryLanguage] to a [MedicinalProductDefinitionCountryLanguageBuilder]
-  MedicinalProductDefinitionCountryLanguageBuilder get toBuilder =>
-      MedicinalProductDefinitionCountryLanguageBuilder.fromJson(toJson());
 }
 
 /// [MedicinalProductDefinitionCountryLanguageBuilder]
@@ -3988,14 +3949,6 @@ class MedicinalProductDefinitionCountryLanguageBuilder
   }
 }
 
-/// Extension to change [MedicinalProductDefinitionCrossReference] to a Builder
-extension BuilderMedicinalProductDefinitionCrossReference
-    on MedicinalProductDefinitionCrossReference {
-  /// Converts [MedicinalProductDefinitionCrossReference] to a [MedicinalProductDefinitionCrossReferenceBuilder]
-  MedicinalProductDefinitionCrossReferenceBuilder get toBuilder =>
-      MedicinalProductDefinitionCrossReferenceBuilder.fromJson(toJson());
-}
-
 /// [MedicinalProductDefinitionCrossReferenceBuilder]
 /// Reference to another product, e.g. for linking authorised to
 /// investigational product, or a virtual product.
@@ -4446,14 +4399,6 @@ class MedicinalProductDefinitionCrossReferenceBuilder
     }
     return true;
   }
-}
-
-/// Extension to change [MedicinalProductDefinitionOperation] to a Builder
-extension BuilderMedicinalProductDefinitionOperation
-    on MedicinalProductDefinitionOperation {
-  /// Converts [MedicinalProductDefinitionOperation] to a [MedicinalProductDefinitionOperationBuilder]
-  MedicinalProductDefinitionOperationBuilder get toBuilder =>
-      MedicinalProductDefinitionOperationBuilder.fromJson(toJson());
 }
 
 /// [MedicinalProductDefinitionOperationBuilder]
@@ -5004,14 +4949,6 @@ class MedicinalProductDefinitionOperationBuilder
     }
     return true;
   }
-}
-
-/// Extension to change [MedicinalProductDefinitionCharacteristic] to a Builder
-extension BuilderMedicinalProductDefinitionCharacteristic
-    on MedicinalProductDefinitionCharacteristic {
-  /// Converts [MedicinalProductDefinitionCharacteristic] to a [MedicinalProductDefinitionCharacteristicBuilder]
-  MedicinalProductDefinitionCharacteristicBuilder get toBuilder =>
-      MedicinalProductDefinitionCharacteristicBuilder.fromJson(toJson());
 }
 
 /// [MedicinalProductDefinitionCharacteristicBuilder]

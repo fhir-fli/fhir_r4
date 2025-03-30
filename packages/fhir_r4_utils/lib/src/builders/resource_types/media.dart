@@ -9,12 +9,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [Media] to a Builder
-extension BuilderMedia on Media {
-  /// Converts [Media] to a [MediaBuilder]
-  MediaBuilder get toBuilder => MediaBuilder.fromJson(toJson());
-}
-
 /// [MediaBuilder]
 /// A photo, video, or audio recording acquired or used in healthcare. The
 /// actual content may be inline or provided by direct reference.

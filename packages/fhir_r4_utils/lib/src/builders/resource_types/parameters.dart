@@ -10,12 +10,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [Parameters] to a Builder
-extension BuilderParameters on Parameters {
-  /// Converts [Parameters] to a [ParametersBuilder]
-  ParametersBuilder get toBuilder => ParametersBuilder.fromJson(toJson());
-}
-
 /// [ParametersBuilder]
 /// This resource is a non-persisted resource used to pass information into
 /// and back from an [operation](operations.html). It has no other use, and
@@ -447,13 +441,6 @@ class ParametersBuilder extends ResourceBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [ParametersParameter] to a Builder
-extension BuilderParametersParameter on ParametersParameter {
-  /// Converts [ParametersParameter] to a [ParametersParameterBuilder]
-  ParametersParameterBuilder get toBuilder =>
-      ParametersParameterBuilder.fromJson(toJson());
 }
 
 /// [ParametersParameterBuilder]

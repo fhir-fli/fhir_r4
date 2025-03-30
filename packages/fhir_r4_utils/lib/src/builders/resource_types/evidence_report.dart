@@ -13,13 +13,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [EvidenceReport] to a Builder
-extension BuilderEvidenceReport on EvidenceReport {
-  /// Converts [EvidenceReport] to a [EvidenceReportBuilder]
-  EvidenceReportBuilder get toBuilder =>
-      EvidenceReportBuilder.fromJson(toJson());
-}
-
 /// [EvidenceReportBuilder]
 /// The EvidenceReport Resource is a specialized container for a collection
 /// of resources and codable concepts, adapted to support compositions of
@@ -1553,13 +1546,6 @@ class EvidenceReportBuilder extends DomainResourceBuilder {
   }
 }
 
-/// Extension to change [EvidenceReportSubject] to a Builder
-extension BuilderEvidenceReportSubject on EvidenceReportSubject {
-  /// Converts [EvidenceReportSubject] to a [EvidenceReportSubjectBuilder]
-  EvidenceReportSubjectBuilder get toBuilder =>
-      EvidenceReportSubjectBuilder.fromJson(toJson());
-}
-
 /// [EvidenceReportSubjectBuilder]
 /// Specifies the subject or focus of the report. Answers "What is this
 /// report about?".
@@ -2022,13 +2008,6 @@ class EvidenceReportSubjectBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [EvidenceReportCharacteristic] to a Builder
-extension BuilderEvidenceReportCharacteristic on EvidenceReportCharacteristic {
-  /// Converts [EvidenceReportCharacteristic] to a [EvidenceReportCharacteristicBuilder]
-  EvidenceReportCharacteristicBuilder get toBuilder =>
-      EvidenceReportCharacteristicBuilder.fromJson(toJson());
 }
 
 /// [EvidenceReportCharacteristicBuilder]
@@ -2717,13 +2696,6 @@ class EvidenceReportCharacteristicBuilder extends BackboneElementBuilder {
   }
 }
 
-/// Extension to change [EvidenceReportRelatesTo] to a Builder
-extension BuilderEvidenceReportRelatesTo on EvidenceReportRelatesTo {
-  /// Converts [EvidenceReportRelatesTo] to a [EvidenceReportRelatesToBuilder]
-  EvidenceReportRelatesToBuilder get toBuilder =>
-      EvidenceReportRelatesToBuilder.fromJson(toJson());
-}
-
 /// [EvidenceReportRelatesToBuilder]
 /// Relationships that this composition has with other compositions or
 /// documents that already exist.
@@ -3232,13 +3204,6 @@ class EvidenceReportRelatesToBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [EvidenceReportSection] to a Builder
-extension BuilderEvidenceReportSection on EvidenceReportSection {
-  /// Converts [EvidenceReportSection] to a [EvidenceReportSectionBuilder]
-  EvidenceReportSectionBuilder get toBuilder =>
-      EvidenceReportSectionBuilder.fromJson(toJson());
 }
 
 /// [EvidenceReportSectionBuilder]

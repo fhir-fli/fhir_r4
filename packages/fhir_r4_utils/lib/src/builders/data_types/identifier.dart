@@ -4,12 +4,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [Identifier] to a Builder
-extension BuilderIdentifier on Identifier {
-  /// Converts [Identifier] to a [IdentifierBuilder]
-  IdentifierBuilder get toBuilder => IdentifierBuilder.fromJson(toJson());
-}
-
 /// [IdentifierBuilder]
 /// An identifier - identifies some entity uniquely and unambiguously.
 /// Typically this is used for business identifiers.

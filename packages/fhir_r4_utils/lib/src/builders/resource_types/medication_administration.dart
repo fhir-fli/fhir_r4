@@ -11,13 +11,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [MedicationAdministration] to a Builder
-extension BuilderMedicationAdministration on MedicationAdministration {
-  /// Converts [MedicationAdministration] to a [MedicationAdministrationBuilder]
-  MedicationAdministrationBuilder get toBuilder =>
-      MedicationAdministrationBuilder.fromJson(toJson());
-}
-
 /// [MedicationAdministrationBuilder]
 /// Describes the event of a patient consuming or otherwise being
 /// administered a medication. This may be as simple as swallowing a tablet
@@ -1654,14 +1647,6 @@ class MedicationAdministrationBuilder extends DomainResourceBuilder {
   }
 }
 
-/// Extension to change [MedicationAdministrationPerformer] to a Builder
-extension BuilderMedicationAdministrationPerformer
-    on MedicationAdministrationPerformer {
-  /// Converts [MedicationAdministrationPerformer] to a [MedicationAdministrationPerformerBuilder]
-  MedicationAdministrationPerformerBuilder get toBuilder =>
-      MedicationAdministrationPerformerBuilder.fromJson(toJson());
-}
-
 /// [MedicationAdministrationPerformerBuilder]
 /// Indicates who or what performed the medication administration and how
 /// they were involved.
@@ -2109,14 +2094,6 @@ class MedicationAdministrationPerformerBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [MedicationAdministrationDosage] to a Builder
-extension BuilderMedicationAdministrationDosage
-    on MedicationAdministrationDosage {
-  /// Converts [MedicationAdministrationDosage] to a [MedicationAdministrationDosageBuilder]
-  MedicationAdministrationDosageBuilder get toBuilder =>
-      MedicationAdministrationDosageBuilder.fromJson(toJson());
 }
 
 /// [MedicationAdministrationDosageBuilder]

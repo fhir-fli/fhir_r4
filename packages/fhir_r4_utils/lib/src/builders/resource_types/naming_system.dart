@@ -10,12 +10,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [NamingSystem] to a Builder
-extension BuilderNamingSystem on NamingSystem {
-  /// Converts [NamingSystem] to a [NamingSystemBuilder]
-  NamingSystemBuilder get toBuilder => NamingSystemBuilder.fromJson(toJson());
-}
-
 /// [NamingSystemBuilder]
 /// A curated namespace that issues unique symbols within that namespace
 /// for the identification of concepts, people, devices, etc. Represents a
@@ -1194,13 +1188,6 @@ class NamingSystemBuilder extends DomainResourceBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [NamingSystemUniqueId] to a Builder
-extension BuilderNamingSystemUniqueId on NamingSystemUniqueId {
-  /// Converts [NamingSystemUniqueId] to a [NamingSystemUniqueIdBuilder]
-  NamingSystemUniqueIdBuilder get toBuilder =>
-      NamingSystemUniqueIdBuilder.fromJson(toJson());
 }
 
 /// [NamingSystemUniqueIdBuilder]

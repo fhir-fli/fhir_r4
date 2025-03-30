@@ -9,13 +9,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [EnrollmentRequest] to a Builder
-extension BuilderEnrollmentRequest on EnrollmentRequest {
-  /// Converts [EnrollmentRequest] to a [EnrollmentRequestBuilder]
-  EnrollmentRequestBuilder get toBuilder =>
-      EnrollmentRequestBuilder.fromJson(toJson());
-}
-
 /// [EnrollmentRequestBuilder]
 /// This resource provides the insurance enrollment details to the insurer
 /// regarding a specified coverage.

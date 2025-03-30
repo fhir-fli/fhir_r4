@@ -4,12 +4,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [Period] to a Builder
-extension BuilderPeriod on Period {
-  /// Converts [Period] to a [PeriodBuilder]
-  PeriodBuilder get toBuilder => PeriodBuilder.fromJson(toJson());
-}
-
 /// [PeriodBuilder]
 /// A time period defined by a start and end date and optionally time.
 class PeriodBuilder extends DataTypeBuilder

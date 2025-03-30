@@ -12,12 +12,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [Coverage] to a Builder
-extension BuilderCoverage on Coverage {
-  /// Converts [Coverage] to a [CoverageBuilder]
-  CoverageBuilder get toBuilder => CoverageBuilder.fromJson(toJson());
-}
-
 /// [CoverageBuilder]
 /// Financial instrument which may be used to reimburse or pay for health
 /// care products and services. Includes both insurance and self-payment.
@@ -1375,12 +1369,6 @@ class CoverageBuilder extends DomainResourceBuilder {
   }
 }
 
-/// Extension to change [CoverageClass] to a Builder
-extension BuilderCoverageClass on CoverageClass {
-  /// Converts [CoverageClass] to a [CoverageClassBuilder]
-  CoverageClassBuilder get toBuilder => CoverageClassBuilder.fromJson(toJson());
-}
-
 /// [CoverageClassBuilder]
 /// A suite of underwriter specific classifiers.
 class CoverageClassBuilder extends BackboneElementBuilder {
@@ -1868,13 +1856,6 @@ class CoverageClassBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [CoverageCostToBeneficiary] to a Builder
-extension BuilderCoverageCostToBeneficiary on CoverageCostToBeneficiary {
-  /// Converts [CoverageCostToBeneficiary] to a [CoverageCostToBeneficiaryBuilder]
-  CoverageCostToBeneficiaryBuilder get toBuilder =>
-      CoverageCostToBeneficiaryBuilder.fromJson(toJson());
 }
 
 /// [CoverageCostToBeneficiaryBuilder]
@@ -2439,13 +2420,6 @@ class CoverageCostToBeneficiaryBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [CoverageException] to a Builder
-extension BuilderCoverageException on CoverageException {
-  /// Converts [CoverageException] to a [CoverageExceptionBuilder]
-  CoverageExceptionBuilder get toBuilder =>
-      CoverageExceptionBuilder.fromJson(toJson());
 }
 
 /// [CoverageExceptionBuilder]

@@ -11,12 +11,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [Observation] to a Builder
-extension BuilderObservation on Observation {
-  /// Converts [Observation] to a [ObservationBuilder]
-  ObservationBuilder get toBuilder => ObservationBuilder.fromJson(toJson());
-}
-
 /// [ObservationBuilder]
 /// Measurements and simple assertions made about a patient, device or
 /// other subject.
@@ -2211,13 +2205,6 @@ class ObservationBuilder extends DomainResourceBuilder {
   }
 }
 
-/// Extension to change [ObservationReferenceRange] to a Builder
-extension BuilderObservationReferenceRange on ObservationReferenceRange {
-  /// Converts [ObservationReferenceRange] to a [ObservationReferenceRangeBuilder]
-  ObservationReferenceRangeBuilder get toBuilder =>
-      ObservationReferenceRangeBuilder.fromJson(toJson());
-}
-
 /// [ObservationReferenceRangeBuilder]
 /// Guidance on how to interpret the value by comparison to a normal or
 /// recommended range. Multiple reference ranges are interpreted as an
@@ -2862,13 +2849,6 @@ class ObservationReferenceRangeBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [ObservationComponent] to a Builder
-extension BuilderObservationComponent on ObservationComponent {
-  /// Converts [ObservationComponent] to a [ObservationComponentBuilder]
-  ObservationComponentBuilder get toBuilder =>
-      ObservationComponentBuilder.fromJson(toJson());
 }
 
 /// [ObservationComponentBuilder]

@@ -9,13 +9,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [MedicationStatement] to a Builder
-extension BuilderMedicationStatement on MedicationStatement {
-  /// Converts [MedicationStatement] to a [MedicationStatementBuilder]
-  MedicationStatementBuilder get toBuilder =>
-      MedicationStatementBuilder.fromJson(toJson());
-}
-
 /// [MedicationStatementBuilder]
 /// A record of a medication that is being consumed by a patient. A
 /// MedicationStatement may indicate that the patient may be taking the

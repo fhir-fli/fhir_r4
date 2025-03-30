@@ -11,13 +11,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [MedicationDispense] to a Builder
-extension BuilderMedicationDispense on MedicationDispense {
-  /// Converts [MedicationDispense] to a [MedicationDispenseBuilder]
-  MedicationDispenseBuilder get toBuilder =>
-      MedicationDispenseBuilder.fromJson(toJson());
-}
-
 /// [MedicationDispenseBuilder]
 /// Indicates that a medication product is to be or has been dispensed for
 /// a named person/patient. This includes a description of the medication
@@ -1870,13 +1863,6 @@ class MedicationDispenseBuilder extends DomainResourceBuilder {
   }
 }
 
-/// Extension to change [MedicationDispensePerformer] to a Builder
-extension BuilderMedicationDispensePerformer on MedicationDispensePerformer {
-  /// Converts [MedicationDispensePerformer] to a [MedicationDispensePerformerBuilder]
-  MedicationDispensePerformerBuilder get toBuilder =>
-      MedicationDispensePerformerBuilder.fromJson(toJson());
-}
-
 /// [MedicationDispensePerformerBuilder]
 /// Indicates who or what performed the event.
 class MedicationDispensePerformerBuilder extends BackboneElementBuilder {
@@ -2323,14 +2309,6 @@ class MedicationDispensePerformerBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [MedicationDispenseSubstitution] to a Builder
-extension BuilderMedicationDispenseSubstitution
-    on MedicationDispenseSubstitution {
-  /// Converts [MedicationDispenseSubstitution] to a [MedicationDispenseSubstitutionBuilder]
-  MedicationDispenseSubstitutionBuilder get toBuilder =>
-      MedicationDispenseSubstitutionBuilder.fromJson(toJson());
 }
 
 /// [MedicationDispenseSubstitutionBuilder]

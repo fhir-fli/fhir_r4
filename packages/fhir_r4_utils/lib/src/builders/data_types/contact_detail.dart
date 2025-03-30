@@ -4,12 +4,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [ContactDetail] to a Builder
-extension BuilderContactDetail on ContactDetail {
-  /// Converts [ContactDetail] to a [ContactDetailBuilder]
-  ContactDetailBuilder get toBuilder => ContactDetailBuilder.fromJson(toJson());
-}
-
 /// [ContactDetailBuilder]
 /// Specifies contact information for a person or organization.
 class ContactDetailBuilder extends DataTypeBuilder

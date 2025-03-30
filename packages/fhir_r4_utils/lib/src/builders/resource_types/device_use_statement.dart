@@ -9,13 +9,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [DeviceUseStatement] to a Builder
-extension BuilderDeviceUseStatement on DeviceUseStatement {
-  /// Converts [DeviceUseStatement] to a [DeviceUseStatementBuilder]
-  DeviceUseStatementBuilder get toBuilder =>
-      DeviceUseStatementBuilder.fromJson(toJson());
-}
-
 /// [DeviceUseStatementBuilder]
 /// A record of a device being used by a patient where the record is the
 /// result of a report from the patient or another clinician.

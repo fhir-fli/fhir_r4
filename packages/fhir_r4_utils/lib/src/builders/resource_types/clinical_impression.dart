@@ -11,13 +11,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [ClinicalImpression] to a Builder
-extension BuilderClinicalImpression on ClinicalImpression {
-  /// Converts [ClinicalImpression] to a [ClinicalImpressionBuilder]
-  ClinicalImpressionBuilder get toBuilder =>
-      ClinicalImpressionBuilder.fromJson(toJson());
-}
-
 /// [ClinicalImpressionBuilder]
 /// A record of a clinical assessment performed to determine what
 /// problem(s) may affect the patient and before planning the treatments or
@@ -1609,14 +1602,6 @@ class ClinicalImpressionBuilder extends DomainResourceBuilder {
   }
 }
 
-/// Extension to change [ClinicalImpressionInvestigation] to a Builder
-extension BuilderClinicalImpressionInvestigation
-    on ClinicalImpressionInvestigation {
-  /// Converts [ClinicalImpressionInvestigation] to a [ClinicalImpressionInvestigationBuilder]
-  ClinicalImpressionInvestigationBuilder get toBuilder =>
-      ClinicalImpressionInvestigationBuilder.fromJson(toJson());
-}
-
 /// [ClinicalImpressionInvestigationBuilder]
 /// One or more sets of investigations (signs, symptoms, etc.). The actual
 /// grouping of investigations varies greatly depending on the type and
@@ -2077,13 +2062,6 @@ class ClinicalImpressionInvestigationBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [ClinicalImpressionFinding] to a Builder
-extension BuilderClinicalImpressionFinding on ClinicalImpressionFinding {
-  /// Converts [ClinicalImpressionFinding] to a [ClinicalImpressionFindingBuilder]
-  ClinicalImpressionFindingBuilder get toBuilder =>
-      ClinicalImpressionFindingBuilder.fromJson(toJson());
 }
 
 /// [ClinicalImpressionFindingBuilder]

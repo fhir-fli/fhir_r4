@@ -10,12 +10,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [FhirList] to a Builder
-extension BuilderFhirList on FhirList {
-  /// Converts [FhirList] to a [FhirListBuilder]
-  FhirListBuilder get toBuilder => FhirListBuilder.fromJson(toJson());
-}
-
 /// [FhirListBuilder]
 /// A list is a curated collection of resources.
 class FhirListBuilder extends DomainResourceBuilder {
@@ -1169,12 +1163,6 @@ class FhirListBuilder extends DomainResourceBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [ListEntry] to a Builder
-extension BuilderListEntry on ListEntry {
-  /// Converts [ListEntry] to a [ListEntryBuilder]
-  ListEntryBuilder get toBuilder => ListEntryBuilder.fromJson(toJson());
 }
 
 /// [ListEntryBuilder]

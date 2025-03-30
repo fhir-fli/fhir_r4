@@ -10,12 +10,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [Practitioner] to a Builder
-extension BuilderPractitioner on Practitioner {
-  /// Converts [Practitioner] to a [PractitionerBuilder]
-  PractitionerBuilder get toBuilder => PractitionerBuilder.fromJson(toJson());
-}
-
 /// [PractitionerBuilder]
 /// A person who is directly or indirectly involved in the provisioning of
 /// healthcare.
@@ -1077,13 +1071,6 @@ class PractitionerBuilder extends DomainResourceBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [PractitionerQualification] to a Builder
-extension BuilderPractitionerQualification on PractitionerQualification {
-  /// Converts [PractitionerQualification] to a [PractitionerQualificationBuilder]
-  PractitionerQualificationBuilder get toBuilder =>
-      PractitionerQualificationBuilder.fromJson(toJson());
 }
 
 /// [PractitionerQualificationBuilder]

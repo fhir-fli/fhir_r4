@@ -10,13 +10,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [DiagnosticReport] to a Builder
-extension BuilderDiagnosticReport on DiagnosticReport {
-  /// Converts [DiagnosticReport] to a [DiagnosticReportBuilder]
-  DiagnosticReportBuilder get toBuilder =>
-      DiagnosticReportBuilder.fromJson(toJson());
-}
-
 /// [DiagnosticReportBuilder]
 /// The findings and interpretation of diagnostic tests performed on
 /// patients, groups of patients, devices, and locations, and/or specimens
@@ -1540,13 +1533,6 @@ class DiagnosticReportBuilder extends DomainResourceBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [DiagnosticReportMedia] to a Builder
-extension BuilderDiagnosticReportMedia on DiagnosticReportMedia {
-  /// Converts [DiagnosticReportMedia] to a [DiagnosticReportMediaBuilder]
-  DiagnosticReportMediaBuilder get toBuilder =>
-      DiagnosticReportMediaBuilder.fromJson(toJson());
 }
 
 /// [DiagnosticReportMediaBuilder]

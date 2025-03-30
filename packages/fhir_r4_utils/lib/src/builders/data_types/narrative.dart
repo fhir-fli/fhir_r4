@@ -4,12 +4,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [Narrative] to a Builder
-extension BuilderNarrative on Narrative {
-  /// Converts [Narrative] to a [NarrativeBuilder]
-  NarrativeBuilder get toBuilder => NarrativeBuilder.fromJson(toJson());
-}
-
 /// [NarrativeBuilder]
 /// A human-readable summary of the resource conveying the essential
 /// clinical and business information for the resource.

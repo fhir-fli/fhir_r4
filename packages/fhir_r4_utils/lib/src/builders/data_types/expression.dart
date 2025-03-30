@@ -4,13 +4,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [FhirExpression] to a Builder
-extension BuilderFhirExpression on FhirExpression {
-  /// Converts [FhirExpression] to a [FhirExpressionBuilder]
-  FhirExpressionBuilder get toBuilder =>
-      FhirExpressionBuilder.fromJson(toJson());
-}
-
 /// [FhirExpressionBuilder]
 /// A expression that is evaluated in a specified context and returns a
 /// value. The context of use of the expression must specify the context in

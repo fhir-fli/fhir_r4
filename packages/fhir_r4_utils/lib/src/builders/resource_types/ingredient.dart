@@ -13,12 +13,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [Ingredient] to a Builder
-extension BuilderIngredient on Ingredient {
-  /// Converts [Ingredient] to a [IngredientBuilder]
-  IngredientBuilder get toBuilder => IngredientBuilder.fromJson(toJson());
-}
-
 /// [IngredientBuilder]
 /// An ingredient of a manufactured item or pharmaceutical product.
 class IngredientBuilder extends DomainResourceBuilder {
@@ -966,13 +960,6 @@ class IngredientBuilder extends DomainResourceBuilder {
   }
 }
 
-/// Extension to change [IngredientManufacturer] to a Builder
-extension BuilderIngredientManufacturer on IngredientManufacturer {
-  /// Converts [IngredientManufacturer] to a [IngredientManufacturerBuilder]
-  IngredientManufacturerBuilder get toBuilder =>
-      IngredientManufacturerBuilder.fromJson(toJson());
-}
-
 /// [IngredientManufacturerBuilder]
 /// The organization(s) that manufacture this ingredient. Can be used to
 /// indicate: 1) Organizations we are aware of that manufacture this
@@ -1424,13 +1411,6 @@ class IngredientManufacturerBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [IngredientSubstance] to a Builder
-extension BuilderIngredientSubstance on IngredientSubstance {
-  /// Converts [IngredientSubstance] to a [IngredientSubstanceBuilder]
-  IngredientSubstanceBuilder get toBuilder =>
-      IngredientSubstanceBuilder.fromJson(toJson());
 }
 
 /// [IngredientSubstanceBuilder]
@@ -1888,13 +1868,6 @@ class IngredientSubstanceBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [IngredientStrength] to a Builder
-extension BuilderIngredientStrength on IngredientStrength {
-  /// Converts [IngredientStrength] to a [IngredientStrengthBuilder]
-  IngredientStrengthBuilder get toBuilder =>
-      IngredientStrengthBuilder.fromJson(toJson());
 }
 
 /// [IngredientStrengthBuilder]
@@ -2722,13 +2695,6 @@ class IngredientStrengthBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [IngredientReferenceStrength] to a Builder
-extension BuilderIngredientReferenceStrength on IngredientReferenceStrength {
-  /// Converts [IngredientReferenceStrength] to a [IngredientReferenceStrengthBuilder]
-  IngredientReferenceStrengthBuilder get toBuilder =>
-      IngredientReferenceStrengthBuilder.fromJson(toJson());
 }
 
 /// [IngredientReferenceStrengthBuilder]

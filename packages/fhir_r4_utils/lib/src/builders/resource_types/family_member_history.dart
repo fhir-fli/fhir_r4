@@ -10,13 +10,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [FamilyMemberHistory] to a Builder
-extension BuilderFamilyMemberHistory on FamilyMemberHistory {
-  /// Converts [FamilyMemberHistory] to a [FamilyMemberHistoryBuilder]
-  FamilyMemberHistoryBuilder get toBuilder =>
-      FamilyMemberHistoryBuilder.fromJson(toJson());
-}
-
 /// [FamilyMemberHistoryBuilder]
 /// Significant health conditions for a person related to the patient
 /// relevant in the context of care for the patient.
@@ -1762,13 +1755,6 @@ class FamilyMemberHistoryBuilder extends DomainResourceBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [FamilyMemberHistoryCondition] to a Builder
-extension BuilderFamilyMemberHistoryCondition on FamilyMemberHistoryCondition {
-  /// Converts [FamilyMemberHistoryCondition] to a [FamilyMemberHistoryConditionBuilder]
-  FamilyMemberHistoryConditionBuilder get toBuilder =>
-      FamilyMemberHistoryConditionBuilder.fromJson(toJson());
 }
 
 /// [FamilyMemberHistoryConditionBuilder]

@@ -1,11 +1,5 @@
 part of 'primitive_types.dart';
 
-/// Extension to convert a [FhirInteger] to a [FhirIntegerBuilder]
-extension BuilderFhirInteger on FhirInteger {
-  /// Converts this instance to a [FhirIntegerBuilder]
-  FhirIntegerBuilder get toBuilder => FhirIntegerBuilder.fromJson(toJson());
-}
-
 /// Extension to convert a [num] to a [FhirIntegerBuilder].
 extension FhirIntegerBuilderExtension on num {
   /// Converts a [num] to a [FhirIntegerBuilder].
@@ -160,6 +154,11 @@ class FhirIntegerBuilder extends FhirNumberBuilder
   /// Returns the FHIR type as a string.
   @override
   String get fhirType => 'integer';
+
+  /// Converts this instance to a [FhirInteger] object
+  ///
+  @override
+  FhirInteger build() => FhirInteger.fromJson(toJson());
 
   /// Serializes the instance to JSON with standardized keys.
   @override

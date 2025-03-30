@@ -4,13 +4,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [CodeableConcept] to a Builder
-extension BuilderCodeableConcept on CodeableConcept {
-  /// Converts [CodeableConcept] to a [CodeableConceptBuilder]
-  CodeableConceptBuilder get toBuilder =>
-      CodeableConceptBuilder.fromJson(toJson());
-}
-
 /// [CodeableConceptBuilder]
 /// A concept that may be defined by a formal reference to a terminology or
 /// ontology or may be provided by text.

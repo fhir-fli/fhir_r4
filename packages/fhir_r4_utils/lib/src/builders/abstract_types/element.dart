@@ -4,12 +4,6 @@ import 'package:fhir_r4/fhir_r4.dart' show Element, FHIRException;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension for [Element] to convert to a builder
-extension BuilderElement on Element {
-  /// Converts the [Element] to a [ElementBuilder]
-  ElementBuilder get toBuilder => ElementBuilder.fromJson(toJson());
-}
-
 /// [ElementBuilder] Base definition for all FHIR elements.
 class ElementBuilder extends FhirBaseBuilder {
   /// Constructor for Element with optional id and extensions

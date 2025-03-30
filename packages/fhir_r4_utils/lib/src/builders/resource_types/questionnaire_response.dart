@@ -11,13 +11,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [QuestionnaireResponse] to a Builder
-extension BuilderQuestionnaireResponse on QuestionnaireResponse {
-  /// Converts [QuestionnaireResponse] to a [QuestionnaireResponseBuilder]
-  QuestionnaireResponseBuilder get toBuilder =>
-      QuestionnaireResponseBuilder.fromJson(toJson());
-}
-
 /// [QuestionnaireResponseBuilder]
 /// A structured set of questions and their answers. The questions are
 /// ordered and grouped into coherent subsets, corresponding to the
@@ -1096,13 +1089,6 @@ class QuestionnaireResponseBuilder extends DomainResourceBuilder {
   }
 }
 
-/// Extension to change [QuestionnaireResponseItem] to a Builder
-extension BuilderQuestionnaireResponseItem on QuestionnaireResponseItem {
-  /// Converts [QuestionnaireResponseItem] to a [QuestionnaireResponseItemBuilder]
-  QuestionnaireResponseItemBuilder get toBuilder =>
-      QuestionnaireResponseItemBuilder.fromJson(toJson());
-}
-
 /// [QuestionnaireResponseItemBuilder]
 /// A group or question item from the original questionnaire for which
 /// answers are provided.
@@ -1698,13 +1684,6 @@ class QuestionnaireResponseItemBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [QuestionnaireResponseAnswer] to a Builder
-extension BuilderQuestionnaireResponseAnswer on QuestionnaireResponseAnswer {
-  /// Converts [QuestionnaireResponseAnswer] to a [QuestionnaireResponseAnswerBuilder]
-  QuestionnaireResponseAnswerBuilder get toBuilder =>
-      QuestionnaireResponseAnswerBuilder.fromJson(toJson());
 }
 
 /// [QuestionnaireResponseAnswerBuilder]

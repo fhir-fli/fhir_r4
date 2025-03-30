@@ -4,12 +4,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [Signature] to a Builder
-extension BuilderSignature on Signature {
-  /// Converts [Signature] to a [SignatureBuilder]
-  SignatureBuilder get toBuilder => SignatureBuilder.fromJson(toJson());
-}
-
 /// [SignatureBuilder]
 /// A signature along with supporting context. The signature may be a
 /// digital signature that is cryptographic in nature, or some other

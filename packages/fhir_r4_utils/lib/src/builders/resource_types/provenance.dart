@@ -11,12 +11,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [Provenance] to a Builder
-extension BuilderProvenance on Provenance {
-  /// Converts [Provenance] to a [ProvenanceBuilder]
-  ProvenanceBuilder get toBuilder => ProvenanceBuilder.fromJson(toJson());
-}
-
 /// [ProvenanceBuilder]
 /// Provenance of a resource is a record that describes entities and
 /// processes involved in producing and delivering or otherwise influencing
@@ -1140,13 +1134,6 @@ class ProvenanceBuilder extends DomainResourceBuilder {
   }
 }
 
-/// Extension to change [ProvenanceAgent] to a Builder
-extension BuilderProvenanceAgent on ProvenanceAgent {
-  /// Converts [ProvenanceAgent] to a [ProvenanceAgentBuilder]
-  ProvenanceAgentBuilder get toBuilder =>
-      ProvenanceAgentBuilder.fromJson(toJson());
-}
-
 /// [ProvenanceAgentBuilder]
 /// An actor taking a role in an activity for which it can be assigned some
 /// degree of responsibility for the activity taking place.
@@ -1686,13 +1673,6 @@ class ProvenanceAgentBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [ProvenanceEntity] to a Builder
-extension BuilderProvenanceEntity on ProvenanceEntity {
-  /// Converts [ProvenanceEntity] to a [ProvenanceEntityBuilder]
-  ProvenanceEntityBuilder get toBuilder =>
-      ProvenanceEntityBuilder.fromJson(toJson());
 }
 
 /// [ProvenanceEntityBuilder]

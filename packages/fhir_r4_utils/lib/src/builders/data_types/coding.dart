@@ -4,12 +4,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [Coding] to a Builder
-extension BuilderCoding on Coding {
-  /// Converts [Coding] to a [CodingBuilder]
-  CodingBuilder get toBuilder => CodingBuilder.fromJson(toJson());
-}
-
 /// [CodingBuilder]
 /// A reference to a code defined by a terminology system.
 class CodingBuilder extends DataTypeBuilder

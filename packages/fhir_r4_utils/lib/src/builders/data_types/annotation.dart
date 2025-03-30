@@ -4,12 +4,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [Annotation] to a Builder
-extension BuilderAnnotation on Annotation {
-  /// Converts [Annotation] to a [AnnotationBuilder]
-  AnnotationBuilder get toBuilder => AnnotationBuilder.fromJson(toJson());
-}
-
 /// [AnnotationBuilder]
 /// A text note which also contains information about who made the
 /// statement and when.

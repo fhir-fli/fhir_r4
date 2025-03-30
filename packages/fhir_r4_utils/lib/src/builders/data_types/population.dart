@@ -4,12 +4,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [Population] to a Builder
-extension BuilderPopulation on Population {
-  /// Converts [Population] to a [PopulationBuilder]
-  PopulationBuilder get toBuilder => PopulationBuilder.fromJson(toJson());
-}
-
 /// [PopulationBuilder]
 /// A populatioof people with some set of grouping criteria.
 class PopulationBuilder extends BackboneTypeBuilder {

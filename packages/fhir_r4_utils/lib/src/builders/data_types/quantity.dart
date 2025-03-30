@@ -4,12 +4,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [Quantity] to a Builder
-extension BuilderQuantity on Quantity {
-  /// Converts [Quantity] to a [QuantityBuilder]
-  QuantityBuilder get toBuilder => QuantityBuilder.fromJson(toJson());
-}
-
 /// [QuantityBuilder]
 /// A measured amount (or an amount that can potentially be measured). Note
 /// that measured amounts include amounts that are not precisely

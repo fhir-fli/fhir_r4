@@ -4,12 +4,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [Attachment] to a Builder
-extension BuilderAttachment on Attachment {
-  /// Converts [Attachment] to a [AttachmentBuilder]
-  AttachmentBuilder get toBuilder => AttachmentBuilder.fromJson(toJson());
-}
-
 /// [AttachmentBuilder]
 /// For referring to data content defined in other formats.
 class AttachmentBuilder extends DataTypeBuilder

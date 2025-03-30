@@ -10,13 +10,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [OperationOutcome] to a Builder
-extension BuilderOperationOutcome on OperationOutcome {
-  /// Converts [OperationOutcome] to a [OperationOutcomeBuilder]
-  OperationOutcomeBuilder get toBuilder =>
-      OperationOutcomeBuilder.fromJson(toJson());
-}
-
 /// [OperationOutcomeBuilder]
 /// A collection of error, warning, or information messages that result
 /// from a system action.
@@ -631,13 +624,6 @@ class OperationOutcomeBuilder extends DomainResourceBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [OperationOutcomeIssue] to a Builder
-extension BuilderOperationOutcomeIssue on OperationOutcomeIssue {
-  /// Converts [OperationOutcomeIssue] to a [OperationOutcomeIssueBuilder]
-  OperationOutcomeIssueBuilder get toBuilder =>
-      OperationOutcomeIssueBuilder.fromJson(toJson());
 }
 
 /// [OperationOutcomeIssueBuilder]

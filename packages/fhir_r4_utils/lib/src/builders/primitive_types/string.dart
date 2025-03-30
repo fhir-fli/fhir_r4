@@ -1,11 +1,5 @@
 part of 'primitive_types.dart';
 
-/// Extension to convert a [FhirString] to a [FhirStringBuilder]
-extension BuilderFhirString on FhirString {
-  /// Converts this instance to a [FhirStringBuilder]
-  FhirStringBuilder get toBuilder => FhirStringBuilder.fromJson(toJson());
-}
-
 /// Extension to convert a [String] to [FhirStringBuilder].
 extension FhirStringBuilderExtension on String {
   /// Returns a [FhirStringBuilder] object from a [String].
@@ -162,6 +156,10 @@ class FhirStringBuilder extends PrimitiveTypeBuilder<String>
   /// Returns the FHIR type as 'string'.
   @override
   String get fhirType => 'string';
+
+  /// Converts this instance to a [FhirString] object
+  @override
+  FhirString build() => FhirString.fromJson(toJson());
 
   /// Serializes the instance to JSON with standardized keys.
   @override

@@ -9,12 +9,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [BodyStructure] to a Builder
-extension BuilderBodyStructure on BodyStructure {
-  /// Converts [BodyStructure] to a [BodyStructureBuilder]
-  BodyStructureBuilder get toBuilder => BodyStructureBuilder.fromJson(toJson());
-}
-
 /// [BodyStructureBuilder]
 /// Record details about an anatomical structure. This resource may be used
 /// when a coded concept does not provide the necessary detail needed for

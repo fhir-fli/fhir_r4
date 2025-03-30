@@ -14,12 +14,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [CodeSystem] to a Builder
-extension BuilderCodeSystem on CodeSystem {
-  /// Converts [CodeSystem] to a [CodeSystemBuilder]
-  CodeSystemBuilder get toBuilder => CodeSystemBuilder.fromJson(toJson());
-}
-
 /// [CodeSystemBuilder]
 /// The CodeSystem resource is used to declare the existence of and
 /// describe a code system or code system supplement and its key
@@ -1746,13 +1740,6 @@ class CodeSystemBuilder extends CanonicalResourceBuilder {
   }
 }
 
-/// Extension to change [CodeSystemFilter] to a Builder
-extension BuilderCodeSystemFilter on CodeSystemFilter {
-  /// Converts [CodeSystemFilter] to a [CodeSystemFilterBuilder]
-  CodeSystemFilterBuilder get toBuilder =>
-      CodeSystemFilterBuilder.fromJson(toJson());
-}
-
 /// [CodeSystemFilterBuilder]
 /// A filter that can be used in a value set compose statement when
 /// selecting concepts using a filter.
@@ -2288,13 +2275,6 @@ class CodeSystemFilterBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [CodeSystemProperty] to a Builder
-extension BuilderCodeSystemProperty on CodeSystemProperty {
-  /// Converts [CodeSystemProperty] to a [CodeSystemPropertyBuilder]
-  CodeSystemPropertyBuilder get toBuilder =>
-      CodeSystemPropertyBuilder.fromJson(toJson());
 }
 
 /// [CodeSystemPropertyBuilder]
@@ -2833,13 +2813,6 @@ class CodeSystemPropertyBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [CodeSystemConcept] to a Builder
-extension BuilderCodeSystemConcept on CodeSystemConcept {
-  /// Converts [CodeSystemConcept] to a [CodeSystemConceptBuilder]
-  CodeSystemConceptBuilder get toBuilder =>
-      CodeSystemConceptBuilder.fromJson(toJson());
 }
 
 /// [CodeSystemConceptBuilder]
@@ -3495,13 +3468,6 @@ class CodeSystemConceptBuilder extends BackboneElementBuilder {
   }
 }
 
-/// Extension to change [CodeSystemDesignation] to a Builder
-extension BuilderCodeSystemDesignation on CodeSystemDesignation {
-  /// Converts [CodeSystemDesignation] to a [CodeSystemDesignationBuilder]
-  CodeSystemDesignationBuilder get toBuilder =>
-      CodeSystemDesignationBuilder.fromJson(toJson());
-}
-
 /// [CodeSystemDesignationBuilder]
 /// Additional representations for the concept - other languages, aliases,
 /// specialized purposes, used for particular purposes, etc.
@@ -3989,13 +3955,6 @@ class CodeSystemDesignationBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [CodeSystemProperty1] to a Builder
-extension BuilderCodeSystemProperty1 on CodeSystemProperty1 {
-  /// Converts [CodeSystemProperty1] to a [CodeSystemProperty1Builder]
-  CodeSystemProperty1Builder get toBuilder =>
-      CodeSystemProperty1Builder.fromJson(toJson());
 }
 
 /// [CodeSystemProperty1Builder]

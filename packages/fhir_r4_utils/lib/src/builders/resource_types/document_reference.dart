@@ -12,13 +12,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [DocumentReference] to a Builder
-extension BuilderDocumentReference on DocumentReference {
-  /// Converts [DocumentReference] to a [DocumentReferenceBuilder]
-  DocumentReferenceBuilder get toBuilder =>
-      DocumentReferenceBuilder.fromJson(toJson());
-}
-
 /// [DocumentReferenceBuilder]
 /// A reference to a document of any kind for any purpose. Provides
 /// metadata about the document so that the document can be discovered and
@@ -1347,13 +1340,6 @@ class DocumentReferenceBuilder extends DomainResourceBuilder {
   }
 }
 
-/// Extension to change [DocumentReferenceRelatesTo] to a Builder
-extension BuilderDocumentReferenceRelatesTo on DocumentReferenceRelatesTo {
-  /// Converts [DocumentReferenceRelatesTo] to a [DocumentReferenceRelatesToBuilder]
-  DocumentReferenceRelatesToBuilder get toBuilder =>
-      DocumentReferenceRelatesToBuilder.fromJson(toJson());
-}
-
 /// [DocumentReferenceRelatesToBuilder]
 /// Relationships that this document has with other document references
 /// that already exist.
@@ -1799,13 +1785,6 @@ class DocumentReferenceRelatesToBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [DocumentReferenceContent] to a Builder
-extension BuilderDocumentReferenceContent on DocumentReferenceContent {
-  /// Converts [DocumentReferenceContent] to a [DocumentReferenceContentBuilder]
-  DocumentReferenceContentBuilder get toBuilder =>
-      DocumentReferenceContentBuilder.fromJson(toJson());
 }
 
 /// [DocumentReferenceContentBuilder]
@@ -2256,13 +2235,6 @@ class DocumentReferenceContentBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [DocumentReferenceContext] to a Builder
-extension BuilderDocumentReferenceContext on DocumentReferenceContext {
-  /// Converts [DocumentReferenceContext] to a [DocumentReferenceContextBuilder]
-  DocumentReferenceContextBuilder get toBuilder =>
-      DocumentReferenceContextBuilder.fromJson(toJson());
 }
 
 /// [DocumentReferenceContextBuilder]

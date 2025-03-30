@@ -25,13 +25,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [MedicationKnowledge] to a Builder
-extension BuilderMedicationKnowledge on MedicationKnowledge {
-  /// Converts [MedicationKnowledge] to a [MedicationKnowledgeBuilder]
-  MedicationKnowledgeBuilder get toBuilder =>
-      MedicationKnowledgeBuilder.fromJson(toJson());
-}
-
 /// [MedicationKnowledgeBuilder]
 /// Information about a medication that is used to support knowledge.
 class MedicationKnowledgeBuilder extends DomainResourceBuilder {
@@ -1722,14 +1715,6 @@ class MedicationKnowledgeBuilder extends DomainResourceBuilder {
   }
 }
 
-/// Extension to change [MedicationKnowledgeRelatedMedicationKnowledge] to a Builder
-extension BuilderMedicationKnowledgeRelatedMedicationKnowledge
-    on MedicationKnowledgeRelatedMedicationKnowledge {
-  /// Converts [MedicationKnowledgeRelatedMedicationKnowledge] to a [MedicationKnowledgeRelatedMedicationKnowledgeBuilder]
-  MedicationKnowledgeRelatedMedicationKnowledgeBuilder get toBuilder =>
-      MedicationKnowledgeRelatedMedicationKnowledgeBuilder.fromJson(toJson());
-}
-
 /// [MedicationKnowledgeRelatedMedicationKnowledgeBuilder]
 /// Associated or related knowledge about a medication.
 class MedicationKnowledgeRelatedMedicationKnowledgeBuilder
@@ -2188,13 +2173,6 @@ class MedicationKnowledgeRelatedMedicationKnowledgeBuilder
   }
 }
 
-/// Extension to change [MedicationKnowledgeMonograph] to a Builder
-extension BuilderMedicationKnowledgeMonograph on MedicationKnowledgeMonograph {
-  /// Converts [MedicationKnowledgeMonograph] to a [MedicationKnowledgeMonographBuilder]
-  MedicationKnowledgeMonographBuilder get toBuilder =>
-      MedicationKnowledgeMonographBuilder.fromJson(toJson());
-}
-
 /// [MedicationKnowledgeMonographBuilder]
 /// Associated documentation about the medication.
 class MedicationKnowledgeMonographBuilder extends BackboneElementBuilder {
@@ -2640,14 +2618,6 @@ class MedicationKnowledgeMonographBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [MedicationKnowledgeIngredient] to a Builder
-extension BuilderMedicationKnowledgeIngredient
-    on MedicationKnowledgeIngredient {
-  /// Converts [MedicationKnowledgeIngredient] to a [MedicationKnowledgeIngredientBuilder]
-  MedicationKnowledgeIngredientBuilder get toBuilder =>
-      MedicationKnowledgeIngredientBuilder.fromJson(toJson());
 }
 
 /// [MedicationKnowledgeIngredientBuilder]
@@ -3207,13 +3177,6 @@ class MedicationKnowledgeIngredientBuilder extends BackboneElementBuilder {
   }
 }
 
-/// Extension to change [MedicationKnowledgeCost] to a Builder
-extension BuilderMedicationKnowledgeCost on MedicationKnowledgeCost {
-  /// Converts [MedicationKnowledgeCost] to a [MedicationKnowledgeCostBuilder]
-  MedicationKnowledgeCostBuilder get toBuilder =>
-      MedicationKnowledgeCostBuilder.fromJson(toJson());
-}
-
 /// [MedicationKnowledgeCostBuilder]
 /// The price of the medication.
 class MedicationKnowledgeCostBuilder extends BackboneElementBuilder {
@@ -3703,14 +3666,6 @@ class MedicationKnowledgeCostBuilder extends BackboneElementBuilder {
   }
 }
 
-/// Extension to change [MedicationKnowledgeMonitoringProgram] to a Builder
-extension BuilderMedicationKnowledgeMonitoringProgram
-    on MedicationKnowledgeMonitoringProgram {
-  /// Converts [MedicationKnowledgeMonitoringProgram] to a [MedicationKnowledgeMonitoringProgramBuilder]
-  MedicationKnowledgeMonitoringProgramBuilder get toBuilder =>
-      MedicationKnowledgeMonitoringProgramBuilder.fromJson(toJson());
-}
-
 /// [MedicationKnowledgeMonitoringProgramBuilder]
 /// The program under which the medication is reviewed.
 class MedicationKnowledgeMonitoringProgramBuilder
@@ -4157,14 +4112,6 @@ class MedicationKnowledgeMonitoringProgramBuilder
     }
     return true;
   }
-}
-
-/// Extension to change [MedicationKnowledgeAdministrationGuidelines] to a Builder
-extension BuilderMedicationKnowledgeAdministrationGuidelines
-    on MedicationKnowledgeAdministrationGuidelines {
-  /// Converts [MedicationKnowledgeAdministrationGuidelines] to a [MedicationKnowledgeAdministrationGuidelinesBuilder]
-  MedicationKnowledgeAdministrationGuidelinesBuilder get toBuilder =>
-      MedicationKnowledgeAdministrationGuidelinesBuilder.fromJson(toJson());
 }
 
 /// [MedicationKnowledgeAdministrationGuidelinesBuilder]
@@ -4749,13 +4696,6 @@ class MedicationKnowledgeAdministrationGuidelinesBuilder
   }
 }
 
-/// Extension to change [MedicationKnowledgeDosage] to a Builder
-extension BuilderMedicationKnowledgeDosage on MedicationKnowledgeDosage {
-  /// Converts [MedicationKnowledgeDosage] to a [MedicationKnowledgeDosageBuilder]
-  MedicationKnowledgeDosageBuilder get toBuilder =>
-      MedicationKnowledgeDosageBuilder.fromJson(toJson());
-}
-
 /// [MedicationKnowledgeDosageBuilder]
 /// Dosage for the medication for the specific guidelines.
 class MedicationKnowledgeDosageBuilder extends BackboneElementBuilder {
@@ -5210,14 +5150,6 @@ class MedicationKnowledgeDosageBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [MedicationKnowledgePatientCharacteristics] to a Builder
-extension BuilderMedicationKnowledgePatientCharacteristics
-    on MedicationKnowledgePatientCharacteristics {
-  /// Converts [MedicationKnowledgePatientCharacteristics] to a [MedicationKnowledgePatientCharacteristicsBuilder]
-  MedicationKnowledgePatientCharacteristicsBuilder get toBuilder =>
-      MedicationKnowledgePatientCharacteristicsBuilder.fromJson(toJson());
 }
 
 /// [MedicationKnowledgePatientCharacteristicsBuilder]
@@ -5745,14 +5677,6 @@ class MedicationKnowledgePatientCharacteristicsBuilder
   }
 }
 
-/// Extension to change [MedicationKnowledgeMedicineClassification] to a Builder
-extension BuilderMedicationKnowledgeMedicineClassification
-    on MedicationKnowledgeMedicineClassification {
-  /// Converts [MedicationKnowledgeMedicineClassification] to a [MedicationKnowledgeMedicineClassificationBuilder]
-  MedicationKnowledgeMedicineClassificationBuilder get toBuilder =>
-      MedicationKnowledgeMedicineClassificationBuilder.fromJson(toJson());
-}
-
 /// [MedicationKnowledgeMedicineClassificationBuilder]
 /// Categorization of the medication within a formulary or classification
 /// system.
@@ -6213,13 +6137,6 @@ class MedicationKnowledgeMedicineClassificationBuilder
   }
 }
 
-/// Extension to change [MedicationKnowledgePackaging] to a Builder
-extension BuilderMedicationKnowledgePackaging on MedicationKnowledgePackaging {
-  /// Converts [MedicationKnowledgePackaging] to a [MedicationKnowledgePackagingBuilder]
-  MedicationKnowledgePackagingBuilder get toBuilder =>
-      MedicationKnowledgePackagingBuilder.fromJson(toJson());
-}
-
 /// [MedicationKnowledgePackagingBuilder]
 /// Information that only applies to packages (not products).
 class MedicationKnowledgePackagingBuilder extends BackboneElementBuilder {
@@ -6665,14 +6582,6 @@ class MedicationKnowledgePackagingBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [MedicationKnowledgeDrugCharacteristic] to a Builder
-extension BuilderMedicationKnowledgeDrugCharacteristic
-    on MedicationKnowledgeDrugCharacteristic {
-  /// Converts [MedicationKnowledgeDrugCharacteristic] to a [MedicationKnowledgeDrugCharacteristicBuilder]
-  MedicationKnowledgeDrugCharacteristicBuilder get toBuilder =>
-      MedicationKnowledgeDrugCharacteristicBuilder.fromJson(toJson());
 }
 
 /// [MedicationKnowledgeDrugCharacteristicBuilder]
@@ -7251,14 +7160,6 @@ class MedicationKnowledgeDrugCharacteristicBuilder
   }
 }
 
-/// Extension to change [MedicationKnowledgeRegulatory] to a Builder
-extension BuilderMedicationKnowledgeRegulatory
-    on MedicationKnowledgeRegulatory {
-  /// Converts [MedicationKnowledgeRegulatory] to a [MedicationKnowledgeRegulatoryBuilder]
-  MedicationKnowledgeRegulatoryBuilder get toBuilder =>
-      MedicationKnowledgeRegulatoryBuilder.fromJson(toJson());
-}
-
 /// [MedicationKnowledgeRegulatoryBuilder]
 /// Regulatory information about a medication.
 class MedicationKnowledgeRegulatoryBuilder extends BackboneElementBuilder {
@@ -7812,14 +7713,6 @@ class MedicationKnowledgeRegulatoryBuilder extends BackboneElementBuilder {
   }
 }
 
-/// Extension to change [MedicationKnowledgeSubstitution] to a Builder
-extension BuilderMedicationKnowledgeSubstitution
-    on MedicationKnowledgeSubstitution {
-  /// Converts [MedicationKnowledgeSubstitution] to a [MedicationKnowledgeSubstitutionBuilder]
-  MedicationKnowledgeSubstitutionBuilder get toBuilder =>
-      MedicationKnowledgeSubstitutionBuilder.fromJson(toJson());
-}
-
 /// [MedicationKnowledgeSubstitutionBuilder]
 /// Specifies if changes are allowed when dispensing a medication from a
 /// regulatory perspective.
@@ -8268,13 +8161,6 @@ class MedicationKnowledgeSubstitutionBuilder extends BackboneElementBuilder {
   }
 }
 
-/// Extension to change [MedicationKnowledgeSchedule] to a Builder
-extension BuilderMedicationKnowledgeSchedule on MedicationKnowledgeSchedule {
-  /// Converts [MedicationKnowledgeSchedule] to a [MedicationKnowledgeScheduleBuilder]
-  MedicationKnowledgeScheduleBuilder get toBuilder =>
-      MedicationKnowledgeScheduleBuilder.fromJson(toJson());
-}
-
 /// [MedicationKnowledgeScheduleBuilder]
 /// Specifies the schedule of a medication in jurisdiction.
 class MedicationKnowledgeScheduleBuilder extends BackboneElementBuilder {
@@ -8676,14 +8562,6 @@ class MedicationKnowledgeScheduleBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [MedicationKnowledgeMaxDispense] to a Builder
-extension BuilderMedicationKnowledgeMaxDispense
-    on MedicationKnowledgeMaxDispense {
-  /// Converts [MedicationKnowledgeMaxDispense] to a [MedicationKnowledgeMaxDispenseBuilder]
-  MedicationKnowledgeMaxDispenseBuilder get toBuilder =>
-      MedicationKnowledgeMaxDispenseBuilder.fromJson(toJson());
 }
 
 /// [MedicationKnowledgeMaxDispenseBuilder]
@@ -9131,13 +9009,6 @@ class MedicationKnowledgeMaxDispenseBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [MedicationKnowledgeKinetics] to a Builder
-extension BuilderMedicationKnowledgeKinetics on MedicationKnowledgeKinetics {
-  /// Converts [MedicationKnowledgeKinetics] to a [MedicationKnowledgeKineticsBuilder]
-  MedicationKnowledgeKineticsBuilder get toBuilder =>
-      MedicationKnowledgeKineticsBuilder.fromJson(toJson());
 }
 
 /// [MedicationKnowledgeKineticsBuilder]

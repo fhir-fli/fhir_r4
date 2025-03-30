@@ -10,13 +10,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [ManufacturedItemDefinition] to a Builder
-extension BuilderManufacturedItemDefinition on ManufacturedItemDefinition {
-  /// Converts [ManufacturedItemDefinition] to a [ManufacturedItemDefinitionBuilder]
-  ManufacturedItemDefinitionBuilder get toBuilder =>
-      ManufacturedItemDefinitionBuilder.fromJson(toJson());
-}
-
 /// [ManufacturedItemDefinitionBuilder]
 /// The definition and characteristics of a medicinal manufactured item,
 /// such as a tablet or capsule, as contained in a packaged medicinal
@@ -924,14 +917,6 @@ class ManufacturedItemDefinitionBuilder extends DomainResourceBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [ManufacturedItemDefinitionProperty] to a Builder
-extension BuilderManufacturedItemDefinitionProperty
-    on ManufacturedItemDefinitionProperty {
-  /// Converts [ManufacturedItemDefinitionProperty] to a [ManufacturedItemDefinitionPropertyBuilder]
-  ManufacturedItemDefinitionPropertyBuilder get toBuilder =>
-      ManufacturedItemDefinitionPropertyBuilder.fromJson(toJson());
 }
 
 /// [ManufacturedItemDefinitionPropertyBuilder]

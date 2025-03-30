@@ -16,13 +16,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [ClinicalUseDefinition] to a Builder
-extension BuilderClinicalUseDefinition on ClinicalUseDefinition {
-  /// Converts [ClinicalUseDefinition] to a [ClinicalUseDefinitionBuilder]
-  ClinicalUseDefinitionBuilder get toBuilder =>
-      ClinicalUseDefinitionBuilder.fromJson(toJson());
-}
-
 /// [ClinicalUseDefinitionBuilder]
 /// A single issue - either an indication, contraindication, interaction or
 /// an undesirable effect for a medicinal product, medication, device or
@@ -1110,14 +1103,6 @@ class ClinicalUseDefinitionBuilder extends DomainResourceBuilder {
   }
 }
 
-/// Extension to change [ClinicalUseDefinitionContraindication] to a Builder
-extension BuilderClinicalUseDefinitionContraindication
-    on ClinicalUseDefinitionContraindication {
-  /// Converts [ClinicalUseDefinitionContraindication] to a [ClinicalUseDefinitionContraindicationBuilder]
-  ClinicalUseDefinitionContraindicationBuilder get toBuilder =>
-      ClinicalUseDefinitionContraindicationBuilder.fromJson(toJson());
-}
-
 /// [ClinicalUseDefinitionContraindicationBuilder]
 /// Specifics for when this is a contraindication.
 class ClinicalUseDefinitionContraindicationBuilder
@@ -1726,14 +1711,6 @@ class ClinicalUseDefinitionContraindicationBuilder
   }
 }
 
-/// Extension to change [ClinicalUseDefinitionOtherTherapy] to a Builder
-extension BuilderClinicalUseDefinitionOtherTherapy
-    on ClinicalUseDefinitionOtherTherapy {
-  /// Converts [ClinicalUseDefinitionOtherTherapy] to a [ClinicalUseDefinitionOtherTherapyBuilder]
-  ClinicalUseDefinitionOtherTherapyBuilder get toBuilder =>
-      ClinicalUseDefinitionOtherTherapyBuilder.fromJson(toJson());
-}
-
 /// [ClinicalUseDefinitionOtherTherapyBuilder]
 /// Information about the use of the medicinal product in relation to other
 /// therapies described as part of the contraindication.
@@ -2182,14 +2159,6 @@ class ClinicalUseDefinitionOtherTherapyBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [ClinicalUseDefinitionIndication] to a Builder
-extension BuilderClinicalUseDefinitionIndication
-    on ClinicalUseDefinitionIndication {
-  /// Converts [ClinicalUseDefinitionIndication] to a [ClinicalUseDefinitionIndicationBuilder]
-  ClinicalUseDefinitionIndicationBuilder get toBuilder =>
-      ClinicalUseDefinitionIndicationBuilder.fromJson(toJson());
 }
 
 /// [ClinicalUseDefinitionIndicationBuilder]
@@ -2951,14 +2920,6 @@ class ClinicalUseDefinitionIndicationBuilder extends BackboneElementBuilder {
   }
 }
 
-/// Extension to change [ClinicalUseDefinitionInteraction] to a Builder
-extension BuilderClinicalUseDefinitionInteraction
-    on ClinicalUseDefinitionInteraction {
-  /// Converts [ClinicalUseDefinitionInteraction] to a [ClinicalUseDefinitionInteractionBuilder]
-  ClinicalUseDefinitionInteractionBuilder get toBuilder =>
-      ClinicalUseDefinitionInteractionBuilder.fromJson(toJson());
-}
-
 /// [ClinicalUseDefinitionInteractionBuilder]
 /// Specifics for when this is an interaction.
 class ClinicalUseDefinitionInteractionBuilder extends BackboneElementBuilder {
@@ -3555,14 +3516,6 @@ class ClinicalUseDefinitionInteractionBuilder extends BackboneElementBuilder {
   }
 }
 
-/// Extension to change [ClinicalUseDefinitionInteractant] to a Builder
-extension BuilderClinicalUseDefinitionInteractant
-    on ClinicalUseDefinitionInteractant {
-  /// Converts [ClinicalUseDefinitionInteractant] to a [ClinicalUseDefinitionInteractantBuilder]
-  ClinicalUseDefinitionInteractantBuilder get toBuilder =>
-      ClinicalUseDefinitionInteractantBuilder.fromJson(toJson());
-}
-
 /// [ClinicalUseDefinitionInteractantBuilder]
 /// The specific medication, food, substance or laboratory test that
 /// interacts.
@@ -4029,14 +3982,6 @@ class ClinicalUseDefinitionInteractantBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [ClinicalUseDefinitionUndesirableEffect] to a Builder
-extension BuilderClinicalUseDefinitionUndesirableEffect
-    on ClinicalUseDefinitionUndesirableEffect {
-  /// Converts [ClinicalUseDefinitionUndesirableEffect] to a [ClinicalUseDefinitionUndesirableEffectBuilder]
-  ClinicalUseDefinitionUndesirableEffectBuilder get toBuilder =>
-      ClinicalUseDefinitionUndesirableEffectBuilder.fromJson(toJson());
 }
 
 /// [ClinicalUseDefinitionUndesirableEffectBuilder]
@@ -4531,13 +4476,6 @@ class ClinicalUseDefinitionUndesirableEffectBuilder
     }
     return true;
   }
-}
-
-/// Extension to change [ClinicalUseDefinitionWarning] to a Builder
-extension BuilderClinicalUseDefinitionWarning on ClinicalUseDefinitionWarning {
-  /// Converts [ClinicalUseDefinitionWarning] to a [ClinicalUseDefinitionWarningBuilder]
-  ClinicalUseDefinitionWarningBuilder get toBuilder =>
-      ClinicalUseDefinitionWarningBuilder.fromJson(toJson());
 }
 
 /// [ClinicalUseDefinitionWarningBuilder]

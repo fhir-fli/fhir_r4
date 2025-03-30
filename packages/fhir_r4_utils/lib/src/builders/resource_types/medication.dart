@@ -11,12 +11,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [Medication] to a Builder
-extension BuilderMedication on Medication {
-  /// Converts [Medication] to a [MedicationBuilder]
-  MedicationBuilder get toBuilder => MedicationBuilder.fromJson(toJson());
-}
-
 /// [MedicationBuilder]
 /// This resource is primarily used for the identification and definition
 /// of a medication for the purposes of prescribing, dispensing, and
@@ -954,13 +948,6 @@ class MedicationBuilder extends DomainResourceBuilder {
   }
 }
 
-/// Extension to change [MedicationIngredient] to a Builder
-extension BuilderMedicationIngredient on MedicationIngredient {
-  /// Converts [MedicationIngredient] to a [MedicationIngredientBuilder]
-  MedicationIngredientBuilder get toBuilder =>
-      MedicationIngredientBuilder.fromJson(toJson());
-}
-
 /// [MedicationIngredientBuilder]
 /// Identifies a particular constituent of interest in the product.
 class MedicationIngredientBuilder extends BackboneElementBuilder {
@@ -1513,13 +1500,6 @@ class MedicationIngredientBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [MedicationBatch] to a Builder
-extension BuilderMedicationBatch on MedicationBatch {
-  /// Converts [MedicationBatch] to a [MedicationBatchBuilder]
-  MedicationBatchBuilder get toBuilder =>
-      MedicationBatchBuilder.fromJson(toJson());
 }
 
 /// [MedicationBatchBuilder]

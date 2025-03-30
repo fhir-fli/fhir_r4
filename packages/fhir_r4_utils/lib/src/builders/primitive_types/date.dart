@@ -1,11 +1,5 @@
 part of 'primitive_types.dart';
 
-/// Extension to convert a [FhirDate] to a [FhirDateBuilder]
-extension BuilderFhirDate on FhirDate {
-  /// Converts this instance to a [FhirDateBuilder]
-  FhirDateBuilder get toBuilder => FhirDateBuilder.fromJson(toJson());
-}
-
 /// Extension on [DateTime] to convert to a [FhirDateBuilder].
 extension FhirDateBuilderExtension on DateTime {
   /// Converts [DateTime] to [FhirDateBuilder].
@@ -298,6 +292,10 @@ class FhirDateBuilder extends FhirDateTimeBaseBuilder
   /// Clones the current [FhirDateBuilder] and returns a new instance.
   @override
   FhirDateBuilder clone() => FhirDateBuilder.fromJson(toJson());
+
+  /// Converts this instance to a [FhirDate] object
+  @override
+  FhirDate build() => FhirDate.fromJson(toJson());
 
   @override
   Map<String, dynamic> toJson() => {

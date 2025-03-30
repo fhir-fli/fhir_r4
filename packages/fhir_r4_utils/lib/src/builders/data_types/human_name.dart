@@ -4,12 +4,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [HumanName] to a Builder
-extension BuilderHumanName on HumanName {
-  /// Converts [HumanName] to a [HumanNameBuilder]
-  HumanNameBuilder get toBuilder => HumanNameBuilder.fromJson(toJson());
-}
-
 /// [HumanNameBuilder]
 /// A human's name with the ability to identify parts and usage.
 class HumanNameBuilder extends DataTypeBuilder

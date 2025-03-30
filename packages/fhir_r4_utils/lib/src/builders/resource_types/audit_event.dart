@@ -14,12 +14,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [AuditEvent] to a Builder
-extension BuilderAuditEvent on AuditEvent {
-  /// Converts [AuditEvent] to a [AuditEventBuilder]
-  AuditEventBuilder get toBuilder => AuditEventBuilder.fromJson(toJson());
-}
-
 /// [AuditEventBuilder]
 /// A record of an event made for purposes of maintaining a security log.
 /// Typical uses include detection of intrusion attempts and monitoring for
@@ -1097,13 +1091,6 @@ class AuditEventBuilder extends DomainResourceBuilder {
   }
 }
 
-/// Extension to change [AuditEventAgent] to a Builder
-extension BuilderAuditEventAgent on AuditEventAgent {
-  /// Converts [AuditEventAgent] to a [AuditEventAgentBuilder]
-  AuditEventAgentBuilder get toBuilder =>
-      AuditEventAgentBuilder.fromJson(toJson());
-}
-
 /// [AuditEventAgentBuilder]
 /// An actor taking an active role in the event or activity that is logged.
 class AuditEventAgentBuilder extends BackboneElementBuilder {
@@ -1971,13 +1958,6 @@ class AuditEventAgentBuilder extends BackboneElementBuilder {
   }
 }
 
-/// Extension to change [AuditEventNetwork] to a Builder
-extension BuilderAuditEventNetwork on AuditEventNetwork {
-  /// Converts [AuditEventNetwork] to a [AuditEventNetworkBuilder]
-  AuditEventNetworkBuilder get toBuilder =>
-      AuditEventNetworkBuilder.fromJson(toJson());
-}
-
 /// [AuditEventNetworkBuilder]
 /// Logical network location for application activity, if the activity has
 /// a network location.
@@ -2423,13 +2403,6 @@ class AuditEventNetworkBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [AuditEventSource] to a Builder
-extension BuilderAuditEventSource on AuditEventSource {
-  /// Converts [AuditEventSource] to a [AuditEventSourceBuilder]
-  AuditEventSourceBuilder get toBuilder =>
-      AuditEventSourceBuilder.fromJson(toJson());
 }
 
 /// [AuditEventSourceBuilder]
@@ -2928,13 +2901,6 @@ class AuditEventSourceBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [AuditEventEntity] to a Builder
-extension BuilderAuditEventEntity on AuditEventEntity {
-  /// Converts [AuditEventEntity] to a [AuditEventEntityBuilder]
-  AuditEventEntityBuilder get toBuilder =>
-      AuditEventEntityBuilder.fromJson(toJson());
 }
 
 /// [AuditEventEntityBuilder]
@@ -3701,13 +3667,6 @@ class AuditEventEntityBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [AuditEventDetail] to a Builder
-extension BuilderAuditEventDetail on AuditEventDetail {
-  /// Converts [AuditEventDetail] to a [AuditEventDetailBuilder]
-  AuditEventDetailBuilder get toBuilder =>
-      AuditEventDetailBuilder.fromJson(toJson());
 }
 
 /// [AuditEventDetailBuilder]

@@ -11,13 +11,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [ActivityDefinition] to a Builder
-extension BuilderActivityDefinition on ActivityDefinition {
-  /// Converts [ActivityDefinition] to a [ActivityDefinitionBuilder]
-  ActivityDefinitionBuilder get toBuilder =>
-      ActivityDefinitionBuilder.fromJson(toJson());
-}
-
 /// [ActivityDefinitionBuilder]
 /// This resource allows for the definition of some activity to be
 /// performed, independent of a particular patient, practitioner, or other
@@ -3080,14 +3073,6 @@ class ActivityDefinitionBuilder extends CanonicalResourceBuilder {
   }
 }
 
-/// Extension to change [ActivityDefinitionParticipant] to a Builder
-extension BuilderActivityDefinitionParticipant
-    on ActivityDefinitionParticipant {
-  /// Converts [ActivityDefinitionParticipant] to a [ActivityDefinitionParticipantBuilder]
-  ActivityDefinitionParticipantBuilder get toBuilder =>
-      ActivityDefinitionParticipantBuilder.fromJson(toJson());
-}
-
 /// [ActivityDefinitionParticipantBuilder]
 /// Indicates who should participate in performing the action described.
 class ActivityDefinitionParticipantBuilder extends BackboneElementBuilder {
@@ -3533,14 +3518,6 @@ class ActivityDefinitionParticipantBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [ActivityDefinitionDynamicValue] to a Builder
-extension BuilderActivityDefinitionDynamicValue
-    on ActivityDefinitionDynamicValue {
-  /// Converts [ActivityDefinitionDynamicValue] to a [ActivityDefinitionDynamicValueBuilder]
-  ActivityDefinitionDynamicValueBuilder get toBuilder =>
-      ActivityDefinitionDynamicValueBuilder.fromJson(toJson());
 }
 
 /// [ActivityDefinitionDynamicValueBuilder]

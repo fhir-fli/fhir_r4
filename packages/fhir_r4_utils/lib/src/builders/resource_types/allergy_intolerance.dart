@@ -10,13 +10,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [AllergyIntolerance] to a Builder
-extension BuilderAllergyIntolerance on AllergyIntolerance {
-  /// Converts [AllergyIntolerance] to a [AllergyIntoleranceBuilder]
-  AllergyIntoleranceBuilder get toBuilder =>
-      AllergyIntoleranceBuilder.fromJson(toJson());
-}
-
 /// [AllergyIntoleranceBuilder]
 /// Risk of harmful or undesirable, physiological response which is unique
 /// to an individual and associated with exposure to a substance.
@@ -1480,13 +1473,6 @@ class AllergyIntoleranceBuilder extends DomainResourceBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [AllergyIntoleranceReaction] to a Builder
-extension BuilderAllergyIntoleranceReaction on AllergyIntoleranceReaction {
-  /// Converts [AllergyIntoleranceReaction] to a [AllergyIntoleranceReactionBuilder]
-  AllergyIntoleranceReactionBuilder get toBuilder =>
-      AllergyIntoleranceReactionBuilder.fromJson(toJson());
 }
 
 /// [AllergyIntoleranceReactionBuilder]

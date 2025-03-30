@@ -4,13 +4,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [MarketingStatus] to a Builder
-extension BuilderMarketingStatus on MarketingStatus {
-  /// Converts [MarketingStatus] to a [MarketingStatusBuilder]
-  MarketingStatusBuilder get toBuilder =>
-      MarketingStatusBuilder.fromJson(toJson());
-}
-
 /// [MarketingStatusBuilder]
 /// The marketing status describes the date when a medicinal product is
 /// actually put on the market or the date as of which it is no longer

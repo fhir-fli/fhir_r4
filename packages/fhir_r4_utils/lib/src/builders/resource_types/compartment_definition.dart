@@ -10,13 +10,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [CompartmentDefinition] to a Builder
-extension BuilderCompartmentDefinition on CompartmentDefinition {
-  /// Converts [CompartmentDefinition] to a [CompartmentDefinitionBuilder]
-  CompartmentDefinitionBuilder get toBuilder =>
-      CompartmentDefinitionBuilder.fromJson(toJson());
-}
-
 /// [CompartmentDefinitionBuilder]
 /// A compartment definition that defines how resources are accessed on a
 /// server.
@@ -1237,14 +1230,6 @@ class CompartmentDefinitionBuilder extends DomainResourceBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [CompartmentDefinitionResource] to a Builder
-extension BuilderCompartmentDefinitionResource
-    on CompartmentDefinitionResource {
-  /// Converts [CompartmentDefinitionResource] to a [CompartmentDefinitionResourceBuilder]
-  CompartmentDefinitionResourceBuilder get toBuilder =>
-      CompartmentDefinitionResourceBuilder.fromJson(toJson());
 }
 
 /// [CompartmentDefinitionResourceBuilder]

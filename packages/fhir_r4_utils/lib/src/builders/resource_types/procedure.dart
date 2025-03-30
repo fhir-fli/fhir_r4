@@ -11,12 +11,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [Procedure] to a Builder
-extension BuilderProcedure on Procedure {
-  /// Converts [Procedure] to a [ProcedureBuilder]
-  ProcedureBuilder get toBuilder => ProcedureBuilder.fromJson(toJson());
-}
-
 /// [ProcedureBuilder]
 /// An action that is or was performed on or for a patient. This can be a
 /// physical intervention like an operation, or less invasive like long
@@ -2116,13 +2110,6 @@ class ProcedureBuilder extends DomainResourceBuilder {
   }
 }
 
-/// Extension to change [ProcedurePerformer] to a Builder
-extension BuilderProcedurePerformer on ProcedurePerformer {
-  /// Converts [ProcedurePerformer] to a [ProcedurePerformerBuilder]
-  ProcedurePerformerBuilder get toBuilder =>
-      ProcedurePerformerBuilder.fromJson(toJson());
-}
-
 /// [ProcedurePerformerBuilder]
 /// Limited to "real" people rather than equipment.
 class ProcedurePerformerBuilder extends BackboneElementBuilder {
@@ -2609,13 +2596,6 @@ class ProcedurePerformerBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [ProcedureFocalDevice] to a Builder
-extension BuilderProcedureFocalDevice on ProcedureFocalDevice {
-  /// Converts [ProcedureFocalDevice] to a [ProcedureFocalDeviceBuilder]
-  ProcedureFocalDeviceBuilder get toBuilder =>
-      ProcedureFocalDeviceBuilder.fromJson(toJson());
 }
 
 /// [ProcedureFocalDeviceBuilder]

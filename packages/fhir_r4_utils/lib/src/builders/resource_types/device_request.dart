@@ -10,12 +10,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [DeviceRequest] to a Builder
-extension BuilderDeviceRequest on DeviceRequest {
-  /// Converts [DeviceRequest] to a [DeviceRequestBuilder]
-  DeviceRequestBuilder get toBuilder => DeviceRequestBuilder.fromJson(toJson());
-}
-
 /// [DeviceRequestBuilder]
 /// Represents a request for a patient to employ a medical device. The
 /// device may be an implantable device, or an external assistive device,
@@ -1886,13 +1880,6 @@ class DeviceRequestBuilder extends DomainResourceBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [DeviceRequestParameter] to a Builder
-extension BuilderDeviceRequestParameter on DeviceRequestParameter {
-  /// Converts [DeviceRequestParameter] to a [DeviceRequestParameterBuilder]
-  DeviceRequestParameterBuilder get toBuilder =>
-      DeviceRequestParameterBuilder.fromJson(toJson());
 }
 
 /// [DeviceRequestParameterBuilder]

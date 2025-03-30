@@ -4,12 +4,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [Distance] to a Builder
-extension BuilderDistance on Distance {
-  /// Converts [Distance] to a [DistanceBuilder]
-  DistanceBuilder get toBuilder => DistanceBuilder.fromJson(toJson());
-}
-
 /// [DistanceBuilder]
 /// A length - a value with a unit that is a physical distance.
 class DistanceBuilder extends QuantityBuilder

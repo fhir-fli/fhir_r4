@@ -4,12 +4,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [ContactPoint] to a Builder
-extension BuilderContactPoint on ContactPoint {
-  /// Converts [ContactPoint] to a [ContactPointBuilder]
-  ContactPointBuilder get toBuilder => ContactPointBuilder.fromJson(toJson());
-}
-
 /// [ContactPointBuilder]
 /// Details for all kinds of technology mediated contact points for a
 /// person or organization, including telephone, email, etc.

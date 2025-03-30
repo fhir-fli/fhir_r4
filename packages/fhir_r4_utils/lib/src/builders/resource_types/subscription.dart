@@ -10,12 +10,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [Subscription] to a Builder
-extension BuilderSubscription on Subscription {
-  /// Converts [Subscription] to a [SubscriptionBuilder]
-  SubscriptionBuilder get toBuilder => SubscriptionBuilder.fromJson(toJson());
-}
-
 /// [SubscriptionBuilder]
 /// The subscription resource is used to define a push-based subscription
 /// from a server to another system. Once a subscription is registered with
@@ -896,13 +890,6 @@ class SubscriptionBuilder extends DomainResourceBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [SubscriptionChannel] to a Builder
-extension BuilderSubscriptionChannel on SubscriptionChannel {
-  /// Converts [SubscriptionChannel] to a [SubscriptionChannelBuilder]
-  SubscriptionChannelBuilder get toBuilder =>
-      SubscriptionChannelBuilder.fromJson(toJson());
 }
 
 /// [SubscriptionChannelBuilder]

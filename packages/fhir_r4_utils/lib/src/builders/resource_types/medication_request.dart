@@ -12,13 +12,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [MedicationRequest] to a Builder
-extension BuilderMedicationRequest on MedicationRequest {
-  /// Converts [MedicationRequest] to a [MedicationRequestBuilder]
-  MedicationRequestBuilder get toBuilder =>
-      MedicationRequestBuilder.fromJson(toJson());
-}
-
 /// [MedicationRequestBuilder]
 /// An order or request for both supply of the medication and the
 /// instructions for administration of the medication to a patient. The
@@ -2254,14 +2247,6 @@ class MedicationRequestBuilder extends DomainResourceBuilder {
   }
 }
 
-/// Extension to change [MedicationRequestDispenseRequest] to a Builder
-extension BuilderMedicationRequestDispenseRequest
-    on MedicationRequestDispenseRequest {
-  /// Converts [MedicationRequestDispenseRequest] to a [MedicationRequestDispenseRequestBuilder]
-  MedicationRequestDispenseRequestBuilder get toBuilder =>
-      MedicationRequestDispenseRequestBuilder.fromJson(toJson());
-}
-
 /// [MedicationRequestDispenseRequestBuilder]
 /// Indicates the specific details for the dispense or medication supply
 /// part of a medication request (also known as a Medication Prescription
@@ -2942,13 +2927,6 @@ class MedicationRequestDispenseRequestBuilder extends BackboneElementBuilder {
   }
 }
 
-/// Extension to change [MedicationRequestInitialFill] to a Builder
-extension BuilderMedicationRequestInitialFill on MedicationRequestInitialFill {
-  /// Converts [MedicationRequestInitialFill] to a [MedicationRequestInitialFillBuilder]
-  MedicationRequestInitialFillBuilder get toBuilder =>
-      MedicationRequestInitialFillBuilder.fromJson(toJson());
-}
-
 /// [MedicationRequestInitialFillBuilder]
 /// Indicates the quantity or duration for the first dispense of the
 /// medication.
@@ -3394,14 +3372,6 @@ class MedicationRequestInitialFillBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [MedicationRequestSubstitution] to a Builder
-extension BuilderMedicationRequestSubstitution
-    on MedicationRequestSubstitution {
-  /// Converts [MedicationRequestSubstitution] to a [MedicationRequestSubstitutionBuilder]
-  MedicationRequestSubstitutionBuilder get toBuilder =>
-      MedicationRequestSubstitutionBuilder.fromJson(toJson());
 }
 
 /// [MedicationRequestSubstitutionBuilder]

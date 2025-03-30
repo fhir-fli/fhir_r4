@@ -9,12 +9,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [Slot] to a Builder
-extension BuilderSlot on Slot {
-  /// Converts [Slot] to a [SlotBuilder]
-  SlotBuilder get toBuilder => SlotBuilder.fromJson(toJson());
-}
-
 /// [SlotBuilder]
 /// A slot of time on a schedule that may be available for booking
 /// appointments.

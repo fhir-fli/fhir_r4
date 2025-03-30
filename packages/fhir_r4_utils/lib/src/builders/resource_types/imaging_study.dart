@@ -12,12 +12,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [ImagingStudy] to a Builder
-extension BuilderImagingStudy on ImagingStudy {
-  /// Converts [ImagingStudy] to a [ImagingStudyBuilder]
-  ImagingStudyBuilder get toBuilder => ImagingStudyBuilder.fromJson(toJson());
-}
-
 /// [ImagingStudyBuilder]
 /// Representation of the content produced in a DICOM imaging study. A
 /// study comprises a set of series, each of which includes a set of
@@ -1555,13 +1549,6 @@ class ImagingStudyBuilder extends DomainResourceBuilder {
   }
 }
 
-/// Extension to change [ImagingStudySeries] to a Builder
-extension BuilderImagingStudySeries on ImagingStudySeries {
-  /// Converts [ImagingStudySeries] to a [ImagingStudySeriesBuilder]
-  ImagingStudySeriesBuilder get toBuilder =>
-      ImagingStudySeriesBuilder.fromJson(toJson());
-}
-
 /// [ImagingStudySeriesBuilder]
 /// Each study has one or more series of images or other content.
 class ImagingStudySeriesBuilder extends BackboneElementBuilder {
@@ -2486,13 +2473,6 @@ class ImagingStudySeriesBuilder extends BackboneElementBuilder {
   }
 }
 
-/// Extension to change [ImagingStudyPerformer] to a Builder
-extension BuilderImagingStudyPerformer on ImagingStudyPerformer {
-  /// Converts [ImagingStudyPerformer] to a [ImagingStudyPerformerBuilder]
-  ImagingStudyPerformerBuilder get toBuilder =>
-      ImagingStudyPerformerBuilder.fromJson(toJson());
-}
-
 /// [ImagingStudyPerformerBuilder]
 /// Indicates who or what performed the series and how they were involved.
 class ImagingStudyPerformerBuilder extends BackboneElementBuilder {
@@ -2936,13 +2916,6 @@ class ImagingStudyPerformerBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [ImagingStudyInstance] to a Builder
-extension BuilderImagingStudyInstance on ImagingStudyInstance {
-  /// Converts [ImagingStudyInstance] to a [ImagingStudyInstanceBuilder]
-  ImagingStudyInstanceBuilder get toBuilder =>
-      ImagingStudyInstanceBuilder.fromJson(toJson());
 }
 
 /// [ImagingStudyInstanceBuilder]

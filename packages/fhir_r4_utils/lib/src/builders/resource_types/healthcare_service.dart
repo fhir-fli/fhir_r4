@@ -12,13 +12,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [HealthcareService] to a Builder
-extension BuilderHealthcareService on HealthcareService {
-  /// Converts [HealthcareService] to a [HealthcareServiceBuilder]
-  HealthcareServiceBuilder get toBuilder =>
-      HealthcareServiceBuilder.fromJson(toJson());
-}
-
 /// [HealthcareServiceBuilder]
 /// The details of a healthcare service available at a location.
 class HealthcareServiceBuilder extends DomainResourceBuilder {
@@ -1782,13 +1775,6 @@ class HealthcareServiceBuilder extends DomainResourceBuilder {
   }
 }
 
-/// Extension to change [HealthcareServiceEligibility] to a Builder
-extension BuilderHealthcareServiceEligibility on HealthcareServiceEligibility {
-  /// Converts [HealthcareServiceEligibility] to a [HealthcareServiceEligibilityBuilder]
-  HealthcareServiceEligibilityBuilder get toBuilder =>
-      HealthcareServiceEligibilityBuilder.fromJson(toJson());
-}
-
 /// [HealthcareServiceEligibilityBuilder]
 /// Does this service have specific eligibility requirements that need to
 /// be met in order to use the service?
@@ -2234,14 +2220,6 @@ class HealthcareServiceEligibilityBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [HealthcareServiceAvailableTime] to a Builder
-extension BuilderHealthcareServiceAvailableTime
-    on HealthcareServiceAvailableTime {
-  /// Converts [HealthcareServiceAvailableTime] to a [HealthcareServiceAvailableTimeBuilder]
-  HealthcareServiceAvailableTimeBuilder get toBuilder =>
-      HealthcareServiceAvailableTimeBuilder.fromJson(toJson());
 }
 
 /// [HealthcareServiceAvailableTimeBuilder]
@@ -2783,14 +2761,6 @@ class HealthcareServiceAvailableTimeBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [HealthcareServiceNotAvailable] to a Builder
-extension BuilderHealthcareServiceNotAvailable
-    on HealthcareServiceNotAvailable {
-  /// Converts [HealthcareServiceNotAvailable] to a [HealthcareServiceNotAvailableBuilder]
-  HealthcareServiceNotAvailableBuilder get toBuilder =>
-      HealthcareServiceNotAvailableBuilder.fromJson(toJson());
 }
 
 /// [HealthcareServiceNotAvailableBuilder]

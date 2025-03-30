@@ -9,13 +9,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [ResearchSubject] to a Builder
-extension BuilderResearchSubject on ResearchSubject {
-  /// Converts [ResearchSubject] to a [ResearchSubjectBuilder]
-  ResearchSubjectBuilder get toBuilder =>
-      ResearchSubjectBuilder.fromJson(toJson());
-}
-
 /// [ResearchSubjectBuilder]
 /// A physical entity which is the primary unit of operational and/or
 /// administrative interest in a study.

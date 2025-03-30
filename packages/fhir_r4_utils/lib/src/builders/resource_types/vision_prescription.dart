@@ -11,13 +11,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [VisionPrescription] to a Builder
-extension BuilderVisionPrescription on VisionPrescription {
-  /// Converts [VisionPrescription] to a [VisionPrescriptionBuilder]
-  VisionPrescriptionBuilder get toBuilder =>
-      VisionPrescriptionBuilder.fromJson(toJson());
-}
-
 /// [VisionPrescriptionBuilder]
 /// An authorization for the provision of glasses and/or contact lenses to
 /// a patient.
@@ -946,14 +939,6 @@ class VisionPrescriptionBuilder extends DomainResourceBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [VisionPrescriptionLensSpecification] to a Builder
-extension BuilderVisionPrescriptionLensSpecification
-    on VisionPrescriptionLensSpecification {
-  /// Converts [VisionPrescriptionLensSpecification] to a [VisionPrescriptionLensSpecificationBuilder]
-  VisionPrescriptionLensSpecificationBuilder get toBuilder =>
-      VisionPrescriptionLensSpecificationBuilder.fromJson(toJson());
 }
 
 /// [VisionPrescriptionLensSpecificationBuilder]
@@ -1939,13 +1924,6 @@ class VisionPrescriptionLensSpecificationBuilder
     }
     return true;
   }
-}
-
-/// Extension to change [VisionPrescriptionPrism] to a Builder
-extension BuilderVisionPrescriptionPrism on VisionPrescriptionPrism {
-  /// Converts [VisionPrescriptionPrism] to a [VisionPrescriptionPrismBuilder]
-  VisionPrescriptionPrismBuilder get toBuilder =>
-      VisionPrescriptionPrismBuilder.fromJson(toJson());
 }
 
 /// [VisionPrescriptionPrismBuilder]

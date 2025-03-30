@@ -10,12 +10,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [Person] to a Builder
-extension BuilderPerson on Person {
-  /// Converts [Person] to a [PersonBuilder]
-  PersonBuilder get toBuilder => PersonBuilder.fromJson(toJson());
-}
-
 /// [PersonBuilder]
 /// Demographics and administrative information about a person independent
 /// of a specific health-related context.
@@ -1054,12 +1048,6 @@ class PersonBuilder extends DomainResourceBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [PersonLink] to a Builder
-extension BuilderPersonLink on PersonLink {
-  /// Converts [PersonLink] to a [PersonLinkBuilder]
-  PersonLinkBuilder get toBuilder => PersonLinkBuilder.fromJson(toJson());
 }
 
 /// [PersonLinkBuilder]

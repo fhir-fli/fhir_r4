@@ -4,12 +4,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [FhirMeta] to a Builder
-extension BuilderFhirMeta on FhirMeta {
-  /// Converts [FhirMeta] to a [FhirMetaBuilder]
-  FhirMetaBuilder get toBuilder => FhirMetaBuilder.fromJson(toJson());
-}
-
 /// [FhirMetaBuilder]
 /// The metadata about a resource. This is content in the resource that is
 /// maintained by the infrastructure. Changes to the content might not

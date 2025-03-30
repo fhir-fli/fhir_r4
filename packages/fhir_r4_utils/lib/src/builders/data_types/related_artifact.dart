@@ -4,13 +4,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [RelatedArtifact] to a Builder
-extension BuilderRelatedArtifact on RelatedArtifact {
-  /// Converts [RelatedArtifact] to a [RelatedArtifactBuilder]
-  RelatedArtifactBuilder get toBuilder =>
-      RelatedArtifactBuilder.fromJson(toJson());
-}
-
 /// [RelatedArtifactBuilder]
 /// Related artifacts such as additional documentation, justification, or
 /// bibliographic references.

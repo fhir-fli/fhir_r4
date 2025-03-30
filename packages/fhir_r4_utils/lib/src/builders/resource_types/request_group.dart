@@ -12,12 +12,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [RequestGroup] to a Builder
-extension BuilderRequestGroup on RequestGroup {
-  /// Converts [RequestGroup] to a [RequestGroupBuilder]
-  RequestGroupBuilder get toBuilder => RequestGroupBuilder.fromJson(toJson());
-}
-
 /// [RequestGroupBuilder]
 /// A group of related requests that can be used to capture intended
 /// activities that have inter-dependencies such as "give this medication
@@ -1443,13 +1437,6 @@ class RequestGroupBuilder extends DomainResourceBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [RequestGroupAction] to a Builder
-extension BuilderRequestGroupAction on RequestGroupAction {
-  /// Converts [RequestGroupAction] to a [RequestGroupActionBuilder]
-  RequestGroupActionBuilder get toBuilder =>
-      RequestGroupActionBuilder.fromJson(toJson());
 }
 
 /// [RequestGroupActionBuilder]
@@ -2881,13 +2868,6 @@ class RequestGroupActionBuilder extends BackboneElementBuilder {
   }
 }
 
-/// Extension to change [RequestGroupCondition] to a Builder
-extension BuilderRequestGroupCondition on RequestGroupCondition {
-  /// Converts [RequestGroupCondition] to a [RequestGroupConditionBuilder]
-  RequestGroupConditionBuilder get toBuilder =>
-      RequestGroupConditionBuilder.fromJson(toJson());
-}
-
 /// [RequestGroupConditionBuilder]
 /// An expression that describes applicability criteria, or start/stop
 /// conditions for the action.
@@ -3333,13 +3313,6 @@ class RequestGroupConditionBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [RequestGroupRelatedAction] to a Builder
-extension BuilderRequestGroupRelatedAction on RequestGroupRelatedAction {
-  /// Converts [RequestGroupRelatedAction] to a [RequestGroupRelatedActionBuilder]
-  RequestGroupRelatedActionBuilder get toBuilder =>
-      RequestGroupRelatedActionBuilder.fromJson(toJson());
 }
 
 /// [RequestGroupRelatedActionBuilder]

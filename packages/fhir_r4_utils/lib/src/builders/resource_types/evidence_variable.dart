@@ -12,13 +12,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [EvidenceVariable] to a Builder
-extension BuilderEvidenceVariable on EvidenceVariable {
-  /// Converts [EvidenceVariable] to a [EvidenceVariableBuilder]
-  EvidenceVariableBuilder get toBuilder =>
-      EvidenceVariableBuilder.fromJson(toJson());
-}
-
 /// [EvidenceVariableBuilder]
 /// The EvidenceVariable resource describes an element that knowledge
 /// (Evidence) is about.
@@ -1758,14 +1751,6 @@ class EvidenceVariableBuilder extends DomainResourceBuilder {
   }
 }
 
-/// Extension to change [EvidenceVariableCharacteristic] to a Builder
-extension BuilderEvidenceVariableCharacteristic
-    on EvidenceVariableCharacteristic {
-  /// Converts [EvidenceVariableCharacteristic] to a [EvidenceVariableCharacteristicBuilder]
-  EvidenceVariableCharacteristicBuilder get toBuilder =>
-      EvidenceVariableCharacteristicBuilder.fromJson(toJson());
-}
-
 /// [EvidenceVariableCharacteristicBuilder]
 /// A characteristic that defines the members of the evidence element.
 /// Multiple characteristics are applied with "and" semantics.
@@ -2564,14 +2549,6 @@ class EvidenceVariableCharacteristicBuilder extends BackboneElementBuilder {
   }
 }
 
-/// Extension to change [EvidenceVariableTimeFromStart] to a Builder
-extension BuilderEvidenceVariableTimeFromStart
-    on EvidenceVariableTimeFromStart {
-  /// Converts [EvidenceVariableTimeFromStart] to a [EvidenceVariableTimeFromStartBuilder]
-  EvidenceVariableTimeFromStartBuilder get toBuilder =>
-      EvidenceVariableTimeFromStartBuilder.fromJson(toJson());
-}
-
 /// [EvidenceVariableTimeFromStartBuilder]
 /// Indicates duration, period, or point of observation from the
 /// participant's study entry.
@@ -3114,13 +3091,6 @@ class EvidenceVariableTimeFromStartBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [EvidenceVariableCategory] to a Builder
-extension BuilderEvidenceVariableCategory on EvidenceVariableCategory {
-  /// Converts [EvidenceVariableCategory] to a [EvidenceVariableCategoryBuilder]
-  EvidenceVariableCategoryBuilder get toBuilder =>
-      EvidenceVariableCategoryBuilder.fromJson(toJson());
 }
 
 /// [EvidenceVariableCategoryBuilder]

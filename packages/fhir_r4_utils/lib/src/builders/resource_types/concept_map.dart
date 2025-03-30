@@ -14,12 +14,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [ConceptMap] to a Builder
-extension BuilderConceptMap on ConceptMap {
-  /// Converts [ConceptMap] to a [ConceptMapBuilder]
-  ConceptMapBuilder get toBuilder => ConceptMapBuilder.fromJson(toJson());
-}
-
 /// [ConceptMapBuilder]
 /// A statement of relationships from one set of concepts to one or more
 /// other concepts - either concepts in code systems, or data element/data
@@ -1491,13 +1485,6 @@ class ConceptMapBuilder extends CanonicalResourceBuilder {
   }
 }
 
-/// Extension to change [ConceptMapGroup] to a Builder
-extension BuilderConceptMapGroup on ConceptMapGroup {
-  /// Converts [ConceptMapGroup] to a [ConceptMapGroupBuilder]
-  ConceptMapGroupBuilder get toBuilder =>
-      ConceptMapGroupBuilder.fromJson(toJson());
-}
-
 /// [ConceptMapGroupBuilder]
 /// A group of mappings that all have the same source and target system.
 class ConceptMapGroupBuilder extends BackboneElementBuilder {
@@ -2130,13 +2117,6 @@ class ConceptMapGroupBuilder extends BackboneElementBuilder {
   }
 }
 
-/// Extension to change [ConceptMapElement] to a Builder
-extension BuilderConceptMapElement on ConceptMapElement {
-  /// Converts [ConceptMapElement] to a [ConceptMapElementBuilder]
-  ConceptMapElementBuilder get toBuilder =>
-      ConceptMapElementBuilder.fromJson(toJson());
-}
-
 /// [ConceptMapElementBuilder]
 /// Mappings for an individual concept in the source to one or more
 /// concepts in the target.
@@ -2633,13 +2613,6 @@ class ConceptMapElementBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [ConceptMapTarget] to a Builder
-extension BuilderConceptMapTarget on ConceptMapTarget {
-  /// Converts [ConceptMapTarget] to a [ConceptMapTargetBuilder]
-  ConceptMapTargetBuilder get toBuilder =>
-      ConceptMapTargetBuilder.fromJson(toJson());
 }
 
 /// [ConceptMapTargetBuilder]
@@ -3286,13 +3259,6 @@ class ConceptMapTargetBuilder extends BackboneElementBuilder {
   }
 }
 
-/// Extension to change [ConceptMapDependsOn] to a Builder
-extension BuilderConceptMapDependsOn on ConceptMapDependsOn {
-  /// Converts [ConceptMapDependsOn] to a [ConceptMapDependsOnBuilder]
-  ConceptMapDependsOnBuilder get toBuilder =>
-      ConceptMapDependsOnBuilder.fromJson(toJson());
-}
-
 /// [ConceptMapDependsOnBuilder]
 /// A set of additional dependencies for this mapping to hold. This mapping
 /// is only applicable if the specified element can be resolved, and it has
@@ -3829,13 +3795,6 @@ class ConceptMapDependsOnBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [ConceptMapUnmapped] to a Builder
-extension BuilderConceptMapUnmapped on ConceptMapUnmapped {
-  /// Converts [ConceptMapUnmapped] to a [ConceptMapUnmappedBuilder]
-  ConceptMapUnmappedBuilder get toBuilder =>
-      ConceptMapUnmappedBuilder.fromJson(toJson());
 }
 
 /// [ConceptMapUnmappedBuilder]

@@ -11,13 +11,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [PaymentReconciliation] to a Builder
-extension BuilderPaymentReconciliation on PaymentReconciliation {
-  /// Converts [PaymentReconciliation] to a [PaymentReconciliationBuilder]
-  PaymentReconciliationBuilder get toBuilder =>
-      PaymentReconciliationBuilder.fromJson(toJson());
-}
-
 /// [PaymentReconciliationBuilder]
 /// This resource provides the details including amount of a payment and
 /// allocates the payment items being paid.
@@ -1259,13 +1252,6 @@ class PaymentReconciliationBuilder extends DomainResourceBuilder {
   }
 }
 
-/// Extension to change [PaymentReconciliationDetail] to a Builder
-extension BuilderPaymentReconciliationDetail on PaymentReconciliationDetail {
-  /// Converts [PaymentReconciliationDetail] to a [PaymentReconciliationDetailBuilder]
-  PaymentReconciliationDetailBuilder get toBuilder =>
-      PaymentReconciliationDetailBuilder.fromJson(toJson());
-}
-
 /// [PaymentReconciliationDetailBuilder]
 /// Distribution of the payment amount for a previously acknowledged
 /// payable.
@@ -2060,14 +2046,6 @@ class PaymentReconciliationDetailBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [PaymentReconciliationProcessNote] to a Builder
-extension BuilderPaymentReconciliationProcessNote
-    on PaymentReconciliationProcessNote {
-  /// Converts [PaymentReconciliationProcessNote] to a [PaymentReconciliationProcessNoteBuilder]
-  PaymentReconciliationProcessNoteBuilder get toBuilder =>
-      PaymentReconciliationProcessNoteBuilder.fromJson(toJson());
 }
 
 /// [PaymentReconciliationProcessNoteBuilder]

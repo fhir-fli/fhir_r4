@@ -4,12 +4,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [FhirDuration] to a Builder
-extension BuilderFhirDuration on FhirDuration {
-  /// Converts [FhirDuration] to a [FhirDurationBuilder]
-  FhirDurationBuilder get toBuilder => FhirDurationBuilder.fromJson(toJson());
-}
-
 /// [FhirDurationBuilder]
 /// A length of time.
 class FhirDurationBuilder extends QuantityBuilder

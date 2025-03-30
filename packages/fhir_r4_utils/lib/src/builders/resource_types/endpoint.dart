@@ -9,12 +9,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [FhirEndpoint] to a Builder
-extension BuilderFhirEndpoint on FhirEndpoint {
-  /// Converts [FhirEndpoint] to a [FhirEndpointBuilder]
-  FhirEndpointBuilder get toBuilder => FhirEndpointBuilder.fromJson(toJson());
-}
-
 /// [FhirEndpointBuilder]
 /// The technical details of an endpoint that can be used for electronic
 /// services, such as for web services providing XDS.b or a REST endpoint

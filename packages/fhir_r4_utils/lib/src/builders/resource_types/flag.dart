@@ -9,12 +9,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [Flag] to a Builder
-extension BuilderFlag on Flag {
-  /// Converts [Flag] to a [FlagBuilder]
-  FlagBuilder get toBuilder => FlagBuilder.fromJson(toJson());
-}
-
 /// [FlagBuilder]
 /// Prospective warnings of potential issues when providing care to the
 /// patient.

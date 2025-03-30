@@ -12,12 +12,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [Specimen] to a Builder
-extension BuilderSpecimen on Specimen {
-  /// Converts [Specimen] to a [SpecimenBuilder]
-  SpecimenBuilder get toBuilder => SpecimenBuilder.fromJson(toJson());
-}
-
 /// [SpecimenBuilder]
 /// A sample to be used for analysis.
 class SpecimenBuilder extends DomainResourceBuilder {
@@ -1211,13 +1205,6 @@ class SpecimenBuilder extends DomainResourceBuilder {
   }
 }
 
-/// Extension to change [SpecimenCollection] to a Builder
-extension BuilderSpecimenCollection on SpecimenCollection {
-  /// Converts [SpecimenCollection] to a [SpecimenCollectionBuilder]
-  SpecimenCollectionBuilder get toBuilder =>
-      SpecimenCollectionBuilder.fromJson(toJson());
-}
-
 /// [SpecimenCollectionBuilder]
 /// Details concerning the specimen collection.
 class SpecimenCollectionBuilder extends BackboneElementBuilder {
@@ -2012,13 +1999,6 @@ class SpecimenCollectionBuilder extends BackboneElementBuilder {
   }
 }
 
-/// Extension to change [SpecimenProcessing] to a Builder
-extension BuilderSpecimenProcessing on SpecimenProcessing {
-  /// Converts [SpecimenProcessing] to a [SpecimenProcessingBuilder]
-  SpecimenProcessingBuilder get toBuilder =>
-      SpecimenProcessingBuilder.fromJson(toJson());
-}
-
 /// [SpecimenProcessingBuilder]
 /// Details concerning processing and processing steps for the specimen.
 class SpecimenProcessingBuilder extends BackboneElementBuilder {
@@ -2620,13 +2600,6 @@ class SpecimenProcessingBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [SpecimenContainer] to a Builder
-extension BuilderSpecimenContainer on SpecimenContainer {
-  /// Converts [SpecimenContainer] to a [SpecimenContainerBuilder]
-  SpecimenContainerBuilder get toBuilder =>
-      SpecimenContainerBuilder.fromJson(toJson());
 }
 
 /// [SpecimenContainerBuilder]

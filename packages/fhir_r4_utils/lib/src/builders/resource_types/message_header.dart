@@ -12,12 +12,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [MessageHeader] to a Builder
-extension BuilderMessageHeader on MessageHeader {
-  /// Converts [MessageHeader] to a [MessageHeaderBuilder]
-  MessageHeaderBuilder get toBuilder => MessageHeaderBuilder.fromJson(toJson());
-}
-
 /// [MessageHeaderBuilder]
 /// The header for a message exchange that is either requesting or
 /// responding to an action. The reference(s) that are the subject of the
@@ -1151,13 +1145,6 @@ class MessageHeaderBuilder extends DomainResourceBuilder {
   }
 }
 
-/// Extension to change [MessageHeaderDestination] to a Builder
-extension BuilderMessageHeaderDestination on MessageHeaderDestination {
-  /// Converts [MessageHeaderDestination] to a [MessageHeaderDestinationBuilder]
-  MessageHeaderDestinationBuilder get toBuilder =>
-      MessageHeaderDestinationBuilder.fromJson(toJson());
-}
-
 /// [MessageHeaderDestinationBuilder]
 /// The destination application which the message is intended for.
 class MessageHeaderDestinationBuilder extends BackboneElementBuilder {
@@ -1691,13 +1678,6 @@ class MessageHeaderDestinationBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [MessageHeaderSource] to a Builder
-extension BuilderMessageHeaderSource on MessageHeaderSource {
-  /// Converts [MessageHeaderSource] to a [MessageHeaderSourceBuilder]
-  MessageHeaderSourceBuilder get toBuilder =>
-      MessageHeaderSourceBuilder.fromJson(toJson());
 }
 
 /// [MessageHeaderSourceBuilder]
@@ -2273,13 +2253,6 @@ class MessageHeaderSourceBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [MessageHeaderResponse] to a Builder
-extension BuilderMessageHeaderResponse on MessageHeaderResponse {
-  /// Converts [MessageHeaderResponse] to a [MessageHeaderResponseBuilder]
-  MessageHeaderResponseBuilder get toBuilder =>
-      MessageHeaderResponseBuilder.fromJson(toJson());
 }
 
 /// [MessageHeaderResponseBuilder]

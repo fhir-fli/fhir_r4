@@ -13,13 +13,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [OperationDefinition] to a Builder
-extension BuilderOperationDefinition on OperationDefinition {
-  /// Converts [OperationDefinition] to a [OperationDefinitionBuilder]
-  OperationDefinitionBuilder get toBuilder =>
-      OperationDefinitionBuilder.fromJson(toJson());
-}
-
 /// [OperationDefinitionBuilder]
 /// A formal computable definition of an operation (on the RESTful
 /// interface) or a named query (using the search interaction).
@@ -1727,13 +1720,6 @@ class OperationDefinitionBuilder extends CanonicalResourceBuilder {
   }
 }
 
-/// Extension to change [OperationDefinitionParameter] to a Builder
-extension BuilderOperationDefinitionParameter on OperationDefinitionParameter {
-  /// Converts [OperationDefinitionParameter] to a [OperationDefinitionParameterBuilder]
-  OperationDefinitionParameterBuilder get toBuilder =>
-      OperationDefinitionParameterBuilder.fromJson(toJson());
-}
-
 /// [OperationDefinitionParameterBuilder]
 /// The parameters for the operation/query.
 class OperationDefinitionParameterBuilder extends BackboneElementBuilder {
@@ -2602,13 +2588,6 @@ class OperationDefinitionParameterBuilder extends BackboneElementBuilder {
   }
 }
 
-/// Extension to change [OperationDefinitionBinding] to a Builder
-extension BuilderOperationDefinitionBinding on OperationDefinitionBinding {
-  /// Converts [OperationDefinitionBinding] to a [OperationDefinitionBindingBuilder]
-  OperationDefinitionBindingBuilder get toBuilder =>
-      OperationDefinitionBindingBuilder.fromJson(toJson());
-}
-
 /// [OperationDefinitionBindingBuilder]
 /// Binds to a value set if this parameter is coded (code, Coding,
 /// CodeableConcept).
@@ -3057,14 +3036,6 @@ class OperationDefinitionBindingBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [OperationDefinitionReferencedFrom] to a Builder
-extension BuilderOperationDefinitionReferencedFrom
-    on OperationDefinitionReferencedFrom {
-  /// Converts [OperationDefinitionReferencedFrom] to a [OperationDefinitionReferencedFromBuilder]
-  OperationDefinitionReferencedFromBuilder get toBuilder =>
-      OperationDefinitionReferencedFromBuilder.fromJson(toJson());
 }
 
 /// [OperationDefinitionReferencedFromBuilder]
@@ -3516,13 +3487,6 @@ class OperationDefinitionReferencedFromBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [OperationDefinitionOverload] to a Builder
-extension BuilderOperationDefinitionOverload on OperationDefinitionOverload {
-  /// Converts [OperationDefinitionOverload] to a [OperationDefinitionOverloadBuilder]
-  OperationDefinitionOverloadBuilder get toBuilder =>
-      OperationDefinitionOverloadBuilder.fromJson(toJson());
 }
 
 /// [OperationDefinitionOverloadBuilder]

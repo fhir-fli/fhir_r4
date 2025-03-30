@@ -11,13 +11,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [ObservationDefinition] to a Builder
-extension BuilderObservationDefinition on ObservationDefinition {
-  /// Converts [ObservationDefinition] to a [ObservationDefinitionBuilder]
-  ObservationDefinitionBuilder get toBuilder =>
-      ObservationDefinitionBuilder.fromJson(toJson());
-}
-
 /// [ObservationDefinitionBuilder]
 /// Set of definitional characteristics for a kind of observation or
 /// measurement produced or consumed by an orderable health care service.
@@ -1188,14 +1181,6 @@ class ObservationDefinitionBuilder extends DomainResourceBuilder {
   }
 }
 
-/// Extension to change [ObservationDefinitionQuantitativeDetails] to a Builder
-extension BuilderObservationDefinitionQuantitativeDetails
-    on ObservationDefinitionQuantitativeDetails {
-  /// Converts [ObservationDefinitionQuantitativeDetails] to a [ObservationDefinitionQuantitativeDetailsBuilder]
-  ObservationDefinitionQuantitativeDetailsBuilder get toBuilder =>
-      ObservationDefinitionQuantitativeDetailsBuilder.fromJson(toJson());
-}
-
 /// [ObservationDefinitionQuantitativeDetailsBuilder]
 /// Characteristics for quantitative results of this observation.
 class ObservationDefinitionQuantitativeDetailsBuilder
@@ -1732,14 +1717,6 @@ class ObservationDefinitionQuantitativeDetailsBuilder
     }
     return true;
   }
-}
-
-/// Extension to change [ObservationDefinitionQualifiedInterval] to a Builder
-extension BuilderObservationDefinitionQualifiedInterval
-    on ObservationDefinitionQualifiedInterval {
-  /// Converts [ObservationDefinitionQualifiedInterval] to a [ObservationDefinitionQualifiedIntervalBuilder]
-  ObservationDefinitionQualifiedIntervalBuilder get toBuilder =>
-      ObservationDefinitionQualifiedIntervalBuilder.fromJson(toJson());
 }
 
 /// [ObservationDefinitionQualifiedIntervalBuilder]

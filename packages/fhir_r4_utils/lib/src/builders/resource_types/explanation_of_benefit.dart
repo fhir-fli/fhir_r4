@@ -29,13 +29,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [ExplanationOfBenefit] to a Builder
-extension BuilderExplanationOfBenefit on ExplanationOfBenefit {
-  /// Converts [ExplanationOfBenefit] to a [ExplanationOfBenefitBuilder]
-  ExplanationOfBenefitBuilder get toBuilder =>
-      ExplanationOfBenefitBuilder.fromJson(toJson());
-}
-
 /// [ExplanationOfBenefitBuilder]
 /// This resource provides: the claim details; adjudication details from
 /// the processing of a Claim; and optionally account balance information,
@@ -2613,13 +2606,6 @@ class ExplanationOfBenefitBuilder extends DomainResourceBuilder {
   }
 }
 
-/// Extension to change [ExplanationOfBenefitRelated] to a Builder
-extension BuilderExplanationOfBenefitRelated on ExplanationOfBenefitRelated {
-  /// Converts [ExplanationOfBenefitRelated] to a [ExplanationOfBenefitRelatedBuilder]
-  ExplanationOfBenefitRelatedBuilder get toBuilder =>
-      ExplanationOfBenefitRelatedBuilder.fromJson(toJson());
-}
-
 /// [ExplanationOfBenefitRelatedBuilder]
 /// Other claims which are related to this claim such as prior submissions
 /// or claims for related services or for the same event.
@@ -3111,13 +3097,6 @@ class ExplanationOfBenefitRelatedBuilder extends BackboneElementBuilder {
   }
 }
 
-/// Extension to change [ExplanationOfBenefitPayee] to a Builder
-extension BuilderExplanationOfBenefitPayee on ExplanationOfBenefitPayee {
-  /// Converts [ExplanationOfBenefitPayee] to a [ExplanationOfBenefitPayeeBuilder]
-  ExplanationOfBenefitPayeeBuilder get toBuilder =>
-      ExplanationOfBenefitPayeeBuilder.fromJson(toJson());
-}
-
 /// [ExplanationOfBenefitPayeeBuilder]
 /// The party to be reimbursed for cost of the products and services
 /// according to the terms of the policy.
@@ -3564,13 +3543,6 @@ class ExplanationOfBenefitPayeeBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [ExplanationOfBenefitCareTeam] to a Builder
-extension BuilderExplanationOfBenefitCareTeam on ExplanationOfBenefitCareTeam {
-  /// Converts [ExplanationOfBenefitCareTeam] to a [ExplanationOfBenefitCareTeamBuilder]
-  ExplanationOfBenefitCareTeamBuilder get toBuilder =>
-      ExplanationOfBenefitCareTeamBuilder.fromJson(toJson());
 }
 
 /// [ExplanationOfBenefitCareTeamBuilder]
@@ -4149,14 +4121,6 @@ class ExplanationOfBenefitCareTeamBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [ExplanationOfBenefitSupportingInfo] to a Builder
-extension BuilderExplanationOfBenefitSupportingInfo
-    on ExplanationOfBenefitSupportingInfo {
-  /// Converts [ExplanationOfBenefitSupportingInfo] to a [ExplanationOfBenefitSupportingInfoBuilder]
-  ExplanationOfBenefitSupportingInfoBuilder get toBuilder =>
-      ExplanationOfBenefitSupportingInfoBuilder.fromJson(toJson());
 }
 
 /// [ExplanationOfBenefitSupportingInfoBuilder]
@@ -5001,14 +4965,6 @@ class ExplanationOfBenefitSupportingInfoBuilder extends BackboneElementBuilder {
   }
 }
 
-/// Extension to change [ExplanationOfBenefitDiagnosis] to a Builder
-extension BuilderExplanationOfBenefitDiagnosis
-    on ExplanationOfBenefitDiagnosis {
-  /// Converts [ExplanationOfBenefitDiagnosis] to a [ExplanationOfBenefitDiagnosisBuilder]
-  ExplanationOfBenefitDiagnosisBuilder get toBuilder =>
-      ExplanationOfBenefitDiagnosisBuilder.fromJson(toJson());
-}
-
 /// [ExplanationOfBenefitDiagnosisBuilder]
 /// Information about diagnoses relevant to the claim items.
 class ExplanationOfBenefitDiagnosisBuilder extends BackboneElementBuilder {
@@ -5660,14 +5616,6 @@ class ExplanationOfBenefitDiagnosisBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [ExplanationOfBenefitProcedure] to a Builder
-extension BuilderExplanationOfBenefitProcedure
-    on ExplanationOfBenefitProcedure {
-  /// Converts [ExplanationOfBenefitProcedure] to a [ExplanationOfBenefitProcedureBuilder]
-  ExplanationOfBenefitProcedureBuilder get toBuilder =>
-      ExplanationOfBenefitProcedureBuilder.fromJson(toJson());
 }
 
 /// [ExplanationOfBenefitProcedureBuilder]
@@ -6330,14 +6278,6 @@ class ExplanationOfBenefitProcedureBuilder extends BackboneElementBuilder {
   }
 }
 
-/// Extension to change [ExplanationOfBenefitInsurance] to a Builder
-extension BuilderExplanationOfBenefitInsurance
-    on ExplanationOfBenefitInsurance {
-  /// Converts [ExplanationOfBenefitInsurance] to a [ExplanationOfBenefitInsuranceBuilder]
-  ExplanationOfBenefitInsuranceBuilder get toBuilder =>
-      ExplanationOfBenefitInsuranceBuilder.fromJson(toJson());
-}
-
 /// [ExplanationOfBenefitInsuranceBuilder]
 /// Financial instruments for reimbursement for the health care products
 /// and services specified on the claim.
@@ -6837,13 +6777,6 @@ class ExplanationOfBenefitInsuranceBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [ExplanationOfBenefitAccident] to a Builder
-extension BuilderExplanationOfBenefitAccident on ExplanationOfBenefitAccident {
-  /// Converts [ExplanationOfBenefitAccident] to a [ExplanationOfBenefitAccidentBuilder]
-  ExplanationOfBenefitAccidentBuilder get toBuilder =>
-      ExplanationOfBenefitAccidentBuilder.fromJson(toJson());
 }
 
 /// [ExplanationOfBenefitAccidentBuilder]
@@ -7401,13 +7334,6 @@ class ExplanationOfBenefitAccidentBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [ExplanationOfBenefitItem] to a Builder
-extension BuilderExplanationOfBenefitItem on ExplanationOfBenefitItem {
-  /// Converts [ExplanationOfBenefitItem] to a [ExplanationOfBenefitItemBuilder]
-  ExplanationOfBenefitItemBuilder get toBuilder =>
-      ExplanationOfBenefitItemBuilder.fromJson(toJson());
 }
 
 /// [ExplanationOfBenefitItemBuilder]
@@ -9023,14 +8949,6 @@ class ExplanationOfBenefitItemBuilder extends BackboneElementBuilder {
   }
 }
 
-/// Extension to change [ExplanationOfBenefitAdjudication] to a Builder
-extension BuilderExplanationOfBenefitAdjudication
-    on ExplanationOfBenefitAdjudication {
-  /// Converts [ExplanationOfBenefitAdjudication] to a [ExplanationOfBenefitAdjudicationBuilder]
-  ExplanationOfBenefitAdjudicationBuilder get toBuilder =>
-      ExplanationOfBenefitAdjudicationBuilder.fromJson(toJson());
-}
-
 /// [ExplanationOfBenefitAdjudicationBuilder]
 /// If this item is a group then the values here are a summary of the
 /// adjudication of the detail items. If this item is a simple product or
@@ -9569,13 +9487,6 @@ class ExplanationOfBenefitAdjudicationBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [ExplanationOfBenefitDetail] to a Builder
-extension BuilderExplanationOfBenefitDetail on ExplanationOfBenefitDetail {
-  /// Converts [ExplanationOfBenefitDetail] to a [ExplanationOfBenefitDetailBuilder]
-  ExplanationOfBenefitDetailBuilder get toBuilder =>
-      ExplanationOfBenefitDetailBuilder.fromJson(toJson());
 }
 
 /// [ExplanationOfBenefitDetailBuilder]
@@ -10603,14 +10514,6 @@ class ExplanationOfBenefitDetailBuilder extends BackboneElementBuilder {
   }
 }
 
-/// Extension to change [ExplanationOfBenefitSubDetail] to a Builder
-extension BuilderExplanationOfBenefitSubDetail
-    on ExplanationOfBenefitSubDetail {
-  /// Converts [ExplanationOfBenefitSubDetail] to a [ExplanationOfBenefitSubDetailBuilder]
-  ExplanationOfBenefitSubDetailBuilder get toBuilder =>
-      ExplanationOfBenefitSubDetailBuilder.fromJson(toJson());
-}
-
 /// [ExplanationOfBenefitSubDetailBuilder]
 /// Third-tier of goods and services.
 class ExplanationOfBenefitSubDetailBuilder extends BackboneElementBuilder {
@@ -11582,13 +11485,6 @@ class ExplanationOfBenefitSubDetailBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [ExplanationOfBenefitAddItem] to a Builder
-extension BuilderExplanationOfBenefitAddItem on ExplanationOfBenefitAddItem {
-  /// Converts [ExplanationOfBenefitAddItem] to a [ExplanationOfBenefitAddItemBuilder]
-  ExplanationOfBenefitAddItemBuilder get toBuilder =>
-      ExplanationOfBenefitAddItemBuilder.fromJson(toJson());
 }
 
 /// [ExplanationOfBenefitAddItemBuilder]
@@ -12971,13 +12867,6 @@ class ExplanationOfBenefitAddItemBuilder extends BackboneElementBuilder {
   }
 }
 
-/// Extension to change [ExplanationOfBenefitDetail1] to a Builder
-extension BuilderExplanationOfBenefitDetail1 on ExplanationOfBenefitDetail1 {
-  /// Converts [ExplanationOfBenefitDetail1] to a [ExplanationOfBenefitDetail1Builder]
-  ExplanationOfBenefitDetail1Builder get toBuilder =>
-      ExplanationOfBenefitDetail1Builder.fromJson(toJson());
-}
-
 /// [ExplanationOfBenefitDetail1Builder]
 /// The second-tier service adjudications for payor added services.
 class ExplanationOfBenefitDetail1Builder extends BackboneElementBuilder {
@@ -13767,14 +13656,6 @@ class ExplanationOfBenefitDetail1Builder extends BackboneElementBuilder {
   }
 }
 
-/// Extension to change [ExplanationOfBenefitSubDetail1] to a Builder
-extension BuilderExplanationOfBenefitSubDetail1
-    on ExplanationOfBenefitSubDetail1 {
-  /// Converts [ExplanationOfBenefitSubDetail1] to a [ExplanationOfBenefitSubDetail1Builder]
-  ExplanationOfBenefitSubDetail1Builder get toBuilder =>
-      ExplanationOfBenefitSubDetail1Builder.fromJson(toJson());
-}
-
 /// [ExplanationOfBenefitSubDetail1Builder]
 /// The third-tier service adjudications for payor added services.
 class ExplanationOfBenefitSubDetail1Builder extends BackboneElementBuilder {
@@ -14512,13 +14393,6 @@ class ExplanationOfBenefitSubDetail1Builder extends BackboneElementBuilder {
   }
 }
 
-/// Extension to change [ExplanationOfBenefitTotal] to a Builder
-extension BuilderExplanationOfBenefitTotal on ExplanationOfBenefitTotal {
-  /// Converts [ExplanationOfBenefitTotal] to a [ExplanationOfBenefitTotalBuilder]
-  ExplanationOfBenefitTotalBuilder get toBuilder =>
-      ExplanationOfBenefitTotalBuilder.fromJson(toJson());
-}
-
 /// [ExplanationOfBenefitTotalBuilder]
 /// Categorized monetary totals for the adjudication.
 class ExplanationOfBenefitTotalBuilder extends BackboneElementBuilder {
@@ -14967,13 +14841,6 @@ class ExplanationOfBenefitTotalBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [ExplanationOfBenefitPayment] to a Builder
-extension BuilderExplanationOfBenefitPayment on ExplanationOfBenefitPayment {
-  /// Converts [ExplanationOfBenefitPayment] to a [ExplanationOfBenefitPaymentBuilder]
-  ExplanationOfBenefitPaymentBuilder get toBuilder =>
-      ExplanationOfBenefitPaymentBuilder.fromJson(toJson());
 }
 
 /// [ExplanationOfBenefitPaymentBuilder]
@@ -15597,14 +15464,6 @@ class ExplanationOfBenefitPaymentBuilder extends BackboneElementBuilder {
   }
 }
 
-/// Extension to change [ExplanationOfBenefitProcessNote] to a Builder
-extension BuilderExplanationOfBenefitProcessNote
-    on ExplanationOfBenefitProcessNote {
-  /// Converts [ExplanationOfBenefitProcessNote] to a [ExplanationOfBenefitProcessNoteBuilder]
-  ExplanationOfBenefitProcessNoteBuilder get toBuilder =>
-      ExplanationOfBenefitProcessNoteBuilder.fromJson(toJson());
-}
-
 /// [ExplanationOfBenefitProcessNoteBuilder]
 /// A note that describes or explains adjudication results in a human
 /// readable form.
@@ -16136,14 +15995,6 @@ class ExplanationOfBenefitProcessNoteBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [ExplanationOfBenefitBenefitBalance] to a Builder
-extension BuilderExplanationOfBenefitBenefitBalance
-    on ExplanationOfBenefitBenefitBalance {
-  /// Converts [ExplanationOfBenefitBenefitBalance] to a [ExplanationOfBenefitBenefitBalanceBuilder]
-  ExplanationOfBenefitBenefitBalanceBuilder get toBuilder =>
-      ExplanationOfBenefitBenefitBalanceBuilder.fromJson(toJson());
 }
 
 /// [ExplanationOfBenefitBenefitBalanceBuilder]
@@ -16863,14 +16714,6 @@ class ExplanationOfBenefitBenefitBalanceBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [ExplanationOfBenefitFinancial] to a Builder
-extension BuilderExplanationOfBenefitFinancial
-    on ExplanationOfBenefitFinancial {
-  /// Converts [ExplanationOfBenefitFinancial] to a [ExplanationOfBenefitFinancialBuilder]
-  ExplanationOfBenefitFinancialBuilder get toBuilder =>
-      ExplanationOfBenefitFinancialBuilder.fromJson(toJson());
 }
 
 /// [ExplanationOfBenefitFinancialBuilder]

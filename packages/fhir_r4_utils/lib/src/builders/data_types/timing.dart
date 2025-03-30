@@ -9,12 +9,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [Timing] to a Builder
-extension BuilderTiming on Timing {
-  /// Converts [Timing] to a [TimingBuilder]
-  TimingBuilder get toBuilder => TimingBuilder.fromJson(toJson());
-}
-
 /// [TimingBuilder]
 /// Specifies an event that may occur multiple times. Timing schedules are
 /// used to record when things are planned, expected or requested to occur.
@@ -540,12 +534,6 @@ class TimingBuilder extends BackboneTypeBuilder
     }
     return true;
   }
-}
-
-/// Extension to change [TimingRepeat] to a Builder
-extension BuilderTimingRepeat on TimingRepeat {
-  /// Converts [TimingRepeat] to a [TimingRepeatBuilder]
-  TimingRepeatBuilder get toBuilder => TimingRepeatBuilder.fromJson(toJson());
 }
 
 /// [TimingRepeatBuilder]

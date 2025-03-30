@@ -10,13 +10,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [DocumentManifest] to a Builder
-extension BuilderDocumentManifest on DocumentManifest {
-  /// Converts [DocumentManifest] to a [DocumentManifestBuilder]
-  DocumentManifestBuilder get toBuilder =>
-      DocumentManifestBuilder.fromJson(toJson());
-}
-
 /// [DocumentManifestBuilder]
 /// A collection of documents compiled for a purpose together with metadata
 /// that applies to the collection.
@@ -1153,13 +1146,6 @@ class DocumentManifestBuilder extends DomainResourceBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [DocumentManifestRelated] to a Builder
-extension BuilderDocumentManifestRelated on DocumentManifestRelated {
-  /// Converts [DocumentManifestRelated] to a [DocumentManifestRelatedBuilder]
-  DocumentManifestRelatedBuilder get toBuilder =>
-      DocumentManifestRelatedBuilder.fromJson(toJson());
 }
 
 /// [DocumentManifestRelatedBuilder]

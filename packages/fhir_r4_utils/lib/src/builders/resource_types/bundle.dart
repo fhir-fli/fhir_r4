@@ -14,12 +14,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [Bundle] to a Builder
-extension BuilderBundle on Bundle {
-  /// Converts [Bundle] to a [BundleBuilder]
-  BundleBuilder get toBuilder => BundleBuilder.fromJson(toJson());
-}
-
 /// [BundleBuilder]
 /// A container for a collection of resources.
 class BundleBuilder extends ResourceBuilder {
@@ -724,12 +718,6 @@ class BundleBuilder extends ResourceBuilder {
   }
 }
 
-/// Extension to change [BundleLink] to a Builder
-extension BuilderBundleLink on BundleLink {
-  /// Converts [BundleLink] to a [BundleLinkBuilder]
-  BundleLinkBuilder get toBuilder => BundleLinkBuilder.fromJson(toJson());
-}
-
 /// [BundleLinkBuilder]
 /// A series of links that provide context to this bundle.
 class BundleLinkBuilder extends BackboneElementBuilder {
@@ -1173,12 +1161,6 @@ class BundleLinkBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [BundleEntry] to a Builder
-extension BuilderBundleEntry on BundleEntry {
-  /// Converts [BundleEntry] to a [BundleEntryBuilder]
-  BundleEntryBuilder get toBuilder => BundleEntryBuilder.fromJson(toJson());
 }
 
 /// [BundleEntryBuilder]
@@ -1821,12 +1803,6 @@ class BundleEntryBuilder extends BackboneElementBuilder {
   }
 }
 
-/// Extension to change [BundleSearch] to a Builder
-extension BuilderBundleSearch on BundleSearch {
-  /// Converts [BundleSearch] to a [BundleSearchBuilder]
-  BundleSearchBuilder get toBuilder => BundleSearchBuilder.fromJson(toJson());
-}
-
 /// [BundleSearchBuilder]
 /// Information about the search process that lead to the creation of this
 /// entry.
@@ -2272,12 +2248,6 @@ class BundleSearchBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [BundleRequest] to a Builder
-extension BuilderBundleRequest on BundleRequest {
-  /// Converts [BundleRequest] to a [BundleRequestBuilder]
-  BundleRequestBuilder get toBuilder => BundleRequestBuilder.fromJson(toJson());
 }
 
 /// [BundleRequestBuilder]
@@ -2906,13 +2876,6 @@ class BundleRequestBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [BundleResponse] to a Builder
-extension BuilderBundleResponse on BundleResponse {
-  /// Converts [BundleResponse] to a [BundleResponseBuilder]
-  BundleResponseBuilder get toBuilder =>
-      BundleResponseBuilder.fromJson(toJson());
 }
 
 /// [BundleResponseBuilder]

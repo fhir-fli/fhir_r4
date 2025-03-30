@@ -19,13 +19,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [TerminologyCapabilities] to a Builder
-extension BuilderTerminologyCapabilities on TerminologyCapabilities {
-  /// Converts [TerminologyCapabilities] to a [TerminologyCapabilitiesBuilder]
-  TerminologyCapabilitiesBuilder get toBuilder =>
-      TerminologyCapabilitiesBuilder.fromJson(toJson());
-}
-
 /// [TerminologyCapabilitiesBuilder]
 /// A TerminologyCapabilities resource documents a set of capabilities
 /// (behaviors) of a FHIR Terminology Server that may be used as a
@@ -1644,14 +1637,6 @@ class TerminologyCapabilitiesBuilder extends CanonicalResourceBuilder {
   }
 }
 
-/// Extension to change [TerminologyCapabilitiesSoftware] to a Builder
-extension BuilderTerminologyCapabilitiesSoftware
-    on TerminologyCapabilitiesSoftware {
-  /// Converts [TerminologyCapabilitiesSoftware] to a [TerminologyCapabilitiesSoftwareBuilder]
-  TerminologyCapabilitiesSoftwareBuilder get toBuilder =>
-      TerminologyCapabilitiesSoftwareBuilder.fromJson(toJson());
-}
-
 /// [TerminologyCapabilitiesSoftwareBuilder]
 /// Software that is covered by this terminology capability statement. It
 /// is used when the statement describes the capabilities of a particular
@@ -2098,14 +2083,6 @@ class TerminologyCapabilitiesSoftwareBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [TerminologyCapabilitiesImplementation] to a Builder
-extension BuilderTerminologyCapabilitiesImplementation
-    on TerminologyCapabilitiesImplementation {
-  /// Converts [TerminologyCapabilitiesImplementation] to a [TerminologyCapabilitiesImplementationBuilder]
-  TerminologyCapabilitiesImplementationBuilder get toBuilder =>
-      TerminologyCapabilitiesImplementationBuilder.fromJson(toJson());
 }
 
 /// [TerminologyCapabilitiesImplementationBuilder]
@@ -2557,14 +2534,6 @@ class TerminologyCapabilitiesImplementationBuilder
     }
     return true;
   }
-}
-
-/// Extension to change [TerminologyCapabilitiesCodeSystem] to a Builder
-extension BuilderTerminologyCapabilitiesCodeSystem
-    on TerminologyCapabilitiesCodeSystem {
-  /// Converts [TerminologyCapabilitiesCodeSystem] to a [TerminologyCapabilitiesCodeSystemBuilder]
-  TerminologyCapabilitiesCodeSystemBuilder get toBuilder =>
-      TerminologyCapabilitiesCodeSystemBuilder.fromJson(toJson());
 }
 
 /// [TerminologyCapabilitiesCodeSystemBuilder]
@@ -3067,14 +3036,6 @@ class TerminologyCapabilitiesCodeSystemBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [TerminologyCapabilitiesVersion] to a Builder
-extension BuilderTerminologyCapabilitiesVersion
-    on TerminologyCapabilitiesVersion {
-  /// Converts [TerminologyCapabilitiesVersion] to a [TerminologyCapabilitiesVersionBuilder]
-  TerminologyCapabilitiesVersionBuilder get toBuilder =>
-      TerminologyCapabilitiesVersionBuilder.fromJson(toJson());
 }
 
 /// [TerminologyCapabilitiesVersionBuilder]
@@ -3716,14 +3677,6 @@ class TerminologyCapabilitiesVersionBuilder extends BackboneElementBuilder {
   }
 }
 
-/// Extension to change [TerminologyCapabilitiesFilter] to a Builder
-extension BuilderTerminologyCapabilitiesFilter
-    on TerminologyCapabilitiesFilter {
-  /// Converts [TerminologyCapabilitiesFilter] to a [TerminologyCapabilitiesFilterBuilder]
-  TerminologyCapabilitiesFilterBuilder get toBuilder =>
-      TerminologyCapabilitiesFilterBuilder.fromJson(toJson());
-}
-
 /// [TerminologyCapabilitiesFilterBuilder]
 /// Filter Properties supported.
 class TerminologyCapabilitiesFilterBuilder extends BackboneElementBuilder {
@@ -4173,14 +4126,6 @@ class TerminologyCapabilitiesFilterBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [TerminologyCapabilitiesExpansion] to a Builder
-extension BuilderTerminologyCapabilitiesExpansion
-    on TerminologyCapabilitiesExpansion {
-  /// Converts [TerminologyCapabilitiesExpansion] to a [TerminologyCapabilitiesExpansionBuilder]
-  TerminologyCapabilitiesExpansionBuilder get toBuilder =>
-      TerminologyCapabilitiesExpansionBuilder.fromJson(toJson());
 }
 
 /// [TerminologyCapabilitiesExpansionBuilder]
@@ -4768,14 +4713,6 @@ class TerminologyCapabilitiesExpansionBuilder extends BackboneElementBuilder {
   }
 }
 
-/// Extension to change [TerminologyCapabilitiesParameter] to a Builder
-extension BuilderTerminologyCapabilitiesParameter
-    on TerminologyCapabilitiesParameter {
-  /// Converts [TerminologyCapabilitiesParameter] to a [TerminologyCapabilitiesParameterBuilder]
-  TerminologyCapabilitiesParameterBuilder get toBuilder =>
-      TerminologyCapabilitiesParameterBuilder.fromJson(toJson());
-}
-
 /// [TerminologyCapabilitiesParameterBuilder]
 /// Supported expansion parameter.
 class TerminologyCapabilitiesParameterBuilder extends BackboneElementBuilder {
@@ -5222,14 +5159,6 @@ class TerminologyCapabilitiesParameterBuilder extends BackboneElementBuilder {
   }
 }
 
-/// Extension to change [TerminologyCapabilitiesValidateCode] to a Builder
-extension BuilderTerminologyCapabilitiesValidateCode
-    on TerminologyCapabilitiesValidateCode {
-  /// Converts [TerminologyCapabilitiesValidateCode] to a [TerminologyCapabilitiesValidateCodeBuilder]
-  TerminologyCapabilitiesValidateCodeBuilder get toBuilder =>
-      TerminologyCapabilitiesValidateCodeBuilder.fromJson(toJson());
-}
-
 /// [TerminologyCapabilitiesValidateCodeBuilder]
 /// Information about the
 /// [ValueSet/$validate-code](valueset-operation-validate-code.html)
@@ -5637,14 +5566,6 @@ class TerminologyCapabilitiesValidateCodeBuilder
   }
 }
 
-/// Extension to change [TerminologyCapabilitiesTranslation] to a Builder
-extension BuilderTerminologyCapabilitiesTranslation
-    on TerminologyCapabilitiesTranslation {
-  /// Converts [TerminologyCapabilitiesTranslation] to a [TerminologyCapabilitiesTranslationBuilder]
-  TerminologyCapabilitiesTranslationBuilder get toBuilder =>
-      TerminologyCapabilitiesTranslationBuilder.fromJson(toJson());
-}
-
 /// [TerminologyCapabilitiesTranslationBuilder]
 /// Information about the
 /// [ConceptMap/$translate](conceptmap-operation-translate.html) operation.
@@ -6048,14 +5969,6 @@ class TerminologyCapabilitiesTranslationBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [TerminologyCapabilitiesClosure] to a Builder
-extension BuilderTerminologyCapabilitiesClosure
-    on TerminologyCapabilitiesClosure {
-  /// Converts [TerminologyCapabilitiesClosure] to a [TerminologyCapabilitiesClosureBuilder]
-  TerminologyCapabilitiesClosureBuilder get toBuilder =>
-      TerminologyCapabilitiesClosureBuilder.fromJson(toJson());
 }
 
 /// [TerminologyCapabilitiesClosureBuilder]

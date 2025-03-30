@@ -1,11 +1,5 @@
 part of 'primitive_types.dart';
 
-/// Extension to convert a [FhirXhtml] to a [FhirXhtmlBuilder]
-extension BuilderFhirXhtml on FhirXhtml {
-  /// Converts this instance to a [FhirXhtmlBuilder]
-  FhirXhtmlBuilder get toBuilder => FhirXhtmlBuilder.fromJson(toJson());
-}
-
 /// Extension to convert a [String] to a [FhirXhtmlBuilder].
 extension FhirXhtmlBuilderExtension on String {
   /// Converts a [String] to a [FhirXhtmlBuilder].
@@ -252,6 +246,10 @@ class FhirXhtmlBuilder extends PrimitiveTypeBuilder<String?> {
 
   @override
   String get fhirType => 'xhtml';
+
+  /// Converts this instance to a [FhirXhtml] object
+  @override
+  FhirXhtml build() => FhirXhtml.fromJson(toJson());
 
   /// Serializes the instance to JSON with standardized keys.
   @override

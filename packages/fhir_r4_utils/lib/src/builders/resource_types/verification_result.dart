@@ -12,13 +12,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [VerificationResult] to a Builder
-extension BuilderVerificationResult on VerificationResult {
-  /// Converts [VerificationResult] to a [VerificationResultBuilder]
-  VerificationResultBuilder get toBuilder =>
-      VerificationResultBuilder.fromJson(toJson());
-}
-
 /// [VerificationResultBuilder]
 /// Describes validation requirements, source(s), status and dates for one
 /// or more elements.
@@ -1230,14 +1223,6 @@ class VerificationResultBuilder extends DomainResourceBuilder {
   }
 }
 
-/// Extension to change [VerificationResultPrimarySource] to a Builder
-extension BuilderVerificationResultPrimarySource
-    on VerificationResultPrimarySource {
-  /// Converts [VerificationResultPrimarySource] to a [VerificationResultPrimarySourceBuilder]
-  VerificationResultPrimarySourceBuilder get toBuilder =>
-      VerificationResultPrimarySourceBuilder.fromJson(toJson());
-}
-
 /// [VerificationResultPrimarySourceBuilder]
 /// Information about the primary source(s) involved in validation.
 class VerificationResultPrimarySourceBuilder extends BackboneElementBuilder {
@@ -1929,14 +1914,6 @@ class VerificationResultPrimarySourceBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [VerificationResultAttestation] to a Builder
-extension BuilderVerificationResultAttestation
-    on VerificationResultAttestation {
-  /// Converts [VerificationResultAttestation] to a [VerificationResultAttestationBuilder]
-  VerificationResultAttestationBuilder get toBuilder =>
-      VerificationResultAttestationBuilder.fromJson(toJson());
 }
 
 /// [VerificationResultAttestationBuilder]
@@ -2649,13 +2626,6 @@ class VerificationResultAttestationBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [VerificationResultValidator] to a Builder
-extension BuilderVerificationResultValidator on VerificationResultValidator {
-  /// Converts [VerificationResultValidator] to a [VerificationResultValidatorBuilder]
-  VerificationResultValidatorBuilder get toBuilder =>
-      VerificationResultValidatorBuilder.fromJson(toJson());
 }
 
 /// [VerificationResultValidatorBuilder]

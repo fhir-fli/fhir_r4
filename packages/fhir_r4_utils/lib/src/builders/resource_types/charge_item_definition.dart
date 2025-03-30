@@ -12,13 +12,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [ChargeItemDefinition] to a Builder
-extension BuilderChargeItemDefinition on ChargeItemDefinition {
-  /// Converts [ChargeItemDefinition] to a [ChargeItemDefinitionBuilder]
-  ChargeItemDefinitionBuilder get toBuilder =>
-      ChargeItemDefinitionBuilder.fromJson(toJson());
-}
-
 /// [ChargeItemDefinitionBuilder]
 /// The ChargeItemDefinition resource provides the properties that apply to
 /// the (billing) codes necessary to calculate costs and prices. The
@@ -1699,14 +1692,6 @@ class ChargeItemDefinitionBuilder extends DomainResourceBuilder {
   }
 }
 
-/// Extension to change [ChargeItemDefinitionApplicability] to a Builder
-extension BuilderChargeItemDefinitionApplicability
-    on ChargeItemDefinitionApplicability {
-  /// Converts [ChargeItemDefinitionApplicability] to a [ChargeItemDefinitionApplicabilityBuilder]
-  ChargeItemDefinitionApplicabilityBuilder get toBuilder =>
-      ChargeItemDefinitionApplicabilityBuilder.fromJson(toJson());
-}
-
 /// [ChargeItemDefinitionApplicabilityBuilder]
 /// Expressions that describe applicability criteria for the billing code.
 class ChargeItemDefinitionApplicabilityBuilder extends BackboneElementBuilder {
@@ -2203,14 +2188,6 @@ class ChargeItemDefinitionApplicabilityBuilder extends BackboneElementBuilder {
   }
 }
 
-/// Extension to change [ChargeItemDefinitionPropertyGroup] to a Builder
-extension BuilderChargeItemDefinitionPropertyGroup
-    on ChargeItemDefinitionPropertyGroup {
-  /// Converts [ChargeItemDefinitionPropertyGroup] to a [ChargeItemDefinitionPropertyGroupBuilder]
-  ChargeItemDefinitionPropertyGroupBuilder get toBuilder =>
-      ChargeItemDefinitionPropertyGroupBuilder.fromJson(toJson());
-}
-
 /// [ChargeItemDefinitionPropertyGroupBuilder]
 /// Group of properties which are applicable under the same conditions. If
 /// no applicability rules are established for the group, then all
@@ -2682,14 +2659,6 @@ class ChargeItemDefinitionPropertyGroupBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [ChargeItemDefinitionPriceComponent] to a Builder
-extension BuilderChargeItemDefinitionPriceComponent
-    on ChargeItemDefinitionPriceComponent {
-  /// Converts [ChargeItemDefinitionPriceComponent] to a [ChargeItemDefinitionPriceComponentBuilder]
-  ChargeItemDefinitionPriceComponentBuilder get toBuilder =>
-      ChargeItemDefinitionPriceComponentBuilder.fromJson(toJson());
 }
 
 /// [ChargeItemDefinitionPriceComponentBuilder]

@@ -10,12 +10,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [Goal] to a Builder
-extension BuilderGoal on Goal {
-  /// Converts [Goal] to a [GoalBuilder]
-  GoalBuilder get toBuilder => GoalBuilder.fromJson(toJson());
-}
-
 /// [GoalBuilder]
 /// Describes the intended objective(s) for a patient, group or
 /// organization care, for example, weight loss, restoring an activity of
@@ -1403,12 +1397,6 @@ class GoalBuilder extends DomainResourceBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [GoalTarget] to a Builder
-extension BuilderGoalTarget on GoalTarget {
-  /// Converts [GoalTarget] to a [GoalTargetBuilder]
-  GoalTargetBuilder get toBuilder => GoalTargetBuilder.fromJson(toJson());
 }
 
 /// [GoalTargetBuilder]

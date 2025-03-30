@@ -22,13 +22,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [CapabilityStatement] to a Builder
-extension BuilderCapabilityStatement on CapabilityStatement {
-  /// Converts [CapabilityStatement] to a [CapabilityStatementBuilder]
-  CapabilityStatementBuilder get toBuilder =>
-      CapabilityStatementBuilder.fromJson(toJson());
-}
-
 /// [CapabilityStatementBuilder]
 /// A Capability Statement documents a set of capabilities (behaviors) of a
 /// FHIR Server for a particular version of FHIR that may be used as a
@@ -1778,13 +1771,6 @@ class CapabilityStatementBuilder extends CanonicalResourceBuilder {
   }
 }
 
-/// Extension to change [CapabilityStatementSoftware] to a Builder
-extension BuilderCapabilityStatementSoftware on CapabilityStatementSoftware {
-  /// Converts [CapabilityStatementSoftware] to a [CapabilityStatementSoftwareBuilder]
-  CapabilityStatementSoftwareBuilder get toBuilder =>
-      CapabilityStatementSoftwareBuilder.fromJson(toJson());
-}
-
 /// [CapabilityStatementSoftwareBuilder]
 /// Software that is covered by this capability statement. It is used when
 /// the capability statement describes the capabilities of a particular
@@ -2274,14 +2260,6 @@ class CapabilityStatementSoftwareBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [CapabilityStatementImplementation] to a Builder
-extension BuilderCapabilityStatementImplementation
-    on CapabilityStatementImplementation {
-  /// Converts [CapabilityStatementImplementation] to a [CapabilityStatementImplementationBuilder]
-  CapabilityStatementImplementationBuilder get toBuilder =>
-      CapabilityStatementImplementationBuilder.fromJson(toJson());
 }
 
 /// [CapabilityStatementImplementationBuilder]
@@ -2777,13 +2755,6 @@ class CapabilityStatementImplementationBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [CapabilityStatementRest] to a Builder
-extension BuilderCapabilityStatementRest on CapabilityStatementRest {
-  /// Converts [CapabilityStatementRest] to a [CapabilityStatementRestBuilder]
-  CapabilityStatementRestBuilder get toBuilder =>
-      CapabilityStatementRestBuilder.fromJson(toJson());
 }
 
 /// [CapabilityStatementRestBuilder]
@@ -3540,13 +3511,6 @@ class CapabilityStatementRestBuilder extends BackboneElementBuilder {
   }
 }
 
-/// Extension to change [CapabilityStatementSecurity] to a Builder
-extension BuilderCapabilityStatementSecurity on CapabilityStatementSecurity {
-  /// Converts [CapabilityStatementSecurity] to a [CapabilityStatementSecurityBuilder]
-  CapabilityStatementSecurityBuilder get toBuilder =>
-      CapabilityStatementSecurityBuilder.fromJson(toJson());
-}
-
 /// [CapabilityStatementSecurityBuilder]
 /// Information about security implementation from an interface perspective
 /// - what a client needs to know.
@@ -4045,13 +4009,6 @@ class CapabilityStatementSecurityBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [CapabilityStatementResource] to a Builder
-extension BuilderCapabilityStatementResource on CapabilityStatementResource {
-  /// Converts [CapabilityStatementResource] to a [CapabilityStatementResourceBuilder]
-  CapabilityStatementResourceBuilder get toBuilder =>
-      CapabilityStatementResourceBuilder.fromJson(toJson());
 }
 
 /// [CapabilityStatementResourceBuilder]
@@ -5220,14 +5177,6 @@ class CapabilityStatementResourceBuilder extends BackboneElementBuilder {
   }
 }
 
-/// Extension to change [CapabilityStatementInteraction] to a Builder
-extension BuilderCapabilityStatementInteraction
-    on CapabilityStatementInteraction {
-  /// Converts [CapabilityStatementInteraction] to a [CapabilityStatementInteractionBuilder]
-  CapabilityStatementInteractionBuilder get toBuilder =>
-      CapabilityStatementInteractionBuilder.fromJson(toJson());
-}
-
 /// [CapabilityStatementInteractionBuilder]
 /// Identifies a restful operation supported by the solution.
 class CapabilityStatementInteractionBuilder extends BackboneElementBuilder {
@@ -5674,14 +5623,6 @@ class CapabilityStatementInteractionBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [CapabilityStatementSearchParam] to a Builder
-extension BuilderCapabilityStatementSearchParam
-    on CapabilityStatementSearchParam {
-  /// Converts [CapabilityStatementSearchParam] to a [CapabilityStatementSearchParamBuilder]
-  CapabilityStatementSearchParamBuilder get toBuilder =>
-      CapabilityStatementSearchParamBuilder.fromJson(toJson());
 }
 
 /// [CapabilityStatementSearchParamBuilder]
@@ -6226,13 +6167,6 @@ class CapabilityStatementSearchParamBuilder extends BackboneElementBuilder {
   }
 }
 
-/// Extension to change [CapabilityStatementOperation] to a Builder
-extension BuilderCapabilityStatementOperation on CapabilityStatementOperation {
-  /// Converts [CapabilityStatementOperation] to a [CapabilityStatementOperationBuilder]
-  CapabilityStatementOperationBuilder get toBuilder =>
-      CapabilityStatementOperationBuilder.fromJson(toJson());
-}
-
 /// [CapabilityStatementOperationBuilder]
 /// Definition of an operation or a named query together with its
 /// parameters and their meaning and type. Consult the definition of the
@@ -6737,14 +6671,6 @@ class CapabilityStatementOperationBuilder extends BackboneElementBuilder {
   }
 }
 
-/// Extension to change [CapabilityStatementInteraction1] to a Builder
-extension BuilderCapabilityStatementInteraction1
-    on CapabilityStatementInteraction1 {
-  /// Converts [CapabilityStatementInteraction1] to a [CapabilityStatementInteraction1Builder]
-  CapabilityStatementInteraction1Builder get toBuilder =>
-      CapabilityStatementInteraction1Builder.fromJson(toJson());
-}
-
 /// [CapabilityStatementInteraction1Builder]
 /// A specification of restful operations supported by the system.
 class CapabilityStatementInteraction1Builder extends BackboneElementBuilder {
@@ -7191,13 +7117,6 @@ class CapabilityStatementInteraction1Builder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [CapabilityStatementMessaging] to a Builder
-extension BuilderCapabilityStatementMessaging on CapabilityStatementMessaging {
-  /// Converts [CapabilityStatementMessaging] to a [CapabilityStatementMessagingBuilder]
-  CapabilityStatementMessagingBuilder get toBuilder =>
-      CapabilityStatementMessagingBuilder.fromJson(toJson());
 }
 
 /// [CapabilityStatementMessagingBuilder]
@@ -7757,13 +7676,6 @@ class CapabilityStatementMessagingBuilder extends BackboneElementBuilder {
   }
 }
 
-/// Extension to change [CapabilityStatementEndpoint] to a Builder
-extension BuilderCapabilityStatementEndpoint on CapabilityStatementEndpoint {
-  /// Converts [CapabilityStatementEndpoint] to a [CapabilityStatementEndpointBuilder]
-  CapabilityStatementEndpointBuilder get toBuilder =>
-      CapabilityStatementEndpointBuilder.fromJson(toJson());
-}
-
 /// [CapabilityStatementEndpointBuilder]
 /// An endpoint (network accessible address) to which messages and/or
 /// replies are to be sent.
@@ -8211,14 +8123,6 @@ class CapabilityStatementEndpointBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [CapabilityStatementSupportedMessage] to a Builder
-extension BuilderCapabilityStatementSupportedMessage
-    on CapabilityStatementSupportedMessage {
-  /// Converts [CapabilityStatementSupportedMessage] to a [CapabilityStatementSupportedMessageBuilder]
-  CapabilityStatementSupportedMessageBuilder get toBuilder =>
-      CapabilityStatementSupportedMessageBuilder.fromJson(toJson());
 }
 
 /// [CapabilityStatementSupportedMessageBuilder]
@@ -8670,13 +8574,6 @@ class CapabilityStatementSupportedMessageBuilder
     }
     return true;
   }
-}
-
-/// Extension to change [CapabilityStatementDocument] to a Builder
-extension BuilderCapabilityStatementDocument on CapabilityStatementDocument {
-  /// Converts [CapabilityStatementDocument] to a [CapabilityStatementDocumentBuilder]
-  CapabilityStatementDocumentBuilder get toBuilder =>
-      CapabilityStatementDocumentBuilder.fromJson(toJson());
 }
 
 /// [CapabilityStatementDocumentBuilder]

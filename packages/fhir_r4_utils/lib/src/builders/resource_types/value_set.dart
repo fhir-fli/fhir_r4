@@ -17,12 +17,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [ValueSet] to a Builder
-extension BuilderValueSet on ValueSet {
-  /// Converts [ValueSet] to a [ValueSetBuilder]
-  ValueSetBuilder get toBuilder => ValueSetBuilder.fromJson(toJson());
-}
-
 /// [ValueSetBuilder]
 /// A ValueSet resource instance specifies a set of codes drawn from one or
 /// more code systems, intended for use in a particular context. Value sets
@@ -1371,13 +1365,6 @@ class ValueSetBuilder extends CanonicalResourceBuilder {
   }
 }
 
-/// Extension to change [ValueSetCompose] to a Builder
-extension BuilderValueSetCompose on ValueSetCompose {
-  /// Converts [ValueSetCompose] to a [ValueSetComposeBuilder]
-  ValueSetComposeBuilder get toBuilder =>
-      ValueSetComposeBuilder.fromJson(toJson());
-}
-
 /// [ValueSetComposeBuilder]
 /// A set of criteria that define the contents of the value set by
 /// including or excluding codes selected from the specified code system(s)
@@ -1936,13 +1923,6 @@ class ValueSetComposeBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [ValueSetInclude] to a Builder
-extension BuilderValueSetInclude on ValueSetInclude {
-  /// Converts [ValueSetInclude] to a [ValueSetIncludeBuilder]
-  ValueSetIncludeBuilder get toBuilder =>
-      ValueSetIncludeBuilder.fromJson(toJson());
 }
 
 /// [ValueSetIncludeBuilder]
@@ -2549,13 +2529,6 @@ class ValueSetIncludeBuilder extends BackboneElementBuilder {
   }
 }
 
-/// Extension to change [ValueSetConcept] to a Builder
-extension BuilderValueSetConcept on ValueSetConcept {
-  /// Converts [ValueSetConcept] to a [ValueSetConceptBuilder]
-  ValueSetConceptBuilder get toBuilder =>
-      ValueSetConceptBuilder.fromJson(toJson());
-}
-
 /// [ValueSetConceptBuilder]
 /// Specifies a concept to be included or excluded.
 class ValueSetConceptBuilder extends BackboneElementBuilder {
@@ -3056,13 +3029,6 @@ class ValueSetConceptBuilder extends BackboneElementBuilder {
   }
 }
 
-/// Extension to change [ValueSetDesignation] to a Builder
-extension BuilderValueSetDesignation on ValueSetDesignation {
-  /// Converts [ValueSetDesignation] to a [ValueSetDesignationBuilder]
-  ValueSetDesignationBuilder get toBuilder =>
-      ValueSetDesignationBuilder.fromJson(toJson());
-}
-
 /// [ValueSetDesignationBuilder]
 /// Additional representations for this concept when used in this value set
 /// - other languages, aliases, specialized purposes, used for particular
@@ -3550,13 +3516,6 @@ class ValueSetDesignationBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [ValueSetFilter] to a Builder
-extension BuilderValueSetFilter on ValueSetFilter {
-  /// Converts [ValueSetFilter] to a [ValueSetFilterBuilder]
-  ValueSetFilterBuilder get toBuilder =>
-      ValueSetFilterBuilder.fromJson(toJson());
 }
 
 /// [ValueSetFilterBuilder]
@@ -4053,13 +4012,6 @@ class ValueSetFilterBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [ValueSetExpansion] to a Builder
-extension BuilderValueSetExpansion on ValueSetExpansion {
-  /// Converts [ValueSetExpansion] to a [ValueSetExpansionBuilder]
-  ValueSetExpansionBuilder get toBuilder =>
-      ValueSetExpansionBuilder.fromJson(toJson());
 }
 
 /// [ValueSetExpansionBuilder]
@@ -4707,13 +4659,6 @@ class ValueSetExpansionBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [ValueSetParameter] to a Builder
-extension BuilderValueSetParameter on ValueSetParameter {
-  /// Converts [ValueSetParameter] to a [ValueSetParameterBuilder]
-  ValueSetParameterBuilder get toBuilder =>
-      ValueSetParameterBuilder.fromJson(toJson());
 }
 
 /// [ValueSetParameterBuilder]
@@ -5372,13 +5317,6 @@ class ValueSetParameterBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [ValueSetContains] to a Builder
-extension BuilderValueSetContains on ValueSetContains {
-  /// Converts [ValueSetContains] to a [ValueSetContainsBuilder]
-  ValueSetContainsBuilder get toBuilder =>
-      ValueSetContainsBuilder.fromJson(toJson());
 }
 
 /// [ValueSetContainsBuilder]

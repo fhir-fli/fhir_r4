@@ -4,13 +4,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [ProdCharacteristic] to a Builder
-extension BuilderProdCharacteristic on ProdCharacteristic {
-  /// Converts [ProdCharacteristic] to a [ProdCharacteristicBuilder]
-  ProdCharacteristicBuilder get toBuilder =>
-      ProdCharacteristicBuilder.fromJson(toJson());
-}
-
 /// [ProdCharacteristicBuilder]
 /// The marketing status describes the date when a medicinal product is
 /// actually put on the market or the date as of which it is no longer

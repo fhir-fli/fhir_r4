@@ -14,13 +14,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [PackagedProductDefinition] to a Builder
-extension BuilderPackagedProductDefinition on PackagedProductDefinition {
-  /// Converts [PackagedProductDefinition] to a [PackagedProductDefinitionBuilder]
-  PackagedProductDefinitionBuilder get toBuilder =>
-      PackagedProductDefinitionBuilder.fromJson(toJson());
-}
-
 /// [PackagedProductDefinitionBuilder]
 /// A medically related item or items, in a container or package.
 class PackagedProductDefinitionBuilder extends DomainResourceBuilder {
@@ -1283,14 +1276,6 @@ class PackagedProductDefinitionBuilder extends DomainResourceBuilder {
   }
 }
 
-/// Extension to change [PackagedProductDefinitionLegalStatusOfSupply] to a Builder
-extension BuilderPackagedProductDefinitionLegalStatusOfSupply
-    on PackagedProductDefinitionLegalStatusOfSupply {
-  /// Converts [PackagedProductDefinitionLegalStatusOfSupply] to a [PackagedProductDefinitionLegalStatusOfSupplyBuilder]
-  PackagedProductDefinitionLegalStatusOfSupplyBuilder get toBuilder =>
-      PackagedProductDefinitionLegalStatusOfSupplyBuilder.fromJson(toJson());
-}
-
 /// [PackagedProductDefinitionLegalStatusOfSupplyBuilder]
 /// The legal status of supply of the packaged item as classified by the
 /// regulator.
@@ -1740,14 +1725,6 @@ class PackagedProductDefinitionLegalStatusOfSupplyBuilder
     }
     return true;
   }
-}
-
-/// Extension to change [PackagedProductDefinitionPackage] to a Builder
-extension BuilderPackagedProductDefinitionPackage
-    on PackagedProductDefinitionPackage {
-  /// Converts [PackagedProductDefinitionPackage] to a [PackagedProductDefinitionPackageBuilder]
-  PackagedProductDefinitionPackageBuilder get toBuilder =>
-      PackagedProductDefinitionPackageBuilder.fromJson(toJson());
 }
 
 /// [PackagedProductDefinitionPackageBuilder]
@@ -2623,14 +2600,6 @@ class PackagedProductDefinitionPackageBuilder extends BackboneElementBuilder {
   }
 }
 
-/// Extension to change [PackagedProductDefinitionShelfLifeStorage] to a Builder
-extension BuilderPackagedProductDefinitionShelfLifeStorage
-    on PackagedProductDefinitionShelfLifeStorage {
-  /// Converts [PackagedProductDefinitionShelfLifeStorage] to a [PackagedProductDefinitionShelfLifeStorageBuilder]
-  PackagedProductDefinitionShelfLifeStorageBuilder get toBuilder =>
-      PackagedProductDefinitionShelfLifeStorageBuilder.fromJson(toJson());
-}
-
 /// [PackagedProductDefinitionShelfLifeStorageBuilder]
 /// Shelf Life and storage information.
 class PackagedProductDefinitionShelfLifeStorageBuilder
@@ -3210,14 +3179,6 @@ class PackagedProductDefinitionShelfLifeStorageBuilder
     }
     return true;
   }
-}
-
-/// Extension to change [PackagedProductDefinitionProperty] to a Builder
-extension BuilderPackagedProductDefinitionProperty
-    on PackagedProductDefinitionProperty {
-  /// Converts [PackagedProductDefinitionProperty] to a [PackagedProductDefinitionPropertyBuilder]
-  PackagedProductDefinitionPropertyBuilder get toBuilder =>
-      PackagedProductDefinitionPropertyBuilder.fromJson(toJson());
 }
 
 /// [PackagedProductDefinitionPropertyBuilder]
@@ -3819,14 +3780,6 @@ class PackagedProductDefinitionPropertyBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [PackagedProductDefinitionContainedItem] to a Builder
-extension BuilderPackagedProductDefinitionContainedItem
-    on PackagedProductDefinitionContainedItem {
-  /// Converts [PackagedProductDefinitionContainedItem] to a [PackagedProductDefinitionContainedItemBuilder]
-  PackagedProductDefinitionContainedItemBuilder get toBuilder =>
-      PackagedProductDefinitionContainedItemBuilder.fromJson(toJson());
 }
 
 /// [PackagedProductDefinitionContainedItemBuilder]

@@ -17,13 +17,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [MolecularSequence] to a Builder
-extension BuilderMolecularSequence on MolecularSequence {
-  /// Converts [MolecularSequence] to a [MolecularSequenceBuilder]
-  MolecularSequenceBuilder get toBuilder =>
-      MolecularSequenceBuilder.fromJson(toJson());
-}
-
 /// [MolecularSequenceBuilder]
 /// Raw data describing a biological sequence.
 class MolecularSequenceBuilder extends DomainResourceBuilder {
@@ -1343,14 +1336,6 @@ class MolecularSequenceBuilder extends DomainResourceBuilder {
   }
 }
 
-/// Extension to change [MolecularSequenceReferenceSeq] to a Builder
-extension BuilderMolecularSequenceReferenceSeq
-    on MolecularSequenceReferenceSeq {
-  /// Converts [MolecularSequenceReferenceSeq] to a [MolecularSequenceReferenceSeqBuilder]
-  MolecularSequenceReferenceSeqBuilder get toBuilder =>
-      MolecularSequenceReferenceSeqBuilder.fromJson(toJson());
-}
-
 /// [MolecularSequenceReferenceSeqBuilder]
 /// A sequence that is used as a reference to describe variants that are
 /// present in a sequence analyzed.
@@ -2117,13 +2102,6 @@ class MolecularSequenceReferenceSeqBuilder extends BackboneElementBuilder {
   }
 }
 
-/// Extension to change [MolecularSequenceVariant] to a Builder
-extension BuilderMolecularSequenceVariant on MolecularSequenceVariant {
-  /// Converts [MolecularSequenceVariant] to a [MolecularSequenceVariantBuilder]
-  MolecularSequenceVariantBuilder get toBuilder =>
-      MolecularSequenceVariantBuilder.fromJson(toJson());
-}
-
 /// [MolecularSequenceVariantBuilder]
 /// The definition of variant here originates from Sequence ontology
 /// ([variant_of](http://www.sequenceontology.org/browser/current_svn/term/variant_of)).
@@ -2763,13 +2741,6 @@ class MolecularSequenceVariantBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [MolecularSequenceQuality] to a Builder
-extension BuilderMolecularSequenceQuality on MolecularSequenceQuality {
-  /// Converts [MolecularSequenceQuality] to a [MolecularSequenceQualityBuilder]
-  MolecularSequenceQualityBuilder get toBuilder =>
-      MolecularSequenceQualityBuilder.fromJson(toJson());
 }
 
 /// [MolecularSequenceQualityBuilder]
@@ -3801,13 +3772,6 @@ class MolecularSequenceQualityBuilder extends BackboneElementBuilder {
   }
 }
 
-/// Extension to change [MolecularSequenceRoc] to a Builder
-extension BuilderMolecularSequenceRoc on MolecularSequenceRoc {
-  /// Converts [MolecularSequenceRoc] to a [MolecularSequenceRocBuilder]
-  MolecularSequenceRocBuilder get toBuilder =>
-      MolecularSequenceRocBuilder.fromJson(toJson());
-}
-
 /// [MolecularSequenceRocBuilder]
 /// Receiver Operator Characteristic (ROC) Curve to give
 /// sensitivity/specificity tradeoff.
@@ -4510,13 +4474,6 @@ class MolecularSequenceRocBuilder extends BackboneElementBuilder {
   }
 }
 
-/// Extension to change [MolecularSequenceRepository] to a Builder
-extension BuilderMolecularSequenceRepository on MolecularSequenceRepository {
-  /// Converts [MolecularSequenceRepository] to a [MolecularSequenceRepositoryBuilder]
-  MolecularSequenceRepositoryBuilder get toBuilder =>
-      MolecularSequenceRepositoryBuilder.fromJson(toJson());
-}
-
 /// [MolecularSequenceRepositoryBuilder]
 /// Configurations of the external repository. The repository shall store
 /// target's observedSeq or records related with target's observedSeq.
@@ -5143,14 +5100,6 @@ class MolecularSequenceRepositoryBuilder extends BackboneElementBuilder {
   }
 }
 
-/// Extension to change [MolecularSequenceStructureVariant] to a Builder
-extension BuilderMolecularSequenceStructureVariant
-    on MolecularSequenceStructureVariant {
-  /// Converts [MolecularSequenceStructureVariant] to a [MolecularSequenceStructureVariantBuilder]
-  MolecularSequenceStructureVariantBuilder get toBuilder =>
-      MolecularSequenceStructureVariantBuilder.fromJson(toJson());
-}
-
 /// [MolecularSequenceStructureVariantBuilder]
 /// Information about chromosome structure variation.
 class MolecularSequenceStructureVariantBuilder extends BackboneElementBuilder {
@@ -5728,13 +5677,6 @@ class MolecularSequenceStructureVariantBuilder extends BackboneElementBuilder {
   }
 }
 
-/// Extension to change [MolecularSequenceOuter] to a Builder
-extension BuilderMolecularSequenceOuter on MolecularSequenceOuter {
-  /// Converts [MolecularSequenceOuter] to a [MolecularSequenceOuterBuilder]
-  MolecularSequenceOuterBuilder get toBuilder =>
-      MolecularSequenceOuterBuilder.fromJson(toJson());
-}
-
 /// [MolecularSequenceOuterBuilder]
 /// Structural variant outer.
 class MolecularSequenceOuterBuilder extends BackboneElementBuilder {
@@ -6182,13 +6124,6 @@ class MolecularSequenceOuterBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [MolecularSequenceInner] to a Builder
-extension BuilderMolecularSequenceInner on MolecularSequenceInner {
-  /// Converts [MolecularSequenceInner] to a [MolecularSequenceInnerBuilder]
-  MolecularSequenceInnerBuilder get toBuilder =>
-      MolecularSequenceInnerBuilder.fromJson(toJson());
 }
 
 /// [MolecularSequenceInnerBuilder]

@@ -9,12 +9,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [Dosage] to a Builder
-extension BuilderDosage on Dosage {
-  /// Converts [Dosage] to a [DosageBuilder]
-  DosageBuilder get toBuilder => DosageBuilder.fromJson(toJson());
-}
-
 /// [DosageBuilder]
 /// Indicates how the medication is/was taken or should be taken by the
 /// patient.
@@ -1030,13 +1024,6 @@ class DosageBuilder extends BackboneTypeBuilder
     }
     return true;
   }
-}
-
-/// Extension to change [DosageDoseAndRate] to a Builder
-extension BuilderDosageDoseAndRate on DosageDoseAndRate {
-  /// Converts [DosageDoseAndRate] to a [DosageDoseAndRateBuilder]
-  DosageDoseAndRateBuilder get toBuilder =>
-      DosageDoseAndRateBuilder.fromJson(toJson());
 }
 
 /// [DosageDoseAndRateBuilder]

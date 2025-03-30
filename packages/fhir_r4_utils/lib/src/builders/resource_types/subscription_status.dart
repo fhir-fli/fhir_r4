@@ -10,13 +10,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [SubscriptionStatus] to a Builder
-extension BuilderSubscriptionStatus on SubscriptionStatus {
-  /// Converts [SubscriptionStatus] to a [SubscriptionStatusBuilder]
-  SubscriptionStatusBuilder get toBuilder =>
-      SubscriptionStatusBuilder.fromJson(toJson());
-}
-
 /// [SubscriptionStatusBuilder]
 /// The SubscriptionStatus resource describes the state of a Subscription
 /// during notifications.
@@ -906,14 +899,6 @@ class SubscriptionStatusBuilder extends DomainResourceBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [SubscriptionStatusNotificationEvent] to a Builder
-extension BuilderSubscriptionStatusNotificationEvent
-    on SubscriptionStatusNotificationEvent {
-  /// Converts [SubscriptionStatusNotificationEvent] to a [SubscriptionStatusNotificationEventBuilder]
-  SubscriptionStatusNotificationEventBuilder get toBuilder =>
-      SubscriptionStatusNotificationEventBuilder.fromJson(toJson());
 }
 
 /// [SubscriptionStatusNotificationEventBuilder]

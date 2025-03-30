@@ -25,12 +25,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [TestScript] to a Builder
-extension BuilderTestScript on TestScript {
-  /// Converts [TestScript] to a [TestScriptBuilder]
-  TestScriptBuilder get toBuilder => TestScriptBuilder.fromJson(toJson());
-}
-
 /// [TestScriptBuilder]
 /// A structured set of tests against a FHIR server or client
 /// implementation to determine compliance against the FHIR specification.
@@ -1745,13 +1739,6 @@ class TestScriptBuilder extends DomainResourceBuilder {
   }
 }
 
-/// Extension to change [TestScriptOrigin] to a Builder
-extension BuilderTestScriptOrigin on TestScriptOrigin {
-  /// Converts [TestScriptOrigin] to a [TestScriptOriginBuilder]
-  TestScriptOriginBuilder get toBuilder =>
-      TestScriptOriginBuilder.fromJson(toJson());
-}
-
 /// [TestScriptOriginBuilder]
 /// An abstract server used in operations within this test script in the
 /// origin element.
@@ -2196,13 +2183,6 @@ class TestScriptOriginBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [TestScriptDestination] to a Builder
-extension BuilderTestScriptDestination on TestScriptDestination {
-  /// Converts [TestScriptDestination] to a [TestScriptDestinationBuilder]
-  TestScriptDestinationBuilder get toBuilder =>
-      TestScriptDestinationBuilder.fromJson(toJson());
 }
 
 /// [TestScriptDestinationBuilder]
@@ -2650,13 +2630,6 @@ class TestScriptDestinationBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [TestScriptMetadata] to a Builder
-extension BuilderTestScriptMetadata on TestScriptMetadata {
-  /// Converts [TestScriptMetadata] to a [TestScriptMetadataBuilder]
-  TestScriptMetadataBuilder get toBuilder =>
-      TestScriptMetadataBuilder.fromJson(toJson());
 }
 
 /// [TestScriptMetadataBuilder]
@@ -3123,13 +3096,6 @@ class TestScriptMetadataBuilder extends BackboneElementBuilder {
   }
 }
 
-/// Extension to change [TestScriptLink] to a Builder
-extension BuilderTestScriptLink on TestScriptLink {
-  /// Converts [TestScriptLink] to a [TestScriptLinkBuilder]
-  TestScriptLinkBuilder get toBuilder =>
-      TestScriptLinkBuilder.fromJson(toJson());
-}
-
 /// [TestScriptLinkBuilder]
 /// A link to the FHIR specification that this test is covering.
 class TestScriptLinkBuilder extends BackboneElementBuilder {
@@ -3573,13 +3539,6 @@ class TestScriptLinkBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [TestScriptCapability] to a Builder
-extension BuilderTestScriptCapability on TestScriptCapability {
-  /// Converts [TestScriptCapability] to a [TestScriptCapabilityBuilder]
-  TestScriptCapabilityBuilder get toBuilder =>
-      TestScriptCapabilityBuilder.fromJson(toJson());
 }
 
 /// [TestScriptCapabilityBuilder]
@@ -4258,13 +4217,6 @@ class TestScriptCapabilityBuilder extends BackboneElementBuilder {
   }
 }
 
-/// Extension to change [TestScriptFixture] to a Builder
-extension BuilderTestScriptFixture on TestScriptFixture {
-  /// Converts [TestScriptFixture] to a [TestScriptFixtureBuilder]
-  TestScriptFixtureBuilder get toBuilder =>
-      TestScriptFixtureBuilder.fromJson(toJson());
-}
-
 /// [TestScriptFixtureBuilder]
 /// Fixture in the test script - by reference (uri). All fixtures are
 /// required for the test script to execute.
@@ -4758,13 +4710,6 @@ class TestScriptFixtureBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [TestScriptVariable] to a Builder
-extension BuilderTestScriptVariable on TestScriptVariable {
-  /// Converts [TestScriptVariable] to a [TestScriptVariableBuilder]
-  TestScriptVariableBuilder get toBuilder =>
-      TestScriptVariableBuilder.fromJson(toJson());
 }
 
 /// [TestScriptVariableBuilder]
@@ -5478,13 +5423,6 @@ class TestScriptVariableBuilder extends BackboneElementBuilder {
   }
 }
 
-/// Extension to change [TestScriptSetup] to a Builder
-extension BuilderTestScriptSetup on TestScriptSetup {
-  /// Converts [TestScriptSetup] to a [TestScriptSetupBuilder]
-  TestScriptSetupBuilder get toBuilder =>
-      TestScriptSetupBuilder.fromJson(toJson());
-}
-
 /// [TestScriptSetupBuilder]
 /// A series of required setup operations before tests are executed.
 class TestScriptSetupBuilder extends BackboneElementBuilder {
@@ -5893,13 +5831,6 @@ class TestScriptSetupBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [TestScriptAction] to a Builder
-extension BuilderTestScriptAction on TestScriptAction {
-  /// Converts [TestScriptAction] to a [TestScriptActionBuilder]
-  TestScriptActionBuilder get toBuilder =>
-      TestScriptActionBuilder.fromJson(toJson());
 }
 
 /// [TestScriptActionBuilder]
@@ -6345,13 +6276,6 @@ class TestScriptActionBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [TestScriptOperation] to a Builder
-extension BuilderTestScriptOperation on TestScriptOperation {
-  /// Converts [TestScriptOperation] to a [TestScriptOperationBuilder]
-  TestScriptOperationBuilder get toBuilder =>
-      TestScriptOperationBuilder.fromJson(toJson());
 }
 
 /// [TestScriptOperationBuilder]
@@ -7462,13 +7386,6 @@ class TestScriptOperationBuilder extends BackboneElementBuilder {
   }
 }
 
-/// Extension to change [TestScriptRequestHeader] to a Builder
-extension BuilderTestScriptRequestHeader on TestScriptRequestHeader {
-  /// Converts [TestScriptRequestHeader] to a [TestScriptRequestHeaderBuilder]
-  TestScriptRequestHeaderBuilder get toBuilder =>
-      TestScriptRequestHeaderBuilder.fromJson(toJson());
-}
-
 /// [TestScriptRequestHeaderBuilder]
 /// Header elements would be used to set HTTP headers.
 class TestScriptRequestHeaderBuilder extends BackboneElementBuilder {
@@ -7912,13 +7829,6 @@ class TestScriptRequestHeaderBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [TestScriptAssert] to a Builder
-extension BuilderTestScriptAssert on TestScriptAssert {
-  /// Converts [TestScriptAssert] to a [TestScriptAssertBuilder]
-  TestScriptAssertBuilder get toBuilder =>
-      TestScriptAssertBuilder.fromJson(toJson());
 }
 
 /// [TestScriptAssertBuilder]
@@ -9245,13 +9155,6 @@ class TestScriptAssertBuilder extends BackboneElementBuilder {
   }
 }
 
-/// Extension to change [TestScriptTest] to a Builder
-extension BuilderTestScriptTest on TestScriptTest {
-  /// Converts [TestScriptTest] to a [TestScriptTestBuilder]
-  TestScriptTestBuilder get toBuilder =>
-      TestScriptTestBuilder.fromJson(toJson());
-}
-
 /// [TestScriptTestBuilder]
 /// A test in this script.
 class TestScriptTestBuilder extends BackboneElementBuilder {
@@ -9750,13 +9653,6 @@ class TestScriptTestBuilder extends BackboneElementBuilder {
   }
 }
 
-/// Extension to change [TestScriptAction1] to a Builder
-extension BuilderTestScriptAction1 on TestScriptAction1 {
-  /// Converts [TestScriptAction1] to a [TestScriptAction1Builder]
-  TestScriptAction1Builder get toBuilder =>
-      TestScriptAction1Builder.fromJson(toJson());
-}
-
 /// [TestScriptAction1Builder]
 /// Action would contain either an operation or an assertion.
 class TestScriptAction1Builder extends BackboneElementBuilder {
@@ -10202,13 +10098,6 @@ class TestScriptAction1Builder extends BackboneElementBuilder {
   }
 }
 
-/// Extension to change [TestScriptTeardown] to a Builder
-extension BuilderTestScriptTeardown on TestScriptTeardown {
-  /// Converts [TestScriptTeardown] to a [TestScriptTeardownBuilder]
-  TestScriptTeardownBuilder get toBuilder =>
-      TestScriptTeardownBuilder.fromJson(toJson());
-}
-
 /// [TestScriptTeardownBuilder]
 /// A series of operations required to clean up after all the tests are
 /// executed (successfully or otherwise).
@@ -10618,13 +10507,6 @@ class TestScriptTeardownBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [TestScriptAction2] to a Builder
-extension BuilderTestScriptAction2 on TestScriptAction2 {
-  /// Converts [TestScriptAction2] to a [TestScriptAction2Builder]
-  TestScriptAction2Builder get toBuilder =>
-      TestScriptAction2Builder.fromJson(toJson());
 }
 
 /// [TestScriptAction2Builder]

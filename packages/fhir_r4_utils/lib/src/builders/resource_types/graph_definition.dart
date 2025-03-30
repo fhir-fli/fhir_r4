@@ -12,13 +12,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [GraphDefinition] to a Builder
-extension BuilderGraphDefinition on GraphDefinition {
-  /// Converts [GraphDefinition] to a [GraphDefinitionBuilder]
-  GraphDefinitionBuilder get toBuilder =>
-      GraphDefinitionBuilder.fromJson(toJson());
-}
-
 /// [GraphDefinitionBuilder]
 /// A formal computable definition of a graph of resources - that is, a
 /// coherent set of resources that form a graph by following references.
@@ -1228,13 +1221,6 @@ class GraphDefinitionBuilder extends CanonicalResourceBuilder {
   }
 }
 
-/// Extension to change [GraphDefinitionLink] to a Builder
-extension BuilderGraphDefinitionLink on GraphDefinitionLink {
-  /// Converts [GraphDefinitionLink] to a [GraphDefinitionLinkBuilder]
-  GraphDefinitionLinkBuilder get toBuilder =>
-      GraphDefinitionLinkBuilder.fromJson(toJson());
-}
-
 /// [GraphDefinitionLinkBuilder]
 /// Links this graph makes rules about.
 class GraphDefinitionLinkBuilder extends BackboneElementBuilder {
@@ -1862,13 +1848,6 @@ class GraphDefinitionLinkBuilder extends BackboneElementBuilder {
   }
 }
 
-/// Extension to change [GraphDefinitionTarget] to a Builder
-extension BuilderGraphDefinitionTarget on GraphDefinitionTarget {
-  /// Converts [GraphDefinitionTarget] to a [GraphDefinitionTargetBuilder]
-  GraphDefinitionTargetBuilder get toBuilder =>
-      GraphDefinitionTargetBuilder.fromJson(toJson());
-}
-
 /// [GraphDefinitionTargetBuilder]
 /// Potential target for the link.
 class GraphDefinitionTargetBuilder extends BackboneElementBuilder {
@@ -2459,13 +2438,6 @@ class GraphDefinitionTargetBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [GraphDefinitionCompartment] to a Builder
-extension BuilderGraphDefinitionCompartment on GraphDefinitionCompartment {
-  /// Converts [GraphDefinitionCompartment] to a [GraphDefinitionCompartmentBuilder]
-  GraphDefinitionCompartmentBuilder get toBuilder =>
-      GraphDefinitionCompartmentBuilder.fromJson(toJson());
 }
 
 /// [GraphDefinitionCompartmentBuilder]

@@ -10,12 +10,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [DeviceMetric] to a Builder
-extension BuilderDeviceMetric on DeviceMetric {
-  /// Converts [DeviceMetric] to a [DeviceMetricBuilder]
-  DeviceMetricBuilder get toBuilder => DeviceMetricBuilder.fromJson(toJson());
-}
-
 /// [DeviceMetricBuilder]
 /// Describes a measurement, calculation or setting capability of a medical
 /// device.
@@ -1052,13 +1046,6 @@ class DeviceMetricBuilder extends DomainResourceBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [DeviceMetricCalibration] to a Builder
-extension BuilderDeviceMetricCalibration on DeviceMetricCalibration {
-  /// Converts [DeviceMetricCalibration] to a [DeviceMetricCalibrationBuilder]
-  DeviceMetricCalibrationBuilder get toBuilder =>
-      DeviceMetricCalibrationBuilder.fromJson(toJson());
 }
 
 /// [DeviceMetricCalibrationBuilder]

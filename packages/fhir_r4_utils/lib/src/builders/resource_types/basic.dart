@@ -9,12 +9,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [Basic] to a Builder
-extension BuilderBasic on Basic {
-  /// Converts [Basic] to a [BasicBuilder]
-  BasicBuilder get toBuilder => BasicBuilder.fromJson(toJson());
-}
-
 /// [BasicBuilder]
 /// Basic is used for handling concepts not yet defined in FHIR,
 /// narrative-only resources that don't map to an existing resource, and

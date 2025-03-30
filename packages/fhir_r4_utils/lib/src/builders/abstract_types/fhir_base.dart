@@ -4,15 +4,6 @@ import 'package:collection/collection.dart';
 import 'package:fhir_r4/fhir_r4.dart' as fhir;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 
-/// Base extension for all FHIRBaseBuilder classes to instantiate from the
-/// original object
-extension BuilderFhirBase on fhir.FhirBase {
-  /// Converts the object to a builder.
-  FhirBaseBuilder get toBuilder {
-    throw UnimplementedError('toBuilder not implemented');
-  }
-}
-
 /// Base class for all FHIR elements.
 abstract class FhirBaseBuilder {
   /// Main constructor for [FhirBaseBuilder].

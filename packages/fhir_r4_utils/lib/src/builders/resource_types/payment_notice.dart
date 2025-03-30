@@ -9,12 +9,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [PaymentNotice] to a Builder
-extension BuilderPaymentNotice on PaymentNotice {
-  /// Converts [PaymentNotice] to a [PaymentNoticeBuilder]
-  PaymentNoticeBuilder get toBuilder => PaymentNoticeBuilder.fromJson(toJson());
-}
-
 /// [PaymentNoticeBuilder]
 /// This resource provides the status of the payment for goods and services
 /// rendered, and the request and response resource references.

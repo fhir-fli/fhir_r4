@@ -4,12 +4,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [RatioRange] to a Builder
-extension BuilderRatioRange on RatioRange {
-  /// Converts [RatioRange] to a [RatioRangeBuilder]
-  RatioRangeBuilder get toBuilder => RatioRangeBuilder.fromJson(toJson());
-}
-
 /// [RatioRangeBuilder]
 /// A range of ratios expressed as a low and high numerator and a
 /// denominator.

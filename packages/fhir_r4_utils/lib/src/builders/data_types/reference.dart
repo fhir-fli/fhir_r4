@@ -4,12 +4,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [Reference] to a Builder
-extension BuilderReference on Reference {
-  /// Converts [Reference] to a [ReferenceBuilder]
-  ReferenceBuilder get toBuilder => ReferenceBuilder.fromJson(toJson());
-}
-
 /// [ReferenceBuilder]
 /// A reference from one resource to another.
 class ReferenceBuilder extends DataTypeBuilder

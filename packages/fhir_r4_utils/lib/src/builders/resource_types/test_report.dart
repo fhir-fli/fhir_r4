@@ -18,12 +18,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [TestReport] to a Builder
-extension BuilderTestReport on TestReport {
-  /// Converts [TestReport] to a [TestReportBuilder]
-  TestReportBuilder get toBuilder => TestReportBuilder.fromJson(toJson());
-}
-
 /// [TestReportBuilder]
 /// A summary of information based on the results of executing a
 /// TestScript.
@@ -1128,13 +1122,6 @@ class TestReportBuilder extends DomainResourceBuilder {
   }
 }
 
-/// Extension to change [TestReportParticipant] to a Builder
-extension BuilderTestReportParticipant on TestReportParticipant {
-  /// Converts [TestReportParticipant] to a [TestReportParticipantBuilder]
-  TestReportParticipantBuilder get toBuilder =>
-      TestReportParticipantBuilder.fromJson(toJson());
-}
-
 /// [TestReportParticipantBuilder]
 /// A participant in the test execution, either the execution engine, a
 /// client, or a server.
@@ -1624,13 +1611,6 @@ class TestReportParticipantBuilder extends BackboneElementBuilder {
   }
 }
 
-/// Extension to change [TestReportSetup] to a Builder
-extension BuilderTestReportSetup on TestReportSetup {
-  /// Converts [TestReportSetup] to a [TestReportSetupBuilder]
-  TestReportSetupBuilder get toBuilder =>
-      TestReportSetupBuilder.fromJson(toJson());
-}
-
 /// [TestReportSetupBuilder]
 /// The results of the series of required setup operations before the tests
 /// were executed.
@@ -2040,13 +2020,6 @@ class TestReportSetupBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [TestReportAction] to a Builder
-extension BuilderTestReportAction on TestReportAction {
-  /// Converts [TestReportAction] to a [TestReportActionBuilder]
-  TestReportActionBuilder get toBuilder =>
-      TestReportActionBuilder.fromJson(toJson());
 }
 
 /// [TestReportActionBuilder]
@@ -2491,13 +2464,6 @@ class TestReportActionBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [TestReportOperation] to a Builder
-extension BuilderTestReportOperation on TestReportOperation {
-  /// Converts [TestReportOperation] to a [TestReportOperationBuilder]
-  TestReportOperationBuilder get toBuilder =>
-      TestReportOperationBuilder.fromJson(toJson());
 }
 
 /// [TestReportOperationBuilder]
@@ -2987,13 +2953,6 @@ class TestReportOperationBuilder extends BackboneElementBuilder {
   }
 }
 
-/// Extension to change [TestReportAssert] to a Builder
-extension BuilderTestReportAssert on TestReportAssert {
-  /// Converts [TestReportAssert] to a [TestReportAssertBuilder]
-  TestReportAssertBuilder get toBuilder =>
-      TestReportAssertBuilder.fromJson(toJson());
-}
-
 /// [TestReportAssertBuilder]
 /// The results of the assertion performed on the previous operations.
 class TestReportAssertBuilder extends BackboneElementBuilder {
@@ -3479,13 +3438,6 @@ class TestReportAssertBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [TestReportTest] to a Builder
-extension BuilderTestReportTest on TestReportTest {
-  /// Converts [TestReportTest] to a [TestReportTestBuilder]
-  TestReportTestBuilder get toBuilder =>
-      TestReportTestBuilder.fromJson(toJson());
 }
 
 /// [TestReportTestBuilder]
@@ -3986,13 +3938,6 @@ class TestReportTestBuilder extends BackboneElementBuilder {
   }
 }
 
-/// Extension to change [TestReportAction1] to a Builder
-extension BuilderTestReportAction1 on TestReportAction1 {
-  /// Converts [TestReportAction1] to a [TestReportAction1Builder]
-  TestReportAction1Builder get toBuilder =>
-      TestReportAction1Builder.fromJson(toJson());
-}
-
 /// [TestReportAction1Builder]
 /// Action would contain either an operation or an assertion.
 class TestReportAction1Builder extends BackboneElementBuilder {
@@ -4437,13 +4382,6 @@ class TestReportAction1Builder extends BackboneElementBuilder {
   }
 }
 
-/// Extension to change [TestReportTeardown] to a Builder
-extension BuilderTestReportTeardown on TestReportTeardown {
-  /// Converts [TestReportTeardown] to a [TestReportTeardownBuilder]
-  TestReportTeardownBuilder get toBuilder =>
-      TestReportTeardownBuilder.fromJson(toJson());
-}
-
 /// [TestReportTeardownBuilder]
 /// The results of the series of operations required to clean up after all
 /// the tests were executed (successfully or otherwise).
@@ -4853,13 +4791,6 @@ class TestReportTeardownBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [TestReportAction2] to a Builder
-extension BuilderTestReportAction2 on TestReportAction2 {
-  /// Converts [TestReportAction2] to a [TestReportAction2Builder]
-  TestReportAction2Builder get toBuilder =>
-      TestReportAction2Builder.fromJson(toJson());
 }
 
 /// [TestReportAction2Builder]

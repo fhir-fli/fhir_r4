@@ -15,12 +15,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [MeasureReport] to a Builder
-extension BuilderMeasureReport on MeasureReport {
-  /// Converts [MeasureReport] to a [MeasureReportBuilder]
-  MeasureReportBuilder get toBuilder => MeasureReportBuilder.fromJson(toJson());
-}
-
 /// [MeasureReportBuilder]
 /// The MeasureReport resource contains the results of the calculation of a
 /// measure; and optionally a reference to the resources involved in that
@@ -1098,13 +1092,6 @@ class MeasureReportBuilder extends DomainResourceBuilder {
   }
 }
 
-/// Extension to change [MeasureReportGroup] to a Builder
-extension BuilderMeasureReportGroup on MeasureReportGroup {
-  /// Converts [MeasureReportGroup] to a [MeasureReportGroupBuilder]
-  MeasureReportGroupBuilder get toBuilder =>
-      MeasureReportGroupBuilder.fromJson(toJson());
-}
-
 /// [MeasureReportGroupBuilder]
 /// The results of the calculation, one for each population group in the
 /// measure.
@@ -1659,13 +1646,6 @@ class MeasureReportGroupBuilder extends BackboneElementBuilder {
   }
 }
 
-/// Extension to change [MeasureReportPopulation] to a Builder
-extension BuilderMeasureReportPopulation on MeasureReportPopulation {
-  /// Converts [MeasureReportPopulation] to a [MeasureReportPopulationBuilder]
-  MeasureReportPopulationBuilder get toBuilder =>
-      MeasureReportPopulationBuilder.fromJson(toJson());
-}
-
 /// [MeasureReportPopulationBuilder]
 /// The populations that make up the population group, one for each type of
 /// population appropriate for the measure.
@@ -2156,13 +2136,6 @@ class MeasureReportPopulationBuilder extends BackboneElementBuilder {
   }
 }
 
-/// Extension to change [MeasureReportStratifier] to a Builder
-extension BuilderMeasureReportStratifier on MeasureReportStratifier {
-  /// Converts [MeasureReportStratifier] to a [MeasureReportStratifierBuilder]
-  MeasureReportStratifierBuilder get toBuilder =>
-      MeasureReportStratifierBuilder.fromJson(toJson());
-}
-
 /// [MeasureReportStratifierBuilder]
 /// When a measure includes multiple stratifiers, there will be a
 /// stratifier group for each stratifier defined by the measure.
@@ -2627,13 +2600,6 @@ class MeasureReportStratifierBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [MeasureReportStratum] to a Builder
-extension BuilderMeasureReportStratum on MeasureReportStratum {
-  /// Converts [MeasureReportStratum] to a [MeasureReportStratumBuilder]
-  MeasureReportStratumBuilder get toBuilder =>
-      MeasureReportStratumBuilder.fromJson(toJson());
 }
 
 /// [MeasureReportStratumBuilder]
@@ -3191,13 +3157,6 @@ class MeasureReportStratumBuilder extends BackboneElementBuilder {
   }
 }
 
-/// Extension to change [MeasureReportComponent] to a Builder
-extension BuilderMeasureReportComponent on MeasureReportComponent {
-  /// Converts [MeasureReportComponent] to a [MeasureReportComponentBuilder]
-  MeasureReportComponentBuilder get toBuilder =>
-      MeasureReportComponentBuilder.fromJson(toJson());
-}
-
 /// [MeasureReportComponentBuilder]
 /// A stratifier component value.
 class MeasureReportComponentBuilder extends BackboneElementBuilder {
@@ -3641,13 +3600,6 @@ class MeasureReportComponentBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [MeasureReportPopulation1] to a Builder
-extension BuilderMeasureReportPopulation1 on MeasureReportPopulation1 {
-  /// Converts [MeasureReportPopulation1] to a [MeasureReportPopulation1Builder]
-  MeasureReportPopulation1Builder get toBuilder =>
-      MeasureReportPopulation1Builder.fromJson(toJson());
 }
 
 /// [MeasureReportPopulation1Builder]

@@ -9,13 +9,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [EnrollmentResponse] to a Builder
-extension BuilderEnrollmentResponse on EnrollmentResponse {
-  /// Converts [EnrollmentResponse] to a [EnrollmentResponseBuilder]
-  EnrollmentResponseBuilder get toBuilder =>
-      EnrollmentResponseBuilder.fromJson(toJson());
-}
-
 /// [EnrollmentResponseBuilder]
 /// This resource provides enrollment and plan details from the processing
 /// of an EnrollmentRequest resource.

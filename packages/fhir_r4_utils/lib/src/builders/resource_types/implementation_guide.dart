@@ -20,13 +20,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [ImplementationGuide] to a Builder
-extension BuilderImplementationGuide on ImplementationGuide {
-  /// Converts [ImplementationGuide] to a [ImplementationGuideBuilder]
-  ImplementationGuideBuilder get toBuilder =>
-      ImplementationGuideBuilder.fromJson(toJson());
-}
-
 /// [ImplementationGuideBuilder]
 /// A set of rules of how a particular interoperability or standards
 /// problem is solved - typically through the use of FHIR resources. This
@@ -1479,13 +1472,6 @@ class ImplementationGuideBuilder extends CanonicalResourceBuilder {
   }
 }
 
-/// Extension to change [ImplementationGuideDependsOn] to a Builder
-extension BuilderImplementationGuideDependsOn on ImplementationGuideDependsOn {
-  /// Converts [ImplementationGuideDependsOn] to a [ImplementationGuideDependsOnBuilder]
-  ImplementationGuideDependsOnBuilder get toBuilder =>
-      ImplementationGuideDependsOnBuilder.fromJson(toJson());
-}
-
 /// [ImplementationGuideDependsOnBuilder]
 /// Another implementation guide that this implementation depends on.
 /// Typically, an implementation guide uses value sets, profiles
@@ -1979,13 +1965,6 @@ class ImplementationGuideDependsOnBuilder extends BackboneElementBuilder {
   }
 }
 
-/// Extension to change [ImplementationGuideGlobal] to a Builder
-extension BuilderImplementationGuideGlobal on ImplementationGuideGlobal {
-  /// Converts [ImplementationGuideGlobal] to a [ImplementationGuideGlobalBuilder]
-  ImplementationGuideGlobalBuilder get toBuilder =>
-      ImplementationGuideGlobalBuilder.fromJson(toJson());
-}
-
 /// [ImplementationGuideGlobalBuilder]
 /// A set of profiles that all resources covered by this implementation
 /// guide must conform to.
@@ -2431,14 +2410,6 @@ class ImplementationGuideGlobalBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [ImplementationGuideDefinition] to a Builder
-extension BuilderImplementationGuideDefinition
-    on ImplementationGuideDefinition {
-  /// Converts [ImplementationGuideDefinition] to a [ImplementationGuideDefinitionBuilder]
-  ImplementationGuideDefinitionBuilder get toBuilder =>
-      ImplementationGuideDefinitionBuilder.fromJson(toJson());
 }
 
 /// [ImplementationGuideDefinitionBuilder]
@@ -3058,13 +3029,6 @@ class ImplementationGuideDefinitionBuilder extends BackboneElementBuilder {
   }
 }
 
-/// Extension to change [ImplementationGuideGrouping] to a Builder
-extension BuilderImplementationGuideGrouping on ImplementationGuideGrouping {
-  /// Converts [ImplementationGuideGrouping] to a [ImplementationGuideGroupingBuilder]
-  ImplementationGuideGroupingBuilder get toBuilder =>
-      ImplementationGuideGroupingBuilder.fromJson(toJson());
-}
-
 /// [ImplementationGuideGroupingBuilder]
 /// A logical group of resources. Logical groups can be used when building
 /// pages.
@@ -3511,13 +3475,6 @@ class ImplementationGuideGroupingBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [ImplementationGuideResource] to a Builder
-extension BuilderImplementationGuideResource on ImplementationGuideResource {
-  /// Converts [ImplementationGuideResource] to a [ImplementationGuideResourceBuilder]
-  ImplementationGuideResourceBuilder get toBuilder =>
-      ImplementationGuideResourceBuilder.fromJson(toJson());
 }
 
 /// [ImplementationGuideResourceBuilder]
@@ -4218,13 +4175,6 @@ class ImplementationGuideResourceBuilder extends BackboneElementBuilder {
   }
 }
 
-/// Extension to change [ImplementationGuidePage] to a Builder
-extension BuilderImplementationGuidePage on ImplementationGuidePage {
-  /// Converts [ImplementationGuidePage] to a [ImplementationGuidePageBuilder]
-  ImplementationGuidePageBuilder get toBuilder =>
-      ImplementationGuidePageBuilder.fromJson(toJson());
-}
-
 /// [ImplementationGuidePageBuilder]
 /// A page / section in the implementation guide. The root page is the
 /// implementation guide home page.
@@ -4829,13 +4779,6 @@ class ImplementationGuidePageBuilder extends BackboneElementBuilder {
   }
 }
 
-/// Extension to change [ImplementationGuideParameter] to a Builder
-extension BuilderImplementationGuideParameter on ImplementationGuideParameter {
-  /// Converts [ImplementationGuideParameter] to a [ImplementationGuideParameterBuilder]
-  ImplementationGuideParameterBuilder get toBuilder =>
-      ImplementationGuideParameterBuilder.fromJson(toJson());
-}
-
 /// [ImplementationGuideParameterBuilder]
 /// Defines how IG is built by tools.
 class ImplementationGuideParameterBuilder extends BackboneElementBuilder {
@@ -5282,13 +5225,6 @@ class ImplementationGuideParameterBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [ImplementationGuideTemplate] to a Builder
-extension BuilderImplementationGuideTemplate on ImplementationGuideTemplate {
-  /// Converts [ImplementationGuideTemplate] to a [ImplementationGuideTemplateBuilder]
-  ImplementationGuideTemplateBuilder get toBuilder =>
-      ImplementationGuideTemplateBuilder.fromJson(toJson());
 }
 
 /// [ImplementationGuideTemplateBuilder]
@@ -5778,13 +5714,6 @@ class ImplementationGuideTemplateBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [ImplementationGuideManifest] to a Builder
-extension BuilderImplementationGuideManifest on ImplementationGuideManifest {
-  /// Converts [ImplementationGuideManifest] to a [ImplementationGuideManifestBuilder]
-  ImplementationGuideManifestBuilder get toBuilder =>
-      ImplementationGuideManifestBuilder.fromJson(toJson());
 }
 
 /// [ImplementationGuideManifestBuilder]
@@ -6397,13 +6326,6 @@ class ImplementationGuideManifestBuilder extends BackboneElementBuilder {
   }
 }
 
-/// Extension to change [ImplementationGuideResource1] to a Builder
-extension BuilderImplementationGuideResource1 on ImplementationGuideResource1 {
-  /// Converts [ImplementationGuideResource1] to a [ImplementationGuideResource1Builder]
-  ImplementationGuideResource1Builder get toBuilder =>
-      ImplementationGuideResource1Builder.fromJson(toJson());
-}
-
 /// [ImplementationGuideResource1Builder]
 /// A resource that is part of the implementation guide. Conformance
 /// resources (value set, structure definition, capability statements etc.)
@@ -6961,13 +6883,6 @@ class ImplementationGuideResource1Builder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [ImplementationGuidePage1] to a Builder
-extension BuilderImplementationGuidePage1 on ImplementationGuidePage1 {
-  /// Converts [ImplementationGuidePage1] to a [ImplementationGuidePage1Builder]
-  ImplementationGuidePage1Builder get toBuilder =>
-      ImplementationGuidePage1Builder.fromJson(toJson());
 }
 
 /// [ImplementationGuidePage1Builder]

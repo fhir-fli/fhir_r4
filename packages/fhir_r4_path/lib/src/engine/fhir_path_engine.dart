@@ -1100,7 +1100,7 @@ class FHIRPathEngine {
             print('focusItem: ${item.toJson()}');
             print('exp: $exp');
             final outcome = executeForItem(context, item, exp, atEntry: true);
-            print('outcome: $outcome');
+            print('outcome: ${outcome.map((e) => e.toJson()).toList()}');
             work.addAll(outcome);
           }
         }
@@ -1192,9 +1192,10 @@ class FHIRPathEngine {
     // Step 1: Resolve constants if at entry
     if (atEntry && context.appInfo != null && hostServices != null) {
       print('name: ${exp.name}');
+      print(hostServices.runtimeType);
       final temp = hostServices!
           .resolveConstant(this, context.appInfo, exp.name, true, false);
-      print('temp: $temp');
+      print('temp: ${temp.map((e) => e.toJson()).toList()}');
       if (temp.isNotEmpty) {
         result.addAll(temp);
         return result;

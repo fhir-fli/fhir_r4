@@ -10,12 +10,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [RelatedPerson] to a Builder
-extension BuilderRelatedPerson on RelatedPerson {
-  /// Converts [RelatedPerson] to a [RelatedPersonBuilder]
-  RelatedPersonBuilder get toBuilder => RelatedPersonBuilder.fromJson(toJson());
-}
-
 /// [RelatedPersonBuilder]
 /// Information about a person that is involved in the care for a patient,
 /// but who is not the target of healthcare, nor has a formal
@@ -1162,13 +1156,6 @@ class RelatedPersonBuilder extends DomainResourceBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [RelatedPersonCommunication] to a Builder
-extension BuilderRelatedPersonCommunication on RelatedPersonCommunication {
-  /// Converts [RelatedPersonCommunication] to a [RelatedPersonCommunicationBuilder]
-  RelatedPersonCommunicationBuilder get toBuilder =>
-      RelatedPersonCommunicationBuilder.fromJson(toJson());
 }
 
 /// [RelatedPersonCommunicationBuilder]

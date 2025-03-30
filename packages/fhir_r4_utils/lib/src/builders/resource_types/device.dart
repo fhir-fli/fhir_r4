@@ -14,12 +14,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [Device] to a Builder
-extension BuilderDevice on Device {
-  /// Converts [Device] to a [DeviceBuilder]
-  DeviceBuilder get toBuilder => DeviceBuilder.fromJson(toJson());
-}
-
 /// [DeviceBuilder]
 /// A type of a manufactured item that is used in the provision of
 /// healthcare without being substantially changed through that activity.
@@ -1810,13 +1804,6 @@ class DeviceBuilder extends DomainResourceBuilder {
   }
 }
 
-/// Extension to change [DeviceUdiCarrier] to a Builder
-extension BuilderDeviceUdiCarrier on DeviceUdiCarrier {
-  /// Converts [DeviceUdiCarrier] to a [DeviceUdiCarrierBuilder]
-  DeviceUdiCarrierBuilder get toBuilder =>
-      DeviceUdiCarrierBuilder.fromJson(toJson());
-}
-
 /// [DeviceUdiCarrierBuilder]
 /// Unique device identifier (UDI) assigned to device label or package.
 /// Note that the Device may include multiple udiCarriers as it either may
@@ -2455,13 +2442,6 @@ class DeviceUdiCarrierBuilder extends BackboneElementBuilder {
   }
 }
 
-/// Extension to change [DeviceDeviceName] to a Builder
-extension BuilderDeviceDeviceName on DeviceDeviceName {
-  /// Converts [DeviceDeviceName] to a [DeviceDeviceNameBuilder]
-  DeviceDeviceNameBuilder get toBuilder =>
-      DeviceDeviceNameBuilder.fromJson(toJson());
-}
-
 /// [DeviceDeviceNameBuilder]
 /// This represents the manufacturer's name of the device as provided by
 /// the device, from a UDI label, or by a person describing the Device.
@@ -2911,13 +2891,6 @@ class DeviceDeviceNameBuilder extends BackboneElementBuilder {
   }
 }
 
-/// Extension to change [DeviceSpecialization] to a Builder
-extension BuilderDeviceSpecialization on DeviceSpecialization {
-  /// Converts [DeviceSpecialization] to a [DeviceSpecializationBuilder]
-  DeviceSpecializationBuilder get toBuilder =>
-      DeviceSpecializationBuilder.fromJson(toJson());
-}
-
 /// [DeviceSpecializationBuilder]
 /// The capabilities supported on a device, the standards to which the
 /// device conforms for a particular purpose, and used for the
@@ -3362,12 +3335,6 @@ class DeviceSpecializationBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [DeviceVersion] to a Builder
-extension BuilderDeviceVersion on DeviceVersion {
-  /// Converts [DeviceVersion] to a [DeviceVersionBuilder]
-  DeviceVersionBuilder get toBuilder => DeviceVersionBuilder.fromJson(toJson());
 }
 
 /// [DeviceVersionBuilder]
@@ -3856,13 +3823,6 @@ class DeviceVersionBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [DeviceProperty] to a Builder
-extension BuilderDeviceProperty on DeviceProperty {
-  /// Converts [DeviceProperty] to a [DevicePropertyBuilder]
-  DevicePropertyBuilder get toBuilder =>
-      DevicePropertyBuilder.fromJson(toJson());
 }
 
 /// [DevicePropertyBuilder]

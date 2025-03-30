@@ -11,12 +11,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [Substance] to a Builder
-extension BuilderSubstance on Substance {
-  /// Converts [Substance] to a [SubstanceBuilder]
-  SubstanceBuilder get toBuilder => SubstanceBuilder.fromJson(toJson());
-}
-
 /// [SubstanceBuilder]
 /// A homogeneous material with a definite composition.
 class SubstanceBuilder extends DomainResourceBuilder {
@@ -919,13 +913,6 @@ class SubstanceBuilder extends DomainResourceBuilder {
   }
 }
 
-/// Extension to change [SubstanceInstance] to a Builder
-extension BuilderSubstanceInstance on SubstanceInstance {
-  /// Converts [SubstanceInstance] to a [SubstanceInstanceBuilder]
-  SubstanceInstanceBuilder get toBuilder =>
-      SubstanceInstanceBuilder.fromJson(toJson());
-}
-
 /// [SubstanceInstanceBuilder]
 /// Substance may be used to describe a kind of substance, or a specific
 /// package/container of the substance: an instance.
@@ -1414,13 +1401,6 @@ class SubstanceInstanceBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [SubstanceIngredient] to a Builder
-extension BuilderSubstanceIngredient on SubstanceIngredient {
-  /// Converts [SubstanceIngredient] to a [SubstanceIngredientBuilder]
-  SubstanceIngredientBuilder get toBuilder =>
-      SubstanceIngredientBuilder.fromJson(toJson());
 }
 
 /// [SubstanceIngredientBuilder]

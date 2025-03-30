@@ -10,13 +10,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [CommunicationRequest] to a Builder
-extension BuilderCommunicationRequest on CommunicationRequest {
-  /// Converts [CommunicationRequest] to a [CommunicationRequestBuilder]
-  CommunicationRequestBuilder get toBuilder =>
-      CommunicationRequestBuilder.fromJson(toJson());
-}
-
 /// [CommunicationRequestBuilder]
 /// A request to convey information; e.g. the CDS system proposes that an
 /// alert be sent to a responsible provider, the CDS system proposes that
@@ -1706,13 +1699,6 @@ class CommunicationRequestBuilder extends DomainResourceBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [CommunicationRequestPayload] to a Builder
-extension BuilderCommunicationRequestPayload on CommunicationRequestPayload {
-  /// Converts [CommunicationRequestPayload] to a [CommunicationRequestPayloadBuilder]
-  CommunicationRequestPayloadBuilder get toBuilder =>
-      CommunicationRequestPayloadBuilder.fromJson(toJson());
 }
 
 /// [CommunicationRequestPayloadBuilder]

@@ -9,13 +9,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [ImmunizationEvaluation] to a Builder
-extension BuilderImmunizationEvaluation on ImmunizationEvaluation {
-  /// Converts [ImmunizationEvaluation] to a [ImmunizationEvaluationBuilder]
-  ImmunizationEvaluationBuilder get toBuilder =>
-      ImmunizationEvaluationBuilder.fromJson(toJson());
-}
-
 /// [ImmunizationEvaluationBuilder]
 /// Describes a comparison of an immunization event against published
 /// recommendations to determine if the administration is "valid" in

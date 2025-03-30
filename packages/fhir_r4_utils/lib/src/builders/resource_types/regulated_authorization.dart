@@ -10,13 +10,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [RegulatedAuthorization] to a Builder
-extension BuilderRegulatedAuthorization on RegulatedAuthorization {
-  /// Converts [RegulatedAuthorization] to a [RegulatedAuthorizationBuilder]
-  RegulatedAuthorizationBuilder get toBuilder =>
-      RegulatedAuthorizationBuilder.fromJson(toJson());
-}
-
 /// [RegulatedAuthorizationBuilder]
 /// Regulatory approval, clearance or licencing related to a regulated
 /// product, treatment, facility or activity that is cited in a guidance,
@@ -1236,13 +1229,6 @@ class RegulatedAuthorizationBuilder extends DomainResourceBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [RegulatedAuthorizationCase] to a Builder
-extension BuilderRegulatedAuthorizationCase on RegulatedAuthorizationCase {
-  /// Converts [RegulatedAuthorizationCase] to a [RegulatedAuthorizationCaseBuilder]
-  RegulatedAuthorizationCaseBuilder get toBuilder =>
-      RegulatedAuthorizationCaseBuilder.fromJson(toJson());
 }
 
 /// [RegulatedAuthorizationCaseBuilder]

@@ -9,12 +9,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [Schedule] to a Builder
-extension BuilderSchedule on Schedule {
-  /// Converts [Schedule] to a [ScheduleBuilder]
-  ScheduleBuilder get toBuilder => ScheduleBuilder.fromJson(toJson());
-}
-
 /// [ScheduleBuilder]
 /// A container for slots of time that may be available for booking
 /// appointments.

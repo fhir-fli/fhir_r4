@@ -11,12 +11,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [Condition] to a Builder
-extension BuilderCondition on Condition {
-  /// Converts [Condition] to a [ConditionBuilder]
-  ConditionBuilder get toBuilder => ConditionBuilder.fromJson(toJson());
-}
-
 /// [ConditionBuilder]
 /// A clinical condition, problem, diagnosis, or other event, situation,
 /// issue, or clinical concept that has risen to a level of concern.
@@ -1688,13 +1682,6 @@ class ConditionBuilder extends DomainResourceBuilder {
   }
 }
 
-/// Extension to change [ConditionStage] to a Builder
-extension BuilderConditionStage on ConditionStage {
-  /// Converts [ConditionStage] to a [ConditionStageBuilder]
-  ConditionStageBuilder get toBuilder =>
-      ConditionStageBuilder.fromJson(toJson());
-}
-
 /// [ConditionStageBuilder]
 /// Clinical stage or grade of a condition. May include formal severity
 /// assessments.
@@ -2192,13 +2179,6 @@ class ConditionStageBuilder extends BackboneElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [ConditionEvidence] to a Builder
-extension BuilderConditionEvidence on ConditionEvidence {
-  /// Converts [ConditionEvidence] to a [ConditionEvidenceBuilder]
-  ConditionEvidenceBuilder get toBuilder =>
-      ConditionEvidenceBuilder.fromJson(toJson());
 }
 
 /// [ConditionEvidenceBuilder]

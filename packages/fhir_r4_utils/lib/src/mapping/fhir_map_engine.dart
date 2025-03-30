@@ -42,18 +42,14 @@ import 'package:fhir_r4_path/fhir_r4_path.dart';
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:uuid/uuid.dart';
 
-FhirBase? backupTarget;
-
 Future<FhirBase?> fhirMappingEngine(
-  FhirBase source,
+  FhirBaseBuilder source,
   StructureMap map,
   ResourceCache cache,
-  FhirBase? target, [
-  FhirBase? secondaryTarget,
-]) async {
-  backupTarget = secondaryTarget;
+  FhirBaseBuilder? target,
+) async {
   final mapEngine = FhirMapEngine(cache, map);
-  final transform = await mapEngine.transform('', source, map, target);
+  final transform = await mapEngine.transformBuilder('', source, map, target);
   return transform;
 }
 
@@ -93,6 +89,21 @@ class FhirMapEngine {
     StructureMap map,
     FhirBase? target,
   ) async {
+    return transformBuilder(
+      appInfo,
+      source.toBuilder,
+      map,
+      target?.toBuilder,
+    );
+  }
+
+  /// Main transform method
+  Future<FhirBase> transformBuilder(
+    Object appInfo,
+    FhirBaseBuilder sourceBuilder,
+    StructureMap map,
+    FhirBaseBuilder? targetBuilder,
+  ) async {
     final context = TransformContext(appInfo);
     final g = map.group.firstOrNull;
     if (g == null) {
@@ -103,14 +114,13 @@ class FhirMapEngine {
     if (inputName == null) {
       throw MappingDefinitionException(message: 'No input name found');
     }
-    final sourceBuilder = source.toBuilder;
+
     final vars = MappingVariables()
       ..add(MappingVariableMode.INPUT, inputName, sourceBuilder);
     final String? targetName =
         _getInputName(g, StructureMapInputMode.target, 'target');
     if (targetName != null) {
-      if (target != null) {
-        final targetBuilder = target.toBuilder;
+      if (targetBuilder != null) {
         vars.add(MappingVariableMode.OUTPUT, targetName, targetBuilder);
       } else {
         final type = _getInputType(g, StructureMapInputMode.target);
@@ -767,17 +777,29 @@ class FhirMapEngine {
         final srcBase = vars.get(MappingVariableMode.INPUT, src.context.value);
         final children = srcBase?.listChildrenNames();
         for (final child in children ?? <String>[]) {
+          print('child: $child');
           final varBase = vars.get(MappingVariableMode.INPUT, child);
           if (varBase == null) {
             final childItem = srcBase!.getChildByName(child);
+            print(childItem?.toJson());
             if (childItem != null) {
               varsForSource.add(MappingVariableMode.INPUT, child, childItem);
             }
           }
         }
 
+        print('Condition VarsForSource');
+        print(varsForSource.summary());
+
         final bool passed = fpe.evaluateToBoolean(
-            varsForSource, null, null, item.build(), expr);
+          varsForSource,
+          null,
+          null,
+          item.build(),
+          expr,
+        );
+
+        print('passed: $passed');
 
         if (!passed) {
           remove.add(item);
@@ -816,7 +838,12 @@ class FhirMapEngine {
           }
         }
         final bool passed = fpe.evaluateToBoolean(
-            varsForSource, null, null, item.build(), expr);
+          varsForSource,
+          null,
+          null,
+          item.build(),
+          expr,
+        );
         if (!passed) {
           throw FHIRException(
             message: "Rule '$ruleId', Check condition failed, $expr",
@@ -841,8 +868,15 @@ class FhirMapEngine {
             item,
           );
         }
-        logs.add(fpe.evaluateToString(
-            varsForSource, null, null, item.build(), expr));
+        logs.add(
+          fpe.evaluateToString(
+            varsForSource,
+            null,
+            null,
+            item.build(),
+            expr,
+          ),
+        );
       }
       // TODO(Dokotela): implement services
       // if (logs.isNotEmpty && services != null) {
@@ -980,7 +1014,7 @@ class FhirMapEngine {
         v = dest.getChildByName(tgt.element!.value!);
         if (v == null) {
           final types = dest.typeByElementName(tgt.element!.value!);
-          if (types.length >= 1) {
+          if (types.isNotEmpty) {
             v = _typeFactory(types.first);
           }
         }
@@ -1220,6 +1254,7 @@ class FhirMapEngine {
               );
             }
             final String t = _getParamString(vars, tgt.parameter![1]) ?? '';
+            print('type: $t');
             try {
               switch (t.toLowerCase()) {
                 case 'string':
@@ -1608,7 +1643,10 @@ class FhirMapEngine {
     MappingVariables vars,
     StructureMapParameter parameter,
   ) {
+    print('vars: ${vars.summary()}');
+    print('parameter: ${parameter.toJson()}');
     final FhirBaseBuilder? b = _getParam(vars, parameter);
+    print('b: ${b?.toJson()}');
     if (b == null || b is! PrimitiveTypeBuilder || b.value is! String?) {
       return null;
     }
@@ -1616,12 +1654,19 @@ class FhirMapEngine {
   }
 
   FhirBaseBuilder? _getParam(
-      MappingVariables vars, StructureMapParameter parameter) {
+    MappingVariables vars,
+    StructureMapParameter parameter,
+  ) {
     final DataType p = parameter.valueX;
+    print(p.runtimeType);
+    print('p: ${p.toJson()}');
     if (p is! FhirId) {
+      print(p.toBuilder.runtimeType);
+      print('p.toBuilder: ${p.toBuilder.toJson()}');
       return p.toBuilder;
     } else {
       final String n = p.toString();
+      print('n  : $n');
       FhirBaseBuilder? b = vars.get(MappingVariableMode.INPUT, n);
       b ??= vars.get(MappingVariableMode.OUTPUT, n);
       if (b == null) {
@@ -1731,8 +1776,8 @@ class FhirMapEngine {
 
         if (matchingTarget != null) {
           return CodingBuilder(
-            system: group.target?.toBuilder,
-            code: matchingTarget.code?.toBuilder,
+            system: group.target?.toBuilder as FhirUriBuilder?,
+            code: matchingTarget.code?.toBuilder as FhirCodeBuilder?,
           );
         }
       }

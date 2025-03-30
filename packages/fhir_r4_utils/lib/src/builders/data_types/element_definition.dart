@@ -16,13 +16,6 @@ import 'package:fhir_r4/fhir_r4.dart'
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
-/// Extension to change [ElementDefinition] to a Builder
-extension BuilderElementDefinition on ElementDefinition {
-  /// Converts [ElementDefinition] to a [ElementDefinitionBuilder]
-  ElementDefinitionBuilder get toBuilder =>
-      ElementDefinitionBuilder.fromJson(toJson());
-}
-
 /// [ElementDefinitionBuilder]
 /// Captures constraints on each element within the resource, profile, or
 /// extension.
@@ -7085,13 +7078,6 @@ class ElementDefinitionBuilder extends BackboneTypeBuilder {
   }
 }
 
-/// Extension to change [ElementDefinitionSlicing] to a Builder
-extension BuilderElementDefinitionSlicing on ElementDefinitionSlicing {
-  /// Converts [ElementDefinitionSlicing] to a [ElementDefinitionSlicingBuilder]
-  ElementDefinitionSlicingBuilder get toBuilder =>
-      ElementDefinitionSlicingBuilder.fromJson(toJson());
-}
-
 /// [ElementDefinitionSlicingBuilder]
 /// Indicates that the element is sliced into a set of alternative
 /// definitions (i.e. in a structure definition, there are multiple
@@ -7601,14 +7587,6 @@ class ElementDefinitionSlicingBuilder extends ElementBuilder {
   }
 }
 
-/// Extension to change [ElementDefinitionDiscriminator] to a Builder
-extension BuilderElementDefinitionDiscriminator
-    on ElementDefinitionDiscriminator {
-  /// Converts [ElementDefinitionDiscriminator] to a [ElementDefinitionDiscriminatorBuilder]
-  ElementDefinitionDiscriminatorBuilder get toBuilder =>
-      ElementDefinitionDiscriminatorBuilder.fromJson(toJson());
-}
-
 /// [ElementDefinitionDiscriminatorBuilder]
 /// Designates which child elements are used to discriminate between the
 /// slices when processing an instance. If one or more discriminators are
@@ -8011,13 +7989,6 @@ class ElementDefinitionDiscriminatorBuilder extends ElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [ElementDefinitionBase] to a Builder
-extension BuilderElementDefinitionBase on ElementDefinitionBase {
-  /// Converts [ElementDefinitionBase] to a [ElementDefinitionBaseBuilder]
-  ElementDefinitionBaseBuilder get toBuilder =>
-      ElementDefinitionBaseBuilder.fromJson(toJson());
 }
 
 /// [ElementDefinitionBaseBuilder]
@@ -8469,13 +8440,6 @@ class ElementDefinitionBaseBuilder extends ElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [ElementDefinitionType] to a Builder
-extension BuilderElementDefinitionType on ElementDefinitionType {
-  /// Converts [ElementDefinitionType] to a [ElementDefinitionTypeBuilder]
-  ElementDefinitionTypeBuilder get toBuilder =>
-      ElementDefinitionTypeBuilder.fromJson(toJson());
 }
 
 /// [ElementDefinitionTypeBuilder]
@@ -9038,13 +9002,6 @@ class ElementDefinitionTypeBuilder extends ElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [ElementDefinitionExample] to a Builder
-extension BuilderElementDefinitionExample on ElementDefinitionExample {
-  /// Converts [ElementDefinitionExample] to a [ElementDefinitionExampleBuilder]
-  ElementDefinitionExampleBuilder get toBuilder =>
-      ElementDefinitionExampleBuilder.fromJson(toJson());
 }
 
 /// [ElementDefinitionExampleBuilder]
@@ -10950,13 +10907,6 @@ class ElementDefinitionExampleBuilder extends ElementBuilder {
   }
 }
 
-/// Extension to change [ElementDefinitionConstraint] to a Builder
-extension BuilderElementDefinitionConstraint on ElementDefinitionConstraint {
-  /// Converts [ElementDefinitionConstraint] to a [ElementDefinitionConstraintBuilder]
-  ElementDefinitionConstraintBuilder get toBuilder =>
-      ElementDefinitionConstraintBuilder.fromJson(toJson());
-}
-
 /// [ElementDefinitionConstraintBuilder]
 /// Formal constraints such as co-occurrence and other constraints that can
 /// be computationally evaluated within the context of the instance.
@@ -11578,13 +11528,6 @@ class ElementDefinitionConstraintBuilder extends ElementBuilder {
   }
 }
 
-/// Extension to change [ElementDefinitionBinding] to a Builder
-extension BuilderElementDefinitionBinding on ElementDefinitionBinding {
-  /// Converts [ElementDefinitionBinding] to a [ElementDefinitionBindingBuilder]
-  ElementDefinitionBindingBuilder get toBuilder =>
-      ElementDefinitionBindingBuilder.fromJson(toJson());
-}
-
 /// [ElementDefinitionBindingBuilder]
 /// Binds to a value set if this element is coded (code, Coding,
 /// CodeableConcept, Quantity), or the data types (string, uri).
@@ -12028,13 +11971,6 @@ class ElementDefinitionBindingBuilder extends ElementBuilder {
     }
     return true;
   }
-}
-
-/// Extension to change [ElementDefinitionMapping] to a Builder
-extension BuilderElementDefinitionMapping on ElementDefinitionMapping {
-  /// Converts [ElementDefinitionMapping] to a [ElementDefinitionMappingBuilder]
-  ElementDefinitionMappingBuilder get toBuilder =>
-      ElementDefinitionMappingBuilder.fromJson(toJson());
 }
 
 /// [ElementDefinitionMappingBuilder]

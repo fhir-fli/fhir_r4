@@ -1,11 +1,5 @@
 part of 'primitive_types.dart';
 
-/// Extension to convert a [FhirCanonical] to a [FhirCanonicalBuilder]
-extension BuilderFhirCanonical on FhirCanonical {
-  /// Converts this instance to a [FhirCanonicalBuilder]
-  FhirCanonicalBuilder get toBuilder => FhirCanonicalBuilder.fromJson(toJson());
-}
-
 /// Extension to convert a [String] to a [FhirCanonicalBuilder]
 extension FhirCanonicalBuilderExtension on String {
   /// Converts a [String] to a [FhirCanonicalBuilder]
@@ -188,6 +182,10 @@ class FhirCanonicalBuilder extends PrimitiveTypeBuilder<Uri>
 
   /// Boolean checks
   bool get valueAndElement => value != null && element != null;
+
+  /// Converts this instance to a [FhirCanonical] object
+  @override
+  FhirCanonical build() => FhirCanonical.fromJson(toJson());
 
   /// Converts this instance to JSON with standardized keys
   @override
