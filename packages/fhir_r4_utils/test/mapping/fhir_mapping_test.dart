@@ -5,7 +5,7 @@ import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:test/test.dart';
 import 'examples/step1/export.dart';
 // import 'examples/step10/export.dart';
-// import 'examples/step11/export.dart';
+import 'examples/step11/export.dart';
 // import 'examples/step12/export.dart';
 // import 'examples/step13/export.dart';
 import 'examples/step2/export.dart';
@@ -516,50 +516,77 @@ Future<void> main() async {
     });
   });
 
-  // // TODO(Dokotela): - final answer is correct, but types are not
+  // TODO(Dokotela): I think this is another error
   // group('10', () {
   //   resourceCache
-  //     ..saveCanonicalResource(
-  //       resource: structureDefinitionTLeft10,
-  //     )
-  //     ..saveCanonicalResource(
-  //       resource: structureDefinitionTRight10,
-  //     )
-  //     ..saveCanonicalResource(
-  //       resource: structureDefinitionTLeftInner10,
-  //     )
-  //     ..saveCanonicalResource(
-  //       resource: structureDefinitionTRightInner10,
-  //     );
+  //     ..saveCanonicalResource(structureDefinitionTLeft10)
+  //     ..saveCanonicalResource(structureDefinitionTRight10)
+  //     ..saveCanonicalResource(structureDefinitionTLeftInner10)
+  //     ..saveCanonicalResource(structureDefinitionTRightInner10);
+
+  //   FhirBaseBuilder? testEmptyFromType(String type) {
+  //     final fhirType = type.toLowerCase();
+  //     switch (fhirType) {
+  //       case 'tleft10':
+  //       case 'tleft10builder':
+  //         return TLeft10Builder.empty();
+  //       case 'tleft10inner':
+  //       case 'tleft10innerbuilder':
+  //         return TLeftInner10Builder.empty();
+  //       case 'tright10':
+  //       case 'tright10builder':
+  //         return TRight10Builder.empty();
+  //       case 'trightinner10':
+  //       case 'trightinner10builder':
+  //         return TRightInner10Builder.empty();
+  //     }
+  //     return null;
+  //   }
 
   //   test('Test Step 10 Source 10', () async {
   //     final result = await fhirMappingEngine(
-  //       TLeft10.fromJson(source10),
+  //       TLeft10.fromJson(source10).toBuilder,
   //       structureMapStep10,
   //       resourceCache,
+  //       TRight10.empty().toBuilder,
+  //       testEmptyFromType,
   //     );
   //     expect(result?.toJson(), equals(resultStep10Source10));
   //   });
   // });
 
-  // group('Step 11', () {
-  //   resourceCache
-  //     ..saveCanonicalResource(
-  //       resource: structureDefinitionTLeft11,
-  //     )
-  //     ..saveCanonicalResource(
-  //       resource: structureDefinitionTRight11,
-  //     );
+  group('Step 11', () {
+    resourceCache
+      ..saveCanonicalResource(structureDefinitionTLeft11)
+      ..saveCanonicalResource(structureDefinitionTRight11);
 
-  //   test('Step 11 Source 11', () async {
-  //     final result = await fhirMappingEngine(
-  //       TLeft11.fromJson(source11),
-  //       structureMapStep11,
-  //       resourceCache,
-  //     );
-  //     expect(result?.toJson(), equals(resultStep11Source11));
-  //   });
-  // });
+    FhirBaseBuilder? testEmptyFromType(String type) {
+      final fhirType = type.toLowerCase();
+      switch (fhirType) {
+        case 'tleft11':
+        case 'tleft11builder':
+          return TLeft11Builder.empty();
+        case 'tright11e':
+        case 'tright11ebuilder':
+          return TRight11eBuilder.empty();
+        case 'tright11':
+        case 'tright11builder':
+          return TRight11Builder.empty();
+      }
+      return null;
+    }
+
+    test('Step 11 Source 11', () async {
+      final result = await fhirMappingEngine(
+        TLeft11.fromJson(source11).toBuilder,
+        structureMapStep11,
+        resourceCache,
+        TRight11.empty().toBuilder,
+        testEmptyFromType,
+      );
+      expect(result?.toJson(), equals(resultStep11Source11));
+    });
+  });
 
   // group('Step 12', () {
   //   resourceCache

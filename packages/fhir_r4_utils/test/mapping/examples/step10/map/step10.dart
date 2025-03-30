@@ -34,7 +34,7 @@ final structureMapStep10 = StructureMap.fromJson({
   "group": [
     {
       "name": "tutorial",
-      "typeMode": "none",
+      "typeMode": "types",
       "input": [
         {"name": "src", "type": "TLeft", "mode": "source"},
         {"name": "tgt", "type": "TRight", "mode": "target"},
@@ -46,15 +46,7 @@ final structureMapStep10 = StructureMap.fromJson({
             {"context": "src", "element": "aa", "variable": "a"},
           ],
           "target": [
-            {
-              "context": "tgt",
-              "contextType": "variable",
-              "element": "aa",
-              "transform": "copy",
-              "parameter": [
-                {"valueId": "a"},
-              ],
-            }
+            {"context": "tgt", "element": "aa"},
           ],
         }
       ],

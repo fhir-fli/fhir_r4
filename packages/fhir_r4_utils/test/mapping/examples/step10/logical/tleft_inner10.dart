@@ -14,6 +14,9 @@ class TLeftInner10 extends Element {
     super.objectPath = 'TLeftInner10',
   });
 
+  /// An empty constructor for partial usage
+  factory TLeftInner10.empty() => const TLeftInner10();
+
   factory TLeftInner10.fromJson(Map<String, dynamic> json) {
     const objectPath = 'TLeftInner10';
     return TLeftInner10(

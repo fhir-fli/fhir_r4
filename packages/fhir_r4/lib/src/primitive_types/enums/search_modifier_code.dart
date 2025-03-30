@@ -81,8 +81,8 @@ class SearchModifierCode extends FhirCodeEnum {
     display: 'Exact'.toFhirString,
   );
 
-  /// contains
-  static final SearchModifierCode contains = SearchModifierCode._(
+  /// contains_
+  static final SearchModifierCode contains_ = SearchModifierCode._(
     validatedValue: 'contains',
     system: 'http://hl7.org/fhir/ValueSet/search-modifier-code'.toFhirUri,
     version: '4.3.0'.toFhirString,
@@ -169,7 +169,7 @@ class SearchModifierCode extends FhirCodeEnum {
   static final List<SearchModifierCode> values = [
     missing,
     exact,
-    contains,
+    contains_,
     not,
     text,
     in_,

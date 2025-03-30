@@ -16,6 +16,9 @@ class TRight10 extends Element {
     super.objectPath = 'TRight10',
   });
 
+  /// An empty constructor for partial usage
+  factory TRight10.empty() => const TRight10();
+
   factory TRight10.fromJson(Map<String, dynamic> json) {
     const objectPath = 'TRight10';
     return TRight10(
@@ -47,6 +50,9 @@ class TRight10 extends Element {
           .toList(),
     );
   }
+
+  @override
+  String get fhirType => 'TRight10';
 
   /// [aa]
   /// A list of TRightInner10 elements
@@ -120,6 +126,12 @@ class TRight10 extends Element {
         const DeepCollectionEquality().equals(extension_, other.extension_) &&
         const DeepCollectionEquality().equals(aa, other.aa);
   }
+}
+
+/// Extension to convert [TRight10] to a Builder
+extension BuilderTRight10 on TRight10 {
+  /// Converts [TRight10] to a [TRight10Builder]
+  TRight10Builder get toBuilder => TRight10Builder.fromJson(toJson());
 }
 
 /// [TRight10Builder]

@@ -20,6 +20,9 @@ class TRight11 extends Element {
     super.objectPath = 'TRight11',
   });
 
+  /// Factory constructor for an empty TRight11
+  factory TRight11.empty() => const TRight11();
+
   factory TRight11.fromJson(Map<String, dynamic> json) {
     const objectPath = 'TRight11';
     return TRight11(

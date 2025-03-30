@@ -218,6 +218,7 @@ class FhirMapEngine {
     StructureMapGroup? group,
     bool atRoot,
   ) async {
+    print('$indent Group: ${group?.name}');
     // Resolve and execute extended group first if it exists
     final resolvedGroup = group?.extends_?.toString().isNotEmpty ?? false
         ? _resolveGroupReference(map, group, group!.extends_!.toString())
@@ -974,6 +975,12 @@ class FhirMapEngine {
           if (tgt.element == null) {
             throw FHIRException(message: 'Element is null');
           }
+
+          print('dest: ${dest.toJson()}');
+          print('dest type: ${dest.fhirType}');
+          print('dest element: ${tgt.element!.value}');
+          print('dest v: ${v.toJson()}');
+          print('v: ${v.fhirType}');
 
           // print('dest pr: ${dest.toJson()}');
           dest.setChildByName(tgt.element!.value!, v);

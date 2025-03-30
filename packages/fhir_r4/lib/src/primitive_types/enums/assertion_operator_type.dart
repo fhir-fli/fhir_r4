@@ -129,8 +129,8 @@ class AssertionOperatorType extends FhirCodeEnum {
     display: 'notEmpty'.toFhirString,
   );
 
-  /// contains
-  static final AssertionOperatorType contains = AssertionOperatorType._(
+  /// contains_
+  static final AssertionOperatorType contains_ = AssertionOperatorType._(
     validatedValue: 'contains',
     system: 'http://hl7.org/fhir/ValueSet/assert-operator-codes'.toFhirUri,
     version: '4.3.0'.toFhirString,
@@ -167,7 +167,7 @@ class AssertionOperatorType extends FhirCodeEnum {
     lessThan,
     empty_,
     notEmpty,
-    contains,
+    contains_,
     notContains,
     eval,
   ];

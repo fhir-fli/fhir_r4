@@ -14,6 +14,9 @@ class TRightInner10 extends Element {
     super.objectPath = 'TRightInner10',
   });
 
+  /// An empty constructor for partial usage
+  factory TRightInner10.empty() => const TRightInner10();
+
   factory TRightInner10.fromJson(Map<String, dynamic> json) {
     const objectPath = 'TRightInner10';
     return TRightInner10(
