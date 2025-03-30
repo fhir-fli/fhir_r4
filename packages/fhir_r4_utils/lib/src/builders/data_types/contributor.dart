@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show Contributor, yamlMapToJson, yamlToJson;
+    show yamlMapToJson, yamlToJson, StringExtensionForFHIR, Contributor;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -138,13 +138,13 @@ class ContributorBuilder extends DataTypeBuilder
   /// contributor.
   List<ContactDetailBuilder>? contact;
 
-  /// converts a [ContributorBuilder]
+  /// Converts a [ContributorBuilder]
   /// to [Contributor]
   @override
   Contributor build() => Contributor.fromJson(toJson());
 
-  /// converts a [ContributorBuilder]
-  /// to [Map<String, dynamic>]
+  /// Converts a [ContributorBuilder]
+  /// to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -257,9 +257,20 @@ class ContributorBuilder extends DataTypeBuilder
           if (child is FhirStringBuilder) {
             id = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirStringBuilder.tryParse(stringValue);
+              if (converted != null) {
+                id = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'extension':
         {
@@ -271,27 +282,36 @@ class ContributorBuilder extends DataTypeBuilder
             // Add single element to existing list or create new list
             extension_ = [...(extension_ ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'type':
         {
           if (child is ContributorTypeBuilder) {
             type = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'name':
         {
           if (child is FhirStringBuilder) {
             name = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirStringBuilder.tryParse(stringValue);
+              if (converted != null) {
+                name = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'contact':
         {
@@ -303,9 +323,8 @@ class ContributorBuilder extends DataTypeBuilder
             // Add single element to existing list or create new list
             contact = [...(contact ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       default:
         throw Exception('Cannot set child value for $childName');

@@ -1,14 +1,14 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        EvidenceVariable,
-        EvidenceVariableCategory,
-        EvidenceVariableCharacteristic,
-        EvidenceVariableTimeFromStart,
+        yamlMapToJson,
+        yamlToJson,
         R4ResourceType,
         StringExtensionForFHIR,
-        yamlMapToJson,
-        yamlToJson;
+        EvidenceVariable,
+        EvidenceVariableCharacteristic,
+        EvidenceVariableTimeFromStart,
+        EvidenceVariableCategory;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -500,13 +500,13 @@ class EvidenceVariableBuilder extends DomainResourceBuilder {
   /// specify the set of groupings allowed for the variable.
   List<EvidenceVariableCategoryBuilder>? category;
 
-  /// converts a [EvidenceVariableBuilder]
+  /// Converts a [EvidenceVariableBuilder]
   /// to [EvidenceVariable]
   @override
   EvidenceVariable build() => EvidenceVariable.fromJson(toJson());
 
-  /// converts a [EvidenceVariableBuilder]
-  /// to [Map<String, dynamic>]
+  /// Converts a [EvidenceVariableBuilder]
+  /// to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -782,45 +782,64 @@ class EvidenceVariableBuilder extends DomainResourceBuilder {
           if (child is FhirStringBuilder) {
             id = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirStringBuilder.tryParse(stringValue);
+              if (converted != null) {
+                id = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'meta':
         {
           if (child is FhirMetaBuilder) {
             meta = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'implicitRules':
         {
           if (child is FhirUriBuilder) {
             implicitRules = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirUriBuilder.tryParse(stringValue);
+              if (converted != null) {
+                implicitRules = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'language':
         {
           if (child is CommonLanguagesBuilder) {
             language = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'text':
         {
           if (child is NarrativeBuilder) {
             text = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'contained':
         {
@@ -832,9 +851,8 @@ class EvidenceVariableBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             contained = [...(contained ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'extension':
         {
@@ -846,9 +864,8 @@ class EvidenceVariableBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             extension_ = [...(extension_ ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'modifierExtension':
         {
@@ -860,18 +877,28 @@ class EvidenceVariableBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             modifierExtension = [...(modifierExtension ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'url':
         {
           if (child is FhirUriBuilder) {
             url = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirUriBuilder.tryParse(stringValue);
+              if (converted != null) {
+                url = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'identifier':
         {
@@ -883,81 +910,156 @@ class EvidenceVariableBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             identifier = [...(identifier ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'version':
         {
           if (child is FhirStringBuilder) {
             version = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirStringBuilder.tryParse(stringValue);
+              if (converted != null) {
+                version = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'name':
         {
           if (child is FhirStringBuilder) {
             name = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirStringBuilder.tryParse(stringValue);
+              if (converted != null) {
+                name = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'title':
         {
           if (child is FhirStringBuilder) {
             title = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirStringBuilder.tryParse(stringValue);
+              if (converted != null) {
+                title = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'shortTitle':
         {
           if (child is FhirStringBuilder) {
             shortTitle = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirStringBuilder.tryParse(stringValue);
+              if (converted != null) {
+                shortTitle = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'subtitle':
         {
           if (child is FhirStringBuilder) {
             subtitle = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirStringBuilder.tryParse(stringValue);
+              if (converted != null) {
+                subtitle = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'status':
         {
           if (child is PublicationStatusBuilder) {
             status = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'date':
         {
           if (child is FhirDateTimeBuilder) {
             date = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirDateTimeBuilder.tryParse(stringValue);
+              if (converted != null) {
+                date = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'description':
         {
           if (child is FhirMarkdownBuilder) {
             description = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirMarkdownBuilder.tryParse(stringValue);
+              if (converted != null) {
+                description = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'note':
         {
@@ -969,9 +1071,8 @@ class EvidenceVariableBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             note = [...(note ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'useContext':
         {
@@ -983,18 +1084,28 @@ class EvidenceVariableBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             useContext = [...(useContext ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'publisher':
         {
           if (child is FhirStringBuilder) {
             publisher = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirStringBuilder.tryParse(stringValue);
+              if (converted != null) {
+                publisher = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'contact':
         {
@@ -1006,9 +1117,8 @@ class EvidenceVariableBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             contact = [...(contact ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'author':
         {
@@ -1020,9 +1130,8 @@ class EvidenceVariableBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             author = [...(author ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'editor':
         {
@@ -1034,9 +1143,8 @@ class EvidenceVariableBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             editor = [...(editor ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'reviewer':
         {
@@ -1048,9 +1156,8 @@ class EvidenceVariableBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             reviewer = [...(reviewer ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'endorser':
         {
@@ -1062,9 +1169,8 @@ class EvidenceVariableBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             endorser = [...(endorser ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'relatedArtifact':
         {
@@ -1076,27 +1182,36 @@ class EvidenceVariableBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             relatedArtifact = [...(relatedArtifact ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'actual':
         {
           if (child is FhirBooleanBuilder) {
             actual = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirBooleanBuilder.tryParse(stringValue);
+              if (converted != null) {
+                actual = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'characteristicCombination':
         {
           if (child is CharacteristicCombinationBuilder) {
             characteristicCombination = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'characteristic':
         {
@@ -1108,18 +1223,16 @@ class EvidenceVariableBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             characteristic = [...(characteristic ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'handling':
         {
           if (child is EvidenceVariableHandlingBuilder) {
             handling = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'category':
         {
@@ -1131,9 +1244,8 @@ class EvidenceVariableBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             category = [...(category ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       default:
         throw Exception('Cannot set child value for $childName');
@@ -1956,14 +2068,14 @@ class EvidenceVariableCharacteristicBuilder extends BackboneElementBuilder {
   /// period.
   GroupMeasureBuilder? groupMeasure;
 
-  /// converts a [EvidenceVariableCharacteristicBuilder]
+  /// Converts a [EvidenceVariableCharacteristicBuilder]
   /// to [EvidenceVariableCharacteristic]
   @override
   EvidenceVariableCharacteristic build() =>
       EvidenceVariableCharacteristic.fromJson(toJson());
 
-  /// converts a [EvidenceVariableCharacteristicBuilder]
-  /// to [Map<String, dynamic>]
+  /// Converts a [EvidenceVariableCharacteristicBuilder]
+  /// to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2130,9 +2242,20 @@ class EvidenceVariableCharacteristicBuilder extends BackboneElementBuilder {
           if (child is FhirStringBuilder) {
             id = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirStringBuilder.tryParse(stringValue);
+              if (converted != null) {
+                id = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'extension':
         {
@@ -2144,9 +2267,8 @@ class EvidenceVariableCharacteristicBuilder extends BackboneElementBuilder {
             // Add single element to existing list or create new list
             extension_ = [...(extension_ ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'modifierExtension':
         {
@@ -2158,18 +2280,28 @@ class EvidenceVariableCharacteristicBuilder extends BackboneElementBuilder {
             // Add single element to existing list or create new list
             modifierExtension = [...(modifierExtension ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'description':
         {
           if (child is FhirStringBuilder) {
             description = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirStringBuilder.tryParse(stringValue);
+              if (converted != null) {
+                description = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'definitionX':
         {
@@ -2237,45 +2369,52 @@ class EvidenceVariableCharacteristicBuilder extends BackboneElementBuilder {
           if (child is CodeableConceptBuilder) {
             method = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'device':
         {
           if (child is ReferenceBuilder) {
             device = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'exclude':
         {
           if (child is FhirBooleanBuilder) {
             exclude = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirBooleanBuilder.tryParse(stringValue);
+              if (converted != null) {
+                exclude = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'timeFromStart':
         {
           if (child is EvidenceVariableTimeFromStartBuilder) {
             timeFromStart = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'groupMeasure':
         {
           if (child is GroupMeasureBuilder) {
             groupMeasure = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       default:
         throw Exception('Cannot set child value for $childName');
@@ -2301,7 +2440,7 @@ class EvidenceVariableCharacteristicBuilder extends BackboneElementBuilder {
           'ReferenceBuilder',
           'FhirCanonicalBuilder',
           'CodeableConceptBuilder',
-          'FhirExpressionBuilder',
+          'FhirExpressionBuilder'
         ];
       case 'definitionReference':
         return ['ReferenceBuilder'];
@@ -2421,7 +2560,7 @@ class EvidenceVariableCharacteristicBuilder extends BackboneElementBuilder {
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
     if (description) this.description = null;
-    if (definition) definitionX = null;
+    if (definition) this.definitionX = null;
     if (method) this.method = null;
     if (device) this.device = null;
     if (exclude) this.exclude = null;
@@ -2699,14 +2838,14 @@ class EvidenceVariableTimeFromStartBuilder extends BackboneElementBuilder {
   /// resource.
   List<AnnotationBuilder>? note;
 
-  /// converts a [EvidenceVariableTimeFromStartBuilder]
+  /// Converts a [EvidenceVariableTimeFromStartBuilder]
   /// to [EvidenceVariableTimeFromStart]
   @override
   EvidenceVariableTimeFromStart build() =>
       EvidenceVariableTimeFromStart.fromJson(toJson());
 
-  /// converts a [EvidenceVariableTimeFromStartBuilder]
-  /// to [Map<String, dynamic>]
+  /// Converts a [EvidenceVariableTimeFromStartBuilder]
+  /// to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2831,9 +2970,20 @@ class EvidenceVariableTimeFromStartBuilder extends BackboneElementBuilder {
           if (child is FhirStringBuilder) {
             id = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirStringBuilder.tryParse(stringValue);
+              if (converted != null) {
+                id = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'extension':
         {
@@ -2845,9 +2995,8 @@ class EvidenceVariableTimeFromStartBuilder extends BackboneElementBuilder {
             // Add single element to existing list or create new list
             extension_ = [...(extension_ ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'modifierExtension':
         {
@@ -2859,36 +3008,44 @@ class EvidenceVariableTimeFromStartBuilder extends BackboneElementBuilder {
             // Add single element to existing list or create new list
             modifierExtension = [...(modifierExtension ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'description':
         {
           if (child is FhirStringBuilder) {
             description = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirStringBuilder.tryParse(stringValue);
+              if (converted != null) {
+                description = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'quantity':
         {
           if (child is QuantityBuilder) {
             quantity = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'range':
         {
           if (child is RangeBuilder) {
             range = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'note':
         {
@@ -2900,9 +3057,8 @@ class EvidenceVariableTimeFromStartBuilder extends BackboneElementBuilder {
             // Add single element to existing list or create new list
             note = [...(note ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       default:
         throw Exception('Cannot set child value for $childName');
@@ -3230,14 +3386,14 @@ class EvidenceVariableCategoryBuilder extends BackboneElementBuilder {
   /// Getter for [valueRange] as a RangeBuilder
   RangeBuilder? get valueRange => valueX?.isAs<RangeBuilder>();
 
-  /// converts a [EvidenceVariableCategoryBuilder]
+  /// Converts a [EvidenceVariableCategoryBuilder]
   /// to [EvidenceVariableCategory]
   @override
   EvidenceVariableCategory build() =>
       EvidenceVariableCategory.fromJson(toJson());
 
-  /// converts a [EvidenceVariableCategoryBuilder]
-  /// to [Map<String, dynamic>]
+  /// Converts a [EvidenceVariableCategoryBuilder]
+  /// to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3370,9 +3526,20 @@ class EvidenceVariableCategoryBuilder extends BackboneElementBuilder {
           if (child is FhirStringBuilder) {
             id = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirStringBuilder.tryParse(stringValue);
+              if (converted != null) {
+                id = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'extension':
         {
@@ -3384,9 +3551,8 @@ class EvidenceVariableCategoryBuilder extends BackboneElementBuilder {
             // Add single element to existing list or create new list
             extension_ = [...(extension_ ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'modifierExtension':
         {
@@ -3398,18 +3564,28 @@ class EvidenceVariableCategoryBuilder extends BackboneElementBuilder {
             // Add single element to existing list or create new list
             modifierExtension = [...(modifierExtension ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'name':
         {
           if (child is FhirStringBuilder) {
             name = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirStringBuilder.tryParse(stringValue);
+              if (converted != null) {
+                name = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'valueX':
         {
@@ -3551,7 +3727,7 @@ class EvidenceVariableCategoryBuilder extends BackboneElementBuilder {
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
     if (name) this.name = null;
-    if (value) valueX = null;
+    if (value) this.valueX = null;
   }
 
   @override

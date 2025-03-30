@@ -1,6 +1,11 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show R4ResourceType, Schedule, yamlMapToJson, yamlToJson;
+    show
+        yamlMapToJson,
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        Schedule;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -257,13 +262,13 @@ class ScheduleBuilder extends DomainResourceBuilder {
   /// as custom constraints on the slots that may be associated.
   FhirStringBuilder? comment;
 
-  /// converts a [ScheduleBuilder]
+  /// Converts a [ScheduleBuilder]
   /// to [Schedule]
   @override
   Schedule build() => Schedule.fromJson(toJson());
 
-  /// converts a [ScheduleBuilder]
-  /// to [Map<String, dynamic>]
+  /// Converts a [ScheduleBuilder]
+  /// to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -443,45 +448,64 @@ class ScheduleBuilder extends DomainResourceBuilder {
           if (child is FhirStringBuilder) {
             id = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirStringBuilder.tryParse(stringValue);
+              if (converted != null) {
+                id = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'meta':
         {
           if (child is FhirMetaBuilder) {
             meta = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'implicitRules':
         {
           if (child is FhirUriBuilder) {
             implicitRules = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirUriBuilder.tryParse(stringValue);
+              if (converted != null) {
+                implicitRules = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'language':
         {
           if (child is CommonLanguagesBuilder) {
             language = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'text':
         {
           if (child is NarrativeBuilder) {
             text = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'contained':
         {
@@ -493,9 +517,8 @@ class ScheduleBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             contained = [...(contained ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'extension':
         {
@@ -507,9 +530,8 @@ class ScheduleBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             extension_ = [...(extension_ ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'modifierExtension':
         {
@@ -521,9 +543,8 @@ class ScheduleBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             modifierExtension = [...(modifierExtension ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'identifier':
         {
@@ -535,18 +556,28 @@ class ScheduleBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             identifier = [...(identifier ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'active':
         {
           if (child is FhirBooleanBuilder) {
             active = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirBooleanBuilder.tryParse(stringValue);
+              if (converted != null) {
+                active = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'serviceCategory':
         {
@@ -558,9 +589,8 @@ class ScheduleBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             serviceCategory = [...(serviceCategory ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'serviceType':
         {
@@ -572,9 +602,8 @@ class ScheduleBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             serviceType = [...(serviceType ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'specialty':
         {
@@ -586,9 +615,8 @@ class ScheduleBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             specialty = [...(specialty ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'actor':
         {
@@ -600,27 +628,36 @@ class ScheduleBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             actor = [...(actor ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'planningHorizon':
         {
           if (child is PeriodBuilder) {
             planningHorizon = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'comment':
         {
           if (child is FhirStringBuilder) {
             comment = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirStringBuilder.tryParse(stringValue);
+              if (converted != null) {
+                comment = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       default:
         throw Exception('Cannot set child value for $childName');

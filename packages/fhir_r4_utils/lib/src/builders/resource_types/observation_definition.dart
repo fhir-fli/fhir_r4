@@ -1,12 +1,13 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        ObservationDefinition,
-        ObservationDefinitionQualifiedInterval,
-        ObservationDefinitionQuantitativeDetails,
-        R4ResourceType,
         yamlMapToJson,
-        yamlToJson;
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        ObservationDefinition,
+        ObservationDefinitionQuantitativeDetails,
+        ObservationDefinitionQualifiedInterval;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -313,13 +314,13 @@ class ObservationDefinitionBuilder extends DomainResourceBuilder {
   /// this ObservationDefinition.
   ReferenceBuilder? criticalCodedValueSet;
 
-  /// converts a [ObservationDefinitionBuilder]
+  /// Converts a [ObservationDefinitionBuilder]
   /// to [ObservationDefinition]
   @override
   ObservationDefinition build() => ObservationDefinition.fromJson(toJson());
 
-  /// converts a [ObservationDefinitionBuilder]
-  /// to [Map<String, dynamic>]
+  /// Converts a [ObservationDefinitionBuilder]
+  /// to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -529,45 +530,64 @@ class ObservationDefinitionBuilder extends DomainResourceBuilder {
           if (child is FhirStringBuilder) {
             id = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirStringBuilder.tryParse(stringValue);
+              if (converted != null) {
+                id = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'meta':
         {
           if (child is FhirMetaBuilder) {
             meta = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'implicitRules':
         {
           if (child is FhirUriBuilder) {
             implicitRules = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirUriBuilder.tryParse(stringValue);
+              if (converted != null) {
+                implicitRules = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'language':
         {
           if (child is CommonLanguagesBuilder) {
             language = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'text':
         {
           if (child is NarrativeBuilder) {
             text = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'contained':
         {
@@ -579,9 +599,8 @@ class ObservationDefinitionBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             contained = [...(contained ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'extension':
         {
@@ -593,9 +612,8 @@ class ObservationDefinitionBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             extension_ = [...(extension_ ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'modifierExtension':
         {
@@ -607,9 +625,8 @@ class ObservationDefinitionBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             modifierExtension = [...(modifierExtension ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'category':
         {
@@ -621,18 +638,16 @@ class ObservationDefinitionBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             category = [...(category ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'code':
         {
           if (child is CodeableConceptBuilder) {
             code = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'identifier':
         {
@@ -644,9 +659,8 @@ class ObservationDefinitionBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             identifier = [...(identifier ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'permittedDataType':
         {
@@ -658,45 +672,64 @@ class ObservationDefinitionBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             permittedDataType = [...(permittedDataType ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'multipleResultsAllowed':
         {
           if (child is FhirBooleanBuilder) {
             multipleResultsAllowed = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirBooleanBuilder.tryParse(stringValue);
+              if (converted != null) {
+                multipleResultsAllowed = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'method':
         {
           if (child is CodeableConceptBuilder) {
             method = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'preferredReportName':
         {
           if (child is FhirStringBuilder) {
             preferredReportName = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirStringBuilder.tryParse(stringValue);
+              if (converted != null) {
+                preferredReportName = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'quantitativeDetails':
         {
           if (child is ObservationDefinitionQuantitativeDetailsBuilder) {
             quantitativeDetails = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'qualifiedInterval':
         {
@@ -708,45 +741,40 @@ class ObservationDefinitionBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             qualifiedInterval = [...(qualifiedInterval ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'validCodedValueSet':
         {
           if (child is ReferenceBuilder) {
             validCodedValueSet = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'normalCodedValueSet':
         {
           if (child is ReferenceBuilder) {
             normalCodedValueSet = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'abnormalCodedValueSet':
         {
           if (child is ReferenceBuilder) {
             abnormalCodedValueSet = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'criticalCodedValueSet':
         {
           if (child is ReferenceBuilder) {
             criticalCodedValueSet = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       default:
         throw Exception('Cannot set child value for $childName');
@@ -1327,14 +1355,14 @@ class ObservationDefinitionQuantitativeDetailsBuilder
   /// observations are of type Quantity.
   FhirIntegerBuilder? decimalPrecision;
 
-  /// converts a [ObservationDefinitionQuantitativeDetailsBuilder]
+  /// Converts a [ObservationDefinitionQuantitativeDetailsBuilder]
   /// to [ObservationDefinitionQuantitativeDetails]
   @override
   ObservationDefinitionQuantitativeDetails build() =>
       ObservationDefinitionQuantitativeDetails.fromJson(toJson());
 
-  /// converts a [ObservationDefinitionQuantitativeDetailsBuilder]
-  /// to [Map<String, dynamic>]
+  /// Converts a [ObservationDefinitionQuantitativeDetailsBuilder]
+  /// to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1459,9 +1487,20 @@ class ObservationDefinitionQuantitativeDetailsBuilder
           if (child is FhirStringBuilder) {
             id = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirStringBuilder.tryParse(stringValue);
+              if (converted != null) {
+                id = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'extension':
         {
@@ -1473,9 +1512,8 @@ class ObservationDefinitionQuantitativeDetailsBuilder
             // Add single element to existing list or create new list
             extension_ = [...(extension_ ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'modifierExtension':
         {
@@ -1487,45 +1525,72 @@ class ObservationDefinitionQuantitativeDetailsBuilder
             // Add single element to existing list or create new list
             modifierExtension = [...(modifierExtension ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'customaryUnit':
         {
           if (child is CodeableConceptBuilder) {
             customaryUnit = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'unit':
         {
           if (child is CodeableConceptBuilder) {
             unit = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'conversionFactor':
         {
           if (child is FhirDecimalBuilder) {
             conversionFactor = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              // For number types, first parse to num then pass the number directly
+              final numValue = num.tryParse(stringValue);
+              if (numValue != null) {
+                final converted = FhirDecimalBuilder.tryParse(numValue);
+                if (converted != null) {
+                  conversionFactor = converted;
+                  return;
+                }
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'decimalPrecision':
         {
           if (child is FhirIntegerBuilder) {
             decimalPrecision = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              // For number types, first parse to num then pass the number directly
+              final numValue = num.tryParse(stringValue);
+              if (numValue != null) {
+                final converted = FhirIntegerBuilder.tryParse(numValue);
+                if (converted != null) {
+                  decimalPrecision = converted;
+                  return;
+                }
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       default:
         throw Exception('Cannot set child value for $childName');
@@ -1917,14 +1982,14 @@ class ObservationDefinitionQualifiedIntervalBuilder
   /// Text based condition for which the reference range is valid.
   FhirStringBuilder? condition;
 
-  /// converts a [ObservationDefinitionQualifiedIntervalBuilder]
+  /// Converts a [ObservationDefinitionQualifiedIntervalBuilder]
   /// to [ObservationDefinitionQualifiedInterval]
   @override
   ObservationDefinitionQualifiedInterval build() =>
       ObservationDefinitionQualifiedInterval.fromJson(toJson());
 
-  /// converts a [ObservationDefinitionQualifiedIntervalBuilder]
-  /// to [Map<String, dynamic>]
+  /// Converts a [ObservationDefinitionQualifiedIntervalBuilder]
+  /// to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2073,9 +2138,20 @@ class ObservationDefinitionQualifiedIntervalBuilder
           if (child is FhirStringBuilder) {
             id = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirStringBuilder.tryParse(stringValue);
+              if (converted != null) {
+                id = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'extension':
         {
@@ -2087,9 +2163,8 @@ class ObservationDefinitionQualifiedIntervalBuilder
             // Add single element to existing list or create new list
             extension_ = [...(extension_ ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'modifierExtension':
         {
@@ -2101,36 +2176,32 @@ class ObservationDefinitionQualifiedIntervalBuilder
             // Add single element to existing list or create new list
             modifierExtension = [...(modifierExtension ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'category':
         {
           if (child is ObservationRangeCategoryBuilder) {
             category = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'range':
         {
           if (child is RangeBuilder) {
             range = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'context':
         {
           if (child is CodeableConceptBuilder) {
             context = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'appliesTo':
         {
@@ -2142,45 +2213,52 @@ class ObservationDefinitionQualifiedIntervalBuilder
             // Add single element to existing list or create new list
             appliesTo = [...(appliesTo ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'gender':
         {
           if (child is AdministrativeGenderBuilder) {
             gender = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'age':
         {
           if (child is RangeBuilder) {
             age = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'gestationalAge':
         {
           if (child is RangeBuilder) {
             gestationalAge = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'condition':
         {
           if (child is FhirStringBuilder) {
             condition = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirStringBuilder.tryParse(stringValue);
+              if (converted != null) {
+                condition = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       default:
         throw Exception('Cannot set child value for $childName');

@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show FhirExtension, StringExtensionForFHIR, yamlMapToJson, yamlToJson;
+    show yamlMapToJson, yamlToJson, StringExtensionForFHIR, FhirExtension;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -332,13 +332,13 @@ class FhirExtensionBuilder extends DataTypeBuilder {
   /// Getter for [valueDosage] as a DosageBuilder
   DosageBuilder? get valueDosage => valueX?.isAs<DosageBuilder>();
 
-  /// converts a [FhirExtensionBuilder]
+  /// Converts a [FhirExtensionBuilder]
   /// to [FhirExtension]
   @override
   FhirExtension build() => FhirExtension.fromJson(toJson());
 
-  /// converts a [FhirExtensionBuilder]
-  /// to [Map<String, dynamic>]
+  /// Converts a [FhirExtensionBuilder]
+  /// to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -657,9 +657,20 @@ class FhirExtensionBuilder extends DataTypeBuilder {
           if (child is FhirStringBuilder) {
             id = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirStringBuilder.tryParse(stringValue);
+              if (converted != null) {
+                id = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'extension':
         {
@@ -671,18 +682,28 @@ class FhirExtensionBuilder extends DataTypeBuilder {
             // Add single element to existing list or create new list
             extension_ = [...(extension_ ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'url':
         {
           if (child is FhirStringBuilder) {
             url = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirStringBuilder.tryParse(stringValue);
+              if (converted != null) {
+                url = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'valueX':
         {
@@ -1425,7 +1446,7 @@ class FhirExtensionBuilder extends DataTypeBuilder {
           'RelatedArtifactBuilder',
           'TriggerDefinitionBuilder',
           'UsageContextBuilder',
-          'DosageBuilder',
+          'DosageBuilder'
         ];
       case 'valueBase64Binary':
         return ['FhirBase64BinaryBuilder'];
@@ -1827,7 +1848,7 @@ class FhirExtensionBuilder extends DataTypeBuilder {
     if (id) this.id = null;
     if (extension_) this.extension_ = null;
     if (url) this.url = null;
-    if (value) valueX = null;
+    if (value) this.valueX = null;
   }
 
   @override

@@ -1,17 +1,17 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        DeviceDefinition,
-        DeviceDefinitionCapability,
-        DeviceDefinitionDeviceName,
-        DeviceDefinitionMaterial,
-        DeviceDefinitionProperty,
-        DeviceDefinitionSpecialization,
-        DeviceDefinitionUdiDeviceIdentifier,
+        yamlMapToJson,
+        yamlToJson,
         R4ResourceType,
         StringExtensionForFHIR,
-        yamlMapToJson,
-        yamlToJson;
+        DeviceDefinition,
+        DeviceDefinitionUdiDeviceIdentifier,
+        DeviceDefinitionDeviceName,
+        DeviceDefinitionSpecialization,
+        DeviceDefinitionCapability,
+        DeviceDefinitionProperty,
+        DeviceDefinitionMaterial;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -466,13 +466,13 @@ class DeviceDefinitionBuilder extends DomainResourceBuilder {
   /// A substance used to create the material(s) of which the device is made.
   List<DeviceDefinitionMaterialBuilder>? material;
 
-  /// converts a [DeviceDefinitionBuilder]
+  /// Converts a [DeviceDefinitionBuilder]
   /// to [DeviceDefinition]
   @override
   DeviceDefinition build() => DeviceDefinition.fromJson(toJson());
 
-  /// converts a [DeviceDefinitionBuilder]
-  /// to [Map<String, dynamic>]
+  /// Converts a [DeviceDefinitionBuilder]
+  /// to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -752,45 +752,64 @@ class DeviceDefinitionBuilder extends DomainResourceBuilder {
           if (child is FhirStringBuilder) {
             id = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirStringBuilder.tryParse(stringValue);
+              if (converted != null) {
+                id = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'meta':
         {
           if (child is FhirMetaBuilder) {
             meta = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'implicitRules':
         {
           if (child is FhirUriBuilder) {
             implicitRules = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirUriBuilder.tryParse(stringValue);
+              if (converted != null) {
+                implicitRules = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'language':
         {
           if (child is CommonLanguagesBuilder) {
             language = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'text':
         {
           if (child is NarrativeBuilder) {
             text = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'contained':
         {
@@ -802,9 +821,8 @@ class DeviceDefinitionBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             contained = [...(contained ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'extension':
         {
@@ -816,9 +834,8 @@ class DeviceDefinitionBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             extension_ = [...(extension_ ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'modifierExtension':
         {
@@ -830,9 +847,8 @@ class DeviceDefinitionBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             modifierExtension = [...(modifierExtension ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'identifier':
         {
@@ -844,9 +860,8 @@ class DeviceDefinitionBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             identifier = [...(identifier ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'udiDeviceIdentifier':
         {
@@ -858,9 +873,8 @@ class DeviceDefinitionBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             udiDeviceIdentifier = [...(udiDeviceIdentifier ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'manufacturerX':
         {
@@ -907,27 +921,36 @@ class DeviceDefinitionBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             deviceName = [...(deviceName ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'modelNumber':
         {
           if (child is FhirStringBuilder) {
             modelNumber = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirStringBuilder.tryParse(stringValue);
+              if (converted != null) {
+                modelNumber = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'type':
         {
           if (child is CodeableConceptBuilder) {
             type = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'specialization':
         {
@@ -939,9 +962,8 @@ class DeviceDefinitionBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             specialization = [...(specialization ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'version':
         {
@@ -953,9 +975,38 @@ class DeviceDefinitionBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             version = [...(version ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is List<PrimitiveTypeBuilder>) {
+            // Try to convert list of primitive types
+            final convertedList = <FhirStringBuilder>[];
+            for (final element in child) {
+              try {
+                final stringValue = element.toString();
+                final converted = FhirStringBuilder.tryParse(stringValue);
+                if (converted != null) {
+                  convertedList.add(converted);
+                }
+              } catch (e) {
+                // Continue if conversion fails
+              }
+            }
+            if (convertedList.isNotEmpty) {
+              version = convertedList;
+              return;
+            }
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert a single primitive
+            try {
+              final stringValue = child.toString();
+              final converted = FhirStringBuilder.tryParse(stringValue);
+              if (converted != null) {
+                version = [...(version ?? []), converted];
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'safety':
         {
@@ -967,9 +1018,8 @@ class DeviceDefinitionBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             safety = [...(safety ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'shelfLifeStorage':
         {
@@ -981,18 +1031,16 @@ class DeviceDefinitionBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             shelfLifeStorage = [...(shelfLifeStorage ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'physicalCharacteristics':
         {
           if (child is ProdCharacteristicBuilder) {
             physicalCharacteristics = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'languageCode':
         {
@@ -1004,9 +1052,8 @@ class DeviceDefinitionBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             languageCode = [...(languageCode ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'capability':
         {
@@ -1018,9 +1065,8 @@ class DeviceDefinitionBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             capability = [...(capability ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'property':
         {
@@ -1032,18 +1078,16 @@ class DeviceDefinitionBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             property = [...(property ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'owner':
         {
           if (child is ReferenceBuilder) {
             owner = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'contact':
         {
@@ -1055,27 +1099,48 @@ class DeviceDefinitionBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             contact = [...(contact ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'url':
         {
           if (child is FhirUriBuilder) {
             url = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirUriBuilder.tryParse(stringValue);
+              if (converted != null) {
+                url = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'onlineInformation':
         {
           if (child is FhirUriBuilder) {
             onlineInformation = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirUriBuilder.tryParse(stringValue);
+              if (converted != null) {
+                onlineInformation = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'note':
         {
@@ -1087,27 +1152,24 @@ class DeviceDefinitionBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             note = [...(note ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'quantity':
         {
           if (child is QuantityBuilder) {
             quantity = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'parentDevice':
         {
           if (child is ReferenceBuilder) {
             parentDevice = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'material':
         {
@@ -1119,9 +1181,8 @@ class DeviceDefinitionBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             material = [...(material ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       default:
         throw Exception('Cannot set child value for $childName');
@@ -1414,7 +1475,7 @@ class DeviceDefinitionBuilder extends DomainResourceBuilder {
     if (modifierExtension) this.modifierExtension = null;
     if (identifier) this.identifier = null;
     if (udiDeviceIdentifier) this.udiDeviceIdentifier = null;
-    if (manufacturer) manufacturerX = null;
+    if (manufacturer) this.manufacturerX = null;
     if (deviceName) this.deviceName = null;
     if (modelNumber) this.modelNumber = null;
     if (type) this.type = null;
@@ -1854,14 +1915,14 @@ class DeviceDefinitionUdiDeviceIdentifierBuilder
   /// The jurisdiction to which the deviceIdentifier applies.
   FhirUriBuilder? jurisdiction;
 
-  /// converts a [DeviceDefinitionUdiDeviceIdentifierBuilder]
+  /// Converts a [DeviceDefinitionUdiDeviceIdentifierBuilder]
   /// to [DeviceDefinitionUdiDeviceIdentifier]
   @override
   DeviceDefinitionUdiDeviceIdentifier build() =>
       DeviceDefinitionUdiDeviceIdentifier.fromJson(toJson());
 
-  /// converts a [DeviceDefinitionUdiDeviceIdentifierBuilder]
-  /// to [Map<String, dynamic>]
+  /// Converts a [DeviceDefinitionUdiDeviceIdentifierBuilder]
+  /// to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1980,9 +2041,20 @@ class DeviceDefinitionUdiDeviceIdentifierBuilder
           if (child is FhirStringBuilder) {
             id = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirStringBuilder.tryParse(stringValue);
+              if (converted != null) {
+                id = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'extension':
         {
@@ -1994,9 +2066,8 @@ class DeviceDefinitionUdiDeviceIdentifierBuilder
             // Add single element to existing list or create new list
             extension_ = [...(extension_ ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'modifierExtension':
         {
@@ -2008,36 +2079,68 @@ class DeviceDefinitionUdiDeviceIdentifierBuilder
             // Add single element to existing list or create new list
             modifierExtension = [...(modifierExtension ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'deviceIdentifier':
         {
           if (child is FhirStringBuilder) {
             deviceIdentifier = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirStringBuilder.tryParse(stringValue);
+              if (converted != null) {
+                deviceIdentifier = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'issuer':
         {
           if (child is FhirUriBuilder) {
             issuer = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirUriBuilder.tryParse(stringValue);
+              if (converted != null) {
+                issuer = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'jurisdiction':
         {
           if (child is FhirUriBuilder) {
             jurisdiction = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirUriBuilder.tryParse(stringValue);
+              if (converted != null) {
+                jurisdiction = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       default:
         throw Exception('Cannot set child value for $childName');
@@ -2336,14 +2439,14 @@ class DeviceDefinitionDeviceNameBuilder extends BackboneElementBuilder {
   /// ManufactureDeviceName | ModelName.
   DeviceNameTypeBuilder? type;
 
-  /// converts a [DeviceDefinitionDeviceNameBuilder]
+  /// Converts a [DeviceDefinitionDeviceNameBuilder]
   /// to [DeviceDefinitionDeviceName]
   @override
   DeviceDefinitionDeviceName build() =>
       DeviceDefinitionDeviceName.fromJson(toJson());
 
-  /// converts a [DeviceDefinitionDeviceNameBuilder]
-  /// to [Map<String, dynamic>]
+  /// Converts a [DeviceDefinitionDeviceNameBuilder]
+  /// to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2456,9 +2559,20 @@ class DeviceDefinitionDeviceNameBuilder extends BackboneElementBuilder {
           if (child is FhirStringBuilder) {
             id = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirStringBuilder.tryParse(stringValue);
+              if (converted != null) {
+                id = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'extension':
         {
@@ -2470,9 +2584,8 @@ class DeviceDefinitionDeviceNameBuilder extends BackboneElementBuilder {
             // Add single element to existing list or create new list
             extension_ = [...(extension_ ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'modifierExtension':
         {
@@ -2484,27 +2597,36 @@ class DeviceDefinitionDeviceNameBuilder extends BackboneElementBuilder {
             // Add single element to existing list or create new list
             modifierExtension = [...(modifierExtension ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'name':
         {
           if (child is FhirStringBuilder) {
             name = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirStringBuilder.tryParse(stringValue);
+              if (converted != null) {
+                name = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'type':
         {
           if (child is DeviceNameTypeBuilder) {
             type = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       default:
         throw Exception('Cannot set child value for $childName');
@@ -2785,14 +2907,14 @@ class DeviceDefinitionSpecializationBuilder extends BackboneElementBuilder {
   /// The version of the standard that is used to operate and communicate.
   FhirStringBuilder? version;
 
-  /// converts a [DeviceDefinitionSpecializationBuilder]
+  /// Converts a [DeviceDefinitionSpecializationBuilder]
   /// to [DeviceDefinitionSpecialization]
   @override
   DeviceDefinitionSpecialization build() =>
       DeviceDefinitionSpecialization.fromJson(toJson());
 
-  /// converts a [DeviceDefinitionSpecializationBuilder]
-  /// to [Map<String, dynamic>]
+  /// Converts a [DeviceDefinitionSpecializationBuilder]
+  /// to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2905,9 +3027,20 @@ class DeviceDefinitionSpecializationBuilder extends BackboneElementBuilder {
           if (child is FhirStringBuilder) {
             id = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirStringBuilder.tryParse(stringValue);
+              if (converted != null) {
+                id = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'extension':
         {
@@ -2919,9 +3052,8 @@ class DeviceDefinitionSpecializationBuilder extends BackboneElementBuilder {
             // Add single element to existing list or create new list
             extension_ = [...(extension_ ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'modifierExtension':
         {
@@ -2933,27 +3065,48 @@ class DeviceDefinitionSpecializationBuilder extends BackboneElementBuilder {
             // Add single element to existing list or create new list
             modifierExtension = [...(modifierExtension ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'systemType':
         {
           if (child is FhirStringBuilder) {
             systemType = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirStringBuilder.tryParse(stringValue);
+              if (converted != null) {
+                systemType = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'version':
         {
           if (child is FhirStringBuilder) {
             version = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirStringBuilder.tryParse(stringValue);
+              if (converted != null) {
+                version = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       default:
         throw Exception('Cannot set child value for $childName');
@@ -3236,14 +3389,14 @@ class DeviceDefinitionCapabilityBuilder extends BackboneElementBuilder {
   /// Description of capability.
   List<CodeableConceptBuilder>? description;
 
-  /// converts a [DeviceDefinitionCapabilityBuilder]
+  /// Converts a [DeviceDefinitionCapabilityBuilder]
   /// to [DeviceDefinitionCapability]
   @override
   DeviceDefinitionCapability build() =>
       DeviceDefinitionCapability.fromJson(toJson());
 
-  /// converts a [DeviceDefinitionCapabilityBuilder]
-  /// to [Map<String, dynamic>]
+  /// Converts a [DeviceDefinitionCapabilityBuilder]
+  /// to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3356,9 +3509,20 @@ class DeviceDefinitionCapabilityBuilder extends BackboneElementBuilder {
           if (child is FhirStringBuilder) {
             id = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirStringBuilder.tryParse(stringValue);
+              if (converted != null) {
+                id = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'extension':
         {
@@ -3370,9 +3534,8 @@ class DeviceDefinitionCapabilityBuilder extends BackboneElementBuilder {
             // Add single element to existing list or create new list
             extension_ = [...(extension_ ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'modifierExtension':
         {
@@ -3384,18 +3547,16 @@ class DeviceDefinitionCapabilityBuilder extends BackboneElementBuilder {
             // Add single element to existing list or create new list
             modifierExtension = [...(modifierExtension ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'type':
         {
           if (child is CodeableConceptBuilder) {
             type = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'description':
         {
@@ -3407,9 +3568,8 @@ class DeviceDefinitionCapabilityBuilder extends BackboneElementBuilder {
             // Add single element to existing list or create new list
             description = [...(description ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       default:
         throw Exception('Cannot set child value for $childName');
@@ -3709,14 +3869,14 @@ class DeviceDefinitionPropertyBuilder extends BackboneElementBuilder {
   /// Property value as a code, e.g., NTP4 (synced to NTP).
   List<CodeableConceptBuilder>? valueCode;
 
-  /// converts a [DeviceDefinitionPropertyBuilder]
+  /// Converts a [DeviceDefinitionPropertyBuilder]
   /// to [DeviceDefinitionProperty]
   @override
   DeviceDefinitionProperty build() =>
       DeviceDefinitionProperty.fromJson(toJson());
 
-  /// converts a [DeviceDefinitionPropertyBuilder]
-  /// to [Map<String, dynamic>]
+  /// Converts a [DeviceDefinitionPropertyBuilder]
+  /// to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3835,9 +3995,20 @@ class DeviceDefinitionPropertyBuilder extends BackboneElementBuilder {
           if (child is FhirStringBuilder) {
             id = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirStringBuilder.tryParse(stringValue);
+              if (converted != null) {
+                id = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'extension':
         {
@@ -3849,9 +4020,8 @@ class DeviceDefinitionPropertyBuilder extends BackboneElementBuilder {
             // Add single element to existing list or create new list
             extension_ = [...(extension_ ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'modifierExtension':
         {
@@ -3863,18 +4033,16 @@ class DeviceDefinitionPropertyBuilder extends BackboneElementBuilder {
             // Add single element to existing list or create new list
             modifierExtension = [...(modifierExtension ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'type':
         {
           if (child is CodeableConceptBuilder) {
             type = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'valueQuantity':
         {
@@ -3886,9 +4054,8 @@ class DeviceDefinitionPropertyBuilder extends BackboneElementBuilder {
             // Add single element to existing list or create new list
             valueQuantity = [...(valueQuantity ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'valueCode':
         {
@@ -3900,9 +4067,8 @@ class DeviceDefinitionPropertyBuilder extends BackboneElementBuilder {
             // Add single element to existing list or create new list
             valueCode = [...(valueCode ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       default:
         throw Exception('Cannot set child value for $childName');
@@ -4209,14 +4375,14 @@ class DeviceDefinitionMaterialBuilder extends BackboneElementBuilder {
   /// Whether the substance is a known or suspected allergen.
   FhirBooleanBuilder? allergenicIndicator;
 
-  /// converts a [DeviceDefinitionMaterialBuilder]
+  /// Converts a [DeviceDefinitionMaterialBuilder]
   /// to [DeviceDefinitionMaterial]
   @override
   DeviceDefinitionMaterial build() =>
       DeviceDefinitionMaterial.fromJson(toJson());
 
-  /// converts a [DeviceDefinitionMaterialBuilder]
-  /// to [Map<String, dynamic>]
+  /// Converts a [DeviceDefinitionMaterialBuilder]
+  /// to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -4335,9 +4501,20 @@ class DeviceDefinitionMaterialBuilder extends BackboneElementBuilder {
           if (child is FhirStringBuilder) {
             id = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirStringBuilder.tryParse(stringValue);
+              if (converted != null) {
+                id = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'extension':
         {
@@ -4349,9 +4526,8 @@ class DeviceDefinitionMaterialBuilder extends BackboneElementBuilder {
             // Add single element to existing list or create new list
             extension_ = [...(extension_ ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'modifierExtension':
         {
@@ -4363,36 +4539,56 @@ class DeviceDefinitionMaterialBuilder extends BackboneElementBuilder {
             // Add single element to existing list or create new list
             modifierExtension = [...(modifierExtension ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'substance':
         {
           if (child is CodeableConceptBuilder) {
             substance = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'alternate':
         {
           if (child is FhirBooleanBuilder) {
             alternate = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirBooleanBuilder.tryParse(stringValue);
+              if (converted != null) {
+                alternate = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'allergenicIndicator':
         {
           if (child is FhirBooleanBuilder) {
             allergenicIndicator = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirBooleanBuilder.tryParse(stringValue);
+              if (converted != null) {
+                allergenicIndicator = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       default:
         throw Exception('Cannot set child value for $childName');

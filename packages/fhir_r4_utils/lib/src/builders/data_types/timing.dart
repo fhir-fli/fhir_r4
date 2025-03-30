@@ -1,11 +1,11 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
+        yamlMapToJson,
+        yamlToJson,
         StringExtensionForFHIR,
         Timing,
-        TimingRepeat,
-        yamlMapToJson,
-        yamlToJson;
+        TimingRepeat;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -173,13 +173,13 @@ class TimingBuilder extends BackboneTypeBuilder
   /// code (and is not contained in the code).
   CodeableConceptBuilder? code;
 
-  /// converts a [TimingBuilder]
+  /// Converts a [TimingBuilder]
   /// to [Timing]
   @override
   Timing build() => Timing.fromJson(toJson());
 
-  /// converts a [TimingBuilder]
-  /// to [Map<String, dynamic>]
+  /// Converts a [TimingBuilder]
+  /// to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -298,9 +298,20 @@ class TimingBuilder extends BackboneTypeBuilder
           if (child is FhirStringBuilder) {
             id = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirStringBuilder.tryParse(stringValue);
+              if (converted != null) {
+                id = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'extension':
         {
@@ -312,9 +323,8 @@ class TimingBuilder extends BackboneTypeBuilder
             // Add single element to existing list or create new list
             extension_ = [...(extension_ ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'modifierExtension':
         {
@@ -326,9 +336,8 @@ class TimingBuilder extends BackboneTypeBuilder
             // Add single element to existing list or create new list
             modifierExtension = [...(modifierExtension ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'event':
         {
@@ -340,27 +349,54 @@ class TimingBuilder extends BackboneTypeBuilder
             // Add single element to existing list or create new list
             event = [...(event ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is List<PrimitiveTypeBuilder>) {
+            // Try to convert list of primitive types
+            final convertedList = <FhirDateTimeBuilder>[];
+            for (final element in child) {
+              try {
+                final stringValue = element.toString();
+                final converted = FhirDateTimeBuilder.tryParse(stringValue);
+                if (converted != null) {
+                  convertedList.add(converted);
+                }
+              } catch (e) {
+                // Continue if conversion fails
+              }
+            }
+            if (convertedList.isNotEmpty) {
+              event = convertedList;
+              return;
+            }
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert a single primitive
+            try {
+              final stringValue = child.toString();
+              final converted = FhirDateTimeBuilder.tryParse(stringValue);
+              if (converted != null) {
+                event = [...(event ?? []), converted];
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'repeat':
         {
           if (child is TimingRepeatBuilder) {
             repeat = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'code':
         {
           if (child is CodeableConceptBuilder) {
             code = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       default:
         throw Exception('Cannot set child value for $childName');
@@ -820,13 +856,13 @@ class TimingRepeatBuilder extends ElementBuilder {
   /// offset is assumed to be after the event.
   FhirUnsignedIntBuilder? offset;
 
-  /// converts a [TimingRepeatBuilder]
+  /// Converts a [TimingRepeatBuilder]
   /// to [TimingRepeat]
   @override
   TimingRepeat build() => TimingRepeat.fromJson(toJson());
 
-  /// converts a [TimingRepeatBuilder]
-  /// to [Map<String, dynamic>]
+  /// Converts a [TimingRepeatBuilder]
+  /// to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1031,9 +1067,20 @@ class TimingRepeatBuilder extends ElementBuilder {
           if (child is FhirStringBuilder) {
             id = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirStringBuilder.tryParse(stringValue);
+              if (converted != null) {
+                id = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'extension':
         {
@@ -1045,9 +1092,8 @@ class TimingRepeatBuilder extends ElementBuilder {
             // Add single element to existing list or create new list
             extension_ = [...(extension_ ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'boundsX':
         {
@@ -1102,90 +1148,208 @@ class TimingRepeatBuilder extends ElementBuilder {
           if (child is FhirPositiveIntBuilder) {
             count = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              // For number types, first parse to num then pass the number directly
+              final numValue = num.tryParse(stringValue);
+              if (numValue != null) {
+                final converted = FhirPositiveIntBuilder.tryParse(numValue);
+                if (converted != null) {
+                  count = converted;
+                  return;
+                }
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'countMax':
         {
           if (child is FhirPositiveIntBuilder) {
             countMax = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              // For number types, first parse to num then pass the number directly
+              final numValue = num.tryParse(stringValue);
+              if (numValue != null) {
+                final converted = FhirPositiveIntBuilder.tryParse(numValue);
+                if (converted != null) {
+                  countMax = converted;
+                  return;
+                }
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'duration':
         {
           if (child is FhirDecimalBuilder) {
             duration = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              // For number types, first parse to num then pass the number directly
+              final numValue = num.tryParse(stringValue);
+              if (numValue != null) {
+                final converted = FhirDecimalBuilder.tryParse(numValue);
+                if (converted != null) {
+                  duration = converted;
+                  return;
+                }
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'durationMax':
         {
           if (child is FhirDecimalBuilder) {
             durationMax = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              // For number types, first parse to num then pass the number directly
+              final numValue = num.tryParse(stringValue);
+              if (numValue != null) {
+                final converted = FhirDecimalBuilder.tryParse(numValue);
+                if (converted != null) {
+                  durationMax = converted;
+                  return;
+                }
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'durationUnit':
         {
           if (child is UnitsOfTimeBuilder) {
             durationUnit = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'frequency':
         {
           if (child is FhirPositiveIntBuilder) {
             frequency = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              // For number types, first parse to num then pass the number directly
+              final numValue = num.tryParse(stringValue);
+              if (numValue != null) {
+                final converted = FhirPositiveIntBuilder.tryParse(numValue);
+                if (converted != null) {
+                  frequency = converted;
+                  return;
+                }
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'frequencyMax':
         {
           if (child is FhirPositiveIntBuilder) {
             frequencyMax = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              // For number types, first parse to num then pass the number directly
+              final numValue = num.tryParse(stringValue);
+              if (numValue != null) {
+                final converted = FhirPositiveIntBuilder.tryParse(numValue);
+                if (converted != null) {
+                  frequencyMax = converted;
+                  return;
+                }
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'period':
         {
           if (child is FhirDecimalBuilder) {
             period = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              // For number types, first parse to num then pass the number directly
+              final numValue = num.tryParse(stringValue);
+              if (numValue != null) {
+                final converted = FhirDecimalBuilder.tryParse(numValue);
+                if (converted != null) {
+                  period = converted;
+                  return;
+                }
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'periodMax':
         {
           if (child is FhirDecimalBuilder) {
             periodMax = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              // For number types, first parse to num then pass the number directly
+              final numValue = num.tryParse(stringValue);
+              if (numValue != null) {
+                final converted = FhirDecimalBuilder.tryParse(numValue);
+                if (converted != null) {
+                  periodMax = converted;
+                  return;
+                }
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'periodUnit':
         {
           if (child is UnitsOfTimeBuilder) {
             periodUnit = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'dayOfWeek':
         {
@@ -1197,9 +1361,8 @@ class TimingRepeatBuilder extends ElementBuilder {
             // Add single element to existing list or create new list
             dayOfWeek = [...(dayOfWeek ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'timeOfDay':
         {
@@ -1211,9 +1374,38 @@ class TimingRepeatBuilder extends ElementBuilder {
             // Add single element to existing list or create new list
             timeOfDay = [...(timeOfDay ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is List<PrimitiveTypeBuilder>) {
+            // Try to convert list of primitive types
+            final convertedList = <FhirTimeBuilder>[];
+            for (final element in child) {
+              try {
+                final stringValue = element.toString();
+                final converted = FhirTimeBuilder.tryParse(stringValue);
+                if (converted != null) {
+                  convertedList.add(converted);
+                }
+              } catch (e) {
+                // Continue if conversion fails
+              }
+            }
+            if (convertedList.isNotEmpty) {
+              timeOfDay = convertedList;
+              return;
+            }
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert a single primitive
+            try {
+              final stringValue = child.toString();
+              final converted = FhirTimeBuilder.tryParse(stringValue);
+              if (converted != null) {
+                timeOfDay = [...(timeOfDay ?? []), converted];
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'when':
         {
@@ -1225,18 +1417,32 @@ class TimingRepeatBuilder extends ElementBuilder {
             // Add single element to existing list or create new list
             when = [...(when ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'offset':
         {
           if (child is FhirUnsignedIntBuilder) {
             offset = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              // For number types, first parse to num then pass the number directly
+              final numValue = num.tryParse(stringValue);
+              if (numValue != null) {
+                final converted = FhirUnsignedIntBuilder.tryParse(numValue);
+                if (converted != null) {
+                  offset = converted;
+                  return;
+                }
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       default:
         throw Exception('Cannot set child value for $childName');
@@ -1424,7 +1630,7 @@ class TimingRepeatBuilder extends ElementBuilder {
   }) {
     if (id) this.id = null;
     if (extension_) this.extension_ = null;
-    if (bounds) boundsX = null;
+    if (bounds) this.boundsX = null;
     if (count) this.count = null;
     if (countMax) this.countMax = null;
     if (duration) this.duration = null;

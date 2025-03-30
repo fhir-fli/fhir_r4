@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show CodeableConcept, yamlMapToJson, yamlToJson;
+    show yamlMapToJson, yamlToJson, StringExtensionForFHIR, CodeableConcept;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -195,13 +195,13 @@ class CodeableConceptBuilder extends DataTypeBuilder
   /// meaning of the user.
   FhirStringBuilder? text;
 
-  /// converts a [CodeableConceptBuilder]
+  /// Converts a [CodeableConceptBuilder]
   /// to [CodeableConcept]
   @override
   CodeableConcept build() => CodeableConcept.fromJson(toJson());
 
-  /// converts a [CodeableConceptBuilder]
-  /// to [Map<String, dynamic>]
+  /// Converts a [CodeableConceptBuilder]
+  /// to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -308,9 +308,20 @@ class CodeableConceptBuilder extends DataTypeBuilder
           if (child is FhirStringBuilder) {
             id = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirStringBuilder.tryParse(stringValue);
+              if (converted != null) {
+                id = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'extension':
         {
@@ -322,9 +333,8 @@ class CodeableConceptBuilder extends DataTypeBuilder
             // Add single element to existing list or create new list
             extension_ = [...(extension_ ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'coding':
         {
@@ -336,18 +346,28 @@ class CodeableConceptBuilder extends DataTypeBuilder
             // Add single element to existing list or create new list
             coding = [...(coding ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'text':
         {
           if (child is FhirStringBuilder) {
             text = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirStringBuilder.tryParse(stringValue);
+              if (converted != null) {
+                text = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       default:
         throw Exception('Cannot set child value for $childName');

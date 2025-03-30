@@ -1,16 +1,16 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        PackagedProductDefinition,
-        PackagedProductDefinitionContainedItem,
-        PackagedProductDefinitionLegalStatusOfSupply,
-        PackagedProductDefinitionPackage,
-        PackagedProductDefinitionProperty,
-        PackagedProductDefinitionShelfLifeStorage,
+        yamlMapToJson,
+        yamlToJson,
         R4ResourceType,
         StringExtensionForFHIR,
-        yamlMapToJson,
-        yamlToJson;
+        PackagedProductDefinition,
+        PackagedProductDefinitionLegalStatusOfSupply,
+        PackagedProductDefinitionPackage,
+        PackagedProductDefinitionShelfLifeStorage,
+        PackagedProductDefinitionProperty,
+        PackagedProductDefinitionContainedItem;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -360,14 +360,14 @@ class PackagedProductDefinitionBuilder extends DomainResourceBuilder {
   /// bottle cap (which is not a device or a medication manufactured item).
   PackagedProductDefinitionPackageBuilder? package;
 
-  /// converts a [PackagedProductDefinitionBuilder]
+  /// Converts a [PackagedProductDefinitionBuilder]
   /// to [PackagedProductDefinition]
   @override
   PackagedProductDefinition build() =>
       PackagedProductDefinition.fromJson(toJson());
 
-  /// converts a [PackagedProductDefinitionBuilder]
-  /// to [Map<String, dynamic>]
+  /// Converts a [PackagedProductDefinitionBuilder]
+  /// to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -583,45 +583,64 @@ class PackagedProductDefinitionBuilder extends DomainResourceBuilder {
           if (child is FhirStringBuilder) {
             id = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirStringBuilder.tryParse(stringValue);
+              if (converted != null) {
+                id = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'meta':
         {
           if (child is FhirMetaBuilder) {
             meta = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'implicitRules':
         {
           if (child is FhirUriBuilder) {
             implicitRules = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirUriBuilder.tryParse(stringValue);
+              if (converted != null) {
+                implicitRules = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'language':
         {
           if (child is CommonLanguagesBuilder) {
             language = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'text':
         {
           if (child is NarrativeBuilder) {
             text = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'contained':
         {
@@ -633,9 +652,8 @@ class PackagedProductDefinitionBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             contained = [...(contained ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'extension':
         {
@@ -647,9 +665,8 @@ class PackagedProductDefinitionBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             extension_ = [...(extension_ ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'modifierExtension':
         {
@@ -661,9 +678,8 @@ class PackagedProductDefinitionBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             modifierExtension = [...(modifierExtension ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'identifier':
         {
@@ -675,27 +691,36 @@ class PackagedProductDefinitionBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             identifier = [...(identifier ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'name':
         {
           if (child is FhirStringBuilder) {
             name = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirStringBuilder.tryParse(stringValue);
+              if (converted != null) {
+                name = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'type':
         {
           if (child is CodeableConceptBuilder) {
             type = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'packageFor':
         {
@@ -707,27 +732,36 @@ class PackagedProductDefinitionBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             packageFor = [...(packageFor ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'status':
         {
           if (child is CodeableConceptBuilder) {
             status = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'statusDate':
         {
           if (child is FhirDateTimeBuilder) {
             statusDate = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirDateTimeBuilder.tryParse(stringValue);
+              if (converted != null) {
+                statusDate = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'containedItemQuantity':
         {
@@ -739,18 +773,28 @@ class PackagedProductDefinitionBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             containedItemQuantity = [...(containedItemQuantity ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'description':
         {
           if (child is FhirMarkdownBuilder) {
             description = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirMarkdownBuilder.tryParse(stringValue);
+              if (converted != null) {
+                description = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'legalStatusOfSupply':
         {
@@ -764,9 +808,8 @@ class PackagedProductDefinitionBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             legalStatusOfSupply = [...(legalStatusOfSupply ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'marketingStatus':
         {
@@ -778,9 +821,8 @@ class PackagedProductDefinitionBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             marketingStatus = [...(marketingStatus ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'characteristic':
         {
@@ -792,18 +834,28 @@ class PackagedProductDefinitionBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             characteristic = [...(characteristic ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'copackagedIndicator':
         {
           if (child is FhirBooleanBuilder) {
             copackagedIndicator = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirBooleanBuilder.tryParse(stringValue);
+              if (converted != null) {
+                copackagedIndicator = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'manufacturer':
         {
@@ -815,18 +867,16 @@ class PackagedProductDefinitionBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             manufacturer = [...(manufacturer ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'package':
         {
           if (child is PackagedProductDefinitionPackageBuilder) {
             package = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       default:
         throw Exception('Cannot set child value for $childName');
@@ -1400,14 +1450,14 @@ class PackagedProductDefinitionLegalStatusOfSupplyBuilder
   /// this indicates it is unknown in this context.
   CodeableConceptBuilder? jurisdiction;
 
-  /// converts a [PackagedProductDefinitionLegalStatusOfSupplyBuilder]
+  /// Converts a [PackagedProductDefinitionLegalStatusOfSupplyBuilder]
   /// to [PackagedProductDefinitionLegalStatusOfSupply]
   @override
   PackagedProductDefinitionLegalStatusOfSupply build() =>
       PackagedProductDefinitionLegalStatusOfSupply.fromJson(toJson());
 
-  /// converts a [PackagedProductDefinitionLegalStatusOfSupplyBuilder]
-  /// to [Map<String, dynamic>]
+  /// Converts a [PackagedProductDefinitionLegalStatusOfSupplyBuilder]
+  /// to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1520,9 +1570,20 @@ class PackagedProductDefinitionLegalStatusOfSupplyBuilder
           if (child is FhirStringBuilder) {
             id = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirStringBuilder.tryParse(stringValue);
+              if (converted != null) {
+                id = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'extension':
         {
@@ -1534,9 +1595,8 @@ class PackagedProductDefinitionLegalStatusOfSupplyBuilder
             // Add single element to existing list or create new list
             extension_ = [...(extension_ ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'modifierExtension':
         {
@@ -1548,27 +1608,24 @@ class PackagedProductDefinitionLegalStatusOfSupplyBuilder
             // Add single element to existing list or create new list
             modifierExtension = [...(modifierExtension ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'code':
         {
           if (child is CodeableConceptBuilder) {
             code = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'jurisdiction':
         {
           if (child is CodeableConceptBuilder) {
             jurisdiction = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       default:
         throw Exception('Cannot set child value for $childName');
@@ -1977,14 +2034,14 @@ class PackagedProductDefinitionPackageBuilder extends BackboneElementBuilder {
   /// PackagedProductDefinition.package.containedItem.item(PackagedProductDefinition).
   List<PackagedProductDefinitionPackageBuilder>? package;
 
-  /// converts a [PackagedProductDefinitionPackageBuilder]
+  /// Converts a [PackagedProductDefinitionPackageBuilder]
   /// to [PackagedProductDefinitionPackage]
   @override
   PackagedProductDefinitionPackage build() =>
       PackagedProductDefinitionPackage.fromJson(toJson());
 
-  /// converts a [PackagedProductDefinitionPackageBuilder]
-  /// to [Map<String, dynamic>]
+  /// Converts a [PackagedProductDefinitionPackageBuilder]
+  /// to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2145,9 +2202,20 @@ class PackagedProductDefinitionPackageBuilder extends BackboneElementBuilder {
           if (child is FhirStringBuilder) {
             id = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirStringBuilder.tryParse(stringValue);
+              if (converted != null) {
+                id = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'extension':
         {
@@ -2159,9 +2227,8 @@ class PackagedProductDefinitionPackageBuilder extends BackboneElementBuilder {
             // Add single element to existing list or create new list
             extension_ = [...(extension_ ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'modifierExtension':
         {
@@ -2173,9 +2240,8 @@ class PackagedProductDefinitionPackageBuilder extends BackboneElementBuilder {
             // Add single element to existing list or create new list
             modifierExtension = [...(modifierExtension ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'identifier':
         {
@@ -2187,27 +2253,40 @@ class PackagedProductDefinitionPackageBuilder extends BackboneElementBuilder {
             // Add single element to existing list or create new list
             identifier = [...(identifier ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'type':
         {
           if (child is CodeableConceptBuilder) {
             type = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'quantity':
         {
           if (child is FhirIntegerBuilder) {
             quantity = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              // For number types, first parse to num then pass the number directly
+              final numValue = num.tryParse(stringValue);
+              if (numValue != null) {
+                final converted = FhirIntegerBuilder.tryParse(numValue);
+                if (converted != null) {
+                  quantity = converted;
+                  return;
+                }
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'material':
         {
@@ -2219,9 +2298,8 @@ class PackagedProductDefinitionPackageBuilder extends BackboneElementBuilder {
             // Add single element to existing list or create new list
             material = [...(material ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'alternateMaterial':
         {
@@ -2233,9 +2311,8 @@ class PackagedProductDefinitionPackageBuilder extends BackboneElementBuilder {
             // Add single element to existing list or create new list
             alternateMaterial = [...(alternateMaterial ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'shelfLifeStorage':
         {
@@ -2248,9 +2325,8 @@ class PackagedProductDefinitionPackageBuilder extends BackboneElementBuilder {
             // Add single element to existing list or create new list
             shelfLifeStorage = [...(shelfLifeStorage ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'manufacturer':
         {
@@ -2262,9 +2338,8 @@ class PackagedProductDefinitionPackageBuilder extends BackboneElementBuilder {
             // Add single element to existing list or create new list
             manufacturer = [...(manufacturer ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'property':
         {
@@ -2276,9 +2351,8 @@ class PackagedProductDefinitionPackageBuilder extends BackboneElementBuilder {
             // Add single element to existing list or create new list
             property = [...(property ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'containedItem':
         {
@@ -2290,9 +2364,8 @@ class PackagedProductDefinitionPackageBuilder extends BackboneElementBuilder {
             // Add single element to existing list or create new list
             containedItem = [...(containedItem ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'package':
         {
@@ -2304,9 +2377,8 @@ class PackagedProductDefinitionPackageBuilder extends BackboneElementBuilder {
             // Add single element to existing list or create new list
             package = [...(package ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       default:
         throw Exception('Cannot set child value for $childName');
@@ -2760,14 +2832,14 @@ class PackagedProductDefinitionShelfLifeStorageBuilder
   /// controlled term identifier shall be specified.
   List<CodeableConceptBuilder>? specialPrecautionsForStorage;
 
-  /// converts a [PackagedProductDefinitionShelfLifeStorageBuilder]
+  /// Converts a [PackagedProductDefinitionShelfLifeStorageBuilder]
   /// to [PackagedProductDefinitionShelfLifeStorage]
   @override
   PackagedProductDefinitionShelfLifeStorage build() =>
       PackagedProductDefinitionShelfLifeStorage.fromJson(toJson());
 
-  /// converts a [PackagedProductDefinitionShelfLifeStorageBuilder]
-  /// to [Map<String, dynamic>]
+  /// Converts a [PackagedProductDefinitionShelfLifeStorageBuilder]
+  /// to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2902,9 +2974,20 @@ class PackagedProductDefinitionShelfLifeStorageBuilder
           if (child is FhirStringBuilder) {
             id = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirStringBuilder.tryParse(stringValue);
+              if (converted != null) {
+                id = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'extension':
         {
@@ -2916,9 +2999,8 @@ class PackagedProductDefinitionShelfLifeStorageBuilder
             // Add single element to existing list or create new list
             extension_ = [...(extension_ ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'modifierExtension':
         {
@@ -2930,18 +3012,16 @@ class PackagedProductDefinitionShelfLifeStorageBuilder
             // Add single element to existing list or create new list
             modifierExtension = [...(modifierExtension ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'type':
         {
           if (child is CodeableConceptBuilder) {
             type = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'periodX':
         {
@@ -2989,12 +3069,11 @@ class PackagedProductDefinitionShelfLifeStorageBuilder
             // Add single element to existing list or create new list
             specialPrecautionsForStorage = [
               ...(specialPrecautionsForStorage ?? []),
-              child,
+              child
             ];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       default:
         throw Exception('Cannot set child value for $childName');
@@ -3089,7 +3168,7 @@ class PackagedProductDefinitionShelfLifeStorageBuilder
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
     if (type) this.type = null;
-    if (period) periodX = null;
+    if (period) this.periodX = null;
     if (specialPrecautionsForStorage) this.specialPrecautionsForStorage = null;
   }
 
@@ -3326,14 +3405,14 @@ class PackagedProductDefinitionPropertyBuilder extends BackboneElementBuilder {
   /// Getter for [valueAttachment] as a AttachmentBuilder
   AttachmentBuilder? get valueAttachment => valueX?.isAs<AttachmentBuilder>();
 
-  /// converts a [PackagedProductDefinitionPropertyBuilder]
+  /// Converts a [PackagedProductDefinitionPropertyBuilder]
   /// to [PackagedProductDefinitionProperty]
   @override
   PackagedProductDefinitionProperty build() =>
       PackagedProductDefinitionProperty.fromJson(toJson());
 
-  /// converts a [PackagedProductDefinitionPropertyBuilder]
-  /// to [Map<String, dynamic>]
+  /// Converts a [PackagedProductDefinitionPropertyBuilder]
+  /// to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3474,9 +3553,20 @@ class PackagedProductDefinitionPropertyBuilder extends BackboneElementBuilder {
           if (child is FhirStringBuilder) {
             id = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirStringBuilder.tryParse(stringValue);
+              if (converted != null) {
+                id = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'extension':
         {
@@ -3488,9 +3578,8 @@ class PackagedProductDefinitionPropertyBuilder extends BackboneElementBuilder {
             // Add single element to existing list or create new list
             extension_ = [...(extension_ ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'modifierExtension':
         {
@@ -3502,18 +3591,16 @@ class PackagedProductDefinitionPropertyBuilder extends BackboneElementBuilder {
             // Add single element to existing list or create new list
             modifierExtension = [...(modifierExtension ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'type':
         {
           if (child is CodeableConceptBuilder) {
             type = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'valueX':
         {
@@ -3614,7 +3701,7 @@ class PackagedProductDefinitionPropertyBuilder extends BackboneElementBuilder {
           'QuantityBuilder',
           'FhirDateBuilder',
           'FhirBooleanBuilder',
-          'AttachmentBuilder',
+          'AttachmentBuilder'
         ];
       case 'valueCodeableConcept':
         return ['CodeableConceptBuilder'];
@@ -3701,7 +3788,7 @@ class PackagedProductDefinitionPropertyBuilder extends BackboneElementBuilder {
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
     if (type) this.type = null;
-    if (value) valueX = null;
+    if (value) this.valueX = null;
   }
 
   @override
@@ -3914,14 +4001,14 @@ class PackagedProductDefinitionContainedItemBuilder
   /// The number of this type of item within this packaging.
   QuantityBuilder? amount;
 
-  /// converts a [PackagedProductDefinitionContainedItemBuilder]
+  /// Converts a [PackagedProductDefinitionContainedItemBuilder]
   /// to [PackagedProductDefinitionContainedItem]
   @override
   PackagedProductDefinitionContainedItem build() =>
       PackagedProductDefinitionContainedItem.fromJson(toJson());
 
-  /// converts a [PackagedProductDefinitionContainedItemBuilder]
-  /// to [Map<String, dynamic>]
+  /// Converts a [PackagedProductDefinitionContainedItemBuilder]
+  /// to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -4034,9 +4121,20 @@ class PackagedProductDefinitionContainedItemBuilder
           if (child is FhirStringBuilder) {
             id = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirStringBuilder.tryParse(stringValue);
+              if (converted != null) {
+                id = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'extension':
         {
@@ -4048,9 +4146,8 @@ class PackagedProductDefinitionContainedItemBuilder
             // Add single element to existing list or create new list
             extension_ = [...(extension_ ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'modifierExtension':
         {
@@ -4062,27 +4159,24 @@ class PackagedProductDefinitionContainedItemBuilder
             // Add single element to existing list or create new list
             modifierExtension = [...(modifierExtension ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'item':
         {
           if (child is CodeableReferenceBuilder) {
             item = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'amount':
         {
           if (child is QuantityBuilder) {
             amount = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       default:
         throw Exception('Cannot set child value for $childName');

@@ -105,9 +105,7 @@ class TypeDerivationRuleBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   TypeDerivationRuleBuilder withElement(ElementBuilder? newElement) {
     return TypeDerivationRuleBuilder._(
-      validatedValue: value,
-      element: newElement,
-    );
+        validatedValue: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys

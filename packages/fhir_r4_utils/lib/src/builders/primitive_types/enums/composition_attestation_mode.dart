@@ -50,8 +50,7 @@ class CompositionAttestationModeBuilder extends FhirCodeEnumBuilder {
   /// Factory constructor to create [CompositionAttestationModeBuilder]
   /// from JSON.
   factory CompositionAttestationModeBuilder.fromJson(
-    Map<String, dynamic> json,
-  ) {
+      Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -132,9 +131,7 @@ class CompositionAttestationModeBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   CompositionAttestationModeBuilder withElement(ElementBuilder? newElement) {
     return CompositionAttestationModeBuilder._(
-      validatedValue: value,
-      element: newElement,
-    );
+        validatedValue: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys

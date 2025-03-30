@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show ProductShelfLife, yamlMapToJson, yamlToJson;
+    show yamlMapToJson, yamlToJson, StringExtensionForFHIR, ProductShelfLife;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -160,13 +160,13 @@ class ProductShelfLifeBuilder extends BackboneTypeBuilder {
   /// controlled term identifier shall be specified.
   List<CodeableConceptBuilder>? specialPrecautionsForStorage;
 
-  /// converts a [ProductShelfLifeBuilder]
+  /// Converts a [ProductShelfLifeBuilder]
   /// to [ProductShelfLife]
   @override
   ProductShelfLife build() => ProductShelfLife.fromJson(toJson());
 
-  /// converts a [ProductShelfLifeBuilder]
-  /// to [Map<String, dynamic>]
+  /// Converts a [ProductShelfLifeBuilder]
+  /// to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -291,9 +291,20 @@ class ProductShelfLifeBuilder extends BackboneTypeBuilder {
           if (child is FhirStringBuilder) {
             id = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirStringBuilder.tryParse(stringValue);
+              if (converted != null) {
+                id = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'extension':
         {
@@ -305,9 +316,8 @@ class ProductShelfLifeBuilder extends BackboneTypeBuilder {
             // Add single element to existing list or create new list
             extension_ = [...(extension_ ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'modifierExtension':
         {
@@ -319,36 +329,32 @@ class ProductShelfLifeBuilder extends BackboneTypeBuilder {
             // Add single element to existing list or create new list
             modifierExtension = [...(modifierExtension ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'identifier':
         {
           if (child is IdentifierBuilder) {
             identifier = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'type':
         {
           if (child is CodeableConceptBuilder) {
             type = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'period':
         {
           if (child is QuantityBuilder) {
             period = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'specialPrecautionsForStorage':
         {
@@ -360,12 +366,11 @@ class ProductShelfLifeBuilder extends BackboneTypeBuilder {
             // Add single element to existing list or create new list
             specialPrecautionsForStorage = [
               ...(specialPrecautionsForStorage ?? []),
-              child,
+              child
             ];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       default:
         throw Exception('Cannot set child value for $childName');

@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show CodeableReference, yamlMapToJson, yamlToJson;
+    show yamlMapToJson, yamlToJson, StringExtensionForFHIR, CodeableReference;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -119,13 +119,13 @@ class CodeableReferenceBuilder extends DataTypeBuilder
   /// information being referenced.
   ReferenceBuilder? reference;
 
-  /// converts a [CodeableReferenceBuilder]
+  /// Converts a [CodeableReferenceBuilder]
   /// to [CodeableReference]
   @override
   CodeableReference build() => CodeableReference.fromJson(toJson());
 
-  /// converts a [CodeableReferenceBuilder]
-  /// to [Map<String, dynamic>]
+  /// Converts a [CodeableReferenceBuilder]
+  /// to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -232,9 +232,20 @@ class CodeableReferenceBuilder extends DataTypeBuilder
           if (child is FhirStringBuilder) {
             id = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirStringBuilder.tryParse(stringValue);
+              if (converted != null) {
+                id = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'extension':
         {
@@ -246,27 +257,24 @@ class CodeableReferenceBuilder extends DataTypeBuilder
             // Add single element to existing list or create new list
             extension_ = [...(extension_ ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'concept':
         {
           if (child is CodeableConceptBuilder) {
             concept = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'reference':
         {
           if (child is ReferenceBuilder) {
             reference = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       default:
         throw Exception('Cannot set child value for $childName');

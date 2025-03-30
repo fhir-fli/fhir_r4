@@ -1,21 +1,21 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
+        yamlMapToJson,
+        yamlToJson,
         R4ResourceType,
         StringExtensionForFHIR,
         SubstanceDefinition,
-        SubstanceDefinitionCode,
         SubstanceDefinitionMoiety,
+        SubstanceDefinitionProperty,
         SubstanceDefinitionMolecularWeight,
+        SubstanceDefinitionStructure,
+        SubstanceDefinitionRepresentation,
+        SubstanceDefinitionCode,
         SubstanceDefinitionName,
         SubstanceDefinitionOfficial,
-        SubstanceDefinitionProperty,
         SubstanceDefinitionRelationship,
-        SubstanceDefinitionRepresentation,
-        SubstanceDefinitionSourceMaterial,
-        SubstanceDefinitionStructure,
-        yamlMapToJson,
-        yamlToJson;
+        SubstanceDefinitionSourceMaterial;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -426,13 +426,13 @@ class SubstanceDefinitionBuilder extends DomainResourceBuilder {
   /// Material or taxonomic/anatomical source for the substance.
   SubstanceDefinitionSourceMaterialBuilder? sourceMaterial;
 
-  /// converts a [SubstanceDefinitionBuilder]
+  /// Converts a [SubstanceDefinitionBuilder]
   /// to [SubstanceDefinition]
   @override
   SubstanceDefinition build() => SubstanceDefinition.fromJson(toJson());
 
-  /// converts a [SubstanceDefinitionBuilder]
-  /// to [Map<String, dynamic>]
+  /// Converts a [SubstanceDefinitionBuilder]
+  /// to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -678,45 +678,64 @@ class SubstanceDefinitionBuilder extends DomainResourceBuilder {
           if (child is FhirStringBuilder) {
             id = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirStringBuilder.tryParse(stringValue);
+              if (converted != null) {
+                id = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'meta':
         {
           if (child is FhirMetaBuilder) {
             meta = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'implicitRules':
         {
           if (child is FhirUriBuilder) {
             implicitRules = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirUriBuilder.tryParse(stringValue);
+              if (converted != null) {
+                implicitRules = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'language':
         {
           if (child is CommonLanguagesBuilder) {
             language = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'text':
         {
           if (child is NarrativeBuilder) {
             text = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'contained':
         {
@@ -728,9 +747,8 @@ class SubstanceDefinitionBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             contained = [...(contained ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'extension':
         {
@@ -742,9 +760,8 @@ class SubstanceDefinitionBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             extension_ = [...(extension_ ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'modifierExtension':
         {
@@ -756,9 +773,8 @@ class SubstanceDefinitionBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             modifierExtension = [...(modifierExtension ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'identifier':
         {
@@ -770,27 +786,36 @@ class SubstanceDefinitionBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             identifier = [...(identifier ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'version':
         {
           if (child is FhirStringBuilder) {
             version = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirStringBuilder.tryParse(stringValue);
+              if (converted != null) {
+                version = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'status':
         {
           if (child is CodeableConceptBuilder) {
             status = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'classification':
         {
@@ -802,18 +827,16 @@ class SubstanceDefinitionBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             classification = [...(classification ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'domain':
         {
           if (child is CodeableConceptBuilder) {
             domain = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'grade':
         {
@@ -825,18 +848,28 @@ class SubstanceDefinitionBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             grade = [...(grade ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'description':
         {
           if (child is FhirMarkdownBuilder) {
             description = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirMarkdownBuilder.tryParse(stringValue);
+              if (converted != null) {
+                description = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'informationSource':
         {
@@ -848,9 +881,8 @@ class SubstanceDefinitionBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             informationSource = [...(informationSource ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'note':
         {
@@ -862,9 +894,8 @@ class SubstanceDefinitionBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             note = [...(note ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'manufacturer':
         {
@@ -876,9 +907,8 @@ class SubstanceDefinitionBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             manufacturer = [...(manufacturer ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'supplier':
         {
@@ -890,9 +920,8 @@ class SubstanceDefinitionBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             supplier = [...(supplier ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'moiety':
         {
@@ -904,9 +933,8 @@ class SubstanceDefinitionBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             moiety = [...(moiety ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'property':
         {
@@ -918,9 +946,8 @@ class SubstanceDefinitionBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             property = [...(property ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'molecularWeight':
         {
@@ -932,18 +959,16 @@ class SubstanceDefinitionBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             molecularWeight = [...(molecularWeight ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'structure':
         {
           if (child is SubstanceDefinitionStructureBuilder) {
             structure = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'code':
         {
@@ -955,9 +980,8 @@ class SubstanceDefinitionBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             code = [...(code ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'name':
         {
@@ -969,9 +993,8 @@ class SubstanceDefinitionBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             name = [...(name ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'relationship':
         {
@@ -983,18 +1006,16 @@ class SubstanceDefinitionBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             relationship = [...(relationship ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'sourceMaterial':
         {
           if (child is SubstanceDefinitionSourceMaterialBuilder) {
             sourceMaterial = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       default:
         throw Exception('Cannot set child value for $childName');
@@ -1725,14 +1746,14 @@ class SubstanceDefinitionMoietyBuilder extends BackboneElementBuilder {
   /// ratio or weight ratio.
   CodeableConceptBuilder? measurementType;
 
-  /// converts a [SubstanceDefinitionMoietyBuilder]
+  /// Converts a [SubstanceDefinitionMoietyBuilder]
   /// to [SubstanceDefinitionMoiety]
   @override
   SubstanceDefinitionMoiety build() =>
       SubstanceDefinitionMoiety.fromJson(toJson());
 
-  /// converts a [SubstanceDefinitionMoietyBuilder]
-  /// to [Map<String, dynamic>]
+  /// Converts a [SubstanceDefinitionMoietyBuilder]
+  /// to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1897,9 +1918,20 @@ class SubstanceDefinitionMoietyBuilder extends BackboneElementBuilder {
           if (child is FhirStringBuilder) {
             id = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirStringBuilder.tryParse(stringValue);
+              if (converted != null) {
+                id = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'extension':
         {
@@ -1911,9 +1943,8 @@ class SubstanceDefinitionMoietyBuilder extends BackboneElementBuilder {
             // Add single element to existing list or create new list
             extension_ = [...(extension_ ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'modifierExtension':
         {
@@ -1925,63 +1956,80 @@ class SubstanceDefinitionMoietyBuilder extends BackboneElementBuilder {
             // Add single element to existing list or create new list
             modifierExtension = [...(modifierExtension ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'role':
         {
           if (child is CodeableConceptBuilder) {
             role = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'identifier':
         {
           if (child is IdentifierBuilder) {
             identifier = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'name':
         {
           if (child is FhirStringBuilder) {
             name = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirStringBuilder.tryParse(stringValue);
+              if (converted != null) {
+                name = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'stereochemistry':
         {
           if (child is CodeableConceptBuilder) {
             stereochemistry = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'opticalActivity':
         {
           if (child is CodeableConceptBuilder) {
             opticalActivity = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'molecularFormula':
         {
           if (child is FhirStringBuilder) {
             molecularFormula = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirStringBuilder.tryParse(stringValue);
+              if (converted != null) {
+                molecularFormula = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'amountX':
         {
@@ -2023,9 +2071,8 @@ class SubstanceDefinitionMoietyBuilder extends BackboneElementBuilder {
           if (child is CodeableConceptBuilder) {
             measurementType = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       default:
         throw Exception('Cannot set child value for $childName');
@@ -2165,7 +2212,7 @@ class SubstanceDefinitionMoietyBuilder extends BackboneElementBuilder {
     if (stereochemistry) this.stereochemistry = null;
     if (opticalActivity) this.opticalActivity = null;
     if (molecularFormula) this.molecularFormula = null;
-    if (amount) amountX = null;
+    if (amount) this.amountX = null;
     if (measurementType) this.measurementType = null;
   }
 
@@ -2440,14 +2487,14 @@ class SubstanceDefinitionPropertyBuilder extends BackboneElementBuilder {
   /// Getter for [valueAttachment] as a AttachmentBuilder
   AttachmentBuilder? get valueAttachment => valueX?.isAs<AttachmentBuilder>();
 
-  /// converts a [SubstanceDefinitionPropertyBuilder]
+  /// Converts a [SubstanceDefinitionPropertyBuilder]
   /// to [SubstanceDefinitionProperty]
   @override
   SubstanceDefinitionProperty build() =>
       SubstanceDefinitionProperty.fromJson(toJson());
 
-  /// converts a [SubstanceDefinitionPropertyBuilder]
-  /// to [Map<String, dynamic>]
+  /// Converts a [SubstanceDefinitionPropertyBuilder]
+  /// to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2588,9 +2635,20 @@ class SubstanceDefinitionPropertyBuilder extends BackboneElementBuilder {
           if (child is FhirStringBuilder) {
             id = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirStringBuilder.tryParse(stringValue);
+              if (converted != null) {
+                id = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'extension':
         {
@@ -2602,9 +2660,8 @@ class SubstanceDefinitionPropertyBuilder extends BackboneElementBuilder {
             // Add single element to existing list or create new list
             extension_ = [...(extension_ ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'modifierExtension':
         {
@@ -2616,18 +2673,16 @@ class SubstanceDefinitionPropertyBuilder extends BackboneElementBuilder {
             // Add single element to existing list or create new list
             modifierExtension = [...(modifierExtension ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'type':
         {
           if (child is CodeableConceptBuilder) {
             type = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'valueX':
         {
@@ -2728,7 +2783,7 @@ class SubstanceDefinitionPropertyBuilder extends BackboneElementBuilder {
           'QuantityBuilder',
           'FhirDateBuilder',
           'FhirBooleanBuilder',
-          'AttachmentBuilder',
+          'AttachmentBuilder'
         ];
       case 'valueCodeableConcept':
         return ['CodeableConceptBuilder'];
@@ -2815,7 +2870,7 @@ class SubstanceDefinitionPropertyBuilder extends BackboneElementBuilder {
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
     if (type) this.type = null;
-    if (value) valueX = null;
+    if (value) this.valueX = null;
   }
 
   @override
@@ -3035,14 +3090,14 @@ class SubstanceDefinitionMolecularWeightBuilder extends BackboneElementBuilder {
   /// captured in this field.
   QuantityBuilder? amount;
 
-  /// converts a [SubstanceDefinitionMolecularWeightBuilder]
+  /// Converts a [SubstanceDefinitionMolecularWeightBuilder]
   /// to [SubstanceDefinitionMolecularWeight]
   @override
   SubstanceDefinitionMolecularWeight build() =>
       SubstanceDefinitionMolecularWeight.fromJson(toJson());
 
-  /// converts a [SubstanceDefinitionMolecularWeightBuilder]
-  /// to [Map<String, dynamic>]
+  /// Converts a [SubstanceDefinitionMolecularWeightBuilder]
+  /// to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3161,9 +3216,20 @@ class SubstanceDefinitionMolecularWeightBuilder extends BackboneElementBuilder {
           if (child is FhirStringBuilder) {
             id = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirStringBuilder.tryParse(stringValue);
+              if (converted != null) {
+                id = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'extension':
         {
@@ -3175,9 +3241,8 @@ class SubstanceDefinitionMolecularWeightBuilder extends BackboneElementBuilder {
             // Add single element to existing list or create new list
             extension_ = [...(extension_ ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'modifierExtension':
         {
@@ -3189,36 +3254,32 @@ class SubstanceDefinitionMolecularWeightBuilder extends BackboneElementBuilder {
             // Add single element to existing list or create new list
             modifierExtension = [...(modifierExtension ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'method':
         {
           if (child is CodeableConceptBuilder) {
             method = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'type':
         {
           if (child is CodeableConceptBuilder) {
             type = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'amount':
         {
           if (child is QuantityBuilder) {
             amount = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       default:
         throw Exception('Cannot set child value for $childName');
@@ -3598,14 +3659,14 @@ class SubstanceDefinitionStructureBuilder extends BackboneElementBuilder {
   /// A depiction of the structure or characterization of the substance.
   List<SubstanceDefinitionRepresentationBuilder>? representation;
 
-  /// converts a [SubstanceDefinitionStructureBuilder]
+  /// Converts a [SubstanceDefinitionStructureBuilder]
   /// to [SubstanceDefinitionStructure]
   @override
   SubstanceDefinitionStructure build() =>
       SubstanceDefinitionStructure.fromJson(toJson());
 
-  /// converts a [SubstanceDefinitionStructureBuilder]
-  /// to [Map<String, dynamic>]
+  /// Converts a [SubstanceDefinitionStructureBuilder]
+  /// to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3754,9 +3815,20 @@ class SubstanceDefinitionStructureBuilder extends BackboneElementBuilder {
           if (child is FhirStringBuilder) {
             id = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirStringBuilder.tryParse(stringValue);
+              if (converted != null) {
+                id = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'extension':
         {
@@ -3768,9 +3840,8 @@ class SubstanceDefinitionStructureBuilder extends BackboneElementBuilder {
             // Add single element to existing list or create new list
             extension_ = [...(extension_ ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'modifierExtension':
         {
@@ -3782,54 +3853,72 @@ class SubstanceDefinitionStructureBuilder extends BackboneElementBuilder {
             // Add single element to existing list or create new list
             modifierExtension = [...(modifierExtension ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'stereochemistry':
         {
           if (child is CodeableConceptBuilder) {
             stereochemistry = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'opticalActivity':
         {
           if (child is CodeableConceptBuilder) {
             opticalActivity = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'molecularFormula':
         {
           if (child is FhirStringBuilder) {
             molecularFormula = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirStringBuilder.tryParse(stringValue);
+              if (converted != null) {
+                molecularFormula = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'molecularFormulaByMoiety':
         {
           if (child is FhirStringBuilder) {
             molecularFormulaByMoiety = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirStringBuilder.tryParse(stringValue);
+              if (converted != null) {
+                molecularFormulaByMoiety = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'molecularWeight':
         {
           if (child is SubstanceDefinitionMolecularWeightBuilder) {
             molecularWeight = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'technique':
         {
@@ -3841,9 +3930,8 @@ class SubstanceDefinitionStructureBuilder extends BackboneElementBuilder {
             // Add single element to existing list or create new list
             technique = [...(technique ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'sourceDocument':
         {
@@ -3855,9 +3943,8 @@ class SubstanceDefinitionStructureBuilder extends BackboneElementBuilder {
             // Add single element to existing list or create new list
             sourceDocument = [...(sourceDocument ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'representation':
         {
@@ -3869,9 +3956,8 @@ class SubstanceDefinitionStructureBuilder extends BackboneElementBuilder {
             // Add single element to existing list or create new list
             representation = [...(representation ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       default:
         throw Exception('Cannot set child value for $childName');
@@ -4280,14 +4366,14 @@ class SubstanceDefinitionRepresentationBuilder extends BackboneElementBuilder {
   /// file.
   ReferenceBuilder? document;
 
-  /// converts a [SubstanceDefinitionRepresentationBuilder]
+  /// Converts a [SubstanceDefinitionRepresentationBuilder]
   /// to [SubstanceDefinitionRepresentation]
   @override
   SubstanceDefinitionRepresentation build() =>
       SubstanceDefinitionRepresentation.fromJson(toJson());
 
-  /// converts a [SubstanceDefinitionRepresentationBuilder]
-  /// to [Map<String, dynamic>]
+  /// Converts a [SubstanceDefinitionRepresentationBuilder]
+  /// to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -4412,9 +4498,20 @@ class SubstanceDefinitionRepresentationBuilder extends BackboneElementBuilder {
           if (child is FhirStringBuilder) {
             id = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirStringBuilder.tryParse(stringValue);
+              if (converted != null) {
+                id = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'extension':
         {
@@ -4426,9 +4523,8 @@ class SubstanceDefinitionRepresentationBuilder extends BackboneElementBuilder {
             // Add single element to existing list or create new list
             extension_ = [...(extension_ ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'modifierExtension':
         {
@@ -4440,45 +4536,52 @@ class SubstanceDefinitionRepresentationBuilder extends BackboneElementBuilder {
             // Add single element to existing list or create new list
             modifierExtension = [...(modifierExtension ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'type':
         {
           if (child is CodeableConceptBuilder) {
             type = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'representation':
         {
           if (child is FhirStringBuilder) {
             representation = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirStringBuilder.tryParse(stringValue);
+              if (converted != null) {
+                representation = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'format':
         {
           if (child is CodeableConceptBuilder) {
             format = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'document':
         {
           if (child is ReferenceBuilder) {
             document = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       default:
         throw Exception('Cannot set child value for $childName');
@@ -4834,13 +4937,13 @@ class SubstanceDefinitionCodeBuilder extends BackboneElementBuilder {
   /// Supporting literature.
   List<ReferenceBuilder>? source;
 
-  /// converts a [SubstanceDefinitionCodeBuilder]
+  /// Converts a [SubstanceDefinitionCodeBuilder]
   /// to [SubstanceDefinitionCode]
   @override
   SubstanceDefinitionCode build() => SubstanceDefinitionCode.fromJson(toJson());
 
-  /// converts a [SubstanceDefinitionCodeBuilder]
-  /// to [Map<String, dynamic>]
+  /// Converts a [SubstanceDefinitionCodeBuilder]
+  /// to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -4971,9 +5074,20 @@ class SubstanceDefinitionCodeBuilder extends BackboneElementBuilder {
           if (child is FhirStringBuilder) {
             id = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirStringBuilder.tryParse(stringValue);
+              if (converted != null) {
+                id = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'extension':
         {
@@ -4985,9 +5099,8 @@ class SubstanceDefinitionCodeBuilder extends BackboneElementBuilder {
             // Add single element to existing list or create new list
             extension_ = [...(extension_ ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'modifierExtension':
         {
@@ -4999,36 +5112,44 @@ class SubstanceDefinitionCodeBuilder extends BackboneElementBuilder {
             // Add single element to existing list or create new list
             modifierExtension = [...(modifierExtension ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'code':
         {
           if (child is CodeableConceptBuilder) {
             code = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'status':
         {
           if (child is CodeableConceptBuilder) {
             status = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'statusDate':
         {
           if (child is FhirDateTimeBuilder) {
             statusDate = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirDateTimeBuilder.tryParse(stringValue);
+              if (converted != null) {
+                statusDate = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'note':
         {
@@ -5040,9 +5161,8 @@ class SubstanceDefinitionCodeBuilder extends BackboneElementBuilder {
             // Add single element to existing list or create new list
             note = [...(note ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'source':
         {
@@ -5054,9 +5174,8 @@ class SubstanceDefinitionCodeBuilder extends BackboneElementBuilder {
             // Add single element to existing list or create new list
             source = [...(source ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       default:
         throw Exception('Cannot set child value for $childName');
@@ -5515,13 +5634,13 @@ class SubstanceDefinitionNameBuilder extends BackboneElementBuilder {
   /// Supporting literature.
   List<ReferenceBuilder>? source;
 
-  /// converts a [SubstanceDefinitionNameBuilder]
+  /// Converts a [SubstanceDefinitionNameBuilder]
   /// to [SubstanceDefinitionName]
   @override
   SubstanceDefinitionName build() => SubstanceDefinitionName.fromJson(toJson());
 
-  /// converts a [SubstanceDefinitionNameBuilder]
-  /// to [Map<String, dynamic>]
+  /// Converts a [SubstanceDefinitionNameBuilder]
+  /// to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -5688,9 +5807,20 @@ class SubstanceDefinitionNameBuilder extends BackboneElementBuilder {
           if (child is FhirStringBuilder) {
             id = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirStringBuilder.tryParse(stringValue);
+              if (converted != null) {
+                id = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'extension':
         {
@@ -5702,9 +5832,8 @@ class SubstanceDefinitionNameBuilder extends BackboneElementBuilder {
             // Add single element to existing list or create new list
             extension_ = [...(extension_ ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'modifierExtension':
         {
@@ -5716,45 +5845,64 @@ class SubstanceDefinitionNameBuilder extends BackboneElementBuilder {
             // Add single element to existing list or create new list
             modifierExtension = [...(modifierExtension ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'name':
         {
           if (child is FhirStringBuilder) {
             name = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirStringBuilder.tryParse(stringValue);
+              if (converted != null) {
+                name = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'type':
         {
           if (child is CodeableConceptBuilder) {
             type = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'status':
         {
           if (child is CodeableConceptBuilder) {
             status = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'preferred':
         {
           if (child is FhirBooleanBuilder) {
             preferred = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirBooleanBuilder.tryParse(stringValue);
+              if (converted != null) {
+                preferred = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'language':
         {
@@ -5766,9 +5914,8 @@ class SubstanceDefinitionNameBuilder extends BackboneElementBuilder {
             // Add single element to existing list or create new list
             language = [...(language ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'domain':
         {
@@ -5780,9 +5927,8 @@ class SubstanceDefinitionNameBuilder extends BackboneElementBuilder {
             // Add single element to existing list or create new list
             domain = [...(domain ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'jurisdiction':
         {
@@ -5794,9 +5940,8 @@ class SubstanceDefinitionNameBuilder extends BackboneElementBuilder {
             // Add single element to existing list or create new list
             jurisdiction = [...(jurisdiction ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'synonym':
         {
@@ -5808,9 +5953,8 @@ class SubstanceDefinitionNameBuilder extends BackboneElementBuilder {
             // Add single element to existing list or create new list
             synonym = [...(synonym ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'translation':
         {
@@ -5822,9 +5966,8 @@ class SubstanceDefinitionNameBuilder extends BackboneElementBuilder {
             // Add single element to existing list or create new list
             translation = [...(translation ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'official':
         {
@@ -5836,9 +5979,8 @@ class SubstanceDefinitionNameBuilder extends BackboneElementBuilder {
             // Add single element to existing list or create new list
             official = [...(official ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'source':
         {
@@ -5850,9 +5992,8 @@ class SubstanceDefinitionNameBuilder extends BackboneElementBuilder {
             // Add single element to existing list or create new list
             source = [...(source ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       default:
         throw Exception('Cannot set child value for $childName');
@@ -6296,14 +6437,14 @@ class SubstanceDefinitionOfficialBuilder extends BackboneElementBuilder {
   /// Date of the official name change.
   FhirDateTimeBuilder? date;
 
-  /// converts a [SubstanceDefinitionOfficialBuilder]
+  /// Converts a [SubstanceDefinitionOfficialBuilder]
   /// to [SubstanceDefinitionOfficial]
   @override
   SubstanceDefinitionOfficial build() =>
       SubstanceDefinitionOfficial.fromJson(toJson());
 
-  /// converts a [SubstanceDefinitionOfficialBuilder]
-  /// to [Map<String, dynamic>]
+  /// Converts a [SubstanceDefinitionOfficialBuilder]
+  /// to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -6422,9 +6563,20 @@ class SubstanceDefinitionOfficialBuilder extends BackboneElementBuilder {
           if (child is FhirStringBuilder) {
             id = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirStringBuilder.tryParse(stringValue);
+              if (converted != null) {
+                id = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'extension':
         {
@@ -6436,9 +6588,8 @@ class SubstanceDefinitionOfficialBuilder extends BackboneElementBuilder {
             // Add single element to existing list or create new list
             extension_ = [...(extension_ ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'modifierExtension':
         {
@@ -6450,36 +6601,44 @@ class SubstanceDefinitionOfficialBuilder extends BackboneElementBuilder {
             // Add single element to existing list or create new list
             modifierExtension = [...(modifierExtension ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'authority':
         {
           if (child is CodeableConceptBuilder) {
             authority = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'status':
         {
           if (child is CodeableConceptBuilder) {
             status = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'date':
         {
           if (child is FhirDateTimeBuilder) {
             date = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirDateTimeBuilder.tryParse(stringValue);
+              if (converted != null) {
+                date = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       default:
         throw Exception('Cannot set child value for $childName');
@@ -6867,14 +7026,14 @@ class SubstanceDefinitionRelationshipBuilder extends BackboneElementBuilder {
   /// Supporting literature.
   List<ReferenceBuilder>? source;
 
-  /// converts a [SubstanceDefinitionRelationshipBuilder]
+  /// Converts a [SubstanceDefinitionRelationshipBuilder]
   /// to [SubstanceDefinitionRelationship]
   @override
   SubstanceDefinitionRelationship build() =>
       SubstanceDefinitionRelationship.fromJson(toJson());
 
-  /// converts a [SubstanceDefinitionRelationshipBuilder]
-  /// to [Map<String, dynamic>]
+  /// Converts a [SubstanceDefinitionRelationshipBuilder]
+  /// to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -6910,9 +7069,7 @@ class SubstanceDefinitionRelationshipBuilder extends BackboneElementBuilder {
     if (substanceDefinitionX != null) {
       final fhirType = substanceDefinitionX!.fhirType;
       addField(
-        'substanceDefinition${fhirType.capitalize()}',
-        substanceDefinitionX,
-      );
+          'substanceDefinition${fhirType.capitalize()}', substanceDefinitionX);
     }
 
     addField('type', type);
@@ -7056,9 +7213,20 @@ class SubstanceDefinitionRelationshipBuilder extends BackboneElementBuilder {
           if (child is FhirStringBuilder) {
             id = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirStringBuilder.tryParse(stringValue);
+              if (converted != null) {
+                id = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'extension':
         {
@@ -7070,9 +7238,8 @@ class SubstanceDefinitionRelationshipBuilder extends BackboneElementBuilder {
             // Add single element to existing list or create new list
             extension_ = [...(extension_ ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'modifierExtension':
         {
@@ -7084,9 +7251,8 @@ class SubstanceDefinitionRelationshipBuilder extends BackboneElementBuilder {
             // Add single element to existing list or create new list
             modifierExtension = [...(modifierExtension ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'substanceDefinitionX':
         {
@@ -7129,18 +7295,28 @@ class SubstanceDefinitionRelationshipBuilder extends BackboneElementBuilder {
           if (child is CodeableConceptBuilder) {
             type = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'isDefining':
         {
           if (child is FhirBooleanBuilder) {
             isDefining = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirBooleanBuilder.tryParse(stringValue);
+              if (converted != null) {
+                isDefining = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'amountX':
         {
@@ -7195,18 +7371,16 @@ class SubstanceDefinitionRelationshipBuilder extends BackboneElementBuilder {
           if (child is RatioBuilder) {
             ratioHighLimitAmount = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'comparator':
         {
           if (child is CodeableConceptBuilder) {
             comparator = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'source':
         {
@@ -7218,9 +7392,8 @@ class SubstanceDefinitionRelationshipBuilder extends BackboneElementBuilder {
             // Add single element to existing list or create new list
             source = [...(source ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       default:
         throw Exception('Cannot set child value for $childName');
@@ -7365,10 +7538,10 @@ class SubstanceDefinitionRelationshipBuilder extends BackboneElementBuilder {
     if (id) this.id = null;
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
-    if (substanceDefinition) substanceDefinitionX = null;
+    if (substanceDefinition) this.substanceDefinitionX = null;
     if (type) this.type = null;
     if (isDefining) this.isDefining = null;
-    if (amount) amountX = null;
+    if (amount) this.amountX = null;
     if (ratioHighLimitAmount) this.ratioHighLimitAmount = null;
     if (comparator) this.comparator = null;
     if (source) this.source = null;
@@ -7656,14 +7829,14 @@ class SubstanceDefinitionSourceMaterialBuilder extends BackboneElementBuilder {
   /// The country or countries where the material is harvested.
   List<CodeableConceptBuilder>? countryOfOrigin;
 
-  /// converts a [SubstanceDefinitionSourceMaterialBuilder]
+  /// Converts a [SubstanceDefinitionSourceMaterialBuilder]
   /// to [SubstanceDefinitionSourceMaterial]
   @override
   SubstanceDefinitionSourceMaterial build() =>
       SubstanceDefinitionSourceMaterial.fromJson(toJson());
 
-  /// converts a [SubstanceDefinitionSourceMaterialBuilder]
-  /// to [Map<String, dynamic>]
+  /// Converts a [SubstanceDefinitionSourceMaterialBuilder]
+  /// to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -7794,9 +7967,20 @@ class SubstanceDefinitionSourceMaterialBuilder extends BackboneElementBuilder {
           if (child is FhirStringBuilder) {
             id = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirStringBuilder.tryParse(stringValue);
+              if (converted != null) {
+                id = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'extension':
         {
@@ -7808,9 +7992,8 @@ class SubstanceDefinitionSourceMaterialBuilder extends BackboneElementBuilder {
             // Add single element to existing list or create new list
             extension_ = [...(extension_ ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'modifierExtension':
         {
@@ -7822,45 +8005,40 @@ class SubstanceDefinitionSourceMaterialBuilder extends BackboneElementBuilder {
             // Add single element to existing list or create new list
             modifierExtension = [...(modifierExtension ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'type':
         {
           if (child is CodeableConceptBuilder) {
             type = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'genus':
         {
           if (child is CodeableConceptBuilder) {
             genus = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'species':
         {
           if (child is CodeableConceptBuilder) {
             species = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'part':
         {
           if (child is CodeableConceptBuilder) {
             part_ = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'countryOfOrigin':
         {
@@ -7872,9 +8050,8 @@ class SubstanceDefinitionSourceMaterialBuilder extends BackboneElementBuilder {
             // Add single element to existing list or create new list
             countryOfOrigin = [...(countryOfOrigin ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       default:
         throw Exception('Cannot set child value for $childName');

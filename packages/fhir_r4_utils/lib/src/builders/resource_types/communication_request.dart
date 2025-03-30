@@ -1,12 +1,12 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        CommunicationRequest,
-        CommunicationRequestPayload,
+        yamlMapToJson,
+        yamlToJson,
         R4ResourceType,
         StringExtensionForFHIR,
-        yamlMapToJson,
-        yamlToJson;
+        CommunicationRequest,
+        CommunicationRequestPayload;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -461,13 +461,13 @@ class CommunicationRequestBuilder extends DomainResourceBuilder {
   /// subject or other participants.
   List<AnnotationBuilder>? note;
 
-  /// converts a [CommunicationRequestBuilder]
+  /// Converts a [CommunicationRequestBuilder]
   /// to [CommunicationRequest]
   @override
   CommunicationRequest build() => CommunicationRequest.fromJson(toJson());
 
-  /// converts a [CommunicationRequestBuilder]
-  /// to [Map<String, dynamic>]
+  /// Converts a [CommunicationRequestBuilder]
+  /// to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -747,45 +747,64 @@ class CommunicationRequestBuilder extends DomainResourceBuilder {
           if (child is FhirStringBuilder) {
             id = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirStringBuilder.tryParse(stringValue);
+              if (converted != null) {
+                id = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'meta':
         {
           if (child is FhirMetaBuilder) {
             meta = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'implicitRules':
         {
           if (child is FhirUriBuilder) {
             implicitRules = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirUriBuilder.tryParse(stringValue);
+              if (converted != null) {
+                implicitRules = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'language':
         {
           if (child is CommonLanguagesBuilder) {
             language = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'text':
         {
           if (child is NarrativeBuilder) {
             text = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'contained':
         {
@@ -797,9 +816,8 @@ class CommunicationRequestBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             contained = [...(contained ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'extension':
         {
@@ -811,9 +829,8 @@ class CommunicationRequestBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             extension_ = [...(extension_ ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'modifierExtension':
         {
@@ -825,9 +842,8 @@ class CommunicationRequestBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             modifierExtension = [...(modifierExtension ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'identifier':
         {
@@ -839,9 +855,8 @@ class CommunicationRequestBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             identifier = [...(identifier ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'basedOn':
         {
@@ -853,9 +868,8 @@ class CommunicationRequestBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             basedOn = [...(basedOn ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'replaces':
         {
@@ -867,36 +881,32 @@ class CommunicationRequestBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             replaces = [...(replaces ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'groupIdentifier':
         {
           if (child is IdentifierBuilder) {
             groupIdentifier = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'status':
         {
           if (child is RequestStatusBuilder) {
             status = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'statusReason':
         {
           if (child is CodeableConceptBuilder) {
             statusReason = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'category':
         {
@@ -908,27 +918,36 @@ class CommunicationRequestBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             category = [...(category ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'priority':
         {
           if (child is RequestPriorityBuilder) {
             priority = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'doNotPerform':
         {
           if (child is FhirBooleanBuilder) {
             doNotPerform = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirBooleanBuilder.tryParse(stringValue);
+              if (converted != null) {
+                doNotPerform = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'medium':
         {
@@ -940,18 +959,16 @@ class CommunicationRequestBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             medium = [...(medium ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'subject':
         {
           if (child is ReferenceBuilder) {
             subject = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'about':
         {
@@ -963,18 +980,16 @@ class CommunicationRequestBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             about = [...(about ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'encounter':
         {
           if (child is ReferenceBuilder) {
             encounter = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'payload':
         {
@@ -986,9 +1001,8 @@ class CommunicationRequestBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             payload = [...(payload ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'occurrenceX':
         {
@@ -1030,18 +1044,28 @@ class CommunicationRequestBuilder extends DomainResourceBuilder {
           if (child is FhirDateTimeBuilder) {
             authoredOn = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirDateTimeBuilder.tryParse(stringValue);
+              if (converted != null) {
+                authoredOn = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'requester':
         {
           if (child is ReferenceBuilder) {
             requester = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'recipient':
         {
@@ -1053,18 +1077,16 @@ class CommunicationRequestBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             recipient = [...(recipient ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'sender':
         {
           if (child is ReferenceBuilder) {
             sender = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'reasonCode':
         {
@@ -1076,9 +1098,8 @@ class CommunicationRequestBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             reasonCode = [...(reasonCode ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'reasonReference':
         {
@@ -1090,9 +1111,8 @@ class CommunicationRequestBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             reasonReference = [...(reasonReference ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'note':
         {
@@ -1104,9 +1124,8 @@ class CommunicationRequestBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             note = [...(note ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       default:
         throw Exception('Cannot set child value for $childName');
@@ -1411,7 +1430,7 @@ class CommunicationRequestBuilder extends DomainResourceBuilder {
     if (about) this.about = null;
     if (encounter) this.encounter = null;
     if (payload) this.payload = null;
-    if (occurrence) occurrenceX = null;
+    if (occurrence) this.occurrenceX = null;
     if (authoredOn) this.authoredOn = null;
     if (requester) this.requester = null;
     if (recipient) this.recipient = null;
@@ -1826,14 +1845,14 @@ class CommunicationRequestPayloadBuilder extends BackboneElementBuilder {
   /// Getter for [contentReference] as a ReferenceBuilder
   ReferenceBuilder? get contentReference => contentX?.isAs<ReferenceBuilder>();
 
-  /// converts a [CommunicationRequestPayloadBuilder]
+  /// Converts a [CommunicationRequestPayloadBuilder]
   /// to [CommunicationRequestPayload]
   @override
   CommunicationRequestPayload build() =>
       CommunicationRequestPayload.fromJson(toJson());
 
-  /// converts a [CommunicationRequestPayloadBuilder]
-  /// to [Map<String, dynamic>]
+  /// Converts a [CommunicationRequestPayloadBuilder]
+  /// to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1960,9 +1979,20 @@ class CommunicationRequestPayloadBuilder extends BackboneElementBuilder {
           if (child is FhirStringBuilder) {
             id = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirStringBuilder.tryParse(stringValue);
+              if (converted != null) {
+                id = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'extension':
         {
@@ -1974,9 +2004,8 @@ class CommunicationRequestPayloadBuilder extends BackboneElementBuilder {
             // Add single element to existing list or create new list
             extension_ = [...(extension_ ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'modifierExtension':
         {
@@ -1988,9 +2017,8 @@ class CommunicationRequestPayloadBuilder extends BackboneElementBuilder {
             // Add single element to existing list or create new list
             modifierExtension = [...(modifierExtension ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'contentX':
         {
@@ -2123,7 +2151,7 @@ class CommunicationRequestPayloadBuilder extends BackboneElementBuilder {
     if (id) this.id = null;
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
-    if (content) contentX = null;
+    if (content) this.contentX = null;
   }
 
   @override

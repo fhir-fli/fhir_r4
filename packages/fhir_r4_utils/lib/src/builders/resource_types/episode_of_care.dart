@@ -1,12 +1,13 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        EpisodeOfCare,
-        EpisodeOfCareDiagnosis,
-        EpisodeOfCareStatusHistory,
-        R4ResourceType,
         yamlMapToJson,
-        yamlToJson;
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        EpisodeOfCare,
+        EpisodeOfCareStatusHistory,
+        EpisodeOfCareDiagnosis;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -318,13 +319,13 @@ class EpisodeOfCareBuilder extends DomainResourceBuilder {
   /// EpisodeOfCare.
   List<ReferenceBuilder>? account;
 
-  /// converts a [EpisodeOfCareBuilder]
+  /// Converts a [EpisodeOfCareBuilder]
   /// to [EpisodeOfCare]
   @override
   EpisodeOfCare build() => EpisodeOfCare.fromJson(toJson());
 
-  /// converts a [EpisodeOfCareBuilder]
-  /// to [Map<String, dynamic>]
+  /// Converts a [EpisodeOfCareBuilder]
+  /// to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -528,45 +529,64 @@ class EpisodeOfCareBuilder extends DomainResourceBuilder {
           if (child is FhirStringBuilder) {
             id = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirStringBuilder.tryParse(stringValue);
+              if (converted != null) {
+                id = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'meta':
         {
           if (child is FhirMetaBuilder) {
             meta = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'implicitRules':
         {
           if (child is FhirUriBuilder) {
             implicitRules = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirUriBuilder.tryParse(stringValue);
+              if (converted != null) {
+                implicitRules = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'language':
         {
           if (child is CommonLanguagesBuilder) {
             language = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'text':
         {
           if (child is NarrativeBuilder) {
             text = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'contained':
         {
@@ -578,9 +598,8 @@ class EpisodeOfCareBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             contained = [...(contained ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'extension':
         {
@@ -592,9 +611,8 @@ class EpisodeOfCareBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             extension_ = [...(extension_ ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'modifierExtension':
         {
@@ -606,9 +624,8 @@ class EpisodeOfCareBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             modifierExtension = [...(modifierExtension ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'identifier':
         {
@@ -620,18 +637,16 @@ class EpisodeOfCareBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             identifier = [...(identifier ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'status':
         {
           if (child is EpisodeOfCareStatusBuilder) {
             status = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'statusHistory':
         {
@@ -643,9 +658,8 @@ class EpisodeOfCareBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             statusHistory = [...(statusHistory ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'type':
         {
@@ -657,9 +671,8 @@ class EpisodeOfCareBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             type = [...(type ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'diagnosis':
         {
@@ -671,36 +684,32 @@ class EpisodeOfCareBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             diagnosis = [...(diagnosis ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'patient':
         {
           if (child is ReferenceBuilder) {
             patient = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'managingOrganization':
         {
           if (child is ReferenceBuilder) {
             managingOrganization = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'period':
         {
           if (child is PeriodBuilder) {
             period = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'referralRequest':
         {
@@ -712,18 +721,16 @@ class EpisodeOfCareBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             referralRequest = [...(referralRequest ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'careManager':
         {
           if (child is ReferenceBuilder) {
             careManager = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'team':
         {
@@ -735,9 +742,8 @@ class EpisodeOfCareBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             team = [...(team ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'account':
         {
@@ -749,9 +755,8 @@ class EpisodeOfCareBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             account = [...(account ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       default:
         throw Exception('Cannot set child value for $childName');
@@ -1285,14 +1290,14 @@ class EpisodeOfCareStatusHistoryBuilder extends BackboneElementBuilder {
   /// The period during this EpisodeOfCare that the specific status applied.
   PeriodBuilder? period;
 
-  /// converts a [EpisodeOfCareStatusHistoryBuilder]
+  /// Converts a [EpisodeOfCareStatusHistoryBuilder]
   /// to [EpisodeOfCareStatusHistory]
   @override
   EpisodeOfCareStatusHistory build() =>
       EpisodeOfCareStatusHistory.fromJson(toJson());
 
-  /// converts a [EpisodeOfCareStatusHistoryBuilder]
-  /// to [Map<String, dynamic>]
+  /// Converts a [EpisodeOfCareStatusHistoryBuilder]
+  /// to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1405,9 +1410,20 @@ class EpisodeOfCareStatusHistoryBuilder extends BackboneElementBuilder {
           if (child is FhirStringBuilder) {
             id = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirStringBuilder.tryParse(stringValue);
+              if (converted != null) {
+                id = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'extension':
         {
@@ -1419,9 +1435,8 @@ class EpisodeOfCareStatusHistoryBuilder extends BackboneElementBuilder {
             // Add single element to existing list or create new list
             extension_ = [...(extension_ ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'modifierExtension':
         {
@@ -1433,27 +1448,24 @@ class EpisodeOfCareStatusHistoryBuilder extends BackboneElementBuilder {
             // Add single element to existing list or create new list
             modifierExtension = [...(modifierExtension ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'status':
         {
           if (child is EpisodeOfCareStatusBuilder) {
             status = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'period':
         {
           if (child is PeriodBuilder) {
             period = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       default:
         throw Exception('Cannot set child value for $childName');
@@ -1745,13 +1757,13 @@ class EpisodeOfCareDiagnosisBuilder extends BackboneElementBuilder {
   /// Ranking of the diagnosis (for each role type).
   FhirPositiveIntBuilder? rank;
 
-  /// converts a [EpisodeOfCareDiagnosisBuilder]
+  /// Converts a [EpisodeOfCareDiagnosisBuilder]
   /// to [EpisodeOfCareDiagnosis]
   @override
   EpisodeOfCareDiagnosis build() => EpisodeOfCareDiagnosis.fromJson(toJson());
 
-  /// converts a [EpisodeOfCareDiagnosisBuilder]
-  /// to [Map<String, dynamic>]
+  /// Converts a [EpisodeOfCareDiagnosisBuilder]
+  /// to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1870,9 +1882,20 @@ class EpisodeOfCareDiagnosisBuilder extends BackboneElementBuilder {
           if (child is FhirStringBuilder) {
             id = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirStringBuilder.tryParse(stringValue);
+              if (converted != null) {
+                id = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'extension':
         {
@@ -1884,9 +1907,8 @@ class EpisodeOfCareDiagnosisBuilder extends BackboneElementBuilder {
             // Add single element to existing list or create new list
             extension_ = [...(extension_ ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'modifierExtension':
         {
@@ -1898,36 +1920,48 @@ class EpisodeOfCareDiagnosisBuilder extends BackboneElementBuilder {
             // Add single element to existing list or create new list
             modifierExtension = [...(modifierExtension ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'condition':
         {
           if (child is ReferenceBuilder) {
             condition = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'role':
         {
           if (child is CodeableConceptBuilder) {
             role = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'rank':
         {
           if (child is FhirPositiveIntBuilder) {
             rank = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              // For number types, first parse to num then pass the number directly
+              final numValue = num.tryParse(stringValue);
+              if (numValue != null) {
+                final converted = FhirPositiveIntBuilder.tryParse(numValue);
+                if (converted != null) {
+                  rank = converted;
+                  return;
+                }
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       default:
         throw Exception('Cannot set child value for $childName');

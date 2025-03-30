@@ -1,12 +1,12 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        R4ResourceType,
-        RiskAssessment,
-        RiskAssessmentPrediction,
-        StringExtensionForFHIR,
         yamlMapToJson,
-        yamlToJson;
+        yamlToJson,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        RiskAssessment,
+        RiskAssessmentPrediction;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -372,13 +372,13 @@ class RiskAssessmentBuilder extends DomainResourceBuilder {
   /// Additional comments about the risk assessment.
   List<AnnotationBuilder>? note;
 
-  /// converts a [RiskAssessmentBuilder]
+  /// Converts a [RiskAssessmentBuilder]
   /// to [RiskAssessment]
   @override
   RiskAssessment build() => RiskAssessment.fromJson(toJson());
 
-  /// converts a [RiskAssessmentBuilder]
-  /// to [Map<String, dynamic>]
+  /// Converts a [RiskAssessmentBuilder]
+  /// to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -628,45 +628,64 @@ class RiskAssessmentBuilder extends DomainResourceBuilder {
           if (child is FhirStringBuilder) {
             id = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirStringBuilder.tryParse(stringValue);
+              if (converted != null) {
+                id = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'meta':
         {
           if (child is FhirMetaBuilder) {
             meta = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'implicitRules':
         {
           if (child is FhirUriBuilder) {
             implicitRules = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirUriBuilder.tryParse(stringValue);
+              if (converted != null) {
+                implicitRules = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'language':
         {
           if (child is CommonLanguagesBuilder) {
             language = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'text':
         {
           if (child is NarrativeBuilder) {
             text = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'contained':
         {
@@ -678,9 +697,8 @@ class RiskAssessmentBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             contained = [...(contained ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'extension':
         {
@@ -692,9 +710,8 @@ class RiskAssessmentBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             extension_ = [...(extension_ ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'modifierExtension':
         {
@@ -706,9 +723,8 @@ class RiskAssessmentBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             modifierExtension = [...(modifierExtension ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'identifier':
         {
@@ -720,72 +736,64 @@ class RiskAssessmentBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             identifier = [...(identifier ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'basedOn':
         {
           if (child is ReferenceBuilder) {
             basedOn = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'parent':
         {
           if (child is ReferenceBuilder) {
             parent = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'status':
         {
           if (child is ObservationStatusBuilder) {
             status = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'method':
         {
           if (child is CodeableConceptBuilder) {
             method = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'code':
         {
           if (child is CodeableConceptBuilder) {
             code = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'subject':
         {
           if (child is ReferenceBuilder) {
             subject = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'encounter':
         {
           if (child is ReferenceBuilder) {
             encounter = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'occurrenceX':
         {
@@ -827,18 +835,16 @@ class RiskAssessmentBuilder extends DomainResourceBuilder {
           if (child is ReferenceBuilder) {
             condition = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'performer':
         {
           if (child is ReferenceBuilder) {
             performer = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'reasonCode':
         {
@@ -850,9 +856,8 @@ class RiskAssessmentBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             reasonCode = [...(reasonCode ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'reasonReference':
         {
@@ -864,9 +869,8 @@ class RiskAssessmentBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             reasonReference = [...(reasonReference ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'basis':
         {
@@ -878,9 +882,8 @@ class RiskAssessmentBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             basis = [...(basis ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'prediction':
         {
@@ -892,18 +895,28 @@ class RiskAssessmentBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             prediction = [...(prediction ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'mitigation':
         {
           if (child is FhirStringBuilder) {
             mitigation = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirStringBuilder.tryParse(stringValue);
+              if (converted != null) {
+                mitigation = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'note':
         {
@@ -915,9 +928,8 @@ class RiskAssessmentBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             note = [...(note ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       default:
         throw Exception('Cannot set child value for $childName');
@@ -1176,7 +1188,7 @@ class RiskAssessmentBuilder extends DomainResourceBuilder {
     if (code) this.code = null;
     if (subject) this.subject = null;
     if (encounter) this.encounter = null;
-    if (occurrence) occurrenceX = null;
+    if (occurrence) this.occurrenceX = null;
     if (condition) this.condition = null;
     if (performer) this.performer = null;
     if (reasonCode) this.reasonCode = null;
@@ -1615,14 +1627,14 @@ class RiskAssessmentPredictionBuilder extends BackboneElementBuilder {
   /// Additional information explaining the basis for the prediction.
   FhirStringBuilder? rationale;
 
-  /// converts a [RiskAssessmentPredictionBuilder]
+  /// Converts a [RiskAssessmentPredictionBuilder]
   /// to [RiskAssessmentPrediction]
   @override
   RiskAssessmentPrediction build() =>
       RiskAssessmentPrediction.fromJson(toJson());
 
-  /// converts a [RiskAssessmentPredictionBuilder]
-  /// to [Map<String, dynamic>]
+  /// Converts a [RiskAssessmentPredictionBuilder]
+  /// to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1791,9 +1803,20 @@ class RiskAssessmentPredictionBuilder extends BackboneElementBuilder {
           if (child is FhirStringBuilder) {
             id = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirStringBuilder.tryParse(stringValue);
+              if (converted != null) {
+                id = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'extension':
         {
@@ -1805,9 +1828,8 @@ class RiskAssessmentPredictionBuilder extends BackboneElementBuilder {
             // Add single element to existing list or create new list
             extension_ = [...(extension_ ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'modifierExtension':
         {
@@ -1819,18 +1841,16 @@ class RiskAssessmentPredictionBuilder extends BackboneElementBuilder {
             // Add single element to existing list or create new list
             modifierExtension = [...(modifierExtension ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'outcome':
         {
           if (child is CodeableConceptBuilder) {
             outcome = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'probabilityX':
         {
@@ -1872,18 +1892,32 @@ class RiskAssessmentPredictionBuilder extends BackboneElementBuilder {
           if (child is CodeableConceptBuilder) {
             qualitativeRisk = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'relativeRisk':
         {
           if (child is FhirDecimalBuilder) {
             relativeRisk = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              // For number types, first parse to num then pass the number directly
+              final numValue = num.tryParse(stringValue);
+              if (numValue != null) {
+                final converted = FhirDecimalBuilder.tryParse(numValue);
+                if (converted != null) {
+                  relativeRisk = converted;
+                  return;
+                }
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'whenX':
         {
@@ -1925,9 +1959,20 @@ class RiskAssessmentPredictionBuilder extends BackboneElementBuilder {
           if (child is FhirStringBuilder) {
             rationale = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirStringBuilder.tryParse(stringValue);
+              if (converted != null) {
+                rationale = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       default:
         throw Exception('Cannot set child value for $childName');
@@ -2058,10 +2103,10 @@ class RiskAssessmentPredictionBuilder extends BackboneElementBuilder {
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
     if (outcome) this.outcome = null;
-    if (probability) probabilityX = null;
+    if (probability) this.probabilityX = null;
     if (qualitativeRisk) this.qualitativeRisk = null;
     if (relativeRisk) this.relativeRisk = null;
-    if (when) whenX = null;
+    if (when) this.whenX = null;
     if (rationale) this.rationale = null;
   }
 

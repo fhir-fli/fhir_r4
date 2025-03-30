@@ -1,11 +1,11 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        MedicationStatement,
+        yamlMapToJson,
+        yamlToJson,
         R4ResourceType,
         StringExtensionForFHIR,
-        yamlMapToJson,
-        yamlToJson;
+        MedicationStatement;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -434,13 +434,13 @@ class MedicationStatementBuilder extends DomainResourceBuilder {
   /// Indicates how the medication is/was or should be taken by the patient.
   List<DosageBuilder>? dosage;
 
-  /// converts a [MedicationStatementBuilder]
+  /// Converts a [MedicationStatementBuilder]
   /// to [MedicationStatement]
   @override
   MedicationStatement build() => MedicationStatement.fromJson(toJson());
 
-  /// converts a [MedicationStatementBuilder]
-  /// to [Map<String, dynamic>]
+  /// Converts a [MedicationStatementBuilder]
+  /// to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -706,45 +706,64 @@ class MedicationStatementBuilder extends DomainResourceBuilder {
           if (child is FhirStringBuilder) {
             id = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirStringBuilder.tryParse(stringValue);
+              if (converted != null) {
+                id = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'meta':
         {
           if (child is FhirMetaBuilder) {
             meta = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'implicitRules':
         {
           if (child is FhirUriBuilder) {
             implicitRules = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirUriBuilder.tryParse(stringValue);
+              if (converted != null) {
+                implicitRules = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'language':
         {
           if (child is CommonLanguagesBuilder) {
             language = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'text':
         {
           if (child is NarrativeBuilder) {
             text = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'contained':
         {
@@ -756,9 +775,8 @@ class MedicationStatementBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             contained = [...(contained ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'extension':
         {
@@ -770,9 +788,8 @@ class MedicationStatementBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             extension_ = [...(extension_ ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'modifierExtension':
         {
@@ -784,9 +801,8 @@ class MedicationStatementBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             modifierExtension = [...(modifierExtension ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'identifier':
         {
@@ -798,9 +814,8 @@ class MedicationStatementBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             identifier = [...(identifier ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'basedOn':
         {
@@ -812,9 +827,8 @@ class MedicationStatementBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             basedOn = [...(basedOn ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'partOf':
         {
@@ -826,18 +840,16 @@ class MedicationStatementBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             partOf = [...(partOf ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'status':
         {
           if (child is MedicationStatementStatusCodesBuilder) {
             status = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'statusReason':
         {
@@ -849,18 +861,16 @@ class MedicationStatementBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             statusReason = [...(statusReason ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'category':
         {
           if (child is CodeableConceptBuilder) {
             category = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'medicationX':
         {
@@ -902,18 +912,16 @@ class MedicationStatementBuilder extends DomainResourceBuilder {
           if (child is ReferenceBuilder) {
             subject = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'context':
         {
           if (child is ReferenceBuilder) {
             context = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'effectiveX':
         {
@@ -955,18 +963,28 @@ class MedicationStatementBuilder extends DomainResourceBuilder {
           if (child is FhirDateTimeBuilder) {
             dateAsserted = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirDateTimeBuilder.tryParse(stringValue);
+              if (converted != null) {
+                dateAsserted = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'informationSource':
         {
           if (child is ReferenceBuilder) {
             informationSource = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'derivedFrom':
         {
@@ -978,9 +996,8 @@ class MedicationStatementBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             derivedFrom = [...(derivedFrom ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'reasonCode':
         {
@@ -992,9 +1009,8 @@ class MedicationStatementBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             reasonCode = [...(reasonCode ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'reasonReference':
         {
@@ -1006,9 +1022,8 @@ class MedicationStatementBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             reasonReference = [...(reasonReference ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'note':
         {
@@ -1020,9 +1035,8 @@ class MedicationStatementBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             note = [...(note ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'dosage':
         {
@@ -1034,9 +1048,8 @@ class MedicationStatementBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             dosage = [...(dosage ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       default:
         throw Exception('Cannot set child value for $childName');
@@ -1305,10 +1318,10 @@ class MedicationStatementBuilder extends DomainResourceBuilder {
     if (status) this.status = null;
     if (statusReason) this.statusReason = null;
     if (category) this.category = null;
-    if (medication) medicationX = null;
+    if (medication) this.medicationX = null;
     if (subject) this.subject = null;
     if (context) this.context = null;
-    if (effective) effectiveX = null;
+    if (effective) this.effectiveX = null;
     if (dateAsserted) this.dateAsserted = null;
     if (informationSource) this.informationSource = null;
     if (derivedFrom) this.derivedFrom = null;

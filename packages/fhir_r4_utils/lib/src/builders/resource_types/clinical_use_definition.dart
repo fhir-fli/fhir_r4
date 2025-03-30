@@ -1,18 +1,18 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        ClinicalUseDefinition,
-        ClinicalUseDefinitionContraindication,
-        ClinicalUseDefinitionIndication,
-        ClinicalUseDefinitionInteractant,
-        ClinicalUseDefinitionInteraction,
-        ClinicalUseDefinitionOtherTherapy,
-        ClinicalUseDefinitionUndesirableEffect,
-        ClinicalUseDefinitionWarning,
+        yamlMapToJson,
+        yamlToJson,
         R4ResourceType,
         StringExtensionForFHIR,
-        yamlMapToJson,
-        yamlToJson;
+        ClinicalUseDefinition,
+        ClinicalUseDefinitionContraindication,
+        ClinicalUseDefinitionOtherTherapy,
+        ClinicalUseDefinitionIndication,
+        ClinicalUseDefinitionInteraction,
+        ClinicalUseDefinitionInteractant,
+        ClinicalUseDefinitionUndesirableEffect,
+        ClinicalUseDefinitionWarning;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -302,13 +302,13 @@ class ClinicalUseDefinitionBuilder extends DomainResourceBuilder {
   /// advice/attention if you feel unwell'.
   ClinicalUseDefinitionWarningBuilder? warning;
 
-  /// converts a [ClinicalUseDefinitionBuilder]
+  /// Converts a [ClinicalUseDefinitionBuilder]
   /// to [ClinicalUseDefinition]
   @override
   ClinicalUseDefinition build() => ClinicalUseDefinition.fromJson(toJson());
 
-  /// converts a [ClinicalUseDefinitionBuilder]
-  /// to [Map<String, dynamic>]
+  /// Converts a [ClinicalUseDefinitionBuilder]
+  /// to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -506,45 +506,64 @@ class ClinicalUseDefinitionBuilder extends DomainResourceBuilder {
           if (child is FhirStringBuilder) {
             id = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirStringBuilder.tryParse(stringValue);
+              if (converted != null) {
+                id = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'meta':
         {
           if (child is FhirMetaBuilder) {
             meta = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'implicitRules':
         {
           if (child is FhirUriBuilder) {
             implicitRules = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirUriBuilder.tryParse(stringValue);
+              if (converted != null) {
+                implicitRules = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'language':
         {
           if (child is CommonLanguagesBuilder) {
             language = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'text':
         {
           if (child is NarrativeBuilder) {
             text = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'contained':
         {
@@ -556,9 +575,8 @@ class ClinicalUseDefinitionBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             contained = [...(contained ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'extension':
         {
@@ -570,9 +588,8 @@ class ClinicalUseDefinitionBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             extension_ = [...(extension_ ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'modifierExtension':
         {
@@ -584,9 +601,8 @@ class ClinicalUseDefinitionBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             modifierExtension = [...(modifierExtension ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'identifier':
         {
@@ -598,18 +614,16 @@ class ClinicalUseDefinitionBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             identifier = [...(identifier ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'type':
         {
           if (child is ClinicalUseDefinitionTypeBuilder) {
             type = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'category':
         {
@@ -621,9 +635,8 @@ class ClinicalUseDefinitionBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             category = [...(category ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'subject':
         {
@@ -635,45 +648,40 @@ class ClinicalUseDefinitionBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             subject = [...(subject ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'status':
         {
           if (child is CodeableConceptBuilder) {
             status = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'contraindication':
         {
           if (child is ClinicalUseDefinitionContraindicationBuilder) {
             contraindication = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'indication':
         {
           if (child is ClinicalUseDefinitionIndicationBuilder) {
             indication = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'interaction':
         {
           if (child is ClinicalUseDefinitionInteractionBuilder) {
             interaction = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'population':
         {
@@ -685,27 +693,24 @@ class ClinicalUseDefinitionBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             population = [...(population ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'undesirableEffect':
         {
           if (child is ClinicalUseDefinitionUndesirableEffectBuilder) {
             undesirableEffect = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'warning':
         {
           if (child is ClinicalUseDefinitionWarningBuilder) {
             warning = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       default:
         throw Exception('Cannot set child value for $childName');
@@ -1272,14 +1277,14 @@ class ClinicalUseDefinitionContraindicationBuilder
   /// therapies described as part of the contraindication.
   List<ClinicalUseDefinitionOtherTherapyBuilder>? otherTherapy;
 
-  /// converts a [ClinicalUseDefinitionContraindicationBuilder]
+  /// Converts a [ClinicalUseDefinitionContraindicationBuilder]
   /// to [ClinicalUseDefinitionContraindication]
   @override
   ClinicalUseDefinitionContraindication build() =>
       ClinicalUseDefinitionContraindication.fromJson(toJson());
 
-  /// converts a [ClinicalUseDefinitionContraindicationBuilder]
-  /// to [Map<String, dynamic>]
+  /// Converts a [ClinicalUseDefinitionContraindicationBuilder]
+  /// to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1410,9 +1415,20 @@ class ClinicalUseDefinitionContraindicationBuilder
           if (child is FhirStringBuilder) {
             id = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirStringBuilder.tryParse(stringValue);
+              if (converted != null) {
+                id = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'extension':
         {
@@ -1424,9 +1440,8 @@ class ClinicalUseDefinitionContraindicationBuilder
             // Add single element to existing list or create new list
             extension_ = [...(extension_ ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'modifierExtension':
         {
@@ -1438,27 +1453,24 @@ class ClinicalUseDefinitionContraindicationBuilder
             // Add single element to existing list or create new list
             modifierExtension = [...(modifierExtension ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'diseaseSymptomProcedure':
         {
           if (child is CodeableReferenceBuilder) {
             diseaseSymptomProcedure = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'diseaseStatus':
         {
           if (child is CodeableReferenceBuilder) {
             diseaseStatus = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'comorbidity':
         {
@@ -1470,9 +1482,8 @@ class ClinicalUseDefinitionContraindicationBuilder
             // Add single element to existing list or create new list
             comorbidity = [...(comorbidity ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'indication':
         {
@@ -1484,9 +1495,8 @@ class ClinicalUseDefinitionContraindicationBuilder
             // Add single element to existing list or create new list
             indication = [...(indication ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'otherTherapy':
         {
@@ -1498,9 +1508,8 @@ class ClinicalUseDefinitionContraindicationBuilder
             // Add single element to existing list or create new list
             otherTherapy = [...(otherTherapy ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       default:
         throw Exception('Cannot set child value for $childName');
@@ -1835,14 +1844,14 @@ class ClinicalUseDefinitionOtherTherapyBuilder extends BackboneElementBuilder {
   /// or class of products) as part of an indication or contraindication.
   CodeableReferenceBuilder? therapy;
 
-  /// converts a [ClinicalUseDefinitionOtherTherapyBuilder]
+  /// Converts a [ClinicalUseDefinitionOtherTherapyBuilder]
   /// to [ClinicalUseDefinitionOtherTherapy]
   @override
   ClinicalUseDefinitionOtherTherapy build() =>
       ClinicalUseDefinitionOtherTherapy.fromJson(toJson());
 
-  /// converts a [ClinicalUseDefinitionOtherTherapyBuilder]
-  /// to [Map<String, dynamic>]
+  /// Converts a [ClinicalUseDefinitionOtherTherapyBuilder]
+  /// to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1955,9 +1964,20 @@ class ClinicalUseDefinitionOtherTherapyBuilder extends BackboneElementBuilder {
           if (child is FhirStringBuilder) {
             id = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirStringBuilder.tryParse(stringValue);
+              if (converted != null) {
+                id = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'extension':
         {
@@ -1969,9 +1989,8 @@ class ClinicalUseDefinitionOtherTherapyBuilder extends BackboneElementBuilder {
             // Add single element to existing list or create new list
             extension_ = [...(extension_ ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'modifierExtension':
         {
@@ -1983,27 +2002,24 @@ class ClinicalUseDefinitionOtherTherapyBuilder extends BackboneElementBuilder {
             // Add single element to existing list or create new list
             modifierExtension = [...(modifierExtension ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'relationshipType':
         {
           if (child is CodeableConceptBuilder) {
             relationshipType = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'therapy':
         {
           if (child is CodeableReferenceBuilder) {
             therapy = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       default:
         throw Exception('Cannot set child value for $childName');
@@ -2366,14 +2382,14 @@ class ClinicalUseDefinitionIndicationBuilder extends BackboneElementBuilder {
   /// therapies described as part of the indication.
   List<ClinicalUseDefinitionOtherTherapyBuilder>? otherTherapy;
 
-  /// converts a [ClinicalUseDefinitionIndicationBuilder]
+  /// Converts a [ClinicalUseDefinitionIndicationBuilder]
   /// to [ClinicalUseDefinitionIndication]
   @override
   ClinicalUseDefinitionIndication build() =>
       ClinicalUseDefinitionIndication.fromJson(toJson());
 
-  /// converts a [ClinicalUseDefinitionIndicationBuilder]
-  /// to [Map<String, dynamic>]
+  /// Converts a [ClinicalUseDefinitionIndicationBuilder]
+  /// to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2532,9 +2548,20 @@ class ClinicalUseDefinitionIndicationBuilder extends BackboneElementBuilder {
           if (child is FhirStringBuilder) {
             id = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirStringBuilder.tryParse(stringValue);
+              if (converted != null) {
+                id = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'extension':
         {
@@ -2546,9 +2573,8 @@ class ClinicalUseDefinitionIndicationBuilder extends BackboneElementBuilder {
             // Add single element to existing list or create new list
             extension_ = [...(extension_ ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'modifierExtension':
         {
@@ -2560,27 +2586,24 @@ class ClinicalUseDefinitionIndicationBuilder extends BackboneElementBuilder {
             // Add single element to existing list or create new list
             modifierExtension = [...(modifierExtension ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'diseaseSymptomProcedure':
         {
           if (child is CodeableReferenceBuilder) {
             diseaseSymptomProcedure = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'diseaseStatus':
         {
           if (child is CodeableReferenceBuilder) {
             diseaseStatus = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'comorbidity':
         {
@@ -2592,18 +2615,16 @@ class ClinicalUseDefinitionIndicationBuilder extends BackboneElementBuilder {
             // Add single element to existing list or create new list
             comorbidity = [...(comorbidity ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'intendedEffect':
         {
           if (child is CodeableReferenceBuilder) {
             intendedEffect = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'durationX':
         {
@@ -2650,9 +2671,8 @@ class ClinicalUseDefinitionIndicationBuilder extends BackboneElementBuilder {
             // Add single element to existing list or create new list
             undesirableEffect = [...(undesirableEffect ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'otherTherapy':
         {
@@ -2664,9 +2684,8 @@ class ClinicalUseDefinitionIndicationBuilder extends BackboneElementBuilder {
             // Add single element to existing list or create new list
             otherTherapy = [...(otherTherapy ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       default:
         throw Exception('Cannot set child value for $childName');
@@ -2796,7 +2815,7 @@ class ClinicalUseDefinitionIndicationBuilder extends BackboneElementBuilder {
     if (diseaseStatus) this.diseaseStatus = null;
     if (comorbidity) this.comorbidity = null;
     if (intendedEffect) this.intendedEffect = null;
-    if (duration) durationX = null;
+    if (duration) this.durationX = null;
     if (undesirableEffect) this.undesirableEffect = null;
     if (otherTherapy) this.otherTherapy = null;
   }
@@ -3087,14 +3106,14 @@ class ClinicalUseDefinitionInteractionBuilder extends BackboneElementBuilder {
   /// Actions for managing the interaction.
   List<CodeableConceptBuilder>? management;
 
-  /// converts a [ClinicalUseDefinitionInteractionBuilder]
+  /// Converts a [ClinicalUseDefinitionInteractionBuilder]
   /// to [ClinicalUseDefinitionInteraction]
   @override
   ClinicalUseDefinitionInteraction build() =>
       ClinicalUseDefinitionInteraction.fromJson(toJson());
 
-  /// converts a [ClinicalUseDefinitionInteractionBuilder]
-  /// to [Map<String, dynamic>]
+  /// Converts a [ClinicalUseDefinitionInteractionBuilder]
+  /// to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3225,9 +3244,20 @@ class ClinicalUseDefinitionInteractionBuilder extends BackboneElementBuilder {
           if (child is FhirStringBuilder) {
             id = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirStringBuilder.tryParse(stringValue);
+              if (converted != null) {
+                id = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'extension':
         {
@@ -3239,9 +3269,8 @@ class ClinicalUseDefinitionInteractionBuilder extends BackboneElementBuilder {
             // Add single element to existing list or create new list
             extension_ = [...(extension_ ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'modifierExtension':
         {
@@ -3253,9 +3282,8 @@ class ClinicalUseDefinitionInteractionBuilder extends BackboneElementBuilder {
             // Add single element to existing list or create new list
             modifierExtension = [...(modifierExtension ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'interactant':
         {
@@ -3267,36 +3295,32 @@ class ClinicalUseDefinitionInteractionBuilder extends BackboneElementBuilder {
             // Add single element to existing list or create new list
             interactant = [...(interactant ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'type':
         {
           if (child is CodeableConceptBuilder) {
             type = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'effect':
         {
           if (child is CodeableReferenceBuilder) {
             effect = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'incidence':
         {
           if (child is CodeableConceptBuilder) {
             incidence = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'management':
         {
@@ -3308,9 +3332,8 @@ class ClinicalUseDefinitionInteractionBuilder extends BackboneElementBuilder {
             // Add single element to existing list or create new list
             management = [...(management ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       default:
         throw Exception('Cannot set child value for $childName');
@@ -3640,14 +3663,14 @@ class ClinicalUseDefinitionInteractantBuilder extends BackboneElementBuilder {
   CodeableConceptBuilder? get itemCodeableConcept =>
       itemX?.isAs<CodeableConceptBuilder>();
 
-  /// converts a [ClinicalUseDefinitionInteractantBuilder]
+  /// Converts a [ClinicalUseDefinitionInteractantBuilder]
   /// to [ClinicalUseDefinitionInteractant]
   @override
   ClinicalUseDefinitionInteractant build() =>
       ClinicalUseDefinitionInteractant.fromJson(toJson());
 
-  /// converts a [ClinicalUseDefinitionInteractantBuilder]
-  /// to [Map<String, dynamic>]
+  /// Converts a [ClinicalUseDefinitionInteractantBuilder]
+  /// to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3770,9 +3793,20 @@ class ClinicalUseDefinitionInteractantBuilder extends BackboneElementBuilder {
           if (child is FhirStringBuilder) {
             id = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirStringBuilder.tryParse(stringValue);
+              if (converted != null) {
+                id = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'extension':
         {
@@ -3784,9 +3818,8 @@ class ClinicalUseDefinitionInteractantBuilder extends BackboneElementBuilder {
             // Add single element to existing list or create new list
             extension_ = [...(extension_ ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'modifierExtension':
         {
@@ -3798,9 +3831,8 @@ class ClinicalUseDefinitionInteractantBuilder extends BackboneElementBuilder {
             // Add single element to existing list or create new list
             modifierExtension = [...(modifierExtension ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'itemX':
         {
@@ -3913,7 +3945,7 @@ class ClinicalUseDefinitionInteractantBuilder extends BackboneElementBuilder {
     if (id) this.id = null;
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
-    if (item) itemX = null;
+    if (item) this.itemX = null;
   }
 
   @override
@@ -4122,14 +4154,14 @@ class ClinicalUseDefinitionUndesirableEffectBuilder
   /// How often the effect is seen.
   CodeableConceptBuilder? frequencyOfOccurrence;
 
-  /// converts a [ClinicalUseDefinitionUndesirableEffectBuilder]
+  /// Converts a [ClinicalUseDefinitionUndesirableEffectBuilder]
   /// to [ClinicalUseDefinitionUndesirableEffect]
   @override
   ClinicalUseDefinitionUndesirableEffect build() =>
       ClinicalUseDefinitionUndesirableEffect.fromJson(toJson());
 
-  /// converts a [ClinicalUseDefinitionUndesirableEffectBuilder]
-  /// to [Map<String, dynamic>]
+  /// Converts a [ClinicalUseDefinitionUndesirableEffectBuilder]
+  /// to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -4248,9 +4280,20 @@ class ClinicalUseDefinitionUndesirableEffectBuilder
           if (child is FhirStringBuilder) {
             id = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirStringBuilder.tryParse(stringValue);
+              if (converted != null) {
+                id = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'extension':
         {
@@ -4262,9 +4305,8 @@ class ClinicalUseDefinitionUndesirableEffectBuilder
             // Add single element to existing list or create new list
             extension_ = [...(extension_ ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'modifierExtension':
         {
@@ -4276,36 +4318,32 @@ class ClinicalUseDefinitionUndesirableEffectBuilder
             // Add single element to existing list or create new list
             modifierExtension = [...(modifierExtension ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'symptomConditionEffect':
         {
           if (child is CodeableReferenceBuilder) {
             symptomConditionEffect = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'classification':
         {
           if (child is CodeableConceptBuilder) {
             classification = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'frequencyOfOccurrence':
         {
           if (child is CodeableConceptBuilder) {
             frequencyOfOccurrence = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       default:
         throw Exception('Cannot set child value for $childName');
@@ -4607,14 +4645,14 @@ class ClinicalUseDefinitionWarningBuilder extends BackboneElementBuilder {
   /// A coded or unformatted textual definition of this warning.
   CodeableConceptBuilder? code;
 
-  /// converts a [ClinicalUseDefinitionWarningBuilder]
+  /// Converts a [ClinicalUseDefinitionWarningBuilder]
   /// to [ClinicalUseDefinitionWarning]
   @override
   ClinicalUseDefinitionWarning build() =>
       ClinicalUseDefinitionWarning.fromJson(toJson());
 
-  /// converts a [ClinicalUseDefinitionWarningBuilder]
-  /// to [Map<String, dynamic>]
+  /// Converts a [ClinicalUseDefinitionWarningBuilder]
+  /// to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -4727,9 +4765,20 @@ class ClinicalUseDefinitionWarningBuilder extends BackboneElementBuilder {
           if (child is FhirStringBuilder) {
             id = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirStringBuilder.tryParse(stringValue);
+              if (converted != null) {
+                id = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'extension':
         {
@@ -4741,9 +4790,8 @@ class ClinicalUseDefinitionWarningBuilder extends BackboneElementBuilder {
             // Add single element to existing list or create new list
             extension_ = [...(extension_ ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'modifierExtension':
         {
@@ -4755,27 +4803,36 @@ class ClinicalUseDefinitionWarningBuilder extends BackboneElementBuilder {
             // Add single element to existing list or create new list
             modifierExtension = [...(modifierExtension ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'description':
         {
           if (child is FhirMarkdownBuilder) {
             description = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirMarkdownBuilder.tryParse(stringValue);
+              if (converted != null) {
+                description = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'code':
         {
           if (child is CodeableConceptBuilder) {
             code = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       default:
         throw Exception('Cannot set child value for $childName');

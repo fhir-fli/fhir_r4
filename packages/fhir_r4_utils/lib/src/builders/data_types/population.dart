@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show Population, StringExtensionForFHIR, yamlMapToJson, yamlToJson;
+    show yamlMapToJson, yamlToJson, StringExtensionForFHIR, Population;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -153,13 +153,13 @@ class PopulationBuilder extends BackboneTypeBuilder {
   /// which this applies.
   CodeableConceptBuilder? physiologicalCondition;
 
-  /// converts a [PopulationBuilder]
+  /// Converts a [PopulationBuilder]
   /// to [Population]
   @override
   Population build() => Population.fromJson(toJson());
 
-  /// converts a [PopulationBuilder]
-  /// to [Map<String, dynamic>]
+  /// Converts a [PopulationBuilder]
+  /// to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -300,9 +300,20 @@ class PopulationBuilder extends BackboneTypeBuilder {
           if (child is FhirStringBuilder) {
             id = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirStringBuilder.tryParse(stringValue);
+              if (converted != null) {
+                id = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'extension':
         {
@@ -314,9 +325,8 @@ class PopulationBuilder extends BackboneTypeBuilder {
             // Add single element to existing list or create new list
             extension_ = [...(extension_ ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'modifierExtension':
         {
@@ -328,9 +338,8 @@ class PopulationBuilder extends BackboneTypeBuilder {
             // Add single element to existing list or create new list
             modifierExtension = [...(modifierExtension ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'ageX':
         {
@@ -372,27 +381,24 @@ class PopulationBuilder extends BackboneTypeBuilder {
           if (child is CodeableConceptBuilder) {
             gender = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'race':
         {
           if (child is CodeableConceptBuilder) {
             race = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'physiologicalCondition':
         {
           if (child is CodeableConceptBuilder) {
             physiologicalCondition = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       default:
         throw Exception('Cannot set child value for $childName');
@@ -494,7 +500,7 @@ class PopulationBuilder extends BackboneTypeBuilder {
     if (id) this.id = null;
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
-    if (age) ageX = null;
+    if (age) this.ageX = null;
     if (gender) this.gender = null;
     if (race) this.race = null;
     if (physiologicalCondition) this.physiologicalCondition = null;

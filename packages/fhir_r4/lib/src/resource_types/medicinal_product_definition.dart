@@ -59,8 +59,7 @@ class MedicinalProductDefinition extends DomainResource {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory MedicinalProductDefinition.empty() =>
-      const MedicinalProductDefinition(
+  factory MedicinalProductDefinition.empty() => MedicinalProductDefinition(
         name: <MedicinalProductDefinitionName>[],
       );
 
@@ -5824,7 +5823,7 @@ class MedicinalProductDefinitionCharacteristic extends BackboneElement {
           'Quantity',
           'FhirDate',
           'FhirBoolean',
-          'Attachment',
+          'Attachment'
         ];
       case 'valueCodeableConcept':
         return ['CodeableConcept'];

@@ -1546,7 +1546,7 @@ class ValueSetCompose extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory ValueSetCompose.empty() => const ValueSetCompose(
+  factory ValueSetCompose.empty() => ValueSetCompose(
         include: <ValueSetInclude>[],
       );
 
@@ -5537,7 +5537,7 @@ class ValueSetParameter extends BackboneElement {
           'FhirDecimal',
           'FhirUri',
           'FhirCode',
-          'FhirDateTime',
+          'FhirDateTime'
         ];
       case 'valueString':
         return ['FhirString'];

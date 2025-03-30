@@ -1,13 +1,13 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        ImmunizationRecommendation,
-        ImmunizationRecommendationDateCriterion,
-        ImmunizationRecommendationRecommendation,
+        yamlMapToJson,
+        yamlToJson,
         R4ResourceType,
         StringExtensionForFHIR,
-        yamlMapToJson,
-        yamlToJson;
+        ImmunizationRecommendation,
+        ImmunizationRecommendationRecommendation,
+        ImmunizationRecommendationDateCriterion;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -212,14 +212,14 @@ class ImmunizationRecommendationBuilder extends DomainResourceBuilder {
   /// Vaccine administration recommendations.
   List<ImmunizationRecommendationRecommendationBuilder>? recommendation;
 
-  /// converts a [ImmunizationRecommendationBuilder]
+  /// Converts a [ImmunizationRecommendationBuilder]
   /// to [ImmunizationRecommendation]
   @override
   ImmunizationRecommendation build() =>
       ImmunizationRecommendation.fromJson(toJson());
 
-  /// converts a [ImmunizationRecommendationBuilder]
-  /// to [Map<String, dynamic>]
+  /// Converts a [ImmunizationRecommendationBuilder]
+  /// to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -381,45 +381,64 @@ class ImmunizationRecommendationBuilder extends DomainResourceBuilder {
           if (child is FhirStringBuilder) {
             id = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirStringBuilder.tryParse(stringValue);
+              if (converted != null) {
+                id = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'meta':
         {
           if (child is FhirMetaBuilder) {
             meta = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'implicitRules':
         {
           if (child is FhirUriBuilder) {
             implicitRules = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirUriBuilder.tryParse(stringValue);
+              if (converted != null) {
+                implicitRules = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'language':
         {
           if (child is CommonLanguagesBuilder) {
             language = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'text':
         {
           if (child is NarrativeBuilder) {
             text = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'contained':
         {
@@ -431,9 +450,8 @@ class ImmunizationRecommendationBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             contained = [...(contained ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'extension':
         {
@@ -445,9 +463,8 @@ class ImmunizationRecommendationBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             extension_ = [...(extension_ ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'modifierExtension':
         {
@@ -459,9 +476,8 @@ class ImmunizationRecommendationBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             modifierExtension = [...(modifierExtension ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'identifier':
         {
@@ -473,36 +489,44 @@ class ImmunizationRecommendationBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             identifier = [...(identifier ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'patient':
         {
           if (child is ReferenceBuilder) {
             patient = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'date':
         {
           if (child is FhirDateTimeBuilder) {
             date = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirDateTimeBuilder.tryParse(stringValue);
+              if (converted != null) {
+                date = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'authority':
         {
           if (child is ReferenceBuilder) {
             authority = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'recommendation':
         {
@@ -514,9 +538,8 @@ class ImmunizationRecommendationBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             recommendation = [...(recommendation ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       default:
         throw Exception('Cannot set child value for $childName');
@@ -1097,14 +1120,14 @@ class ImmunizationRecommendationRecommendationBuilder
   /// allergy/intolerance information.
   List<ReferenceBuilder>? supportingPatientInformation;
 
-  /// converts a [ImmunizationRecommendationRecommendationBuilder]
+  /// Converts a [ImmunizationRecommendationRecommendationBuilder]
   /// to [ImmunizationRecommendationRecommendation]
   @override
   ImmunizationRecommendationRecommendation build() =>
       ImmunizationRecommendationRecommendation.fromJson(toJson());
 
-  /// converts a [ImmunizationRecommendationRecommendationBuilder]
-  /// to [Map<String, dynamic>]
+  /// Converts a [ImmunizationRecommendationRecommendationBuilder]
+  /// to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1309,9 +1332,20 @@ class ImmunizationRecommendationRecommendationBuilder
           if (child is FhirStringBuilder) {
             id = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirStringBuilder.tryParse(stringValue);
+              if (converted != null) {
+                id = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'extension':
         {
@@ -1323,9 +1357,8 @@ class ImmunizationRecommendationRecommendationBuilder
             // Add single element to existing list or create new list
             extension_ = [...(extension_ ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'modifierExtension':
         {
@@ -1337,9 +1370,8 @@ class ImmunizationRecommendationRecommendationBuilder
             // Add single element to existing list or create new list
             modifierExtension = [...(modifierExtension ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'vaccineCode':
         {
@@ -1351,18 +1383,16 @@ class ImmunizationRecommendationRecommendationBuilder
             // Add single element to existing list or create new list
             vaccineCode = [...(vaccineCode ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'targetDisease':
         {
           if (child is CodeableConceptBuilder) {
             targetDisease = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'contraindicatedVaccineCode':
         {
@@ -1374,21 +1404,19 @@ class ImmunizationRecommendationRecommendationBuilder
             // Add single element to existing list or create new list
             contraindicatedVaccineCode = [
               ...(contraindicatedVaccineCode ?? []),
-              child,
+              child
             ];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'forecastStatus':
         {
           if (child is CodeableConceptBuilder) {
             forecastStatus = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'forecastReason':
         {
@@ -1400,9 +1428,8 @@ class ImmunizationRecommendationRecommendationBuilder
             // Add single element to existing list or create new list
             forecastReason = [...(forecastReason ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'dateCriterion':
         {
@@ -1414,27 +1441,48 @@ class ImmunizationRecommendationRecommendationBuilder
             // Add single element to existing list or create new list
             dateCriterion = [...(dateCriterion ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'description':
         {
           if (child is FhirStringBuilder) {
             description = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirStringBuilder.tryParse(stringValue);
+              if (converted != null) {
+                description = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'series':
         {
           if (child is FhirStringBuilder) {
             series = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirStringBuilder.tryParse(stringValue);
+              if (converted != null) {
+                series = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'doseNumberX':
         {
@@ -1518,9 +1566,8 @@ class ImmunizationRecommendationRecommendationBuilder
             // Add single element to existing list or create new list
             supportingImmunization = [...(supportingImmunization ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'supportingPatientInformation':
         {
@@ -1532,12 +1579,11 @@ class ImmunizationRecommendationRecommendationBuilder
             // Add single element to existing list or create new list
             supportingPatientInformation = [
               ...(supportingPatientInformation ?? []),
-              child,
+              child
             ];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       default:
         throw Exception('Cannot set child value for $childName');
@@ -1723,8 +1769,8 @@ class ImmunizationRecommendationRecommendationBuilder
     if (dateCriterion) this.dateCriterion = null;
     if (description) this.description = null;
     if (series) this.series = null;
-    if (doseNumber) doseNumberX = null;
-    if (seriesDoses) seriesDosesX = null;
+    if (doseNumber) this.doseNumberX = null;
+    if (seriesDoses) this.seriesDosesX = null;
     if (supportingImmunization) this.supportingImmunization = null;
     if (supportingPatientInformation) this.supportingPatientInformation = null;
   }
@@ -2018,14 +2064,14 @@ class ImmunizationRecommendationDateCriterionBuilder
   /// The date whose meaning is specified by dateCriterion.code.
   FhirDateTimeBuilder? value;
 
-  /// converts a [ImmunizationRecommendationDateCriterionBuilder]
+  /// Converts a [ImmunizationRecommendationDateCriterionBuilder]
   /// to [ImmunizationRecommendationDateCriterion]
   @override
   ImmunizationRecommendationDateCriterion build() =>
       ImmunizationRecommendationDateCriterion.fromJson(toJson());
 
-  /// converts a [ImmunizationRecommendationDateCriterionBuilder]
-  /// to [Map<String, dynamic>]
+  /// Converts a [ImmunizationRecommendationDateCriterionBuilder]
+  /// to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2138,9 +2184,20 @@ class ImmunizationRecommendationDateCriterionBuilder
           if (child is FhirStringBuilder) {
             id = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirStringBuilder.tryParse(stringValue);
+              if (converted != null) {
+                id = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'extension':
         {
@@ -2152,9 +2209,8 @@ class ImmunizationRecommendationDateCriterionBuilder
             // Add single element to existing list or create new list
             extension_ = [...(extension_ ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'modifierExtension':
         {
@@ -2166,27 +2222,36 @@ class ImmunizationRecommendationDateCriterionBuilder
             // Add single element to existing list or create new list
             modifierExtension = [...(modifierExtension ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'code':
         {
           if (child is CodeableConceptBuilder) {
             code = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'value':
         {
           if (child is FhirDateTimeBuilder) {
             value = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirDateTimeBuilder.tryParse(stringValue);
+              if (converted != null) {
+                value = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       default:
         throw Exception('Cannot set child value for $childName');

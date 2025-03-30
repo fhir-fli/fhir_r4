@@ -156,9 +156,7 @@ class SupplyRequestStatusBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   SupplyRequestStatusBuilder withElement(ElementBuilder? newElement) {
     return SupplyRequestStatusBuilder._(
-      validatedValue: value,
-      element: newElement,
-    );
+        validatedValue: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys

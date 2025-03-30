@@ -1,13 +1,13 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        MedicationDispense,
-        MedicationDispensePerformer,
-        MedicationDispenseSubstitution,
+        yamlMapToJson,
+        yamlToJson,
         R4ResourceType,
         StringExtensionForFHIR,
-        yamlMapToJson,
-        yamlToJson;
+        MedicationDispense,
+        MedicationDispensePerformer,
+        MedicationDispenseSubstitution;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -505,13 +505,13 @@ class MedicationDispenseBuilder extends DomainResourceBuilder {
   /// the dispense was verified.
   List<ReferenceBuilder>? eventHistory;
 
-  /// converts a [MedicationDispenseBuilder]
+  /// Converts a [MedicationDispenseBuilder]
   /// to [MedicationDispense]
   @override
   MedicationDispense build() => MedicationDispense.fromJson(toJson());
 
-  /// converts a [MedicationDispenseBuilder]
-  /// to [Map<String, dynamic>]
+  /// Converts a [MedicationDispenseBuilder]
+  /// to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -819,45 +819,64 @@ class MedicationDispenseBuilder extends DomainResourceBuilder {
           if (child is FhirStringBuilder) {
             id = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirStringBuilder.tryParse(stringValue);
+              if (converted != null) {
+                id = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'meta':
         {
           if (child is FhirMetaBuilder) {
             meta = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'implicitRules':
         {
           if (child is FhirUriBuilder) {
             implicitRules = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirUriBuilder.tryParse(stringValue);
+              if (converted != null) {
+                implicitRules = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'language':
         {
           if (child is CommonLanguagesBuilder) {
             language = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'text':
         {
           if (child is NarrativeBuilder) {
             text = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'contained':
         {
@@ -869,9 +888,8 @@ class MedicationDispenseBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             contained = [...(contained ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'extension':
         {
@@ -883,9 +901,8 @@ class MedicationDispenseBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             extension_ = [...(extension_ ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'modifierExtension':
         {
@@ -897,9 +914,8 @@ class MedicationDispenseBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             modifierExtension = [...(modifierExtension ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'identifier':
         {
@@ -911,9 +927,8 @@ class MedicationDispenseBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             identifier = [...(identifier ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'partOf':
         {
@@ -925,18 +940,16 @@ class MedicationDispenseBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             partOf = [...(partOf ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'status':
         {
           if (child is MedicationDispenseStatusCodesBuilder) {
             status = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'statusReasonX':
         {
@@ -978,9 +991,8 @@ class MedicationDispenseBuilder extends DomainResourceBuilder {
           if (child is CodeableConceptBuilder) {
             category = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'medicationX':
         {
@@ -1022,18 +1034,16 @@ class MedicationDispenseBuilder extends DomainResourceBuilder {
           if (child is ReferenceBuilder) {
             subject = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'context':
         {
           if (child is ReferenceBuilder) {
             context = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'supportingInformation':
         {
@@ -1045,9 +1055,8 @@ class MedicationDispenseBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             supportingInformation = [...(supportingInformation ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'performer':
         {
@@ -1059,18 +1068,16 @@ class MedicationDispenseBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             performer = [...(performer ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'location':
         {
           if (child is ReferenceBuilder) {
             location = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'authorizingPrescription':
         {
@@ -1082,66 +1089,83 @@ class MedicationDispenseBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             authorizingPrescription = [
               ...(authorizingPrescription ?? []),
-              child,
+              child
             ];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'type':
         {
           if (child is CodeableConceptBuilder) {
             type = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'quantity':
         {
           if (child is QuantityBuilder) {
             quantity = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'daysSupply':
         {
           if (child is QuantityBuilder) {
             daysSupply = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'whenPrepared':
         {
           if (child is FhirDateTimeBuilder) {
             whenPrepared = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirDateTimeBuilder.tryParse(stringValue);
+              if (converted != null) {
+                whenPrepared = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'whenHandedOver':
         {
           if (child is FhirDateTimeBuilder) {
             whenHandedOver = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirDateTimeBuilder.tryParse(stringValue);
+              if (converted != null) {
+                whenHandedOver = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'destination':
         {
           if (child is ReferenceBuilder) {
             destination = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'receiver':
         {
@@ -1153,9 +1177,8 @@ class MedicationDispenseBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             receiver = [...(receiver ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'note':
         {
@@ -1167,9 +1190,8 @@ class MedicationDispenseBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             note = [...(note ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'dosageInstruction':
         {
@@ -1181,18 +1203,16 @@ class MedicationDispenseBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             dosageInstruction = [...(dosageInstruction ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'substitution':
         {
           if (child is MedicationDispenseSubstitutionBuilder) {
             substitution = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'detectedIssue':
         {
@@ -1204,9 +1224,8 @@ class MedicationDispenseBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             detectedIssue = [...(detectedIssue ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'eventHistory':
         {
@@ -1218,9 +1237,8 @@ class MedicationDispenseBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             eventHistory = [...(eventHistory ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       default:
         throw Exception('Cannot set child value for $childName');
@@ -1542,9 +1560,9 @@ class MedicationDispenseBuilder extends DomainResourceBuilder {
     if (identifier) this.identifier = null;
     if (partOf) this.partOf = null;
     if (status) this.status = null;
-    if (statusReason) statusReasonX = null;
+    if (statusReason) this.statusReasonX = null;
     if (category) this.category = null;
-    if (medication) medicationX = null;
+    if (medication) this.medicationX = null;
     if (subject) this.subject = null;
     if (context) this.context = null;
     if (supportingInformation) this.supportingInformation = null;
@@ -1985,14 +2003,14 @@ class MedicationDispensePerformerBuilder extends BackboneElementBuilder {
   /// assumed that the actor is the dispenser of the medication.
   ReferenceBuilder? actor;
 
-  /// converts a [MedicationDispensePerformerBuilder]
+  /// Converts a [MedicationDispensePerformerBuilder]
   /// to [MedicationDispensePerformer]
   @override
   MedicationDispensePerformer build() =>
       MedicationDispensePerformer.fromJson(toJson());
 
-  /// converts a [MedicationDispensePerformerBuilder]
-  /// to [Map<String, dynamic>]
+  /// Converts a [MedicationDispensePerformerBuilder]
+  /// to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2105,9 +2123,20 @@ class MedicationDispensePerformerBuilder extends BackboneElementBuilder {
           if (child is FhirStringBuilder) {
             id = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirStringBuilder.tryParse(stringValue);
+              if (converted != null) {
+                id = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'extension':
         {
@@ -2119,9 +2148,8 @@ class MedicationDispensePerformerBuilder extends BackboneElementBuilder {
             // Add single element to existing list or create new list
             extension_ = [...(extension_ ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'modifierExtension':
         {
@@ -2133,27 +2161,24 @@ class MedicationDispensePerformerBuilder extends BackboneElementBuilder {
             // Add single element to existing list or create new list
             modifierExtension = [...(modifierExtension ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'function':
         {
           if (child is CodeableConceptBuilder) {
             function_ = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'actor':
         {
           if (child is ReferenceBuilder) {
             actor = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       default:
         throw Exception('Cannot set child value for $childName');
@@ -2470,14 +2495,14 @@ class MedicationDispenseSubstitutionBuilder extends BackboneElementBuilder {
   /// substitution.
   List<ReferenceBuilder>? responsibleParty;
 
-  /// converts a [MedicationDispenseSubstitutionBuilder]
+  /// Converts a [MedicationDispenseSubstitutionBuilder]
   /// to [MedicationDispenseSubstitution]
   @override
   MedicationDispenseSubstitution build() =>
       MedicationDispenseSubstitution.fromJson(toJson());
 
-  /// converts a [MedicationDispenseSubstitutionBuilder]
-  /// to [Map<String, dynamic>]
+  /// Converts a [MedicationDispenseSubstitutionBuilder]
+  /// to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2602,9 +2627,20 @@ class MedicationDispenseSubstitutionBuilder extends BackboneElementBuilder {
           if (child is FhirStringBuilder) {
             id = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirStringBuilder.tryParse(stringValue);
+              if (converted != null) {
+                id = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'extension':
         {
@@ -2616,9 +2652,8 @@ class MedicationDispenseSubstitutionBuilder extends BackboneElementBuilder {
             // Add single element to existing list or create new list
             extension_ = [...(extension_ ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'modifierExtension':
         {
@@ -2630,27 +2665,36 @@ class MedicationDispenseSubstitutionBuilder extends BackboneElementBuilder {
             // Add single element to existing list or create new list
             modifierExtension = [...(modifierExtension ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'wasSubstituted':
         {
           if (child is FhirBooleanBuilder) {
             wasSubstituted = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirBooleanBuilder.tryParse(stringValue);
+              if (converted != null) {
+                wasSubstituted = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'type':
         {
           if (child is CodeableConceptBuilder) {
             type = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'reason':
         {
@@ -2662,9 +2706,8 @@ class MedicationDispenseSubstitutionBuilder extends BackboneElementBuilder {
             // Add single element to existing list or create new list
             reason = [...(reason ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'responsibleParty':
         {
@@ -2676,9 +2719,8 @@ class MedicationDispenseSubstitutionBuilder extends BackboneElementBuilder {
             // Add single element to existing list or create new list
             responsibleParty = [...(responsibleParty ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       default:
         throw Exception('Cannot set child value for $childName');

@@ -1,13 +1,13 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        Observation,
-        ObservationComponent,
-        ObservationReferenceRange,
+        yamlMapToJson,
+        yamlToJson,
         R4ResourceType,
         StringExtensionForFHIR,
-        yamlMapToJson,
-        yamlToJson;
+        Observation,
+        ObservationReferenceRange,
+        ObservationComponent;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -561,13 +561,13 @@ class ObservationBuilder extends DomainResourceBuilder {
   /// observations for genetics observations.
   List<ObservationComponentBuilder>? component;
 
-  /// converts a [ObservationBuilder]
+  /// Converts a [ObservationBuilder]
   /// to [Observation]
   @override
   Observation build() => Observation.fromJson(toJson());
 
-  /// converts a [ObservationBuilder]
-  /// to [Map<String, dynamic>]
+  /// Converts a [ObservationBuilder]
+  /// to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -919,45 +919,64 @@ class ObservationBuilder extends DomainResourceBuilder {
           if (child is FhirStringBuilder) {
             id = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirStringBuilder.tryParse(stringValue);
+              if (converted != null) {
+                id = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'meta':
         {
           if (child is FhirMetaBuilder) {
             meta = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'implicitRules':
         {
           if (child is FhirUriBuilder) {
             implicitRules = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirUriBuilder.tryParse(stringValue);
+              if (converted != null) {
+                implicitRules = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'language':
         {
           if (child is CommonLanguagesBuilder) {
             language = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'text':
         {
           if (child is NarrativeBuilder) {
             text = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'contained':
         {
@@ -969,9 +988,8 @@ class ObservationBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             contained = [...(contained ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'extension':
         {
@@ -983,9 +1001,8 @@ class ObservationBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             extension_ = [...(extension_ ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'modifierExtension':
         {
@@ -997,9 +1014,8 @@ class ObservationBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             modifierExtension = [...(modifierExtension ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'identifier':
         {
@@ -1011,9 +1027,8 @@ class ObservationBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             identifier = [...(identifier ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'basedOn':
         {
@@ -1025,9 +1040,8 @@ class ObservationBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             basedOn = [...(basedOn ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'partOf':
         {
@@ -1039,18 +1053,16 @@ class ObservationBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             partOf = [...(partOf ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'status':
         {
           if (child is ObservationStatusBuilder) {
             status = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'category':
         {
@@ -1062,27 +1074,24 @@ class ObservationBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             category = [...(category ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'code':
         {
           if (child is CodeableConceptBuilder) {
             code = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'subject':
         {
           if (child is ReferenceBuilder) {
             subject = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'focus':
         {
@@ -1094,18 +1103,16 @@ class ObservationBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             focus = [...(focus ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'encounter':
         {
           if (child is ReferenceBuilder) {
             encounter = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'effectiveX':
         {
@@ -1173,9 +1180,20 @@ class ObservationBuilder extends DomainResourceBuilder {
           if (child is FhirInstantBuilder) {
             issued = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirInstantBuilder.tryParse(stringValue);
+              if (converted != null) {
+                issued = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'performer':
         {
@@ -1187,9 +1205,8 @@ class ObservationBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             performer = [...(performer ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'valueX':
         {
@@ -1348,9 +1365,8 @@ class ObservationBuilder extends DomainResourceBuilder {
           if (child is CodeableConceptBuilder) {
             dataAbsentReason = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'interpretation':
         {
@@ -1362,9 +1378,8 @@ class ObservationBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             interpretation = [...(interpretation ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'note':
         {
@@ -1376,45 +1391,40 @@ class ObservationBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             note = [...(note ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'bodySite':
         {
           if (child is CodeableConceptBuilder) {
             bodySite = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'method':
         {
           if (child is CodeableConceptBuilder) {
             method = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'specimen':
         {
           if (child is ReferenceBuilder) {
             specimen = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'device':
         {
           if (child is ReferenceBuilder) {
             device = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'referenceRange':
         {
@@ -1426,9 +1436,8 @@ class ObservationBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             referenceRange = [...(referenceRange ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'hasMember':
         {
@@ -1440,9 +1449,8 @@ class ObservationBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             hasMember = [...(hasMember ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'derivedFrom':
         {
@@ -1454,9 +1462,8 @@ class ObservationBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             derivedFrom = [...(derivedFrom ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'component':
         {
@@ -1468,9 +1475,8 @@ class ObservationBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             component = [...(component ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       default:
         throw Exception('Cannot set child value for $childName');
@@ -1522,7 +1528,7 @@ class ObservationBuilder extends DomainResourceBuilder {
           'FhirDateTimeBuilder',
           'PeriodBuilder',
           'TimingBuilder',
-          'FhirInstantBuilder',
+          'FhirInstantBuilder'
         ];
       case 'effectiveDateTime':
         return ['FhirDateTimeBuilder'];
@@ -1549,7 +1555,7 @@ class ObservationBuilder extends DomainResourceBuilder {
           'SampledDataBuilder',
           'FhirTimeBuilder',
           'FhirDateTimeBuilder',
-          'PeriodBuilder',
+          'PeriodBuilder'
         ];
       case 'valueQuantity':
         return ['QuantityBuilder'];
@@ -1892,10 +1898,10 @@ class ObservationBuilder extends DomainResourceBuilder {
     if (subject) this.subject = null;
     if (focus) this.focus = null;
     if (encounter) this.encounter = null;
-    if (effective) effectiveX = null;
+    if (effective) this.effectiveX = null;
     if (issued) this.issued = null;
     if (performer) this.performer = null;
-    if (value) valueX = null;
+    if (value) this.valueX = null;
     if (dataAbsentReason) this.dataAbsentReason = null;
     if (interpretation) this.interpretation = null;
     if (note) this.note = null;
@@ -2392,14 +2398,14 @@ class ObservationReferenceRangeBuilder extends BackboneElementBuilder {
   /// "normals".
   FhirStringBuilder? text;
 
-  /// converts a [ObservationReferenceRangeBuilder]
+  /// Converts a [ObservationReferenceRangeBuilder]
   /// to [ObservationReferenceRange]
   @override
   ObservationReferenceRange build() =>
       ObservationReferenceRange.fromJson(toJson());
 
-  /// converts a [ObservationReferenceRangeBuilder]
-  /// to [Map<String, dynamic>]
+  /// Converts a [ObservationReferenceRangeBuilder]
+  /// to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2536,9 +2542,20 @@ class ObservationReferenceRangeBuilder extends BackboneElementBuilder {
           if (child is FhirStringBuilder) {
             id = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirStringBuilder.tryParse(stringValue);
+              if (converted != null) {
+                id = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'extension':
         {
@@ -2550,9 +2567,8 @@ class ObservationReferenceRangeBuilder extends BackboneElementBuilder {
             // Add single element to existing list or create new list
             extension_ = [...(extension_ ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'modifierExtension':
         {
@@ -2564,36 +2580,32 @@ class ObservationReferenceRangeBuilder extends BackboneElementBuilder {
             // Add single element to existing list or create new list
             modifierExtension = [...(modifierExtension ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'low':
         {
           if (child is QuantityBuilder) {
             low = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'high':
         {
           if (child is QuantityBuilder) {
             high = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'type':
         {
           if (child is CodeableConceptBuilder) {
             type = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'appliesTo':
         {
@@ -2605,27 +2617,36 @@ class ObservationReferenceRangeBuilder extends BackboneElementBuilder {
             // Add single element to existing list or create new list
             appliesTo = [...(appliesTo ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'age':
         {
           if (child is RangeBuilder) {
             age = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'text':
         {
           if (child is FhirStringBuilder) {
             text = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirStringBuilder.tryParse(stringValue);
+              if (converted != null) {
+                text = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       default:
         throw Exception('Cannot set child value for $childName');
@@ -3067,13 +3088,13 @@ class ObservationComponentBuilder extends BackboneElementBuilder {
   /// recommended range.
   List<ObservationReferenceRangeBuilder>? referenceRange;
 
-  /// converts a [ObservationComponentBuilder]
+  /// Converts a [ObservationComponentBuilder]
   /// to [ObservationComponent]
   @override
   ObservationComponent build() => ObservationComponent.fromJson(toJson());
 
-  /// converts a [ObservationComponentBuilder]
-  /// to [Map<String, dynamic>]
+  /// Converts a [ObservationComponentBuilder]
+  /// to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3256,9 +3277,20 @@ class ObservationComponentBuilder extends BackboneElementBuilder {
           if (child is FhirStringBuilder) {
             id = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirStringBuilder.tryParse(stringValue);
+              if (converted != null) {
+                id = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'extension':
         {
@@ -3270,9 +3302,8 @@ class ObservationComponentBuilder extends BackboneElementBuilder {
             // Add single element to existing list or create new list
             extension_ = [...(extension_ ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'modifierExtension':
         {
@@ -3284,18 +3315,16 @@ class ObservationComponentBuilder extends BackboneElementBuilder {
             // Add single element to existing list or create new list
             modifierExtension = [...(modifierExtension ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'code':
         {
           if (child is CodeableConceptBuilder) {
             code = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'valueX':
         {
@@ -3454,9 +3483,8 @@ class ObservationComponentBuilder extends BackboneElementBuilder {
           if (child is CodeableConceptBuilder) {
             dataAbsentReason = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'interpretation':
         {
@@ -3468,9 +3496,8 @@ class ObservationComponentBuilder extends BackboneElementBuilder {
             // Add single element to existing list or create new list
             interpretation = [...(interpretation ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'referenceRange':
         {
@@ -3482,9 +3509,8 @@ class ObservationComponentBuilder extends BackboneElementBuilder {
             // Add single element to existing list or create new list
             referenceRange = [...(referenceRange ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       default:
         throw Exception('Cannot set child value for $childName');
@@ -3517,7 +3543,7 @@ class ObservationComponentBuilder extends BackboneElementBuilder {
           'SampledDataBuilder',
           'FhirTimeBuilder',
           'FhirDateTimeBuilder',
-          'PeriodBuilder',
+          'PeriodBuilder'
         ];
       case 'valueQuantity':
         return ['QuantityBuilder'];
@@ -3670,7 +3696,7 @@ class ObservationComponentBuilder extends BackboneElementBuilder {
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
     if (code) this.code = null;
-    if (value) valueX = null;
+    if (value) this.valueX = null;
     if (dataAbsentReason) this.dataAbsentReason = null;
     if (interpretation) this.interpretation = null;
     if (referenceRange) this.referenceRange = null;

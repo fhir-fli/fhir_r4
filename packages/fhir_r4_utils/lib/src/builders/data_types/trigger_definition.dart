@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show StringExtensionForFHIR, TriggerDefinition, yamlMapToJson, yamlToJson;
+    show yamlMapToJson, yamlToJson, StringExtensionForFHIR, TriggerDefinition;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -181,13 +181,13 @@ class TriggerDefinitionBuilder extends DataTypeBuilder
   /// trigger fires.
   FhirExpressionBuilder? condition;
 
-  /// converts a [TriggerDefinitionBuilder]
+  /// Converts a [TriggerDefinitionBuilder]
   /// to [TriggerDefinition]
   @override
   TriggerDefinition build() => TriggerDefinition.fromJson(toJson());
 
-  /// converts a [TriggerDefinitionBuilder]
-  /// to [Map<String, dynamic>]
+  /// Converts a [TriggerDefinitionBuilder]
+  /// to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -336,9 +336,20 @@ class TriggerDefinitionBuilder extends DataTypeBuilder
           if (child is FhirStringBuilder) {
             id = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirStringBuilder.tryParse(stringValue);
+              if (converted != null) {
+                id = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'extension':
         {
@@ -350,27 +361,36 @@ class TriggerDefinitionBuilder extends DataTypeBuilder
             // Add single element to existing list or create new list
             extension_ = [...(extension_ ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'type':
         {
           if (child is TriggerTypeBuilder) {
             type = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'name':
         {
           if (child is FhirStringBuilder) {
             name = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirStringBuilder.tryParse(stringValue);
+              if (converted != null) {
+                name = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'timingX':
         {
@@ -443,18 +463,16 @@ class TriggerDefinitionBuilder extends DataTypeBuilder
             // Add single element to existing list or create new list
             data = [...(data ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'condition':
         {
           if (child is FhirExpressionBuilder) {
             condition = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       default:
         throw Exception('Cannot set child value for $childName');
@@ -480,7 +498,7 @@ class TriggerDefinitionBuilder extends DataTypeBuilder
           'TimingBuilder',
           'ReferenceBuilder',
           'FhirDateBuilder',
-          'FhirDateTimeBuilder',
+          'FhirDateTimeBuilder'
         ];
       case 'timingTiming':
         return ['TimingBuilder'];
@@ -576,7 +594,7 @@ class TriggerDefinitionBuilder extends DataTypeBuilder
     if (extension_) this.extension_ = null;
     if (type) this.type = null;
     if (name) this.name = null;
-    if (timing) timingX = null;
+    if (timing) this.timingX = null;
     if (data) this.data = null;
     if (condition) this.condition = null;
   }

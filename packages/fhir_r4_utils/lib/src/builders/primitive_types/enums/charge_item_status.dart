@@ -148,9 +148,7 @@ class ChargeItemStatusBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   ChargeItemStatusBuilder withElement(ElementBuilder? newElement) {
     return ChargeItemStatusBuilder._(
-      validatedValue: value,
-      element: newElement,
-    );
+        validatedValue: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys

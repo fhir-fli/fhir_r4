@@ -53,8 +53,7 @@ class ImmunizationEvaluationStatusCodesBuilder extends FhirCodeEnumBuilder {
   /// Factory constructor to create [ImmunizationEvaluationStatusCodesBuilder]
   /// from JSON.
   factory ImmunizationEvaluationStatusCodesBuilder.fromJson(
-    Map<String, dynamic> json,
-  ) {
+      Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -168,12 +167,9 @@ class ImmunizationEvaluationStatusCodesBuilder extends FhirCodeEnumBuilder {
 
   /// Returns the enum value with an element attached
   ImmunizationEvaluationStatusCodesBuilder withElement(
-    ElementBuilder? newElement,
-  ) {
+      ElementBuilder? newElement) {
     return ImmunizationEvaluationStatusCodesBuilder._(
-      validatedValue: value,
-      element: newElement,
-    );
+        validatedValue: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys

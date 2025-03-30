@@ -113,9 +113,7 @@ class FHIRSubstanceStatusBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   FHIRSubstanceStatusBuilder withElement(ElementBuilder? newElement) {
     return FHIRSubstanceStatusBuilder._(
-      validatedValue: value,
-      element: newElement,
-    );
+        validatedValue: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys

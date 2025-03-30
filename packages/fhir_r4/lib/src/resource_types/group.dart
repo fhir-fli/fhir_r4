@@ -1620,7 +1620,7 @@ class GroupCharacteristic extends BackboneElement {
           'FhirBoolean',
           'Quantity',
           'Range',
-          'Reference',
+          'Reference'
         ];
       case 'valueCodeableConcept':
         return ['CodeableConcept'];

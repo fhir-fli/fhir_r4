@@ -2705,7 +2705,7 @@ class EvidenceReportCharacteristic extends BackboneElement {
           'CodeableConcept',
           'FhirBoolean',
           'Quantity',
-          'Range',
+          'Range'
         ];
       case 'valueReference':
         return ['Reference'];

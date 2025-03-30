@@ -1565,7 +1565,7 @@ class Observation extends DomainResource {
           'SampledData',
           'FhirTime',
           'FhirDateTime',
-          'Period',
+          'Period'
         ];
       case 'valueQuantity':
         return ['Quantity'];
@@ -3755,7 +3755,7 @@ class ObservationComponent extends BackboneElement {
           'SampledData',
           'FhirTime',
           'FhirDateTime',
-          'Period',
+          'Period'
         ];
       case 'valueQuantity':
         return ['Quantity'];

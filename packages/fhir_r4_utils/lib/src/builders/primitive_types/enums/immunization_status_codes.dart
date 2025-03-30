@@ -168,9 +168,7 @@ class ImmunizationStatusCodesBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   ImmunizationStatusCodesBuilder withElement(ElementBuilder? newElement) {
     return ImmunizationStatusCodesBuilder._(
-      validatedValue: value,
-      element: newElement,
-    );
+        validatedValue: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys

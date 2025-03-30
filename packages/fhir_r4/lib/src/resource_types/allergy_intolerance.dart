@@ -1632,8 +1632,7 @@ class AllergyIntoleranceReaction extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory AllergyIntoleranceReaction.empty() =>
-      const AllergyIntoleranceReaction(
+  factory AllergyIntoleranceReaction.empty() => AllergyIntoleranceReaction(
         manifestation: <CodeableConcept>[],
       );
 

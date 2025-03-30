@@ -157,9 +157,7 @@ class DeviceMetricColorBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   DeviceMetricColorBuilder withElement(ElementBuilder? newElement) {
     return DeviceMetricColorBuilder._(
-      validatedValue: value,
-      element: newElement,
-    );
+        validatedValue: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys

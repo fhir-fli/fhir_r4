@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show StringExtensionForFHIR, UsageContext, yamlMapToJson, yamlToJson;
+    show yamlMapToJson, yamlToJson, StringExtensionForFHIR, UsageContext;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -142,13 +142,13 @@ class UsageContextBuilder extends DataTypeBuilder
   /// Getter for [valueReference] as a ReferenceBuilder
   ReferenceBuilder? get valueReference => valueX?.isAs<ReferenceBuilder>();
 
-  /// converts a [UsageContextBuilder]
+  /// Converts a [UsageContextBuilder]
   /// to [UsageContext]
   @override
   UsageContext build() => UsageContext.fromJson(toJson());
 
-  /// converts a [UsageContextBuilder]
-  /// to [Map<String, dynamic>]
+  /// Converts a [UsageContextBuilder]
+  /// to a [Map<String, dynamic>]
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -279,9 +279,20 @@ class UsageContextBuilder extends DataTypeBuilder
           if (child is FhirStringBuilder) {
             id = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              final converted = FhirStringBuilder.tryParse(stringValue);
+              if (converted != null) {
+                id = converted;
+                return;
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'extension':
         {
@@ -293,18 +304,16 @@ class UsageContextBuilder extends DataTypeBuilder
             // Add single element to existing list or create new list
             extension_ = [...(extension_ ?? []), child];
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'code':
         {
           if (child is CodingBuilder) {
             code = child;
             return;
-          } else {
-            throw Exception('Invalid child type for $childName');
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'valueX':
         {
@@ -389,7 +398,7 @@ class UsageContextBuilder extends DataTypeBuilder
           'CodeableConceptBuilder',
           'QuantityBuilder',
           'RangeBuilder',
-          'ReferenceBuilder',
+          'ReferenceBuilder'
         ];
       case 'valueCodeableConcept':
         return ['CodeableConceptBuilder'];
@@ -462,7 +471,7 @@ class UsageContextBuilder extends DataTypeBuilder
     if (id) this.id = null;
     if (extension_) this.extension_ = null;
     if (code) this.code = null;
-    if (value) valueX = null;
+    if (value) this.valueX = null;
   }
 
   @override
