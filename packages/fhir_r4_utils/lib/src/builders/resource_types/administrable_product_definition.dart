@@ -1,15 +1,15 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
-        R4ResourceType,
-        StringExtensionForFHIR,
         AdministrableProductDefinition,
         AdministrableProductDefinitionProperty,
         AdministrableProductDefinitionRouteOfAdministration,
         AdministrableProductDefinitionTargetSpecies,
-        AdministrableProductDefinitionWithdrawalPeriod;
+        AdministrableProductDefinitionWithdrawalPeriod,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -1574,7 +1574,7 @@ class AdministrableProductDefinitionPropertyBuilder
           'QuantityBuilder',
           'FhirDateBuilder',
           'FhirBooleanBuilder',
-          'AttachmentBuilder'
+          'AttachmentBuilder',
         ];
       case 'valueCodeableConcept':
         return ['CodeableConceptBuilder'];
@@ -1669,7 +1669,7 @@ class AdministrableProductDefinitionPropertyBuilder
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
     if (type) this.type = null;
-    if (value) this.valueX = null;
+    if (value) valueX = null;
     if (status) this.status = null;
   }
 
@@ -3040,7 +3040,7 @@ class AdministrableProductDefinitionWithdrawalPeriodBuilder
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
       return AdministrableProductDefinitionWithdrawalPeriodBuilder.fromJson(
-          json);
+          json,);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');

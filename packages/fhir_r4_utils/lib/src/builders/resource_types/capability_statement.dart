@@ -1,24 +1,24 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
-        R4ResourceType,
-        StringExtensionForFHIR,
         CapabilityStatement,
-        CapabilityStatementSoftware,
+        CapabilityStatementDocument,
+        CapabilityStatementEndpoint,
         CapabilityStatementImplementation,
-        CapabilityStatementRest,
-        CapabilityStatementSecurity,
-        CapabilityStatementResource,
         CapabilityStatementInteraction,
-        CapabilityStatementSearchParam,
-        CapabilityStatementOperation,
         CapabilityStatementInteraction1,
         CapabilityStatementMessaging,
-        CapabilityStatementEndpoint,
+        CapabilityStatementOperation,
+        CapabilityStatementResource,
+        CapabilityStatementRest,
+        CapabilityStatementSearchParam,
+        CapabilityStatementSecurity,
+        CapabilityStatementSoftware,
         CapabilityStatementSupportedMessage,
-        CapabilityStatementDocument;
+        R4ResourceType,
+        StringExtensionForFHIR,
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -1336,7 +1336,7 @@ class CapabilityStatementBuilder extends CanonicalResourceBuilder {
               if (converted != null) {
                 implementationGuide = [
                   ...(implementationGuide ?? []),
-                  converted
+                  converted,
                 ];
                 return;
               }

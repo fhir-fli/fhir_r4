@@ -1,14 +1,14 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
+        Invoice,
+        InvoiceLineItem,
+        InvoiceParticipant,
+        InvoicePriceComponent,
         R4ResourceType,
         StringExtensionForFHIR,
-        Invoice,
-        InvoiceParticipant,
-        InvoiceLineItem,
-        InvoicePriceComponent;
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -2313,7 +2313,7 @@ class InvoiceLineItemBuilder extends BackboneElementBuilder {
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
     if (sequence) this.sequence = null;
-    if (chargeItem) this.chargeItemX = null;
+    if (chargeItem) chargeItemX = null;
     if (priceComponent) this.priceComponent = null;
   }
 

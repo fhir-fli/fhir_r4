@@ -1,14 +1,14 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
-        R4ResourceType,
-        StringExtensionForFHIR,
         MedicationRequest,
         MedicationRequestDispenseRequest,
         MedicationRequestInitialFill,
-        MedicationRequestSubstitution;
+        MedicationRequestSubstitution,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -1372,7 +1372,7 @@ class MedicationRequestBuilder extends DomainResourceBuilder {
               if (converted != null) {
                 instantiatesCanonical = [
                   ...(instantiatesCanonical ?? []),
-                  converted
+                  converted,
                 ];
                 return;
               }
@@ -1931,8 +1931,8 @@ class MedicationRequestBuilder extends DomainResourceBuilder {
     if (category) this.category = null;
     if (priority) this.priority = null;
     if (doNotPerform) this.doNotPerform = null;
-    if (reported) this.reportedX = null;
-    if (medication) this.medicationX = null;
+    if (reported) reportedX = null;
+    if (medication) medicationX = null;
     if (subject) this.subject = null;
     if (encounter) this.encounter = null;
     if (supportingInformation) this.supportingInformation = null;
@@ -3914,7 +3914,7 @@ class MedicationRequestSubstitutionBuilder extends BackboneElementBuilder {
     if (id) this.id = null;
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
-    if (allowed) this.allowedX = null;
+    if (allowed) allowedX = null;
     if (reason) this.reason = null;
   }
 

@@ -1,12 +1,12 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
+        Communication,
+        CommunicationPayload,
         R4ResourceType,
         StringExtensionForFHIR,
-        Communication,
-        CommunicationPayload;
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -894,7 +894,7 @@ class CommunicationBuilder extends DomainResourceBuilder {
               if (converted != null) {
                 instantiatesCanonical = [
                   ...(instantiatesCanonical ?? []),
-                  converted
+                  converted,
                 ];
                 return;
               }
@@ -2214,7 +2214,7 @@ class CommunicationPayloadBuilder extends BackboneElementBuilder {
     if (id) this.id = null;
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
-    if (content) this.contentX = null;
+    if (content) contentX = null;
   }
 
   @override

@@ -1,13 +1,13 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
-        StringExtensionForFHIR,
         DataRequirement,
         DataRequirementCodeFilter,
         DataRequirementDateFilter,
-        DataRequirementSort;
+        DataRequirementSort,
+        StringExtensionForFHIR,
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -747,7 +747,7 @@ class DataRequirementBuilder extends DataTypeBuilder
     if (extension_) this.extension_ = null;
     if (type) this.type = null;
     if (profile) this.profile = null;
-    if (subject) this.subjectX = null;
+    if (subject) subjectX = null;
     if (mustSupport) this.mustSupport = null;
     if (codeFilter) this.codeFilter = null;
     if (dateFilter) this.dateFilter = null;
@@ -1930,7 +1930,7 @@ class DataRequirementDateFilterBuilder extends ElementBuilder {
     if (extension_) this.extension_ = null;
     if (path) this.path = null;
     if (searchParam) this.searchParam = null;
-    if (value) this.valueX = null;
+    if (value) valueX = null;
   }
 
   @override

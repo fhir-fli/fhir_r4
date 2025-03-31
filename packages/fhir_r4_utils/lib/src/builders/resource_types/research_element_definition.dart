@@ -1,12 +1,12 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
         R4ResourceType,
-        StringExtensionForFHIR,
         ResearchElementDefinition,
-        ResearchElementDefinitionCharacteristic;
+        ResearchElementDefinitionCharacteristic,
+        StringExtensionForFHIR,
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -2060,7 +2060,7 @@ class ResearchElementDefinitionBuilder extends DomainResourceBuilder {
     if (subtitle) this.subtitle = null;
     if (status) this.status = null;
     if (experimental) this.experimental = null;
-    if (subject) this.subjectX = null;
+    if (subject) subjectX = null;
     if (date) this.date = null;
     if (publisher) this.publisher = null;
     if (contact) this.contact = null;
@@ -2823,17 +2823,17 @@ class ResearchElementDefinitionCharacteristicBuilder
     addField('studyEffectiveTimeFromStart', studyEffectiveTimeFromStart);
     addField('studyEffectiveGroupMeasure', studyEffectiveGroupMeasure);
     addField(
-        'participantEffectiveDescription', participantEffectiveDescription);
+        'participantEffectiveDescription', participantEffectiveDescription,);
     if (participantEffectiveX != null) {
       final fhirType = participantEffectiveX!.fhirType;
       addField('participantEffective${fhirType.capitalize()}',
-          participantEffectiveX);
+          participantEffectiveX,);
     }
 
     addField(
-        'participantEffectiveTimeFromStart', participantEffectiveTimeFromStart);
+        'participantEffectiveTimeFromStart', participantEffectiveTimeFromStart,);
     addField(
-        'participantEffectiveGroupMeasure', participantEffectiveGroupMeasure);
+        'participantEffectiveGroupMeasure', participantEffectiveGroupMeasure,);
     return json;
   }
 
@@ -3384,7 +3384,7 @@ class ResearchElementDefinitionCharacteristicBuilder
           'CodeableConceptBuilder',
           'FhirCanonicalBuilder',
           'FhirExpressionBuilder',
-          'DataRequirementBuilder'
+          'DataRequirementBuilder',
         ];
       case 'definitionCodeableConcept':
         return ['CodeableConceptBuilder'];
@@ -3408,7 +3408,7 @@ class ResearchElementDefinitionCharacteristicBuilder
           'FhirDateTimeBuilder',
           'PeriodBuilder',
           'FhirDurationBuilder',
-          'TimingBuilder'
+          'TimingBuilder',
         ];
       case 'studyEffectiveDateTime':
         return ['FhirDateTimeBuilder'];
@@ -3430,7 +3430,7 @@ class ResearchElementDefinitionCharacteristicBuilder
           'FhirDateTimeBuilder',
           'PeriodBuilder',
           'FhirDurationBuilder',
-          'TimingBuilder'
+          'TimingBuilder',
         ];
       case 'participantEffectiveDateTime':
         return ['FhirDateTimeBuilder'];
@@ -3607,21 +3607,24 @@ class ResearchElementDefinitionCharacteristicBuilder
     if (id) this.id = null;
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
-    if (definition) this.definitionX = null;
+    if (definition) definitionX = null;
     if (usageContext) this.usageContext = null;
     if (exclude) this.exclude = null;
     if (unitOfMeasure) this.unitOfMeasure = null;
     if (studyEffectiveDescription) this.studyEffectiveDescription = null;
-    if (studyEffective) this.studyEffectiveX = null;
+    if (studyEffective) studyEffectiveX = null;
     if (studyEffectiveTimeFromStart) this.studyEffectiveTimeFromStart = null;
     if (studyEffectiveGroupMeasure) this.studyEffectiveGroupMeasure = null;
-    if (participantEffectiveDescription)
+    if (participantEffectiveDescription) {
       this.participantEffectiveDescription = null;
-    if (participantEffective) this.participantEffectiveX = null;
-    if (participantEffectiveTimeFromStart)
+    }
+    if (participantEffective) participantEffectiveX = null;
+    if (participantEffectiveTimeFromStart) {
       this.participantEffectiveTimeFromStart = null;
-    if (participantEffectiveGroupMeasure)
+    }
+    if (participantEffectiveGroupMeasure) {
       this.participantEffectiveGroupMeasure = null;
+    }
   }
 
   @override

@@ -50,7 +50,7 @@ class DeviceMetricOperationalStatusBuilder extends FhirCodeEnumBuilder {
   /// Factory constructor to create [DeviceMetricOperationalStatusBuilder]
   /// from JSON.
   factory DeviceMetricOperationalStatusBuilder.fromJson(
-      Map<String, dynamic> json) {
+      Map<String, dynamic> json,) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -132,7 +132,7 @@ class DeviceMetricOperationalStatusBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   DeviceMetricOperationalStatusBuilder withElement(ElementBuilder? newElement) {
     return DeviceMetricOperationalStatusBuilder._(
-        validatedValue: value, element: newElement);
+        validatedValue: value, element: newElement,);
   }
 
   /// Serializes the instance to JSON with standardized keys

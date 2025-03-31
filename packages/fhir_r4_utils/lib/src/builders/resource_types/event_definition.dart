@@ -1,11 +1,11 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
+        EventDefinition,
         R4ResourceType,
         StringExtensionForFHIR,
-        EventDefinition;
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -1729,7 +1729,7 @@ class EventDefinitionBuilder extends CanonicalResourceBuilder {
     if (subtitle) this.subtitle = null;
     if (status) this.status = null;
     if (experimental) this.experimental = null;
-    if (subject) this.subjectX = null;
+    if (subject) subjectX = null;
     if (date) this.date = null;
     if (publisher) this.publisher = null;
     if (contact) this.contact = null;

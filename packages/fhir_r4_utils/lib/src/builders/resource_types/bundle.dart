@@ -1,16 +1,16 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
+        Bundle,
+        BundleEntry,
+        BundleLink,
+        BundleRequest,
+        BundleResponse,
+        BundleSearch,
         R4ResourceType,
         StringExtensionForFHIR,
-        Bundle,
-        BundleLink,
-        BundleEntry,
-        BundleSearch,
-        BundleRequest,
-        BundleResponse;
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 

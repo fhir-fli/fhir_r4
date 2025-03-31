@@ -1,13 +1,13 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
         R4ResourceType,
         StringExtensionForFHIR,
         Substance,
+        SubstanceIngredient,
         SubstanceInstance,
-        SubstanceIngredient;
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -1877,7 +1877,7 @@ class SubstanceIngredientBuilder extends BackboneElementBuilder {
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
     if (quantity) this.quantity = null;
-    if (substance) this.substanceX = null;
+    if (substance) substanceX = null;
   }
 
   @override

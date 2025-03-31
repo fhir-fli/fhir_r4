@@ -1,13 +1,13 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
+        Condition,
+        ConditionEvidence,
+        ConditionStage,
         R4ResourceType,
         StringExtensionForFHIR,
-        Condition,
-        ConditionStage,
-        ConditionEvidence;
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -1172,7 +1172,7 @@ class ConditionBuilder extends DomainResourceBuilder {
           'AgeBuilder',
           'PeriodBuilder',
           'RangeBuilder',
-          'FhirStringBuilder'
+          'FhirStringBuilder',
         ];
       case 'onsetDateTime':
         return ['FhirDateTimeBuilder'];
@@ -1191,7 +1191,7 @@ class ConditionBuilder extends DomainResourceBuilder {
           'AgeBuilder',
           'PeriodBuilder',
           'RangeBuilder',
-          'FhirStringBuilder'
+          'FhirStringBuilder',
         ];
       case 'abatementDateTime':
         return ['FhirDateTimeBuilder'];
@@ -1445,8 +1445,8 @@ class ConditionBuilder extends DomainResourceBuilder {
     if (bodySite) this.bodySite = null;
     if (subject) this.subject = null;
     if (encounter) this.encounter = null;
-    if (onset) this.onsetX = null;
-    if (abatement) this.abatementX = null;
+    if (onset) onsetX = null;
+    if (abatement) abatementX = null;
     if (recordedDate) this.recordedDate = null;
     if (recorder) this.recorder = null;
     if (asserter) this.asserter = null;

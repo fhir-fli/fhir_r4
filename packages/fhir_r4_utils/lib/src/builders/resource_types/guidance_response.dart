@@ -1,11 +1,11 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
+        GuidanceResponse,
         R4ResourceType,
         StringExtensionForFHIR,
-        GuidanceResponse;
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -962,7 +962,7 @@ class GuidanceResponseBuilder extends DomainResourceBuilder {
         return [
           'FhirUriBuilder',
           'FhirCanonicalBuilder',
-          'CodeableConceptBuilder'
+          'CodeableConceptBuilder',
         ];
       case 'moduleUri':
         return ['FhirUriBuilder'];
@@ -1173,7 +1173,7 @@ class GuidanceResponseBuilder extends DomainResourceBuilder {
     if (modifierExtension) this.modifierExtension = null;
     if (requestIdentifier) this.requestIdentifier = null;
     if (identifier) this.identifier = null;
-    if (module) this.moduleX = null;
+    if (module) moduleX = null;
     if (status) this.status = null;
     if (subject) this.subject = null;
     if (encounter) this.encounter = null;

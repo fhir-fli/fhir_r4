@@ -1,15 +1,15 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
-        R4ResourceType,
-        StringExtensionForFHIR,
         Ingredient,
         IngredientManufacturer,
-        IngredientSubstance,
+        IngredientReferenceStrength,
         IngredientStrength,
-        IngredientReferenceStrength;
+        IngredientSubstance,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -2644,9 +2644,9 @@ class IngredientStrengthBuilder extends BackboneElementBuilder {
     if (id) this.id = null;
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
-    if (presentation) this.presentationX = null;
+    if (presentation) presentationX = null;
     if (textPresentation) this.textPresentation = null;
-    if (concentration) this.concentrationX = null;
+    if (concentration) concentrationX = null;
     if (textConcentration) this.textConcentration = null;
     if (measurementPoint) this.measurementPoint = null;
     if (country) this.country = null;
@@ -3302,7 +3302,7 @@ class IngredientReferenceStrengthBuilder extends BackboneElementBuilder {
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
     if (substance) this.substance = null;
-    if (strength) this.strengthX = null;
+    if (strength) strengthX = null;
     if (measurementPoint) this.measurementPoint = null;
     if (country) this.country = null;
   }

@@ -1,13 +1,13 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
-        R4ResourceType,
-        StringExtensionForFHIR,
         DetectedIssue,
         DetectedIssueEvidence,
-        DetectedIssueMitigation;
+        DetectedIssueMitigation,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -1022,7 +1022,7 @@ class DetectedIssueBuilder extends DomainResourceBuilder {
     if (code) this.code = null;
     if (severity) this.severity = null;
     if (patient) this.patient = null;
-    if (identified) this.identifiedX = null;
+    if (identified) identifiedX = null;
     if (author) this.author = null;
     if (implicated) this.implicated = null;
     if (evidence) this.evidence = null;

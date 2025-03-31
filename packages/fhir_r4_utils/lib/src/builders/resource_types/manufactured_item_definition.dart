@@ -1,12 +1,12 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
+        ManufacturedItemDefinition,
+        ManufacturedItemDefinitionProperty,
         R4ResourceType,
         StringExtensionForFHIR,
-        ManufacturedItemDefinition,
-        ManufacturedItemDefinitionProperty;
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -1366,7 +1366,7 @@ class ManufacturedItemDefinitionPropertyBuilder extends BackboneElementBuilder {
           'QuantityBuilder',
           'FhirDateBuilder',
           'FhirBooleanBuilder',
-          'AttachmentBuilder'
+          'AttachmentBuilder',
         ];
       case 'valueCodeableConcept':
         return ['CodeableConceptBuilder'];
@@ -1453,7 +1453,7 @@ class ManufacturedItemDefinitionPropertyBuilder extends BackboneElementBuilder {
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
     if (type) this.type = null;
-    if (value) this.valueX = null;
+    if (value) valueX = null;
   }
 
   @override

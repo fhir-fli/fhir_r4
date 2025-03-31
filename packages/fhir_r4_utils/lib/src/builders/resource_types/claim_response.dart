@@ -1,23 +1,23 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
-        R4ResourceType,
-        StringExtensionForFHIR,
         ClaimResponse,
-        ClaimResponseItem,
+        ClaimResponseAddItem,
         ClaimResponseAdjudication,
         ClaimResponseDetail,
-        ClaimResponseSubDetail,
-        ClaimResponseAddItem,
         ClaimResponseDetail1,
-        ClaimResponseSubDetail1,
-        ClaimResponseTotal,
+        ClaimResponseError,
+        ClaimResponseInsurance,
+        ClaimResponseItem,
         ClaimResponsePayment,
         ClaimResponseProcessNote,
-        ClaimResponseInsurance,
-        ClaimResponseError;
+        ClaimResponseSubDetail,
+        ClaimResponseSubDetail1,
+        ClaimResponseTotal,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -5548,8 +5548,8 @@ class ClaimResponseAddItemBuilder extends BackboneElementBuilder {
     if (productOrService) this.productOrService = null;
     if (modifier) this.modifier = null;
     if (programCode) this.programCode = null;
-    if (serviced) this.servicedX = null;
-    if (location) this.locationX = null;
+    if (serviced) servicedX = null;
+    if (location) locationX = null;
     if (quantity) this.quantity = null;
     if (unitPrice) this.unitPrice = null;
     if (factor) this.factor = null;

@@ -136,7 +136,7 @@ class TestReportActionResultBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   TestReportActionResultBuilder withElement(ElementBuilder? newElement) {
     return TestReportActionResultBuilder._(
-        validatedValue: value, element: newElement);
+        validatedValue: value, element: newElement,);
   }
 
   /// Serializes the instance to JSON with standardized keys

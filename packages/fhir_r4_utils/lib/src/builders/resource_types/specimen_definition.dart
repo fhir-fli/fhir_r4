@@ -1,15 +1,15 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
         R4ResourceType,
-        StringExtensionForFHIR,
         SpecimenDefinition,
-        SpecimenDefinitionTypeTested,
-        SpecimenDefinitionContainer,
         SpecimenDefinitionAdditive,
-        SpecimenDefinitionHandling;
+        SpecimenDefinitionContainer,
+        SpecimenDefinitionHandling,
+        SpecimenDefinitionTypeTested,
+        StringExtensionForFHIR,
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -2309,7 +2309,7 @@ class SpecimenDefinitionContainerBuilder extends BackboneElementBuilder {
     if (cap) this.cap = null;
     if (description) this.description = null;
     if (capacity) this.capacity = null;
-    if (minimumVolume) this.minimumVolumeX = null;
+    if (minimumVolume) minimumVolumeX = null;
     if (additive) this.additive = null;
     if (preparation) this.preparation = null;
   }
@@ -2847,7 +2847,7 @@ class SpecimenDefinitionAdditiveBuilder extends BackboneElementBuilder {
     if (id) this.id = null;
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
-    if (additive) this.additiveX = null;
+    if (additive) additiveX = null;
   }
 
   @override

@@ -1,12 +1,12 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
+        AllergyIntolerance,
+        AllergyIntoleranceReaction,
         R4ResourceType,
         StringExtensionForFHIR,
-        AllergyIntolerance,
-        AllergyIntoleranceReaction;
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -1033,7 +1033,7 @@ class AllergyIntoleranceBuilder extends DomainResourceBuilder {
           'AgeBuilder',
           'PeriodBuilder',
           'RangeBuilder',
-          'FhirStringBuilder'
+          'FhirStringBuilder',
         ];
       case 'onsetDateTime':
         return ['FhirDateTimeBuilder'];
@@ -1259,7 +1259,7 @@ class AllergyIntoleranceBuilder extends DomainResourceBuilder {
     if (code) this.code = null;
     if (patient) this.patient = null;
     if (encounter) this.encounter = null;
-    if (onset) this.onsetX = null;
+    if (onset) onsetX = null;
     if (recordedDate) this.recordedDate = null;
     if (recorder) this.recorder = null;
     if (asserter) this.asserter = null;

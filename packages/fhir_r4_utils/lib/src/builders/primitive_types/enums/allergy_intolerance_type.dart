@@ -108,7 +108,7 @@ class AllergyIntoleranceTypeBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   AllergyIntoleranceTypeBuilder withElement(ElementBuilder? newElement) {
     return AllergyIntoleranceTypeBuilder._(
-        validatedValue: value, element: newElement);
+        validatedValue: value, element: newElement,);
   }
 
   /// Serializes the instance to JSON with standardized keys

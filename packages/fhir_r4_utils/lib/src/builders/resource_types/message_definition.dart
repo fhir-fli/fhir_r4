@@ -1,13 +1,13 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
+        MessageDefinition,
+        MessageDefinitionAllowedResponse,
+        MessageDefinitionFocus,
         R4ResourceType,
         StringExtensionForFHIR,
-        MessageDefinition,
-        MessageDefinitionFocus,
-        MessageDefinitionAllowedResponse;
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -1627,7 +1627,7 @@ class MessageDefinitionBuilder extends CanonicalResourceBuilder {
     if (copyright) this.copyright = null;
     if (base) this.base = null;
     if (parent) this.parent = null;
-    if (event) this.eventX = null;
+    if (event) eventX = null;
     if (category) this.category = null;
     if (focus) this.focus = null;
     if (responseRequired) this.responseRequired = null;

@@ -129,7 +129,7 @@ class StructureDefinitionKindBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   StructureDefinitionKindBuilder withElement(ElementBuilder? newElement) {
     return StructureDefinitionKindBuilder._(
-        validatedValue: value, element: newElement);
+        validatedValue: value, element: newElement,);
   }
 
   /// Serializes the instance to JSON with standardized keys

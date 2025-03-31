@@ -1,15 +1,15 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
-        R4ResourceType,
-        StringExtensionForFHIR,
         CoverageEligibilityResponse,
+        CoverageEligibilityResponseBenefit,
+        CoverageEligibilityResponseError,
         CoverageEligibilityResponseInsurance,
         CoverageEligibilityResponseItem,
-        CoverageEligibilityResponseBenefit,
-        CoverageEligibilityResponseError;
+        R4ResourceType,
+        StringExtensionForFHIR,
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -1128,7 +1128,7 @@ class CoverageEligibilityResponseBuilder extends DomainResourceBuilder {
     if (status) this.status = null;
     if (purpose) this.purpose = null;
     if (patient) this.patient = null;
-    if (serviced) this.servicedX = null;
+    if (serviced) servicedX = null;
     if (created) this.created = null;
     if (requestor) this.requestor = null;
     if (request) this.request = null;
@@ -2607,7 +2607,7 @@ class CoverageEligibilityResponseItemBuilder extends BackboneElementBuilder {
             // Add single element to existing list or create new list
             authorizationSupporting = [
               ...(authorizationSupporting ?? []),
-              child
+              child,
             ];
             return;
           }
@@ -3585,8 +3585,8 @@ class CoverageEligibilityResponseBenefitBuilder extends BackboneElementBuilder {
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
     if (type) this.type = null;
-    if (allowed) this.allowedX = null;
-    if (used) this.usedX = null;
+    if (allowed) allowedX = null;
+    if (used) usedX = null;
   }
 
   @override

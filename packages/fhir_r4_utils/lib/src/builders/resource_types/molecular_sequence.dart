@@ -1,19 +1,19 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
+        MolecularSequence,
+        MolecularSequenceInner,
+        MolecularSequenceOuter,
+        MolecularSequenceQuality,
+        MolecularSequenceReferenceSeq,
+        MolecularSequenceRepository,
+        MolecularSequenceRoc,
+        MolecularSequenceStructureVariant,
+        MolecularSequenceVariant,
         R4ResourceType,
         StringExtensionForFHIR,
-        MolecularSequence,
-        MolecularSequenceReferenceSeq,
-        MolecularSequenceVariant,
-        MolecularSequenceQuality,
-        MolecularSequenceRoc,
-        MolecularSequenceRepository,
-        MolecularSequenceStructureVariant,
-        MolecularSequenceOuter,
-        MolecularSequenceInner;
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 

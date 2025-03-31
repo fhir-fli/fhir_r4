@@ -3080,7 +3080,7 @@ class StructureDefinitionSnapshot extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory StructureDefinitionSnapshot.empty() => StructureDefinitionSnapshot(
+  factory StructureDefinitionSnapshot.empty() => const StructureDefinitionSnapshot(
         element: <ElementDefinition>[],
       );
 
@@ -3516,7 +3516,7 @@ class StructureDefinitionDifferential extends BackboneElement {
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
   factory StructureDefinitionDifferential.empty() =>
-      StructureDefinitionDifferential(
+      const StructureDefinitionDifferential(
         element: <ElementDefinition>[],
       );
 

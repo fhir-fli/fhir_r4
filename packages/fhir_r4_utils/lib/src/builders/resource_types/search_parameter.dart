@@ -1,12 +1,12 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
         R4ResourceType,
-        StringExtensionForFHIR,
         SearchParameter,
-        SearchParameterComponent;
+        SearchParameterComponent,
+        StringExtensionForFHIR,
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 

@@ -1,13 +1,13 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
+        ObservationDefinition,
+        ObservationDefinitionQualifiedInterval,
+        ObservationDefinitionQuantitativeDetails,
         R4ResourceType,
         StringExtensionForFHIR,
-        ObservationDefinition,
-        ObservationDefinitionQuantitativeDetails,
-        ObservationDefinitionQualifiedInterval;
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 

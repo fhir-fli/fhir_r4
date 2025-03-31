@@ -1,13 +1,13 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
+        Medication,
+        MedicationBatch,
+        MedicationIngredient,
         R4ResourceType,
         StringExtensionForFHIR,
-        Medication,
-        MedicationIngredient,
-        MedicationBatch;
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -1436,7 +1436,7 @@ class MedicationIngredientBuilder extends BackboneElementBuilder {
     if (id) this.id = null;
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
-    if (item) this.itemX = null;
+    if (item) itemX = null;
     if (isActive) this.isActive = null;
     if (strength) this.strength = null;
   }

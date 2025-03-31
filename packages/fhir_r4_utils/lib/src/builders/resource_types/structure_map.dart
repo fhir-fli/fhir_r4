@@ -1,19 +1,19 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
         R4ResourceType,
         StringExtensionForFHIR,
         StructureMap,
-        StructureMapStructure,
+        StructureMapDependent,
         StructureMapGroup,
         StructureMapInput,
+        StructureMapParameter,
         StructureMapRule,
         StructureMapSource,
+        StructureMapStructure,
         StructureMapTarget,
-        StructureMapParameter,
-        StructureMapDependent;
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -5849,7 +5849,7 @@ class StructureMapSourceBuilder extends BackboneElementBuilder {
           'TriggerDefinitionBuilder',
           'UsageContextBuilder',
           'DosageBuilder',
-          'FhirMetaBuilder'
+          'FhirMetaBuilder',
         ];
       case 'defaultValueBase64Binary':
         return ['FhirBase64BinaryBuilder'];
@@ -6320,7 +6320,7 @@ class StructureMapSourceBuilder extends BackboneElementBuilder {
     if (min) this.min = null;
     if (max) this.max = null;
     if (type) this.type = null;
-    if (defaultValue) this.defaultValueX = null;
+    if (defaultValue) defaultValueX = null;
     if (element) this.element = null;
     if (listMode) this.listMode = null;
     if (variable) this.variable = null;
@@ -7657,7 +7657,7 @@ class StructureMapParameterBuilder extends BackboneElementBuilder {
           'FhirStringBuilder',
           'FhirBooleanBuilder',
           'FhirIntegerBuilder',
-          'FhirDecimalBuilder'
+          'FhirDecimalBuilder',
         ];
       case 'valueId':
         return ['FhirIdBuilder'];
@@ -7737,7 +7737,7 @@ class StructureMapParameterBuilder extends BackboneElementBuilder {
     if (id) this.id = null;
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
-    if (value) this.valueX = null;
+    if (value) valueX = null;
   }
 
   @override

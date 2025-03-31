@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, StringExtensionForFHIR, UsageContext;
+    show StringExtensionForFHIR, UsageContext, yamlMapToJson, yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -398,7 +398,7 @@ class UsageContextBuilder extends DataTypeBuilder
           'CodeableConceptBuilder',
           'QuantityBuilder',
           'RangeBuilder',
-          'ReferenceBuilder'
+          'ReferenceBuilder',
         ];
       case 'valueCodeableConcept':
         return ['CodeableConceptBuilder'];
@@ -471,7 +471,7 @@ class UsageContextBuilder extends DataTypeBuilder
     if (id) this.id = null;
     if (extension_) this.extension_ = null;
     if (code) this.code = null;
-    if (value) this.valueX = null;
+    if (value) valueX = null;
   }
 
   @override

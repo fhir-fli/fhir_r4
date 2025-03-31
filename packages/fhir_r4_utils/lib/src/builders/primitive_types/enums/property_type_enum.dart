@@ -155,7 +155,7 @@ class PropertyTypeEnumBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   PropertyTypeEnumBuilder withElement(ElementBuilder? newElement) {
     return PropertyTypeEnumBuilder._(
-        validatedValue: value, element: newElement);
+        validatedValue: value, element: newElement,);
   }
 
   /// Serializes the instance to JSON with standardized keys

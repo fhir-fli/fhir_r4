@@ -117,7 +117,7 @@ class NutritionProductStatusBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   NutritionProductStatusBuilder withElement(ElementBuilder? newElement) {
     return NutritionProductStatusBuilder._(
-        validatedValue: value, element: newElement);
+        validatedValue: value, element: newElement,);
   }
 
   /// Serializes the instance to JSON with standardized keys

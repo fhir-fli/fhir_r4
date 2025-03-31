@@ -1,13 +1,13 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
+        QuestionnaireResponse,
+        QuestionnaireResponseAnswer,
+        QuestionnaireResponseItem,
         R4ResourceType,
         StringExtensionForFHIR,
-        QuestionnaireResponse,
-        QuestionnaireResponseItem,
-        QuestionnaireResponseAnswer;
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -2355,7 +2355,7 @@ class QuestionnaireResponseAnswerBuilder extends BackboneElementBuilder {
           'AttachmentBuilder',
           'CodingBuilder',
           'QuantityBuilder',
-          'ReferenceBuilder'
+          'ReferenceBuilder',
         ];
       case 'valueBoolean':
         return ['FhirBooleanBuilder'];
@@ -2492,7 +2492,7 @@ class QuestionnaireResponseAnswerBuilder extends BackboneElementBuilder {
     if (id) this.id = null;
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
-    if (value) this.valueX = null;
+    if (value) valueX = null;
     if (item) this.item = null;
   }
 

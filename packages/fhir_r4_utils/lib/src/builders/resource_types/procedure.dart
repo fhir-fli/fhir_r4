@@ -1,13 +1,13 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
+        Procedure,
+        ProcedureFocalDevice,
+        ProcedurePerformer,
         R4ResourceType,
         StringExtensionForFHIR,
-        Procedure,
-        ProcedurePerformer,
-        ProcedureFocalDevice;
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -1050,7 +1050,7 @@ class ProcedureBuilder extends DomainResourceBuilder {
               if (converted != null) {
                 instantiatesCanonical = [
                   ...(instantiatesCanonical ?? []),
-                  converted
+                  converted,
                 ];
                 return;
               }
@@ -1494,7 +1494,7 @@ class ProcedureBuilder extends DomainResourceBuilder {
           'PeriodBuilder',
           'FhirStringBuilder',
           'AgeBuilder',
-          'RangeBuilder'
+          'RangeBuilder',
         ];
       case 'performedDateTime':
         return ['FhirDateTimeBuilder'];
@@ -1814,7 +1814,7 @@ class ProcedureBuilder extends DomainResourceBuilder {
     if (code) this.code = null;
     if (subject) this.subject = null;
     if (encounter) this.encounter = null;
-    if (performed) this.performedX = null;
+    if (performed) performedX = null;
     if (recorder) this.recorder = null;
     if (asserter) this.asserter = null;
     if (performer) this.performer = null;

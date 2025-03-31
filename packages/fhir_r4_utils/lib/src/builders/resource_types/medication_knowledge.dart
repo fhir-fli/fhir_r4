@@ -1,27 +1,27 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
+        MedicationKnowledge,
+        MedicationKnowledgeAdministrationGuidelines,
+        MedicationKnowledgeCost,
+        MedicationKnowledgeDosage,
+        MedicationKnowledgeDrugCharacteristic,
+        MedicationKnowledgeIngredient,
+        MedicationKnowledgeKinetics,
+        MedicationKnowledgeMaxDispense,
+        MedicationKnowledgeMedicineClassification,
+        MedicationKnowledgeMonitoringProgram,
+        MedicationKnowledgeMonograph,
+        MedicationKnowledgePackaging,
+        MedicationKnowledgePatientCharacteristics,
+        MedicationKnowledgeRegulatory,
+        MedicationKnowledgeRelatedMedicationKnowledge,
+        MedicationKnowledgeSchedule,
+        MedicationKnowledgeSubstitution,
         R4ResourceType,
         StringExtensionForFHIR,
-        MedicationKnowledge,
-        MedicationKnowledgeRelatedMedicationKnowledge,
-        MedicationKnowledgeMonograph,
-        MedicationKnowledgeIngredient,
-        MedicationKnowledgeCost,
-        MedicationKnowledgeMonitoringProgram,
-        MedicationKnowledgeAdministrationGuidelines,
-        MedicationKnowledgeDosage,
-        MedicationKnowledgePatientCharacteristics,
-        MedicationKnowledgeMedicineClassification,
-        MedicationKnowledgePackaging,
-        MedicationKnowledgeDrugCharacteristic,
-        MedicationKnowledgeRegulatory,
-        MedicationKnowledgeSubstitution,
-        MedicationKnowledgeSchedule,
-        MedicationKnowledgeMaxDispense,
-        MedicationKnowledgeKinetics;
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -951,7 +951,7 @@ class MedicationKnowledgeBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             relatedMedicationKnowledge = [
               ...(relatedMedicationKnowledge ?? []),
-              child
+              child,
             ];
             return;
           }
@@ -1080,7 +1080,7 @@ class MedicationKnowledgeBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             administrationGuidelines = [
               ...(administrationGuidelines ?? []),
-              child
+              child,
             ];
             return;
           }
@@ -1859,7 +1859,7 @@ class MedicationKnowledgeRelatedMedicationKnowledgeBuilder
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
       return MedicationKnowledgeRelatedMedicationKnowledgeBuilder.fromJson(
-          json);
+          json,);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -3155,7 +3155,7 @@ class MedicationKnowledgeIngredientBuilder extends BackboneElementBuilder {
     if (id) this.id = null;
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
-    if (item) this.itemX = null;
+    if (item) itemX = null;
     if (isActive) this.isActive = null;
     if (strength) this.strength = null;
   }
@@ -4719,7 +4719,7 @@ class MedicationKnowledgeAdministrationGuidelinesBuilder
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
     if (dosage) this.dosage = null;
-    if (indication) this.indicationX = null;
+    if (indication) indicationX = null;
     if (patientCharacteristics) this.patientCharacteristics = null;
   }
 
@@ -5756,7 +5756,7 @@ class MedicationKnowledgePatientCharacteristicsBuilder
     if (id) this.id = null;
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
-    if (characteristic) this.characteristicX = null;
+    if (characteristic) characteristicX = null;
     if (value) this.value = null;
   }
 
@@ -7186,7 +7186,7 @@ class MedicationKnowledgeDrugCharacteristicBuilder
           'CodeableConceptBuilder',
           'FhirStringBuilder',
           'QuantityBuilder',
-          'FhirBase64BinaryBuilder'
+          'FhirBase64BinaryBuilder',
         ];
       case 'valueCodeableConcept':
         return ['CodeableConceptBuilder'];
@@ -7266,7 +7266,7 @@ class MedicationKnowledgeDrugCharacteristicBuilder
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
     if (type) this.type = null;
-    if (value) this.valueX = null;
+    if (value) valueX = null;
   }
 
   @override

@@ -1,17 +1,17 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
+        NutritionOrder,
+        NutritionOrderAdministration,
+        NutritionOrderEnteralFormula,
+        NutritionOrderNutrient,
+        NutritionOrderOralDiet,
+        NutritionOrderSupplement,
+        NutritionOrderTexture,
         R4ResourceType,
         StringExtensionForFHIR,
-        NutritionOrder,
-        NutritionOrderOralDiet,
-        NutritionOrderNutrient,
-        NutritionOrderTexture,
-        NutritionOrderSupplement,
-        NutritionOrderEnteralFormula,
-        NutritionOrderAdministration;
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -778,7 +778,7 @@ class NutritionOrderBuilder extends DomainResourceBuilder {
               if (converted != null) {
                 instantiatesCanonical = [
                   ...(instantiatesCanonical ?? []),
-                  converted
+                  converted,
                 ];
                 return;
               }
@@ -5015,7 +5015,7 @@ class NutritionOrderAdministrationBuilder extends BackboneElementBuilder {
     if (modifierExtension) this.modifierExtension = null;
     if (schedule) this.schedule = null;
     if (quantity) this.quantity = null;
-    if (rate) this.rateX = null;
+    if (rate) rateX = null;
   }
 
   @override

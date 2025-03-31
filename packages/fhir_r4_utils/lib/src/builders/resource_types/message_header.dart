@@ -1,14 +1,14 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
-        R4ResourceType,
-        StringExtensionForFHIR,
         MessageHeader,
         MessageHeaderDestination,
+        MessageHeaderResponse,
         MessageHeaderSource,
-        MessageHeaderResponse;
+        R4ResourceType,
+        StringExtensionForFHIR,
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -958,7 +958,7 @@ class MessageHeaderBuilder extends DomainResourceBuilder {
     if (contained) this.contained = null;
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
-    if (event) this.eventX = null;
+    if (event) eventX = null;
     if (destination) this.destination = null;
     if (sender) this.sender = null;
     if (enterer) this.enterer = null;

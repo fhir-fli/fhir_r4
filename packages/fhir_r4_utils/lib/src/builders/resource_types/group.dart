@@ -1,13 +1,13 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
-        R4ResourceType,
-        StringExtensionForFHIR,
         FhirGroup,
         GroupCharacteristic,
-        GroupMember;
+        GroupMember,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -1599,7 +1599,7 @@ class GroupCharacteristicBuilder extends BackboneElementBuilder {
           'FhirBooleanBuilder',
           'QuantityBuilder',
           'RangeBuilder',
-          'ReferenceBuilder'
+          'ReferenceBuilder',
         ];
       case 'valueCodeableConcept':
         return ['CodeableConceptBuilder'];
@@ -1702,7 +1702,7 @@ class GroupCharacteristicBuilder extends BackboneElementBuilder {
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
     if (code) this.code = null;
-    if (value) this.valueX = null;
+    if (value) valueX = null;
     if (exclude) this.exclude = null;
     if (period) this.period = null;
   }

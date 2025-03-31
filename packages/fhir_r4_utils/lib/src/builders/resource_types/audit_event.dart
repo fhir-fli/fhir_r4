@@ -1,16 +1,16 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
-        R4ResourceType,
-        StringExtensionForFHIR,
         AuditEvent,
         AuditEventAgent,
+        AuditEventDetail,
+        AuditEventEntity,
         AuditEventNetwork,
         AuditEventSource,
-        AuditEventEntity,
-        AuditEventDetail;
+        R4ResourceType,
+        StringExtensionForFHIR,
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -4284,7 +4284,7 @@ class AuditEventDetailBuilder extends BackboneElementBuilder {
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
     if (type) this.type = null;
-    if (value) this.valueX = null;
+    if (value) valueX = null;
   }
 
   @override

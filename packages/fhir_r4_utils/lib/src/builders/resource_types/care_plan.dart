@@ -1,13 +1,13 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
-        R4ResourceType,
-        StringExtensionForFHIR,
         CarePlan,
         CarePlanActivity,
-        CarePlanDetail;
+        CarePlanDetail,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -898,7 +898,7 @@ class CarePlanBuilder extends DomainResourceBuilder {
               if (converted != null) {
                 instantiatesCanonical = [
                   ...(instantiatesCanonical ?? []),
-                  converted
+                  converted,
                 ];
                 return;
               }
@@ -3099,7 +3099,7 @@ class CarePlanDetailBuilder extends BackboneElementBuilder {
               if (converted != null) {
                 instantiatesCanonical = [
                   ...(instantiatesCanonical ?? []),
-                  converted
+                  converted,
                 ];
                 return;
               }
@@ -3608,10 +3608,10 @@ class CarePlanDetailBuilder extends BackboneElementBuilder {
     if (status) this.status = null;
     if (statusReason) this.statusReason = null;
     if (doNotPerform) this.doNotPerform = null;
-    if (scheduled) this.scheduledX = null;
+    if (scheduled) scheduledX = null;
     if (location) this.location = null;
     if (performer) this.performer = null;
-    if (product) this.productX = null;
+    if (product) productX = null;
     if (dailyAmount) this.dailyAmount = null;
     if (quantity) this.quantity = null;
     if (description) this.description = null;

@@ -1429,7 +1429,7 @@ class ManufacturedItemDefinitionProperty extends BackboneElement {
           'Quantity',
           'FhirDate',
           'FhirBoolean',
-          'Attachment'
+          'Attachment',
         ];
       case 'valueCodeableConcept':
         return ['CodeableConcept'];

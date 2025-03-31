@@ -1,14 +1,14 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
         R4ResourceType,
-        StringExtensionForFHIR,
         RequestGroup,
         RequestGroupAction,
         RequestGroupCondition,
-        RequestGroupRelatedAction;
+        RequestGroupRelatedAction,
+        StringExtensionForFHIR,
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -783,7 +783,7 @@ class RequestGroupBuilder extends DomainResourceBuilder {
               if (converted != null) {
                 instantiatesCanonical = [
                   ...(instantiatesCanonical ?? []),
-                  converted
+                  converted,
                 ];
                 return;
               }
@@ -2530,7 +2530,7 @@ class RequestGroupActionBuilder extends BackboneElementBuilder {
           'PeriodBuilder',
           'FhirDurationBuilder',
           'RangeBuilder',
-          'TimingBuilder'
+          'TimingBuilder',
         ];
       case 'timingDateTime':
         return ['FhirDateTimeBuilder'];
@@ -2752,7 +2752,7 @@ class RequestGroupActionBuilder extends BackboneElementBuilder {
     if (documentation) this.documentation = null;
     if (condition) this.condition = null;
     if (relatedAction) this.relatedAction = null;
-    if (timing) this.timingX = null;
+    if (timing) timingX = null;
     if (participant) this.participant = null;
     if (type) this.type = null;
     if (groupingBehavior) this.groupingBehavior = null;
@@ -3919,7 +3919,7 @@ class RequestGroupRelatedActionBuilder extends BackboneElementBuilder {
     if (modifierExtension) this.modifierExtension = null;
     if (actionId) this.actionId = null;
     if (relationship) this.relationship = null;
-    if (offset) this.offsetX = null;
+    if (offset) offsetX = null;
   }
 
   @override

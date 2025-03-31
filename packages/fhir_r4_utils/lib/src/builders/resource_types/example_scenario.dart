@@ -1,19 +1,19 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
-        R4ResourceType,
-        StringExtensionForFHIR,
         ExampleScenario,
         ExampleScenarioActor,
-        ExampleScenarioInstance,
-        ExampleScenarioVersion,
+        ExampleScenarioAlternative,
         ExampleScenarioContainedInstance,
+        ExampleScenarioInstance,
+        ExampleScenarioOperation,
         ExampleScenarioProcess,
         ExampleScenarioStep,
-        ExampleScenarioOperation,
-        ExampleScenarioAlternative;
+        ExampleScenarioVersion,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 

@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, StringExtensionForFHIR, Annotation;
+    show Annotation, StringExtensionForFHIR, yamlMapToJson, yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -461,7 +461,7 @@ class AnnotationBuilder extends DataTypeBuilder
   }) {
     if (id) this.id = null;
     if (extension_) this.extension_ = null;
-    if (author) this.authorX = null;
+    if (author) authorX = null;
     if (time) this.time = null;
     if (text) this.text = null;
   }

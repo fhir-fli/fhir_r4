@@ -1,12 +1,12 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
+        Parameters,
+        ParametersParameter,
         R4ResourceType,
         StringExtensionForFHIR,
-        Parameters,
-        ParametersParameter;
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -1972,7 +1972,7 @@ class ParametersParameterBuilder extends BackboneElementBuilder {
           'TriggerDefinitionBuilder',
           'UsageContextBuilder',
           'DosageBuilder',
-          'FhirMetaBuilder'
+          'FhirMetaBuilder',
         ];
       case 'valueBase64Binary':
         return ['FhirBase64BinaryBuilder'];
@@ -2390,7 +2390,7 @@ class ParametersParameterBuilder extends BackboneElementBuilder {
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
     if (name) this.name = null;
-    if (value) this.valueX = null;
+    if (value) valueX = null;
     if (resource) this.resource = null;
     if (part_) this.part_ = null;
   }

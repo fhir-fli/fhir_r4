@@ -189,7 +189,7 @@ class ConceptMapEquivalenceBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   ConceptMapEquivalenceBuilder withElement(ElementBuilder? newElement) {
     return ConceptMapEquivalenceBuilder._(
-        validatedValue: value, element: newElement);
+        validatedValue: value, element: newElement,);
   }
 
   /// Serializes the instance to JSON with standardized keys

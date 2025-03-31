@@ -1,13 +1,13 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
-        R4ResourceType,
-        StringExtensionForFHIR,
         Provenance,
         ProvenanceAgent,
-        ProvenanceEntity;
+        ProvenanceEntity,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -988,7 +988,7 @@ class ProvenanceBuilder extends DomainResourceBuilder {
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
     if (target) this.target = null;
-    if (occurred) this.occurredX = null;
+    if (occurred) occurredX = null;
     if (recorded) this.recorded = null;
     if (policy) this.policy = null;
     if (location) this.location = null;

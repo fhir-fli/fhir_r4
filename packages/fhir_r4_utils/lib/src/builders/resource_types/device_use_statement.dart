@@ -1,11 +1,11 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
+        DeviceUseStatement,
         R4ResourceType,
         StringExtensionForFHIR,
-        DeviceUseStatement;
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -1084,7 +1084,7 @@ class DeviceUseStatementBuilder extends DomainResourceBuilder {
     if (status) this.status = null;
     if (subject) this.subject = null;
     if (derivedFrom) this.derivedFrom = null;
-    if (timing) this.timingX = null;
+    if (timing) timingX = null;
     if (recordedOn) this.recordedOn = null;
     if (source) this.source = null;
     if (device) this.device = null;

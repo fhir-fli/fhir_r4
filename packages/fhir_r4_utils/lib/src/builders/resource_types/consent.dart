@@ -1,16 +1,16 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
+        Consent,
+        ConsentActor,
+        ConsentData,
+        ConsentPolicy,
+        ConsentProvision,
+        ConsentVerification,
         R4ResourceType,
         StringExtensionForFHIR,
-        Consent,
-        ConsentPolicy,
-        ConsentVerification,
-        ConsentProvision,
-        ConsentActor,
-        ConsentData;
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -1070,7 +1070,7 @@ class ConsentBuilder extends DomainResourceBuilder {
     if (dateTime) this.dateTime = null;
     if (performer) this.performer = null;
     if (organization) this.organization = null;
-    if (source) this.sourceX = null;
+    if (source) sourceX = null;
     if (policy) this.policy = null;
     if (policyRule) this.policyRule = null;
     if (verification) this.verification = null;

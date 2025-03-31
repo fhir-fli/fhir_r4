@@ -1,14 +1,14 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
-        R4ResourceType,
-        StringExtensionForFHIR,
         EvidenceVariable,
+        EvidenceVariableCategory,
         EvidenceVariableCharacteristic,
         EvidenceVariableTimeFromStart,
-        EvidenceVariableCategory;
+        R4ResourceType,
+        StringExtensionForFHIR,
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -2440,7 +2440,7 @@ class EvidenceVariableCharacteristicBuilder extends BackboneElementBuilder {
           'ReferenceBuilder',
           'FhirCanonicalBuilder',
           'CodeableConceptBuilder',
-          'FhirExpressionBuilder'
+          'FhirExpressionBuilder',
         ];
       case 'definitionReference':
         return ['ReferenceBuilder'];
@@ -2560,7 +2560,7 @@ class EvidenceVariableCharacteristicBuilder extends BackboneElementBuilder {
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
     if (description) this.description = null;
-    if (definition) this.definitionX = null;
+    if (definition) definitionX = null;
     if (method) this.method = null;
     if (device) this.device = null;
     if (exclude) this.exclude = null;
@@ -3727,7 +3727,7 @@ class EvidenceVariableCategoryBuilder extends BackboneElementBuilder {
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
     if (name) this.name = null;
-    if (value) this.valueX = null;
+    if (value) valueX = null;
   }
 
   @override

@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, StringExtensionForFHIR, FhirExtension;
+    show FhirExtension, StringExtensionForFHIR, yamlMapToJson, yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -1446,7 +1446,7 @@ class FhirExtensionBuilder extends DataTypeBuilder {
           'RelatedArtifactBuilder',
           'TriggerDefinitionBuilder',
           'UsageContextBuilder',
-          'DosageBuilder'
+          'DosageBuilder',
         ];
       case 'valueBase64Binary':
         return ['FhirBase64BinaryBuilder'];
@@ -1848,7 +1848,7 @@ class FhirExtensionBuilder extends DataTypeBuilder {
     if (id) this.id = null;
     if (extension_) this.extension_ = null;
     if (url) this.url = null;
-    if (value) this.valueX = null;
+    if (value) valueX = null;
   }
 
   @override

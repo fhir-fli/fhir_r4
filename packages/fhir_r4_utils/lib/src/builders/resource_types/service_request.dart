@@ -1,11 +1,11 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
         R4ResourceType,
+        ServiceRequest,
         StringExtensionForFHIR,
-        ServiceRequest;
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -1192,7 +1192,7 @@ class ServiceRequestBuilder extends DomainResourceBuilder {
               if (converted != null) {
                 instantiatesCanonical = [
                   ...(instantiatesCanonical ?? []),
-                  converted
+                  converted,
                 ];
                 return;
               }
@@ -2131,11 +2131,11 @@ class ServiceRequestBuilder extends DomainResourceBuilder {
     if (doNotPerform) this.doNotPerform = null;
     if (code) this.code = null;
     if (orderDetail) this.orderDetail = null;
-    if (quantity) this.quantityX = null;
+    if (quantity) quantityX = null;
     if (subject) this.subject = null;
     if (encounter) this.encounter = null;
-    if (occurrence) this.occurrenceX = null;
-    if (asNeeded) this.asNeededX = null;
+    if (occurrence) occurrenceX = null;
+    if (asNeeded) asNeededX = null;
     if (authoredOn) this.authoredOn = null;
     if (requester) this.requester = null;
     if (performerType) this.performerType = null;

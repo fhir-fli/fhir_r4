@@ -1,22 +1,22 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
-        R4ResourceType,
-        StringExtensionForFHIR,
         ImplementationGuide,
+        ImplementationGuideDefinition,
         ImplementationGuideDependsOn,
         ImplementationGuideGlobal,
-        ImplementationGuideDefinition,
         ImplementationGuideGrouping,
-        ImplementationGuideResource,
-        ImplementationGuidePage,
-        ImplementationGuideParameter,
-        ImplementationGuideTemplate,
         ImplementationGuideManifest,
+        ImplementationGuidePage,
+        ImplementationGuidePage1,
+        ImplementationGuideParameter,
+        ImplementationGuideResource,
         ImplementationGuideResource1,
-        ImplementationGuidePage1;
+        ImplementationGuideTemplate,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -4327,7 +4327,7 @@ class ImplementationGuideResourceBuilder extends BackboneElementBuilder {
     if (fhirVersion) this.fhirVersion = null;
     if (name) this.name = null;
     if (description) this.description = null;
-    if (example) this.exampleX = null;
+    if (example) exampleX = null;
     if (groupingId) this.groupingId = null;
   }
 
@@ -4964,7 +4964,7 @@ class ImplementationGuidePageBuilder extends BackboneElementBuilder {
     if (id) this.id = null;
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
-    if (name) this.nameX = null;
+    if (name) nameX = null;
     if (title) this.title = null;
     if (generation) this.generation = null;
     if (page) this.page = null;
@@ -7240,7 +7240,7 @@ class ImplementationGuideResource1Builder extends BackboneElementBuilder {
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
     if (reference) this.reference = null;
-    if (example) this.exampleX = null;
+    if (example) exampleX = null;
     if (relativePath) this.relativePath = null;
   }
 

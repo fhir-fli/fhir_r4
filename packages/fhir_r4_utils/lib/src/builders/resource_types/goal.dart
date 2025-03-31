@@ -1,12 +1,12 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
+        Goal,
+        GoalTarget,
         R4ResourceType,
         StringExtensionForFHIR,
-        Goal,
-        GoalTarget;
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -1181,7 +1181,7 @@ class GoalBuilder extends DomainResourceBuilder {
     if (priority) this.priority = null;
     if (description) this.description = null;
     if (subject) this.subject = null;
-    if (start) this.startX = null;
+    if (start) startX = null;
     if (target) this.target = null;
     if (statusDate) this.statusDate = null;
     if (statusReason) this.statusReason = null;
@@ -1986,7 +1986,7 @@ class GoalTargetBuilder extends BackboneElementBuilder {
           'FhirStringBuilder',
           'FhirBooleanBuilder',
           'FhirIntegerBuilder',
-          'RatioBuilder'
+          'RatioBuilder',
         ];
       case 'detailQuantity':
         return ['QuantityBuilder'];
@@ -2107,8 +2107,8 @@ class GoalTargetBuilder extends BackboneElementBuilder {
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
     if (measure) this.measure = null;
-    if (detail) this.detailX = null;
-    if (due) this.dueX = null;
+    if (detail) detailX = null;
+    if (due) dueX = null;
   }
 
   @override

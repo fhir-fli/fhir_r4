@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
-    show yamlMapToJson, yamlToJson, StringExtensionForFHIR, TriggerDefinition;
+    show StringExtensionForFHIR, TriggerDefinition, yamlMapToJson, yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -498,7 +498,7 @@ class TriggerDefinitionBuilder extends DataTypeBuilder
           'TimingBuilder',
           'ReferenceBuilder',
           'FhirDateBuilder',
-          'FhirDateTimeBuilder'
+          'FhirDateTimeBuilder',
         ];
       case 'timingTiming':
         return ['TimingBuilder'];
@@ -594,7 +594,7 @@ class TriggerDefinitionBuilder extends DataTypeBuilder
     if (extension_) this.extension_ = null;
     if (type) this.type = null;
     if (name) this.name = null;
-    if (timing) this.timingX = null;
+    if (timing) timingX = null;
     if (data) this.data = null;
     if (condition) this.condition = null;
   }

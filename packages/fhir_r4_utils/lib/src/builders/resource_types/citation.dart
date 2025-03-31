@@ -1,34 +1,34 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
-        R4ResourceType,
-        StringExtensionForFHIR,
         Citation,
-        CitationSummary,
-        CitationClassification,
-        CitationStatusDate,
-        CitationRelatesTo,
-        CitationCitedArtifact,
-        CitationVersion,
-        CitationStatusDate1,
-        CitationTitle,
         CitationAbstract,
+        CitationAffiliationInfo,
+        CitationCitedArtifact,
+        CitationClassification,
+        CitationClassification1,
+        CitationContributionInstance,
+        CitationContributorship,
+        CitationDateOfPublication,
+        CitationEntry,
         CitationPart,
-        CitationRelatesTo1,
+        CitationPeriodicRelease,
         CitationPublicationForm,
         CitationPublishedIn,
-        CitationPeriodicRelease,
-        CitationDateOfPublication,
+        CitationRelatesTo,
+        CitationRelatesTo1,
+        CitationStatusDate,
+        CitationStatusDate1,
+        CitationSummary,
+        CitationSummary1,
+        CitationTitle,
+        CitationVersion,
         CitationWebLocation,
-        CitationClassification1,
         CitationWhoClassified,
-        CitationContributorship,
-        CitationEntry,
-        CitationAffiliationInfo,
-        CitationContributionInstance,
-        CitationSummary1;
+        R4ResourceType,
+        StringExtensionForFHIR,
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -4017,7 +4017,7 @@ class CitationRelatesToBuilder extends BackboneElementBuilder {
           'FhirUriBuilder',
           'IdentifierBuilder',
           'ReferenceBuilder',
-          'AttachmentBuilder'
+          'AttachmentBuilder',
         ];
       case 'targetUri':
         return ['FhirUriBuilder'];
@@ -4104,7 +4104,7 @@ class CitationRelatesToBuilder extends BackboneElementBuilder {
     if (modifierExtension) this.modifierExtension = null;
     if (relationshipType) this.relationshipType = null;
     if (targetClassifier) this.targetClassifier = null;
-    if (target) this.targetX = null;
+    if (target) targetX = null;
   }
 
   @override
@@ -8310,7 +8310,7 @@ class CitationRelatesTo1Builder extends BackboneElementBuilder {
           'FhirUriBuilder',
           'IdentifierBuilder',
           'ReferenceBuilder',
-          'AttachmentBuilder'
+          'AttachmentBuilder',
         ];
       case 'targetUri':
         return ['FhirUriBuilder'];
@@ -8397,7 +8397,7 @@ class CitationRelatesTo1Builder extends BackboneElementBuilder {
     if (modifierExtension) this.modifierExtension = null;
     if (relationshipType) this.relationshipType = null;
     if (targetClassifier) this.targetClassifier = null;
-    if (target) this.targetX = null;
+    if (target) targetX = null;
   }
 
   @override

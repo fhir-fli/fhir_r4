@@ -1,14 +1,14 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
         R4ResourceType,
         StringExtensionForFHIR,
         Task,
-        TaskRestriction,
         TaskInput,
-        TaskOutput;
+        TaskOutput,
+        TaskRestriction,
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -4021,7 +4021,7 @@ class TaskInputBuilder extends BackboneElementBuilder {
           'TriggerDefinitionBuilder',
           'UsageContextBuilder',
           'DosageBuilder',
-          'FhirMetaBuilder'
+          'FhirMetaBuilder',
         ];
       case 'valueBase64Binary':
         return ['FhirBase64BinaryBuilder'];
@@ -4423,7 +4423,7 @@ class TaskInputBuilder extends BackboneElementBuilder {
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
     if (type) this.type = null;
-    if (value) this.valueX = null;
+    if (value) valueX = null;
   }
 
   @override
@@ -5946,7 +5946,7 @@ class TaskOutputBuilder extends BackboneElementBuilder {
           'TriggerDefinitionBuilder',
           'UsageContextBuilder',
           'DosageBuilder',
-          'FhirMetaBuilder'
+          'FhirMetaBuilder',
         ];
       case 'valueBase64Binary':
         return ['FhirBase64BinaryBuilder'];
@@ -6348,7 +6348,7 @@ class TaskOutputBuilder extends BackboneElementBuilder {
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
     if (type) this.type = null;
-    if (value) this.valueX = null;
+    if (value) valueX = null;
   }
 
   @override

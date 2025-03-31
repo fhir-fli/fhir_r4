@@ -1307,7 +1307,7 @@ class FhirExtension extends DataType {
           'RelatedArtifact',
           'TriggerDefinition',
           'UsageContext',
-          'Dosage'
+          'Dosage',
         ];
       case 'valueBase64Binary':
         return ['FhirBase64Binary'];

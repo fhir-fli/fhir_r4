@@ -1,18 +1,18 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
-        StringExtensionForFHIR,
         ElementDefinition,
-        ElementDefinitionSlicing,
-        ElementDefinitionDiscriminator,
         ElementDefinitionBase,
-        ElementDefinitionType,
-        ElementDefinitionExample,
-        ElementDefinitionConstraint,
         ElementDefinitionBinding,
-        ElementDefinitionMapping;
+        ElementDefinitionConstraint,
+        ElementDefinitionDiscriminator,
+        ElementDefinitionExample,
+        ElementDefinitionMapping,
+        ElementDefinitionSlicing,
+        ElementDefinitionType,
+        StringExtensionForFHIR,
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -5381,7 +5381,7 @@ class ElementDefinitionBuilder extends BackboneTypeBuilder {
           'RelatedArtifactBuilder',
           'TriggerDefinitionBuilder',
           'UsageContextBuilder',
-          'DosageBuilder'
+          'DosageBuilder',
         ];
       case 'defaultValueBase64Binary':
         return ['FhirBase64BinaryBuilder'];
@@ -5542,7 +5542,7 @@ class ElementDefinitionBuilder extends BackboneTypeBuilder {
           'RelatedArtifactBuilder',
           'TriggerDefinitionBuilder',
           'UsageContextBuilder',
-          'DosageBuilder'
+          'DosageBuilder',
         ];
       case 'fixedBase64Binary':
         return ['FhirBase64BinaryBuilder'];
@@ -5699,7 +5699,7 @@ class ElementDefinitionBuilder extends BackboneTypeBuilder {
           'RelatedArtifactBuilder',
           'TriggerDefinitionBuilder',
           'UsageContextBuilder',
-          'DosageBuilder'
+          'DosageBuilder',
         ];
       case 'patternBase64Binary':
         return ['FhirBase64BinaryBuilder'];
@@ -5816,7 +5816,7 @@ class ElementDefinitionBuilder extends BackboneTypeBuilder {
           'FhirIntegerBuilder',
           'FhirPositiveIntBuilder',
           'FhirUnsignedIntBuilder',
-          'QuantityBuilder'
+          'QuantityBuilder',
         ];
       case 'minValueDate':
         return ['FhirDateBuilder'];
@@ -5847,7 +5847,7 @@ class ElementDefinitionBuilder extends BackboneTypeBuilder {
           'FhirIntegerBuilder',
           'FhirPositiveIntBuilder',
           'FhirUnsignedIntBuilder',
-          'QuantityBuilder'
+          'QuantityBuilder',
         ];
       case 'maxValueDate':
         return ['FhirDateBuilder'];
@@ -6986,14 +6986,14 @@ class ElementDefinitionBuilder extends BackboneTypeBuilder {
     if (base) this.base = null;
     if (contentReference) this.contentReference = null;
     if (type) this.type = null;
-    if (defaultValue) this.defaultValueX = null;
+    if (defaultValue) defaultValueX = null;
     if (meaningWhenMissing) this.meaningWhenMissing = null;
     if (orderMeaning) this.orderMeaning = null;
-    if (fixed) this.fixedX = null;
-    if (pattern) this.patternX = null;
+    if (fixed) fixedX = null;
+    if (pattern) patternX = null;
     if (example) this.example = null;
-    if (minValue) this.minValueX = null;
-    if (maxValue) this.maxValueX = null;
+    if (minValue) minValueX = null;
+    if (maxValue) maxValueX = null;
     if (maxLength) this.maxLength = null;
     if (condition) this.condition = null;
     if (constraint) this.constraint = null;
@@ -10893,7 +10893,7 @@ class ElementDefinitionExampleBuilder extends ElementBuilder {
           'RelatedArtifactBuilder',
           'TriggerDefinitionBuilder',
           'UsageContextBuilder',
-          'DosageBuilder'
+          'DosageBuilder',
         ];
       case 'valueBase64Binary':
         return ['FhirBase64BinaryBuilder'];
@@ -11295,7 +11295,7 @@ class ElementDefinitionExampleBuilder extends ElementBuilder {
     if (id) this.id = null;
     if (extension_) this.extension_ = null;
     if (label) this.label = null;
-    if (value) this.valueX = null;
+    if (value) valueX = null;
   }
 
   @override

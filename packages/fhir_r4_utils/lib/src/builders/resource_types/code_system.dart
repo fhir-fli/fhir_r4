@@ -1,16 +1,16 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
-        R4ResourceType,
-        StringExtensionForFHIR,
         CodeSystem,
-        CodeSystemFilter,
-        CodeSystemProperty,
         CodeSystemConcept,
         CodeSystemDesignation,
-        CodeSystemProperty1;
+        CodeSystemFilter,
+        CodeSystemProperty,
+        CodeSystemProperty1,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -4776,7 +4776,7 @@ class CodeSystemProperty1Builder extends BackboneElementBuilder {
           'FhirIntegerBuilder',
           'FhirBooleanBuilder',
           'FhirDateTimeBuilder',
-          'FhirDecimalBuilder'
+          'FhirDecimalBuilder',
         ];
       case 'valueCode':
         return ['FhirCodeBuilder'];
@@ -4877,7 +4877,7 @@ class CodeSystemProperty1Builder extends BackboneElementBuilder {
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
     if (code) this.code = null;
-    if (value) this.valueX = null;
+    if (value) valueX = null;
   }
 
   @override

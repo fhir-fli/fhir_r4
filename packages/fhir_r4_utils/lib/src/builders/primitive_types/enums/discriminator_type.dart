@@ -130,7 +130,7 @@ class DiscriminatorTypeBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   DiscriminatorTypeBuilder withElement(ElementBuilder? newElement) {
     return DiscriminatorTypeBuilder._(
-        validatedValue: value, element: newElement);
+        validatedValue: value, element: newElement,);
   }
 
   /// Serializes the instance to JSON with standardized keys

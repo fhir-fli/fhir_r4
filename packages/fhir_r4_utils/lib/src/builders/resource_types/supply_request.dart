@@ -1,12 +1,12 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
         R4ResourceType,
         StringExtensionForFHIR,
         SupplyRequest,
-        SupplyRequestParameter;
+        SupplyRequestParameter,
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -1202,10 +1202,10 @@ class SupplyRequestBuilder extends DomainResourceBuilder {
     if (status) this.status = null;
     if (category) this.category = null;
     if (priority) this.priority = null;
-    if (item) this.itemX = null;
+    if (item) itemX = null;
     if (quantity) this.quantity = null;
     if (parameter) this.parameter = null;
-    if (occurrence) this.occurrenceX = null;
+    if (occurrence) occurrenceX = null;
     if (authoredOn) this.authoredOn = null;
     if (requester) this.requester = null;
     if (supplier) this.supplier = null;
@@ -1854,7 +1854,7 @@ class SupplyRequestParameterBuilder extends BackboneElementBuilder {
           'CodeableConceptBuilder',
           'QuantityBuilder',
           'RangeBuilder',
-          'FhirBooleanBuilder'
+          'FhirBooleanBuilder',
         ];
       case 'valueCodeableConcept':
         return ['CodeableConceptBuilder'];
@@ -1934,7 +1934,7 @@ class SupplyRequestParameterBuilder extends BackboneElementBuilder {
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
     if (code) this.code = null;
-    if (value) this.valueX = null;
+    if (value) valueX = null;
   }
 
   @override

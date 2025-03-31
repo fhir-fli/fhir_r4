@@ -1,17 +1,17 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
+        DeviceDefinition,
+        DeviceDefinitionCapability,
+        DeviceDefinitionDeviceName,
+        DeviceDefinitionMaterial,
+        DeviceDefinitionProperty,
+        DeviceDefinitionSpecialization,
+        DeviceDefinitionUdiDeviceIdentifier,
         R4ResourceType,
         StringExtensionForFHIR,
-        DeviceDefinition,
-        DeviceDefinitionUdiDeviceIdentifier,
-        DeviceDefinitionDeviceName,
-        DeviceDefinitionSpecialization,
-        DeviceDefinitionCapability,
-        DeviceDefinitionProperty,
-        DeviceDefinitionMaterial;
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -1475,7 +1475,7 @@ class DeviceDefinitionBuilder extends DomainResourceBuilder {
     if (modifierExtension) this.modifierExtension = null;
     if (identifier) this.identifier = null;
     if (udiDeviceIdentifier) this.udiDeviceIdentifier = null;
-    if (manufacturer) this.manufacturerX = null;
+    if (manufacturer) manufacturerX = null;
     if (deviceName) this.deviceName = null;
     if (modelNumber) this.modelNumber = null;
     if (type) this.type = null;

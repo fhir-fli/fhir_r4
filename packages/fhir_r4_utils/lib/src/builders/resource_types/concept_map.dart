@@ -1,16 +1,16 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
+        ConceptMap,
+        ConceptMapDependsOn,
+        ConceptMapElement,
+        ConceptMapGroup,
+        ConceptMapTarget,
+        ConceptMapUnmapped,
         R4ResourceType,
         StringExtensionForFHIR,
-        ConceptMap,
-        ConceptMapGroup,
-        ConceptMapElement,
-        ConceptMapTarget,
-        ConceptMapDependsOn,
-        ConceptMapUnmapped;
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -1352,8 +1352,8 @@ class ConceptMapBuilder extends CanonicalResourceBuilder {
     if (jurisdiction) this.jurisdiction = null;
     if (purpose) this.purpose = null;
     if (copyright) this.copyright = null;
-    if (source) this.sourceX = null;
-    if (target) this.targetX = null;
+    if (source) sourceX = null;
+    if (target) targetX = null;
     if (group) this.group = null;
   }
 

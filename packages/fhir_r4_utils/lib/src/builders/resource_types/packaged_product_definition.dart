@@ -1,16 +1,16 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
-        R4ResourceType,
-        StringExtensionForFHIR,
         PackagedProductDefinition,
+        PackagedProductDefinitionContainedItem,
         PackagedProductDefinitionLegalStatusOfSupply,
         PackagedProductDefinitionPackage,
-        PackagedProductDefinitionShelfLifeStorage,
         PackagedProductDefinitionProperty,
-        PackagedProductDefinitionContainedItem;
+        PackagedProductDefinitionShelfLifeStorage,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -3069,7 +3069,7 @@ class PackagedProductDefinitionShelfLifeStorageBuilder
             // Add single element to existing list or create new list
             specialPrecautionsForStorage = [
               ...(specialPrecautionsForStorage ?? []),
-              child
+              child,
             ];
             return;
           }
@@ -3168,7 +3168,7 @@ class PackagedProductDefinitionShelfLifeStorageBuilder
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
     if (type) this.type = null;
-    if (period) this.periodX = null;
+    if (period) periodX = null;
     if (specialPrecautionsForStorage) this.specialPrecautionsForStorage = null;
   }
 
@@ -3701,7 +3701,7 @@ class PackagedProductDefinitionPropertyBuilder extends BackboneElementBuilder {
           'QuantityBuilder',
           'FhirDateBuilder',
           'FhirBooleanBuilder',
-          'AttachmentBuilder'
+          'AttachmentBuilder',
         ];
       case 'valueCodeableConcept':
         return ['CodeableConceptBuilder'];
@@ -3788,7 +3788,7 @@ class PackagedProductDefinitionPropertyBuilder extends BackboneElementBuilder {
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
     if (type) this.type = null;
-    if (value) this.valueX = null;
+    if (value) valueX = null;
   }
 
   @override

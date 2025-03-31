@@ -1,15 +1,15 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
+        OperationDefinition,
+        OperationDefinitionBinding,
+        OperationDefinitionOverload,
+        OperationDefinitionParameter,
+        OperationDefinitionReferencedFrom,
         R4ResourceType,
         StringExtensionForFHIR,
-        OperationDefinition,
-        OperationDefinitionParameter,
-        OperationDefinitionBinding,
-        OperationDefinitionReferencedFrom,
-        OperationDefinitionOverload;
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 

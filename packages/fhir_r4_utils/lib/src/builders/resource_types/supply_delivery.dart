@@ -1,12 +1,12 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
         R4ResourceType,
         StringExtensionForFHIR,
         SupplyDelivery,
-        SupplyDeliverySuppliedItem;
+        SupplyDeliverySuppliedItem,
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -988,7 +988,7 @@ class SupplyDeliveryBuilder extends DomainResourceBuilder {
     if (patient) this.patient = null;
     if (type) this.type = null;
     if (suppliedItem) this.suppliedItem = null;
-    if (occurrence) this.occurrenceX = null;
+    if (occurrence) occurrenceX = null;
     if (supplier) this.supplier = null;
     if (destination) this.destination = null;
     if (receiver) this.receiver = null;
@@ -1623,7 +1623,7 @@ class SupplyDeliverySuppliedItemBuilder extends BackboneElementBuilder {
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
     if (quantity) this.quantity = null;
-    if (item) this.itemX = null;
+    if (item) itemX = null;
   }
 
   @override

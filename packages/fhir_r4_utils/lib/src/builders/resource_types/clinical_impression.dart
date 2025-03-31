@@ -1,13 +1,13 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
+        ClinicalImpression,
+        ClinicalImpressionFinding,
+        ClinicalImpressionInvestigation,
         R4ResourceType,
         StringExtensionForFHIR,
-        ClinicalImpression,
-        ClinicalImpressionInvestigation,
-        ClinicalImpressionFinding;
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -1060,7 +1060,7 @@ class ClinicalImpressionBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             prognosisCodeableConcept = [
               ...(prognosisCodeableConcept ?? []),
-              child
+              child,
             ];
             return;
           }
@@ -1385,7 +1385,7 @@ class ClinicalImpressionBuilder extends DomainResourceBuilder {
     if (description) this.description = null;
     if (subject) this.subject = null;
     if (encounter) this.encounter = null;
-    if (effective) this.effectiveX = null;
+    if (effective) effectiveX = null;
     if (date) this.date = null;
     if (assessor) this.assessor = null;
     if (previous) this.previous = null;

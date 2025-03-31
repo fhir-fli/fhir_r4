@@ -1,15 +1,15 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
+        Immunization,
+        ImmunizationEducation,
+        ImmunizationPerformer,
+        ImmunizationProtocolApplied,
+        ImmunizationReaction,
         R4ResourceType,
         StringExtensionForFHIR,
-        Immunization,
-        ImmunizationPerformer,
-        ImmunizationEducation,
-        ImmunizationReaction,
-        ImmunizationProtocolApplied;
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -1648,7 +1648,7 @@ class ImmunizationBuilder extends DomainResourceBuilder {
     if (vaccineCode) this.vaccineCode = null;
     if (patient) this.patient = null;
     if (encounter) this.encounter = null;
-    if (occurrence) this.occurrenceX = null;
+    if (occurrence) occurrenceX = null;
     if (recorded) this.recorded = null;
     if (primarySource) this.primarySource = null;
     if (reportOrigin) this.reportOrigin = null;
@@ -4187,8 +4187,8 @@ class ImmunizationProtocolAppliedBuilder extends BackboneElementBuilder {
     if (series) this.series = null;
     if (authority) this.authority = null;
     if (targetDisease) this.targetDisease = null;
-    if (doseNumber) this.doseNumberX = null;
-    if (seriesDoses) this.seriesDosesX = null;
+    if (doseNumber) doseNumberX = null;
+    if (seriesDoses) seriesDosesX = null;
   }
 
   @override

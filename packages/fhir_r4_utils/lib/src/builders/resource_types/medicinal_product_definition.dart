@@ -1,18 +1,18 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
-        R4ResourceType,
-        StringExtensionForFHIR,
         MedicinalProductDefinition,
+        MedicinalProductDefinitionCharacteristic,
         MedicinalProductDefinitionContact,
-        MedicinalProductDefinitionName,
-        MedicinalProductDefinitionNamePart,
         MedicinalProductDefinitionCountryLanguage,
         MedicinalProductDefinitionCrossReference,
+        MedicinalProductDefinitionName,
+        MedicinalProductDefinitionNamePart,
         MedicinalProductDefinitionOperation,
-        MedicinalProductDefinitionCharacteristic;
+        R4ResourceType,
+        StringExtensionForFHIR,
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -1206,7 +1206,7 @@ class MedicinalProductDefinitionBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             packagedMedicinalProduct = [
               ...(packagedMedicinalProduct ?? []),
-              child
+              child,
             ];
             return;
           }
@@ -1687,13 +1687,15 @@ class MedicinalProductDefinitionBuilder extends DomainResourceBuilder {
     if (status) this.status = null;
     if (statusDate) this.statusDate = null;
     if (description) this.description = null;
-    if (combinedPharmaceuticalDoseForm)
+    if (combinedPharmaceuticalDoseForm) {
       this.combinedPharmaceuticalDoseForm = null;
+    }
     if (route) this.route = null;
     if (indication) this.indication = null;
     if (legalStatusOfSupply) this.legalStatusOfSupply = null;
-    if (additionalMonitoringIndicator)
+    if (additionalMonitoringIndicator) {
       this.additionalMonitoringIndicator = null;
+    }
     if (specialMeasures) this.specialMeasures = null;
     if (pediatricUseIndicator) this.pediatricUseIndicator = null;
     if (classification) this.classification = null;
@@ -5494,7 +5496,7 @@ class MedicinalProductDefinitionCharacteristicBuilder
           'QuantityBuilder',
           'FhirDateBuilder',
           'FhirBooleanBuilder',
-          'AttachmentBuilder'
+          'AttachmentBuilder',
         ];
       case 'valueCodeableConcept':
         return ['CodeableConceptBuilder'];
@@ -5581,7 +5583,7 @@ class MedicinalProductDefinitionCharacteristicBuilder
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
     if (type) this.type = null;
-    if (value) this.valueX = null;
+    if (value) valueX = null;
   }
 
   @override

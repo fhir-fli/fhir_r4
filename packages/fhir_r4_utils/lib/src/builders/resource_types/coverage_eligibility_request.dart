@@ -1,15 +1,15 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
-        R4ResourceType,
-        StringExtensionForFHIR,
         CoverageEligibilityRequest,
-        CoverageEligibilityRequestSupportingInfo,
+        CoverageEligibilityRequestDiagnosis,
         CoverageEligibilityRequestInsurance,
         CoverageEligibilityRequestItem,
-        CoverageEligibilityRequestDiagnosis;
+        CoverageEligibilityRequestSupportingInfo,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -1086,7 +1086,7 @@ class CoverageEligibilityRequestBuilder extends DomainResourceBuilder {
     if (priority) this.priority = null;
     if (purpose) this.purpose = null;
     if (patient) this.patient = null;
-    if (serviced) this.servicedX = null;
+    if (serviced) servicedX = null;
     if (created) this.created = null;
     if (enterer) this.enterer = null;
     if (provider) this.provider = null;
@@ -2851,7 +2851,7 @@ class CoverageEligibilityRequestItemBuilder extends BackboneElementBuilder {
                 if (converted != null) {
                   supportingInfoSequence = [
                     ...(supportingInfoSequence ?? []),
-                    converted
+                    converted,
                   ];
                   return;
                 }
@@ -3647,7 +3647,7 @@ class CoverageEligibilityRequestDiagnosisBuilder
     if (id) this.id = null;
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
-    if (diagnosis) this.diagnosisX = null;
+    if (diagnosis) diagnosisX = null;
   }
 
   @override

@@ -1,21 +1,21 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
         R4ResourceType,
         StringExtensionForFHIR,
         SubstanceDefinition,
-        SubstanceDefinitionMoiety,
-        SubstanceDefinitionProperty,
-        SubstanceDefinitionMolecularWeight,
-        SubstanceDefinitionStructure,
-        SubstanceDefinitionRepresentation,
         SubstanceDefinitionCode,
+        SubstanceDefinitionMoiety,
+        SubstanceDefinitionMolecularWeight,
         SubstanceDefinitionName,
         SubstanceDefinitionOfficial,
+        SubstanceDefinitionProperty,
         SubstanceDefinitionRelationship,
-        SubstanceDefinitionSourceMaterial;
+        SubstanceDefinitionRepresentation,
+        SubstanceDefinitionSourceMaterial,
+        SubstanceDefinitionStructure,
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -2212,7 +2212,7 @@ class SubstanceDefinitionMoietyBuilder extends BackboneElementBuilder {
     if (stereochemistry) this.stereochemistry = null;
     if (opticalActivity) this.opticalActivity = null;
     if (molecularFormula) this.molecularFormula = null;
-    if (amount) this.amountX = null;
+    if (amount) amountX = null;
     if (measurementType) this.measurementType = null;
   }
 
@@ -2783,7 +2783,7 @@ class SubstanceDefinitionPropertyBuilder extends BackboneElementBuilder {
           'QuantityBuilder',
           'FhirDateBuilder',
           'FhirBooleanBuilder',
-          'AttachmentBuilder'
+          'AttachmentBuilder',
         ];
       case 'valueCodeableConcept':
         return ['CodeableConceptBuilder'];
@@ -2870,7 +2870,7 @@ class SubstanceDefinitionPropertyBuilder extends BackboneElementBuilder {
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
     if (type) this.type = null;
-    if (value) this.valueX = null;
+    if (value) valueX = null;
   }
 
   @override
@@ -7069,7 +7069,7 @@ class SubstanceDefinitionRelationshipBuilder extends BackboneElementBuilder {
     if (substanceDefinitionX != null) {
       final fhirType = substanceDefinitionX!.fhirType;
       addField(
-          'substanceDefinition${fhirType.capitalize()}', substanceDefinitionX);
+          'substanceDefinition${fhirType.capitalize()}', substanceDefinitionX,);
     }
 
     addField('type', type);
@@ -7538,10 +7538,10 @@ class SubstanceDefinitionRelationshipBuilder extends BackboneElementBuilder {
     if (id) this.id = null;
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
-    if (substanceDefinition) this.substanceDefinitionX = null;
+    if (substanceDefinition) substanceDefinitionX = null;
     if (type) this.type = null;
     if (isDefining) this.isDefining = null;
-    if (amount) this.amountX = null;
+    if (amount) amountX = null;
     if (ratioHighLimitAmount) this.ratioHighLimitAmount = null;
     if (comparator) this.comparator = null;
     if (source) this.source = null;

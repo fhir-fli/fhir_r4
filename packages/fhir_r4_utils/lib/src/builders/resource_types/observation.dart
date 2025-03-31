@@ -1,13 +1,13 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
+        Observation,
+        ObservationComponent,
+        ObservationReferenceRange,
         R4ResourceType,
         StringExtensionForFHIR,
-        Observation,
-        ObservationReferenceRange,
-        ObservationComponent;
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -1528,7 +1528,7 @@ class ObservationBuilder extends DomainResourceBuilder {
           'FhirDateTimeBuilder',
           'PeriodBuilder',
           'TimingBuilder',
-          'FhirInstantBuilder'
+          'FhirInstantBuilder',
         ];
       case 'effectiveDateTime':
         return ['FhirDateTimeBuilder'];
@@ -1555,7 +1555,7 @@ class ObservationBuilder extends DomainResourceBuilder {
           'SampledDataBuilder',
           'FhirTimeBuilder',
           'FhirDateTimeBuilder',
-          'PeriodBuilder'
+          'PeriodBuilder',
         ];
       case 'valueQuantity':
         return ['QuantityBuilder'];
@@ -1898,10 +1898,10 @@ class ObservationBuilder extends DomainResourceBuilder {
     if (subject) this.subject = null;
     if (focus) this.focus = null;
     if (encounter) this.encounter = null;
-    if (effective) this.effectiveX = null;
+    if (effective) effectiveX = null;
     if (issued) this.issued = null;
     if (performer) this.performer = null;
-    if (value) this.valueX = null;
+    if (value) valueX = null;
     if (dataAbsentReason) this.dataAbsentReason = null;
     if (interpretation) this.interpretation = null;
     if (note) this.note = null;
@@ -3543,7 +3543,7 @@ class ObservationComponentBuilder extends BackboneElementBuilder {
           'SampledDataBuilder',
           'FhirTimeBuilder',
           'FhirDateTimeBuilder',
-          'PeriodBuilder'
+          'PeriodBuilder',
         ];
       case 'valueQuantity':
         return ['QuantityBuilder'];
@@ -3696,7 +3696,7 @@ class ObservationComponentBuilder extends BackboneElementBuilder {
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
     if (code) this.code = null;
-    if (value) this.valueX = null;
+    if (value) valueX = null;
     if (dataAbsentReason) this.dataAbsentReason = null;
     if (interpretation) this.interpretation = null;
     if (referenceRange) this.referenceRange = null;

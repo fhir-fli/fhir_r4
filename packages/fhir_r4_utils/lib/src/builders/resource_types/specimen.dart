@@ -1,14 +1,14 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
         R4ResourceType,
-        StringExtensionForFHIR,
         Specimen,
         SpecimenCollection,
+        SpecimenContainer,
         SpecimenProcessing,
-        SpecimenContainer;
+        StringExtensionForFHIR,
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -1890,12 +1890,12 @@ class SpecimenCollectionBuilder extends BackboneElementBuilder {
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
     if (collector) this.collector = null;
-    if (collected) this.collectedX = null;
+    if (collected) collectedX = null;
     if (duration) this.duration = null;
     if (quantity) this.quantity = null;
     if (method) this.method = null;
     if (bodySite) this.bodySite = null;
-    if (fastingStatus) this.fastingStatusX = null;
+    if (fastingStatus) fastingStatusX = null;
   }
 
   @override
@@ -2541,7 +2541,7 @@ class SpecimenProcessingBuilder extends BackboneElementBuilder {
     if (description) this.description = null;
     if (procedure) this.procedure = null;
     if (additive) this.additive = null;
-    if (time) this.timeX = null;
+    if (time) timeX = null;
   }
 
   @override
@@ -3237,7 +3237,7 @@ class SpecimenContainerBuilder extends BackboneElementBuilder {
     if (type) this.type = null;
     if (capacity) this.capacity = null;
     if (specimenQuantity) this.specimenQuantity = null;
-    if (additive) this.additiveX = null;
+    if (additive) additiveX = null;
   }
 
   @override

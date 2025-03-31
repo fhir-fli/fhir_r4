@@ -1,18 +1,18 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
-        R4ResourceType,
-        StringExtensionForFHIR,
         ClinicalUseDefinition,
         ClinicalUseDefinitionContraindication,
-        ClinicalUseDefinitionOtherTherapy,
         ClinicalUseDefinitionIndication,
-        ClinicalUseDefinitionInteraction,
         ClinicalUseDefinitionInteractant,
+        ClinicalUseDefinitionInteraction,
+        ClinicalUseDefinitionOtherTherapy,
         ClinicalUseDefinitionUndesirableEffect,
-        ClinicalUseDefinitionWarning;
+        ClinicalUseDefinitionWarning,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -2815,7 +2815,7 @@ class ClinicalUseDefinitionIndicationBuilder extends BackboneElementBuilder {
     if (diseaseStatus) this.diseaseStatus = null;
     if (comorbidity) this.comorbidity = null;
     if (intendedEffect) this.intendedEffect = null;
-    if (duration) this.durationX = null;
+    if (duration) durationX = null;
     if (undesirableEffect) this.undesirableEffect = null;
     if (otherTherapy) this.otherTherapy = null;
   }
@@ -3945,7 +3945,7 @@ class ClinicalUseDefinitionInteractantBuilder extends BackboneElementBuilder {
     if (id) this.id = null;
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
-    if (item) this.itemX = null;
+    if (item) itemX = null;
   }
 
   @override

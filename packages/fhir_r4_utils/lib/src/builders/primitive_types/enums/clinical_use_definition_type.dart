@@ -141,7 +141,7 @@ class ClinicalUseDefinitionTypeBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   ClinicalUseDefinitionTypeBuilder withElement(ElementBuilder? newElement) {
     return ClinicalUseDefinitionTypeBuilder._(
-        validatedValue: value, element: newElement);
+        validatedValue: value, element: newElement,);
   }
 
   /// Serializes the instance to JSON with standardized keys

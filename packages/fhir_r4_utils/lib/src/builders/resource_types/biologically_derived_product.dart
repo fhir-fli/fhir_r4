@@ -1,15 +1,15 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
-        R4ResourceType,
-        StringExtensionForFHIR,
         BiologicallyDerivedProduct,
         BiologicallyDerivedProductCollection,
-        BiologicallyDerivedProductProcessing,
         BiologicallyDerivedProductManipulation,
-        BiologicallyDerivedProductStorage;
+        BiologicallyDerivedProductProcessing,
+        BiologicallyDerivedProductStorage,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -1602,7 +1602,7 @@ class BiologicallyDerivedProductCollectionBuilder
     if (modifierExtension) this.modifierExtension = null;
     if (collector) this.collector = null;
     if (source) this.source = null;
-    if (collected) this.collectedX = null;
+    if (collected) collectedX = null;
   }
 
   @override
@@ -2212,7 +2212,7 @@ class BiologicallyDerivedProductProcessingBuilder
     if (description) this.description = null;
     if (procedure) this.procedure = null;
     if (additive) this.additive = null;
-    if (time) this.timeX = null;
+    if (time) timeX = null;
   }
 
   @override
@@ -2762,7 +2762,7 @@ class BiologicallyDerivedProductManipulationBuilder
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
     if (description) this.description = null;
-    if (time) this.timeX = null;
+    if (time) timeX = null;
   }
 
   @override

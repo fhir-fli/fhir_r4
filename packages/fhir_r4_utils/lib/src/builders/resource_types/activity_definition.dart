@@ -1,13 +1,13 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
+        ActivityDefinition,
+        ActivityDefinitionDynamicValue,
+        ActivityDefinitionParticipant,
         R4ResourceType,
         StringExtensionForFHIR,
-        ActivityDefinition,
-        ActivityDefinitionParticipant,
-        ActivityDefinitionDynamicValue;
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -2168,7 +2168,7 @@ class ActivityDefinitionBuilder extends CanonicalResourceBuilder {
             // Add single element to existing list or create new list
             observationResultRequirement = [
               ...(observationResultRequirement ?? []),
-              child
+              child,
             ];
             return;
           }
@@ -2254,7 +2254,7 @@ class ActivityDefinitionBuilder extends CanonicalResourceBuilder {
         return [
           'CodeableConceptBuilder',
           'ReferenceBuilder',
-          'FhirCanonicalBuilder'
+          'FhirCanonicalBuilder',
         ];
       case 'subjectCodeableConcept':
         return ['CodeableConceptBuilder'];
@@ -2320,7 +2320,7 @@ class ActivityDefinitionBuilder extends CanonicalResourceBuilder {
           'AgeBuilder',
           'PeriodBuilder',
           'RangeBuilder',
-          'FhirDurationBuilder'
+          'FhirDurationBuilder',
         ];
       case 'timingTiming':
         return ['TimingBuilder'];
@@ -2766,7 +2766,7 @@ class ActivityDefinitionBuilder extends CanonicalResourceBuilder {
     if (subtitle) this.subtitle = null;
     if (status) this.status = null;
     if (experimental) this.experimental = null;
-    if (subject) this.subjectX = null;
+    if (subject) subjectX = null;
     if (date) this.date = null;
     if (publisher) this.publisher = null;
     if (contact) this.contact = null;
@@ -2792,10 +2792,10 @@ class ActivityDefinitionBuilder extends CanonicalResourceBuilder {
     if (intent) this.intent = null;
     if (priority) this.priority = null;
     if (doNotPerform) this.doNotPerform = null;
-    if (timing) this.timingX = null;
+    if (timing) timingX = null;
     if (location) this.location = null;
     if (participant) this.participant = null;
-    if (product) this.productX = null;
+    if (product) productX = null;
     if (quantity) this.quantity = null;
     if (dosage) this.dosage = null;
     if (bodySite) this.bodySite = null;

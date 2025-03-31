@@ -172,7 +172,7 @@ class MedicationRequestIntentBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   MedicationRequestIntentBuilder withElement(ElementBuilder? newElement) {
     return MedicationRequestIntentBuilder._(
-        validatedValue: value, element: newElement);
+        validatedValue: value, element: newElement,);
   }
 
   /// Serializes the instance to JSON with standardized keys

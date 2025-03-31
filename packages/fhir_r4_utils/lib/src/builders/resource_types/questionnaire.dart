@@ -1,15 +1,15 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
+        Questionnaire,
+        QuestionnaireAnswerOption,
+        QuestionnaireEnableWhen,
+        QuestionnaireInitial,
+        QuestionnaireItem,
         R4ResourceType,
         StringExtensionForFHIR,
-        Questionnaire,
-        QuestionnaireItem,
-        QuestionnaireEnableWhen,
-        QuestionnaireAnswerOption,
-        QuestionnaireInitial;
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -3583,7 +3583,7 @@ class QuestionnaireEnableWhenBuilder extends BackboneElementBuilder {
           'FhirStringBuilder',
           'CodingBuilder',
           'QuantityBuilder',
-          'ReferenceBuilder'
+          'ReferenceBuilder',
         ];
       case 'answerBoolean':
         return ['FhirBooleanBuilder'];
@@ -3712,7 +3712,7 @@ class QuestionnaireEnableWhenBuilder extends BackboneElementBuilder {
     if (modifierExtension) this.modifierExtension = null;
     if (question) this.question = null;
     if (operator_) this.operator_ = null;
-    if (answer) this.answerX = null;
+    if (answer) answerX = null;
   }
 
   @override
@@ -4274,7 +4274,7 @@ class QuestionnaireAnswerOptionBuilder extends BackboneElementBuilder {
           'FhirTimeBuilder',
           'FhirStringBuilder',
           'CodingBuilder',
-          'ReferenceBuilder'
+          'ReferenceBuilder',
         ];
       case 'valueInteger':
         return ['FhirIntegerBuilder'];
@@ -4369,7 +4369,7 @@ class QuestionnaireAnswerOptionBuilder extends BackboneElementBuilder {
     if (id) this.id = null;
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
-    if (value) this.valueX = null;
+    if (value) valueX = null;
     if (initialSelected) this.initialSelected = null;
   }
 
@@ -5016,7 +5016,7 @@ class QuestionnaireInitialBuilder extends BackboneElementBuilder {
           'AttachmentBuilder',
           'CodingBuilder',
           'QuantityBuilder',
-          'ReferenceBuilder'
+          'ReferenceBuilder',
         ];
       case 'valueBoolean':
         return ['FhirBooleanBuilder'];
@@ -5145,7 +5145,7 @@ class QuestionnaireInitialBuilder extends BackboneElementBuilder {
     if (id) this.id = null;
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
-    if (value) this.valueX = null;
+    if (value) valueX = null;
   }
 
   @override

@@ -1,12 +1,12 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
+        DeviceRequest,
+        DeviceRequestParameter,
         R4ResourceType,
         StringExtensionForFHIR,
-        DeviceRequest,
-        DeviceRequestParameter;
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -959,7 +959,7 @@ class DeviceRequestBuilder extends DomainResourceBuilder {
               if (converted != null) {
                 instantiatesCanonical = [
                   ...(instantiatesCanonical ?? []),
-                  converted
+                  converted,
                 ];
                 return;
               }
@@ -1637,11 +1637,11 @@ class DeviceRequestBuilder extends DomainResourceBuilder {
     if (status) this.status = null;
     if (intent) this.intent = null;
     if (priority) this.priority = null;
-    if (code) this.codeX = null;
+    if (code) codeX = null;
     if (parameter) this.parameter = null;
     if (subject) this.subject = null;
     if (encounter) this.encounter = null;
-    if (occurrence) this.occurrenceX = null;
+    if (occurrence) occurrenceX = null;
     if (authoredOn) this.authoredOn = null;
     if (requester) this.requester = null;
     if (performerType) this.performerType = null;
@@ -2366,7 +2366,7 @@ class DeviceRequestParameterBuilder extends BackboneElementBuilder {
           'CodeableConceptBuilder',
           'QuantityBuilder',
           'RangeBuilder',
-          'FhirBooleanBuilder'
+          'FhirBooleanBuilder',
         ];
       case 'valueCodeableConcept':
         return ['CodeableConceptBuilder'];
@@ -2446,7 +2446,7 @@ class DeviceRequestParameterBuilder extends BackboneElementBuilder {
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
     if (code) this.code = null;
-    if (value) this.valueX = null;
+    if (value) valueX = null;
   }
 
   @override

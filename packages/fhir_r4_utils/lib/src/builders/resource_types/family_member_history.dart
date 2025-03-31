@@ -1,12 +1,12 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
+        FamilyMemberHistory,
+        FamilyMemberHistoryCondition,
         R4ResourceType,
         StringExtensionForFHIR,
-        FamilyMemberHistory,
-        FamilyMemberHistoryCondition;
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -891,7 +891,7 @@ class FamilyMemberHistoryBuilder extends DomainResourceBuilder {
               if (converted != null) {
                 instantiatesCanonical = [
                   ...(instantiatesCanonical ?? []),
-                  converted
+                  converted,
                 ];
                 return;
               }
@@ -1339,7 +1339,7 @@ class FamilyMemberHistoryBuilder extends DomainResourceBuilder {
           'AgeBuilder',
           'RangeBuilder',
           'FhirDateBuilder',
-          'FhirStringBuilder'
+          'FhirStringBuilder',
         ];
       case 'deceasedBoolean':
         return ['FhirBooleanBuilder'];
@@ -1598,10 +1598,10 @@ class FamilyMemberHistoryBuilder extends DomainResourceBuilder {
     if (name) this.name = null;
     if (relationship) this.relationship = null;
     if (sex) this.sex = null;
-    if (born) this.bornX = null;
-    if (age) this.ageX = null;
+    if (born) bornX = null;
+    if (age) ageX = null;
     if (estimatedAge) this.estimatedAge = null;
-    if (deceased) this.deceasedX = null;
+    if (deceased) deceasedX = null;
     if (reasonCode) this.reasonCode = null;
     if (reasonReference) this.reasonReference = null;
     if (note) this.note = null;
@@ -2383,7 +2383,7 @@ class FamilyMemberHistoryConditionBuilder extends BackboneElementBuilder {
           'AgeBuilder',
           'RangeBuilder',
           'PeriodBuilder',
-          'FhirStringBuilder'
+          'FhirStringBuilder',
         ];
       case 'onsetAge':
         return ['AgeBuilder'];
@@ -2485,7 +2485,7 @@ class FamilyMemberHistoryConditionBuilder extends BackboneElementBuilder {
     if (code) this.code = null;
     if (outcome) this.outcome = null;
     if (contributedToDeath) this.contributedToDeath = null;
-    if (onset) this.onsetX = null;
+    if (onset) onsetX = null;
     if (note) this.note = null;
   }
 

@@ -1,11 +1,11 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
         StringExtensionForFHIR,
         Timing,
-        TimingRepeat;
+        TimingRepeat,
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -1630,7 +1630,7 @@ class TimingRepeatBuilder extends ElementBuilder {
   }) {
     if (id) this.id = null;
     if (extension_) this.extension_ = null;
-    if (bounds) this.boundsX = null;
+    if (bounds) boundsX = null;
     if (count) this.count = null;
     if (countMax) this.countMax = null;
     if (duration) this.duration = null;

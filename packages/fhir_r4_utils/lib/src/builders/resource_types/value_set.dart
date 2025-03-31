@@ -1,19 +1,19 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
         R4ResourceType,
         StringExtensionForFHIR,
         ValueSet,
         ValueSetCompose,
-        ValueSetInclude,
         ValueSetConcept,
+        ValueSetContains,
         ValueSetDesignation,
-        ValueSetFilter,
         ValueSetExpansion,
+        ValueSetFilter,
+        ValueSetInclude,
         ValueSetParameter,
-        ValueSetContains;
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -5515,7 +5515,7 @@ class ValueSetParameterBuilder extends BackboneElementBuilder {
           'FhirDecimalBuilder',
           'FhirUriBuilder',
           'FhirCodeBuilder',
-          'FhirDateTimeBuilder'
+          'FhirDateTimeBuilder',
         ];
       case 'valueString':
         return ['FhirStringBuilder'];
@@ -5616,7 +5616,7 @@ class ValueSetParameterBuilder extends BackboneElementBuilder {
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
     if (name) this.name = null;
-    if (value) this.valueX = null;
+    if (value) valueX = null;
   }
 
   @override

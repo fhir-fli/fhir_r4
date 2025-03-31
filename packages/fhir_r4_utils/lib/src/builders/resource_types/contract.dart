@@ -1,26 +1,26 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
-        R4ResourceType,
-        StringExtensionForFHIR,
         Contract,
-        ContractContentDefinition,
-        ContractTerm,
-        ContractSecurityLabel,
-        ContractOffer,
-        ContractParty,
+        ContractAction,
         ContractAnswer,
         ContractAsset,
+        ContractContentDefinition,
         ContractContext,
-        ContractValuedItem,
-        ContractAction,
-        ContractSubject,
-        ContractSigner,
         ContractFriendly,
         ContractLegal,
-        ContractRule;
+        ContractOffer,
+        ContractParty,
+        ContractRule,
+        ContractSecurityLabel,
+        ContractSigner,
+        ContractSubject,
+        ContractTerm,
+        ContractValuedItem,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -2033,7 +2033,7 @@ class ContractBuilder extends DomainResourceBuilder {
     if (alias) this.alias = null;
     if (author) this.author = null;
     if (scope) this.scope = null;
-    if (topic) this.topicX = null;
+    if (topic) topicX = null;
     if (type) this.type = null;
     if (subType) this.subType = null;
     if (contentDefinition) this.contentDefinition = null;
@@ -2044,7 +2044,7 @@ class ContractBuilder extends DomainResourceBuilder {
     if (friendly) this.friendly = null;
     if (legal) this.legal = null;
     if (rule) this.rule = null;
-    if (legallyBinding) this.legallyBindingX = null;
+    if (legallyBinding) legallyBindingX = null;
   }
 
   @override
@@ -3908,7 +3908,7 @@ class ContractTermBuilder extends BackboneElementBuilder {
     if (identifier) this.identifier = null;
     if (issued) this.issued = null;
     if (applies) this.applies = null;
-    if (topic) this.topicX = null;
+    if (topic) topicX = null;
     if (type) this.type = null;
     if (subType) this.subType = null;
     if (text) this.text = null;
@@ -5302,7 +5302,7 @@ class ContractOfferBuilder extends BackboneElementBuilder {
                 if (converted != null) {
                   securityLabelNumber = [
                     ...(securityLabelNumber ?? []),
-                    converted
+                    converted,
                   ];
                   return;
                 }
@@ -6631,7 +6631,7 @@ class ContractAnswerBuilder extends BackboneElementBuilder {
           'AttachmentBuilder',
           'CodingBuilder',
           'QuantityBuilder',
-          'ReferenceBuilder'
+          'ReferenceBuilder',
         ];
       case 'valueBoolean':
         return ['FhirBooleanBuilder'];
@@ -6760,7 +6760,7 @@ class ContractAnswerBuilder extends BackboneElementBuilder {
     if (id) this.id = null;
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
-    if (value) this.valueX = null;
+    if (value) valueX = null;
   }
 
   @override
@@ -7625,7 +7625,7 @@ class ContractAssetBuilder extends BackboneElementBuilder {
                 if (converted != null) {
                   securityLabelNumber = [
                     ...(securityLabelNumber ?? []),
-                    converted
+                    converted,
                   ];
                   return;
                 }
@@ -9346,7 +9346,7 @@ class ContractValuedItemBuilder extends BackboneElementBuilder {
                 if (converted != null) {
                   securityLabelNumber = [
                     ...(securityLabelNumber ?? []),
-                    converted
+                    converted,
                   ];
                   return;
                 }
@@ -9537,7 +9537,7 @@ class ContractValuedItemBuilder extends BackboneElementBuilder {
     if (id) this.id = null;
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
-    if (entity) this.entityX = null;
+    if (entity) entityX = null;
     if (identifier) this.identifier = null;
     if (effectiveTime) this.effectiveTime = null;
     if (quantity) this.quantity = null;
@@ -10906,7 +10906,7 @@ class ContractActionBuilder extends BackboneElementBuilder {
                 if (converted != null) {
                   securityLabelNumber = [
                     ...(securityLabelNumber ?? []),
-                    converted
+                    converted,
                   ];
                   return;
                 }
@@ -11168,7 +11168,7 @@ class ContractActionBuilder extends BackboneElementBuilder {
     if (status) this.status = null;
     if (context) this.context = null;
     if (contextLinkId) this.contextLinkId = null;
-    if (occurrence) this.occurrenceX = null;
+    if (occurrence) occurrenceX = null;
     if (requester) this.requester = null;
     if (requesterLinkId) this.requesterLinkId = null;
     if (performerType) this.performerType = null;
@@ -12789,7 +12789,7 @@ class ContractFriendlyBuilder extends BackboneElementBuilder {
     if (id) this.id = null;
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
-    if (content) this.contentX = null;
+    if (content) contentX = null;
   }
 
   @override
@@ -13263,7 +13263,7 @@ class ContractLegalBuilder extends BackboneElementBuilder {
     if (id) this.id = null;
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
-    if (content) this.contentX = null;
+    if (content) contentX = null;
   }
 
   @override
@@ -13739,7 +13739,7 @@ class ContractRuleBuilder extends BackboneElementBuilder {
     if (id) this.id = null;
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
-    if (content) this.contentX = null;
+    if (content) contentX = null;
   }
 
   @override

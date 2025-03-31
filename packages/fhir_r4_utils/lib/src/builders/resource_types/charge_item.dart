@@ -1,12 +1,12 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
+        ChargeItem,
+        ChargeItemPerformer,
         R4ResourceType,
         StringExtensionForFHIR,
-        ChargeItem,
-        ChargeItemPerformer;
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -1025,7 +1025,7 @@ class ChargeItemBuilder extends DomainResourceBuilder {
               if (converted != null) {
                 definitionCanonical = [
                   ...(definitionCanonical ?? []),
-                  converted
+                  converted,
                 ];
                 return;
               }
@@ -1714,7 +1714,7 @@ class ChargeItemBuilder extends DomainResourceBuilder {
     if (code) this.code = null;
     if (subject) this.subject = null;
     if (context) this.context = null;
-    if (occurrence) this.occurrenceX = null;
+    if (occurrence) occurrenceX = null;
     if (performer) this.performer = null;
     if (performingOrganization) this.performingOrganization = null;
     if (requestingOrganization) this.requestingOrganization = null;
@@ -1728,7 +1728,7 @@ class ChargeItemBuilder extends DomainResourceBuilder {
     if (enteredDate) this.enteredDate = null;
     if (reason) this.reason = null;
     if (service) this.service = null;
-    if (product) this.productX = null;
+    if (product) productX = null;
     if (account) this.account = null;
     if (note) this.note = null;
     if (supportingInformation) this.supportingInformation = null;

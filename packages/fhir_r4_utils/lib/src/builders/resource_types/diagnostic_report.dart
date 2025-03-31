@@ -1,12 +1,12 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
+        DiagnosticReport,
+        DiagnosticReportMedia,
         R4ResourceType,
         StringExtensionForFHIR,
-        DiagnosticReport,
-        DiagnosticReportMedia;
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -1297,7 +1297,7 @@ class DiagnosticReportBuilder extends DomainResourceBuilder {
     if (code) this.code = null;
     if (subject) this.subject = null;
     if (encounter) this.encounter = null;
-    if (effective) this.effectiveX = null;
+    if (effective) effectiveX = null;
     if (issued) this.issued = null;
     if (performer) this.performer = null;
     if (resultsInterpreter) this.resultsInterpreter = null;

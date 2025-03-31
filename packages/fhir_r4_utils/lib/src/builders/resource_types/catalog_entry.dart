@@ -1,12 +1,12 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
+        CatalogEntry,
+        CatalogEntryRelatedEntry,
         R4ResourceType,
         StringExtensionForFHIR,
-        CatalogEntry,
-        CatalogEntryRelatedEntry;
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -774,7 +774,7 @@ class CatalogEntryBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             additionalCharacteristic = [
               ...(additionalCharacteristic ?? []),
-              child
+              child,
             ];
             return;
           }
@@ -790,7 +790,7 @@ class CatalogEntryBuilder extends DomainResourceBuilder {
             // Add single element to existing list or create new list
             additionalClassification = [
               ...(additionalClassification ?? []),
-              child
+              child,
             ];
             return;
           }

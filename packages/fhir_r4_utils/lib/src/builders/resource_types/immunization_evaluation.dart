@@ -1,11 +1,11 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
+        ImmunizationEvaluation,
         R4ResourceType,
         StringExtensionForFHIR,
-        ImmunizationEvaluation;
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -1116,8 +1116,8 @@ class ImmunizationEvaluationBuilder extends DomainResourceBuilder {
     if (doseStatusReason) this.doseStatusReason = null;
     if (description) this.description = null;
     if (series) this.series = null;
-    if (doseNumber) this.doseNumberX = null;
-    if (seriesDoses) this.seriesDosesX = null;
+    if (doseNumber) doseNumberX = null;
+    if (seriesDoses) seriesDosesX = null;
   }
 
   @override

@@ -1,15 +1,15 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
+        NutritionProduct,
+        NutritionProductIngredient,
+        NutritionProductInstance,
+        NutritionProductNutrient,
+        NutritionProductProductCharacteristic,
         R4ResourceType,
         StringExtensionForFHIR,
-        NutritionProduct,
-        NutritionProductNutrient,
-        NutritionProductIngredient,
-        NutritionProductProductCharacteristic,
-        NutritionProductInstance;
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -2471,7 +2471,7 @@ class NutritionProductProductCharacteristicBuilder
           'QuantityBuilder',
           'FhirBase64BinaryBuilder',
           'AttachmentBuilder',
-          'FhirBooleanBuilder'
+          'FhirBooleanBuilder',
         ];
       case 'valueCodeableConcept':
         return ['CodeableConceptBuilder'];
@@ -2565,7 +2565,7 @@ class NutritionProductProductCharacteristicBuilder
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
     if (type) this.type = null;
-    if (value) this.valueX = null;
+    if (value) valueX = null;
   }
 
   @override

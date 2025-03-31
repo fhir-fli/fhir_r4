@@ -1,18 +1,18 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
-        R4ResourceType,
-        StringExtensionForFHIR,
         PlanDefinition,
-        PlanDefinitionGoal,
-        PlanDefinitionTarget,
         PlanDefinitionAction,
         PlanDefinitionCondition,
-        PlanDefinitionRelatedAction,
+        PlanDefinitionDynamicValue,
+        PlanDefinitionGoal,
         PlanDefinitionParticipant,
-        PlanDefinitionDynamicValue;
+        PlanDefinitionRelatedAction,
+        PlanDefinitionTarget,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -1597,7 +1597,7 @@ class PlanDefinitionBuilder extends CanonicalResourceBuilder {
         return [
           'CodeableConceptBuilder',
           'ReferenceBuilder',
-          'FhirCanonicalBuilder'
+          'FhirCanonicalBuilder',
         ];
       case 'subjectCodeableConcept':
         return ['CodeableConceptBuilder'];
@@ -1929,7 +1929,7 @@ class PlanDefinitionBuilder extends CanonicalResourceBuilder {
     if (type) this.type = null;
     if (status) this.status = null;
     if (experimental) this.experimental = null;
-    if (subject) this.subjectX = null;
+    if (subject) subjectX = null;
     if (date) this.date = null;
     if (publisher) this.publisher = null;
     if (contact) this.contact = null;
@@ -3506,7 +3506,7 @@ class PlanDefinitionTargetBuilder extends BackboneElementBuilder {
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
     if (measure) this.measure = null;
-    if (detail) this.detailX = null;
+    if (detail) detailX = null;
     if (due) this.due = null;
   }
 
@@ -5061,7 +5061,7 @@ class PlanDefinitionActionBuilder extends BackboneElementBuilder {
         return [
           'CodeableConceptBuilder',
           'ReferenceBuilder',
-          'FhirCanonicalBuilder'
+          'FhirCanonicalBuilder',
         ];
       case 'subjectCodeableConcept':
         return ['CodeableConceptBuilder'];
@@ -5087,7 +5087,7 @@ class PlanDefinitionActionBuilder extends BackboneElementBuilder {
           'PeriodBuilder',
           'FhirDurationBuilder',
           'RangeBuilder',
-          'TimingBuilder'
+          'TimingBuilder',
         ];
       case 'timingDateTime':
         return ['FhirDateTimeBuilder'];
@@ -5385,13 +5385,13 @@ class PlanDefinitionActionBuilder extends BackboneElementBuilder {
     if (reason) this.reason = null;
     if (documentation) this.documentation = null;
     if (goalId) this.goalId = null;
-    if (subject) this.subjectX = null;
+    if (subject) subjectX = null;
     if (trigger) this.trigger = null;
     if (condition) this.condition = null;
     if (input) this.input = null;
     if (output) this.output = null;
     if (relatedAction) this.relatedAction = null;
-    if (timing) this.timingX = null;
+    if (timing) timingX = null;
     if (participant) this.participant = null;
     if (type) this.type = null;
     if (groupingBehavior) this.groupingBehavior = null;
@@ -5399,7 +5399,7 @@ class PlanDefinitionActionBuilder extends BackboneElementBuilder {
     if (requiredBehavior) this.requiredBehavior = null;
     if (precheckBehavior) this.precheckBehavior = null;
     if (cardinalityBehavior) this.cardinalityBehavior = null;
-    if (definition) this.definitionX = null;
+    if (definition) definitionX = null;
     if (transform) this.transform = null;
     if (dynamicValue) this.dynamicValue = null;
     if (action) this.action = null;
@@ -6624,7 +6624,7 @@ class PlanDefinitionRelatedActionBuilder extends BackboneElementBuilder {
     if (modifierExtension) this.modifierExtension = null;
     if (actionId) this.actionId = null;
     if (relationship) this.relationship = null;
-    if (offset) this.offsetX = null;
+    if (offset) offsetX = null;
   }
 
   @override

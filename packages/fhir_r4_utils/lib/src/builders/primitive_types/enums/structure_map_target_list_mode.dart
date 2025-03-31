@@ -50,7 +50,7 @@ class StructureMapTargetListModeBuilder extends FhirCodeEnumBuilder {
   /// Factory constructor to create [StructureMapTargetListModeBuilder]
   /// from JSON.
   factory StructureMapTargetListModeBuilder.fromJson(
-      Map<String, dynamic> json) {
+      Map<String, dynamic> json,) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -131,7 +131,7 @@ class StructureMapTargetListModeBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   StructureMapTargetListModeBuilder withElement(ElementBuilder? newElement) {
     return StructureMapTargetListModeBuilder._(
-        validatedValue: value, element: newElement);
+        validatedValue: value, element: newElement,);
   }
 
   /// Serializes the instance to JSON with standardized keys

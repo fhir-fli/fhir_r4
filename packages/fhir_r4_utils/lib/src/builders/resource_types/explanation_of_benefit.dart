@@ -1,31 +1,31 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
+        ExplanationOfBenefit,
+        ExplanationOfBenefitAccident,
+        ExplanationOfBenefitAddItem,
+        ExplanationOfBenefitAdjudication,
+        ExplanationOfBenefitBenefitBalance,
+        ExplanationOfBenefitCareTeam,
+        ExplanationOfBenefitDetail,
+        ExplanationOfBenefitDetail1,
+        ExplanationOfBenefitDiagnosis,
+        ExplanationOfBenefitFinancial,
+        ExplanationOfBenefitInsurance,
+        ExplanationOfBenefitItem,
+        ExplanationOfBenefitPayee,
+        ExplanationOfBenefitPayment,
+        ExplanationOfBenefitProcedure,
+        ExplanationOfBenefitProcessNote,
+        ExplanationOfBenefitRelated,
+        ExplanationOfBenefitSubDetail,
+        ExplanationOfBenefitSubDetail1,
+        ExplanationOfBenefitSupportingInfo,
+        ExplanationOfBenefitTotal,
         R4ResourceType,
         StringExtensionForFHIR,
-        ExplanationOfBenefit,
-        ExplanationOfBenefitRelated,
-        ExplanationOfBenefitPayee,
-        ExplanationOfBenefitCareTeam,
-        ExplanationOfBenefitSupportingInfo,
-        ExplanationOfBenefitDiagnosis,
-        ExplanationOfBenefitProcedure,
-        ExplanationOfBenefitInsurance,
-        ExplanationOfBenefitAccident,
-        ExplanationOfBenefitItem,
-        ExplanationOfBenefitAdjudication,
-        ExplanationOfBenefitDetail,
-        ExplanationOfBenefitSubDetail,
-        ExplanationOfBenefitAddItem,
-        ExplanationOfBenefitDetail1,
-        ExplanationOfBenefitSubDetail1,
-        ExplanationOfBenefitTotal,
-        ExplanationOfBenefitPayment,
-        ExplanationOfBenefitProcessNote,
-        ExplanationOfBenefitBenefitBalance,
-        ExplanationOfBenefitFinancial;
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -4837,7 +4837,7 @@ class ExplanationOfBenefitSupportingInfoBuilder extends BackboneElementBuilder {
           'FhirStringBuilder',
           'QuantityBuilder',
           'AttachmentBuilder',
-          'ReferenceBuilder'
+          'ReferenceBuilder',
         ];
       case 'valueBoolean':
         return ['FhirBooleanBuilder'];
@@ -4959,8 +4959,8 @@ class ExplanationOfBenefitSupportingInfoBuilder extends BackboneElementBuilder {
     if (sequence) this.sequence = null;
     if (category) this.category = null;
     if (code) this.code = null;
-    if (timing) this.timingX = null;
-    if (value) this.valueX = null;
+    if (timing) timingX = null;
+    if (value) valueX = null;
     if (reason) this.reason = null;
   }
 
@@ -5642,7 +5642,7 @@ class ExplanationOfBenefitDiagnosisBuilder extends BackboneElementBuilder {
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
     if (sequence) this.sequence = null;
-    if (diagnosis) this.diagnosisX = null;
+    if (diagnosis) diagnosisX = null;
     if (type) this.type = null;
     if (onAdmission) this.onAdmission = null;
     if (packageCode) this.packageCode = null;
@@ -6338,7 +6338,7 @@ class ExplanationOfBenefitProcedureBuilder extends BackboneElementBuilder {
     if (sequence) this.sequence = null;
     if (type) this.type = null;
     if (date) this.date = null;
-    if (procedure) this.procedureX = null;
+    if (procedure) procedureX = null;
     if (udi) this.udi = null;
   }
 
@@ -7482,7 +7482,7 @@ class ExplanationOfBenefitAccidentBuilder extends BackboneElementBuilder {
     if (modifierExtension) this.modifierExtension = null;
     if (date) this.date = null;
     if (type) this.type = null;
-    if (location) this.locationX = null;
+    if (location) locationX = null;
   }
 
   @override
@@ -8540,7 +8540,7 @@ class ExplanationOfBenefitItemBuilder extends BackboneElementBuilder {
                 if (converted != null) {
                   informationSequence = [
                     ...(informationSequence ?? []),
-                    converted
+                    converted,
                   ];
                   return;
                 }
@@ -9137,8 +9137,8 @@ class ExplanationOfBenefitItemBuilder extends BackboneElementBuilder {
     if (productOrService) this.productOrService = null;
     if (modifier) this.modifier = null;
     if (programCode) this.programCode = null;
-    if (serviced) this.servicedX = null;
-    if (location) this.locationX = null;
+    if (serviced) servicedX = null;
+    if (location) locationX = null;
     if (quantity) this.quantity = null;
     if (unitPrice) this.unitPrice = null;
     if (factor) this.factor = null;
@@ -13414,8 +13414,8 @@ class ExplanationOfBenefitAddItemBuilder extends BackboneElementBuilder {
     if (productOrService) this.productOrService = null;
     if (modifier) this.modifier = null;
     if (programCode) this.programCode = null;
-    if (serviced) this.servicedX = null;
-    if (location) this.locationX = null;
+    if (serviced) servicedX = null;
+    if (location) locationX = null;
     if (quantity) this.quantity = null;
     if (unitPrice) this.unitPrice = null;
     if (factor) this.factor = null;
@@ -18253,8 +18253,8 @@ class ExplanationOfBenefitFinancialBuilder extends BackboneElementBuilder {
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
     if (type) this.type = null;
-    if (allowed) this.allowedX = null;
-    if (used) this.usedX = null;
+    if (allowed) allowedX = null;
+    if (used) usedX = null;
   }
 
   @override

@@ -1,12 +1,12 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
         R4ResourceType,
-        StringExtensionForFHIR,
         RiskAssessment,
-        RiskAssessmentPrediction;
+        RiskAssessmentPrediction,
+        StringExtensionForFHIR,
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -1188,7 +1188,7 @@ class RiskAssessmentBuilder extends DomainResourceBuilder {
     if (code) this.code = null;
     if (subject) this.subject = null;
     if (encounter) this.encounter = null;
-    if (occurrence) this.occurrenceX = null;
+    if (occurrence) occurrenceX = null;
     if (condition) this.condition = null;
     if (performer) this.performer = null;
     if (reasonCode) this.reasonCode = null;
@@ -2103,10 +2103,10 @@ class RiskAssessmentPredictionBuilder extends BackboneElementBuilder {
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
     if (outcome) this.outcome = null;
-    if (probability) this.probabilityX = null;
+    if (probability) probabilityX = null;
     if (qualitativeRisk) this.qualitativeRisk = null;
     if (relativeRisk) this.relativeRisk = null;
-    if (when) this.whenX = null;
+    if (when) whenX = null;
     if (rationale) this.rationale = null;
   }
 

@@ -1,14 +1,14 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
+        Patient,
+        PatientCommunication,
+        PatientContact,
+        PatientLink,
         R4ResourceType,
         StringExtensionForFHIR,
-        Patient,
-        PatientContact,
-        PatientCommunication,
-        PatientLink;
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -1266,10 +1266,10 @@ class PatientBuilder extends DomainResourceBuilder {
     if (telecom) this.telecom = null;
     if (gender) this.gender = null;
     if (birthDate) this.birthDate = null;
-    if (deceased) this.deceasedX = null;
+    if (deceased) deceasedX = null;
     if (address) this.address = null;
     if (maritalStatus) this.maritalStatus = null;
-    if (multipleBirth) this.multipleBirthX = null;
+    if (multipleBirth) multipleBirthX = null;
     if (photo) this.photo = null;
     if (contact) this.contact = null;
     if (communication) this.communication = null;

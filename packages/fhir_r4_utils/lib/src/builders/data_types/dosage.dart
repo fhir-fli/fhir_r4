@@ -1,11 +1,11 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
-        StringExtensionForFHIR,
         Dosage,
-        DosageDoseAndRate;
+        DosageDoseAndRate,
+        StringExtensionForFHIR,
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -882,7 +882,7 @@ class DosageBuilder extends BackboneTypeBuilder
     if (additionalInstruction) this.additionalInstruction = null;
     if (patientInstruction) this.patientInstruction = null;
     if (timing) this.timing = null;
-    if (asNeeded) this.asNeededX = null;
+    if (asNeeded) asNeededX = null;
     if (site) this.site = null;
     if (route) this.route = null;
     if (method) this.method = null;
@@ -1578,8 +1578,8 @@ class DosageDoseAndRateBuilder extends ElementBuilder {
     if (id) this.id = null;
     if (extension_) this.extension_ = null;
     if (type) this.type = null;
-    if (dose) this.doseX = null;
-    if (rate) this.rateX = null;
+    if (dose) doseX = null;
+    if (rate) rateX = null;
   }
 
   @override

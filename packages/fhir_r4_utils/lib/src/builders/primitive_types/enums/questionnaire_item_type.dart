@@ -242,7 +242,7 @@ class QuestionnaireItemTypeBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   QuestionnaireItemTypeBuilder withElement(ElementBuilder? newElement) {
     return QuestionnaireItemTypeBuilder._(
-        validatedValue: value, element: newElement);
+        validatedValue: value, element: newElement,);
   }
 
   /// Serializes the instance to JSON with standardized keys

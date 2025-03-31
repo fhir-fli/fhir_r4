@@ -1,13 +1,13 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
+        ImmunizationRecommendation,
+        ImmunizationRecommendationDateCriterion,
+        ImmunizationRecommendationRecommendation,
         R4ResourceType,
         StringExtensionForFHIR,
-        ImmunizationRecommendation,
-        ImmunizationRecommendationRecommendation,
-        ImmunizationRecommendationDateCriterion;
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -1404,7 +1404,7 @@ class ImmunizationRecommendationRecommendationBuilder
             // Add single element to existing list or create new list
             contraindicatedVaccineCode = [
               ...(contraindicatedVaccineCode ?? []),
-              child
+              child,
             ];
             return;
           }
@@ -1579,7 +1579,7 @@ class ImmunizationRecommendationRecommendationBuilder
             // Add single element to existing list or create new list
             supportingPatientInformation = [
               ...(supportingPatientInformation ?? []),
-              child
+              child,
             ];
             return;
           }
@@ -1769,8 +1769,8 @@ class ImmunizationRecommendationRecommendationBuilder
     if (dateCriterion) this.dateCriterion = null;
     if (description) this.description = null;
     if (series) this.series = null;
-    if (doseNumber) this.doseNumberX = null;
-    if (seriesDoses) this.seriesDosesX = null;
+    if (doseNumber) doseNumberX = null;
+    if (seriesDoses) seriesDosesX = null;
     if (supportingImmunization) this.supportingImmunization = null;
     if (supportingPatientInformation) this.supportingPatientInformation = null;
   }

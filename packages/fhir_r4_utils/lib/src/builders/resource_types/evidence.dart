@@ -1,18 +1,18 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
-        yamlMapToJson,
-        yamlToJson,
-        R4ResourceType,
-        StringExtensionForFHIR,
         Evidence,
-        EvidenceVariableDefinition,
-        EvidenceStatistic,
-        EvidenceSampleSize,
         EvidenceAttributeEstimate,
+        EvidenceCertainty,
         EvidenceModelCharacteristic,
         EvidenceModelCharacteristicVariable,
-        EvidenceCertainty;
+        EvidenceSampleSize,
+        EvidenceStatistic,
+        EvidenceVariableDefinition,
+        R4ResourceType,
+        StringExtensionForFHIR,
+        yamlMapToJson,
+        yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:yaml/yaml.dart';
 
@@ -1633,7 +1633,7 @@ class EvidenceBuilder extends DomainResourceBuilder {
     if (identifier) this.identifier = null;
     if (version) this.version = null;
     if (title) this.title = null;
-    if (citeAs) this.citeAsX = null;
+    if (citeAs) citeAsX = null;
     if (status) this.status = null;
     if (date) this.date = null;
     if (useContext) this.useContext = null;

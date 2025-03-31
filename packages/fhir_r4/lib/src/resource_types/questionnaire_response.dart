@@ -2416,7 +2416,7 @@ class QuestionnaireResponseAnswer extends BackboneElement {
           'Attachment',
           'Coding',
           'Quantity',
-          'Reference'
+          'Reference',
         ];
       case 'valueBoolean':
         return ['FhirBoolean'];
