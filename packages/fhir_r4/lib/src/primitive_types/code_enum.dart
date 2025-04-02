@@ -7,7 +7,7 @@ abstract class FhirCodeEnum extends FhirCode {
   /// This means we do no further logic: any validation is done in a
   /// public factory.
   FhirCodeEnum._({
-    required super.validatedValue,
+    required super.valueString,
     this.system,
     this.version,
     this.display,
@@ -16,7 +16,20 @@ abstract class FhirCodeEnum extends FhirCode {
     super.extension_,
     super.disallowExtensions,
     super.objectPath,
-  }) : super._(input: validatedValue);
+  }) : super._();
+
+  // ignore: public_member_api_docs
+  FhirCodeEnum({
+    required super.valueString,
+    this.system,
+    this.version,
+    this.display,
+    super.element,
+    super.id,
+    super.extension_,
+    super.disallowExtensions,
+    super.objectPath,
+  }) : super._();
 
   /// [system]
   /// The identification of the code system that defines the meaning of the
@@ -39,11 +52,11 @@ abstract class FhirCodeEnum extends FhirCode {
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': value?.isEmpty ?? true ? null : value,
+        'value': valueString?.isEmpty ?? true ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 }

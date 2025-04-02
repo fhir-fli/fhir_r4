@@ -31,7 +31,7 @@ class FhirInstant extends FhirDateTimeBase
   /// Notice it calls `super._internal(...)` with the final fields.
   /// We do NO extra runtime logic here—just assignment.
   FhirInstant._({
-    required super.validatedValue,
+    required super.valueString,
     required super.year,
     required super.month,
     required super.day,
@@ -52,7 +52,7 @@ class FhirInstant extends FhirDateTimeBase
   /// Public **factory** that replaces your old `fromBase` constructor logic.
   /// We parse or assign the provided fields, then call the private underscore.
   factory FhirInstant.fromBase({
-    required String? value,
+    required String? valueString,
     required int? year,
     required int? month,
     required int? day,
@@ -72,7 +72,7 @@ class FhirInstant extends FhirDateTimeBase
     // If you need any specialized logic, do it here.
     // Otherwise, just pass everything to the private constructor:
     return FhirInstant._(
-      validatedValue: value,
+      valueString: valueString,
       year: year,
       month: month,
       day: day,
@@ -121,7 +121,7 @@ class FhirInstant extends FhirDateTimeBase
 
   /// Factory constructor to create a [FhirInstant] from a [String].
   factory FhirInstant.fromString(
-    String input, {
+    String valueString, {
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
@@ -132,7 +132,7 @@ class FhirInstant extends FhirDateTimeBase
     String? objectPath,
   }) =>
       FhirDateTimeBase.constructor<FhirInstant>(
-        input: input,
+        input: valueString,
         element: element,
         id: id,
         extension_: extension_,
@@ -167,7 +167,7 @@ class FhirInstant extends FhirDateTimeBase
 
   /// Creates empty [FhirInstant] object
   factory FhirInstant.empty() => FhirInstant.fromBase(
-        value: null,
+        valueString: null,
         year: null,
         month: null,
         day: null,
@@ -240,11 +240,13 @@ class FhirInstant extends FhirDateTimeBase
   /// Hash code based on the value of the [FhirInstant].
   @override
   // ignore: avoid_equals_and_hash_code_on_mutable_classes
-  int get hashCode => value.hashCode;
+  int get hashCode => valueString.hashCode;
 
   @override
   bool equalsDeep(FhirBase? other) =>
-      other is FhirInstant && other.value == value && other.element == element;
+      other is FhirInstant &&
+      other.valueString == valueString &&
+      other.element == element;
 
   /// Compares two [FhirInstant] objects for equality.
   @override
@@ -283,7 +285,7 @@ class FhirInstant extends FhirDateTimeBase
 
   @override
   Map<String, dynamic> toJson() => {
-        if (valueString.isNotEmpty) 'value': valueString,
+        if (valueString?.isNotEmpty ?? false) 'value': valueString,
         if (element != null) '_value': element?.toJson(),
       };
 
@@ -302,7 +304,7 @@ class FhirInstant extends FhirDateTimeBase
     String? objectPath,
   }) {
     return FhirDateTimeBase.constructor<FhirInstant>(
-      input: value ?? value,
+      input: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
@@ -331,14 +333,28 @@ class FhirInstant extends FhirDateTimeBase
   /// Clears the specified fields in a [FhirInstant] object
   @override
   FhirInstant clear({
+    bool value = false,
+    bool element = false,
     bool extension_ = false,
     bool id = false,
   }) {
-    return FhirInstant.fromString(
-      valueString,
-      element: element,
+    return FhirInstant.fromBase(
+      valueString: value ? null : valueString,
+      year: value ? null : year,
+      month: value ? null : month,
+      day: value ? null : day,
+      hour: value ? null : hour,
+      minute: value ? null : minute,
+      second: value ? null : second,
+      millisecond: value ? null : millisecond,
+      microsecond: value ? null : microsecond,
+      timeZoneOffset: value ? null : timeZoneOffset,
+      isUtc: value ? value : isUtc,
+      element: element ? null : this.element,
       extension_: extension_ ? <FhirExtension>[] : this.extension_,
       id: id ? null : this.id,
+      disallowExtensions: disallowExtensions,
+      objectPath: objectPath!,
     );
   }
 }

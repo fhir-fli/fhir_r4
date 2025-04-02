@@ -1,14 +1,14 @@
 part of 'primitive_types.dart';
 
 /// [DateTime](https://www.hl7.org/fhir/datatypes.html#dateTime)
-abstract class FhirDateTimeBase extends PrimitiveType<String>
+abstract class FhirDateTimeBase extends PrimitiveType
     implements Comparable<FhirDateTimeBase> {
   /// Private underscore constructor with the same parameters and logic,
   /// but no longer public. We pass [validatedValue] into `super._(value: ...)`
   /// and then run `_validateDateTimeComponents()`.
   FhirDateTimeBase._({
     /// The string representation of the date-time once it's validated.
-    required String? validatedValue,
+    required super.valueString,
     required this.year,
     required this.isUtc,
     this.month,
@@ -24,7 +24,7 @@ abstract class FhirDateTimeBase extends PrimitiveType<String>
     super.extension_,
     super.disallowExtensions,
     super.objectPath = 'DateTimeBase',
-  }) : super._(value: validatedValue) {
+  }) : super._() {
     _validateDateTimeComponents();
   }
 
@@ -87,15 +87,12 @@ abstract class FhirDateTimeBase extends PrimitiveType<String>
               _convertMicrosecondToInt(microsecond),
             );
 
-  /// Returns the value as a [String].
-  String get valueString => _formattedString ?? '';
-
   @override
   String toString() => _formattedString.toString();
 
   /// Retrieves the primitive value of the object.
   @override
-  String? get primitiveValue => value?.toString();
+  String? get primitiveValue => valueString;
 
   /// Formatting functions
   String? get _formattedString => _buildString(
@@ -195,7 +192,7 @@ abstract class FhirDateTimeBase extends PrimitiveType<String>
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        if (valueString.isNotEmpty) 'value': valueString,
+        if (valueString?.isNotEmpty ?? false) 'value': valueString,
         if (element != null) '_value': element?.toJson(),
       };
 
@@ -266,7 +263,7 @@ abstract class FhirDateTimeBase extends PrimitiveType<String>
 
     var lhs = constructor<FhirDateTime>(input: this) as FhirDateTime;
     var rhs = o is FhirDateTimeBase
-        ? constructor<FhirDateTime>(input: o.value) as FhirDateTime
+        ? constructor<FhirDateTime>(input: o.valueString) as FhirDateTime
         : o is DateTime || o is String
             ? constructor<FhirDateTime>(input: o) as FhirDateTime
             : null;
@@ -430,8 +427,8 @@ abstract class FhirDateTimeBase extends PrimitiveType<String>
     } else if (input is DateTime) {
       value = input.toIso8601String();
       value += input.isUtc ? 'Z' : _formatTimezone(input.timeZoneOffset);
-    } else if (input is FhirDateTimeBase) {
-      value = _cleanInput(input.valueString);
+    } else if (input is FhirDateTimeBase && input.valueString != null) {
+      value = _cleanInput(input.valueString!);
     } else {
       throw ArgumentError('Invalid input for FhirDateTimeBase');
     }
@@ -472,7 +469,7 @@ abstract class FhirDateTimeBase extends PrimitiveType<String>
     if (T == FhirDateTime) {
       if (dateTimeMap.isEmpty) {
         return FhirDateTime.fromBase(
-          value: null,
+          valueString: null,
           year: null,
           month: null,
           day: null,
@@ -491,7 +488,7 @@ abstract class FhirDateTimeBase extends PrimitiveType<String>
         throw ArgumentError('Year is required for FhirDateTime');
       }
       return FhirDateTime.fromBase(
-        value: _formattedStringFromMap(dateTimeMap),
+        valueString: _formattedStringFromMap(dateTimeMap),
         year: dateTimeMap['year']! as int,
         month: dateTimeMap['month'] as int?,
         day: dateTimeMap['day'] as int?,
@@ -509,7 +506,7 @@ abstract class FhirDateTimeBase extends PrimitiveType<String>
     } else if (T == FhirDate) {
       if (dateTimeMap.isEmpty) {
         return FhirDate.fromBase(
-          value: null,
+          valueString: null,
           year: null,
           month: null,
           day: null,
@@ -522,7 +519,7 @@ abstract class FhirDateTimeBase extends PrimitiveType<String>
         throw ArgumentError('Year is required for FhirDate');
       }
       return FhirDate.fromBase(
-        value: _formattedStringFromMap(dateTimeMap),
+        valueString: _formattedStringFromMap(dateTimeMap),
         year: dateTimeMap['year'] as int?,
         month: dateTimeMap['month'] as int?,
         day: dateTimeMap['day'] as int?,
@@ -535,7 +532,7 @@ abstract class FhirDateTimeBase extends PrimitiveType<String>
     } else if (T == FhirInstant) {
       if (dateTimeMap.isEmpty) {
         return FhirInstant.fromBase(
-          value: null,
+          valueString: null,
           year: null,
           month: null,
           day: null,
@@ -562,7 +559,7 @@ abstract class FhirDateTimeBase extends PrimitiveType<String>
         );
       }
       final instant = FhirInstant.fromBase(
-        value: _formattedStringFromMap(dateTimeMap),
+        valueString: _formattedStringFromMap(dateTimeMap),
         year: dateTimeMap['year']! as int,
         month: dateTimeMap['month']! as int,
         day: dateTimeMap['day']! as int,
@@ -754,7 +751,7 @@ abstract class FhirDateTimeBase extends PrimitiveType<String>
         message: 'Two values were passed to the date time '
             '"$comparator" comparison operator, but there was an error '
             'comparing them.\n'
-            'Argument 1: $value (${value.runtimeType})\n'
+            'Argument 1: $valueString (${runtimeType})\n'
             'Argument 2: $o (${o.runtimeType})',
       );
 
@@ -900,12 +897,12 @@ abstract class FhirDateTimeBase extends PrimitiveType<String>
 
   @override
   // ignore: avoid_equals_and_hash_code_on_mutable_classes
-  int get hashCode => value.hashCode;
+  int get hashCode => valueString.hashCode;
 
   @override
   bool equalsDeep(FhirBase? other) =>
       other is FhirDateTimeBase &&
-      other.value == value &&
+      other.valueString == valueString &&
       other.element == element;
 
   @override

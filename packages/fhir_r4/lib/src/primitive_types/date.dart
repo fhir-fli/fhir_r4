@@ -53,7 +53,7 @@ class FhirDate extends FhirDateTimeBase
   /// Notice it calls `super._internal(...)` with the final fields.
   /// We do NO extra runtime logic here—just assignment.
   FhirDate._({
-    required super.validatedValue,
+    required super.valueString,
     required super.year,
     required super.month,
     required super.day,
@@ -69,7 +69,7 @@ class FhirDate extends FhirDateTimeBase
   /// Public **factory** that replaces your old `fromBase` constructor logic.
   /// We parse or assign the provided fields, then call the private underscore.
   factory FhirDate.fromBase({
-    required String? value,
+    required String? valueString,
     required int? year,
     required int? month,
     required int? day,
@@ -82,7 +82,7 @@ class FhirDate extends FhirDateTimeBase
     String objectPath = 'Date',
   }) {
     return FhirDate._(
-      validatedValue: value,
+      valueString: valueString,
       year: year,
       month: month,
       day: day,
@@ -162,7 +162,7 @@ class FhirDate extends FhirDateTimeBase
 
   /// Creates empty [FhirDate] object
   factory FhirDate.empty() => FhirDate.fromBase(
-        value: null,
+        valueString: null,
         year: null,
         month: null,
         day: null,
@@ -228,11 +228,13 @@ class FhirDate extends FhirDateTimeBase
   /// Overrides the [hashCode] method to generate a hash code based on the value
   @override
   // ignore: avoid_equals_and_hash_code_on_mutable_classes
-  int get hashCode => value.hashCode;
+  int get hashCode => valueString.hashCode;
 
   @override
   bool equalsDeep(FhirBase? other) =>
-      other is FhirDate && other.value == value && other.element == element;
+      other is FhirDate &&
+      other.valueString == valueString &&
+      other.element == element;
 
   /// Overrides the equality operator to compare two [FhirDate] objects.
   @override
@@ -273,7 +275,7 @@ class FhirDate extends FhirDateTimeBase
 
   @override
   Map<String, dynamic> toJson() => {
-        if (valueString.isNotEmpty) 'value': valueString,
+        if (valueString?.isNotEmpty ?? false) 'value': valueString,
         if (element != null) '_value': element?.toJson(),
       };
 
@@ -295,7 +297,7 @@ class FhirDate extends FhirDateTimeBase
     String? objectPath,
   }) {
     return FhirDateTimeBase.constructor<FhirDate>(
-      input: value ?? value,
+      input: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
@@ -324,14 +326,23 @@ class FhirDate extends FhirDateTimeBase
   /// Clears the specified fields in a [FhirDate] object
   @override
   FhirDate clear({
+    bool value = false,
+    bool element = false,
     bool extension_ = false,
     bool id = false,
   }) {
-    return FhirDate.fromString(
-      valueString,
-      element: element,
+    return FhirDate.fromBase(
+      valueString: value ? null : valueString,
+      year: value ? null : year,
+      month: value ? null : month,
+      day: value ? null : day,
+      timeZoneOffset: value ? null : timeZoneOffset,
+      isUtc: value ? value : isUtc,
+      element: element ? null : this.element,
       extension_: extension_ ? <FhirExtension>[] : this.extension_,
       id: id ? null : this.id,
+      disallowExtensions: disallowExtensions,
+      objectPath: objectPath!,
     );
   }
 }

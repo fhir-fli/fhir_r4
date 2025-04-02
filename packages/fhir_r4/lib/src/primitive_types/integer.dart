@@ -1,8 +1,8 @@
 part of 'primitive_types.dart';
 
-/// Extension to convert a [num] to a [FhirInteger].
+/// Extension methods on [num] to easily convert to [FhirInteger].
 extension FhirIntegerExtension on num {
-  /// Converts a [num] to a [FhirInteger].
+  /// Returns a new [FhirInteger] from this [num], provided it's truly an [int].
   FhirInteger get toFhirInteger => this is int
       ? FhirInteger(this as int)
       : int.tryParse(toString()) != null
@@ -10,7 +10,9 @@ extension FhirIntegerExtension on num {
           : throw FormatException('Invalid input for FhirInteger: $this');
 }
 
-/// Represents the FHIR primitive type `integer`.
+/// A FHIR primitive type representing `integer`.
+///
+/// Subclass of [FhirNumber]. Only allows whole numbers (no decimals).
 class FhirInteger extends FhirNumber
     implements
         ValueXCodeSystemProperty,
@@ -36,52 +38,65 @@ class FhirInteger extends FhirNumber
         MaxValueXElementDefinition,
         ValueXElementDefinitionExample,
         ValueXExtension {
-  /// Private underscore constructor
+  // --------------------------------------------------------------------------
+  // Private Internal Constructor
+  // --------------------------------------------------------------------------
+
+  /// Private underscore constructor that just sets [valueString] on [super].
   FhirInteger._({
-    required int? validatedValue,
-    this.input,
+    required super.valueString,
     super.element,
     super.id,
     super.extension_,
     super.disallowExtensions,
     super.objectPath = 'Integer',
-  }) : super._(validatedValue: validatedValue);
+  }) : super._();
 
-  /// Public factory constructor that does any parsing/validation,
-  /// then calls the private constructor.
-  // ignore: sort_unnamed_constructors_first
+  // --------------------------------------------------------------------------
+  // Public Factories
+  // --------------------------------------------------------------------------
+
+  /// Creates a [FhirInteger] from [rawValue], which can be:
+  /// - `null` (element-only usage),
+  /// - An integer [num],
+  /// - A string that parses to an integer.
   factory FhirInteger(
-    dynamic rawInput, {
+    dynamic rawValue, {
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
     String objectPath = 'Integer',
   }) {
-    // 1) Check if rawInput is null or a num
-    num? finalNum;
+    String? parsedString;
 
-    if (rawInput == null && element == null) {
-      throw ArgumentError('A value or element is required for FhirDecimal.');
-    } else if (rawInput is num) {
-      if (rawInput is! int) {
-        throw ArgumentError('Invalid input for FhirInteger: $rawInput');
+    if (rawValue == null && element == null) {
+      throw ArgumentError('A value or element is required for FhirInteger.');
+    }
+    if (rawValue is num) {
+      if (rawValue is int) {
+        parsedString = rawValue.toString();
       } else {
-        finalNum = rawInput;
+        throw ArgumentError(
+          'FhirInteger only supports an int or null, got: $rawValue',
+        );
       }
-    } else if (rawInput != null) {
-      // If it's a string, you could parse it. If that’s not your library’s
-      // intent,
-      // just throw an error:
+    } else if (rawValue is String) {
+      final asInt = int.tryParse(rawValue);
+      if (asInt == null) {
+        throw ArgumentError(
+          'FhirInteger only supports an integer or null, got: $rawValue',
+        );
+      }
+      parsedString = asInt.toString();
+    } else if (rawValue != null) {
       throw ArgumentError(
-        'FhirDecimal only supports a num or null, got: $rawInput',
+        'FhirInteger only supports an int or String or null, got: $rawValue',
       );
     }
 
-    // 2) Return the private constructor
     return FhirInteger._(
-      validatedValue: finalNum! as int,
-      input: finalNum,
+      valueString: parsedString,
       element: element,
       id: id,
       extension_: extension_,
@@ -90,20 +105,19 @@ class FhirInteger extends FhirNumber
     );
   }
 
-  /// Creates empty [FhirInteger] object
+  /// Creates an empty [FhirInteger].
   factory FhirInteger.empty() => FhirInteger(null, element: Element.empty());
 
-  /// Factory constructor to create [FhirInteger] from JSON input.
+  /// Creates a [FhirInteger] from JSON.
   factory FhirInteger.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as num?;
     final elemJson = json['_value'] as Map<String, dynamic>?;
-    final element = elemJson == null ? null : Element.fromJson(elemJson);
-    final objectPath = json['objectPath'] as String? ?? 'PositiveInt';
-
-    return FhirInteger(value, element: element, objectPath: objectPath);
+    final parsedElement = elemJson == null ? null : Element.fromJson(elemJson);
+    final objectPath = json['objectPath'] as String? ?? 'Integer';
+    return FhirInteger(value, element: parsedElement, objectPath: objectPath);
   }
 
-  /// Factory constructor to create [FhirInteger] from YAML input.
+  /// Creates a [FhirInteger] from a YAML input ([String] or [YamlMap]).
   static FhirInteger fromYaml(dynamic yaml) {
     if (yaml is String) {
       return FhirInteger.fromJson(
@@ -115,13 +129,12 @@ class FhirInteger extends FhirNumber
       );
     } else {
       throw const FormatException(
-        'Invalid input for FhirInteger: not a valid YAML string or map.',
+        'Invalid input for FhirInteger: must be a YAML string or map.',
       );
     }
   }
 
-  /// Static method to try parsing input as [FhirInteger], returns `null`
-  /// if unsuccessful.
+  /// Attempts to parse [input] as a [FhirInteger]. Returns `null` if parsing fails.
   static FhirInteger? tryParse(dynamic input) {
     try {
       return FhirInteger(input);
@@ -130,59 +143,71 @@ class FhirInteger extends FhirNumber
     }
   }
 
-  /// The original input value (for serialization purposes)
-  final num? input;
+  // --------------------------------------------------------------------------
+  // Getters / Properties
+  // --------------------------------------------------------------------------
 
-  /// Returns the FHIR type as a string.
+  /// Returns the integer value, or `null` if [valueString] is null.
+  @override
+  int? get valueNum => valueString == null ? null : int.parse(valueString!);
+
+  /// Alias for [valueNum], returning an [int].
+  int? get valueInt => valueNum;
+
+  // --------------------------------------------------------------------------
+  // Overrides
+  // --------------------------------------------------------------------------
+
+  /// Returns `"integer"`.
   @override
   String get fhirType => 'integer';
 
-  /// Serializes the instance to JSON with standardized keys.
+  /// JSON serialization.
   @override
   Map<String, dynamic> toJson() {
     return {
-      if (value != null) 'value': value,
+      if (valueNum != null) 'value': valueNum,
       if (element != null) '_value': element!.toJson(),
     };
   }
 
-  /// Provides a string representation of the instance.
+  /// Returns the string form or `'null'`.
   @override
-  String toString() => value?.toString() ?? 'null';
-
-  /// Retrieves the primitive value of the object.
-  @override
-  String? get primitiveValue => value?.toString();
+  String toString() => valueString ?? 'null';
 
   @override
   bool equalsDeep(FhirBase? other) =>
-      other is FhirInteger && other.value == value && other.element == element;
+      other is FhirInteger &&
+      other.valueString == valueString &&
+      other.element == element;
 
-  /// Overrides equality operator to compare instances.
   @override
   // ignore: avoid_equals_and_hash_code_on_mutable_classes
   bool operator ==(Object other) =>
       identical(this, other) ||
-      (other is FhirInteger && other.value == value) ||
-      (other is int && other == value);
+      (other is FhirInteger && other.valueString == valueString) ||
+      (other is int && other == valueInt) ||
+      (other is double && other == valueNum);
 
-  /// Overrides hashCode for use in hash-based collections.
   @override
   // ignore: avoid_equals_and_hash_code_on_mutable_classes
-  int get hashCode => Object.hash(value, element);
+  int get hashCode => Object.hash(valueString, element);
 
-  // Clone / copyWith
+  // --------------------------------------------------------------------------
+  // Clone / Copy
+  // --------------------------------------------------------------------------
+
   @override
   FhirInteger clone() =>
-      FhirInteger(value, element: element?.clone() as Element?);
+      FhirInteger(valueString, element: element?.clone() as Element?);
 
-  /// Sets disallowExtensions to true.
+  /// Returns a copy with [disallowExtensions] set to `true`.
   FhirInteger noExtensions() => copyWith(disallowExtensions: true);
 
-  /// Creates a modified copy with updated properties.
+  /// Creates a modified copy of the instance.
   @override
   FhirInteger copyWith({
-    num? newValue,
+    dynamic newValue,
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
@@ -194,7 +219,7 @@ class FhirInteger extends FhirNumber
     String? objectPath,
   }) {
     return FhirInteger(
-      newValue ?? value,
+      newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
@@ -209,19 +234,19 @@ class FhirInteger extends FhirNumber
     );
   }
 
-  /// Creates an empty property in the object
+  /// No-op property creation.
   @override
   FhirInteger createProperty(String propertyName) => this;
 
-  /// Clears the specified fields in a [FhirInteger] object
+  /// Clears selected fields from this [FhirInteger].
   @override
   FhirInteger clear({
-    bool input = false,
+    bool value = false,
     bool extension_ = false,
     bool id = false,
   }) {
     return FhirInteger(
-      input ? null : this.input,
+      value ? null : this.valueString,
       element: element,
       extension_: extension_ ? <FhirExtension>[] : this.extension_,
       id: id ? null : this.id,

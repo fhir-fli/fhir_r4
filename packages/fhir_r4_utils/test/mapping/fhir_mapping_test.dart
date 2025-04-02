@@ -1,6 +1,8 @@
 // ignore_for_file: prefer_single_quotes, always_specify_types,
 // ignore_for_file: avoid_escaping_inner_quotes
 
+import 'package:collection/collection.dart' show DeepCollectionEquality;
+import 'package:fhir_r4/fhir_r4.dart' show Bundle, QuestionnaireResponse;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:test/test.dart';
 import 'examples/step1/export.dart';
@@ -8,6 +10,7 @@ import 'examples/step1/export.dart';
 import 'examples/step11/export.dart';
 import 'examples/step12/export.dart';
 import 'examples/step13/export.dart';
+import 'examples/step14/export.dart';
 import 'examples/step2/export.dart';
 import 'examples/step3/export.dart';
 import 'examples/step4/export.dart';
@@ -643,25 +646,26 @@ Future<void> main() async {
     });
   });
 
-  // group('Step 14', () {
-  //   test('Step 14', () async {
-  //     final result = await fhirMappingEngine(
-  //       QuestionnaireResponse.fromJson(source14),
-  //       structureMapStep14,
-  //       resourceCache,
-  //     );
+  group('Step 14', () {
+    test('Step 14', () async {
+      final result = await fhirMappingEngine(
+        QuestionnaireResponse.fromJson(source14).toBuilder,
+        structureMapStep14,
+        resourceCache,
+        Bundle.empty().toBuilder,
+      );
 
-  //     print(prettyPrintJson(result?.toJson() ?? {}));
+      print(prettyPrintJson(result?.toJson() ?? {}));
 
-  //     expect(
-  //       const DeepCollectionEquality().equals(
-  //         result?.toJson(),
-  //         resultStep14Source14,
-  //       ),
-  //       true,
-  //     );
-  //   });
-  // });
+      expect(
+        const DeepCollectionEquality().equals(
+          result?.toJson(),
+          resultStep14Source14,
+        ),
+        true,
+      );
+    });
+  });
 
   // group('Step 15', () {
   //   resourceCache

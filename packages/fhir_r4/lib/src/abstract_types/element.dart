@@ -97,7 +97,7 @@ class Element extends FhirBase {
   }
 
   /// Getter for checking if the element has an id
-  bool get hasId => id?.value != null && (id!.value!.isNotEmpty);
+  bool get hasId => id?.valueString != null && (id!.valueString!.isNotEmpty);
 
   /// All [Element]s are metadata based
   @override
@@ -206,8 +206,8 @@ class Element extends FhirBase {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, Object?>{};
-    if (id?.value != null) {
-      json['id'] = id?.value;
+    if (id?.valueString != null) {
+      json['id'] = id?.valueString;
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
