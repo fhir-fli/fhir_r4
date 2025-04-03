@@ -1,44 +1,98 @@
 part of 'primitive_types.dart';
 
-/// Abstract base class for all FHIR primitive types
-abstract class PrimitiveTypeBuilder<T> extends DataTypeBuilder {
-  /// Internal constructor used only by subclasses (same library).
-  /// It's *not* const, because we do runtime merging of extensions.
+/// The abstract base class for all FHIR primitive types.
+///
+/// Each FHIR primitive can carry:
+/// - A raw [valueString] (nullable)
+/// - Optional [element] metadata (which may hold extensions, etc.)
+///
+/// Subclasses often override:
+/// - [fhirType] to match FHIR's type (e.g. `"boolean"`, `"decimal"`, etc.).
+/// - [toJson], if the JSON output deviates from the simple string-based
+/// `'value'`.
+abstract class PrimitiveTypeBuilder extends DataTypeBuilder {
+  // --------------------------------------------------------------------------
+  // Private Internal Constructor
+  // --------------------------------------------------------------------------
+
+  /// Internal constructor, used only by subclasses in the same library.
+  ///
+  /// - Merges [extension_] with [element?.extension_] so that all extensions
+  ///   live in [DataTypeBuilder.extension_].
+  /// - Throws if both [valueString] and [element] are `null`.
   PrimitiveTypeBuilder._({
-    required this.value,
+    required this.valueString,
     this.element,
     super.id,
     List<FhirExtensionBuilder>? extension_,
     super.disallowExtensions,
-    super.objectPath = 'PrimitiveType',
-  }) : super(extension_: _mergeExtensions(extension_, element));
+    String objectPath = 'PrimitiveTypeBuilder',
+  }) : super(
+          extension_: _mergeExtensions(extension_, element),
+          objectPath: objectPath,
+        ) {
+    if (valueString == null && element == null) {
+      throw ArgumentError('A value or element is required for $objectPath');
+    }
+  }
 
-  /// The primitive value (nullable)
-  T? value;
+  // --------------------------------------------------------------------------
+  // Fields
+  // --------------------------------------------------------------------------
 
-  /// Optional metadata element (nullable)
+  /// The primitive FHIR value as a [String].
+  ///
+  /// For example:
+  /// - For `boolean` types, it would be `"true"` or `"false"`.
+  /// - For `uri`, it might be `"http://example.com"`.
+  /// - For `base64Binary`, a Base64-encoded string.
+  ///
+  /// `null` indicates that this instance relies solely on [element]
+  /// (extensions).
+  String? valueString;
+
+  /// Optional FHIR metadata element (usually carrying extensions).
   ElementBuilder? element;
 
-  /// By default, the FHIR type is just 'PrimitiveType',
-  /// though subclasses often override it (e.g., 'boolean', 'decimal', etc.).
+  // --------------------------------------------------------------------------
+  // FHIR Overrides
+  // --------------------------------------------------------------------------
+
+  /// Returns the FHIR type name. Subclasses usually override this.
   @override
-  String get fhirType => 'PrimitiveType';
+  String get fhirType => 'PrimitiveTypeBuilder';
 
-  /// Returns `true` if `value != null`
-  bool get hasValue => value != null;
+  /// The "primitive" string value of this type (if any).
+  @override
+  String? get primitiveValue => valueString;
 
-  /// Returns `true` if `element != null`
-  bool get hasElement => element != null;
+  // --------------------------------------------------------------------------
+  // Flags / Booleans
+  // --------------------------------------------------------------------------
 
-  /// Returns `true` if both are non-null
-  bool get hasValueAndElement => hasValue && hasElement;
+  /// Returns `true` if [valueString] is non-null.
+  bool get hasValue => valueString != null;
 
-  /// Default JSON serialization merges `value` and `_value` (Element).
+  /// Returns `true` if [element] is non-null.
+  bool get hasElementBuilder => element != null;
+
+  /// Returns `true` if both [valueString] and [element] are non-null.
+  bool get hasValueAndElementBuilder => hasValue && hasElementBuilder;
+
+  /// Returns `true` if the Type is considered string-based, otherwise `false`
+  bool get stringBased => false;
+
+  // --------------------------------------------------------------------------
+  // JSON Serialization
+  // --------------------------------------------------------------------------
+
+  /// Default JSON serialization merges the raw `'value'` with `'_value'`
+  /// (the [element]).
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (value != null) {
-      json['value'] = value;
+    if (valueString != null) {
+      json['value'] = valueString;
     }
     if (element != null) {
       json['_value'] = element!.toJson();
@@ -46,54 +100,62 @@ abstract class PrimitiveTypeBuilder<T> extends DataTypeBuilder {
     return json;
   }
 
-  /// By default, deep equality checks `value`, `element`, and `userData`
+  // --------------------------------------------------------------------------
+  // Equality
+  // --------------------------------------------------------------------------
+
+  /// By default, deep equality checks [valueString], [element], and [userData].
   @override
   bool equalsDeep(FhirBaseBuilder? other) {
-    return other is PrimitiveTypeBuilder<T> &&
-        value == other.value &&
+    return other is PrimitiveTypeBuilder &&
+        valueString == other.valueString &&
         element == other.element &&
         userData == other.userData;
   }
 
-  /// By default, shallow equality checks just `value`
+  /// By default, shallow equality checks only [valueString].
   @override
   bool equalsShallow(FhirBaseBuilder other) =>
-      other is PrimitiveTypeBuilder<T> && value == other.value;
+      other is PrimitiveTypeBuilder && valueString == other.valueString;
 
-  /// Our own convenience method
+  /// Convenience method matching [equalsDeep], except for checking [userData].
   bool equals(Object other) {
     if (identical(this, other)) return true;
-    if (other is! PrimitiveTypeBuilder<T>) return false;
-    return value == other.value && element == other.element;
+    if (other is! PrimitiveTypeBuilder) return false;
+    return valueString == other.valueString && element == other.element;
   }
 
+  /// Operator `==` delegates to [equals].
   @override
   // ignore: avoid_equals_and_hash_code_on_mutable_classes
   bool operator ==(Object other) => equals(other);
 
+  /// Hash code uses [valueString] and [element].
   @override
   // ignore: avoid_equals_and_hash_code_on_mutable_classes
-  int get hashCode => Object.hash(value, element);
+  int get hashCode => Object.hash(valueString, element);
 
-  /// If we have a value, return "ClassName[value]",
-  /// otherwise default super.toString().
+  // --------------------------------------------------------------------------
+  // Other Overrides
+  // --------------------------------------------------------------------------
+
+  /// Returns a debug-friendly string of the form `"ClassName[valueString]"`.
   @override
   String toString() =>
-      value != null ? '$runtimeType[$value]' : super.toString();
+      valueString != null ? '$runtimeType[$valueString]' : super.toString();
 
-  /// The "primitive" representation as a string
-  @override
-  String? get primitiveValue => value?.toString();
+  // --------------------------------------------------------------------------
+  // Subclass Contracts
+  // --------------------------------------------------------------------------
 
-  /// Subclasses must each implement clone() returning their own concrete type
+  /// Clones the object (deep copy) into the same subclass type.
   @override
-  PrimitiveTypeBuilder<T> clone();
+  PrimitiveTypeBuilder clone();
 
-  /// Subclasses must each implement copyWith() returning their own
-  /// concrete type
+  /// Returns a copy of `this` with specific fields replaced.
   @override
-  PrimitiveTypeBuilder<T> copyWith({
-    T? newValue,
+  PrimitiveTypeBuilder copyWith({
+    dynamic newValue,
     ElementBuilder? element,
     FhirStringBuilder? id,
     List<FhirExtensionBuilder>? extension_,
@@ -104,13 +166,17 @@ abstract class PrimitiveTypeBuilder<T> extends DataTypeBuilder {
     String? objectPath,
   });
 
-  /// Subclasses must implement createProperty if they have special logic,
-  /// else can simply return `this`.
+  /// Subclasses must implement [createProperty]; if they have no specialized
+  /// logic, they can just return `this`.
   @override
-  PrimitiveTypeBuilder<T> createProperty(String propertyName);
+  PrimitiveTypeBuilder createProperty(String propertyName);
+
+  // --------------------------------------------------------------------------
+  // Internal Utilities
+  // --------------------------------------------------------------------------
 
   /// Merges the child constructor's [extension_] with [element?.extension_].
-  /// If both are non-null, we concatenate. If only one is non-null, we use it.
+  /// If both are non-null, concatenates them.
   static List<FhirExtensionBuilder>? _mergeExtensions(
     List<FhirExtensionBuilder>? baseExtensions,
     ElementBuilder? element,

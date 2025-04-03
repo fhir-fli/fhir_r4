@@ -1,18 +1,22 @@
 part of 'primitive_types.dart';
 
-/// Extension to convert a [num] to a [FhirPositiveIntBuilder].
+/// Extension methods on [num] to easily convert to [FhirPositiveIntBuilder].
 extension FhirPositiveIntBuilderExtension on num {
-  /// Converts a [num] to a [FhirPositiveIntBuilder].
+  /// Returns a [FhirPositiveIntBuilder] from this [num],
+  /// if it's an integer > 0.
+  ///
+  /// Otherwise throws a [FormatException].
   FhirPositiveIntBuilder get toFhirPositiveIntBuilder => this is int
       ? FhirPositiveIntBuilder(this as int)
       : int.tryParse(toString()) != null
           ? FhirPositiveIntBuilder(int.parse(toString()))
-          : throw FormatException(
-              'Invalid input for FhirPositiveIntBuilder: $this',
-            );
+          : throw FormatException('Invalid input for FhirPositiveInt: $this');
 }
 
-/// Represents the FHIR primitive type `positiveInt`.
+/// A FHIR primitive type representing `positiveInt`.
+///
+/// Subclass of [FhirNumberBuilder]. Only allows strictly positive integers
+/// ([1..∞]).
 class FhirPositiveIntBuilder extends FhirNumberBuilder
     implements
         DoseNumberXImmunizationProtocolAppliedBuilder,
@@ -32,47 +36,72 @@ class FhirPositiveIntBuilder extends FhirNumberBuilder
         MaxValueXElementDefinitionBuilder,
         ValueXElementDefinitionExampleBuilder,
         ValueXExtensionBuilder {
-  /// Private underscore constructor
+  // --------------------------------------------------------------------------
+  // Private Internal Constructor
+  // --------------------------------------------------------------------------
+
+  /// Private underscore constructor, calls [super._].
   FhirPositiveIntBuilder._({
-    required int? validatedValue,
-    this.input,
+    required super.valueString,
     super.element,
     super.id,
     super.extension_,
     super.disallowExtensions,
     super.objectPath = 'PositiveInt',
-  }) : super._(validatedValue: validatedValue);
+  }) : super._();
 
-  /// Public factory constructor that does validation
+  // --------------------------------------------------------------------------
+  // Public Factories
+  // --------------------------------------------------------------------------
+
+  /// Creates a [FhirPositiveIntBuilder] from [rawValue], which must be an
+  /// [int] > 0 or a [String] that parses to an int > 0, or `null`
+  /// (with [element]).
   // ignore: sort_unnamed_constructors_first
   factory FhirPositiveIntBuilder(
-    dynamic rawInput, {
+    dynamic rawValue, {
     ElementBuilder? element,
     FhirStringBuilder? id,
     List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
-    String? objectPath = 'PositiveInt',
+    String objectPath = 'PositiveInt',
   }) {
-    // 1) Validate
-    int? finalInt;
-    if (rawInput == null && element == null) {
+    String? parsedString;
+
+    if (rawValue == null && element == null) {
       throw ArgumentError(
-        'A value or element is required for FhirPositiveIntBuilder.',
+        'A value or element is required for FhirPositiveInt.',
       );
     }
-    if (rawInput is num) {
-      final validated = _validatePositiveInt(rawInput);
-      finalInt = validated;
-    } else if (rawInput != null) {
-      throw FormatException(
-        'FhirPositiveIntBuilder supports only num or null, got: $rawInput',
+    if (rawValue is num) {
+      if (rawValue is int) {
+        if (rawValue <= 0) {
+          throw ArgumentError(
+            'FhirPositiveInt only supports positive integers, got: $rawValue',
+          );
+        }
+        parsedString = rawValue.toString();
+      } else {
+        throw ArgumentError(
+          'FhirPositiveInt only supports an int or null, got: $rawValue',
+        );
+      }
+    } else if (rawValue is String) {
+      final asInt = int.tryParse(rawValue);
+      if (asInt == null || asInt <= 0) {
+        throw ArgumentError(
+          'FhirPositiveInt only supports positive integers, got: $rawValue',
+        );
+      }
+      parsedString = asInt.toString();
+    } else if (rawValue != null) {
+      throw ArgumentError(
+        'FhirPositiveInt only supports an int or null, got: $rawValue',
       );
     }
 
-    // 2) Return the private constructor
     return FhirPositiveIntBuilder._(
-      validatedValue: finalInt,
-      input: rawInput is num ? rawInput : null,
+      valueString: parsedString,
       element: element,
       id: id,
       extension_: extension_,
@@ -81,26 +110,31 @@ class FhirPositiveIntBuilder extends FhirNumberBuilder
     );
   }
 
-  /// Creates empty [FhirPositiveIntBuilder] object
+  /// Creates an empty [FhirPositiveIntBuilder] (with [ElementBuilder.empty]
+  /// for metadata).
   factory FhirPositiveIntBuilder.empty() =>
       FhirPositiveIntBuilder(null, element: ElementBuilder.empty());
 
-  /// Factory constructor to create [FhirPositiveIntBuilder]
-  /// from JSON.input.
-  factory FhirPositiveIntBuilder.fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as num?;
-    final elemJson = json['_value'] as Map<String, dynamic>?;
-    final element = elemJson == null ? null : ElementBuilder.fromJson(elemJson);
-    final objectPath = json['objectPath'] as String? ?? 'PositiveInt';
+  // --------------------------------------------------------------------------
+  // JSON / YAML Constructors
+  // --------------------------------------------------------------------------
 
+  /// Constructs a [FhirPositiveIntBuilder] from a JSON [Map].
+  factory FhirPositiveIntBuilder.fromJson(Map<String, dynamic> json) {
+    final rawValue = json['value'] as num?;
+    final elemJson = json['_value'] as Map<String, dynamic>?;
+    final parsedElement =
+        elemJson == null ? null : ElementBuilder.fromJson(elemJson);
+    final objectPath = json['objectPath'] as String? ?? 'PositiveInt';
     return FhirPositiveIntBuilder(
-      value,
-      element: element,
+      rawValue,
+      element: parsedElement,
       objectPath: objectPath,
     );
   }
 
-  /// Factory constructor to create [FhirPositiveIntBuilder] from YAML input.
+  /// Constructs a [FhirPositiveIntBuilder] from a YAML input ([String] or
+  /// [YamlMap]).
   static FhirPositiveIntBuilder fromYaml(dynamic yaml) {
     if (yaml is String) {
       return FhirPositiveIntBuilder.fromJson(
@@ -112,14 +146,13 @@ class FhirPositiveIntBuilder extends FhirNumberBuilder
       );
     } else {
       throw const FormatException(
-        'Invalid input for FhirPositiveIntBuilder: '
-        'not a valid YAML string or map.',
+        'Invalid input for FhirPositiveInt: not a valid YAML string or map.',
       );
     }
   }
 
-  /// Static method to try parsing input as [FhirPositiveIntBuilder],
-  /// returns `null` if unsuccessful.
+  /// Attempts to parse [input] as a [FhirPositiveIntBuilder]. Returns `null`
+  /// if unsuccessful.
   static FhirPositiveIntBuilder? tryParse(dynamic input) {
     try {
       return FhirPositiveIntBuilder(input);
@@ -128,77 +161,78 @@ class FhirPositiveIntBuilder extends FhirNumberBuilder
     }
   }
 
-  /// Validates that the input is a positive integer.
-  static int _validatePositiveInt(num input) {
-    if (input <= 0 || input is! int) {
-      throw FormatException(
-        'Invalid FhirPositiveInt value: $input. Must be int > 0.',
-      );
-    }
-    return input;
-  }
+  // --------------------------------------------------------------------------
+  // Getters / Properties
+  // --------------------------------------------------------------------------
 
-  /// The original input value (for serialization purposes)
-  num? input;
+  /// Returns the integer value, or `null` if [valueString] is null.
+  @override
+  int? get valueNum => valueString == null ? null : int.parse(valueString!);
 
-  /// Returns the FHIR type as a string.
+  /// Same as [valueNum].
+  int? get valueInt => valueNum;
+
+  // --------------------------------------------------------------------------
+  // Overrides
+  // --------------------------------------------------------------------------
+
+  /// Returns `"positiveInt"`.
   @override
   String get fhirType => 'positiveInt';
 
-  /// Converts this instance to a [FhirPositiveInt] object
-  @override
-  FhirPositiveInt build() => FhirPositiveInt.fromJson(toJson());
-
-  /// Serializes the instance to JSON with standardized keys.
+  /// JSON serialization.
   @override
   Map<String, dynamic> toJson() {
     return {
-      if (value != null) 'value': value,
+      if (valueNum != null) 'value': valueNum,
       if (element != null) '_value': element!.toJson(),
     };
   }
 
-  /// Provides a string representation of the instance.
+  /// Method to convert the builder object to the original Element object
   @override
-  String toString() => value?.toString() ?? 'null';
+  FhirPositiveInt build() => FhirPositiveInt.fromJson(toJson());
 
-  /// Retrieves the primitive value of the object.
+  /// Returns the string form or `'null'`.
   @override
-  String? get primitiveValue => value?.toString();
+  String toString() => valueString ?? 'null';
 
   @override
   bool equalsDeep(FhirBaseBuilder? other) =>
       other is FhirPositiveIntBuilder &&
-      other.value == value &&
+      other.valueString == valueString &&
       other.element == element;
 
-  /// Overrides equality operator to compare instances.
+  /// Equality checks [FhirPositiveIntBuilder], or an [int]/[double] with the same value.
   @override
   // ignore: avoid_equals_and_hash_code_on_mutable_classes
   bool operator ==(Object other) =>
       identical(this, other) ||
-      (other is FhirPositiveIntBuilder && other.value == value) ||
-      (other is int && other == value);
+      (other is FhirPositiveIntBuilder && other.valueString == valueString) ||
+      (other is int && other == valueInt) ||
+      (other is double && other == valueNum);
 
-  /// Overrides hashCode for use in hash-based collections.
   @override
   // ignore: avoid_equals_and_hash_code_on_mutable_classes
-  int get hashCode => Object.hash(value, element);
+  int get hashCode => Object.hash(valueString, element);
 
-  // Clone / copyWith
+  // --------------------------------------------------------------------------
+  // Clone / Copy
+  // --------------------------------------------------------------------------
+
   @override
   FhirPositiveIntBuilder clone() => FhirPositiveIntBuilder(
-        value,
+        valueString,
         element: element?.clone() as ElementBuilder?,
       );
 
-  /// Sets disallowExtensions to true.
+  /// Returns a copy with [disallowExtensions] set to `true`.
   FhirPositiveIntBuilder noExtensions() => copyWith(disallowExtensions: true);
 
   /// Creates a modified copy with updated properties.
   @override
   FhirPositiveIntBuilder copyWith({
-    num? newValue,
+    dynamic newValue,
     ElementBuilder? element,
     FhirStringBuilder? id,
     List<FhirExtensionBuilder>? extension_,
@@ -210,7 +244,7 @@ class FhirPositiveIntBuilder extends FhirNumberBuilder
     String? objectPath,
   }) {
     return FhirPositiveIntBuilder(
-      newValue ?? value,
+      newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
@@ -221,23 +255,21 @@ class FhirPositiveIntBuilder extends FhirNumberBuilder
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath,
+      objectPath: objectPath ?? this.objectPath!,
     );
   }
 
-  /// Creates an empty property in the object
   @override
   FhirPositiveIntBuilder createProperty(String propertyName) => this;
 
-  /// Clears the specified fields in a [FhirPositiveIntBuilder] object
   @override
   FhirPositiveIntBuilder clear({
-    bool input = false,
+    bool value = false,
     bool extension_ = false,
     bool id = false,
   }) {
     return FhirPositiveIntBuilder(
-      input ? null : this.input,
+      value ? null : valueString,
       element: element,
       extension_: extension_ ? <FhirExtensionBuilder>[] : this.extension_,
       id: id ? null : this.id,

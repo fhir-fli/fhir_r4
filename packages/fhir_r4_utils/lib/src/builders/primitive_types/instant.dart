@@ -8,14 +8,13 @@ extension FhirInstantBuilderExtension on DateTime {
 }
 
 /// Extension to convert a [String] to a [FhirInstantBuilder].
-extension FhirInstantBuilderStringExtension on String {
+extension FhirInstantStringBuilderExtension on String {
   /// Converts a [String] to a [FhirInstantBuilder].
   FhirInstantBuilder get toFhirInstantBuilder =>
       FhirInstantBuilder.fromString(this);
 }
 
-/// [FhirInstantBuilder] represents an instant in time as defined
-/// by the FHIR spec.
+/// [FhirInstantBuilder] represents an instant in time (full date/time with second precision and timezone).
 class FhirInstantBuilder extends FhirDateTimeBaseBuilder
     implements
         EffectiveXObservationBuilder,
@@ -30,50 +29,13 @@ class FhirInstantBuilder extends FhirDateTimeBaseBuilder
         MaxValueXElementDefinitionBuilder,
         ValueXElementDefinitionExampleBuilder,
         ValueXExtensionBuilder {
-  /// Creates empty [FhirInstantBuilder] object
-  factory FhirInstantBuilder.empty() => FhirInstantBuilder.fromBase(
-        value: null,
-        year: null,
-        month: null,
-        day: null,
-        hour: null,
-        minute: null,
-        second: null,
-        millisecond: null,
-        microsecond: null,
-        timeZoneOffset: null,
-        isUtc: false,
-        element: ElementBuilder.empty(),
-      );
+  // --------------------------------------------------------------------------
+  // Private Internal Constructor
+  // --------------------------------------------------------------------------
 
-  /// Factory constructor to create a [FhirInstantBuilder] from JSON input.
-  factory FhirInstantBuilder.fromJson(Map<String, dynamic> json) {
-    final value = json['value'];
-    final element = json['_value'] is Map<String, dynamic>
-        ? ElementBuilder.fromJson(json['_value'] as Map<String, dynamic>)
-        : null;
-
-    if (value is String) {
-      return FhirInstantBuilder.fromString(value, element: element);
-    } else if (value is DateTime) {
-      return FhirInstantBuilder.fromDateTime(value, element: element);
-    } else if (value == null) {
-      return FhirDateTimeBaseBuilder.constructor<FhirInstantBuilder>(
-        element: element,
-      ) as FhirInstantBuilder;
-    } else {
-      throw const FormatException(
-        'Invalid input for FhirInstantBuilder: '
-        'Input must be a String or DateTime.',
-      );
-    }
-  }
-
-  /// Private underscore constructor.
-  /// Notice it calls `super._internal(...)` with the final fields.
-  /// We do NO extra runtime logic here—just assignment.
+  /// Private underscore constructor delegating to [FhirDateTimeBaseBuilder].
   FhirInstantBuilder._({
-    required super.validatedValue,
+    required super.valueString,
     required super.year,
     required super.month,
     required super.day,
@@ -91,10 +53,13 @@ class FhirInstantBuilder extends FhirDateTimeBaseBuilder
     super.objectPath = 'Instant',
   }) : super._();
 
-  /// Public **factory** that replaces your old `fromBase` constructor logic.
-  /// We parse or assign the provided fields, then call the private underscore.
+  // --------------------------------------------------------------------------
+  // Public Factories
+  // --------------------------------------------------------------------------
+
+  /// Creates a [FhirInstantBuilder] from the base fields.
   factory FhirInstantBuilder.fromBase({
-    required String? value,
+    required String? valueString,
     required int? year,
     required int? month,
     required int? day,
@@ -109,12 +74,10 @@ class FhirInstantBuilder extends FhirDateTimeBaseBuilder
     FhirStringBuilder? id,
     List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
-    String? objectPath = 'DateTime',
+    String objectPath = 'DateTime',
   }) {
-    // If you need any specialized logic, do it here.
-    // Otherwise, just pass everything to the private constructor:
     return FhirInstantBuilder._(
-      validatedValue: value,
+      valueString: valueString,
       year: year,
       month: month,
       day: day,
@@ -133,8 +96,7 @@ class FhirInstantBuilder extends FhirDateTimeBaseBuilder
     );
   }
 
-  /// Factory constructor to create a [FhirInstantBuilder]
-  /// from individual units.
+  /// Constructs a [FhirInstantBuilder] from individual date/time components.
   factory FhirInstantBuilder.fromUnits({
     required int year,
     required int month,
@@ -162,9 +124,9 @@ class FhirInstantBuilder extends FhirDateTimeBaseBuilder
         element: element,
       ) as FhirInstantBuilder;
 
-  /// Factory constructor to create a [FhirInstantBuilder] from a [String].
+  /// Constructs a [FhirInstantBuilder] from a raw string.
   factory FhirInstantBuilder.fromString(
-    String input, {
+    String valueString, {
     ElementBuilder? element,
     FhirStringBuilder? id,
     List<FhirExtensionBuilder>? extension_,
@@ -175,7 +137,7 @@ class FhirInstantBuilder extends FhirDateTimeBaseBuilder
     String? objectPath,
   }) =>
       FhirDateTimeBaseBuilder.constructor<FhirInstantBuilder>(
-        input: input,
+        input: valueString,
         element: element,
         id: id,
         extension_: extension_,
@@ -186,7 +148,7 @@ class FhirInstantBuilder extends FhirDateTimeBaseBuilder
         objectPath: objectPath,
       ) as FhirInstantBuilder;
 
-  /// Factory constructor to create a [FhirInstantBuilder] from a [DateTime].
+  /// Constructs a [FhirInstantBuilder] from a Dart [DateTime].
   factory FhirInstantBuilder.fromDateTime(
     DateTime input, {
     ElementBuilder? element,
@@ -208,7 +170,49 @@ class FhirInstantBuilder extends FhirDateTimeBaseBuilder
         annotations: annotations,
       ) as FhirInstantBuilder;
 
-  /// Factory constructor to create [FhirInstantBuilder] from YAML input.
+  /// Creates an empty [FhirInstantBuilder].
+  factory FhirInstantBuilder.empty() => FhirInstantBuilder.fromBase(
+        valueString: null,
+        year: null,
+        month: null,
+        day: null,
+        hour: null,
+        minute: null,
+        second: null,
+        millisecond: null,
+        microsecond: null,
+        timeZoneOffset: null,
+        isUtc: false,
+        element: ElementBuilder.empty(),
+      );
+
+  /// Creates a [FhirInstantBuilder] from JSON.
+  factory FhirInstantBuilder.fromJson(Map<String, dynamic> json) {
+    final value = json['value'];
+    final element = json['_value'] is Map<String, dynamic>
+        ? ElementBuilder.fromJson(json['_value'] as Map<String, dynamic>)
+        : null;
+    final objectPath = json['objectPath'] as String?;
+    if (value is String) {
+      return FhirInstantBuilder.fromString(
+        value,
+        element: element,
+        objectPath: objectPath,
+      );
+    } else if (value is DateTime) {
+      return FhirInstantBuilder.fromDateTime(value, element: element);
+    } else if (value == null) {
+      return FhirDateTimeBaseBuilder.constructor<FhirInstantBuilder>(
+        element: element,
+      ) as FhirInstantBuilder;
+    } else {
+      throw const FormatException(
+        'Invalid FhirInstant JSON: must be a String or DateTime.',
+      );
+    }
+  }
+
+  /// Creates a [FhirInstantBuilder] from YAML.
   static FhirInstantBuilder fromYaml(dynamic yaml) => yaml is String
       ? FhirInstantBuilder.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, dynamic>,
@@ -218,13 +222,10 @@ class FhirInstantBuilder extends FhirDateTimeBaseBuilder
               jsonDecode(jsonEncode(yaml)) as Map<String, dynamic>,
             )
           : throw ArgumentError(
-              'FhirInstantBuilder cannot be constructed from the provided '
-              'input, it must be a YAML string or map.',
+              'FhirInstant cannot be constructed from provided YAML input.',
             );
 
-  /// Tries to parse a value into a [FhirInstantBuilder].
-  ///
-  /// Supports String and DateTime inputs.
+  /// Tries to parse [value] into a [FhirInstantBuilder].
   static FhirInstantBuilder? tryParse(dynamic value) {
     try {
       if (value is DateTime) {
@@ -238,76 +239,88 @@ class FhirInstantBuilder extends FhirDateTimeBaseBuilder
     return null;
   }
 
-  /// Returns the FHIR type as 'instant'.
+  // --------------------------------------------------------------------------
+  // Overrides
+  // --------------------------------------------------------------------------
+
   @override
   String get fhirType => 'instant';
 
-  /// Hash code based on the value of the [FhirInstantBuilder].
   @override
   // ignore: avoid_equals_and_hash_code_on_mutable_classes
-  int get hashCode => value.hashCode;
+  int get hashCode => valueString.hashCode;
 
   @override
   bool equalsDeep(FhirBaseBuilder? other) =>
       other is FhirInstantBuilder &&
-      other.value == value &&
+      other.valueString == valueString &&
       other.element == element;
 
-  /// Compares two [FhirInstantBuilder] objects for equality.
   @override
   // ignore: avoid_equals_and_hash_code_on_mutable_classes
   bool operator ==(Object other) => equals(other);
 
-  /// Checks equality between [FhirInstantBuilder] and other types.
   @override
   bool equals(Object other) => isEqual(other) ?? false;
 
-  /// Adds a duration to a [FhirInstantBuilder].
+  /// Arithmetic
+  ///
+  /// Adds or subtracts an [ExtendedDuration] to/from this [FhirInstantBuilder].
+  ///
+  /// The `plus` method returns a new [FhirInstantBuilder] with the
+  /// duration added.
   FhirInstantBuilder plus(ExtendedDuration other) =>
       FhirDateTimeBaseBuilder.plus<FhirInstantBuilder>(this, other)
           as FhirInstantBuilder;
 
-  /// Subtracts a duration from a [FhirInstantBuilder].
-  FhirInstantBuilder subtract(ExtendedDuration other) =>
-      FhirDateTimeBaseBuilder.minus<FhirInstantBuilder>(this, other)
-          as FhirInstantBuilder;
-
-  /// Subtracts a duration from a [FhirInstantBuilder].
+  /// The `minus` method returns a new [FhirInstantBuilder] with the
+  /// duration subtracted.
   FhirInstantBuilder minus(ExtendedDuration other) =>
       FhirDateTimeBaseBuilder.minus<FhirInstantBuilder>(this, other)
           as FhirInstantBuilder;
 
-  /// Adds a duration to a [FhirInstantBuilder] using the `+` operator.
+  /// The `operator +` method returns a new [FhirInstantBuilder] with the
+  /// duration added.
   @override
   FhirInstantBuilder operator +(ExtendedDuration other) =>
       FhirDateTimeBaseBuilder.plus<FhirInstantBuilder>(this, other)
           as FhirInstantBuilder;
 
-  /// Subtracts a duration from a [FhirInstantBuilder] using the `-` operator.
+  /// The `operator -` method returns a new [FhirInstantBuilder] with the
+  /// duration subtracted.
   @override
   FhirInstantBuilder operator -(ExtendedDuration other) =>
       FhirDateTimeBaseBuilder.minus<FhirInstantBuilder>(this, other)
           as FhirInstantBuilder;
 
-  /// Clones the [FhirInstantBuilder] object.
+  /// The `subtract` method is an alias for the `minus` method.
+  FhirInstantBuilder subtract(ExtendedDuration other) =>
+      FhirDateTimeBaseBuilder.minus<FhirInstantBuilder>(this, other)
+          as FhirInstantBuilder;
+
+  /// Clone
   @override
   FhirInstantBuilder clone() => FhirInstantBuilder.fromJson(toJson());
 
-  /// Converts this instance to a [FhirInstant] object
+  /// JSON
+  @override
+  Map<String, dynamic> toJson() => {
+        if (valueString?.isNotEmpty ?? false) 'value': valueString,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  /// Method to convert the builder object to the original Element object
   @override
   FhirInstant build() => FhirInstant.fromJson(toJson());
 
-  @override
-  Map<String, dynamic> toJson() => {
-        if (valueString.isNotEmpty) 'value': valueString,
-        if (element != null) '_value': element?.toJson(),
-      };
+  // --------------------------------------------------------------------------
+  // copyWith
+  // --------------------------------------------------------------------------
 
-  /// Creates a copy of the [FhirInstantBuilder],
-  /// allowing modifications to properties.
+  /// Creates a new [FhirInstantBuilder] instance with updated properties.
   @override
   FhirInstantBuilder copyWith({
-    String? newValue,
+    dynamic newValue,
     ElementBuilder? element,
     FhirStringBuilder? id,
     List<FhirExtensionBuilder>? extension_,
@@ -319,7 +332,7 @@ class FhirInstantBuilder extends FhirDateTimeBaseBuilder
     String? objectPath,
   }) {
     return FhirDateTimeBaseBuilder.constructor<FhirInstantBuilder>(
-      input: value ?? value,
+      input: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
@@ -338,24 +351,38 @@ class FhirInstantBuilder extends FhirDateTimeBaseBuilder
     ) as FhirInstantBuilder;
   }
 
-  /// Returns a new [FhirInstantBuilder] with extensions disallowed.
+  /// Shorthand to set `disallowExtensions = true`.
   FhirInstantBuilder noExtensions() => copyWith(disallowExtensions: true);
 
-  /// Creates an empty property in the object
+  /// Creates an empty property in the object.
   @override
   FhirInstantBuilder createProperty(String propertyName) => this;
 
-  /// Clears the specified fields in a [FhirInstantBuilder] object
+  /// Clears specified fields in a [FhirInstantBuilder].
   @override
   FhirInstantBuilder clear({
+    bool value = false,
+    bool element = false,
     bool extension_ = false,
     bool id = false,
   }) {
-    return FhirInstantBuilder.fromString(
-      valueString,
-      element: element,
+    return FhirInstantBuilder.fromBase(
+      valueString: value ? null : valueString,
+      year: value ? null : year,
+      month: value ? null : month,
+      day: value ? null : day,
+      hour: value ? null : hour,
+      minute: value ? null : minute,
+      second: value ? null : second,
+      millisecond: value ? null : millisecond,
+      microsecond: value ? null : microsecond,
+      timeZoneOffset: value ? null : timeZoneOffset,
+      isUtc: value ? value : isUtc,
+      element: element ? null : this.element,
       extension_: extension_ ? <FhirExtensionBuilder>[] : this.extension_,
       id: id ? null : this.id,
+      disallowExtensions: disallowExtensions,
+      objectPath: objectPath!,
     );
   }
 }

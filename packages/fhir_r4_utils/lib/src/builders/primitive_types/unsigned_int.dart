@@ -1,16 +1,24 @@
 part of 'primitive_types.dart';
 
-/// Extension to convert a [num] to a [FhirUnsignedIntBuilder].
+/// Extension methods on [num] to easily convert to [FhirUnsignedIntBuilder].
 extension FhirUnsignedIntBuilderExtension on num {
-  /// Converts a [num] to a [FhirUnsignedIntBuilder].
+  /// Returns a [FhirUnsignedIntBuilder] from this [num], if it's an
+  /// integer ≥ 0.
+  ///
+  /// Otherwise throws a [FormatException].
   FhirUnsignedIntBuilder get toFhirUnsignedIntBuilder => this is int
       ? FhirUnsignedIntBuilder(this as int)
       : int.tryParse(toString()) != null
           ? FhirUnsignedIntBuilder(int.parse(toString()))
-          : throw FormatException('Invalid input for FhirUnsignedInt: $this');
+          : throw FormatException(
+              'Invalid input for FhirUnsignedIntBuilder: $this',
+            );
 }
 
-/// Represents the FHIR primitive type `unsignedInt`.
+/// A FHIR primitive type `unsignedInt`.
+///
+/// Subclass of [FhirNumberBuilder]. Only allows non-negative integers
+/// ([0..∞]).
 class FhirUnsignedIntBuilder extends FhirNumberBuilder
     implements
         AllowedXCoverageEligibilityResponseBenefitBuilder,
@@ -28,47 +36,80 @@ class FhirUnsignedIntBuilder extends FhirNumberBuilder
         MaxValueXElementDefinitionBuilder,
         ValueXElementDefinitionExampleBuilder,
         ValueXExtensionBuilder {
-  /// Private underscore constructor
+  // --------------------------------------------------------------------------
+  // Private Internal Constructor
+  // --------------------------------------------------------------------------
+
+  /// Private underscore constructor, delegates to [super._].
   FhirUnsignedIntBuilder._({
-    required int? validatedValue,
-    this.input,
+    required super.valueString,
     super.element,
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.objectPath = 'PositiveInt',
-  }) : super._(validatedValue: validatedValue);
+    super.objectPath = 'UnsignedInt',
+  }) : super._();
 
-  /// Public factory constructor that does validation
+  // --------------------------------------------------------------------------
+  // Public Factories
+  // --------------------------------------------------------------------------
+
+  /// Constructs a [FhirUnsignedIntBuilder] from [rawValue], which must be a
+  /// non-negative integer or `null`.
+  ///
+  /// - If [rawValue] is `null`, [element] must be non-null
+  /// (element-only usage).
+  /// - If [rawValue] is an [int] ≥ 0, stores it.
+  /// - If [rawValue] is a [String], it must parse to an int ≥ 0.
   // ignore: sort_unnamed_constructors_first
   factory FhirUnsignedIntBuilder(
-    dynamic rawInput, {
+    dynamic rawValue, {
     ElementBuilder? element,
     FhirStringBuilder? id,
     List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
-    String objectPath = 'PositiveInt',
+    String objectPath = 'UnsignedInt',
   }) {
-    // 1) Validate
-    int? finalInt;
-    if (rawInput == null && element == null) {
+    String? parsedString;
+
+    if (rawValue == null && element == null) {
       throw ArgumentError(
-        'A value or element is required for FhirUnsignedInt.',
-      );
-    }
-    if (rawInput is num) {
-      final validated = _validatePositiveInt(rawInput);
-      finalInt = validated;
-    } else if (rawInput != null) {
-      throw FormatException(
-        'FhirUnsignedInt supports only num or null, got: $rawInput',
+        'A value or element is required for FhirUnsignedIntBuilder.',
       );
     }
 
-    // 2) Return the private constructor
+    if (rawValue is num) {
+      if (rawValue is int) {
+        if (rawValue < 0) {
+          throw ArgumentError(
+            'FhirUnsignedIntBuilder only supports non-negative integers, '
+            'got: $rawValue',
+          );
+        }
+        parsedString = rawValue.toString();
+      } else {
+        throw ArgumentError(
+          'FhirUnsignedIntBuilder only supports an int or null, got: $rawValue',
+        );
+      }
+    } else if (rawValue is String) {
+      final asInt = int.tryParse(rawValue);
+      if (asInt == null || asInt < 0) {
+        throw ArgumentError(
+          'FhirUnsignedIntBuilder only supports non-negative integers, '
+          'got: $rawValue',
+        );
+      }
+      parsedString = asInt.toString();
+    } else if (rawValue != null) {
+      throw ArgumentError(
+        'FhirUnsignedIntBuilder only supports an int or string or null, '
+        'got: $rawValue',
+      );
+    }
+
     return FhirUnsignedIntBuilder._(
-      validatedValue: finalInt,
-      input: rawInput is num ? rawInput : null,
+      valueString: parsedString,
       element: element,
       id: id,
       extension_: extension_,
@@ -77,26 +118,30 @@ class FhirUnsignedIntBuilder extends FhirNumberBuilder
     );
   }
 
-  /// Creates empty [FhirUnsignedIntBuilder] object
+  /// Creates an empty [FhirUnsignedIntBuilder] (with [ElementBuilder.empty]
+  /// for metadata).
   factory FhirUnsignedIntBuilder.empty() =>
       FhirUnsignedIntBuilder(null, element: ElementBuilder.empty());
 
-  /// Factory constructor to create [FhirUnsignedIntBuilder]
-  /// from JSON.input.
-  factory FhirUnsignedIntBuilder.fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as num?;
-    final elemJson = json['_value'] as Map<String, dynamic>?;
-    final element = elemJson == null ? null : ElementBuilder.fromJson(elemJson);
-    final objectPath = json['objectPath'] as String? ?? 'PositiveInt';
+  // --------------------------------------------------------------------------
+  // JSON / YAML Constructors
+  // --------------------------------------------------------------------------
 
+  /// Constructs a [FhirUnsignedIntBuilder] from a JSON [Map].
+  factory FhirUnsignedIntBuilder.fromJson(Map<String, dynamic> json) {
+    final rawValue = json['value'] as num?;
+    final elemJson = json['_value'] as Map<String, dynamic>?;
+    final parsedElement =
+        elemJson == null ? null : ElementBuilder.fromJson(elemJson);
+    final objectPath = json['objectPath'] as String? ?? 'UnsignedInt';
     return FhirUnsignedIntBuilder(
-      value,
-      element: element,
+      rawValue,
+      element: parsedElement,
       objectPath: objectPath,
     );
   }
 
-  /// Factory constructor to create [FhirUnsignedIntBuilder] from YAML input.
+  /// Constructs a [FhirUnsignedIntBuilder] from a YAML input ([String] or [YamlMap]).
   static FhirUnsignedIntBuilder fromYaml(dynamic yaml) {
     if (yaml is String) {
       return FhirUnsignedIntBuilder.fromJson(
@@ -108,13 +153,14 @@ class FhirUnsignedIntBuilder extends FhirNumberBuilder
       );
     } else {
       throw const FormatException(
-        'Invalid input for FhirUnsignedInt: not a valid YAML string or map.',
+        'Invalid input for FhirUnsignedIntBuilder: '
+        'not a valid YAML string or map.',
       );
     }
   }
 
-  /// Static method to try parsing input as [FhirUnsignedIntBuilder],
-  /// returns `null` if unsuccessful.
+  /// Attempts to parse [input] as a [FhirUnsignedIntBuilder]. Returns `null`
+  /// if it fails.
   static FhirUnsignedIntBuilder? tryParse(dynamic input) {
     try {
       return FhirUnsignedIntBuilder(input);
@@ -123,78 +169,78 @@ class FhirUnsignedIntBuilder extends FhirNumberBuilder
     }
   }
 
-  /// Validates that the input is a positive integer.
+  // --------------------------------------------------------------------------
+  // Getters / Properties
+  // --------------------------------------------------------------------------
 
-  static int _validatePositiveInt(num input) {
-    if (input < 0 || input is! int) {
-      throw FormatException(
-        'Invalid FhirUnsignedInt value: $input. Must be int > 0.',
-      );
-    }
-    return input;
-  }
+  /// Returns this value as an [int], or `null` if [valueString] is `null`.
+  @override
+  int? get valueNum => valueString == null ? null : int.parse(valueString!);
 
-  /// The original input value (for serialization purposes)
-  num? input;
+  /// Same as [valueNum].
+  int? get valueInt => valueNum;
 
-  /// Returns the FHIR type as a string.
+  // --------------------------------------------------------------------------
+  // Overrides
+  // --------------------------------------------------------------------------
+
+  /// Returns `"unsignedInt"`.
   @override
   String get fhirType => 'unsignedInt';
 
-  /// Converts this instance to a [FhirUnsignedInt] object
-  @override
-  FhirUnsignedInt build() => FhirUnsignedInt.fromJson(toJson());
-
-  /// Serializes the instance to JSON with standardized keys.
+  /// JSON serialization with `'value'` and `'_value'`.
   @override
   Map<String, dynamic> toJson() {
     return {
-      if (value != null) 'value': value,
+      if (valueNum != null) 'value': valueNum,
       if (element != null) '_value': element!.toJson(),
     };
   }
 
-  /// Provides a string representation of the instance.
+  /// Method to convert the builder object to the original Element object
   @override
-  String toString() => value?.toString() ?? 'null';
+  FhirUnsignedInt build() => FhirUnsignedInt.fromJson(toJson());
 
-  /// Retrieves the primitive value of the object.
+  /// Returns the [valueString] or `'null'`.
   @override
-  String? get primitiveValue => value?.toString();
+  String toString() => valueString ?? 'null';
 
   @override
   bool equalsDeep(FhirBaseBuilder? other) =>
       other is FhirUnsignedIntBuilder &&
-      other.value == value &&
+      other.valueString == valueString &&
       other.element == element;
 
-  /// Overrides equality operator to compare instances.
+  /// Equality checks [FhirUnsignedIntBuilder], or an [int]/[double] with the same value.
   @override
   // ignore: avoid_equals_and_hash_code_on_mutable_classes
   bool operator ==(Object other) =>
       identical(this, other) ||
-      (other is FhirUnsignedIntBuilder && other.value == value) ||
-      (other is int && other == value);
+      (other is FhirUnsignedIntBuilder && other.valueString == valueString) ||
+      (other is int && other == valueInt) ||
+      (other is double && other == valueNum);
 
-  /// Overrides hashCode for use in hash-based collections.
   @override
   // ignore: avoid_equals_and_hash_code_on_mutable_classes
-  int get hashCode => Object.hash(value, element);
+  int get hashCode => Object.hash(valueString, element);
 
-  // Clone / copyWith
+  // --------------------------------------------------------------------------
+  // Clone / Copy
+  // --------------------------------------------------------------------------
+
   @override
   FhirUnsignedIntBuilder clone() => FhirUnsignedIntBuilder(
-        value,
+        valueString,
         element: element?.clone() as ElementBuilder?,
       );
 
-  /// Sets disallowExtensions to true.
+  /// Returns a copy with [disallowExtensions] set to `true`.
   FhirUnsignedIntBuilder noExtensions() => copyWith(disallowExtensions: true);
 
   /// Creates a modified copy with updated properties.
   @override
   FhirUnsignedIntBuilder copyWith({
-    num? newValue,
+    dynamic newValue,
     ElementBuilder? element,
     FhirStringBuilder? id,
     List<FhirExtensionBuilder>? extension_,
@@ -206,7 +252,7 @@ class FhirUnsignedIntBuilder extends FhirNumberBuilder
     String? objectPath,
   }) {
     return FhirUnsignedIntBuilder(
-      newValue ?? value,
+      newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
@@ -221,19 +267,17 @@ class FhirUnsignedIntBuilder extends FhirNumberBuilder
     );
   }
 
-  /// Creates an empty property in the object
   @override
   FhirUnsignedIntBuilder createProperty(String propertyName) => this;
 
-  /// Clears the specified fields in a [FhirUnsignedIntBuilder] object
   @override
   FhirUnsignedIntBuilder clear({
-    bool input = false,
+    bool value = false,
     bool extension_ = false,
     bool id = false,
   }) {
     return FhirUnsignedIntBuilder(
-      input ? null : this.input,
+      value ? null : valueString,
       element: element,
       extension_: extension_ ? <FhirExtensionBuilder>[] : this.extension_,
       id: id ? null : this.id,

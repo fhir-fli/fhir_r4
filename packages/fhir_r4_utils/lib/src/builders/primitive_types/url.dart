@@ -1,18 +1,22 @@
 part of 'primitive_types.dart';
 
-/// Extension to convert a [String] to a [FhirUrlBuilder]
+/// Extension methods on [String] to easily convert to [FhirUrlBuilder].
 extension FhirUrlBuilderExtension on String {
-  /// Converts a [String] to a [FhirUrlBuilder]
+  /// Returns a new [FhirUrlBuilder] constructed from this [String].
   FhirUrlBuilder get toFhirUrlBuilder => FhirUrlBuilder(this);
 }
 
-/// Extension to convert a [Uri] to a [FhirUrlBuilder]
+/// Extension methods on [Uri] to easily convert to [FhirUrlBuilder].
 extension FhirUrlBuilderUriExtension on Uri {
-  /// Converts a [Uri] to a [FhirUrlBuilder]
+  /// Returns a new [FhirUrlBuilder] constructed from this [Uri].
   FhirUrlBuilder get toFhirUrlBuilder => FhirUrlBuilder.fromUri(this);
 }
 
-/// Represents a canonical URL in FHIR as a [FhirUriBuilder] of [Uri]
+/// A specialized URI-type in FHIR known as `url`.
+///
+/// Internally extends [FhirUriBuilder]. This type typically indicates an
+/// absolute URL addressing something on the web, though FHIR treats it
+/// similarly to `uri`.
 class FhirUrlBuilder extends FhirUriBuilder
     implements
         NameXImplementationGuidePageBuilder,
@@ -25,11 +29,14 @@ class FhirUrlBuilder extends FhirUriBuilder
         PatternXElementDefinitionBuilder,
         ValueXElementDefinitionExampleBuilder,
         ValueXExtensionBuilder {
-  /// Private underscore constructor that takes a validated [Uri?] plus the
-  /// original input string.
+  // --------------------------------------------------------------------------
+  // Private Internal Constructor
+  // --------------------------------------------------------------------------
+
+  /// Private underscore constructor delegating to [FhirUriBuilder]'s
+  /// internal constructor.
   FhirUrlBuilder._({
-    required super.validatedUri,
-    super.input,
+    required super.valueString,
     super.element,
     super.id,
     super.extension_,
@@ -37,40 +44,42 @@ class FhirUrlBuilder extends FhirUriBuilder
     super.objectPath = 'Url',
   }) : super._();
 
-  /// Single public factory for creating a [FhirUrlBuilder].
+  // --------------------------------------------------------------------------
+  // Public Factories
+  // --------------------------------------------------------------------------
+
+  /// Creates a [FhirUrlBuilder] by parsing [rawValue] as either a [String]
+  /// or [Uri].
+  ///
+  /// - If [rawValue] is `null`, [element] must be non-null (element-only).
+  /// - If [rawValue] is a [String], it is validated via
+  /// [FhirUriBuilder.validateUri].
+  /// - If [rawValue] is a [Uri], we store its string form.
+  /// - Otherwise, throws an [ArgumentError].
   // ignore: sort_unnamed_constructors_first
   factory FhirUrlBuilder(
-    dynamic rawInput, {
+    dynamic rawValue, {
     ElementBuilder? element,
     FhirStringBuilder? id,
     List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
-    String? objectPath = 'Url',
+    String objectPath = 'Url',
   }) {
-    // 1) Validate/parse
-    //    - If rawInput is null and no element, throw
-    //    - If rawInput is a string, parse it as Uri
-    //    - If rawInput is a Uri, we can accept it directly
-    Uri? finalUri;
-    String? originalString;
-    if (rawInput == null && element == null) {
+    String? parsedValue;
+    if (rawValue == null && element == null) {
       throw ArgumentError('A value or element is required for FhirUrlBuilder.');
-    } else if (rawInput is String) {
-      finalUri = _validateCanonical(rawInput);
-      originalString = rawInput;
-    } else if (rawInput is Uri) {
-      finalUri = rawInput;
-      originalString = rawInput.toString();
-    } else if (rawInput != null) {
+    } else if (rawValue is String) {
+      parsedValue = FhirUriBuilder.validateUri(rawValue);
+    } else if (rawValue is Uri) {
+      parsedValue = rawValue.toString();
+    } else if (rawValue != null) {
       throw ArgumentError(
-        'FhirUrlBuilder only supports a String or Uri, got: $rawInput',
+        'FhirUrlBuilder only supports a String or Uri. Got: $rawValue',
       );
     }
 
-    // 2) Construct via the private underscore constructor
     return FhirUrlBuilder._(
-      validatedUri: finalUri,
-      input: originalString,
+      valueString: parsedValue,
       element: element,
       id: id,
       extension_: extension_,
@@ -79,11 +88,12 @@ class FhirUrlBuilder extends FhirUriBuilder
     );
   }
 
-  /// Creates empty [FhirUrlBuilder] object
+  /// Creates an empty [FhirUrlBuilder] object with an [ElementBuilder.empty]
+  /// for metadata.
   factory FhirUrlBuilder.empty() =>
       FhirUrlBuilder(null, element: ElementBuilder.empty());
 
-  /// Constructs a [FhirUrlBuilder] from a [Uri] object
+  /// Creates a [FhirUrlBuilder] from a [Uri] object.
   factory FhirUrlBuilder.fromUri(
     Uri input, [
     ElementBuilder? element,
@@ -94,22 +104,28 @@ class FhirUrlBuilder extends FhirUriBuilder
     );
   }
 
-  /// Named constructor to create [FhirUrlBuilder] from JSON
+  // --------------------------------------------------------------------------
+  // JSON / YAML Constructors
+  // --------------------------------------------------------------------------
+
+  /// Constructs a [FhirUrlBuilder] from a JSON [Map].
   factory FhirUrlBuilder.fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
+    final rawValue = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element =
+    final parsedElement =
         elementJson == null ? null : ElementBuilder.fromJson(elementJson);
     final objectPath = json['objectPath'] as String? ?? 'Url';
 
     return FhirUrlBuilder(
-      value,
-      element: element,
+      rawValue,
+      element: parsedElement,
       objectPath: objectPath,
     );
   }
 
-  /// Named constructor to create [FhirUrlBuilder] from YAML
+  /// Constructs a [FhirUrlBuilder] from a YAML input.
+  ///
+  /// Accepts [String] or [YamlMap].
   static FhirUrlBuilder fromYaml(dynamic yaml) {
     if (yaml is String) {
       return FhirUrlBuilder.fromJson(
@@ -127,8 +143,8 @@ class FhirUrlBuilder extends FhirUriBuilder
     }
   }
 
-  /// Attempts to parse the input as a [FhirUrlBuilder].
-  /// Returns `null` if parsing fails.
+  /// Attempts to parse [input] as a [FhirUrlBuilder]. Returns `null` if
+  /// parsing fails.
   static FhirUrlBuilder? tryParse(dynamic input) {
     try {
       return FhirUrlBuilder(input);
@@ -137,32 +153,29 @@ class FhirUrlBuilder extends FhirUriBuilder
     }
   }
 
-  /// Validates the input string as a valid [Uri]
-  static Uri _validateCanonical(String raw) {
-    final parsed = Uri.tryParse(raw);
-    if (parsed != null) return parsed;
-    throw FormatException('Invalid Canonical String: $raw');
-  }
+  // --------------------------------------------------------------------------
+  // JSON Serialization
+  // --------------------------------------------------------------------------
 
-  /// Converts this instance to a [FhirUrl] object
-  @override
-  FhirUrl build() => FhirUrl.fromJson(toJson());
-
-  /// Converts this instance to JSON with standardized keys
+  /// Converts this [FhirUrlBuilder] into a JSON map.
   @override
   Map<String, dynamic> toJson() => {
-        if (input != null) 'value': input,
+        if (valueString != null) 'value': valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [FhirUrlBuilder] instances
+  /// Method to convert the builder object to the original Element object
+  @override
+  FhirUrl build() => FhirUrl.fromJson(toJson());
+
+  /// Converts parallel [values] and [elements] into a list of [FhirUrlBuilder].
   static List<FhirUrlBuilder> fromJsonList(
     List<dynamic> values,
     List<dynamic>? elements,
   ) {
     if (elements != null && elements.length != values.length) {
       throw const FormatException(
-        'Values and elements must have the same length',
+        'Values and elements must have the same length.',
       );
     }
     return List.generate(values.length, (i) {
@@ -174,61 +187,67 @@ class FhirUrlBuilder extends FhirUriBuilder
     });
   }
 
-  /// Converts a list of [FhirUrlBuilder] to a JSON map
-  static Map<String, dynamic> toJsonList(List<FhirUrlBuilder> canonicals) => {
-        'value': canonicals.map((c) => c.input).toList(),
-        '_value': canonicals.map((c) => c.element?.toJson()).toList(),
+  /// Converts a list of [FhirUrlBuilder] to a JSON map with parallel `'value'`/`'_value'`.
+  static Map<String, dynamic> toJsonList(List<FhirUrlBuilder> values) => {
+        'value': values.map((val) => val.valueString).toList(),
+        '_value': values.map((val) => val.element?.toJson()).toList(),
       };
 
-  // ──────────────────────────────────────────────────────────────────────────
+  // --------------------------------------------------------------------------
   // Overrides
-  // ──────────────────────────────────────────────────────────────────────────
+  // --------------------------------------------------------------------------
 
+  /// Returns the FHIR type `"url"`.
   @override
   String get fhirType => 'url';
 
+  /// Returns the string or `"null"`.
   @override
-  String toString() => value?.toString() ?? 'null';
+  String toString() => valueString ?? 'null';
 
-  @override
-  String? get primitiveValue => value?.toString();
-
+  /// Deep equality check for [FhirUrlBuilder].
   @override
   bool equalsDeep(FhirBaseBuilder? other) =>
       other is FhirUrlBuilder &&
-      other.value == value &&
+      other.valueString == valueString &&
       other.element == element;
 
+  /// Checks equality with [FhirUrlBuilder], [Uri], or [String].
   @override
   bool equals(Object other) =>
       identical(this, other) ||
-      (other is FhirUrlBuilder && other.value == value) ||
-      (other is Uri && other == value) ||
-      (other is String && Uri.tryParse(other) == value);
+      (other is FhirUrlBuilder && other.valueString == valueString) ||
+      (other is Uri && other == valueUri) ||
+      (other is String && other == valueString);
 
+  /// Operator `==` override.
   @override
   // ignore: avoid_equals_and_hash_code_on_mutable_classes
   bool operator ==(Object other) => equals(other);
 
   @override
   // ignore: avoid_equals_and_hash_code_on_mutable_classes
-  int get hashCode => Object.hash(input, element);
+  int get hashCode => Object.hash(valueString, element);
 
-  // ──────────────────────────────────────────────────────────────────────────
+  /// Returns `true` if the Type is considered string-based, otherwise `false`
+  @override
+  bool get stringBased => true;
+
+  // --------------------------------------------------------------------------
   // Clone / Copy
-  // ──────────────────────────────────────────────────────────────────────────
+  // --------------------------------------------------------------------------
 
-  /// Clones this [FhirUrlBuilder] instance
+  /// Clones this [FhirUrlBuilder].
   @override
   FhirUrlBuilder clone() => FhirUrlBuilder(
-        input,
+        valueString,
         element: element?.clone() as ElementBuilder?,
       );
 
-  /// Creates a modified copy with updated properties
+  /// Creates a new [FhirUrlBuilder] with updated properties.
   @override
   FhirUrlBuilder copyWith({
-    Uri? newValue,
+    dynamic newValue,
     ElementBuilder? element,
     FhirStringBuilder? id,
     List<FhirExtensionBuilder>? extension_,
@@ -240,7 +259,7 @@ class FhirUrlBuilder extends FhirUriBuilder
     String? objectPath,
   }) {
     return FhirUrlBuilder(
-      newValue?.toString() ?? input,
+      newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
@@ -251,76 +270,53 @@ class FhirUrlBuilder extends FhirUriBuilder
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath,
+      objectPath: objectPath ?? this.objectPath!,
     );
   }
 
+  /// Creates a property. No-op for [FhirUrlBuilder].
+  @override
+  FhirUrlBuilder createProperty(String propertyName) => this;
+
+  /// Clears selected fields from this [FhirUrlBuilder].
   @override
   FhirUrlBuilder clear({
-    bool input = false,
+    bool value = false,
     bool extension_ = false,
     bool id = false,
   }) {
     return FhirUrlBuilder(
-      input ? null : this.input,
+      value ? null : valueString,
       element: element,
       extension_: extension_ ? <FhirExtensionBuilder>[] : this.extension_,
       id: id ? null : this.id,
     );
   }
 
-  // ──────────────────────────────────────────────────────────────────────────
-  // Additional convenience getters (unchanged from your code)
-  // ──────────────────────────────────────────────────────────────────────────
+  // --------------------------------------------------------------------------
+  // Additional Convenience (Unchanged from your code)
+  // --------------------------------------------------------------------------
 
-  /// Splits the [query] into a map according to the rules specified for FORM
-  /// post in the HTML 4.01 specification section 17.13.4. Each key and value
-  /// in the returned map has been decoded. If the [query] is the empty string,
-  /// an empty map is returned.
-  /// Keys in the query string that have no value are mapped to the empty
-  /// string.
-  /// Each query component will be decoded using [encoding]. The default
-  /// encoding is UTF-8.
+  /// Encodes a query component as per HTML 4.01 rules.
+  static String encodeQueryComponent(String text, {Encoding encoding = utf8}) {
+    return Uri.encodeQueryComponent(text, encoding: encoding);
+  }
+
+  /// Decodes a percent-encoded query component.
+  static String decodeQueryComponent(String text, {Encoding encoding = utf8}) {
+    return Uri.decodeQueryComponent(text, encoding: encoding);
+  }
+
+  /// Splits a query string into a map of keys to a list of values.
   static Map<String, List<String>> splitQueryStringAll(
     String query, {
     Encoding encoding = utf8,
   }) {
     return Uri.splitQueryString(query, encoding: encoding).map(
-      (String key, String value) => MapEntry<String, List<String>>(
+      (key, value) => MapEntry<String, List<String>>(
         key,
         value.isEmpty ? <String>[] : <String>[value],
       ),
     );
-  }
-
-  /// Encodes the string [component] according to the HTML 4.01 rules for
-  /// encoding the posting of a HTML form as a query string component.
-  /// The component is first encoded to bytes using [encoding]. The default is
-  /// to use [utf8] encoding, which preserves all the characters that don't
-  /// need encoding.
-  /// Then the resulting bytes are "percent-encoded". This transforms spaces
-  /// (U+0020) to a plus sign ('+') and all bytes that are not the ASCII
-  /// decimal digits, letters or one of '-._~' are written as a percent sign
-  /// '%' followed by the two-digit hexadecimal representation of the byte.
-  /// Note that the set of characters which are percent-encoded is a superset
-  /// of what HTML 4.01 requires, since it refers to RFC 1738 for reserved
-  /// characters.
-  /// When manually encoding query components remember to encode each part
-  /// separately before building the query string.
-  /// To avoid the need for explicitly encoding the query use the
-  /// [queryParameters] optional named arguments when constructing a [Uri].
-  /// See https://www.w3.org/TR/html401/interact/forms.html#h-17.13.4.2 for
-  /// more details.
-  static String encodeQueryComponent(String text, {Encoding encoding = utf8}) {
-    return Uri.encodeQueryComponent(text, encoding: encoding);
-  }
-
-  /// Decodes the percent-encoding in [encodedComponent], converting pluses to
-  /// spaces.
-  /// It will create a byte-list of the decoded characters, and then use
-  /// [encoding] to decode the byte-list to a String. The default encoding is
-  /// UTF-8.
-  static String decodeQueryComponent(String text, {Encoding encoding = utf8}) {
-    return Uri.decodeQueryComponent(text, encoding: encoding);
   }
 }

@@ -7,13 +7,13 @@ extension FhirDateBuilderExtension on DateTime {
 }
 
 /// Extension on [String] to convert to a [FhirDateBuilder].
-extension FhirDateBuilderStringExtension on String {
-  /// Converts [String] to [FhirDateBuilder].
+extension FhirDateStringBuilderExtension on String {
+  /// Converts [String] to a [FhirDateBuilder].
   FhirDateBuilder get toFhirDateBuilder => FhirDateBuilder.fromString(this);
 }
 
-/// [FhirDateBuilder] represents FHIR-compliant dates,
-/// extending [FhirDateTimeBaseBuilder].
+/// [FhirDateBuilder] represents a date-only type in FHIR
+/// (potentially partial, e.g. YYYY, YYYY-MM, or YYYY-MM-DD).
 class FhirDateBuilder extends FhirDateTimeBaseBuilder
     implements
         ValueXAdministrableProductDefinitionPropertyBuilder,
@@ -50,45 +50,13 @@ class FhirDateBuilder extends FhirDateTimeBaseBuilder
         ValueXExtensionBuilder,
         TimingXTriggerDefinitionBuilder,
         StartXGoalBuilder {
-  /// Creates empty [FhirDateBuilder] object
-  factory FhirDateBuilder.empty() => FhirDateBuilder.fromBase(
-        value: null,
-        year: null,
-        month: null,
-        day: null,
-        isUtc: false,
-        element: ElementBuilder.empty(),
-      );
+  // --------------------------------------------------------------------------
+  // Private Internal Constructor
+  // --------------------------------------------------------------------------
 
-  /// Factory constructor to create a [FhirDateBuilder] from a JSON input.
-  ///
-  /// The input must be a [String], otherwise throws a [FormatException].
-  factory FhirDateBuilder.fromJson(Map<String, dynamic> json) {
-    final value = json['value'];
-    final element = json['_value'] is Map<String, dynamic>
-        ? ElementBuilder.fromJson(json['_value'] as Map<String, dynamic>)
-        : null;
-
-    if (value is String) {
-      return FhirDateBuilder.fromString(value, element: element);
-    } else if (value is DateTime) {
-      return FhirDateBuilder.fromDateTime(value, element: element);
-    } else if (value == null) {
-      return FhirDateTimeBaseBuilder.constructor<FhirDateBuilder>(
-        element: element,
-      ) as FhirDateBuilder;
-    } else {
-      throw const FormatException(
-        'Invalid input for FhirDateBuilder: Input must be a String?',
-      );
-    }
-  }
-
-  /// Private underscore constructor.
-  /// Notice it calls `super._internal(...)` with the final fields.
-  /// We do NO extra runtime logic here—just assignment.
+  /// Private underscore constructor delegating to [FhirDateTimeBaseBuilder].
   FhirDateBuilder._({
-    required super.validatedValue,
+    required super.valueString,
     required super.year,
     required super.month,
     required super.day,
@@ -101,10 +69,13 @@ class FhirDateBuilder extends FhirDateTimeBaseBuilder
     super.objectPath = 'Date',
   }) : super._();
 
-  /// Public **factory** that replaces your old `fromBase` constructor logic.
-  /// We parse or assign the provided fields, then call the private underscore.
+  // --------------------------------------------------------------------------
+  // Public Factories
+  // --------------------------------------------------------------------------
+
+  /// Creates a [FhirDateBuilder] from the base fields.
   factory FhirDateBuilder.fromBase({
-    required String? value,
+    required String? valueString,
     required int? year,
     required int? month,
     required int? day,
@@ -114,15 +85,15 @@ class FhirDateBuilder extends FhirDateTimeBaseBuilder
     FhirStringBuilder? id,
     List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
-    String? objectPath = 'Date',
+    String objectPath = 'Date',
   }) {
     return FhirDateBuilder._(
-      validatedValue: value,
+      valueString: valueString,
       year: year,
       month: month,
       day: day,
-      timeZoneOffset: timeZoneOffset,
       isUtc: isUtc,
+      timeZoneOffset: timeZoneOffset,
       element: element,
       id: id,
       extension_: extension_,
@@ -131,9 +102,8 @@ class FhirDateBuilder extends FhirDateTimeBaseBuilder
     );
   }
 
-  /// Factory constructor to create a [FhirDateBuilder] from individual units.
-  ///
-  /// Requires [year], while [month], [day], and [isUtc] are optional.
+  /// Creates a [FhirDateBuilder] from individual date components
+  /// (year, [month], [day]).
   factory FhirDateBuilder.fromUnits({
     required int year,
     int? month,
@@ -149,7 +119,7 @@ class FhirDateBuilder extends FhirDateTimeBaseBuilder
         element: element,
       ) as FhirDateBuilder;
 
-  /// Factory constructor to create a [FhirDateBuilder] from a [String].
+  /// Creates a [FhirDateBuilder] from a raw string.
   factory FhirDateBuilder.fromString(
     String input, {
     ElementBuilder? element,
@@ -173,7 +143,7 @@ class FhirDateBuilder extends FhirDateTimeBaseBuilder
         objectPath: objectPath,
       ) as FhirDateBuilder;
 
-  /// Factory constructor to create a [FhirDateBuilder] from a [DateTime].
+  /// Creates a [FhirDateBuilder] from a [DateTime].
   factory FhirDateBuilder.fromDateTime(
     DateTime input, {
     ElementBuilder? element,
@@ -195,7 +165,39 @@ class FhirDateBuilder extends FhirDateTimeBaseBuilder
         annotations: annotations,
       ) as FhirDateBuilder;
 
-  /// Factory constructor to create [FhirDateBuilder] from YAML
+  /// Creates an empty [FhirDateBuilder].
+  factory FhirDateBuilder.empty() => FhirDateBuilder.fromBase(
+        valueString: null,
+        year: null,
+        month: null,
+        day: null,
+        isUtc: false,
+        element: ElementBuilder.empty(),
+      );
+
+  /// Creates a [FhirDateBuilder] from JSON.
+  factory FhirDateBuilder.fromJson(Map<String, dynamic> json) {
+    final value = json['value'];
+    final element = json['_value'] is Map<String, dynamic>
+        ? ElementBuilder.fromJson(json['_value'] as Map<String, dynamic>)
+        : null;
+
+    if (value is String) {
+      return FhirDateBuilder.fromString(value, element: element);
+    } else if (value is DateTime) {
+      return FhirDateBuilder.fromDateTime(value, element: element);
+    } else if (value == null) {
+      return FhirDateTimeBaseBuilder.constructor<FhirDateBuilder>(
+        element: element,
+      ) as FhirDateBuilder;
+    } else {
+      throw const FormatException(
+        'Invalid input for FhirDate: must be a String or DateTime',
+      );
+    }
+  }
+
+  /// Creates a [FhirDateBuilder] from YAML input.
   static FhirDateBuilder fromYaml(dynamic yaml) => yaml is String
       ? FhirDateBuilder.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, dynamic>,
@@ -205,11 +207,10 @@ class FhirDateBuilder extends FhirDateTimeBaseBuilder
               jsonDecode(jsonEncode(yaml)) as Map<String, dynamic>,
             )
           : throw ArgumentError(
-              'FhirDateBuilder cannot be constructed from the provided input,'
-              ' it is neither a YAML string nor a YAML map.');
+              'FhirDate cannot be constructed from provided YAML input.',
+            );
 
-  /// Tries to parse a value as [FhirDateBuilder],
-  /// returns `null` if parsing fails.
+  /// Tries to parse [value] into a [FhirDateBuilder].
   static FhirDateBuilder? tryParse(dynamic value) {
     try {
       if (value is DateTime) {
@@ -217,89 +218,100 @@ class FhirDateBuilder extends FhirDateTimeBaseBuilder
       } else if (value is String) {
         return FhirDateBuilder.fromString(value);
       }
-    } catch (e) {
+    } catch (_) {
       return null;
     }
     return null;
   }
 
-  /// Returns the FHIR type as 'date'.
+  // --------------------------------------------------------------------------
+  // Overrides
+  // --------------------------------------------------------------------------
+
   @override
   String get fhirType => 'date';
 
-  /// Overrides the [hashCode] method to generate a hash code based on the value
   @override
   // ignore: avoid_equals_and_hash_code_on_mutable_classes
-  int get hashCode => value.hashCode;
+  int get hashCode => valueString.hashCode;
 
   @override
   bool equalsDeep(FhirBaseBuilder? other) =>
       other is FhirDateBuilder &&
-      other.value == value &&
+      other.valueString == valueString &&
       other.element == element;
 
-  /// Overrides the equality operator to compare two [FhirDateBuilder] objects.
   @override
   // ignore: avoid_equals_and_hash_code_on_mutable_classes
   bool operator ==(Object other) => equals(other);
 
-  /// Checks for equality between this object and another [FhirDateBuilder].
   @override
   bool equals(Object other) => isEqual(other) ?? false;
 
-  /// Adds a duration ([ExtendedDuration]) to the current [FhirDateBuilder].
+  /// Arithmetic
+  ///
+  /// Adds or subtracts an [ExtendedDuration] to/from this [FhirDateBuilder].
+  ///
+  /// [ExtendedDuration] is a custom class that represents a duration of time.
+  /// The `plus` and `minus` methods are used to add or subtract the duration
+  /// from the [FhirDateBuilder].
+  ///
+  /// The `operator +` and `operator -` methods are overridden to provide
+  /// shorthand syntax for adding or subtracting the duration.
+  ///
+  /// The `plus` method returns a new [FhirDateBuilder] with the duration added.
   FhirDateBuilder plus(ExtendedDuration other) =>
       FhirDateTimeBaseBuilder.plus<FhirDateBuilder>(this, other)
           as FhirDateBuilder;
 
-  /// Subtracts a duration ([ExtendedDuration])
-  /// from the current [FhirDateBuilder].
-  FhirDateBuilder subtract(ExtendedDuration other) =>
-      FhirDateTimeBaseBuilder.minus<FhirDateBuilder>(this, other)
-          as FhirDateBuilder;
-
-  /// Subtracts a duration ([ExtendedDuration])
-  /// from the current [FhirDateBuilder].
+  /// The `minus` method returns a new [FhirDateBuilder] with the
+  /// duration subtracted.
   FhirDateBuilder minus(ExtendedDuration other) =>
       FhirDateTimeBaseBuilder.minus<FhirDateBuilder>(this, other)
           as FhirDateBuilder;
 
-  /// Adds an [ExtendedDuration] to the current [FhirDateBuilder] using the `+`
-  /// operator.
+  /// The `operator +` method returns a new [FhirDateBuilder] with the
+  /// duration added.
   @override
   FhirDateBuilder operator +(ExtendedDuration other) =>
       FhirDateTimeBaseBuilder.plus<FhirDateBuilder>(this, other)
           as FhirDateBuilder;
 
-  /// Subtracts an [ExtendedDuration] from the current [FhirDateBuilder]
-  /// using the `-` operator.
+  /// The `operator -` method returns a new [FhirDateBuilder] with the
+  /// duration subtracted.
   @override
   FhirDateBuilder operator -(ExtendedDuration other) =>
       FhirDateTimeBaseBuilder.minus<FhirDateBuilder>(this, other)
           as FhirDateBuilder;
 
-  /// Clones the current [FhirDateBuilder] and returns a new instance.
+  /// The `subtract` method is an alias for the `minus` method.
+  FhirDateBuilder subtract(ExtendedDuration other) =>
+      FhirDateTimeBaseBuilder.minus<FhirDateBuilder>(this, other)
+          as FhirDateBuilder;
+
+  /// Clone
   @override
   FhirDateBuilder clone() => FhirDateBuilder.fromJson(toJson());
 
-  /// Converts this instance to a [FhirDate] object
+  /// JSON
+  @override
+  Map<String, dynamic> toJson() => {
+        if (valueString?.isNotEmpty ?? false) 'value': valueString,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  /// Method to convert the builder object to the original Element object
   @override
   FhirDate build() => FhirDate.fromJson(toJson());
 
-  @override
-  Map<String, dynamic> toJson() => {
-        if (valueString.isNotEmpty) 'value': valueString,
-        if (element != null) '_value': element?.toJson(),
-      };
+  // --------------------------------------------------------------------------
+  // copyWith
+  // --------------------------------------------------------------------------
 
-  /// Copies the current [FhirDateBuilder],
-  /// allowing for changes to its properties.
-  ///
-  /// Supports changing the [value] and associated [element], as well as other
-  /// metadata.
+  /// Creates a new [FhirDateBuilder] instance with updated properties.
   @override
   FhirDateBuilder copyWith({
-    String? newValue,
+    dynamic newValue,
     ElementBuilder? element,
     FhirStringBuilder? id,
     List<FhirExtensionBuilder>? extension_,
@@ -311,7 +323,7 @@ class FhirDateBuilder extends FhirDateTimeBaseBuilder
     String? objectPath,
   }) {
     return FhirDateTimeBaseBuilder.constructor<FhirDateBuilder>(
-      input: value ?? value,
+      input: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
@@ -330,24 +342,33 @@ class FhirDateBuilder extends FhirDateTimeBaseBuilder
     ) as FhirDateBuilder;
   }
 
-  /// Returns a new [FhirDateBuilder] with extensions disallowed.
+  /// Shorthand to set `disallowExtensions = true`.
   FhirDateBuilder noExtensions() => copyWith(disallowExtensions: true);
 
-  /// Creates an empty property in the object
+  /// Creates an empty property in the object.
   @override
   FhirDateBuilder createProperty(String propertyName) => this;
 
-  /// Clears the specified fields in a [FhirDateBuilder] object
+  /// Clears specified fields in a [FhirDateBuilder].
   @override
   FhirDateBuilder clear({
+    bool value = false,
+    bool element = false,
     bool extension_ = false,
     bool id = false,
   }) {
-    return FhirDateBuilder.fromString(
-      valueString,
-      element: element,
+    return FhirDateBuilder.fromBase(
+      valueString: value ? null : valueString,
+      year: value ? null : year,
+      month: value ? null : month,
+      day: value ? null : day,
+      timeZoneOffset: value ? null : timeZoneOffset,
+      isUtc: value ? value : isUtc,
+      element: element ? null : this.element,
       extension_: extension_ ? <FhirExtensionBuilder>[] : this.extension_,
       id: id ? null : this.id,
+      disallowExtensions: disallowExtensions,
+      objectPath: objectPath!,
     );
   }
 }

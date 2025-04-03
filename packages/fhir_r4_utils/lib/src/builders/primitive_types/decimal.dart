@@ -1,12 +1,14 @@
 part of 'primitive_types.dart';
 
-/// Extension to convert a Dart number to a [FhirDecimalBuilder].
+/// Extension methods on [num] to easily convert to [FhirDecimalBuilder].
 extension FhirDecimalBuilderExtension on num {
-  /// Converts a Dart number to a [FhirDecimalBuilder].
+  /// Returns a new [FhirDecimalBuilder] constructed from this [num].
   FhirDecimalBuilder get toFhirDecimalBuilder => FhirDecimalBuilder(this);
 }
 
-/// Represents the FHIR primitive type `decimal`.
+/// A FHIR primitive type representing `decimal`.
+///
+/// Subclass of [FhirNumberBuilder], able to represent fractional values.
 class FhirDecimalBuilder extends FhirNumberBuilder
     implements
         ValueXCodeSystemPropertyBuilder,
@@ -28,55 +30,73 @@ class FhirDecimalBuilder extends FhirNumberBuilder
         MaxValueXElementDefinitionBuilder,
         ValueXElementDefinitionExampleBuilder,
         ValueXExtensionBuilder {
-  /// Private underscore constructor — no logic, only field assignment.
+  // --------------------------------------------------------------------------
+  // Private Internal Constructor
+  // --------------------------------------------------------------------------
+
+  /// Private underscore constructor that simply assigns [valueString]
+  /// and [isInt].
   FhirDecimalBuilder._({
-    required super.validatedValue,
-    required bool isInt,
-    this.input,
+    required super.valueString,
+    required this.isInt,
     super.element,
     super.id,
     super.extension_,
     super.disallowExtensions,
     super.objectPath = 'Decimal',
-  })  : _isInt = isInt,
-        super._();
+  }) : super._();
 
-  /// Public factory constructor that does any parsing/validation,
-  /// then calls the private constructor.
+  // --------------------------------------------------------------------------
+  // Public Factories
+  // --------------------------------------------------------------------------
+
+  /// Creates a [FhirDecimalBuilder] from [rawValue], which can be:
+  /// - `null` (element-only usage if [element] is not null),
+  /// - A numeric type [num],
+  /// - A [String] that parses to a double.
   // ignore: sort_unnamed_constructors_first
   factory FhirDecimalBuilder(
-    dynamic rawInput, {
+    dynamic rawValue, {
     ElementBuilder? element,
     FhirStringBuilder? id,
     List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
-    String? objectPath = 'Decimal',
+    String objectPath = 'Decimal',
   }) {
-    // 1) Check if rawInput is null or a num
-    num? finalNum;
+    String? valueString;
     var isInt = false;
 
-    if (rawInput == null && element == null) {
-      throw ArgumentError(
-        'A value or element is required for FhirDecimalBuilder.',
-      );
+    if (rawValue == null && element == null) {
+      throw ArgumentError('A value or element is required for FhirDecimal.');
     }
-    if (rawInput is num) {
-      finalNum = rawInput;
-      isInt = rawInput is int;
-    } else if (rawInput != null) {
-      // If it's a string, you could parse it. If that's not your library's
-      // intent,
-      // just throw an error:
+    if (rawValue is num) {
+      valueString = rawValue.toString();
+      isInt = rawValue is int;
+    } else if (rawValue is String) {
+      // Attempt parse
+      final possibleInt = int.tryParse(rawValue);
+      if (possibleInt != null) {
+        // Then also store as double to preserve decimal format
+        // e.g. "4" -> 4.0 for consistent decimal representation
+        isInt = true;
+        valueString = rawValue;
+      } else {
+        final parsedDouble = double.tryParse(rawValue);
+        if (parsedDouble == null) {
+          throw ArgumentError(
+            'FhirDecimal only supports numeric input or null, got: $rawValue',
+          );
+        }
+        valueString = rawValue;
+      }
+    } else if (rawValue != null) {
       throw ArgumentError(
-        'FhirDecimalBuilder only supports a num or null, got: $rawInput',
+        'FhirDecimal only supports a num or string or null, got: $rawValue',
       );
     }
 
-    // 2) Return the private constructor
     return FhirDecimalBuilder._(
-      validatedValue: finalNum?.toDouble(),
-      input: finalNum,
+      valueString: valueString,
       isInt: isInt,
       element: element,
       id: id,
@@ -86,37 +106,40 @@ class FhirDecimalBuilder extends FhirNumberBuilder
     );
   }
 
-  /// Factory constructor to create a [FhirDecimalBuilder]
-  /// from a [FhirIntegerBuilder].
+  /// Creates a [FhirDecimalBuilder] from a [FhirIntegerBuilder].
   factory FhirDecimalBuilder.fromFhirInteger(
     FhirIntegerBuilder integer, {
     ElementBuilder? element,
     FhirStringBuilder? id,
     List<FhirExtensionBuilder>? extension_,
   }) {
-    // just funnel into the main constructor
     return FhirDecimalBuilder(
-      integer.value,
+      integer.valueString,
       element: element,
       id: id,
       extension_: extension_,
     );
   }
 
-  /// Creates empty [FhirDecimalBuilder] object
+  /// Creates an empty [FhirDecimalBuilder].
   factory FhirDecimalBuilder.empty() =>
       FhirDecimalBuilder(null, element: ElementBuilder.empty());
 
-  /// Factory constructor to create a [FhirDecimalBuilder] from JSON input.
+  /// Creates a [FhirDecimalBuilder] from JSON.
   factory FhirDecimalBuilder.fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as num?;
+    final rawValue = json['value'] as num?;
     final elemJson = json['_value'] as Map<String, dynamic>?;
-    final element = elemJson == null ? null : ElementBuilder.fromJson(elemJson);
+    final parsedElement =
+        elemJson == null ? null : ElementBuilder.fromJson(elemJson);
     final objectPath = json['objectPath'] as String? ?? 'Decimal';
-    return FhirDecimalBuilder(value, element: element, objectPath: objectPath);
+    return FhirDecimalBuilder(
+      rawValue,
+      element: parsedElement,
+      objectPath: objectPath,
+    );
   }
 
-  /// Factory constructor to create a [FhirDecimalBuilder] from YAML input.
+  /// Creates a [FhirDecimalBuilder] from a YAML input ([String] or [YamlMap]).
   static FhirDecimalBuilder fromYaml(dynamic yaml) {
     if (yaml is String) {
       return FhirDecimalBuilder.fromJson(
@@ -128,14 +151,14 @@ class FhirDecimalBuilder extends FhirNumberBuilder
       );
     } else {
       throw ArgumentError(
-        'FhirDecimalBuilder cannot be constructed from the provided input. '
+        'FhirDecimal cannot be constructed from the provided input. '
         'It must be a YAML string or map.',
       );
     }
   }
 
-  /// Attempts to parse a [dynamic] input as [FhirDecimalBuilder],
-  /// returns `null` if parsing fails.
+  /// Attempts to parse [input] as a [FhirDecimalBuilder]. Returns `null` if
+  /// it fails.
   static FhirDecimalBuilder? tryParse(dynamic input) {
     try {
       return FhirDecimalBuilder(input);
@@ -144,71 +167,85 @@ class FhirDecimalBuilder extends FhirNumberBuilder
     }
   }
 
-  /// The original input value (stored for serialization purposes).
-  num? input;
+  // --------------------------------------------------------------------------
+  // Fields / Getters
+  // --------------------------------------------------------------------------
 
-  /// Boolean flag to track if the input was originally an integer.
-  bool _isInt; // rename from isInt → private?
+  /// Flag indicating whether the original input was an integer or not.
+  final bool isInt;
 
-  /// Returns the FHIR type as 'decimal'.
+  /// Returns this decimal as a [num], overriding [FhirNumberBuilder.valueNum].
+  @override
+  num? get valueNum => valueString == null ? null : num.parse(valueString!);
+
+  /// Returns this decimal as a [double], if non-null.
+  double? get valueDouble =>
+      valueString == null ? null : double.parse(valueString!);
+
+  /// Returns this decimal as an [int], or `null` if [isInt] is `false`.
+  int? get valueInt =>
+      (valueString != null && isInt) ? int.parse(valueString!) : null;
+
+  // --------------------------------------------------------------------------
+  // Overrides
+  // --------------------------------------------------------------------------
+
+  /// Returns `"decimal"`.
   @override
   String get fhirType => 'decimal';
 
-  /// Converts this instance to a [FhirDecimal] object
-  @override
-  FhirDecimal build() => FhirDecimal.fromJson(toJson());
-
-  /// Serializes the instance to JSON with standardized keys.
+  /// Serializes the instance to JSON.
   @override
   Map<String, dynamic> toJson() {
     return {
-      if (input != null) 'value': _isInt ? input!.toInt() : input,
+      // If it's an integer, store as int; otherwise store as double
+      if (valueNum != null) 'value': valueInt ?? valueNum,
       if (element != null) '_value': element!.toJson(),
     };
   }
 
-  /// Provides a string representation of the instance.
+  /// Method to convert the builder object to the original Element object
   @override
-  String toString() =>
-      _isInt ? value?.toInt().toString() ?? '' : value?.toString() ?? '';
+  FhirDecimal build() => FhirDecimal.fromJson(toJson());
 
-  /// Retrieves the primitive value of the object.
+  /// Returns the string or `''`.
   @override
-  String? get primitiveValue => value?.toString();
+  String toString() => valueString ?? '';
 
   @override
   bool equalsDeep(FhirBaseBuilder? other) =>
       other is FhirDecimalBuilder &&
-      other.value == value &&
+      other.valueNum == valueNum &&
       other.element == element;
 
-  /// Overrides equality operator for comparing two
-  /// [FhirDecimalBuilder] instances.
   @override
   // ignore: avoid_equals_and_hash_code_on_mutable_classes
   bool operator ==(Object other) =>
       identical(this, other) ||
-      (other is FhirDecimalBuilder && other.value == value) ||
-      (other is num && other == value);
+      (other is FhirDecimalBuilder && other.valueNum == valueNum) ||
+      (other is num && other == valueNum);
 
-  /// Overrides `hashCode` for use in hash-based collections.
   @override
   // ignore: avoid_equals_and_hash_code_on_mutable_classes
-  int get hashCode => Object.hash(value, element);
+  int get hashCode => Object.hash(valueString, element);
 
-  // Clone, copyWith, etc.
+  // --------------------------------------------------------------------------
+  // Clone / Copy
+  // --------------------------------------------------------------------------
 
   @override
-  FhirDecimalBuilder clone() =>
-      FhirDecimalBuilder(input, element: element?.clone() as ElementBuilder?);
+  FhirDecimalBuilder clone() => FhirDecimalBuilder(
+        valueString,
+        element: element?.clone() as ElementBuilder?,
+      );
 
-  /// Sets disallowExtensions to true
+  /// Returns a copy with [disallowExtensions] set to `true`.
   FhirDecimalBuilder noExtensions() => copyWith(disallowExtensions: true);
 
-  /// Creates a modified copy with updated properties.
+  /// Creates a modified copy of the instance.
   @override
   FhirDecimalBuilder copyWith({
-    num? newValue,
+    dynamic newValue,
     ElementBuilder? element,
     FhirStringBuilder? id,
     List<FhirExtensionBuilder>? extension_,
@@ -220,7 +257,7 @@ class FhirDecimalBuilder extends FhirNumberBuilder
     String? objectPath,
   }) {
     return FhirDecimalBuilder(
-      newValue ?? input,
+      newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
@@ -231,23 +268,23 @@ class FhirDecimalBuilder extends FhirNumberBuilder
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath,
+      objectPath: objectPath ?? this.objectPath!,
     );
   }
 
-  /// Creates an empty property in the object
+  /// No-op property creator.
   @override
   FhirDecimalBuilder createProperty(String propertyName) => this;
 
-  /// Clears the specified fields in a [FhirDecimalBuilder] object
+  /// Clears specified fields in this [FhirDecimalBuilder].
   @override
   FhirDecimalBuilder clear({
-    bool input = false,
+    bool value = false,
     bool extension_ = false,
     bool id = false,
   }) {
     return FhirDecimalBuilder(
-      input ? null : this.input,
+      value ? null : valueString,
       element: element,
       extension_: extension_ ? <FhirExtensionBuilder>[] : this.extension_,
       id: id ? null : this.id,

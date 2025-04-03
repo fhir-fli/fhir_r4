@@ -1,14 +1,14 @@
 part of 'primitive_types.dart';
 
-/// [DateTimeBuilder](https://www.hl7.org/fhir/datatypes.html#dateTime)
-abstract class FhirDateTimeBaseBuilder extends PrimitiveTypeBuilder<String>
+/// [DateTime](https://www.hl7.org/fhir/datatypes.html#dateTime)
+abstract class FhirDateTimeBaseBuilder extends PrimitiveTypeBuilder
     implements Comparable<FhirDateTimeBaseBuilder> {
   /// Private underscore constructor with the same parameters and logic,
   /// but no longer public. We pass [validatedValue] into `super._(value: ...)`
   /// and then run `_validateDateTimeComponents()`.
   FhirDateTimeBaseBuilder._({
     /// The string representation of the date-time once it's validated.
-    required String? validatedValue,
+    required super.valueString,
     required this.year,
     required this.isUtc,
     this.month,
@@ -24,7 +24,7 @@ abstract class FhirDateTimeBaseBuilder extends PrimitiveTypeBuilder<String>
     super.extension_,
     super.disallowExtensions,
     super.objectPath = 'DateTimeBase',
-  }) : super._(value: validatedValue) {
+  }) : super._() {
     _validateDateTimeComponents();
   }
 
@@ -87,15 +87,12 @@ abstract class FhirDateTimeBaseBuilder extends PrimitiveTypeBuilder<String>
               _convertMicrosecondToInt(microsecond),
             );
 
-  /// Returns the value as a [String].
-  String get valueString => _formattedString ?? '';
-
   @override
   String toString() => _formattedString.toString();
 
   /// Retrieves the primitive value of the object.
   @override
-  String? get primitiveValue => value?.toString();
+  String? get primitiveValue => valueString;
 
   /// Formatting functions
   String? get _formattedString => _buildString(
@@ -195,7 +192,7 @@ abstract class FhirDateTimeBaseBuilder extends PrimitiveTypeBuilder<String>
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        if (valueString.isNotEmpty) 'value': valueString,
+        if (valueString?.isNotEmpty ?? false) 'value': valueString,
         if (element != null) '_value': element?.toJson(),
       };
 
@@ -267,10 +264,9 @@ abstract class FhirDateTimeBaseBuilder extends PrimitiveTypeBuilder<String>
     var lhs =
         constructor<FhirDateTimeBuilder>(input: this) as FhirDateTimeBuilder;
     var rhs = o is FhirDateTimeBaseBuilder
-        ? constructor<FhirDateTimeBuilder>(input: o.value)
-            as FhirDateTimeBuilder
+        ? constructor<FhirDateTime>(input: o.valueString) as FhirDateTimeBuilder
         : o is DateTime || o is String
-            ? constructor<FhirDateTimeBuilder>(input: o) as FhirDateTimeBuilder
+            ? constructor<FhirDateTime>(input: o) as FhirDateTimeBuilder
             : null;
     final lhsTimeZoneOffset = ExtendedDuration(
       hours: (lhs.timeZoneOffset?.toInt() ?? 0) * -1,
@@ -435,10 +431,10 @@ abstract class FhirDateTimeBaseBuilder extends PrimitiveTypeBuilder<String>
     } else if (input is DateTime) {
       value = input.toIso8601String();
       value += input.isUtc ? 'Z' : _formatTimezone(input.timeZoneOffset);
-    } else if (input is FhirDateTimeBaseBuilder) {
-      value = _cleanInput(input.valueString);
+    } else if (input is FhirDateTimeBaseBuilder && input.valueString != null) {
+      value = _cleanInput(input.valueString!);
     } else {
-      throw ArgumentError('Invalid input for FhirDateTimeBase');
+      throw ArgumentError('Invalid input for FhirDateTimeBaseBuilder');
     }
 
     dateTimeMap = formatDateTimeString<T>(value);
@@ -473,11 +469,12 @@ abstract class FhirDateTimeBaseBuilder extends PrimitiveTypeBuilder<String>
     bool? disallowExtensions,
     String? objectPath,
   ]) {
-    /// Determine the type and construct the appropriate FhirDateTimeBase object
+    /// Determine the type and construct the appropriate
+    /// FhirDateTimeBaseBuilder object
     if (T == FhirDateTimeBuilder) {
       if (dateTimeMap.isEmpty) {
         return FhirDateTimeBuilder.fromBase(
-          value: null,
+          valueString: null,
           year: null,
           month: null,
           day: null,
@@ -496,7 +493,7 @@ abstract class FhirDateTimeBaseBuilder extends PrimitiveTypeBuilder<String>
         throw ArgumentError('Year is required for FhirDateTime');
       }
       return FhirDateTimeBuilder.fromBase(
-        value: _formattedStringFromMap(dateTimeMap),
+        valueString: _formattedStringFromMap(dateTimeMap),
         year: dateTimeMap['year']! as int,
         month: dateTimeMap['month'] as int?,
         day: dateTimeMap['day'] as int?,
@@ -514,7 +511,7 @@ abstract class FhirDateTimeBaseBuilder extends PrimitiveTypeBuilder<String>
     } else if (T == FhirDateBuilder) {
       if (dateTimeMap.isEmpty) {
         return FhirDateBuilder.fromBase(
-          value: null,
+          valueString: null,
           year: null,
           month: null,
           day: null,
@@ -527,7 +524,7 @@ abstract class FhirDateTimeBaseBuilder extends PrimitiveTypeBuilder<String>
         throw ArgumentError('Year is required for FhirDate');
       }
       return FhirDateBuilder.fromBase(
-        value: _formattedStringFromMap(dateTimeMap),
+        valueString: _formattedStringFromMap(dateTimeMap),
         year: dateTimeMap['year'] as int?,
         month: dateTimeMap['month'] as int?,
         day: dateTimeMap['day'] as int?,
@@ -540,7 +537,7 @@ abstract class FhirDateTimeBaseBuilder extends PrimitiveTypeBuilder<String>
     } else if (T == FhirInstantBuilder) {
       if (dateTimeMap.isEmpty) {
         return FhirInstantBuilder.fromBase(
-          value: null,
+          valueString: null,
           year: null,
           month: null,
           day: null,
@@ -567,7 +564,7 @@ abstract class FhirDateTimeBaseBuilder extends PrimitiveTypeBuilder<String>
         );
       }
       final instant = FhirInstantBuilder.fromBase(
-        value: _formattedStringFromMap(dateTimeMap),
+        valueString: _formattedStringFromMap(dateTimeMap),
         year: dateTimeMap['year']! as int,
         month: dateTimeMap['month']! as int,
         day: dateTimeMap['day']! as int,
@@ -613,8 +610,8 @@ abstract class FhirDateTimeBaseBuilder extends PrimitiveTypeBuilder<String>
       normalizedMicrosecond + o.microseconds,
     );
 
-    // Map the adjusted values back to a FhirDateTimeBase, respecting original
-    // precision
+    // Map the adjusted values back to a FhirDateTimeBaseBuilder,
+    // respecting original precision
     return fromUnits<T>(
       year: dateTime.year,
       month: fhirDateTimeBase.month != null ? dateTime.month : null,
@@ -657,8 +654,8 @@ abstract class FhirDateTimeBaseBuilder extends PrimitiveTypeBuilder<String>
       normalizedMicrosecond - o.microseconds,
     );
 
-    // Map the adjusted values back to a FhirDateTimeBase, respecting original
-    // precision
+    // Map the adjusted values back to a FhirDateTimeBaseBuilder,
+    // respecting original precision
     return fromUnits<T>(
       year: dateTime.year,
       month: fhirDateTimeBase.month != null ? dateTime.month : null,
@@ -717,8 +714,8 @@ abstract class FhirDateTimeBaseBuilder extends PrimitiveTypeBuilder<String>
     );
   }
 
-  /// Factory constructor to create a [FhirDateTimeBaseBuilder]
-  /// from individual units.
+  /// Factory constructor to create a [FhirDateTimeBaseBuilder] from
+  /// individual units.
   static FhirDateTimeBaseBuilder fromUnits<T>({
     required int year,
     required bool isUtc,
@@ -752,8 +749,8 @@ abstract class FhirDateTimeBaseBuilder extends PrimitiveTypeBuilder<String>
   FhirDateTimeBaseBuilder fromJson<T>(String json) =>
       constructor<T>(input: json);
 
-  /// Factory constructor to create a [FhirDateTimeBaseBuilder]
-  /// from a [DateTime].
+  /// Factory constructor to create a [FhirDateTimeBaseBuilder] from a
+  /// [DateTime].
   InvalidTypes<FhirDateTimeBaseBuilder> comparisonError(
     Comparator comparator,
     Object o,
@@ -762,7 +759,7 @@ abstract class FhirDateTimeBaseBuilder extends PrimitiveTypeBuilder<String>
         message: 'Two values were passed to the date time '
             '"$comparator" comparison operator, but there was an error '
             'comparing them.\n'
-            'Argument 1: $value (${value.runtimeType})\n'
+            'Argument 1: $valueString ($runtimeType)\n'
             'Argument 2: $o (${o.runtimeType})',
       );
 
@@ -859,12 +856,12 @@ abstract class FhirDateTimeBaseBuilder extends PrimitiveTypeBuilder<String>
     return true;
   }
 
-  /// Returns the difference between this and another FhirDateTimeBase.
+  /// Returns the difference between this and another FhirDateTimeBaseBuilder.
   Duration difference(dynamic other) {
     if (!(other is FhirDateTimeBaseBuilder || other is DateTime)) {
       throw ArgumentError(
         'The difference method can only be called with another '
-        'FhirDateTimeBase or a Dart DateTime',
+        'FhirDateTimeBaseBuilder or a Dart DateTime',
       );
     }
 
@@ -908,12 +905,12 @@ abstract class FhirDateTimeBaseBuilder extends PrimitiveTypeBuilder<String>
 
   @override
   // ignore: avoid_equals_and_hash_code_on_mutable_classes
-  int get hashCode => value.hashCode;
+  int get hashCode => valueString.hashCode;
 
   @override
   bool equalsDeep(FhirBaseBuilder? other) =>
       other is FhirDateTimeBaseBuilder &&
-      other.value == value &&
+      other.valueString == valueString &&
       other.element == element;
 
   @override
@@ -962,10 +959,10 @@ abstract class FhirDateTimeBaseBuilder extends PrimitiveTypeBuilder<String>
   /// Checks if the date-time is equivalent to another object.
   bool? isEquivalent(Object other) => _compare(Comparator.equivalent, other);
 
-  /// Adds an [ExtendedDuration] from a [FhirDateTimeBase].
+  /// Adds an [ExtendedDuration] from a [FhirDateTimeBaseBuilder].
   FhirDateTimeBaseBuilder? operator +(ExtendedDuration other);
 
-  /// Subtracts an [ExtendedDuration] from a [FhirDateTimeBase].
+  /// Subtracts an [ExtendedDuration] from a [FhirDateTimeBaseBuilder].
   FhirDateTimeBaseBuilder? operator -(ExtendedDuration other);
 
   /// [DateTime](https://build.fhir.org/datatypes.html#dateTime)
@@ -981,7 +978,7 @@ abstract class FhirDateTimeBaseBuilder extends PrimitiveTypeBuilder<String>
       throw ArgumentError(
         'Invalid date-time string (no match): $dateTimeString',
       );
-    } else if (T == FhirDateBuilder) {
+    } else if (T == FhirDate) {
       if (match.namedGroup('hour') != null ||
           match.namedGroup('minute') != null ||
           match.namedGroup('second') != null ||
@@ -990,7 +987,7 @@ abstract class FhirDateTimeBaseBuilder extends PrimitiveTypeBuilder<String>
           'Invalid date-time string (FhirDate): $dateTimeString',
         );
       }
-    } else if (T == FhirInstantBuilder) {
+    } else if (T == FhirInstant) {
       if (match.namedGroup('year') == null ||
           match.namedGroup('month') == null ||
           match.namedGroup('day') == null ||
@@ -1155,7 +1152,7 @@ abstract class FhirDateTimeBaseBuilder extends PrimitiveTypeBuilder<String>
       return value;
     }
 
-    // Handle different subclasses of FhirDateTimeBase.
+    // Handle different subclasses of FhirDateTimeBaseBuilder.
     if (this is FhirDateBuilder) {
       if (precision == TemporalPrecisionEnum.year) {
         return FhirDateBuilder.fromUnits(
@@ -1228,7 +1225,7 @@ abstract class FhirDateTimeBaseBuilder extends PrimitiveTypeBuilder<String>
       );
     }
 
-    throw UnsupportedError('Unknown FhirDateTimeBase subclass.');
+    throw UnsupportedError('Unknown FhirDateTimeBaseBuilder subclass.');
   }
 }
 

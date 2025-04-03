@@ -1,19 +1,25 @@
 part of 'primitive_types.dart';
 
-/// Extension to convert a [String] to a [FhirUuidBuilder].
+/// Extension methods on [String] to easily convert to [FhirUuidBuilder].
 extension FhirUuidBuilderExtension on String {
-  /// Converts a [String] to a [FhirUuidBuilder].
+  /// Returns a new [FhirUuidBuilder] from this [String].
   FhirUuidBuilder get toFhirUuidBuilder => FhirUuidBuilder(this);
 }
 
-/// Extension to convert a UuidValue to a [FhirUuidBuilder].
-extension FhirUuidBuilderValueExtension on UuidValue {
-  /// Converts a UuidValue to a [FhirUuidBuilder].
+/// Extension methods on [UuidValue] to easily convert to [FhirUuidBuilder].
+extension FhirUuidValueBuilderExtension on UuidValue {
+  /// Returns a new [FhirUuidBuilder] from this [UuidValue].
   FhirUuidBuilder get toFhirUuidBuilder => FhirUuidBuilder.fromUuid(this);
 }
 
-/// [FhirUuidBuilder] represents a validated UUID value in the FHIR standard.
-class FhirUuidBuilder extends PrimitiveTypeBuilder<UuidValue?>
+/// A FHIR primitive type representing a UUID (`uuid`).
+///
+/// Internally extends [FhirUriBuilder], but adds specialized UUID logic:
+/// - Validation of UUID format
+/// - Helper methods for bitwise ops (`&`, `|`, `^`)
+/// - Generation methods (`v1()`, `v4()`, `v5()`)
+/// - Parsing/Unparsing ([parseUuid], [unparseUuid])
+class FhirUuidBuilder extends FhirUriBuilder
     implements
         ValueXParametersParameterBuilder,
         DefaultValueXStructureMapSourceBuilder,
@@ -24,37 +30,61 @@ class FhirUuidBuilder extends PrimitiveTypeBuilder<UuidValue?>
         PatternXElementDefinitionBuilder,
         ValueXElementDefinitionExampleBuilder,
         ValueXExtensionBuilder {
-  /// Private underscore constructor.
-  /// We only assign the [validatedValue] to `super._(value: validatedValue)`,
-  /// and do the final check that if [value] == null and [element] == null,
-  /// we throw an [ArgumentError].
+  // --------------------------------------------------------------------------
+  // Private Internal Constructor
+  // --------------------------------------------------------------------------
+
+  /// Internal constructor that simply calls [FhirUriBuilder]'s private
+  /// constructor
+  /// with [valueString].
   FhirUuidBuilder._({
-    required UuidValue? validatedValue,
+    required super.valueString,
     super.element,
     super.id,
     super.extension_,
     super.disallowExtensions,
     super.objectPath = 'Uuid',
-  }) : super._(value: validatedValue) {
-    if (value == null && element == null) {
-      throw ArgumentError('A value or element is required for FhirUuidBuilder');
-    }
-  }
+  }) : super._();
 
-  /// Single public factory constructor accepting a [String?] [input] or null.
-  /// If not null, we validate the UUID. If null, and also no element, we throw.
+  // --------------------------------------------------------------------------
+  // Public Factories
+  // --------------------------------------------------------------------------
+
+  /// Creates a [FhirUuidBuilder] from [rawValue], which can be:
+  /// - `null` (element-only usage if [element] is non-null),
+  /// - A [String] (validated UUID),
+  /// - A [UuidValue] (from the `uuid` package).
+  ///
+  /// If [rawValue] is a string, we validate it with [_validateUuid].
   // ignore: sort_unnamed_constructors_first
   factory FhirUuidBuilder(
-    String? input, {
+    dynamic rawValue, {
     ElementBuilder? element,
     FhirStringBuilder? id,
     List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
     String objectPath = 'Uuid',
   }) {
-    final validated = input != null ? _validateUuid(input) : null;
+    // 1) Parse / validate
+    String? parsedValue;
+    if (rawValue == null && element == null) {
+      throw ArgumentError(
+        'A value or element is required for FhirUuidBuilder.',
+      );
+    }
+    if (rawValue is UuidValue) {
+      parsedValue = rawValue.toString();
+    } else if (rawValue is String) {
+      parsedValue = _validateUuid(rawValue);
+    } else if (rawValue != null) {
+      throw ArgumentError(
+        'FhirUuidBuilder only supports a String or UuidValue, got: $rawValue',
+      );
+    }
+
+    // 2) Construct via the private underscore constructor
     return FhirUuidBuilder._(
-      validatedValue: validated,
+      valueString: parsedValue,
       element: element,
       id: id,
       extension_: extension_,
@@ -63,18 +93,17 @@ class FhirUuidBuilder extends PrimitiveTypeBuilder<UuidValue?>
     );
   }
 
-  /// Constructs a [FhirUuidBuilder] from a [UuidValue], allowing null values.
-  /// We rename this to a public factory that calls the private constructor.
+  /// Creates a [FhirUuidBuilder] from a [UuidValue].
   factory FhirUuidBuilder.fromUuid(
     UuidValue? uuidValue, {
     ElementBuilder? element,
     FhirStringBuilder? id,
     List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
-    String? objectPath = 'Uuid',
+    String objectPath = 'Uuid',
   }) {
     return FhirUuidBuilder._(
-      validatedValue: uuidValue,
+      valueString: uuidValue?.toString(),
       element: element,
       id: id,
       extension_: extension_,
@@ -83,39 +112,66 @@ class FhirUuidBuilder extends PrimitiveTypeBuilder<UuidValue?>
     );
   }
 
-  /// Creates empty [FhirUuidBuilder] object
+  /// Creates an empty [FhirUuidBuilder] (with an [ElementBuilder.empty] for
+  /// metadata).
   factory FhirUuidBuilder.empty() =>
       FhirUuidBuilder(null, element: ElementBuilder.empty());
 
-  /// Factory constructor to create [FhirUuidBuilder]
-  /// from JSON.
+  // --------------------------------------------------------------------------
+  // JSON / YAML Constructors
+  // --------------------------------------------------------------------------
+
+  /// Constructs a [FhirUuidBuilder] from a JSON [Map].
   factory FhirUuidBuilder.fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
+    final rawValue = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element =
-        elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
+    final parsedElement =
+        elementJson == null ? null : ElementBuilder.fromJson(elementJson);
     final objectPath = json['objectPath'] as String? ?? 'Uuid';
-    return FhirUuidBuilder(value, element: element, objectPath: objectPath);
+
+    return FhirUuidBuilder(
+      rawValue,
+      element: parsedElement,
+      objectPath: objectPath,
+    );
   }
 
-  /// Factory constructor to create [FhirUuidBuilder] from YAML input.
-  factory FhirUuidBuilder.fromYaml(String yaml) => FhirUuidBuilder.fromJson(
+  /// Constructs a [FhirUuidBuilder] from a YAML [String] or [YamlMap].
+  factory FhirUuidBuilder.fromYaml(dynamic yaml) {
+    if (yaml is String) {
+      return FhirUuidBuilder.fromJson(
         jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, dynamic>,
       );
+    } else if (yaml is YamlMap) {
+      return FhirUuidBuilder.fromJson(
+        jsonDecode(jsonEncode(yaml)) as Map<String, dynamic>,
+      );
+    } else {
+      throw ArgumentError(
+        'FhirUuidBuilder cannot be constructed from the provided input. '
+        'It is neither a YAML string nor a YAML map.',
+      );
+    }
+  }
 
-  /// Factory constructor to generate a UUID using version 1.
+  // --------------------------------------------------------------------------
+  // UUID Generation Factories
+  // --------------------------------------------------------------------------
+
+  /// Generates a version 1 (time-based) UUID and wraps it in [FhirUuidBuilder].
   factory FhirUuidBuilder.v1([ElementBuilder? element]) {
     const uuid = Uuid();
     return FhirUuidBuilder(uuid.v1(), element: element);
   }
 
-  /// Factory constructor to generate a UUID using version 4.
+  /// Generates a version 4 (random) UUID and wraps it in [FhirUuidBuilder].
   factory FhirUuidBuilder.v4([ElementBuilder? element]) {
     const uuid = Uuid();
     return FhirUuidBuilder(uuid.v4(), element: element);
   }
 
-  /// Factory constructor to generate a UUID using version 5.
+  /// Generates a version 5 (namespace + name) UUID and wraps it in
+  /// [FhirUuidBuilder].
   factory FhirUuidBuilder.v5({
     required String namespace,
     required String name,
@@ -125,209 +181,180 @@ class FhirUuidBuilder extends PrimitiveTypeBuilder<UuidValue?>
     return FhirUuidBuilder(uuid.v5(namespace, name), element: element);
   }
 
-  /// Tries to parse a String input into a [FhirUuidBuilder].
+  // --------------------------------------------------------------------------
+  // Parsing & Validation
+  // --------------------------------------------------------------------------
+
+  /// Attempts to parse [input] as a [FhirUuidBuilder].
+  /// Returns `null` if parsing fails.
   static FhirUuidBuilder? tryParse(dynamic input) {
-    if (input is String) {
-      try {
-        return FhirUuidBuilder(input);
-      } catch (e) {
-        return null;
-      }
-    }
-    return null;
-  }
-
-  /// Validates a UUID String and returns a [UuidValue].
-  static UuidValue _validateUuid(String input) {
-    if (Uuid.isValidUUID(fromString: input)) {
-      return UuidValue.fromString(input);
-    } else {
-      throw FormatException('Invalid UUID: $input');
+    try {
+      return FhirUuidBuilder(input);
+    } catch (_) {
+      return null;
     }
   }
 
-  /// Validates if a provided UUID string is valid.
-  static bool isValidUuid(String uuid) {
-    return Uuid.isValidUUID(fromString: uuid);
+  /// Validates a string-based [uuid]. Throws [FormatException] if invalid.
+  static String _validateUuid(String uuid) {
+    if (Uuid.isValidUUID(fromString: uuid)) {
+      return uuid;
+    }
+    throw FormatException('Invalid UUID: $uuid');
   }
 
-  /// Parses a UUID string into a list of bytes.
-  static List<int> parseUuid(String uuid) {
-    return Uuid.parse(uuid);
-  }
+  /// Checks if [uuid] is a valid UUID (without throwing).
+  static bool isValidUuid(String uuid) => Uuid.isValidUUID(fromString: uuid);
 
-  /// Converts a list of bytes into a UUID string.
-  static String unparseUuid(List<int> buffer) {
-    return Uuid.unparse(buffer);
-  }
+  /// Parses [uuid] into its 16-byte representation.
+  static List<int> parseUuid(String uuid) => Uuid.parse(uuid);
 
-  /// Bitwise AND operator
+  /// Converts a 16-byte list [buffer] into a UUID string.
+  static String unparseUuid(List<int> buffer) => Uuid.unparse(buffer);
+
+  // --------------------------------------------------------------------------
+  // Additional Utilities (Bitwise Operators)
+  // --------------------------------------------------------------------------
+
+  /// Bitwise AND operation (`this & other`).
   FhirUuidBuilder operator &(dynamic other) {
-    if (other == null) {
-      throw ArgumentError('Cannot perform bitwise operations with null');
-    }
-    if (other is! FhirUuidBuilder && other is! Uuid && other is! String) {
-      throw ArgumentError(
-          'Bitwise operations are only supported with FhirUuidBuilder, '
-          'Uuid, or UUID strings');
-    }
-
-    // Parse the first UUID into bytes
-    final bytes1 = Uuid.parse(value!.uuid);
-
-    // Parse the second UUID into bytes based on the type of `other`
+    final bytes1 = _requireValidBytes(valueString);
     final bytes2 = _parseToBytes(other);
-
-    // Perform the bitwise AND operation on each byte
-    final resultBytes = List<int>.generate(
-      bytes1.length,
-      (index) => bytes1[index] & bytes2[index],
-    );
-
-    // Return a new FhirUuidBuilder created from the resulting bytes
-    return FhirUuidBuilder(Uuid.unparse(resultBytes));
+    final result =
+        List<int>.generate(bytes1.length, (i) => bytes1[i] & bytes2[i]);
+    return FhirUuidBuilder(Uuid.unparse(result));
   }
 
-  /// Bitwise OR operator
+  /// Bitwise OR operation (`this | other`).
   FhirUuidBuilder operator |(dynamic other) {
-    if (other == null) {
-      throw ArgumentError('Cannot perform bitwise operations with null');
-    }
-    if (other is! FhirUuidBuilder && other is! Uuid && other is! String) {
-      throw ArgumentError(
-          'Bitwise operations are only supported with FhirUuidBuilder, Uuid, '
-          'or UUID strings');
-    }
-
-    // Parse the first UUID into bytes
-    final bytes1 = Uuid.parse(value!.uuid);
-
-    // Parse the second UUID into bytes
+    final bytes1 = _requireValidBytes(valueString);
     final bytes2 = _parseToBytes(other);
-
-    // Perform the bitwise OR operation on each byte
-    final resultBytes = List<int>.generate(
-      bytes1.length,
-      (index) => bytes1[index] | bytes2[index],
-    );
-
-    // Return a new FhirUuidBuilder created from the resulting bytes
-    return FhirUuidBuilder(Uuid.unparse(resultBytes));
+    final result =
+        List<int>.generate(bytes1.length, (i) => bytes1[i] | bytes2[i]);
+    return FhirUuidBuilder(Uuid.unparse(result));
   }
 
-  /// Bitwise XOR operator
+  /// Bitwise XOR operation (`this ^ other`).
   FhirUuidBuilder operator ^(dynamic other) {
-    if (other == null) {
-      throw ArgumentError('Cannot perform bitwise operations with null');
-    }
-    if (other is! FhirUuidBuilder && other is! Uuid && other is! String) {
-      throw ArgumentError(
-          'Bitwise operations are only supported with FhirUuidBuilder, Uuid, '
-          'or UUID strings');
-    }
-
-    // Parse the first UUID into bytes
-    final bytes1 = Uuid.parse(value!.uuid);
-
-    // Parse the second UUID into bytes
+    final bytes1 = _requireValidBytes(valueString);
     final bytes2 = _parseToBytes(other);
-
-    // Perform the bitwise XOR operation on each byte
-    final resultBytes = List<int>.generate(
-      bytes1.length,
-      (index) => bytes1[index] ^ bytes2[index],
-    );
-
-    // Return a new FhirUuidBuilder created from the resulting bytes
-    return FhirUuidBuilder(Uuid.unparse(resultBytes));
+    final result =
+        List<int>.generate(bytes1.length, (i) => bytes1[i] ^ bytes2[i]);
+    return FhirUuidBuilder(Uuid.unparse(result));
   }
 
-  /// Helper method to parse `other` into UUID bytes.
+  /// Ensures [uuidString] is non-null and valid, returning its byte list.
+  List<int> _requireValidBytes(String? uuidString) {
+    if (uuidString == null) {
+      throw ArgumentError('Cannot perform bitwise operations on null UUIDs.');
+    }
+    return Uuid.parse(uuidString);
+  }
+
+  /// Parses [other] into a byte list, supporting [FhirUuidBuilder], [Uuid], or
+  /// a valid [String].
   List<int> _parseToBytes(dynamic other) {
+    if (other == null) {
+      throw ArgumentError('Cannot perform bitwise operations with null.');
+    }
     if (other is String) {
       if (!Uuid.isValidUUID(fromString: other)) {
         throw ArgumentError('Invalid UUID string: $other');
       }
       return Uuid.parse(other);
     } else if (other is Uuid) {
-      return Uuid.parse(other.v4()); // Example usage if `other` is Uuid object
+      return Uuid.parse(other.v4());
     } else if (other is FhirUuidBuilder) {
-      if (other.value == null) {
-        throw ArgumentError('Cannot perform bitwise operations on null UUIDs');
+      if (other.valueString == null) {
+        throw ArgumentError('Cannot perform bitwise operations on null UUIDs.');
       }
-      return Uuid.parse(other.value!.uuid);
+      return Uuid.parse(other.valueString!);
     } else {
       throw ArgumentError(
-          'Bitwise operations are only supported with FhirUuidBuilder, Uuid, '
-          'or UUID strings');
+        'Bitwise operations only support FhirUuidBuilder, '
+        'Uuid, or UUID strings.',
+      );
     }
   }
 
-  /// Returns the FHIR type as 'uuid'.
+  // --------------------------------------------------------------------------
+  // Overrides
+  // --------------------------------------------------------------------------
+
+  /// Returns the FHIR type as `'uuid'`.
   @override
   String get fhirType => 'uuid';
 
-  /// Converts this instance to a [FhirUuid] object
+  /// Returns the string form of this UUID or `''` if null.
   @override
-  FhirUuid build() => FhirUuid.fromJson(toJson());
+  String toString() => valueString ?? '';
 
-  /// Serializes the instance to JSON with standardized keys.
-  @override
-  Map<String, dynamic> toJson() => {
-        if (value != null) 'value': value!.uuid,
-        if (element != null) '_value': element!.toJson(),
-      };
+  /// Returns the 16-byte representation of this UUID, or null if no value.
+  UuidValue? get valueUuid =>
+      valueString == null ? null : UuidValue.fromString(valueString!);
 
-  /// Converts the UUID to a JSON-encoded String.
-  @override
-  String toJsonString() => jsonEncode(toJson());
-
-  /// String representation of the instance.
-  @override
-  String toString() => (value?.uuid).toString();
-
-  /// Retrieves the primitive value of the object.
-  @override
-  String? get primitiveValue => value?.toString();
-
-  /// Hash code for the UUID.
-  @override
-  // ignore: avoid_equals_and_hash_code_on_mutable_classes
-  int get hashCode => Object.hash(value, element);
-
+  /// Deep equality check (compares string and element).
   @override
   bool equalsDeep(FhirBaseBuilder? other) =>
-      other is FhirUuidBuilder &&
-      other.value == value &&
-      other.element == element;
+      (other is FhirUuidBuilder &&
+          other.valueString == valueString &&
+          other.element == element) ||
+      (other is UuidValue && other.toString() == valueString);
 
-  /// Checks equality between two objects.
+  /// Shallow equality for convenience (also checks [UuidValue]
+  /// or a valid string).
+  @override
+  bool equals(Object other) {
+    if (identical(this, other)) return true;
+    if (other is FhirUuidBuilder) {
+      return other.valueString == valueString;
+    }
+    if (other is UuidValue) {
+      return other.toString() == valueString;
+    }
+    if (other is String && Uuid.isValidUUID(fromString: other)) {
+      return other == valueString;
+    }
+    return false;
+  }
+
+  /// Operator `==` overrides [equals].
   @override
   // ignore: avoid_equals_and_hash_code_on_mutable_classes
   bool operator ==(Object other) => equals(other);
 
-  /// Checks equality with [FhirUuidBuilder], [UuidValue],
-  /// or a valid UUID String.
+  /// Hash code uses [valueString] and [element].
   @override
-  bool equals(Object other) =>
-      identical(this, other) ||
-      (other is FhirUuidBuilder && other.value == value) ||
-      (other is UuidValue && other == value) ||
-      (other is String &&
-          Uuid.isValidUUID(fromString: other) &&
-          UuidValue.fromString(other) == value);
+  // ignore: avoid_equals_and_hash_code_on_mutable_classes
+  int get hashCode => Object.hash(valueString, element);
 
-  /// Clones the [FhirUuidBuilder], including its [ElementBuilder] value.
+  /// Returns `true` if the Type is considered string-based, otherwise `false`
   @override
-  FhirUuidBuilder clone() => FhirUuidBuilder.fromUuid(
-        value,
+  bool get stringBased => true;
+
+  // --------------------------------------------------------------------------
+  // Clone / Copy
+  // --------------------------------------------------------------------------
+
+  /// Method to convert the builder object to the original Element object
+  @override
+  FhirUuid build() => FhirUuid.fromJson(toJson());
+
+  /// Creates a deep clone of this [FhirUuidBuilder].
+  @override
+  FhirUuidBuilder clone() => FhirUuidBuilder(
+        valueString,
         element: element?.clone() as ElementBuilder?,
+        id: id,
+        extension_: extension_?.map((e) => e.clone()).toList(),
+        disallowExtensions: disallowExtensions,
+        objectPath: objectPath!,
       );
 
-  /// Creates a copy with modified properties.
+  /// Creates a modified copy with updated properties.
   @override
   FhirUuidBuilder copyWith({
-    UuidValue? newValue,
+    dynamic newValue,
     ElementBuilder? element,
     FhirStringBuilder? id,
     List<FhirExtensionBuilder>? extension_,
@@ -338,8 +365,8 @@ class FhirUuidBuilder extends PrimitiveTypeBuilder<UuidValue?>
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    return FhirUuidBuilder.fromUuid(
-      newValue ?? value,
+    return FhirUuidBuilder(
+      newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
@@ -350,26 +377,27 @@ class FhirUuidBuilder extends PrimitiveTypeBuilder<UuidValue?>
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath,
+      objectPath: objectPath ?? this.objectPath!,
     );
   }
 
-  /// Returns a new [FhirUuidBuilder] with extensions disallowed.
+  /// Creates a copy with [disallowExtensions] set to `true`.
+  @override
   FhirUuidBuilder noExtensions() => copyWith(disallowExtensions: true);
 
-  /// Creates an empty property in the object
+  /// Creates an empty property in this object (no-op).
   @override
   FhirUuidBuilder createProperty(String propertyName) => this;
 
-  /// Clears the specified fields in a [FhirUuidBuilder] object
+  /// Clears selected fields from this [FhirUuidBuilder].
   @override
   FhirUuidBuilder clear({
-    bool input = false,
+    bool value = false,
     bool extension_ = false,
     bool id = false,
   }) {
     return FhirUuidBuilder(
-      input ? null : value?.toString(),
+      value ? null : valueString,
       element: element,
       extension_: extension_ ? <FhirExtensionBuilder>[] : this.extension_,
       id: id ? null : this.id,

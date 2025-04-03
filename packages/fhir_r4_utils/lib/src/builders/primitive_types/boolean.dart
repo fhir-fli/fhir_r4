@@ -1,14 +1,16 @@
 part of 'primitive_types.dart';
 
-/// Extension to convert a [bool] to [FhirBooleanBuilder]
+/// Extension methods on [bool] to easily convert to [FhirBooleanBuilder].
 extension FhirBooleanBuilderExtension on bool {
-  /// converts a [[bool]]
-  /// to [FhirBooleanBuilder]
+  /// Returns a new [FhirBooleanBuilder] constructed from this bool.
   FhirBooleanBuilder get toFhirBooleanBuilder => FhirBooleanBuilder(this);
 }
 
-/// [FhirBooleanBuilder] class representing the FHIR primitive type `boolean`
-class FhirBooleanBuilder extends PrimitiveTypeBuilder<bool>
+/// A FHIR primitive type representing `boolean`.
+///
+/// According to FHIR, boolean is represented as a native JSON `true`/`false`.
+/// Internally, we store it as a string (`"true"` / `"false"`) plus optional metadata.
+class FhirBooleanBuilder extends PrimitiveTypeBuilder
     implements
         ValueXAdministrableProductDefinitionPropertyBuilder,
         ValueXClaimSupportingInfoBuilder,
@@ -50,54 +52,61 @@ class FhirBooleanBuilder extends PrimitiveTypeBuilder<bool>
         PatternXElementDefinitionBuilder,
         ValueXElementDefinitionExampleBuilder,
         ValueXExtensionBuilder {
-  /// Private constructor that does no validation or logic,
-  /// simply calls `super` with [validatedValue] and other fields.
-  /// Private child constructor, uses the parent's `_internal` constructor.
+  // --------------------------------------------------------------------------
+  // Private Internal Constructor
+  // --------------------------------------------------------------------------
+
+  /// Private underscore constructor that calls [super._].
   FhirBooleanBuilder._({
-    required bool? validatedValue,
+    required super.valueString,
     super.element,
     super.id,
     super.extension_,
     super.disallowExtensions,
     super.objectPath = 'Boolean',
-  }) : super._(value: validatedValue);
+  }) : super._();
 
-  /// Single public factory for creating a [FhirBooleanBuilder].
+  // --------------------------------------------------------------------------
+  // Public Factories
+  // --------------------------------------------------------------------------
+
+  /// Creates a [FhirBooleanBuilder] by parsing [rawValue] as either `bool` or
+  /// `"true"/"false"`.
+  ///
+  /// - If [rawValue] is `null`, [element] must be non-null.
+  /// - If [rawValue] is a [bool], it is converted to `"true"` or `"false"`.
+  /// - If [rawValue] is a [String], it must match `"true"` or `"false"`
+  /// (case-insensitive).
   // ignore: sort_unnamed_constructors_first
   factory FhirBooleanBuilder(
-    dynamic input, {
+    dynamic rawValue, {
     ElementBuilder? element,
     FhirStringBuilder? id,
     List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
-    String? objectPath = 'Boolean',
+    String objectPath = 'Boolean',
   }) {
-    // 1) Parse/validate
-    bool? finalValue;
-    if (input == null && element == null) {
-      throw ArgumentError(
-        'FhirBooleanBuilder requires a bool value or an element.',
-      );
-    } else if (input is bool) {
-      finalValue = input;
-    } else if (input is String) {
-      final lower = input.trim().toLowerCase();
-      if (lower == 'true') {
-        finalValue = true;
-      } else if (lower == 'false') {
-        finalValue = false;
-      } else {
-        throw ArgumentError('Invalid string for FhirBooleanBuilder: "$input".');
+    String? stringValue;
+    if (rawValue == null && element == null) {
+      throw ArgumentError('FhirBoolean requires a bool value or an element.');
+    } else if (rawValue is bool) {
+      stringValue = rawValue.toString(); // "true" or "false"
+    } else if (rawValue is String) {
+      final lowered = rawValue.trim().toLowerCase();
+      if (lowered != 'true' && lowered != 'false') {
+        throw ArgumentError(
+          'FhirBoolean only supports bool or string "true"/"false".',
+        );
       }
-    } else if (input != null) {
+      stringValue = lowered; // "true" or "false"
+    } else if (rawValue != null) {
       throw ArgumentError(
-        'FhirBooleanBuilder only supports bool or string "true"/"false".',
+        'FhirBoolean only supports bool or string "true"/"false". Got: $rawValue',
       );
     }
 
-    // 2) Return the private constructor
     return FhirBooleanBuilder._(
-      validatedValue: finalValue,
+      valueString: stringValue,
       element: element,
       id: id,
       extension_: extension_,
@@ -106,27 +115,33 @@ class FhirBooleanBuilder extends PrimitiveTypeBuilder<bool>
     );
   }
 
-  /// Creates empty [FhirBooleanBuilder] object
+  /// Creates an empty [FhirBooleanBuilder] with an [ElementBuilder.empty]
+  /// for metadata.
   factory FhirBooleanBuilder.empty() =>
       FhirBooleanBuilder(null, element: ElementBuilder.empty());
 
-  /// Named constructor to create a [FhirBooleanBuilder] from JSON
+  // --------------------------------------------------------------------------
+  // JSON / YAML Constructors
+  // --------------------------------------------------------------------------
+
+  /// Constructs a [FhirBooleanBuilder] from a JSON [Map].
   factory FhirBooleanBuilder.fromJson(Map<String, dynamic> json) {
-    final value = json['value'];
+    final rawValue = json['value'];
     final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element =
-        elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
+    final parsedElement =
+        elementJson == null ? null : ElementBuilder.fromJson(elementJson);
     final objectPath = json['objectPath'] as String? ?? 'Boolean';
 
-    // Delegate to the main factory
     return FhirBooleanBuilder(
-      value,
-      element: element,
+      rawValue,
+      element: parsedElement,
       objectPath: objectPath,
     );
   }
 
-  /// Named constructor to create a [FhirBooleanBuilder] from YAML
+  /// Constructs a [FhirBooleanBuilder] from a YAML input.
+  ///
+  /// Accepts [String] or [YamlMap].
   static FhirBooleanBuilder fromYaml(dynamic yaml) {
     if (yaml is String) {
       return FhirBooleanBuilder.fromJson(
@@ -138,14 +153,14 @@ class FhirBooleanBuilder extends PrimitiveTypeBuilder<bool>
       );
     } else {
       throw ArgumentError(
-        'FhirBooleanBuilder cannot be constructed from provided input. '
-        'It is neither a YAML string nor a YAML map.',
+        'FhirBoolean cannot be constructed from the provided input.'
+        ' It is neither a YAML string nor a YAML map.',
       );
     }
   }
 
-  /// Attempts to parse a dynamic [input] as [FhirBooleanBuilder].
-  /// Returns `null` if it fails.
+  /// Attempts to parse [input] as a [FhirBooleanBuilder]. Returns `null` if
+  /// it fails.
   static FhirBooleanBuilder? tryParse(dynamic input) {
     try {
       return FhirBooleanBuilder(input);
@@ -154,116 +169,133 @@ class FhirBooleanBuilder extends PrimitiveTypeBuilder<bool>
     }
   }
 
-  /// Boolean getter to determine if only a value is present
-  bool get valueOnly => value != null && element == null;
+  // --------------------------------------------------------------------------
+  // Getters / Properties
+  // --------------------------------------------------------------------------
 
-  /// Boolean getter to determine if only an element is present
-  bool get hasElementOnly => value == null && element != null;
+  /// Returns the boolean value if present, otherwise `null`.
+  bool? get valueBoolean =>
+      valueString == null ? null : valueString!.trim().toLowerCase() == 'true';
 
-  /// Boolean getter to determine if both value and element are present
-  bool get valueAndElement => value != null && element != null;
+  // --------------------------------------------------------------------------
+  // Booleans
+  // --------------------------------------------------------------------------
 
-  // ──────────────────────────────────────────────────────────────────────────
-  // JSON / Serialization
-  // ──────────────────────────────────────────────────────────────────────────
+  /// Returns `true` if there is a [valueString] but no [element].
+  bool get valueOnly => valueString != null && element == null;
 
-  /// Converts this instance to a [FhirBoolean] object
+  /// Returns `true` if there is an [element] but no [valueString].
+  bool get hasElementOnly => valueString == null && element != null;
+
+  /// Returns `true` if both [valueString] and [element] are non-null.
+  bool get valueAndElement => valueString != null && element != null;
+
+  // --------------------------------------------------------------------------
+  // JSON Serialization
+  // --------------------------------------------------------------------------
+
+  /// Converts this [FhirBooleanBuilder] into a JSON map.
+  ///
+  /// The `'value'` key is a Dart `bool` if present.
+  @override
+  Map<String, dynamic> toJson() => {
+        if (valueString != null) 'value': valueBoolean,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  /// Method to convert the builder object to the original Element object
   @override
   FhirBoolean build() => FhirBoolean.fromJson(toJson());
 
-  /// Converts this instance to JSON
-  @override
-  Map<String, dynamic> toJson() {
-    return {
-      if (value != null) 'value': value, // or super.value
-      if (element != null) '_value': element!.toJson(),
-    };
-  }
-
-  /// Converts a list of JSON values to a list of [
-  /// FhirBooleanBuilder] instances.
+  /// Converts a parallel list of JSON boolean [values] and [elements] into
+  /// a list of [FhirBooleanBuilder].
   static List<FhirBooleanBuilder> fromJsonList(
     List<dynamic> values,
     List<dynamic>? elements,
   ) {
     if (elements != null && elements.length != values.length) {
       throw const FormatException(
-        'Values and elements must have the same length',
+        'Values and elements must have the same length.',
       );
     }
     return List.generate(values.length, (i) {
       final val = values[i];
-      final element = elements?[i] != null
+      final elem = elements?[i] != null
           ? ElementBuilder.fromJson(elements![i] as Map<String, dynamic>)
           : null;
-      return FhirBooleanBuilder(val, element: element);
+      return FhirBooleanBuilder(val, element: elem);
     });
   }
 
-  /// Converts a list of [FhirBooleanBuilder] instances to a JSON-compatible map
-  static Map<String, dynamic> toJsonList(List<FhirBooleanBuilder> booleans) => {
-        'value': booleans.map((b) => b.value).toList(),
-        '_value': booleans.map((b) => b.element?.toJson()).toList(),
+  /// Converts a list of [FhirBooleanBuilder] instances into a JSON map with
+  /// parallel `'value'` and `'_value'` arrays.
+  static Map<String, dynamic> toJsonList(List<FhirBooleanBuilder> items) => {
+        'value': items.map((val) => val.valueBoolean).toList(),
+        '_value': items.map((val) => val.element?.toJson()).toList(),
       };
 
-  // ──────────────────────────────────────────────────────────────────────────
-  // Misc. overrides
-  // ──────────────────────────────────────────────────────────────────────────
+  // --------------------------------------------------------------------------
+  // Overrides
+  // --------------------------------------------------------------------------
 
-  /// Returns the FHIR type as a [String]
+  /// Returns the FHIR type, here `"boolean"`.
   @override
   String get fhirType => 'boolean';
 
-  /// Returns the string form of this FHIR boolean
+  /// Returns the internal string (e.g., `"true"`, `"false"`, or `"null"`).
   @override
-  String toString() => value?.toString() ?? 'null';
+  String toString() => valueString ?? 'null';
 
-  /// The "primitive" value as a string (for DataType overrides)
+  /// The primitive value as a string.
   @override
-  String? get primitiveValue => value?.toString();
+  String? get primitiveValue => valueString;
 
-  /// Deep equality check
+  /// Deep equality check for [FhirBooleanBuilder].
   @override
   bool equalsDeep(FhirBaseBuilder? other) {
     return other is FhirBooleanBuilder &&
-        other.value == value &&
+        other.valueBoolean == valueBoolean &&
         other.element == element;
   }
 
-  /// Shallow equality
+  /// Shallow equality. Checks if [other] is `bool` or [FhirBooleanBuilder].
   @override
   bool equals(Object other) {
     if (identical(this, other)) return true;
     if (other is FhirBooleanBuilder) {
-      return value == other.value && element == other.element;
+      return valueBoolean == other.valueBoolean && element == other.element;
     }
-    if (other is bool) return value == other;
+    if (other is bool) {
+      return valueBoolean == other;
+    }
     return false;
   }
 
-  /// Override the `==` operator
+  /// Operator `==` override.
   @override
   // ignore: avoid_equals_and_hash_code_on_mutable_classes
   bool operator ==(Object other) => equals(other);
 
-  /// Hash code
+  /// Hash code override.
   @override
   // ignore: avoid_equals_and_hash_code_on_mutable_classes
-  int get hashCode => Object.hash(value, element);
+  int get hashCode => Object.hash(valueString, element);
 
-  // ──────────────────────────────────────────────────────────────────────────
-  // Clone / Copy methods
-  // ──────────────────────────────────────────────────────────────────────────
+  // --------------------------------------------------------------------------
+  // Clone / Copy
+  // --------------------------------------------------------------------------
 
-  /// Creates a copy of the instance with identical properties
+  /// Clones this [FhirBooleanBuilder].
   @override
-  FhirBooleanBuilder clone() =>
-      FhirBooleanBuilder(value, element: element?.clone() as ElementBuilder?);
+  FhirBooleanBuilder clone() => FhirBooleanBuilder(
+        valueString,
+        element: element?.clone() as ElementBuilder?,
+      );
 
-  /// Creates a modified copy with updated properties
+  /// Creates a new [FhirBooleanBuilder] with updated properties.
   @override
   FhirBooleanBuilder copyWith({
-    bool? newValue,
+    dynamic newValue,
     ElementBuilder? element,
     FhirStringBuilder? id,
     List<FhirExtensionBuilder>? extension_,
@@ -275,7 +307,7 @@ class FhirBooleanBuilder extends PrimitiveTypeBuilder<bool>
     String? objectPath,
   }) {
     return FhirBooleanBuilder(
-      newValue ?? value,
+      newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
@@ -286,26 +318,26 @@ class FhirBooleanBuilder extends PrimitiveTypeBuilder<bool>
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath,
+      objectPath: objectPath ?? this.objectPath!,
     );
   }
 
-  /// Sets disallowExtensions to true
+  /// Returns a copy that disallows further extensions.
   FhirBooleanBuilder noExtensions() => copyWith(disallowExtensions: true);
 
-  /// Creates an empty property in the object (per your existing API)
+  /// Creates a new property. No-op here; returns `this`.
   @override
   FhirBooleanBuilder createProperty(String propertyName) => this;
 
-  /// Clears the specified fields in a [FhirBooleanBuilder] object
+  /// Clears selected fields in this [FhirBooleanBuilder].
   @override
   FhirBooleanBuilder clear({
-    bool input = false,
+    bool value = false,
     bool extension_ = false,
     bool id = false,
   }) {
     return FhirBooleanBuilder(
-      input ? null : value,
+      value ? null : valueString,
       element: element,
       extension_: extension_ ? <FhirExtensionBuilder>[] : this.extension_,
       id: id ? null : this.id,

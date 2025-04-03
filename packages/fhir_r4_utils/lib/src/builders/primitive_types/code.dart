@@ -1,12 +1,14 @@
 part of 'primitive_types.dart';
 
-/// Extension to add `toFhirCodeBuilder` method on all [String] instances
+/// Extension methods on [String] to easily convert to [FhirCodeBuilder].
 extension FhirCodeBuilderExtension on String {
-  /// Converts a [String] to a [FhirCodeBuilder]
+  /// Returns a new [FhirCodeBuilder] constructed from this [String].
   FhirCodeBuilder get toFhirCodeBuilder => FhirCodeBuilder(this);
 }
 
-/// FHIR primitive type `code`
+/// A FHIR primitive type `code` (a restricted string).
+///
+/// Typically must match certain minimal constraints (non-whitespace).
 class FhirCodeBuilder extends FhirStringBuilder
     implements
         ValueXCodeSystemPropertyBuilder,
@@ -20,59 +22,39 @@ class FhirCodeBuilder extends FhirStringBuilder
         PatternXElementDefinitionBuilder,
         ValueXElementDefinitionExampleBuilder,
         ValueXExtensionBuilder {
-  /// Private underscore constructor that simply calls
-  /// `super._(value: validatedValue)`
-  /// and performs the final check for `(value == null && element == null)`.
-  ///
-  /// Typically, any string validation (like `_validateCode`)
-  /// is done before calling `_`.
+  // --------------------------------------------------------------------------
+  // Private Internal Constructor
+  // --------------------------------------------------------------------------
+
+  /// Private underscore constructor passing validated code to [super._].
   FhirCodeBuilder._({
-    required super.validatedValue,
-    this.input,
+    required super.valueString,
     super.element,
     super.id,
     super.extension_,
     super.disallowExtensions,
     super.objectPath = 'Code',
-  }) : super._() {
-    if (value == null && element == null) {
-      throw ArgumentError('A value or element is required for FhirCodeBuilder');
-    }
-  }
+  }) : super._();
 
-  /// Public constructor because not all classes exist in the Primitives Library
-  FhirCodeBuilder.public(
-    String? rawInput, {
+  // --------------------------------------------------------------------------
+  // Public Factories
+  // --------------------------------------------------------------------------
+
+  /// Creates a [FhirCodeBuilder], validating [rawValue] as a `String` that
+  /// meets minimal code rules.
+  // ignore: sort_unnamed_constructors_first
+  factory FhirCodeBuilder(
+    dynamic rawValue, {
     ElementBuilder? element,
     FhirStringBuilder? id,
     List<FhirExtensionBuilder>? extension_,
     bool? disallowExtensions,
     String objectPath = 'Code',
-  }) : this._(
-          validatedValue: rawInput != null ? _validateCode(rawInput) : null,
-          input: rawInput,
-          element: element,
-          id: id,
-          extension_: extension_,
-          disallowExtensions: disallowExtensions,
-          objectPath: objectPath,
-        );
-
-  /// Public factory constructor with input validation
-  // ignore: sort_unnamed_constructors_first
-  factory FhirCodeBuilder(
-    String? rawInput, {
-    ElementBuilder? element,
-    FhirStringBuilder? id,
-    List<FhirExtensionBuilder>? extension_,
-    bool? disallowExtensions,
-    String? objectPath = 'Code',
   }) {
-    // If rawInput is non-null, validate it
-    final validated = rawInput != null ? _validateCode(rawInput) : null;
+    final validated =
+        rawValue != null ? _validateCode(rawValue.toString()) : null;
     return FhirCodeBuilder._(
-      validatedValue: validated,
-      input: rawInput,
+      valueString: validated,
       element: element,
       id: id,
       extension_: extension_,
@@ -81,39 +63,48 @@ class FhirCodeBuilder extends FhirStringBuilder
     );
   }
 
-  /// Creates empty [FhirCodeBuilder] object
+  /// Creates an empty [FhirCodeBuilder] object.
   factory FhirCodeBuilder.empty() =>
       FhirCodeBuilder(null, element: ElementBuilder.empty());
 
-  /// Factory constructor to create a [FhirCodeBuilder] from JSON
+  // --------------------------------------------------------------------------
+  // JSON / YAML Constructors
+  // --------------------------------------------------------------------------
+
+  /// Constructs a [FhirCodeBuilder] from JSON.
   factory FhirCodeBuilder.fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
+    final rawValue = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element =
-        elementJson != null ? ElementBuilder.fromJson(elementJson) : null;
+    final parsedElement =
+        elementJson == null ? null : ElementBuilder.fromJson(elementJson);
     final objectPath = json['objectPath'] as String? ?? 'Code';
     return FhirCodeBuilder(
-      value,
-      element: element,
+      rawValue,
+      element: parsedElement,
       objectPath: objectPath,
     );
   }
 
-  /// Factory constructor to create a [FhirCodeBuilder] from YAML
-  static FhirCodeBuilder fromYaml(dynamic yaml) => yaml is String
-      ? FhirCodeBuilder.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, dynamic>,
-        )
-      : yaml is YamlMap
-          ? FhirCodeBuilder.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, dynamic>,
-            )
-          : throw ArgumentError(
-              'FhirCodeBuilder cannot be constructed from the provided input,'
-              ' it is neither a YAML string nor a YAML map.');
+  /// Constructs a [FhirCodeBuilder] from YAML ([String] or [YamlMap]).
+  static FhirCodeBuilder fromYaml(dynamic yaml) {
+    if (yaml is String) {
+      return FhirCodeBuilder.fromJson(
+        jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, dynamic>,
+      );
+    } else if (yaml is YamlMap) {
+      return FhirCodeBuilder.fromJson(
+        jsonDecode(jsonEncode(yaml)) as Map<String, dynamic>,
+      );
+    } else {
+      throw ArgumentError(
+        'FhirCode cannot be constructed from provided input, '
+        'it is neither a YAML string nor a YAML map.',
+      );
+    }
+  }
 
-  /// Attempts to parse the input as a [FhirCodeBuilder], returning `null` if
-  /// parsing fails
+  /// Attempts to parse [input] as a [FhirCodeBuilder]. Returns `null` if
+  /// it fails.
   static FhirCodeBuilder? tryParse(dynamic input) {
     if (input is String) {
       try {
@@ -125,69 +116,54 @@ class FhirCodeBuilder extends FhirStringBuilder
     return null;
   }
 
-  /// Validates the input string as a valid FHIR code
-  static String _validateCode(String raw) {
-    final regex = RegExp(r'^[^\s]+(\s[^\s]+)*$');
-    if (regex.hasMatch(raw)) {
+  // --------------------------------------------------------------------------
+  // Validation
+  // --------------------------------------------------------------------------
+
+  /// Minimal validation for a "FHIR code": cannot contain whitespace only.
+  static String? _validateCode(String? raw) {
+    if (raw == null) return null;
+    // Basic check that there's at least one non-whitespace character
+    // and it doesn't contain forbidden whitespace patterns, etc.
+    if (RegExp(r'^[^\s]+(\s[^\s]+)*$').hasMatch(raw)) {
       return raw;
     }
-    throw FormatException('Invalid FHIR Code:$raw');
+    throw FormatException('Invalid FHIR code: $raw');
   }
 
-  /// The original input value (for serialization purposes)
-  String? input;
+  // --------------------------------------------------------------------------
+  // FHIR Overrides
+  // --------------------------------------------------------------------------
 
-  /// Boolean checks for the presence of a value only
-  bool get valueOnly => value != null && element == null;
-
-  /// Boolean checks for the presence of an element only
-  bool get hasElementOnly => value == null && element != null;
-
-  /// Boolean checks for the presence of both value and element
-  bool get valueAndElement => value != null && element != null;
-
-  /// Returns the FHIR type as a [String]
+  /// Returns `"code"`.
   @override
   String get fhirType => 'code';
 
-  /// Returns the [FhirCodeBuilder] as a [String]
+  /// Returns the code as a string or `''`.
   @override
-  String toString() => value.toString();
+  String toString() => valueString ?? '';
 
-  /// Retrieves the primitive value of the object.
+  /// Returns `true` if the Type is considered string-based, otherwise `false`
   @override
-  String? get primitiveValue => value;
+  bool get stringBased => true;
 
+  // --------------------------------------------------------------------------
+  // Clone / Copy
+  // --------------------------------------------------------------------------
+
+  /// Method to convert the builder object to the original Element object
   @override
-  bool equalsDeep(FhirBaseBuilder? other) =>
-      other is FhirCodeBuilder &&
-      other.value == value &&
-      other.element == element;
+  FhirCode build() => FhirCode.fromJson(toJson());
 
-  /// Overrides equality operator
-  @override
-  // ignore: avoid_equals_and_hash_code_on_mutable_classes
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      (other is FhirCodeBuilder && other.input == input) ||
-      (other is String && other == value);
-
-  /// Overrides `hashCode` for use in hash-based collections
-  @override
-  // ignore: avoid_equals_and_hash_code_on_mutable_classes
-  int get hashCode => Object.hash(input, element);
-
-  /// Creates a deep copy of the instance
   @override
   FhirCodeBuilder clone() => FhirCodeBuilder(
-        input,
+        valueString,
         element: element?.clone() as ElementBuilder?,
       );
 
-  /// Creates a modified copy with updated properties
   @override
   FhirCodeBuilder copyWith({
-    String? newValue,
+    dynamic newValue,
     ElementBuilder? element,
     FhirStringBuilder? id,
     List<FhirExtensionBuilder>? extension_,
@@ -199,7 +175,7 @@ class FhirCodeBuilder extends FhirStringBuilder
     String? objectPath,
   }) {
     return FhirCodeBuilder(
-      newValue ?? input,
+      newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
@@ -210,34 +186,25 @@ class FhirCodeBuilder extends FhirStringBuilder
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath,
+      objectPath: objectPath ?? this.objectPath!,
     );
   }
 
-  /// Converts this instance to a [FhirCode] object
-  @override
-  FhirCode build() => FhirCode.fromJson(toJson());
+  // --------------------------------------------------------------------------
+  // Subclass Contract
+  // --------------------------------------------------------------------------
 
-  /// Serializes the instance to JSON with standardized keys
-  @override
-  Map<String, dynamic> toJson() => {
-        if (input != null) 'value': input,
-        if (element != null) '_value': element!.toJson(),
-      };
-
-  /// Creates an empty property in the object
   @override
   FhirCodeBuilder createProperty(String propertyName) => this;
 
-  /// Clears the specified fields in a [FhirCodeBuilder] object
   @override
   FhirCodeBuilder clear({
-    bool input = false,
+    bool value = false,
     bool extension_ = false,
     bool id = false,
   }) {
     return FhirCodeBuilder(
-      input ? null : this.input,
+      value ? null : valueString,
       element: element,
       extension_: extension_ ? <FhirExtensionBuilder>[] : this.extension_,
       id: id ? null : this.id,
