@@ -554,7 +554,7 @@ ValidationResults _checkStringPatterns(
   if (element.patternX != null &&
       element.patternX is FhirString &&
       value is String) {
-    final regex = RegExp((element.patternX! as FhirString).value!);
+    final regex = RegExp((element.patternX! as FhirString).valueString!);
     if (!regex.hasMatch(value)) {
       results.addResult(
         node,
@@ -692,8 +692,8 @@ ElementDefinition? _polymorphicElement(
 ) {
   return elements.values.firstWhereOrNull(
     (ElementDefinition element) =>
-        (element.path.value?.endsWith('[x]') ?? false) &&
-        path.startsWith(element.path.value!.replaceFirst('[x]', '')),
+        (element.path.valueString?.endsWith('[x]') ?? false) &&
+        path.startsWith(element.path.valueString!.replaceFirst('[x]', '')),
   );
 }
 

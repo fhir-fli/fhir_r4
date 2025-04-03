@@ -15,11 +15,12 @@ ValidationResults validateInvariants({
     final context = _getContext(node, element, results);
     for (final constraint in element.constraint!) {
       if (constraint.expression != null) {
-        if (!_constraintsIDontWantToDo(node, constraint.expression!.value!)) {
+        if (!_constraintsIDontWantToDo(
+            node, constraint.expression!.valueString!,)) {
           if (!_evaluateConstraint(
             node,
             context,
-            constraint.expression!.value!,
+            constraint.expression!.valueString!,
             results,
           )) {
             results.addResult(
@@ -48,7 +49,7 @@ fhir.FhirBase? _getContext(
 ) {
   final dynamic rawContext = _nodeToMap(node);
 
-  if (element.type == null || element.path.value == null) {
+  if (element.type == null || element.path.valueString == null) {
     results.addResult(
       node,
       'Element type or path is missing for node: ${node.path}',
@@ -57,7 +58,7 @@ fhir.FhirBase? _getContext(
     return null;
   }
 
-  final key = element.path.value!.split('.').last;
+  final key = element.path.valueString!.split('.').last;
   final extractedContext = rawContext is Map<String, dynamic>
       ? rawContext[key] ?? rawContext
       : rawContext;
@@ -116,7 +117,7 @@ bool _evaluateConstraint(
   return result.length == 1 &&
       ((result.first is bool && result.first as bool) ||
           (result.first is fhir.FhirBoolean &&
-              ((result.first as fhir.FhirBoolean).value ?? false)));
+              ((result.first as fhir.FhirBoolean).valueBoolean ?? false)));
 }
 
 /// Converts a [Node] to a [Map] for use as a FHIRPath context.

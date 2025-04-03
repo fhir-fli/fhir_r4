@@ -19,7 +19,7 @@ Future<ValidationResults> validateBindings({
     if (element.binding != null && element.binding!.valueSet != null) {
       final valueSetUrl = element.binding!.valueSet.toString();
       final validCodes = await getValueSetCodes(valueSetUrl, resourceCache);
-      final elementPath = element.path.value;
+      final elementPath = element.path.valueString;
 
       if (elementPath != null) {
         // Find the node corresponding to the element path.

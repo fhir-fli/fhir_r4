@@ -95,7 +95,7 @@ ValidationResults _validateResponseItem({
   // Validate type and constraints
   // Example: Check if the response type matches the questionnaire item type
   // Add additional checks as necessary
-  if ((questionnaireItem.required_?.value ?? false) &&
+  if ((questionnaireItem.required_?.valueBoolean ?? false) &&
       (responseItem.answer == null || responseItem.answer!.isEmpty)) {
     results.addResult(
       null,

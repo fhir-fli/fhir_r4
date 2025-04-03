@@ -47,7 +47,8 @@ Future<ValidationResults> validateExtensions({
         final extensionElements = extractElements(structureDefinition);
 
         // Locate the extension node within the parent node.
-        final extensionNode = node.getPropertyNode('_${element.path.value!}');
+        final extensionNode =
+            node.getPropertyNode('_${element.path.valueString!}');
 
         // Validate the structure of the extension node.
         if (extensionNode != null) {
