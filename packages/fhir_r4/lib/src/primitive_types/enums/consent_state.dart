@@ -47,8 +47,11 @@ class ConsentState extends FhirCodeEnum {
   /// Create empty [ConsentState] with element only
   factory ConsentState.empty() => ConsentState._(valueString: '');
 
-  /// Factory constructor to create [ConsentState] from JSON.
-  factory ConsentState.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [ConsentState]
+  /// from JSON.
+  factory ConsentState.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -167,7 +170,9 @@ class ConsentState extends FhirCodeEnum {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for ConsentState: $newValue');
+      throw ArgumentError(
+        'Invalid input for ConsentState: $newValue',
+      );
     }
     return ConsentState._(
       valueString: newValue ?? valueString,

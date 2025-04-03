@@ -47,8 +47,11 @@ class NameUse extends FhirCodeEnum {
   /// Create empty [NameUse] with element only
   factory NameUse.empty() => NameUse._(valueString: '');
 
-  /// Factory constructor to create [NameUse] from JSON.
-  factory NameUse.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [NameUse]
+  /// from JSON.
+  factory NameUse.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -176,7 +179,9 @@ class NameUse extends FhirCodeEnum {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for NameUse: $newValue');
+      throw ArgumentError(
+        'Invalid input for NameUse: $newValue',
+      );
     }
     return NameUse._(
       valueString: newValue ?? valueString,

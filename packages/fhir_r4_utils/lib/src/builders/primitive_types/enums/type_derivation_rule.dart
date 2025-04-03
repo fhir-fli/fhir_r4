@@ -50,7 +50,9 @@ class TypeDerivationRuleBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [TypeDerivationRuleBuilder]
   /// from JSON.
-  factory TypeDerivationRuleBuilder.fromJson(Map<String, dynamic> json) {
+  factory TypeDerivationRuleBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -104,9 +106,13 @@ class TypeDerivationRuleBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  TypeDerivationRuleBuilder withElement(ElementBuilder? newElement) {
+  TypeDerivationRuleBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
     return TypeDerivationRuleBuilder._(
-        valueString: valueString, element: newElement);
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -135,7 +141,9 @@ class TypeDerivationRuleBuilder extends FhirCodeEnumBuilder {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for TypeDerivationRule: $newValue');
+      throw ArgumentError(
+        'Invalid input for TypeDerivationRule: $newValue',
+      );
     }
     return TypeDerivationRuleBuilder._(
       valueString: newValue ?? valueString,

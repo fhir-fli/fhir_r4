@@ -48,8 +48,11 @@ class StructureMapContextType extends FhirCodeEnum {
   factory StructureMapContextType.empty() =>
       StructureMapContextType._(valueString: '');
 
-  /// Factory constructor to create [StructureMapContextType] from JSON.
-  factory StructureMapContextType.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [StructureMapContextType]
+  /// from JSON.
+  factory StructureMapContextType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -134,7 +137,8 @@ class StructureMapContextType extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for StructureMapContextType: $newValue');
+        'Invalid input for StructureMapContextType: $newValue',
+      );
     }
     return StructureMapContextType._(
       valueString: newValue ?? valueString,

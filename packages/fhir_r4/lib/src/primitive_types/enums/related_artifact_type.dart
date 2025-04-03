@@ -47,8 +47,11 @@ class RelatedArtifactType extends FhirCodeEnum {
   /// Create empty [RelatedArtifactType] with element only
   factory RelatedArtifactType.empty() => RelatedArtifactType._(valueString: '');
 
-  /// Factory constructor to create [RelatedArtifactType] from JSON.
-  factory RelatedArtifactType.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [RelatedArtifactType]
+  /// from JSON.
+  factory RelatedArtifactType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -186,7 +189,9 @@ class RelatedArtifactType extends FhirCodeEnum {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for RelatedArtifactType: $newValue');
+      throw ArgumentError(
+        'Invalid input for RelatedArtifactType: $newValue',
+      );
     }
     return RelatedArtifactType._(
       valueString: newValue ?? valueString,

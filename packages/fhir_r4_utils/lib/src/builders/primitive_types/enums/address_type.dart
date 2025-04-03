@@ -49,7 +49,9 @@ class AddressTypeBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [AddressTypeBuilder]
   /// from JSON.
-  factory AddressTypeBuilder.fromJson(Map<String, dynamic> json) {
+  factory AddressTypeBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -109,8 +111,13 @@ class AddressTypeBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  AddressTypeBuilder withElement(ElementBuilder? newElement) {
-    return AddressTypeBuilder._(valueString: valueString, element: newElement);
+  AddressTypeBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
+    return AddressTypeBuilder._(
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -139,7 +146,9 @@ class AddressTypeBuilder extends FhirCodeEnumBuilder {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for AddressType: $newValue');
+      throw ArgumentError(
+        'Invalid input for AddressType: $newValue',
+      );
     }
     return AddressTypeBuilder._(
       valueString: newValue ?? valueString,

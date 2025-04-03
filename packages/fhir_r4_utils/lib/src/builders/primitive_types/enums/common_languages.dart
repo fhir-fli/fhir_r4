@@ -51,7 +51,9 @@ class CommonLanguagesBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [CommonLanguagesBuilder]
   /// from JSON.
-  factory CommonLanguagesBuilder.fromJson(Map<String, dynamic> json) {
+  factory CommonLanguagesBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -589,9 +591,13 @@ class CommonLanguagesBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  CommonLanguagesBuilder withElement(ElementBuilder? newElement) {
+  CommonLanguagesBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
     return CommonLanguagesBuilder._(
-        valueString: valueString, element: newElement);
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -620,7 +626,9 @@ class CommonLanguagesBuilder extends FhirCodeEnumBuilder {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for CommonLanguages: $newValue');
+      throw ArgumentError(
+        'Invalid input for CommonLanguages: $newValue',
+      );
     }
     return CommonLanguagesBuilder._(
       valueString: newValue ?? valueString,

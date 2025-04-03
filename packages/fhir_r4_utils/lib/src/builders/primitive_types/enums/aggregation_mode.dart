@@ -50,7 +50,9 @@ class AggregationModeBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [AggregationModeBuilder]
   /// from JSON.
-  factory AggregationModeBuilder.fromJson(Map<String, dynamic> json) {
+  factory AggregationModeBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -114,9 +116,13 @@ class AggregationModeBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  AggregationModeBuilder withElement(ElementBuilder? newElement) {
+  AggregationModeBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
     return AggregationModeBuilder._(
-        valueString: valueString, element: newElement);
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -145,7 +151,9 @@ class AggregationModeBuilder extends FhirCodeEnumBuilder {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for AggregationMode: $newValue');
+      throw ArgumentError(
+        'Invalid input for AggregationMode: $newValue',
+      );
     }
     return AggregationModeBuilder._(
       valueString: newValue ?? valueString,

@@ -47,8 +47,11 @@ class SlicingRules extends FhirCodeEnum {
   /// Create empty [SlicingRules] with element only
   factory SlicingRules.empty() => SlicingRules._(valueString: '');
 
-  /// Factory constructor to create [SlicingRules] from JSON.
-  factory SlicingRules.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [SlicingRules]
+  /// from JSON.
+  factory SlicingRules.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -140,7 +143,9 @@ class SlicingRules extends FhirCodeEnum {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for SlicingRules: $newValue');
+      throw ArgumentError(
+        'Invalid input for SlicingRules: $newValue',
+      );
     }
     return SlicingRules._(
       valueString: newValue ?? valueString,

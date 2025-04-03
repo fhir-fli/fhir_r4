@@ -50,7 +50,9 @@ class MeasureReportStatusBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [MeasureReportStatusBuilder]
   /// from JSON.
-  factory MeasureReportStatusBuilder.fromJson(Map<String, dynamic> json) {
+  factory MeasureReportStatusBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -114,9 +116,13 @@ class MeasureReportStatusBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  MeasureReportStatusBuilder withElement(ElementBuilder? newElement) {
+  MeasureReportStatusBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
     return MeasureReportStatusBuilder._(
-        valueString: valueString, element: newElement);
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -145,7 +151,9 @@ class MeasureReportStatusBuilder extends FhirCodeEnumBuilder {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for MeasureReportStatus: $newValue');
+      throw ArgumentError(
+        'Invalid input for MeasureReportStatus: $newValue',
+      );
     }
     return MeasureReportStatusBuilder._(
       valueString: newValue ?? valueString,

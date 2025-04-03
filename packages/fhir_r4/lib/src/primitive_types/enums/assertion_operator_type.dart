@@ -48,8 +48,11 @@ class AssertionOperatorType extends FhirCodeEnum {
   factory AssertionOperatorType.empty() =>
       AssertionOperatorType._(valueString: '');
 
-  /// Factory constructor to create [AssertionOperatorType] from JSON.
-  factory AssertionOperatorType.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [AssertionOperatorType]
+  /// from JSON.
+  factory AssertionOperatorType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -214,7 +217,9 @@ class AssertionOperatorType extends FhirCodeEnum {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for AssertionOperatorType: $newValue');
+      throw ArgumentError(
+        'Invalid input for AssertionOperatorType: $newValue',
+      );
     }
     return AssertionOperatorType._(
       valueString: newValue ?? valueString,

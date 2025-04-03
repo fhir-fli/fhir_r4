@@ -51,7 +51,9 @@ class ResearchElementTypeBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [ResearchElementTypeBuilder]
   /// from JSON.
-  factory ResearchElementTypeBuilder.fromJson(Map<String, dynamic> json) {
+  factory ResearchElementTypeBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -115,9 +117,13 @@ class ResearchElementTypeBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  ResearchElementTypeBuilder withElement(ElementBuilder? newElement) {
+  ResearchElementTypeBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
     return ResearchElementTypeBuilder._(
-        valueString: valueString, element: newElement);
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -146,7 +152,9 @@ class ResearchElementTypeBuilder extends FhirCodeEnumBuilder {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for ResearchElementType: $newValue');
+      throw ArgumentError(
+        'Invalid input for ResearchElementType: $newValue',
+      );
     }
     return ResearchElementTypeBuilder._(
       valueString: newValue ?? valueString,

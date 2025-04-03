@@ -50,7 +50,9 @@ class MedicationRequestIntentBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [MedicationRequestIntentBuilder]
   /// from JSON.
-  factory MedicationRequestIntentBuilder.fromJson(Map<String, dynamic> json) {
+  factory MedicationRequestIntentBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -171,9 +173,13 @@ class MedicationRequestIntentBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  MedicationRequestIntentBuilder withElement(ElementBuilder? newElement) {
+  MedicationRequestIntentBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
     return MedicationRequestIntentBuilder._(
-        valueString: valueString, element: newElement);
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -203,7 +209,8 @@ class MedicationRequestIntentBuilder extends FhirCodeEnumBuilder {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for MedicationRequestIntent: $newValue');
+        'Invalid input for MedicationRequestIntent: $newValue',
+      );
     }
     return MedicationRequestIntentBuilder._(
       valueString: newValue ?? valueString,

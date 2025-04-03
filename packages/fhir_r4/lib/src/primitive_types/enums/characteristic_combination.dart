@@ -48,8 +48,11 @@ class CharacteristicCombination extends FhirCodeEnum {
   factory CharacteristicCombination.empty() =>
       CharacteristicCombination._(valueString: '');
 
-  /// Factory constructor to create [CharacteristicCombination] from JSON.
-  factory CharacteristicCombination.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [CharacteristicCombination]
+  /// from JSON.
+  factory CharacteristicCombination.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -135,7 +138,8 @@ class CharacteristicCombination extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for CharacteristicCombination: $newValue');
+        'Invalid input for CharacteristicCombination: $newValue',
+      );
     }
     return CharacteristicCombination._(
       valueString: newValue ?? valueString,

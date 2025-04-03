@@ -48,8 +48,11 @@ class AuditEventAction extends FhirCodeEnum {
   /// Create empty [AuditEventAction] with element only
   factory AuditEventAction.empty() => AuditEventAction._(valueString: '');
 
-  /// Factory constructor to create [AuditEventAction] from JSON.
-  factory AuditEventAction.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [AuditEventAction]
+  /// from JSON.
+  factory AuditEventAction.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -160,7 +163,9 @@ class AuditEventAction extends FhirCodeEnum {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for AuditEventAction: $newValue');
+      throw ArgumentError(
+        'Invalid input for AuditEventAction: $newValue',
+      );
     }
     return AuditEventAction._(
       valueString: newValue ?? valueString,

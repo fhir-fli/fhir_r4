@@ -48,9 +48,11 @@ class BiologicallyDerivedProductCategory extends FhirCodeEnum {
   factory BiologicallyDerivedProductCategory.empty() =>
       BiologicallyDerivedProductCategory._(valueString: '');
 
-  /// Factory constructor to create [BiologicallyDerivedProductCategory] from JSON.
+  /// Factory constructor to create [BiologicallyDerivedProductCategory]
+  /// from JSON.
   factory BiologicallyDerivedProductCategory.fromJson(
-      Map<String, dynamic> json) {
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -169,7 +171,8 @@ class BiologicallyDerivedProductCategory extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for BiologicallyDerivedProductCategory: $newValue');
+        'Invalid input for BiologicallyDerivedProductCategory: $newValue',
+      );
     }
     return BiologicallyDerivedProductCategory._(
       valueString: newValue ?? valueString,

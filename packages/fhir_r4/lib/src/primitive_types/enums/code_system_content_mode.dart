@@ -49,8 +49,11 @@ class CodeSystemContentMode extends FhirCodeEnum {
   factory CodeSystemContentMode.empty() =>
       CodeSystemContentMode._(valueString: '');
 
-  /// Factory constructor to create [CodeSystemContentMode] from JSON.
-  factory CodeSystemContentMode.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [CodeSystemContentMode]
+  /// from JSON.
+  factory CodeSystemContentMode.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -161,7 +164,9 @@ class CodeSystemContentMode extends FhirCodeEnum {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for CodeSystemContentMode: $newValue');
+      throw ArgumentError(
+        'Invalid input for CodeSystemContentMode: $newValue',
+      );
     }
     return CodeSystemContentMode._(
       valueString: newValue ?? valueString,

@@ -48,8 +48,11 @@ class GoalLifecycleStatus extends FhirCodeEnum {
   /// Create empty [GoalLifecycleStatus] with element only
   factory GoalLifecycleStatus.empty() => GoalLifecycleStatus._(valueString: '');
 
-  /// Factory constructor to create [GoalLifecycleStatus] from JSON.
-  factory GoalLifecycleStatus.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [GoalLifecycleStatus]
+  /// from JSON.
+  factory GoalLifecycleStatus.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -196,7 +199,9 @@ class GoalLifecycleStatus extends FhirCodeEnum {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for GoalLifecycleStatus: $newValue');
+      throw ArgumentError(
+        'Invalid input for GoalLifecycleStatus: $newValue',
+      );
     }
     return GoalLifecycleStatus._(
       valueString: newValue ?? valueString,

@@ -49,8 +49,11 @@ class ActionRequiredBehavior extends FhirCodeEnum {
   factory ActionRequiredBehavior.empty() =>
       ActionRequiredBehavior._(valueString: '');
 
-  /// Factory constructor to create [ActionRequiredBehavior] from JSON.
-  factory ActionRequiredBehavior.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [ActionRequiredBehavior]
+  /// from JSON.
+  factory ActionRequiredBehavior.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -145,7 +148,8 @@ class ActionRequiredBehavior extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for ActionRequiredBehavior: $newValue');
+        'Invalid input for ActionRequiredBehavior: $newValue',
+      );
     }
     return ActionRequiredBehavior._(
       valueString: newValue ?? valueString,

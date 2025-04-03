@@ -48,8 +48,11 @@ class MessageSignificanceCategory extends FhirCodeEnum {
   factory MessageSignificanceCategory.empty() =>
       MessageSignificanceCategory._(valueString: '');
 
-  /// Factory constructor to create [MessageSignificanceCategory] from JSON.
-  factory MessageSignificanceCategory.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [MessageSignificanceCategory]
+  /// from JSON.
+  factory MessageSignificanceCategory.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -149,7 +152,8 @@ class MessageSignificanceCategory extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for MessageSignificanceCategory: $newValue');
+        'Invalid input for MessageSignificanceCategory: $newValue',
+      );
     }
     return MessageSignificanceCategory._(
       valueString: newValue ?? valueString,

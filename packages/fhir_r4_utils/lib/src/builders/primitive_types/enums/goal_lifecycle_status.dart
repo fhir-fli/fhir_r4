@@ -51,7 +51,9 @@ class GoalLifecycleStatusBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [GoalLifecycleStatusBuilder]
   /// from JSON.
-  factory GoalLifecycleStatusBuilder.fromJson(Map<String, dynamic> json) {
+  factory GoalLifecycleStatusBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -167,9 +169,13 @@ class GoalLifecycleStatusBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  GoalLifecycleStatusBuilder withElement(ElementBuilder? newElement) {
+  GoalLifecycleStatusBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
     return GoalLifecycleStatusBuilder._(
-        valueString: valueString, element: newElement);
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -198,7 +204,9 @@ class GoalLifecycleStatusBuilder extends FhirCodeEnumBuilder {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for GoalLifecycleStatus: $newValue');
+      throw ArgumentError(
+        'Invalid input for GoalLifecycleStatus: $newValue',
+      );
     }
     return GoalLifecycleStatusBuilder._(
       valueString: newValue ?? valueString,

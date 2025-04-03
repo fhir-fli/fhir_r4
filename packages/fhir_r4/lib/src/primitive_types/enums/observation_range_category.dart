@@ -48,8 +48,11 @@ class ObservationRangeCategory extends FhirCodeEnum {
   factory ObservationRangeCategory.empty() =>
       ObservationRangeCategory._(valueString: '');
 
-  /// Factory constructor to create [ObservationRangeCategory] from JSON.
-  factory ObservationRangeCategory.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [ObservationRangeCategory]
+  /// from JSON.
+  factory ObservationRangeCategory.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -143,7 +146,8 @@ class ObservationRangeCategory extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for ObservationRangeCategory: $newValue');
+        'Invalid input for ObservationRangeCategory: $newValue',
+      );
     }
     return ObservationRangeCategory._(
       valueString: newValue ?? valueString,

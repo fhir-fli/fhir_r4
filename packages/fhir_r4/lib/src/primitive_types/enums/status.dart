@@ -47,8 +47,11 @@ class Status extends FhirCodeEnum {
   /// Create empty [Status] with element only
   factory Status.empty() => Status._(valueString: '');
 
-  /// Factory constructor to create [Status] from JSON.
-  factory Status.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [Status]
+  /// from JSON.
+  factory Status.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -167,7 +170,9 @@ class Status extends FhirCodeEnum {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for Status: $newValue');
+      throw ArgumentError(
+        'Invalid input for Status: $newValue',
+      );
     }
     return Status._(
       valueString: newValue ?? valueString,

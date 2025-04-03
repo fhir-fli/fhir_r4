@@ -50,7 +50,9 @@ class CatalogEntryRelationTypeBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [CatalogEntryRelationTypeBuilder]
   /// from JSON.
-  factory CatalogEntryRelationTypeBuilder.fromJson(Map<String, dynamic> json) {
+  factory CatalogEntryRelationTypeBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -104,9 +106,13 @@ class CatalogEntryRelationTypeBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  CatalogEntryRelationTypeBuilder withElement(ElementBuilder? newElement) {
+  CatalogEntryRelationTypeBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
     return CatalogEntryRelationTypeBuilder._(
-        valueString: valueString, element: newElement);
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -136,7 +142,8 @@ class CatalogEntryRelationTypeBuilder extends FhirCodeEnumBuilder {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for CatalogEntryRelationType: $newValue');
+        'Invalid input for CatalogEntryRelationType: $newValue',
+      );
     }
     return CatalogEntryRelationTypeBuilder._(
       valueString: newValue ?? valueString,

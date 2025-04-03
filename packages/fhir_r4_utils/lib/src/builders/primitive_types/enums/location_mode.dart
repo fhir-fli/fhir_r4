@@ -50,7 +50,9 @@ class LocationModeBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [LocationModeBuilder]
   /// from JSON.
-  factory LocationModeBuilder.fromJson(Map<String, dynamic> json) {
+  factory LocationModeBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -102,8 +104,13 @@ class LocationModeBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  LocationModeBuilder withElement(ElementBuilder? newElement) {
-    return LocationModeBuilder._(valueString: valueString, element: newElement);
+  LocationModeBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
+    return LocationModeBuilder._(
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -132,7 +139,9 @@ class LocationModeBuilder extends FhirCodeEnumBuilder {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for LocationMode: $newValue');
+      throw ArgumentError(
+        'Invalid input for LocationMode: $newValue',
+      );
     }
     return LocationModeBuilder._(
       valueString: newValue ?? valueString,

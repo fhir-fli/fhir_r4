@@ -50,7 +50,9 @@ class AdministrativeGenderBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [AdministrativeGenderBuilder]
   /// from JSON.
-  factory AdministrativeGenderBuilder.fromJson(Map<String, dynamic> json) {
+  factory AdministrativeGenderBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -124,9 +126,13 @@ class AdministrativeGenderBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  AdministrativeGenderBuilder withElement(ElementBuilder? newElement) {
+  AdministrativeGenderBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
     return AdministrativeGenderBuilder._(
-        valueString: valueString, element: newElement);
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -155,7 +161,9 @@ class AdministrativeGenderBuilder extends FhirCodeEnumBuilder {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for AdministrativeGender: $newValue');
+      throw ArgumentError(
+        'Invalid input for AdministrativeGender: $newValue',
+      );
     }
     return AdministrativeGenderBuilder._(
       valueString: newValue ?? valueString,

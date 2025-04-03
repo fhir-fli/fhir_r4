@@ -49,7 +49,9 @@ class QualityTypeBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [QualityTypeBuilder]
   /// from JSON.
-  factory QualityTypeBuilder.fromJson(Map<String, dynamic> json) {
+  factory QualityTypeBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -109,8 +111,13 @@ class QualityTypeBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  QualityTypeBuilder withElement(ElementBuilder? newElement) {
-    return QualityTypeBuilder._(valueString: valueString, element: newElement);
+  QualityTypeBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
+    return QualityTypeBuilder._(
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -139,7 +146,9 @@ class QualityTypeBuilder extends FhirCodeEnumBuilder {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for QualityType: $newValue');
+      throw ArgumentError(
+        'Invalid input for QualityType: $newValue',
+      );
     }
     return QualityTypeBuilder._(
       valueString: newValue ?? valueString,

@@ -48,8 +48,11 @@ class TestReportActionResult extends FhirCodeEnum {
   factory TestReportActionResult.empty() =>
       TestReportActionResult._(valueString: '');
 
-  /// Factory constructor to create [TestReportActionResult] from JSON.
-  factory TestReportActionResult.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [TestReportActionResult]
+  /// from JSON.
+  factory TestReportActionResult.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -161,7 +164,8 @@ class TestReportActionResult extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for TestReportActionResult: $newValue');
+        'Invalid input for TestReportActionResult: $newValue',
+      );
     }
     return TestReportActionResult._(
       valueString: newValue ?? valueString,

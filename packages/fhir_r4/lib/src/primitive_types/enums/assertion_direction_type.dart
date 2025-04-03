@@ -48,8 +48,11 @@ class AssertionDirectionType extends FhirCodeEnum {
   factory AssertionDirectionType.empty() =>
       AssertionDirectionType._(valueString: '');
 
-  /// Factory constructor to create [AssertionDirectionType] from JSON.
-  factory AssertionDirectionType.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [AssertionDirectionType]
+  /// from JSON.
+  factory AssertionDirectionType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -134,7 +137,8 @@ class AssertionDirectionType extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for AssertionDirectionType: $newValue');
+        'Invalid input for AssertionDirectionType: $newValue',
+      );
     }
     return AssertionDirectionType._(
       valueString: newValue ?? valueString,

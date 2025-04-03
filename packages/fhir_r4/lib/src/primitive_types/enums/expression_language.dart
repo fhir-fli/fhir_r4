@@ -47,8 +47,11 @@ class ExpressionLanguage extends FhirCodeEnum {
   /// Create empty [ExpressionLanguage] with element only
   factory ExpressionLanguage.empty() => ExpressionLanguage._(valueString: '');
 
-  /// Factory constructor to create [ExpressionLanguage] from JSON.
-  factory ExpressionLanguage.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [ExpressionLanguage]
+  /// from JSON.
+  factory ExpressionLanguage.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -160,7 +163,9 @@ class ExpressionLanguage extends FhirCodeEnum {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for ExpressionLanguage: $newValue');
+      throw ArgumentError(
+        'Invalid input for ExpressionLanguage: $newValue',
+      );
     }
     return ExpressionLanguage._(
       valueString: newValue ?? valueString,

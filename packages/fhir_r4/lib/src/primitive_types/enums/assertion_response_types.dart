@@ -48,8 +48,11 @@ class AssertionResponseTypes extends FhirCodeEnum {
   factory AssertionResponseTypes.empty() =>
       AssertionResponseTypes._(valueString: '');
 
-  /// Factory constructor to create [AssertionResponseTypes] from JSON.
-  factory AssertionResponseTypes.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [AssertionResponseTypes]
+  /// from JSON.
+  factory AssertionResponseTypes.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -226,7 +229,8 @@ class AssertionResponseTypes extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for AssertionResponseTypes: $newValue');
+        'Invalid input for AssertionResponseTypes: $newValue',
+      );
     }
     return AssertionResponseTypes._(
       valueString: newValue ?? valueString,

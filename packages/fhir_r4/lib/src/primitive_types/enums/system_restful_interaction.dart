@@ -48,8 +48,11 @@ class SystemRestfulInteraction extends FhirCodeEnum {
   factory SystemRestfulInteraction.empty() =>
       SystemRestfulInteraction._(valueString: '');
 
-  /// Factory constructor to create [SystemRestfulInteraction] from JSON.
-  factory SystemRestfulInteraction.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [SystemRestfulInteraction]
+  /// from JSON.
+  factory SystemRestfulInteraction.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -276,7 +279,8 @@ class SystemRestfulInteraction extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for SystemRestfulInteraction: $newValue');
+        'Invalid input for SystemRestfulInteraction: $newValue',
+      );
     }
     return SystemRestfulInteraction._(
       valueString: newValue ?? valueString,

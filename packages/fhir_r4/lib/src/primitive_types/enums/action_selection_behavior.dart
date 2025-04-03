@@ -48,8 +48,11 @@ class ActionSelectionBehavior extends FhirCodeEnum {
   factory ActionSelectionBehavior.empty() =>
       ActionSelectionBehavior._(valueString: '');
 
-  /// Factory constructor to create [ActionSelectionBehavior] from JSON.
-  factory ActionSelectionBehavior.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [ActionSelectionBehavior]
+  /// from JSON.
+  factory ActionSelectionBehavior.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -170,7 +173,8 @@ class ActionSelectionBehavior extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for ActionSelectionBehavior: $newValue');
+        'Invalid input for ActionSelectionBehavior: $newValue',
+      );
     }
     return ActionSelectionBehavior._(
       valueString: newValue ?? valueString,

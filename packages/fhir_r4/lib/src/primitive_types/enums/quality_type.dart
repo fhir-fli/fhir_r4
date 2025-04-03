@@ -47,8 +47,11 @@ class QualityType extends FhirCodeEnum {
   /// Create empty [QualityType] with element only
   factory QualityType.empty() => QualityType._(valueString: '');
 
-  /// Factory constructor to create [QualityType] from JSON.
-  factory QualityType.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [QualityType]
+  /// from JSON.
+  factory QualityType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -140,7 +143,9 @@ class QualityType extends FhirCodeEnum {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for QualityType: $newValue');
+      throw ArgumentError(
+        'Invalid input for QualityType: $newValue',
+      );
     }
     return QualityType._(
       valueString: newValue ?? valueString,

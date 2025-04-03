@@ -49,7 +49,9 @@ class SlicingRulesBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [SlicingRulesBuilder]
   /// from JSON.
-  factory SlicingRulesBuilder.fromJson(Map<String, dynamic> json) {
+  factory SlicingRulesBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -113,8 +115,13 @@ class SlicingRulesBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  SlicingRulesBuilder withElement(ElementBuilder? newElement) {
-    return SlicingRulesBuilder._(valueString: valueString, element: newElement);
+  SlicingRulesBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
+    return SlicingRulesBuilder._(
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -143,7 +150,9 @@ class SlicingRulesBuilder extends FhirCodeEnumBuilder {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for SlicingRules: $newValue');
+      throw ArgumentError(
+        'Invalid input for SlicingRules: $newValue',
+      );
     }
     return SlicingRulesBuilder._(
       valueString: newValue ?? valueString,

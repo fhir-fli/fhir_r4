@@ -50,7 +50,9 @@ class RequestStatusBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [RequestStatusBuilder]
   /// from JSON.
-  factory RequestStatusBuilder.fromJson(Map<String, dynamic> json) {
+  factory RequestStatusBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -147,9 +149,13 @@ class RequestStatusBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  RequestStatusBuilder withElement(ElementBuilder? newElement) {
+  RequestStatusBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
     return RequestStatusBuilder._(
-        valueString: valueString, element: newElement);
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -178,7 +184,9 @@ class RequestStatusBuilder extends FhirCodeEnumBuilder {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for RequestStatus: $newValue');
+      throw ArgumentError(
+        'Invalid input for RequestStatus: $newValue',
+      );
     }
     return RequestStatusBuilder._(
       valueString: newValue ?? valueString,

@@ -47,8 +47,11 @@ class UnitsOfTime extends FhirCodeEnum {
   /// Create empty [UnitsOfTime] with element only
   factory UnitsOfTime.empty() => UnitsOfTime._(valueString: '');
 
-  /// Factory constructor to create [UnitsOfTime] from JSON.
-  factory UnitsOfTime.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [UnitsOfTime]
+  /// from JSON.
+  factory UnitsOfTime.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -176,7 +179,9 @@ class UnitsOfTime extends FhirCodeEnum {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for UnitsOfTime: $newValue');
+      throw ArgumentError(
+        'Invalid input for UnitsOfTime: $newValue',
+      );
     }
     return UnitsOfTime._(
       valueString: newValue ?? valueString,

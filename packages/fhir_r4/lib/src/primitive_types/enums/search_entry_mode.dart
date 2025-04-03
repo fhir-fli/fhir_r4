@@ -49,8 +49,11 @@ class SearchEntryMode extends FhirCodeEnum {
   /// Create empty [SearchEntryMode] with element only
   factory SearchEntryMode.empty() => SearchEntryMode._(valueString: '');
 
-  /// Factory constructor to create [SearchEntryMode] from JSON.
-  factory SearchEntryMode.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [SearchEntryMode]
+  /// from JSON.
+  factory SearchEntryMode.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -142,7 +145,9 @@ class SearchEntryMode extends FhirCodeEnum {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for SearchEntryMode: $newValue');
+      throw ArgumentError(
+        'Invalid input for SearchEntryMode: $newValue',
+      );
     }
     return SearchEntryMode._(
       valueString: newValue ?? valueString,

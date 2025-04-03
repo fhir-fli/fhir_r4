@@ -48,8 +48,11 @@ class ExampleScenarioActorType extends FhirCodeEnum {
   factory ExampleScenarioActorType.empty() =>
       ExampleScenarioActorType._(valueString: '');
 
-  /// Factory constructor to create [ExampleScenarioActorType] from JSON.
-  factory ExampleScenarioActorType.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [ExampleScenarioActorType]
+  /// from JSON.
+  factory ExampleScenarioActorType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -134,7 +137,8 @@ class ExampleScenarioActorType extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for ExampleScenarioActorType: $newValue');
+        'Invalid input for ExampleScenarioActorType: $newValue',
+      );
     }
     return ExampleScenarioActorType._(
       valueString: newValue ?? valueString,

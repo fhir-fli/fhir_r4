@@ -49,7 +49,9 @@ class EventTimingBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [EventTimingBuilder]
   /// from JSON.
-  factory EventTimingBuilder.fromJson(Map<String, dynamic> json) {
+  factory EventTimingBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -316,8 +318,13 @@ class EventTimingBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  EventTimingBuilder withElement(ElementBuilder? newElement) {
-    return EventTimingBuilder._(valueString: valueString, element: newElement);
+  EventTimingBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
+    return EventTimingBuilder._(
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -346,7 +353,9 @@ class EventTimingBuilder extends FhirCodeEnumBuilder {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for EventTiming: $newValue');
+      throw ArgumentError(
+        'Invalid input for EventTiming: $newValue',
+      );
     }
     return EventTimingBuilder._(
       valueString: newValue ?? valueString,

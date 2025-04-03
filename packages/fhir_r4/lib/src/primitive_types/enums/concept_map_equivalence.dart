@@ -48,8 +48,11 @@ class ConceptMapEquivalence extends FhirCodeEnum {
   factory ConceptMapEquivalence.empty() =>
       ConceptMapEquivalence._(valueString: '');
 
-  /// Factory constructor to create [ConceptMapEquivalence] from JSON.
-  factory ConceptMapEquivalence.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [ConceptMapEquivalence]
+  /// from JSON.
+  factory ConceptMapEquivalence.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -205,7 +208,9 @@ class ConceptMapEquivalence extends FhirCodeEnum {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for ConceptMapEquivalence: $newValue');
+      throw ArgumentError(
+        'Invalid input for ConceptMapEquivalence: $newValue',
+      );
     }
     return ConceptMapEquivalence._(
       valueString: newValue ?? valueString,

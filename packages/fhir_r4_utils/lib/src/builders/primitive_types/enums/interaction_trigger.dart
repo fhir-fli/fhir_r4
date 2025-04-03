@@ -50,7 +50,9 @@ class InteractionTriggerBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [InteractionTriggerBuilder]
   /// from JSON.
-  factory InteractionTriggerBuilder.fromJson(Map<String, dynamic> json) {
+  factory InteractionTriggerBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -238,9 +240,13 @@ class InteractionTriggerBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  InteractionTriggerBuilder withElement(ElementBuilder? newElement) {
+  InteractionTriggerBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
     return InteractionTriggerBuilder._(
-        valueString: valueString, element: newElement);
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -269,7 +275,9 @@ class InteractionTriggerBuilder extends FhirCodeEnumBuilder {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for InteractionTrigger: $newValue');
+      throw ArgumentError(
+        'Invalid input for InteractionTrigger: $newValue',
+      );
     }
     return InteractionTriggerBuilder._(
       valueString: newValue ?? valueString,

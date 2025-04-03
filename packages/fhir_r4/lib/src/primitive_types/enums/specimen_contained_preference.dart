@@ -48,8 +48,11 @@ class SpecimenContainedPreference extends FhirCodeEnum {
   factory SpecimenContainedPreference.empty() =>
       SpecimenContainedPreference._(valueString: '');
 
-  /// Factory constructor to create [SpecimenContainedPreference] from JSON.
-  factory SpecimenContainedPreference.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [SpecimenContainedPreference]
+  /// from JSON.
+  factory SpecimenContainedPreference.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -138,7 +141,8 @@ class SpecimenContainedPreference extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for SpecimenContainedPreference: $newValue');
+        'Invalid input for SpecimenContainedPreference: $newValue',
+      );
     }
     return SpecimenContainedPreference._(
       valueString: newValue ?? valueString,

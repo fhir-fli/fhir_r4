@@ -51,7 +51,9 @@ class CodeSearchSupportBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [CodeSearchSupportBuilder]
   /// from JSON.
-  factory CodeSearchSupportBuilder.fromJson(Map<String, dynamic> json) {
+  factory CodeSearchSupportBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -103,9 +105,13 @@ class CodeSearchSupportBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  CodeSearchSupportBuilder withElement(ElementBuilder? newElement) {
+  CodeSearchSupportBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
     return CodeSearchSupportBuilder._(
-        valueString: valueString, element: newElement);
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -134,7 +140,9 @@ class CodeSearchSupportBuilder extends FhirCodeEnumBuilder {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for CodeSearchSupport: $newValue');
+      throw ArgumentError(
+        'Invalid input for CodeSearchSupport: $newValue',
+      );
     }
     return CodeSearchSupportBuilder._(
       valueString: newValue ?? valueString,

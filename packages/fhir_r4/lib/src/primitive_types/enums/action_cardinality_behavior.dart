@@ -49,8 +49,11 @@ class ActionCardinalityBehavior extends FhirCodeEnum {
   factory ActionCardinalityBehavior.empty() =>
       ActionCardinalityBehavior._(valueString: '');
 
-  /// Factory constructor to create [ActionCardinalityBehavior] from JSON.
-  factory ActionCardinalityBehavior.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [ActionCardinalityBehavior]
+  /// from JSON.
+  factory ActionCardinalityBehavior.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -137,7 +140,8 @@ class ActionCardinalityBehavior extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for ActionCardinalityBehavior: $newValue');
+        'Invalid input for ActionCardinalityBehavior: $newValue',
+      );
     }
     return ActionCardinalityBehavior._(
       valueString: newValue ?? valueString,

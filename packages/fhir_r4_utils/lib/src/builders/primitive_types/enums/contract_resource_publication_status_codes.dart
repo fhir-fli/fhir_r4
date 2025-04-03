@@ -52,7 +52,8 @@ class ContractResourcePublicationStatusCodesBuilder
   /// Factory constructor to create [ContractResourcePublicationStatusCodesBuilder]
   /// from JSON.
   factory ContractResourcePublicationStatusCodesBuilder.fromJson(
-      Map<String, dynamic> json) {
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -254,9 +255,12 @@ class ContractResourcePublicationStatusCodesBuilder
 
   /// Returns the enum value with an element attached
   ContractResourcePublicationStatusCodesBuilder withElement(
-      ElementBuilder? newElement) {
+    ElementBuilder? newElement,
+  ) {
     return ContractResourcePublicationStatusCodesBuilder._(
-        valueString: valueString, element: newElement);
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -286,7 +290,8 @@ class ContractResourcePublicationStatusCodesBuilder
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for ContractResourcePublicationStatusCodes: $newValue');
+        'Invalid input for ContractResourcePublicationStatusCodes: $newValue',
+      );
     }
     return ContractResourcePublicationStatusCodesBuilder._(
       valueString: newValue ?? valueString,

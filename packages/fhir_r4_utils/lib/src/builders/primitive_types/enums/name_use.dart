@@ -49,7 +49,9 @@ class NameUseBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [NameUseBuilder]
   /// from JSON.
-  factory NameUseBuilder.fromJson(Map<String, dynamic> json) {
+  factory NameUseBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -145,8 +147,13 @@ class NameUseBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  NameUseBuilder withElement(ElementBuilder? newElement) {
-    return NameUseBuilder._(valueString: valueString, element: newElement);
+  NameUseBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
+    return NameUseBuilder._(
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -175,7 +182,9 @@ class NameUseBuilder extends FhirCodeEnumBuilder {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for NameUse: $newValue');
+      throw ArgumentError(
+        'Invalid input for NameUse: $newValue',
+      );
     }
     return NameUseBuilder._(
       valueString: newValue ?? valueString,

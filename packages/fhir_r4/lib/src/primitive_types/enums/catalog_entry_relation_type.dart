@@ -48,8 +48,11 @@ class CatalogEntryRelationType extends FhirCodeEnum {
   factory CatalogEntryRelationType.empty() =>
       CatalogEntryRelationType._(valueString: '');
 
-  /// Factory constructor to create [CatalogEntryRelationType] from JSON.
-  factory CatalogEntryRelationType.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [CatalogEntryRelationType]
+  /// from JSON.
+  factory CatalogEntryRelationType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -135,7 +138,8 @@ class CatalogEntryRelationType extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for CatalogEntryRelationType: $newValue');
+        'Invalid input for CatalogEntryRelationType: $newValue',
+      );
     }
     return CatalogEntryRelationType._(
       valueString: newValue ?? valueString,

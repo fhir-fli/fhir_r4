@@ -47,8 +47,11 @@ class ConstraintSeverity extends FhirCodeEnum {
   /// Create empty [ConstraintSeverity] with element only
   factory ConstraintSeverity.empty() => ConstraintSeverity._(valueString: '');
 
-  /// Factory constructor to create [ConstraintSeverity] from JSON.
-  factory ConstraintSeverity.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [ConstraintSeverity]
+  /// from JSON.
+  factory ConstraintSeverity.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -132,7 +135,9 @@ class ConstraintSeverity extends FhirCodeEnum {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for ConstraintSeverity: $newValue');
+      throw ArgumentError(
+        'Invalid input for ConstraintSeverity: $newValue',
+      );
     }
     return ConstraintSeverity._(
       valueString: newValue ?? valueString,

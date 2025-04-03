@@ -51,7 +51,9 @@ class ConsentDataMeaningBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [ConsentDataMeaningBuilder]
   /// from JSON.
-  factory ConsentDataMeaningBuilder.fromJson(Map<String, dynamic> json) {
+  factory ConsentDataMeaningBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -125,9 +127,13 @@ class ConsentDataMeaningBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  ConsentDataMeaningBuilder withElement(ElementBuilder? newElement) {
+  ConsentDataMeaningBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
     return ConsentDataMeaningBuilder._(
-        valueString: valueString, element: newElement);
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -156,7 +162,9 @@ class ConsentDataMeaningBuilder extends FhirCodeEnumBuilder {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for ConsentDataMeaning: $newValue');
+      throw ArgumentError(
+        'Invalid input for ConsentDataMeaning: $newValue',
+      );
     }
     return ConsentDataMeaningBuilder._(
       valueString: newValue ?? valueString,

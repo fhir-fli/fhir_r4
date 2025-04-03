@@ -47,8 +47,11 @@ class ActionConditionKind extends FhirCodeEnum {
   /// Create empty [ActionConditionKind] with element only
   factory ActionConditionKind.empty() => ActionConditionKind._(valueString: '');
 
-  /// Factory constructor to create [ActionConditionKind] from JSON.
-  factory ActionConditionKind.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [ActionConditionKind]
+  /// from JSON.
+  factory ActionConditionKind.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -141,7 +144,9 @@ class ActionConditionKind extends FhirCodeEnum {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for ActionConditionKind: $newValue');
+      throw ArgumentError(
+        'Invalid input for ActionConditionKind: $newValue',
+      );
     }
     return ActionConditionKind._(
       valueString: newValue ?? valueString,

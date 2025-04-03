@@ -48,8 +48,11 @@ class DocumentRelationshipType extends FhirCodeEnum {
   factory DocumentRelationshipType.empty() =>
       DocumentRelationshipType._(valueString: '');
 
-  /// Factory constructor to create [DocumentRelationshipType] from JSON.
-  factory DocumentRelationshipType.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [DocumentRelationshipType]
+  /// from JSON.
+  factory DocumentRelationshipType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -152,7 +155,8 @@ class DocumentRelationshipType extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for DocumentRelationshipType: $newValue');
+        'Invalid input for DocumentRelationshipType: $newValue',
+      );
     }
     return DocumentRelationshipType._(
       valueString: newValue ?? valueString,

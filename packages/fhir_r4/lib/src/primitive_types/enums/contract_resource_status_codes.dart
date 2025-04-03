@@ -48,8 +48,11 @@ class ContractResourceStatusCodes extends FhirCodeEnum {
   factory ContractResourceStatusCodes.empty() =>
       ContractResourceStatusCodes._(valueString: '');
 
-  /// Factory constructor to create [ContractResourceStatusCodes] from JSON.
-  factory ContractResourceStatusCodes.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [ContractResourceStatusCodes]
+  /// from JSON.
+  factory ContractResourceStatusCodes.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -266,7 +269,8 @@ class ContractResourceStatusCodes extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for ContractResourceStatusCodes: $newValue');
+        'Invalid input for ContractResourceStatusCodes: $newValue',
+      );
     }
     return ContractResourceStatusCodes._(
       valueString: newValue ?? valueString,

@@ -50,7 +50,9 @@ class FlagStatusBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [FlagStatusBuilder]
   /// from JSON.
-  factory FlagStatusBuilder.fromJson(Map<String, dynamic> json) {
+  factory FlagStatusBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -110,8 +112,13 @@ class FlagStatusBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  FlagStatusBuilder withElement(ElementBuilder? newElement) {
-    return FlagStatusBuilder._(valueString: valueString, element: newElement);
+  FlagStatusBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
+    return FlagStatusBuilder._(
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -140,7 +147,9 @@ class FlagStatusBuilder extends FhirCodeEnumBuilder {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for FlagStatus: $newValue');
+      throw ArgumentError(
+        'Invalid input for FlagStatus: $newValue',
+      );
     }
     return FlagStatusBuilder._(
       valueString: newValue ?? valueString,

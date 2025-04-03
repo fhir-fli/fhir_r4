@@ -48,8 +48,11 @@ class ResourceVersionPolicy extends FhirCodeEnum {
   factory ResourceVersionPolicy.empty() =>
       ResourceVersionPolicy._(valueString: '');
 
-  /// Factory constructor to create [ResourceVersionPolicy] from JSON.
-  factory ResourceVersionPolicy.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [ResourceVersionPolicy]
+  /// from JSON.
+  factory ResourceVersionPolicy.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -142,7 +145,9 @@ class ResourceVersionPolicy extends FhirCodeEnum {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for ResourceVersionPolicy: $newValue');
+      throw ArgumentError(
+        'Invalid input for ResourceVersionPolicy: $newValue',
+      );
     }
     return ResourceVersionPolicy._(
       valueString: newValue ?? valueString,

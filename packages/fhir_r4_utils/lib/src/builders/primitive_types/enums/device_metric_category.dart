@@ -50,7 +50,9 @@ class DeviceMetricCategoryBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [DeviceMetricCategoryBuilder]
   /// from JSON.
-  factory DeviceMetricCategoryBuilder.fromJson(Map<String, dynamic> json) {
+  factory DeviceMetricCategoryBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -123,9 +125,13 @@ class DeviceMetricCategoryBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  DeviceMetricCategoryBuilder withElement(ElementBuilder? newElement) {
+  DeviceMetricCategoryBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
     return DeviceMetricCategoryBuilder._(
-        valueString: valueString, element: newElement);
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -154,7 +160,9 @@ class DeviceMetricCategoryBuilder extends FhirCodeEnumBuilder {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for DeviceMetricCategory: $newValue');
+      throw ArgumentError(
+        'Invalid input for DeviceMetricCategory: $newValue',
+      );
     }
     return DeviceMetricCategoryBuilder._(
       valueString: newValue ?? valueString,

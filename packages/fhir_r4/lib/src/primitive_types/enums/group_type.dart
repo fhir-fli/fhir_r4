@@ -47,8 +47,11 @@ class GroupType extends FhirCodeEnum {
   /// Create empty [GroupType] with element only
   factory GroupType.empty() => GroupType._(valueString: '');
 
-  /// Factory constructor to create [GroupType] from JSON.
-  factory GroupType.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [GroupType]
+  /// from JSON.
+  factory GroupType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -167,7 +170,9 @@ class GroupType extends FhirCodeEnum {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for GroupType: $newValue');
+      throw ArgumentError(
+        'Invalid input for GroupType: $newValue',
+      );
     }
     return GroupType._(
       valueString: newValue ?? valueString,

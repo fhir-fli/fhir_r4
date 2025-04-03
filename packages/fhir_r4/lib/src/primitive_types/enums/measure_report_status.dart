@@ -47,8 +47,11 @@ class MeasureReportStatus extends FhirCodeEnum {
   /// Create empty [MeasureReportStatus] with element only
   factory MeasureReportStatus.empty() => MeasureReportStatus._(valueString: '');
 
-  /// Factory constructor to create [MeasureReportStatus] from JSON.
-  factory MeasureReportStatus.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [MeasureReportStatus]
+  /// from JSON.
+  factory MeasureReportStatus.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -141,7 +144,9 @@ class MeasureReportStatus extends FhirCodeEnum {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for MeasureReportStatus: $newValue');
+      throw ArgumentError(
+        'Invalid input for MeasureReportStatus: $newValue',
+      );
     }
     return MeasureReportStatus._(
       valueString: newValue ?? valueString,

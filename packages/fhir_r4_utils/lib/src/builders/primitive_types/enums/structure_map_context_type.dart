@@ -50,7 +50,9 @@ class StructureMapContextTypeBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [StructureMapContextTypeBuilder]
   /// from JSON.
-  factory StructureMapContextTypeBuilder.fromJson(Map<String, dynamic> json) {
+  factory StructureMapContextTypeBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -103,9 +105,13 @@ class StructureMapContextTypeBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  StructureMapContextTypeBuilder withElement(ElementBuilder? newElement) {
+  StructureMapContextTypeBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
     return StructureMapContextTypeBuilder._(
-        valueString: valueString, element: newElement);
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -135,7 +141,8 @@ class StructureMapContextTypeBuilder extends FhirCodeEnumBuilder {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for StructureMapContextType: $newValue');
+        'Invalid input for StructureMapContextType: $newValue',
+      );
     }
     return StructureMapContextTypeBuilder._(
       valueString: newValue ?? valueString,

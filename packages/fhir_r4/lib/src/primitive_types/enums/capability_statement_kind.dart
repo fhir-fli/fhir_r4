@@ -48,8 +48,11 @@ class CapabilityStatementKind extends FhirCodeEnum {
   factory CapabilityStatementKind.empty() =>
       CapabilityStatementKind._(valueString: '');
 
-  /// Factory constructor to create [CapabilityStatementKind] from JSON.
-  factory CapabilityStatementKind.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [CapabilityStatementKind]
+  /// from JSON.
+  factory CapabilityStatementKind.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -143,7 +146,8 @@ class CapabilityStatementKind extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for CapabilityStatementKind: $newValue');
+        'Invalid input for CapabilityStatementKind: $newValue',
+      );
     }
     return CapabilityStatementKind._(
       valueString: newValue ?? valueString,

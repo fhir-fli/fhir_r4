@@ -47,8 +47,11 @@ class StrandType extends FhirCodeEnum {
   /// Create empty [StrandType] with element only
   factory StrandType.empty() => StrandType._(valueString: '');
 
-  /// Factory constructor to create [StrandType] from JSON.
-  factory StrandType.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [StrandType]
+  /// from JSON.
+  factory StrandType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -131,7 +134,9 @@ class StrandType extends FhirCodeEnum {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for StrandType: $newValue');
+      throw ArgumentError(
+        'Invalid input for StrandType: $newValue',
+      );
     }
     return StrandType._(
       valueString: newValue ?? valueString,

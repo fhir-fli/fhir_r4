@@ -47,8 +47,11 @@ class SearchModifierCode extends FhirCodeEnum {
   /// Create empty [SearchModifierCode] with element only
   factory SearchModifierCode.empty() => SearchModifierCode._(valueString: '');
 
-  /// Factory constructor to create [SearchModifierCode] from JSON.
-  factory SearchModifierCode.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [SearchModifierCode]
+  /// from JSON.
+  factory SearchModifierCode.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -222,7 +225,9 @@ class SearchModifierCode extends FhirCodeEnum {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for SearchModifierCode: $newValue');
+      throw ArgumentError(
+        'Invalid input for SearchModifierCode: $newValue',
+      );
     }
     return SearchModifierCode._(
       valueString: newValue ?? valueString,

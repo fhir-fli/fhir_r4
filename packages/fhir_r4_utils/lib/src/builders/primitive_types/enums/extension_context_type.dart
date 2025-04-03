@@ -50,7 +50,9 @@ class ExtensionContextTypeBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [ExtensionContextTypeBuilder]
   /// from JSON.
-  factory ExtensionContextTypeBuilder.fromJson(Map<String, dynamic> json) {
+  factory ExtensionContextTypeBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -115,9 +117,13 @@ class ExtensionContextTypeBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  ExtensionContextTypeBuilder withElement(ElementBuilder? newElement) {
+  ExtensionContextTypeBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
     return ExtensionContextTypeBuilder._(
-        valueString: valueString, element: newElement);
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -146,7 +152,9 @@ class ExtensionContextTypeBuilder extends FhirCodeEnumBuilder {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for ExtensionContextType: $newValue');
+      throw ArgumentError(
+        'Invalid input for ExtensionContextType: $newValue',
+      );
     }
     return ExtensionContextTypeBuilder._(
       valueString: newValue ?? valueString,

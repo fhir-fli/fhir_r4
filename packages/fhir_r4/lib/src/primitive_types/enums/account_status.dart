@@ -47,8 +47,11 @@ class AccountStatus extends FhirCodeEnum {
   /// Create empty [AccountStatus] with element only
   factory AccountStatus.empty() => AccountStatus._(valueString: '');
 
-  /// Factory constructor to create [AccountStatus] from JSON.
-  factory AccountStatus.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [AccountStatus]
+  /// from JSON.
+  factory AccountStatus.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -158,7 +161,9 @@ class AccountStatus extends FhirCodeEnum {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for AccountStatus: $newValue');
+      throw ArgumentError(
+        'Invalid input for AccountStatus: $newValue',
+      );
     }
     return AccountStatus._(
       valueString: newValue ?? valueString,

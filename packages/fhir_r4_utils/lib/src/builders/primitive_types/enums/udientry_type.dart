@@ -49,7 +49,9 @@ class UDIEntryTypeBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [UDIEntryTypeBuilder]
   /// from JSON.
-  factory UDIEntryTypeBuilder.fromJson(Map<String, dynamic> json) {
+  factory UDIEntryTypeBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -137,8 +139,13 @@ class UDIEntryTypeBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  UDIEntryTypeBuilder withElement(ElementBuilder? newElement) {
-    return UDIEntryTypeBuilder._(valueString: valueString, element: newElement);
+  UDIEntryTypeBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
+    return UDIEntryTypeBuilder._(
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -167,7 +174,9 @@ class UDIEntryTypeBuilder extends FhirCodeEnumBuilder {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for UDIEntryType: $newValue');
+      throw ArgumentError(
+        'Invalid input for UDIEntryType: $newValue',
+      );
     }
     return UDIEntryTypeBuilder._(
       valueString: newValue ?? valueString,

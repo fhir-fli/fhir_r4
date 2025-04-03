@@ -51,7 +51,9 @@ class ConsentProvisionTypeBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [ConsentProvisionTypeBuilder]
   /// from JSON.
-  factory ConsentProvisionTypeBuilder.fromJson(Map<String, dynamic> json) {
+  factory ConsentProvisionTypeBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -105,9 +107,13 @@ class ConsentProvisionTypeBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  ConsentProvisionTypeBuilder withElement(ElementBuilder? newElement) {
+  ConsentProvisionTypeBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
     return ConsentProvisionTypeBuilder._(
-        valueString: valueString, element: newElement);
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -136,7 +142,9 @@ class ConsentProvisionTypeBuilder extends FhirCodeEnumBuilder {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for ConsentProvisionType: $newValue');
+      throw ArgumentError(
+        'Invalid input for ConsentProvisionType: $newValue',
+      );
     }
     return ConsentProvisionTypeBuilder._(
       valueString: newValue ?? valueString,

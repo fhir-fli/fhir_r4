@@ -49,7 +49,9 @@ class EventStatusBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [EventStatusBuilder]
   /// from JSON.
-  factory EventStatusBuilder.fromJson(Map<String, dynamic> json) {
+  factory EventStatusBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -154,8 +156,13 @@ class EventStatusBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  EventStatusBuilder withElement(ElementBuilder? newElement) {
-    return EventStatusBuilder._(valueString: valueString, element: newElement);
+  EventStatusBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
+    return EventStatusBuilder._(
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -184,7 +191,9 @@ class EventStatusBuilder extends FhirCodeEnumBuilder {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for EventStatus: $newValue');
+      throw ArgumentError(
+        'Invalid input for EventStatus: $newValue',
+      );
     }
     return EventStatusBuilder._(
       valueString: newValue ?? valueString,

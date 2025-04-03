@@ -49,8 +49,11 @@ class AllergyIntoleranceType extends FhirCodeEnum {
   factory AllergyIntoleranceType.empty() =>
       AllergyIntoleranceType._(valueString: '');
 
-  /// Factory constructor to create [AllergyIntoleranceType] from JSON.
-  factory AllergyIntoleranceType.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [AllergyIntoleranceType]
+  /// from JSON.
+  factory AllergyIntoleranceType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -135,7 +138,8 @@ class AllergyIntoleranceType extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for AllergyIntoleranceType: $newValue');
+        'Invalid input for AllergyIntoleranceType: $newValue',
+      );
     }
     return AllergyIntoleranceType._(
       valueString: newValue ?? valueString,

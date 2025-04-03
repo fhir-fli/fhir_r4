@@ -47,8 +47,11 @@ class SequenceType extends FhirCodeEnum {
   /// Create empty [SequenceType] with element only
   factory SequenceType.empty() => SequenceType._(valueString: '');
 
-  /// Factory constructor to create [SequenceType] from JSON.
-  factory SequenceType.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [SequenceType]
+  /// from JSON.
+  factory SequenceType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -140,7 +143,9 @@ class SequenceType extends FhirCodeEnum {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for SequenceType: $newValue');
+      throw ArgumentError(
+        'Invalid input for SequenceType: $newValue',
+      );
     }
     return SequenceType._(
       valueString: newValue ?? valueString,

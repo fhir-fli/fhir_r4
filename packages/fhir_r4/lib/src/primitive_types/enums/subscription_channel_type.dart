@@ -48,8 +48,11 @@ class SubscriptionChannelType extends FhirCodeEnum {
   factory SubscriptionChannelType.empty() =>
       SubscriptionChannelType._(valueString: '');
 
-  /// Factory constructor to create [SubscriptionChannelType] from JSON.
-  factory SubscriptionChannelType.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [SubscriptionChannelType]
+  /// from JSON.
+  factory SubscriptionChannelType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -161,7 +164,8 @@ class SubscriptionChannelType extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for SubscriptionChannelType: $newValue');
+        'Invalid input for SubscriptionChannelType: $newValue',
+      );
     }
     return SubscriptionChannelType._(
       valueString: newValue ?? valueString,

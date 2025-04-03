@@ -49,7 +49,9 @@ class ListModeBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [ListModeBuilder]
   /// from JSON.
-  factory ListModeBuilder.fromJson(Map<String, dynamic> json) {
+  factory ListModeBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -109,8 +111,13 @@ class ListModeBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  ListModeBuilder withElement(ElementBuilder? newElement) {
-    return ListModeBuilder._(valueString: valueString, element: newElement);
+  ListModeBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
+    return ListModeBuilder._(
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -139,7 +146,9 @@ class ListModeBuilder extends FhirCodeEnumBuilder {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for ListMode: $newValue');
+      throw ArgumentError(
+        'Invalid input for ListMode: $newValue',
+      );
     }
     return ListModeBuilder._(
       valueString: newValue ?? valueString,

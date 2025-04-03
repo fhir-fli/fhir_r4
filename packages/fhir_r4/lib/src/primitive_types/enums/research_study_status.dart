@@ -47,8 +47,11 @@ class ResearchStudyStatus extends FhirCodeEnum {
   /// Create empty [ResearchStudyStatus] with element only
   factory ResearchStudyStatus.empty() => ResearchStudyStatus._(valueString: '');
 
-  /// Factory constructor to create [ResearchStudyStatus] from JSON.
-  factory ResearchStudyStatus.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [ResearchStudyStatus]
+  /// from JSON.
+  factory ResearchStudyStatus.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -217,7 +220,9 @@ class ResearchStudyStatus extends FhirCodeEnum {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for ResearchStudyStatus: $newValue');
+      throw ArgumentError(
+        'Invalid input for ResearchStudyStatus: $newValue',
+      );
     }
     return ResearchStudyStatus._(
       valueString: newValue ?? valueString,

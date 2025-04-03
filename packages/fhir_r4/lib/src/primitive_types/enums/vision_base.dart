@@ -47,8 +47,11 @@ class VisionBase extends FhirCodeEnum {
   /// Create empty [VisionBase] with element only
   factory VisionBase.empty() => VisionBase._(valueString: '');
 
-  /// Factory constructor to create [VisionBase] from JSON.
-  factory VisionBase.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [VisionBase]
+  /// from JSON.
+  factory VisionBase.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -149,7 +152,9 @@ class VisionBase extends FhirCodeEnum {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for VisionBase: $newValue');
+      throw ArgumentError(
+        'Invalid input for VisionBase: $newValue',
+      );
     }
     return VisionBase._(
       valueString: newValue ?? valueString,

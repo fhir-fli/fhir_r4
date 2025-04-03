@@ -47,8 +47,11 @@ class InvoiceStatus extends FhirCodeEnum {
   /// Create empty [InvoiceStatus] with element only
   factory InvoiceStatus.empty() => InvoiceStatus._(valueString: '');
 
-  /// Factory constructor to create [InvoiceStatus] from JSON.
-  factory InvoiceStatus.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [InvoiceStatus]
+  /// from JSON.
+  factory InvoiceStatus.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -158,7 +161,9 @@ class InvoiceStatus extends FhirCodeEnum {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for InvoiceStatus: $newValue');
+      throw ArgumentError(
+        'Invalid input for InvoiceStatus: $newValue',
+      );
     }
     return InvoiceStatus._(
       valueString: newValue ?? valueString,

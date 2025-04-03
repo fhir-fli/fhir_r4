@@ -48,8 +48,11 @@ class ActionGroupingBehavior extends FhirCodeEnum {
   factory ActionGroupingBehavior.empty() =>
       ActionGroupingBehavior._(valueString: '');
 
-  /// Factory constructor to create [ActionGroupingBehavior] from JSON.
-  factory ActionGroupingBehavior.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [ActionGroupingBehavior]
+  /// from JSON.
+  factory ActionGroupingBehavior.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -143,7 +146,8 @@ class ActionGroupingBehavior extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for ActionGroupingBehavior: $newValue');
+        'Invalid input for ActionGroupingBehavior: $newValue',
+      );
     }
     return ActionGroupingBehavior._(
       valueString: newValue ?? valueString,

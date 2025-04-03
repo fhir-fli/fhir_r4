@@ -50,7 +50,9 @@ class ObservationDataTypeBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [ObservationDataTypeBuilder]
   /// from JSON.
-  factory ObservationDataTypeBuilder.fromJson(Map<String, dynamic> json) {
+  factory ObservationDataTypeBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -184,9 +186,13 @@ class ObservationDataTypeBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  ObservationDataTypeBuilder withElement(ElementBuilder? newElement) {
+  ObservationDataTypeBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
     return ObservationDataTypeBuilder._(
-        valueString: valueString, element: newElement);
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -215,7 +221,9 @@ class ObservationDataTypeBuilder extends FhirCodeEnumBuilder {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for ObservationDataType: $newValue');
+      throw ArgumentError(
+        'Invalid input for ObservationDataType: $newValue',
+      );
     }
     return ObservationDataTypeBuilder._(
       valueString: newValue ?? valueString,

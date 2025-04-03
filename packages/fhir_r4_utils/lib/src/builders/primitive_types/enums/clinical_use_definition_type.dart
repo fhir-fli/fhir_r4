@@ -50,7 +50,9 @@ class ClinicalUseDefinitionTypeBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [ClinicalUseDefinitionTypeBuilder]
   /// from JSON.
-  factory ClinicalUseDefinitionTypeBuilder.fromJson(Map<String, dynamic> json) {
+  factory ClinicalUseDefinitionTypeBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -140,9 +142,13 @@ class ClinicalUseDefinitionTypeBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  ClinicalUseDefinitionTypeBuilder withElement(ElementBuilder? newElement) {
+  ClinicalUseDefinitionTypeBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
     return ClinicalUseDefinitionTypeBuilder._(
-        valueString: valueString, element: newElement);
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -172,7 +178,8 @@ class ClinicalUseDefinitionTypeBuilder extends FhirCodeEnumBuilder {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for ClinicalUseDefinitionType: $newValue');
+        'Invalid input for ClinicalUseDefinitionType: $newValue',
+      );
     }
     return ClinicalUseDefinitionTypeBuilder._(
       valueString: newValue ?? valueString,

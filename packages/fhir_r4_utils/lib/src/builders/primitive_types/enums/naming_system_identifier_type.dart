@@ -51,7 +51,8 @@ class NamingSystemIdentifierTypeBuilder extends FhirCodeEnumBuilder {
   /// Factory constructor to create [NamingSystemIdentifierTypeBuilder]
   /// from JSON.
   factory NamingSystemIdentifierTypeBuilder.fromJson(
-      Map<String, dynamic> json) {
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -130,9 +131,13 @@ class NamingSystemIdentifierTypeBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  NamingSystemIdentifierTypeBuilder withElement(ElementBuilder? newElement) {
+  NamingSystemIdentifierTypeBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
     return NamingSystemIdentifierTypeBuilder._(
-        valueString: valueString, element: newElement);
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -162,7 +167,8 @@ class NamingSystemIdentifierTypeBuilder extends FhirCodeEnumBuilder {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for NamingSystemIdentifierType: $newValue');
+        'Invalid input for NamingSystemIdentifierType: $newValue',
+      );
     }
     return NamingSystemIdentifierTypeBuilder._(
       valueString: newValue ?? valueString,

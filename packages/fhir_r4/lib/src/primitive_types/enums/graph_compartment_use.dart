@@ -47,8 +47,11 @@ class GraphCompartmentUse extends FhirCodeEnum {
   /// Create empty [GraphCompartmentUse] with element only
   factory GraphCompartmentUse.empty() => GraphCompartmentUse._(valueString: '');
 
-  /// Factory constructor to create [GraphCompartmentUse] from JSON.
-  factory GraphCompartmentUse.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [GraphCompartmentUse]
+  /// from JSON.
+  factory GraphCompartmentUse.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -132,7 +135,9 @@ class GraphCompartmentUse extends FhirCodeEnum {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for GraphCompartmentUse: $newValue');
+      throw ArgumentError(
+        'Invalid input for GraphCompartmentUse: $newValue',
+      );
     }
     return GraphCompartmentUse._(
       valueString: newValue ?? valueString,

@@ -48,8 +48,11 @@ class StructureMapTargetListMode extends FhirCodeEnum {
   factory StructureMapTargetListMode.empty() =>
       StructureMapTargetListMode._(valueString: '');
 
-  /// Factory constructor to create [StructureMapTargetListMode] from JSON.
-  factory StructureMapTargetListMode.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [StructureMapTargetListMode]
+  /// from JSON.
+  factory StructureMapTargetListMode.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -153,7 +156,8 @@ class StructureMapTargetListMode extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for StructureMapTargetListMode: $newValue');
+        'Invalid input for StructureMapTargetListMode: $newValue',
+      );
     }
     return StructureMapTargetListMode._(
       valueString: newValue ?? valueString,

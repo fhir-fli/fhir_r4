@@ -48,8 +48,11 @@ class StructureMapTransform extends FhirCodeEnum {
   factory StructureMapTransform.empty() =>
       StructureMapTransform._(valueString: '');
 
-  /// Factory constructor to create [StructureMapTransform] from JSON.
-  factory StructureMapTransform.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [StructureMapTransform]
+  /// from JSON.
+  factory StructureMapTransform.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -268,7 +271,9 @@ class StructureMapTransform extends FhirCodeEnum {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for StructureMapTransform: $newValue');
+      throw ArgumentError(
+        'Invalid input for StructureMapTransform: $newValue',
+      );
     }
     return StructureMapTransform._(
       valueString: newValue ?? valueString,

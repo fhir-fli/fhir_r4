@@ -51,8 +51,11 @@ class IngredientManufacturerRole extends FhirCodeEnum {
   factory IngredientManufacturerRole.empty() =>
       IngredientManufacturerRole._(valueString: '');
 
-  /// Factory constructor to create [IngredientManufacturerRole] from JSON.
-  factory IngredientManufacturerRole.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [IngredientManufacturerRole]
+  /// from JSON.
+  factory IngredientManufacturerRole.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -154,7 +157,8 @@ class IngredientManufacturerRole extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for IngredientManufacturerRole: $newValue');
+        'Invalid input for IngredientManufacturerRole: $newValue',
+      );
     }
     return IngredientManufacturerRole._(
       valueString: newValue ?? valueString,

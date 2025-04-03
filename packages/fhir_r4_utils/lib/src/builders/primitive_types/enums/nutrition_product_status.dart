@@ -50,7 +50,9 @@ class NutritionProductStatusBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [NutritionProductStatusBuilder]
   /// from JSON.
-  factory NutritionProductStatusBuilder.fromJson(Map<String, dynamic> json) {
+  factory NutritionProductStatusBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -116,9 +118,13 @@ class NutritionProductStatusBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  NutritionProductStatusBuilder withElement(ElementBuilder? newElement) {
+  NutritionProductStatusBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
     return NutritionProductStatusBuilder._(
-        valueString: valueString, element: newElement);
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -148,7 +154,8 @@ class NutritionProductStatusBuilder extends FhirCodeEnumBuilder {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for NutritionProductStatus: $newValue');
+        'Invalid input for NutritionProductStatus: $newValue',
+      );
     }
     return NutritionProductStatusBuilder._(
       valueString: newValue ?? valueString,

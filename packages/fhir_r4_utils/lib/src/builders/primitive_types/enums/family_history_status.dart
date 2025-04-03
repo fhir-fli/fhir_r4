@@ -50,7 +50,9 @@ class FamilyHistoryStatusBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [FamilyHistoryStatusBuilder]
   /// from JSON.
-  factory FamilyHistoryStatusBuilder.fromJson(Map<String, dynamic> json) {
+  factory FamilyHistoryStatusBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -122,9 +124,13 @@ class FamilyHistoryStatusBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  FamilyHistoryStatusBuilder withElement(ElementBuilder? newElement) {
+  FamilyHistoryStatusBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
     return FamilyHistoryStatusBuilder._(
-        valueString: valueString, element: newElement);
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -153,7 +159,9 @@ class FamilyHistoryStatusBuilder extends FhirCodeEnumBuilder {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for FamilyHistoryStatus: $newValue');
+      throw ArgumentError(
+        'Invalid input for FamilyHistoryStatus: $newValue',
+      );
     }
     return FamilyHistoryStatusBuilder._(
       valueString: newValue ?? valueString,

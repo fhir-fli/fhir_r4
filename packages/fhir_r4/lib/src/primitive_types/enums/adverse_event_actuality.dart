@@ -48,8 +48,11 @@ class AdverseEventActuality extends FhirCodeEnum {
   factory AdverseEventActuality.empty() =>
       AdverseEventActuality._(valueString: '');
 
-  /// Factory constructor to create [AdverseEventActuality] from JSON.
-  factory AdverseEventActuality.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [AdverseEventActuality]
+  /// from JSON.
+  factory AdverseEventActuality.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -133,7 +136,9 @@ class AdverseEventActuality extends FhirCodeEnum {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for AdverseEventActuality: $newValue');
+      throw ArgumentError(
+        'Invalid input for AdverseEventActuality: $newValue',
+      );
     }
     return AdverseEventActuality._(
       valueString: newValue ?? valueString,

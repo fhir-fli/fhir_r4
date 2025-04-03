@@ -50,7 +50,9 @@ class ExpressionLanguageBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [ExpressionLanguageBuilder]
   /// from JSON.
-  factory ExpressionLanguageBuilder.fromJson(Map<String, dynamic> json) {
+  factory ExpressionLanguageBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -132,9 +134,13 @@ class ExpressionLanguageBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  ExpressionLanguageBuilder withElement(ElementBuilder? newElement) {
+  ExpressionLanguageBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
     return ExpressionLanguageBuilder._(
-        valueString: valueString, element: newElement);
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -163,7 +169,9 @@ class ExpressionLanguageBuilder extends FhirCodeEnumBuilder {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for ExpressionLanguage: $newValue');
+      throw ArgumentError(
+        'Invalid input for ExpressionLanguage: $newValue',
+      );
     }
     return ExpressionLanguageBuilder._(
       valueString: newValue ?? valueString,

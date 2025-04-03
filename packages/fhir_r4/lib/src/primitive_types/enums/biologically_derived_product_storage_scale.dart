@@ -48,9 +48,11 @@ class BiologicallyDerivedProductStorageScale extends FhirCodeEnum {
   factory BiologicallyDerivedProductStorageScale.empty() =>
       BiologicallyDerivedProductStorageScale._(valueString: '');
 
-  /// Factory constructor to create [BiologicallyDerivedProductStorageScale] from JSON.
+  /// Factory constructor to create [BiologicallyDerivedProductStorageScale]
+  /// from JSON.
   factory BiologicallyDerivedProductStorageScale.fromJson(
-      Map<String, dynamic> json) {
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -149,7 +151,8 @@ class BiologicallyDerivedProductStorageScale extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for BiologicallyDerivedProductStorageScale: $newValue');
+        'Invalid input for BiologicallyDerivedProductStorageScale: $newValue',
+      );
     }
     return BiologicallyDerivedProductStorageScale._(
       valueString: newValue ?? valueString,

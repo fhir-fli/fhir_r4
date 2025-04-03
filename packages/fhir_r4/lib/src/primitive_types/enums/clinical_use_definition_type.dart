@@ -48,8 +48,11 @@ class ClinicalUseDefinitionType extends FhirCodeEnum {
   factory ClinicalUseDefinitionType.empty() =>
       ClinicalUseDefinitionType._(valueString: '');
 
-  /// Factory constructor to create [ClinicalUseDefinitionType] from JSON.
-  factory ClinicalUseDefinitionType.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [ClinicalUseDefinitionType]
+  /// from JSON.
+  factory ClinicalUseDefinitionType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -170,7 +173,8 @@ class ClinicalUseDefinitionType extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for ClinicalUseDefinitionType: $newValue');
+        'Invalid input for ClinicalUseDefinitionType: $newValue',
+      );
     }
     return ClinicalUseDefinitionType._(
       valueString: newValue ?? valueString,

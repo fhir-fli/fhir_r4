@@ -48,8 +48,11 @@ class ActionPrecheckBehavior extends FhirCodeEnum {
   factory ActionPrecheckBehavior.empty() =>
       ActionPrecheckBehavior._(valueString: '');
 
-  /// Factory constructor to create [ActionPrecheckBehavior] from JSON.
-  factory ActionPrecheckBehavior.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [ActionPrecheckBehavior]
+  /// from JSON.
+  factory ActionPrecheckBehavior.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -134,7 +137,8 @@ class ActionPrecheckBehavior extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for ActionPrecheckBehavior: $newValue');
+        'Invalid input for ActionPrecheckBehavior: $newValue',
+      );
     }
     return ActionPrecheckBehavior._(
       valueString: newValue ?? valueString,

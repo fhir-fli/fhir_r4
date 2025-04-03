@@ -49,7 +49,9 @@ class DaysOfWeekBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [DaysOfWeekBuilder]
   /// from JSON.
-  factory DaysOfWeekBuilder.fromJson(Map<String, dynamic> json) {
+  factory DaysOfWeekBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -145,8 +147,13 @@ class DaysOfWeekBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  DaysOfWeekBuilder withElement(ElementBuilder? newElement) {
-    return DaysOfWeekBuilder._(valueString: valueString, element: newElement);
+  DaysOfWeekBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
+    return DaysOfWeekBuilder._(
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -175,7 +182,9 @@ class DaysOfWeekBuilder extends FhirCodeEnumBuilder {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for DaysOfWeek: $newValue');
+      throw ArgumentError(
+        'Invalid input for DaysOfWeek: $newValue',
+      );
     }
     return DaysOfWeekBuilder._(
       valueString: newValue ?? valueString,

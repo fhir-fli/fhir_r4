@@ -49,8 +49,11 @@ class QuestionnaireItemType extends FhirCodeEnum {
   factory QuestionnaireItemType.empty() =>
       QuestionnaireItemType._(valueString: '');
 
-  /// Factory constructor to create [QuestionnaireItemType] from JSON.
-  factory QuestionnaireItemType.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [QuestionnaireItemType]
+  /// from JSON.
+  factory QuestionnaireItemType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -269,7 +272,9 @@ class QuestionnaireItemType extends FhirCodeEnum {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for QuestionnaireItemType: $newValue');
+      throw ArgumentError(
+        'Invalid input for QuestionnaireItemType: $newValue',
+      );
     }
     return QuestionnaireItemType._(
       valueString: newValue ?? valueString,

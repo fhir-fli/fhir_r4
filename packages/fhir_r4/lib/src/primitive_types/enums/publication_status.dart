@@ -47,8 +47,11 @@ class PublicationStatus extends FhirCodeEnum {
   /// Create empty [PublicationStatus] with element only
   factory PublicationStatus.empty() => PublicationStatus._(valueString: '');
 
-  /// Factory constructor to create [PublicationStatus] from JSON.
-  factory PublicationStatus.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [PublicationStatus]
+  /// from JSON.
+  factory PublicationStatus.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -150,7 +153,9 @@ class PublicationStatus extends FhirCodeEnum {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for PublicationStatus: $newValue');
+      throw ArgumentError(
+        'Invalid input for PublicationStatus: $newValue',
+      );
     }
     return PublicationStatus._(
       valueString: newValue ?? valueString,

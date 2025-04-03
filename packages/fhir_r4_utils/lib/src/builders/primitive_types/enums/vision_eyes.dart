@@ -49,7 +49,9 @@ class VisionEyesBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [VisionEyesBuilder]
   /// from JSON.
-  factory VisionEyesBuilder.fromJson(Map<String, dynamic> json) {
+  factory VisionEyesBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -100,8 +102,13 @@ class VisionEyesBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  VisionEyesBuilder withElement(ElementBuilder? newElement) {
-    return VisionEyesBuilder._(valueString: valueString, element: newElement);
+  VisionEyesBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
+    return VisionEyesBuilder._(
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -130,7 +137,9 @@ class VisionEyesBuilder extends FhirCodeEnumBuilder {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for VisionEyes: $newValue');
+      throw ArgumentError(
+        'Invalid input for VisionEyes: $newValue',
+      );
     }
     return VisionEyesBuilder._(
       valueString: newValue ?? valueString,

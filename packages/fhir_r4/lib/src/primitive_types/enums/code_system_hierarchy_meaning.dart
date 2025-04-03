@@ -48,8 +48,11 @@ class CodeSystemHierarchyMeaning extends FhirCodeEnum {
   factory CodeSystemHierarchyMeaning.empty() =>
       CodeSystemHierarchyMeaning._(valueString: '');
 
-  /// Factory constructor to create [CodeSystemHierarchyMeaning] from JSON.
-  factory CodeSystemHierarchyMeaning.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [CodeSystemHierarchyMeaning]
+  /// from JSON.
+  factory CodeSystemHierarchyMeaning.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -159,7 +162,8 @@ class CodeSystemHierarchyMeaning extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for CodeSystemHierarchyMeaning: $newValue');
+        'Invalid input for CodeSystemHierarchyMeaning: $newValue',
+      );
     }
     return CodeSystemHierarchyMeaning._(
       valueString: newValue ?? valueString,

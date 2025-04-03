@@ -50,7 +50,9 @@ class AccountStatusBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [AccountStatusBuilder]
   /// from JSON.
-  factory AccountStatusBuilder.fromJson(Map<String, dynamic> json) {
+  factory AccountStatusBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -129,9 +131,13 @@ class AccountStatusBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  AccountStatusBuilder withElement(ElementBuilder? newElement) {
+  AccountStatusBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
     return AccountStatusBuilder._(
-        valueString: valueString, element: newElement);
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -160,7 +166,9 @@ class AccountStatusBuilder extends FhirCodeEnumBuilder {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for AccountStatus: $newValue');
+      throw ArgumentError(
+        'Invalid input for AccountStatus: $newValue',
+      );
     }
     return AccountStatusBuilder._(
       valueString: newValue ?? valueString,

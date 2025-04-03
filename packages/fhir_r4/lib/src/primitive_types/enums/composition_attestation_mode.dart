@@ -48,8 +48,11 @@ class CompositionAttestationMode extends FhirCodeEnum {
   factory CompositionAttestationMode.empty() =>
       CompositionAttestationMode._(valueString: '');
 
-  /// Factory constructor to create [CompositionAttestationMode] from JSON.
-  factory CompositionAttestationMode.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [CompositionAttestationMode]
+  /// from JSON.
+  factory CompositionAttestationMode.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -159,7 +162,8 @@ class CompositionAttestationMode extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for CompositionAttestationMode: $newValue');
+        'Invalid input for CompositionAttestationMode: $newValue',
+      );
     }
     return CompositionAttestationMode._(
       valueString: newValue ?? valueString,

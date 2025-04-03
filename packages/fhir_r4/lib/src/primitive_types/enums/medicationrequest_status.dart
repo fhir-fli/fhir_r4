@@ -48,8 +48,11 @@ class MedicationrequestStatus extends FhirCodeEnum {
   factory MedicationrequestStatus.empty() =>
       MedicationrequestStatus._(valueString: '');
 
-  /// Factory constructor to create [MedicationrequestStatus] from JSON.
-  factory MedicationrequestStatus.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [MedicationrequestStatus]
+  /// from JSON.
+  factory MedicationrequestStatus.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -189,7 +192,8 @@ class MedicationrequestStatus extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for MedicationrequestStatus: $newValue');
+        'Invalid input for MedicationrequestStatus: $newValue',
+      );
     }
     return MedicationrequestStatus._(
       valueString: newValue ?? valueString,

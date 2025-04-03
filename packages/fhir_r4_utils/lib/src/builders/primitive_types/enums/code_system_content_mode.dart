@@ -51,7 +51,9 @@ class CodeSystemContentModeBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [CodeSystemContentModeBuilder]
   /// from JSON.
-  factory CodeSystemContentModeBuilder.fromJson(Map<String, dynamic> json) {
+  factory CodeSystemContentModeBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -137,9 +139,13 @@ class CodeSystemContentModeBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  CodeSystemContentModeBuilder withElement(ElementBuilder? newElement) {
+  CodeSystemContentModeBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
     return CodeSystemContentModeBuilder._(
-        valueString: valueString, element: newElement);
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -168,7 +174,9 @@ class CodeSystemContentModeBuilder extends FhirCodeEnumBuilder {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for CodeSystemContentMode: $newValue');
+      throw ArgumentError(
+        'Invalid input for CodeSystemContentMode: $newValue',
+      );
     }
     return CodeSystemContentModeBuilder._(
       valueString: newValue ?? valueString,

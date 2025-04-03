@@ -50,7 +50,9 @@ class ChargeItemStatusBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [ChargeItemStatusBuilder]
   /// from JSON.
-  factory ChargeItemStatusBuilder.fromJson(Map<String, dynamic> json) {
+  factory ChargeItemStatusBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -147,9 +149,13 @@ class ChargeItemStatusBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  ChargeItemStatusBuilder withElement(ElementBuilder? newElement) {
+  ChargeItemStatusBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
     return ChargeItemStatusBuilder._(
-        valueString: valueString, element: newElement);
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -178,7 +184,9 @@ class ChargeItemStatusBuilder extends FhirCodeEnumBuilder {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for ChargeItemStatus: $newValue');
+      throw ArgumentError(
+        'Invalid input for ChargeItemStatus: $newValue',
+      );
     }
     return ChargeItemStatusBuilder._(
       valueString: newValue ?? valueString,

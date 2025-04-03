@@ -48,8 +48,11 @@ class StructureDefinitionKind extends FhirCodeEnum {
   factory StructureDefinitionKind.empty() =>
       StructureDefinitionKind._(valueString: '');
 
-  /// Factory constructor to create [StructureDefinitionKind] from JSON.
-  factory StructureDefinitionKind.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [StructureDefinitionKind]
+  /// from JSON.
+  factory StructureDefinitionKind.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -153,7 +156,8 @@ class StructureDefinitionKind extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for StructureDefinitionKind: $newValue');
+        'Invalid input for StructureDefinitionKind: $newValue',
+      );
     }
     return StructureDefinitionKind._(
       valueString: newValue ?? valueString,

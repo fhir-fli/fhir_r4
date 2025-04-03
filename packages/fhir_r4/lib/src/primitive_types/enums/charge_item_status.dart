@@ -47,8 +47,11 @@ class ChargeItemStatus extends FhirCodeEnum {
   /// Create empty [ChargeItemStatus] with element only
   factory ChargeItemStatus.empty() => ChargeItemStatus._(valueString: '');
 
-  /// Factory constructor to create [ChargeItemStatus] from JSON.
-  factory ChargeItemStatus.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [ChargeItemStatus]
+  /// from JSON.
+  factory ChargeItemStatus.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -177,7 +180,9 @@ class ChargeItemStatus extends FhirCodeEnum {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for ChargeItemStatus: $newValue');
+      throw ArgumentError(
+        'Invalid input for ChargeItemStatus: $newValue',
+      );
     }
     return ChargeItemStatus._(
       valueString: newValue ?? valueString,

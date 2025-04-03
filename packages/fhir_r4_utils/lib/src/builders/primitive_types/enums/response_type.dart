@@ -49,7 +49,9 @@ class ResponseTypeBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [ResponseTypeBuilder]
   /// from JSON.
-  factory ResponseTypeBuilder.fromJson(Map<String, dynamic> json) {
+  factory ResponseTypeBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -110,8 +112,13 @@ class ResponseTypeBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  ResponseTypeBuilder withElement(ElementBuilder? newElement) {
-    return ResponseTypeBuilder._(valueString: valueString, element: newElement);
+  ResponseTypeBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
+    return ResponseTypeBuilder._(
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -140,7 +147,9 @@ class ResponseTypeBuilder extends FhirCodeEnumBuilder {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for ResponseType: $newValue');
+      throw ArgumentError(
+        'Invalid input for ResponseType: $newValue',
+      );
     }
     return ResponseTypeBuilder._(
       valueString: newValue ?? valueString,

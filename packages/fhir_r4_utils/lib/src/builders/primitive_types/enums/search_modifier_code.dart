@@ -50,7 +50,9 @@ class SearchModifierCodeBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [SearchModifierCodeBuilder]
   /// from JSON.
-  factory SearchModifierCodeBuilder.fromJson(Map<String, dynamic> json) {
+  factory SearchModifierCodeBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -204,9 +206,13 @@ class SearchModifierCodeBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  SearchModifierCodeBuilder withElement(ElementBuilder? newElement) {
+  SearchModifierCodeBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
     return SearchModifierCodeBuilder._(
-        valueString: valueString, element: newElement);
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -235,7 +241,9 @@ class SearchModifierCodeBuilder extends FhirCodeEnumBuilder {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for SearchModifierCode: $newValue');
+      throw ArgumentError(
+        'Invalid input for SearchModifierCode: $newValue',
+      );
     }
     return SearchModifierCodeBuilder._(
       valueString: newValue ?? valueString,

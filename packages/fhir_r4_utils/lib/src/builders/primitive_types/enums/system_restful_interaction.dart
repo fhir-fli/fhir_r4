@@ -50,7 +50,9 @@ class SystemRestfulInteractionBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [SystemRestfulInteractionBuilder]
   /// from JSON.
-  factory SystemRestfulInteractionBuilder.fromJson(Map<String, dynamic> json) {
+  factory SystemRestfulInteractionBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -271,9 +273,13 @@ class SystemRestfulInteractionBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  SystemRestfulInteractionBuilder withElement(ElementBuilder? newElement) {
+  SystemRestfulInteractionBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
     return SystemRestfulInteractionBuilder._(
-        valueString: valueString, element: newElement);
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -303,7 +309,8 @@ class SystemRestfulInteractionBuilder extends FhirCodeEnumBuilder {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for SystemRestfulInteraction: $newValue');
+        'Invalid input for SystemRestfulInteraction: $newValue',
+      );
     }
     return SystemRestfulInteractionBuilder._(
       valueString: newValue ?? valueString,

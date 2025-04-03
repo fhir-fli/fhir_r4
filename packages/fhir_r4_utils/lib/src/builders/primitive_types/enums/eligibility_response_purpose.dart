@@ -51,7 +51,8 @@ class EligibilityResponsePurposeBuilder extends FhirCodeEnumBuilder {
   /// Factory constructor to create [EligibilityResponsePurposeBuilder]
   /// from JSON.
   factory EligibilityResponsePurposeBuilder.fromJson(
-      Map<String, dynamic> json) {
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -130,9 +131,13 @@ class EligibilityResponsePurposeBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  EligibilityResponsePurposeBuilder withElement(ElementBuilder? newElement) {
+  EligibilityResponsePurposeBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
     return EligibilityResponsePurposeBuilder._(
-        valueString: valueString, element: newElement);
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -162,7 +167,8 @@ class EligibilityResponsePurposeBuilder extends FhirCodeEnumBuilder {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for EligibilityResponsePurpose: $newValue');
+        'Invalid input for EligibilityResponsePurpose: $newValue',
+      );
     }
     return EligibilityResponsePurposeBuilder._(
       valueString: newValue ?? valueString,

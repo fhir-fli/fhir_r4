@@ -50,7 +50,9 @@ class AuditEventOutcomeBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [AuditEventOutcomeBuilder]
   /// from JSON.
-  factory AuditEventOutcomeBuilder.fromJson(Map<String, dynamic> json) {
+  factory AuditEventOutcomeBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -120,9 +122,13 @@ class AuditEventOutcomeBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  AuditEventOutcomeBuilder withElement(ElementBuilder? newElement) {
+  AuditEventOutcomeBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
     return AuditEventOutcomeBuilder._(
-        valueString: valueString, element: newElement);
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -151,7 +157,9 @@ class AuditEventOutcomeBuilder extends FhirCodeEnumBuilder {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for AuditEventOutcome: $newValue');
+      throw ArgumentError(
+        'Invalid input for AuditEventOutcome: $newValue',
+      );
     }
     return AuditEventOutcomeBuilder._(
       valueString: newValue ?? valueString,

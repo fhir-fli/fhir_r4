@@ -50,7 +50,9 @@ class EventCapabilityModeBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [EventCapabilityModeBuilder]
   /// from JSON.
-  factory EventCapabilityModeBuilder.fromJson(Map<String, dynamic> json) {
+  factory EventCapabilityModeBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -104,9 +106,13 @@ class EventCapabilityModeBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  EventCapabilityModeBuilder withElement(ElementBuilder? newElement) {
+  EventCapabilityModeBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
     return EventCapabilityModeBuilder._(
-        valueString: valueString, element: newElement);
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -135,7 +141,9 @@ class EventCapabilityModeBuilder extends FhirCodeEnumBuilder {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for EventCapabilityMode: $newValue');
+      throw ArgumentError(
+        'Invalid input for EventCapabilityMode: $newValue',
+      );
     }
     return EventCapabilityModeBuilder._(
       valueString: newValue ?? valueString,

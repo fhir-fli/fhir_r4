@@ -49,7 +49,9 @@ class TaskStatusBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [TaskStatusBuilder]
   /// from JSON.
-  factory TaskStatusBuilder.fromJson(Map<String, dynamic> json) {
+  factory TaskStatusBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -190,8 +192,13 @@ class TaskStatusBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  TaskStatusBuilder withElement(ElementBuilder? newElement) {
-    return TaskStatusBuilder._(valueString: valueString, element: newElement);
+  TaskStatusBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
+    return TaskStatusBuilder._(
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -220,7 +227,9 @@ class TaskStatusBuilder extends FhirCodeEnumBuilder {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for TaskStatus: $newValue');
+      throw ArgumentError(
+        'Invalid input for TaskStatus: $newValue',
+      );
     }
     return TaskStatusBuilder._(
       valueString: newValue ?? valueString,

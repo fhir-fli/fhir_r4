@@ -48,8 +48,11 @@ class AdministrativeGender extends FhirCodeEnum {
   factory AdministrativeGender.empty() =>
       AdministrativeGender._(valueString: '');
 
-  /// Factory constructor to create [AdministrativeGender] from JSON.
-  factory AdministrativeGender.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [AdministrativeGender]
+  /// from JSON.
+  factory AdministrativeGender.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -151,7 +154,9 @@ class AdministrativeGender extends FhirCodeEnum {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for AdministrativeGender: $newValue');
+      throw ArgumentError(
+        'Invalid input for AdministrativeGender: $newValue',
+      );
     }
     return AdministrativeGender._(
       valueString: newValue ?? valueString,

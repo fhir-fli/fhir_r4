@@ -51,7 +51,8 @@ class BiologicallyDerivedProductStatusBuilder extends FhirCodeEnumBuilder {
   /// Factory constructor to create [BiologicallyDerivedProductStatusBuilder]
   /// from JSON.
   factory BiologicallyDerivedProductStatusBuilder.fromJson(
-      Map<String, dynamic> json) {
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -108,9 +109,12 @@ class BiologicallyDerivedProductStatusBuilder extends FhirCodeEnumBuilder {
 
   /// Returns the enum value with an element attached
   BiologicallyDerivedProductStatusBuilder withElement(
-      ElementBuilder? newElement) {
+    ElementBuilder? newElement,
+  ) {
     return BiologicallyDerivedProductStatusBuilder._(
-        valueString: valueString, element: newElement);
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -140,7 +144,8 @@ class BiologicallyDerivedProductStatusBuilder extends FhirCodeEnumBuilder {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for BiologicallyDerivedProductStatus: $newValue');
+        'Invalid input for BiologicallyDerivedProductStatus: $newValue',
+      );
     }
     return BiologicallyDerivedProductStatusBuilder._(
       valueString: newValue ?? valueString,

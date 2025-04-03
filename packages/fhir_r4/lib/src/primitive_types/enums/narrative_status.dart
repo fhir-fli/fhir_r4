@@ -47,8 +47,11 @@ class NarrativeStatus extends FhirCodeEnum {
   /// Create empty [NarrativeStatus] with element only
   factory NarrativeStatus.empty() => NarrativeStatus._(valueString: '');
 
-  /// Factory constructor to create [NarrativeStatus] from JSON.
-  factory NarrativeStatus.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [NarrativeStatus]
+  /// from JSON.
+  factory NarrativeStatus.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -149,7 +152,9 @@ class NarrativeStatus extends FhirCodeEnum {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for NarrativeStatus: $newValue');
+      throw ArgumentError(
+        'Invalid input for NarrativeStatus: $newValue',
+      );
     }
     return NarrativeStatus._(
       valueString: newValue ?? valueString,

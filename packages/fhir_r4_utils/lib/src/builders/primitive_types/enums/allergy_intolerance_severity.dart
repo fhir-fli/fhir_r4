@@ -52,7 +52,8 @@ class AllergyIntoleranceSeverityBuilder extends FhirCodeEnumBuilder {
   /// Factory constructor to create [AllergyIntoleranceSeverityBuilder]
   /// from JSON.
   factory AllergyIntoleranceSeverityBuilder.fromJson(
-      Map<String, dynamic> json) {
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -120,9 +121,13 @@ class AllergyIntoleranceSeverityBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  AllergyIntoleranceSeverityBuilder withElement(ElementBuilder? newElement) {
+  AllergyIntoleranceSeverityBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
     return AllergyIntoleranceSeverityBuilder._(
-        valueString: valueString, element: newElement);
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -152,7 +157,8 @@ class AllergyIntoleranceSeverityBuilder extends FhirCodeEnumBuilder {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for AllergyIntoleranceSeverity: $newValue');
+        'Invalid input for AllergyIntoleranceSeverity: $newValue',
+      );
     }
     return AllergyIntoleranceSeverityBuilder._(
       valueString: newValue ?? valueString,

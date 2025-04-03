@@ -50,7 +50,9 @@ class CharacteristicCombinationBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [CharacteristicCombinationBuilder]
   /// from JSON.
-  factory CharacteristicCombinationBuilder.fromJson(Map<String, dynamic> json) {
+  factory CharacteristicCombinationBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -107,9 +109,13 @@ class CharacteristicCombinationBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  CharacteristicCombinationBuilder withElement(ElementBuilder? newElement) {
+  CharacteristicCombinationBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
     return CharacteristicCombinationBuilder._(
-        valueString: valueString, element: newElement);
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -139,7 +145,8 @@ class CharacteristicCombinationBuilder extends FhirCodeEnumBuilder {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for CharacteristicCombination: $newValue');
+        'Invalid input for CharacteristicCombination: $newValue',
+      );
     }
     return CharacteristicCombinationBuilder._(
       valueString: newValue ?? valueString,

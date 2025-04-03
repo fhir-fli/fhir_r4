@@ -50,7 +50,9 @@ class LocationStatusBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [LocationStatusBuilder]
   /// from JSON.
-  factory LocationStatusBuilder.fromJson(Map<String, dynamic> json) {
+  factory LocationStatusBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -111,9 +113,13 @@ class LocationStatusBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  LocationStatusBuilder withElement(ElementBuilder? newElement) {
+  LocationStatusBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
     return LocationStatusBuilder._(
-        valueString: valueString, element: newElement);
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -142,7 +148,9 @@ class LocationStatusBuilder extends FhirCodeEnumBuilder {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for LocationStatus: $newValue');
+      throw ArgumentError(
+        'Invalid input for LocationStatus: $newValue',
+      );
     }
     return LocationStatusBuilder._(
       valueString: newValue ?? valueString,

@@ -47,8 +47,11 @@ class EventStatus extends FhirCodeEnum {
   /// Create empty [EventStatus] with element only
   factory EventStatus.empty() => EventStatus._(valueString: '');
 
-  /// Factory constructor to create [EventStatus] from JSON.
-  factory EventStatus.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [EventStatus]
+  /// from JSON.
+  factory EventStatus.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -185,7 +188,9 @@ class EventStatus extends FhirCodeEnum {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for EventStatus: $newValue');
+      throw ArgumentError(
+        'Invalid input for EventStatus: $newValue',
+      );
     }
     return EventStatus._(
       valueString: newValue ?? valueString,

@@ -49,7 +49,9 @@ class SequenceTypeBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [SequenceTypeBuilder]
   /// from JSON.
-  factory SequenceTypeBuilder.fromJson(Map<String, dynamic> json) {
+  factory SequenceTypeBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -110,8 +112,13 @@ class SequenceTypeBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  SequenceTypeBuilder withElement(ElementBuilder? newElement) {
-    return SequenceTypeBuilder._(valueString: valueString, element: newElement);
+  SequenceTypeBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
+    return SequenceTypeBuilder._(
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -140,7 +147,9 @@ class SequenceTypeBuilder extends FhirCodeEnumBuilder {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for SequenceType: $newValue');
+      throw ArgumentError(
+        'Invalid input for SequenceType: $newValue',
+      );
     }
     return SequenceTypeBuilder._(
       valueString: newValue ?? valueString,

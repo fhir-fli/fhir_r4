@@ -49,8 +49,11 @@ class AllergyIntoleranceSeverity extends FhirCodeEnum {
   factory AllergyIntoleranceSeverity.empty() =>
       AllergyIntoleranceSeverity._(valueString: '');
 
-  /// Factory constructor to create [AllergyIntoleranceSeverity] from JSON.
-  factory AllergyIntoleranceSeverity.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [AllergyIntoleranceSeverity]
+  /// from JSON.
+  factory AllergyIntoleranceSeverity.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -145,7 +148,8 @@ class AllergyIntoleranceSeverity extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for AllergyIntoleranceSeverity: $newValue');
+        'Invalid input for AllergyIntoleranceSeverity: $newValue',
+      );
     }
     return AllergyIntoleranceSeverity._(
       valueString: newValue ?? valueString,

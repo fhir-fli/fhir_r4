@@ -48,8 +48,11 @@ class FinancialResourceStatusCodes extends FhirCodeEnum {
   factory FinancialResourceStatusCodes.empty() =>
       FinancialResourceStatusCodes._(valueString: '');
 
-  /// Factory constructor to create [FinancialResourceStatusCodes] from JSON.
-  factory FinancialResourceStatusCodes.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [FinancialResourceStatusCodes]
+  /// from JSON.
+  factory FinancialResourceStatusCodes.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -156,7 +159,8 @@ class FinancialResourceStatusCodes extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for FinancialResourceStatusCodes: $newValue');
+        'Invalid input for FinancialResourceStatusCodes: $newValue',
+      );
     }
     return FinancialResourceStatusCodes._(
       valueString: newValue ?? valueString,

@@ -47,8 +47,11 @@ class EventCapabilityMode extends FhirCodeEnum {
   /// Create empty [EventCapabilityMode] with element only
   factory EventCapabilityMode.empty() => EventCapabilityMode._(valueString: '');
 
-  /// Factory constructor to create [EventCapabilityMode] from JSON.
-  factory EventCapabilityMode.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [EventCapabilityMode]
+  /// from JSON.
+  factory EventCapabilityMode.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -132,7 +135,9 @@ class EventCapabilityMode extends FhirCodeEnum {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for EventCapabilityMode: $newValue');
+      throw ArgumentError(
+        'Invalid input for EventCapabilityMode: $newValue',
+      );
     }
     return EventCapabilityMode._(
       valueString: newValue ?? valueString,

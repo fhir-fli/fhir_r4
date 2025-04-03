@@ -50,7 +50,9 @@ class GraphCompartmentUseBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [GraphCompartmentUseBuilder]
   /// from JSON.
-  factory GraphCompartmentUseBuilder.fromJson(Map<String, dynamic> json) {
+  factory GraphCompartmentUseBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -104,9 +106,13 @@ class GraphCompartmentUseBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  GraphCompartmentUseBuilder withElement(ElementBuilder? newElement) {
+  GraphCompartmentUseBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
     return GraphCompartmentUseBuilder._(
-        valueString: valueString, element: newElement);
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -135,7 +141,9 @@ class GraphCompartmentUseBuilder extends FhirCodeEnumBuilder {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for GraphCompartmentUse: $newValue');
+      throw ArgumentError(
+        'Invalid input for GraphCompartmentUse: $newValue',
+      );
     }
     return GraphCompartmentUseBuilder._(
       valueString: newValue ?? valueString,

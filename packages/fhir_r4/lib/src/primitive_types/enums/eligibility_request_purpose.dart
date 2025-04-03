@@ -48,8 +48,11 @@ class EligibilityRequestPurpose extends FhirCodeEnum {
   factory EligibilityRequestPurpose.empty() =>
       EligibilityRequestPurpose._(valueString: '');
 
-  /// Factory constructor to create [EligibilityRequestPurpose] from JSON.
-  factory EligibilityRequestPurpose.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [EligibilityRequestPurpose]
+  /// from JSON.
+  factory EligibilityRequestPurpose.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -155,7 +158,8 @@ class EligibilityRequestPurpose extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for EligibilityRequestPurpose: $newValue');
+        'Invalid input for EligibilityRequestPurpose: $newValue',
+      );
     }
     return EligibilityRequestPurpose._(
       valueString: newValue ?? valueString,

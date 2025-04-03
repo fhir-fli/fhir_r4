@@ -48,8 +48,11 @@ class ConsentDataMeaning extends FhirCodeEnum {
   /// Create empty [ConsentDataMeaning] with element only
   factory ConsentDataMeaning.empty() => ConsentDataMeaning._(valueString: '');
 
-  /// Factory constructor to create [ConsentDataMeaning] from JSON.
-  factory ConsentDataMeaning.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [ConsentDataMeaning]
+  /// from JSON.
+  factory ConsentDataMeaning.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -151,7 +154,9 @@ class ConsentDataMeaning extends FhirCodeEnum {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for ConsentDataMeaning: $newValue');
+      throw ArgumentError(
+        'Invalid input for ConsentDataMeaning: $newValue',
+      );
     }
     return ConsentDataMeaning._(
       valueString: newValue ?? valueString,

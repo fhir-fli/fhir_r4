@@ -51,7 +51,9 @@ class ClinicalImpressionStatusBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [ClinicalImpressionStatusBuilder]
   /// from JSON.
-  factory ClinicalImpressionStatusBuilder.fromJson(Map<String, dynamic> json) {
+  factory ClinicalImpressionStatusBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -173,9 +175,13 @@ class ClinicalImpressionStatusBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  ClinicalImpressionStatusBuilder withElement(ElementBuilder? newElement) {
+  ClinicalImpressionStatusBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
     return ClinicalImpressionStatusBuilder._(
-        valueString: valueString, element: newElement);
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -205,7 +211,8 @@ class ClinicalImpressionStatusBuilder extends FhirCodeEnumBuilder {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for ClinicalImpressionStatus: $newValue');
+        'Invalid input for ClinicalImpressionStatus: $newValue',
+      );
     }
     return ClinicalImpressionStatusBuilder._(
       valueString: newValue ?? valueString,

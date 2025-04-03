@@ -50,7 +50,9 @@ class FHIRDeviceStatusBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [FHIRDeviceStatusBuilder]
   /// from JSON.
-  factory FHIRDeviceStatusBuilder.fromJson(Map<String, dynamic> json) {
+  factory FHIRDeviceStatusBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -120,9 +122,13 @@ class FHIRDeviceStatusBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  FHIRDeviceStatusBuilder withElement(ElementBuilder? newElement) {
+  FHIRDeviceStatusBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
     return FHIRDeviceStatusBuilder._(
-        valueString: valueString, element: newElement);
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -151,7 +157,9 @@ class FHIRDeviceStatusBuilder extends FhirCodeEnumBuilder {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for FHIRDeviceStatus: $newValue');
+      throw ArgumentError(
+        'Invalid input for FHIRDeviceStatus: $newValue',
+      );
     }
     return FHIRDeviceStatusBuilder._(
       valueString: newValue ?? valueString,

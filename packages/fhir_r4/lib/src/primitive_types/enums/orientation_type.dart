@@ -47,8 +47,11 @@ class OrientationType extends FhirCodeEnum {
   /// Create empty [OrientationType] with element only
   factory OrientationType.empty() => OrientationType._(valueString: '');
 
-  /// Factory constructor to create [OrientationType] from JSON.
-  factory OrientationType.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [OrientationType]
+  /// from JSON.
+  factory OrientationType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -131,7 +134,9 @@ class OrientationType extends FhirCodeEnum {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for OrientationType: $newValue');
+      throw ArgumentError(
+        'Invalid input for OrientationType: $newValue',
+      );
     }
     return OrientationType._(
       valueString: newValue ?? valueString,

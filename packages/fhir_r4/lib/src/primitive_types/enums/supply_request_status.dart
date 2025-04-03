@@ -47,8 +47,11 @@ class SupplyRequestStatus extends FhirCodeEnum {
   /// Create empty [SupplyRequestStatus] with element only
   factory SupplyRequestStatus.empty() => SupplyRequestStatus._(valueString: '');
 
-  /// Factory constructor to create [SupplyRequestStatus] from JSON.
-  factory SupplyRequestStatus.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [SupplyRequestStatus]
+  /// from JSON.
+  factory SupplyRequestStatus.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -177,7 +180,9 @@ class SupplyRequestStatus extends FhirCodeEnum {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for SupplyRequestStatus: $newValue');
+      throw ArgumentError(
+        'Invalid input for SupplyRequestStatus: $newValue',
+      );
     }
     return SupplyRequestStatus._(
       valueString: newValue ?? valueString,

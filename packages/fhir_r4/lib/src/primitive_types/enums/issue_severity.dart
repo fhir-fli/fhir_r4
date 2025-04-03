@@ -47,8 +47,11 @@ class IssueSeverity extends FhirCodeEnum {
   /// Create empty [IssueSeverity] with element only
   factory IssueSeverity.empty() => IssueSeverity._(valueString: '');
 
-  /// Factory constructor to create [IssueSeverity] from JSON.
-  factory IssueSeverity.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [IssueSeverity]
+  /// from JSON.
+  factory IssueSeverity.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -149,7 +152,9 @@ class IssueSeverity extends FhirCodeEnum {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for IssueSeverity: $newValue');
+      throw ArgumentError(
+        'Invalid input for IssueSeverity: $newValue',
+      );
     }
     return IssueSeverity._(
       valueString: newValue ?? valueString,

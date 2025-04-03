@@ -50,7 +50,9 @@ class DeviceNameTypeBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [DeviceNameTypeBuilder]
   /// from JSON.
-  factory DeviceNameTypeBuilder.fromJson(Map<String, dynamic> json) {
+  factory DeviceNameTypeBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -138,9 +140,13 @@ class DeviceNameTypeBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  DeviceNameTypeBuilder withElement(ElementBuilder? newElement) {
+  DeviceNameTypeBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
     return DeviceNameTypeBuilder._(
-        valueString: valueString, element: newElement);
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -169,7 +175,9 @@ class DeviceNameTypeBuilder extends FhirCodeEnumBuilder {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for DeviceNameType: $newValue');
+      throw ArgumentError(
+        'Invalid input for DeviceNameType: $newValue',
+      );
     }
     return DeviceNameTypeBuilder._(
       valueString: newValue ?? valueString,

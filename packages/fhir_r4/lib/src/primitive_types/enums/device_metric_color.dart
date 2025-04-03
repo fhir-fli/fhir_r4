@@ -47,8 +47,11 @@ class DeviceMetricColor extends FhirCodeEnum {
   /// Create empty [DeviceMetricColor] with element only
   factory DeviceMetricColor.empty() => DeviceMetricColor._(valueString: '');
 
-  /// Factory constructor to create [DeviceMetricColor] from JSON.
-  factory DeviceMetricColor.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [DeviceMetricColor]
+  /// from JSON.
+  factory DeviceMetricColor.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -186,7 +189,9 @@ class DeviceMetricColor extends FhirCodeEnum {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for DeviceMetricColor: $newValue');
+      throw ArgumentError(
+        'Invalid input for DeviceMetricColor: $newValue',
+      );
     }
     return DeviceMetricColor._(
       valueString: newValue ?? valueString,

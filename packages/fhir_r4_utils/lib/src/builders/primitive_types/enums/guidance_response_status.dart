@@ -50,7 +50,9 @@ class GuidanceResponseStatusBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [GuidanceResponseStatusBuilder]
   /// from JSON.
-  factory GuidanceResponseStatusBuilder.fromJson(Map<String, dynamic> json) {
+  factory GuidanceResponseStatusBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -150,9 +152,13 @@ class GuidanceResponseStatusBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  GuidanceResponseStatusBuilder withElement(ElementBuilder? newElement) {
+  GuidanceResponseStatusBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
     return GuidanceResponseStatusBuilder._(
-        valueString: valueString, element: newElement);
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -182,7 +188,8 @@ class GuidanceResponseStatusBuilder extends FhirCodeEnumBuilder {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for GuidanceResponseStatus: $newValue');
+        'Invalid input for GuidanceResponseStatus: $newValue',
+      );
     }
     return GuidanceResponseStatusBuilder._(
       valueString: newValue ?? valueString,

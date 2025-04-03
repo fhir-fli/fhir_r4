@@ -50,7 +50,9 @@ class RepositoryTypeBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [RepositoryTypeBuilder]
   /// from JSON.
-  factory RepositoryTypeBuilder.fromJson(Map<String, dynamic> json) {
+  factory RepositoryTypeBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -136,9 +138,13 @@ class RepositoryTypeBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  RepositoryTypeBuilder withElement(ElementBuilder? newElement) {
+  RepositoryTypeBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
     return RepositoryTypeBuilder._(
-        valueString: valueString, element: newElement);
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -167,7 +173,9 @@ class RepositoryTypeBuilder extends FhirCodeEnumBuilder {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for RepositoryType: $newValue');
+      throw ArgumentError(
+        'Invalid input for RepositoryType: $newValue',
+      );
     }
     return RepositoryTypeBuilder._(
       valueString: newValue ?? valueString,

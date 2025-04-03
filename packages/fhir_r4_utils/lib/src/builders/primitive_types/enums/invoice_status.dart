@@ -50,7 +50,9 @@ class InvoiceStatusBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [InvoiceStatusBuilder]
   /// from JSON.
-  factory InvoiceStatusBuilder.fromJson(Map<String, dynamic> json) {
+  factory InvoiceStatusBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -129,9 +131,13 @@ class InvoiceStatusBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  InvoiceStatusBuilder withElement(ElementBuilder? newElement) {
+  InvoiceStatusBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
     return InvoiceStatusBuilder._(
-        valueString: valueString, element: newElement);
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -160,7 +166,9 @@ class InvoiceStatusBuilder extends FhirCodeEnumBuilder {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for InvoiceStatus: $newValue');
+      throw ArgumentError(
+        'Invalid input for InvoiceStatus: $newValue',
+      );
     }
     return InvoiceStatusBuilder._(
       valueString: newValue ?? valueString,

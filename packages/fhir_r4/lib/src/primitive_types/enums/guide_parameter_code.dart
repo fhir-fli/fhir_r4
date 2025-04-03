@@ -47,8 +47,11 @@ class GuideParameterCode extends FhirCodeEnum {
   /// Create empty [GuideParameterCode] with element only
   factory GuideParameterCode.empty() => GuideParameterCode._(valueString: '');
 
-  /// Factory constructor to create [GuideParameterCode] from JSON.
-  factory GuideParameterCode.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [GuideParameterCode]
+  /// from JSON.
+  factory GuideParameterCode.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -204,7 +207,9 @@ class GuideParameterCode extends FhirCodeEnum {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for GuideParameterCode: $newValue');
+      throw ArgumentError(
+        'Invalid input for GuideParameterCode: $newValue',
+      );
     }
     return GuideParameterCode._(
       valueString: newValue ?? valueString,

@@ -52,7 +52,9 @@ class SearchEntryModeBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [SearchEntryModeBuilder]
   /// from JSON.
-  factory SearchEntryModeBuilder.fromJson(Map<String, dynamic> json) {
+  factory SearchEntryModeBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -113,9 +115,13 @@ class SearchEntryModeBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  SearchEntryModeBuilder withElement(ElementBuilder? newElement) {
+  SearchEntryModeBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
     return SearchEntryModeBuilder._(
-        valueString: valueString, element: newElement);
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -144,7 +150,9 @@ class SearchEntryModeBuilder extends FhirCodeEnumBuilder {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for SearchEntryMode: $newValue');
+      throw ArgumentError(
+        'Invalid input for SearchEntryMode: $newValue',
+      );
     }
     return SearchEntryModeBuilder._(
       valueString: newValue ?? valueString,

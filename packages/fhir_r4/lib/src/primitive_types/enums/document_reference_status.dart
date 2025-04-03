@@ -48,8 +48,11 @@ class DocumentReferenceStatus extends FhirCodeEnum {
   factory DocumentReferenceStatus.empty() =>
       DocumentReferenceStatus._(valueString: '');
 
-  /// Factory constructor to create [DocumentReferenceStatus] from JSON.
-  factory DocumentReferenceStatus.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [DocumentReferenceStatus]
+  /// from JSON.
+  factory DocumentReferenceStatus.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -144,7 +147,8 @@ class DocumentReferenceStatus extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for DocumentReferenceStatus: $newValue');
+        'Invalid input for DocumentReferenceStatus: $newValue',
+      );
     }
     return DocumentReferenceStatus._(
       valueString: newValue ?? valueString,

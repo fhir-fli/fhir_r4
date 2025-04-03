@@ -51,7 +51,9 @@ class ActionCardinalityBehaviorBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [ActionCardinalityBehaviorBuilder]
   /// from JSON.
-  factory ActionCardinalityBehaviorBuilder.fromJson(Map<String, dynamic> json) {
+  factory ActionCardinalityBehaviorBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -108,9 +110,13 @@ class ActionCardinalityBehaviorBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  ActionCardinalityBehaviorBuilder withElement(ElementBuilder? newElement) {
+  ActionCardinalityBehaviorBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
     return ActionCardinalityBehaviorBuilder._(
-        valueString: valueString, element: newElement);
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -140,7 +146,8 @@ class ActionCardinalityBehaviorBuilder extends FhirCodeEnumBuilder {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for ActionCardinalityBehavior: $newValue');
+        'Invalid input for ActionCardinalityBehavior: $newValue',
+      );
     }
     return ActionCardinalityBehaviorBuilder._(
       valueString: newValue ?? valueString,

@@ -54,7 +54,8 @@ class IngredientManufacturerRoleBuilder extends FhirCodeEnumBuilder {
   /// Factory constructor to create [IngredientManufacturerRoleBuilder]
   /// from JSON.
   factory IngredientManufacturerRoleBuilder.fromJson(
-      Map<String, dynamic> json) {
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -125,9 +126,13 @@ class IngredientManufacturerRoleBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  IngredientManufacturerRoleBuilder withElement(ElementBuilder? newElement) {
+  IngredientManufacturerRoleBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
     return IngredientManufacturerRoleBuilder._(
-        valueString: valueString, element: newElement);
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -157,7 +162,8 @@ class IngredientManufacturerRoleBuilder extends FhirCodeEnumBuilder {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for IngredientManufacturerRole: $newValue');
+        'Invalid input for IngredientManufacturerRole: $newValue',
+      );
     }
     return IngredientManufacturerRoleBuilder._(
       valueString: newValue ?? valueString,

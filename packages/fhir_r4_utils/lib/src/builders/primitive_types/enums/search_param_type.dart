@@ -50,7 +50,9 @@ class SearchParamTypeBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [SearchParamTypeBuilder]
   /// from JSON.
-  factory SearchParamTypeBuilder.fromJson(Map<String, dynamic> json) {
+  factory SearchParamTypeBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -165,9 +167,13 @@ class SearchParamTypeBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  SearchParamTypeBuilder withElement(ElementBuilder? newElement) {
+  SearchParamTypeBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
     return SearchParamTypeBuilder._(
-        valueString: valueString, element: newElement);
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -196,7 +202,9 @@ class SearchParamTypeBuilder extends FhirCodeEnumBuilder {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for SearchParamType: $newValue');
+      throw ArgumentError(
+        'Invalid input for SearchParamType: $newValue',
+      );
     }
     return SearchParamTypeBuilder._(
       valueString: newValue ?? valueString,

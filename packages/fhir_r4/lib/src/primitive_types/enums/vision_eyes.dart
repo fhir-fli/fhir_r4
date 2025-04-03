@@ -47,8 +47,11 @@ class VisionEyes extends FhirCodeEnum {
   /// Create empty [VisionEyes] with element only
   factory VisionEyes.empty() => VisionEyes._(valueString: '');
 
-  /// Factory constructor to create [VisionEyes] from JSON.
-  factory VisionEyes.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [VisionEyes]
+  /// from JSON.
+  factory VisionEyes.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -131,7 +134,9 @@ class VisionEyes extends FhirCodeEnum {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for VisionEyes: $newValue');
+      throw ArgumentError(
+        'Invalid input for VisionEyes: $newValue',
+      );
     }
     return VisionEyes._(
       valueString: newValue ?? valueString,

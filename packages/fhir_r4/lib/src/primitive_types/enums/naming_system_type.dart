@@ -47,8 +47,11 @@ class NamingSystemType extends FhirCodeEnum {
   /// Create empty [NamingSystemType] with element only
   factory NamingSystemType.empty() => NamingSystemType._(valueString: '');
 
-  /// Factory constructor to create [NamingSystemType] from JSON.
-  factory NamingSystemType.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [NamingSystemType]
+  /// from JSON.
+  factory NamingSystemType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -141,7 +144,9 @@ class NamingSystemType extends FhirCodeEnum {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for NamingSystemType: $newValue');
+      throw ArgumentError(
+        'Invalid input for NamingSystemType: $newValue',
+      );
     }
     return NamingSystemType._(
       valueString: newValue ?? valueString,

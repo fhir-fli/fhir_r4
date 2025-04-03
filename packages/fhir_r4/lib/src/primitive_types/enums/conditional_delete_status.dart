@@ -48,8 +48,11 @@ class ConditionalDeleteStatus extends FhirCodeEnum {
   factory ConditionalDeleteStatus.empty() =>
       ConditionalDeleteStatus._(valueString: '');
 
-  /// Factory constructor to create [ConditionalDeleteStatus] from JSON.
-  factory ConditionalDeleteStatus.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [ConditionalDeleteStatus]
+  /// from JSON.
+  factory ConditionalDeleteStatus.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -144,7 +147,8 @@ class ConditionalDeleteStatus extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for ConditionalDeleteStatus: $newValue');
+        'Invalid input for ConditionalDeleteStatus: $newValue',
+      );
     }
     return ConditionalDeleteStatus._(
       valueString: newValue ?? valueString,

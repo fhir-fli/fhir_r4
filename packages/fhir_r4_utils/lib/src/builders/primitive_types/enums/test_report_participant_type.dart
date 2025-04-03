@@ -50,7 +50,9 @@ class TestReportParticipantTypeBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [TestReportParticipantTypeBuilder]
   /// from JSON.
-  factory TestReportParticipantTypeBuilder.fromJson(Map<String, dynamic> json) {
+  factory TestReportParticipantTypeBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -118,9 +120,13 @@ class TestReportParticipantTypeBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  TestReportParticipantTypeBuilder withElement(ElementBuilder? newElement) {
+  TestReportParticipantTypeBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
     return TestReportParticipantTypeBuilder._(
-        valueString: valueString, element: newElement);
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -150,7 +156,8 @@ class TestReportParticipantTypeBuilder extends FhirCodeEnumBuilder {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for TestReportParticipantType: $newValue');
+        'Invalid input for TestReportParticipantType: $newValue',
+      );
     }
     return TestReportParticipantTypeBuilder._(
       valueString: newValue ?? valueString,

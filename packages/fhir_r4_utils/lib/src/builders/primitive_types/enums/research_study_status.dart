@@ -50,7 +50,9 @@ class ResearchStudyStatusBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [ResearchStudyStatusBuilder]
   /// from JSON.
-  factory ResearchStudyStatusBuilder.fromJson(Map<String, dynamic> json) {
+  factory ResearchStudyStatusBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -201,9 +203,13 @@ class ResearchStudyStatusBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  ResearchStudyStatusBuilder withElement(ElementBuilder? newElement) {
+  ResearchStudyStatusBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
     return ResearchStudyStatusBuilder._(
-        valueString: valueString, element: newElement);
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -232,7 +238,9 @@ class ResearchStudyStatusBuilder extends FhirCodeEnumBuilder {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for ResearchStudyStatus: $newValue');
+      throw ArgumentError(
+        'Invalid input for ResearchStudyStatus: $newValue',
+      );
     }
     return ResearchStudyStatusBuilder._(
       valueString: newValue ?? valueString,

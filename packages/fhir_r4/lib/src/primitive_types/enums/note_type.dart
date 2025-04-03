@@ -47,8 +47,11 @@ class NoteType extends FhirCodeEnum {
   /// Create empty [NoteType] with element only
   factory NoteType.empty() => NoteType._(valueString: '');
 
-  /// Factory constructor to create [NoteType] from JSON.
-  factory NoteType.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [NoteType]
+  /// from JSON.
+  factory NoteType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -140,7 +143,9 @@ class NoteType extends FhirCodeEnum {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for NoteType: $newValue');
+      throw ArgumentError(
+        'Invalid input for NoteType: $newValue',
+      );
     }
     return NoteType._(
       valueString: newValue ?? valueString,

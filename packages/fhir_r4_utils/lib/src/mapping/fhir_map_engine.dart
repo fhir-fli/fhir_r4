@@ -220,7 +220,6 @@ class FhirMapEngine {
     StructureMapGroup? group,
     bool atRoot,
   ) async {
-    print('$indent Group: ${group?.name}');
     // Resolve and execute extended group first if it exists
     final resolvedGroup = group?.extends_?.toString().isNotEmpty ?? false
         ? _resolveGroupReference(map, group, group!.extends_!.toString())
@@ -1003,13 +1002,7 @@ class FhirMapEngine {
         }
       }
     } else if (dest != null) {
-      print('sharedVars: ${sharedVars.summary()}');
-      print('vars: ${vars.summary()}');
-      print('dest: ${dest.toJson()}');
       if (tgt.listMode?.contains(StructureMapTargetListMode.share) ?? false) {
-        print('sharedVars1: ${sharedVars.summary()}');
-        print('vars1: ${vars.summary()}');
-        print('dest1: ${dest.toJson()}');
         v = sharedVars.get(
           MappingVariableMode.SHARED,
           tgt.listRuleId?.valueString,
@@ -1020,9 +1013,6 @@ class FhirMapEngine {
             v = _typeFactory(types.first);
             dest.setChildByName(tgt.element!.valueString!, v);
           }
-          print('sharedVars2: ${sharedVars.summary()}');
-          print('vars2: ${vars.summary()}');
-          print('dest2: ${dest.toJson()}');
           if (tgt.listRuleId != null && v != null) {
             sharedVars.add(
               MappingVariableMode.SHARED,
@@ -1030,28 +1020,23 @@ class FhirMapEngine {
               v,
             );
           }
-          print('sharedVars3: ${sharedVars.summary()}');
-          print('vars3: ${vars.summary()}');
-          print('dest3: ${dest.toJson()}');
         }
       } else {
+        print('vars1: ${vars.summary()}');
+        print('dest1: ${dest.toJson()}');
         final types = dest.typeByElementName(tgt.element!.valueString!);
         if (types.isNotEmpty) {
           v = _typeFactory(types.first);
           dest.setChildByName(tgt.element!.valueString!, v);
         }
-        print('sharedVars4: ${sharedVars.summary()}');
-        print('vars4: ${vars.summary()}');
-        print('dest4: ${dest.toJson()}');
+        print('vars2: ${vars.summary()}');
+        print('dest2: ${dest.toJson()}');
       }
     }
 
     if (tgt.variable != null && v != null) {
       vars.add(MappingVariableMode.OUTPUT, tgt.variable!.valueString!, v);
     }
-    print('sharedVars: ${sharedVars.summary()}');
-    print('vars: ${vars.summary()}');
-    print('dest: ${dest?.toJson()}');
   }
 
   Future<FhirBaseBuilder?> _runTransform(
@@ -1525,7 +1510,6 @@ class FhirMapEngine {
 
         case 'cc':
           {
-            print(tgt.parameter);
             if ((tgt.parameter?.length ?? 0) < 2) {
               throw FHIRException(
                 message: 'cc transform requires two parameters',

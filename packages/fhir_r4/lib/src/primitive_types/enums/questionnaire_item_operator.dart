@@ -48,8 +48,11 @@ class QuestionnaireItemOperator extends FhirCodeEnum {
   factory QuestionnaireItemOperator.empty() =>
       QuestionnaireItemOperator._(valueString: '');
 
-  /// Factory constructor to create [QuestionnaireItemOperator] from JSON.
-  factory QuestionnaireItemOperator.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [QuestionnaireItemOperator]
+  /// from JSON.
+  factory QuestionnaireItemOperator.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -186,7 +189,8 @@ class QuestionnaireItemOperator extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for QuestionnaireItemOperator: $newValue');
+        'Invalid input for QuestionnaireItemOperator: $newValue',
+      );
     }
     return QuestionnaireItemOperator._(
       valueString: newValue ?? valueString,

@@ -50,7 +50,9 @@ class AssertionOperatorTypeBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [AssertionOperatorTypeBuilder]
   /// from JSON.
-  factory AssertionOperatorTypeBuilder.fromJson(Map<String, dynamic> json) {
+  factory AssertionOperatorTypeBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -198,9 +200,13 @@ class AssertionOperatorTypeBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  AssertionOperatorTypeBuilder withElement(ElementBuilder? newElement) {
+  AssertionOperatorTypeBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
     return AssertionOperatorTypeBuilder._(
-        valueString: valueString, element: newElement);
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -229,7 +235,9 @@ class AssertionOperatorTypeBuilder extends FhirCodeEnumBuilder {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for AssertionOperatorType: $newValue');
+      throw ArgumentError(
+        'Invalid input for AssertionOperatorType: $newValue',
+      );
     }
     return AssertionOperatorTypeBuilder._(
       valueString: newValue ?? valueString,

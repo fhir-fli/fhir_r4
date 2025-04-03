@@ -48,8 +48,11 @@ class InvoicePriceComponentType extends FhirCodeEnum {
   factory InvoicePriceComponentType.empty() =>
       InvoicePriceComponentType._(valueString: '');
 
-  /// Factory constructor to create [InvoicePriceComponentType] from JSON.
-  factory InvoicePriceComponentType.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [InvoicePriceComponentType]
+  /// from JSON.
+  factory InvoicePriceComponentType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -173,7 +176,8 @@ class InvoicePriceComponentType extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for InvoicePriceComponentType: $newValue');
+        'Invalid input for InvoicePriceComponentType: $newValue',
+      );
     }
     return InvoicePriceComponentType._(
       valueString: newValue ?? valueString,

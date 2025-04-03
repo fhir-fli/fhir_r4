@@ -47,8 +47,11 @@ class EventTiming extends FhirCodeEnum {
   /// Create empty [EventTiming] with element only
   factory EventTiming.empty() => EventTiming._(valueString: '');
 
-  /// Factory constructor to create [EventTiming] from JSON.
-  factory EventTiming.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [EventTiming]
+  /// from JSON.
+  factory EventTiming.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -347,7 +350,9 @@ class EventTiming extends FhirCodeEnum {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for EventTiming: $newValue');
+      throw ArgumentError(
+        'Invalid input for EventTiming: $newValue',
+      );
     }
     return EventTiming._(
       valueString: newValue ?? valueString,

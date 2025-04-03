@@ -47,8 +47,11 @@ class ObservationStatus extends FhirCodeEnum {
   /// Create empty [ObservationStatus] with element only
   factory ObservationStatus.empty() => ObservationStatus._(valueString: '');
 
-  /// Factory constructor to create [ObservationStatus] from JSON.
-  factory ObservationStatus.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [ObservationStatus]
+  /// from JSON.
+  factory ObservationStatus.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -186,7 +189,9 @@ class ObservationStatus extends FhirCodeEnum {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for ObservationStatus: $newValue');
+      throw ArgumentError(
+        'Invalid input for ObservationStatus: $newValue',
+      );
     }
     return ObservationStatus._(
       valueString: newValue ?? valueString,

@@ -47,8 +47,11 @@ class AddressType extends FhirCodeEnum {
   /// Create empty [AddressType] with element only
   factory AddressType.empty() => AddressType._(valueString: '');
 
-  /// Factory constructor to create [AddressType] from JSON.
-  factory AddressType.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [AddressType]
+  /// from JSON.
+  factory AddressType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -140,7 +143,9 @@ class AddressType extends FhirCodeEnum {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for AddressType: $newValue');
+      throw ArgumentError(
+        'Invalid input for AddressType: $newValue',
+      );
     }
     return AddressType._(
       valueString: newValue ?? valueString,

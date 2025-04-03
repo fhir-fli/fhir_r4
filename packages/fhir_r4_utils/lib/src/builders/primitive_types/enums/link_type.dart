@@ -50,7 +50,9 @@ class LinkTypeBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [LinkTypeBuilder]
   /// from JSON.
-  factory LinkTypeBuilder.fromJson(Map<String, dynamic> json) {
+  factory LinkTypeBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -119,8 +121,13 @@ class LinkTypeBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  LinkTypeBuilder withElement(ElementBuilder? newElement) {
-    return LinkTypeBuilder._(valueString: valueString, element: newElement);
+  LinkTypeBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
+    return LinkTypeBuilder._(
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -149,7 +156,9 @@ class LinkTypeBuilder extends FhirCodeEnumBuilder {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for LinkType: $newValue');
+      throw ArgumentError(
+        'Invalid input for LinkType: $newValue',
+      );
     }
     return LinkTypeBuilder._(
       valueString: newValue ?? valueString,

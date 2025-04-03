@@ -51,7 +51,9 @@ class AuditEventActionBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [AuditEventActionBuilder]
   /// from JSON.
-  factory AuditEventActionBuilder.fromJson(Map<String, dynamic> json) {
+  factory AuditEventActionBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -130,9 +132,13 @@ class AuditEventActionBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  AuditEventActionBuilder withElement(ElementBuilder? newElement) {
+  AuditEventActionBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
     return AuditEventActionBuilder._(
-        valueString: valueString, element: newElement);
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -161,7 +167,9 @@ class AuditEventActionBuilder extends FhirCodeEnumBuilder {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for AuditEventAction: $newValue');
+      throw ArgumentError(
+        'Invalid input for AuditEventAction: $newValue',
+      );
     }
     return AuditEventActionBuilder._(
       valueString: newValue ?? valueString,

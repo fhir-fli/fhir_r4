@@ -47,8 +47,11 @@ class OperationKind extends FhirCodeEnum {
   /// Create empty [OperationKind] with element only
   factory OperationKind.empty() => OperationKind._(valueString: '');
 
-  /// Factory constructor to create [OperationKind] from JSON.
-  factory OperationKind.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [OperationKind]
+  /// from JSON.
+  factory OperationKind.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -131,7 +134,9 @@ class OperationKind extends FhirCodeEnum {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for OperationKind: $newValue');
+      throw ArgumentError(
+        'Invalid input for OperationKind: $newValue',
+      );
     }
     return OperationKind._(
       valueString: newValue ?? valueString,

@@ -49,7 +49,9 @@ class IssueTypeBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [IssueTypeBuilder]
   /// from JSON.
-  factory IssueTypeBuilder.fromJson(Map<String, dynamic> json) {
+  factory IssueTypeBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -361,8 +363,13 @@ class IssueTypeBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  IssueTypeBuilder withElement(ElementBuilder? newElement) {
-    return IssueTypeBuilder._(valueString: valueString, element: newElement);
+  IssueTypeBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
+    return IssueTypeBuilder._(
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -391,7 +398,9 @@ class IssueTypeBuilder extends FhirCodeEnumBuilder {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for IssueType: $newValue');
+      throw ArgumentError(
+        'Invalid input for IssueType: $newValue',
+      );
     }
     return IssueTypeBuilder._(
       valueString: newValue ?? valueString,

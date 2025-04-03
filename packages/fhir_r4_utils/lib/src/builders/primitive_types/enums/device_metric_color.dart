@@ -50,7 +50,9 @@ class DeviceMetricColorBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [DeviceMetricColorBuilder]
   /// from JSON.
-  factory DeviceMetricColorBuilder.fromJson(Map<String, dynamic> json) {
+  factory DeviceMetricColorBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -156,9 +158,13 @@ class DeviceMetricColorBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  DeviceMetricColorBuilder withElement(ElementBuilder? newElement) {
+  DeviceMetricColorBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
     return DeviceMetricColorBuilder._(
-        valueString: valueString, element: newElement);
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -187,7 +193,9 @@ class DeviceMetricColorBuilder extends FhirCodeEnumBuilder {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for DeviceMetricColor: $newValue');
+      throw ArgumentError(
+        'Invalid input for DeviceMetricColor: $newValue',
+      );
     }
     return DeviceMetricColorBuilder._(
       valueString: newValue ?? valueString,

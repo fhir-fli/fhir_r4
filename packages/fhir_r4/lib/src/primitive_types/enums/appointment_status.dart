@@ -47,8 +47,11 @@ class AppointmentStatus extends FhirCodeEnum {
   /// Create empty [AppointmentStatus] with element only
   factory AppointmentStatus.empty() => AppointmentStatus._(valueString: '');
 
-  /// Factory constructor to create [AppointmentStatus] from JSON.
-  factory AppointmentStatus.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [AppointmentStatus]
+  /// from JSON.
+  factory AppointmentStatus.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -204,7 +207,9 @@ class AppointmentStatus extends FhirCodeEnum {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for AppointmentStatus: $newValue');
+      throw ArgumentError(
+        'Invalid input for AppointmentStatus: $newValue',
+      );
     }
     return AppointmentStatus._(
       valueString: newValue ?? valueString,

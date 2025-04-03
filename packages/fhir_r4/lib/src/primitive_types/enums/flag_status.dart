@@ -48,8 +48,11 @@ class FlagStatus extends FhirCodeEnum {
   /// Create empty [FlagStatus] with element only
   factory FlagStatus.empty() => FlagStatus._(valueString: '');
 
-  /// Factory constructor to create [FlagStatus] from JSON.
-  factory FlagStatus.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [FlagStatus]
+  /// from JSON.
+  factory FlagStatus.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -141,7 +144,9 @@ class FlagStatus extends FhirCodeEnum {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for FlagStatus: $newValue');
+      throw ArgumentError(
+        'Invalid input for FlagStatus: $newValue',
+      );
     }
     return FlagStatus._(
       valueString: newValue ?? valueString,

@@ -47,8 +47,11 @@ class ParticipationStatus extends FhirCodeEnum {
   /// Create empty [ParticipationStatus] with element only
   factory ParticipationStatus.empty() => ParticipationStatus._(valueString: '');
 
-  /// Factory constructor to create [ParticipationStatus] from JSON.
-  factory ParticipationStatus.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [ParticipationStatus]
+  /// from JSON.
+  factory ParticipationStatus.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -150,7 +153,9 @@ class ParticipationStatus extends FhirCodeEnum {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for ParticipationStatus: $newValue');
+      throw ArgumentError(
+        'Invalid input for ParticipationStatus: $newValue',
+      );
     }
     return ParticipationStatus._(
       valueString: newValue ?? valueString,

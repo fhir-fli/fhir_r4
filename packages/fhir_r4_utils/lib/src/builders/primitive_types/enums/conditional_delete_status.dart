@@ -50,7 +50,9 @@ class ConditionalDeleteStatusBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [ConditionalDeleteStatusBuilder]
   /// from JSON.
-  factory ConditionalDeleteStatusBuilder.fromJson(Map<String, dynamic> json) {
+  factory ConditionalDeleteStatusBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -117,9 +119,13 @@ class ConditionalDeleteStatusBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  ConditionalDeleteStatusBuilder withElement(ElementBuilder? newElement) {
+  ConditionalDeleteStatusBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
     return ConditionalDeleteStatusBuilder._(
-        valueString: valueString, element: newElement);
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -149,7 +155,8 @@ class ConditionalDeleteStatusBuilder extends FhirCodeEnumBuilder {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for ConditionalDeleteStatus: $newValue');
+        'Invalid input for ConditionalDeleteStatus: $newValue',
+      );
     }
     return ConditionalDeleteStatusBuilder._(
       valueString: newValue ?? valueString,

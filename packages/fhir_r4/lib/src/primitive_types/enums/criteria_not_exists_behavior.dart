@@ -49,8 +49,11 @@ class CriteriaNotExistsBehavior extends FhirCodeEnum {
   factory CriteriaNotExistsBehavior.empty() =>
       CriteriaNotExistsBehavior._(valueString: '');
 
-  /// Factory constructor to create [CriteriaNotExistsBehavior] from JSON.
-  factory CriteriaNotExistsBehavior.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [CriteriaNotExistsBehavior]
+  /// from JSON.
+  factory CriteriaNotExistsBehavior.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -139,7 +142,8 @@ class CriteriaNotExistsBehavior extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for CriteriaNotExistsBehavior: $newValue');
+        'Invalid input for CriteriaNotExistsBehavior: $newValue',
+      );
     }
     return CriteriaNotExistsBehavior._(
       valueString: newValue ?? valueString,

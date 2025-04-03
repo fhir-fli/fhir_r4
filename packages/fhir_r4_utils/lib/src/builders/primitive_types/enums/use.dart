@@ -49,7 +49,9 @@ class UseBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [UseBuilder]
   /// from JSON.
-  factory UseBuilder.fromJson(Map<String, dynamic> json) {
+  factory UseBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -109,8 +111,13 @@ class UseBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  UseBuilder withElement(ElementBuilder? newElement) {
-    return UseBuilder._(valueString: valueString, element: newElement);
+  UseBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
+    return UseBuilder._(
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -139,7 +146,9 @@ class UseBuilder extends FhirCodeEnumBuilder {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for Use: $newValue');
+      throw ArgumentError(
+        'Invalid input for Use: $newValue',
+      );
     }
     return UseBuilder._(
       valueString: newValue ?? valueString,

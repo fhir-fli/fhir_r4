@@ -47,8 +47,11 @@ class RepositoryType extends FhirCodeEnum {
   /// Create empty [RepositoryType] with element only
   factory RepositoryType.empty() => RepositoryType._(valueString: '');
 
-  /// Factory constructor to create [RepositoryType] from JSON.
-  factory RepositoryType.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [RepositoryType]
+  /// from JSON.
+  factory RepositoryType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -165,7 +168,9 @@ class RepositoryType extends FhirCodeEnum {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for RepositoryType: $newValue');
+      throw ArgumentError(
+        'Invalid input for RepositoryType: $newValue',
+      );
     }
     return RepositoryType._(
       valueString: newValue ?? valueString,

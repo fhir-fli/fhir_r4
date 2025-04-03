@@ -50,7 +50,9 @@ class SpecimenStatusBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [SpecimenStatusBuilder]
   /// from JSON.
-  factory SpecimenStatusBuilder.fromJson(Map<String, dynamic> json) {
+  factory SpecimenStatusBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -120,9 +122,13 @@ class SpecimenStatusBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  SpecimenStatusBuilder withElement(ElementBuilder? newElement) {
+  SpecimenStatusBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
     return SpecimenStatusBuilder._(
-        valueString: valueString, element: newElement);
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -151,7 +157,9 @@ class SpecimenStatusBuilder extends FhirCodeEnumBuilder {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for SpecimenStatus: $newValue');
+      throw ArgumentError(
+        'Invalid input for SpecimenStatus: $newValue',
+      );
     }
     return SpecimenStatusBuilder._(
       valueString: newValue ?? valueString,

@@ -48,8 +48,11 @@ class NutritionProductStatus extends FhirCodeEnum {
   factory NutritionProductStatus.empty() =>
       NutritionProductStatus._(valueString: '');
 
-  /// Factory constructor to create [NutritionProductStatus] from JSON.
-  factory NutritionProductStatus.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [NutritionProductStatus]
+  /// from JSON.
+  factory NutritionProductStatus.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -144,7 +147,8 @@ class NutritionProductStatus extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for NutritionProductStatus: $newValue');
+        'Invalid input for NutritionProductStatus: $newValue',
+      );
     }
     return NutritionProductStatus._(
       valueString: newValue ?? valueString,

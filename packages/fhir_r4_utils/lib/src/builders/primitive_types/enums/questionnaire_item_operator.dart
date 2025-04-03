@@ -50,7 +50,9 @@ class QuestionnaireItemOperatorBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [QuestionnaireItemOperatorBuilder]
   /// from JSON.
-  factory QuestionnaireItemOperatorBuilder.fromJson(Map<String, dynamic> json) {
+  factory QuestionnaireItemOperatorBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -162,9 +164,13 @@ class QuestionnaireItemOperatorBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  QuestionnaireItemOperatorBuilder withElement(ElementBuilder? newElement) {
+  QuestionnaireItemOperatorBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
     return QuestionnaireItemOperatorBuilder._(
-        valueString: valueString, element: newElement);
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -194,7 +200,8 @@ class QuestionnaireItemOperatorBuilder extends FhirCodeEnumBuilder {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for QuestionnaireItemOperator: $newValue');
+        'Invalid input for QuestionnaireItemOperator: $newValue',
+      );
     }
     return QuestionnaireItemOperatorBuilder._(
       valueString: newValue ?? valueString,

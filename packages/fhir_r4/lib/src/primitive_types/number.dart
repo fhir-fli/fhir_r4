@@ -42,7 +42,6 @@ abstract class FhirNumber extends PrimitiveType
     List<FhirExtension>? extension_,
     String? objectPath,
   }) {
-    print('FhirNumber.fromNum: $value');
     return value is int
         ? FhirInteger(
             value.toString(),
@@ -69,7 +68,6 @@ abstract class FhirNumber extends PrimitiveType
     FhirString? id,
     List<FhirExtension>? extension_,
   }) {
-    print('FhirNumber.fromNumPositiveInt: $value');
     return value is int
         ? FhirPositiveInt(
             value.toString(),
@@ -94,7 +92,6 @@ abstract class FhirNumber extends PrimitiveType
     FhirString? id,
     List<FhirExtension>? extension_,
   }) {
-    print('FhirNumber.fromNumUnsignedInt: $value');
     return value is int
         ? FhirUnsignedInt(
             value.toString(),
@@ -114,7 +111,6 @@ abstract class FhirNumber extends PrimitiveType
   ///
   /// Uses [fromNum] internally. Expects `'value'` to be a [num].
   factory FhirNumber.fromJson(Map<String, dynamic> json) {
-    print('FhirNumber.fromJson: $json');
     final value = json['value'] as num?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson == null ? null : Element.fromJson(elementJson);
@@ -321,7 +317,6 @@ abstract class FhirNumber extends PrimitiveType
   /// are non-null.
   /// Returns `null` otherwise.
   FhirNumber? _operateOrNull(Object other, num Function(num, num) operation) {
-    print('FhirNumber._operateOrNull: $valueNum, ${other.runtimeType}');
     if (!_bothNonNull(other)) return null;
     final otherVal = _extractValue(other)!;
     return this is FhirDecimal || other is FhirDecimal

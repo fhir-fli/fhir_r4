@@ -51,9 +51,11 @@ class ImmunizationEvaluationStatusCodes extends FhirCodeEnum {
   factory ImmunizationEvaluationStatusCodes.empty() =>
       ImmunizationEvaluationStatusCodes._(valueString: '');
 
-  /// Factory constructor to create [ImmunizationEvaluationStatusCodes] from JSON.
+  /// Factory constructor to create [ImmunizationEvaluationStatusCodes]
+  /// from JSON.
   factory ImmunizationEvaluationStatusCodes.fromJson(
-      Map<String, dynamic> json) {
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -198,7 +200,8 @@ class ImmunizationEvaluationStatusCodes extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for ImmunizationEvaluationStatusCodes: $newValue');
+        'Invalid input for ImmunizationEvaluationStatusCodes: $newValue',
+      );
     }
     return ImmunizationEvaluationStatusCodes._(
       valueString: newValue ?? valueString,

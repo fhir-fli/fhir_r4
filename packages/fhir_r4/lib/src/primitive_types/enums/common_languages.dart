@@ -48,8 +48,11 @@ class CommonLanguages extends FhirCodeEnum {
   /// Create empty [CommonLanguages] with element only
   factory CommonLanguages.empty() => CommonLanguages._(valueString: '');
 
-  /// Factory constructor to create [CommonLanguages] from JSON.
-  factory CommonLanguages.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [CommonLanguages]
+  /// from JSON.
+  factory CommonLanguages.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -618,7 +621,9 @@ class CommonLanguages extends FhirCodeEnum {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for CommonLanguages: $newValue');
+      throw ArgumentError(
+        'Invalid input for CommonLanguages: $newValue',
+      );
     }
     return CommonLanguages._(
       valueString: newValue ?? valueString,

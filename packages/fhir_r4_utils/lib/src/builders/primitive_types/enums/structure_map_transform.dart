@@ -50,7 +50,9 @@ class StructureMapTransformBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [StructureMapTransformBuilder]
   /// from JSON.
-  factory StructureMapTransformBuilder.fromJson(Map<String, dynamic> json) {
+  factory StructureMapTransformBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -239,9 +241,13 @@ class StructureMapTransformBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  StructureMapTransformBuilder withElement(ElementBuilder? newElement) {
+  StructureMapTransformBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
     return StructureMapTransformBuilder._(
-        valueString: valueString, element: newElement);
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -270,7 +276,9 @@ class StructureMapTransformBuilder extends FhirCodeEnumBuilder {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for StructureMapTransform: $newValue');
+      throw ArgumentError(
+        'Invalid input for StructureMapTransform: $newValue',
+      );
     }
     return StructureMapTransformBuilder._(
       valueString: newValue ?? valueString,

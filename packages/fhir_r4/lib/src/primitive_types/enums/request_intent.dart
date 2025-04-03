@@ -48,8 +48,11 @@ class RequestIntent extends FhirCodeEnum {
   /// Create empty [RequestIntent] with element only
   factory RequestIntent.empty() => RequestIntent._(valueString: '');
 
-  /// Factory constructor to create [RequestIntent] from JSON.
-  factory RequestIntent.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [RequestIntent]
+  /// from JSON.
+  factory RequestIntent.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -195,7 +198,9 @@ class RequestIntent extends FhirCodeEnum {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for RequestIntent: $newValue');
+      throw ArgumentError(
+        'Invalid input for RequestIntent: $newValue',
+      );
     }
     return RequestIntent._(
       valueString: newValue ?? valueString,

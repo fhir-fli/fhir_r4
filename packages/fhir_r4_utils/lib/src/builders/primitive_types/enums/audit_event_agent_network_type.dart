@@ -51,7 +51,8 @@ class AuditEventAgentNetworkTypeBuilder extends FhirCodeEnumBuilder {
   /// Factory constructor to create [AuditEventAgentNetworkTypeBuilder]
   /// from JSON.
   factory AuditEventAgentNetworkTypeBuilder.fromJson(
-      Map<String, dynamic> json) {
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -136,9 +137,13 @@ class AuditEventAgentNetworkTypeBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  AuditEventAgentNetworkTypeBuilder withElement(ElementBuilder? newElement) {
+  AuditEventAgentNetworkTypeBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
     return AuditEventAgentNetworkTypeBuilder._(
-        valueString: valueString, element: newElement);
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -168,7 +173,8 @@ class AuditEventAgentNetworkTypeBuilder extends FhirCodeEnumBuilder {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for AuditEventAgentNetworkType: $newValue');
+        'Invalid input for AuditEventAgentNetworkType: $newValue',
+      );
     }
     return AuditEventAgentNetworkTypeBuilder._(
       valueString: newValue ?? valueString,

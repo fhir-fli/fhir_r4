@@ -50,7 +50,9 @@ class OrientationTypeBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [OrientationTypeBuilder]
   /// from JSON.
-  factory OrientationTypeBuilder.fromJson(Map<String, dynamic> json) {
+  factory OrientationTypeBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -102,9 +104,13 @@ class OrientationTypeBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  OrientationTypeBuilder withElement(ElementBuilder? newElement) {
+  OrientationTypeBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
     return OrientationTypeBuilder._(
-        valueString: valueString, element: newElement);
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -133,7 +139,9 @@ class OrientationTypeBuilder extends FhirCodeEnumBuilder {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for OrientationType: $newValue');
+      throw ArgumentError(
+        'Invalid input for OrientationType: $newValue',
+      );
     }
     return OrientationTypeBuilder._(
       valueString: newValue ?? valueString,

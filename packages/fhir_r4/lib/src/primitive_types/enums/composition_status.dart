@@ -47,8 +47,11 @@ class CompositionStatus extends FhirCodeEnum {
   /// Create empty [CompositionStatus] with element only
   factory CompositionStatus.empty() => CompositionStatus._(valueString: '');
 
-  /// Factory constructor to create [CompositionStatus] from JSON.
-  factory CompositionStatus.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [CompositionStatus]
+  /// from JSON.
+  factory CompositionStatus.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -150,7 +153,9 @@ class CompositionStatus extends FhirCodeEnum {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for CompositionStatus: $newValue');
+      throw ArgumentError(
+        'Invalid input for CompositionStatus: $newValue',
+      );
     }
     return CompositionStatus._(
       valueString: newValue ?? valueString,

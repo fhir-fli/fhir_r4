@@ -50,7 +50,9 @@ class DeviceUseStatementStatusBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [DeviceUseStatementStatusBuilder]
   /// from JSON.
-  factory DeviceUseStatementStatusBuilder.fromJson(Map<String, dynamic> json) {
+  factory DeviceUseStatementStatusBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -150,9 +152,13 @@ class DeviceUseStatementStatusBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  DeviceUseStatementStatusBuilder withElement(ElementBuilder? newElement) {
+  DeviceUseStatementStatusBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
     return DeviceUseStatementStatusBuilder._(
-        valueString: valueString, element: newElement);
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -182,7 +188,8 @@ class DeviceUseStatementStatusBuilder extends FhirCodeEnumBuilder {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for DeviceUseStatementStatus: $newValue');
+        'Invalid input for DeviceUseStatementStatus: $newValue',
+      );
     }
     return DeviceUseStatementStatusBuilder._(
       valueString: newValue ?? valueString,

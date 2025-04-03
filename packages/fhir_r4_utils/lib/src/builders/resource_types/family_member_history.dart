@@ -440,71 +440,182 @@ class FamilyMemberHistoryBuilder extends DomainResourceBuilder {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
+    bool isNonEmpty(dynamic val) {
+      if (val == null) return false;
+      if (val is List && val.isEmpty) return false;
+      if (val is Map && val.isEmpty) return false;
+      return true;
+    }
+
     void addField(String key, dynamic field) {
+      if (field == null) return;
       if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
         throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
-      if (field == null) return;
       if (field is PrimitiveTypeBuilder) {
-        json[key] = field.toJson()['value'];
-        if (field.toJson()['_value'] != null) {
-          json['_$key'] = field.toJson()['_value'];
-        }
+        final fieldMap = field.toJson();
+        final val = fieldMap['value'];
+        final ext = fieldMap['_value'];
+        // Skip if it has no actual value and no extension
+        final hasVal = isNonEmpty(val);
+        final hasExt = isNonEmpty(ext);
+        if (hasVal) json[key] = val;
+        if (hasExt) json['_$key'] = ext;
       } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveTypeBuilder) {
-          final fieldJson = field.map((e) => e.toJson()).toList();
-          json[key] = fieldJson.map((e) => e['value']).toList();
-          if (fieldJson.any((e) => e['_value'] != null)) {
-            json['_$key'] = fieldJson.map((e) => e['_value']).toList();
+        // We'll collect non-empty child items in a temp list
+        final tempList = <dynamic>[];
+        final tempExtensions = <dynamic>[];
+        final isPrimitive = field.first is PrimitiveTypeBuilder;
+        for (final e in field) {
+          final itemMap = e.toJson();
+          if (!isNonEmpty(itemMap)) {
+            continue; // skip empty child
+          }
+          if (isPrimitive) {
+            final v = itemMap['value'];
+            final x = itemMap['_value'];
+            tempList.add(v);
+            tempExtensions.add(x);
+          } else {
+            tempList.add(itemMap);
+          }
+        }
+        if (tempList.isEmpty) return; // no non-empty items
+        if (isPrimitive) {
+          json[key] = tempList;
+          final anyExt = tempExtensions.any(isNonEmpty);
+          if (anyExt) {
+            json['_$key'] = tempExtensions;
           }
         } else {
-          json[key] = field.map((e) => e.toJson()).toList();
+          json[key] = tempList;
         }
       } else if (field is FhirBaseBuilder) {
-        json[key] = field.toJson();
+        final subMap = field.toJson();
+        if (isNonEmpty(subMap)) {
+          json[key] = subMap;
+        }
       }
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
-    addField('meta', meta);
-    addField('implicitRules', implicitRules);
-    addField('language', language);
-    addField('text', text);
-    addField('contained', contained);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('identifier', identifier);
-    addField('instantiatesCanonical', instantiatesCanonical);
-    addField('instantiatesUri', instantiatesUri);
-    addField('status', status);
-    addField('dataAbsentReason', dataAbsentReason);
-    addField('patient', patient);
-    addField('date', date);
-    addField('name', name);
-    addField('relationship', relationship);
-    addField('sex', sex);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'meta',
+      meta,
+    );
+    addField(
+      'implicitRules',
+      implicitRules,
+    );
+    addField(
+      'language',
+      language,
+    );
+    addField(
+      'text',
+      text,
+    );
+    addField(
+      'contained',
+      contained,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'identifier',
+      identifier,
+    );
+    addField(
+      'instantiatesCanonical',
+      instantiatesCanonical,
+    );
+    addField(
+      'instantiatesUri',
+      instantiatesUri,
+    );
+    addField(
+      'status',
+      status,
+    );
+    addField(
+      'dataAbsentReason',
+      dataAbsentReason,
+    );
+    addField(
+      'patient',
+      patient,
+    );
+    addField(
+      'date',
+      date,
+    );
+    addField(
+      'name',
+      name,
+    );
+    addField(
+      'relationship',
+      relationship,
+    );
+    addField(
+      'sex',
+      sex,
+    );
     if (bornX != null) {
       final fhirType = bornX!.fhirType;
-      addField('born${fhirType.capitalize()}', bornX);
+      addField(
+        'born${fhirType.capitalize()}',
+        bornX,
+      );
     }
 
     if (ageX != null) {
       final fhirType = ageX!.fhirType;
-      addField('age${fhirType.capitalize()}', ageX);
+      addField(
+        'age${fhirType.capitalize()}',
+        ageX,
+      );
     }
 
-    addField('estimatedAge', estimatedAge);
+    addField(
+      'estimatedAge',
+      estimatedAge,
+    );
     if (deceasedX != null) {
       final fhirType = deceasedX!.fhirType;
-      addField('deceased${fhirType.capitalize()}', deceasedX);
+      addField(
+        'deceased${fhirType.capitalize()}',
+        deceasedX,
+      );
     }
 
-    addField('reasonCode', reasonCode);
-    addField('reasonReference', reasonReference);
-    addField('note', note);
-    addField('condition', condition);
+    addField(
+      'reasonCode',
+      reasonCode,
+    );
+    addField(
+      'reasonReference',
+      reasonReference,
+    );
+    addField(
+      'note',
+      note,
+    );
+    addField(
+      'condition',
+      condition,
+    );
     return json;
   }
 
@@ -921,7 +1032,7 @@ class FamilyMemberHistoryBuilder extends DomainResourceBuilder {
               if (converted != null) {
                 instantiatesCanonical = [
                   ...(instantiatesCanonical ?? []),
-                  converted
+                  converted,
                 ];
                 return;
               }
@@ -968,7 +1079,10 @@ class FamilyMemberHistoryBuilder extends DomainResourceBuilder {
               final stringValue = child.toString();
               final converted = FhirUriBuilder.tryParse(stringValue);
               if (converted != null) {
-                instantiatesUri = [...(instantiatesUri ?? []), converted];
+                instantiatesUri = [
+                  ...(instantiatesUri ?? []),
+                  converted,
+                ];
                 return;
               }
             } catch (e) {
@@ -1669,10 +1783,10 @@ class FamilyMemberHistoryBuilder extends DomainResourceBuilder {
     if (name) this.name = null;
     if (relationship) this.relationship = null;
     if (sex) this.sex = null;
-    if (born) this.bornX = null;
-    if (age) this.ageX = null;
+    if (born) bornX = null;
+    if (age) ageX = null;
     if (estimatedAge) this.estimatedAge = null;
-    if (deceased) this.deceasedX = null;
+    if (deceased) deceasedX = null;
     if (reasonCode) this.reasonCode = null;
     if (reasonReference) this.reasonReference = null;
     if (note) this.note = null;
@@ -2124,44 +2238,101 @@ class FamilyMemberHistoryConditionBuilder extends BackboneElementBuilder {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
+    bool isNonEmpty(dynamic val) {
+      if (val == null) return false;
+      if (val is List && val.isEmpty) return false;
+      if (val is Map && val.isEmpty) return false;
+      return true;
+    }
+
     void addField(String key, dynamic field) {
+      if (field == null) return;
       if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
         throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
-      if (field == null) return;
       if (field is PrimitiveTypeBuilder) {
-        json[key] = field.toJson()['value'];
-        if (field.toJson()['_value'] != null) {
-          json['_$key'] = field.toJson()['_value'];
-        }
+        final fieldMap = field.toJson();
+        final val = fieldMap['value'];
+        final ext = fieldMap['_value'];
+        // Skip if it has no actual value and no extension
+        final hasVal = isNonEmpty(val);
+        final hasExt = isNonEmpty(ext);
+        if (hasVal) json[key] = val;
+        if (hasExt) json['_$key'] = ext;
       } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveTypeBuilder) {
-          final fieldJson = field.map((e) => e.toJson()).toList();
-          json[key] = fieldJson.map((e) => e['value']).toList();
-          if (fieldJson.any((e) => e['_value'] != null)) {
-            json['_$key'] = fieldJson.map((e) => e['_value']).toList();
+        // We'll collect non-empty child items in a temp list
+        final tempList = <dynamic>[];
+        final tempExtensions = <dynamic>[];
+        final isPrimitive = field.first is PrimitiveTypeBuilder;
+        for (final e in field) {
+          final itemMap = e.toJson();
+          if (!isNonEmpty(itemMap)) {
+            continue; // skip empty child
+          }
+          if (isPrimitive) {
+            final v = itemMap['value'];
+            final x = itemMap['_value'];
+            tempList.add(v);
+            tempExtensions.add(x);
+          } else {
+            tempList.add(itemMap);
+          }
+        }
+        if (tempList.isEmpty) return; // no non-empty items
+        if (isPrimitive) {
+          json[key] = tempList;
+          final anyExt = tempExtensions.any(isNonEmpty);
+          if (anyExt) {
+            json['_$key'] = tempExtensions;
           }
         } else {
-          json[key] = field.map((e) => e.toJson()).toList();
+          json[key] = tempList;
         }
       } else if (field is FhirBaseBuilder) {
-        json[key] = field.toJson();
+        final subMap = field.toJson();
+        if (isNonEmpty(subMap)) {
+          json[key] = subMap;
+        }
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('code', code);
-    addField('outcome', outcome);
-    addField('contributedToDeath', contributedToDeath);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'code',
+      code,
+    );
+    addField(
+      'outcome',
+      outcome,
+    );
+    addField(
+      'contributedToDeath',
+      contributedToDeath,
+    );
     if (onsetX != null) {
       final fhirType = onsetX!.fhirType;
-      addField('onset${fhirType.capitalize()}', onsetX);
+      addField(
+        'onset${fhirType.capitalize()}',
+        onsetX,
+      );
     }
 
-    addField('note', note);
+    addField(
+      'note',
+      note,
+    );
     return json;
   }
 
@@ -2566,7 +2737,7 @@ class FamilyMemberHistoryConditionBuilder extends BackboneElementBuilder {
     if (code) this.code = null;
     if (outcome) this.outcome = null;
     if (contributedToDeath) this.contributedToDeath = null;
-    if (onset) this.onsetX = null;
+    if (onset) onsetX = null;
     if (note) this.note = null;
   }
 

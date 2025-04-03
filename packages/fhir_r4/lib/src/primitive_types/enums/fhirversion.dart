@@ -47,8 +47,11 @@ class FHIRVersion extends FhirCodeEnum {
   /// Create empty [FHIRVersion] with element only
   factory FHIRVersion.empty() => FHIRVersion._(valueString: '');
 
-  /// Factory constructor to create [FHIRVersion] from JSON.
-  factory FHIRVersion.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [FHIRVersion]
+  /// from JSON.
+  factory FHIRVersion.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -356,7 +359,9 @@ class FHIRVersion extends FhirCodeEnum {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for FHIRVersion: $newValue');
+      throw ArgumentError(
+        'Invalid input for FHIRVersion: $newValue',
+      );
     }
     return FHIRVersion._(
       valueString: newValue ?? valueString,

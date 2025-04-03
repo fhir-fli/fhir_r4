@@ -47,8 +47,11 @@ class BundleType extends FhirCodeEnum {
   /// Create empty [BundleType] with element only
   factory BundleType.empty() => BundleType._(valueString: '');
 
-  /// Factory constructor to create [BundleType] from JSON.
-  factory BundleType.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [BundleType]
+  /// from JSON.
+  factory BundleType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -194,7 +197,9 @@ class BundleType extends FhirCodeEnum {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for BundleType: $newValue');
+      throw ArgumentError(
+        'Invalid input for BundleType: $newValue',
+      );
     }
     return BundleType._(
       valueString: newValue ?? valueString,

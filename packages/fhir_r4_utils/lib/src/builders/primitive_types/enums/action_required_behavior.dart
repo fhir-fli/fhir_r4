@@ -51,7 +51,9 @@ class ActionRequiredBehaviorBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [ActionRequiredBehaviorBuilder]
   /// from JSON.
-  factory ActionRequiredBehaviorBuilder.fromJson(Map<String, dynamic> json) {
+  factory ActionRequiredBehaviorBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -116,9 +118,13 @@ class ActionRequiredBehaviorBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  ActionRequiredBehaviorBuilder withElement(ElementBuilder? newElement) {
+  ActionRequiredBehaviorBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
     return ActionRequiredBehaviorBuilder._(
-        valueString: valueString, element: newElement);
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -148,7 +154,8 @@ class ActionRequiredBehaviorBuilder extends FhirCodeEnumBuilder {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for ActionRequiredBehavior: $newValue');
+        'Invalid input for ActionRequiredBehavior: $newValue',
+      );
     }
     return ActionRequiredBehaviorBuilder._(
       valueString: newValue ?? valueString,

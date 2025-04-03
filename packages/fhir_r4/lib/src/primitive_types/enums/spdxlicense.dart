@@ -50,8 +50,11 @@ class SPDXLicense extends FhirCodeEnum {
   /// Create empty [SPDXLicense] with element only
   factory SPDXLicense.empty() => SPDXLicense._(valueString: '');
 
-  /// Factory constructor to create [SPDXLicense] from JSON.
-  factory SPDXLicense.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [SPDXLicense]
+  /// from JSON.
+  factory SPDXLicense.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -3274,7 +3277,9 @@ class SPDXLicense extends FhirCodeEnum {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for SPDXLicense: $newValue');
+      throw ArgumentError(
+        'Invalid input for SPDXLicense: $newValue',
+      );
     }
     return SPDXLicense._(
       valueString: newValue ?? valueString,

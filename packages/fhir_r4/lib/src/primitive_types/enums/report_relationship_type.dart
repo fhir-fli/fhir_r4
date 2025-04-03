@@ -48,8 +48,11 @@ class ReportRelationshipType extends FhirCodeEnum {
   factory ReportRelationshipType.empty() =>
       ReportRelationshipType._(valueString: '');
 
-  /// Factory constructor to create [ReportRelationshipType] from JSON.
-  factory ReportRelationshipType.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [ReportRelationshipType]
+  /// from JSON.
+  factory ReportRelationshipType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -189,7 +192,8 @@ class ReportRelationshipType extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for ReportRelationshipType: $newValue');
+        'Invalid input for ReportRelationshipType: $newValue',
+      );
     }
     return ReportRelationshipType._(
       valueString: newValue ?? valueString,

@@ -47,8 +47,11 @@ class EncounterStatus extends FhirCodeEnum {
   /// Create empty [EncounterStatus] with element only
   factory EncounterStatus.empty() => EncounterStatus._(valueString: '');
 
-  /// Factory constructor to create [EncounterStatus] from JSON.
-  factory EncounterStatus.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [EncounterStatus]
+  /// from JSON.
+  factory EncounterStatus.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -194,7 +197,9 @@ class EncounterStatus extends FhirCodeEnum {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for EncounterStatus: $newValue');
+      throw ArgumentError(
+        'Invalid input for EncounterStatus: $newValue',
+      );
     }
     return EncounterStatus._(
       valueString: newValue ?? valueString,

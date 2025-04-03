@@ -50,7 +50,9 @@ class HTTPVerbBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [HTTPVerbBuilder]
   /// from JSON.
-  factory HTTPVerbBuilder.fromJson(Map<String, dynamic> json) {
+  factory HTTPVerbBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -137,8 +139,13 @@ class HTTPVerbBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  HTTPVerbBuilder withElement(ElementBuilder? newElement) {
-    return HTTPVerbBuilder._(valueString: valueString, element: newElement);
+  HTTPVerbBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
+    return HTTPVerbBuilder._(
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -167,7 +174,9 @@ class HTTPVerbBuilder extends FhirCodeEnumBuilder {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for HTTPVerb: $newValue');
+      throw ArgumentError(
+        'Invalid input for HTTPVerb: $newValue',
+      );
     }
     return HTTPVerbBuilder._(
       valueString: newValue ?? valueString,

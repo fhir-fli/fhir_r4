@@ -48,8 +48,11 @@ class PropertyRepresentation extends FhirCodeEnum {
   factory PropertyRepresentation.empty() =>
       PropertyRepresentation._(valueString: '');
 
-  /// Factory constructor to create [PropertyRepresentation] from JSON.
-  factory PropertyRepresentation.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [PropertyRepresentation]
+  /// from JSON.
+  factory PropertyRepresentation.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -161,7 +164,8 @@ class PropertyRepresentation extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for PropertyRepresentation: $newValue');
+        'Invalid input for PropertyRepresentation: $newValue',
+      );
     }
     return PropertyRepresentation._(
       valueString: newValue ?? valueString,

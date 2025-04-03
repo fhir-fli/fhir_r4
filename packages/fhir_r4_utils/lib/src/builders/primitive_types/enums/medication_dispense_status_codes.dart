@@ -51,7 +51,8 @@ class MedicationDispenseStatusCodesBuilder extends FhirCodeEnumBuilder {
   /// Factory constructor to create [MedicationDispenseStatusCodesBuilder]
   /// from JSON.
   factory MedicationDispenseStatusCodesBuilder.fromJson(
-      Map<String, dynamic> json) {
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -186,9 +187,13 @@ class MedicationDispenseStatusCodesBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  MedicationDispenseStatusCodesBuilder withElement(ElementBuilder? newElement) {
+  MedicationDispenseStatusCodesBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
     return MedicationDispenseStatusCodesBuilder._(
-        valueString: valueString, element: newElement);
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -218,7 +223,8 @@ class MedicationDispenseStatusCodesBuilder extends FhirCodeEnumBuilder {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for MedicationDispenseStatusCodes: $newValue');
+        'Invalid input for MedicationDispenseStatusCodes: $newValue',
+      );
     }
     return MedicationDispenseStatusCodesBuilder._(
       valueString: newValue ?? valueString,

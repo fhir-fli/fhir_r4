@@ -50,7 +50,9 @@ class AssertionResponseTypesBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [AssertionResponseTypesBuilder]
   /// from JSON.
-  factory AssertionResponseTypesBuilder.fromJson(Map<String, dynamic> json) {
+  factory AssertionResponseTypesBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -213,9 +215,13 @@ class AssertionResponseTypesBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  AssertionResponseTypesBuilder withElement(ElementBuilder? newElement) {
+  AssertionResponseTypesBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
     return AssertionResponseTypesBuilder._(
-        valueString: valueString, element: newElement);
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -245,7 +251,8 @@ class AssertionResponseTypesBuilder extends FhirCodeEnumBuilder {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for AssertionResponseTypes: $newValue');
+        'Invalid input for AssertionResponseTypes: $newValue',
+      );
     }
     return AssertionResponseTypesBuilder._(
       valueString: newValue ?? valueString,

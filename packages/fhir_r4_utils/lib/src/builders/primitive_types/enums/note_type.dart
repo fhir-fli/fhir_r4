@@ -49,7 +49,9 @@ class NoteTypeBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [NoteTypeBuilder]
   /// from JSON.
-  factory NoteTypeBuilder.fromJson(Map<String, dynamic> json) {
+  factory NoteTypeBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -109,8 +111,13 @@ class NoteTypeBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  NoteTypeBuilder withElement(ElementBuilder? newElement) {
-    return NoteTypeBuilder._(valueString: valueString, element: newElement);
+  NoteTypeBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
+    return NoteTypeBuilder._(
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -139,7 +146,9 @@ class NoteTypeBuilder extends FhirCodeEnumBuilder {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for NoteType: $newValue');
+      throw ArgumentError(
+        'Invalid input for NoteType: $newValue',
+      );
     }
     return NoteTypeBuilder._(
       valueString: newValue ?? valueString,

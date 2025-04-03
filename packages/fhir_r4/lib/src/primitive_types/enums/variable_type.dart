@@ -48,8 +48,11 @@ class VariableType extends FhirCodeEnum {
   /// Create empty [VariableType] with element only
   factory VariableType.empty() => VariableType._(valueString: '');
 
-  /// Factory constructor to create [VariableType] from JSON.
-  factory VariableType.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [VariableType]
+  /// from JSON.
+  factory VariableType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -141,7 +144,9 @@ class VariableType extends FhirCodeEnum {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for VariableType: $newValue');
+      throw ArgumentError(
+        'Invalid input for VariableType: $newValue',
+      );
     }
     return VariableType._(
       valueString: newValue ?? valueString,

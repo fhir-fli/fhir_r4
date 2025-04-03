@@ -51,7 +51,9 @@ class DetectedIssueSeverityBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [DetectedIssueSeverityBuilder]
   /// from JSON.
-  factory DetectedIssueSeverityBuilder.fromJson(Map<String, dynamic> json) {
+  factory DetectedIssueSeverityBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -115,9 +117,13 @@ class DetectedIssueSeverityBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  DetectedIssueSeverityBuilder withElement(ElementBuilder? newElement) {
+  DetectedIssueSeverityBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
     return DetectedIssueSeverityBuilder._(
-        valueString: valueString, element: newElement);
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -146,7 +152,9 @@ class DetectedIssueSeverityBuilder extends FhirCodeEnumBuilder {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for DetectedIssueSeverity: $newValue');
+      throw ArgumentError(
+        'Invalid input for DetectedIssueSeverity: $newValue',
+      );
     }
     return DetectedIssueSeverityBuilder._(
       valueString: newValue ?? valueString,

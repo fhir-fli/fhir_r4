@@ -47,8 +47,11 @@ class PropertyTypeEnum extends FhirCodeEnum {
   /// Create empty [PropertyTypeEnum] with element only
   factory PropertyTypeEnum.empty() => PropertyTypeEnum._(valueString: '');
 
-  /// Factory constructor to create [PropertyTypeEnum] from JSON.
-  factory PropertyTypeEnum.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [PropertyTypeEnum]
+  /// from JSON.
+  factory PropertyTypeEnum.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -177,7 +180,9 @@ class PropertyTypeEnum extends FhirCodeEnum {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for PropertyTypeEnum: $newValue');
+      throw ArgumentError(
+        'Invalid input for PropertyTypeEnum: $newValue',
+      );
     }
     return PropertyTypeEnum._(
       valueString: newValue ?? valueString,

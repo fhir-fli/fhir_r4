@@ -485,64 +485,190 @@ class CarePlanBuilder extends DomainResourceBuilder {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
+    bool isNonEmpty(dynamic val) {
+      if (val == null) return false;
+      if (val is List && val.isEmpty) return false;
+      if (val is Map && val.isEmpty) return false;
+      return true;
+    }
+
     void addField(String key, dynamic field) {
+      if (field == null) return;
       if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
         throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
-      if (field == null) return;
       if (field is PrimitiveTypeBuilder) {
-        json[key] = field.toJson()['value'];
-        if (field.toJson()['_value'] != null) {
-          json['_$key'] = field.toJson()['_value'];
-        }
+        final fieldMap = field.toJson();
+        final val = fieldMap['value'];
+        final ext = fieldMap['_value'];
+        // Skip if it has no actual value and no extension
+        final hasVal = isNonEmpty(val);
+        final hasExt = isNonEmpty(ext);
+        if (hasVal) json[key] = val;
+        if (hasExt) json['_$key'] = ext;
       } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveTypeBuilder) {
-          final fieldJson = field.map((e) => e.toJson()).toList();
-          json[key] = fieldJson.map((e) => e['value']).toList();
-          if (fieldJson.any((e) => e['_value'] != null)) {
-            json['_$key'] = fieldJson.map((e) => e['_value']).toList();
+        // We'll collect non-empty child items in a temp list
+        final tempList = <dynamic>[];
+        final tempExtensions = <dynamic>[];
+        final isPrimitive = field.first is PrimitiveTypeBuilder;
+        for (final e in field) {
+          final itemMap = e.toJson();
+          if (!isNonEmpty(itemMap)) {
+            continue; // skip empty child
+          }
+          if (isPrimitive) {
+            final v = itemMap['value'];
+            final x = itemMap['_value'];
+            tempList.add(v);
+            tempExtensions.add(x);
+          } else {
+            tempList.add(itemMap);
+          }
+        }
+        if (tempList.isEmpty) return; // no non-empty items
+        if (isPrimitive) {
+          json[key] = tempList;
+          final anyExt = tempExtensions.any(isNonEmpty);
+          if (anyExt) {
+            json['_$key'] = tempExtensions;
           }
         } else {
-          json[key] = field.map((e) => e.toJson()).toList();
+          json[key] = tempList;
         }
       } else if (field is FhirBaseBuilder) {
-        json[key] = field.toJson();
+        final subMap = field.toJson();
+        if (isNonEmpty(subMap)) {
+          json[key] = subMap;
+        }
       }
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
-    addField('meta', meta);
-    addField('implicitRules', implicitRules);
-    addField('language', language);
-    addField('text', text);
-    addField('contained', contained);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('identifier', identifier);
-    addField('instantiatesCanonical', instantiatesCanonical);
-    addField('instantiatesUri', instantiatesUri);
-    addField('basedOn', basedOn);
-    addField('replaces', replaces);
-    addField('partOf', partOf);
-    addField('status', status);
-    addField('intent', intent);
-    addField('category', category);
-    addField('title', title);
-    addField('description', description);
-    addField('subject', subject);
-    addField('encounter', encounter);
-    addField('period', period);
-    addField('created', created);
-    addField('author', author);
-    addField('contributor', contributor);
-    addField('careTeam', careTeam);
-    addField('addresses', addresses);
-    addField('supportingInfo', supportingInfo);
-    addField('goal', goal);
-    addField('activity', activity);
-    addField('note', note);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'meta',
+      meta,
+    );
+    addField(
+      'implicitRules',
+      implicitRules,
+    );
+    addField(
+      'language',
+      language,
+    );
+    addField(
+      'text',
+      text,
+    );
+    addField(
+      'contained',
+      contained,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'identifier',
+      identifier,
+    );
+    addField(
+      'instantiatesCanonical',
+      instantiatesCanonical,
+    );
+    addField(
+      'instantiatesUri',
+      instantiatesUri,
+    );
+    addField(
+      'basedOn',
+      basedOn,
+    );
+    addField(
+      'replaces',
+      replaces,
+    );
+    addField(
+      'partOf',
+      partOf,
+    );
+    addField(
+      'status',
+      status,
+    );
+    addField(
+      'intent',
+      intent,
+    );
+    addField(
+      'category',
+      category,
+    );
+    addField(
+      'title',
+      title,
+    );
+    addField(
+      'description',
+      description,
+    );
+    addField(
+      'subject',
+      subject,
+    );
+    addField(
+      'encounter',
+      encounter,
+    );
+    addField(
+      'period',
+      period,
+    );
+    addField(
+      'created',
+      created,
+    );
+    addField(
+      'author',
+      author,
+    );
+    addField(
+      'contributor',
+      contributor,
+    );
+    addField(
+      'careTeam',
+      careTeam,
+    );
+    addField(
+      'addresses',
+      addresses,
+    );
+    addField(
+      'supportingInfo',
+      supportingInfo,
+    );
+    addField(
+      'goal',
+      goal,
+    );
+    addField(
+      'activity',
+      activity,
+    );
+    addField(
+      'note',
+      note,
+    );
     return json;
   }
 
@@ -928,7 +1054,7 @@ class CarePlanBuilder extends DomainResourceBuilder {
               if (converted != null) {
                 instantiatesCanonical = [
                   ...(instantiatesCanonical ?? []),
-                  converted
+                  converted,
                 ];
                 return;
               }
@@ -975,7 +1101,10 @@ class CarePlanBuilder extends DomainResourceBuilder {
               final stringValue = child.toString();
               final converted = FhirUriBuilder.tryParse(stringValue);
               if (converted != null) {
-                instantiatesUri = [...(instantiatesUri ?? []), converted];
+                instantiatesUri = [
+                  ...(instantiatesUri ?? []),
+                  converted,
+                ];
                 return;
               }
             } catch (e) {
@@ -2082,40 +2211,97 @@ class CarePlanActivityBuilder extends BackboneElementBuilder {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
+    bool isNonEmpty(dynamic val) {
+      if (val == null) return false;
+      if (val is List && val.isEmpty) return false;
+      if (val is Map && val.isEmpty) return false;
+      return true;
+    }
+
     void addField(String key, dynamic field) {
+      if (field == null) return;
       if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
         throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
-      if (field == null) return;
       if (field is PrimitiveTypeBuilder) {
-        json[key] = field.toJson()['value'];
-        if (field.toJson()['_value'] != null) {
-          json['_$key'] = field.toJson()['_value'];
-        }
+        final fieldMap = field.toJson();
+        final val = fieldMap['value'];
+        final ext = fieldMap['_value'];
+        // Skip if it has no actual value and no extension
+        final hasVal = isNonEmpty(val);
+        final hasExt = isNonEmpty(ext);
+        if (hasVal) json[key] = val;
+        if (hasExt) json['_$key'] = ext;
       } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveTypeBuilder) {
-          final fieldJson = field.map((e) => e.toJson()).toList();
-          json[key] = fieldJson.map((e) => e['value']).toList();
-          if (fieldJson.any((e) => e['_value'] != null)) {
-            json['_$key'] = fieldJson.map((e) => e['_value']).toList();
+        // We'll collect non-empty child items in a temp list
+        final tempList = <dynamic>[];
+        final tempExtensions = <dynamic>[];
+        final isPrimitive = field.first is PrimitiveTypeBuilder;
+        for (final e in field) {
+          final itemMap = e.toJson();
+          if (!isNonEmpty(itemMap)) {
+            continue; // skip empty child
+          }
+          if (isPrimitive) {
+            final v = itemMap['value'];
+            final x = itemMap['_value'];
+            tempList.add(v);
+            tempExtensions.add(x);
+          } else {
+            tempList.add(itemMap);
+          }
+        }
+        if (tempList.isEmpty) return; // no non-empty items
+        if (isPrimitive) {
+          json[key] = tempList;
+          final anyExt = tempExtensions.any(isNonEmpty);
+          if (anyExt) {
+            json['_$key'] = tempExtensions;
           }
         } else {
-          json[key] = field.map((e) => e.toJson()).toList();
+          json[key] = tempList;
         }
       } else if (field is FhirBaseBuilder) {
-        json[key] = field.toJson();
+        final subMap = field.toJson();
+        if (isNonEmpty(subMap)) {
+          json[key] = subMap;
+        }
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('outcomeCodeableConcept', outcomeCodeableConcept);
-    addField('outcomeReference', outcomeReference);
-    addField('progress', progress);
-    addField('reference', reference);
-    addField('detail', detail);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'outcomeCodeableConcept',
+      outcomeCodeableConcept,
+    );
+    addField(
+      'outcomeReference',
+      outcomeReference,
+    );
+    addField(
+      'progress',
+      progress,
+    );
+    addField(
+      'reference',
+      reference,
+    );
+    addField(
+      'detail',
+      detail,
+    );
     return json;
   }
 
@@ -2890,60 +3076,153 @@ class CarePlanDetailBuilder extends BackboneElementBuilder {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
+    bool isNonEmpty(dynamic val) {
+      if (val == null) return false;
+      if (val is List && val.isEmpty) return false;
+      if (val is Map && val.isEmpty) return false;
+      return true;
+    }
+
     void addField(String key, dynamic field) {
+      if (field == null) return;
       if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
         throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
-      if (field == null) return;
       if (field is PrimitiveTypeBuilder) {
-        json[key] = field.toJson()['value'];
-        if (field.toJson()['_value'] != null) {
-          json['_$key'] = field.toJson()['_value'];
-        }
+        final fieldMap = field.toJson();
+        final val = fieldMap['value'];
+        final ext = fieldMap['_value'];
+        // Skip if it has no actual value and no extension
+        final hasVal = isNonEmpty(val);
+        final hasExt = isNonEmpty(ext);
+        if (hasVal) json[key] = val;
+        if (hasExt) json['_$key'] = ext;
       } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveTypeBuilder) {
-          final fieldJson = field.map((e) => e.toJson()).toList();
-          json[key] = fieldJson.map((e) => e['value']).toList();
-          if (fieldJson.any((e) => e['_value'] != null)) {
-            json['_$key'] = fieldJson.map((e) => e['_value']).toList();
+        // We'll collect non-empty child items in a temp list
+        final tempList = <dynamic>[];
+        final tempExtensions = <dynamic>[];
+        final isPrimitive = field.first is PrimitiveTypeBuilder;
+        for (final e in field) {
+          final itemMap = e.toJson();
+          if (!isNonEmpty(itemMap)) {
+            continue; // skip empty child
+          }
+          if (isPrimitive) {
+            final v = itemMap['value'];
+            final x = itemMap['_value'];
+            tempList.add(v);
+            tempExtensions.add(x);
+          } else {
+            tempList.add(itemMap);
+          }
+        }
+        if (tempList.isEmpty) return; // no non-empty items
+        if (isPrimitive) {
+          json[key] = tempList;
+          final anyExt = tempExtensions.any(isNonEmpty);
+          if (anyExt) {
+            json['_$key'] = tempExtensions;
           }
         } else {
-          json[key] = field.map((e) => e.toJson()).toList();
+          json[key] = tempList;
         }
       } else if (field is FhirBaseBuilder) {
-        json[key] = field.toJson();
+        final subMap = field.toJson();
+        if (isNonEmpty(subMap)) {
+          json[key] = subMap;
+        }
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('kind', kind);
-    addField('instantiatesCanonical', instantiatesCanonical);
-    addField('instantiatesUri', instantiatesUri);
-    addField('code', code);
-    addField('reasonCode', reasonCode);
-    addField('reasonReference', reasonReference);
-    addField('goal', goal);
-    addField('status', status);
-    addField('statusReason', statusReason);
-    addField('doNotPerform', doNotPerform);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'kind',
+      kind,
+    );
+    addField(
+      'instantiatesCanonical',
+      instantiatesCanonical,
+    );
+    addField(
+      'instantiatesUri',
+      instantiatesUri,
+    );
+    addField(
+      'code',
+      code,
+    );
+    addField(
+      'reasonCode',
+      reasonCode,
+    );
+    addField(
+      'reasonReference',
+      reasonReference,
+    );
+    addField(
+      'goal',
+      goal,
+    );
+    addField(
+      'status',
+      status,
+    );
+    addField(
+      'statusReason',
+      statusReason,
+    );
+    addField(
+      'doNotPerform',
+      doNotPerform,
+    );
     if (scheduledX != null) {
       final fhirType = scheduledX!.fhirType;
-      addField('scheduled${fhirType.capitalize()}', scheduledX);
+      addField(
+        'scheduled${fhirType.capitalize()}',
+        scheduledX,
+      );
     }
 
-    addField('location', location);
-    addField('performer', performer);
+    addField(
+      'location',
+      location,
+    );
+    addField(
+      'performer',
+      performer,
+    );
     if (productX != null) {
       final fhirType = productX!.fhirType;
-      addField('product${fhirType.capitalize()}', productX);
+      addField(
+        'product${fhirType.capitalize()}',
+        productX,
+      );
     }
 
-    addField('dailyAmount', dailyAmount);
-    addField('quantity', quantity);
-    addField('description', description);
+    addField(
+      'dailyAmount',
+      dailyAmount,
+    );
+    addField(
+      'quantity',
+      quantity,
+    );
+    addField(
+      'description',
+      description,
+    );
     return json;
   }
 
@@ -3234,7 +3513,7 @@ class CarePlanDetailBuilder extends BackboneElementBuilder {
               if (converted != null) {
                 instantiatesCanonical = [
                   ...(instantiatesCanonical ?? []),
-                  converted
+                  converted,
                 ];
                 return;
               }
@@ -3281,7 +3560,10 @@ class CarePlanDetailBuilder extends BackboneElementBuilder {
               final stringValue = child.toString();
               final converted = FhirUriBuilder.tryParse(stringValue);
               if (converted != null) {
-                instantiatesUri = [...(instantiatesUri ?? []), converted];
+                instantiatesUri = [
+                  ...(instantiatesUri ?? []),
+                  converted,
+                ];
                 return;
               }
             } catch (e) {
@@ -3782,10 +4064,10 @@ class CarePlanDetailBuilder extends BackboneElementBuilder {
     if (status) this.status = null;
     if (statusReason) this.statusReason = null;
     if (doNotPerform) this.doNotPerform = null;
-    if (scheduled) this.scheduledX = null;
+    if (scheduled) scheduledX = null;
     if (location) this.location = null;
     if (performer) this.performer = null;
-    if (product) this.productX = null;
+    if (product) productX = null;
     if (dailyAmount) this.dailyAmount = null;
     if (quantity) this.quantity = null;
     if (description) this.description = null;

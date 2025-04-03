@@ -48,8 +48,11 @@ class AuditEventAgentNetworkType extends FhirCodeEnum {
   factory AuditEventAgentNetworkType.empty() =>
       AuditEventAgentNetworkType._(valueString: '');
 
-  /// Factory constructor to create [AuditEventAgentNetworkType] from JSON.
-  factory AuditEventAgentNetworkType.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [AuditEventAgentNetworkType]
+  /// from JSON.
+  factory AuditEventAgentNetworkType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -161,7 +164,8 @@ class AuditEventAgentNetworkType extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for AuditEventAgentNetworkType: $newValue');
+        'Invalid input for AuditEventAgentNetworkType: $newValue',
+      );
     }
     return AuditEventAgentNetworkType._(
       valueString: newValue ?? valueString,

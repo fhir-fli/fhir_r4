@@ -47,8 +47,11 @@ class LocationStatus extends FhirCodeEnum {
   /// Create empty [LocationStatus] with element only
   factory LocationStatus.empty() => LocationStatus._(valueString: '');
 
-  /// Factory constructor to create [LocationStatus] from JSON.
-  factory LocationStatus.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [LocationStatus]
+  /// from JSON.
+  factory LocationStatus.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -140,7 +143,9 @@ class LocationStatus extends FhirCodeEnum {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for LocationStatus: $newValue');
+      throw ArgumentError(
+        'Invalid input for LocationStatus: $newValue',
+      );
     }
     return LocationStatus._(
       valueString: newValue ?? valueString,

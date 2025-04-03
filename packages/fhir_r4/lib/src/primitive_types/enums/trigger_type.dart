@@ -47,8 +47,11 @@ class TriggerType extends FhirCodeEnum {
   /// Create empty [TriggerType] with element only
   factory TriggerType.empty() => TriggerType._(valueString: '');
 
-  /// Factory constructor to create [TriggerType] from JSON.
-  factory TriggerType.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [TriggerType]
+  /// from JSON.
+  factory TriggerType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -185,7 +188,9 @@ class TriggerType extends FhirCodeEnum {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for TriggerType: $newValue');
+      throw ArgumentError(
+        'Invalid input for TriggerType: $newValue',
+      );
     }
     return TriggerType._(
       valueString: newValue ?? valueString,

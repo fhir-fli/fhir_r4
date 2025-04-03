@@ -50,7 +50,9 @@ class ConditionalReadStatusBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [ConditionalReadStatusBuilder]
   /// from JSON.
-  factory ConditionalReadStatusBuilder.fromJson(Map<String, dynamic> json) {
+  factory ConditionalReadStatusBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -128,9 +130,13 @@ class ConditionalReadStatusBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  ConditionalReadStatusBuilder withElement(ElementBuilder? newElement) {
+  ConditionalReadStatusBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
     return ConditionalReadStatusBuilder._(
-        valueString: valueString, element: newElement);
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -159,7 +165,9 @@ class ConditionalReadStatusBuilder extends FhirCodeEnumBuilder {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for ConditionalReadStatus: $newValue');
+      throw ArgumentError(
+        'Invalid input for ConditionalReadStatus: $newValue',
+      );
     }
     return ConditionalReadStatusBuilder._(
       valueString: newValue ?? valueString,

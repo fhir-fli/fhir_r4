@@ -48,8 +48,11 @@ class DeviceUseStatementStatus extends FhirCodeEnum {
   factory DeviceUseStatementStatus.empty() =>
       DeviceUseStatementStatus._(valueString: '');
 
-  /// Factory constructor to create [DeviceUseStatementStatus] from JSON.
-  factory DeviceUseStatementStatus.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [DeviceUseStatementStatus]
+  /// from JSON.
+  factory DeviceUseStatementStatus.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -171,7 +174,8 @@ class DeviceUseStatementStatus extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for DeviceUseStatementStatus: $newValue');
+        'Invalid input for DeviceUseStatementStatus: $newValue',
+      );
     }
     return DeviceUseStatementStatus._(
       valueString: newValue ?? valueString,

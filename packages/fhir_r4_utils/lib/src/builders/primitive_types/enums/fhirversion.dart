@@ -49,7 +49,9 @@ class FHIRVersionBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [FHIRVersionBuilder]
   /// from JSON.
-  factory FHIRVersionBuilder.fromJson(Map<String, dynamic> json) {
+  factory FHIRVersionBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -325,8 +327,13 @@ class FHIRVersionBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  FHIRVersionBuilder withElement(ElementBuilder? newElement) {
-    return FHIRVersionBuilder._(valueString: valueString, element: newElement);
+  FHIRVersionBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
+    return FHIRVersionBuilder._(
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -355,7 +362,9 @@ class FHIRVersionBuilder extends FhirCodeEnumBuilder {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for FHIRVersion: $newValue');
+      throw ArgumentError(
+        'Invalid input for FHIRVersion: $newValue',
+      );
     }
     return FHIRVersionBuilder._(
       valueString: newValue ?? valueString,

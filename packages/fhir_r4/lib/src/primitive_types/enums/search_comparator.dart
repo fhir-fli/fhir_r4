@@ -47,8 +47,11 @@ class SearchComparator extends FhirCodeEnum {
   /// Create empty [SearchComparator] with element only
   factory SearchComparator.empty() => SearchComparator._(valueString: '');
 
-  /// Factory constructor to create [SearchComparator] from JSON.
-  factory SearchComparator.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [SearchComparator]
+  /// from JSON.
+  factory SearchComparator.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -195,7 +198,9 @@ class SearchComparator extends FhirCodeEnum {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for SearchComparator: $newValue');
+      throw ArgumentError(
+        'Invalid input for SearchComparator: $newValue',
+      );
     }
     return SearchComparator._(
       valueString: newValue ?? valueString,

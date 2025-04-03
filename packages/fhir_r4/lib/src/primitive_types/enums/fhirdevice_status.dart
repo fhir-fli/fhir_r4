@@ -47,8 +47,11 @@ class FHIRDeviceStatus extends FhirCodeEnum {
   /// Create empty [FHIRDeviceStatus] with element only
   factory FHIRDeviceStatus.empty() => FHIRDeviceStatus._(valueString: '');
 
-  /// Factory constructor to create [FHIRDeviceStatus] from JSON.
-  factory FHIRDeviceStatus.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [FHIRDeviceStatus]
+  /// from JSON.
+  factory FHIRDeviceStatus.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -150,7 +153,9 @@ class FHIRDeviceStatus extends FhirCodeEnum {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for FHIRDeviceStatus: $newValue');
+      throw ArgumentError(
+        'Invalid input for FHIRDeviceStatus: $newValue',
+      );
     }
     return FHIRDeviceStatus._(
       valueString: newValue ?? valueString,

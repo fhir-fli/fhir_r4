@@ -48,8 +48,11 @@ class DeviceMetricOperationalStatus extends FhirCodeEnum {
   factory DeviceMetricOperationalStatus.empty() =>
       DeviceMetricOperationalStatus._(valueString: '');
 
-  /// Factory constructor to create [DeviceMetricOperationalStatus] from JSON.
-  factory DeviceMetricOperationalStatus.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [DeviceMetricOperationalStatus]
+  /// from JSON.
+  factory DeviceMetricOperationalStatus.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -156,7 +159,8 @@ class DeviceMetricOperationalStatus extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for DeviceMetricOperationalStatus: $newValue');
+        'Invalid input for DeviceMetricOperationalStatus: $newValue',
+      );
     }
     return DeviceMetricOperationalStatus._(
       valueString: newValue ?? valueString,

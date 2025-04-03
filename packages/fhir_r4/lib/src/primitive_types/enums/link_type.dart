@@ -48,8 +48,11 @@ class LinkType extends FhirCodeEnum {
   /// Create empty [LinkType] with element only
   factory LinkType.empty() => LinkType._(valueString: '');
 
-  /// Factory constructor to create [LinkType] from JSON.
-  factory LinkType.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [LinkType]
+  /// from JSON.
+  factory LinkType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -150,7 +153,9 @@ class LinkType extends FhirCodeEnum {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for LinkType: $newValue');
+      throw ArgumentError(
+        'Invalid input for LinkType: $newValue',
+      );
     }
     return LinkType._(
       valueString: newValue ?? valueString,

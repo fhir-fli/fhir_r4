@@ -47,8 +47,11 @@ class GroupMeasure extends FhirCodeEnum {
   /// Create empty [GroupMeasure] with element only
   factory GroupMeasure.empty() => GroupMeasure._(valueString: '');
 
-  /// Factory constructor to create [GroupMeasure] from JSON.
-  factory GroupMeasure.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [GroupMeasure]
+  /// from JSON.
+  factory GroupMeasure.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -167,7 +170,9 @@ class GroupMeasure extends FhirCodeEnum {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for GroupMeasure: $newValue');
+      throw ArgumentError(
+        'Invalid input for GroupMeasure: $newValue',
+      );
     }
     return GroupMeasure._(
       valueString: newValue ?? valueString,

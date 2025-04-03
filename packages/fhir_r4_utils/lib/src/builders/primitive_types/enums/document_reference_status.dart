@@ -50,7 +50,9 @@ class DocumentReferenceStatusBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [DocumentReferenceStatusBuilder]
   /// from JSON.
-  factory DocumentReferenceStatusBuilder.fromJson(Map<String, dynamic> json) {
+  factory DocumentReferenceStatusBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -117,9 +119,13 @@ class DocumentReferenceStatusBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  DocumentReferenceStatusBuilder withElement(ElementBuilder? newElement) {
+  DocumentReferenceStatusBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
     return DocumentReferenceStatusBuilder._(
-        valueString: valueString, element: newElement);
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -149,7 +155,8 @@ class DocumentReferenceStatusBuilder extends FhirCodeEnumBuilder {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for DocumentReferenceStatus: $newValue');
+        'Invalid input for DocumentReferenceStatus: $newValue',
+      );
     }
     return DocumentReferenceStatusBuilder._(
       valueString: newValue ?? valueString,

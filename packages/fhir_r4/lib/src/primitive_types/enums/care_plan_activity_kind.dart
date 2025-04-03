@@ -49,8 +49,11 @@ class CarePlanActivityKind extends FhirCodeEnum {
   factory CarePlanActivityKind.empty() =>
       CarePlanActivityKind._(valueString: '');
 
-  /// Factory constructor to create [CarePlanActivityKind] from JSON.
-  factory CarePlanActivityKind.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [CarePlanActivityKind]
+  /// from JSON.
+  factory CarePlanActivityKind.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -1434,7 +1437,9 @@ class CarePlanActivityKind extends FhirCodeEnum {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for CarePlanActivityKind: $newValue');
+      throw ArgumentError(
+        'Invalid input for CarePlanActivityKind: $newValue',
+      );
     }
     return CarePlanActivityKind._(
       valueString: newValue ?? valueString,

@@ -50,7 +50,9 @@ class ContributorTypeBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [ContributorTypeBuilder]
   /// from JSON.
-  factory ContributorTypeBuilder.fromJson(Map<String, dynamic> json) {
+  factory ContributorTypeBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -120,9 +122,13 @@ class ContributorTypeBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  ContributorTypeBuilder withElement(ElementBuilder? newElement) {
+  ContributorTypeBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
     return ContributorTypeBuilder._(
-        valueString: valueString, element: newElement);
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -151,7 +157,9 @@ class ContributorTypeBuilder extends FhirCodeEnumBuilder {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for ContributorType: $newValue');
+      throw ArgumentError(
+        'Invalid input for ContributorType: $newValue',
+      );
     }
     return ContributorTypeBuilder._(
       valueString: newValue ?? valueString,

@@ -50,7 +50,9 @@ class SupplyRequestStatusBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [SupplyRequestStatusBuilder]
   /// from JSON.
-  factory SupplyRequestStatusBuilder.fromJson(Map<String, dynamic> json) {
+  factory SupplyRequestStatusBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -155,9 +157,13 @@ class SupplyRequestStatusBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  SupplyRequestStatusBuilder withElement(ElementBuilder? newElement) {
+  SupplyRequestStatusBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
     return SupplyRequestStatusBuilder._(
-        valueString: valueString, element: newElement);
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -186,7 +192,9 @@ class SupplyRequestStatusBuilder extends FhirCodeEnumBuilder {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for SupplyRequestStatus: $newValue');
+      throw ArgumentError(
+        'Invalid input for SupplyRequestStatus: $newValue',
+      );
     }
     return SupplyRequestStatusBuilder._(
       valueString: newValue ?? valueString,

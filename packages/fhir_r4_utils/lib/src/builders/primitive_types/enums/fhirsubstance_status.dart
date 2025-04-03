@@ -50,7 +50,9 @@ class FHIRSubstanceStatusBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [FHIRSubstanceStatusBuilder]
   /// from JSON.
-  factory FHIRSubstanceStatusBuilder.fromJson(Map<String, dynamic> json) {
+  factory FHIRSubstanceStatusBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -112,9 +114,13 @@ class FHIRSubstanceStatusBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  FHIRSubstanceStatusBuilder withElement(ElementBuilder? newElement) {
+  FHIRSubstanceStatusBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
     return FHIRSubstanceStatusBuilder._(
-        valueString: valueString, element: newElement);
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -143,7 +149,9 @@ class FHIRSubstanceStatusBuilder extends FhirCodeEnumBuilder {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for FHIRSubstanceStatus: $newValue');
+      throw ArgumentError(
+        'Invalid input for FHIRSubstanceStatus: $newValue',
+      );
     }
     return FHIRSubstanceStatusBuilder._(
       valueString: newValue ?? valueString,

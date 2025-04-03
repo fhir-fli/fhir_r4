@@ -49,7 +49,9 @@ class DocumentModeBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [DocumentModeBuilder]
   /// from JSON.
-  factory DocumentModeBuilder.fromJson(Map<String, dynamic> json) {
+  factory DocumentModeBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -101,8 +103,13 @@ class DocumentModeBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  DocumentModeBuilder withElement(ElementBuilder? newElement) {
-    return DocumentModeBuilder._(valueString: valueString, element: newElement);
+  DocumentModeBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
+    return DocumentModeBuilder._(
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -131,7 +138,9 @@ class DocumentModeBuilder extends FhirCodeEnumBuilder {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for DocumentMode: $newValue');
+      throw ArgumentError(
+        'Invalid input for DocumentMode: $newValue',
+      );
     }
     return DocumentModeBuilder._(
       valueString: newValue ?? valueString,

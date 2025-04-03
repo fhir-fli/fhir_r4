@@ -48,8 +48,11 @@ class GraphCompartmentRule extends FhirCodeEnum {
   factory GraphCompartmentRule.empty() =>
       GraphCompartmentRule._(valueString: '');
 
-  /// Factory constructor to create [GraphCompartmentRule] from JSON.
-  factory GraphCompartmentRule.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [GraphCompartmentRule]
+  /// from JSON.
+  factory GraphCompartmentRule.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -151,7 +154,9 @@ class GraphCompartmentRule extends FhirCodeEnum {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for GraphCompartmentRule: $newValue');
+      throw ArgumentError(
+        'Invalid input for GraphCompartmentRule: $newValue',
+      );
     }
     return GraphCompartmentRule._(
       valueString: newValue ?? valueString,

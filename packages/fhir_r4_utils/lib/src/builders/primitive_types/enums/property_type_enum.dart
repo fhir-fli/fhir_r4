@@ -50,7 +50,9 @@ class PropertyTypeEnumBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [PropertyTypeEnumBuilder]
   /// from JSON.
-  factory PropertyTypeEnumBuilder.fromJson(Map<String, dynamic> json) {
+  factory PropertyTypeEnumBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -154,9 +156,13 @@ class PropertyTypeEnumBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  PropertyTypeEnumBuilder withElement(ElementBuilder? newElement) {
+  PropertyTypeEnumBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
     return PropertyTypeEnumBuilder._(
-        valueString: valueString, element: newElement);
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -185,7 +191,9 @@ class PropertyTypeEnumBuilder extends FhirCodeEnumBuilder {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for PropertyTypeEnum: $newValue');
+      throw ArgumentError(
+        'Invalid input for PropertyTypeEnum: $newValue',
+      );
     }
     return PropertyTypeEnumBuilder._(
       valueString: newValue ?? valueString,

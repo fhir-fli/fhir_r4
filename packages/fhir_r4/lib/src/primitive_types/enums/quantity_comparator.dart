@@ -47,8 +47,11 @@ class QuantityComparator extends FhirCodeEnum {
   /// Create empty [QuantityComparator] with element only
   factory QuantityComparator.empty() => QuantityComparator._(valueString: '');
 
-  /// Factory constructor to create [QuantityComparator] from JSON.
-  factory QuantityComparator.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [QuantityComparator]
+  /// from JSON.
+  factory QuantityComparator.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -150,7 +153,9 @@ class QuantityComparator extends FhirCodeEnum {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for QuantityComparator: $newValue');
+      throw ArgumentError(
+        'Invalid input for QuantityComparator: $newValue',
+      );
     }
     return QuantityComparator._(
       valueString: newValue ?? valueString,

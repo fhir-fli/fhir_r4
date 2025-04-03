@@ -47,8 +47,11 @@ class ParticipantRequired extends FhirCodeEnum {
   /// Create empty [ParticipantRequired] with element only
   factory ParticipantRequired.empty() => ParticipantRequired._(valueString: '');
 
-  /// Factory constructor to create [ParticipantRequired] from JSON.
-  factory ParticipantRequired.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [ParticipantRequired]
+  /// from JSON.
+  factory ParticipantRequired.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -141,7 +144,9 @@ class ParticipantRequired extends FhirCodeEnum {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for ParticipantRequired: $newValue');
+      throw ArgumentError(
+        'Invalid input for ParticipantRequired: $newValue',
+      );
     }
     return ParticipantRequired._(
       valueString: newValue ?? valueString,

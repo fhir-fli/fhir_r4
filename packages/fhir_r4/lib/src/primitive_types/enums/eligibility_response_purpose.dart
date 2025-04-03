@@ -48,8 +48,11 @@ class EligibilityResponsePurpose extends FhirCodeEnum {
   factory EligibilityResponsePurpose.empty() =>
       EligibilityResponsePurpose._(valueString: '');
 
-  /// Factory constructor to create [EligibilityResponsePurpose] from JSON.
-  factory EligibilityResponsePurpose.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [EligibilityResponsePurpose]
+  /// from JSON.
+  factory EligibilityResponsePurpose.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -160,7 +163,8 @@ class EligibilityResponsePurpose extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for EligibilityResponsePurpose: $newValue');
+        'Invalid input for EligibilityResponsePurpose: $newValue',
+      );
     }
     return EligibilityResponsePurpose._(
       valueString: newValue ?? valueString,

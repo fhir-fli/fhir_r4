@@ -47,8 +47,11 @@ class DaysOfWeek extends FhirCodeEnum {
   /// Create empty [DaysOfWeek] with element only
   factory DaysOfWeek.empty() => DaysOfWeek._(valueString: '');
 
-  /// Factory constructor to create [DaysOfWeek] from JSON.
-  factory DaysOfWeek.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [DaysOfWeek]
+  /// from JSON.
+  factory DaysOfWeek.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -176,7 +179,9 @@ class DaysOfWeek extends FhirCodeEnum {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for DaysOfWeek: $newValue');
+      throw ArgumentError(
+        'Invalid input for DaysOfWeek: $newValue',
+      );
     }
     return DaysOfWeek._(
       valueString: newValue ?? valueString,

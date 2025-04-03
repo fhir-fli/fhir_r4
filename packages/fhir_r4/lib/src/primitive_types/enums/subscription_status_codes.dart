@@ -48,8 +48,11 @@ class SubscriptionStatusCodes extends FhirCodeEnum {
   factory SubscriptionStatusCodes.empty() =>
       SubscriptionStatusCodes._(valueString: '');
 
-  /// Factory constructor to create [SubscriptionStatusCodes] from JSON.
-  factory SubscriptionStatusCodes.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [SubscriptionStatusCodes]
+  /// from JSON.
+  factory SubscriptionStatusCodes.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -152,7 +155,8 @@ class SubscriptionStatusCodes extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for SubscriptionStatusCodes: $newValue');
+        'Invalid input for SubscriptionStatusCodes: $newValue',
+      );
     }
     return SubscriptionStatusCodes._(
       valueString: newValue ?? valueString,

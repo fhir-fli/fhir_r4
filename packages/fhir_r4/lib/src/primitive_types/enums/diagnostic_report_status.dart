@@ -48,8 +48,11 @@ class DiagnosticReportStatus extends FhirCodeEnum {
   factory DiagnosticReportStatus.empty() =>
       DiagnosticReportStatus._(valueString: '');
 
-  /// Factory constructor to create [DiagnosticReportStatus] from JSON.
-  factory DiagnosticReportStatus.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [DiagnosticReportStatus]
+  /// from JSON.
+  factory DiagnosticReportStatus.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -207,7 +210,8 @@ class DiagnosticReportStatus extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for DiagnosticReportStatus: $newValue');
+        'Invalid input for DiagnosticReportStatus: $newValue',
+      );
     }
     return DiagnosticReportStatus._(
       valueString: newValue ?? valueString,

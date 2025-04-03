@@ -515,75 +515,210 @@ class ChargeItemBuilder extends DomainResourceBuilder {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
+    bool isNonEmpty(dynamic val) {
+      if (val == null) return false;
+      if (val is List && val.isEmpty) return false;
+      if (val is Map && val.isEmpty) return false;
+      return true;
+    }
+
     void addField(String key, dynamic field) {
+      if (field == null) return;
       if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
         throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
-      if (field == null) return;
       if (field is PrimitiveTypeBuilder) {
-        json[key] = field.toJson()['value'];
-        if (field.toJson()['_value'] != null) {
-          json['_$key'] = field.toJson()['_value'];
-        }
+        final fieldMap = field.toJson();
+        final val = fieldMap['value'];
+        final ext = fieldMap['_value'];
+        // Skip if it has no actual value and no extension
+        final hasVal = isNonEmpty(val);
+        final hasExt = isNonEmpty(ext);
+        if (hasVal) json[key] = val;
+        if (hasExt) json['_$key'] = ext;
       } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveTypeBuilder) {
-          final fieldJson = field.map((e) => e.toJson()).toList();
-          json[key] = fieldJson.map((e) => e['value']).toList();
-          if (fieldJson.any((e) => e['_value'] != null)) {
-            json['_$key'] = fieldJson.map((e) => e['_value']).toList();
+        // We'll collect non-empty child items in a temp list
+        final tempList = <dynamic>[];
+        final tempExtensions = <dynamic>[];
+        final isPrimitive = field.first is PrimitiveTypeBuilder;
+        for (final e in field) {
+          final itemMap = e.toJson();
+          if (!isNonEmpty(itemMap)) {
+            continue; // skip empty child
+          }
+          if (isPrimitive) {
+            final v = itemMap['value'];
+            final x = itemMap['_value'];
+            tempList.add(v);
+            tempExtensions.add(x);
+          } else {
+            tempList.add(itemMap);
+          }
+        }
+        if (tempList.isEmpty) return; // no non-empty items
+        if (isPrimitive) {
+          json[key] = tempList;
+          final anyExt = tempExtensions.any(isNonEmpty);
+          if (anyExt) {
+            json['_$key'] = tempExtensions;
           }
         } else {
-          json[key] = field.map((e) => e.toJson()).toList();
+          json[key] = tempList;
         }
       } else if (field is FhirBaseBuilder) {
-        json[key] = field.toJson();
+        final subMap = field.toJson();
+        if (isNonEmpty(subMap)) {
+          json[key] = subMap;
+        }
       }
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
-    addField('meta', meta);
-    addField('implicitRules', implicitRules);
-    addField('language', language);
-    addField('text', text);
-    addField('contained', contained);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('identifier', identifier);
-    addField('definitionUri', definitionUri);
-    addField('definitionCanonical', definitionCanonical);
-    addField('status', status);
-    addField('partOf', partOf);
-    addField('code', code);
-    addField('subject', subject);
-    addField('context', context);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'meta',
+      meta,
+    );
+    addField(
+      'implicitRules',
+      implicitRules,
+    );
+    addField(
+      'language',
+      language,
+    );
+    addField(
+      'text',
+      text,
+    );
+    addField(
+      'contained',
+      contained,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'identifier',
+      identifier,
+    );
+    addField(
+      'definitionUri',
+      definitionUri,
+    );
+    addField(
+      'definitionCanonical',
+      definitionCanonical,
+    );
+    addField(
+      'status',
+      status,
+    );
+    addField(
+      'partOf',
+      partOf,
+    );
+    addField(
+      'code',
+      code,
+    );
+    addField(
+      'subject',
+      subject,
+    );
+    addField(
+      'context',
+      context,
+    );
     if (occurrenceX != null) {
       final fhirType = occurrenceX!.fhirType;
-      addField('occurrence${fhirType.capitalize()}', occurrenceX);
+      addField(
+        'occurrence${fhirType.capitalize()}',
+        occurrenceX,
+      );
     }
 
-    addField('performer', performer);
-    addField('performingOrganization', performingOrganization);
-    addField('requestingOrganization', requestingOrganization);
-    addField('costCenter', costCenter);
-    addField('quantity', quantity);
-    addField('bodysite', bodysite);
-    addField('factorOverride', factorOverride);
-    addField('priceOverride', priceOverride);
-    addField('overrideReason', overrideReason);
-    addField('enterer', enterer);
-    addField('enteredDate', enteredDate);
-    addField('reason', reason);
-    addField('service', service);
+    addField(
+      'performer',
+      performer,
+    );
+    addField(
+      'performingOrganization',
+      performingOrganization,
+    );
+    addField(
+      'requestingOrganization',
+      requestingOrganization,
+    );
+    addField(
+      'costCenter',
+      costCenter,
+    );
+    addField(
+      'quantity',
+      quantity,
+    );
+    addField(
+      'bodysite',
+      bodysite,
+    );
+    addField(
+      'factorOverride',
+      factorOverride,
+    );
+    addField(
+      'priceOverride',
+      priceOverride,
+    );
+    addField(
+      'overrideReason',
+      overrideReason,
+    );
+    addField(
+      'enterer',
+      enterer,
+    );
+    addField(
+      'enteredDate',
+      enteredDate,
+    );
+    addField(
+      'reason',
+      reason,
+    );
+    addField(
+      'service',
+      service,
+    );
     if (productX != null) {
       final fhirType = productX!.fhirType;
-      addField('product${fhirType.capitalize()}', productX);
+      addField(
+        'product${fhirType.capitalize()}',
+        productX,
+      );
     }
 
-    addField('account', account);
-    addField('note', note);
-    addField('supportingInformation', supportingInformation);
+    addField(
+      'account',
+      account,
+    );
+    addField(
+      'note',
+      note,
+    );
+    addField(
+      'supportingInformation',
+      supportingInformation,
+    );
     return json;
   }
 
@@ -1010,7 +1145,10 @@ class ChargeItemBuilder extends DomainResourceBuilder {
               final stringValue = child.toString();
               final converted = FhirUriBuilder.tryParse(stringValue);
               if (converted != null) {
-                definitionUri = [...(definitionUri ?? []), converted];
+                definitionUri = [
+                  ...(definitionUri ?? []),
+                  converted,
+                ];
                 return;
               }
             } catch (e) {
@@ -1058,7 +1196,7 @@ class ChargeItemBuilder extends DomainResourceBuilder {
               if (converted != null) {
                 definitionCanonical = [
                   ...(definitionCanonical ?? []),
-                  converted
+                  converted,
                 ];
                 return;
               }
@@ -1796,7 +1934,7 @@ class ChargeItemBuilder extends DomainResourceBuilder {
     if (code) this.code = null;
     if (subject) this.subject = null;
     if (context) this.context = null;
-    if (occurrence) this.occurrenceX = null;
+    if (occurrence) occurrenceX = null;
     if (performer) this.performer = null;
     if (performingOrganization) this.performingOrganization = null;
     if (requestingOrganization) this.requestingOrganization = null;
@@ -1810,7 +1948,7 @@ class ChargeItemBuilder extends DomainResourceBuilder {
     if (enteredDate) this.enteredDate = null;
     if (reason) this.reason = null;
     if (service) this.service = null;
-    if (product) this.productX = null;
+    if (product) productX = null;
     if (account) this.account = null;
     if (note) this.note = null;
     if (supportingInformation) this.supportingInformation = null;
@@ -2262,37 +2400,85 @@ class ChargeItemPerformerBuilder extends BackboneElementBuilder {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
+    bool isNonEmpty(dynamic val) {
+      if (val == null) return false;
+      if (val is List && val.isEmpty) return false;
+      if (val is Map && val.isEmpty) return false;
+      return true;
+    }
+
     void addField(String key, dynamic field) {
+      if (field == null) return;
       if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
         throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
-      if (field == null) return;
       if (field is PrimitiveTypeBuilder) {
-        json[key] = field.toJson()['value'];
-        if (field.toJson()['_value'] != null) {
-          json['_$key'] = field.toJson()['_value'];
-        }
+        final fieldMap = field.toJson();
+        final val = fieldMap['value'];
+        final ext = fieldMap['_value'];
+        // Skip if it has no actual value and no extension
+        final hasVal = isNonEmpty(val);
+        final hasExt = isNonEmpty(ext);
+        if (hasVal) json[key] = val;
+        if (hasExt) json['_$key'] = ext;
       } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveTypeBuilder) {
-          final fieldJson = field.map((e) => e.toJson()).toList();
-          json[key] = fieldJson.map((e) => e['value']).toList();
-          if (fieldJson.any((e) => e['_value'] != null)) {
-            json['_$key'] = fieldJson.map((e) => e['_value']).toList();
+        // We'll collect non-empty child items in a temp list
+        final tempList = <dynamic>[];
+        final tempExtensions = <dynamic>[];
+        final isPrimitive = field.first is PrimitiveTypeBuilder;
+        for (final e in field) {
+          final itemMap = e.toJson();
+          if (!isNonEmpty(itemMap)) {
+            continue; // skip empty child
+          }
+          if (isPrimitive) {
+            final v = itemMap['value'];
+            final x = itemMap['_value'];
+            tempList.add(v);
+            tempExtensions.add(x);
+          } else {
+            tempList.add(itemMap);
+          }
+        }
+        if (tempList.isEmpty) return; // no non-empty items
+        if (isPrimitive) {
+          json[key] = tempList;
+          final anyExt = tempExtensions.any(isNonEmpty);
+          if (anyExt) {
+            json['_$key'] = tempExtensions;
           }
         } else {
-          json[key] = field.map((e) => e.toJson()).toList();
+          json[key] = tempList;
         }
       } else if (field is FhirBaseBuilder) {
-        json[key] = field.toJson();
+        final subMap = field.toJson();
+        if (isNonEmpty(subMap)) {
+          json[key] = subMap;
+        }
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('function', function_);
-    addField('actor', actor);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'function',
+      function_,
+    );
+    addField(
+      'actor',
+      actor,
+    );
     return json;
   }
 

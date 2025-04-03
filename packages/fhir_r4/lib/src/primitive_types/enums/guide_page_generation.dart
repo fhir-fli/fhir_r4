@@ -47,8 +47,11 @@ class GuidePageGeneration extends FhirCodeEnum {
   /// Create empty [GuidePageGeneration] with element only
   factory GuidePageGeneration.empty() => GuidePageGeneration._(valueString: '');
 
-  /// Factory constructor to create [GuidePageGeneration] from JSON.
-  factory GuidePageGeneration.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [GuidePageGeneration]
+  /// from JSON.
+  factory GuidePageGeneration.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -150,7 +153,9 @@ class GuidePageGeneration extends FhirCodeEnum {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for GuidePageGeneration: $newValue');
+      throw ArgumentError(
+        'Invalid input for GuidePageGeneration: $newValue',
+      );
     }
     return GuidePageGeneration._(
       valueString: newValue ?? valueString,

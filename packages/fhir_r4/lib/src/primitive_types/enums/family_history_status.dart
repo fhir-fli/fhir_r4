@@ -47,8 +47,11 @@ class FamilyHistoryStatus extends FhirCodeEnum {
   /// Create empty [FamilyHistoryStatus] with element only
   factory FamilyHistoryStatus.empty() => FamilyHistoryStatus._(valueString: '');
 
-  /// Factory constructor to create [FamilyHistoryStatus] from JSON.
-  factory FamilyHistoryStatus.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [FamilyHistoryStatus]
+  /// from JSON.
+  factory FamilyHistoryStatus.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -150,7 +153,9 @@ class FamilyHistoryStatus extends FhirCodeEnum {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for FamilyHistoryStatus: $newValue');
+      throw ArgumentError(
+        'Invalid input for FamilyHistoryStatus: $newValue',
+      );
     }
     return FamilyHistoryStatus._(
       valueString: newValue ?? valueString,

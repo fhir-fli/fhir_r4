@@ -49,8 +49,11 @@ class MessageheaderResponseRequest extends FhirCodeEnum {
   factory MessageheaderResponseRequest.empty() =>
       MessageheaderResponseRequest._(valueString: '');
 
-  /// Factory constructor to create [MessageheaderResponseRequest] from JSON.
-  factory MessageheaderResponseRequest.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [MessageheaderResponseRequest]
+  /// from JSON.
+  factory MessageheaderResponseRequest.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -161,7 +164,8 @@ class MessageheaderResponseRequest extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for MessageheaderResponseRequest: $newValue');
+        'Invalid input for MessageheaderResponseRequest: $newValue',
+      );
     }
     return MessageheaderResponseRequest._(
       valueString: newValue ?? valueString,

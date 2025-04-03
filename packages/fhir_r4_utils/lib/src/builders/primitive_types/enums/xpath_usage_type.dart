@@ -51,7 +51,9 @@ class XPathUsageTypeBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [XPathUsageTypeBuilder]
   /// from JSON.
-  factory XPathUsageTypeBuilder.fromJson(Map<String, dynamic> json) {
+  factory XPathUsageTypeBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -130,9 +132,13 @@ class XPathUsageTypeBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  XPathUsageTypeBuilder withElement(ElementBuilder? newElement) {
+  XPathUsageTypeBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
     return XPathUsageTypeBuilder._(
-        valueString: valueString, element: newElement);
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -161,7 +167,9 @@ class XPathUsageTypeBuilder extends FhirCodeEnumBuilder {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for XPathUsageType: $newValue');
+      throw ArgumentError(
+        'Invalid input for XPathUsageType: $newValue',
+      );
     }
     return XPathUsageTypeBuilder._(
       valueString: newValue ?? valueString,

@@ -50,7 +50,9 @@ class ProvenanceEntityRoleBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [ProvenanceEntityRoleBuilder]
   /// from JSON.
-  factory ProvenanceEntityRoleBuilder.fromJson(Map<String, dynamic> json) {
+  factory ProvenanceEntityRoleBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -134,9 +136,13 @@ class ProvenanceEntityRoleBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  ProvenanceEntityRoleBuilder withElement(ElementBuilder? newElement) {
+  ProvenanceEntityRoleBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
     return ProvenanceEntityRoleBuilder._(
-        valueString: valueString, element: newElement);
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -165,7 +171,9 @@ class ProvenanceEntityRoleBuilder extends FhirCodeEnumBuilder {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for ProvenanceEntityRole: $newValue');
+      throw ArgumentError(
+        'Invalid input for ProvenanceEntityRole: $newValue',
+      );
     }
     return ProvenanceEntityRoleBuilder._(
       valueString: newValue ?? valueString,

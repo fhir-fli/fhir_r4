@@ -50,7 +50,9 @@ class PropertyRepresentationBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [PropertyRepresentationBuilder]
   /// from JSON.
-  factory PropertyRepresentationBuilder.fromJson(Map<String, dynamic> json) {
+  factory PropertyRepresentationBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -138,9 +140,13 @@ class PropertyRepresentationBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  PropertyRepresentationBuilder withElement(ElementBuilder? newElement) {
+  PropertyRepresentationBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
     return PropertyRepresentationBuilder._(
-        valueString: valueString, element: newElement);
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -170,7 +176,8 @@ class PropertyRepresentationBuilder extends FhirCodeEnumBuilder {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for PropertyRepresentation: $newValue');
+        'Invalid input for PropertyRepresentation: $newValue',
+      );
     }
     return PropertyRepresentationBuilder._(
       valueString: newValue ?? valueString,

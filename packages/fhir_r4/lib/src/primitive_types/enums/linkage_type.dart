@@ -48,8 +48,11 @@ class LinkageType extends FhirCodeEnum {
   /// Create empty [LinkageType] with element only
   factory LinkageType.empty() => LinkageType._(valueString: '');
 
-  /// Factory constructor to create [LinkageType] from JSON.
-  factory LinkageType.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [LinkageType]
+  /// from JSON.
+  factory LinkageType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -141,7 +144,9 @@ class LinkageType extends FhirCodeEnum {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for LinkageType: $newValue');
+      throw ArgumentError(
+        'Invalid input for LinkageType: $newValue',
+      );
     }
     return LinkageType._(
       valueString: newValue ?? valueString,

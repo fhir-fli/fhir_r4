@@ -50,7 +50,9 @@ class EncounterStatusBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [EncounterStatusBuilder]
   /// from JSON.
-  factory EncounterStatusBuilder.fromJson(Map<String, dynamic> json) {
+  factory EncounterStatusBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -165,9 +167,13 @@ class EncounterStatusBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  EncounterStatusBuilder withElement(ElementBuilder? newElement) {
+  EncounterStatusBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
     return EncounterStatusBuilder._(
-        valueString: valueString, element: newElement);
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -196,7 +202,9 @@ class EncounterStatusBuilder extends FhirCodeEnumBuilder {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for EncounterStatus: $newValue');
+      throw ArgumentError(
+        'Invalid input for EncounterStatus: $newValue',
+      );
     }
     return EncounterStatusBuilder._(
       valueString: newValue ?? valueString,

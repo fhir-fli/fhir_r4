@@ -48,8 +48,11 @@ class SubscriptionNotificationType extends FhirCodeEnum {
   factory SubscriptionNotificationType.empty() =>
       SubscriptionNotificationType._(valueString: '');
 
-  /// Factory constructor to create [SubscriptionNotificationType] from JSON.
-  factory SubscriptionNotificationType.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [SubscriptionNotificationType]
+  /// from JSON.
+  factory SubscriptionNotificationType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -171,7 +174,8 @@ class SubscriptionNotificationType extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for SubscriptionNotificationType: $newValue');
+        'Invalid input for SubscriptionNotificationType: $newValue',
+      );
     }
     return SubscriptionNotificationType._(
       valueString: newValue ?? valueString,

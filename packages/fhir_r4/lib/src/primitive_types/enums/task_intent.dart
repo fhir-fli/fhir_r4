@@ -47,8 +47,11 @@ class TaskIntent extends FhirCodeEnum {
   /// Create empty [TaskIntent] with element only
   factory TaskIntent.empty() => TaskIntent._(valueString: '');
 
-  /// Factory constructor to create [TaskIntent] from JSON.
-  factory TaskIntent.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [TaskIntent]
+  /// from JSON.
+  factory TaskIntent.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -203,7 +206,9 @@ class TaskIntent extends FhirCodeEnum {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for TaskIntent: $newValue');
+      throw ArgumentError(
+        'Invalid input for TaskIntent: $newValue',
+      );
     }
     return TaskIntent._(
       valueString: newValue ?? valueString,

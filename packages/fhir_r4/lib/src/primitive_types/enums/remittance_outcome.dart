@@ -47,8 +47,11 @@ class RemittanceOutcome extends FhirCodeEnum {
   /// Create empty [RemittanceOutcome] with element only
   factory RemittanceOutcome.empty() => RemittanceOutcome._(valueString: '');
 
-  /// Factory constructor to create [RemittanceOutcome] from JSON.
-  factory RemittanceOutcome.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [RemittanceOutcome]
+  /// from JSON.
+  factory RemittanceOutcome.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -150,7 +153,9 @@ class RemittanceOutcome extends FhirCodeEnum {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for RemittanceOutcome: $newValue');
+      throw ArgumentError(
+        'Invalid input for RemittanceOutcome: $newValue',
+      );
     }
     return RemittanceOutcome._(
       valueString: newValue ?? valueString,

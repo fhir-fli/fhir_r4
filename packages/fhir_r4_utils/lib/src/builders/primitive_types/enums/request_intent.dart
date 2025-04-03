@@ -51,7 +51,9 @@ class RequestIntentBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [RequestIntentBuilder]
   /// from JSON.
-  factory RequestIntentBuilder.fromJson(Map<String, dynamic> json) {
+  factory RequestIntentBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -166,9 +168,13 @@ class RequestIntentBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  RequestIntentBuilder withElement(ElementBuilder? newElement) {
+  RequestIntentBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
     return RequestIntentBuilder._(
-        valueString: valueString, element: newElement);
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -197,7 +203,9 @@ class RequestIntentBuilder extends FhirCodeEnumBuilder {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for RequestIntent: $newValue');
+      throw ArgumentError(
+        'Invalid input for RequestIntent: $newValue',
+      );
     }
     return RequestIntentBuilder._(
       valueString: newValue ?? valueString,

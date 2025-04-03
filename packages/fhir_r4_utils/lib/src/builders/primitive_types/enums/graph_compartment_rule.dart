@@ -50,7 +50,9 @@ class GraphCompartmentRuleBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [GraphCompartmentRuleBuilder]
   /// from JSON.
-  factory GraphCompartmentRuleBuilder.fromJson(Map<String, dynamic> json) {
+  factory GraphCompartmentRuleBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -124,9 +126,13 @@ class GraphCompartmentRuleBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  GraphCompartmentRuleBuilder withElement(ElementBuilder? newElement) {
+  GraphCompartmentRuleBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
     return GraphCompartmentRuleBuilder._(
-        valueString: valueString, element: newElement);
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -155,7 +161,9 @@ class GraphCompartmentRuleBuilder extends FhirCodeEnumBuilder {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for GraphCompartmentRule: $newValue');
+      throw ArgumentError(
+        'Invalid input for GraphCompartmentRule: $newValue',
+      );
     }
     return GraphCompartmentRuleBuilder._(
       valueString: newValue ?? valueString,

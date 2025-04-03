@@ -50,7 +50,9 @@ class SubscriptionStatusCodesBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [SubscriptionStatusCodesBuilder]
   /// from JSON.
-  factory SubscriptionStatusCodesBuilder.fromJson(Map<String, dynamic> json) {
+  factory SubscriptionStatusCodesBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -123,9 +125,13 @@ class SubscriptionStatusCodesBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  SubscriptionStatusCodesBuilder withElement(ElementBuilder? newElement) {
+  SubscriptionStatusCodesBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
     return SubscriptionStatusCodesBuilder._(
-        valueString: valueString, element: newElement);
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -155,7 +161,8 @@ class SubscriptionStatusCodesBuilder extends FhirCodeEnumBuilder {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for SubscriptionStatusCodes: $newValue');
+        'Invalid input for SubscriptionStatusCodes: $newValue',
+      );
     }
     return SubscriptionStatusCodesBuilder._(
       valueString: newValue ?? valueString,

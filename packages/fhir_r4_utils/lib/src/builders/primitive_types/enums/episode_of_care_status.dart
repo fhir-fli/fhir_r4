@@ -50,7 +50,9 @@ class EpisodeOfCareStatusBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [EpisodeOfCareStatusBuilder]
   /// from JSON.
-  factory EpisodeOfCareStatusBuilder.fromJson(Map<String, dynamic> json) {
+  factory EpisodeOfCareStatusBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -155,9 +157,13 @@ class EpisodeOfCareStatusBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  EpisodeOfCareStatusBuilder withElement(ElementBuilder? newElement) {
+  EpisodeOfCareStatusBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
     return EpisodeOfCareStatusBuilder._(
-        valueString: valueString, element: newElement);
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -186,7 +192,9 @@ class EpisodeOfCareStatusBuilder extends FhirCodeEnumBuilder {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for EpisodeOfCareStatus: $newValue');
+      throw ArgumentError(
+        'Invalid input for EpisodeOfCareStatus: $newValue',
+      );
     }
     return EpisodeOfCareStatusBuilder._(
       valueString: newValue ?? valueString,

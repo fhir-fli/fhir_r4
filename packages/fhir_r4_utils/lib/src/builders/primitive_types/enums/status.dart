@@ -49,7 +49,9 @@ class StatusBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [StatusBuilder]
   /// from JSON.
-  factory StatusBuilder.fromJson(Map<String, dynamic> json) {
+  factory StatusBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -142,8 +144,13 @@ class StatusBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  StatusBuilder withElement(ElementBuilder? newElement) {
-    return StatusBuilder._(valueString: valueString, element: newElement);
+  StatusBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
+    return StatusBuilder._(
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -172,7 +179,9 @@ class StatusBuilder extends FhirCodeEnumBuilder {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for Status: $newValue');
+      throw ArgumentError(
+        'Invalid input for Status: $newValue',
+      );
     }
     return StatusBuilder._(
       valueString: newValue ?? valueString,

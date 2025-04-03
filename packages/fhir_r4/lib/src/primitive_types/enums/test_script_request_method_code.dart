@@ -48,8 +48,11 @@ class TestScriptRequestMethodCode extends FhirCodeEnum {
   factory TestScriptRequestMethodCode.empty() =>
       TestScriptRequestMethodCode._(valueString: '');
 
-  /// Factory constructor to create [TestScriptRequestMethodCode] from JSON.
-  factory TestScriptRequestMethodCode.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [TestScriptRequestMethodCode]
+  /// from JSON.
+  factory TestScriptRequestMethodCode.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -182,7 +185,8 @@ class TestScriptRequestMethodCode extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for TestScriptRequestMethodCode: $newValue');
+        'Invalid input for TestScriptRequestMethodCode: $newValue',
+      );
     }
     return TestScriptRequestMethodCode._(
       valueString: newValue ?? valueString,

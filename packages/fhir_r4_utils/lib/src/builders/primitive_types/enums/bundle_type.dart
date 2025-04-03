@@ -49,7 +49,9 @@ class BundleTypeBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [BundleTypeBuilder]
   /// from JSON.
-  factory BundleTypeBuilder.fromJson(Map<String, dynamic> json) {
+  factory BundleTypeBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -163,8 +165,13 @@ class BundleTypeBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  BundleTypeBuilder withElement(ElementBuilder? newElement) {
-    return BundleTypeBuilder._(valueString: valueString, element: newElement);
+  BundleTypeBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
+    return BundleTypeBuilder._(
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -193,7 +200,9 @@ class BundleTypeBuilder extends FhirCodeEnumBuilder {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for BundleType: $newValue');
+      throw ArgumentError(
+        'Invalid input for BundleType: $newValue',
+      );
     }
     return BundleTypeBuilder._(
       valueString: newValue ?? valueString,

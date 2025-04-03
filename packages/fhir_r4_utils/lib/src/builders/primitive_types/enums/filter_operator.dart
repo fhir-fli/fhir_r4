@@ -50,7 +50,9 @@ class FilterOperatorBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [FilterOperatorBuilder]
   /// from JSON.
-  factory FilterOperatorBuilder.fromJson(Map<String, dynamic> json) {
+  factory FilterOperatorBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -165,9 +167,13 @@ class FilterOperatorBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  FilterOperatorBuilder withElement(ElementBuilder? newElement) {
+  FilterOperatorBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
     return FilterOperatorBuilder._(
-        valueString: valueString, element: newElement);
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -196,7 +202,9 @@ class FilterOperatorBuilder extends FhirCodeEnumBuilder {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for FilterOperator: $newValue');
+      throw ArgumentError(
+        'Invalid input for FilterOperator: $newValue',
+      );
     }
     return FilterOperatorBuilder._(
       valueString: newValue ?? valueString,

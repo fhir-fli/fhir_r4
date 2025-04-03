@@ -48,8 +48,11 @@ class ProvenanceEntityRole extends FhirCodeEnum {
   factory ProvenanceEntityRole.empty() =>
       ProvenanceEntityRole._(valueString: '');
 
-  /// Factory constructor to create [ProvenanceEntityRole] from JSON.
-  factory ProvenanceEntityRole.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [ProvenanceEntityRole]
+  /// from JSON.
+  factory ProvenanceEntityRole.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -160,7 +163,9 @@ class ProvenanceEntityRole extends FhirCodeEnum {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for ProvenanceEntityRole: $newValue');
+      throw ArgumentError(
+        'Invalid input for ProvenanceEntityRole: $newValue',
+      );
     }
     return ProvenanceEntityRole._(
       valueString: newValue ?? valueString,

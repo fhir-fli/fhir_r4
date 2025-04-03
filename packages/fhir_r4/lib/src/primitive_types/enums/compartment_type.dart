@@ -47,8 +47,11 @@ class CompartmentType extends FhirCodeEnum {
   /// Create empty [CompartmentType] with element only
   factory CompartmentType.empty() => CompartmentType._(valueString: '');
 
-  /// Factory constructor to create [CompartmentType] from JSON.
-  factory CompartmentType.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [CompartmentType]
+  /// from JSON.
+  factory CompartmentType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -158,7 +161,9 @@ class CompartmentType extends FhirCodeEnum {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for CompartmentType: $newValue');
+      throw ArgumentError(
+        'Invalid input for CompartmentType: $newValue',
+      );
     }
     return CompartmentType._(
       valueString: newValue ?? valueString,

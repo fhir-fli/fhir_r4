@@ -50,7 +50,9 @@ class AdverseEventActualityBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [AdverseEventActualityBuilder]
   /// from JSON.
-  factory AdverseEventActualityBuilder.fromJson(Map<String, dynamic> json) {
+  factory AdverseEventActualityBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -105,9 +107,13 @@ class AdverseEventActualityBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  AdverseEventActualityBuilder withElement(ElementBuilder? newElement) {
+  AdverseEventActualityBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
     return AdverseEventActualityBuilder._(
-        valueString: valueString, element: newElement);
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -136,7 +142,9 @@ class AdverseEventActualityBuilder extends FhirCodeEnumBuilder {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for AdverseEventActuality: $newValue');
+      throw ArgumentError(
+        'Invalid input for AdverseEventActuality: $newValue',
+      );
     }
     return AdverseEventActualityBuilder._(
       valueString: newValue ?? valueString,

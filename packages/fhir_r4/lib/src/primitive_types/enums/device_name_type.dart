@@ -47,8 +47,11 @@ class DeviceNameType extends FhirCodeEnum {
   /// Create empty [DeviceNameType] with element only
   factory DeviceNameType.empty() => DeviceNameType._(valueString: '');
 
-  /// Factory constructor to create [DeviceNameType] from JSON.
-  factory DeviceNameType.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [DeviceNameType]
+  /// from JSON.
+  factory DeviceNameType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -167,7 +170,9 @@ class DeviceNameType extends FhirCodeEnum {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for DeviceNameType: $newValue');
+      throw ArgumentError(
+        'Invalid input for DeviceNameType: $newValue',
+      );
     }
     return DeviceNameType._(
       valueString: newValue ?? valueString,

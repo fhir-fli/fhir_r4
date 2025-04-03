@@ -48,8 +48,11 @@ class StructureMapSourceListMode extends FhirCodeEnum {
   factory StructureMapSourceListMode.empty() =>
       StructureMapSourceListMode._(valueString: '');
 
-  /// Factory constructor to create [StructureMapSourceListMode] from JSON.
-  factory StructureMapSourceListMode.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [StructureMapSourceListMode]
+  /// from JSON.
+  factory StructureMapSourceListMode.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -164,7 +167,8 @@ class StructureMapSourceListMode extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for StructureMapSourceListMode: $newValue');
+        'Invalid input for StructureMapSourceListMode: $newValue',
+      );
     }
     return StructureMapSourceListMode._(
       valueString: newValue ?? valueString,

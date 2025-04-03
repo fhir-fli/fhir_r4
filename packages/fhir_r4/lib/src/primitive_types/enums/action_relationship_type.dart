@@ -48,8 +48,11 @@ class ActionRelationshipType extends FhirCodeEnum {
   factory ActionRelationshipType.empty() =>
       ActionRelationshipType._(valueString: '');
 
-  /// Factory constructor to create [ActionRelationshipType] from JSON.
-  factory ActionRelationshipType.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [ActionRelationshipType]
+  /// from JSON.
+  factory ActionRelationshipType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -199,7 +202,8 @@ class ActionRelationshipType extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for ActionRelationshipType: $newValue');
+        'Invalid input for ActionRelationshipType: $newValue',
+      );
     }
     return ActionRelationshipType._(
       valueString: newValue ?? valueString,

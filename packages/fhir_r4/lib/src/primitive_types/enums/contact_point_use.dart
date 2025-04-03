@@ -47,8 +47,11 @@ class ContactPointUse extends FhirCodeEnum {
   /// Create empty [ContactPointUse] with element only
   factory ContactPointUse.empty() => ContactPointUse._(valueString: '');
 
-  /// Factory constructor to create [ContactPointUse] from JSON.
-  factory ContactPointUse.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [ContactPointUse]
+  /// from JSON.
+  factory ContactPointUse.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -158,7 +161,9 @@ class ContactPointUse extends FhirCodeEnum {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for ContactPointUse: $newValue');
+      throw ArgumentError(
+        'Invalid input for ContactPointUse: $newValue',
+      );
     }
     return ContactPointUse._(
       valueString: newValue ?? valueString,

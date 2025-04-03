@@ -48,8 +48,11 @@ class HTTPVerb extends FhirCodeEnum {
   /// Create empty [HTTPVerb] with element only
   factory HTTPVerb.empty() => HTTPVerb._(valueString: '');
 
-  /// Factory constructor to create [HTTPVerb] from JSON.
-  factory HTTPVerb.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [HTTPVerb]
+  /// from JSON.
+  factory HTTPVerb.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -168,7 +171,9 @@ class HTTPVerb extends FhirCodeEnum {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for HTTPVerb: $newValue');
+      throw ArgumentError(
+        'Invalid input for HTTPVerb: $newValue',
+      );
     }
     return HTTPVerb._(
       valueString: newValue ?? valueString,

@@ -48,8 +48,11 @@ class StructureMapInputMode extends FhirCodeEnum {
   factory StructureMapInputMode.empty() =>
       StructureMapInputMode._(valueString: '');
 
-  /// Factory constructor to create [StructureMapInputMode] from JSON.
-  factory StructureMapInputMode.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [StructureMapInputMode]
+  /// from JSON.
+  factory StructureMapInputMode.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -133,7 +136,9 @@ class StructureMapInputMode extends FhirCodeEnum {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for StructureMapInputMode: $newValue');
+      throw ArgumentError(
+        'Invalid input for StructureMapInputMode: $newValue',
+      );
     }
     return StructureMapInputMode._(
       valueString: newValue ?? valueString,

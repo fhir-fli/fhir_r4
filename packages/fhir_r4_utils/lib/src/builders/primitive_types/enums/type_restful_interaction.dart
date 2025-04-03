@@ -50,7 +50,9 @@ class TypeRestfulInteractionBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [TypeRestfulInteractionBuilder]
   /// from JSON.
-  factory TypeRestfulInteractionBuilder.fromJson(Map<String, dynamic> json) {
+  factory TypeRestfulInteractionBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -263,9 +265,13 @@ class TypeRestfulInteractionBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  TypeRestfulInteractionBuilder withElement(ElementBuilder? newElement) {
+  TypeRestfulInteractionBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
     return TypeRestfulInteractionBuilder._(
-        valueString: valueString, element: newElement);
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -295,7 +301,8 @@ class TypeRestfulInteractionBuilder extends FhirCodeEnumBuilder {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for TypeRestfulInteraction: $newValue');
+        'Invalid input for TypeRestfulInteraction: $newValue',
+      );
     }
     return TypeRestfulInteractionBuilder._(
       valueString: newValue ?? valueString,

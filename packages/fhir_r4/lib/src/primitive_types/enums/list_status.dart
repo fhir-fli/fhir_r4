@@ -47,8 +47,11 @@ class ListStatus extends FhirCodeEnum {
   /// Create empty [ListStatus] with element only
   factory ListStatus.empty() => ListStatus._(valueString: '');
 
-  /// Factory constructor to create [ListStatus] from JSON.
-  factory ListStatus.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [ListStatus]
+  /// from JSON.
+  factory ListStatus.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -140,7 +143,9 @@ class ListStatus extends FhirCodeEnum {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for ListStatus: $newValue');
+      throw ArgumentError(
+        'Invalid input for ListStatus: $newValue',
+      );
     }
     return ListStatus._(
       valueString: newValue ?? valueString,

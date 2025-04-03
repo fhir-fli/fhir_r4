@@ -49,7 +49,9 @@ class SlotStatusBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [SlotStatusBuilder]
   /// from JSON.
-  factory SlotStatusBuilder.fromJson(Map<String, dynamic> json) {
+  factory SlotStatusBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -127,8 +129,13 @@ class SlotStatusBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  SlotStatusBuilder withElement(ElementBuilder? newElement) {
-    return SlotStatusBuilder._(valueString: valueString, element: newElement);
+  SlotStatusBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
+    return SlotStatusBuilder._(
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -157,7 +164,9 @@ class SlotStatusBuilder extends FhirCodeEnumBuilder {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for SlotStatus: $newValue');
+      throw ArgumentError(
+        'Invalid input for SlotStatus: $newValue',
+      );
     }
     return SlotStatusBuilder._(
       valueString: newValue ?? valueString,

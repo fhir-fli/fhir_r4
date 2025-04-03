@@ -47,8 +47,11 @@ class SearchParamType extends FhirCodeEnum {
   /// Create empty [SearchParamType] with element only
   factory SearchParamType.empty() => SearchParamType._(valueString: '');
 
-  /// Factory constructor to create [SearchParamType] from JSON.
-  factory SearchParamType.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [SearchParamType]
+  /// from JSON.
+  factory SearchParamType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -194,7 +197,9 @@ class SearchParamType extends FhirCodeEnum {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for SearchParamType: $newValue');
+      throw ArgumentError(
+        'Invalid input for SearchParamType: $newValue',
+      );
     }
     return SearchParamType._(
       valueString: newValue ?? valueString,

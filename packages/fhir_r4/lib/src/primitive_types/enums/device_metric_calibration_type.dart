@@ -48,8 +48,11 @@ class DeviceMetricCalibrationType extends FhirCodeEnum {
   factory DeviceMetricCalibrationType.empty() =>
       DeviceMetricCalibrationType._(valueString: '');
 
-  /// Factory constructor to create [DeviceMetricCalibrationType] from JSON.
-  factory DeviceMetricCalibrationType.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [DeviceMetricCalibrationType]
+  /// from JSON.
+  factory DeviceMetricCalibrationType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -155,7 +158,8 @@ class DeviceMetricCalibrationType extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for DeviceMetricCalibrationType: $newValue');
+        'Invalid input for DeviceMetricCalibrationType: $newValue',
+      );
     }
     return DeviceMetricCalibrationType._(
       valueString: newValue ?? valueString,

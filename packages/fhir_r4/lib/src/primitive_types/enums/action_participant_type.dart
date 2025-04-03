@@ -48,8 +48,11 @@ class ActionParticipantType extends FhirCodeEnum {
   factory ActionParticipantType.empty() =>
       ActionParticipantType._(valueString: '');
 
-  /// Factory constructor to create [ActionParticipantType] from JSON.
-  factory ActionParticipantType.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [ActionParticipantType]
+  /// from JSON.
+  factory ActionParticipantType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -151,7 +154,9 @@ class ActionParticipantType extends FhirCodeEnum {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for ActionParticipantType: $newValue');
+      throw ArgumentError(
+        'Invalid input for ActionParticipantType: $newValue',
+      );
     }
     return ActionParticipantType._(
       valueString: newValue ?? valueString,

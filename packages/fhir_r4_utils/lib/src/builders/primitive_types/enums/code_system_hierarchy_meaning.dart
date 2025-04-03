@@ -51,7 +51,8 @@ class CodeSystemHierarchyMeaningBuilder extends FhirCodeEnumBuilder {
   /// Factory constructor to create [CodeSystemHierarchyMeaningBuilder]
   /// from JSON.
   factory CodeSystemHierarchyMeaningBuilder.fromJson(
-      Map<String, dynamic> json) {
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -130,9 +131,13 @@ class CodeSystemHierarchyMeaningBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  CodeSystemHierarchyMeaningBuilder withElement(ElementBuilder? newElement) {
+  CodeSystemHierarchyMeaningBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
     return CodeSystemHierarchyMeaningBuilder._(
-        valueString: valueString, element: newElement);
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -162,7 +167,8 @@ class CodeSystemHierarchyMeaningBuilder extends FhirCodeEnumBuilder {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for CodeSystemHierarchyMeaning: $newValue');
+        'Invalid input for CodeSystemHierarchyMeaning: $newValue',
+      );
     }
     return CodeSystemHierarchyMeaningBuilder._(
       valueString: newValue ?? valueString,

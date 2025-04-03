@@ -47,8 +47,11 @@ class Use extends FhirCodeEnum {
   /// Create empty [Use] with element only
   factory Use.empty() => Use._(valueString: '');
 
-  /// Factory constructor to create [Use] from JSON.
-  factory Use.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [Use]
+  /// from JSON.
+  factory Use.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -140,7 +143,9 @@ class Use extends FhirCodeEnum {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for Use: $newValue');
+      throw ArgumentError(
+        'Invalid input for Use: $newValue',
+      );
     }
     return Use._(
       valueString: newValue ?? valueString,

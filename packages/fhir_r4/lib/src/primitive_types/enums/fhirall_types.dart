@@ -48,8 +48,11 @@ class FHIRAllTypes extends FhirCodeEnum {
   /// Create empty [FHIRAllTypes] with element only
   factory FHIRAllTypes.empty() => FHIRAllTypes._(valueString: '');
 
-  /// Factory constructor to create [FHIRAllTypes] from JSON.
-  factory FHIRAllTypes.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [FHIRAllTypes]
+  /// from JSON.
+  factory FHIRAllTypes.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -1995,7 +1998,9 @@ class FHIRAllTypes extends FhirCodeEnum {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for FHIRAllTypes: $newValue');
+      throw ArgumentError(
+        'Invalid input for FHIRAllTypes: $newValue',
+      );
     }
     return FHIRAllTypes._(
       valueString: newValue ?? valueString,

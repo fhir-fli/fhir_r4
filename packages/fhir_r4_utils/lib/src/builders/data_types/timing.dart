@@ -183,38 +183,89 @@ class TimingBuilder extends BackboneTypeBuilder
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
+    bool isNonEmpty(dynamic val) {
+      if (val == null) return false;
+      if (val is List && val.isEmpty) return false;
+      if (val is Map && val.isEmpty) return false;
+      return true;
+    }
+
     void addField(String key, dynamic field) {
+      if (field == null) return;
       if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
         throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
-      if (field == null) return;
       if (field is PrimitiveTypeBuilder) {
-        json[key] = field.toJson()['value'];
-        if (field.toJson()['_value'] != null) {
-          json['_$key'] = field.toJson()['_value'];
-        }
+        final fieldMap = field.toJson();
+        final val = fieldMap['value'];
+        final ext = fieldMap['_value'];
+        // Skip if it has no actual value and no extension
+        final hasVal = isNonEmpty(val);
+        final hasExt = isNonEmpty(ext);
+        if (hasVal) json[key] = val;
+        if (hasExt) json['_$key'] = ext;
       } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveTypeBuilder) {
-          final fieldJson = field.map((e) => e.toJson()).toList();
-          json[key] = fieldJson.map((e) => e['value']).toList();
-          if (fieldJson.any((e) => e['_value'] != null)) {
-            json['_$key'] = fieldJson.map((e) => e['_value']).toList();
+        // We'll collect non-empty child items in a temp list
+        final tempList = <dynamic>[];
+        final tempExtensions = <dynamic>[];
+        final isPrimitive = field.first is PrimitiveTypeBuilder;
+        for (final e in field) {
+          final itemMap = e.toJson();
+          if (!isNonEmpty(itemMap)) {
+            continue; // skip empty child
+          }
+          if (isPrimitive) {
+            final v = itemMap['value'];
+            final x = itemMap['_value'];
+            tempList.add(v);
+            tempExtensions.add(x);
+          } else {
+            tempList.add(itemMap);
+          }
+        }
+        if (tempList.isEmpty) return; // no non-empty items
+        if (isPrimitive) {
+          json[key] = tempList;
+          final anyExt = tempExtensions.any(isNonEmpty);
+          if (anyExt) {
+            json['_$key'] = tempExtensions;
           }
         } else {
-          json[key] = field.map((e) => e.toJson()).toList();
+          json[key] = tempList;
         }
       } else if (field is FhirBaseBuilder) {
-        json[key] = field.toJson();
+        final subMap = field.toJson();
+        if (isNonEmpty(subMap)) {
+          json[key] = subMap;
+        }
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('event', event);
-    addField('repeat', repeat);
-    addField('code', code);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'event',
+      event,
+    );
+    addField(
+      'repeat',
+      repeat,
+    );
+    addField(
+      'code',
+      code,
+    );
     return json;
   }
 
@@ -382,7 +433,10 @@ class TimingBuilder extends BackboneTypeBuilder
               final stringValue = child.toString();
               final converted = FhirDateTimeBuilder.tryParse(stringValue);
               if (converted != null) {
-                event = [...(event ?? []), converted];
+                event = [
+                  ...(event ?? []),
+                  converted,
+                ];
                 return;
               }
             } catch (e) {
@@ -875,53 +929,137 @@ class TimingRepeatBuilder extends ElementBuilder {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
+    bool isNonEmpty(dynamic val) {
+      if (val == null) return false;
+      if (val is List && val.isEmpty) return false;
+      if (val is Map && val.isEmpty) return false;
+      return true;
+    }
+
     void addField(String key, dynamic field) {
+      if (field == null) return;
       if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
         throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
-      if (field == null) return;
       if (field is PrimitiveTypeBuilder) {
-        json[key] = field.toJson()['value'];
-        if (field.toJson()['_value'] != null) {
-          json['_$key'] = field.toJson()['_value'];
-        }
+        final fieldMap = field.toJson();
+        final val = fieldMap['value'];
+        final ext = fieldMap['_value'];
+        // Skip if it has no actual value and no extension
+        final hasVal = isNonEmpty(val);
+        final hasExt = isNonEmpty(ext);
+        if (hasVal) json[key] = val;
+        if (hasExt) json['_$key'] = ext;
       } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveTypeBuilder) {
-          final fieldJson = field.map((e) => e.toJson()).toList();
-          json[key] = fieldJson.map((e) => e['value']).toList();
-          if (fieldJson.any((e) => e['_value'] != null)) {
-            json['_$key'] = fieldJson.map((e) => e['_value']).toList();
+        // We'll collect non-empty child items in a temp list
+        final tempList = <dynamic>[];
+        final tempExtensions = <dynamic>[];
+        final isPrimitive = field.first is PrimitiveTypeBuilder;
+        for (final e in field) {
+          final itemMap = e.toJson();
+          if (!isNonEmpty(itemMap)) {
+            continue; // skip empty child
+          }
+          if (isPrimitive) {
+            final v = itemMap['value'];
+            final x = itemMap['_value'];
+            tempList.add(v);
+            tempExtensions.add(x);
+          } else {
+            tempList.add(itemMap);
+          }
+        }
+        if (tempList.isEmpty) return; // no non-empty items
+        if (isPrimitive) {
+          json[key] = tempList;
+          final anyExt = tempExtensions.any(isNonEmpty);
+          if (anyExt) {
+            json['_$key'] = tempExtensions;
           }
         } else {
-          json[key] = field.map((e) => e.toJson()).toList();
+          json[key] = tempList;
         }
       } else if (field is FhirBaseBuilder) {
-        json[key] = field.toJson();
+        final subMap = field.toJson();
+        if (isNonEmpty(subMap)) {
+          json[key] = subMap;
+        }
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
     if (boundsX != null) {
       final fhirType = boundsX!.fhirType;
-      addField('bounds${fhirType.capitalize()}', boundsX);
+      addField(
+        'bounds${fhirType.capitalize()}',
+        boundsX,
+      );
     }
 
-    addField('count', count);
-    addField('countMax', countMax);
-    addField('duration', duration);
-    addField('durationMax', durationMax);
-    addField('durationUnit', durationUnit);
-    addField('frequency', frequency);
-    addField('frequencyMax', frequencyMax);
-    addField('period', period);
-    addField('periodMax', periodMax);
-    addField('periodUnit', periodUnit);
-    addField('dayOfWeek', dayOfWeek);
-    addField('timeOfDay', timeOfDay);
-    addField('when', when);
-    addField('offset', offset);
+    addField(
+      'count',
+      count,
+    );
+    addField(
+      'countMax',
+      countMax,
+    );
+    addField(
+      'duration',
+      duration,
+    );
+    addField(
+      'durationMax',
+      durationMax,
+    );
+    addField(
+      'durationUnit',
+      durationUnit,
+    );
+    addField(
+      'frequency',
+      frequency,
+    );
+    addField(
+      'frequencyMax',
+      frequencyMax,
+    );
+    addField(
+      'period',
+      period,
+    );
+    addField(
+      'periodMax',
+      periodMax,
+    );
+    addField(
+      'periodUnit',
+      periodUnit,
+    );
+    addField(
+      'dayOfWeek',
+      dayOfWeek,
+    );
+    addField(
+      'timeOfDay',
+      timeOfDay,
+    );
+    addField(
+      'when',
+      when,
+    );
+    addField(
+      'offset',
+      offset,
+    );
     return json;
   }
 
@@ -1443,7 +1581,10 @@ class TimingRepeatBuilder extends ElementBuilder {
               // For enums, try to create directly from the string value
               try {
                 final converted = DaysOfWeekBuilder(stringValue);
-                dayOfWeek = [...(dayOfWeek ?? []), converted];
+                dayOfWeek = [
+                  ...(dayOfWeek ?? []),
+                  converted,
+                ];
                 return;
               } catch (e) {
                 // Continue if enum creation fails
@@ -1491,7 +1632,10 @@ class TimingRepeatBuilder extends ElementBuilder {
               final stringValue = child.toString();
               final converted = FhirTimeBuilder.tryParse(stringValue);
               if (converted != null) {
-                timeOfDay = [...(timeOfDay ?? []), converted];
+                timeOfDay = [
+                  ...(timeOfDay ?? []),
+                  converted,
+                ];
                 return;
               }
             } catch (e) {
@@ -1541,7 +1685,10 @@ class TimingRepeatBuilder extends ElementBuilder {
               // For enums, try to create directly from the string value
               try {
                 final converted = EventTimingBuilder(stringValue);
-                when = [...(when ?? []), converted];
+                when = [
+                  ...(when ?? []),
+                  converted,
+                ];
                 return;
               } catch (e) {
                 // Continue if enum creation fails
@@ -1767,7 +1914,7 @@ class TimingRepeatBuilder extends ElementBuilder {
   }) {
     if (id) this.id = null;
     if (extension_) this.extension_ = null;
-    if (bounds) this.boundsX = null;
+    if (bounds) boundsX = null;
     if (count) this.count = null;
     if (countMax) this.countMax = null;
     if (duration) this.duration = null;

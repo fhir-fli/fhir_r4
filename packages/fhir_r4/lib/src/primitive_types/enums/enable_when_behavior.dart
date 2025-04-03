@@ -48,8 +48,11 @@ class EnableWhenBehavior extends FhirCodeEnum {
   /// Create empty [EnableWhenBehavior] with element only
   factory EnableWhenBehavior.empty() => EnableWhenBehavior._(valueString: '');
 
-  /// Factory constructor to create [EnableWhenBehavior] from JSON.
-  factory EnableWhenBehavior.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [EnableWhenBehavior]
+  /// from JSON.
+  factory EnableWhenBehavior.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -135,7 +138,9 @@ class EnableWhenBehavior extends FhirCodeEnum {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for EnableWhenBehavior: $newValue');
+      throw ArgumentError(
+        'Invalid input for EnableWhenBehavior: $newValue',
+      );
     }
     return EnableWhenBehavior._(
       valueString: newValue ?? valueString,

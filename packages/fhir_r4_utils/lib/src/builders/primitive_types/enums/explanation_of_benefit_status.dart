@@ -51,7 +51,8 @@ class ExplanationOfBenefitStatusBuilder extends FhirCodeEnumBuilder {
   /// Factory constructor to create [ExplanationOfBenefitStatusBuilder]
   /// from JSON.
   factory ExplanationOfBenefitStatusBuilder.fromJson(
-      Map<String, dynamic> json) {
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -130,9 +131,13 @@ class ExplanationOfBenefitStatusBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  ExplanationOfBenefitStatusBuilder withElement(ElementBuilder? newElement) {
+  ExplanationOfBenefitStatusBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
     return ExplanationOfBenefitStatusBuilder._(
-        valueString: valueString, element: newElement);
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -162,7 +167,8 @@ class ExplanationOfBenefitStatusBuilder extends FhirCodeEnumBuilder {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for ExplanationOfBenefitStatus: $newValue');
+        'Invalid input for ExplanationOfBenefitStatus: $newValue',
+      );
     }
     return ExplanationOfBenefitStatusBuilder._(
       valueString: newValue ?? valueString,

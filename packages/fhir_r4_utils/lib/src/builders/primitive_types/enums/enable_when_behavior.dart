@@ -51,7 +51,9 @@ class EnableWhenBehaviorBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [EnableWhenBehaviorBuilder]
   /// from JSON.
-  factory EnableWhenBehaviorBuilder.fromJson(Map<String, dynamic> json) {
+  factory EnableWhenBehaviorBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -105,9 +107,13 @@ class EnableWhenBehaviorBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  EnableWhenBehaviorBuilder withElement(ElementBuilder? newElement) {
+  EnableWhenBehaviorBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
     return EnableWhenBehaviorBuilder._(
-        valueString: valueString, element: newElement);
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -136,7 +142,9 @@ class EnableWhenBehaviorBuilder extends FhirCodeEnumBuilder {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for EnableWhenBehavior: $newValue');
+      throw ArgumentError(
+        'Invalid input for EnableWhenBehavior: $newValue',
+      );
     }
     return EnableWhenBehaviorBuilder._(
       valueString: newValue ?? valueString,

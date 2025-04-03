@@ -48,8 +48,11 @@ class RequestResourceType extends FhirCodeEnum {
   /// Create empty [RequestResourceType] with element only
   factory RequestResourceType.empty() => RequestResourceType._(valueString: '');
 
-  /// Factory constructor to create [RequestResourceType] from JSON.
-  factory RequestResourceType.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [RequestResourceType]
+  /// from JSON.
+  factory RequestResourceType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -251,7 +254,9 @@ class RequestResourceType extends FhirCodeEnum {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for RequestResourceType: $newValue');
+      throw ArgumentError(
+        'Invalid input for RequestResourceType: $newValue',
+      );
     }
     return RequestResourceType._(
       valueString: newValue ?? valueString,

@@ -47,8 +47,11 @@ class MeasureReportType extends FhirCodeEnum {
   /// Create empty [MeasureReportType] with element only
   factory MeasureReportType.empty() => MeasureReportType._(valueString: '');
 
-  /// Factory constructor to create [MeasureReportType] from JSON.
-  factory MeasureReportType.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [MeasureReportType]
+  /// from JSON.
+  factory MeasureReportType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -150,7 +153,9 @@ class MeasureReportType extends FhirCodeEnum {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for MeasureReportType: $newValue');
+      throw ArgumentError(
+        'Invalid input for MeasureReportType: $newValue',
+      );
     }
     return MeasureReportType._(
       valueString: newValue ?? valueString,

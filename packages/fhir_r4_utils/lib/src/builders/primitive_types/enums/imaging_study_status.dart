@@ -50,7 +50,9 @@ class ImagingStudyStatusBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [ImagingStudyStatusBuilder]
   /// from JSON.
-  factory ImagingStudyStatusBuilder.fromJson(Map<String, dynamic> json) {
+  factory ImagingStudyStatusBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -130,9 +132,13 @@ class ImagingStudyStatusBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  ImagingStudyStatusBuilder withElement(ElementBuilder? newElement) {
+  ImagingStudyStatusBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
     return ImagingStudyStatusBuilder._(
-        valueString: valueString, element: newElement);
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -161,7 +167,9 @@ class ImagingStudyStatusBuilder extends FhirCodeEnumBuilder {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for ImagingStudyStatus: $newValue');
+      throw ArgumentError(
+        'Invalid input for ImagingStudyStatus: $newValue',
+      );
     }
     return ImagingStudyStatusBuilder._(
       valueString: newValue ?? valueString,

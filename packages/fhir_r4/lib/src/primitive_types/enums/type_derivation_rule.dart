@@ -47,8 +47,11 @@ class TypeDerivationRule extends FhirCodeEnum {
   /// Create empty [TypeDerivationRule] with element only
   factory TypeDerivationRule.empty() => TypeDerivationRule._(valueString: '');
 
-  /// Factory constructor to create [TypeDerivationRule] from JSON.
-  factory TypeDerivationRule.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [TypeDerivationRule]
+  /// from JSON.
+  factory TypeDerivationRule.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -132,7 +135,9 @@ class TypeDerivationRule extends FhirCodeEnum {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for TypeDerivationRule: $newValue');
+      throw ArgumentError(
+        'Invalid input for TypeDerivationRule: $newValue',
+      );
     }
     return TypeDerivationRule._(
       valueString: newValue ?? valueString,

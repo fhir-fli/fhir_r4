@@ -49,8 +49,11 @@ class CarePlanActivityStatus extends FhirCodeEnum {
   factory CarePlanActivityStatus.empty() =>
       CarePlanActivityStatus._(valueString: '');
 
-  /// Factory constructor to create [CarePlanActivityStatus] from JSON.
-  factory CarePlanActivityStatus.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [CarePlanActivityStatus]
+  /// from JSON.
+  factory CarePlanActivityStatus.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -199,7 +202,8 @@ class CarePlanActivityStatus extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for CarePlanActivityStatus: $newValue');
+        'Invalid input for CarePlanActivityStatus: $newValue',
+      );
     }
     return CarePlanActivityStatus._(
       valueString: newValue ?? valueString,

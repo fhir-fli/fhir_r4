@@ -48,8 +48,11 @@ class ReferenceHandlingPolicy extends FhirCodeEnum {
   factory ReferenceHandlingPolicy.empty() =>
       ReferenceHandlingPolicy._(valueString: '');
 
-  /// Factory constructor to create [ReferenceHandlingPolicy] from JSON.
-  factory ReferenceHandlingPolicy.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [ReferenceHandlingPolicy]
+  /// from JSON.
+  factory ReferenceHandlingPolicy.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -161,7 +164,8 @@ class ReferenceHandlingPolicy extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for ReferenceHandlingPolicy: $newValue');
+        'Invalid input for ReferenceHandlingPolicy: $newValue',
+      );
     }
     return ReferenceHandlingPolicy._(
       valueString: newValue ?? valueString,

@@ -47,8 +47,11 @@ class ResponseType extends FhirCodeEnum {
   /// Create empty [ResponseType] with element only
   factory ResponseType.empty() => ResponseType._(valueString: '');
 
-  /// Factory constructor to create [ResponseType] from JSON.
-  factory ResponseType.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [ResponseType]
+  /// from JSON.
+  factory ResponseType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -140,7 +143,9 @@ class ResponseType extends FhirCodeEnum {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for ResponseType: $newValue');
+      throw ArgumentError(
+        'Invalid input for ResponseType: $newValue',
+      );
     }
     return ResponseType._(
       valueString: newValue ?? valueString,

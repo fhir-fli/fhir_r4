@@ -50,7 +50,9 @@ class AppointmentStatusBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [AppointmentStatusBuilder]
   /// from JSON.
-  factory AppointmentStatusBuilder.fromJson(Map<String, dynamic> json) {
+  factory AppointmentStatusBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -174,9 +176,13 @@ class AppointmentStatusBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  AppointmentStatusBuilder withElement(ElementBuilder? newElement) {
+  AppointmentStatusBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
     return AppointmentStatusBuilder._(
-        valueString: valueString, element: newElement);
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -205,7 +211,9 @@ class AppointmentStatusBuilder extends FhirCodeEnumBuilder {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for AppointmentStatus: $newValue');
+      throw ArgumentError(
+        'Invalid input for AppointmentStatus: $newValue',
+      );
     }
     return AppointmentStatusBuilder._(
       valueString: newValue ?? valueString,

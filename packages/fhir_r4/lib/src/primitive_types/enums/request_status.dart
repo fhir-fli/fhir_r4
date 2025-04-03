@@ -47,8 +47,11 @@ class RequestStatus extends FhirCodeEnum {
   /// Create empty [RequestStatus] with element only
   factory RequestStatus.empty() => RequestStatus._(valueString: '');
 
-  /// Factory constructor to create [RequestStatus] from JSON.
-  factory RequestStatus.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [RequestStatus]
+  /// from JSON.
+  factory RequestStatus.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -176,7 +179,9 @@ class RequestStatus extends FhirCodeEnum {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for RequestStatus: $newValue');
+      throw ArgumentError(
+        'Invalid input for RequestStatus: $newValue',
+      );
     }
     return RequestStatus._(
       valueString: newValue ?? valueString,

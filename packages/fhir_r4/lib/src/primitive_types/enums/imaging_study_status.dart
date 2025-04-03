@@ -47,8 +47,11 @@ class ImagingStudyStatus extends FhirCodeEnum {
   /// Create empty [ImagingStudyStatus] with element only
   factory ImagingStudyStatus.empty() => ImagingStudyStatus._(valueString: '');
 
-  /// Factory constructor to create [ImagingStudyStatus] from JSON.
-  factory ImagingStudyStatus.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [ImagingStudyStatus]
+  /// from JSON.
+  factory ImagingStudyStatus.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -159,7 +162,9 @@ class ImagingStudyStatus extends FhirCodeEnum {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for ImagingStudyStatus: $newValue');
+      throw ArgumentError(
+        'Invalid input for ImagingStudyStatus: $newValue',
+      );
     }
     return ImagingStudyStatus._(
       valueString: newValue ?? valueString,

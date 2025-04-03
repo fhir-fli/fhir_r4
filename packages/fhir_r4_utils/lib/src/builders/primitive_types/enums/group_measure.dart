@@ -49,7 +49,9 @@ class GroupMeasureBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [GroupMeasureBuilder]
   /// from JSON.
-  factory GroupMeasureBuilder.fromJson(Map<String, dynamic> json) {
+  factory GroupMeasureBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -137,8 +139,13 @@ class GroupMeasureBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  GroupMeasureBuilder withElement(ElementBuilder? newElement) {
-    return GroupMeasureBuilder._(valueString: valueString, element: newElement);
+  GroupMeasureBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
+    return GroupMeasureBuilder._(
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -167,7 +174,9 @@ class GroupMeasureBuilder extends FhirCodeEnumBuilder {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for GroupMeasure: $newValue');
+      throw ArgumentError(
+        'Invalid input for GroupMeasure: $newValue',
+      );
     }
     return GroupMeasureBuilder._(
       valueString: newValue ?? valueString,

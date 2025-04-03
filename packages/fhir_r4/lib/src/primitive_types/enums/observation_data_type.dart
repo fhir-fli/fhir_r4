@@ -47,8 +47,11 @@ class ObservationDataType extends FhirCodeEnum {
   /// Create empty [ObservationDataType] with element only
   factory ObservationDataType.empty() => ObservationDataType._(valueString: '');
 
-  /// Factory constructor to create [ObservationDataType] from JSON.
-  factory ObservationDataType.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [ObservationDataType]
+  /// from JSON.
+  factory ObservationDataType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -213,7 +216,9 @@ class ObservationDataType extends FhirCodeEnum {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for ObservationDataType: $newValue');
+      throw ArgumentError(
+        'Invalid input for ObservationDataType: $newValue',
+      );
     }
     return ObservationDataType._(
       valueString: newValue ?? valueString,

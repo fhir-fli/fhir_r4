@@ -48,8 +48,11 @@ class ExplanationOfBenefitStatus extends FhirCodeEnum {
   factory ExplanationOfBenefitStatus.empty() =>
       ExplanationOfBenefitStatus._(valueString: '');
 
-  /// Factory constructor to create [ExplanationOfBenefitStatus] from JSON.
-  factory ExplanationOfBenefitStatus.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [ExplanationOfBenefitStatus]
+  /// from JSON.
+  factory ExplanationOfBenefitStatus.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -158,7 +161,8 @@ class ExplanationOfBenefitStatus extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for ExplanationOfBenefitStatus: $newValue');
+        'Invalid input for ExplanationOfBenefitStatus: $newValue',
+      );
     }
     return ExplanationOfBenefitStatus._(
       valueString: newValue ?? valueString,

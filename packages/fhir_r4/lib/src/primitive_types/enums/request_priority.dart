@@ -48,8 +48,11 @@ class RequestPriority extends FhirCodeEnum {
   /// Create empty [RequestPriority] with element only
   factory RequestPriority.empty() => RequestPriority._(valueString: '');
 
-  /// Factory constructor to create [RequestPriority] from JSON.
-  factory RequestPriority.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [RequestPriority]
+  /// from JSON.
+  factory RequestPriority.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -150,7 +153,9 @@ class RequestPriority extends FhirCodeEnum {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for RequestPriority: $newValue');
+      throw ArgumentError(
+        'Invalid input for RequestPriority: $newValue',
+      );
     }
     return RequestPriority._(
       valueString: newValue ?? valueString,

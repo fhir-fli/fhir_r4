@@ -50,7 +50,9 @@ class GuidePageGenerationBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [GuidePageGenerationBuilder]
   /// from JSON.
-  factory GuidePageGenerationBuilder.fromJson(Map<String, dynamic> json) {
+  factory GuidePageGenerationBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -124,9 +126,13 @@ class GuidePageGenerationBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  GuidePageGenerationBuilder withElement(ElementBuilder? newElement) {
+  GuidePageGenerationBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
     return GuidePageGenerationBuilder._(
-        valueString: valueString, element: newElement);
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -155,7 +161,9 @@ class GuidePageGenerationBuilder extends FhirCodeEnumBuilder {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for GuidePageGeneration: $newValue');
+      throw ArgumentError(
+        'Invalid input for GuidePageGeneration: $newValue',
+      );
     }
     return GuidePageGenerationBuilder._(
       valueString: newValue ?? valueString,

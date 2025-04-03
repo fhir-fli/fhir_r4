@@ -48,8 +48,11 @@ class BindingStrength extends FhirCodeEnum {
   /// Create empty [BindingStrength] with element only
   factory BindingStrength.empty() => BindingStrength._(valueString: '');
 
-  /// Factory constructor to create [BindingStrength] from JSON.
-  factory BindingStrength.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [BindingStrength]
+  /// from JSON.
+  factory BindingStrength.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -150,7 +153,9 @@ class BindingStrength extends FhirCodeEnum {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for BindingStrength: $newValue');
+      throw ArgumentError(
+        'Invalid input for BindingStrength: $newValue',
+      );
     }
     return BindingStrength._(
       valueString: newValue ?? valueString,

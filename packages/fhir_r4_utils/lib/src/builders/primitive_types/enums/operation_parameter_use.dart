@@ -50,7 +50,9 @@ class OperationParameterUseBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [OperationParameterUseBuilder]
   /// from JSON.
-  factory OperationParameterUseBuilder.fromJson(Map<String, dynamic> json) {
+  factory OperationParameterUseBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -104,9 +106,13 @@ class OperationParameterUseBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  OperationParameterUseBuilder withElement(ElementBuilder? newElement) {
+  OperationParameterUseBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
     return OperationParameterUseBuilder._(
-        valueString: valueString, element: newElement);
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -135,7 +141,9 @@ class OperationParameterUseBuilder extends FhirCodeEnumBuilder {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for OperationParameterUse: $newValue');
+      throw ArgumentError(
+        'Invalid input for OperationParameterUse: $newValue',
+      );
     }
     return OperationParameterUseBuilder._(
       valueString: newValue ?? valueString,

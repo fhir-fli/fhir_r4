@@ -51,7 +51,9 @@ class RequestPriorityBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [RequestPriorityBuilder]
   /// from JSON.
-  factory RequestPriorityBuilder.fromJson(Map<String, dynamic> json) {
+  factory RequestPriorityBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -121,9 +123,13 @@ class RequestPriorityBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  RequestPriorityBuilder withElement(ElementBuilder? newElement) {
+  RequestPriorityBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
     return RequestPriorityBuilder._(
-        valueString: valueString, element: newElement);
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -152,7 +158,9 @@ class RequestPriorityBuilder extends FhirCodeEnumBuilder {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for RequestPriority: $newValue');
+      throw ArgumentError(
+        'Invalid input for RequestPriority: $newValue',
+      );
     }
     return RequestPriorityBuilder._(
       valueString: newValue ?? valueString,

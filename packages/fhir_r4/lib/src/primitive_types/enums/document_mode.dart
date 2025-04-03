@@ -47,8 +47,11 @@ class DocumentMode extends FhirCodeEnum {
   /// Create empty [DocumentMode] with element only
   factory DocumentMode.empty() => DocumentMode._(valueString: '');
 
-  /// Factory constructor to create [DocumentMode] from JSON.
-  factory DocumentMode.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [DocumentMode]
+  /// from JSON.
+  factory DocumentMode.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -131,7 +134,9 @@ class DocumentMode extends FhirCodeEnum {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for DocumentMode: $newValue');
+      throw ArgumentError(
+        'Invalid input for DocumentMode: $newValue',
+      );
     }
     return DocumentMode._(
       valueString: newValue ?? valueString,

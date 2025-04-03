@@ -47,8 +47,11 @@ class DiscriminatorType extends FhirCodeEnum {
   /// Create empty [DiscriminatorType] with element only
   factory DiscriminatorType.empty() => DiscriminatorType._(valueString: '');
 
-  /// Factory constructor to create [DiscriminatorType] from JSON.
-  factory DiscriminatorType.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [DiscriminatorType]
+  /// from JSON.
+  factory DiscriminatorType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -159,7 +162,9 @@ class DiscriminatorType extends FhirCodeEnum {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for DiscriminatorType: $newValue');
+      throw ArgumentError(
+        'Invalid input for DiscriminatorType: $newValue',
+      );
     }
     return DiscriminatorType._(
       valueString: newValue ?? valueString,

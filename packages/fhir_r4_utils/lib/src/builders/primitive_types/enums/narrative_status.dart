@@ -50,7 +50,9 @@ class NarrativeStatusBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [NarrativeStatusBuilder]
   /// from JSON.
-  factory NarrativeStatusBuilder.fromJson(Map<String, dynamic> json) {
+  factory NarrativeStatusBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -120,9 +122,13 @@ class NarrativeStatusBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  NarrativeStatusBuilder withElement(ElementBuilder? newElement) {
+  NarrativeStatusBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
     return NarrativeStatusBuilder._(
-        valueString: valueString, element: newElement);
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -151,7 +157,9 @@ class NarrativeStatusBuilder extends FhirCodeEnumBuilder {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for NarrativeStatus: $newValue');
+      throw ArgumentError(
+        'Invalid input for NarrativeStatus: $newValue',
+      );
     }
     return NarrativeStatusBuilder._(
       valueString: newValue ?? valueString,

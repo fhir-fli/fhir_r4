@@ -50,7 +50,9 @@ class ContactPointUseBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [ContactPointUseBuilder]
   /// from JSON.
-  factory ContactPointUseBuilder.fromJson(Map<String, dynamic> json) {
+  factory ContactPointUseBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -129,9 +131,13 @@ class ContactPointUseBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  ContactPointUseBuilder withElement(ElementBuilder? newElement) {
+  ContactPointUseBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
     return ContactPointUseBuilder._(
-        valueString: valueString, element: newElement);
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -160,7 +166,9 @@ class ContactPointUseBuilder extends FhirCodeEnumBuilder {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for ContactPointUse: $newValue');
+      throw ArgumentError(
+        'Invalid input for ContactPointUse: $newValue',
+      );
     }
     return ContactPointUseBuilder._(
       valueString: newValue ?? valueString,

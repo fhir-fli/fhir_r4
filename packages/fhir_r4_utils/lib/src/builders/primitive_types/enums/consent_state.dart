@@ -49,7 +49,9 @@ class ConsentStateBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [ConsentStateBuilder]
   /// from JSON.
-  factory ConsentStateBuilder.fromJson(Map<String, dynamic> json) {
+  factory ConsentStateBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -137,8 +139,13 @@ class ConsentStateBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  ConsentStateBuilder withElement(ElementBuilder? newElement) {
-    return ConsentStateBuilder._(valueString: valueString, element: newElement);
+  ConsentStateBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
+    return ConsentStateBuilder._(
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -167,7 +174,9 @@ class ConsentStateBuilder extends FhirCodeEnumBuilder {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for ConsentState: $newValue');
+      throw ArgumentError(
+        'Invalid input for ConsentState: $newValue',
+      );
     }
     return ConsentStateBuilder._(
       valueString: newValue ?? valueString,

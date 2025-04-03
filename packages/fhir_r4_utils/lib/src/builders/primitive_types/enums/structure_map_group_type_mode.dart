@@ -51,7 +51,9 @@ class StructureMapGroupTypeModeBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [StructureMapGroupTypeModeBuilder]
   /// from JSON.
-  factory StructureMapGroupTypeModeBuilder.fromJson(Map<String, dynamic> json) {
+  factory StructureMapGroupTypeModeBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -116,9 +118,13 @@ class StructureMapGroupTypeModeBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  StructureMapGroupTypeModeBuilder withElement(ElementBuilder? newElement) {
+  StructureMapGroupTypeModeBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
     return StructureMapGroupTypeModeBuilder._(
-        valueString: valueString, element: newElement);
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -148,7 +154,8 @@ class StructureMapGroupTypeModeBuilder extends FhirCodeEnumBuilder {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for StructureMapGroupTypeMode: $newValue');
+        'Invalid input for StructureMapGroupTypeMode: $newValue',
+      );
     }
     return StructureMapGroupTypeModeBuilder._(
       valueString: newValue ?? valueString,

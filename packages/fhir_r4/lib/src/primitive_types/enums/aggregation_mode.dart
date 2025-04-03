@@ -47,8 +47,11 @@ class AggregationMode extends FhirCodeEnum {
   /// Create empty [AggregationMode] with element only
   factory AggregationMode.empty() => AggregationMode._(valueString: '');
 
-  /// Factory constructor to create [AggregationMode] from JSON.
-  factory AggregationMode.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [AggregationMode]
+  /// from JSON.
+  factory AggregationMode.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -140,7 +143,9 @@ class AggregationMode extends FhirCodeEnum {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for AggregationMode: $newValue');
+      throw ArgumentError(
+        'Invalid input for AggregationMode: $newValue',
+      );
     }
     return AggregationMode._(
       valueString: newValue ?? valueString,

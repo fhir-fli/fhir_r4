@@ -49,8 +49,11 @@ class ReferenceVersionRules extends FhirCodeEnum {
   factory ReferenceVersionRules.empty() =>
       ReferenceVersionRules._(valueString: '');
 
-  /// Factory constructor to create [ReferenceVersionRules] from JSON.
-  factory ReferenceVersionRules.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [ReferenceVersionRules]
+  /// from JSON.
+  factory ReferenceVersionRules.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -143,7 +146,9 @@ class ReferenceVersionRules extends FhirCodeEnum {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for ReferenceVersionRules: $newValue');
+      throw ArgumentError(
+        'Invalid input for ReferenceVersionRules: $newValue',
+      );
     }
     return ReferenceVersionRules._(
       valueString: newValue ?? valueString,

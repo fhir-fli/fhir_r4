@@ -49,8 +49,11 @@ class EvidenceVariableHandling extends FhirCodeEnum {
   factory EvidenceVariableHandling.empty() =>
       EvidenceVariableHandling._(valueString: '');
 
-  /// Factory constructor to create [EvidenceVariableHandling] from JSON.
-  factory EvidenceVariableHandling.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [EvidenceVariableHandling]
+  /// from JSON.
+  factory EvidenceVariableHandling.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -155,7 +158,8 @@ class EvidenceVariableHandling extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for EvidenceVariableHandling: $newValue');
+        'Invalid input for EvidenceVariableHandling: $newValue',
+      );
     }
     return EvidenceVariableHandling._(
       valueString: newValue ?? valueString,

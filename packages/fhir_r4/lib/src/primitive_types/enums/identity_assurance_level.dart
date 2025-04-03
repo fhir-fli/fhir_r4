@@ -49,8 +49,11 @@ class IdentityAssuranceLevel extends FhirCodeEnum {
   factory IdentityAssuranceLevel.empty() =>
       IdentityAssuranceLevel._(valueString: '');
 
-  /// Factory constructor to create [IdentityAssuranceLevel] from JSON.
-  factory IdentityAssuranceLevel.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [IdentityAssuranceLevel]
+  /// from JSON.
+  factory IdentityAssuranceLevel.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -153,7 +156,8 @@ class IdentityAssuranceLevel extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for IdentityAssuranceLevel: $newValue');
+        'Invalid input for IdentityAssuranceLevel: $newValue',
+      );
     }
     return IdentityAssuranceLevel._(
       valueString: newValue ?? valueString,

@@ -51,7 +51,9 @@ class RequestResourceTypeBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [RequestResourceTypeBuilder]
   /// from JSON.
-  factory RequestResourceTypeBuilder.fromJson(Map<String, dynamic> json) {
+  factory RequestResourceTypeBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -245,9 +247,13 @@ class RequestResourceTypeBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  RequestResourceTypeBuilder withElement(ElementBuilder? newElement) {
+  RequestResourceTypeBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
     return RequestResourceTypeBuilder._(
-        valueString: valueString, element: newElement);
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -276,7 +282,9 @@ class RequestResourceTypeBuilder extends FhirCodeEnumBuilder {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for RequestResourceType: $newValue');
+      throw ArgumentError(
+        'Invalid input for RequestResourceType: $newValue',
+      );
     }
     return RequestResourceTypeBuilder._(
       valueString: newValue ?? valueString,

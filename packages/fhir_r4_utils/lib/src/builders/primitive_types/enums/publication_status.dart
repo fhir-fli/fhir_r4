@@ -50,7 +50,9 @@ class PublicationStatusBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [PublicationStatusBuilder]
   /// from JSON.
-  factory PublicationStatusBuilder.fromJson(Map<String, dynamic> json) {
+  factory PublicationStatusBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -120,9 +122,13 @@ class PublicationStatusBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  PublicationStatusBuilder withElement(ElementBuilder? newElement) {
+  PublicationStatusBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
     return PublicationStatusBuilder._(
-        valueString: valueString, element: newElement);
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -151,7 +157,9 @@ class PublicationStatusBuilder extends FhirCodeEnumBuilder {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for PublicationStatus: $newValue');
+      throw ArgumentError(
+        'Invalid input for PublicationStatus: $newValue',
+      );
     }
     return PublicationStatusBuilder._(
       valueString: newValue ?? valueString,

@@ -50,7 +50,9 @@ class ParticipantRequiredBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [ParticipantRequiredBuilder]
   /// from JSON.
-  factory ParticipantRequiredBuilder.fromJson(Map<String, dynamic> json) {
+  factory ParticipantRequiredBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -112,9 +114,13 @@ class ParticipantRequiredBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  ParticipantRequiredBuilder withElement(ElementBuilder? newElement) {
+  ParticipantRequiredBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
     return ParticipantRequiredBuilder._(
-        valueString: valueString, element: newElement);
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -143,7 +149,9 @@ class ParticipantRequiredBuilder extends FhirCodeEnumBuilder {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for ParticipantRequired: $newValue');
+      throw ArgumentError(
+        'Invalid input for ParticipantRequired: $newValue',
+      );
     }
     return ParticipantRequiredBuilder._(
       valueString: newValue ?? valueString,

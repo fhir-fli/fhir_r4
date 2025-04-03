@@ -49,7 +49,9 @@ class TriggerTypeBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [TriggerTypeBuilder]
   /// from JSON.
-  factory TriggerTypeBuilder.fromJson(Map<String, dynamic> json) {
+  factory TriggerTypeBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -154,8 +156,13 @@ class TriggerTypeBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  TriggerTypeBuilder withElement(ElementBuilder? newElement) {
-    return TriggerTypeBuilder._(valueString: valueString, element: newElement);
+  TriggerTypeBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
+    return TriggerTypeBuilder._(
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -184,7 +191,9 @@ class TriggerTypeBuilder extends FhirCodeEnumBuilder {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for TriggerType: $newValue');
+      throw ArgumentError(
+        'Invalid input for TriggerType: $newValue',
+      );
     }
     return TriggerTypeBuilder._(
       valueString: newValue ?? valueString,

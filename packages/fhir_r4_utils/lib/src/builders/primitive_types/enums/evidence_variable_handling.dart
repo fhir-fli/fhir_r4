@@ -51,7 +51,9 @@ class EvidenceVariableHandlingBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [EvidenceVariableHandlingBuilder]
   /// from JSON.
-  factory EvidenceVariableHandlingBuilder.fromJson(Map<String, dynamic> json) {
+  factory EvidenceVariableHandlingBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -125,9 +127,13 @@ class EvidenceVariableHandlingBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  EvidenceVariableHandlingBuilder withElement(ElementBuilder? newElement) {
+  EvidenceVariableHandlingBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
     return EvidenceVariableHandlingBuilder._(
-        valueString: valueString, element: newElement);
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -157,7 +163,8 @@ class EvidenceVariableHandlingBuilder extends FhirCodeEnumBuilder {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for EvidenceVariableHandling: $newValue');
+        'Invalid input for EvidenceVariableHandling: $newValue',
+      );
     }
     return EvidenceVariableHandlingBuilder._(
       valueString: newValue ?? valueString,

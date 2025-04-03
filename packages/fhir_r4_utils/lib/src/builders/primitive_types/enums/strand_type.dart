@@ -49,7 +49,9 @@ class StrandTypeBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [StrandTypeBuilder]
   /// from JSON.
-  factory StrandTypeBuilder.fromJson(Map<String, dynamic> json) {
+  factory StrandTypeBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -100,8 +102,13 @@ class StrandTypeBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  StrandTypeBuilder withElement(ElementBuilder? newElement) {
-    return StrandTypeBuilder._(valueString: valueString, element: newElement);
+  StrandTypeBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
+    return StrandTypeBuilder._(
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -130,7 +137,9 @@ class StrandTypeBuilder extends FhirCodeEnumBuilder {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for StrandType: $newValue');
+      throw ArgumentError(
+        'Invalid input for StrandType: $newValue',
+      );
     }
     return StrandTypeBuilder._(
       valueString: newValue ?? valueString,

@@ -48,8 +48,11 @@ class MedicationRequestIntent extends FhirCodeEnum {
   factory MedicationRequestIntent.empty() =>
       MedicationRequestIntent._(valueString: '');
 
-  /// Factory constructor to create [MedicationRequestIntent] from JSON.
-  factory MedicationRequestIntent.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [MedicationRequestIntent]
+  /// from JSON.
+  factory MedicationRequestIntent.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -190,7 +193,8 @@ class MedicationRequestIntent extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for MedicationRequestIntent: $newValue');
+        'Invalid input for MedicationRequestIntent: $newValue',
+      );
     }
     return MedicationRequestIntent._(
       valueString: newValue ?? valueString,

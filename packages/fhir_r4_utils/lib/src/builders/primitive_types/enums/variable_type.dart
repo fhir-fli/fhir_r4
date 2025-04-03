@@ -50,7 +50,9 @@ class VariableTypeBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [VariableTypeBuilder]
   /// from JSON.
-  factory VariableTypeBuilder.fromJson(Map<String, dynamic> json) {
+  factory VariableTypeBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -111,8 +113,13 @@ class VariableTypeBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  VariableTypeBuilder withElement(ElementBuilder? newElement) {
-    return VariableTypeBuilder._(valueString: valueString, element: newElement);
+  VariableTypeBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
+    return VariableTypeBuilder._(
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -141,7 +148,9 @@ class VariableTypeBuilder extends FhirCodeEnumBuilder {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for VariableType: $newValue');
+      throw ArgumentError(
+        'Invalid input for VariableType: $newValue',
+      );
     }
     return VariableTypeBuilder._(
       valueString: newValue ?? valueString,

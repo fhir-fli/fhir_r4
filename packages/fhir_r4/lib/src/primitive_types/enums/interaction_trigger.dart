@@ -47,8 +47,11 @@ class InteractionTrigger extends FhirCodeEnum {
   /// Create empty [InteractionTrigger] with element only
   factory InteractionTrigger.empty() => InteractionTrigger._(valueString: '');
 
-  /// Factory constructor to create [InteractionTrigger] from JSON.
-  factory InteractionTrigger.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [InteractionTrigger]
+  /// from JSON.
+  factory InteractionTrigger.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -267,7 +270,9 @@ class InteractionTrigger extends FhirCodeEnum {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for InteractionTrigger: $newValue');
+      throw ArgumentError(
+        'Invalid input for InteractionTrigger: $newValue',
+      );
     }
     return InteractionTrigger._(
       valueString: newValue ?? valueString,

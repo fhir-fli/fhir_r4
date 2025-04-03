@@ -49,8 +49,11 @@ class SubscriptionSearchModifier extends FhirCodeEnum {
   factory SubscriptionSearchModifier.empty() =>
       SubscriptionSearchModifier._(valueString: '');
 
-  /// Factory constructor to create [SubscriptionSearchModifier] from JSON.
-  factory SubscriptionSearchModifier.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [SubscriptionSearchModifier]
+  /// from JSON.
+  factory SubscriptionSearchModifier.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -258,7 +261,8 @@ class SubscriptionSearchModifier extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for SubscriptionSearchModifier: $newValue');
+        'Invalid input for SubscriptionSearchModifier: $newValue',
+      );
     }
     return SubscriptionSearchModifier._(
       valueString: newValue ?? valueString,

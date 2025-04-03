@@ -51,7 +51,9 @@ class BindingStrengthBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [BindingStrengthBuilder]
   /// from JSON.
-  factory BindingStrengthBuilder.fromJson(Map<String, dynamic> json) {
+  factory BindingStrengthBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -121,9 +123,13 @@ class BindingStrengthBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  BindingStrengthBuilder withElement(ElementBuilder? newElement) {
+  BindingStrengthBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
     return BindingStrengthBuilder._(
-        valueString: valueString, element: newElement);
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -152,7 +158,9 @@ class BindingStrengthBuilder extends FhirCodeEnumBuilder {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for BindingStrength: $newValue');
+      throw ArgumentError(
+        'Invalid input for BindingStrength: $newValue',
+      );
     }
     return BindingStrengthBuilder._(
       valueString: newValue ?? valueString,

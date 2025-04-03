@@ -48,8 +48,11 @@ class XPathUsageType extends FhirCodeEnum {
   /// Create empty [XPathUsageType] with element only
   factory XPathUsageType.empty() => XPathUsageType._(valueString: '');
 
-  /// Factory constructor to create [XPathUsageType] from JSON.
-  factory XPathUsageType.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [XPathUsageType]
+  /// from JSON.
+  factory XPathUsageType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -159,7 +162,9 @@ class XPathUsageType extends FhirCodeEnum {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for XPathUsageType: $newValue');
+      throw ArgumentError(
+        'Invalid input for XPathUsageType: $newValue',
+      );
     }
     return XPathUsageType._(
       valueString: newValue ?? valueString,

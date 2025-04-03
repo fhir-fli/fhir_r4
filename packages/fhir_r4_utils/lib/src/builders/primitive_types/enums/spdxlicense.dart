@@ -52,7 +52,9 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [SPDXLicenseBuilder]
   /// from JSON.
-  factory SPDXLicenseBuilder.fromJson(Map<String, dynamic> json) {
+  factory SPDXLicenseBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -3264,8 +3266,13 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  SPDXLicenseBuilder withElement(ElementBuilder? newElement) {
-    return SPDXLicenseBuilder._(valueString: valueString, element: newElement);
+  SPDXLicenseBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
+    return SPDXLicenseBuilder._(
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -3294,7 +3301,9 @@ class SPDXLicenseBuilder extends FhirCodeEnumBuilder {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for SPDXLicense: $newValue');
+      throw ArgumentError(
+        'Invalid input for SPDXLicense: $newValue',
+      );
     }
     return SPDXLicenseBuilder._(
       valueString: newValue ?? valueString,

@@ -47,8 +47,11 @@ class UDIEntryType extends FhirCodeEnum {
   /// Create empty [UDIEntryType] with element only
   factory UDIEntryType.empty() => UDIEntryType._(valueString: '');
 
-  /// Factory constructor to create [UDIEntryType] from JSON.
-  factory UDIEntryType.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [UDIEntryType]
+  /// from JSON.
+  factory UDIEntryType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -167,7 +170,9 @@ class UDIEntryType extends FhirCodeEnum {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for UDIEntryType: $newValue');
+      throw ArgumentError(
+        'Invalid input for UDIEntryType: $newValue',
+      );
     }
     return UDIEntryType._(
       valueString: newValue ?? valueString,

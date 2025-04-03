@@ -49,7 +49,9 @@ class TaskIntentBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [TaskIntentBuilder]
   /// from JSON.
-  factory TaskIntentBuilder.fromJson(Map<String, dynamic> json) {
+  factory TaskIntentBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -172,8 +174,13 @@ class TaskIntentBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  TaskIntentBuilder withElement(ElementBuilder? newElement) {
-    return TaskIntentBuilder._(valueString: valueString, element: newElement);
+  TaskIntentBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
+    return TaskIntentBuilder._(
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -202,7 +209,9 @@ class TaskIntentBuilder extends FhirCodeEnumBuilder {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for TaskIntent: $newValue');
+      throw ArgumentError(
+        'Invalid input for TaskIntent: $newValue',
+      );
     }
     return TaskIntentBuilder._(
       valueString: newValue ?? valueString,

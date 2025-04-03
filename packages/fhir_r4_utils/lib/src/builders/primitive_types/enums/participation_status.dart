@@ -50,7 +50,9 @@ class ParticipationStatusBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [ParticipationStatusBuilder]
   /// from JSON.
-  factory ParticipationStatusBuilder.fromJson(Map<String, dynamic> json) {
+  factory ParticipationStatusBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -120,9 +122,13 @@ class ParticipationStatusBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  ParticipationStatusBuilder withElement(ElementBuilder? newElement) {
+  ParticipationStatusBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
     return ParticipationStatusBuilder._(
-        valueString: valueString, element: newElement);
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -151,7 +157,9 @@ class ParticipationStatusBuilder extends FhirCodeEnumBuilder {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for ParticipationStatus: $newValue');
+      throw ArgumentError(
+        'Invalid input for ParticipationStatus: $newValue',
+      );
     }
     return ParticipationStatusBuilder._(
       valueString: newValue ?? valueString,

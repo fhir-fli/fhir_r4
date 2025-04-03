@@ -47,8 +47,11 @@ class ContributorType extends FhirCodeEnum {
   /// Create empty [ContributorType] with element only
   factory ContributorType.empty() => ContributorType._(valueString: '');
 
-  /// Factory constructor to create [ContributorType] from JSON.
-  factory ContributorType.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [ContributorType]
+  /// from JSON.
+  factory ContributorType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -149,7 +152,9 @@ class ContributorType extends FhirCodeEnum {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for ContributorType: $newValue');
+      throw ArgumentError(
+        'Invalid input for ContributorType: $newValue',
+      );
     }
     return ContributorType._(
       valueString: newValue ?? valueString,

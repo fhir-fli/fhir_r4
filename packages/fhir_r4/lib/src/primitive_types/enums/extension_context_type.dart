@@ -48,8 +48,11 @@ class ExtensionContextType extends FhirCodeEnum {
   factory ExtensionContextType.empty() =>
       ExtensionContextType._(valueString: '');
 
-  /// Factory constructor to create [ExtensionContextType] from JSON.
-  factory ExtensionContextType.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [ExtensionContextType]
+  /// from JSON.
+  factory ExtensionContextType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -142,7 +145,9 @@ class ExtensionContextType extends FhirCodeEnum {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for ExtensionContextType: $newValue');
+      throw ArgumentError(
+        'Invalid input for ExtensionContextType: $newValue',
+      );
     }
     return ExtensionContextType._(
       valueString: newValue ?? valueString,

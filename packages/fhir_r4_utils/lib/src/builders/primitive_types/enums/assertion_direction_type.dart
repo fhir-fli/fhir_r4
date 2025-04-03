@@ -50,7 +50,9 @@ class AssertionDirectionTypeBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [AssertionDirectionTypeBuilder]
   /// from JSON.
-  factory AssertionDirectionTypeBuilder.fromJson(Map<String, dynamic> json) {
+  factory AssertionDirectionTypeBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -106,9 +108,13 @@ class AssertionDirectionTypeBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  AssertionDirectionTypeBuilder withElement(ElementBuilder? newElement) {
+  AssertionDirectionTypeBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
     return AssertionDirectionTypeBuilder._(
-        valueString: valueString, element: newElement);
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -138,7 +144,8 @@ class AssertionDirectionTypeBuilder extends FhirCodeEnumBuilder {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for AssertionDirectionType: $newValue');
+        'Invalid input for AssertionDirectionType: $newValue',
+      );
     }
     return AssertionDirectionTypeBuilder._(
       valueString: newValue ?? valueString,

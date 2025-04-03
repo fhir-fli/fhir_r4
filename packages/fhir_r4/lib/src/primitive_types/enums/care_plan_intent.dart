@@ -48,8 +48,11 @@ class CarePlanIntent extends FhirCodeEnum {
   /// Create empty [CarePlanIntent] with element only
   factory CarePlanIntent.empty() => CarePlanIntent._(valueString: '');
 
-  /// Factory constructor to create [CarePlanIntent] from JSON.
-  factory CarePlanIntent.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [CarePlanIntent]
+  /// from JSON.
+  factory CarePlanIntent.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -195,7 +198,9 @@ class CarePlanIntent extends FhirCodeEnum {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for CarePlanIntent: $newValue');
+      throw ArgumentError(
+        'Invalid input for CarePlanIntent: $newValue',
+      );
     }
     return CarePlanIntent._(
       valueString: newValue ?? valueString,

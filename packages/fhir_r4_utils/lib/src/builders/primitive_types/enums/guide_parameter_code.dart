@@ -50,7 +50,9 @@ class GuideParameterCodeBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [GuideParameterCodeBuilder]
   /// from JSON.
-  factory GuideParameterCodeBuilder.fromJson(Map<String, dynamic> json) {
+  factory GuideParameterCodeBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -187,9 +189,13 @@ class GuideParameterCodeBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  GuideParameterCodeBuilder withElement(ElementBuilder? newElement) {
+  GuideParameterCodeBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
     return GuideParameterCodeBuilder._(
-        valueString: valueString, element: newElement);
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -218,7 +224,9 @@ class GuideParameterCodeBuilder extends FhirCodeEnumBuilder {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for GuideParameterCode: $newValue');
+      throw ArgumentError(
+        'Invalid input for GuideParameterCode: $newValue',
+      );
     }
     return GuideParameterCodeBuilder._(
       valueString: newValue ?? valueString,

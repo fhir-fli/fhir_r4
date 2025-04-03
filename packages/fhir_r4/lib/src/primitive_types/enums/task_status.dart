@@ -47,8 +47,11 @@ class TaskStatus extends FhirCodeEnum {
   /// Create empty [TaskStatus] with element only
   factory TaskStatus.empty() => TaskStatus._(valueString: '');
 
-  /// Factory constructor to create [TaskStatus] from JSON.
-  factory TaskStatus.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [TaskStatus]
+  /// from JSON.
+  factory TaskStatus.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -221,7 +224,9 @@ class TaskStatus extends FhirCodeEnum {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for TaskStatus: $newValue');
+      throw ArgumentError(
+        'Invalid input for TaskStatus: $newValue',
+      );
     }
     return TaskStatus._(
       valueString: newValue ?? valueString,

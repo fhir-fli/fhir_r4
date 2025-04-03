@@ -49,7 +49,9 @@ class UnitsOfTimeBuilder extends FhirCodeEnumBuilder {
 
   /// Factory constructor to create [UnitsOfTimeBuilder]
   /// from JSON.
-  factory UnitsOfTimeBuilder.fromJson(Map<String, dynamic> json) {
+  factory UnitsOfTimeBuilder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -145,8 +147,13 @@ class UnitsOfTimeBuilder extends FhirCodeEnumBuilder {
       );
 
   /// Returns the enum value with an element attached
-  UnitsOfTimeBuilder withElement(ElementBuilder? newElement) {
-    return UnitsOfTimeBuilder._(valueString: valueString, element: newElement);
+  UnitsOfTimeBuilder withElement(
+    ElementBuilder? newElement,
+  ) {
+    return UnitsOfTimeBuilder._(
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -175,7 +182,9 @@ class UnitsOfTimeBuilder extends FhirCodeEnumBuilder {
     String? objectPath,
   }) {
     if (newValue is! String?) {
-      throw ArgumentError('Invalid input for UnitsOfTime: $newValue');
+      throw ArgumentError(
+        'Invalid input for UnitsOfTime: $newValue',
+      );
     }
     return UnitsOfTimeBuilder._(
       valueString: newValue ?? valueString,
