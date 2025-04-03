@@ -6,7 +6,7 @@ part of '../primitive_types.dart';
 class FlagStatusBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   FlagStatusBuilder._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -20,7 +20,7 @@ class FlagStatusBuilder extends FhirCodeEnumBuilder {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory FlagStatusBuilder(
-    String? raw, {
+    String? rawValue, {
     FhirUriBuilder? system,
     FhirStringBuilder? version,
     FhirStringBuilder? display,
@@ -30,9 +30,10 @@ class FlagStatusBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
     return FlagStatusBuilder._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -45,7 +46,7 @@ class FlagStatusBuilder extends FhirCodeEnumBuilder {
   }
 
   /// Create empty [FlagStatusBuilder] with element only
-  factory FlagStatusBuilder.empty() => FlagStatusBuilder._(validatedValue: '');
+  factory FlagStatusBuilder.empty() => FlagStatusBuilder._(valueString: '');
 
   /// Factory constructor to create [FlagStatusBuilder]
   /// from JSON.
@@ -62,14 +63,14 @@ class FlagStatusBuilder extends FhirCodeEnumBuilder {
       );
     }
     return FlagStatusBuilder._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// active
   static FlagStatusBuilder active = FlagStatusBuilder._(
-    validatedValue: 'active',
+    valueString: 'active',
     system: 'http://hl7.org/fhir/ValueSet/flag-status'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Active'.toFhirStringBuilder,
@@ -77,7 +78,7 @@ class FlagStatusBuilder extends FhirCodeEnumBuilder {
 
   /// inactive
   static FlagStatusBuilder inactive = FlagStatusBuilder._(
-    validatedValue: 'inactive',
+    valueString: 'inactive',
     system: 'http://hl7.org/fhir/ValueSet/flag-status'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Inactive'.toFhirStringBuilder,
@@ -85,15 +86,14 @@ class FlagStatusBuilder extends FhirCodeEnumBuilder {
 
   /// entered_in_error
   static FlagStatusBuilder entered_in_error = FlagStatusBuilder._(
-    validatedValue: 'entered-in-error',
+    valueString: 'entered-in-error',
     system: 'http://hl7.org/fhir/ValueSet/flag-status'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Entered in Error'.toFhirStringBuilder,
   );
 
   /// For instances where an Element is present but not value
-  static FlagStatusBuilder elementOnly =
-      FlagStatusBuilder._(validatedValue: '');
+  static FlagStatusBuilder elementOnly = FlagStatusBuilder._(valueString: '');
 
   /// List of all enum-like values
   static List<FlagStatusBuilder> values = [
@@ -105,30 +105,30 @@ class FlagStatusBuilder extends FhirCodeEnumBuilder {
   /// Clones the current instance
   @override
   FlagStatusBuilder clone() => FlagStatusBuilder._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
   FlagStatusBuilder withElement(ElementBuilder? newElement) {
-    return FlagStatusBuilder._(validatedValue: value, element: newElement);
+    return FlagStatusBuilder._(valueString: valueString, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   FlagStatusBuilder copyWith({
-    String? newValue,
+    dynamic newValue,
     ElementBuilder? element,
     FhirStringBuilder? id,
     List<FhirExtensionBuilder>? extension_,
@@ -139,11 +139,11 @@ class FlagStatusBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError('Invalid input for FlagStatus: $newValue');
     }
     return FlagStatusBuilder._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
@@ -152,7 +152,7 @@ class FlagStatusBuilder extends FhirCodeEnumBuilder {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath,
+      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class ConsentState extends FhirCodeEnum {
   // Private underscore constructor for internal use.
   ConsentState._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class ConsentState extends FhirCodeEnum {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory ConsentState(
-    String? raw, {
+    String? rawValue, {
     FhirUri? system,
     FhirString? version,
     FhirString? display,
@@ -29,9 +29,10 @@ class ConsentState extends FhirCodeEnum {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCode._validateCode(rawValue) : null;
     return ConsentState._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -44,7 +45,7 @@ class ConsentState extends FhirCodeEnum {
   }
 
   /// Create empty [ConsentState] with element only
-  factory ConsentState.empty() => ConsentState._(validatedValue: '');
+  factory ConsentState.empty() => ConsentState._(valueString: '');
 
   /// Factory constructor to create [ConsentState] from JSON.
   factory ConsentState.fromJson(Map<String, dynamic> json) {
@@ -59,14 +60,14 @@ class ConsentState extends FhirCodeEnum {
       );
     }
     return ConsentState._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// draft
   static final ConsentState draft = ConsentState._(
-    validatedValue: 'draft',
+    valueString: 'draft',
     system: 'http://hl7.org/fhir/ValueSet/consent-state-codes'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Pending'.toFhirString,
@@ -74,7 +75,7 @@ class ConsentState extends FhirCodeEnum {
 
   /// proposed
   static final ConsentState proposed = ConsentState._(
-    validatedValue: 'proposed',
+    valueString: 'proposed',
     system: 'http://hl7.org/fhir/ValueSet/consent-state-codes'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Proposed'.toFhirString,
@@ -82,7 +83,7 @@ class ConsentState extends FhirCodeEnum {
 
   /// active
   static final ConsentState active = ConsentState._(
-    validatedValue: 'active',
+    valueString: 'active',
     system: 'http://hl7.org/fhir/ValueSet/consent-state-codes'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Active'.toFhirString,
@@ -90,7 +91,7 @@ class ConsentState extends FhirCodeEnum {
 
   /// rejected
   static final ConsentState rejected = ConsentState._(
-    validatedValue: 'rejected',
+    valueString: 'rejected',
     system: 'http://hl7.org/fhir/ValueSet/consent-state-codes'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Rejected'.toFhirString,
@@ -98,7 +99,7 @@ class ConsentState extends FhirCodeEnum {
 
   /// inactive
   static final ConsentState inactive = ConsentState._(
-    validatedValue: 'inactive',
+    valueString: 'inactive',
     system: 'http://hl7.org/fhir/ValueSet/consent-state-codes'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Inactive'.toFhirString,
@@ -106,14 +107,14 @@ class ConsentState extends FhirCodeEnum {
 
   /// entered_in_error
   static final ConsentState entered_in_error = ConsentState._(
-    validatedValue: 'entered-in-error',
+    valueString: 'entered-in-error',
     system: 'http://hl7.org/fhir/ValueSet/consent-state-codes'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Entered in Error'.toFhirString,
   );
 
   /// For instances where an Element is present but not value
-  static final ConsentState elementOnly = ConsentState._(validatedValue: '');
+  static final ConsentState elementOnly = ConsentState._(valueString: '');
 
   /// List of all enum-like values
   static final List<ConsentState> values = [
@@ -128,14 +129,14 @@ class ConsentState extends FhirCodeEnum {
   /// Clones the current instance
   @override
   ConsentState clone() => ConsentState._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ConsentState withElement(Element? newElement) {
     return ConsentState._(
-      validatedValue: value,
+      valueString: valueString,
       element: newElement,
     );
   }
@@ -143,18 +144,18 @@ class ConsentState extends FhirCodeEnum {
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   ConsentState copyWith({
-    String? newValue,
+    dynamic newValue,
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
@@ -165,11 +166,11 @@ class ConsentState extends FhirCodeEnum {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError('Invalid input for ConsentState: $newValue');
     }
     return ConsentState._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

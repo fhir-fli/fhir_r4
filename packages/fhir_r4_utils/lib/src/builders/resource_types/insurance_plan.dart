@@ -620,6 +620,21 @@ class InsurancePlanBuilder extends DomainResourceBuilder {
           if (child is CommonLanguagesBuilder) {
             language = child;
             return;
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              // For enums, try to create directly from the string value
+              try {
+                final converted = CommonLanguagesBuilder(stringValue);
+                language = converted;
+                return;
+              } catch (e) {
+                // Continue if enum creation fails
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
           throw Exception('Invalid child type for $childName');
         }
@@ -639,7 +654,10 @@ class InsurancePlanBuilder extends DomainResourceBuilder {
             return;
           } else if (child is ResourceBuilder) {
             // Add single element to existing list or create new list
-            contained = [...(contained ?? []), child];
+            contained = [
+              ...(contained ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -652,7 +670,10 @@ class InsurancePlanBuilder extends DomainResourceBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -665,7 +686,10 @@ class InsurancePlanBuilder extends DomainResourceBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -678,7 +702,10 @@ class InsurancePlanBuilder extends DomainResourceBuilder {
             return;
           } else if (child is IdentifierBuilder) {
             // Add single element to existing list or create new list
-            identifier = [...(identifier ?? []), child];
+            identifier = [
+              ...(identifier ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -688,6 +715,21 @@ class InsurancePlanBuilder extends DomainResourceBuilder {
           if (child is PublicationStatusBuilder) {
             status = child;
             return;
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              // For enums, try to create directly from the string value
+              try {
+                final converted = PublicationStatusBuilder(stringValue);
+                status = converted;
+                return;
+              } catch (e) {
+                // Continue if enum creation fails
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
           throw Exception('Invalid child type for $childName');
         }
@@ -699,7 +741,10 @@ class InsurancePlanBuilder extends DomainResourceBuilder {
             return;
           } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            type = [...(type ?? []), child];
+            type = [
+              ...(type ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -732,7 +777,10 @@ class InsurancePlanBuilder extends DomainResourceBuilder {
             return;
           } else if (child is FhirStringBuilder) {
             // Add single element to existing list or create new list
-            alias = [...(alias ?? []), child];
+            alias = [
+              ...(alias ?? []),
+              child,
+            ];
             return;
           } else if (child is List<PrimitiveTypeBuilder>) {
             // Try to convert list of primitive types
@@ -799,7 +847,10 @@ class InsurancePlanBuilder extends DomainResourceBuilder {
             return;
           } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            coverageArea = [...(coverageArea ?? []), child];
+            coverageArea = [
+              ...(coverageArea ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -812,7 +863,10 @@ class InsurancePlanBuilder extends DomainResourceBuilder {
             return;
           } else if (child is InsurancePlanContactBuilder) {
             // Add single element to existing list or create new list
-            contact = [...(contact ?? []), child];
+            contact = [
+              ...(contact ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -825,7 +879,10 @@ class InsurancePlanBuilder extends DomainResourceBuilder {
             return;
           } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            endpoint = [...(endpoint ?? []), child];
+            endpoint = [
+              ...(endpoint ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -838,7 +895,10 @@ class InsurancePlanBuilder extends DomainResourceBuilder {
             return;
           } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            network = [...(network ?? []), child];
+            network = [
+              ...(network ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -851,7 +911,10 @@ class InsurancePlanBuilder extends DomainResourceBuilder {
             return;
           } else if (child is InsurancePlanCoverageBuilder) {
             // Add single element to existing list or create new list
-            coverage = [...(coverage ?? []), child];
+            coverage = [
+              ...(coverage ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -864,7 +927,10 @@ class InsurancePlanBuilder extends DomainResourceBuilder {
             return;
           } else if (child is InsurancePlanPlanBuilder) {
             // Add single element to existing list or create new list
-            plan = [...(plan ?? []), child];
+            plan = [
+              ...(plan ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -1614,7 +1680,10 @@ class InsurancePlanContactBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -1627,7 +1696,10 @@ class InsurancePlanContactBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -1656,7 +1728,10 @@ class InsurancePlanContactBuilder extends BackboneElementBuilder {
             return;
           } else if (child is ContactPointBuilder) {
             // Add single element to existing list or create new list
-            telecom = [...(telecom ?? []), child];
+            telecom = [
+              ...(telecom ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -2148,7 +2223,10 @@ class InsurancePlanCoverageBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -2161,7 +2239,10 @@ class InsurancePlanCoverageBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -2182,7 +2263,10 @@ class InsurancePlanCoverageBuilder extends BackboneElementBuilder {
             return;
           } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            network = [...(network ?? []), child];
+            network = [
+              ...(network ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -2195,7 +2279,10 @@ class InsurancePlanCoverageBuilder extends BackboneElementBuilder {
             return;
           } else if (child is InsurancePlanBenefitBuilder) {
             // Add single element to existing list or create new list
-            benefit = [...(benefit ?? []), child];
+            benefit = [
+              ...(benefit ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -2656,7 +2743,10 @@ class InsurancePlanBenefitBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -2669,7 +2759,10 @@ class InsurancePlanBenefitBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -2710,7 +2803,10 @@ class InsurancePlanBenefitBuilder extends BackboneElementBuilder {
             return;
           } else if (child is InsurancePlanLimitBuilder) {
             // Add single element to existing list or create new list
-            limit = [...(limit ?? []), child];
+            limit = [
+              ...(limit ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -3151,7 +3247,10 @@ class InsurancePlanLimitBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -3164,7 +3263,10 @@ class InsurancePlanLimitBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -3694,7 +3796,10 @@ class InsurancePlanPlanBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -3707,7 +3812,10 @@ class InsurancePlanPlanBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -3720,7 +3828,10 @@ class InsurancePlanPlanBuilder extends BackboneElementBuilder {
             return;
           } else if (child is IdentifierBuilder) {
             // Add single element to existing list or create new list
-            identifier = [...(identifier ?? []), child];
+            identifier = [
+              ...(identifier ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -3741,7 +3852,10 @@ class InsurancePlanPlanBuilder extends BackboneElementBuilder {
             return;
           } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            coverageArea = [...(coverageArea ?? []), child];
+            coverageArea = [
+              ...(coverageArea ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -3754,7 +3868,10 @@ class InsurancePlanPlanBuilder extends BackboneElementBuilder {
             return;
           } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            network = [...(network ?? []), child];
+            network = [
+              ...(network ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -3767,7 +3884,10 @@ class InsurancePlanPlanBuilder extends BackboneElementBuilder {
             return;
           } else if (child is InsurancePlanGeneralCostBuilder) {
             // Add single element to existing list or create new list
-            generalCost = [...(generalCost ?? []), child];
+            generalCost = [
+              ...(generalCost ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -3780,7 +3900,10 @@ class InsurancePlanPlanBuilder extends BackboneElementBuilder {
             return;
           } else if (child is InsurancePlanSpecificCostBuilder) {
             // Add single element to existing list or create new list
-            specificCost = [...(specificCost ?? []), child];
+            specificCost = [
+              ...(specificCost ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -4308,7 +4431,10 @@ class InsurancePlanGeneralCostBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -4321,7 +4447,10 @@ class InsurancePlanGeneralCostBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -4343,7 +4472,8 @@ class InsurancePlanGeneralCostBuilder extends BackboneElementBuilder {
             // Try to convert from one primitive type to another
             try {
               final stringValue = child.toString();
-              // For number types, first parse to num then pass the number directly
+              // For number types,
+              // first parse to num then pass the number directly
               final numValue = num.tryParse(stringValue);
               if (numValue != null) {
                 final converted = FhirPositiveIntBuilder.tryParse(numValue);
@@ -4845,7 +4975,10 @@ class InsurancePlanSpecificCostBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -4858,7 +4991,10 @@ class InsurancePlanSpecificCostBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -4879,7 +5015,10 @@ class InsurancePlanSpecificCostBuilder extends BackboneElementBuilder {
             return;
           } else if (child is InsurancePlanBenefitBuilder) {
             // Add single element to existing list or create new list
-            benefit = [...(benefit ?? []), child];
+            benefit = [
+              ...(benefit ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -5308,7 +5447,10 @@ class InsurancePlanBenefit1Builder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -5321,7 +5463,10 @@ class InsurancePlanBenefit1Builder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -5342,7 +5487,10 @@ class InsurancePlanBenefit1Builder extends BackboneElementBuilder {
             return;
           } else if (child is InsurancePlanCostBuilder) {
             // Add single element to existing list or create new list
-            cost = [...(cost ?? []), child];
+            cost = [
+              ...(cost ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -5807,7 +5955,10 @@ class InsurancePlanCostBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -5820,7 +5971,10 @@ class InsurancePlanCostBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -5849,7 +6003,10 @@ class InsurancePlanCostBuilder extends BackboneElementBuilder {
             return;
           } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            qualifiers = [...(qualifiers ?? []), child];
+            qualifiers = [
+              ...(qualifiers ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');

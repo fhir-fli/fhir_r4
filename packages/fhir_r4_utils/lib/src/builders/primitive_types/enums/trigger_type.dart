@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class TriggerTypeBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   TriggerTypeBuilder._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class TriggerTypeBuilder extends FhirCodeEnumBuilder {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory TriggerTypeBuilder(
-    String? raw, {
+    String? rawValue, {
     FhirUriBuilder? system,
     FhirStringBuilder? version,
     FhirStringBuilder? display,
@@ -29,9 +29,10 @@ class TriggerTypeBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
     return TriggerTypeBuilder._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -44,8 +45,7 @@ class TriggerTypeBuilder extends FhirCodeEnumBuilder {
   }
 
   /// Create empty [TriggerTypeBuilder] with element only
-  factory TriggerTypeBuilder.empty() =>
-      TriggerTypeBuilder._(validatedValue: '');
+  factory TriggerTypeBuilder.empty() => TriggerTypeBuilder._(valueString: '');
 
   /// Factory constructor to create [TriggerTypeBuilder]
   /// from JSON.
@@ -62,14 +62,14 @@ class TriggerTypeBuilder extends FhirCodeEnumBuilder {
       );
     }
     return TriggerTypeBuilder._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// named_event
   static TriggerTypeBuilder named_event = TriggerTypeBuilder._(
-    validatedValue: 'named-event',
+    valueString: 'named-event',
     system: 'http://hl7.org/fhir/ValueSet/trigger-type'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Named Event'.toFhirStringBuilder,
@@ -77,7 +77,7 @@ class TriggerTypeBuilder extends FhirCodeEnumBuilder {
 
   /// periodic
   static TriggerTypeBuilder periodic = TriggerTypeBuilder._(
-    validatedValue: 'periodic',
+    valueString: 'periodic',
     system: 'http://hl7.org/fhir/ValueSet/trigger-type'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Periodic'.toFhirStringBuilder,
@@ -85,7 +85,7 @@ class TriggerTypeBuilder extends FhirCodeEnumBuilder {
 
   /// data_changed
   static TriggerTypeBuilder data_changed = TriggerTypeBuilder._(
-    validatedValue: 'data-changed',
+    valueString: 'data-changed',
     system: 'http://hl7.org/fhir/ValueSet/trigger-type'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Data Changed'.toFhirStringBuilder,
@@ -93,7 +93,7 @@ class TriggerTypeBuilder extends FhirCodeEnumBuilder {
 
   /// data_added
   static TriggerTypeBuilder data_added = TriggerTypeBuilder._(
-    validatedValue: 'data-added',
+    valueString: 'data-added',
     system: 'http://hl7.org/fhir/ValueSet/trigger-type'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Data Added'.toFhirStringBuilder,
@@ -101,7 +101,7 @@ class TriggerTypeBuilder extends FhirCodeEnumBuilder {
 
   /// data_modified
   static TriggerTypeBuilder data_modified = TriggerTypeBuilder._(
-    validatedValue: 'data-modified',
+    valueString: 'data-modified',
     system: 'http://hl7.org/fhir/ValueSet/trigger-type'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Data Updated'.toFhirStringBuilder,
@@ -109,7 +109,7 @@ class TriggerTypeBuilder extends FhirCodeEnumBuilder {
 
   /// data_removed
   static TriggerTypeBuilder data_removed = TriggerTypeBuilder._(
-    validatedValue: 'data-removed',
+    valueString: 'data-removed',
     system: 'http://hl7.org/fhir/ValueSet/trigger-type'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Data Removed'.toFhirStringBuilder,
@@ -117,7 +117,7 @@ class TriggerTypeBuilder extends FhirCodeEnumBuilder {
 
   /// data_accessed
   static TriggerTypeBuilder data_accessed = TriggerTypeBuilder._(
-    validatedValue: 'data-accessed',
+    valueString: 'data-accessed',
     system: 'http://hl7.org/fhir/ValueSet/trigger-type'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Data Accessed'.toFhirStringBuilder,
@@ -125,15 +125,14 @@ class TriggerTypeBuilder extends FhirCodeEnumBuilder {
 
   /// data_access_ended
   static TriggerTypeBuilder data_access_ended = TriggerTypeBuilder._(
-    validatedValue: 'data-access-ended',
+    valueString: 'data-access-ended',
     system: 'http://hl7.org/fhir/ValueSet/trigger-type'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Data Access Ended'.toFhirStringBuilder,
   );
 
   /// For instances where an Element is present but not value
-  static TriggerTypeBuilder elementOnly =
-      TriggerTypeBuilder._(validatedValue: '');
+  static TriggerTypeBuilder elementOnly = TriggerTypeBuilder._(valueString: '');
 
   /// List of all enum-like values
   static List<TriggerTypeBuilder> values = [
@@ -150,30 +149,30 @@ class TriggerTypeBuilder extends FhirCodeEnumBuilder {
   /// Clones the current instance
   @override
   TriggerTypeBuilder clone() => TriggerTypeBuilder._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
   TriggerTypeBuilder withElement(ElementBuilder? newElement) {
-    return TriggerTypeBuilder._(validatedValue: value, element: newElement);
+    return TriggerTypeBuilder._(valueString: valueString, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   TriggerTypeBuilder copyWith({
-    String? newValue,
+    dynamic newValue,
     ElementBuilder? element,
     FhirStringBuilder? id,
     List<FhirExtensionBuilder>? extension_,
@@ -184,11 +183,11 @@ class TriggerTypeBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError('Invalid input for TriggerType: $newValue');
     }
     return TriggerTypeBuilder._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
@@ -197,7 +196,7 @@ class TriggerTypeBuilder extends FhirCodeEnumBuilder {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath,
+      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

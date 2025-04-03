@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class Use extends FhirCodeEnum {
   // Private underscore constructor for internal use.
   Use._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class Use extends FhirCodeEnum {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory Use(
-    String? raw, {
+    String? rawValue, {
     FhirUri? system,
     FhirString? version,
     FhirString? display,
@@ -29,9 +29,10 @@ class Use extends FhirCodeEnum {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCode._validateCode(rawValue) : null;
     return Use._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -44,7 +45,7 @@ class Use extends FhirCodeEnum {
   }
 
   /// Create empty [Use] with element only
-  factory Use.empty() => Use._(validatedValue: '');
+  factory Use.empty() => Use._(valueString: '');
 
   /// Factory constructor to create [Use] from JSON.
   factory Use.fromJson(Map<String, dynamic> json) {
@@ -59,14 +60,14 @@ class Use extends FhirCodeEnum {
       );
     }
     return Use._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// claim
   static final Use claim = Use._(
-    validatedValue: 'claim',
+    valueString: 'claim',
     system: 'http://hl7.org/fhir/ValueSet/claim-use'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Claim'.toFhirString,
@@ -74,7 +75,7 @@ class Use extends FhirCodeEnum {
 
   /// preauthorization
   static final Use preauthorization = Use._(
-    validatedValue: 'preauthorization',
+    valueString: 'preauthorization',
     system: 'http://hl7.org/fhir/ValueSet/claim-use'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Preauthorization'.toFhirString,
@@ -82,14 +83,14 @@ class Use extends FhirCodeEnum {
 
   /// predetermination
   static final Use predetermination = Use._(
-    validatedValue: 'predetermination',
+    valueString: 'predetermination',
     system: 'http://hl7.org/fhir/ValueSet/claim-use'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Predetermination'.toFhirString,
   );
 
   /// For instances where an Element is present but not value
-  static final Use elementOnly = Use._(validatedValue: '');
+  static final Use elementOnly = Use._(valueString: '');
 
   /// List of all enum-like values
   static final List<Use> values = [
@@ -101,14 +102,14 @@ class Use extends FhirCodeEnum {
   /// Clones the current instance
   @override
   Use clone() => Use._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   Use withElement(Element? newElement) {
     return Use._(
-      validatedValue: value,
+      valueString: valueString,
       element: newElement,
     );
   }
@@ -116,18 +117,18 @@ class Use extends FhirCodeEnum {
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   Use copyWith({
-    String? newValue,
+    dynamic newValue,
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
@@ -138,11 +139,11 @@ class Use extends FhirCodeEnum {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError('Invalid input for Use: $newValue');
     }
     return Use._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

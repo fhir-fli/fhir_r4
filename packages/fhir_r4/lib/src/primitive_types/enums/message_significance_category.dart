@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class MessageSignificanceCategory extends FhirCodeEnum {
   // Private underscore constructor for internal use.
   MessageSignificanceCategory._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class MessageSignificanceCategory extends FhirCodeEnum {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory MessageSignificanceCategory(
-    String? raw, {
+    String? rawValue, {
     FhirUri? system,
     FhirString? version,
     FhirString? display,
@@ -29,9 +29,10 @@ class MessageSignificanceCategory extends FhirCodeEnum {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCode._validateCode(rawValue) : null;
     return MessageSignificanceCategory._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -45,7 +46,7 @@ class MessageSignificanceCategory extends FhirCodeEnum {
 
   /// Create empty [MessageSignificanceCategory] with element only
   factory MessageSignificanceCategory.empty() =>
-      MessageSignificanceCategory._(validatedValue: '');
+      MessageSignificanceCategory._(valueString: '');
 
   /// Factory constructor to create [MessageSignificanceCategory] from JSON.
   factory MessageSignificanceCategory.fromJson(Map<String, dynamic> json) {
@@ -60,7 +61,7 @@ class MessageSignificanceCategory extends FhirCodeEnum {
       );
     }
     return MessageSignificanceCategory._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
@@ -68,7 +69,7 @@ class MessageSignificanceCategory extends FhirCodeEnum {
   /// consequence
   static final MessageSignificanceCategory consequence =
       MessageSignificanceCategory._(
-    validatedValue: 'consequence',
+    valueString: 'consequence',
     system:
         'http://hl7.org/fhir/ValueSet/message-significance-category'.toFhirUri,
     version: '4.3.0'.toFhirString,
@@ -78,7 +79,7 @@ class MessageSignificanceCategory extends FhirCodeEnum {
   /// currency
   static final MessageSignificanceCategory currency =
       MessageSignificanceCategory._(
-    validatedValue: 'currency',
+    valueString: 'currency',
     system:
         'http://hl7.org/fhir/ValueSet/message-significance-category'.toFhirUri,
     version: '4.3.0'.toFhirString,
@@ -88,7 +89,7 @@ class MessageSignificanceCategory extends FhirCodeEnum {
   /// notification
   static final MessageSignificanceCategory notification =
       MessageSignificanceCategory._(
-    validatedValue: 'notification',
+    valueString: 'notification',
     system:
         'http://hl7.org/fhir/ValueSet/message-significance-category'.toFhirUri,
     version: '4.3.0'.toFhirString,
@@ -97,7 +98,7 @@ class MessageSignificanceCategory extends FhirCodeEnum {
 
   /// For instances where an Element is present but not value
   static final MessageSignificanceCategory elementOnly =
-      MessageSignificanceCategory._(validatedValue: '');
+      MessageSignificanceCategory._(valueString: '');
 
   /// List of all enum-like values
   static final List<MessageSignificanceCategory> values = [
@@ -109,14 +110,14 @@ class MessageSignificanceCategory extends FhirCodeEnum {
   /// Clones the current instance
   @override
   MessageSignificanceCategory clone() => MessageSignificanceCategory._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   MessageSignificanceCategory withElement(Element? newElement) {
     return MessageSignificanceCategory._(
-      validatedValue: value,
+      valueString: valueString,
       element: newElement,
     );
   }
@@ -124,18 +125,18 @@ class MessageSignificanceCategory extends FhirCodeEnum {
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   MessageSignificanceCategory copyWith({
-    String? newValue,
+    dynamic newValue,
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
@@ -146,11 +147,12 @@ class MessageSignificanceCategory extends FhirCodeEnum {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError(
+          'Invalid input for MessageSignificanceCategory: $newValue',);
     }
     return MessageSignificanceCategory._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

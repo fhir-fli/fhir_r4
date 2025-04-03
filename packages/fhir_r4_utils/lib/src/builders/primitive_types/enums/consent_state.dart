@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class ConsentStateBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   ConsentStateBuilder._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class ConsentStateBuilder extends FhirCodeEnumBuilder {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory ConsentStateBuilder(
-    String? raw, {
+    String? rawValue, {
     FhirUriBuilder? system,
     FhirStringBuilder? version,
     FhirStringBuilder? display,
@@ -29,9 +29,10 @@ class ConsentStateBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
     return ConsentStateBuilder._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -44,8 +45,7 @@ class ConsentStateBuilder extends FhirCodeEnumBuilder {
   }
 
   /// Create empty [ConsentStateBuilder] with element only
-  factory ConsentStateBuilder.empty() =>
-      ConsentStateBuilder._(validatedValue: '');
+  factory ConsentStateBuilder.empty() => ConsentStateBuilder._(valueString: '');
 
   /// Factory constructor to create [ConsentStateBuilder]
   /// from JSON.
@@ -62,14 +62,14 @@ class ConsentStateBuilder extends FhirCodeEnumBuilder {
       );
     }
     return ConsentStateBuilder._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// draft
   static ConsentStateBuilder draft = ConsentStateBuilder._(
-    validatedValue: 'draft',
+    valueString: 'draft',
     system: 'http://hl7.org/fhir/ValueSet/consent-state-codes'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Pending'.toFhirStringBuilder,
@@ -77,7 +77,7 @@ class ConsentStateBuilder extends FhirCodeEnumBuilder {
 
   /// proposed
   static ConsentStateBuilder proposed = ConsentStateBuilder._(
-    validatedValue: 'proposed',
+    valueString: 'proposed',
     system: 'http://hl7.org/fhir/ValueSet/consent-state-codes'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Proposed'.toFhirStringBuilder,
@@ -85,7 +85,7 @@ class ConsentStateBuilder extends FhirCodeEnumBuilder {
 
   /// active
   static ConsentStateBuilder active = ConsentStateBuilder._(
-    validatedValue: 'active',
+    valueString: 'active',
     system: 'http://hl7.org/fhir/ValueSet/consent-state-codes'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Active'.toFhirStringBuilder,
@@ -93,7 +93,7 @@ class ConsentStateBuilder extends FhirCodeEnumBuilder {
 
   /// rejected
   static ConsentStateBuilder rejected = ConsentStateBuilder._(
-    validatedValue: 'rejected',
+    valueString: 'rejected',
     system: 'http://hl7.org/fhir/ValueSet/consent-state-codes'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Rejected'.toFhirStringBuilder,
@@ -101,7 +101,7 @@ class ConsentStateBuilder extends FhirCodeEnumBuilder {
 
   /// inactive
   static ConsentStateBuilder inactive = ConsentStateBuilder._(
-    validatedValue: 'inactive',
+    valueString: 'inactive',
     system: 'http://hl7.org/fhir/ValueSet/consent-state-codes'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Inactive'.toFhirStringBuilder,
@@ -109,7 +109,7 @@ class ConsentStateBuilder extends FhirCodeEnumBuilder {
 
   /// entered_in_error
   static ConsentStateBuilder entered_in_error = ConsentStateBuilder._(
-    validatedValue: 'entered-in-error',
+    valueString: 'entered-in-error',
     system: 'http://hl7.org/fhir/ValueSet/consent-state-codes'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Entered in Error'.toFhirStringBuilder,
@@ -117,7 +117,7 @@ class ConsentStateBuilder extends FhirCodeEnumBuilder {
 
   /// For instances where an Element is present but not value
   static ConsentStateBuilder elementOnly =
-      ConsentStateBuilder._(validatedValue: '');
+      ConsentStateBuilder._(valueString: '');
 
   /// List of all enum-like values
   static List<ConsentStateBuilder> values = [
@@ -132,30 +132,30 @@ class ConsentStateBuilder extends FhirCodeEnumBuilder {
   /// Clones the current instance
   @override
   ConsentStateBuilder clone() => ConsentStateBuilder._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
   ConsentStateBuilder withElement(ElementBuilder? newElement) {
-    return ConsentStateBuilder._(validatedValue: value, element: newElement);
+    return ConsentStateBuilder._(valueString: valueString, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   ConsentStateBuilder copyWith({
-    String? newValue,
+    dynamic newValue,
     ElementBuilder? element,
     FhirStringBuilder? id,
     List<FhirExtensionBuilder>? extension_,
@@ -166,11 +166,11 @@ class ConsentStateBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError('Invalid input for ConsentState: $newValue');
     }
     return ConsentStateBuilder._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
@@ -179,7 +179,7 @@ class ConsentStateBuilder extends FhirCodeEnumBuilder {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath,
+      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

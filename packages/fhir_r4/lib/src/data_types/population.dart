@@ -319,7 +319,10 @@ class Population extends BackboneType {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -333,7 +336,10 @@ class Population extends BackboneType {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -411,7 +417,10 @@ class Population extends BackboneType {
         return ['FhirExtension'];
       case 'age':
       case 'ageX':
-        return ['Range', 'CodeableConcept'];
+        return [
+          'Range',
+          'CodeableConcept',
+        ];
       case 'ageRange':
         return ['Range'];
       case 'ageCodeableConcept':

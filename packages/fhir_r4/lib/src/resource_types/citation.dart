@@ -1011,7 +1011,10 @@ class Citation extends DomainResource {
             return copyWith(contained: newList);
           } else if (child is Resource) {
             // Add single element to existing list or create new list
-            final newList = [...?contained, child];
+            final newList = [
+              ...?contained,
+              child,
+            ];
             return copyWith(contained: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1025,7 +1028,10 @@ class Citation extends DomainResource {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1039,7 +1045,10 @@ class Citation extends DomainResource {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1061,7 +1070,10 @@ class Citation extends DomainResource {
             return copyWith(identifier: newList);
           } else if (child is Identifier) {
             // Add single element to existing list or create new list
-            final newList = [...?identifier, child];
+            final newList = [
+              ...?identifier,
+              child,
+            ];
             return copyWith(identifier: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1131,7 +1143,10 @@ class Citation extends DomainResource {
             return copyWith(contact: newList);
           } else if (child is ContactDetail) {
             // Add single element to existing list or create new list
-            final newList = [...?contact, child];
+            final newList = [
+              ...?contact,
+              child,
+            ];
             return copyWith(contact: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1153,7 +1168,10 @@ class Citation extends DomainResource {
             return copyWith(useContext: newList);
           } else if (child is UsageContext) {
             // Add single element to existing list or create new list
-            final newList = [...?useContext, child];
+            final newList = [
+              ...?useContext,
+              child,
+            ];
             return copyWith(useContext: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1167,7 +1185,10 @@ class Citation extends DomainResource {
             return copyWith(jurisdiction: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...?jurisdiction, child];
+            final newList = [
+              ...?jurisdiction,
+              child,
+            ];
             return copyWith(jurisdiction: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1221,7 +1242,10 @@ class Citation extends DomainResource {
             return copyWith(author: newList);
           } else if (child is ContactDetail) {
             // Add single element to existing list or create new list
-            final newList = [...?author, child];
+            final newList = [
+              ...?author,
+              child,
+            ];
             return copyWith(author: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1235,7 +1259,10 @@ class Citation extends DomainResource {
             return copyWith(editor: newList);
           } else if (child is ContactDetail) {
             // Add single element to existing list or create new list
-            final newList = [...?editor, child];
+            final newList = [
+              ...?editor,
+              child,
+            ];
             return copyWith(editor: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1249,7 +1276,10 @@ class Citation extends DomainResource {
             return copyWith(reviewer: newList);
           } else if (child is ContactDetail) {
             // Add single element to existing list or create new list
-            final newList = [...?reviewer, child];
+            final newList = [
+              ...?reviewer,
+              child,
+            ];
             return copyWith(reviewer: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1263,7 +1293,10 @@ class Citation extends DomainResource {
             return copyWith(endorser: newList);
           } else if (child is ContactDetail) {
             // Add single element to existing list or create new list
-            final newList = [...?endorser, child];
+            final newList = [
+              ...?endorser,
+              child,
+            ];
             return copyWith(endorser: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1277,7 +1310,10 @@ class Citation extends DomainResource {
             return copyWith(summary: newList);
           } else if (child is CitationSummary) {
             // Add single element to existing list or create new list
-            final newList = [...?summary, child];
+            final newList = [
+              ...?summary,
+              child,
+            ];
             return copyWith(summary: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1291,7 +1327,10 @@ class Citation extends DomainResource {
             return copyWith(classification: newList);
           } else if (child is CitationClassification) {
             // Add single element to existing list or create new list
-            final newList = [...?classification, child];
+            final newList = [
+              ...?classification,
+              child,
+            ];
             return copyWith(classification: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1305,7 +1344,10 @@ class Citation extends DomainResource {
             return copyWith(note: newList);
           } else if (child is Annotation) {
             // Add single element to existing list or create new list
-            final newList = [...?note, child];
+            final newList = [
+              ...?note,
+              child,
+            ];
             return copyWith(note: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1319,7 +1361,10 @@ class Citation extends DomainResource {
             return copyWith(currentState: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...?currentState, child];
+            final newList = [
+              ...?currentState,
+              child,
+            ];
             return copyWith(currentState: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1333,7 +1378,10 @@ class Citation extends DomainResource {
             return copyWith(statusDate: newList);
           } else if (child is CitationStatusDate) {
             // Add single element to existing list or create new list
-            final newList = [...?statusDate, child];
+            final newList = [
+              ...?statusDate,
+              child,
+            ];
             return copyWith(statusDate: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1347,7 +1395,10 @@ class Citation extends DomainResource {
             return copyWith(relatesTo: newList);
           } else if (child is CitationRelatesTo) {
             // Add single element to existing list or create new list
-            final newList = [...?relatesTo, child];
+            final newList = [
+              ...?relatesTo,
+              child,
+            ];
             return copyWith(relatesTo: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2518,7 +2569,10 @@ class CitationSummary extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2532,7 +2586,10 @@ class CitationSummary extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2991,7 +3048,10 @@ class CitationClassification extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -3005,7 +3065,10 @@ class CitationClassification extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -3027,7 +3090,10 @@ class CitationClassification extends BackboneElement {
             return copyWith(classifier: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...?classifier, child];
+            final newList = [
+              ...?classifier,
+              child,
+            ];
             return copyWith(classifier: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -3490,7 +3556,10 @@ class CitationStatusDate extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -3504,7 +3573,10 @@ class CitationStatusDate extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -4046,7 +4118,10 @@ class CitationRelatesTo extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -4060,7 +4135,10 @@ class CitationRelatesTo extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -4082,7 +4160,10 @@ class CitationRelatesTo extends BackboneElement {
             return copyWith(targetClassifier: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...?targetClassifier, child];
+            final newList = [
+              ...?targetClassifier,
+              child,
+            ];
             return copyWith(targetClassifier: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -4162,7 +4243,12 @@ class CitationRelatesTo extends BackboneElement {
         return ['CodeableConcept'];
       case 'target':
       case 'targetX':
-        return ['FhirUri', 'Identifier', 'Reference', 'Attachment'];
+        return [
+          'FhirUri',
+          'Identifier',
+          'Reference',
+          'Attachment',
+        ];
       case 'targetUri':
         return ['FhirUri'];
       case 'targetIdentifier':
@@ -4935,7 +5021,10 @@ class CitationCitedArtifact extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -4949,7 +5038,10 @@ class CitationCitedArtifact extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -4963,7 +5055,10 @@ class CitationCitedArtifact extends BackboneElement {
             return copyWith(identifier: newList);
           } else if (child is Identifier) {
             // Add single element to existing list or create new list
-            final newList = [...?identifier, child];
+            final newList = [
+              ...?identifier,
+              child,
+            ];
             return copyWith(identifier: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -4977,7 +5072,10 @@ class CitationCitedArtifact extends BackboneElement {
             return copyWith(relatedIdentifier: newList);
           } else if (child is Identifier) {
             // Add single element to existing list or create new list
-            final newList = [...?relatedIdentifier, child];
+            final newList = [
+              ...?relatedIdentifier,
+              child,
+            ];
             return copyWith(relatedIdentifier: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -5007,7 +5105,10 @@ class CitationCitedArtifact extends BackboneElement {
             return copyWith(currentState: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...?currentState, child];
+            final newList = [
+              ...?currentState,
+              child,
+            ];
             return copyWith(currentState: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -5021,7 +5122,10 @@ class CitationCitedArtifact extends BackboneElement {
             return copyWith(statusDate: newList);
           } else if (child is CitationStatusDate) {
             // Add single element to existing list or create new list
-            final newList = [...?statusDate, child];
+            final newList = [
+              ...?statusDate,
+              child,
+            ];
             return copyWith(statusDate: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -5035,7 +5139,10 @@ class CitationCitedArtifact extends BackboneElement {
             return copyWith(title: newList);
           } else if (child is CitationTitle) {
             // Add single element to existing list or create new list
-            final newList = [...?title, child];
+            final newList = [
+              ...?title,
+              child,
+            ];
             return copyWith(title: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -5049,7 +5156,10 @@ class CitationCitedArtifact extends BackboneElement {
             return copyWith(abstract_: newList);
           } else if (child is CitationAbstract) {
             // Add single element to existing list or create new list
-            final newList = [...?abstract_, child];
+            final newList = [
+              ...?abstract_,
+              child,
+            ];
             return copyWith(abstract_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -5071,7 +5181,10 @@ class CitationCitedArtifact extends BackboneElement {
             return copyWith(relatesTo: newList);
           } else if (child is CitationRelatesTo) {
             // Add single element to existing list or create new list
-            final newList = [...?relatesTo, child];
+            final newList = [
+              ...?relatesTo,
+              child,
+            ];
             return copyWith(relatesTo: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -5085,7 +5198,10 @@ class CitationCitedArtifact extends BackboneElement {
             return copyWith(publicationForm: newList);
           } else if (child is CitationPublicationForm) {
             // Add single element to existing list or create new list
-            final newList = [...?publicationForm, child];
+            final newList = [
+              ...?publicationForm,
+              child,
+            ];
             return copyWith(publicationForm: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -5099,7 +5215,10 @@ class CitationCitedArtifact extends BackboneElement {
             return copyWith(webLocation: newList);
           } else if (child is CitationWebLocation) {
             // Add single element to existing list or create new list
-            final newList = [...?webLocation, child];
+            final newList = [
+              ...?webLocation,
+              child,
+            ];
             return copyWith(webLocation: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -5113,7 +5232,10 @@ class CitationCitedArtifact extends BackboneElement {
             return copyWith(classification: newList);
           } else if (child is CitationClassification) {
             // Add single element to existing list or create new list
-            final newList = [...?classification, child];
+            final newList = [
+              ...?classification,
+              child,
+            ];
             return copyWith(classification: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -5135,7 +5257,10 @@ class CitationCitedArtifact extends BackboneElement {
             return copyWith(note: newList);
           } else if (child is Annotation) {
             // Add single element to existing list or create new list
-            final newList = [...?note, child];
+            final newList = [
+              ...?note,
+              child,
+            ];
             return copyWith(note: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -5892,7 +6017,10 @@ class CitationVersion extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -5906,7 +6034,10 @@ class CitationVersion extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -6380,7 +6511,10 @@ class CitationStatusDate1 extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -6394,7 +6528,10 @@ class CitationStatusDate1 extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -6901,7 +7038,10 @@ class CitationTitle extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -6915,7 +7055,10 @@ class CitationTitle extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -6929,7 +7072,10 @@ class CitationTitle extends BackboneElement {
             return copyWith(type: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...?type, child];
+            final newList = [
+              ...?type,
+              child,
+            ];
             return copyWith(type: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -7449,7 +7595,10 @@ class CitationAbstract extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -7463,7 +7612,10 @@ class CitationAbstract extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -7996,7 +8148,10 @@ class CitationPart extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -8010,7 +8165,10 @@ class CitationPart extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -8554,7 +8712,10 @@ class CitationRelatesTo1 extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -8568,7 +8729,10 @@ class CitationRelatesTo1 extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -8590,7 +8754,10 @@ class CitationRelatesTo1 extends BackboneElement {
             return copyWith(targetClassifier: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...?targetClassifier, child];
+            final newList = [
+              ...?targetClassifier,
+              child,
+            ];
             return copyWith(targetClassifier: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -8670,7 +8837,12 @@ class CitationRelatesTo1 extends BackboneElement {
         return ['CodeableConcept'];
       case 'target':
       case 'targetX':
-        return ['FhirUri', 'Identifier', 'Reference', 'Attachment'];
+        return [
+          'FhirUri',
+          'Identifier',
+          'Reference',
+          'Attachment',
+        ];
       case 'targetUri':
         return ['FhirUri'];
       case 'targetIdentifier':
@@ -9321,7 +9493,10 @@ class CitationPublicationForm extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -9335,7 +9510,10 @@ class CitationPublicationForm extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -9381,7 +9559,10 @@ class CitationPublicationForm extends BackboneElement {
             return copyWith(language: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...?language, child];
+            final newList = [
+              ...?language,
+              child,
+            ];
             return copyWith(language: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -10127,7 +10308,10 @@ class CitationPublishedIn extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -10141,7 +10325,10 @@ class CitationPublishedIn extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -10163,7 +10350,10 @@ class CitationPublishedIn extends BackboneElement {
             return copyWith(identifier: newList);
           } else if (child is Identifier) {
             // Add single element to existing list or create new list
-            final newList = [...?identifier, child];
+            final newList = [
+              ...?identifier,
+              child,
+            ];
             return copyWith(identifier: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -10735,7 +10925,10 @@ class CitationPeriodicRelease extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -10749,7 +10942,10 @@ class CitationPeriodicRelease extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -11347,7 +11543,10 @@ class CitationDateOfPublication extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -11361,7 +11560,10 @@ class CitationDateOfPublication extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -11933,7 +12135,10 @@ class CitationWebLocation extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -11947,7 +12152,10 @@ class CitationWebLocation extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -12427,7 +12635,10 @@ class CitationClassification1 extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -12441,7 +12652,10 @@ class CitationClassification1 extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -12463,7 +12677,10 @@ class CitationClassification1 extends BackboneElement {
             return copyWith(classifier: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...?classifier, child];
+            final newList = [
+              ...?classifier,
+              child,
+            ];
             return copyWith(classifier: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -12997,7 +13214,10 @@ class CitationWhoClassified extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -13011,7 +13231,10 @@ class CitationWhoClassified extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -13585,7 +13808,10 @@ class CitationContributorship extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -13599,7 +13825,10 @@ class CitationContributorship extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -13621,7 +13850,10 @@ class CitationContributorship extends BackboneElement {
             return copyWith(entry: newList);
           } else if (child is CitationEntry) {
             // Add single element to existing list or create new list
-            final newList = [...?entry, child];
+            final newList = [
+              ...?entry,
+              child,
+            ];
             return copyWith(entry: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -13635,7 +13867,10 @@ class CitationContributorship extends BackboneElement {
             return copyWith(summary: newList);
           } else if (child is CitationSummary) {
             // Add single element to existing list or create new list
-            final newList = [...?summary, child];
+            final newList = [
+              ...?summary,
+              child,
+            ];
             return copyWith(summary: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -14330,7 +14565,10 @@ class CitationEntry extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -14344,7 +14582,10 @@ class CitationEntry extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -14382,7 +14623,10 @@ class CitationEntry extends BackboneElement {
             return copyWith(identifier: newList);
           } else if (child is Identifier) {
             // Add single element to existing list or create new list
-            final newList = [...?identifier, child];
+            final newList = [
+              ...?identifier,
+              child,
+            ];
             return copyWith(identifier: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -14396,7 +14640,10 @@ class CitationEntry extends BackboneElement {
             return copyWith(affiliationInfo: newList);
           } else if (child is CitationAffiliationInfo) {
             // Add single element to existing list or create new list
-            final newList = [...?affiliationInfo, child];
+            final newList = [
+              ...?affiliationInfo,
+              child,
+            ];
             return copyWith(affiliationInfo: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -14410,7 +14657,10 @@ class CitationEntry extends BackboneElement {
             return copyWith(address: newList);
           } else if (child is Address) {
             // Add single element to existing list or create new list
-            final newList = [...?address, child];
+            final newList = [
+              ...?address,
+              child,
+            ];
             return copyWith(address: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -14424,7 +14674,10 @@ class CitationEntry extends BackboneElement {
             return copyWith(telecom: newList);
           } else if (child is ContactPoint) {
             // Add single element to existing list or create new list
-            final newList = [...?telecom, child];
+            final newList = [
+              ...?telecom,
+              child,
+            ];
             return copyWith(telecom: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -14438,7 +14691,10 @@ class CitationEntry extends BackboneElement {
             return copyWith(contributionType: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...?contributionType, child];
+            final newList = [
+              ...?contributionType,
+              child,
+            ];
             return copyWith(contributionType: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -14460,7 +14716,10 @@ class CitationEntry extends BackboneElement {
             return copyWith(contributionInstance: newList);
           } else if (child is CitationContributionInstance) {
             // Add single element to existing list or create new list
-            final newList = [...?contributionInstance, child];
+            final newList = [
+              ...?contributionInstance,
+              child,
+            ];
             return copyWith(contributionInstance: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -15178,7 +15437,10 @@ class CitationAffiliationInfo extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -15192,7 +15454,10 @@ class CitationAffiliationInfo extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -15222,7 +15487,10 @@ class CitationAffiliationInfo extends BackboneElement {
             return copyWith(identifier: newList);
           } else if (child is Identifier) {
             // Add single element to existing list or create new list
-            final newList = [...?identifier, child];
+            final newList = [
+              ...?identifier,
+              child,
+            ];
             return copyWith(identifier: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -15689,7 +15957,10 @@ class CitationContributionInstance extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -15703,7 +15974,10 @@ class CitationContributionInstance extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -16201,7 +16475,10 @@ class CitationSummary1 extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -16215,7 +16492,10 @@ class CitationSummary1 extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');

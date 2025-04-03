@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class BiologicallyDerivedProductCategory extends FhirCodeEnum {
   // Private underscore constructor for internal use.
   BiologicallyDerivedProductCategory._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class BiologicallyDerivedProductCategory extends FhirCodeEnum {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory BiologicallyDerivedProductCategory(
-    String? raw, {
+    String? rawValue, {
     FhirUri? system,
     FhirString? version,
     FhirString? display,
@@ -29,9 +29,10 @@ class BiologicallyDerivedProductCategory extends FhirCodeEnum {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCode._validateCode(rawValue) : null;
     return BiologicallyDerivedProductCategory._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -45,7 +46,7 @@ class BiologicallyDerivedProductCategory extends FhirCodeEnum {
 
   /// Create empty [BiologicallyDerivedProductCategory] with element only
   factory BiologicallyDerivedProductCategory.empty() =>
-      BiologicallyDerivedProductCategory._(validatedValue: '');
+      BiologicallyDerivedProductCategory._(valueString: '');
 
   /// Factory constructor to create [BiologicallyDerivedProductCategory] from JSON.
   factory BiologicallyDerivedProductCategory.fromJson(
@@ -62,7 +63,7 @@ class BiologicallyDerivedProductCategory extends FhirCodeEnum {
       );
     }
     return BiologicallyDerivedProductCategory._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
@@ -70,7 +71,7 @@ class BiologicallyDerivedProductCategory extends FhirCodeEnum {
   /// organ
   static final BiologicallyDerivedProductCategory organ =
       BiologicallyDerivedProductCategory._(
-    validatedValue: 'organ',
+    valueString: 'organ',
     system: 'http://hl7.org/fhir/ValueSet/product-category'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Organ'.toFhirString,
@@ -79,7 +80,7 @@ class BiologicallyDerivedProductCategory extends FhirCodeEnum {
   /// tissue
   static final BiologicallyDerivedProductCategory tissue =
       BiologicallyDerivedProductCategory._(
-    validatedValue: 'tissue',
+    valueString: 'tissue',
     system: 'http://hl7.org/fhir/ValueSet/product-category'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Tissue'.toFhirString,
@@ -88,7 +89,7 @@ class BiologicallyDerivedProductCategory extends FhirCodeEnum {
   /// fluid
   static final BiologicallyDerivedProductCategory fluid =
       BiologicallyDerivedProductCategory._(
-    validatedValue: 'fluid',
+    valueString: 'fluid',
     system: 'http://hl7.org/fhir/ValueSet/product-category'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Fluid'.toFhirString,
@@ -97,7 +98,7 @@ class BiologicallyDerivedProductCategory extends FhirCodeEnum {
   /// cells
   static final BiologicallyDerivedProductCategory cells =
       BiologicallyDerivedProductCategory._(
-    validatedValue: 'cells',
+    valueString: 'cells',
     system: 'http://hl7.org/fhir/ValueSet/product-category'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Cells'.toFhirString,
@@ -106,7 +107,7 @@ class BiologicallyDerivedProductCategory extends FhirCodeEnum {
   /// biologicalAgent
   static final BiologicallyDerivedProductCategory biologicalAgent =
       BiologicallyDerivedProductCategory._(
-    validatedValue: 'biologicalAgent',
+    valueString: 'biologicalAgent',
     system: 'http://hl7.org/fhir/ValueSet/product-category'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'BiologicalAgent'.toFhirString,
@@ -114,7 +115,7 @@ class BiologicallyDerivedProductCategory extends FhirCodeEnum {
 
   /// For instances where an Element is present but not value
   static final BiologicallyDerivedProductCategory elementOnly =
-      BiologicallyDerivedProductCategory._(validatedValue: '');
+      BiologicallyDerivedProductCategory._(valueString: '');
 
   /// List of all enum-like values
   static final List<BiologicallyDerivedProductCategory> values = [
@@ -129,14 +130,14 @@ class BiologicallyDerivedProductCategory extends FhirCodeEnum {
   @override
   BiologicallyDerivedProductCategory clone() =>
       BiologicallyDerivedProductCategory._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   BiologicallyDerivedProductCategory withElement(Element? newElement) {
     return BiologicallyDerivedProductCategory._(
-      validatedValue: value,
+      valueString: valueString,
       element: newElement,
     );
   }
@@ -144,18 +145,18 @@ class BiologicallyDerivedProductCategory extends FhirCodeEnum {
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   BiologicallyDerivedProductCategory copyWith({
-    String? newValue,
+    dynamic newValue,
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
@@ -166,11 +167,12 @@ class BiologicallyDerivedProductCategory extends FhirCodeEnum {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError(
+          'Invalid input for BiologicallyDerivedProductCategory: $newValue',);
     }
     return BiologicallyDerivedProductCategory._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

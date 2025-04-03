@@ -34,7 +34,8 @@ class FhirDecimal extends FhirNumber
   // Private Internal Constructor
   // --------------------------------------------------------------------------
 
-  /// Private underscore constructor that simply assigns [valueString] and [isInt].
+  /// Private underscore constructor that simply assigns [valueString] and
+  /// [isInt].
   FhirDecimal._({
     required super.valueString,
     required this.isInt,
@@ -53,6 +54,7 @@ class FhirDecimal extends FhirNumber
   /// - `null` (element-only usage if [element] is not null),
   /// - A numeric type [num],
   /// - A [String] that parses to a double.
+  // ignore: sort_unnamed_constructors_first
   factory FhirDecimal(
     dynamic rawValue, {
     Element? element,
@@ -77,14 +79,16 @@ class FhirDecimal extends FhirNumber
         // Then also store as double to preserve decimal format
         // e.g. "4" -> 4.0 for consistent decimal representation
         isInt = true;
+        valueString = rawValue;
+      } else {
+        final parsedDouble = double.tryParse(rawValue);
+        if (parsedDouble == null) {
+          throw ArgumentError(
+            'FhirDecimal only supports numeric input or null, got: $rawValue',
+          );
+        }
+        valueString = rawValue;
       }
-      final parsedDouble = double.tryParse(rawValue);
-      if (parsedDouble == null) {
-        throw ArgumentError(
-          'FhirDecimal only supports numeric input or null, got: $rawValue',
-        );
-      }
-      valueString = parsedDouble.toString();
     } else if (rawValue != null) {
       throw ArgumentError(
         'FhirDecimal only supports a num or string or null, got: $rawValue',
@@ -126,8 +130,11 @@ class FhirDecimal extends FhirNumber
     final elemJson = json['_value'] as Map<String, dynamic>?;
     final parsedElement = elemJson == null ? null : Element.fromJson(elemJson);
     final objectPath = json['objectPath'] as String? ?? 'Decimal';
-    return FhirDecimal(rawValue,
-        element: parsedElement, objectPath: objectPath);
+    return FhirDecimal(
+      rawValue,
+      element: parsedElement,
+      objectPath: objectPath,
+    );
   }
 
   /// Creates a [FhirDecimal] from a YAML input ([String] or [YamlMap]).

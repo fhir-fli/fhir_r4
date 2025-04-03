@@ -610,7 +610,10 @@ class DocumentManifest extends DomainResource {
             return copyWith(contained: newList);
           } else if (child is Resource) {
             // Add single element to existing list or create new list
-            final newList = [...?contained, child];
+            final newList = [
+              ...?contained,
+              child,
+            ];
             return copyWith(contained: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -624,7 +627,10 @@ class DocumentManifest extends DomainResource {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -638,7 +644,10 @@ class DocumentManifest extends DomainResource {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -660,7 +669,10 @@ class DocumentManifest extends DomainResource {
             return copyWith(identifier: newList);
           } else if (child is Identifier) {
             // Add single element to existing list or create new list
-            final newList = [...?identifier, child];
+            final newList = [
+              ...?identifier,
+              child,
+            ];
             return copyWith(identifier: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -706,7 +718,10 @@ class DocumentManifest extends DomainResource {
             return copyWith(author: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...?author, child];
+            final newList = [
+              ...?author,
+              child,
+            ];
             return copyWith(author: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -720,7 +735,10 @@ class DocumentManifest extends DomainResource {
             return copyWith(recipient: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...?recipient, child];
+            final newList = [
+              ...?recipient,
+              child,
+            ];
             return copyWith(recipient: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -750,7 +768,10 @@ class DocumentManifest extends DomainResource {
             return copyWith(content: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...content, child];
+            final newList = [
+              ...content,
+              child,
+            ];
             return copyWith(content: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -764,7 +785,10 @@ class DocumentManifest extends DomainResource {
             return copyWith(related: newList);
           } else if (child is DocumentManifestRelated) {
             // Add single element to existing list or create new list
-            final newList = [...?related, child];
+            final newList = [
+              ...?related,
+              child,
+            ];
             return copyWith(related: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1535,7 +1559,10 @@ class DocumentManifestRelated extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1549,7 +1576,10 @@ class DocumentManifestRelated extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');

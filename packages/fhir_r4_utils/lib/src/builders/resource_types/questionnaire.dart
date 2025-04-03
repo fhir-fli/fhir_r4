@@ -710,6 +710,21 @@ class QuestionnaireBuilder extends CanonicalResourceBuilder {
           if (child is CommonLanguagesBuilder) {
             language = child;
             return;
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              // For enums, try to create directly from the string value
+              try {
+                final converted = CommonLanguagesBuilder(stringValue);
+                language = converted;
+                return;
+              } catch (e) {
+                // Continue if enum creation fails
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
           throw Exception('Invalid child type for $childName');
         }
@@ -729,7 +744,10 @@ class QuestionnaireBuilder extends CanonicalResourceBuilder {
             return;
           } else if (child is ResourceBuilder) {
             // Add single element to existing list or create new list
-            contained = [...(contained ?? []), child];
+            contained = [
+              ...(contained ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -742,7 +760,10 @@ class QuestionnaireBuilder extends CanonicalResourceBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -755,7 +776,10 @@ class QuestionnaireBuilder extends CanonicalResourceBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -788,7 +812,10 @@ class QuestionnaireBuilder extends CanonicalResourceBuilder {
             return;
           } else if (child is IdentifierBuilder) {
             // Add single element to existing list or create new list
-            identifier = [...(identifier ?? []), child];
+            identifier = [
+              ...(identifier ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -861,7 +888,10 @@ class QuestionnaireBuilder extends CanonicalResourceBuilder {
             return;
           } else if (child is FhirCanonicalBuilder) {
             // Add single element to existing list or create new list
-            derivedFrom = [...(derivedFrom ?? []), child];
+            derivedFrom = [
+              ...(derivedFrom ?? []),
+              child,
+            ];
             return;
           } else if (child is List<PrimitiveTypeBuilder>) {
             // Try to convert list of primitive types
@@ -901,6 +931,21 @@ class QuestionnaireBuilder extends CanonicalResourceBuilder {
           if (child is PublicationStatusBuilder) {
             status = child;
             return;
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              // For enums, try to create directly from the string value
+              try {
+                final converted = PublicationStatusBuilder(stringValue);
+                status = converted;
+                return;
+              } catch (e) {
+                // Continue if enum creation fails
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
           throw Exception('Invalid child type for $childName');
         }
@@ -932,7 +977,10 @@ class QuestionnaireBuilder extends CanonicalResourceBuilder {
             return;
           } else if (child is FhirCodeBuilder) {
             // Add single element to existing list or create new list
-            subjectType = [...(subjectType ?? []), child];
+            subjectType = [
+              ...(subjectType ?? []),
+              child,
+            ];
             return;
           } else if (child is List<PrimitiveTypeBuilder>) {
             // Try to convert list of primitive types
@@ -1015,7 +1063,10 @@ class QuestionnaireBuilder extends CanonicalResourceBuilder {
             return;
           } else if (child is ContactDetailBuilder) {
             // Add single element to existing list or create new list
-            contact = [...(contact ?? []), child];
+            contact = [
+              ...(contact ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -1048,7 +1099,10 @@ class QuestionnaireBuilder extends CanonicalResourceBuilder {
             return;
           } else if (child is UsageContextBuilder) {
             // Add single element to existing list or create new list
-            useContext = [...(useContext ?? []), child];
+            useContext = [
+              ...(useContext ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -1061,7 +1115,10 @@ class QuestionnaireBuilder extends CanonicalResourceBuilder {
             return;
           } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            jurisdiction = [...(jurisdiction ?? []), child];
+            jurisdiction = [
+              ...(jurisdiction ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -1162,7 +1219,10 @@ class QuestionnaireBuilder extends CanonicalResourceBuilder {
             return;
           } else if (child is CodingBuilder) {
             // Add single element to existing list or create new list
-            code = [...(code ?? []), child];
+            code = [
+              ...(code ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -1175,7 +1235,10 @@ class QuestionnaireBuilder extends CanonicalResourceBuilder {
             return;
           } else if (child is QuestionnaireItemBuilder) {
             // Add single element to existing list or create new list
-            item = [...(item ?? []), child];
+            item = [
+              ...(item ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -2315,7 +2378,10 @@ class QuestionnaireItemBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -2328,7 +2394,10 @@ class QuestionnaireItemBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -2381,7 +2450,10 @@ class QuestionnaireItemBuilder extends BackboneElementBuilder {
             return;
           } else if (child is CodingBuilder) {
             // Add single element to existing list or create new list
-            code = [...(code ?? []), child];
+            code = [
+              ...(code ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -2431,6 +2503,21 @@ class QuestionnaireItemBuilder extends BackboneElementBuilder {
           if (child is QuestionnaireItemTypeBuilder) {
             type = child;
             return;
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              // For enums, try to create directly from the string value
+              try {
+                final converted = QuestionnaireItemTypeBuilder(stringValue);
+                type = converted;
+                return;
+              } catch (e) {
+                // Continue if enum creation fails
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
           throw Exception('Invalid child type for $childName');
         }
@@ -2442,7 +2529,10 @@ class QuestionnaireItemBuilder extends BackboneElementBuilder {
             return;
           } else if (child is QuestionnaireEnableWhenBuilder) {
             // Add single element to existing list or create new list
-            enableWhen = [...(enableWhen ?? []), child];
+            enableWhen = [
+              ...(enableWhen ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -2452,6 +2542,21 @@ class QuestionnaireItemBuilder extends BackboneElementBuilder {
           if (child is EnableWhenBehaviorBuilder) {
             enableBehavior = child;
             return;
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              // For enums, try to create directly from the string value
+              try {
+                final converted = EnableWhenBehaviorBuilder(stringValue);
+                enableBehavior = converted;
+                return;
+              } catch (e) {
+                // Continue if enum creation fails
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
           throw Exception('Invalid child type for $childName');
         }
@@ -2524,7 +2629,8 @@ class QuestionnaireItemBuilder extends BackboneElementBuilder {
             // Try to convert from one primitive type to another
             try {
               final stringValue = child.toString();
-              // For number types, first parse to num then pass the number directly
+              // For number types,
+              // first parse to num then pass the number directly
               final numValue = num.tryParse(stringValue);
               if (numValue != null) {
                 final converted = FhirIntegerBuilder.tryParse(numValue);
@@ -2567,7 +2673,10 @@ class QuestionnaireItemBuilder extends BackboneElementBuilder {
             return;
           } else if (child is QuestionnaireAnswerOptionBuilder) {
             // Add single element to existing list or create new list
-            answerOption = [...(answerOption ?? []), child];
+            answerOption = [
+              ...(answerOption ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -2580,7 +2689,10 @@ class QuestionnaireItemBuilder extends BackboneElementBuilder {
             return;
           } else if (child is QuestionnaireInitialBuilder) {
             // Add single element to existing list or create new list
-            initial = [...(initial ?? []), child];
+            initial = [
+              ...(initial ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -2593,7 +2705,10 @@ class QuestionnaireItemBuilder extends BackboneElementBuilder {
             return;
           } else if (child is QuestionnaireItemBuilder) {
             // Add single element to existing list or create new list
-            item = [...(item ?? []), child];
+            item = [
+              ...(item ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -3366,7 +3481,10 @@ class QuestionnaireEnableWhenBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -3379,7 +3497,10 @@ class QuestionnaireEnableWhenBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -3409,6 +3530,21 @@ class QuestionnaireEnableWhenBuilder extends BackboneElementBuilder {
           if (child is QuestionnaireItemOperatorBuilder) {
             operator_ = child;
             return;
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              // For enums, try to create directly from the string value
+              try {
+                final converted = QuestionnaireItemOperatorBuilder(stringValue);
+                operator_ = converted;
+                return;
+              } catch (e) {
+                // Continue if enum creation fails
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
           throw Exception('Invalid child type for $childName');
         }
@@ -4125,7 +4261,10 @@ class QuestionnaireAnswerOptionBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -4138,7 +4277,10 @@ class QuestionnaireAnswerOptionBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -4803,7 +4945,10 @@ class QuestionnaireInitialBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -4816,7 +4961,10 @@ class QuestionnaireInitialBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');

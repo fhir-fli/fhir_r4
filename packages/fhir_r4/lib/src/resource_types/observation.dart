@@ -1030,7 +1030,10 @@ class Observation extends DomainResource {
             return copyWith(contained: newList);
           } else if (child is Resource) {
             // Add single element to existing list or create new list
-            final newList = [...?contained, child];
+            final newList = [
+              ...?contained,
+              child,
+            ];
             return copyWith(contained: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1044,7 +1047,10 @@ class Observation extends DomainResource {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1058,7 +1064,10 @@ class Observation extends DomainResource {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1072,7 +1081,10 @@ class Observation extends DomainResource {
             return copyWith(identifier: newList);
           } else if (child is Identifier) {
             // Add single element to existing list or create new list
-            final newList = [...?identifier, child];
+            final newList = [
+              ...?identifier,
+              child,
+            ];
             return copyWith(identifier: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1086,7 +1098,10 @@ class Observation extends DomainResource {
             return copyWith(basedOn: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...?basedOn, child];
+            final newList = [
+              ...?basedOn,
+              child,
+            ];
             return copyWith(basedOn: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1100,7 +1115,10 @@ class Observation extends DomainResource {
             return copyWith(partOf: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...?partOf, child];
+            final newList = [
+              ...?partOf,
+              child,
+            ];
             return copyWith(partOf: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1122,7 +1140,10 @@ class Observation extends DomainResource {
             return copyWith(category: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...?category, child];
+            final newList = [
+              ...?category,
+              child,
+            ];
             return copyWith(category: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1152,7 +1173,10 @@ class Observation extends DomainResource {
             return copyWith(focus: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...?focus, child];
+            final newList = [
+              ...?focus,
+              child,
+            ];
             return copyWith(focus: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1234,7 +1258,10 @@ class Observation extends DomainResource {
             return copyWith(performer: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...?performer, child];
+            final newList = [
+              ...?performer,
+              child,
+            ];
             return copyWith(performer: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1385,7 +1412,10 @@ class Observation extends DomainResource {
             return copyWith(interpretation: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...?interpretation, child];
+            final newList = [
+              ...?interpretation,
+              child,
+            ];
             return copyWith(interpretation: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1399,7 +1429,10 @@ class Observation extends DomainResource {
             return copyWith(note: newList);
           } else if (child is Annotation) {
             // Add single element to existing list or create new list
-            final newList = [...?note, child];
+            final newList = [
+              ...?note,
+              child,
+            ];
             return copyWith(note: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1445,7 +1478,10 @@ class Observation extends DomainResource {
             return copyWith(referenceRange: newList);
           } else if (child is ObservationReferenceRange) {
             // Add single element to existing list or create new list
-            final newList = [...?referenceRange, child];
+            final newList = [
+              ...?referenceRange,
+              child,
+            ];
             return copyWith(referenceRange: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1459,7 +1495,10 @@ class Observation extends DomainResource {
             return copyWith(hasMember: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...?hasMember, child];
+            final newList = [
+              ...?hasMember,
+              child,
+            ];
             return copyWith(hasMember: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1473,7 +1512,10 @@ class Observation extends DomainResource {
             return copyWith(derivedFrom: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...?derivedFrom, child];
+            final newList = [
+              ...?derivedFrom,
+              child,
+            ];
             return copyWith(derivedFrom: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1487,7 +1529,10 @@ class Observation extends DomainResource {
             return copyWith(component: newList);
           } else if (child is ObservationComponent) {
             // Add single element to existing list or create new list
-            final newList = [...?component, child];
+            final newList = [
+              ...?component,
+              child,
+            ];
             return copyWith(component: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1539,7 +1584,12 @@ class Observation extends DomainResource {
         return ['Reference'];
       case 'effective':
       case 'effectiveX':
-        return ['FhirDateTime', 'Period', 'Timing', 'FhirInstant'];
+        return [
+          'FhirDateTime',
+          'Period',
+          'Timing',
+          'FhirInstant',
+        ];
       case 'effectiveDateTime':
         return ['FhirDateTime'];
       case 'effectivePeriod':
@@ -2766,7 +2816,10 @@ class ObservationReferenceRange extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2780,7 +2833,10 @@ class ObservationReferenceRange extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2818,7 +2874,10 @@ class ObservationReferenceRange extends BackboneElement {
             return copyWith(appliesTo: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...?appliesTo, child];
+            final newList = [
+              ...?appliesTo,
+              child,
+            ];
             return copyWith(appliesTo: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -3531,7 +3590,10 @@ class ObservationComponent extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -3545,7 +3607,10 @@ class ObservationComponent extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -3704,7 +3769,10 @@ class ObservationComponent extends BackboneElement {
             return copyWith(interpretation: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...?interpretation, child];
+            final newList = [
+              ...?interpretation,
+              child,
+            ];
             return copyWith(interpretation: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -3718,7 +3786,10 @@ class ObservationComponent extends BackboneElement {
             return copyWith(referenceRange: newList);
           } else if (child is ObservationReferenceRange) {
             // Add single element to existing list or create new list
-            final newList = [...?referenceRange, child];
+            final newList = [
+              ...?referenceRange,
+              child,
+            ];
             return copyWith(referenceRange: newList);
           } else {
             throw Exception('Invalid child type for $childName');

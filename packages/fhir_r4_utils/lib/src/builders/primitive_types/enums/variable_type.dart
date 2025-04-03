@@ -6,7 +6,7 @@ part of '../primitive_types.dart';
 class VariableTypeBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   VariableTypeBuilder._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -20,7 +20,7 @@ class VariableTypeBuilder extends FhirCodeEnumBuilder {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory VariableTypeBuilder(
-    String? raw, {
+    String? rawValue, {
     FhirUriBuilder? system,
     FhirStringBuilder? version,
     FhirStringBuilder? display,
@@ -30,9 +30,10 @@ class VariableTypeBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
     return VariableTypeBuilder._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -45,8 +46,7 @@ class VariableTypeBuilder extends FhirCodeEnumBuilder {
   }
 
   /// Create empty [VariableTypeBuilder] with element only
-  factory VariableTypeBuilder.empty() =>
-      VariableTypeBuilder._(validatedValue: '');
+  factory VariableTypeBuilder.empty() => VariableTypeBuilder._(valueString: '');
 
   /// Factory constructor to create [VariableTypeBuilder]
   /// from JSON.
@@ -63,14 +63,14 @@ class VariableTypeBuilder extends FhirCodeEnumBuilder {
       );
     }
     return VariableTypeBuilder._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// dichotomous
   static VariableTypeBuilder dichotomous = VariableTypeBuilder._(
-    validatedValue: 'dichotomous',
+    valueString: 'dichotomous',
     system: 'http://hl7.org/fhir/ValueSet/variable-type'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Dichotomous'.toFhirStringBuilder,
@@ -78,7 +78,7 @@ class VariableTypeBuilder extends FhirCodeEnumBuilder {
 
   /// continuous
   static VariableTypeBuilder continuous = VariableTypeBuilder._(
-    validatedValue: 'continuous',
+    valueString: 'continuous',
     system: 'http://hl7.org/fhir/ValueSet/variable-type'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Continuous'.toFhirStringBuilder,
@@ -86,7 +86,7 @@ class VariableTypeBuilder extends FhirCodeEnumBuilder {
 
   /// descriptive
   static VariableTypeBuilder descriptive = VariableTypeBuilder._(
-    validatedValue: 'descriptive',
+    valueString: 'descriptive',
     system: 'http://hl7.org/fhir/ValueSet/variable-type'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Descriptive'.toFhirStringBuilder,
@@ -94,7 +94,7 @@ class VariableTypeBuilder extends FhirCodeEnumBuilder {
 
   /// For instances where an Element is present but not value
   static VariableTypeBuilder elementOnly =
-      VariableTypeBuilder._(validatedValue: '');
+      VariableTypeBuilder._(valueString: '');
 
   /// List of all enum-like values
   static List<VariableTypeBuilder> values = [
@@ -106,30 +106,30 @@ class VariableTypeBuilder extends FhirCodeEnumBuilder {
   /// Clones the current instance
   @override
   VariableTypeBuilder clone() => VariableTypeBuilder._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
   VariableTypeBuilder withElement(ElementBuilder? newElement) {
-    return VariableTypeBuilder._(validatedValue: value, element: newElement);
+    return VariableTypeBuilder._(valueString: valueString, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   VariableTypeBuilder copyWith({
-    String? newValue,
+    dynamic newValue,
     ElementBuilder? element,
     FhirStringBuilder? id,
     List<FhirExtensionBuilder>? extension_,
@@ -140,11 +140,11 @@ class VariableTypeBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError('Invalid input for VariableType: $newValue');
     }
     return VariableTypeBuilder._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
@@ -153,7 +153,7 @@ class VariableTypeBuilder extends FhirCodeEnumBuilder {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath,
+      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

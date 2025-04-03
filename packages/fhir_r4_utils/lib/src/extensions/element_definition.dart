@@ -11,7 +11,7 @@ extension ElementDefinitionExtension on ElementDefinition {
 
   /// Returns the maximum cardinality of the element definition
   bool get isCollection =>
-      max?.value == '*' ||
+      max?.valueString == '*' ||
       (type?.any((t) => t.code.toString() == 'List') ?? false);
 
   /// Returns the minimum cardinality of the element definition

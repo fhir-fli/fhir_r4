@@ -253,7 +253,10 @@ class ContactDetail extends DataType
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -275,7 +278,10 @@ class ContactDetail extends DataType
             return copyWith(telecom: newList);
           } else if (child is ContactPoint) {
             // Add single element to existing list or create new list
-            final newList = [...?telecom, child];
+            final newList = [
+              ...?telecom,
+              child,
+            ];
             return copyWith(telecom: newList);
           } else {
             throw Exception('Invalid child type for $childName');

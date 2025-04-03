@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class ContractResourceStatusCodes extends FhirCodeEnum {
   // Private underscore constructor for internal use.
   ContractResourceStatusCodes._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class ContractResourceStatusCodes extends FhirCodeEnum {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory ContractResourceStatusCodes(
-    String? raw, {
+    String? rawValue, {
     FhirUri? system,
     FhirString? version,
     FhirString? display,
@@ -29,9 +29,10 @@ class ContractResourceStatusCodes extends FhirCodeEnum {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCode._validateCode(rawValue) : null;
     return ContractResourceStatusCodes._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -45,7 +46,7 @@ class ContractResourceStatusCodes extends FhirCodeEnum {
 
   /// Create empty [ContractResourceStatusCodes] with element only
   factory ContractResourceStatusCodes.empty() =>
-      ContractResourceStatusCodes._(validatedValue: '');
+      ContractResourceStatusCodes._(valueString: '');
 
   /// Factory constructor to create [ContractResourceStatusCodes] from JSON.
   factory ContractResourceStatusCodes.fromJson(Map<String, dynamic> json) {
@@ -60,7 +61,7 @@ class ContractResourceStatusCodes extends FhirCodeEnum {
       );
     }
     return ContractResourceStatusCodes._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
@@ -68,7 +69,7 @@ class ContractResourceStatusCodes extends FhirCodeEnum {
   /// amended
   static final ContractResourceStatusCodes amended =
       ContractResourceStatusCodes._(
-    validatedValue: 'amended',
+    valueString: 'amended',
     system: 'http://hl7.org/fhir/ValueSet/contract-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Amended'.toFhirString,
@@ -77,7 +78,7 @@ class ContractResourceStatusCodes extends FhirCodeEnum {
   /// appended
   static final ContractResourceStatusCodes appended =
       ContractResourceStatusCodes._(
-    validatedValue: 'appended',
+    valueString: 'appended',
     system: 'http://hl7.org/fhir/ValueSet/contract-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Appended'.toFhirString,
@@ -86,7 +87,7 @@ class ContractResourceStatusCodes extends FhirCodeEnum {
   /// cancelled
   static final ContractResourceStatusCodes cancelled =
       ContractResourceStatusCodes._(
-    validatedValue: 'cancelled',
+    valueString: 'cancelled',
     system: 'http://hl7.org/fhir/ValueSet/contract-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Cancelled'.toFhirString,
@@ -95,7 +96,7 @@ class ContractResourceStatusCodes extends FhirCodeEnum {
   /// disputed
   static final ContractResourceStatusCodes disputed =
       ContractResourceStatusCodes._(
-    validatedValue: 'disputed',
+    valueString: 'disputed',
     system: 'http://hl7.org/fhir/ValueSet/contract-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Disputed'.toFhirString,
@@ -104,7 +105,7 @@ class ContractResourceStatusCodes extends FhirCodeEnum {
   /// entered_in_error
   static final ContractResourceStatusCodes entered_in_error =
       ContractResourceStatusCodes._(
-    validatedValue: 'entered-in-error',
+    valueString: 'entered-in-error',
     system: 'http://hl7.org/fhir/ValueSet/contract-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Entered in Error'.toFhirString,
@@ -113,7 +114,7 @@ class ContractResourceStatusCodes extends FhirCodeEnum {
   /// executable
   static final ContractResourceStatusCodes executable =
       ContractResourceStatusCodes._(
-    validatedValue: 'executable',
+    valueString: 'executable',
     system: 'http://hl7.org/fhir/ValueSet/contract-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Executable'.toFhirString,
@@ -122,7 +123,7 @@ class ContractResourceStatusCodes extends FhirCodeEnum {
   /// executed
   static final ContractResourceStatusCodes executed =
       ContractResourceStatusCodes._(
-    validatedValue: 'executed',
+    valueString: 'executed',
     system: 'http://hl7.org/fhir/ValueSet/contract-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Executed'.toFhirString,
@@ -131,7 +132,7 @@ class ContractResourceStatusCodes extends FhirCodeEnum {
   /// negotiable
   static final ContractResourceStatusCodes negotiable =
       ContractResourceStatusCodes._(
-    validatedValue: 'negotiable',
+    valueString: 'negotiable',
     system: 'http://hl7.org/fhir/ValueSet/contract-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Negotiable'.toFhirString,
@@ -140,7 +141,7 @@ class ContractResourceStatusCodes extends FhirCodeEnum {
   /// offered
   static final ContractResourceStatusCodes offered =
       ContractResourceStatusCodes._(
-    validatedValue: 'offered',
+    valueString: 'offered',
     system: 'http://hl7.org/fhir/ValueSet/contract-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Offered'.toFhirString,
@@ -149,7 +150,7 @@ class ContractResourceStatusCodes extends FhirCodeEnum {
   /// policy
   static final ContractResourceStatusCodes policy =
       ContractResourceStatusCodes._(
-    validatedValue: 'policy',
+    valueString: 'policy',
     system: 'http://hl7.org/fhir/ValueSet/contract-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Policy'.toFhirString,
@@ -158,7 +159,7 @@ class ContractResourceStatusCodes extends FhirCodeEnum {
   /// rejected
   static final ContractResourceStatusCodes rejected =
       ContractResourceStatusCodes._(
-    validatedValue: 'rejected',
+    valueString: 'rejected',
     system: 'http://hl7.org/fhir/ValueSet/contract-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Rejected'.toFhirString,
@@ -167,7 +168,7 @@ class ContractResourceStatusCodes extends FhirCodeEnum {
   /// renewed
   static final ContractResourceStatusCodes renewed =
       ContractResourceStatusCodes._(
-    validatedValue: 'renewed',
+    valueString: 'renewed',
     system: 'http://hl7.org/fhir/ValueSet/contract-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Renewed'.toFhirString,
@@ -176,7 +177,7 @@ class ContractResourceStatusCodes extends FhirCodeEnum {
   /// revoked
   static final ContractResourceStatusCodes revoked =
       ContractResourceStatusCodes._(
-    validatedValue: 'revoked',
+    valueString: 'revoked',
     system: 'http://hl7.org/fhir/ValueSet/contract-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Revoked'.toFhirString,
@@ -185,7 +186,7 @@ class ContractResourceStatusCodes extends FhirCodeEnum {
   /// resolved
   static final ContractResourceStatusCodes resolved =
       ContractResourceStatusCodes._(
-    validatedValue: 'resolved',
+    valueString: 'resolved',
     system: 'http://hl7.org/fhir/ValueSet/contract-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Resolved'.toFhirString,
@@ -194,7 +195,7 @@ class ContractResourceStatusCodes extends FhirCodeEnum {
   /// terminated
   static final ContractResourceStatusCodes terminated =
       ContractResourceStatusCodes._(
-    validatedValue: 'terminated',
+    valueString: 'terminated',
     system: 'http://hl7.org/fhir/ValueSet/contract-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Terminated'.toFhirString,
@@ -202,7 +203,7 @@ class ContractResourceStatusCodes extends FhirCodeEnum {
 
   /// For instances where an Element is present but not value
   static final ContractResourceStatusCodes elementOnly =
-      ContractResourceStatusCodes._(validatedValue: '');
+      ContractResourceStatusCodes._(valueString: '');
 
   /// List of all enum-like values
   static final List<ContractResourceStatusCodes> values = [
@@ -226,14 +227,14 @@ class ContractResourceStatusCodes extends FhirCodeEnum {
   /// Clones the current instance
   @override
   ContractResourceStatusCodes clone() => ContractResourceStatusCodes._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ContractResourceStatusCodes withElement(Element? newElement) {
     return ContractResourceStatusCodes._(
-      validatedValue: value,
+      valueString: valueString,
       element: newElement,
     );
   }
@@ -241,18 +242,18 @@ class ContractResourceStatusCodes extends FhirCodeEnum {
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   ContractResourceStatusCodes copyWith({
-    String? newValue,
+    dynamic newValue,
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
@@ -263,11 +264,12 @@ class ContractResourceStatusCodes extends FhirCodeEnum {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError(
+          'Invalid input for ContractResourceStatusCodes: $newValue',);
     }
     return ContractResourceStatusCodes._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

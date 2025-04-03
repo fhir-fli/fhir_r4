@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class AdministrativeGenderBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   AdministrativeGenderBuilder._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class AdministrativeGenderBuilder extends FhirCodeEnumBuilder {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory AdministrativeGenderBuilder(
-    String? raw, {
+    String? rawValue, {
     FhirUriBuilder? system,
     FhirStringBuilder? version,
     FhirStringBuilder? display,
@@ -29,9 +29,10 @@ class AdministrativeGenderBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
     return AdministrativeGenderBuilder._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -45,7 +46,7 @@ class AdministrativeGenderBuilder extends FhirCodeEnumBuilder {
 
   /// Create empty [AdministrativeGenderBuilder] with element only
   factory AdministrativeGenderBuilder.empty() =>
-      AdministrativeGenderBuilder._(validatedValue: '');
+      AdministrativeGenderBuilder._(valueString: '');
 
   /// Factory constructor to create [AdministrativeGenderBuilder]
   /// from JSON.
@@ -62,14 +63,14 @@ class AdministrativeGenderBuilder extends FhirCodeEnumBuilder {
       );
     }
     return AdministrativeGenderBuilder._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// male
   static AdministrativeGenderBuilder male = AdministrativeGenderBuilder._(
-    validatedValue: 'male',
+    valueString: 'male',
     system:
         'http://hl7.org/fhir/ValueSet/administrative-gender'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -78,7 +79,7 @@ class AdministrativeGenderBuilder extends FhirCodeEnumBuilder {
 
   /// female
   static AdministrativeGenderBuilder female = AdministrativeGenderBuilder._(
-    validatedValue: 'female',
+    valueString: 'female',
     system:
         'http://hl7.org/fhir/ValueSet/administrative-gender'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -87,7 +88,7 @@ class AdministrativeGenderBuilder extends FhirCodeEnumBuilder {
 
   /// other
   static AdministrativeGenderBuilder other = AdministrativeGenderBuilder._(
-    validatedValue: 'other',
+    valueString: 'other',
     system:
         'http://hl7.org/fhir/ValueSet/administrative-gender'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -96,7 +97,7 @@ class AdministrativeGenderBuilder extends FhirCodeEnumBuilder {
 
   /// unknown
   static AdministrativeGenderBuilder unknown = AdministrativeGenderBuilder._(
-    validatedValue: 'unknown',
+    valueString: 'unknown',
     system:
         'http://hl7.org/fhir/ValueSet/administrative-gender'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -105,7 +106,7 @@ class AdministrativeGenderBuilder extends FhirCodeEnumBuilder {
 
   /// For instances where an Element is present but not value
   static AdministrativeGenderBuilder elementOnly =
-      AdministrativeGenderBuilder._(validatedValue: '');
+      AdministrativeGenderBuilder._(valueString: '');
 
   /// List of all enum-like values
   static List<AdministrativeGenderBuilder> values = [
@@ -118,31 +119,31 @@ class AdministrativeGenderBuilder extends FhirCodeEnumBuilder {
   /// Clones the current instance
   @override
   AdministrativeGenderBuilder clone() => AdministrativeGenderBuilder._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
   AdministrativeGenderBuilder withElement(ElementBuilder? newElement) {
     return AdministrativeGenderBuilder._(
-        validatedValue: value, element: newElement,);
+        valueString: valueString, element: newElement,);
   }
 
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   AdministrativeGenderBuilder copyWith({
-    String? newValue,
+    dynamic newValue,
     ElementBuilder? element,
     FhirStringBuilder? id,
     List<FhirExtensionBuilder>? extension_,
@@ -153,11 +154,11 @@ class AdministrativeGenderBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError('Invalid input for AdministrativeGender: $newValue');
     }
     return AdministrativeGenderBuilder._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
@@ -166,7 +167,7 @@ class AdministrativeGenderBuilder extends FhirCodeEnumBuilder {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath,
+      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

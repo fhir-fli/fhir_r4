@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class AuditEventOutcome extends FhirCodeEnum {
   // Private underscore constructor for internal use.
   AuditEventOutcome._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class AuditEventOutcome extends FhirCodeEnum {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory AuditEventOutcome(
-    String? raw, {
+    String? rawValue, {
     FhirUri? system,
     FhirString? version,
     FhirString? display,
@@ -29,9 +29,10 @@ class AuditEventOutcome extends FhirCodeEnum {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCode._validateCode(rawValue) : null;
     return AuditEventOutcome._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -44,7 +45,7 @@ class AuditEventOutcome extends FhirCodeEnum {
   }
 
   /// Create empty [AuditEventOutcome] with element only
-  factory AuditEventOutcome.empty() => AuditEventOutcome._(validatedValue: '');
+  factory AuditEventOutcome.empty() => AuditEventOutcome._(valueString: '');
 
   /// Factory constructor to create [AuditEventOutcome] from JSON.
   factory AuditEventOutcome.fromJson(Map<String, dynamic> json) {
@@ -59,14 +60,14 @@ class AuditEventOutcome extends FhirCodeEnum {
       );
     }
     return AuditEventOutcome._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// value0
   static final AuditEventOutcome value0 = AuditEventOutcome._(
-    validatedValue: '0',
+    valueString: '0',
     system: 'http://hl7.org/fhir/ValueSet/audit-event-outcome'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Success'.toFhirString,
@@ -74,7 +75,7 @@ class AuditEventOutcome extends FhirCodeEnum {
 
   /// value4
   static final AuditEventOutcome value4 = AuditEventOutcome._(
-    validatedValue: '4',
+    valueString: '4',
     system: 'http://hl7.org/fhir/ValueSet/audit-event-outcome'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Minor failure'.toFhirString,
@@ -82,7 +83,7 @@ class AuditEventOutcome extends FhirCodeEnum {
 
   /// value8
   static final AuditEventOutcome value8 = AuditEventOutcome._(
-    validatedValue: '8',
+    valueString: '8',
     system: 'http://hl7.org/fhir/ValueSet/audit-event-outcome'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Serious failure'.toFhirString,
@@ -90,7 +91,7 @@ class AuditEventOutcome extends FhirCodeEnum {
 
   /// value12
   static final AuditEventOutcome value12 = AuditEventOutcome._(
-    validatedValue: '12',
+    valueString: '12',
     system: 'http://hl7.org/fhir/ValueSet/audit-event-outcome'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Major failure'.toFhirString,
@@ -98,7 +99,7 @@ class AuditEventOutcome extends FhirCodeEnum {
 
   /// For instances where an Element is present but not value
   static final AuditEventOutcome elementOnly =
-      AuditEventOutcome._(validatedValue: '');
+      AuditEventOutcome._(valueString: '');
 
   /// List of all enum-like values
   static final List<AuditEventOutcome> values = [
@@ -111,14 +112,14 @@ class AuditEventOutcome extends FhirCodeEnum {
   /// Clones the current instance
   @override
   AuditEventOutcome clone() => AuditEventOutcome._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   AuditEventOutcome withElement(Element? newElement) {
     return AuditEventOutcome._(
-      validatedValue: value,
+      valueString: valueString,
       element: newElement,
     );
   }
@@ -126,18 +127,18 @@ class AuditEventOutcome extends FhirCodeEnum {
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   AuditEventOutcome copyWith({
-    String? newValue,
+    dynamic newValue,
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
@@ -148,11 +149,11 @@ class AuditEventOutcome extends FhirCodeEnum {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError('Invalid input for AuditEventOutcome: $newValue');
     }
     return AuditEventOutcome._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class SpecimenStatusBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   SpecimenStatusBuilder._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class SpecimenStatusBuilder extends FhirCodeEnumBuilder {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory SpecimenStatusBuilder(
-    String? raw, {
+    String? rawValue, {
     FhirUriBuilder? system,
     FhirStringBuilder? version,
     FhirStringBuilder? display,
@@ -29,9 +29,10 @@ class SpecimenStatusBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
     return SpecimenStatusBuilder._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -45,7 +46,7 @@ class SpecimenStatusBuilder extends FhirCodeEnumBuilder {
 
   /// Create empty [SpecimenStatusBuilder] with element only
   factory SpecimenStatusBuilder.empty() =>
-      SpecimenStatusBuilder._(validatedValue: '');
+      SpecimenStatusBuilder._(valueString: '');
 
   /// Factory constructor to create [SpecimenStatusBuilder]
   /// from JSON.
@@ -62,14 +63,14 @@ class SpecimenStatusBuilder extends FhirCodeEnumBuilder {
       );
     }
     return SpecimenStatusBuilder._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// available
   static SpecimenStatusBuilder available = SpecimenStatusBuilder._(
-    validatedValue: 'available',
+    valueString: 'available',
     system: 'http://hl7.org/fhir/ValueSet/specimen-status'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Available'.toFhirStringBuilder,
@@ -77,7 +78,7 @@ class SpecimenStatusBuilder extends FhirCodeEnumBuilder {
 
   /// unavailable
   static SpecimenStatusBuilder unavailable = SpecimenStatusBuilder._(
-    validatedValue: 'unavailable',
+    valueString: 'unavailable',
     system: 'http://hl7.org/fhir/ValueSet/specimen-status'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Unavailable'.toFhirStringBuilder,
@@ -85,7 +86,7 @@ class SpecimenStatusBuilder extends FhirCodeEnumBuilder {
 
   /// unsatisfactory
   static SpecimenStatusBuilder unsatisfactory = SpecimenStatusBuilder._(
-    validatedValue: 'unsatisfactory',
+    valueString: 'unsatisfactory',
     system: 'http://hl7.org/fhir/ValueSet/specimen-status'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Unsatisfactory'.toFhirStringBuilder,
@@ -93,7 +94,7 @@ class SpecimenStatusBuilder extends FhirCodeEnumBuilder {
 
   /// entered_in_error
   static SpecimenStatusBuilder entered_in_error = SpecimenStatusBuilder._(
-    validatedValue: 'entered-in-error',
+    valueString: 'entered-in-error',
     system: 'http://hl7.org/fhir/ValueSet/specimen-status'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Entered in Error'.toFhirStringBuilder,
@@ -101,7 +102,7 @@ class SpecimenStatusBuilder extends FhirCodeEnumBuilder {
 
   /// For instances where an Element is present but not value
   static SpecimenStatusBuilder elementOnly =
-      SpecimenStatusBuilder._(validatedValue: '');
+      SpecimenStatusBuilder._(valueString: '');
 
   /// List of all enum-like values
   static List<SpecimenStatusBuilder> values = [
@@ -114,30 +115,31 @@ class SpecimenStatusBuilder extends FhirCodeEnumBuilder {
   /// Clones the current instance
   @override
   SpecimenStatusBuilder clone() => SpecimenStatusBuilder._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
   SpecimenStatusBuilder withElement(ElementBuilder? newElement) {
-    return SpecimenStatusBuilder._(validatedValue: value, element: newElement);
+    return SpecimenStatusBuilder._(
+        valueString: valueString, element: newElement,);
   }
 
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   SpecimenStatusBuilder copyWith({
-    String? newValue,
+    dynamic newValue,
     ElementBuilder? element,
     FhirStringBuilder? id,
     List<FhirExtensionBuilder>? extension_,
@@ -148,11 +150,11 @@ class SpecimenStatusBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError('Invalid input for SpecimenStatus: $newValue');
     }
     return SpecimenStatusBuilder._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
@@ -161,7 +163,7 @@ class SpecimenStatusBuilder extends FhirCodeEnumBuilder {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath,
+      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

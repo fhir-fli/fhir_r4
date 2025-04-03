@@ -6,7 +6,7 @@ part of '../primitive_types.dart';
 class RequestPriority extends FhirCodeEnum {
   // Private underscore constructor for internal use.
   RequestPriority._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -20,7 +20,7 @@ class RequestPriority extends FhirCodeEnum {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory RequestPriority(
-    String? raw, {
+    String? rawValue, {
     FhirUri? system,
     FhirString? version,
     FhirString? display,
@@ -30,9 +30,10 @@ class RequestPriority extends FhirCodeEnum {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCode._validateCode(rawValue) : null;
     return RequestPriority._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -45,7 +46,7 @@ class RequestPriority extends FhirCodeEnum {
   }
 
   /// Create empty [RequestPriority] with element only
-  factory RequestPriority.empty() => RequestPriority._(validatedValue: '');
+  factory RequestPriority.empty() => RequestPriority._(valueString: '');
 
   /// Factory constructor to create [RequestPriority] from JSON.
   factory RequestPriority.fromJson(Map<String, dynamic> json) {
@@ -60,14 +61,14 @@ class RequestPriority extends FhirCodeEnum {
       );
     }
     return RequestPriority._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// routine
   static final RequestPriority routine = RequestPriority._(
-    validatedValue: 'routine',
+    valueString: 'routine',
     system: 'http://hl7.org/fhir/ValueSet/request-priority'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Routine'.toFhirString,
@@ -75,7 +76,7 @@ class RequestPriority extends FhirCodeEnum {
 
   /// urgent
   static final RequestPriority urgent = RequestPriority._(
-    validatedValue: 'urgent',
+    valueString: 'urgent',
     system: 'http://hl7.org/fhir/ValueSet/request-priority'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Urgent'.toFhirString,
@@ -83,7 +84,7 @@ class RequestPriority extends FhirCodeEnum {
 
   /// asap
   static final RequestPriority asap = RequestPriority._(
-    validatedValue: 'asap',
+    valueString: 'asap',
     system: 'http://hl7.org/fhir/ValueSet/request-priority'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'ASAP'.toFhirString,
@@ -91,15 +92,14 @@ class RequestPriority extends FhirCodeEnum {
 
   /// stat
   static final RequestPriority stat = RequestPriority._(
-    validatedValue: 'stat',
+    valueString: 'stat',
     system: 'http://hl7.org/fhir/ValueSet/request-priority'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'STAT'.toFhirString,
   );
 
   /// For instances where an Element is present but not value
-  static final RequestPriority elementOnly =
-      RequestPriority._(validatedValue: '');
+  static final RequestPriority elementOnly = RequestPriority._(valueString: '');
 
   /// List of all enum-like values
   static final List<RequestPriority> values = [
@@ -112,14 +112,14 @@ class RequestPriority extends FhirCodeEnum {
   /// Clones the current instance
   @override
   RequestPriority clone() => RequestPriority._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   RequestPriority withElement(Element? newElement) {
     return RequestPriority._(
-      validatedValue: value,
+      valueString: valueString,
       element: newElement,
     );
   }
@@ -127,18 +127,18 @@ class RequestPriority extends FhirCodeEnum {
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   RequestPriority copyWith({
-    String? newValue,
+    dynamic newValue,
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
@@ -149,11 +149,11 @@ class RequestPriority extends FhirCodeEnum {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError('Invalid input for RequestPriority: $newValue');
     }
     return RequestPriority._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

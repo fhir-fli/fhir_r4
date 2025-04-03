@@ -601,7 +601,10 @@ class MessageHeader extends DomainResource {
             return copyWith(contained: newList);
           } else if (child is Resource) {
             // Add single element to existing list or create new list
-            final newList = [...?contained, child];
+            final newList = [
+              ...?contained,
+              child,
+            ];
             return copyWith(contained: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -615,7 +618,10 @@ class MessageHeader extends DomainResource {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -629,7 +635,10 @@ class MessageHeader extends DomainResource {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -673,7 +682,10 @@ class MessageHeader extends DomainResource {
             return copyWith(destination: newList);
           } else if (child is MessageHeaderDestination) {
             // Add single element to existing list or create new list
-            final newList = [...?destination, child];
+            final newList = [
+              ...?destination,
+              child,
+            ];
             return copyWith(destination: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -743,7 +755,10 @@ class MessageHeader extends DomainResource {
             return copyWith(focus: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...?focus, child];
+            final newList = [
+              ...?focus,
+              child,
+            ];
             return copyWith(focus: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -785,7 +800,10 @@ class MessageHeader extends DomainResource {
         return ['FhirExtension'];
       case 'event':
       case 'eventX':
-        return ['Coding', 'FhirUri'];
+        return [
+          'Coding',
+          'FhirUri',
+        ];
       case 'eventCoding':
         return ['Coding'];
       case 'eventUri':
@@ -1543,7 +1561,10 @@ class MessageHeaderDestination extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1557,7 +1578,10 @@ class MessageHeaderDestination extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2132,7 +2156,10 @@ class MessageHeaderSource extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2146,7 +2173,10 @@ class MessageHeaderSource extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2710,7 +2740,10 @@ class MessageHeaderResponse extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2724,7 +2757,10 @@ class MessageHeaderResponse extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');

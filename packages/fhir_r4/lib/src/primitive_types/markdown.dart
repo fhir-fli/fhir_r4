@@ -24,7 +24,8 @@ class FhirMarkdown extends FhirString
   // Private Internal Constructor
   // --------------------------------------------------------------------------
 
-  /// Private underscore constructor verifying `(valueString == null && element == null)`
+  /// Private underscore constructor verifying
+  /// `(valueString == null && element == null)`
   /// doesn't happen in [FhirString]'s constructor.
   FhirMarkdown._({
     required super.valueString,
@@ -39,7 +40,9 @@ class FhirMarkdown extends FhirString
   // Public Factories
   // --------------------------------------------------------------------------
 
-  /// Creates a [FhirMarkdown], validating [rawValue] is either `null` or a [String].
+  /// Creates a [FhirMarkdown], validating [rawValue] is either `null` or a
+  /// [String].
+  // ignore: sort_unnamed_constructors_first
   factory FhirMarkdown(
     dynamic rawValue, {
     Element? element,
@@ -50,7 +53,8 @@ class FhirMarkdown extends FhirString
   }) {
     if (rawValue != null && rawValue is! String) {
       throw ArgumentError(
-        'Invalid type for FhirMarkdown. Expected String, got ${rawValue.runtimeType}.',
+        'Invalid type for FhirMarkdown. '
+        'Expected String, got ${rawValue.runtimeType}.',
       );
     }
     final validated = _validateMarkdown(rawValue as String?);
@@ -78,8 +82,11 @@ class FhirMarkdown extends FhirString
     final parsedElement =
         elementJson == null ? null : Element.fromJson(elementJson);
     final objectPath = json['objectPath'] as String? ?? 'Markdown';
-    return FhirMarkdown(rawValue,
-        element: parsedElement, objectPath: objectPath);
+    return FhirMarkdown(
+      rawValue,
+      element: parsedElement,
+      objectPath: objectPath,
+    );
   }
 
   /// Constructs a [FhirMarkdown] from a YAML input.
@@ -97,7 +104,8 @@ class FhirMarkdown extends FhirString
     }
   }
 
-  /// Attempts to parse [input] into a [FhirMarkdown], returning `null` if it fails.
+  /// Attempts to parse [input] into a [FhirMarkdown], returning `null` if
+  /// it fails.
   static FhirMarkdown? tryParse(dynamic input) {
     try {
       return input is String ? FhirMarkdown(input) : null;
@@ -114,8 +122,9 @@ class FhirMarkdown extends FhirString
   /// or allows an empty string. Adjust logic as needed for your constraints.
   static String? _validateMarkdown(String? input) {
     if (input == null) return null;
-    // If you want to allow empty or any text, you can skip or relax checks here.
-    // For now, let's say we require at least one non-whitespace character.
+    // If you want to allow empty or any text, you can skip or relax checks
+    // here. For now, let's say we require at least one non-whitespace
+    // character.
     if (input.trim().isNotEmpty) {
       return input;
     }
@@ -133,6 +142,10 @@ class FhirMarkdown extends FhirString
   /// Returns this Markdown or `''`.
   @override
   String toString() => valueString ?? '';
+
+  /// Returns `true` if the Type is considered string-based, otherwise `false`
+  @override
+  bool get stringBased => true;
 
   // --------------------------------------------------------------------------
   // Clone / Copy

@@ -859,7 +859,10 @@ class MedicationKnowledge extends DomainResource {
             return copyWith(contained: newList);
           } else if (child is Resource) {
             // Add single element to existing list or create new list
-            final newList = [...?contained, child];
+            final newList = [
+              ...?contained,
+              child,
+            ];
             return copyWith(contained: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -873,7 +876,10 @@ class MedicationKnowledge extends DomainResource {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -887,7 +893,10 @@ class MedicationKnowledge extends DomainResource {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -941,7 +950,10 @@ class MedicationKnowledge extends DomainResource {
             return copyWith(synonym: newList);
           } else if (child is FhirString) {
             // Add single element to existing list or create new list
-            final newList = [...?synonym, child];
+            final newList = [
+              ...?synonym,
+              child,
+            ];
             return copyWith(synonym: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -955,7 +967,10 @@ class MedicationKnowledge extends DomainResource {
             return copyWith(relatedMedicationKnowledge: newList);
           } else if (child is MedicationKnowledgeRelatedMedicationKnowledge) {
             // Add single element to existing list or create new list
-            final newList = [...?relatedMedicationKnowledge, child];
+            final newList = [
+              ...?relatedMedicationKnowledge,
+              child,
+            ];
             return copyWith(relatedMedicationKnowledge: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -969,7 +984,10 @@ class MedicationKnowledge extends DomainResource {
             return copyWith(associatedMedication: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...?associatedMedication, child];
+            final newList = [
+              ...?associatedMedication,
+              child,
+            ];
             return copyWith(associatedMedication: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -983,7 +1001,10 @@ class MedicationKnowledge extends DomainResource {
             return copyWith(productType: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...?productType, child];
+            final newList = [
+              ...?productType,
+              child,
+            ];
             return copyWith(productType: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -997,7 +1018,10 @@ class MedicationKnowledge extends DomainResource {
             return copyWith(monograph: newList);
           } else if (child is MedicationKnowledgeMonograph) {
             // Add single element to existing list or create new list
-            final newList = [...?monograph, child];
+            final newList = [
+              ...?monograph,
+              child,
+            ];
             return copyWith(monograph: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1011,7 +1035,10 @@ class MedicationKnowledge extends DomainResource {
             return copyWith(ingredient: newList);
           } else if (child is MedicationKnowledgeIngredient) {
             // Add single element to existing list or create new list
-            final newList = [...?ingredient, child];
+            final newList = [
+              ...?ingredient,
+              child,
+            ];
             return copyWith(ingredient: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1033,7 +1060,10 @@ class MedicationKnowledge extends DomainResource {
             return copyWith(intendedRoute: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...?intendedRoute, child];
+            final newList = [
+              ...?intendedRoute,
+              child,
+            ];
             return copyWith(intendedRoute: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1047,7 +1077,10 @@ class MedicationKnowledge extends DomainResource {
             return copyWith(cost: newList);
           } else if (child is MedicationKnowledgeCost) {
             // Add single element to existing list or create new list
-            final newList = [...?cost, child];
+            final newList = [
+              ...?cost,
+              child,
+            ];
             return copyWith(cost: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1061,7 +1094,10 @@ class MedicationKnowledge extends DomainResource {
             return copyWith(monitoringProgram: newList);
           } else if (child is MedicationKnowledgeMonitoringProgram) {
             // Add single element to existing list or create new list
-            final newList = [...?monitoringProgram, child];
+            final newList = [
+              ...?monitoringProgram,
+              child,
+            ];
             return copyWith(monitoringProgram: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1075,7 +1111,10 @@ class MedicationKnowledge extends DomainResource {
             return copyWith(administrationGuidelines: newList);
           } else if (child is MedicationKnowledgeAdministrationGuidelines) {
             // Add single element to existing list or create new list
-            final newList = [...?administrationGuidelines, child];
+            final newList = [
+              ...?administrationGuidelines,
+              child,
+            ];
             return copyWith(administrationGuidelines: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1089,7 +1128,10 @@ class MedicationKnowledge extends DomainResource {
             return copyWith(medicineClassification: newList);
           } else if (child is MedicationKnowledgeMedicineClassification) {
             // Add single element to existing list or create new list
-            final newList = [...?medicineClassification, child];
+            final newList = [
+              ...?medicineClassification,
+              child,
+            ];
             return copyWith(medicineClassification: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1111,7 +1153,10 @@ class MedicationKnowledge extends DomainResource {
             return copyWith(drugCharacteristic: newList);
           } else if (child is MedicationKnowledgeDrugCharacteristic) {
             // Add single element to existing list or create new list
-            final newList = [...?drugCharacteristic, child];
+            final newList = [
+              ...?drugCharacteristic,
+              child,
+            ];
             return copyWith(drugCharacteristic: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1125,7 +1170,10 @@ class MedicationKnowledge extends DomainResource {
             return copyWith(contraindication: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...?contraindication, child];
+            final newList = [
+              ...?contraindication,
+              child,
+            ];
             return copyWith(contraindication: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1139,7 +1187,10 @@ class MedicationKnowledge extends DomainResource {
             return copyWith(regulatory: newList);
           } else if (child is MedicationKnowledgeRegulatory) {
             // Add single element to existing list or create new list
-            final newList = [...?regulatory, child];
+            final newList = [
+              ...?regulatory,
+              child,
+            ];
             return copyWith(regulatory: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1153,7 +1204,10 @@ class MedicationKnowledge extends DomainResource {
             return copyWith(kinetics: newList);
           } else if (child is MedicationKnowledgeKinetics) {
             // Add single element to existing list or create new list
-            final newList = [...?kinetics, child];
+            final newList = [
+              ...?kinetics,
+              child,
+            ];
             return copyWith(kinetics: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2184,7 +2238,10 @@ class MedicationKnowledgeRelatedMedicationKnowledge extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2198,7 +2255,10 @@ class MedicationKnowledgeRelatedMedicationKnowledge extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2220,7 +2280,10 @@ class MedicationKnowledgeRelatedMedicationKnowledge extends BackboneElement {
             return copyWith(reference: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...reference, child];
+            final newList = [
+              ...reference,
+              child,
+            ];
             return copyWith(reference: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2665,7 +2728,10 @@ class MedicationKnowledgeMonograph extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2679,7 +2745,10 @@ class MedicationKnowledgeMonograph extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -3180,7 +3249,10 @@ class MedicationKnowledgeIngredient extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -3194,7 +3266,10 @@ class MedicationKnowledgeIngredient extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -3264,7 +3339,10 @@ class MedicationKnowledgeIngredient extends BackboneElement {
         return ['FhirExtension'];
       case 'item':
       case 'itemX':
-        return ['CodeableConcept', 'Reference'];
+        return [
+          'CodeableConcept',
+          'Reference',
+        ];
       case 'itemCodeableConcept':
         return ['CodeableConcept'];
       case 'itemReference':
@@ -3733,7 +3811,10 @@ class MedicationKnowledgeCost extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -3747,7 +3828,10 @@ class MedicationKnowledgeCost extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -4231,7 +4315,10 @@ class MedicationKnowledgeMonitoringProgram extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -4245,7 +4332,10 @@ class MedicationKnowledgeMonitoringProgram extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -4754,7 +4844,10 @@ class MedicationKnowledgeAdministrationGuidelines extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -4768,7 +4861,10 @@ class MedicationKnowledgeAdministrationGuidelines extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -4782,7 +4878,10 @@ class MedicationKnowledgeAdministrationGuidelines extends BackboneElement {
             return copyWith(dosage: newList);
           } else if (child is MedicationKnowledgeDosage) {
             // Add single element to existing list or create new list
-            final newList = [...?dosage, child];
+            final newList = [
+              ...?dosage,
+              child,
+            ];
             return copyWith(dosage: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -4826,7 +4925,10 @@ class MedicationKnowledgeAdministrationGuidelines extends BackboneElement {
             return copyWith(patientCharacteristics: newList);
           } else if (child is MedicationKnowledgePatientCharacteristics) {
             // Add single element to existing list or create new list
-            final newList = [...?patientCharacteristics, child];
+            final newList = [
+              ...?patientCharacteristics,
+              child,
+            ];
             return copyWith(patientCharacteristics: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -4852,7 +4954,10 @@ class MedicationKnowledgeAdministrationGuidelines extends BackboneElement {
         return ['MedicationKnowledgeDosage'];
       case 'indication':
       case 'indicationX':
-        return ['CodeableConcept', 'Reference'];
+        return [
+          'CodeableConcept',
+          'Reference',
+        ];
       case 'indicationCodeableConcept':
         return ['CodeableConcept'];
       case 'indicationReference':
@@ -5314,7 +5419,10 @@ class MedicationKnowledgeDosage extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -5328,7 +5436,10 @@ class MedicationKnowledgeDosage extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -5350,7 +5461,10 @@ class MedicationKnowledgeDosage extends BackboneElement {
             return copyWith(dosage: newList);
           } else if (child is Dosage) {
             // Add single element to existing list or create new list
-            final newList = [...dosage, child];
+            final newList = [
+              ...dosage,
+              child,
+            ];
             return copyWith(dosage: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -5820,7 +5934,10 @@ class MedicationKnowledgePatientCharacteristics extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -5834,7 +5951,10 @@ class MedicationKnowledgePatientCharacteristics extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -5879,7 +5999,10 @@ class MedicationKnowledgePatientCharacteristics extends BackboneElement {
             return copyWith(value: newList);
           } else if (child is FhirString) {
             // Add single element to existing list or create new list
-            final newList = [...?value, child];
+            final newList = [
+              ...?value,
+              child,
+            ];
             return copyWith(value: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -5903,7 +6026,10 @@ class MedicationKnowledgePatientCharacteristics extends BackboneElement {
         return ['FhirExtension'];
       case 'characteristic':
       case 'characteristicX':
-        return ['CodeableConcept', 'Quantity'];
+        return [
+          'CodeableConcept',
+          'Quantity',
+        ];
       case 'characteristicCodeableConcept':
         return ['CodeableConcept'];
       case 'characteristicQuantity':
@@ -6344,7 +6470,10 @@ class MedicationKnowledgeMedicineClassification extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -6358,7 +6487,10 @@ class MedicationKnowledgeMedicineClassification extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -6380,7 +6512,10 @@ class MedicationKnowledgeMedicineClassification extends BackboneElement {
             return copyWith(classification: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...?classification, child];
+            final newList = [
+              ...?classification,
+              child,
+            ];
             return copyWith(classification: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -6826,7 +6961,10 @@ class MedicationKnowledgePackaging extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -6840,7 +6978,10 @@ class MedicationKnowledgePackaging extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -7336,7 +7477,10 @@ class MedicationKnowledgeDrugCharacteristic extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -7350,7 +7494,10 @@ class MedicationKnowledgeDrugCharacteristic extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -7935,7 +8082,10 @@ class MedicationKnowledgeRegulatory extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -7949,7 +8099,10 @@ class MedicationKnowledgeRegulatory extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -7971,7 +8124,10 @@ class MedicationKnowledgeRegulatory extends BackboneElement {
             return copyWith(substitution: newList);
           } else if (child is MedicationKnowledgeSubstitution) {
             // Add single element to existing list or create new list
-            final newList = [...?substitution, child];
+            final newList = [
+              ...?substitution,
+              child,
+            ];
             return copyWith(substitution: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -7985,7 +8141,10 @@ class MedicationKnowledgeRegulatory extends BackboneElement {
             return copyWith(schedule: newList);
           } else if (child is MedicationKnowledgeSchedule) {
             // Add single element to existing list or create new list
-            final newList = [...?schedule, child];
+            final newList = [
+              ...?schedule,
+              child,
+            ];
             return copyWith(schedule: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -8484,7 +8643,10 @@ class MedicationKnowledgeSubstitution extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -8498,7 +8660,10 @@ class MedicationKnowledgeSubstitution extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -8932,7 +9097,10 @@ class MedicationKnowledgeSchedule extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -8946,7 +9114,10 @@ class MedicationKnowledgeSchedule extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -9374,7 +9545,10 @@ class MedicationKnowledgeMaxDispense extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -9388,7 +9562,10 @@ class MedicationKnowledgeMaxDispense extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -9874,7 +10051,10 @@ class MedicationKnowledgeKinetics extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -9888,7 +10068,10 @@ class MedicationKnowledgeKinetics extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -9902,7 +10085,10 @@ class MedicationKnowledgeKinetics extends BackboneElement {
             return copyWith(areaUnderCurve: newList);
           } else if (child is Quantity) {
             // Add single element to existing list or create new list
-            final newList = [...?areaUnderCurve, child];
+            final newList = [
+              ...?areaUnderCurve,
+              child,
+            ];
             return copyWith(areaUnderCurve: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -9916,7 +10102,10 @@ class MedicationKnowledgeKinetics extends BackboneElement {
             return copyWith(lethalDose50: newList);
           } else if (child is Quantity) {
             // Add single element to existing list or create new list
-            final newList = [...?lethalDose50, child];
+            final newList = [
+              ...?lethalDose50,
+              child,
+            ];
             return copyWith(lethalDose50: newList);
           } else {
             throw Exception('Invalid child type for $childName');

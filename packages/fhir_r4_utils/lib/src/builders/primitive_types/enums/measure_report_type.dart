@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class MeasureReportTypeBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   MeasureReportTypeBuilder._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class MeasureReportTypeBuilder extends FhirCodeEnumBuilder {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory MeasureReportTypeBuilder(
-    String? raw, {
+    String? rawValue, {
     FhirUriBuilder? system,
     FhirStringBuilder? version,
     FhirStringBuilder? display,
@@ -29,9 +29,10 @@ class MeasureReportTypeBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
     return MeasureReportTypeBuilder._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -45,7 +46,7 @@ class MeasureReportTypeBuilder extends FhirCodeEnumBuilder {
 
   /// Create empty [MeasureReportTypeBuilder] with element only
   factory MeasureReportTypeBuilder.empty() =>
-      MeasureReportTypeBuilder._(validatedValue: '');
+      MeasureReportTypeBuilder._(valueString: '');
 
   /// Factory constructor to create [MeasureReportTypeBuilder]
   /// from JSON.
@@ -62,14 +63,14 @@ class MeasureReportTypeBuilder extends FhirCodeEnumBuilder {
       );
     }
     return MeasureReportTypeBuilder._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// individual
   static MeasureReportTypeBuilder individual = MeasureReportTypeBuilder._(
-    validatedValue: 'individual',
+    valueString: 'individual',
     system: 'http://hl7.org/fhir/ValueSet/measure-report-type'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Individual'.toFhirStringBuilder,
@@ -77,7 +78,7 @@ class MeasureReportTypeBuilder extends FhirCodeEnumBuilder {
 
   /// subject_list
   static MeasureReportTypeBuilder subject_list = MeasureReportTypeBuilder._(
-    validatedValue: 'subject-list',
+    valueString: 'subject-list',
     system: 'http://hl7.org/fhir/ValueSet/measure-report-type'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Subject List'.toFhirStringBuilder,
@@ -85,7 +86,7 @@ class MeasureReportTypeBuilder extends FhirCodeEnumBuilder {
 
   /// summary
   static MeasureReportTypeBuilder summary = MeasureReportTypeBuilder._(
-    validatedValue: 'summary',
+    valueString: 'summary',
     system: 'http://hl7.org/fhir/ValueSet/measure-report-type'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Summary'.toFhirStringBuilder,
@@ -93,7 +94,7 @@ class MeasureReportTypeBuilder extends FhirCodeEnumBuilder {
 
   /// data_collection
   static MeasureReportTypeBuilder data_collection = MeasureReportTypeBuilder._(
-    validatedValue: 'data-collection',
+    valueString: 'data-collection',
     system: 'http://hl7.org/fhir/ValueSet/measure-report-type'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Data Collection'.toFhirStringBuilder,
@@ -101,7 +102,7 @@ class MeasureReportTypeBuilder extends FhirCodeEnumBuilder {
 
   /// For instances where an Element is present but not value
   static MeasureReportTypeBuilder elementOnly =
-      MeasureReportTypeBuilder._(validatedValue: '');
+      MeasureReportTypeBuilder._(valueString: '');
 
   /// List of all enum-like values
   static List<MeasureReportTypeBuilder> values = [
@@ -114,31 +115,31 @@ class MeasureReportTypeBuilder extends FhirCodeEnumBuilder {
   /// Clones the current instance
   @override
   MeasureReportTypeBuilder clone() => MeasureReportTypeBuilder._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
   MeasureReportTypeBuilder withElement(ElementBuilder? newElement) {
     return MeasureReportTypeBuilder._(
-        validatedValue: value, element: newElement,);
+        valueString: valueString, element: newElement,);
   }
 
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   MeasureReportTypeBuilder copyWith({
-    String? newValue,
+    dynamic newValue,
     ElementBuilder? element,
     FhirStringBuilder? id,
     List<FhirExtensionBuilder>? extension_,
@@ -149,11 +150,11 @@ class MeasureReportTypeBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError('Invalid input for MeasureReportType: $newValue');
     }
     return MeasureReportTypeBuilder._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
@@ -162,7 +163,7 @@ class MeasureReportTypeBuilder extends FhirCodeEnumBuilder {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath,
+      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

@@ -726,6 +726,21 @@ class SubstanceDefinitionBuilder extends DomainResourceBuilder {
           if (child is CommonLanguagesBuilder) {
             language = child;
             return;
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              // For enums, try to create directly from the string value
+              try {
+                final converted = CommonLanguagesBuilder(stringValue);
+                language = converted;
+                return;
+              } catch (e) {
+                // Continue if enum creation fails
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
           throw Exception('Invalid child type for $childName');
         }
@@ -745,7 +760,10 @@ class SubstanceDefinitionBuilder extends DomainResourceBuilder {
             return;
           } else if (child is ResourceBuilder) {
             // Add single element to existing list or create new list
-            contained = [...(contained ?? []), child];
+            contained = [
+              ...(contained ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -758,7 +776,10 @@ class SubstanceDefinitionBuilder extends DomainResourceBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -771,7 +792,10 @@ class SubstanceDefinitionBuilder extends DomainResourceBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -784,7 +808,10 @@ class SubstanceDefinitionBuilder extends DomainResourceBuilder {
             return;
           } else if (child is IdentifierBuilder) {
             // Add single element to existing list or create new list
-            identifier = [...(identifier ?? []), child];
+            identifier = [
+              ...(identifier ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -825,7 +852,10 @@ class SubstanceDefinitionBuilder extends DomainResourceBuilder {
             return;
           } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            classification = [...(classification ?? []), child];
+            classification = [
+              ...(classification ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -846,7 +876,10 @@ class SubstanceDefinitionBuilder extends DomainResourceBuilder {
             return;
           } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            grade = [...(grade ?? []), child];
+            grade = [
+              ...(grade ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -879,7 +912,10 @@ class SubstanceDefinitionBuilder extends DomainResourceBuilder {
             return;
           } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            informationSource = [...(informationSource ?? []), child];
+            informationSource = [
+              ...(informationSource ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -892,7 +928,10 @@ class SubstanceDefinitionBuilder extends DomainResourceBuilder {
             return;
           } else if (child is AnnotationBuilder) {
             // Add single element to existing list or create new list
-            note = [...(note ?? []), child];
+            note = [
+              ...(note ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -905,7 +944,10 @@ class SubstanceDefinitionBuilder extends DomainResourceBuilder {
             return;
           } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            manufacturer = [...(manufacturer ?? []), child];
+            manufacturer = [
+              ...(manufacturer ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -918,7 +960,10 @@ class SubstanceDefinitionBuilder extends DomainResourceBuilder {
             return;
           } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            supplier = [...(supplier ?? []), child];
+            supplier = [
+              ...(supplier ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -931,7 +976,10 @@ class SubstanceDefinitionBuilder extends DomainResourceBuilder {
             return;
           } else if (child is SubstanceDefinitionMoietyBuilder) {
             // Add single element to existing list or create new list
-            moiety = [...(moiety ?? []), child];
+            moiety = [
+              ...(moiety ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -944,7 +992,10 @@ class SubstanceDefinitionBuilder extends DomainResourceBuilder {
             return;
           } else if (child is SubstanceDefinitionPropertyBuilder) {
             // Add single element to existing list or create new list
-            property = [...(property ?? []), child];
+            property = [
+              ...(property ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -957,7 +1008,10 @@ class SubstanceDefinitionBuilder extends DomainResourceBuilder {
             return;
           } else if (child is SubstanceDefinitionMolecularWeightBuilder) {
             // Add single element to existing list or create new list
-            molecularWeight = [...(molecularWeight ?? []), child];
+            molecularWeight = [
+              ...(molecularWeight ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -978,7 +1032,10 @@ class SubstanceDefinitionBuilder extends DomainResourceBuilder {
             return;
           } else if (child is SubstanceDefinitionCodeBuilder) {
             // Add single element to existing list or create new list
-            code = [...(code ?? []), child];
+            code = [
+              ...(code ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -991,7 +1048,10 @@ class SubstanceDefinitionBuilder extends DomainResourceBuilder {
             return;
           } else if (child is SubstanceDefinitionNameBuilder) {
             // Add single element to existing list or create new list
-            name = [...(name ?? []), child];
+            name = [
+              ...(name ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -1004,7 +1064,10 @@ class SubstanceDefinitionBuilder extends DomainResourceBuilder {
             return;
           } else if (child is SubstanceDefinitionRelationshipBuilder) {
             // Add single element to existing list or create new list
-            relationship = [...(relationship ?? []), child];
+            relationship = [
+              ...(relationship ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -1941,7 +2004,10 @@ class SubstanceDefinitionMoietyBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -1954,7 +2020,10 @@ class SubstanceDefinitionMoietyBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -2104,7 +2173,10 @@ class SubstanceDefinitionMoietyBuilder extends BackboneElementBuilder {
         return ['FhirStringBuilder'];
       case 'amount':
       case 'amountX':
-        return ['QuantityBuilder', 'FhirStringBuilder'];
+        return [
+          'QuantityBuilder',
+          'FhirStringBuilder',
+        ];
       case 'amountQuantity':
         return ['QuantityBuilder'];
       case 'amountString':
@@ -2658,7 +2730,10 @@ class SubstanceDefinitionPropertyBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -2671,7 +2746,10 @@ class SubstanceDefinitionPropertyBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -3239,7 +3317,10 @@ class SubstanceDefinitionMolecularWeightBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -3252,7 +3333,10 @@ class SubstanceDefinitionMolecularWeightBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -3838,7 +3922,10 @@ class SubstanceDefinitionStructureBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -3851,7 +3938,10 @@ class SubstanceDefinitionStructureBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -3928,7 +4018,10 @@ class SubstanceDefinitionStructureBuilder extends BackboneElementBuilder {
             return;
           } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            technique = [...(technique ?? []), child];
+            technique = [
+              ...(technique ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -3941,7 +4034,10 @@ class SubstanceDefinitionStructureBuilder extends BackboneElementBuilder {
             return;
           } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            sourceDocument = [...(sourceDocument ?? []), child];
+            sourceDocument = [
+              ...(sourceDocument ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -3954,7 +4050,10 @@ class SubstanceDefinitionStructureBuilder extends BackboneElementBuilder {
             return;
           } else if (child is SubstanceDefinitionRepresentationBuilder) {
             // Add single element to existing list or create new list
-            representation = [...(representation ?? []), child];
+            representation = [
+              ...(representation ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -4521,7 +4620,10 @@ class SubstanceDefinitionRepresentationBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -4534,7 +4636,10 @@ class SubstanceDefinitionRepresentationBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -5097,7 +5202,10 @@ class SubstanceDefinitionCodeBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -5110,7 +5218,10 @@ class SubstanceDefinitionCodeBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -5159,7 +5270,10 @@ class SubstanceDefinitionCodeBuilder extends BackboneElementBuilder {
             return;
           } else if (child is AnnotationBuilder) {
             // Add single element to existing list or create new list
-            note = [...(note ?? []), child];
+            note = [
+              ...(note ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -5172,7 +5286,10 @@ class SubstanceDefinitionCodeBuilder extends BackboneElementBuilder {
             return;
           } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            source = [...(source ?? []), child];
+            source = [
+              ...(source ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -5830,7 +5947,10 @@ class SubstanceDefinitionNameBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -5843,7 +5963,10 @@ class SubstanceDefinitionNameBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -5912,7 +6035,10 @@ class SubstanceDefinitionNameBuilder extends BackboneElementBuilder {
             return;
           } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            language = [...(language ?? []), child];
+            language = [
+              ...(language ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -5925,7 +6051,10 @@ class SubstanceDefinitionNameBuilder extends BackboneElementBuilder {
             return;
           } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            domain = [...(domain ?? []), child];
+            domain = [
+              ...(domain ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -5938,7 +6067,10 @@ class SubstanceDefinitionNameBuilder extends BackboneElementBuilder {
             return;
           } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            jurisdiction = [...(jurisdiction ?? []), child];
+            jurisdiction = [
+              ...(jurisdiction ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -5951,7 +6083,10 @@ class SubstanceDefinitionNameBuilder extends BackboneElementBuilder {
             return;
           } else if (child is SubstanceDefinitionNameBuilder) {
             // Add single element to existing list or create new list
-            synonym = [...(synonym ?? []), child];
+            synonym = [
+              ...(synonym ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -5964,7 +6099,10 @@ class SubstanceDefinitionNameBuilder extends BackboneElementBuilder {
             return;
           } else if (child is SubstanceDefinitionNameBuilder) {
             // Add single element to existing list or create new list
-            translation = [...(translation ?? []), child];
+            translation = [
+              ...(translation ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -5977,7 +6115,10 @@ class SubstanceDefinitionNameBuilder extends BackboneElementBuilder {
             return;
           } else if (child is SubstanceDefinitionOfficialBuilder) {
             // Add single element to existing list or create new list
-            official = [...(official ?? []), child];
+            official = [
+              ...(official ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -5990,7 +6131,10 @@ class SubstanceDefinitionNameBuilder extends BackboneElementBuilder {
             return;
           } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            source = [...(source ?? []), child];
+            source = [
+              ...(source ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -6586,7 +6730,10 @@ class SubstanceDefinitionOfficialBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -6599,7 +6746,10 @@ class SubstanceDefinitionOfficialBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -7236,7 +7386,10 @@ class SubstanceDefinitionRelationshipBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -7249,7 +7402,10 @@ class SubstanceDefinitionRelationshipBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -7390,7 +7546,10 @@ class SubstanceDefinitionRelationshipBuilder extends BackboneElementBuilder {
             return;
           } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            source = [...(source ?? []), child];
+            source = [
+              ...(source ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -7413,7 +7572,10 @@ class SubstanceDefinitionRelationshipBuilder extends BackboneElementBuilder {
         return ['FhirExtensionBuilder'];
       case 'substanceDefinition':
       case 'substanceDefinitionX':
-        return ['ReferenceBuilder', 'CodeableConceptBuilder'];
+        return [
+          'ReferenceBuilder',
+          'CodeableConceptBuilder',
+        ];
       case 'substanceDefinitionReference':
         return ['ReferenceBuilder'];
       case 'substanceDefinitionCodeableConcept':
@@ -7424,7 +7586,11 @@ class SubstanceDefinitionRelationshipBuilder extends BackboneElementBuilder {
         return ['FhirBooleanBuilder'];
       case 'amount':
       case 'amountX':
-        return ['QuantityBuilder', 'RatioBuilder', 'FhirStringBuilder'];
+        return [
+          'QuantityBuilder',
+          'RatioBuilder',
+          'FhirStringBuilder',
+        ];
       case 'amountQuantity':
         return ['QuantityBuilder'];
       case 'amountRatio':
@@ -7990,7 +8156,10 @@ class SubstanceDefinitionSourceMaterialBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -8003,7 +8172,10 @@ class SubstanceDefinitionSourceMaterialBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -8048,7 +8220,10 @@ class SubstanceDefinitionSourceMaterialBuilder extends BackboneElementBuilder {
             return;
           } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            countryOfOrigin = [...(countryOfOrigin ?? []), child];
+            countryOfOrigin = [
+              ...(countryOfOrigin ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');

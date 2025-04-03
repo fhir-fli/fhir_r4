@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class OrientationTypeBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   OrientationTypeBuilder._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class OrientationTypeBuilder extends FhirCodeEnumBuilder {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory OrientationTypeBuilder(
-    String? raw, {
+    String? rawValue, {
     FhirUriBuilder? system,
     FhirStringBuilder? version,
     FhirStringBuilder? display,
@@ -29,9 +29,10 @@ class OrientationTypeBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
     return OrientationTypeBuilder._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -45,7 +46,7 @@ class OrientationTypeBuilder extends FhirCodeEnumBuilder {
 
   /// Create empty [OrientationTypeBuilder] with element only
   factory OrientationTypeBuilder.empty() =>
-      OrientationTypeBuilder._(validatedValue: '');
+      OrientationTypeBuilder._(valueString: '');
 
   /// Factory constructor to create [OrientationTypeBuilder]
   /// from JSON.
@@ -62,14 +63,14 @@ class OrientationTypeBuilder extends FhirCodeEnumBuilder {
       );
     }
     return OrientationTypeBuilder._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// sense
   static OrientationTypeBuilder sense = OrientationTypeBuilder._(
-    validatedValue: 'sense',
+    valueString: 'sense',
     system: 'http://hl7.org/fhir/ValueSet/orientation-type'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Sense orientation of referenceSeq'.toFhirStringBuilder,
@@ -77,7 +78,7 @@ class OrientationTypeBuilder extends FhirCodeEnumBuilder {
 
   /// antisense
   static OrientationTypeBuilder antisense = OrientationTypeBuilder._(
-    validatedValue: 'antisense',
+    valueString: 'antisense',
     system: 'http://hl7.org/fhir/ValueSet/orientation-type'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Antisense orientation of referenceSeq'.toFhirStringBuilder,
@@ -85,7 +86,7 @@ class OrientationTypeBuilder extends FhirCodeEnumBuilder {
 
   /// For instances where an Element is present but not value
   static OrientationTypeBuilder elementOnly =
-      OrientationTypeBuilder._(validatedValue: '');
+      OrientationTypeBuilder._(valueString: '');
 
   /// List of all enum-like values
   static List<OrientationTypeBuilder> values = [
@@ -96,30 +97,31 @@ class OrientationTypeBuilder extends FhirCodeEnumBuilder {
   /// Clones the current instance
   @override
   OrientationTypeBuilder clone() => OrientationTypeBuilder._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
   OrientationTypeBuilder withElement(ElementBuilder? newElement) {
-    return OrientationTypeBuilder._(validatedValue: value, element: newElement);
+    return OrientationTypeBuilder._(
+        valueString: valueString, element: newElement,);
   }
 
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   OrientationTypeBuilder copyWith({
-    String? newValue,
+    dynamic newValue,
     ElementBuilder? element,
     FhirStringBuilder? id,
     List<FhirExtensionBuilder>? extension_,
@@ -130,11 +132,11 @@ class OrientationTypeBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError('Invalid input for OrientationType: $newValue');
     }
     return OrientationTypeBuilder._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
@@ -143,7 +145,7 @@ class OrientationTypeBuilder extends FhirCodeEnumBuilder {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath,
+      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

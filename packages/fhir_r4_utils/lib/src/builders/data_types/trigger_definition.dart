@@ -359,7 +359,10 @@ class TriggerDefinitionBuilder extends DataTypeBuilder
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -369,6 +372,21 @@ class TriggerDefinitionBuilder extends DataTypeBuilder
           if (child is TriggerTypeBuilder) {
             type = child;
             return;
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              // For enums, try to create directly from the string value
+              try {
+                final converted = TriggerTypeBuilder(stringValue);
+                type = converted;
+                return;
+              } catch (e) {
+                // Continue if enum creation fails
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
           throw Exception('Invalid child type for $childName');
         }
@@ -461,7 +479,10 @@ class TriggerDefinitionBuilder extends DataTypeBuilder
             return;
           } else if (child is DataRequirementBuilder) {
             // Add single element to existing list or create new list
-            data = [...(data ?? []), child];
+            data = [
+              ...(data ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');

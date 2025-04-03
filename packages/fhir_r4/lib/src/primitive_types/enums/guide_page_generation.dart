@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class GuidePageGeneration extends FhirCodeEnum {
   // Private underscore constructor for internal use.
   GuidePageGeneration._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class GuidePageGeneration extends FhirCodeEnum {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory GuidePageGeneration(
-    String? raw, {
+    String? rawValue, {
     FhirUri? system,
     FhirString? version,
     FhirString? display,
@@ -29,9 +29,10 @@ class GuidePageGeneration extends FhirCodeEnum {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCode._validateCode(rawValue) : null;
     return GuidePageGeneration._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -44,8 +45,7 @@ class GuidePageGeneration extends FhirCodeEnum {
   }
 
   /// Create empty [GuidePageGeneration] with element only
-  factory GuidePageGeneration.empty() =>
-      GuidePageGeneration._(validatedValue: '');
+  factory GuidePageGeneration.empty() => GuidePageGeneration._(valueString: '');
 
   /// Factory constructor to create [GuidePageGeneration] from JSON.
   factory GuidePageGeneration.fromJson(Map<String, dynamic> json) {
@@ -60,14 +60,14 @@ class GuidePageGeneration extends FhirCodeEnum {
       );
     }
     return GuidePageGeneration._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// html
   static final GuidePageGeneration html = GuidePageGeneration._(
-    validatedValue: 'html',
+    valueString: 'html',
     system: 'http://hl7.org/fhir/ValueSet/guide-page-generation'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'HTML'.toFhirString,
@@ -75,7 +75,7 @@ class GuidePageGeneration extends FhirCodeEnum {
 
   /// markdown
   static final GuidePageGeneration markdown = GuidePageGeneration._(
-    validatedValue: 'markdown',
+    valueString: 'markdown',
     system: 'http://hl7.org/fhir/ValueSet/guide-page-generation'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Markdown'.toFhirString,
@@ -83,7 +83,7 @@ class GuidePageGeneration extends FhirCodeEnum {
 
   /// xml
   static final GuidePageGeneration xml = GuidePageGeneration._(
-    validatedValue: 'xml',
+    valueString: 'xml',
     system: 'http://hl7.org/fhir/ValueSet/guide-page-generation'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'XML'.toFhirString,
@@ -91,7 +91,7 @@ class GuidePageGeneration extends FhirCodeEnum {
 
   /// generated
   static final GuidePageGeneration generated = GuidePageGeneration._(
-    validatedValue: 'generated',
+    valueString: 'generated',
     system: 'http://hl7.org/fhir/ValueSet/guide-page-generation'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Generated'.toFhirString,
@@ -99,7 +99,7 @@ class GuidePageGeneration extends FhirCodeEnum {
 
   /// For instances where an Element is present but not value
   static final GuidePageGeneration elementOnly =
-      GuidePageGeneration._(validatedValue: '');
+      GuidePageGeneration._(valueString: '');
 
   /// List of all enum-like values
   static final List<GuidePageGeneration> values = [
@@ -112,14 +112,14 @@ class GuidePageGeneration extends FhirCodeEnum {
   /// Clones the current instance
   @override
   GuidePageGeneration clone() => GuidePageGeneration._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   GuidePageGeneration withElement(Element? newElement) {
     return GuidePageGeneration._(
-      validatedValue: value,
+      valueString: valueString,
       element: newElement,
     );
   }
@@ -127,18 +127,18 @@ class GuidePageGeneration extends FhirCodeEnum {
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   GuidePageGeneration copyWith({
-    String? newValue,
+    dynamic newValue,
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
@@ -149,11 +149,11 @@ class GuidePageGeneration extends FhirCodeEnum {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError('Invalid input for GuidePageGeneration: $newValue');
     }
     return GuidePageGeneration._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

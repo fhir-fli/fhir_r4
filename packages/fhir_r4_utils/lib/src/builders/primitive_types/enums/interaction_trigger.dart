@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class InteractionTriggerBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   InteractionTriggerBuilder._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class InteractionTriggerBuilder extends FhirCodeEnumBuilder {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory InteractionTriggerBuilder(
-    String? raw, {
+    String? rawValue, {
     FhirUriBuilder? system,
     FhirStringBuilder? version,
     FhirStringBuilder? display,
@@ -29,9 +29,10 @@ class InteractionTriggerBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
     return InteractionTriggerBuilder._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -45,7 +46,7 @@ class InteractionTriggerBuilder extends FhirCodeEnumBuilder {
 
   /// Create empty [InteractionTriggerBuilder] with element only
   factory InteractionTriggerBuilder.empty() =>
-      InteractionTriggerBuilder._(validatedValue: '');
+      InteractionTriggerBuilder._(valueString: '');
 
   /// Factory constructor to create [InteractionTriggerBuilder]
   /// from JSON.
@@ -62,14 +63,14 @@ class InteractionTriggerBuilder extends FhirCodeEnumBuilder {
       );
     }
     return InteractionTriggerBuilder._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// read
   static InteractionTriggerBuilder read = InteractionTriggerBuilder._(
-    validatedValue: 'read',
+    valueString: 'read',
     system: 'http://hl7.org/fhir/ValueSet/interaction-trigger'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'read'.toFhirStringBuilder,
@@ -77,7 +78,7 @@ class InteractionTriggerBuilder extends FhirCodeEnumBuilder {
 
   /// vread
   static InteractionTriggerBuilder vread = InteractionTriggerBuilder._(
-    validatedValue: 'vread',
+    valueString: 'vread',
     system: 'http://hl7.org/fhir/ValueSet/interaction-trigger'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'vread'.toFhirStringBuilder,
@@ -85,7 +86,7 @@ class InteractionTriggerBuilder extends FhirCodeEnumBuilder {
 
   /// update
   static InteractionTriggerBuilder update = InteractionTriggerBuilder._(
-    validatedValue: 'update',
+    valueString: 'update',
     system: 'http://hl7.org/fhir/ValueSet/interaction-trigger'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'update'.toFhirStringBuilder,
@@ -93,7 +94,7 @@ class InteractionTriggerBuilder extends FhirCodeEnumBuilder {
 
   /// patch
   static InteractionTriggerBuilder patch = InteractionTriggerBuilder._(
-    validatedValue: 'patch',
+    valueString: 'patch',
     system: 'http://hl7.org/fhir/ValueSet/interaction-trigger'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'patch'.toFhirStringBuilder,
@@ -101,7 +102,7 @@ class InteractionTriggerBuilder extends FhirCodeEnumBuilder {
 
   /// delete
   static InteractionTriggerBuilder delete = InteractionTriggerBuilder._(
-    validatedValue: 'delete',
+    valueString: 'delete',
     system: 'http://hl7.org/fhir/ValueSet/interaction-trigger'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'delete'.toFhirStringBuilder,
@@ -109,7 +110,7 @@ class InteractionTriggerBuilder extends FhirCodeEnumBuilder {
 
   /// history
   static InteractionTriggerBuilder history = InteractionTriggerBuilder._(
-    validatedValue: 'history',
+    valueString: 'history',
     system: 'http://hl7.org/fhir/ValueSet/interaction-trigger'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'history'.toFhirStringBuilder,
@@ -118,7 +119,7 @@ class InteractionTriggerBuilder extends FhirCodeEnumBuilder {
   /// history_instance
   static InteractionTriggerBuilder history_instance =
       InteractionTriggerBuilder._(
-    validatedValue: 'history-instance',
+    valueString: 'history-instance',
     system: 'http://hl7.org/fhir/ValueSet/interaction-trigger'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'history-instance'.toFhirStringBuilder,
@@ -126,7 +127,7 @@ class InteractionTriggerBuilder extends FhirCodeEnumBuilder {
 
   /// history_type
   static InteractionTriggerBuilder history_type = InteractionTriggerBuilder._(
-    validatedValue: 'history-type',
+    valueString: 'history-type',
     system: 'http://hl7.org/fhir/ValueSet/interaction-trigger'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'history-type'.toFhirStringBuilder,
@@ -134,7 +135,7 @@ class InteractionTriggerBuilder extends FhirCodeEnumBuilder {
 
   /// history_system
   static InteractionTriggerBuilder history_system = InteractionTriggerBuilder._(
-    validatedValue: 'history-system',
+    valueString: 'history-system',
     system: 'http://hl7.org/fhir/ValueSet/interaction-trigger'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'history-system'.toFhirStringBuilder,
@@ -142,7 +143,7 @@ class InteractionTriggerBuilder extends FhirCodeEnumBuilder {
 
   /// create
   static InteractionTriggerBuilder create = InteractionTriggerBuilder._(
-    validatedValue: 'create',
+    valueString: 'create',
     system: 'http://hl7.org/fhir/ValueSet/interaction-trigger'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'create'.toFhirStringBuilder,
@@ -150,7 +151,7 @@ class InteractionTriggerBuilder extends FhirCodeEnumBuilder {
 
   /// search
   static InteractionTriggerBuilder search = InteractionTriggerBuilder._(
-    validatedValue: 'search',
+    valueString: 'search',
     system: 'http://hl7.org/fhir/ValueSet/interaction-trigger'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'search'.toFhirStringBuilder,
@@ -158,7 +159,7 @@ class InteractionTriggerBuilder extends FhirCodeEnumBuilder {
 
   /// search_type
   static InteractionTriggerBuilder search_type = InteractionTriggerBuilder._(
-    validatedValue: 'search-type',
+    valueString: 'search-type',
     system: 'http://hl7.org/fhir/ValueSet/interaction-trigger'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'search-type'.toFhirStringBuilder,
@@ -166,7 +167,7 @@ class InteractionTriggerBuilder extends FhirCodeEnumBuilder {
 
   /// search_system
   static InteractionTriggerBuilder search_system = InteractionTriggerBuilder._(
-    validatedValue: 'search-system',
+    valueString: 'search-system',
     system: 'http://hl7.org/fhir/ValueSet/interaction-trigger'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'search-system'.toFhirStringBuilder,
@@ -174,7 +175,7 @@ class InteractionTriggerBuilder extends FhirCodeEnumBuilder {
 
   /// capabilities
   static InteractionTriggerBuilder capabilities = InteractionTriggerBuilder._(
-    validatedValue: 'capabilities',
+    valueString: 'capabilities',
     system: 'http://hl7.org/fhir/ValueSet/interaction-trigger'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'capabilities'.toFhirStringBuilder,
@@ -182,7 +183,7 @@ class InteractionTriggerBuilder extends FhirCodeEnumBuilder {
 
   /// transaction
   static InteractionTriggerBuilder transaction = InteractionTriggerBuilder._(
-    validatedValue: 'transaction',
+    valueString: 'transaction',
     system: 'http://hl7.org/fhir/ValueSet/interaction-trigger'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'transaction'.toFhirStringBuilder,
@@ -190,7 +191,7 @@ class InteractionTriggerBuilder extends FhirCodeEnumBuilder {
 
   /// batch
   static InteractionTriggerBuilder batch = InteractionTriggerBuilder._(
-    validatedValue: 'batch',
+    valueString: 'batch',
     system: 'http://hl7.org/fhir/ValueSet/interaction-trigger'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'batch'.toFhirStringBuilder,
@@ -198,7 +199,7 @@ class InteractionTriggerBuilder extends FhirCodeEnumBuilder {
 
   /// operation
   static InteractionTriggerBuilder operation = InteractionTriggerBuilder._(
-    validatedValue: 'operation',
+    valueString: 'operation',
     system: 'http://hl7.org/fhir/ValueSet/interaction-trigger'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'operation'.toFhirStringBuilder,
@@ -206,7 +207,7 @@ class InteractionTriggerBuilder extends FhirCodeEnumBuilder {
 
   /// For instances where an Element is present but not value
   static InteractionTriggerBuilder elementOnly =
-      InteractionTriggerBuilder._(validatedValue: '');
+      InteractionTriggerBuilder._(valueString: '');
 
   /// List of all enum-like values
   static List<InteractionTriggerBuilder> values = [
@@ -232,31 +233,31 @@ class InteractionTriggerBuilder extends FhirCodeEnumBuilder {
   /// Clones the current instance
   @override
   InteractionTriggerBuilder clone() => InteractionTriggerBuilder._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
   InteractionTriggerBuilder withElement(ElementBuilder? newElement) {
     return InteractionTriggerBuilder._(
-        validatedValue: value, element: newElement,);
+        valueString: valueString, element: newElement,);
   }
 
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   InteractionTriggerBuilder copyWith({
-    String? newValue,
+    dynamic newValue,
     ElementBuilder? element,
     FhirStringBuilder? id,
     List<FhirExtensionBuilder>? extension_,
@@ -267,11 +268,11 @@ class InteractionTriggerBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError('Invalid input for InteractionTrigger: $newValue');
     }
     return InteractionTriggerBuilder._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
@@ -280,7 +281,7 @@ class InteractionTriggerBuilder extends FhirCodeEnumBuilder {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath,
+      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

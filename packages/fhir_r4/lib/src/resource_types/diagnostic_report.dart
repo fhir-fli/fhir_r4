@@ -785,7 +785,10 @@ class DiagnosticReport extends DomainResource {
             return copyWith(contained: newList);
           } else if (child is Resource) {
             // Add single element to existing list or create new list
-            final newList = [...?contained, child];
+            final newList = [
+              ...?contained,
+              child,
+            ];
             return copyWith(contained: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -799,7 +802,10 @@ class DiagnosticReport extends DomainResource {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -813,7 +819,10 @@ class DiagnosticReport extends DomainResource {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -827,7 +836,10 @@ class DiagnosticReport extends DomainResource {
             return copyWith(identifier: newList);
           } else if (child is Identifier) {
             // Add single element to existing list or create new list
-            final newList = [...?identifier, child];
+            final newList = [
+              ...?identifier,
+              child,
+            ];
             return copyWith(identifier: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -841,7 +853,10 @@ class DiagnosticReport extends DomainResource {
             return copyWith(basedOn: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...?basedOn, child];
+            final newList = [
+              ...?basedOn,
+              child,
+            ];
             return copyWith(basedOn: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -863,7 +878,10 @@ class DiagnosticReport extends DomainResource {
             return copyWith(category: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...?category, child];
+            final newList = [
+              ...?category,
+              child,
+            ];
             return copyWith(category: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -939,7 +957,10 @@ class DiagnosticReport extends DomainResource {
             return copyWith(performer: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...?performer, child];
+            final newList = [
+              ...?performer,
+              child,
+            ];
             return copyWith(performer: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -953,7 +974,10 @@ class DiagnosticReport extends DomainResource {
             return copyWith(resultsInterpreter: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...?resultsInterpreter, child];
+            final newList = [
+              ...?resultsInterpreter,
+              child,
+            ];
             return copyWith(resultsInterpreter: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -967,7 +991,10 @@ class DiagnosticReport extends DomainResource {
             return copyWith(specimen: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...?specimen, child];
+            final newList = [
+              ...?specimen,
+              child,
+            ];
             return copyWith(specimen: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -981,7 +1008,10 @@ class DiagnosticReport extends DomainResource {
             return copyWith(result: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...?result, child];
+            final newList = [
+              ...?result,
+              child,
+            ];
             return copyWith(result: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -995,7 +1025,10 @@ class DiagnosticReport extends DomainResource {
             return copyWith(imagingStudy: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...?imagingStudy, child];
+            final newList = [
+              ...?imagingStudy,
+              child,
+            ];
             return copyWith(imagingStudy: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1009,7 +1042,10 @@ class DiagnosticReport extends DomainResource {
             return copyWith(media: newList);
           } else if (child is DiagnosticReportMedia) {
             // Add single element to existing list or create new list
-            final newList = [...?media, child];
+            final newList = [
+              ...?media,
+              child,
+            ];
             return copyWith(media: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1031,7 +1067,10 @@ class DiagnosticReport extends DomainResource {
             return copyWith(conclusionCode: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...?conclusionCode, child];
+            final newList = [
+              ...?conclusionCode,
+              child,
+            ];
             return copyWith(conclusionCode: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1045,7 +1084,10 @@ class DiagnosticReport extends DomainResource {
             return copyWith(presentedForm: newList);
           } else if (child is Attachment) {
             // Add single element to existing list or create new list
-            final newList = [...?presentedForm, child];
+            final newList = [
+              ...?presentedForm,
+              child,
+            ];
             return copyWith(presentedForm: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1093,7 +1135,10 @@ class DiagnosticReport extends DomainResource {
         return ['Reference'];
       case 'effective':
       case 'effectiveX':
-        return ['FhirDateTime', 'Period'];
+        return [
+          'FhirDateTime',
+          'Period',
+        ];
       case 'effectiveDateTime':
         return ['FhirDateTime'];
       case 'effectivePeriod':
@@ -1981,7 +2026,10 @@ class DiagnosticReportMedia extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1995,7 +2043,10 @@ class DiagnosticReportMedia extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');

@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class RelatedArtifactTypeBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   RelatedArtifactTypeBuilder._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class RelatedArtifactTypeBuilder extends FhirCodeEnumBuilder {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory RelatedArtifactTypeBuilder(
-    String? raw, {
+    String? rawValue, {
     FhirUriBuilder? system,
     FhirStringBuilder? version,
     FhirStringBuilder? display,
@@ -29,9 +29,10 @@ class RelatedArtifactTypeBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
     return RelatedArtifactTypeBuilder._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -45,7 +46,7 @@ class RelatedArtifactTypeBuilder extends FhirCodeEnumBuilder {
 
   /// Create empty [RelatedArtifactTypeBuilder] with element only
   factory RelatedArtifactTypeBuilder.empty() =>
-      RelatedArtifactTypeBuilder._(validatedValue: '');
+      RelatedArtifactTypeBuilder._(valueString: '');
 
   /// Factory constructor to create [RelatedArtifactTypeBuilder]
   /// from JSON.
@@ -62,7 +63,7 @@ class RelatedArtifactTypeBuilder extends FhirCodeEnumBuilder {
       );
     }
     return RelatedArtifactTypeBuilder._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
@@ -70,7 +71,7 @@ class RelatedArtifactTypeBuilder extends FhirCodeEnumBuilder {
   /// documentation
   static RelatedArtifactTypeBuilder documentation =
       RelatedArtifactTypeBuilder._(
-    validatedValue: 'documentation',
+    valueString: 'documentation',
     system:
         'http://hl7.org/fhir/ValueSet/related-artifact-type'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -80,7 +81,7 @@ class RelatedArtifactTypeBuilder extends FhirCodeEnumBuilder {
   /// justification
   static RelatedArtifactTypeBuilder justification =
       RelatedArtifactTypeBuilder._(
-    validatedValue: 'justification',
+    valueString: 'justification',
     system:
         'http://hl7.org/fhir/ValueSet/related-artifact-type'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -89,7 +90,7 @@ class RelatedArtifactTypeBuilder extends FhirCodeEnumBuilder {
 
   /// citation
   static RelatedArtifactTypeBuilder citation = RelatedArtifactTypeBuilder._(
-    validatedValue: 'citation',
+    valueString: 'citation',
     system:
         'http://hl7.org/fhir/ValueSet/related-artifact-type'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -98,7 +99,7 @@ class RelatedArtifactTypeBuilder extends FhirCodeEnumBuilder {
 
   /// predecessor
   static RelatedArtifactTypeBuilder predecessor = RelatedArtifactTypeBuilder._(
-    validatedValue: 'predecessor',
+    valueString: 'predecessor',
     system:
         'http://hl7.org/fhir/ValueSet/related-artifact-type'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -107,7 +108,7 @@ class RelatedArtifactTypeBuilder extends FhirCodeEnumBuilder {
 
   /// successor
   static RelatedArtifactTypeBuilder successor = RelatedArtifactTypeBuilder._(
-    validatedValue: 'successor',
+    valueString: 'successor',
     system:
         'http://hl7.org/fhir/ValueSet/related-artifact-type'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -116,7 +117,7 @@ class RelatedArtifactTypeBuilder extends FhirCodeEnumBuilder {
 
   /// derived_from
   static RelatedArtifactTypeBuilder derived_from = RelatedArtifactTypeBuilder._(
-    validatedValue: 'derived-from',
+    valueString: 'derived-from',
     system:
         'http://hl7.org/fhir/ValueSet/related-artifact-type'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -125,7 +126,7 @@ class RelatedArtifactTypeBuilder extends FhirCodeEnumBuilder {
 
   /// depends_on
   static RelatedArtifactTypeBuilder depends_on = RelatedArtifactTypeBuilder._(
-    validatedValue: 'depends-on',
+    valueString: 'depends-on',
     system:
         'http://hl7.org/fhir/ValueSet/related-artifact-type'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -134,7 +135,7 @@ class RelatedArtifactTypeBuilder extends FhirCodeEnumBuilder {
 
   /// composed_of
   static RelatedArtifactTypeBuilder composed_of = RelatedArtifactTypeBuilder._(
-    validatedValue: 'composed-of',
+    valueString: 'composed-of',
     system:
         'http://hl7.org/fhir/ValueSet/related-artifact-type'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -143,7 +144,7 @@ class RelatedArtifactTypeBuilder extends FhirCodeEnumBuilder {
 
   /// For instances where an Element is present but not value
   static RelatedArtifactTypeBuilder elementOnly =
-      RelatedArtifactTypeBuilder._(validatedValue: '');
+      RelatedArtifactTypeBuilder._(valueString: '');
 
   /// List of all enum-like values
   static List<RelatedArtifactTypeBuilder> values = [
@@ -160,31 +161,31 @@ class RelatedArtifactTypeBuilder extends FhirCodeEnumBuilder {
   /// Clones the current instance
   @override
   RelatedArtifactTypeBuilder clone() => RelatedArtifactTypeBuilder._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
   RelatedArtifactTypeBuilder withElement(ElementBuilder? newElement) {
     return RelatedArtifactTypeBuilder._(
-        validatedValue: value, element: newElement,);
+        valueString: valueString, element: newElement,);
   }
 
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   RelatedArtifactTypeBuilder copyWith({
-    String? newValue,
+    dynamic newValue,
     ElementBuilder? element,
     FhirStringBuilder? id,
     List<FhirExtensionBuilder>? extension_,
@@ -195,11 +196,11 @@ class RelatedArtifactTypeBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError('Invalid input for RelatedArtifactType: $newValue');
     }
     return RelatedArtifactTypeBuilder._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
@@ -208,7 +209,7 @@ class RelatedArtifactTypeBuilder extends FhirCodeEnumBuilder {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath,
+      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

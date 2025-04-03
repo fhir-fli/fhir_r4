@@ -778,7 +778,10 @@ class SubstanceDefinition extends DomainResource {
             return copyWith(contained: newList);
           } else if (child is Resource) {
             // Add single element to existing list or create new list
-            final newList = [...?contained, child];
+            final newList = [
+              ...?contained,
+              child,
+            ];
             return copyWith(contained: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -792,7 +795,10 @@ class SubstanceDefinition extends DomainResource {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -806,7 +812,10 @@ class SubstanceDefinition extends DomainResource {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -820,7 +829,10 @@ class SubstanceDefinition extends DomainResource {
             return copyWith(identifier: newList);
           } else if (child is Identifier) {
             // Add single element to existing list or create new list
-            final newList = [...?identifier, child];
+            final newList = [
+              ...?identifier,
+              child,
+            ];
             return copyWith(identifier: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -850,7 +862,10 @@ class SubstanceDefinition extends DomainResource {
             return copyWith(classification: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...?classification, child];
+            final newList = [
+              ...?classification,
+              child,
+            ];
             return copyWith(classification: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -872,7 +887,10 @@ class SubstanceDefinition extends DomainResource {
             return copyWith(grade: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...?grade, child];
+            final newList = [
+              ...?grade,
+              child,
+            ];
             return copyWith(grade: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -894,7 +912,10 @@ class SubstanceDefinition extends DomainResource {
             return copyWith(informationSource: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...?informationSource, child];
+            final newList = [
+              ...?informationSource,
+              child,
+            ];
             return copyWith(informationSource: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -908,7 +929,10 @@ class SubstanceDefinition extends DomainResource {
             return copyWith(note: newList);
           } else if (child is Annotation) {
             // Add single element to existing list or create new list
-            final newList = [...?note, child];
+            final newList = [
+              ...?note,
+              child,
+            ];
             return copyWith(note: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -922,7 +946,10 @@ class SubstanceDefinition extends DomainResource {
             return copyWith(manufacturer: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...?manufacturer, child];
+            final newList = [
+              ...?manufacturer,
+              child,
+            ];
             return copyWith(manufacturer: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -936,7 +963,10 @@ class SubstanceDefinition extends DomainResource {
             return copyWith(supplier: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...?supplier, child];
+            final newList = [
+              ...?supplier,
+              child,
+            ];
             return copyWith(supplier: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -950,7 +980,10 @@ class SubstanceDefinition extends DomainResource {
             return copyWith(moiety: newList);
           } else if (child is SubstanceDefinitionMoiety) {
             // Add single element to existing list or create new list
-            final newList = [...?moiety, child];
+            final newList = [
+              ...?moiety,
+              child,
+            ];
             return copyWith(moiety: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -964,7 +997,10 @@ class SubstanceDefinition extends DomainResource {
             return copyWith(property: newList);
           } else if (child is SubstanceDefinitionProperty) {
             // Add single element to existing list or create new list
-            final newList = [...?property, child];
+            final newList = [
+              ...?property,
+              child,
+            ];
             return copyWith(property: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -978,7 +1014,10 @@ class SubstanceDefinition extends DomainResource {
             return copyWith(molecularWeight: newList);
           } else if (child is SubstanceDefinitionMolecularWeight) {
             // Add single element to existing list or create new list
-            final newList = [...?molecularWeight, child];
+            final newList = [
+              ...?molecularWeight,
+              child,
+            ];
             return copyWith(molecularWeight: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1000,7 +1039,10 @@ class SubstanceDefinition extends DomainResource {
             return copyWith(code: newList);
           } else if (child is SubstanceDefinitionCode) {
             // Add single element to existing list or create new list
-            final newList = [...?code, child];
+            final newList = [
+              ...?code,
+              child,
+            ];
             return copyWith(code: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1014,7 +1056,10 @@ class SubstanceDefinition extends DomainResource {
             return copyWith(name: newList);
           } else if (child is SubstanceDefinitionName) {
             // Add single element to existing list or create new list
-            final newList = [...?name, child];
+            final newList = [
+              ...?name,
+              child,
+            ];
             return copyWith(name: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1028,7 +1073,10 @@ class SubstanceDefinition extends DomainResource {
             return copyWith(relationship: newList);
           } else if (child is SubstanceDefinitionRelationship) {
             // Add single element to existing list or create new list
-            final newList = [...?relationship, child];
+            final newList = [
+              ...?relationship,
+              child,
+            ];
             return copyWith(relationship: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2131,7 +2179,10 @@ class SubstanceDefinitionMoiety extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2145,7 +2196,10 @@ class SubstanceDefinitionMoiety extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2267,7 +2321,10 @@ class SubstanceDefinitionMoiety extends BackboneElement {
         return ['FhirString'];
       case 'amount':
       case 'amountX':
-        return ['Quantity', 'FhirString'];
+        return [
+          'Quantity',
+          'FhirString',
+        ];
       case 'amountQuantity':
         return ['Quantity'];
       case 'amountString':
@@ -2854,7 +2911,10 @@ class SubstanceDefinitionProperty extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2868,7 +2928,10 @@ class SubstanceDefinitionProperty extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -3447,7 +3510,10 @@ class SubstanceDefinitionMolecularWeight extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -3461,7 +3527,10 @@ class SubstanceDefinitionMolecularWeight extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -4083,7 +4152,10 @@ class SubstanceDefinitionStructure extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -4097,7 +4169,10 @@ class SubstanceDefinitionStructure extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -4151,7 +4226,10 @@ class SubstanceDefinitionStructure extends BackboneElement {
             return copyWith(technique: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...?technique, child];
+            final newList = [
+              ...?technique,
+              child,
+            ];
             return copyWith(technique: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -4165,7 +4243,10 @@ class SubstanceDefinitionStructure extends BackboneElement {
             return copyWith(sourceDocument: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...?sourceDocument, child];
+            final newList = [
+              ...?sourceDocument,
+              child,
+            ];
             return copyWith(sourceDocument: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -4179,7 +4260,10 @@ class SubstanceDefinitionStructure extends BackboneElement {
             return copyWith(representation: newList);
           } else if (child is SubstanceDefinitionRepresentation) {
             // Add single element to existing list or create new list
-            final newList = [...?representation, child];
+            final newList = [
+              ...?representation,
+              child,
+            ];
             return copyWith(representation: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -4804,7 +4888,10 @@ class SubstanceDefinitionRepresentation extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -4818,7 +4905,10 @@ class SubstanceDefinitionRepresentation extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -5401,7 +5491,10 @@ class SubstanceDefinitionCode extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -5415,7 +5508,10 @@ class SubstanceDefinitionCode extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -5453,7 +5549,10 @@ class SubstanceDefinitionCode extends BackboneElement {
             return copyWith(note: newList);
           } else if (child is Annotation) {
             // Add single element to existing list or create new list
-            final newList = [...?note, child];
+            final newList = [
+              ...?note,
+              child,
+            ];
             return copyWith(note: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -5467,7 +5566,10 @@ class SubstanceDefinitionCode extends BackboneElement {
             return copyWith(source: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...?source, child];
+            final newList = [
+              ...?source,
+              child,
+            ];
             return copyWith(source: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -6188,7 +6290,10 @@ class SubstanceDefinitionName extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -6202,7 +6307,10 @@ class SubstanceDefinitionName extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -6248,7 +6356,10 @@ class SubstanceDefinitionName extends BackboneElement {
             return copyWith(language: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...?language, child];
+            final newList = [
+              ...?language,
+              child,
+            ];
             return copyWith(language: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -6262,7 +6373,10 @@ class SubstanceDefinitionName extends BackboneElement {
             return copyWith(domain: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...?domain, child];
+            final newList = [
+              ...?domain,
+              child,
+            ];
             return copyWith(domain: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -6276,7 +6390,10 @@ class SubstanceDefinitionName extends BackboneElement {
             return copyWith(jurisdiction: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...?jurisdiction, child];
+            final newList = [
+              ...?jurisdiction,
+              child,
+            ];
             return copyWith(jurisdiction: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -6290,7 +6407,10 @@ class SubstanceDefinitionName extends BackboneElement {
             return copyWith(synonym: newList);
           } else if (child is SubstanceDefinitionName) {
             // Add single element to existing list or create new list
-            final newList = [...?synonym, child];
+            final newList = [
+              ...?synonym,
+              child,
+            ];
             return copyWith(synonym: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -6304,7 +6424,10 @@ class SubstanceDefinitionName extends BackboneElement {
             return copyWith(translation: newList);
           } else if (child is SubstanceDefinitionName) {
             // Add single element to existing list or create new list
-            final newList = [...?translation, child];
+            final newList = [
+              ...?translation,
+              child,
+            ];
             return copyWith(translation: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -6318,7 +6441,10 @@ class SubstanceDefinitionName extends BackboneElement {
             return copyWith(official: newList);
           } else if (child is SubstanceDefinitionOfficial) {
             // Add single element to existing list or create new list
-            final newList = [...?official, child];
+            final newList = [
+              ...?official,
+              child,
+            ];
             return copyWith(official: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -6332,7 +6458,10 @@ class SubstanceDefinitionName extends BackboneElement {
             return copyWith(source: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...?source, child];
+            final newList = [
+              ...?source,
+              child,
+            ];
             return copyWith(source: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -7010,7 +7139,10 @@ class SubstanceDefinitionOfficial extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -7024,7 +7156,10 @@ class SubstanceDefinitionOfficial extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -7675,7 +7810,10 @@ class SubstanceDefinitionRelationship extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -7689,7 +7827,10 @@ class SubstanceDefinitionRelationship extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -7806,7 +7947,10 @@ class SubstanceDefinitionRelationship extends BackboneElement {
             return copyWith(source: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...?source, child];
+            final newList = [
+              ...?source,
+              child,
+            ];
             return copyWith(source: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -7830,7 +7974,10 @@ class SubstanceDefinitionRelationship extends BackboneElement {
         return ['FhirExtension'];
       case 'substanceDefinition':
       case 'substanceDefinitionX':
-        return ['Reference', 'CodeableConcept'];
+        return [
+          'Reference',
+          'CodeableConcept',
+        ];
       case 'substanceDefinitionReference':
         return ['Reference'];
       case 'substanceDefinitionCodeableConcept':
@@ -7841,7 +7988,11 @@ class SubstanceDefinitionRelationship extends BackboneElement {
         return ['FhirBoolean'];
       case 'amount':
       case 'amountX':
-        return ['Quantity', 'Ratio', 'FhirString'];
+        return [
+          'Quantity',
+          'Ratio',
+          'FhirString',
+        ];
       case 'amountQuantity':
         return ['Quantity'];
       case 'amountRatio':
@@ -8457,7 +8608,10 @@ class SubstanceDefinitionSourceMaterial extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -8471,7 +8625,10 @@ class SubstanceDefinitionSourceMaterial extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -8517,7 +8674,10 @@ class SubstanceDefinitionSourceMaterial extends BackboneElement {
             return copyWith(countryOfOrigin: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...?countryOfOrigin, child];
+            final newList = [
+              ...?countryOfOrigin,
+              child,
+            ];
             return copyWith(countryOfOrigin: newList);
           } else {
             throw Exception('Invalid child type for $childName');

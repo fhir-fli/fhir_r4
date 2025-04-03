@@ -784,7 +784,10 @@ class AdverseEvent extends DomainResource {
             return copyWith(contained: newList);
           } else if (child is Resource) {
             // Add single element to existing list or create new list
-            final newList = [...?contained, child];
+            final newList = [
+              ...?contained,
+              child,
+            ];
             return copyWith(contained: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -798,7 +801,10 @@ class AdverseEvent extends DomainResource {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -812,7 +818,10 @@ class AdverseEvent extends DomainResource {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -842,7 +851,10 @@ class AdverseEvent extends DomainResource {
             return copyWith(category: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...?category, child];
+            final newList = [
+              ...?category,
+              child,
+            ];
             return copyWith(category: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -904,7 +916,10 @@ class AdverseEvent extends DomainResource {
             return copyWith(resultingCondition: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...?resultingCondition, child];
+            final newList = [
+              ...?resultingCondition,
+              child,
+            ];
             return copyWith(resultingCondition: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -958,7 +973,10 @@ class AdverseEvent extends DomainResource {
             return copyWith(contributor: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...?contributor, child];
+            final newList = [
+              ...?contributor,
+              child,
+            ];
             return copyWith(contributor: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -972,7 +990,10 @@ class AdverseEvent extends DomainResource {
             return copyWith(suspectEntity: newList);
           } else if (child is AdverseEventSuspectEntity) {
             // Add single element to existing list or create new list
-            final newList = [...?suspectEntity, child];
+            final newList = [
+              ...?suspectEntity,
+              child,
+            ];
             return copyWith(suspectEntity: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -986,7 +1007,10 @@ class AdverseEvent extends DomainResource {
             return copyWith(subjectMedicalHistory: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...?subjectMedicalHistory, child];
+            final newList = [
+              ...?subjectMedicalHistory,
+              child,
+            ];
             return copyWith(subjectMedicalHistory: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1000,7 +1024,10 @@ class AdverseEvent extends DomainResource {
             return copyWith(referenceDocument: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...?referenceDocument, child];
+            final newList = [
+              ...?referenceDocument,
+              child,
+            ];
             return copyWith(referenceDocument: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1014,7 +1041,10 @@ class AdverseEvent extends DomainResource {
             return copyWith(study: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...?study, child];
+            final newList = [
+              ...?study,
+              child,
+            ];
             return copyWith(study: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1967,7 +1997,10 @@ class AdverseEventSuspectEntity extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1981,7 +2014,10 @@ class AdverseEventSuspectEntity extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2003,7 +2039,10 @@ class AdverseEventSuspectEntity extends BackboneElement {
             return copyWith(causality: newList);
           } else if (child is AdverseEventCausality) {
             // Add single element to existing list or create new list
-            final newList = [...?causality, child];
+            final newList = [
+              ...?causality,
+              child,
+            ];
             return copyWith(causality: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2486,7 +2525,10 @@ class AdverseEventCausality extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2500,7 +2542,10 @@ class AdverseEventCausality extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');

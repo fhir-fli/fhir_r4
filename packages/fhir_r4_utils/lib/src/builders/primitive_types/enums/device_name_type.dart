@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class DeviceNameTypeBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   DeviceNameTypeBuilder._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class DeviceNameTypeBuilder extends FhirCodeEnumBuilder {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory DeviceNameTypeBuilder(
-    String? raw, {
+    String? rawValue, {
     FhirUriBuilder? system,
     FhirStringBuilder? version,
     FhirStringBuilder? display,
@@ -29,9 +29,10 @@ class DeviceNameTypeBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
     return DeviceNameTypeBuilder._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -45,7 +46,7 @@ class DeviceNameTypeBuilder extends FhirCodeEnumBuilder {
 
   /// Create empty [DeviceNameTypeBuilder] with element only
   factory DeviceNameTypeBuilder.empty() =>
-      DeviceNameTypeBuilder._(validatedValue: '');
+      DeviceNameTypeBuilder._(valueString: '');
 
   /// Factory constructor to create [DeviceNameTypeBuilder]
   /// from JSON.
@@ -62,14 +63,14 @@ class DeviceNameTypeBuilder extends FhirCodeEnumBuilder {
       );
     }
     return DeviceNameTypeBuilder._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// udi_label_name
   static DeviceNameTypeBuilder udi_label_name = DeviceNameTypeBuilder._(
-    validatedValue: 'udi-label-name',
+    valueString: 'udi-label-name',
     system: 'http://hl7.org/fhir/ValueSet/device-nametype'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'UDI Label name'.toFhirStringBuilder,
@@ -77,7 +78,7 @@ class DeviceNameTypeBuilder extends FhirCodeEnumBuilder {
 
   /// user_friendly_name
   static DeviceNameTypeBuilder user_friendly_name = DeviceNameTypeBuilder._(
-    validatedValue: 'user-friendly-name',
+    valueString: 'user-friendly-name',
     system: 'http://hl7.org/fhir/ValueSet/device-nametype'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'User Friendly name'.toFhirStringBuilder,
@@ -85,7 +86,7 @@ class DeviceNameTypeBuilder extends FhirCodeEnumBuilder {
 
   /// patient_reported_name
   static DeviceNameTypeBuilder patient_reported_name = DeviceNameTypeBuilder._(
-    validatedValue: 'patient-reported-name',
+    valueString: 'patient-reported-name',
     system: 'http://hl7.org/fhir/ValueSet/device-nametype'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Patient Reported name'.toFhirStringBuilder,
@@ -93,7 +94,7 @@ class DeviceNameTypeBuilder extends FhirCodeEnumBuilder {
 
   /// manufacturer_name
   static DeviceNameTypeBuilder manufacturer_name = DeviceNameTypeBuilder._(
-    validatedValue: 'manufacturer-name',
+    valueString: 'manufacturer-name',
     system: 'http://hl7.org/fhir/ValueSet/device-nametype'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Manufacturer name'.toFhirStringBuilder,
@@ -101,7 +102,7 @@ class DeviceNameTypeBuilder extends FhirCodeEnumBuilder {
 
   /// model_name
   static DeviceNameTypeBuilder model_name = DeviceNameTypeBuilder._(
-    validatedValue: 'model-name',
+    valueString: 'model-name',
     system: 'http://hl7.org/fhir/ValueSet/device-nametype'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Model name'.toFhirStringBuilder,
@@ -109,7 +110,7 @@ class DeviceNameTypeBuilder extends FhirCodeEnumBuilder {
 
   /// other
   static DeviceNameTypeBuilder other = DeviceNameTypeBuilder._(
-    validatedValue: 'other',
+    valueString: 'other',
     system: 'http://hl7.org/fhir/ValueSet/device-nametype'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'other'.toFhirStringBuilder,
@@ -117,7 +118,7 @@ class DeviceNameTypeBuilder extends FhirCodeEnumBuilder {
 
   /// For instances where an Element is present but not value
   static DeviceNameTypeBuilder elementOnly =
-      DeviceNameTypeBuilder._(validatedValue: '');
+      DeviceNameTypeBuilder._(valueString: '');
 
   /// List of all enum-like values
   static List<DeviceNameTypeBuilder> values = [
@@ -132,30 +133,31 @@ class DeviceNameTypeBuilder extends FhirCodeEnumBuilder {
   /// Clones the current instance
   @override
   DeviceNameTypeBuilder clone() => DeviceNameTypeBuilder._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
   DeviceNameTypeBuilder withElement(ElementBuilder? newElement) {
-    return DeviceNameTypeBuilder._(validatedValue: value, element: newElement);
+    return DeviceNameTypeBuilder._(
+        valueString: valueString, element: newElement,);
   }
 
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   DeviceNameTypeBuilder copyWith({
-    String? newValue,
+    dynamic newValue,
     ElementBuilder? element,
     FhirStringBuilder? id,
     List<FhirExtensionBuilder>? extension_,
@@ -166,11 +168,11 @@ class DeviceNameTypeBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError('Invalid input for DeviceNameType: $newValue');
     }
     return DeviceNameTypeBuilder._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
@@ -179,7 +181,7 @@ class DeviceNameTypeBuilder extends FhirCodeEnumBuilder {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath,
+      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

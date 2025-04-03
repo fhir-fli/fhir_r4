@@ -6,7 +6,7 @@ part of '../primitive_types.dart';
 class CommonLanguages extends FhirCodeEnum {
   // Private underscore constructor for internal use.
   CommonLanguages._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -20,7 +20,7 @@ class CommonLanguages extends FhirCodeEnum {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory CommonLanguages(
-    String? raw, {
+    String? rawValue, {
     FhirUri? system,
     FhirString? version,
     FhirString? display,
@@ -30,9 +30,10 @@ class CommonLanguages extends FhirCodeEnum {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCode._validateCode(rawValue) : null;
     return CommonLanguages._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -45,7 +46,7 @@ class CommonLanguages extends FhirCodeEnum {
   }
 
   /// Create empty [CommonLanguages] with element only
-  factory CommonLanguages.empty() => CommonLanguages._(validatedValue: '');
+  factory CommonLanguages.empty() => CommonLanguages._(valueString: '');
 
   /// Factory constructor to create [CommonLanguages] from JSON.
   factory CommonLanguages.fromJson(Map<String, dynamic> json) {
@@ -60,14 +61,14 @@ class CommonLanguages extends FhirCodeEnum {
       );
     }
     return CommonLanguages._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// ar
   static final CommonLanguages ar = CommonLanguages._(
-    validatedValue: 'ar',
+    valueString: 'ar',
     system: 'http://hl7.org/fhir/ValueSet/languages'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Arabic'.toFhirString,
@@ -75,7 +76,7 @@ class CommonLanguages extends FhirCodeEnum {
 
   /// bn
   static final CommonLanguages bn = CommonLanguages._(
-    validatedValue: 'bn',
+    valueString: 'bn',
     system: 'http://hl7.org/fhir/ValueSet/languages'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Bengali'.toFhirString,
@@ -83,7 +84,7 @@ class CommonLanguages extends FhirCodeEnum {
 
   /// cs
   static final CommonLanguages cs = CommonLanguages._(
-    validatedValue: 'cs',
+    valueString: 'cs',
     system: 'http://hl7.org/fhir/ValueSet/languages'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Czech'.toFhirString,
@@ -91,7 +92,7 @@ class CommonLanguages extends FhirCodeEnum {
 
   /// da
   static final CommonLanguages da = CommonLanguages._(
-    validatedValue: 'da',
+    valueString: 'da',
     system: 'http://hl7.org/fhir/ValueSet/languages'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Danish'.toFhirString,
@@ -99,7 +100,7 @@ class CommonLanguages extends FhirCodeEnum {
 
   /// de
   static final CommonLanguages de = CommonLanguages._(
-    validatedValue: 'de',
+    valueString: 'de',
     system: 'http://hl7.org/fhir/ValueSet/languages'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'German'.toFhirString,
@@ -107,7 +108,7 @@ class CommonLanguages extends FhirCodeEnum {
 
   /// de_AT
   static final CommonLanguages de_AT = CommonLanguages._(
-    validatedValue: 'de-AT',
+    valueString: 'de-AT',
     system: 'http://hl7.org/fhir/ValueSet/languages'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'German (Austria)'.toFhirString,
@@ -115,7 +116,7 @@ class CommonLanguages extends FhirCodeEnum {
 
   /// de_CH
   static final CommonLanguages de_CH = CommonLanguages._(
-    validatedValue: 'de-CH',
+    valueString: 'de-CH',
     system: 'http://hl7.org/fhir/ValueSet/languages'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'German (Switzerland)'.toFhirString,
@@ -123,7 +124,7 @@ class CommonLanguages extends FhirCodeEnum {
 
   /// de_DE
   static final CommonLanguages de_DE = CommonLanguages._(
-    validatedValue: 'de-DE',
+    valueString: 'de-DE',
     system: 'http://hl7.org/fhir/ValueSet/languages'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'German (Germany)'.toFhirString,
@@ -131,7 +132,7 @@ class CommonLanguages extends FhirCodeEnum {
 
   /// el
   static final CommonLanguages el = CommonLanguages._(
-    validatedValue: 'el',
+    valueString: 'el',
     system: 'http://hl7.org/fhir/ValueSet/languages'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Greek'.toFhirString,
@@ -139,7 +140,7 @@ class CommonLanguages extends FhirCodeEnum {
 
   /// en
   static final CommonLanguages en = CommonLanguages._(
-    validatedValue: 'en',
+    valueString: 'en',
     system: 'http://hl7.org/fhir/ValueSet/languages'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'English'.toFhirString,
@@ -147,7 +148,7 @@ class CommonLanguages extends FhirCodeEnum {
 
   /// en_AU
   static final CommonLanguages en_AU = CommonLanguages._(
-    validatedValue: 'en-AU',
+    valueString: 'en-AU',
     system: 'http://hl7.org/fhir/ValueSet/languages'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'English (Australia)'.toFhirString,
@@ -155,7 +156,7 @@ class CommonLanguages extends FhirCodeEnum {
 
   /// en_CA
   static final CommonLanguages en_CA = CommonLanguages._(
-    validatedValue: 'en-CA',
+    valueString: 'en-CA',
     system: 'http://hl7.org/fhir/ValueSet/languages'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'English (Canada)'.toFhirString,
@@ -163,7 +164,7 @@ class CommonLanguages extends FhirCodeEnum {
 
   /// en_GB
   static final CommonLanguages en_GB = CommonLanguages._(
-    validatedValue: 'en-GB',
+    valueString: 'en-GB',
     system: 'http://hl7.org/fhir/ValueSet/languages'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'English (Great Britain)'.toFhirString,
@@ -171,7 +172,7 @@ class CommonLanguages extends FhirCodeEnum {
 
   /// en_IN
   static final CommonLanguages en_IN = CommonLanguages._(
-    validatedValue: 'en-IN',
+    valueString: 'en-IN',
     system: 'http://hl7.org/fhir/ValueSet/languages'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'English (India)'.toFhirString,
@@ -179,7 +180,7 @@ class CommonLanguages extends FhirCodeEnum {
 
   /// en_NZ
   static final CommonLanguages en_NZ = CommonLanguages._(
-    validatedValue: 'en-NZ',
+    valueString: 'en-NZ',
     system: 'http://hl7.org/fhir/ValueSet/languages'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'English (New Zeland)'.toFhirString,
@@ -187,7 +188,7 @@ class CommonLanguages extends FhirCodeEnum {
 
   /// en_SG
   static final CommonLanguages en_SG = CommonLanguages._(
-    validatedValue: 'en-SG',
+    valueString: 'en-SG',
     system: 'http://hl7.org/fhir/ValueSet/languages'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'English (Singapore)'.toFhirString,
@@ -195,7 +196,7 @@ class CommonLanguages extends FhirCodeEnum {
 
   /// en_US
   static final CommonLanguages en_US = CommonLanguages._(
-    validatedValue: 'en-US',
+    valueString: 'en-US',
     system: 'http://hl7.org/fhir/ValueSet/languages'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'English (United States)'.toFhirString,
@@ -203,7 +204,7 @@ class CommonLanguages extends FhirCodeEnum {
 
   /// es
   static final CommonLanguages es = CommonLanguages._(
-    validatedValue: 'es',
+    valueString: 'es',
     system: 'http://hl7.org/fhir/ValueSet/languages'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Spanish'.toFhirString,
@@ -211,7 +212,7 @@ class CommonLanguages extends FhirCodeEnum {
 
   /// es_AR
   static final CommonLanguages es_AR = CommonLanguages._(
-    validatedValue: 'es-AR',
+    valueString: 'es-AR',
     system: 'http://hl7.org/fhir/ValueSet/languages'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Spanish (Argentina)'.toFhirString,
@@ -219,7 +220,7 @@ class CommonLanguages extends FhirCodeEnum {
 
   /// es_ES
   static final CommonLanguages es_ES = CommonLanguages._(
-    validatedValue: 'es-ES',
+    valueString: 'es-ES',
     system: 'http://hl7.org/fhir/ValueSet/languages'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Spanish (Spain)'.toFhirString,
@@ -227,7 +228,7 @@ class CommonLanguages extends FhirCodeEnum {
 
   /// es_UY
   static final CommonLanguages es_UY = CommonLanguages._(
-    validatedValue: 'es-UY',
+    valueString: 'es-UY',
     system: 'http://hl7.org/fhir/ValueSet/languages'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Spanish (Uruguay)'.toFhirString,
@@ -235,7 +236,7 @@ class CommonLanguages extends FhirCodeEnum {
 
   /// fi
   static final CommonLanguages fi = CommonLanguages._(
-    validatedValue: 'fi',
+    valueString: 'fi',
     system: 'http://hl7.org/fhir/ValueSet/languages'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Finnish'.toFhirString,
@@ -243,7 +244,7 @@ class CommonLanguages extends FhirCodeEnum {
 
   /// fr
   static final CommonLanguages fr = CommonLanguages._(
-    validatedValue: 'fr',
+    valueString: 'fr',
     system: 'http://hl7.org/fhir/ValueSet/languages'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'French'.toFhirString,
@@ -251,7 +252,7 @@ class CommonLanguages extends FhirCodeEnum {
 
   /// fr_BE
   static final CommonLanguages fr_BE = CommonLanguages._(
-    validatedValue: 'fr-BE',
+    valueString: 'fr-BE',
     system: 'http://hl7.org/fhir/ValueSet/languages'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'French (Belgium)'.toFhirString,
@@ -259,7 +260,7 @@ class CommonLanguages extends FhirCodeEnum {
 
   /// fr_CH
   static final CommonLanguages fr_CH = CommonLanguages._(
-    validatedValue: 'fr-CH',
+    valueString: 'fr-CH',
     system: 'http://hl7.org/fhir/ValueSet/languages'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'French (Switzerland)'.toFhirString,
@@ -267,7 +268,7 @@ class CommonLanguages extends FhirCodeEnum {
 
   /// fr_FR
   static final CommonLanguages fr_FR = CommonLanguages._(
-    validatedValue: 'fr-FR',
+    valueString: 'fr-FR',
     system: 'http://hl7.org/fhir/ValueSet/languages'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'French (France)'.toFhirString,
@@ -275,7 +276,7 @@ class CommonLanguages extends FhirCodeEnum {
 
   /// fy
   static final CommonLanguages fy = CommonLanguages._(
-    validatedValue: 'fy',
+    valueString: 'fy',
     system: 'http://hl7.org/fhir/ValueSet/languages'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Frysian'.toFhirString,
@@ -283,7 +284,7 @@ class CommonLanguages extends FhirCodeEnum {
 
   /// fy_NL
   static final CommonLanguages fy_NL = CommonLanguages._(
-    validatedValue: 'fy-NL',
+    valueString: 'fy-NL',
     system: 'http://hl7.org/fhir/ValueSet/languages'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Frysian (Netherlands)'.toFhirString,
@@ -291,7 +292,7 @@ class CommonLanguages extends FhirCodeEnum {
 
   /// hi
   static final CommonLanguages hi = CommonLanguages._(
-    validatedValue: 'hi',
+    valueString: 'hi',
     system: 'http://hl7.org/fhir/ValueSet/languages'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Hindi'.toFhirString,
@@ -299,7 +300,7 @@ class CommonLanguages extends FhirCodeEnum {
 
   /// hr
   static final CommonLanguages hr = CommonLanguages._(
-    validatedValue: 'hr',
+    valueString: 'hr',
     system: 'http://hl7.org/fhir/ValueSet/languages'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Croatian'.toFhirString,
@@ -307,7 +308,7 @@ class CommonLanguages extends FhirCodeEnum {
 
   /// it
   static final CommonLanguages it = CommonLanguages._(
-    validatedValue: 'it',
+    valueString: 'it',
     system: 'http://hl7.org/fhir/ValueSet/languages'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Italian'.toFhirString,
@@ -315,7 +316,7 @@ class CommonLanguages extends FhirCodeEnum {
 
   /// it_CH
   static final CommonLanguages it_CH = CommonLanguages._(
-    validatedValue: 'it-CH',
+    valueString: 'it-CH',
     system: 'http://hl7.org/fhir/ValueSet/languages'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Italian (Switzerland)'.toFhirString,
@@ -323,7 +324,7 @@ class CommonLanguages extends FhirCodeEnum {
 
   /// it_IT
   static final CommonLanguages it_IT = CommonLanguages._(
-    validatedValue: 'it-IT',
+    valueString: 'it-IT',
     system: 'http://hl7.org/fhir/ValueSet/languages'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Italian (Italy)'.toFhirString,
@@ -331,7 +332,7 @@ class CommonLanguages extends FhirCodeEnum {
 
   /// ja
   static final CommonLanguages ja = CommonLanguages._(
-    validatedValue: 'ja',
+    valueString: 'ja',
     system: 'http://hl7.org/fhir/ValueSet/languages'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Japanese'.toFhirString,
@@ -339,7 +340,7 @@ class CommonLanguages extends FhirCodeEnum {
 
   /// ko
   static final CommonLanguages ko = CommonLanguages._(
-    validatedValue: 'ko',
+    valueString: 'ko',
     system: 'http://hl7.org/fhir/ValueSet/languages'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Korean'.toFhirString,
@@ -347,7 +348,7 @@ class CommonLanguages extends FhirCodeEnum {
 
   /// nl
   static final CommonLanguages nl = CommonLanguages._(
-    validatedValue: 'nl',
+    valueString: 'nl',
     system: 'http://hl7.org/fhir/ValueSet/languages'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Dutch'.toFhirString,
@@ -355,7 +356,7 @@ class CommonLanguages extends FhirCodeEnum {
 
   /// nl_BE
   static final CommonLanguages nl_BE = CommonLanguages._(
-    validatedValue: 'nl-BE',
+    valueString: 'nl-BE',
     system: 'http://hl7.org/fhir/ValueSet/languages'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Dutch (Belgium)'.toFhirString,
@@ -363,7 +364,7 @@ class CommonLanguages extends FhirCodeEnum {
 
   /// nl_NL
   static final CommonLanguages nl_NL = CommonLanguages._(
-    validatedValue: 'nl-NL',
+    valueString: 'nl-NL',
     system: 'http://hl7.org/fhir/ValueSet/languages'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Dutch (Netherlands)'.toFhirString,
@@ -371,7 +372,7 @@ class CommonLanguages extends FhirCodeEnum {
 
   /// no
   static final CommonLanguages no = CommonLanguages._(
-    validatedValue: 'no',
+    valueString: 'no',
     system: 'http://hl7.org/fhir/ValueSet/languages'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Norwegian'.toFhirString,
@@ -379,7 +380,7 @@ class CommonLanguages extends FhirCodeEnum {
 
   /// no_NO
   static final CommonLanguages no_NO = CommonLanguages._(
-    validatedValue: 'no-NO',
+    valueString: 'no-NO',
     system: 'http://hl7.org/fhir/ValueSet/languages'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Norwegian (Norway)'.toFhirString,
@@ -387,7 +388,7 @@ class CommonLanguages extends FhirCodeEnum {
 
   /// pa
   static final CommonLanguages pa = CommonLanguages._(
-    validatedValue: 'pa',
+    valueString: 'pa',
     system: 'http://hl7.org/fhir/ValueSet/languages'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Punjabi'.toFhirString,
@@ -395,7 +396,7 @@ class CommonLanguages extends FhirCodeEnum {
 
   /// pl
   static final CommonLanguages pl = CommonLanguages._(
-    validatedValue: 'pl',
+    valueString: 'pl',
     system: 'http://hl7.org/fhir/ValueSet/languages'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Polish'.toFhirString,
@@ -403,7 +404,7 @@ class CommonLanguages extends FhirCodeEnum {
 
   /// pt
   static final CommonLanguages pt = CommonLanguages._(
-    validatedValue: 'pt',
+    valueString: 'pt',
     system: 'http://hl7.org/fhir/ValueSet/languages'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Portuguese'.toFhirString,
@@ -411,7 +412,7 @@ class CommonLanguages extends FhirCodeEnum {
 
   /// pt_BR
   static final CommonLanguages pt_BR = CommonLanguages._(
-    validatedValue: 'pt-BR',
+    valueString: 'pt-BR',
     system: 'http://hl7.org/fhir/ValueSet/languages'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Portuguese (Brazil)'.toFhirString,
@@ -419,7 +420,7 @@ class CommonLanguages extends FhirCodeEnum {
 
   /// ru
   static final CommonLanguages ru = CommonLanguages._(
-    validatedValue: 'ru',
+    valueString: 'ru',
     system: 'http://hl7.org/fhir/ValueSet/languages'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Russian'.toFhirString,
@@ -427,7 +428,7 @@ class CommonLanguages extends FhirCodeEnum {
 
   /// ru_RU
   static final CommonLanguages ru_RU = CommonLanguages._(
-    validatedValue: 'ru-RU',
+    valueString: 'ru-RU',
     system: 'http://hl7.org/fhir/ValueSet/languages'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Russian (Russia)'.toFhirString,
@@ -435,7 +436,7 @@ class CommonLanguages extends FhirCodeEnum {
 
   /// sr
   static final CommonLanguages sr = CommonLanguages._(
-    validatedValue: 'sr',
+    valueString: 'sr',
     system: 'http://hl7.org/fhir/ValueSet/languages'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Serbian'.toFhirString,
@@ -443,7 +444,7 @@ class CommonLanguages extends FhirCodeEnum {
 
   /// sr_RS
   static final CommonLanguages sr_RS = CommonLanguages._(
-    validatedValue: 'sr-RS',
+    valueString: 'sr-RS',
     system: 'http://hl7.org/fhir/ValueSet/languages'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Serbian (Serbia)'.toFhirString,
@@ -451,7 +452,7 @@ class CommonLanguages extends FhirCodeEnum {
 
   /// sv
   static final CommonLanguages sv = CommonLanguages._(
-    validatedValue: 'sv',
+    valueString: 'sv',
     system: 'http://hl7.org/fhir/ValueSet/languages'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Swedish'.toFhirString,
@@ -459,7 +460,7 @@ class CommonLanguages extends FhirCodeEnum {
 
   /// sv_SE
   static final CommonLanguages sv_SE = CommonLanguages._(
-    validatedValue: 'sv-SE',
+    valueString: 'sv-SE',
     system: 'http://hl7.org/fhir/ValueSet/languages'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Swedish (Sweden)'.toFhirString,
@@ -467,7 +468,7 @@ class CommonLanguages extends FhirCodeEnum {
 
   /// te
   static final CommonLanguages te = CommonLanguages._(
-    validatedValue: 'te',
+    valueString: 'te',
     system: 'http://hl7.org/fhir/ValueSet/languages'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Telegu'.toFhirString,
@@ -475,7 +476,7 @@ class CommonLanguages extends FhirCodeEnum {
 
   /// zh
   static final CommonLanguages zh = CommonLanguages._(
-    validatedValue: 'zh',
+    valueString: 'zh',
     system: 'http://hl7.org/fhir/ValueSet/languages'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Chinese'.toFhirString,
@@ -483,7 +484,7 @@ class CommonLanguages extends FhirCodeEnum {
 
   /// zh_CN
   static final CommonLanguages zh_CN = CommonLanguages._(
-    validatedValue: 'zh-CN',
+    valueString: 'zh-CN',
     system: 'http://hl7.org/fhir/ValueSet/languages'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Chinese (China)'.toFhirString,
@@ -491,7 +492,7 @@ class CommonLanguages extends FhirCodeEnum {
 
   /// zh_HK
   static final CommonLanguages zh_HK = CommonLanguages._(
-    validatedValue: 'zh-HK',
+    valueString: 'zh-HK',
     system: 'http://hl7.org/fhir/ValueSet/languages'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Chinese (Hong Kong)'.toFhirString,
@@ -499,7 +500,7 @@ class CommonLanguages extends FhirCodeEnum {
 
   /// zh_SG
   static final CommonLanguages zh_SG = CommonLanguages._(
-    validatedValue: 'zh-SG',
+    valueString: 'zh-SG',
     system: 'http://hl7.org/fhir/ValueSet/languages'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Chinese (Singapore)'.toFhirString,
@@ -507,15 +508,14 @@ class CommonLanguages extends FhirCodeEnum {
 
   /// zh_TW
   static final CommonLanguages zh_TW = CommonLanguages._(
-    validatedValue: 'zh-TW',
+    valueString: 'zh-TW',
     system: 'http://hl7.org/fhir/ValueSet/languages'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Chinese (Taiwan)'.toFhirString,
   );
 
   /// For instances where an Element is present but not value
-  static final CommonLanguages elementOnly =
-      CommonLanguages._(validatedValue: '');
+  static final CommonLanguages elementOnly = CommonLanguages._(valueString: '');
 
   /// List of all enum-like values
   static final List<CommonLanguages> values = [
@@ -580,14 +580,14 @@ class CommonLanguages extends FhirCodeEnum {
   /// Clones the current instance
   @override
   CommonLanguages clone() => CommonLanguages._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   CommonLanguages withElement(Element? newElement) {
     return CommonLanguages._(
-      validatedValue: value,
+      valueString: valueString,
       element: newElement,
     );
   }
@@ -595,18 +595,18 @@ class CommonLanguages extends FhirCodeEnum {
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   CommonLanguages copyWith({
-    String? newValue,
+    dynamic newValue,
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
@@ -617,11 +617,11 @@ class CommonLanguages extends FhirCodeEnum {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError('Invalid input for CommonLanguages: $newValue');
     }
     return CommonLanguages._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

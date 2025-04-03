@@ -681,7 +681,10 @@ class Composition extends DomainResource {
             return copyWith(contained: newList);
           } else if (child is Resource) {
             // Add single element to existing list or create new list
-            final newList = [...?contained, child];
+            final newList = [
+              ...?contained,
+              child,
+            ];
             return copyWith(contained: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -695,7 +698,10 @@ class Composition extends DomainResource {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -709,7 +715,10 @@ class Composition extends DomainResource {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -747,7 +756,10 @@ class Composition extends DomainResource {
             return copyWith(category: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...?category, child];
+            final newList = [
+              ...?category,
+              child,
+            ];
             return copyWith(category: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -785,7 +797,10 @@ class Composition extends DomainResource {
             return copyWith(author: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...author, child];
+            final newList = [
+              ...author,
+              child,
+            ];
             return copyWith(author: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -815,7 +830,10 @@ class Composition extends DomainResource {
             return copyWith(attester: newList);
           } else if (child is CompositionAttester) {
             // Add single element to existing list or create new list
-            final newList = [...?attester, child];
+            final newList = [
+              ...?attester,
+              child,
+            ];
             return copyWith(attester: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -837,7 +855,10 @@ class Composition extends DomainResource {
             return copyWith(relatesTo: newList);
           } else if (child is CompositionRelatesTo) {
             // Add single element to existing list or create new list
-            final newList = [...?relatesTo, child];
+            final newList = [
+              ...?relatesTo,
+              child,
+            ];
             return copyWith(relatesTo: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -851,7 +872,10 @@ class Composition extends DomainResource {
             return copyWith(event: newList);
           } else if (child is CompositionEvent) {
             // Add single element to existing list or create new list
-            final newList = [...?event, child];
+            final newList = [
+              ...?event,
+              child,
+            ];
             return copyWith(event: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -865,7 +889,10 @@ class Composition extends DomainResource {
             return copyWith(section: newList);
           } else if (child is CompositionSection) {
             // Add single element to existing list or create new list
-            final newList = [...?section, child];
+            final newList = [
+              ...?section,
+              child,
+            ];
             return copyWith(section: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1719,7 +1746,10 @@ class CompositionAttester extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1733,7 +1763,10 @@ class CompositionAttester extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2238,7 +2271,10 @@ class CompositionRelatesTo extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2252,7 +2288,10 @@ class CompositionRelatesTo extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2316,7 +2355,10 @@ class CompositionRelatesTo extends BackboneElement {
         return ['FhirCode'];
       case 'target':
       case 'targetX':
-        return ['Identifier', 'Reference'];
+        return [
+          'Identifier',
+          'Reference',
+        ];
       case 'targetIdentifier':
         return ['Identifier'];
       case 'targetReference':
@@ -2778,7 +2820,10 @@ class CompositionEvent extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2792,7 +2837,10 @@ class CompositionEvent extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2806,7 +2854,10 @@ class CompositionEvent extends BackboneElement {
             return copyWith(code: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...?code, child];
+            final newList = [
+              ...?code,
+              child,
+            ];
             return copyWith(code: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2828,7 +2879,10 @@ class CompositionEvent extends BackboneElement {
             return copyWith(detail: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...?detail, child];
+            final newList = [
+              ...?detail,
+              child,
+            ];
             return copyWith(detail: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -3490,7 +3544,10 @@ class CompositionSection extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -3504,7 +3561,10 @@ class CompositionSection extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -3534,7 +3594,10 @@ class CompositionSection extends BackboneElement {
             return copyWith(author: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...?author, child];
+            final newList = [
+              ...?author,
+              child,
+            ];
             return copyWith(author: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -3580,7 +3643,10 @@ class CompositionSection extends BackboneElement {
             return copyWith(entry: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...?entry, child];
+            final newList = [
+              ...?entry,
+              child,
+            ];
             return copyWith(entry: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -3602,7 +3668,10 @@ class CompositionSection extends BackboneElement {
             return copyWith(section: newList);
           } else if (child is CompositionSection) {
             // Add single element to existing list or create new list
-            final newList = [...?section, child];
+            final newList = [
+              ...?section,
+              child,
+            ];
             return copyWith(section: newList);
           } else {
             throw Exception('Invalid child type for $childName');

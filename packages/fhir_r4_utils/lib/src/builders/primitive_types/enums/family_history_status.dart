@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class FamilyHistoryStatusBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   FamilyHistoryStatusBuilder._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class FamilyHistoryStatusBuilder extends FhirCodeEnumBuilder {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory FamilyHistoryStatusBuilder(
-    String? raw, {
+    String? rawValue, {
     FhirUriBuilder? system,
     FhirStringBuilder? version,
     FhirStringBuilder? display,
@@ -29,9 +29,10 @@ class FamilyHistoryStatusBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
     return FamilyHistoryStatusBuilder._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -45,7 +46,7 @@ class FamilyHistoryStatusBuilder extends FhirCodeEnumBuilder {
 
   /// Create empty [FamilyHistoryStatusBuilder] with element only
   factory FamilyHistoryStatusBuilder.empty() =>
-      FamilyHistoryStatusBuilder._(validatedValue: '');
+      FamilyHistoryStatusBuilder._(valueString: '');
 
   /// Factory constructor to create [FamilyHistoryStatusBuilder]
   /// from JSON.
@@ -62,14 +63,14 @@ class FamilyHistoryStatusBuilder extends FhirCodeEnumBuilder {
       );
     }
     return FamilyHistoryStatusBuilder._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// partial
   static FamilyHistoryStatusBuilder partial = FamilyHistoryStatusBuilder._(
-    validatedValue: 'partial',
+    valueString: 'partial',
     system: 'http://hl7.org/fhir/ValueSet/history-status'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Partial'.toFhirStringBuilder,
@@ -77,7 +78,7 @@ class FamilyHistoryStatusBuilder extends FhirCodeEnumBuilder {
 
   /// completed
   static FamilyHistoryStatusBuilder completed = FamilyHistoryStatusBuilder._(
-    validatedValue: 'completed',
+    valueString: 'completed',
     system: 'http://hl7.org/fhir/ValueSet/history-status'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Completed'.toFhirStringBuilder,
@@ -86,7 +87,7 @@ class FamilyHistoryStatusBuilder extends FhirCodeEnumBuilder {
   /// entered_in_error
   static FamilyHistoryStatusBuilder entered_in_error =
       FamilyHistoryStatusBuilder._(
-    validatedValue: 'entered-in-error',
+    valueString: 'entered-in-error',
     system: 'http://hl7.org/fhir/ValueSet/history-status'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Entered in Error'.toFhirStringBuilder,
@@ -95,7 +96,7 @@ class FamilyHistoryStatusBuilder extends FhirCodeEnumBuilder {
   /// health_unknown
   static FamilyHistoryStatusBuilder health_unknown =
       FamilyHistoryStatusBuilder._(
-    validatedValue: 'health-unknown',
+    valueString: 'health-unknown',
     system: 'http://hl7.org/fhir/ValueSet/history-status'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Health Unknown'.toFhirStringBuilder,
@@ -103,7 +104,7 @@ class FamilyHistoryStatusBuilder extends FhirCodeEnumBuilder {
 
   /// For instances where an Element is present but not value
   static FamilyHistoryStatusBuilder elementOnly =
-      FamilyHistoryStatusBuilder._(validatedValue: '');
+      FamilyHistoryStatusBuilder._(valueString: '');
 
   /// List of all enum-like values
   static List<FamilyHistoryStatusBuilder> values = [
@@ -116,31 +117,31 @@ class FamilyHistoryStatusBuilder extends FhirCodeEnumBuilder {
   /// Clones the current instance
   @override
   FamilyHistoryStatusBuilder clone() => FamilyHistoryStatusBuilder._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
   FamilyHistoryStatusBuilder withElement(ElementBuilder? newElement) {
     return FamilyHistoryStatusBuilder._(
-        validatedValue: value, element: newElement,);
+        valueString: valueString, element: newElement,);
   }
 
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   FamilyHistoryStatusBuilder copyWith({
-    String? newValue,
+    dynamic newValue,
     ElementBuilder? element,
     FhirStringBuilder? id,
     List<FhirExtensionBuilder>? extension_,
@@ -151,11 +152,11 @@ class FamilyHistoryStatusBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError('Invalid input for FamilyHistoryStatus: $newValue');
     }
     return FamilyHistoryStatusBuilder._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
@@ -164,7 +165,7 @@ class FamilyHistoryStatusBuilder extends FhirCodeEnumBuilder {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath,
+      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

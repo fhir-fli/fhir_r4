@@ -6,7 +6,7 @@ part of '../primitive_types.dart';
 class CarePlanIntentBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   CarePlanIntentBuilder._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -20,7 +20,7 @@ class CarePlanIntentBuilder extends FhirCodeEnumBuilder {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory CarePlanIntentBuilder(
-    String? raw, {
+    String? rawValue, {
     FhirUriBuilder? system,
     FhirStringBuilder? version,
     FhirStringBuilder? display,
@@ -30,9 +30,10 @@ class CarePlanIntentBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
     return CarePlanIntentBuilder._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -46,7 +47,7 @@ class CarePlanIntentBuilder extends FhirCodeEnumBuilder {
 
   /// Create empty [CarePlanIntentBuilder] with element only
   factory CarePlanIntentBuilder.empty() =>
-      CarePlanIntentBuilder._(validatedValue: '');
+      CarePlanIntentBuilder._(valueString: '');
 
   /// Factory constructor to create [CarePlanIntentBuilder]
   /// from JSON.
@@ -63,14 +64,14 @@ class CarePlanIntentBuilder extends FhirCodeEnumBuilder {
       );
     }
     return CarePlanIntentBuilder._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// proposal
   static CarePlanIntentBuilder proposal = CarePlanIntentBuilder._(
-    validatedValue: 'proposal',
+    valueString: 'proposal',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-intent'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Proposal'.toFhirStringBuilder,
@@ -78,7 +79,7 @@ class CarePlanIntentBuilder extends FhirCodeEnumBuilder {
 
   /// plan
   static CarePlanIntentBuilder plan = CarePlanIntentBuilder._(
-    validatedValue: 'plan',
+    valueString: 'plan',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-intent'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Plan'.toFhirStringBuilder,
@@ -86,7 +87,7 @@ class CarePlanIntentBuilder extends FhirCodeEnumBuilder {
 
   /// directive
   static CarePlanIntentBuilder directive = CarePlanIntentBuilder._(
-    validatedValue: 'directive',
+    valueString: 'directive',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-intent'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Directive'.toFhirStringBuilder,
@@ -94,7 +95,7 @@ class CarePlanIntentBuilder extends FhirCodeEnumBuilder {
 
   /// order
   static CarePlanIntentBuilder order = CarePlanIntentBuilder._(
-    validatedValue: 'order',
+    valueString: 'order',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-intent'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Order'.toFhirStringBuilder,
@@ -102,7 +103,7 @@ class CarePlanIntentBuilder extends FhirCodeEnumBuilder {
 
   /// original_order
   static CarePlanIntentBuilder original_order = CarePlanIntentBuilder._(
-    validatedValue: 'original-order',
+    valueString: 'original-order',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-intent'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Original Order'.toFhirStringBuilder,
@@ -110,7 +111,7 @@ class CarePlanIntentBuilder extends FhirCodeEnumBuilder {
 
   /// reflex_order
   static CarePlanIntentBuilder reflex_order = CarePlanIntentBuilder._(
-    validatedValue: 'reflex-order',
+    valueString: 'reflex-order',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-intent'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Reflex Order'.toFhirStringBuilder,
@@ -118,7 +119,7 @@ class CarePlanIntentBuilder extends FhirCodeEnumBuilder {
 
   /// filler_order
   static CarePlanIntentBuilder filler_order = CarePlanIntentBuilder._(
-    validatedValue: 'filler-order',
+    valueString: 'filler-order',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-intent'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Filler Order'.toFhirStringBuilder,
@@ -126,7 +127,7 @@ class CarePlanIntentBuilder extends FhirCodeEnumBuilder {
 
   /// instance_order
   static CarePlanIntentBuilder instance_order = CarePlanIntentBuilder._(
-    validatedValue: 'instance-order',
+    valueString: 'instance-order',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-intent'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Instance Order'.toFhirStringBuilder,
@@ -134,7 +135,7 @@ class CarePlanIntentBuilder extends FhirCodeEnumBuilder {
 
   /// option
   static CarePlanIntentBuilder option = CarePlanIntentBuilder._(
-    validatedValue: 'option',
+    valueString: 'option',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-intent'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Option'.toFhirStringBuilder,
@@ -142,7 +143,7 @@ class CarePlanIntentBuilder extends FhirCodeEnumBuilder {
 
   /// For instances where an Element is present but not value
   static CarePlanIntentBuilder elementOnly =
-      CarePlanIntentBuilder._(validatedValue: '');
+      CarePlanIntentBuilder._(valueString: '');
 
   /// List of all enum-like values
   static List<CarePlanIntentBuilder> values = [
@@ -160,30 +161,31 @@ class CarePlanIntentBuilder extends FhirCodeEnumBuilder {
   /// Clones the current instance
   @override
   CarePlanIntentBuilder clone() => CarePlanIntentBuilder._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
   CarePlanIntentBuilder withElement(ElementBuilder? newElement) {
-    return CarePlanIntentBuilder._(validatedValue: value, element: newElement);
+    return CarePlanIntentBuilder._(
+        valueString: valueString, element: newElement,);
   }
 
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   CarePlanIntentBuilder copyWith({
-    String? newValue,
+    dynamic newValue,
     ElementBuilder? element,
     FhirStringBuilder? id,
     List<FhirExtensionBuilder>? extension_,
@@ -194,11 +196,11 @@ class CarePlanIntentBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError('Invalid input for CarePlanIntent: $newValue');
     }
     return CarePlanIntentBuilder._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
@@ -207,7 +209,7 @@ class CarePlanIntentBuilder extends FhirCodeEnumBuilder {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath,
+      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

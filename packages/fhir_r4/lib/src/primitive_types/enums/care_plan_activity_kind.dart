@@ -6,7 +6,7 @@ part of '../primitive_types.dart';
 class CarePlanActivityKind extends FhirCodeEnum {
   // Private underscore constructor for internal use.
   CarePlanActivityKind._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -20,7 +20,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory CarePlanActivityKind(
-    String? raw, {
+    String? rawValue, {
     FhirUri? system,
     FhirString? version,
     FhirString? display,
@@ -30,9 +30,10 @@ class CarePlanActivityKind extends FhirCodeEnum {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCode._validateCode(rawValue) : null;
     return CarePlanActivityKind._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -46,7 +47,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
 
   /// Create empty [CarePlanActivityKind] with element only
   factory CarePlanActivityKind.empty() =>
-      CarePlanActivityKind._(validatedValue: '');
+      CarePlanActivityKind._(valueString: '');
 
   /// Factory constructor to create [CarePlanActivityKind] from JSON.
   factory CarePlanActivityKind.fromJson(Map<String, dynamic> json) {
@@ -61,14 +62,14 @@ class CarePlanActivityKind extends FhirCodeEnum {
       );
     }
     return CarePlanActivityKind._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// Resource
   static final CarePlanActivityKind Resource = CarePlanActivityKind._(
-    validatedValue: 'Resource',
+    valueString: 'Resource',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Resource'.toFhirString,
@@ -76,7 +77,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
 
   /// Binary
   static final CarePlanActivityKind Binary = CarePlanActivityKind._(
-    validatedValue: 'Binary',
+    valueString: 'Binary',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Binary'.toFhirString,
@@ -84,7 +85,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
 
   /// Bundle
   static final CarePlanActivityKind Bundle = CarePlanActivityKind._(
-    validatedValue: 'Bundle',
+    valueString: 'Bundle',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Bundle'.toFhirString,
@@ -92,7 +93,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
 
   /// DomainResource
   static final CarePlanActivityKind DomainResource = CarePlanActivityKind._(
-    validatedValue: 'DomainResource',
+    valueString: 'DomainResource',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'DomainResource'.toFhirString,
@@ -100,7 +101,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
 
   /// Account
   static final CarePlanActivityKind Account = CarePlanActivityKind._(
-    validatedValue: 'Account',
+    valueString: 'Account',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Account'.toFhirString,
@@ -108,7 +109,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
 
   /// ActivityDefinition
   static final CarePlanActivityKind ActivityDefinition = CarePlanActivityKind._(
-    validatedValue: 'ActivityDefinition',
+    valueString: 'ActivityDefinition',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'ActivityDefinition'.toFhirString,
@@ -117,7 +118,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
   /// AdministrableProductDefinition
   static final CarePlanActivityKind AdministrableProductDefinition =
       CarePlanActivityKind._(
-    validatedValue: 'AdministrableProductDefinition',
+    valueString: 'AdministrableProductDefinition',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'AdministrableProductDefinition'.toFhirString,
@@ -125,7 +126,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
 
   /// AdverseEvent
   static final CarePlanActivityKind AdverseEvent = CarePlanActivityKind._(
-    validatedValue: 'AdverseEvent',
+    valueString: 'AdverseEvent',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'AdverseEvent'.toFhirString,
@@ -133,7 +134,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
 
   /// AllergyIntolerance
   static final CarePlanActivityKind AllergyIntolerance = CarePlanActivityKind._(
-    validatedValue: 'AllergyIntolerance',
+    valueString: 'AllergyIntolerance',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'AllergyIntolerance'.toFhirString,
@@ -141,7 +142,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
 
   /// Appointment
   static final CarePlanActivityKind Appointment = CarePlanActivityKind._(
-    validatedValue: 'Appointment',
+    valueString: 'Appointment',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Appointment'.toFhirString,
@@ -150,7 +151,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
   /// AppointmentResponse
   static final CarePlanActivityKind AppointmentResponse =
       CarePlanActivityKind._(
-    validatedValue: 'AppointmentResponse',
+    valueString: 'AppointmentResponse',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'AppointmentResponse'.toFhirString,
@@ -158,7 +159,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
 
   /// AuditEvent
   static final CarePlanActivityKind AuditEvent = CarePlanActivityKind._(
-    validatedValue: 'AuditEvent',
+    valueString: 'AuditEvent',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'AuditEvent'.toFhirString,
@@ -166,7 +167,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
 
   /// Basic
   static final CarePlanActivityKind Basic = CarePlanActivityKind._(
-    validatedValue: 'Basic',
+    valueString: 'Basic',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Basic'.toFhirString,
@@ -175,7 +176,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
   /// BiologicallyDerivedProduct
   static final CarePlanActivityKind BiologicallyDerivedProduct =
       CarePlanActivityKind._(
-    validatedValue: 'BiologicallyDerivedProduct',
+    valueString: 'BiologicallyDerivedProduct',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'BiologicallyDerivedProduct'.toFhirString,
@@ -183,7 +184,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
 
   /// BodyStructure
   static final CarePlanActivityKind BodyStructure = CarePlanActivityKind._(
-    validatedValue: 'BodyStructure',
+    valueString: 'BodyStructure',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'BodyStructure'.toFhirString,
@@ -192,7 +193,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
   /// CapabilityStatement
   static final CarePlanActivityKind CapabilityStatement =
       CarePlanActivityKind._(
-    validatedValue: 'CapabilityStatement',
+    valueString: 'CapabilityStatement',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'CapabilityStatement'.toFhirString,
@@ -200,7 +201,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
 
   /// CarePlan
   static final CarePlanActivityKind CarePlan = CarePlanActivityKind._(
-    validatedValue: 'CarePlan',
+    valueString: 'CarePlan',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'CarePlan'.toFhirString,
@@ -208,7 +209,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
 
   /// CareTeam
   static final CarePlanActivityKind CareTeam = CarePlanActivityKind._(
-    validatedValue: 'CareTeam',
+    valueString: 'CareTeam',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'CareTeam'.toFhirString,
@@ -216,7 +217,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
 
   /// CatalogEntry
   static final CarePlanActivityKind CatalogEntry = CarePlanActivityKind._(
-    validatedValue: 'CatalogEntry',
+    valueString: 'CatalogEntry',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'CatalogEntry'.toFhirString,
@@ -224,7 +225,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
 
   /// ChargeItem
   static final CarePlanActivityKind ChargeItem = CarePlanActivityKind._(
-    validatedValue: 'ChargeItem',
+    valueString: 'ChargeItem',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'ChargeItem'.toFhirString,
@@ -233,7 +234,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
   /// ChargeItemDefinition
   static final CarePlanActivityKind ChargeItemDefinition =
       CarePlanActivityKind._(
-    validatedValue: 'ChargeItemDefinition',
+    valueString: 'ChargeItemDefinition',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'ChargeItemDefinition'.toFhirString,
@@ -241,7 +242,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
 
   /// Citation
   static final CarePlanActivityKind Citation = CarePlanActivityKind._(
-    validatedValue: 'Citation',
+    valueString: 'Citation',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Citation'.toFhirString,
@@ -249,7 +250,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
 
   /// Claim
   static final CarePlanActivityKind Claim = CarePlanActivityKind._(
-    validatedValue: 'Claim',
+    valueString: 'Claim',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Claim'.toFhirString,
@@ -257,7 +258,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
 
   /// ClaimResponse
   static final CarePlanActivityKind ClaimResponse = CarePlanActivityKind._(
-    validatedValue: 'ClaimResponse',
+    valueString: 'ClaimResponse',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'ClaimResponse'.toFhirString,
@@ -265,7 +266,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
 
   /// ClinicalImpression
   static final CarePlanActivityKind ClinicalImpression = CarePlanActivityKind._(
-    validatedValue: 'ClinicalImpression',
+    valueString: 'ClinicalImpression',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'ClinicalImpression'.toFhirString,
@@ -274,7 +275,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
   /// ClinicalUseDefinition
   static final CarePlanActivityKind ClinicalUseDefinition =
       CarePlanActivityKind._(
-    validatedValue: 'ClinicalUseDefinition',
+    valueString: 'ClinicalUseDefinition',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'ClinicalUseDefinition'.toFhirString,
@@ -282,7 +283,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
 
   /// CodeSystem
   static final CarePlanActivityKind CodeSystem = CarePlanActivityKind._(
-    validatedValue: 'CodeSystem',
+    valueString: 'CodeSystem',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'CodeSystem'.toFhirString,
@@ -290,7 +291,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
 
   /// Communication
   static final CarePlanActivityKind Communication = CarePlanActivityKind._(
-    validatedValue: 'Communication',
+    valueString: 'Communication',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Communication'.toFhirString,
@@ -299,7 +300,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
   /// CommunicationRequest
   static final CarePlanActivityKind CommunicationRequest =
       CarePlanActivityKind._(
-    validatedValue: 'CommunicationRequest',
+    valueString: 'CommunicationRequest',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'CommunicationRequest'.toFhirString,
@@ -308,7 +309,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
   /// CompartmentDefinition
   static final CarePlanActivityKind CompartmentDefinition =
       CarePlanActivityKind._(
-    validatedValue: 'CompartmentDefinition',
+    valueString: 'CompartmentDefinition',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'CompartmentDefinition'.toFhirString,
@@ -316,7 +317,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
 
   /// Composition
   static final CarePlanActivityKind Composition = CarePlanActivityKind._(
-    validatedValue: 'Composition',
+    valueString: 'Composition',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Composition'.toFhirString,
@@ -324,7 +325,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
 
   /// ConceptMap
   static final CarePlanActivityKind ConceptMap = CarePlanActivityKind._(
-    validatedValue: 'ConceptMap',
+    valueString: 'ConceptMap',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'ConceptMap'.toFhirString,
@@ -332,7 +333,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
 
   /// Condition
   static final CarePlanActivityKind Condition = CarePlanActivityKind._(
-    validatedValue: 'Condition',
+    valueString: 'Condition',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Condition'.toFhirString,
@@ -340,7 +341,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
 
   /// Consent
   static final CarePlanActivityKind Consent = CarePlanActivityKind._(
-    validatedValue: 'Consent',
+    valueString: 'Consent',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Consent'.toFhirString,
@@ -348,7 +349,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
 
   /// Contract
   static final CarePlanActivityKind Contract = CarePlanActivityKind._(
-    validatedValue: 'Contract',
+    valueString: 'Contract',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Contract'.toFhirString,
@@ -356,7 +357,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
 
   /// Coverage
   static final CarePlanActivityKind Coverage = CarePlanActivityKind._(
-    validatedValue: 'Coverage',
+    valueString: 'Coverage',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Coverage'.toFhirString,
@@ -365,7 +366,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
   /// CoverageEligibilityRequest
   static final CarePlanActivityKind CoverageEligibilityRequest =
       CarePlanActivityKind._(
-    validatedValue: 'CoverageEligibilityRequest',
+    valueString: 'CoverageEligibilityRequest',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'CoverageEligibilityRequest'.toFhirString,
@@ -374,7 +375,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
   /// CoverageEligibilityResponse
   static final CarePlanActivityKind CoverageEligibilityResponse =
       CarePlanActivityKind._(
-    validatedValue: 'CoverageEligibilityResponse',
+    valueString: 'CoverageEligibilityResponse',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'CoverageEligibilityResponse'.toFhirString,
@@ -382,7 +383,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
 
   /// DetectedIssue
   static final CarePlanActivityKind DetectedIssue = CarePlanActivityKind._(
-    validatedValue: 'DetectedIssue',
+    valueString: 'DetectedIssue',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'DetectedIssue'.toFhirString,
@@ -390,7 +391,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
 
   /// Device
   static final CarePlanActivityKind Device = CarePlanActivityKind._(
-    validatedValue: 'Device',
+    valueString: 'Device',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Device'.toFhirString,
@@ -398,7 +399,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
 
   /// DeviceDefinition
   static final CarePlanActivityKind DeviceDefinition = CarePlanActivityKind._(
-    validatedValue: 'DeviceDefinition',
+    valueString: 'DeviceDefinition',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'DeviceDefinition'.toFhirString,
@@ -406,7 +407,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
 
   /// DeviceMetric
   static final CarePlanActivityKind DeviceMetric = CarePlanActivityKind._(
-    validatedValue: 'DeviceMetric',
+    valueString: 'DeviceMetric',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'DeviceMetric'.toFhirString,
@@ -414,7 +415,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
 
   /// DeviceRequest
   static final CarePlanActivityKind DeviceRequest = CarePlanActivityKind._(
-    validatedValue: 'DeviceRequest',
+    valueString: 'DeviceRequest',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'DeviceRequest'.toFhirString,
@@ -422,7 +423,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
 
   /// DeviceUseStatement
   static final CarePlanActivityKind DeviceUseStatement = CarePlanActivityKind._(
-    validatedValue: 'DeviceUseStatement',
+    valueString: 'DeviceUseStatement',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'DeviceUseStatement'.toFhirString,
@@ -430,7 +431,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
 
   /// DiagnosticReport
   static final CarePlanActivityKind DiagnosticReport = CarePlanActivityKind._(
-    validatedValue: 'DiagnosticReport',
+    valueString: 'DiagnosticReport',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'DiagnosticReport'.toFhirString,
@@ -438,7 +439,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
 
   /// DocumentManifest
   static final CarePlanActivityKind DocumentManifest = CarePlanActivityKind._(
-    validatedValue: 'DocumentManifest',
+    valueString: 'DocumentManifest',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'DocumentManifest'.toFhirString,
@@ -446,7 +447,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
 
   /// DocumentReference
   static final CarePlanActivityKind DocumentReference = CarePlanActivityKind._(
-    validatedValue: 'DocumentReference',
+    valueString: 'DocumentReference',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'DocumentReference'.toFhirString,
@@ -454,7 +455,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
 
   /// Encounter
   static final CarePlanActivityKind Encounter = CarePlanActivityKind._(
-    validatedValue: 'Encounter',
+    valueString: 'Encounter',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Encounter'.toFhirString,
@@ -462,7 +463,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
 
   /// Endpoint
   static final CarePlanActivityKind Endpoint = CarePlanActivityKind._(
-    validatedValue: 'Endpoint',
+    valueString: 'Endpoint',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Endpoint'.toFhirString,
@@ -470,7 +471,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
 
   /// EnrollmentRequest
   static final CarePlanActivityKind EnrollmentRequest = CarePlanActivityKind._(
-    validatedValue: 'EnrollmentRequest',
+    valueString: 'EnrollmentRequest',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'EnrollmentRequest'.toFhirString,
@@ -478,7 +479,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
 
   /// EnrollmentResponse
   static final CarePlanActivityKind EnrollmentResponse = CarePlanActivityKind._(
-    validatedValue: 'EnrollmentResponse',
+    valueString: 'EnrollmentResponse',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'EnrollmentResponse'.toFhirString,
@@ -486,7 +487,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
 
   /// EpisodeOfCare
   static final CarePlanActivityKind EpisodeOfCare = CarePlanActivityKind._(
-    validatedValue: 'EpisodeOfCare',
+    valueString: 'EpisodeOfCare',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'EpisodeOfCare'.toFhirString,
@@ -494,7 +495,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
 
   /// EventDefinition
   static final CarePlanActivityKind EventDefinition = CarePlanActivityKind._(
-    validatedValue: 'EventDefinition',
+    valueString: 'EventDefinition',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'EventDefinition'.toFhirString,
@@ -502,7 +503,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
 
   /// Evidence
   static final CarePlanActivityKind Evidence = CarePlanActivityKind._(
-    validatedValue: 'Evidence',
+    valueString: 'Evidence',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Evidence'.toFhirString,
@@ -510,7 +511,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
 
   /// EvidenceReport
   static final CarePlanActivityKind EvidenceReport = CarePlanActivityKind._(
-    validatedValue: 'EvidenceReport',
+    valueString: 'EvidenceReport',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'EvidenceReport'.toFhirString,
@@ -518,7 +519,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
 
   /// EvidenceVariable
   static final CarePlanActivityKind EvidenceVariable = CarePlanActivityKind._(
-    validatedValue: 'EvidenceVariable',
+    valueString: 'EvidenceVariable',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'EvidenceVariable'.toFhirString,
@@ -526,7 +527,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
 
   /// ExampleScenario
   static final CarePlanActivityKind ExampleScenario = CarePlanActivityKind._(
-    validatedValue: 'ExampleScenario',
+    valueString: 'ExampleScenario',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'ExampleScenario'.toFhirString,
@@ -535,7 +536,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
   /// ExplanationOfBenefit
   static final CarePlanActivityKind ExplanationOfBenefit =
       CarePlanActivityKind._(
-    validatedValue: 'ExplanationOfBenefit',
+    valueString: 'ExplanationOfBenefit',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'ExplanationOfBenefit'.toFhirString,
@@ -544,7 +545,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
   /// FamilyMemberHistory
   static final CarePlanActivityKind FamilyMemberHistory =
       CarePlanActivityKind._(
-    validatedValue: 'FamilyMemberHistory',
+    valueString: 'FamilyMemberHistory',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'FamilyMemberHistory'.toFhirString,
@@ -552,7 +553,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
 
   /// Flag
   static final CarePlanActivityKind Flag = CarePlanActivityKind._(
-    validatedValue: 'Flag',
+    valueString: 'Flag',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Flag'.toFhirString,
@@ -560,7 +561,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
 
   /// Goal
   static final CarePlanActivityKind Goal = CarePlanActivityKind._(
-    validatedValue: 'Goal',
+    valueString: 'Goal',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Goal'.toFhirString,
@@ -568,7 +569,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
 
   /// GraphDefinition
   static final CarePlanActivityKind GraphDefinition = CarePlanActivityKind._(
-    validatedValue: 'GraphDefinition',
+    valueString: 'GraphDefinition',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'GraphDefinition'.toFhirString,
@@ -576,7 +577,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
 
   /// Group
   static final CarePlanActivityKind Group = CarePlanActivityKind._(
-    validatedValue: 'Group',
+    valueString: 'Group',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Group'.toFhirString,
@@ -584,7 +585,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
 
   /// GuidanceResponse
   static final CarePlanActivityKind GuidanceResponse = CarePlanActivityKind._(
-    validatedValue: 'GuidanceResponse',
+    valueString: 'GuidanceResponse',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'GuidanceResponse'.toFhirString,
@@ -592,7 +593,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
 
   /// HealthcareService
   static final CarePlanActivityKind HealthcareService = CarePlanActivityKind._(
-    validatedValue: 'HealthcareService',
+    valueString: 'HealthcareService',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'HealthcareService'.toFhirString,
@@ -600,7 +601,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
 
   /// ImagingStudy
   static final CarePlanActivityKind ImagingStudy = CarePlanActivityKind._(
-    validatedValue: 'ImagingStudy',
+    valueString: 'ImagingStudy',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'ImagingStudy'.toFhirString,
@@ -608,7 +609,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
 
   /// Immunization
   static final CarePlanActivityKind Immunization = CarePlanActivityKind._(
-    validatedValue: 'Immunization',
+    valueString: 'Immunization',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Immunization'.toFhirString,
@@ -617,7 +618,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
   /// ImmunizationEvaluation
   static final CarePlanActivityKind ImmunizationEvaluation =
       CarePlanActivityKind._(
-    validatedValue: 'ImmunizationEvaluation',
+    valueString: 'ImmunizationEvaluation',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'ImmunizationEvaluation'.toFhirString,
@@ -626,7 +627,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
   /// ImmunizationRecommendation
   static final CarePlanActivityKind ImmunizationRecommendation =
       CarePlanActivityKind._(
-    validatedValue: 'ImmunizationRecommendation',
+    valueString: 'ImmunizationRecommendation',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'ImmunizationRecommendation'.toFhirString,
@@ -635,7 +636,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
   /// ImplementationGuide
   static final CarePlanActivityKind ImplementationGuide =
       CarePlanActivityKind._(
-    validatedValue: 'ImplementationGuide',
+    valueString: 'ImplementationGuide',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'ImplementationGuide'.toFhirString,
@@ -643,7 +644,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
 
   /// Ingredient
   static final CarePlanActivityKind Ingredient = CarePlanActivityKind._(
-    validatedValue: 'Ingredient',
+    valueString: 'Ingredient',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Ingredient'.toFhirString,
@@ -651,7 +652,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
 
   /// InsurancePlan
   static final CarePlanActivityKind InsurancePlan = CarePlanActivityKind._(
-    validatedValue: 'InsurancePlan',
+    valueString: 'InsurancePlan',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'InsurancePlan'.toFhirString,
@@ -659,7 +660,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
 
   /// Invoice
   static final CarePlanActivityKind Invoice = CarePlanActivityKind._(
-    validatedValue: 'Invoice',
+    valueString: 'Invoice',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Invoice'.toFhirString,
@@ -667,7 +668,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
 
   /// Library
   static final CarePlanActivityKind Library = CarePlanActivityKind._(
-    validatedValue: 'Library',
+    valueString: 'Library',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Library'.toFhirString,
@@ -675,7 +676,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
 
   /// Linkage
   static final CarePlanActivityKind Linkage = CarePlanActivityKind._(
-    validatedValue: 'Linkage',
+    valueString: 'Linkage',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Linkage'.toFhirString,
@@ -683,7 +684,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
 
   /// List_
   static final CarePlanActivityKind List_ = CarePlanActivityKind._(
-    validatedValue: 'List',
+    valueString: 'List',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'List'.toFhirString,
@@ -691,7 +692,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
 
   /// Location
   static final CarePlanActivityKind Location = CarePlanActivityKind._(
-    validatedValue: 'Location',
+    valueString: 'Location',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Location'.toFhirString,
@@ -700,7 +701,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
   /// ManufacturedItemDefinition
   static final CarePlanActivityKind ManufacturedItemDefinition =
       CarePlanActivityKind._(
-    validatedValue: 'ManufacturedItemDefinition',
+    valueString: 'ManufacturedItemDefinition',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'ManufacturedItemDefinition'.toFhirString,
@@ -708,7 +709,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
 
   /// Measure
   static final CarePlanActivityKind Measure = CarePlanActivityKind._(
-    validatedValue: 'Measure',
+    valueString: 'Measure',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Measure'.toFhirString,
@@ -716,7 +717,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
 
   /// MeasureReport
   static final CarePlanActivityKind MeasureReport = CarePlanActivityKind._(
-    validatedValue: 'MeasureReport',
+    valueString: 'MeasureReport',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'MeasureReport'.toFhirString,
@@ -724,7 +725,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
 
   /// Media
   static final CarePlanActivityKind Media = CarePlanActivityKind._(
-    validatedValue: 'Media',
+    valueString: 'Media',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Media'.toFhirString,
@@ -732,7 +733,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
 
   /// Medication
   static final CarePlanActivityKind Medication = CarePlanActivityKind._(
-    validatedValue: 'Medication',
+    valueString: 'Medication',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Medication'.toFhirString,
@@ -741,7 +742,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
   /// MedicationAdministration
   static final CarePlanActivityKind MedicationAdministration =
       CarePlanActivityKind._(
-    validatedValue: 'MedicationAdministration',
+    valueString: 'MedicationAdministration',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'MedicationAdministration'.toFhirString,
@@ -749,7 +750,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
 
   /// MedicationDispense
   static final CarePlanActivityKind MedicationDispense = CarePlanActivityKind._(
-    validatedValue: 'MedicationDispense',
+    valueString: 'MedicationDispense',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'MedicationDispense'.toFhirString,
@@ -758,7 +759,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
   /// MedicationKnowledge
   static final CarePlanActivityKind MedicationKnowledge =
       CarePlanActivityKind._(
-    validatedValue: 'MedicationKnowledge',
+    valueString: 'MedicationKnowledge',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'MedicationKnowledge'.toFhirString,
@@ -766,7 +767,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
 
   /// MedicationRequest
   static final CarePlanActivityKind MedicationRequest = CarePlanActivityKind._(
-    validatedValue: 'MedicationRequest',
+    valueString: 'MedicationRequest',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'MedicationRequest'.toFhirString,
@@ -775,7 +776,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
   /// MedicationStatement
   static final CarePlanActivityKind MedicationStatement =
       CarePlanActivityKind._(
-    validatedValue: 'MedicationStatement',
+    valueString: 'MedicationStatement',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'MedicationStatement'.toFhirString,
@@ -784,7 +785,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
   /// MedicinalProductDefinition
   static final CarePlanActivityKind MedicinalProductDefinition =
       CarePlanActivityKind._(
-    validatedValue: 'MedicinalProductDefinition',
+    valueString: 'MedicinalProductDefinition',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'MedicinalProductDefinition'.toFhirString,
@@ -792,7 +793,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
 
   /// MessageDefinition
   static final CarePlanActivityKind MessageDefinition = CarePlanActivityKind._(
-    validatedValue: 'MessageDefinition',
+    valueString: 'MessageDefinition',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'MessageDefinition'.toFhirString,
@@ -800,7 +801,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
 
   /// MessageHeader
   static final CarePlanActivityKind MessageHeader = CarePlanActivityKind._(
-    validatedValue: 'MessageHeader',
+    valueString: 'MessageHeader',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'MessageHeader'.toFhirString,
@@ -808,7 +809,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
 
   /// MolecularSequence
   static final CarePlanActivityKind MolecularSequence = CarePlanActivityKind._(
-    validatedValue: 'MolecularSequence',
+    valueString: 'MolecularSequence',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'MolecularSequence'.toFhirString,
@@ -816,7 +817,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
 
   /// NamingSystem
   static final CarePlanActivityKind NamingSystem = CarePlanActivityKind._(
-    validatedValue: 'NamingSystem',
+    valueString: 'NamingSystem',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'NamingSystem'.toFhirString,
@@ -824,7 +825,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
 
   /// NutritionOrder
   static final CarePlanActivityKind NutritionOrder = CarePlanActivityKind._(
-    validatedValue: 'NutritionOrder',
+    valueString: 'NutritionOrder',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'NutritionOrder'.toFhirString,
@@ -832,7 +833,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
 
   /// NutritionProduct
   static final CarePlanActivityKind NutritionProduct = CarePlanActivityKind._(
-    validatedValue: 'NutritionProduct',
+    valueString: 'NutritionProduct',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'NutritionProduct'.toFhirString,
@@ -840,7 +841,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
 
   /// Observation
   static final CarePlanActivityKind Observation = CarePlanActivityKind._(
-    validatedValue: 'Observation',
+    valueString: 'Observation',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Observation'.toFhirString,
@@ -849,7 +850,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
   /// ObservationDefinition
   static final CarePlanActivityKind ObservationDefinition =
       CarePlanActivityKind._(
-    validatedValue: 'ObservationDefinition',
+    valueString: 'ObservationDefinition',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'ObservationDefinition'.toFhirString,
@@ -858,7 +859,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
   /// OperationDefinition
   static final CarePlanActivityKind OperationDefinition =
       CarePlanActivityKind._(
-    validatedValue: 'OperationDefinition',
+    valueString: 'OperationDefinition',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'OperationDefinition'.toFhirString,
@@ -866,7 +867,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
 
   /// OperationOutcome
   static final CarePlanActivityKind OperationOutcome = CarePlanActivityKind._(
-    validatedValue: 'OperationOutcome',
+    valueString: 'OperationOutcome',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'OperationOutcome'.toFhirString,
@@ -874,7 +875,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
 
   /// Organization
   static final CarePlanActivityKind Organization = CarePlanActivityKind._(
-    validatedValue: 'Organization',
+    valueString: 'Organization',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Organization'.toFhirString,
@@ -883,7 +884,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
   /// OrganizationAffiliation
   static final CarePlanActivityKind OrganizationAffiliation =
       CarePlanActivityKind._(
-    validatedValue: 'OrganizationAffiliation',
+    valueString: 'OrganizationAffiliation',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'OrganizationAffiliation'.toFhirString,
@@ -892,7 +893,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
   /// PackagedProductDefinition
   static final CarePlanActivityKind PackagedProductDefinition =
       CarePlanActivityKind._(
-    validatedValue: 'PackagedProductDefinition',
+    valueString: 'PackagedProductDefinition',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'PackagedProductDefinition'.toFhirString,
@@ -900,7 +901,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
 
   /// Patient
   static final CarePlanActivityKind Patient = CarePlanActivityKind._(
-    validatedValue: 'Patient',
+    valueString: 'Patient',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Patient'.toFhirString,
@@ -908,7 +909,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
 
   /// PaymentNotice
   static final CarePlanActivityKind PaymentNotice = CarePlanActivityKind._(
-    validatedValue: 'PaymentNotice',
+    valueString: 'PaymentNotice',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'PaymentNotice'.toFhirString,
@@ -917,7 +918,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
   /// PaymentReconciliation
   static final CarePlanActivityKind PaymentReconciliation =
       CarePlanActivityKind._(
-    validatedValue: 'PaymentReconciliation',
+    valueString: 'PaymentReconciliation',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'PaymentReconciliation'.toFhirString,
@@ -925,7 +926,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
 
   /// Person
   static final CarePlanActivityKind Person = CarePlanActivityKind._(
-    validatedValue: 'Person',
+    valueString: 'Person',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Person'.toFhirString,
@@ -933,7 +934,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
 
   /// PlanDefinition
   static final CarePlanActivityKind PlanDefinition = CarePlanActivityKind._(
-    validatedValue: 'PlanDefinition',
+    valueString: 'PlanDefinition',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'PlanDefinition'.toFhirString,
@@ -941,7 +942,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
 
   /// Practitioner
   static final CarePlanActivityKind Practitioner = CarePlanActivityKind._(
-    validatedValue: 'Practitioner',
+    valueString: 'Practitioner',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Practitioner'.toFhirString,
@@ -949,7 +950,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
 
   /// PractitionerRole
   static final CarePlanActivityKind PractitionerRole = CarePlanActivityKind._(
-    validatedValue: 'PractitionerRole',
+    valueString: 'PractitionerRole',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'PractitionerRole'.toFhirString,
@@ -957,7 +958,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
 
   /// Procedure
   static final CarePlanActivityKind Procedure = CarePlanActivityKind._(
-    validatedValue: 'Procedure',
+    valueString: 'Procedure',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Procedure'.toFhirString,
@@ -965,7 +966,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
 
   /// Provenance
   static final CarePlanActivityKind Provenance = CarePlanActivityKind._(
-    validatedValue: 'Provenance',
+    valueString: 'Provenance',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Provenance'.toFhirString,
@@ -973,7 +974,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
 
   /// Questionnaire
   static final CarePlanActivityKind Questionnaire = CarePlanActivityKind._(
-    validatedValue: 'Questionnaire',
+    valueString: 'Questionnaire',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Questionnaire'.toFhirString,
@@ -982,7 +983,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
   /// QuestionnaireResponse
   static final CarePlanActivityKind QuestionnaireResponse =
       CarePlanActivityKind._(
-    validatedValue: 'QuestionnaireResponse',
+    valueString: 'QuestionnaireResponse',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'QuestionnaireResponse'.toFhirString,
@@ -991,7 +992,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
   /// RegulatedAuthorization
   static final CarePlanActivityKind RegulatedAuthorization =
       CarePlanActivityKind._(
-    validatedValue: 'RegulatedAuthorization',
+    valueString: 'RegulatedAuthorization',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'RegulatedAuthorization'.toFhirString,
@@ -999,7 +1000,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
 
   /// RelatedPerson
   static final CarePlanActivityKind RelatedPerson = CarePlanActivityKind._(
-    validatedValue: 'RelatedPerson',
+    valueString: 'RelatedPerson',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'RelatedPerson'.toFhirString,
@@ -1007,7 +1008,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
 
   /// RequestGroup
   static final CarePlanActivityKind RequestGroup = CarePlanActivityKind._(
-    validatedValue: 'RequestGroup',
+    valueString: 'RequestGroup',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'RequestGroup'.toFhirString,
@@ -1015,7 +1016,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
 
   /// ResearchDefinition
   static final CarePlanActivityKind ResearchDefinition = CarePlanActivityKind._(
-    validatedValue: 'ResearchDefinition',
+    valueString: 'ResearchDefinition',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'ResearchDefinition'.toFhirString,
@@ -1024,7 +1025,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
   /// ResearchElementDefinition
   static final CarePlanActivityKind ResearchElementDefinition =
       CarePlanActivityKind._(
-    validatedValue: 'ResearchElementDefinition',
+    valueString: 'ResearchElementDefinition',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'ResearchElementDefinition'.toFhirString,
@@ -1032,7 +1033,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
 
   /// ResearchStudy
   static final CarePlanActivityKind ResearchStudy = CarePlanActivityKind._(
-    validatedValue: 'ResearchStudy',
+    valueString: 'ResearchStudy',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'ResearchStudy'.toFhirString,
@@ -1040,7 +1041,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
 
   /// ResearchSubject
   static final CarePlanActivityKind ResearchSubject = CarePlanActivityKind._(
-    validatedValue: 'ResearchSubject',
+    valueString: 'ResearchSubject',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'ResearchSubject'.toFhirString,
@@ -1048,7 +1049,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
 
   /// RiskAssessment
   static final CarePlanActivityKind RiskAssessment = CarePlanActivityKind._(
-    validatedValue: 'RiskAssessment',
+    valueString: 'RiskAssessment',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'RiskAssessment'.toFhirString,
@@ -1056,7 +1057,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
 
   /// Schedule
   static final CarePlanActivityKind Schedule = CarePlanActivityKind._(
-    validatedValue: 'Schedule',
+    valueString: 'Schedule',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Schedule'.toFhirString,
@@ -1064,7 +1065,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
 
   /// SearchParameter
   static final CarePlanActivityKind SearchParameter = CarePlanActivityKind._(
-    validatedValue: 'SearchParameter',
+    valueString: 'SearchParameter',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'SearchParameter'.toFhirString,
@@ -1072,7 +1073,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
 
   /// ServiceRequest
   static final CarePlanActivityKind ServiceRequest = CarePlanActivityKind._(
-    validatedValue: 'ServiceRequest',
+    valueString: 'ServiceRequest',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'ServiceRequest'.toFhirString,
@@ -1080,7 +1081,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
 
   /// Slot
   static final CarePlanActivityKind Slot = CarePlanActivityKind._(
-    validatedValue: 'Slot',
+    valueString: 'Slot',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Slot'.toFhirString,
@@ -1088,7 +1089,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
 
   /// Specimen
   static final CarePlanActivityKind Specimen = CarePlanActivityKind._(
-    validatedValue: 'Specimen',
+    valueString: 'Specimen',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Specimen'.toFhirString,
@@ -1096,7 +1097,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
 
   /// SpecimenDefinition
   static final CarePlanActivityKind SpecimenDefinition = CarePlanActivityKind._(
-    validatedValue: 'SpecimenDefinition',
+    valueString: 'SpecimenDefinition',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'SpecimenDefinition'.toFhirString,
@@ -1105,7 +1106,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
   /// StructureDefinition
   static final CarePlanActivityKind StructureDefinition =
       CarePlanActivityKind._(
-    validatedValue: 'StructureDefinition',
+    valueString: 'StructureDefinition',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'StructureDefinition'.toFhirString,
@@ -1113,7 +1114,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
 
   /// StructureMap
   static final CarePlanActivityKind StructureMap = CarePlanActivityKind._(
-    validatedValue: 'StructureMap',
+    valueString: 'StructureMap',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'StructureMap'.toFhirString,
@@ -1121,7 +1122,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
 
   /// Subscription
   static final CarePlanActivityKind Subscription = CarePlanActivityKind._(
-    validatedValue: 'Subscription',
+    valueString: 'Subscription',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Subscription'.toFhirString,
@@ -1129,7 +1130,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
 
   /// SubscriptionStatus
   static final CarePlanActivityKind SubscriptionStatus = CarePlanActivityKind._(
-    validatedValue: 'SubscriptionStatus',
+    valueString: 'SubscriptionStatus',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'SubscriptionStatus'.toFhirString,
@@ -1137,7 +1138,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
 
   /// SubscriptionTopic
   static final CarePlanActivityKind SubscriptionTopic = CarePlanActivityKind._(
-    validatedValue: 'SubscriptionTopic',
+    valueString: 'SubscriptionTopic',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'SubscriptionTopic'.toFhirString,
@@ -1145,7 +1146,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
 
   /// Substance
   static final CarePlanActivityKind Substance = CarePlanActivityKind._(
-    validatedValue: 'Substance',
+    valueString: 'Substance',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Substance'.toFhirString,
@@ -1154,7 +1155,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
   /// SubstanceDefinition
   static final CarePlanActivityKind SubstanceDefinition =
       CarePlanActivityKind._(
-    validatedValue: 'SubstanceDefinition',
+    valueString: 'SubstanceDefinition',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'SubstanceDefinition'.toFhirString,
@@ -1162,7 +1163,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
 
   /// SupplyDelivery
   static final CarePlanActivityKind SupplyDelivery = CarePlanActivityKind._(
-    validatedValue: 'SupplyDelivery',
+    valueString: 'SupplyDelivery',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'SupplyDelivery'.toFhirString,
@@ -1170,7 +1171,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
 
   /// SupplyRequest
   static final CarePlanActivityKind SupplyRequest = CarePlanActivityKind._(
-    validatedValue: 'SupplyRequest',
+    valueString: 'SupplyRequest',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'SupplyRequest'.toFhirString,
@@ -1178,7 +1179,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
 
   /// Task
   static final CarePlanActivityKind Task = CarePlanActivityKind._(
-    validatedValue: 'Task',
+    valueString: 'Task',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Task'.toFhirString,
@@ -1187,7 +1188,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
   /// TerminologyCapabilities
   static final CarePlanActivityKind TerminologyCapabilities =
       CarePlanActivityKind._(
-    validatedValue: 'TerminologyCapabilities',
+    valueString: 'TerminologyCapabilities',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'TerminologyCapabilities'.toFhirString,
@@ -1195,7 +1196,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
 
   /// TestReport
   static final CarePlanActivityKind TestReport = CarePlanActivityKind._(
-    validatedValue: 'TestReport',
+    valueString: 'TestReport',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'TestReport'.toFhirString,
@@ -1203,7 +1204,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
 
   /// TestScript
   static final CarePlanActivityKind TestScript = CarePlanActivityKind._(
-    validatedValue: 'TestScript',
+    valueString: 'TestScript',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'TestScript'.toFhirString,
@@ -1211,7 +1212,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
 
   /// ValueSet
   static final CarePlanActivityKind ValueSet = CarePlanActivityKind._(
-    validatedValue: 'ValueSet',
+    valueString: 'ValueSet',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'ValueSet'.toFhirString,
@@ -1219,7 +1220,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
 
   /// VerificationResult
   static final CarePlanActivityKind VerificationResult = CarePlanActivityKind._(
-    validatedValue: 'VerificationResult',
+    valueString: 'VerificationResult',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'VerificationResult'.toFhirString,
@@ -1227,7 +1228,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
 
   /// VisionPrescription
   static final CarePlanActivityKind VisionPrescription = CarePlanActivityKind._(
-    validatedValue: 'VisionPrescription',
+    valueString: 'VisionPrescription',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'VisionPrescription'.toFhirString,
@@ -1235,7 +1236,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
 
   /// Parameters
   static final CarePlanActivityKind Parameters = CarePlanActivityKind._(
-    validatedValue: 'Parameters',
+    valueString: 'Parameters',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Parameters'.toFhirString,
@@ -1243,7 +1244,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
 
   /// For instances where an Element is present but not value
   static final CarePlanActivityKind elementOnly =
-      CarePlanActivityKind._(validatedValue: '');
+      CarePlanActivityKind._(valueString: '');
 
   /// List of all enum-like values
   static final List<CarePlanActivityKind> values = [
@@ -1395,14 +1396,14 @@ class CarePlanActivityKind extends FhirCodeEnum {
   /// Clones the current instance
   @override
   CarePlanActivityKind clone() => CarePlanActivityKind._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   CarePlanActivityKind withElement(Element? newElement) {
     return CarePlanActivityKind._(
-      validatedValue: value,
+      valueString: valueString,
       element: newElement,
     );
   }
@@ -1410,18 +1411,18 @@ class CarePlanActivityKind extends FhirCodeEnum {
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   CarePlanActivityKind copyWith({
-    String? newValue,
+    dynamic newValue,
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
@@ -1432,11 +1433,11 @@ class CarePlanActivityKind extends FhirCodeEnum {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError('Invalid input for CarePlanActivityKind: $newValue');
     }
     return CarePlanActivityKind._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

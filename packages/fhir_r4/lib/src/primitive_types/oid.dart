@@ -49,7 +49,9 @@ class FhirOid extends FhirUri
   ///
   /// - If [rawValue] is `null`, [element] must be non-null.
   /// - If [rawValue] is a [String], it must match the OID pattern.
-  /// - If [rawValue] is a [Uri], its `.toString()` is used (not fully validated).
+  /// - If [rawValue] is a [Uri], its `.toString()` is used
+  /// (not fully validated).
+  // ignore: sort_unnamed_constructors_first
   factory FhirOid(
     dynamic rawValue, {
     Element? element,
@@ -188,7 +190,8 @@ class FhirOid extends FhirUri
     });
   }
 
-  /// Converts a list of [FhirOid] into a JSON map with `'value'` and `'_value'`.
+  /// Converts a list of [FhirOid] into a JSON map with `'value'` and
+  /// `'_value'`.
   static Map<String, dynamic> toJsonList(List<FhirOid> values) => {
         'value': values.map((val) => val.valueString).toList(),
         '_value': values.map((val) => val.element?.toJson()).toList(),
@@ -222,7 +225,15 @@ class FhirOid extends FhirUri
 
   @override
   // ignore: avoid_equals_and_hash_code_on_mutable_classes
+  bool operator ==(Object other) => equals(other);
+
+  @override
+  // ignore: avoid_equals_and_hash_code_on_mutable_classes
   int get hashCode => Object.hash(valueString, element);
+
+  /// Returns `true` if the Type is considered string-based, otherwise `false`
+  @override
+  bool get stringBased => true;
 
   // --------------------------------------------------------------------------
   // Clone / Copy

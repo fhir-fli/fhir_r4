@@ -684,6 +684,21 @@ class RequestGroupBuilder extends DomainResourceBuilder {
           if (child is CommonLanguagesBuilder) {
             language = child;
             return;
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              // For enums, try to create directly from the string value
+              try {
+                final converted = CommonLanguagesBuilder(stringValue);
+                language = converted;
+                return;
+              } catch (e) {
+                // Continue if enum creation fails
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
           throw Exception('Invalid child type for $childName');
         }
@@ -703,7 +718,10 @@ class RequestGroupBuilder extends DomainResourceBuilder {
             return;
           } else if (child is ResourceBuilder) {
             // Add single element to existing list or create new list
-            contained = [...(contained ?? []), child];
+            contained = [
+              ...(contained ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -716,7 +734,10 @@ class RequestGroupBuilder extends DomainResourceBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -729,7 +750,10 @@ class RequestGroupBuilder extends DomainResourceBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -742,7 +766,10 @@ class RequestGroupBuilder extends DomainResourceBuilder {
             return;
           } else if (child is IdentifierBuilder) {
             // Add single element to existing list or create new list
-            identifier = [...(identifier ?? []), child];
+            identifier = [
+              ...(identifier ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -755,7 +782,10 @@ class RequestGroupBuilder extends DomainResourceBuilder {
             return;
           } else if (child is FhirCanonicalBuilder) {
             // Add single element to existing list or create new list
-            instantiatesCanonical = [...(instantiatesCanonical ?? []), child];
+            instantiatesCanonical = [
+              ...(instantiatesCanonical ?? []),
+              child,
+            ];
             return;
           } else if (child is List<PrimitiveTypeBuilder>) {
             // Try to convert list of primitive types
@@ -801,7 +831,10 @@ class RequestGroupBuilder extends DomainResourceBuilder {
             return;
           } else if (child is FhirUriBuilder) {
             // Add single element to existing list or create new list
-            instantiatesUri = [...(instantiatesUri ?? []), child];
+            instantiatesUri = [
+              ...(instantiatesUri ?? []),
+              child,
+            ];
             return;
           } else if (child is List<PrimitiveTypeBuilder>) {
             // Try to convert list of primitive types
@@ -844,7 +877,10 @@ class RequestGroupBuilder extends DomainResourceBuilder {
             return;
           } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            basedOn = [...(basedOn ?? []), child];
+            basedOn = [
+              ...(basedOn ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -857,7 +893,10 @@ class RequestGroupBuilder extends DomainResourceBuilder {
             return;
           } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            replaces = [...(replaces ?? []), child];
+            replaces = [
+              ...(replaces ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -875,6 +914,21 @@ class RequestGroupBuilder extends DomainResourceBuilder {
           if (child is RequestStatusBuilder) {
             status = child;
             return;
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              // For enums, try to create directly from the string value
+              try {
+                final converted = RequestStatusBuilder(stringValue);
+                status = converted;
+                return;
+              } catch (e) {
+                // Continue if enum creation fails
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
           throw Exception('Invalid child type for $childName');
         }
@@ -883,6 +937,21 @@ class RequestGroupBuilder extends DomainResourceBuilder {
           if (child is RequestIntentBuilder) {
             intent = child;
             return;
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              // For enums, try to create directly from the string value
+              try {
+                final converted = RequestIntentBuilder(stringValue);
+                intent = converted;
+                return;
+              } catch (e) {
+                // Continue if enum creation fails
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
           throw Exception('Invalid child type for $childName');
         }
@@ -891,6 +960,21 @@ class RequestGroupBuilder extends DomainResourceBuilder {
           if (child is RequestPriorityBuilder) {
             priority = child;
             return;
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              // For enums, try to create directly from the string value
+              try {
+                final converted = RequestPriorityBuilder(stringValue);
+                priority = converted;
+                return;
+              } catch (e) {
+                // Continue if enum creation fails
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
           throw Exception('Invalid child type for $childName');
         }
@@ -954,7 +1038,10 @@ class RequestGroupBuilder extends DomainResourceBuilder {
             return;
           } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            reasonCode = [...(reasonCode ?? []), child];
+            reasonCode = [
+              ...(reasonCode ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -967,7 +1054,10 @@ class RequestGroupBuilder extends DomainResourceBuilder {
             return;
           } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            reasonReference = [...(reasonReference ?? []), child];
+            reasonReference = [
+              ...(reasonReference ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -980,7 +1070,10 @@ class RequestGroupBuilder extends DomainResourceBuilder {
             return;
           } else if (child is AnnotationBuilder) {
             // Add single element to existing list or create new list
-            note = [...(note ?? []), child];
+            note = [
+              ...(note ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -993,7 +1086,10 @@ class RequestGroupBuilder extends DomainResourceBuilder {
             return;
           } else if (child is RequestGroupActionBuilder) {
             // Add single element to existing list or create new list
-            action = [...(action ?? []), child];
+            action = [
+              ...(action ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -2161,7 +2257,10 @@ class RequestGroupActionBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -2174,7 +2273,10 @@ class RequestGroupActionBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -2264,6 +2366,21 @@ class RequestGroupActionBuilder extends BackboneElementBuilder {
           if (child is RequestPriorityBuilder) {
             priority = child;
             return;
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              // For enums, try to create directly from the string value
+              try {
+                final converted = RequestPriorityBuilder(stringValue);
+                priority = converted;
+                return;
+              } catch (e) {
+                // Continue if enum creation fails
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
           throw Exception('Invalid child type for $childName');
         }
@@ -2275,7 +2392,10 @@ class RequestGroupActionBuilder extends BackboneElementBuilder {
             return;
           } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            code = [...(code ?? []), child];
+            code = [
+              ...(code ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -2288,7 +2408,10 @@ class RequestGroupActionBuilder extends BackboneElementBuilder {
             return;
           } else if (child is RelatedArtifactBuilder) {
             // Add single element to existing list or create new list
-            documentation = [...(documentation ?? []), child];
+            documentation = [
+              ...(documentation ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -2301,7 +2424,10 @@ class RequestGroupActionBuilder extends BackboneElementBuilder {
             return;
           } else if (child is RequestGroupConditionBuilder) {
             // Add single element to existing list or create new list
-            condition = [...(condition ?? []), child];
+            condition = [
+              ...(condition ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -2314,7 +2440,10 @@ class RequestGroupActionBuilder extends BackboneElementBuilder {
             return;
           } else if (child is RequestGroupRelatedActionBuilder) {
             // Add single element to existing list or create new list
-            relatedAction = [...(relatedAction ?? []), child];
+            relatedAction = [
+              ...(relatedAction ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -2414,7 +2543,10 @@ class RequestGroupActionBuilder extends BackboneElementBuilder {
             return;
           } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            participant = [...(participant ?? []), child];
+            participant = [
+              ...(participant ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -2432,6 +2564,21 @@ class RequestGroupActionBuilder extends BackboneElementBuilder {
           if (child is ActionGroupingBehaviorBuilder) {
             groupingBehavior = child;
             return;
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              // For enums, try to create directly from the string value
+              try {
+                final converted = ActionGroupingBehaviorBuilder(stringValue);
+                groupingBehavior = converted;
+                return;
+              } catch (e) {
+                // Continue if enum creation fails
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
           throw Exception('Invalid child type for $childName');
         }
@@ -2440,6 +2587,21 @@ class RequestGroupActionBuilder extends BackboneElementBuilder {
           if (child is ActionSelectionBehaviorBuilder) {
             selectionBehavior = child;
             return;
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              // For enums, try to create directly from the string value
+              try {
+                final converted = ActionSelectionBehaviorBuilder(stringValue);
+                selectionBehavior = converted;
+                return;
+              } catch (e) {
+                // Continue if enum creation fails
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
           throw Exception('Invalid child type for $childName');
         }
@@ -2448,6 +2610,21 @@ class RequestGroupActionBuilder extends BackboneElementBuilder {
           if (child is ActionRequiredBehaviorBuilder) {
             requiredBehavior = child;
             return;
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              // For enums, try to create directly from the string value
+              try {
+                final converted = ActionRequiredBehaviorBuilder(stringValue);
+                requiredBehavior = converted;
+                return;
+              } catch (e) {
+                // Continue if enum creation fails
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
           throw Exception('Invalid child type for $childName');
         }
@@ -2456,6 +2633,21 @@ class RequestGroupActionBuilder extends BackboneElementBuilder {
           if (child is ActionPrecheckBehaviorBuilder) {
             precheckBehavior = child;
             return;
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              // For enums, try to create directly from the string value
+              try {
+                final converted = ActionPrecheckBehaviorBuilder(stringValue);
+                precheckBehavior = converted;
+                return;
+              } catch (e) {
+                // Continue if enum creation fails
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
           throw Exception('Invalid child type for $childName');
         }
@@ -2464,6 +2656,21 @@ class RequestGroupActionBuilder extends BackboneElementBuilder {
           if (child is ActionCardinalityBehaviorBuilder) {
             cardinalityBehavior = child;
             return;
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              // For enums, try to create directly from the string value
+              try {
+                final converted = ActionCardinalityBehaviorBuilder(stringValue);
+                cardinalityBehavior = converted;
+                return;
+              } catch (e) {
+                // Continue if enum creation fails
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
           throw Exception('Invalid child type for $childName');
         }
@@ -2483,7 +2690,10 @@ class RequestGroupActionBuilder extends BackboneElementBuilder {
             return;
           } else if (child is RequestGroupActionBuilder) {
             // Add single element to existing list or create new list
-            action = [...(action ?? []), child];
+            action = [
+              ...(action ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -3245,7 +3455,10 @@ class RequestGroupConditionBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -3258,7 +3471,10 @@ class RequestGroupConditionBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -3268,6 +3484,21 @@ class RequestGroupConditionBuilder extends BackboneElementBuilder {
           if (child is ActionConditionKindBuilder) {
             kind = child;
             return;
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              // For enums, try to create directly from the string value
+              try {
+                final converted = ActionConditionKindBuilder(stringValue);
+                kind = converted;
+                return;
+              } catch (e) {
+                // Continue if enum creation fails
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
           throw Exception('Invalid child type for $childName');
         }
@@ -3744,7 +3975,10 @@ class RequestGroupRelatedActionBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -3757,7 +3991,10 @@ class RequestGroupRelatedActionBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -3787,6 +4024,21 @@ class RequestGroupRelatedActionBuilder extends BackboneElementBuilder {
           if (child is ActionRelationshipTypeBuilder) {
             relationship = child;
             return;
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              // For enums, try to create directly from the string value
+              try {
+                final converted = ActionRelationshipTypeBuilder(stringValue);
+                relationship = converted;
+                return;
+              } catch (e) {
+                // Continue if enum creation fails
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
           throw Exception('Invalid child type for $childName');
         }
@@ -3847,7 +4099,10 @@ class RequestGroupRelatedActionBuilder extends BackboneElementBuilder {
         return ['FhirCodeEnumBuilder'];
       case 'offset':
       case 'offsetX':
-        return ['FhirDurationBuilder', 'RangeBuilder'];
+        return [
+          'FhirDurationBuilder',
+          'RangeBuilder',
+        ];
       case 'offsetDuration':
         return ['FhirDurationBuilder'];
       case 'offsetRange':

@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class TaskStatusBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   TaskStatusBuilder._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class TaskStatusBuilder extends FhirCodeEnumBuilder {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory TaskStatusBuilder(
-    String? raw, {
+    String? rawValue, {
     FhirUriBuilder? system,
     FhirStringBuilder? version,
     FhirStringBuilder? display,
@@ -29,9 +29,10 @@ class TaskStatusBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
     return TaskStatusBuilder._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -44,7 +45,7 @@ class TaskStatusBuilder extends FhirCodeEnumBuilder {
   }
 
   /// Create empty [TaskStatusBuilder] with element only
-  factory TaskStatusBuilder.empty() => TaskStatusBuilder._(validatedValue: '');
+  factory TaskStatusBuilder.empty() => TaskStatusBuilder._(valueString: '');
 
   /// Factory constructor to create [TaskStatusBuilder]
   /// from JSON.
@@ -61,14 +62,14 @@ class TaskStatusBuilder extends FhirCodeEnumBuilder {
       );
     }
     return TaskStatusBuilder._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// draft
   static TaskStatusBuilder draft = TaskStatusBuilder._(
-    validatedValue: 'draft',
+    valueString: 'draft',
     system: 'http://hl7.org/fhir/ValueSet/task-status'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Draft'.toFhirStringBuilder,
@@ -76,7 +77,7 @@ class TaskStatusBuilder extends FhirCodeEnumBuilder {
 
   /// requested
   static TaskStatusBuilder requested = TaskStatusBuilder._(
-    validatedValue: 'requested',
+    valueString: 'requested',
     system: 'http://hl7.org/fhir/ValueSet/task-status'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Requested'.toFhirStringBuilder,
@@ -84,7 +85,7 @@ class TaskStatusBuilder extends FhirCodeEnumBuilder {
 
   /// received
   static TaskStatusBuilder received = TaskStatusBuilder._(
-    validatedValue: 'received',
+    valueString: 'received',
     system: 'http://hl7.org/fhir/ValueSet/task-status'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Received'.toFhirStringBuilder,
@@ -92,7 +93,7 @@ class TaskStatusBuilder extends FhirCodeEnumBuilder {
 
   /// accepted
   static TaskStatusBuilder accepted = TaskStatusBuilder._(
-    validatedValue: 'accepted',
+    valueString: 'accepted',
     system: 'http://hl7.org/fhir/ValueSet/task-status'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Accepted'.toFhirStringBuilder,
@@ -100,7 +101,7 @@ class TaskStatusBuilder extends FhirCodeEnumBuilder {
 
   /// rejected
   static TaskStatusBuilder rejected = TaskStatusBuilder._(
-    validatedValue: 'rejected',
+    valueString: 'rejected',
     system: 'http://hl7.org/fhir/ValueSet/task-status'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Rejected'.toFhirStringBuilder,
@@ -108,7 +109,7 @@ class TaskStatusBuilder extends FhirCodeEnumBuilder {
 
   /// ready
   static TaskStatusBuilder ready = TaskStatusBuilder._(
-    validatedValue: 'ready',
+    valueString: 'ready',
     system: 'http://hl7.org/fhir/ValueSet/task-status'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Ready'.toFhirStringBuilder,
@@ -116,7 +117,7 @@ class TaskStatusBuilder extends FhirCodeEnumBuilder {
 
   /// cancelled
   static TaskStatusBuilder cancelled = TaskStatusBuilder._(
-    validatedValue: 'cancelled',
+    valueString: 'cancelled',
     system: 'http://hl7.org/fhir/ValueSet/task-status'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Cancelled'.toFhirStringBuilder,
@@ -124,7 +125,7 @@ class TaskStatusBuilder extends FhirCodeEnumBuilder {
 
   /// in_progress
   static TaskStatusBuilder in_progress = TaskStatusBuilder._(
-    validatedValue: 'in-progress',
+    valueString: 'in-progress',
     system: 'http://hl7.org/fhir/ValueSet/task-status'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'In Progress'.toFhirStringBuilder,
@@ -132,7 +133,7 @@ class TaskStatusBuilder extends FhirCodeEnumBuilder {
 
   /// on_hold
   static TaskStatusBuilder on_hold = TaskStatusBuilder._(
-    validatedValue: 'on-hold',
+    valueString: 'on-hold',
     system: 'http://hl7.org/fhir/ValueSet/task-status'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'On Hold'.toFhirStringBuilder,
@@ -140,7 +141,7 @@ class TaskStatusBuilder extends FhirCodeEnumBuilder {
 
   /// failed
   static TaskStatusBuilder failed = TaskStatusBuilder._(
-    validatedValue: 'failed',
+    valueString: 'failed',
     system: 'http://hl7.org/fhir/ValueSet/task-status'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Failed'.toFhirStringBuilder,
@@ -148,7 +149,7 @@ class TaskStatusBuilder extends FhirCodeEnumBuilder {
 
   /// completed
   static TaskStatusBuilder completed = TaskStatusBuilder._(
-    validatedValue: 'completed',
+    valueString: 'completed',
     system: 'http://hl7.org/fhir/ValueSet/task-status'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Completed'.toFhirStringBuilder,
@@ -156,15 +157,14 @@ class TaskStatusBuilder extends FhirCodeEnumBuilder {
 
   /// entered_in_error
   static TaskStatusBuilder entered_in_error = TaskStatusBuilder._(
-    validatedValue: 'entered-in-error',
+    valueString: 'entered-in-error',
     system: 'http://hl7.org/fhir/ValueSet/task-status'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Entered in Error'.toFhirStringBuilder,
   );
 
   /// For instances where an Element is present but not value
-  static TaskStatusBuilder elementOnly =
-      TaskStatusBuilder._(validatedValue: '');
+  static TaskStatusBuilder elementOnly = TaskStatusBuilder._(valueString: '');
 
   /// List of all enum-like values
   static List<TaskStatusBuilder> values = [
@@ -185,30 +185,30 @@ class TaskStatusBuilder extends FhirCodeEnumBuilder {
   /// Clones the current instance
   @override
   TaskStatusBuilder clone() => TaskStatusBuilder._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
   TaskStatusBuilder withElement(ElementBuilder? newElement) {
-    return TaskStatusBuilder._(validatedValue: value, element: newElement);
+    return TaskStatusBuilder._(valueString: valueString, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   TaskStatusBuilder copyWith({
-    String? newValue,
+    dynamic newValue,
     ElementBuilder? element,
     FhirStringBuilder? id,
     List<FhirExtensionBuilder>? extension_,
@@ -219,11 +219,11 @@ class TaskStatusBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError('Invalid input for TaskStatus: $newValue');
     }
     return TaskStatusBuilder._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
@@ -232,7 +232,7 @@ class TaskStatusBuilder extends FhirCodeEnumBuilder {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath,
+      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

@@ -8,7 +8,7 @@ part of '../primitive_types.dart';
 class IngredientManufacturerRole extends FhirCodeEnum {
   // Private underscore constructor for internal use.
   IngredientManufacturerRole._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -22,7 +22,7 @@ class IngredientManufacturerRole extends FhirCodeEnum {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory IngredientManufacturerRole(
-    String? raw, {
+    String? rawValue, {
     FhirUri? system,
     FhirString? version,
     FhirString? display,
@@ -32,9 +32,10 @@ class IngredientManufacturerRole extends FhirCodeEnum {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCode._validateCode(rawValue) : null;
     return IngredientManufacturerRole._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -48,7 +49,7 @@ class IngredientManufacturerRole extends FhirCodeEnum {
 
   /// Create empty [IngredientManufacturerRole] with element only
   factory IngredientManufacturerRole.empty() =>
-      IngredientManufacturerRole._(validatedValue: '');
+      IngredientManufacturerRole._(valueString: '');
 
   /// Factory constructor to create [IngredientManufacturerRole] from JSON.
   factory IngredientManufacturerRole.fromJson(Map<String, dynamic> json) {
@@ -63,7 +64,7 @@ class IngredientManufacturerRole extends FhirCodeEnum {
       );
     }
     return IngredientManufacturerRole._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
@@ -71,7 +72,7 @@ class IngredientManufacturerRole extends FhirCodeEnum {
   /// allowed
   static final IngredientManufacturerRole allowed =
       IngredientManufacturerRole._(
-    validatedValue: 'allowed',
+    valueString: 'allowed',
     system:
         'http://hl7.org/fhir/ValueSet/ingredient-manufacturer-role'.toFhirUri,
     version: '4.3.0'.toFhirString,
@@ -82,7 +83,7 @@ class IngredientManufacturerRole extends FhirCodeEnum {
   /// possible
   static final IngredientManufacturerRole possible =
       IngredientManufacturerRole._(
-    validatedValue: 'possible',
+    valueString: 'possible',
     system:
         'http://hl7.org/fhir/ValueSet/ingredient-manufacturer-role'.toFhirUri,
     version: '4.3.0'.toFhirString,
@@ -92,7 +93,7 @@ class IngredientManufacturerRole extends FhirCodeEnum {
 
   /// actual
   static final IngredientManufacturerRole actual = IngredientManufacturerRole._(
-    validatedValue: 'actual',
+    valueString: 'actual',
     system:
         'http://hl7.org/fhir/ValueSet/ingredient-manufacturer-role'.toFhirUri,
     version: '4.3.0'.toFhirString,
@@ -102,7 +103,7 @@ class IngredientManufacturerRole extends FhirCodeEnum {
 
   /// For instances where an Element is present but not value
   static final IngredientManufacturerRole elementOnly =
-      IngredientManufacturerRole._(validatedValue: '');
+      IngredientManufacturerRole._(valueString: '');
 
   /// List of all enum-like values
   static final List<IngredientManufacturerRole> values = [
@@ -114,14 +115,14 @@ class IngredientManufacturerRole extends FhirCodeEnum {
   /// Clones the current instance
   @override
   IngredientManufacturerRole clone() => IngredientManufacturerRole._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   IngredientManufacturerRole withElement(Element? newElement) {
     return IngredientManufacturerRole._(
-      validatedValue: value,
+      valueString: valueString,
       element: newElement,
     );
   }
@@ -129,18 +130,18 @@ class IngredientManufacturerRole extends FhirCodeEnum {
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   IngredientManufacturerRole copyWith({
-    String? newValue,
+    dynamic newValue,
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
@@ -151,11 +152,12 @@ class IngredientManufacturerRole extends FhirCodeEnum {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError(
+          'Invalid input for IngredientManufacturerRole: $newValue',);
     }
     return IngredientManufacturerRole._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

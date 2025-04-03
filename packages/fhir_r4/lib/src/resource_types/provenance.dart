@@ -592,7 +592,10 @@ class Provenance extends DomainResource {
             return copyWith(contained: newList);
           } else if (child is Resource) {
             // Add single element to existing list or create new list
-            final newList = [...?contained, child];
+            final newList = [
+              ...?contained,
+              child,
+            ];
             return copyWith(contained: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -606,7 +609,10 @@ class Provenance extends DomainResource {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -620,7 +626,10 @@ class Provenance extends DomainResource {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -634,7 +643,10 @@ class Provenance extends DomainResource {
             return copyWith(target: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...target, child];
+            final newList = [
+              ...target,
+              child,
+            ];
             return copyWith(target: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -686,7 +698,10 @@ class Provenance extends DomainResource {
             return copyWith(policy: newList);
           } else if (child is FhirUri) {
             // Add single element to existing list or create new list
-            final newList = [...?policy, child];
+            final newList = [
+              ...?policy,
+              child,
+            ];
             return copyWith(policy: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -708,7 +723,10 @@ class Provenance extends DomainResource {
             return copyWith(reason: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...?reason, child];
+            final newList = [
+              ...?reason,
+              child,
+            ];
             return copyWith(reason: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -730,7 +748,10 @@ class Provenance extends DomainResource {
             return copyWith(agent: newList);
           } else if (child is ProvenanceAgent) {
             // Add single element to existing list or create new list
-            final newList = [...agent, child];
+            final newList = [
+              ...agent,
+              child,
+            ];
             return copyWith(agent: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -744,7 +765,10 @@ class Provenance extends DomainResource {
             return copyWith(entity: newList);
           } else if (child is ProvenanceEntity) {
             // Add single element to existing list or create new list
-            final newList = [...?entity, child];
+            final newList = [
+              ...?entity,
+              child,
+            ];
             return copyWith(entity: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -758,7 +782,10 @@ class Provenance extends DomainResource {
             return copyWith(signature: newList);
           } else if (child is Signature) {
             // Add single element to existing list or create new list
-            final newList = [...?signature, child];
+            final newList = [
+              ...?signature,
+              child,
+            ];
             return copyWith(signature: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -794,7 +821,10 @@ class Provenance extends DomainResource {
         return ['Reference'];
       case 'occurred':
       case 'occurredX':
-        return ['Period', 'FhirDateTime'];
+        return [
+          'Period',
+          'FhirDateTime',
+        ];
       case 'occurredPeriod':
         return ['Period'];
       case 'occurredDateTime':
@@ -1547,7 +1577,10 @@ class ProvenanceAgent extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1561,7 +1594,10 @@ class ProvenanceAgent extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1583,7 +1619,10 @@ class ProvenanceAgent extends BackboneElement {
             return copyWith(role: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...?role, child];
+            final newList = [
+              ...?role,
+              child,
+            ];
             return copyWith(role: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2111,7 +2150,10 @@ class ProvenanceEntity extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2125,7 +2167,10 @@ class ProvenanceEntity extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2155,7 +2200,10 @@ class ProvenanceEntity extends BackboneElement {
             return copyWith(agent: newList);
           } else if (child is ProvenanceAgent) {
             // Add single element to existing list or create new list
-            final newList = [...?agent, child];
+            final newList = [
+              ...?agent,
+              child,
+            ];
             return copyWith(agent: newList);
           } else {
             throw Exception('Invalid child type for $childName');

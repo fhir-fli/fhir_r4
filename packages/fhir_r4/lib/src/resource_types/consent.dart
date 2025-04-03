@@ -656,7 +656,10 @@ class Consent extends DomainResource {
             return copyWith(contained: newList);
           } else if (child is Resource) {
             // Add single element to existing list or create new list
-            final newList = [...?contained, child];
+            final newList = [
+              ...?contained,
+              child,
+            ];
             return copyWith(contained: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -670,7 +673,10 @@ class Consent extends DomainResource {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -684,7 +690,10 @@ class Consent extends DomainResource {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -698,7 +707,10 @@ class Consent extends DomainResource {
             return copyWith(identifier: newList);
           } else if (child is Identifier) {
             // Add single element to existing list or create new list
-            final newList = [...?identifier, child];
+            final newList = [
+              ...?identifier,
+              child,
+            ];
             return copyWith(identifier: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -728,7 +740,10 @@ class Consent extends DomainResource {
             return copyWith(category: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...category, child];
+            final newList = [
+              ...category,
+              child,
+            ];
             return copyWith(category: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -758,7 +773,10 @@ class Consent extends DomainResource {
             return copyWith(performer: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...?performer, child];
+            final newList = [
+              ...?performer,
+              child,
+            ];
             return copyWith(performer: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -772,7 +790,10 @@ class Consent extends DomainResource {
             return copyWith(organization: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...?organization, child];
+            final newList = [
+              ...?organization,
+              child,
+            ];
             return copyWith(organization: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -816,7 +837,10 @@ class Consent extends DomainResource {
             return copyWith(policy: newList);
           } else if (child is ConsentPolicy) {
             // Add single element to existing list or create new list
-            final newList = [...?policy, child];
+            final newList = [
+              ...?policy,
+              child,
+            ];
             return copyWith(policy: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -838,7 +862,10 @@ class Consent extends DomainResource {
             return copyWith(verification: newList);
           } else if (child is ConsentVerification) {
             // Add single element to existing list or create new list
-            final newList = [...?verification, child];
+            final newList = [
+              ...?verification,
+              child,
+            ];
             return copyWith(verification: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -896,7 +923,10 @@ class Consent extends DomainResource {
         return ['Reference'];
       case 'source':
       case 'sourceX':
-        return ['Attachment', 'Reference'];
+        return [
+          'Attachment',
+          'Reference',
+        ];
       case 'sourceAttachment':
         return ['Attachment'];
       case 'sourceReference':
@@ -1657,7 +1687,10 @@ class ConsentPolicy extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1671,7 +1704,10 @@ class ConsentPolicy extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2150,7 +2186,10 @@ class ConsentVerification extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2164,7 +2203,10 @@ class ConsentVerification extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2869,7 +2911,10 @@ class ConsentProvision extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2883,7 +2928,10 @@ class ConsentProvision extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2913,7 +2961,10 @@ class ConsentProvision extends BackboneElement {
             return copyWith(actor: newList);
           } else if (child is ConsentActor) {
             // Add single element to existing list or create new list
-            final newList = [...?actor, child];
+            final newList = [
+              ...?actor,
+              child,
+            ];
             return copyWith(actor: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2927,7 +2978,10 @@ class ConsentProvision extends BackboneElement {
             return copyWith(action: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...?action, child];
+            final newList = [
+              ...?action,
+              child,
+            ];
             return copyWith(action: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2941,7 +2995,10 @@ class ConsentProvision extends BackboneElement {
             return copyWith(securityLabel: newList);
           } else if (child is Coding) {
             // Add single element to existing list or create new list
-            final newList = [...?securityLabel, child];
+            final newList = [
+              ...?securityLabel,
+              child,
+            ];
             return copyWith(securityLabel: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2955,7 +3012,10 @@ class ConsentProvision extends BackboneElement {
             return copyWith(purpose: newList);
           } else if (child is Coding) {
             // Add single element to existing list or create new list
-            final newList = [...?purpose, child];
+            final newList = [
+              ...?purpose,
+              child,
+            ];
             return copyWith(purpose: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2969,7 +3029,10 @@ class ConsentProvision extends BackboneElement {
             return copyWith(class_: newList);
           } else if (child is Coding) {
             // Add single element to existing list or create new list
-            final newList = [...?class_, child];
+            final newList = [
+              ...?class_,
+              child,
+            ];
             return copyWith(class_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2983,7 +3046,10 @@ class ConsentProvision extends BackboneElement {
             return copyWith(code: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...?code, child];
+            final newList = [
+              ...?code,
+              child,
+            ];
             return copyWith(code: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -3005,7 +3071,10 @@ class ConsentProvision extends BackboneElement {
             return copyWith(data: newList);
           } else if (child is ConsentData) {
             // Add single element to existing list or create new list
-            final newList = [...?data, child];
+            final newList = [
+              ...?data,
+              child,
+            ];
             return copyWith(data: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -3019,7 +3088,10 @@ class ConsentProvision extends BackboneElement {
             return copyWith(provision: newList);
           } else if (child is ConsentProvision) {
             // Add single element to existing list or create new list
-            final newList = [...?provision, child];
+            final newList = [
+              ...?provision,
+              child,
+            ];
             return copyWith(provision: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -3683,7 +3755,10 @@ class ConsentActor extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -3697,7 +3772,10 @@ class ConsentActor extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -4153,7 +4231,10 @@ class ConsentData extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -4167,7 +4248,10 @@ class ConsentData extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');

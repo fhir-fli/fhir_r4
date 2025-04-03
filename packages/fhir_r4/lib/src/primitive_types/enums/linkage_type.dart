@@ -6,7 +6,7 @@ part of '../primitive_types.dart';
 class LinkageType extends FhirCodeEnum {
   // Private underscore constructor for internal use.
   LinkageType._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -20,7 +20,7 @@ class LinkageType extends FhirCodeEnum {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory LinkageType(
-    String? raw, {
+    String? rawValue, {
     FhirUri? system,
     FhirString? version,
     FhirString? display,
@@ -30,9 +30,10 @@ class LinkageType extends FhirCodeEnum {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCode._validateCode(rawValue) : null;
     return LinkageType._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -45,7 +46,7 @@ class LinkageType extends FhirCodeEnum {
   }
 
   /// Create empty [LinkageType] with element only
-  factory LinkageType.empty() => LinkageType._(validatedValue: '');
+  factory LinkageType.empty() => LinkageType._(valueString: '');
 
   /// Factory constructor to create [LinkageType] from JSON.
   factory LinkageType.fromJson(Map<String, dynamic> json) {
@@ -60,14 +61,14 @@ class LinkageType extends FhirCodeEnum {
       );
     }
     return LinkageType._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// source
   static final LinkageType source = LinkageType._(
-    validatedValue: 'source',
+    valueString: 'source',
     system: 'http://hl7.org/fhir/ValueSet/linkage-type'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Source of Truth'.toFhirString,
@@ -75,7 +76,7 @@ class LinkageType extends FhirCodeEnum {
 
   /// alternate
   static final LinkageType alternate = LinkageType._(
-    validatedValue: 'alternate',
+    valueString: 'alternate',
     system: 'http://hl7.org/fhir/ValueSet/linkage-type'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Alternate Record'.toFhirString,
@@ -83,14 +84,14 @@ class LinkageType extends FhirCodeEnum {
 
   /// historical
   static final LinkageType historical = LinkageType._(
-    validatedValue: 'historical',
+    valueString: 'historical',
     system: 'http://hl7.org/fhir/ValueSet/linkage-type'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Historical/Obsolete Record'.toFhirString,
   );
 
   /// For instances where an Element is present but not value
-  static final LinkageType elementOnly = LinkageType._(validatedValue: '');
+  static final LinkageType elementOnly = LinkageType._(valueString: '');
 
   /// List of all enum-like values
   static final List<LinkageType> values = [
@@ -102,14 +103,14 @@ class LinkageType extends FhirCodeEnum {
   /// Clones the current instance
   @override
   LinkageType clone() => LinkageType._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   LinkageType withElement(Element? newElement) {
     return LinkageType._(
-      validatedValue: value,
+      valueString: valueString,
       element: newElement,
     );
   }
@@ -117,18 +118,18 @@ class LinkageType extends FhirCodeEnum {
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   LinkageType copyWith({
-    String? newValue,
+    dynamic newValue,
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
@@ -139,11 +140,11 @@ class LinkageType extends FhirCodeEnum {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError('Invalid input for LinkageType: $newValue');
     }
     return LinkageType._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

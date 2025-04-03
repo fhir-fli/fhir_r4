@@ -638,6 +638,21 @@ class InvoiceBuilder extends DomainResourceBuilder {
           if (child is CommonLanguagesBuilder) {
             language = child;
             return;
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              // For enums, try to create directly from the string value
+              try {
+                final converted = CommonLanguagesBuilder(stringValue);
+                language = converted;
+                return;
+              } catch (e) {
+                // Continue if enum creation fails
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
           throw Exception('Invalid child type for $childName');
         }
@@ -657,7 +672,10 @@ class InvoiceBuilder extends DomainResourceBuilder {
             return;
           } else if (child is ResourceBuilder) {
             // Add single element to existing list or create new list
-            contained = [...(contained ?? []), child];
+            contained = [
+              ...(contained ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -670,7 +688,10 @@ class InvoiceBuilder extends DomainResourceBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -683,7 +704,10 @@ class InvoiceBuilder extends DomainResourceBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -696,7 +720,10 @@ class InvoiceBuilder extends DomainResourceBuilder {
             return;
           } else if (child is IdentifierBuilder) {
             // Add single element to existing list or create new list
-            identifier = [...(identifier ?? []), child];
+            identifier = [
+              ...(identifier ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -706,6 +733,21 @@ class InvoiceBuilder extends DomainResourceBuilder {
           if (child is InvoiceStatusBuilder) {
             status = child;
             return;
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              // For enums, try to create directly from the string value
+              try {
+                final converted = InvoiceStatusBuilder(stringValue);
+                status = converted;
+                return;
+              } catch (e) {
+                // Continue if enum creation fails
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
           throw Exception('Invalid child type for $childName');
         }
@@ -781,7 +823,10 @@ class InvoiceBuilder extends DomainResourceBuilder {
             return;
           } else if (child is InvoiceParticipantBuilder) {
             // Add single element to existing list or create new list
-            participant = [...(participant ?? []), child];
+            participant = [
+              ...(participant ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -810,7 +855,10 @@ class InvoiceBuilder extends DomainResourceBuilder {
             return;
           } else if (child is InvoiceLineItemBuilder) {
             // Add single element to existing list or create new list
-            lineItem = [...(lineItem ?? []), child];
+            lineItem = [
+              ...(lineItem ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -823,7 +871,10 @@ class InvoiceBuilder extends DomainResourceBuilder {
             return;
           } else if (child is InvoicePriceComponentBuilder) {
             // Add single element to existing list or create new list
-            totalPriceComponent = [...(totalPriceComponent ?? []), child];
+            totalPriceComponent = [
+              ...(totalPriceComponent ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -872,7 +923,10 @@ class InvoiceBuilder extends DomainResourceBuilder {
             return;
           } else if (child is AnnotationBuilder) {
             // Add single element to existing list or create new list
-            note = [...(note ?? []), child];
+            note = [
+              ...(note ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -1620,7 +1674,10 @@ class InvoiceParticipantBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -1633,7 +1690,10 @@ class InvoiceParticipantBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -2130,7 +2190,10 @@ class InvoiceLineItemBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -2143,7 +2206,10 @@ class InvoiceLineItemBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -2157,7 +2223,8 @@ class InvoiceLineItemBuilder extends BackboneElementBuilder {
             // Try to convert from one primitive type to another
             try {
               final stringValue = child.toString();
-              // For number types, first parse to num then pass the number directly
+              // For number types,
+              // first parse to num then pass the number directly
               final numValue = num.tryParse(stringValue);
               if (numValue != null) {
                 final converted = FhirPositiveIntBuilder.tryParse(numValue);
@@ -2215,7 +2282,10 @@ class InvoiceLineItemBuilder extends BackboneElementBuilder {
             return;
           } else if (child is InvoicePriceComponentBuilder) {
             // Add single element to existing list or create new list
-            priceComponent = [...(priceComponent ?? []), child];
+            priceComponent = [
+              ...(priceComponent ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -2240,7 +2310,10 @@ class InvoiceLineItemBuilder extends BackboneElementBuilder {
         return ['FhirPositiveIntBuilder'];
       case 'chargeItem':
       case 'chargeItemX':
-        return ['ReferenceBuilder', 'CodeableConceptBuilder'];
+        return [
+          'ReferenceBuilder',
+          'CodeableConceptBuilder',
+        ];
       case 'chargeItemReference':
         return ['ReferenceBuilder'];
       case 'chargeItemCodeableConcept':
@@ -2709,7 +2782,10 @@ class InvoicePriceComponentBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -2722,7 +2798,10 @@ class InvoicePriceComponentBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -2732,6 +2811,21 @@ class InvoicePriceComponentBuilder extends BackboneElementBuilder {
           if (child is InvoicePriceComponentTypeBuilder) {
             type = child;
             return;
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              // For enums, try to create directly from the string value
+              try {
+                final converted = InvoicePriceComponentTypeBuilder(stringValue);
+                type = converted;
+                return;
+              } catch (e) {
+                // Continue if enum creation fails
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
           throw Exception('Invalid child type for $childName');
         }
@@ -2752,7 +2846,8 @@ class InvoicePriceComponentBuilder extends BackboneElementBuilder {
             // Try to convert from one primitive type to another
             try {
               final stringValue = child.toString();
-              // For number types, first parse to num then pass the number directly
+              // For number types,
+              // first parse to num then pass the number directly
               final numValue = num.tryParse(stringValue);
               if (numValue != null) {
                 final converted = FhirDecimalBuilder.tryParse(numValue);

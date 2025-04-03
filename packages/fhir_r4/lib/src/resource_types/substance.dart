@@ -495,7 +495,10 @@ class Substance extends DomainResource {
             return copyWith(contained: newList);
           } else if (child is Resource) {
             // Add single element to existing list or create new list
-            final newList = [...?contained, child];
+            final newList = [
+              ...?contained,
+              child,
+            ];
             return copyWith(contained: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -509,7 +512,10 @@ class Substance extends DomainResource {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -523,7 +529,10 @@ class Substance extends DomainResource {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -537,7 +546,10 @@ class Substance extends DomainResource {
             return copyWith(identifier: newList);
           } else if (child is Identifier) {
             // Add single element to existing list or create new list
-            final newList = [...?identifier, child];
+            final newList = [
+              ...?identifier,
+              child,
+            ];
             return copyWith(identifier: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -559,7 +571,10 @@ class Substance extends DomainResource {
             return copyWith(category: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...?category, child];
+            final newList = [
+              ...?category,
+              child,
+            ];
             return copyWith(category: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -589,7 +604,10 @@ class Substance extends DomainResource {
             return copyWith(instance: newList);
           } else if (child is SubstanceInstance) {
             // Add single element to existing list or create new list
-            final newList = [...?instance, child];
+            final newList = [
+              ...?instance,
+              child,
+            ];
             return copyWith(instance: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -603,7 +621,10 @@ class Substance extends DomainResource {
             return copyWith(ingredient: newList);
           } else if (child is SubstanceIngredient) {
             // Add single element to existing list or create new list
-            final newList = [...?ingredient, child];
+            final newList = [
+              ...?ingredient,
+              child,
+            ];
             return copyWith(ingredient: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1287,7 +1308,10 @@ class SubstanceInstance extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1301,7 +1325,10 @@ class SubstanceInstance extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1807,7 +1834,10 @@ class SubstanceIngredient extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1821,7 +1851,10 @@ class SubstanceIngredient extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1885,7 +1918,10 @@ class SubstanceIngredient extends BackboneElement {
         return ['Ratio'];
       case 'substance':
       case 'substanceX':
-        return ['CodeableConcept', 'Reference'];
+        return [
+          'CodeableConcept',
+          'Reference',
+        ];
       case 'substanceCodeableConcept':
         return ['CodeableConcept'];
       case 'substanceReference':

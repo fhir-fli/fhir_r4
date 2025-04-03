@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class GroupMeasureBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   GroupMeasureBuilder._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class GroupMeasureBuilder extends FhirCodeEnumBuilder {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory GroupMeasureBuilder(
-    String? raw, {
+    String? rawValue, {
     FhirUriBuilder? system,
     FhirStringBuilder? version,
     FhirStringBuilder? display,
@@ -29,9 +29,10 @@ class GroupMeasureBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
     return GroupMeasureBuilder._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -44,8 +45,7 @@ class GroupMeasureBuilder extends FhirCodeEnumBuilder {
   }
 
   /// Create empty [GroupMeasureBuilder] with element only
-  factory GroupMeasureBuilder.empty() =>
-      GroupMeasureBuilder._(validatedValue: '');
+  factory GroupMeasureBuilder.empty() => GroupMeasureBuilder._(valueString: '');
 
   /// Factory constructor to create [GroupMeasureBuilder]
   /// from JSON.
@@ -62,14 +62,14 @@ class GroupMeasureBuilder extends FhirCodeEnumBuilder {
       );
     }
     return GroupMeasureBuilder._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// mean
   static GroupMeasureBuilder mean = GroupMeasureBuilder._(
-    validatedValue: 'mean',
+    valueString: 'mean',
     system: 'http://hl7.org/fhir/ValueSet/group-measure'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Mean'.toFhirStringBuilder,
@@ -77,7 +77,7 @@ class GroupMeasureBuilder extends FhirCodeEnumBuilder {
 
   /// median
   static GroupMeasureBuilder median = GroupMeasureBuilder._(
-    validatedValue: 'median',
+    valueString: 'median',
     system: 'http://hl7.org/fhir/ValueSet/group-measure'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Median'.toFhirStringBuilder,
@@ -85,7 +85,7 @@ class GroupMeasureBuilder extends FhirCodeEnumBuilder {
 
   /// mean_of_mean
   static GroupMeasureBuilder mean_of_mean = GroupMeasureBuilder._(
-    validatedValue: 'mean-of-mean',
+    valueString: 'mean-of-mean',
     system: 'http://hl7.org/fhir/ValueSet/group-measure'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Mean of Study Means'.toFhirStringBuilder,
@@ -93,7 +93,7 @@ class GroupMeasureBuilder extends FhirCodeEnumBuilder {
 
   /// mean_of_median
   static GroupMeasureBuilder mean_of_median = GroupMeasureBuilder._(
-    validatedValue: 'mean-of-median',
+    valueString: 'mean-of-median',
     system: 'http://hl7.org/fhir/ValueSet/group-measure'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Mean of Study Medins'.toFhirStringBuilder,
@@ -101,7 +101,7 @@ class GroupMeasureBuilder extends FhirCodeEnumBuilder {
 
   /// median_of_mean
   static GroupMeasureBuilder median_of_mean = GroupMeasureBuilder._(
-    validatedValue: 'median-of-mean',
+    valueString: 'median-of-mean',
     system: 'http://hl7.org/fhir/ValueSet/group-measure'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Median of Study Means'.toFhirStringBuilder,
@@ -109,7 +109,7 @@ class GroupMeasureBuilder extends FhirCodeEnumBuilder {
 
   /// median_of_median
   static GroupMeasureBuilder median_of_median = GroupMeasureBuilder._(
-    validatedValue: 'median-of-median',
+    valueString: 'median-of-median',
     system: 'http://hl7.org/fhir/ValueSet/group-measure'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Median of Study Medians'.toFhirStringBuilder,
@@ -117,7 +117,7 @@ class GroupMeasureBuilder extends FhirCodeEnumBuilder {
 
   /// For instances where an Element is present but not value
   static GroupMeasureBuilder elementOnly =
-      GroupMeasureBuilder._(validatedValue: '');
+      GroupMeasureBuilder._(valueString: '');
 
   /// List of all enum-like values
   static List<GroupMeasureBuilder> values = [
@@ -132,30 +132,30 @@ class GroupMeasureBuilder extends FhirCodeEnumBuilder {
   /// Clones the current instance
   @override
   GroupMeasureBuilder clone() => GroupMeasureBuilder._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
   GroupMeasureBuilder withElement(ElementBuilder? newElement) {
-    return GroupMeasureBuilder._(validatedValue: value, element: newElement);
+    return GroupMeasureBuilder._(valueString: valueString, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   GroupMeasureBuilder copyWith({
-    String? newValue,
+    dynamic newValue,
     ElementBuilder? element,
     FhirStringBuilder? id,
     List<FhirExtensionBuilder>? extension_,
@@ -166,11 +166,11 @@ class GroupMeasureBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError('Invalid input for GroupMeasure: $newValue');
     }
     return GroupMeasureBuilder._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
@@ -179,7 +179,7 @@ class GroupMeasureBuilder extends FhirCodeEnumBuilder {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath,
+      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

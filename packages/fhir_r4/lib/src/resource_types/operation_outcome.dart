@@ -362,7 +362,10 @@ class OperationOutcome extends DomainResource {
             return copyWith(contained: newList);
           } else if (child is Resource) {
             // Add single element to existing list or create new list
-            final newList = [...?contained, child];
+            final newList = [
+              ...?contained,
+              child,
+            ];
             return copyWith(contained: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -376,7 +379,10 @@ class OperationOutcome extends DomainResource {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -390,7 +396,10 @@ class OperationOutcome extends DomainResource {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -404,7 +413,10 @@ class OperationOutcome extends DomainResource {
             return copyWith(issue: newList);
           } else if (child is OperationOutcomeIssue) {
             // Add single element to existing list or create new list
-            final newList = [...issue, child];
+            final newList = [
+              ...issue,
+              child,
+            ];
             return copyWith(issue: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1022,7 +1034,10 @@ class OperationOutcomeIssue extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1036,7 +1051,10 @@ class OperationOutcomeIssue extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1082,7 +1100,10 @@ class OperationOutcomeIssue extends BackboneElement {
             return copyWith(location: newList);
           } else if (child is FhirString) {
             // Add single element to existing list or create new list
-            final newList = [...?location, child];
+            final newList = [
+              ...?location,
+              child,
+            ];
             return copyWith(location: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1096,7 +1117,10 @@ class OperationOutcomeIssue extends BackboneElement {
             return copyWith(expression: newList);
           } else if (child is FhirString) {
             // Add single element to existing list or create new list
-            final newList = [...?expression, child];
+            final newList = [
+              ...?expression,
+              child,
+            ];
             return copyWith(expression: newList);
           } else {
             throw Exception('Invalid child type for $childName');

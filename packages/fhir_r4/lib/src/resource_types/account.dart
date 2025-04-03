@@ -582,7 +582,10 @@ class Account extends DomainResource {
             return copyWith(contained: newList);
           } else if (child is Resource) {
             // Add single element to existing list or create new list
-            final newList = [...?contained, child];
+            final newList = [
+              ...?contained,
+              child,
+            ];
             return copyWith(contained: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -596,7 +599,10 @@ class Account extends DomainResource {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -610,7 +616,10 @@ class Account extends DomainResource {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -624,7 +633,10 @@ class Account extends DomainResource {
             return copyWith(identifier: newList);
           } else if (child is Identifier) {
             // Add single element to existing list or create new list
-            final newList = [...?identifier, child];
+            final newList = [
+              ...?identifier,
+              child,
+            ];
             return copyWith(identifier: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -662,7 +674,10 @@ class Account extends DomainResource {
             return copyWith(subject: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...?subject, child];
+            final newList = [
+              ...?subject,
+              child,
+            ];
             return copyWith(subject: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -684,7 +699,10 @@ class Account extends DomainResource {
             return copyWith(coverage: newList);
           } else if (child is AccountCoverage) {
             // Add single element to existing list or create new list
-            final newList = [...?coverage, child];
+            final newList = [
+              ...?coverage,
+              child,
+            ];
             return copyWith(coverage: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -714,7 +732,10 @@ class Account extends DomainResource {
             return copyWith(guarantor: newList);
           } else if (child is AccountGuarantor) {
             // Add single element to existing list or create new list
-            final newList = [...?guarantor, child];
+            final newList = [
+              ...?guarantor,
+              child,
+            ];
             return copyWith(guarantor: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1473,7 +1494,10 @@ class AccountCoverage extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1487,7 +1511,10 @@ class AccountCoverage extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1965,7 +1992,10 @@ class AccountGuarantor extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1979,7 +2009,10 @@ class AccountGuarantor extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');

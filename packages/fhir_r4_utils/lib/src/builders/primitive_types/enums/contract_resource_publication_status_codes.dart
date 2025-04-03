@@ -6,7 +6,7 @@ class ContractResourcePublicationStatusCodesBuilder
     extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   ContractResourcePublicationStatusCodesBuilder._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -20,7 +20,7 @@ class ContractResourcePublicationStatusCodesBuilder
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory ContractResourcePublicationStatusCodesBuilder(
-    String? raw, {
+    String? rawValue, {
     FhirUriBuilder? system,
     FhirStringBuilder? version,
     FhirStringBuilder? display,
@@ -30,9 +30,10 @@ class ContractResourcePublicationStatusCodesBuilder
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
     return ContractResourcePublicationStatusCodesBuilder._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -46,7 +47,7 @@ class ContractResourcePublicationStatusCodesBuilder
 
   /// Create empty [ContractResourcePublicationStatusCodesBuilder] with element only
   factory ContractResourcePublicationStatusCodesBuilder.empty() =>
-      ContractResourcePublicationStatusCodesBuilder._(validatedValue: '');
+      ContractResourcePublicationStatusCodesBuilder._(valueString: '');
 
   /// Factory constructor to create [ContractResourcePublicationStatusCodesBuilder]
   /// from JSON.
@@ -65,7 +66,7 @@ class ContractResourcePublicationStatusCodesBuilder
       );
     }
     return ContractResourcePublicationStatusCodesBuilder._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
@@ -73,7 +74,7 @@ class ContractResourcePublicationStatusCodesBuilder
   /// amended
   static ContractResourcePublicationStatusCodesBuilder amended =
       ContractResourcePublicationStatusCodesBuilder._(
-    validatedValue: 'amended',
+    valueString: 'amended',
     system: 'http://hl7.org/fhir/ValueSet/contract-publicationstatus'
         .toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -83,7 +84,7 @@ class ContractResourcePublicationStatusCodesBuilder
   /// appended
   static ContractResourcePublicationStatusCodesBuilder appended =
       ContractResourcePublicationStatusCodesBuilder._(
-    validatedValue: 'appended',
+    valueString: 'appended',
     system: 'http://hl7.org/fhir/ValueSet/contract-publicationstatus'
         .toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -93,7 +94,7 @@ class ContractResourcePublicationStatusCodesBuilder
   /// cancelled
   static ContractResourcePublicationStatusCodesBuilder cancelled =
       ContractResourcePublicationStatusCodesBuilder._(
-    validatedValue: 'cancelled',
+    valueString: 'cancelled',
     system: 'http://hl7.org/fhir/ValueSet/contract-publicationstatus'
         .toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -103,7 +104,7 @@ class ContractResourcePublicationStatusCodesBuilder
   /// disputed
   static ContractResourcePublicationStatusCodesBuilder disputed =
       ContractResourcePublicationStatusCodesBuilder._(
-    validatedValue: 'disputed',
+    valueString: 'disputed',
     system: 'http://hl7.org/fhir/ValueSet/contract-publicationstatus'
         .toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -113,7 +114,7 @@ class ContractResourcePublicationStatusCodesBuilder
   /// entered_in_error
   static ContractResourcePublicationStatusCodesBuilder entered_in_error =
       ContractResourcePublicationStatusCodesBuilder._(
-    validatedValue: 'entered-in-error',
+    valueString: 'entered-in-error',
     system: 'http://hl7.org/fhir/ValueSet/contract-publicationstatus'
         .toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -123,7 +124,7 @@ class ContractResourcePublicationStatusCodesBuilder
   /// executable
   static ContractResourcePublicationStatusCodesBuilder executable =
       ContractResourcePublicationStatusCodesBuilder._(
-    validatedValue: 'executable',
+    valueString: 'executable',
     system: 'http://hl7.org/fhir/ValueSet/contract-publicationstatus'
         .toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -133,7 +134,7 @@ class ContractResourcePublicationStatusCodesBuilder
   /// executed
   static ContractResourcePublicationStatusCodesBuilder executed =
       ContractResourcePublicationStatusCodesBuilder._(
-    validatedValue: 'executed',
+    valueString: 'executed',
     system: 'http://hl7.org/fhir/ValueSet/contract-publicationstatus'
         .toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -143,7 +144,7 @@ class ContractResourcePublicationStatusCodesBuilder
   /// negotiable
   static ContractResourcePublicationStatusCodesBuilder negotiable =
       ContractResourcePublicationStatusCodesBuilder._(
-    validatedValue: 'negotiable',
+    valueString: 'negotiable',
     system: 'http://hl7.org/fhir/ValueSet/contract-publicationstatus'
         .toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -153,7 +154,7 @@ class ContractResourcePublicationStatusCodesBuilder
   /// offered
   static ContractResourcePublicationStatusCodesBuilder offered =
       ContractResourcePublicationStatusCodesBuilder._(
-    validatedValue: 'offered',
+    valueString: 'offered',
     system: 'http://hl7.org/fhir/ValueSet/contract-publicationstatus'
         .toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -163,7 +164,7 @@ class ContractResourcePublicationStatusCodesBuilder
   /// policy
   static ContractResourcePublicationStatusCodesBuilder policy =
       ContractResourcePublicationStatusCodesBuilder._(
-    validatedValue: 'policy',
+    valueString: 'policy',
     system: 'http://hl7.org/fhir/ValueSet/contract-publicationstatus'
         .toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -173,7 +174,7 @@ class ContractResourcePublicationStatusCodesBuilder
   /// rejected
   static ContractResourcePublicationStatusCodesBuilder rejected =
       ContractResourcePublicationStatusCodesBuilder._(
-    validatedValue: 'rejected',
+    valueString: 'rejected',
     system: 'http://hl7.org/fhir/ValueSet/contract-publicationstatus'
         .toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -183,7 +184,7 @@ class ContractResourcePublicationStatusCodesBuilder
   /// renewed
   static ContractResourcePublicationStatusCodesBuilder renewed =
       ContractResourcePublicationStatusCodesBuilder._(
-    validatedValue: 'renewed',
+    valueString: 'renewed',
     system: 'http://hl7.org/fhir/ValueSet/contract-publicationstatus'
         .toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -193,7 +194,7 @@ class ContractResourcePublicationStatusCodesBuilder
   /// revoked
   static ContractResourcePublicationStatusCodesBuilder revoked =
       ContractResourcePublicationStatusCodesBuilder._(
-    validatedValue: 'revoked',
+    valueString: 'revoked',
     system: 'http://hl7.org/fhir/ValueSet/contract-publicationstatus'
         .toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -203,7 +204,7 @@ class ContractResourcePublicationStatusCodesBuilder
   /// resolved
   static ContractResourcePublicationStatusCodesBuilder resolved =
       ContractResourcePublicationStatusCodesBuilder._(
-    validatedValue: 'resolved',
+    valueString: 'resolved',
     system: 'http://hl7.org/fhir/ValueSet/contract-publicationstatus'
         .toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -213,7 +214,7 @@ class ContractResourcePublicationStatusCodesBuilder
   /// terminated
   static ContractResourcePublicationStatusCodesBuilder terminated =
       ContractResourcePublicationStatusCodesBuilder._(
-    validatedValue: 'terminated',
+    valueString: 'terminated',
     system: 'http://hl7.org/fhir/ValueSet/contract-publicationstatus'
         .toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -222,7 +223,7 @@ class ContractResourcePublicationStatusCodesBuilder
 
   /// For instances where an Element is present but not value
   static ContractResourcePublicationStatusCodesBuilder elementOnly =
-      ContractResourcePublicationStatusCodesBuilder._(validatedValue: '');
+      ContractResourcePublicationStatusCodesBuilder._(valueString: '');
 
   /// List of all enum-like values
   static List<ContractResourcePublicationStatusCodesBuilder> values = [
@@ -247,7 +248,7 @@ class ContractResourcePublicationStatusCodesBuilder
   @override
   ContractResourcePublicationStatusCodesBuilder clone() =>
       ContractResourcePublicationStatusCodesBuilder._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as ElementBuilder?,
       );
 
@@ -255,24 +256,24 @@ class ContractResourcePublicationStatusCodesBuilder
   ContractResourcePublicationStatusCodesBuilder withElement(
       ElementBuilder? newElement,) {
     return ContractResourcePublicationStatusCodesBuilder._(
-        validatedValue: value, element: newElement,);
+        valueString: valueString, element: newElement,);
   }
 
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   ContractResourcePublicationStatusCodesBuilder copyWith({
-    String? newValue,
+    dynamic newValue,
     ElementBuilder? element,
     FhirStringBuilder? id,
     List<FhirExtensionBuilder>? extension_,
@@ -283,11 +284,12 @@ class ContractResourcePublicationStatusCodesBuilder
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError(
+          'Invalid input for ContractResourcePublicationStatusCodes: $newValue',);
     }
     return ContractResourcePublicationStatusCodesBuilder._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
@@ -296,7 +298,7 @@ class ContractResourcePublicationStatusCodesBuilder
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath,
+      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

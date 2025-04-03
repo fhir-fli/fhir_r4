@@ -524,7 +524,10 @@ class Dosage extends BackboneType
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -538,7 +541,10 @@ class Dosage extends BackboneType
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -568,7 +574,10 @@ class Dosage extends BackboneType
             return copyWith(additionalInstruction: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...?additionalInstruction, child];
+            final newList = [
+              ...?additionalInstruction,
+              child,
+            ];
             return copyWith(additionalInstruction: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -652,7 +661,10 @@ class Dosage extends BackboneType
             return copyWith(doseAndRate: newList);
           } else if (child is DosageDoseAndRate) {
             // Add single element to existing list or create new list
-            final newList = [...?doseAndRate, child];
+            final newList = [
+              ...?doseAndRate,
+              child,
+            ];
             return copyWith(doseAndRate: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -710,7 +722,10 @@ class Dosage extends BackboneType
         return ['Timing'];
       case 'asNeeded':
       case 'asNeededX':
-        return ['FhirBoolean', 'CodeableConcept'];
+        return [
+          'FhirBoolean',
+          'CodeableConcept',
+        ];
       case 'asNeededBoolean':
         return ['FhirBoolean'];
       case 'asNeededCodeableConcept':
@@ -1417,7 +1432,10 @@ class DosageDoseAndRate extends Element {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1520,14 +1538,21 @@ class DosageDoseAndRate extends Element {
         return ['CodeableConcept'];
       case 'dose':
       case 'doseX':
-        return ['Range', 'Quantity'];
+        return [
+          'Range',
+          'Quantity',
+        ];
       case 'doseRange':
         return ['Range'];
       case 'doseQuantity':
         return ['Quantity'];
       case 'rate':
       case 'rateX':
-        return ['Ratio', 'Range', 'Quantity'];
+        return [
+          'Ratio',
+          'Range',
+          'Quantity',
+        ];
       case 'rateRatio':
         return ['Ratio'];
       case 'rateRange':

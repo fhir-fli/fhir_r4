@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class NameUse extends FhirCodeEnum {
   // Private underscore constructor for internal use.
   NameUse._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class NameUse extends FhirCodeEnum {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory NameUse(
-    String? raw, {
+    String? rawValue, {
     FhirUri? system,
     FhirString? version,
     FhirString? display,
@@ -29,9 +29,10 @@ class NameUse extends FhirCodeEnum {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCode._validateCode(rawValue) : null;
     return NameUse._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -44,7 +45,7 @@ class NameUse extends FhirCodeEnum {
   }
 
   /// Create empty [NameUse] with element only
-  factory NameUse.empty() => NameUse._(validatedValue: '');
+  factory NameUse.empty() => NameUse._(valueString: '');
 
   /// Factory constructor to create [NameUse] from JSON.
   factory NameUse.fromJson(Map<String, dynamic> json) {
@@ -59,14 +60,14 @@ class NameUse extends FhirCodeEnum {
       );
     }
     return NameUse._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// usual
   static final NameUse usual = NameUse._(
-    validatedValue: 'usual',
+    valueString: 'usual',
     system: 'http://hl7.org/fhir/ValueSet/name-use'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Usual'.toFhirString,
@@ -74,7 +75,7 @@ class NameUse extends FhirCodeEnum {
 
   /// official
   static final NameUse official = NameUse._(
-    validatedValue: 'official',
+    valueString: 'official',
     system: 'http://hl7.org/fhir/ValueSet/name-use'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Official'.toFhirString,
@@ -82,7 +83,7 @@ class NameUse extends FhirCodeEnum {
 
   /// temp
   static final NameUse temp = NameUse._(
-    validatedValue: 'temp',
+    valueString: 'temp',
     system: 'http://hl7.org/fhir/ValueSet/name-use'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Temp'.toFhirString,
@@ -90,7 +91,7 @@ class NameUse extends FhirCodeEnum {
 
   /// nickname
   static final NameUse nickname = NameUse._(
-    validatedValue: 'nickname',
+    valueString: 'nickname',
     system: 'http://hl7.org/fhir/ValueSet/name-use'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Nickname'.toFhirString,
@@ -98,7 +99,7 @@ class NameUse extends FhirCodeEnum {
 
   /// anonymous
   static final NameUse anonymous = NameUse._(
-    validatedValue: 'anonymous',
+    valueString: 'anonymous',
     system: 'http://hl7.org/fhir/ValueSet/name-use'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Anonymous'.toFhirString,
@@ -106,7 +107,7 @@ class NameUse extends FhirCodeEnum {
 
   /// old
   static final NameUse old = NameUse._(
-    validatedValue: 'old',
+    valueString: 'old',
     system: 'http://hl7.org/fhir/ValueSet/name-use'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Old'.toFhirString,
@@ -114,14 +115,14 @@ class NameUse extends FhirCodeEnum {
 
   /// maiden
   static final NameUse maiden = NameUse._(
-    validatedValue: 'maiden',
+    valueString: 'maiden',
     system: 'http://hl7.org/fhir/ValueSet/name-use'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Name changed for Marriage'.toFhirString,
   );
 
   /// For instances where an Element is present but not value
-  static final NameUse elementOnly = NameUse._(validatedValue: '');
+  static final NameUse elementOnly = NameUse._(valueString: '');
 
   /// List of all enum-like values
   static final List<NameUse> values = [
@@ -137,14 +138,14 @@ class NameUse extends FhirCodeEnum {
   /// Clones the current instance
   @override
   NameUse clone() => NameUse._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   NameUse withElement(Element? newElement) {
     return NameUse._(
-      validatedValue: value,
+      valueString: valueString,
       element: newElement,
     );
   }
@@ -152,18 +153,18 @@ class NameUse extends FhirCodeEnum {
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   NameUse copyWith({
-    String? newValue,
+    dynamic newValue,
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
@@ -174,11 +175,11 @@ class NameUse extends FhirCodeEnum {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError('Invalid input for NameUse: $newValue');
     }
     return NameUse._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

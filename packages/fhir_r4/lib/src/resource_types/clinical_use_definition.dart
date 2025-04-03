@@ -583,7 +583,10 @@ class ClinicalUseDefinition extends DomainResource {
             return copyWith(contained: newList);
           } else if (child is Resource) {
             // Add single element to existing list or create new list
-            final newList = [...?contained, child];
+            final newList = [
+              ...?contained,
+              child,
+            ];
             return copyWith(contained: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -597,7 +600,10 @@ class ClinicalUseDefinition extends DomainResource {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -611,7 +617,10 @@ class ClinicalUseDefinition extends DomainResource {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -625,7 +634,10 @@ class ClinicalUseDefinition extends DomainResource {
             return copyWith(identifier: newList);
           } else if (child is Identifier) {
             // Add single element to existing list or create new list
-            final newList = [...?identifier, child];
+            final newList = [
+              ...?identifier,
+              child,
+            ];
             return copyWith(identifier: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -647,7 +659,10 @@ class ClinicalUseDefinition extends DomainResource {
             return copyWith(category: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...?category, child];
+            final newList = [
+              ...?category,
+              child,
+            ];
             return copyWith(category: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -661,7 +676,10 @@ class ClinicalUseDefinition extends DomainResource {
             return copyWith(subject: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...?subject, child];
+            final newList = [
+              ...?subject,
+              child,
+            ];
             return copyWith(subject: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -707,7 +725,10 @@ class ClinicalUseDefinition extends DomainResource {
             return copyWith(population: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...?population, child];
+            final newList = [
+              ...?population,
+              child,
+            ];
             return copyWith(population: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1544,7 +1565,10 @@ class ClinicalUseDefinitionContraindication extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1558,7 +1582,10 @@ class ClinicalUseDefinitionContraindication extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1588,7 +1615,10 @@ class ClinicalUseDefinitionContraindication extends BackboneElement {
             return copyWith(comorbidity: newList);
           } else if (child is CodeableReference) {
             // Add single element to existing list or create new list
-            final newList = [...?comorbidity, child];
+            final newList = [
+              ...?comorbidity,
+              child,
+            ];
             return copyWith(comorbidity: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1602,7 +1632,10 @@ class ClinicalUseDefinitionContraindication extends BackboneElement {
             return copyWith(indication: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...?indication, child];
+            final newList = [
+              ...?indication,
+              child,
+            ];
             return copyWith(indication: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1616,7 +1649,10 @@ class ClinicalUseDefinitionContraindication extends BackboneElement {
             return copyWith(otherTherapy: newList);
           } else if (child is ClinicalUseDefinitionOtherTherapy) {
             // Add single element to existing list or create new list
-            final newList = [...?otherTherapy, child];
+            final newList = [
+              ...?otherTherapy,
+              child,
+            ];
             return copyWith(otherTherapy: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2135,7 +2171,10 @@ class ClinicalUseDefinitionOtherTherapy extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2149,7 +2188,10 @@ class ClinicalUseDefinitionOtherTherapy extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2744,7 +2786,10 @@ class ClinicalUseDefinitionIndication extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2758,7 +2803,10 @@ class ClinicalUseDefinitionIndication extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2788,7 +2836,10 @@ class ClinicalUseDefinitionIndication extends BackboneElement {
             return copyWith(comorbidity: newList);
           } else if (child is CodeableReference) {
             // Add single element to existing list or create new list
-            final newList = [...?comorbidity, child];
+            final newList = [
+              ...?comorbidity,
+              child,
+            ];
             return copyWith(comorbidity: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2840,7 +2891,10 @@ class ClinicalUseDefinitionIndication extends BackboneElement {
             return copyWith(undesirableEffect: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...?undesirableEffect, child];
+            final newList = [
+              ...?undesirableEffect,
+              child,
+            ];
             return copyWith(undesirableEffect: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2854,7 +2908,10 @@ class ClinicalUseDefinitionIndication extends BackboneElement {
             return copyWith(otherTherapy: newList);
           } else if (child is ClinicalUseDefinitionOtherTherapy) {
             // Add single element to existing list or create new list
-            final newList = [...?otherTherapy, child];
+            final newList = [
+              ...?otherTherapy,
+              child,
+            ];
             return copyWith(otherTherapy: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2886,7 +2943,10 @@ class ClinicalUseDefinitionIndication extends BackboneElement {
         return ['CodeableReference'];
       case 'duration':
       case 'durationX':
-        return ['Range', 'FhirString'];
+        return [
+          'Range',
+          'FhirString',
+        ];
       case 'durationRange':
         return ['Range'];
       case 'durationString':
@@ -3497,7 +3557,10 @@ class ClinicalUseDefinitionInteraction extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -3511,7 +3574,10 @@ class ClinicalUseDefinitionInteraction extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -3525,7 +3591,10 @@ class ClinicalUseDefinitionInteraction extends BackboneElement {
             return copyWith(interactant: newList);
           } else if (child is ClinicalUseDefinitionInteractant) {
             // Add single element to existing list or create new list
-            final newList = [...?interactant, child];
+            final newList = [
+              ...?interactant,
+              child,
+            ];
             return copyWith(interactant: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -3563,7 +3632,10 @@ class ClinicalUseDefinitionInteraction extends BackboneElement {
             return copyWith(management: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...?management, child];
+            final newList = [
+              ...?management,
+              child,
+            ];
             return copyWith(management: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -4076,7 +4148,10 @@ class ClinicalUseDefinitionInteractant extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -4090,7 +4165,10 @@ class ClinicalUseDefinitionInteractant extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -4144,7 +4222,10 @@ class ClinicalUseDefinitionInteractant extends BackboneElement {
         return ['FhirExtension'];
       case 'item':
       case 'itemX':
-        return ['Reference', 'CodeableConcept'];
+        return [
+          'Reference',
+          'CodeableConcept',
+        ];
       case 'itemReference':
         return ['Reference'];
       case 'itemCodeableConcept':
@@ -4573,7 +4654,10 @@ class ClinicalUseDefinitionUndesirableEffect extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -4587,7 +4671,10 @@ class ClinicalUseDefinitionUndesirableEffect extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -5078,7 +5165,10 @@ class ClinicalUseDefinitionWarning extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -5092,7 +5182,10 @@ class ClinicalUseDefinitionWarning extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');

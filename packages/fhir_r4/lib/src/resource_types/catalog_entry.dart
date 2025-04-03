@@ -626,7 +626,10 @@ class CatalogEntry extends DomainResource {
             return copyWith(contained: newList);
           } else if (child is Resource) {
             // Add single element to existing list or create new list
-            final newList = [...?contained, child];
+            final newList = [
+              ...?contained,
+              child,
+            ];
             return copyWith(contained: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -640,7 +643,10 @@ class CatalogEntry extends DomainResource {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -654,7 +660,10 @@ class CatalogEntry extends DomainResource {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -668,7 +677,10 @@ class CatalogEntry extends DomainResource {
             return copyWith(identifier: newList);
           } else if (child is Identifier) {
             // Add single element to existing list or create new list
-            final newList = [...?identifier, child];
+            final newList = [
+              ...?identifier,
+              child,
+            ];
             return copyWith(identifier: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -706,7 +718,10 @@ class CatalogEntry extends DomainResource {
             return copyWith(additionalIdentifier: newList);
           } else if (child is Identifier) {
             // Add single element to existing list or create new list
-            final newList = [...?additionalIdentifier, child];
+            final newList = [
+              ...?additionalIdentifier,
+              child,
+            ];
             return copyWith(additionalIdentifier: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -720,7 +735,10 @@ class CatalogEntry extends DomainResource {
             return copyWith(classification: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...?classification, child];
+            final newList = [
+              ...?classification,
+              child,
+            ];
             return copyWith(classification: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -766,7 +784,10 @@ class CatalogEntry extends DomainResource {
             return copyWith(additionalCharacteristic: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...?additionalCharacteristic, child];
+            final newList = [
+              ...?additionalCharacteristic,
+              child,
+            ];
             return copyWith(additionalCharacteristic: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -780,7 +801,10 @@ class CatalogEntry extends DomainResource {
             return copyWith(additionalClassification: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...?additionalClassification, child];
+            final newList = [
+              ...?additionalClassification,
+              child,
+            ];
             return copyWith(additionalClassification: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -794,7 +818,10 @@ class CatalogEntry extends DomainResource {
             return copyWith(relatedEntry: newList);
           } else if (child is CatalogEntryRelatedEntry) {
             // Add single element to existing list or create new list
-            final newList = [...?relatedEntry, child];
+            final newList = [
+              ...?relatedEntry,
+              child,
+            ];
             return copyWith(relatedEntry: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1592,7 +1619,10 @@ class CatalogEntryRelatedEntry extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1606,7 +1636,10 @@ class CatalogEntryRelatedEntry extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');

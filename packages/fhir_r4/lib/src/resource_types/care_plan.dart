@@ -869,7 +869,10 @@ class CarePlan extends DomainResource {
             return copyWith(contained: newList);
           } else if (child is Resource) {
             // Add single element to existing list or create new list
-            final newList = [...?contained, child];
+            final newList = [
+              ...?contained,
+              child,
+            ];
             return copyWith(contained: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -883,7 +886,10 @@ class CarePlan extends DomainResource {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -897,7 +903,10 @@ class CarePlan extends DomainResource {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -911,7 +920,10 @@ class CarePlan extends DomainResource {
             return copyWith(identifier: newList);
           } else if (child is Identifier) {
             // Add single element to existing list or create new list
-            final newList = [...?identifier, child];
+            final newList = [
+              ...?identifier,
+              child,
+            ];
             return copyWith(identifier: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -925,7 +937,10 @@ class CarePlan extends DomainResource {
             return copyWith(instantiatesCanonical: newList);
           } else if (child is FhirCanonical) {
             // Add single element to existing list or create new list
-            final newList = [...?instantiatesCanonical, child];
+            final newList = [
+              ...?instantiatesCanonical,
+              child,
+            ];
             return copyWith(instantiatesCanonical: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -939,7 +954,10 @@ class CarePlan extends DomainResource {
             return copyWith(instantiatesUri: newList);
           } else if (child is FhirUri) {
             // Add single element to existing list or create new list
-            final newList = [...?instantiatesUri, child];
+            final newList = [
+              ...?instantiatesUri,
+              child,
+            ];
             return copyWith(instantiatesUri: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -953,7 +971,10 @@ class CarePlan extends DomainResource {
             return copyWith(basedOn: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...?basedOn, child];
+            final newList = [
+              ...?basedOn,
+              child,
+            ];
             return copyWith(basedOn: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -967,7 +988,10 @@ class CarePlan extends DomainResource {
             return copyWith(replaces: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...?replaces, child];
+            final newList = [
+              ...?replaces,
+              child,
+            ];
             return copyWith(replaces: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -981,7 +1005,10 @@ class CarePlan extends DomainResource {
             return copyWith(partOf: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...?partOf, child];
+            final newList = [
+              ...?partOf,
+              child,
+            ];
             return copyWith(partOf: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1011,7 +1038,10 @@ class CarePlan extends DomainResource {
             return copyWith(category: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...?category, child];
+            final newList = [
+              ...?category,
+              child,
+            ];
             return copyWith(category: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1081,7 +1111,10 @@ class CarePlan extends DomainResource {
             return copyWith(contributor: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...?contributor, child];
+            final newList = [
+              ...?contributor,
+              child,
+            ];
             return copyWith(contributor: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1095,7 +1128,10 @@ class CarePlan extends DomainResource {
             return copyWith(careTeam: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...?careTeam, child];
+            final newList = [
+              ...?careTeam,
+              child,
+            ];
             return copyWith(careTeam: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1109,7 +1145,10 @@ class CarePlan extends DomainResource {
             return copyWith(addresses: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...?addresses, child];
+            final newList = [
+              ...?addresses,
+              child,
+            ];
             return copyWith(addresses: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1123,7 +1162,10 @@ class CarePlan extends DomainResource {
             return copyWith(supportingInfo: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...?supportingInfo, child];
+            final newList = [
+              ...?supportingInfo,
+              child,
+            ];
             return copyWith(supportingInfo: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1137,7 +1179,10 @@ class CarePlan extends DomainResource {
             return copyWith(goal: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...?goal, child];
+            final newList = [
+              ...?goal,
+              child,
+            ];
             return copyWith(goal: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1151,7 +1196,10 @@ class CarePlan extends DomainResource {
             return copyWith(activity: newList);
           } else if (child is CarePlanActivity) {
             // Add single element to existing list or create new list
-            final newList = [...?activity, child];
+            final newList = [
+              ...?activity,
+              child,
+            ];
             return copyWith(activity: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1165,7 +1213,10 @@ class CarePlan extends DomainResource {
             return copyWith(note: newList);
           } else if (child is Annotation) {
             // Add single element to existing list or create new list
-            final newList = [...?note, child];
+            final newList = [
+              ...?note,
+              child,
+            ];
             return copyWith(note: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2284,7 +2335,10 @@ class CarePlanActivity extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2298,7 +2352,10 @@ class CarePlanActivity extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2312,7 +2369,10 @@ class CarePlanActivity extends BackboneElement {
             return copyWith(outcomeCodeableConcept: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...?outcomeCodeableConcept, child];
+            final newList = [
+              ...?outcomeCodeableConcept,
+              child,
+            ];
             return copyWith(outcomeCodeableConcept: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2326,7 +2386,10 @@ class CarePlanActivity extends BackboneElement {
             return copyWith(outcomeReference: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...?outcomeReference, child];
+            final newList = [
+              ...?outcomeReference,
+              child,
+            ];
             return copyWith(outcomeReference: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2340,7 +2403,10 @@ class CarePlanActivity extends BackboneElement {
             return copyWith(progress: newList);
           } else if (child is Annotation) {
             // Add single element to existing list or create new list
-            final newList = [...?progress, child];
+            final newList = [
+              ...?progress,
+              child,
+            ];
             return copyWith(progress: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -3265,7 +3331,10 @@ class CarePlanDetail extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -3279,7 +3348,10 @@ class CarePlanDetail extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -3301,7 +3373,10 @@ class CarePlanDetail extends BackboneElement {
             return copyWith(instantiatesCanonical: newList);
           } else if (child is FhirCanonical) {
             // Add single element to existing list or create new list
-            final newList = [...?instantiatesCanonical, child];
+            final newList = [
+              ...?instantiatesCanonical,
+              child,
+            ];
             return copyWith(instantiatesCanonical: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -3315,7 +3390,10 @@ class CarePlanDetail extends BackboneElement {
             return copyWith(instantiatesUri: newList);
           } else if (child is FhirUri) {
             // Add single element to existing list or create new list
-            final newList = [...?instantiatesUri, child];
+            final newList = [
+              ...?instantiatesUri,
+              child,
+            ];
             return copyWith(instantiatesUri: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -3337,7 +3415,10 @@ class CarePlanDetail extends BackboneElement {
             return copyWith(reasonCode: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...?reasonCode, child];
+            final newList = [
+              ...?reasonCode,
+              child,
+            ];
             return copyWith(reasonCode: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -3351,7 +3432,10 @@ class CarePlanDetail extends BackboneElement {
             return copyWith(reasonReference: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...?reasonReference, child];
+            final newList = [
+              ...?reasonReference,
+              child,
+            ];
             return copyWith(reasonReference: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -3365,7 +3449,10 @@ class CarePlanDetail extends BackboneElement {
             return copyWith(goal: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...?goal, child];
+            final newList = [
+              ...?goal,
+              child,
+            ];
             return copyWith(goal: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -3452,7 +3539,10 @@ class CarePlanDetail extends BackboneElement {
             return copyWith(performer: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...?performer, child];
+            final newList = [
+              ...?performer,
+              child,
+            ];
             return copyWith(performer: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -3550,7 +3640,11 @@ class CarePlanDetail extends BackboneElement {
         return ['FhirBoolean'];
       case 'scheduled':
       case 'scheduledX':
-        return ['Timing', 'Period', 'FhirString'];
+        return [
+          'Timing',
+          'Period',
+          'FhirString',
+        ];
       case 'scheduledTiming':
         return ['Timing'];
       case 'scheduledPeriod':
@@ -3563,7 +3657,10 @@ class CarePlanDetail extends BackboneElement {
         return ['Reference'];
       case 'product':
       case 'productX':
-        return ['CodeableConcept', 'Reference'];
+        return [
+          'CodeableConcept',
+          'Reference',
+        ];
       case 'productCodeableConcept':
         return ['CodeableConcept'];
       case 'productReference':

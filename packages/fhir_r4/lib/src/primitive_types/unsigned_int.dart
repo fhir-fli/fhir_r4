@@ -53,9 +53,11 @@ class FhirUnsignedInt extends FhirNumber
   /// Constructs a [FhirUnsignedInt] from [rawValue], which must be a
   /// non-negative integer or `null`.
   ///
-  /// - If [rawValue] is `null`, [element] must be non-null (element-only usage).
+  /// - If [rawValue] is `null`, [element] must be non-null
+  /// (element-only usage).
   /// - If [rawValue] is an [int] ≥ 0, stores it.
   /// - If [rawValue] is a [String], it must parse to an int ≥ 0.
+  // ignore: sort_unnamed_constructors_first
   factory FhirUnsignedInt(
     dynamic rawValue, {
     Element? element,
@@ -68,14 +70,16 @@ class FhirUnsignedInt extends FhirNumber
 
     if (rawValue == null && element == null) {
       throw ArgumentError(
-          'A value or element is required for FhirUnsignedInt.');
+        'A value or element is required for FhirUnsignedInt.',
+      );
     }
 
     if (rawValue is num) {
       if (rawValue is int) {
         if (rawValue < 0) {
           throw ArgumentError(
-            'FhirUnsignedInt only supports non-negative integers, got: $rawValue',
+            'FhirUnsignedInt only supports non-negative integers, '
+            'got: $rawValue',
           );
         }
         parsedString = rawValue.toString();
@@ -94,7 +98,8 @@ class FhirUnsignedInt extends FhirNumber
       parsedString = asInt.toString();
     } else if (rawValue != null) {
       throw ArgumentError(
-        'FhirUnsignedInt only supports an int or string or null, got: $rawValue',
+        'FhirUnsignedInt only supports an int or string or null, '
+        'got: $rawValue',
       );
     }
 
@@ -122,8 +127,11 @@ class FhirUnsignedInt extends FhirNumber
     final elemJson = json['_value'] as Map<String, dynamic>?;
     final parsedElement = elemJson == null ? null : Element.fromJson(elemJson);
     final objectPath = json['objectPath'] as String? ?? 'UnsignedInt';
-    return FhirUnsignedInt(rawValue,
-        element: parsedElement, objectPath: objectPath);
+    return FhirUnsignedInt(
+      rawValue,
+      element: parsedElement,
+      objectPath: objectPath,
+    );
   }
 
   /// Constructs a [FhirUnsignedInt] from a YAML input ([String] or [YamlMap]).
@@ -143,7 +151,8 @@ class FhirUnsignedInt extends FhirNumber
     }
   }
 
-  /// Attempts to parse [input] as a [FhirUnsignedInt]. Returns `null` if it fails.
+  /// Attempts to parse [input] as a [FhirUnsignedInt]. Returns `null` if
+  /// it fails.
   static FhirUnsignedInt? tryParse(dynamic input) {
     try {
       return FhirUnsignedInt(input);

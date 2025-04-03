@@ -654,7 +654,10 @@ class CompartmentDefinition extends DomainResource {
             return copyWith(contained: newList);
           } else if (child is Resource) {
             // Add single element to existing list or create new list
-            final newList = [...?contained, child];
+            final newList = [
+              ...?contained,
+              child,
+            ];
             return copyWith(contained: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -668,7 +671,10 @@ class CompartmentDefinition extends DomainResource {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -682,7 +688,10 @@ class CompartmentDefinition extends DomainResource {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -752,7 +761,10 @@ class CompartmentDefinition extends DomainResource {
             return copyWith(contact: newList);
           } else if (child is ContactDetail) {
             // Add single element to existing list or create new list
-            final newList = [...?contact, child];
+            final newList = [
+              ...?contact,
+              child,
+            ];
             return copyWith(contact: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -774,7 +786,10 @@ class CompartmentDefinition extends DomainResource {
             return copyWith(useContext: newList);
           } else if (child is UsageContext) {
             // Add single element to existing list or create new list
-            final newList = [...?useContext, child];
+            final newList = [
+              ...?useContext,
+              child,
+            ];
             return copyWith(useContext: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -812,7 +827,10 @@ class CompartmentDefinition extends DomainResource {
             return copyWith(resource: newList);
           } else if (child is CompartmentDefinitionResource) {
             // Add single element to existing list or create new list
-            final newList = [...?resource, child];
+            final newList = [
+              ...?resource,
+              child,
+            ];
             return copyWith(resource: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1635,7 +1653,10 @@ class CompartmentDefinitionResource extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1649,7 +1670,10 @@ class CompartmentDefinitionResource extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1671,7 +1695,10 @@ class CompartmentDefinitionResource extends BackboneElement {
             return copyWith(param: newList);
           } else if (child is FhirString) {
             // Add single element to existing list or create new list
-            final newList = [...?param, child];
+            final newList = [
+              ...?param,
+              child,
+            ];
             return copyWith(param: newList);
           } else {
             throw Exception('Invalid child type for $childName');

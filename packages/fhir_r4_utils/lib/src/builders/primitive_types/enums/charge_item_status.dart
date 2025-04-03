@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class ChargeItemStatusBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   ChargeItemStatusBuilder._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class ChargeItemStatusBuilder extends FhirCodeEnumBuilder {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory ChargeItemStatusBuilder(
-    String? raw, {
+    String? rawValue, {
     FhirUriBuilder? system,
     FhirStringBuilder? version,
     FhirStringBuilder? display,
@@ -29,9 +29,10 @@ class ChargeItemStatusBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
     return ChargeItemStatusBuilder._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -45,7 +46,7 @@ class ChargeItemStatusBuilder extends FhirCodeEnumBuilder {
 
   /// Create empty [ChargeItemStatusBuilder] with element only
   factory ChargeItemStatusBuilder.empty() =>
-      ChargeItemStatusBuilder._(validatedValue: '');
+      ChargeItemStatusBuilder._(valueString: '');
 
   /// Factory constructor to create [ChargeItemStatusBuilder]
   /// from JSON.
@@ -62,14 +63,14 @@ class ChargeItemStatusBuilder extends FhirCodeEnumBuilder {
       );
     }
     return ChargeItemStatusBuilder._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// planned
   static ChargeItemStatusBuilder planned = ChargeItemStatusBuilder._(
-    validatedValue: 'planned',
+    valueString: 'planned',
     system: 'http://hl7.org/fhir/ValueSet/chargeitem-status'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Planned'.toFhirStringBuilder,
@@ -77,7 +78,7 @@ class ChargeItemStatusBuilder extends FhirCodeEnumBuilder {
 
   /// billable
   static ChargeItemStatusBuilder billable = ChargeItemStatusBuilder._(
-    validatedValue: 'billable',
+    valueString: 'billable',
     system: 'http://hl7.org/fhir/ValueSet/chargeitem-status'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Billable'.toFhirStringBuilder,
@@ -85,7 +86,7 @@ class ChargeItemStatusBuilder extends FhirCodeEnumBuilder {
 
   /// not_billable
   static ChargeItemStatusBuilder not_billable = ChargeItemStatusBuilder._(
-    validatedValue: 'not-billable',
+    valueString: 'not-billable',
     system: 'http://hl7.org/fhir/ValueSet/chargeitem-status'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Not billable'.toFhirStringBuilder,
@@ -93,7 +94,7 @@ class ChargeItemStatusBuilder extends FhirCodeEnumBuilder {
 
   /// aborted
   static ChargeItemStatusBuilder aborted = ChargeItemStatusBuilder._(
-    validatedValue: 'aborted',
+    valueString: 'aborted',
     system: 'http://hl7.org/fhir/ValueSet/chargeitem-status'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Aborted'.toFhirStringBuilder,
@@ -101,7 +102,7 @@ class ChargeItemStatusBuilder extends FhirCodeEnumBuilder {
 
   /// billed
   static ChargeItemStatusBuilder billed = ChargeItemStatusBuilder._(
-    validatedValue: 'billed',
+    valueString: 'billed',
     system: 'http://hl7.org/fhir/ValueSet/chargeitem-status'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Billed'.toFhirStringBuilder,
@@ -109,7 +110,7 @@ class ChargeItemStatusBuilder extends FhirCodeEnumBuilder {
 
   /// entered_in_error
   static ChargeItemStatusBuilder entered_in_error = ChargeItemStatusBuilder._(
-    validatedValue: 'entered-in-error',
+    valueString: 'entered-in-error',
     system: 'http://hl7.org/fhir/ValueSet/chargeitem-status'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Entered in Error'.toFhirStringBuilder,
@@ -117,7 +118,7 @@ class ChargeItemStatusBuilder extends FhirCodeEnumBuilder {
 
   /// unknown
   static ChargeItemStatusBuilder unknown = ChargeItemStatusBuilder._(
-    validatedValue: 'unknown',
+    valueString: 'unknown',
     system: 'http://hl7.org/fhir/ValueSet/chargeitem-status'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Unknown'.toFhirStringBuilder,
@@ -125,7 +126,7 @@ class ChargeItemStatusBuilder extends FhirCodeEnumBuilder {
 
   /// For instances where an Element is present but not value
   static ChargeItemStatusBuilder elementOnly =
-      ChargeItemStatusBuilder._(validatedValue: '');
+      ChargeItemStatusBuilder._(valueString: '');
 
   /// List of all enum-like values
   static List<ChargeItemStatusBuilder> values = [
@@ -141,31 +142,31 @@ class ChargeItemStatusBuilder extends FhirCodeEnumBuilder {
   /// Clones the current instance
   @override
   ChargeItemStatusBuilder clone() => ChargeItemStatusBuilder._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
   ChargeItemStatusBuilder withElement(ElementBuilder? newElement) {
     return ChargeItemStatusBuilder._(
-        validatedValue: value, element: newElement,);
+        valueString: valueString, element: newElement,);
   }
 
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   ChargeItemStatusBuilder copyWith({
-    String? newValue,
+    dynamic newValue,
     ElementBuilder? element,
     FhirStringBuilder? id,
     List<FhirExtensionBuilder>? extension_,
@@ -176,11 +177,11 @@ class ChargeItemStatusBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError('Invalid input for ChargeItemStatus: $newValue');
     }
     return ChargeItemStatusBuilder._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
@@ -189,7 +190,7 @@ class ChargeItemStatusBuilder extends FhirCodeEnumBuilder {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath,
+      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

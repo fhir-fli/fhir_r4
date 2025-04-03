@@ -967,6 +967,21 @@ class ObservationBuilder extends DomainResourceBuilder {
           if (child is CommonLanguagesBuilder) {
             language = child;
             return;
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              // For enums, try to create directly from the string value
+              try {
+                final converted = CommonLanguagesBuilder(stringValue);
+                language = converted;
+                return;
+              } catch (e) {
+                // Continue if enum creation fails
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
           throw Exception('Invalid child type for $childName');
         }
@@ -986,7 +1001,10 @@ class ObservationBuilder extends DomainResourceBuilder {
             return;
           } else if (child is ResourceBuilder) {
             // Add single element to existing list or create new list
-            contained = [...(contained ?? []), child];
+            contained = [
+              ...(contained ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -999,7 +1017,10 @@ class ObservationBuilder extends DomainResourceBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -1012,7 +1033,10 @@ class ObservationBuilder extends DomainResourceBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -1025,7 +1049,10 @@ class ObservationBuilder extends DomainResourceBuilder {
             return;
           } else if (child is IdentifierBuilder) {
             // Add single element to existing list or create new list
-            identifier = [...(identifier ?? []), child];
+            identifier = [
+              ...(identifier ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -1038,7 +1065,10 @@ class ObservationBuilder extends DomainResourceBuilder {
             return;
           } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            basedOn = [...(basedOn ?? []), child];
+            basedOn = [
+              ...(basedOn ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -1051,7 +1081,10 @@ class ObservationBuilder extends DomainResourceBuilder {
             return;
           } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            partOf = [...(partOf ?? []), child];
+            partOf = [
+              ...(partOf ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -1061,6 +1094,21 @@ class ObservationBuilder extends DomainResourceBuilder {
           if (child is ObservationStatusBuilder) {
             status = child;
             return;
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              // For enums, try to create directly from the string value
+              try {
+                final converted = ObservationStatusBuilder(stringValue);
+                status = converted;
+                return;
+              } catch (e) {
+                // Continue if enum creation fails
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
           throw Exception('Invalid child type for $childName');
         }
@@ -1072,7 +1120,10 @@ class ObservationBuilder extends DomainResourceBuilder {
             return;
           } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            category = [...(category ?? []), child];
+            category = [
+              ...(category ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -1101,7 +1152,10 @@ class ObservationBuilder extends DomainResourceBuilder {
             return;
           } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            focus = [...(focus ?? []), child];
+            focus = [
+              ...(focus ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -1203,7 +1257,10 @@ class ObservationBuilder extends DomainResourceBuilder {
             return;
           } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            performer = [...(performer ?? []), child];
+            performer = [
+              ...(performer ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -1376,7 +1433,10 @@ class ObservationBuilder extends DomainResourceBuilder {
             return;
           } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            interpretation = [...(interpretation ?? []), child];
+            interpretation = [
+              ...(interpretation ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -1389,7 +1449,10 @@ class ObservationBuilder extends DomainResourceBuilder {
             return;
           } else if (child is AnnotationBuilder) {
             // Add single element to existing list or create new list
-            note = [...(note ?? []), child];
+            note = [
+              ...(note ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -1434,7 +1497,10 @@ class ObservationBuilder extends DomainResourceBuilder {
             return;
           } else if (child is ObservationReferenceRangeBuilder) {
             // Add single element to existing list or create new list
-            referenceRange = [...(referenceRange ?? []), child];
+            referenceRange = [
+              ...(referenceRange ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -1447,7 +1513,10 @@ class ObservationBuilder extends DomainResourceBuilder {
             return;
           } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            hasMember = [...(hasMember ?? []), child];
+            hasMember = [
+              ...(hasMember ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -1460,7 +1529,10 @@ class ObservationBuilder extends DomainResourceBuilder {
             return;
           } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            derivedFrom = [...(derivedFrom ?? []), child];
+            derivedFrom = [
+              ...(derivedFrom ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -1473,7 +1545,10 @@ class ObservationBuilder extends DomainResourceBuilder {
             return;
           } else if (child is ObservationComponentBuilder) {
             // Add single element to existing list or create new list
-            component = [...(component ?? []), child];
+            component = [
+              ...(component ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -2565,7 +2640,10 @@ class ObservationReferenceRangeBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -2578,7 +2656,10 @@ class ObservationReferenceRangeBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -2615,7 +2696,10 @@ class ObservationReferenceRangeBuilder extends BackboneElementBuilder {
             return;
           } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            appliesTo = [...(appliesTo ?? []), child];
+            appliesTo = [
+              ...(appliesTo ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -3300,7 +3384,10 @@ class ObservationComponentBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -3313,7 +3400,10 @@ class ObservationComponentBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -3494,7 +3584,10 @@ class ObservationComponentBuilder extends BackboneElementBuilder {
             return;
           } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            interpretation = [...(interpretation ?? []), child];
+            interpretation = [
+              ...(interpretation ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -3507,7 +3600,10 @@ class ObservationComponentBuilder extends BackboneElementBuilder {
             return;
           } else if (child is ObservationReferenceRangeBuilder) {
             // Add single element to existing list or create new list
-            referenceRange = [...(referenceRange ?? []), child];
+            referenceRange = [
+              ...(referenceRange ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');

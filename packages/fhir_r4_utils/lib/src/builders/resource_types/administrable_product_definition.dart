@@ -567,6 +567,21 @@ class AdministrableProductDefinitionBuilder extends DomainResourceBuilder {
           if (child is CommonLanguagesBuilder) {
             language = child;
             return;
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              // For enums, try to create directly from the string value
+              try {
+                final converted = CommonLanguagesBuilder(stringValue);
+                language = converted;
+                return;
+              } catch (e) {
+                // Continue if enum creation fails
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
           throw Exception('Invalid child type for $childName');
         }
@@ -586,7 +601,10 @@ class AdministrableProductDefinitionBuilder extends DomainResourceBuilder {
             return;
           } else if (child is ResourceBuilder) {
             // Add single element to existing list or create new list
-            contained = [...(contained ?? []), child];
+            contained = [
+              ...(contained ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -599,7 +617,10 @@ class AdministrableProductDefinitionBuilder extends DomainResourceBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -612,7 +633,10 @@ class AdministrableProductDefinitionBuilder extends DomainResourceBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -625,7 +649,10 @@ class AdministrableProductDefinitionBuilder extends DomainResourceBuilder {
             return;
           } else if (child is IdentifierBuilder) {
             // Add single element to existing list or create new list
-            identifier = [...(identifier ?? []), child];
+            identifier = [
+              ...(identifier ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -635,6 +662,21 @@ class AdministrableProductDefinitionBuilder extends DomainResourceBuilder {
           if (child is PublicationStatusBuilder) {
             status = child;
             return;
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              // For enums, try to create directly from the string value
+              try {
+                final converted = PublicationStatusBuilder(stringValue);
+                status = converted;
+                return;
+              } catch (e) {
+                // Continue if enum creation fails
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
           throw Exception('Invalid child type for $childName');
         }
@@ -646,7 +688,10 @@ class AdministrableProductDefinitionBuilder extends DomainResourceBuilder {
             return;
           } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            formOf = [...(formOf ?? []), child];
+            formOf = [
+              ...(formOf ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -675,7 +720,10 @@ class AdministrableProductDefinitionBuilder extends DomainResourceBuilder {
             return;
           } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            producedFrom = [...(producedFrom ?? []), child];
+            producedFrom = [
+              ...(producedFrom ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -688,7 +736,10 @@ class AdministrableProductDefinitionBuilder extends DomainResourceBuilder {
             return;
           } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            ingredient = [...(ingredient ?? []), child];
+            ingredient = [
+              ...(ingredient ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -709,7 +760,10 @@ class AdministrableProductDefinitionBuilder extends DomainResourceBuilder {
             return;
           } else if (child is AdministrableProductDefinitionPropertyBuilder) {
             // Add single element to existing list or create new list
-            property = [...(property ?? []), child];
+            property = [
+              ...(property ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -724,7 +778,10 @@ class AdministrableProductDefinitionBuilder extends DomainResourceBuilder {
           } else if (child
               is AdministrableProductDefinitionRouteOfAdministrationBuilder) {
             // Add single element to existing list or create new list
-            routeOfAdministration = [...(routeOfAdministration ?? []), child];
+            routeOfAdministration = [
+              ...(routeOfAdministration ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -1441,7 +1498,10 @@ class AdministrableProductDefinitionPropertyBuilder
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -1454,7 +1514,10 @@ class AdministrableProductDefinitionPropertyBuilder
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -2126,7 +2189,10 @@ class AdministrableProductDefinitionRouteOfAdministrationBuilder
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -2139,7 +2205,10 @@ class AdministrableProductDefinitionRouteOfAdministrationBuilder
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -2202,7 +2271,10 @@ class AdministrableProductDefinitionRouteOfAdministrationBuilder
           } else if (child
               is AdministrableProductDefinitionTargetSpeciesBuilder) {
             // Add single element to existing list or create new list
-            targetSpecies = [...(targetSpecies ?? []), child];
+            targetSpecies = [
+              ...(targetSpecies ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -2725,7 +2797,10 @@ class AdministrableProductDefinitionTargetSpeciesBuilder
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -2738,7 +2813,10 @@ class AdministrableProductDefinitionTargetSpeciesBuilder
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -2761,7 +2839,10 @@ class AdministrableProductDefinitionTargetSpeciesBuilder
           } else if (child
               is AdministrableProductDefinitionWithdrawalPeriodBuilder) {
             // Add single element to existing list or create new list
-            withdrawalPeriod = [...(withdrawalPeriod ?? []), child];
+            withdrawalPeriod = [
+              ...(withdrawalPeriod ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -3212,7 +3293,10 @@ class AdministrableProductDefinitionWithdrawalPeriodBuilder
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -3225,7 +3309,10 @@ class AdministrableProductDefinitionWithdrawalPeriodBuilder
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');

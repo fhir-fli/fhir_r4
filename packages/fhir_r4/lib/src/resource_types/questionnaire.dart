@@ -780,7 +780,10 @@ class Questionnaire extends CanonicalResource {
             return copyWith(contained: newList);
           } else if (child is Resource) {
             // Add single element to existing list or create new list
-            final newList = [...?contained, child];
+            final newList = [
+              ...?contained,
+              child,
+            ];
             return copyWith(contained: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -794,7 +797,10 @@ class Questionnaire extends CanonicalResource {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -808,7 +814,10 @@ class Questionnaire extends CanonicalResource {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -830,7 +839,10 @@ class Questionnaire extends CanonicalResource {
             return copyWith(identifier: newList);
           } else if (child is Identifier) {
             // Add single element to existing list or create new list
-            final newList = [...?identifier, child];
+            final newList = [
+              ...?identifier,
+              child,
+            ];
             return copyWith(identifier: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -868,7 +880,10 @@ class Questionnaire extends CanonicalResource {
             return copyWith(derivedFrom: newList);
           } else if (child is FhirCanonical) {
             // Add single element to existing list or create new list
-            final newList = [...?derivedFrom, child];
+            final newList = [
+              ...?derivedFrom,
+              child,
+            ];
             return copyWith(derivedFrom: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -898,7 +913,10 @@ class Questionnaire extends CanonicalResource {
             return copyWith(subjectType: newList);
           } else if (child is FhirCode) {
             // Add single element to existing list or create new list
-            final newList = [...?subjectType, child];
+            final newList = [
+              ...?subjectType,
+              child,
+            ];
             return copyWith(subjectType: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -928,7 +946,10 @@ class Questionnaire extends CanonicalResource {
             return copyWith(contact: newList);
           } else if (child is ContactDetail) {
             // Add single element to existing list or create new list
-            final newList = [...?contact, child];
+            final newList = [
+              ...?contact,
+              child,
+            ];
             return copyWith(contact: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -950,7 +971,10 @@ class Questionnaire extends CanonicalResource {
             return copyWith(useContext: newList);
           } else if (child is UsageContext) {
             // Add single element to existing list or create new list
-            final newList = [...?useContext, child];
+            final newList = [
+              ...?useContext,
+              child,
+            ];
             return copyWith(useContext: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -964,7 +988,10 @@ class Questionnaire extends CanonicalResource {
             return copyWith(jurisdiction: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...?jurisdiction, child];
+            final newList = [
+              ...?jurisdiction,
+              child,
+            ];
             return copyWith(jurisdiction: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1018,7 +1045,10 @@ class Questionnaire extends CanonicalResource {
             return copyWith(code: newList);
           } else if (child is Coding) {
             // Add single element to existing list or create new list
-            final newList = [...?code, child];
+            final newList = [
+              ...?code,
+              child,
+            ];
             return copyWith(code: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1032,7 +1062,10 @@ class Questionnaire extends CanonicalResource {
             return copyWith(item: newList);
           } else if (child is QuestionnaireItem) {
             // Add single element to existing list or create new list
-            final newList = [...?item, child];
+            final newList = [
+              ...?item,
+              child,
+            ];
             return copyWith(item: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2358,7 +2391,10 @@ class QuestionnaireItem extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2372,7 +2408,10 @@ class QuestionnaireItem extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2402,7 +2441,10 @@ class QuestionnaireItem extends BackboneElement {
             return copyWith(code: newList);
           } else if (child is Coding) {
             // Add single element to existing list or create new list
-            final newList = [...?code, child];
+            final newList = [
+              ...?code,
+              child,
+            ];
             return copyWith(code: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2440,7 +2482,10 @@ class QuestionnaireItem extends BackboneElement {
             return copyWith(enableWhen: newList);
           } else if (child is QuestionnaireEnableWhen) {
             // Add single element to existing list or create new list
-            final newList = [...?enableWhen, child];
+            final newList = [
+              ...?enableWhen,
+              child,
+            ];
             return copyWith(enableWhen: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2502,7 +2547,10 @@ class QuestionnaireItem extends BackboneElement {
             return copyWith(answerOption: newList);
           } else if (child is QuestionnaireAnswerOption) {
             // Add single element to existing list or create new list
-            final newList = [...?answerOption, child];
+            final newList = [
+              ...?answerOption,
+              child,
+            ];
             return copyWith(answerOption: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2516,7 +2564,10 @@ class QuestionnaireItem extends BackboneElement {
             return copyWith(initial: newList);
           } else if (child is QuestionnaireInitial) {
             // Add single element to existing list or create new list
-            final newList = [...?initial, child];
+            final newList = [
+              ...?initial,
+              child,
+            ];
             return copyWith(initial: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2530,7 +2581,10 @@ class QuestionnaireItem extends BackboneElement {
             return copyWith(item: newList);
           } else if (child is QuestionnaireItem) {
             // Add single element to existing list or create new list
-            final newList = [...?item, child];
+            final newList = [
+              ...?item,
+              child,
+            ];
             return copyWith(item: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -3388,7 +3442,10 @@ class QuestionnaireEnableWhen extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -3402,7 +3459,10 @@ class QuestionnaireEnableWhen extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -4135,7 +4195,10 @@ class QuestionnaireAnswerOption extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -4149,7 +4212,10 @@ class QuestionnaireAnswerOption extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -4803,7 +4869,10 @@ class QuestionnaireInitial extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -4817,7 +4886,10 @@ class QuestionnaireInitial extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');

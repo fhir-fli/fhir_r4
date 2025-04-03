@@ -800,7 +800,10 @@ class ImagingStudy extends DomainResource {
             return copyWith(contained: newList);
           } else if (child is Resource) {
             // Add single element to existing list or create new list
-            final newList = [...?contained, child];
+            final newList = [
+              ...?contained,
+              child,
+            ];
             return copyWith(contained: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -814,7 +817,10 @@ class ImagingStudy extends DomainResource {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -828,7 +834,10 @@ class ImagingStudy extends DomainResource {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -842,7 +851,10 @@ class ImagingStudy extends DomainResource {
             return copyWith(identifier: newList);
           } else if (child is Identifier) {
             // Add single element to existing list or create new list
-            final newList = [...?identifier, child];
+            final newList = [
+              ...?identifier,
+              child,
+            ];
             return copyWith(identifier: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -864,7 +876,10 @@ class ImagingStudy extends DomainResource {
             return copyWith(modality: newList);
           } else if (child is Coding) {
             // Add single element to existing list or create new list
-            final newList = [...?modality, child];
+            final newList = [
+              ...?modality,
+              child,
+            ];
             return copyWith(modality: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -902,7 +917,10 @@ class ImagingStudy extends DomainResource {
             return copyWith(basedOn: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...?basedOn, child];
+            final newList = [
+              ...?basedOn,
+              child,
+            ];
             return copyWith(basedOn: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -924,7 +942,10 @@ class ImagingStudy extends DomainResource {
             return copyWith(interpreter: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...?interpreter, child];
+            final newList = [
+              ...?interpreter,
+              child,
+            ];
             return copyWith(interpreter: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -938,7 +959,10 @@ class ImagingStudy extends DomainResource {
             return copyWith(endpoint: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...?endpoint, child];
+            final newList = [
+              ...?endpoint,
+              child,
+            ];
             return copyWith(endpoint: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -976,7 +1000,10 @@ class ImagingStudy extends DomainResource {
             return copyWith(procedureCode: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...?procedureCode, child];
+            final newList = [
+              ...?procedureCode,
+              child,
+            ];
             return copyWith(procedureCode: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -998,7 +1025,10 @@ class ImagingStudy extends DomainResource {
             return copyWith(reasonCode: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...?reasonCode, child];
+            final newList = [
+              ...?reasonCode,
+              child,
+            ];
             return copyWith(reasonCode: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1012,7 +1042,10 @@ class ImagingStudy extends DomainResource {
             return copyWith(reasonReference: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...?reasonReference, child];
+            final newList = [
+              ...?reasonReference,
+              child,
+            ];
             return copyWith(reasonReference: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1026,7 +1059,10 @@ class ImagingStudy extends DomainResource {
             return copyWith(note: newList);
           } else if (child is Annotation) {
             // Add single element to existing list or create new list
-            final newList = [...?note, child];
+            final newList = [
+              ...?note,
+              child,
+            ];
             return copyWith(note: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1048,7 +1084,10 @@ class ImagingStudy extends DomainResource {
             return copyWith(series: newList);
           } else if (child is ImagingStudySeries) {
             // Add single element to existing list or create new list
-            final newList = [...?series, child];
+            final newList = [
+              ...?series,
+              child,
+            ];
             return copyWith(series: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2234,7 +2273,10 @@ class ImagingStudySeries extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2248,7 +2290,10 @@ class ImagingStudySeries extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2302,7 +2347,10 @@ class ImagingStudySeries extends BackboneElement {
             return copyWith(endpoint: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...?endpoint, child];
+            final newList = [
+              ...?endpoint,
+              child,
+            ];
             return copyWith(endpoint: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2332,7 +2380,10 @@ class ImagingStudySeries extends BackboneElement {
             return copyWith(specimen: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...?specimen, child];
+            final newList = [
+              ...?specimen,
+              child,
+            ];
             return copyWith(specimen: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2354,7 +2405,10 @@ class ImagingStudySeries extends BackboneElement {
             return copyWith(performer: newList);
           } else if (child is ImagingStudyPerformer) {
             // Add single element to existing list or create new list
-            final newList = [...?performer, child];
+            final newList = [
+              ...?performer,
+              child,
+            ];
             return copyWith(performer: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2368,7 +2422,10 @@ class ImagingStudySeries extends BackboneElement {
             return copyWith(instance: newList);
           } else if (child is ImagingStudyInstance) {
             // Add single element to existing list or create new list
-            final newList = [...?instance, child];
+            final newList = [
+              ...?instance,
+              child,
+            ];
             return copyWith(instance: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -3032,7 +3089,10 @@ class ImagingStudyPerformer extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -3046,7 +3106,10 @@ class ImagingStudyPerformer extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -3541,7 +3604,10 @@ class ImagingStudyInstance extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -3555,7 +3621,10 @@ class ImagingStudyInstance extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');

@@ -6,7 +6,7 @@ part of '../primitive_types.dart';
 class ConsentDataMeaningBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   ConsentDataMeaningBuilder._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -20,7 +20,7 @@ class ConsentDataMeaningBuilder extends FhirCodeEnumBuilder {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory ConsentDataMeaningBuilder(
-    String? raw, {
+    String? rawValue, {
     FhirUriBuilder? system,
     FhirStringBuilder? version,
     FhirStringBuilder? display,
@@ -30,9 +30,10 @@ class ConsentDataMeaningBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
     return ConsentDataMeaningBuilder._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -46,7 +47,7 @@ class ConsentDataMeaningBuilder extends FhirCodeEnumBuilder {
 
   /// Create empty [ConsentDataMeaningBuilder] with element only
   factory ConsentDataMeaningBuilder.empty() =>
-      ConsentDataMeaningBuilder._(validatedValue: '');
+      ConsentDataMeaningBuilder._(valueString: '');
 
   /// Factory constructor to create [ConsentDataMeaningBuilder]
   /// from JSON.
@@ -63,14 +64,14 @@ class ConsentDataMeaningBuilder extends FhirCodeEnumBuilder {
       );
     }
     return ConsentDataMeaningBuilder._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// instance
   static ConsentDataMeaningBuilder instance = ConsentDataMeaningBuilder._(
-    validatedValue: 'instance',
+    valueString: 'instance',
     system:
         'http://hl7.org/fhir/ValueSet/consent-data-meaning'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -79,7 +80,7 @@ class ConsentDataMeaningBuilder extends FhirCodeEnumBuilder {
 
   /// related
   static ConsentDataMeaningBuilder related = ConsentDataMeaningBuilder._(
-    validatedValue: 'related',
+    valueString: 'related',
     system:
         'http://hl7.org/fhir/ValueSet/consent-data-meaning'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -88,7 +89,7 @@ class ConsentDataMeaningBuilder extends FhirCodeEnumBuilder {
 
   /// dependents
   static ConsentDataMeaningBuilder dependents = ConsentDataMeaningBuilder._(
-    validatedValue: 'dependents',
+    valueString: 'dependents',
     system:
         'http://hl7.org/fhir/ValueSet/consent-data-meaning'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -97,7 +98,7 @@ class ConsentDataMeaningBuilder extends FhirCodeEnumBuilder {
 
   /// authoredby
   static ConsentDataMeaningBuilder authoredby = ConsentDataMeaningBuilder._(
-    validatedValue: 'authoredby',
+    valueString: 'authoredby',
     system:
         'http://hl7.org/fhir/ValueSet/consent-data-meaning'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -106,7 +107,7 @@ class ConsentDataMeaningBuilder extends FhirCodeEnumBuilder {
 
   /// For instances where an Element is present but not value
   static ConsentDataMeaningBuilder elementOnly =
-      ConsentDataMeaningBuilder._(validatedValue: '');
+      ConsentDataMeaningBuilder._(valueString: '');
 
   /// List of all enum-like values
   static List<ConsentDataMeaningBuilder> values = [
@@ -119,31 +120,31 @@ class ConsentDataMeaningBuilder extends FhirCodeEnumBuilder {
   /// Clones the current instance
   @override
   ConsentDataMeaningBuilder clone() => ConsentDataMeaningBuilder._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
   ConsentDataMeaningBuilder withElement(ElementBuilder? newElement) {
     return ConsentDataMeaningBuilder._(
-        validatedValue: value, element: newElement,);
+        valueString: valueString, element: newElement,);
   }
 
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   ConsentDataMeaningBuilder copyWith({
-    String? newValue,
+    dynamic newValue,
     ElementBuilder? element,
     FhirStringBuilder? id,
     List<FhirExtensionBuilder>? extension_,
@@ -154,11 +155,11 @@ class ConsentDataMeaningBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError('Invalid input for ConsentDataMeaning: $newValue');
     }
     return ConsentDataMeaningBuilder._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
@@ -167,7 +168,7 @@ class ConsentDataMeaningBuilder extends FhirCodeEnumBuilder {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath,
+      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

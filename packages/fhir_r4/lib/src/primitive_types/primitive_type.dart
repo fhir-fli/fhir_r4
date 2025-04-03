@@ -7,8 +7,9 @@ part of 'primitive_types.dart';
 /// - Optional [element] metadata (which may hold extensions, etc.)
 ///
 /// Subclasses often override:
-/// - [fhirType] to match FHIR's type name (e.g. `"boolean"`, `"decimal"`, etc.).
-/// - [toJson], if the JSON output deviates from the simple string-based `'value'`.
+/// - [fhirType] to match FHIR's type (e.g. `"boolean"`, `"decimal"`, etc.).
+/// - [toJson], if the JSON output deviates from the simple string-based
+/// `'value'`.
 abstract class PrimitiveType extends DataType {
   // --------------------------------------------------------------------------
   // Private Internal Constructor
@@ -46,7 +47,8 @@ abstract class PrimitiveType extends DataType {
   /// - For `uri`, it might be `"http://example.com"`.
   /// - For `base64Binary`, a Base64-encoded string.
   ///
-  /// `null` indicates that this instance relies solely on [element] (extensions).
+  /// `null` indicates that this instance relies solely on [element]
+  /// (extensions).
   final String? valueString;
 
   /// Optional FHIR metadata element (usually carrying extensions).
@@ -77,11 +79,15 @@ abstract class PrimitiveType extends DataType {
   /// Returns `true` if both [valueString] and [element] are non-null.
   bool get hasValueAndElement => hasValue && hasElement;
 
+  /// Returns `true` if the Type is considered string-based, otherwise `false`
+  bool get stringBased => false;
+
   // --------------------------------------------------------------------------
   // JSON Serialization
   // --------------------------------------------------------------------------
 
-  /// Default JSON serialization merges the raw `'value'` with `'_value'` (the [element]).
+  /// Default JSON serialization merges the raw `'value'` with `'_value'`
+  /// (the [element]).
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

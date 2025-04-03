@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class NoteTypeBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   NoteTypeBuilder._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class NoteTypeBuilder extends FhirCodeEnumBuilder {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory NoteTypeBuilder(
-    String? raw, {
+    String? rawValue, {
     FhirUriBuilder? system,
     FhirStringBuilder? version,
     FhirStringBuilder? display,
@@ -29,9 +29,10 @@ class NoteTypeBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
     return NoteTypeBuilder._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -44,7 +45,7 @@ class NoteTypeBuilder extends FhirCodeEnumBuilder {
   }
 
   /// Create empty [NoteTypeBuilder] with element only
-  factory NoteTypeBuilder.empty() => NoteTypeBuilder._(validatedValue: '');
+  factory NoteTypeBuilder.empty() => NoteTypeBuilder._(valueString: '');
 
   /// Factory constructor to create [NoteTypeBuilder]
   /// from JSON.
@@ -61,14 +62,14 @@ class NoteTypeBuilder extends FhirCodeEnumBuilder {
       );
     }
     return NoteTypeBuilder._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// display_
   static NoteTypeBuilder display_ = NoteTypeBuilder._(
-    validatedValue: 'display',
+    valueString: 'display',
     system: 'http://hl7.org/fhir/ValueSet/note-type'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Display'.toFhirStringBuilder,
@@ -76,7 +77,7 @@ class NoteTypeBuilder extends FhirCodeEnumBuilder {
 
   /// print
   static NoteTypeBuilder print = NoteTypeBuilder._(
-    validatedValue: 'print',
+    valueString: 'print',
     system: 'http://hl7.org/fhir/ValueSet/note-type'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Print (Form)'.toFhirStringBuilder,
@@ -84,14 +85,14 @@ class NoteTypeBuilder extends FhirCodeEnumBuilder {
 
   /// printoper
   static NoteTypeBuilder printoper = NoteTypeBuilder._(
-    validatedValue: 'printoper',
+    valueString: 'printoper',
     system: 'http://hl7.org/fhir/ValueSet/note-type'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Print (Operator)'.toFhirStringBuilder,
   );
 
   /// For instances where an Element is present but not value
-  static NoteTypeBuilder elementOnly = NoteTypeBuilder._(validatedValue: '');
+  static NoteTypeBuilder elementOnly = NoteTypeBuilder._(valueString: '');
 
   /// List of all enum-like values
   static List<NoteTypeBuilder> values = [
@@ -103,30 +104,30 @@ class NoteTypeBuilder extends FhirCodeEnumBuilder {
   /// Clones the current instance
   @override
   NoteTypeBuilder clone() => NoteTypeBuilder._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
   NoteTypeBuilder withElement(ElementBuilder? newElement) {
-    return NoteTypeBuilder._(validatedValue: value, element: newElement);
+    return NoteTypeBuilder._(valueString: valueString, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   NoteTypeBuilder copyWith({
-    String? newValue,
+    dynamic newValue,
     ElementBuilder? element,
     FhirStringBuilder? id,
     List<FhirExtensionBuilder>? extension_,
@@ -137,11 +138,11 @@ class NoteTypeBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError('Invalid input for NoteType: $newValue');
     }
     return NoteTypeBuilder._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
@@ -150,7 +151,7 @@ class NoteTypeBuilder extends FhirCodeEnumBuilder {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath,
+      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

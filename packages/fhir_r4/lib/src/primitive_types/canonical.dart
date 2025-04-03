@@ -60,6 +60,7 @@ class FhirCanonical extends FhirUri
   ///
   /// - If [rawValue] is `null`, [element] must be non-null.
   /// - Otherwise, validated via [FhirUri.validateUri].
+  // ignore: sort_unnamed_constructors_first
   factory FhirCanonical(
     dynamic rawValue, {
     Element? element,
@@ -145,7 +146,8 @@ class FhirCanonical extends FhirUri
     }
   }
 
-  /// Attempts to parse [input] as a [FhirCanonical]. Returns `null` if parsing fails.
+  /// Attempts to parse [input] as a [FhirCanonical]. Returns `null` if
+  /// parsing fails.
   static FhirCanonical? tryParse(dynamic input) {
     try {
       return FhirCanonical(input);
@@ -184,7 +186,8 @@ class FhirCanonical extends FhirUri
     });
   }
 
-  /// Converts a list of [FhirCanonical] into a JSON map with `'value'` and `'_value'`.
+  /// Converts a list of [FhirCanonical] into a JSON map with `'value'`
+  /// and `'_value'`.
   static Map<String, dynamic> toJsonList(List<FhirCanonical> values) => {
         'value': values.map((val) => val.valueString).toList(),
         '_value': values.map((val) => val.element?.toJson()).toList(),
@@ -209,6 +212,10 @@ class FhirCanonical extends FhirUri
   @override
   // ignore: avoid_equals_and_hash_code_on_mutable_classes
   int get hashCode => Object.hash(valueString, element);
+
+  /// Returns `true` if the Type is considered string-based, otherwise `false`
+  @override
+  bool get stringBased => true;
 
   // --------------------------------------------------------------------------
   // Clone / Copy

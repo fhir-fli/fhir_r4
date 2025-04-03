@@ -606,6 +606,21 @@ class RegulatedAuthorizationBuilder extends DomainResourceBuilder {
           if (child is CommonLanguagesBuilder) {
             language = child;
             return;
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              // For enums, try to create directly from the string value
+              try {
+                final converted = CommonLanguagesBuilder(stringValue);
+                language = converted;
+                return;
+              } catch (e) {
+                // Continue if enum creation fails
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
           throw Exception('Invalid child type for $childName');
         }
@@ -625,7 +640,10 @@ class RegulatedAuthorizationBuilder extends DomainResourceBuilder {
             return;
           } else if (child is ResourceBuilder) {
             // Add single element to existing list or create new list
-            contained = [...(contained ?? []), child];
+            contained = [
+              ...(contained ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -638,7 +656,10 @@ class RegulatedAuthorizationBuilder extends DomainResourceBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -651,7 +672,10 @@ class RegulatedAuthorizationBuilder extends DomainResourceBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -664,7 +688,10 @@ class RegulatedAuthorizationBuilder extends DomainResourceBuilder {
             return;
           } else if (child is IdentifierBuilder) {
             // Add single element to existing list or create new list
-            identifier = [...(identifier ?? []), child];
+            identifier = [
+              ...(identifier ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -677,7 +704,10 @@ class RegulatedAuthorizationBuilder extends DomainResourceBuilder {
             return;
           } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            subject = [...(subject ?? []), child];
+            subject = [
+              ...(subject ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -718,7 +748,10 @@ class RegulatedAuthorizationBuilder extends DomainResourceBuilder {
             return;
           } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            region = [...(region ?? []), child];
+            region = [
+              ...(region ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -783,7 +816,10 @@ class RegulatedAuthorizationBuilder extends DomainResourceBuilder {
             return;
           } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            basis = [...(basis ?? []), child];
+            basis = [
+              ...(basis ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -1610,7 +1646,10 @@ class RegulatedAuthorizationCaseBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -1623,7 +1662,10 @@ class RegulatedAuthorizationCaseBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -1695,7 +1737,10 @@ class RegulatedAuthorizationCaseBuilder extends BackboneElementBuilder {
             return;
           } else if (child is RegulatedAuthorizationCaseBuilder) {
             // Add single element to existing list or create new list
-            application = [...(application ?? []), child];
+            application = [
+              ...(application ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -1724,7 +1769,10 @@ class RegulatedAuthorizationCaseBuilder extends BackboneElementBuilder {
         return ['CodeableConceptBuilder'];
       case 'date':
       case 'dateX':
-        return ['PeriodBuilder', 'FhirDateTimeBuilder'];
+        return [
+          'PeriodBuilder',
+          'FhirDateTimeBuilder',
+        ];
       case 'datePeriod':
         return ['PeriodBuilder'];
       case 'dateDateTime':

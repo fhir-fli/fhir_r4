@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class GroupMeasure extends FhirCodeEnum {
   // Private underscore constructor for internal use.
   GroupMeasure._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class GroupMeasure extends FhirCodeEnum {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory GroupMeasure(
-    String? raw, {
+    String? rawValue, {
     FhirUri? system,
     FhirString? version,
     FhirString? display,
@@ -29,9 +29,10 @@ class GroupMeasure extends FhirCodeEnum {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCode._validateCode(rawValue) : null;
     return GroupMeasure._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -44,7 +45,7 @@ class GroupMeasure extends FhirCodeEnum {
   }
 
   /// Create empty [GroupMeasure] with element only
-  factory GroupMeasure.empty() => GroupMeasure._(validatedValue: '');
+  factory GroupMeasure.empty() => GroupMeasure._(valueString: '');
 
   /// Factory constructor to create [GroupMeasure] from JSON.
   factory GroupMeasure.fromJson(Map<String, dynamic> json) {
@@ -59,14 +60,14 @@ class GroupMeasure extends FhirCodeEnum {
       );
     }
     return GroupMeasure._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// mean
   static final GroupMeasure mean = GroupMeasure._(
-    validatedValue: 'mean',
+    valueString: 'mean',
     system: 'http://hl7.org/fhir/ValueSet/group-measure'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Mean'.toFhirString,
@@ -74,7 +75,7 @@ class GroupMeasure extends FhirCodeEnum {
 
   /// median
   static final GroupMeasure median = GroupMeasure._(
-    validatedValue: 'median',
+    valueString: 'median',
     system: 'http://hl7.org/fhir/ValueSet/group-measure'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Median'.toFhirString,
@@ -82,7 +83,7 @@ class GroupMeasure extends FhirCodeEnum {
 
   /// mean_of_mean
   static final GroupMeasure mean_of_mean = GroupMeasure._(
-    validatedValue: 'mean-of-mean',
+    valueString: 'mean-of-mean',
     system: 'http://hl7.org/fhir/ValueSet/group-measure'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Mean of Study Means'.toFhirString,
@@ -90,7 +91,7 @@ class GroupMeasure extends FhirCodeEnum {
 
   /// mean_of_median
   static final GroupMeasure mean_of_median = GroupMeasure._(
-    validatedValue: 'mean-of-median',
+    valueString: 'mean-of-median',
     system: 'http://hl7.org/fhir/ValueSet/group-measure'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Mean of Study Medins'.toFhirString,
@@ -98,7 +99,7 @@ class GroupMeasure extends FhirCodeEnum {
 
   /// median_of_mean
   static final GroupMeasure median_of_mean = GroupMeasure._(
-    validatedValue: 'median-of-mean',
+    valueString: 'median-of-mean',
     system: 'http://hl7.org/fhir/ValueSet/group-measure'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Median of Study Means'.toFhirString,
@@ -106,14 +107,14 @@ class GroupMeasure extends FhirCodeEnum {
 
   /// median_of_median
   static final GroupMeasure median_of_median = GroupMeasure._(
-    validatedValue: 'median-of-median',
+    valueString: 'median-of-median',
     system: 'http://hl7.org/fhir/ValueSet/group-measure'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Median of Study Medians'.toFhirString,
   );
 
   /// For instances where an Element is present but not value
-  static final GroupMeasure elementOnly = GroupMeasure._(validatedValue: '');
+  static final GroupMeasure elementOnly = GroupMeasure._(valueString: '');
 
   /// List of all enum-like values
   static final List<GroupMeasure> values = [
@@ -128,14 +129,14 @@ class GroupMeasure extends FhirCodeEnum {
   /// Clones the current instance
   @override
   GroupMeasure clone() => GroupMeasure._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   GroupMeasure withElement(Element? newElement) {
     return GroupMeasure._(
-      validatedValue: value,
+      valueString: valueString,
       element: newElement,
     );
   }
@@ -143,18 +144,18 @@ class GroupMeasure extends FhirCodeEnum {
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   GroupMeasure copyWith({
-    String? newValue,
+    dynamic newValue,
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
@@ -165,11 +166,11 @@ class GroupMeasure extends FhirCodeEnum {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError('Invalid input for GroupMeasure: $newValue');
     }
     return GroupMeasure._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

@@ -424,7 +424,10 @@ class DataRequirement extends DataType
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -446,7 +449,10 @@ class DataRequirement extends DataType
             return copyWith(profile: newList);
           } else if (child is FhirCanonical) {
             // Add single element to existing list or create new list
-            final newList = [...?profile, child];
+            final newList = [
+              ...?profile,
+              child,
+            ];
             return copyWith(profile: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -490,7 +496,10 @@ class DataRequirement extends DataType
             return copyWith(mustSupport: newList);
           } else if (child is FhirString) {
             // Add single element to existing list or create new list
-            final newList = [...?mustSupport, child];
+            final newList = [
+              ...?mustSupport,
+              child,
+            ];
             return copyWith(mustSupport: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -504,7 +513,10 @@ class DataRequirement extends DataType
             return copyWith(codeFilter: newList);
           } else if (child is DataRequirementCodeFilter) {
             // Add single element to existing list or create new list
-            final newList = [...?codeFilter, child];
+            final newList = [
+              ...?codeFilter,
+              child,
+            ];
             return copyWith(codeFilter: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -518,7 +530,10 @@ class DataRequirement extends DataType
             return copyWith(dateFilter: newList);
           } else if (child is DataRequirementDateFilter) {
             // Add single element to existing list or create new list
-            final newList = [...?dateFilter, child];
+            final newList = [
+              ...?dateFilter,
+              child,
+            ];
             return copyWith(dateFilter: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -540,7 +555,10 @@ class DataRequirement extends DataType
             return copyWith(sort: newList);
           } else if (child is DataRequirementSort) {
             // Add single element to existing list or create new list
-            final newList = [...?sort, child];
+            final newList = [
+              ...?sort,
+              child,
+            ];
             return copyWith(sort: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -566,7 +584,10 @@ class DataRequirement extends DataType
         return ['FhirCanonical'];
       case 'subject':
       case 'subjectX':
-        return ['CodeableConcept', 'Reference'];
+        return [
+          'CodeableConcept',
+          'Reference',
+        ];
       case 'subjectCodeableConcept':
         return ['CodeableConcept'];
       case 'subjectReference':
@@ -1157,7 +1178,10 @@ class DataRequirementCodeFilter extends Element {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1195,7 +1219,10 @@ class DataRequirementCodeFilter extends Element {
             return copyWith(code: newList);
           } else if (child is Coding) {
             // Add single element to existing list or create new list
-            final newList = [...?code, child];
+            final newList = [
+              ...?code,
+              child,
+            ];
             return copyWith(code: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1703,7 +1730,10 @@ class DataRequirementDateFilter extends Element {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1786,7 +1816,11 @@ class DataRequirementDateFilter extends Element {
         return ['FhirString'];
       case 'value':
       case 'valueX':
-        return ['FhirDateTime', 'Period', 'FhirDuration'];
+        return [
+          'FhirDateTime',
+          'Period',
+          'FhirDuration',
+        ];
       case 'valueDateTime':
         return ['FhirDateTime'];
       case 'valuePeriod':
@@ -2199,7 +2233,10 @@ class DataRequirementSort extends Element {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');

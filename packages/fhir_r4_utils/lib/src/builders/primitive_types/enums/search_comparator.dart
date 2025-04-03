@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class SearchComparatorBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   SearchComparatorBuilder._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class SearchComparatorBuilder extends FhirCodeEnumBuilder {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory SearchComparatorBuilder(
-    String? raw, {
+    String? rawValue, {
     FhirUriBuilder? system,
     FhirStringBuilder? version,
     FhirStringBuilder? display,
@@ -29,9 +29,10 @@ class SearchComparatorBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
     return SearchComparatorBuilder._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -45,7 +46,7 @@ class SearchComparatorBuilder extends FhirCodeEnumBuilder {
 
   /// Create empty [SearchComparatorBuilder] with element only
   factory SearchComparatorBuilder.empty() =>
-      SearchComparatorBuilder._(validatedValue: '');
+      SearchComparatorBuilder._(valueString: '');
 
   /// Factory constructor to create [SearchComparatorBuilder]
   /// from JSON.
@@ -62,14 +63,14 @@ class SearchComparatorBuilder extends FhirCodeEnumBuilder {
       );
     }
     return SearchComparatorBuilder._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// eq
   static SearchComparatorBuilder eq = SearchComparatorBuilder._(
-    validatedValue: 'eq',
+    valueString: 'eq',
     system: 'http://hl7.org/fhir/ValueSet/search-comparator'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Equals'.toFhirStringBuilder,
@@ -77,7 +78,7 @@ class SearchComparatorBuilder extends FhirCodeEnumBuilder {
 
   /// ne
   static SearchComparatorBuilder ne = SearchComparatorBuilder._(
-    validatedValue: 'ne',
+    valueString: 'ne',
     system: 'http://hl7.org/fhir/ValueSet/search-comparator'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Not Equals'.toFhirStringBuilder,
@@ -85,7 +86,7 @@ class SearchComparatorBuilder extends FhirCodeEnumBuilder {
 
   /// gt
   static SearchComparatorBuilder gt = SearchComparatorBuilder._(
-    validatedValue: 'gt',
+    valueString: 'gt',
     system: 'http://hl7.org/fhir/ValueSet/search-comparator'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Greater Than'.toFhirStringBuilder,
@@ -93,7 +94,7 @@ class SearchComparatorBuilder extends FhirCodeEnumBuilder {
 
   /// lt
   static SearchComparatorBuilder lt = SearchComparatorBuilder._(
-    validatedValue: 'lt',
+    valueString: 'lt',
     system: 'http://hl7.org/fhir/ValueSet/search-comparator'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Less Than'.toFhirStringBuilder,
@@ -101,7 +102,7 @@ class SearchComparatorBuilder extends FhirCodeEnumBuilder {
 
   /// ge
   static SearchComparatorBuilder ge = SearchComparatorBuilder._(
-    validatedValue: 'ge',
+    valueString: 'ge',
     system: 'http://hl7.org/fhir/ValueSet/search-comparator'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Greater or Equals'.toFhirStringBuilder,
@@ -109,7 +110,7 @@ class SearchComparatorBuilder extends FhirCodeEnumBuilder {
 
   /// le
   static SearchComparatorBuilder le = SearchComparatorBuilder._(
-    validatedValue: 'le',
+    valueString: 'le',
     system: 'http://hl7.org/fhir/ValueSet/search-comparator'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Less of Equal'.toFhirStringBuilder,
@@ -117,7 +118,7 @@ class SearchComparatorBuilder extends FhirCodeEnumBuilder {
 
   /// sa
   static SearchComparatorBuilder sa = SearchComparatorBuilder._(
-    validatedValue: 'sa',
+    valueString: 'sa',
     system: 'http://hl7.org/fhir/ValueSet/search-comparator'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Starts After'.toFhirStringBuilder,
@@ -125,7 +126,7 @@ class SearchComparatorBuilder extends FhirCodeEnumBuilder {
 
   /// eb
   static SearchComparatorBuilder eb = SearchComparatorBuilder._(
-    validatedValue: 'eb',
+    valueString: 'eb',
     system: 'http://hl7.org/fhir/ValueSet/search-comparator'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Ends Before'.toFhirStringBuilder,
@@ -133,7 +134,7 @@ class SearchComparatorBuilder extends FhirCodeEnumBuilder {
 
   /// ap
   static SearchComparatorBuilder ap = SearchComparatorBuilder._(
-    validatedValue: 'ap',
+    valueString: 'ap',
     system: 'http://hl7.org/fhir/ValueSet/search-comparator'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Approximately'.toFhirStringBuilder,
@@ -141,7 +142,7 @@ class SearchComparatorBuilder extends FhirCodeEnumBuilder {
 
   /// For instances where an Element is present but not value
   static SearchComparatorBuilder elementOnly =
-      SearchComparatorBuilder._(validatedValue: '');
+      SearchComparatorBuilder._(valueString: '');
 
   /// List of all enum-like values
   static List<SearchComparatorBuilder> values = [
@@ -159,31 +160,31 @@ class SearchComparatorBuilder extends FhirCodeEnumBuilder {
   /// Clones the current instance
   @override
   SearchComparatorBuilder clone() => SearchComparatorBuilder._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
   SearchComparatorBuilder withElement(ElementBuilder? newElement) {
     return SearchComparatorBuilder._(
-        validatedValue: value, element: newElement,);
+        valueString: valueString, element: newElement,);
   }
 
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   SearchComparatorBuilder copyWith({
-    String? newValue,
+    dynamic newValue,
     ElementBuilder? element,
     FhirStringBuilder? id,
     List<FhirExtensionBuilder>? extension_,
@@ -194,11 +195,11 @@ class SearchComparatorBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError('Invalid input for SearchComparator: $newValue');
     }
     return SearchComparatorBuilder._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
@@ -207,7 +208,7 @@ class SearchComparatorBuilder extends FhirCodeEnumBuilder {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath,
+      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

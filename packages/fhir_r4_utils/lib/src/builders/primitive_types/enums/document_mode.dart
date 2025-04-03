@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class DocumentModeBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   DocumentModeBuilder._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class DocumentModeBuilder extends FhirCodeEnumBuilder {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory DocumentModeBuilder(
-    String? raw, {
+    String? rawValue, {
     FhirUriBuilder? system,
     FhirStringBuilder? version,
     FhirStringBuilder? display,
@@ -29,9 +29,10 @@ class DocumentModeBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
     return DocumentModeBuilder._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -44,8 +45,7 @@ class DocumentModeBuilder extends FhirCodeEnumBuilder {
   }
 
   /// Create empty [DocumentModeBuilder] with element only
-  factory DocumentModeBuilder.empty() =>
-      DocumentModeBuilder._(validatedValue: '');
+  factory DocumentModeBuilder.empty() => DocumentModeBuilder._(valueString: '');
 
   /// Factory constructor to create [DocumentModeBuilder]
   /// from JSON.
@@ -62,14 +62,14 @@ class DocumentModeBuilder extends FhirCodeEnumBuilder {
       );
     }
     return DocumentModeBuilder._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// producer
   static DocumentModeBuilder producer = DocumentModeBuilder._(
-    validatedValue: 'producer',
+    valueString: 'producer',
     system: 'http://hl7.org/fhir/ValueSet/document-mode'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Producer'.toFhirStringBuilder,
@@ -77,7 +77,7 @@ class DocumentModeBuilder extends FhirCodeEnumBuilder {
 
   /// consumer
   static DocumentModeBuilder consumer = DocumentModeBuilder._(
-    validatedValue: 'consumer',
+    valueString: 'consumer',
     system: 'http://hl7.org/fhir/ValueSet/document-mode'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Consumer'.toFhirStringBuilder,
@@ -85,7 +85,7 @@ class DocumentModeBuilder extends FhirCodeEnumBuilder {
 
   /// For instances where an Element is present but not value
   static DocumentModeBuilder elementOnly =
-      DocumentModeBuilder._(validatedValue: '');
+      DocumentModeBuilder._(valueString: '');
 
   /// List of all enum-like values
   static List<DocumentModeBuilder> values = [
@@ -96,30 +96,30 @@ class DocumentModeBuilder extends FhirCodeEnumBuilder {
   /// Clones the current instance
   @override
   DocumentModeBuilder clone() => DocumentModeBuilder._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
   DocumentModeBuilder withElement(ElementBuilder? newElement) {
-    return DocumentModeBuilder._(validatedValue: value, element: newElement);
+    return DocumentModeBuilder._(valueString: valueString, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   DocumentModeBuilder copyWith({
-    String? newValue,
+    dynamic newValue,
     ElementBuilder? element,
     FhirStringBuilder? id,
     List<FhirExtensionBuilder>? extension_,
@@ -130,11 +130,11 @@ class DocumentModeBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError('Invalid input for DocumentMode: $newValue');
     }
     return DocumentModeBuilder._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
@@ -143,7 +143,7 @@ class DocumentModeBuilder extends FhirCodeEnumBuilder {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath,
+      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

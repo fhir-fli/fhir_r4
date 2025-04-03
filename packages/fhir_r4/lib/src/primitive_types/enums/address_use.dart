@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class AddressUse extends FhirCodeEnum {
   // Private underscore constructor for internal use.
   AddressUse._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class AddressUse extends FhirCodeEnum {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory AddressUse(
-    String? raw, {
+    String? rawValue, {
     FhirUri? system,
     FhirString? version,
     FhirString? display,
@@ -29,9 +29,10 @@ class AddressUse extends FhirCodeEnum {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCode._validateCode(rawValue) : null;
     return AddressUse._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -44,7 +45,7 @@ class AddressUse extends FhirCodeEnum {
   }
 
   /// Create empty [AddressUse] with element only
-  factory AddressUse.empty() => AddressUse._(validatedValue: '');
+  factory AddressUse.empty() => AddressUse._(valueString: '');
 
   /// Factory constructor to create [AddressUse] from JSON.
   factory AddressUse.fromJson(Map<String, dynamic> json) {
@@ -59,14 +60,14 @@ class AddressUse extends FhirCodeEnum {
       );
     }
     return AddressUse._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// home
   static final AddressUse home = AddressUse._(
-    validatedValue: 'home',
+    valueString: 'home',
     system: 'http://hl7.org/fhir/ValueSet/address-use'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Home'.toFhirString,
@@ -74,7 +75,7 @@ class AddressUse extends FhirCodeEnum {
 
   /// work
   static final AddressUse work = AddressUse._(
-    validatedValue: 'work',
+    valueString: 'work',
     system: 'http://hl7.org/fhir/ValueSet/address-use'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Work'.toFhirString,
@@ -82,7 +83,7 @@ class AddressUse extends FhirCodeEnum {
 
   /// temp
   static final AddressUse temp = AddressUse._(
-    validatedValue: 'temp',
+    valueString: 'temp',
     system: 'http://hl7.org/fhir/ValueSet/address-use'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Temporary'.toFhirString,
@@ -90,7 +91,7 @@ class AddressUse extends FhirCodeEnum {
 
   /// old
   static final AddressUse old = AddressUse._(
-    validatedValue: 'old',
+    valueString: 'old',
     system: 'http://hl7.org/fhir/ValueSet/address-use'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Old / Incorrect'.toFhirString,
@@ -98,14 +99,14 @@ class AddressUse extends FhirCodeEnum {
 
   /// billing
   static final AddressUse billing = AddressUse._(
-    validatedValue: 'billing',
+    valueString: 'billing',
     system: 'http://hl7.org/fhir/ValueSet/address-use'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Billing'.toFhirString,
   );
 
   /// For instances where an Element is present but not value
-  static final AddressUse elementOnly = AddressUse._(validatedValue: '');
+  static final AddressUse elementOnly = AddressUse._(valueString: '');
 
   /// List of all enum-like values
   static final List<AddressUse> values = [
@@ -119,14 +120,14 @@ class AddressUse extends FhirCodeEnum {
   /// Clones the current instance
   @override
   AddressUse clone() => AddressUse._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   AddressUse withElement(Element? newElement) {
     return AddressUse._(
-      validatedValue: value,
+      valueString: valueString,
       element: newElement,
     );
   }
@@ -134,18 +135,18 @@ class AddressUse extends FhirCodeEnum {
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   AddressUse copyWith({
-    String? newValue,
+    dynamic newValue,
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
@@ -156,11 +157,11 @@ class AddressUse extends FhirCodeEnum {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError('Invalid input for AddressUse: $newValue');
     }
     return AddressUse._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

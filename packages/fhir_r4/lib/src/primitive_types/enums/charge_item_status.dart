@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class ChargeItemStatus extends FhirCodeEnum {
   // Private underscore constructor for internal use.
   ChargeItemStatus._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class ChargeItemStatus extends FhirCodeEnum {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory ChargeItemStatus(
-    String? raw, {
+    String? rawValue, {
     FhirUri? system,
     FhirString? version,
     FhirString? display,
@@ -29,9 +29,10 @@ class ChargeItemStatus extends FhirCodeEnum {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCode._validateCode(rawValue) : null;
     return ChargeItemStatus._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -44,7 +45,7 @@ class ChargeItemStatus extends FhirCodeEnum {
   }
 
   /// Create empty [ChargeItemStatus] with element only
-  factory ChargeItemStatus.empty() => ChargeItemStatus._(validatedValue: '');
+  factory ChargeItemStatus.empty() => ChargeItemStatus._(valueString: '');
 
   /// Factory constructor to create [ChargeItemStatus] from JSON.
   factory ChargeItemStatus.fromJson(Map<String, dynamic> json) {
@@ -59,14 +60,14 @@ class ChargeItemStatus extends FhirCodeEnum {
       );
     }
     return ChargeItemStatus._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// planned
   static final ChargeItemStatus planned = ChargeItemStatus._(
-    validatedValue: 'planned',
+    valueString: 'planned',
     system: 'http://hl7.org/fhir/ValueSet/chargeitem-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Planned'.toFhirString,
@@ -74,7 +75,7 @@ class ChargeItemStatus extends FhirCodeEnum {
 
   /// billable
   static final ChargeItemStatus billable = ChargeItemStatus._(
-    validatedValue: 'billable',
+    valueString: 'billable',
     system: 'http://hl7.org/fhir/ValueSet/chargeitem-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Billable'.toFhirString,
@@ -82,7 +83,7 @@ class ChargeItemStatus extends FhirCodeEnum {
 
   /// not_billable
   static final ChargeItemStatus not_billable = ChargeItemStatus._(
-    validatedValue: 'not-billable',
+    valueString: 'not-billable',
     system: 'http://hl7.org/fhir/ValueSet/chargeitem-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Not billable'.toFhirString,
@@ -90,7 +91,7 @@ class ChargeItemStatus extends FhirCodeEnum {
 
   /// aborted
   static final ChargeItemStatus aborted = ChargeItemStatus._(
-    validatedValue: 'aborted',
+    valueString: 'aborted',
     system: 'http://hl7.org/fhir/ValueSet/chargeitem-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Aborted'.toFhirString,
@@ -98,7 +99,7 @@ class ChargeItemStatus extends FhirCodeEnum {
 
   /// billed
   static final ChargeItemStatus billed = ChargeItemStatus._(
-    validatedValue: 'billed',
+    valueString: 'billed',
     system: 'http://hl7.org/fhir/ValueSet/chargeitem-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Billed'.toFhirString,
@@ -106,7 +107,7 @@ class ChargeItemStatus extends FhirCodeEnum {
 
   /// entered_in_error
   static final ChargeItemStatus entered_in_error = ChargeItemStatus._(
-    validatedValue: 'entered-in-error',
+    valueString: 'entered-in-error',
     system: 'http://hl7.org/fhir/ValueSet/chargeitem-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Entered in Error'.toFhirString,
@@ -114,7 +115,7 @@ class ChargeItemStatus extends FhirCodeEnum {
 
   /// unknown
   static final ChargeItemStatus unknown = ChargeItemStatus._(
-    validatedValue: 'unknown',
+    valueString: 'unknown',
     system: 'http://hl7.org/fhir/ValueSet/chargeitem-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Unknown'.toFhirString,
@@ -122,7 +123,7 @@ class ChargeItemStatus extends FhirCodeEnum {
 
   /// For instances where an Element is present but not value
   static final ChargeItemStatus elementOnly =
-      ChargeItemStatus._(validatedValue: '');
+      ChargeItemStatus._(valueString: '');
 
   /// List of all enum-like values
   static final List<ChargeItemStatus> values = [
@@ -138,14 +139,14 @@ class ChargeItemStatus extends FhirCodeEnum {
   /// Clones the current instance
   @override
   ChargeItemStatus clone() => ChargeItemStatus._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ChargeItemStatus withElement(Element? newElement) {
     return ChargeItemStatus._(
-      validatedValue: value,
+      valueString: valueString,
       element: newElement,
     );
   }
@@ -153,18 +154,18 @@ class ChargeItemStatus extends FhirCodeEnum {
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   ChargeItemStatus copyWith({
-    String? newValue,
+    dynamic newValue,
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
@@ -175,11 +176,11 @@ class ChargeItemStatus extends FhirCodeEnum {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError('Invalid input for ChargeItemStatus: $newValue');
     }
     return ChargeItemStatus._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

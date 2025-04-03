@@ -672,7 +672,10 @@ class PackagedProductDefinition extends DomainResource {
             return copyWith(contained: newList);
           } else if (child is Resource) {
             // Add single element to existing list or create new list
-            final newList = [...?contained, child];
+            final newList = [
+              ...?contained,
+              child,
+            ];
             return copyWith(contained: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -686,7 +689,10 @@ class PackagedProductDefinition extends DomainResource {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -700,7 +706,10 @@ class PackagedProductDefinition extends DomainResource {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -714,7 +723,10 @@ class PackagedProductDefinition extends DomainResource {
             return copyWith(identifier: newList);
           } else if (child is Identifier) {
             // Add single element to existing list or create new list
-            final newList = [...?identifier, child];
+            final newList = [
+              ...?identifier,
+              child,
+            ];
             return copyWith(identifier: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -744,7 +756,10 @@ class PackagedProductDefinition extends DomainResource {
             return copyWith(packageFor: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...?packageFor, child];
+            final newList = [
+              ...?packageFor,
+              child,
+            ];
             return copyWith(packageFor: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -774,7 +789,10 @@ class PackagedProductDefinition extends DomainResource {
             return copyWith(containedItemQuantity: newList);
           } else if (child is Quantity) {
             // Add single element to existing list or create new list
-            final newList = [...?containedItemQuantity, child];
+            final newList = [
+              ...?containedItemQuantity,
+              child,
+            ];
             return copyWith(containedItemQuantity: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -796,7 +814,10 @@ class PackagedProductDefinition extends DomainResource {
             return copyWith(legalStatusOfSupply: newList);
           } else if (child is PackagedProductDefinitionLegalStatusOfSupply) {
             // Add single element to existing list or create new list
-            final newList = [...?legalStatusOfSupply, child];
+            final newList = [
+              ...?legalStatusOfSupply,
+              child,
+            ];
             return copyWith(legalStatusOfSupply: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -810,7 +831,10 @@ class PackagedProductDefinition extends DomainResource {
             return copyWith(marketingStatus: newList);
           } else if (child is MarketingStatus) {
             // Add single element to existing list or create new list
-            final newList = [...?marketingStatus, child];
+            final newList = [
+              ...?marketingStatus,
+              child,
+            ];
             return copyWith(marketingStatus: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -824,7 +848,10 @@ class PackagedProductDefinition extends DomainResource {
             return copyWith(characteristic: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...?characteristic, child];
+            final newList = [
+              ...?characteristic,
+              child,
+            ];
             return copyWith(characteristic: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -846,7 +873,10 @@ class PackagedProductDefinition extends DomainResource {
             return copyWith(manufacturer: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...?manufacturer, child];
+            final newList = [
+              ...?manufacturer,
+              child,
+            ];
             return copyWith(manufacturer: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1682,7 +1712,10 @@ class PackagedProductDefinitionLegalStatusOfSupply extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1696,7 +1729,10 @@ class PackagedProductDefinitionLegalStatusOfSupply extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2355,7 +2391,10 @@ class PackagedProductDefinitionPackage extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2369,7 +2408,10 @@ class PackagedProductDefinitionPackage extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2383,7 +2425,10 @@ class PackagedProductDefinitionPackage extends BackboneElement {
             return copyWith(identifier: newList);
           } else if (child is Identifier) {
             // Add single element to existing list or create new list
-            final newList = [...?identifier, child];
+            final newList = [
+              ...?identifier,
+              child,
+            ];
             return copyWith(identifier: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2413,7 +2458,10 @@ class PackagedProductDefinitionPackage extends BackboneElement {
             return copyWith(material: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...?material, child];
+            final newList = [
+              ...?material,
+              child,
+            ];
             return copyWith(material: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2427,7 +2475,10 @@ class PackagedProductDefinitionPackage extends BackboneElement {
             return copyWith(alternateMaterial: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...?alternateMaterial, child];
+            final newList = [
+              ...?alternateMaterial,
+              child,
+            ];
             return copyWith(alternateMaterial: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2441,7 +2492,10 @@ class PackagedProductDefinitionPackage extends BackboneElement {
             return copyWith(shelfLifeStorage: newList);
           } else if (child is PackagedProductDefinitionShelfLifeStorage) {
             // Add single element to existing list or create new list
-            final newList = [...?shelfLifeStorage, child];
+            final newList = [
+              ...?shelfLifeStorage,
+              child,
+            ];
             return copyWith(shelfLifeStorage: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2455,7 +2509,10 @@ class PackagedProductDefinitionPackage extends BackboneElement {
             return copyWith(manufacturer: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...?manufacturer, child];
+            final newList = [
+              ...?manufacturer,
+              child,
+            ];
             return copyWith(manufacturer: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2469,7 +2526,10 @@ class PackagedProductDefinitionPackage extends BackboneElement {
             return copyWith(property: newList);
           } else if (child is PackagedProductDefinitionProperty) {
             // Add single element to existing list or create new list
-            final newList = [...?property, child];
+            final newList = [
+              ...?property,
+              child,
+            ];
             return copyWith(property: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2483,7 +2543,10 @@ class PackagedProductDefinitionPackage extends BackboneElement {
             return copyWith(containedItem: newList);
           } else if (child is PackagedProductDefinitionContainedItem) {
             // Add single element to existing list or create new list
-            final newList = [...?containedItem, child];
+            final newList = [
+              ...?containedItem,
+              child,
+            ];
             return copyWith(containedItem: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2497,7 +2560,10 @@ class PackagedProductDefinitionPackage extends BackboneElement {
             return copyWith(package: newList);
           } else if (child is PackagedProductDefinitionPackage) {
             // Add single element to existing list or create new list
-            final newList = [...?package, child];
+            final newList = [
+              ...?package,
+              child,
+            ];
             return copyWith(package: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -3195,7 +3261,10 @@ class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -3209,7 +3278,10 @@ class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -3261,7 +3333,10 @@ class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
             return copyWith(specialPrecautionsForStorage: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...?specialPrecautionsForStorage, child];
+            final newList = [
+              ...?specialPrecautionsForStorage,
+              child,
+            ];
             return copyWith(specialPrecautionsForStorage: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -3287,7 +3362,10 @@ class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
         return ['CodeableConcept'];
       case 'period':
       case 'periodX':
-        return ['FhirDuration', 'FhirString'];
+        return [
+          'FhirDuration',
+          'FhirString',
+        ];
       case 'periodDuration':
         return ['FhirDuration'];
       case 'periodString':
@@ -3788,7 +3866,10 @@ class PackagedProductDefinitionProperty extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -3802,7 +3883,10 @@ class PackagedProductDefinitionProperty extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -4363,7 +4447,10 @@ class PackagedProductDefinitionContainedItem extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -4377,7 +4464,10 @@ class PackagedProductDefinitionContainedItem extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');

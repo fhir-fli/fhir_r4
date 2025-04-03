@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class EventTiming extends FhirCodeEnum {
   // Private underscore constructor for internal use.
   EventTiming._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class EventTiming extends FhirCodeEnum {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory EventTiming(
-    String? raw, {
+    String? rawValue, {
     FhirUri? system,
     FhirString? version,
     FhirString? display,
@@ -29,9 +29,10 @@ class EventTiming extends FhirCodeEnum {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCode._validateCode(rawValue) : null;
     return EventTiming._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -44,7 +45,7 @@ class EventTiming extends FhirCodeEnum {
   }
 
   /// Create empty [EventTiming] with element only
-  factory EventTiming.empty() => EventTiming._(validatedValue: '');
+  factory EventTiming.empty() => EventTiming._(valueString: '');
 
   /// Factory constructor to create [EventTiming] from JSON.
   factory EventTiming.fromJson(Map<String, dynamic> json) {
@@ -59,14 +60,14 @@ class EventTiming extends FhirCodeEnum {
       );
     }
     return EventTiming._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// MORN
   static final EventTiming MORN = EventTiming._(
-    validatedValue: 'MORN',
+    valueString: 'MORN',
     system: 'http://hl7.org/fhir/ValueSet/event-timing'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Morning'.toFhirString,
@@ -74,7 +75,7 @@ class EventTiming extends FhirCodeEnum {
 
   /// MORN_early
   static final EventTiming MORN_early = EventTiming._(
-    validatedValue: 'MORN.early',
+    valueString: 'MORN.early',
     system: 'http://hl7.org/fhir/ValueSet/event-timing'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Early Morning'.toFhirString,
@@ -82,7 +83,7 @@ class EventTiming extends FhirCodeEnum {
 
   /// MORN_late
   static final EventTiming MORN_late = EventTiming._(
-    validatedValue: 'MORN.late',
+    valueString: 'MORN.late',
     system: 'http://hl7.org/fhir/ValueSet/event-timing'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Late Morning'.toFhirString,
@@ -90,7 +91,7 @@ class EventTiming extends FhirCodeEnum {
 
   /// NOON
   static final EventTiming NOON = EventTiming._(
-    validatedValue: 'NOON',
+    valueString: 'NOON',
     system: 'http://hl7.org/fhir/ValueSet/event-timing'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Noon'.toFhirString,
@@ -98,7 +99,7 @@ class EventTiming extends FhirCodeEnum {
 
   /// AFT
   static final EventTiming AFT = EventTiming._(
-    validatedValue: 'AFT',
+    valueString: 'AFT',
     system: 'http://hl7.org/fhir/ValueSet/event-timing'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Afternoon'.toFhirString,
@@ -106,7 +107,7 @@ class EventTiming extends FhirCodeEnum {
 
   /// AFT_early
   static final EventTiming AFT_early = EventTiming._(
-    validatedValue: 'AFT.early',
+    valueString: 'AFT.early',
     system: 'http://hl7.org/fhir/ValueSet/event-timing'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Early Afternoon'.toFhirString,
@@ -114,7 +115,7 @@ class EventTiming extends FhirCodeEnum {
 
   /// AFT_late
   static final EventTiming AFT_late = EventTiming._(
-    validatedValue: 'AFT.late',
+    valueString: 'AFT.late',
     system: 'http://hl7.org/fhir/ValueSet/event-timing'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Late Afternoon'.toFhirString,
@@ -122,7 +123,7 @@ class EventTiming extends FhirCodeEnum {
 
   /// EVE
   static final EventTiming EVE = EventTiming._(
-    validatedValue: 'EVE',
+    valueString: 'EVE',
     system: 'http://hl7.org/fhir/ValueSet/event-timing'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Evening'.toFhirString,
@@ -130,7 +131,7 @@ class EventTiming extends FhirCodeEnum {
 
   /// EVE_early
   static final EventTiming EVE_early = EventTiming._(
-    validatedValue: 'EVE.early',
+    valueString: 'EVE.early',
     system: 'http://hl7.org/fhir/ValueSet/event-timing'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Early Evening'.toFhirString,
@@ -138,7 +139,7 @@ class EventTiming extends FhirCodeEnum {
 
   /// EVE_late
   static final EventTiming EVE_late = EventTiming._(
-    validatedValue: 'EVE.late',
+    valueString: 'EVE.late',
     system: 'http://hl7.org/fhir/ValueSet/event-timing'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Late Evening'.toFhirString,
@@ -146,7 +147,7 @@ class EventTiming extends FhirCodeEnum {
 
   /// NIGHT
   static final EventTiming NIGHT = EventTiming._(
-    validatedValue: 'NIGHT',
+    valueString: 'NIGHT',
     system: 'http://hl7.org/fhir/ValueSet/event-timing'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Night'.toFhirString,
@@ -154,7 +155,7 @@ class EventTiming extends FhirCodeEnum {
 
   /// PHS
   static final EventTiming PHS = EventTiming._(
-    validatedValue: 'PHS',
+    valueString: 'PHS',
     system: 'http://hl7.org/fhir/ValueSet/event-timing'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'After Sleep'.toFhirString,
@@ -162,7 +163,7 @@ class EventTiming extends FhirCodeEnum {
 
   /// HS
   static final EventTiming HS = EventTiming._(
-    validatedValue: 'HS',
+    valueString: 'HS',
     system: 'http://hl7.org/fhir/ValueSet/event-timing'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: ''.toFhirString,
@@ -170,7 +171,7 @@ class EventTiming extends FhirCodeEnum {
 
   /// WAKE
   static final EventTiming WAKE = EventTiming._(
-    validatedValue: 'WAKE',
+    valueString: 'WAKE',
     system: 'http://hl7.org/fhir/ValueSet/event-timing'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: ''.toFhirString,
@@ -178,7 +179,7 @@ class EventTiming extends FhirCodeEnum {
 
   /// C
   static final EventTiming C = EventTiming._(
-    validatedValue: 'C',
+    valueString: 'C',
     system: 'http://hl7.org/fhir/ValueSet/event-timing'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: ''.toFhirString,
@@ -186,7 +187,7 @@ class EventTiming extends FhirCodeEnum {
 
   /// CM
   static final EventTiming CM = EventTiming._(
-    validatedValue: 'CM',
+    valueString: 'CM',
     system: 'http://hl7.org/fhir/ValueSet/event-timing'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: ''.toFhirString,
@@ -194,7 +195,7 @@ class EventTiming extends FhirCodeEnum {
 
   /// CD
   static final EventTiming CD = EventTiming._(
-    validatedValue: 'CD',
+    valueString: 'CD',
     system: 'http://hl7.org/fhir/ValueSet/event-timing'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: ''.toFhirString,
@@ -202,7 +203,7 @@ class EventTiming extends FhirCodeEnum {
 
   /// CV
   static final EventTiming CV = EventTiming._(
-    validatedValue: 'CV',
+    valueString: 'CV',
     system: 'http://hl7.org/fhir/ValueSet/event-timing'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: ''.toFhirString,
@@ -210,7 +211,7 @@ class EventTiming extends FhirCodeEnum {
 
   /// AC
   static final EventTiming AC = EventTiming._(
-    validatedValue: 'AC',
+    valueString: 'AC',
     system: 'http://hl7.org/fhir/ValueSet/event-timing'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: ''.toFhirString,
@@ -218,7 +219,7 @@ class EventTiming extends FhirCodeEnum {
 
   /// ACM
   static final EventTiming ACM = EventTiming._(
-    validatedValue: 'ACM',
+    valueString: 'ACM',
     system: 'http://hl7.org/fhir/ValueSet/event-timing'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: ''.toFhirString,
@@ -226,7 +227,7 @@ class EventTiming extends FhirCodeEnum {
 
   /// ACD
   static final EventTiming ACD = EventTiming._(
-    validatedValue: 'ACD',
+    valueString: 'ACD',
     system: 'http://hl7.org/fhir/ValueSet/event-timing'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: ''.toFhirString,
@@ -234,7 +235,7 @@ class EventTiming extends FhirCodeEnum {
 
   /// ACV
   static final EventTiming ACV = EventTiming._(
-    validatedValue: 'ACV',
+    valueString: 'ACV',
     system: 'http://hl7.org/fhir/ValueSet/event-timing'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: ''.toFhirString,
@@ -242,7 +243,7 @@ class EventTiming extends FhirCodeEnum {
 
   /// PC
   static final EventTiming PC = EventTiming._(
-    validatedValue: 'PC',
+    valueString: 'PC',
     system: 'http://hl7.org/fhir/ValueSet/event-timing'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: ''.toFhirString,
@@ -250,7 +251,7 @@ class EventTiming extends FhirCodeEnum {
 
   /// PCM
   static final EventTiming PCM = EventTiming._(
-    validatedValue: 'PCM',
+    valueString: 'PCM',
     system: 'http://hl7.org/fhir/ValueSet/event-timing'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: ''.toFhirString,
@@ -258,7 +259,7 @@ class EventTiming extends FhirCodeEnum {
 
   /// PCD
   static final EventTiming PCD = EventTiming._(
-    validatedValue: 'PCD',
+    valueString: 'PCD',
     system: 'http://hl7.org/fhir/ValueSet/event-timing'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: ''.toFhirString,
@@ -266,14 +267,14 @@ class EventTiming extends FhirCodeEnum {
 
   /// PCV
   static final EventTiming PCV = EventTiming._(
-    validatedValue: 'PCV',
+    valueString: 'PCV',
     system: 'http://hl7.org/fhir/ValueSet/event-timing'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: ''.toFhirString,
   );
 
   /// For instances where an Element is present but not value
-  static final EventTiming elementOnly = EventTiming._(validatedValue: '');
+  static final EventTiming elementOnly = EventTiming._(valueString: '');
 
   /// List of all enum-like values
   static final List<EventTiming> values = [
@@ -308,14 +309,14 @@ class EventTiming extends FhirCodeEnum {
   /// Clones the current instance
   @override
   EventTiming clone() => EventTiming._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   EventTiming withElement(Element? newElement) {
     return EventTiming._(
-      validatedValue: value,
+      valueString: valueString,
       element: newElement,
     );
   }
@@ -323,18 +324,18 @@ class EventTiming extends FhirCodeEnum {
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   EventTiming copyWith({
-    String? newValue,
+    dynamic newValue,
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
@@ -345,11 +346,11 @@ class EventTiming extends FhirCodeEnum {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError('Invalid input for EventTiming: $newValue');
     }
     return EventTiming._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

@@ -60,6 +60,7 @@ class FhirInteger extends FhirNumber
   /// - `null` (element-only usage),
   /// - An integer [num],
   /// - A string that parses to an integer.
+  // ignore: sort_unnamed_constructors_first
   factory FhirInteger(
     dynamic rawValue, {
     Element? element,
@@ -134,7 +135,8 @@ class FhirInteger extends FhirNumber
     }
   }
 
-  /// Attempts to parse [input] as a [FhirInteger]. Returns `null` if parsing fails.
+  /// Attempts to parse [input] as a [FhirInteger]. Returns `null` if
+  /// parsing fails.
   static FhirInteger? tryParse(dynamic input) {
     try {
       return FhirInteger(input);
@@ -246,7 +248,7 @@ class FhirInteger extends FhirNumber
     bool id = false,
   }) {
     return FhirInteger(
-      value ? null : this.valueString,
+      value ? null : valueString,
       element: element,
       extension_: extension_ ? <FhirExtension>[] : this.extension_,
       id: id ? null : this.id,

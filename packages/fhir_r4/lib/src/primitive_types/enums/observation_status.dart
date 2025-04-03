@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class ObservationStatus extends FhirCodeEnum {
   // Private underscore constructor for internal use.
   ObservationStatus._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class ObservationStatus extends FhirCodeEnum {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory ObservationStatus(
-    String? raw, {
+    String? rawValue, {
     FhirUri? system,
     FhirString? version,
     FhirString? display,
@@ -29,9 +29,10 @@ class ObservationStatus extends FhirCodeEnum {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCode._validateCode(rawValue) : null;
     return ObservationStatus._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -44,7 +45,7 @@ class ObservationStatus extends FhirCodeEnum {
   }
 
   /// Create empty [ObservationStatus] with element only
-  factory ObservationStatus.empty() => ObservationStatus._(validatedValue: '');
+  factory ObservationStatus.empty() => ObservationStatus._(valueString: '');
 
   /// Factory constructor to create [ObservationStatus] from JSON.
   factory ObservationStatus.fromJson(Map<String, dynamic> json) {
@@ -59,14 +60,14 @@ class ObservationStatus extends FhirCodeEnum {
       );
     }
     return ObservationStatus._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// registered
   static final ObservationStatus registered = ObservationStatus._(
-    validatedValue: 'registered',
+    valueString: 'registered',
     system: 'http://hl7.org/fhir/ValueSet/observation-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Registered'.toFhirString,
@@ -74,7 +75,7 @@ class ObservationStatus extends FhirCodeEnum {
 
   /// preliminary
   static final ObservationStatus preliminary = ObservationStatus._(
-    validatedValue: 'preliminary',
+    valueString: 'preliminary',
     system: 'http://hl7.org/fhir/ValueSet/observation-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Preliminary'.toFhirString,
@@ -82,7 +83,7 @@ class ObservationStatus extends FhirCodeEnum {
 
   /// final_
   static final ObservationStatus final_ = ObservationStatus._(
-    validatedValue: 'final',
+    valueString: 'final',
     system: 'http://hl7.org/fhir/ValueSet/observation-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Final'.toFhirString,
@@ -90,7 +91,7 @@ class ObservationStatus extends FhirCodeEnum {
 
   /// amended
   static final ObservationStatus amended = ObservationStatus._(
-    validatedValue: 'amended',
+    valueString: 'amended',
     system: 'http://hl7.org/fhir/ValueSet/observation-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Amended'.toFhirString,
@@ -98,7 +99,7 @@ class ObservationStatus extends FhirCodeEnum {
 
   /// corrected
   static final ObservationStatus corrected = ObservationStatus._(
-    validatedValue: 'corrected',
+    valueString: 'corrected',
     system: 'http://hl7.org/fhir/ValueSet/observation-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Corrected'.toFhirString,
@@ -106,7 +107,7 @@ class ObservationStatus extends FhirCodeEnum {
 
   /// cancelled
   static final ObservationStatus cancelled = ObservationStatus._(
-    validatedValue: 'cancelled',
+    valueString: 'cancelled',
     system: 'http://hl7.org/fhir/ValueSet/observation-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Cancelled'.toFhirString,
@@ -114,7 +115,7 @@ class ObservationStatus extends FhirCodeEnum {
 
   /// entered_in_error
   static final ObservationStatus entered_in_error = ObservationStatus._(
-    validatedValue: 'entered-in-error',
+    valueString: 'entered-in-error',
     system: 'http://hl7.org/fhir/ValueSet/observation-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Entered in Error'.toFhirString,
@@ -122,7 +123,7 @@ class ObservationStatus extends FhirCodeEnum {
 
   /// unknown
   static final ObservationStatus unknown = ObservationStatus._(
-    validatedValue: 'unknown',
+    valueString: 'unknown',
     system: 'http://hl7.org/fhir/ValueSet/observation-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Unknown'.toFhirString,
@@ -130,7 +131,7 @@ class ObservationStatus extends FhirCodeEnum {
 
   /// For instances where an Element is present but not value
   static final ObservationStatus elementOnly =
-      ObservationStatus._(validatedValue: '');
+      ObservationStatus._(valueString: '');
 
   /// List of all enum-like values
   static final List<ObservationStatus> values = [
@@ -147,14 +148,14 @@ class ObservationStatus extends FhirCodeEnum {
   /// Clones the current instance
   @override
   ObservationStatus clone() => ObservationStatus._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ObservationStatus withElement(Element? newElement) {
     return ObservationStatus._(
-      validatedValue: value,
+      valueString: valueString,
       element: newElement,
     );
   }
@@ -162,18 +163,18 @@ class ObservationStatus extends FhirCodeEnum {
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   ObservationStatus copyWith({
-    String? newValue,
+    dynamic newValue,
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
@@ -184,11 +185,11 @@ class ObservationStatus extends FhirCodeEnum {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError('Invalid input for ObservationStatus: $newValue');
     }
     return ObservationStatus._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

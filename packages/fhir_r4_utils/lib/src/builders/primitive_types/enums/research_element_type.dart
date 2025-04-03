@@ -6,7 +6,7 @@ part of '../primitive_types.dart';
 class ResearchElementTypeBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   ResearchElementTypeBuilder._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -20,7 +20,7 @@ class ResearchElementTypeBuilder extends FhirCodeEnumBuilder {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory ResearchElementTypeBuilder(
-    String? raw, {
+    String? rawValue, {
     FhirUriBuilder? system,
     FhirStringBuilder? version,
     FhirStringBuilder? display,
@@ -30,9 +30,10 @@ class ResearchElementTypeBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
     return ResearchElementTypeBuilder._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -46,7 +47,7 @@ class ResearchElementTypeBuilder extends FhirCodeEnumBuilder {
 
   /// Create empty [ResearchElementTypeBuilder] with element only
   factory ResearchElementTypeBuilder.empty() =>
-      ResearchElementTypeBuilder._(validatedValue: '');
+      ResearchElementTypeBuilder._(valueString: '');
 
   /// Factory constructor to create [ResearchElementTypeBuilder]
   /// from JSON.
@@ -63,14 +64,14 @@ class ResearchElementTypeBuilder extends FhirCodeEnumBuilder {
       );
     }
     return ResearchElementTypeBuilder._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// population
   static ResearchElementTypeBuilder population = ResearchElementTypeBuilder._(
-    validatedValue: 'population',
+    valueString: 'population',
     system:
         'http://hl7.org/fhir/ValueSet/research-element-type'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -79,7 +80,7 @@ class ResearchElementTypeBuilder extends FhirCodeEnumBuilder {
 
   /// exposure
   static ResearchElementTypeBuilder exposure = ResearchElementTypeBuilder._(
-    validatedValue: 'exposure',
+    valueString: 'exposure',
     system:
         'http://hl7.org/fhir/ValueSet/research-element-type'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -88,7 +89,7 @@ class ResearchElementTypeBuilder extends FhirCodeEnumBuilder {
 
   /// outcome
   static ResearchElementTypeBuilder outcome = ResearchElementTypeBuilder._(
-    validatedValue: 'outcome',
+    valueString: 'outcome',
     system:
         'http://hl7.org/fhir/ValueSet/research-element-type'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -97,7 +98,7 @@ class ResearchElementTypeBuilder extends FhirCodeEnumBuilder {
 
   /// For instances where an Element is present but not value
   static ResearchElementTypeBuilder elementOnly =
-      ResearchElementTypeBuilder._(validatedValue: '');
+      ResearchElementTypeBuilder._(valueString: '');
 
   /// List of all enum-like values
   static List<ResearchElementTypeBuilder> values = [
@@ -109,31 +110,31 @@ class ResearchElementTypeBuilder extends FhirCodeEnumBuilder {
   /// Clones the current instance
   @override
   ResearchElementTypeBuilder clone() => ResearchElementTypeBuilder._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
   ResearchElementTypeBuilder withElement(ElementBuilder? newElement) {
     return ResearchElementTypeBuilder._(
-        validatedValue: value, element: newElement,);
+        valueString: valueString, element: newElement,);
   }
 
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   ResearchElementTypeBuilder copyWith({
-    String? newValue,
+    dynamic newValue,
     ElementBuilder? element,
     FhirStringBuilder? id,
     List<FhirExtensionBuilder>? extension_,
@@ -144,11 +145,11 @@ class ResearchElementTypeBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError('Invalid input for ResearchElementType: $newValue');
     }
     return ResearchElementTypeBuilder._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
@@ -157,7 +158,7 @@ class ResearchElementTypeBuilder extends FhirCodeEnumBuilder {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath,
+      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

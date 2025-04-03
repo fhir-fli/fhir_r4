@@ -806,6 +806,21 @@ class MedicationKnowledgeBuilder extends DomainResourceBuilder {
           if (child is CommonLanguagesBuilder) {
             language = child;
             return;
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              // For enums, try to create directly from the string value
+              try {
+                final converted = CommonLanguagesBuilder(stringValue);
+                language = converted;
+                return;
+              } catch (e) {
+                // Continue if enum creation fails
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
           throw Exception('Invalid child type for $childName');
         }
@@ -825,7 +840,10 @@ class MedicationKnowledgeBuilder extends DomainResourceBuilder {
             return;
           } else if (child is ResourceBuilder) {
             // Add single element to existing list or create new list
-            contained = [...(contained ?? []), child];
+            contained = [
+              ...(contained ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -838,7 +856,10 @@ class MedicationKnowledgeBuilder extends DomainResourceBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -851,7 +872,10 @@ class MedicationKnowledgeBuilder extends DomainResourceBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -869,6 +893,22 @@ class MedicationKnowledgeBuilder extends DomainResourceBuilder {
           if (child is MedicationKnowledgeStatusCodesBuilder) {
             status = child;
             return;
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              // For enums, try to create directly from the string value
+              try {
+                final converted =
+                    MedicationKnowledgeStatusCodesBuilder(stringValue);
+                status = converted;
+                return;
+              } catch (e) {
+                // Continue if enum creation fails
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
           throw Exception('Invalid child type for $childName');
         }
@@ -904,7 +944,10 @@ class MedicationKnowledgeBuilder extends DomainResourceBuilder {
             return;
           } else if (child is FhirStringBuilder) {
             // Add single element to existing list or create new list
-            synonym = [...(synonym ?? []), child];
+            synonym = [
+              ...(synonym ?? []),
+              child,
+            ];
             return;
           } else if (child is List<PrimitiveTypeBuilder>) {
             // Try to convert list of primitive types
@@ -965,7 +1008,10 @@ class MedicationKnowledgeBuilder extends DomainResourceBuilder {
             return;
           } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            associatedMedication = [...(associatedMedication ?? []), child];
+            associatedMedication = [
+              ...(associatedMedication ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -978,7 +1024,10 @@ class MedicationKnowledgeBuilder extends DomainResourceBuilder {
             return;
           } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            productType = [...(productType ?? []), child];
+            productType = [
+              ...(productType ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -991,7 +1040,10 @@ class MedicationKnowledgeBuilder extends DomainResourceBuilder {
             return;
           } else if (child is MedicationKnowledgeMonographBuilder) {
             // Add single element to existing list or create new list
-            monograph = [...(monograph ?? []), child];
+            monograph = [
+              ...(monograph ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -1004,7 +1056,10 @@ class MedicationKnowledgeBuilder extends DomainResourceBuilder {
             return;
           } else if (child is MedicationKnowledgeIngredientBuilder) {
             // Add single element to existing list or create new list
-            ingredient = [...(ingredient ?? []), child];
+            ingredient = [
+              ...(ingredient ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -1037,7 +1092,10 @@ class MedicationKnowledgeBuilder extends DomainResourceBuilder {
             return;
           } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            intendedRoute = [...(intendedRoute ?? []), child];
+            intendedRoute = [
+              ...(intendedRoute ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -1050,7 +1108,10 @@ class MedicationKnowledgeBuilder extends DomainResourceBuilder {
             return;
           } else if (child is MedicationKnowledgeCostBuilder) {
             // Add single element to existing list or create new list
-            cost = [...(cost ?? []), child];
+            cost = [
+              ...(cost ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -1063,7 +1124,10 @@ class MedicationKnowledgeBuilder extends DomainResourceBuilder {
             return;
           } else if (child is MedicationKnowledgeMonitoringProgramBuilder) {
             // Add single element to existing list or create new list
-            monitoringProgram = [...(monitoringProgram ?? []), child];
+            monitoringProgram = [
+              ...(monitoringProgram ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -1095,7 +1159,10 @@ class MedicationKnowledgeBuilder extends DomainResourceBuilder {
           } else if (child
               is MedicationKnowledgeMedicineClassificationBuilder) {
             // Add single element to existing list or create new list
-            medicineClassification = [...(medicineClassification ?? []), child];
+            medicineClassification = [
+              ...(medicineClassification ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -1116,7 +1183,10 @@ class MedicationKnowledgeBuilder extends DomainResourceBuilder {
             return;
           } else if (child is MedicationKnowledgeDrugCharacteristicBuilder) {
             // Add single element to existing list or create new list
-            drugCharacteristic = [...(drugCharacteristic ?? []), child];
+            drugCharacteristic = [
+              ...(drugCharacteristic ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -1129,7 +1199,10 @@ class MedicationKnowledgeBuilder extends DomainResourceBuilder {
             return;
           } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            contraindication = [...(contraindication ?? []), child];
+            contraindication = [
+              ...(contraindication ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -1142,7 +1215,10 @@ class MedicationKnowledgeBuilder extends DomainResourceBuilder {
             return;
           } else if (child is MedicationKnowledgeRegulatoryBuilder) {
             // Add single element to existing list or create new list
-            regulatory = [...(regulatory ?? []), child];
+            regulatory = [
+              ...(regulatory ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -1155,7 +1231,10 @@ class MedicationKnowledgeBuilder extends DomainResourceBuilder {
             return;
           } else if (child is MedicationKnowledgeKineticsBuilder) {
             // Add single element to existing list or create new list
-            kinetics = [...(kinetics ?? []), child];
+            kinetics = [
+              ...(kinetics ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -2020,7 +2099,10 @@ class MedicationKnowledgeRelatedMedicationKnowledgeBuilder
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -2033,7 +2115,10 @@ class MedicationKnowledgeRelatedMedicationKnowledgeBuilder
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -2054,7 +2139,10 @@ class MedicationKnowledgeRelatedMedicationKnowledgeBuilder
             return;
           } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            reference = [...(reference ?? []), child];
+            reference = [
+              ...(reference ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -2481,7 +2569,10 @@ class MedicationKnowledgeMonographBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -2494,7 +2585,10 @@ class MedicationKnowledgeMonographBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -2982,7 +3076,10 @@ class MedicationKnowledgeIngredientBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -2995,7 +3092,10 @@ class MedicationKnowledgeIngredientBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -3081,7 +3181,10 @@ class MedicationKnowledgeIngredientBuilder extends BackboneElementBuilder {
         return ['FhirExtensionBuilder'];
       case 'item':
       case 'itemX':
-        return ['CodeableConceptBuilder', 'ReferenceBuilder'];
+        return [
+          'CodeableConceptBuilder',
+          'ReferenceBuilder',
+        ];
       case 'itemCodeableConcept':
         return ['CodeableConceptBuilder'];
       case 'itemReference':
@@ -3529,7 +3632,10 @@ class MedicationKnowledgeCostBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -3542,7 +3648,10 @@ class MedicationKnowledgeCostBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -4021,7 +4130,10 @@ class MedicationKnowledgeMonitoringProgramBuilder
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -4034,7 +4146,10 @@ class MedicationKnowledgeMonitoringProgramBuilder
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -4544,7 +4659,10 @@ class MedicationKnowledgeAdministrationGuidelinesBuilder
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -4557,7 +4675,10 @@ class MedicationKnowledgeAdministrationGuidelinesBuilder
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -4570,7 +4691,10 @@ class MedicationKnowledgeAdministrationGuidelinesBuilder
             return;
           } else if (child is MedicationKnowledgeDosageBuilder) {
             // Add single element to existing list or create new list
-            dosage = [...(dosage ?? []), child];
+            dosage = [
+              ...(dosage ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -4620,7 +4744,10 @@ class MedicationKnowledgeAdministrationGuidelinesBuilder
           } else if (child
               is MedicationKnowledgePatientCharacteristicsBuilder) {
             // Add single element to existing list or create new list
-            patientCharacteristics = [...(patientCharacteristics ?? []), child];
+            patientCharacteristics = [
+              ...(patientCharacteristics ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -4645,7 +4772,10 @@ class MedicationKnowledgeAdministrationGuidelinesBuilder
         return ['MedicationKnowledgeDosageBuilder'];
       case 'indication':
       case 'indicationX':
-        return ['CodeableConceptBuilder', 'ReferenceBuilder'];
+        return [
+          'CodeableConceptBuilder',
+          'ReferenceBuilder',
+        ];
       case 'indicationCodeableConcept':
         return ['CodeableConceptBuilder'];
       case 'indicationReference':
@@ -5083,7 +5213,10 @@ class MedicationKnowledgeDosageBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -5096,7 +5229,10 @@ class MedicationKnowledgeDosageBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -5117,7 +5253,10 @@ class MedicationKnowledgeDosageBuilder extends BackboneElementBuilder {
             return;
           } else if (child is DosageBuilder) {
             // Add single element to existing list or create new list
-            dosage = [...(dosage ?? []), child];
+            dosage = [
+              ...(dosage ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -5575,7 +5714,10 @@ class MedicationKnowledgePatientCharacteristicsBuilder
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -5588,7 +5730,10 @@ class MedicationKnowledgePatientCharacteristicsBuilder
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -5637,7 +5782,10 @@ class MedicationKnowledgePatientCharacteristicsBuilder
             return;
           } else if (child is FhirStringBuilder) {
             // Add single element to existing list or create new list
-            value = [...(value ?? []), child];
+            value = [
+              ...(value ?? []),
+              child,
+            ];
             return;
           } else if (child is List<PrimitiveTypeBuilder>) {
             // Try to convert list of primitive types
@@ -5690,7 +5838,10 @@ class MedicationKnowledgePatientCharacteristicsBuilder
         return ['FhirExtensionBuilder'];
       case 'characteristic':
       case 'characteristicX':
-        return ['CodeableConceptBuilder', 'QuantityBuilder'];
+        return [
+          'CodeableConceptBuilder',
+          'QuantityBuilder',
+        ];
       case 'characteristicCodeableConcept':
         return ['CodeableConceptBuilder'];
       case 'characteristicQuantity':
@@ -6114,7 +6265,10 @@ class MedicationKnowledgeMedicineClassificationBuilder
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -6127,7 +6281,10 @@ class MedicationKnowledgeMedicineClassificationBuilder
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -6148,7 +6305,10 @@ class MedicationKnowledgeMedicineClassificationBuilder
             return;
           } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            classification = [...(classification ?? []), child];
+            classification = [
+              ...(classification ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -6575,7 +6735,10 @@ class MedicationKnowledgePackagingBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -6588,7 +6751,10 @@ class MedicationKnowledgePackagingBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -7075,7 +7241,10 @@ class MedicationKnowledgeDrugCharacteristicBuilder
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -7088,7 +7257,10 @@ class MedicationKnowledgeDrugCharacteristicBuilder
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -7659,7 +7831,10 @@ class MedicationKnowledgeRegulatoryBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -7672,7 +7847,10 @@ class MedicationKnowledgeRegulatoryBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -7693,7 +7871,10 @@ class MedicationKnowledgeRegulatoryBuilder extends BackboneElementBuilder {
             return;
           } else if (child is MedicationKnowledgeSubstitutionBuilder) {
             // Add single element to existing list or create new list
-            substitution = [...(substitution ?? []), child];
+            substitution = [
+              ...(substitution ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -7706,7 +7887,10 @@ class MedicationKnowledgeRegulatoryBuilder extends BackboneElementBuilder {
             return;
           } else if (child is MedicationKnowledgeScheduleBuilder) {
             // Add single element to existing list or create new list
-            schedule = [...(schedule ?? []), child];
+            schedule = [
+              ...(schedule ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -8175,7 +8359,10 @@ class MedicationKnowledgeSubstitutionBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -8188,7 +8375,10 @@ class MedicationKnowledgeSubstitutionBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -8624,7 +8814,10 @@ class MedicationKnowledgeScheduleBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -8637,7 +8830,10 @@ class MedicationKnowledgeScheduleBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -9054,7 +9250,10 @@ class MedicationKnowledgeMaxDispenseBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -9067,7 +9266,10 @@ class MedicationKnowledgeMaxDispenseBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -9535,7 +9737,10 @@ class MedicationKnowledgeKineticsBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -9548,7 +9753,10 @@ class MedicationKnowledgeKineticsBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -9561,7 +9769,10 @@ class MedicationKnowledgeKineticsBuilder extends BackboneElementBuilder {
             return;
           } else if (child is QuantityBuilder) {
             // Add single element to existing list or create new list
-            areaUnderCurve = [...(areaUnderCurve ?? []), child];
+            areaUnderCurve = [
+              ...(areaUnderCurve ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -9574,7 +9785,10 @@ class MedicationKnowledgeKineticsBuilder extends BackboneElementBuilder {
             return;
           } else if (child is QuantityBuilder) {
             // Add single element to existing list or create new list
-            lethalDose50 = [...(lethalDose50 ?? []), child];
+            lethalDose50 = [
+              ...(lethalDose50 ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');

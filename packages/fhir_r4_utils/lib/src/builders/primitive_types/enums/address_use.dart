@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class AddressUseBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   AddressUseBuilder._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class AddressUseBuilder extends FhirCodeEnumBuilder {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory AddressUseBuilder(
-    String? raw, {
+    String? rawValue, {
     FhirUriBuilder? system,
     FhirStringBuilder? version,
     FhirStringBuilder? display,
@@ -29,9 +29,10 @@ class AddressUseBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
     return AddressUseBuilder._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -44,7 +45,7 @@ class AddressUseBuilder extends FhirCodeEnumBuilder {
   }
 
   /// Create empty [AddressUseBuilder] with element only
-  factory AddressUseBuilder.empty() => AddressUseBuilder._(validatedValue: '');
+  factory AddressUseBuilder.empty() => AddressUseBuilder._(valueString: '');
 
   /// Factory constructor to create [AddressUseBuilder]
   /// from JSON.
@@ -61,14 +62,14 @@ class AddressUseBuilder extends FhirCodeEnumBuilder {
       );
     }
     return AddressUseBuilder._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// home
   static AddressUseBuilder home = AddressUseBuilder._(
-    validatedValue: 'home',
+    valueString: 'home',
     system: 'http://hl7.org/fhir/ValueSet/address-use'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Home'.toFhirStringBuilder,
@@ -76,7 +77,7 @@ class AddressUseBuilder extends FhirCodeEnumBuilder {
 
   /// work
   static AddressUseBuilder work = AddressUseBuilder._(
-    validatedValue: 'work',
+    valueString: 'work',
     system: 'http://hl7.org/fhir/ValueSet/address-use'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Work'.toFhirStringBuilder,
@@ -84,7 +85,7 @@ class AddressUseBuilder extends FhirCodeEnumBuilder {
 
   /// temp
   static AddressUseBuilder temp = AddressUseBuilder._(
-    validatedValue: 'temp',
+    valueString: 'temp',
     system: 'http://hl7.org/fhir/ValueSet/address-use'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Temporary'.toFhirStringBuilder,
@@ -92,7 +93,7 @@ class AddressUseBuilder extends FhirCodeEnumBuilder {
 
   /// old
   static AddressUseBuilder old = AddressUseBuilder._(
-    validatedValue: 'old',
+    valueString: 'old',
     system: 'http://hl7.org/fhir/ValueSet/address-use'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Old / Incorrect'.toFhirStringBuilder,
@@ -100,15 +101,14 @@ class AddressUseBuilder extends FhirCodeEnumBuilder {
 
   /// billing
   static AddressUseBuilder billing = AddressUseBuilder._(
-    validatedValue: 'billing',
+    valueString: 'billing',
     system: 'http://hl7.org/fhir/ValueSet/address-use'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Billing'.toFhirStringBuilder,
   );
 
   /// For instances where an Element is present but not value
-  static AddressUseBuilder elementOnly =
-      AddressUseBuilder._(validatedValue: '');
+  static AddressUseBuilder elementOnly = AddressUseBuilder._(valueString: '');
 
   /// List of all enum-like values
   static List<AddressUseBuilder> values = [
@@ -122,30 +122,30 @@ class AddressUseBuilder extends FhirCodeEnumBuilder {
   /// Clones the current instance
   @override
   AddressUseBuilder clone() => AddressUseBuilder._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
   AddressUseBuilder withElement(ElementBuilder? newElement) {
-    return AddressUseBuilder._(validatedValue: value, element: newElement);
+    return AddressUseBuilder._(valueString: valueString, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   AddressUseBuilder copyWith({
-    String? newValue,
+    dynamic newValue,
     ElementBuilder? element,
     FhirStringBuilder? id,
     List<FhirExtensionBuilder>? extension_,
@@ -156,11 +156,11 @@ class AddressUseBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError('Invalid input for AddressUse: $newValue');
     }
     return AddressUseBuilder._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
@@ -169,7 +169,7 @@ class AddressUseBuilder extends FhirCodeEnumBuilder {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath,
+      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

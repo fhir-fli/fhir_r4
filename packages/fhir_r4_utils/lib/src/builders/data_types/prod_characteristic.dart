@@ -447,7 +447,10 @@ class ProdCharacteristicBuilder extends BackboneTypeBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -460,7 +463,10 @@ class ProdCharacteristicBuilder extends BackboneTypeBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -541,7 +547,10 @@ class ProdCharacteristicBuilder extends BackboneTypeBuilder {
             return;
           } else if (child is FhirStringBuilder) {
             // Add single element to existing list or create new list
-            color = [...(color ?? []), child];
+            color = [
+              ...(color ?? []),
+              child,
+            ];
             return;
           } else if (child is List<PrimitiveTypeBuilder>) {
             // Try to convert list of primitive types
@@ -584,7 +593,10 @@ class ProdCharacteristicBuilder extends BackboneTypeBuilder {
             return;
           } else if (child is FhirStringBuilder) {
             // Add single element to existing list or create new list
-            imprint = [...(imprint ?? []), child];
+            imprint = [
+              ...(imprint ?? []),
+              child,
+            ];
             return;
           } else if (child is List<PrimitiveTypeBuilder>) {
             // Try to convert list of primitive types
@@ -627,7 +639,10 @@ class ProdCharacteristicBuilder extends BackboneTypeBuilder {
             return;
           } else if (child is AttachmentBuilder) {
             // Add single element to existing list or create new list
-            image = [...(image ?? []), child];
+            image = [
+              ...(image ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');

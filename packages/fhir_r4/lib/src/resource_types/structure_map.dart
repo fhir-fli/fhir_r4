@@ -692,7 +692,10 @@ class StructureMap extends CanonicalResource {
             return copyWith(contained: newList);
           } else if (child is Resource) {
             // Add single element to existing list or create new list
-            final newList = [...?contained, child];
+            final newList = [
+              ...?contained,
+              child,
+            ];
             return copyWith(contained: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -706,7 +709,10 @@ class StructureMap extends CanonicalResource {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -720,7 +726,10 @@ class StructureMap extends CanonicalResource {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -742,7 +751,10 @@ class StructureMap extends CanonicalResource {
             return copyWith(identifier: newList);
           } else if (child is Identifier) {
             // Add single element to existing list or create new list
-            final newList = [...?identifier, child];
+            final newList = [
+              ...?identifier,
+              child,
+            ];
             return copyWith(identifier: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -812,7 +824,10 @@ class StructureMap extends CanonicalResource {
             return copyWith(contact: newList);
           } else if (child is ContactDetail) {
             // Add single element to existing list or create new list
-            final newList = [...?contact, child];
+            final newList = [
+              ...?contact,
+              child,
+            ];
             return copyWith(contact: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -834,7 +849,10 @@ class StructureMap extends CanonicalResource {
             return copyWith(useContext: newList);
           } else if (child is UsageContext) {
             // Add single element to existing list or create new list
-            final newList = [...?useContext, child];
+            final newList = [
+              ...?useContext,
+              child,
+            ];
             return copyWith(useContext: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -848,7 +866,10 @@ class StructureMap extends CanonicalResource {
             return copyWith(jurisdiction: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...?jurisdiction, child];
+            final newList = [
+              ...?jurisdiction,
+              child,
+            ];
             return copyWith(jurisdiction: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -878,7 +899,10 @@ class StructureMap extends CanonicalResource {
             return copyWith(structure: newList);
           } else if (child is StructureMapStructure) {
             // Add single element to existing list or create new list
-            final newList = [...?structure, child];
+            final newList = [
+              ...?structure,
+              child,
+            ];
             return copyWith(structure: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -892,7 +916,10 @@ class StructureMap extends CanonicalResource {
             return copyWith(import_: newList);
           } else if (child is FhirCanonical) {
             // Add single element to existing list or create new list
-            final newList = [...?import_, child];
+            final newList = [
+              ...?import_,
+              child,
+            ];
             return copyWith(import_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -906,7 +933,10 @@ class StructureMap extends CanonicalResource {
             return copyWith(group: newList);
           } else if (child is StructureMapGroup) {
             // Add single element to existing list or create new list
-            final newList = [...group, child];
+            final newList = [
+              ...group,
+              child,
+            ];
             return copyWith(group: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1848,7 +1878,10 @@ class StructureMapStructure extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1862,7 +1895,10 @@ class StructureMapStructure extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2463,7 +2499,10 @@ class StructureMapGroup extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2477,7 +2516,10 @@ class StructureMapGroup extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2523,7 +2565,10 @@ class StructureMapGroup extends BackboneElement {
             return copyWith(input: newList);
           } else if (child is StructureMapInput) {
             // Add single element to existing list or create new list
-            final newList = [...input, child];
+            final newList = [
+              ...input,
+              child,
+            ];
             return copyWith(input: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2537,7 +2582,10 @@ class StructureMapGroup extends BackboneElement {
             return copyWith(rule: newList);
           } else if (child is StructureMapRule) {
             // Add single element to existing list or create new list
-            final newList = [...rule, child];
+            final newList = [
+              ...rule,
+              child,
+            ];
             return copyWith(rule: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -3105,7 +3153,10 @@ class StructureMapInput extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -3119,7 +3170,10 @@ class StructureMapInput extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -3726,7 +3780,10 @@ class StructureMapRule extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -3740,7 +3797,10 @@ class StructureMapRule extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -3762,7 +3822,10 @@ class StructureMapRule extends BackboneElement {
             return copyWith(source: newList);
           } else if (child is StructureMapSource) {
             // Add single element to existing list or create new list
-            final newList = [...source, child];
+            final newList = [
+              ...source,
+              child,
+            ];
             return copyWith(source: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -3776,7 +3839,10 @@ class StructureMapRule extends BackboneElement {
             return copyWith(target: newList);
           } else if (child is StructureMapTarget) {
             // Add single element to existing list or create new list
-            final newList = [...?target, child];
+            final newList = [
+              ...?target,
+              child,
+            ];
             return copyWith(target: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -3790,7 +3856,10 @@ class StructureMapRule extends BackboneElement {
             return copyWith(rule: newList);
           } else if (child is StructureMapRule) {
             // Add single element to existing list or create new list
-            final newList = [...?rule, child];
+            final newList = [
+              ...?rule,
+              child,
+            ];
             return copyWith(rule: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -3804,7 +3873,10 @@ class StructureMapRule extends BackboneElement {
             return copyWith(dependent: newList);
           } else if (child is StructureMapDependent) {
             // Add single element to existing list or create new list
-            final newList = [...?dependent, child];
+            final newList = [
+              ...?dependent,
+              child,
+            ];
             return copyWith(dependent: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -4956,7 +5028,10 @@ class StructureMapSource extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -4970,7 +5045,10 @@ class StructureMapSource extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -6808,7 +6886,10 @@ class StructureMapTarget extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -6822,7 +6903,10 @@ class StructureMapTarget extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -6868,7 +6952,10 @@ class StructureMapTarget extends BackboneElement {
             return copyWith(listMode: newList);
           } else if (child is StructureMapTargetListMode) {
             // Add single element to existing list or create new list
-            final newList = [...?listMode, child];
+            final newList = [
+              ...?listMode,
+              child,
+            ];
             return copyWith(listMode: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -6898,7 +6985,10 @@ class StructureMapTarget extends BackboneElement {
             return copyWith(parameter: newList);
           } else if (child is StructureMapParameter) {
             // Add single element to existing list or create new list
-            final newList = [...?parameter, child];
+            final newList = [
+              ...?parameter,
+              child,
+            ];
             return copyWith(parameter: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -7496,7 +7586,10 @@ class StructureMapParameter extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -7510,7 +7603,10 @@ class StructureMapParameter extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -8033,7 +8129,10 @@ class StructureMapDependent extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -8047,7 +8146,10 @@ class StructureMapDependent extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -8069,7 +8171,10 @@ class StructureMapDependent extends BackboneElement {
             return copyWith(variable: newList);
           } else if (child is FhirString) {
             // Add single element to existing list or create new list
-            final newList = [...variable, child];
+            final newList = [
+              ...variable,
+              child,
+            ];
             return copyWith(variable: newList);
           } else {
             throw Exception('Invalid child type for $childName');

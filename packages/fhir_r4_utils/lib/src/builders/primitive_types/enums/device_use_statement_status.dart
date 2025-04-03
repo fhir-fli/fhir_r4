@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class DeviceUseStatementStatusBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   DeviceUseStatementStatusBuilder._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class DeviceUseStatementStatusBuilder extends FhirCodeEnumBuilder {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory DeviceUseStatementStatusBuilder(
-    String? raw, {
+    String? rawValue, {
     FhirUriBuilder? system,
     FhirStringBuilder? version,
     FhirStringBuilder? display,
@@ -29,9 +29,10 @@ class DeviceUseStatementStatusBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
     return DeviceUseStatementStatusBuilder._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -45,7 +46,7 @@ class DeviceUseStatementStatusBuilder extends FhirCodeEnumBuilder {
 
   /// Create empty [DeviceUseStatementStatusBuilder] with element only
   factory DeviceUseStatementStatusBuilder.empty() =>
-      DeviceUseStatementStatusBuilder._(validatedValue: '');
+      DeviceUseStatementStatusBuilder._(valueString: '');
 
   /// Factory constructor to create [DeviceUseStatementStatusBuilder]
   /// from JSON.
@@ -62,7 +63,7 @@ class DeviceUseStatementStatusBuilder extends FhirCodeEnumBuilder {
       );
     }
     return DeviceUseStatementStatusBuilder._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
@@ -70,7 +71,7 @@ class DeviceUseStatementStatusBuilder extends FhirCodeEnumBuilder {
   /// active
   static DeviceUseStatementStatusBuilder active =
       DeviceUseStatementStatusBuilder._(
-    validatedValue: 'active',
+    valueString: 'active',
     system:
         'http://hl7.org/fhir/ValueSet/device-statement-status'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -80,7 +81,7 @@ class DeviceUseStatementStatusBuilder extends FhirCodeEnumBuilder {
   /// completed
   static DeviceUseStatementStatusBuilder completed =
       DeviceUseStatementStatusBuilder._(
-    validatedValue: 'completed',
+    valueString: 'completed',
     system:
         'http://hl7.org/fhir/ValueSet/device-statement-status'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -90,7 +91,7 @@ class DeviceUseStatementStatusBuilder extends FhirCodeEnumBuilder {
   /// entered_in_error
   static DeviceUseStatementStatusBuilder entered_in_error =
       DeviceUseStatementStatusBuilder._(
-    validatedValue: 'entered-in-error',
+    valueString: 'entered-in-error',
     system:
         'http://hl7.org/fhir/ValueSet/device-statement-status'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -100,7 +101,7 @@ class DeviceUseStatementStatusBuilder extends FhirCodeEnumBuilder {
   /// intended
   static DeviceUseStatementStatusBuilder intended =
       DeviceUseStatementStatusBuilder._(
-    validatedValue: 'intended',
+    valueString: 'intended',
     system:
         'http://hl7.org/fhir/ValueSet/device-statement-status'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -110,7 +111,7 @@ class DeviceUseStatementStatusBuilder extends FhirCodeEnumBuilder {
   /// stopped
   static DeviceUseStatementStatusBuilder stopped =
       DeviceUseStatementStatusBuilder._(
-    validatedValue: 'stopped',
+    valueString: 'stopped',
     system:
         'http://hl7.org/fhir/ValueSet/device-statement-status'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -120,7 +121,7 @@ class DeviceUseStatementStatusBuilder extends FhirCodeEnumBuilder {
   /// on_hold
   static DeviceUseStatementStatusBuilder on_hold =
       DeviceUseStatementStatusBuilder._(
-    validatedValue: 'on-hold',
+    valueString: 'on-hold',
     system:
         'http://hl7.org/fhir/ValueSet/device-statement-status'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -129,7 +130,7 @@ class DeviceUseStatementStatusBuilder extends FhirCodeEnumBuilder {
 
   /// For instances where an Element is present but not value
   static DeviceUseStatementStatusBuilder elementOnly =
-      DeviceUseStatementStatusBuilder._(validatedValue: '');
+      DeviceUseStatementStatusBuilder._(valueString: '');
 
   /// List of all enum-like values
   static List<DeviceUseStatementStatusBuilder> values = [
@@ -144,31 +145,31 @@ class DeviceUseStatementStatusBuilder extends FhirCodeEnumBuilder {
   /// Clones the current instance
   @override
   DeviceUseStatementStatusBuilder clone() => DeviceUseStatementStatusBuilder._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
   DeviceUseStatementStatusBuilder withElement(ElementBuilder? newElement) {
     return DeviceUseStatementStatusBuilder._(
-        validatedValue: value, element: newElement,);
+        valueString: valueString, element: newElement,);
   }
 
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   DeviceUseStatementStatusBuilder copyWith({
-    String? newValue,
+    dynamic newValue,
     ElementBuilder? element,
     FhirStringBuilder? id,
     List<FhirExtensionBuilder>? extension_,
@@ -179,11 +180,12 @@ class DeviceUseStatementStatusBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError(
+          'Invalid input for DeviceUseStatementStatus: $newValue',);
     }
     return DeviceUseStatementStatusBuilder._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
@@ -192,7 +194,7 @@ class DeviceUseStatementStatusBuilder extends FhirCodeEnumBuilder {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath,
+      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

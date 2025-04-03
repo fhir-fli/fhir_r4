@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class ResearchSubjectStatusBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   ResearchSubjectStatusBuilder._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class ResearchSubjectStatusBuilder extends FhirCodeEnumBuilder {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory ResearchSubjectStatusBuilder(
-    String? raw, {
+    String? rawValue, {
     FhirUriBuilder? system,
     FhirStringBuilder? version,
     FhirStringBuilder? display,
@@ -29,9 +29,10 @@ class ResearchSubjectStatusBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
     return ResearchSubjectStatusBuilder._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -45,7 +46,7 @@ class ResearchSubjectStatusBuilder extends FhirCodeEnumBuilder {
 
   /// Create empty [ResearchSubjectStatusBuilder] with element only
   factory ResearchSubjectStatusBuilder.empty() =>
-      ResearchSubjectStatusBuilder._(validatedValue: '');
+      ResearchSubjectStatusBuilder._(valueString: '');
 
   /// Factory constructor to create [ResearchSubjectStatusBuilder]
   /// from JSON.
@@ -62,7 +63,7 @@ class ResearchSubjectStatusBuilder extends FhirCodeEnumBuilder {
       );
     }
     return ResearchSubjectStatusBuilder._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
@@ -70,7 +71,7 @@ class ResearchSubjectStatusBuilder extends FhirCodeEnumBuilder {
   /// candidate
   static ResearchSubjectStatusBuilder candidate =
       ResearchSubjectStatusBuilder._(
-    validatedValue: 'candidate',
+    valueString: 'candidate',
     system:
         'http://hl7.org/fhir/ValueSet/research-subject-status'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -79,7 +80,7 @@ class ResearchSubjectStatusBuilder extends FhirCodeEnumBuilder {
 
   /// eligible
   static ResearchSubjectStatusBuilder eligible = ResearchSubjectStatusBuilder._(
-    validatedValue: 'eligible',
+    valueString: 'eligible',
     system:
         'http://hl7.org/fhir/ValueSet/research-subject-status'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -89,7 +90,7 @@ class ResearchSubjectStatusBuilder extends FhirCodeEnumBuilder {
   /// follow_up
   static ResearchSubjectStatusBuilder follow_up =
       ResearchSubjectStatusBuilder._(
-    validatedValue: 'follow-up',
+    valueString: 'follow-up',
     system:
         'http://hl7.org/fhir/ValueSet/research-subject-status'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -99,7 +100,7 @@ class ResearchSubjectStatusBuilder extends FhirCodeEnumBuilder {
   /// ineligible
   static ResearchSubjectStatusBuilder ineligible =
       ResearchSubjectStatusBuilder._(
-    validatedValue: 'ineligible',
+    valueString: 'ineligible',
     system:
         'http://hl7.org/fhir/ValueSet/research-subject-status'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -109,7 +110,7 @@ class ResearchSubjectStatusBuilder extends FhirCodeEnumBuilder {
   /// not_registered
   static ResearchSubjectStatusBuilder not_registered =
       ResearchSubjectStatusBuilder._(
-    validatedValue: 'not-registered',
+    valueString: 'not-registered',
     system:
         'http://hl7.org/fhir/ValueSet/research-subject-status'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -119,7 +120,7 @@ class ResearchSubjectStatusBuilder extends FhirCodeEnumBuilder {
   /// off_study
   static ResearchSubjectStatusBuilder off_study =
       ResearchSubjectStatusBuilder._(
-    validatedValue: 'off-study',
+    valueString: 'off-study',
     system:
         'http://hl7.org/fhir/ValueSet/research-subject-status'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -128,7 +129,7 @@ class ResearchSubjectStatusBuilder extends FhirCodeEnumBuilder {
 
   /// on_study
   static ResearchSubjectStatusBuilder on_study = ResearchSubjectStatusBuilder._(
-    validatedValue: 'on-study',
+    valueString: 'on-study',
     system:
         'http://hl7.org/fhir/ValueSet/research-subject-status'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -138,7 +139,7 @@ class ResearchSubjectStatusBuilder extends FhirCodeEnumBuilder {
   /// on_study_intervention
   static ResearchSubjectStatusBuilder on_study_intervention =
       ResearchSubjectStatusBuilder._(
-    validatedValue: 'on-study-intervention',
+    valueString: 'on-study-intervention',
     system:
         'http://hl7.org/fhir/ValueSet/research-subject-status'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -148,7 +149,7 @@ class ResearchSubjectStatusBuilder extends FhirCodeEnumBuilder {
   /// on_study_observation
   static ResearchSubjectStatusBuilder on_study_observation =
       ResearchSubjectStatusBuilder._(
-    validatedValue: 'on-study-observation',
+    valueString: 'on-study-observation',
     system:
         'http://hl7.org/fhir/ValueSet/research-subject-status'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -158,7 +159,7 @@ class ResearchSubjectStatusBuilder extends FhirCodeEnumBuilder {
   /// pending_on_study
   static ResearchSubjectStatusBuilder pending_on_study =
       ResearchSubjectStatusBuilder._(
-    validatedValue: 'pending-on-study',
+    valueString: 'pending-on-study',
     system:
         'http://hl7.org/fhir/ValueSet/research-subject-status'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -168,7 +169,7 @@ class ResearchSubjectStatusBuilder extends FhirCodeEnumBuilder {
   /// potential_candidate
   static ResearchSubjectStatusBuilder potential_candidate =
       ResearchSubjectStatusBuilder._(
-    validatedValue: 'potential-candidate',
+    valueString: 'potential-candidate',
     system:
         'http://hl7.org/fhir/ValueSet/research-subject-status'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -178,7 +179,7 @@ class ResearchSubjectStatusBuilder extends FhirCodeEnumBuilder {
   /// screening
   static ResearchSubjectStatusBuilder screening =
       ResearchSubjectStatusBuilder._(
-    validatedValue: 'screening',
+    valueString: 'screening',
     system:
         'http://hl7.org/fhir/ValueSet/research-subject-status'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -188,7 +189,7 @@ class ResearchSubjectStatusBuilder extends FhirCodeEnumBuilder {
   /// withdrawn
   static ResearchSubjectStatusBuilder withdrawn =
       ResearchSubjectStatusBuilder._(
-    validatedValue: 'withdrawn',
+    valueString: 'withdrawn',
     system:
         'http://hl7.org/fhir/ValueSet/research-subject-status'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -197,7 +198,7 @@ class ResearchSubjectStatusBuilder extends FhirCodeEnumBuilder {
 
   /// For instances where an Element is present but not value
   static ResearchSubjectStatusBuilder elementOnly =
-      ResearchSubjectStatusBuilder._(validatedValue: '');
+      ResearchSubjectStatusBuilder._(valueString: '');
 
   /// List of all enum-like values
   static List<ResearchSubjectStatusBuilder> values = [
@@ -219,31 +220,31 @@ class ResearchSubjectStatusBuilder extends FhirCodeEnumBuilder {
   /// Clones the current instance
   @override
   ResearchSubjectStatusBuilder clone() => ResearchSubjectStatusBuilder._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
   ResearchSubjectStatusBuilder withElement(ElementBuilder? newElement) {
     return ResearchSubjectStatusBuilder._(
-        validatedValue: value, element: newElement,);
+        valueString: valueString, element: newElement,);
   }
 
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   ResearchSubjectStatusBuilder copyWith({
-    String? newValue,
+    dynamic newValue,
     ElementBuilder? element,
     FhirStringBuilder? id,
     List<FhirExtensionBuilder>? extension_,
@@ -254,11 +255,11 @@ class ResearchSubjectStatusBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError('Invalid input for ResearchSubjectStatus: $newValue');
     }
     return ResearchSubjectStatusBuilder._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
@@ -267,7 +268,7 @@ class ResearchSubjectStatusBuilder extends FhirCodeEnumBuilder {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath,
+      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

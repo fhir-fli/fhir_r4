@@ -7,5 +7,5 @@ extension StructureMapParameterExtension on StructureMapParameter {
   PrimitiveType? get value => valueX as PrimitiveType?;
 
   /// Returns the value of the parameter as a dynamic type.
-  dynamic get getParameter => (valueX as PrimitiveType?)?.value;
+  String? get getParameter => (valueX as PrimitiveType?)?.valueString;
 }

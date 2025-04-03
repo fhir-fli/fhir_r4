@@ -438,7 +438,10 @@ class Bundle extends Resource {
             return copyWith(link: newList);
           } else if (child is BundleLink) {
             // Add single element to existing list or create new list
-            final newList = [...?link, child];
+            final newList = [
+              ...?link,
+              child,
+            ];
             return copyWith(link: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -452,7 +455,10 @@ class Bundle extends Resource {
             return copyWith(entry: newList);
           } else if (child is BundleEntry) {
             // Add single element to existing list or create new list
-            final newList = [...?entry, child];
+            final newList = [
+              ...?entry,
+              child,
+            ];
             return copyWith(entry: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1024,7 +1030,10 @@ class BundleLink extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1038,7 +1047,10 @@ class BundleLink extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1591,7 +1603,10 @@ class BundleEntry extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1605,7 +1620,10 @@ class BundleEntry extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1619,7 +1637,10 @@ class BundleEntry extends BackboneElement {
             return copyWith(link: newList);
           } else if (child is BundleLink) {
             // Add single element to existing list or create new list
-            final newList = [...?link, child];
+            final newList = [
+              ...?link,
+              child,
+            ];
             return copyWith(link: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2187,7 +2208,10 @@ class BundleSearch extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2201,7 +2225,10 @@ class BundleSearch extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2748,7 +2775,10 @@ class BundleRequest extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2762,7 +2792,10 @@ class BundleRequest extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -3401,7 +3434,10 @@ class BundleResponse extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -3415,7 +3451,10 @@ class BundleResponse extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');

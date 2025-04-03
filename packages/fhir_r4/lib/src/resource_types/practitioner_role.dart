@@ -663,7 +663,10 @@ class PractitionerRole extends DomainResource {
             return copyWith(contained: newList);
           } else if (child is Resource) {
             // Add single element to existing list or create new list
-            final newList = [...?contained, child];
+            final newList = [
+              ...?contained,
+              child,
+            ];
             return copyWith(contained: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -677,7 +680,10 @@ class PractitionerRole extends DomainResource {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -691,7 +697,10 @@ class PractitionerRole extends DomainResource {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -705,7 +714,10 @@ class PractitionerRole extends DomainResource {
             return copyWith(identifier: newList);
           } else if (child is Identifier) {
             // Add single element to existing list or create new list
-            final newList = [...?identifier, child];
+            final newList = [
+              ...?identifier,
+              child,
+            ];
             return copyWith(identifier: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -751,7 +763,10 @@ class PractitionerRole extends DomainResource {
             return copyWith(code: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...?code, child];
+            final newList = [
+              ...?code,
+              child,
+            ];
             return copyWith(code: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -765,7 +780,10 @@ class PractitionerRole extends DomainResource {
             return copyWith(specialty: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...?specialty, child];
+            final newList = [
+              ...?specialty,
+              child,
+            ];
             return copyWith(specialty: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -779,7 +797,10 @@ class PractitionerRole extends DomainResource {
             return copyWith(location: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...?location, child];
+            final newList = [
+              ...?location,
+              child,
+            ];
             return copyWith(location: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -793,7 +814,10 @@ class PractitionerRole extends DomainResource {
             return copyWith(healthcareService: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...?healthcareService, child];
+            final newList = [
+              ...?healthcareService,
+              child,
+            ];
             return copyWith(healthcareService: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -807,7 +831,10 @@ class PractitionerRole extends DomainResource {
             return copyWith(telecom: newList);
           } else if (child is ContactPoint) {
             // Add single element to existing list or create new list
-            final newList = [...?telecom, child];
+            final newList = [
+              ...?telecom,
+              child,
+            ];
             return copyWith(telecom: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -821,7 +848,10 @@ class PractitionerRole extends DomainResource {
             return copyWith(availableTime: newList);
           } else if (child is PractitionerRoleAvailableTime) {
             // Add single element to existing list or create new list
-            final newList = [...?availableTime, child];
+            final newList = [
+              ...?availableTime,
+              child,
+            ];
             return copyWith(availableTime: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -835,7 +865,10 @@ class PractitionerRole extends DomainResource {
             return copyWith(notAvailable: newList);
           } else if (child is PractitionerRoleNotAvailable) {
             // Add single element to existing list or create new list
-            final newList = [...?notAvailable, child];
+            final newList = [
+              ...?notAvailable,
+              child,
+            ];
             return copyWith(notAvailable: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -857,7 +890,10 @@ class PractitionerRole extends DomainResource {
             return copyWith(endpoint: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...?endpoint, child];
+            final newList = [
+              ...?endpoint,
+              child,
+            ];
             return copyWith(endpoint: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1733,7 +1769,10 @@ class PractitionerRoleAvailableTime extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1747,7 +1786,10 @@ class PractitionerRoleAvailableTime extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1761,7 +1803,10 @@ class PractitionerRoleAvailableTime extends BackboneElement {
             return copyWith(daysOfWeek: newList);
           } else if (child is DaysOfWeek) {
             // Add single element to existing list or create new list
-            final newList = [...?daysOfWeek, child];
+            final newList = [
+              ...?daysOfWeek,
+              child,
+            ];
             return copyWith(daysOfWeek: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2274,7 +2319,10 @@ class PractitionerRoleNotAvailable extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2288,7 +2336,10 @@ class PractitionerRoleNotAvailable extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');

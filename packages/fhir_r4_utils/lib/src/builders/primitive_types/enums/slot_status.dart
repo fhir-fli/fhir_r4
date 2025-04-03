@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class SlotStatusBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   SlotStatusBuilder._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class SlotStatusBuilder extends FhirCodeEnumBuilder {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory SlotStatusBuilder(
-    String? raw, {
+    String? rawValue, {
     FhirUriBuilder? system,
     FhirStringBuilder? version,
     FhirStringBuilder? display,
@@ -29,9 +29,10 @@ class SlotStatusBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
     return SlotStatusBuilder._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -44,7 +45,7 @@ class SlotStatusBuilder extends FhirCodeEnumBuilder {
   }
 
   /// Create empty [SlotStatusBuilder] with element only
-  factory SlotStatusBuilder.empty() => SlotStatusBuilder._(validatedValue: '');
+  factory SlotStatusBuilder.empty() => SlotStatusBuilder._(valueString: '');
 
   /// Factory constructor to create [SlotStatusBuilder]
   /// from JSON.
@@ -61,14 +62,14 @@ class SlotStatusBuilder extends FhirCodeEnumBuilder {
       );
     }
     return SlotStatusBuilder._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// busy
   static SlotStatusBuilder busy = SlotStatusBuilder._(
-    validatedValue: 'busy',
+    valueString: 'busy',
     system: 'http://hl7.org/fhir/ValueSet/slotstatus'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Busy'.toFhirStringBuilder,
@@ -76,7 +77,7 @@ class SlotStatusBuilder extends FhirCodeEnumBuilder {
 
   /// free
   static SlotStatusBuilder free = SlotStatusBuilder._(
-    validatedValue: 'free',
+    valueString: 'free',
     system: 'http://hl7.org/fhir/ValueSet/slotstatus'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Free'.toFhirStringBuilder,
@@ -84,7 +85,7 @@ class SlotStatusBuilder extends FhirCodeEnumBuilder {
 
   /// busy_unavailable
   static SlotStatusBuilder busy_unavailable = SlotStatusBuilder._(
-    validatedValue: 'busy-unavailable',
+    valueString: 'busy-unavailable',
     system: 'http://hl7.org/fhir/ValueSet/slotstatus'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Busy (Unavailable)'.toFhirStringBuilder,
@@ -92,7 +93,7 @@ class SlotStatusBuilder extends FhirCodeEnumBuilder {
 
   /// busy_tentative
   static SlotStatusBuilder busy_tentative = SlotStatusBuilder._(
-    validatedValue: 'busy-tentative',
+    valueString: 'busy-tentative',
     system: 'http://hl7.org/fhir/ValueSet/slotstatus'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Busy (Tentative)'.toFhirStringBuilder,
@@ -100,15 +101,14 @@ class SlotStatusBuilder extends FhirCodeEnumBuilder {
 
   /// entered_in_error
   static SlotStatusBuilder entered_in_error = SlotStatusBuilder._(
-    validatedValue: 'entered-in-error',
+    valueString: 'entered-in-error',
     system: 'http://hl7.org/fhir/ValueSet/slotstatus'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Entered in error'.toFhirStringBuilder,
   );
 
   /// For instances where an Element is present but not value
-  static SlotStatusBuilder elementOnly =
-      SlotStatusBuilder._(validatedValue: '');
+  static SlotStatusBuilder elementOnly = SlotStatusBuilder._(valueString: '');
 
   /// List of all enum-like values
   static List<SlotStatusBuilder> values = [
@@ -122,30 +122,30 @@ class SlotStatusBuilder extends FhirCodeEnumBuilder {
   /// Clones the current instance
   @override
   SlotStatusBuilder clone() => SlotStatusBuilder._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
   SlotStatusBuilder withElement(ElementBuilder? newElement) {
-    return SlotStatusBuilder._(validatedValue: value, element: newElement);
+    return SlotStatusBuilder._(valueString: valueString, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   SlotStatusBuilder copyWith({
-    String? newValue,
+    dynamic newValue,
     ElementBuilder? element,
     FhirStringBuilder? id,
     List<FhirExtensionBuilder>? extension_,
@@ -156,11 +156,11 @@ class SlotStatusBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError('Invalid input for SlotStatus: $newValue');
     }
     return SlotStatusBuilder._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
@@ -169,7 +169,7 @@ class SlotStatusBuilder extends FhirCodeEnumBuilder {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath,
+      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

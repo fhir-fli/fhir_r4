@@ -825,7 +825,10 @@ class MedicationAdministration extends DomainResource {
             return copyWith(contained: newList);
           } else if (child is Resource) {
             // Add single element to existing list or create new list
-            final newList = [...?contained, child];
+            final newList = [
+              ...?contained,
+              child,
+            ];
             return copyWith(contained: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -839,7 +842,10 @@ class MedicationAdministration extends DomainResource {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -853,7 +859,10 @@ class MedicationAdministration extends DomainResource {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -867,7 +876,10 @@ class MedicationAdministration extends DomainResource {
             return copyWith(identifier: newList);
           } else if (child is Identifier) {
             // Add single element to existing list or create new list
-            final newList = [...?identifier, child];
+            final newList = [
+              ...?identifier,
+              child,
+            ];
             return copyWith(identifier: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -881,7 +893,10 @@ class MedicationAdministration extends DomainResource {
             return copyWith(instantiates: newList);
           } else if (child is FhirUri) {
             // Add single element to existing list or create new list
-            final newList = [...?instantiates, child];
+            final newList = [
+              ...?instantiates,
+              child,
+            ];
             return copyWith(instantiates: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -895,7 +910,10 @@ class MedicationAdministration extends DomainResource {
             return copyWith(partOf: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...?partOf, child];
+            final newList = [
+              ...?partOf,
+              child,
+            ];
             return copyWith(partOf: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -917,7 +935,10 @@ class MedicationAdministration extends DomainResource {
             return copyWith(statusReason: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...?statusReason, child];
+            final newList = [
+              ...?statusReason,
+              child,
+            ];
             return copyWith(statusReason: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -985,7 +1006,10 @@ class MedicationAdministration extends DomainResource {
             return copyWith(supportingInformation: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...?supportingInformation, child];
+            final newList = [
+              ...?supportingInformation,
+              child,
+            ];
             return copyWith(supportingInformation: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1029,7 +1053,10 @@ class MedicationAdministration extends DomainResource {
             return copyWith(performer: newList);
           } else if (child is MedicationAdministrationPerformer) {
             // Add single element to existing list or create new list
-            final newList = [...?performer, child];
+            final newList = [
+              ...?performer,
+              child,
+            ];
             return copyWith(performer: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1043,7 +1070,10 @@ class MedicationAdministration extends DomainResource {
             return copyWith(reasonCode: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...?reasonCode, child];
+            final newList = [
+              ...?reasonCode,
+              child,
+            ];
             return copyWith(reasonCode: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1057,7 +1087,10 @@ class MedicationAdministration extends DomainResource {
             return copyWith(reasonReference: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...?reasonReference, child];
+            final newList = [
+              ...?reasonReference,
+              child,
+            ];
             return copyWith(reasonReference: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1079,7 +1112,10 @@ class MedicationAdministration extends DomainResource {
             return copyWith(device: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...?device, child];
+            final newList = [
+              ...?device,
+              child,
+            ];
             return copyWith(device: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1093,7 +1129,10 @@ class MedicationAdministration extends DomainResource {
             return copyWith(note: newList);
           } else if (child is Annotation) {
             // Add single element to existing list or create new list
-            final newList = [...?note, child];
+            final newList = [
+              ...?note,
+              child,
+            ];
             return copyWith(note: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1115,7 +1154,10 @@ class MedicationAdministration extends DomainResource {
             return copyWith(eventHistory: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...?eventHistory, child];
+            final newList = [
+              ...?eventHistory,
+              child,
+            ];
             return copyWith(eventHistory: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1161,7 +1203,10 @@ class MedicationAdministration extends DomainResource {
         return ['CodeableConcept'];
       case 'medication':
       case 'medicationX':
-        return ['CodeableConcept', 'Reference'];
+        return [
+          'CodeableConcept',
+          'Reference',
+        ];
       case 'medicationCodeableConcept':
         return ['CodeableConcept'];
       case 'medicationReference':
@@ -1174,7 +1219,10 @@ class MedicationAdministration extends DomainResource {
         return ['Reference'];
       case 'effective':
       case 'effectiveX':
-        return ['FhirDateTime', 'Period'];
+        return [
+          'FhirDateTime',
+          'Period',
+        ];
       case 'effectiveDateTime':
         return ['FhirDateTime'];
       case 'effectivePeriod':
@@ -2083,7 +2131,10 @@ class MedicationAdministrationPerformer extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2097,7 +2148,10 @@ class MedicationAdministrationPerformer extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2669,7 +2723,10 @@ class MedicationAdministrationDosage extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2683,7 +2740,10 @@ class MedicationAdministrationDosage extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2787,7 +2847,10 @@ class MedicationAdministrationDosage extends BackboneElement {
         return ['Quantity'];
       case 'rate':
       case 'rateX':
-        return ['Ratio', 'Quantity'];
+        return [
+          'Ratio',
+          'Quantity',
+        ];
       case 'rateRatio':
         return ['Ratio'];
       case 'rateQuantity':

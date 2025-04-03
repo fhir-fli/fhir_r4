@@ -6,7 +6,7 @@ part of '../primitive_types.dart';
 class AllergyIntoleranceCategoryBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   AllergyIntoleranceCategoryBuilder._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -20,7 +20,7 @@ class AllergyIntoleranceCategoryBuilder extends FhirCodeEnumBuilder {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory AllergyIntoleranceCategoryBuilder(
-    String? raw, {
+    String? rawValue, {
     FhirUriBuilder? system,
     FhirStringBuilder? version,
     FhirStringBuilder? display,
@@ -30,9 +30,10 @@ class AllergyIntoleranceCategoryBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
     return AllergyIntoleranceCategoryBuilder._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -46,7 +47,7 @@ class AllergyIntoleranceCategoryBuilder extends FhirCodeEnumBuilder {
 
   /// Create empty [AllergyIntoleranceCategoryBuilder] with element only
   factory AllergyIntoleranceCategoryBuilder.empty() =>
-      AllergyIntoleranceCategoryBuilder._(validatedValue: '');
+      AllergyIntoleranceCategoryBuilder._(valueString: '');
 
   /// Factory constructor to create [AllergyIntoleranceCategoryBuilder]
   /// from JSON.
@@ -64,7 +65,7 @@ class AllergyIntoleranceCategoryBuilder extends FhirCodeEnumBuilder {
       );
     }
     return AllergyIntoleranceCategoryBuilder._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
@@ -72,7 +73,7 @@ class AllergyIntoleranceCategoryBuilder extends FhirCodeEnumBuilder {
   /// food
   static AllergyIntoleranceCategoryBuilder food =
       AllergyIntoleranceCategoryBuilder._(
-    validatedValue: 'food',
+    valueString: 'food',
     system: 'http://hl7.org/fhir/ValueSet/allergy-intolerance-category'
         .toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -82,7 +83,7 @@ class AllergyIntoleranceCategoryBuilder extends FhirCodeEnumBuilder {
   /// medication
   static AllergyIntoleranceCategoryBuilder medication =
       AllergyIntoleranceCategoryBuilder._(
-    validatedValue: 'medication',
+    valueString: 'medication',
     system: 'http://hl7.org/fhir/ValueSet/allergy-intolerance-category'
         .toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -92,7 +93,7 @@ class AllergyIntoleranceCategoryBuilder extends FhirCodeEnumBuilder {
   /// environment
   static AllergyIntoleranceCategoryBuilder environment =
       AllergyIntoleranceCategoryBuilder._(
-    validatedValue: 'environment',
+    valueString: 'environment',
     system: 'http://hl7.org/fhir/ValueSet/allergy-intolerance-category'
         .toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -102,7 +103,7 @@ class AllergyIntoleranceCategoryBuilder extends FhirCodeEnumBuilder {
   /// biologic
   static AllergyIntoleranceCategoryBuilder biologic =
       AllergyIntoleranceCategoryBuilder._(
-    validatedValue: 'biologic',
+    valueString: 'biologic',
     system: 'http://hl7.org/fhir/ValueSet/allergy-intolerance-category'
         .toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -111,7 +112,7 @@ class AllergyIntoleranceCategoryBuilder extends FhirCodeEnumBuilder {
 
   /// For instances where an Element is present but not value
   static AllergyIntoleranceCategoryBuilder elementOnly =
-      AllergyIntoleranceCategoryBuilder._(validatedValue: '');
+      AllergyIntoleranceCategoryBuilder._(valueString: '');
 
   /// List of all enum-like values
   static List<AllergyIntoleranceCategoryBuilder> values = [
@@ -125,31 +126,31 @@ class AllergyIntoleranceCategoryBuilder extends FhirCodeEnumBuilder {
   @override
   AllergyIntoleranceCategoryBuilder clone() =>
       AllergyIntoleranceCategoryBuilder._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
   AllergyIntoleranceCategoryBuilder withElement(ElementBuilder? newElement) {
     return AllergyIntoleranceCategoryBuilder._(
-        validatedValue: value, element: newElement,);
+        valueString: valueString, element: newElement,);
   }
 
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   AllergyIntoleranceCategoryBuilder copyWith({
-    String? newValue,
+    dynamic newValue,
     ElementBuilder? element,
     FhirStringBuilder? id,
     List<FhirExtensionBuilder>? extension_,
@@ -160,11 +161,12 @@ class AllergyIntoleranceCategoryBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError(
+          'Invalid input for AllergyIntoleranceCategory: $newValue',);
     }
     return AllergyIntoleranceCategoryBuilder._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
@@ -173,7 +175,7 @@ class AllergyIntoleranceCategoryBuilder extends FhirCodeEnumBuilder {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath,
+      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

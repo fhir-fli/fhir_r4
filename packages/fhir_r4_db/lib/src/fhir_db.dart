@@ -217,10 +217,10 @@ class FhirDb {
     }
 
     await _ensureInit(pw: pw);
-    final exists = resource.id?.value != null &&
+    final exists = resource.id?.valueString != null &&
         await this.exists(
           resourceType: resource.resourceType,
-          id: resource.id!.value!,
+          id: resource.id!.valueString!,
           pw: pw,
         );
 
@@ -285,10 +285,10 @@ class FhirDb {
     Resource resource,
     String? pw,
   ) async {
-    if (resource.id?.value != null) {
+    if (resource.id?.valueString != null) {
       final oldResource = await get(
         resourceType: resource.resourceType,
-        id: resource.id!.value!,
+        id: resource.id!.valueString!,
         pw: pw,
       );
       if (oldResource != null) {
@@ -472,7 +472,7 @@ class FhirDb {
   ) async {
     final result = await get(
       resourceType: resource.resourceType,
-      id: resource.id!.value!,
+      id: resource.id!.valueString!,
       pw: pw,
     );
     return result == null ? <Resource>[] : <Resource>[result];
@@ -570,7 +570,7 @@ class FhirDb {
     if (resource != null && resource.id != null) {
       return _deleteById(
         resourceType: resource.resourceType,
-        id: resource.id!.value!,
+        id: resource.id!.valueString!,
         pw: pw,
       );
     } else if (resourceType != null && id != null) {

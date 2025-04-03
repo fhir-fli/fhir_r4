@@ -329,17 +329,17 @@ class ValidationResult {
 
   /// Retrieves the display name of the validated concept.
   String? getDisplay() {
-    return definition?.display?.value;
+    return definition?.display?.valueString;
   }
 
   /// Retrieves the code of the validated concept.
   String? getCode() {
-    return definition?.code.value;
+    return definition?.code.valueString;
   }
 
   /// Retrieves the definition of the validated concept.
   String? getDefinition() {
-    return definition?.definition?.value;
+    return definition?.definition?.valueString;
   }
 
   /// Returns the associated concept definition.
@@ -373,16 +373,46 @@ class ValidationResult {
 
 /// Classifies different types of errors that can occur during terminology
 /// services operations.
-class TerminologyServiceErrorClass extends FhirCode {
+class TerminologyServiceErrorClass extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   TerminologyServiceErrorClass._(
-    super.rawValue, {
+    String? valueString, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.objectPath = 'Code',
-  }) : super.public();
+    super.objectPath = 'TerminologyServiceErrorClass',
+  }) : super(valueString: valueString);
+
+  /// Factory constructor to create a new instance of
+  /// [TerminologyServiceErrorClass] with the specified parameters.
+  // ignore: sort_unnamed_constructors_first
+  factory TerminologyServiceErrorClass(
+    String? rawValue, {
+    Element? element,
+    FhirString? id,
+    List<FhirExtension>? extension_,
+    bool? disallowExtensions,
+    String objectPath = 'TerminologyServiceErrorClass',
+    String? system,
+    String? version,
+    String? display,
+  }) {
+    return TerminologyServiceErrorClass._(
+      rawValue,
+      system: system?.toFhirUri,
+      version: version?.toFhirString,
+      display: display?.toFhirString,
+      element: element,
+      id: id,
+      extension_: extension_,
+      disallowExtensions: disallowExtensions,
+      objectPath: objectPath,
+    );
+  }
 
   /// Factory constructor to create [TerminologyServiceErrorClass] from JSON.
   factory TerminologyServiceErrorClass.fromJson(
@@ -472,14 +502,14 @@ class TerminologyServiceErrorClass extends FhirCode {
   /// Clones the current instance.
   @override
   TerminologyServiceErrorClass clone() => TerminologyServiceErrorClass._(
-        value,
+        valueString,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached.
   TerminologyServiceErrorClass withElement(Element? newElement) {
     return TerminologyServiceErrorClass._(
-      value,
+      valueString,
       element: newElement,
     );
   }
@@ -487,18 +517,18 @@ class TerminologyServiceErrorClass extends FhirCode {
   /// Serializes the instance to JSON with standardized keys.
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation.
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   TerminologyServiceErrorClass copyWith({
-    String? newValue,
+    dynamic newValue,
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
@@ -510,7 +540,7 @@ class TerminologyServiceErrorClass extends FhirCode {
     String? objectPath,
   }) {
     return TerminologyServiceErrorClass._(
-      newValue ?? value,
+      newValue?.toString() ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
@@ -638,7 +668,7 @@ class ValidationContextResourceProxy {
       if (resource is DomainResource) {
         for (final contained
             in (resource! as DomainResource).contained ?? <Resource>[]) {
-          if (contained.id?.value == id &&
+          if (contained.id?.valueString == id &&
               contained.runtimeType == resourceType) {
             return contained;
           }

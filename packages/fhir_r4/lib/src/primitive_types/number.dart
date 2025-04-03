@@ -7,7 +7,8 @@ part of 'primitive_types.dart';
 /// [FhirUnsignedInt], etc., all subclass [FhirNumber].
 ///
 /// *Note:* This class itself cannot be directly instantiated. Use its
-/// public factory methods ([fromNum], [fromNumPositiveInt], [fromNumUnsignedInt])
+/// public factory methods
+/// ([fromNum], [fromNumPositiveInt], [fromNumUnsignedInt])
 /// to create a concrete subclass instance.
 abstract class FhirNumber extends PrimitiveType
     implements Comparable<FhirNumber> {
@@ -15,7 +16,8 @@ abstract class FhirNumber extends PrimitiveType
   // Private Internal Constructor
   // --------------------------------------------------------------------------
 
-  /// Internal constructor for child classes. Does no validation—just calls [super._].
+  /// Internal constructor for child classes. Does no validation—just calls
+  /// [super._].
   FhirNumber._({
     required super.valueString,
     super.element,
@@ -40,6 +42,7 @@ abstract class FhirNumber extends PrimitiveType
     List<FhirExtension>? extension_,
     String? objectPath,
   }) {
+    print('FhirNumber.fromNum: $value');
     return value is int
         ? FhirInteger(
             value.toString(),
@@ -58,13 +61,15 @@ abstract class FhirNumber extends PrimitiveType
   }
 
   /// Creates either a [FhirPositiveInt] or [FhirDecimal] from [value],
-  /// intended for positive integers. (If [value] is not an integer, returns [FhirDecimal].)
+  /// intended for positive integers. (If [value] is not an integer,
+  /// returns [FhirDecimal].)
   factory FhirNumber.fromNumPositiveInt({
     required num value,
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
   }) {
+    print('FhirNumber.fromNumPositiveInt: $value');
     return value is int
         ? FhirPositiveInt(
             value.toString(),
@@ -81,13 +86,15 @@ abstract class FhirNumber extends PrimitiveType
   }
 
   /// Creates either a [FhirUnsignedInt] or [FhirDecimal] from [value],
-  /// intended for unsigned integers. (If [value] is not an integer, returns [FhirDecimal].)
+  /// intended for unsigned integers. (If [value] is not an integer,
+  /// returns [FhirDecimal].)
   factory FhirNumber.fromNumUnsignedInt({
     required num value,
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
   }) {
+    print('FhirNumber.fromNumUnsignedInt: $value');
     return value is int
         ? FhirUnsignedInt(
             value.toString(),
@@ -107,6 +114,7 @@ abstract class FhirNumber extends PrimitiveType
   ///
   /// Uses [fromNum] internally. Expects `'value'` to be a [num].
   factory FhirNumber.fromJson(Map<String, dynamic> json) {
+    print('FhirNumber.fromJson: $json');
     final value = json['value'] as num?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson == null ? null : Element.fromJson(elementJson);
@@ -138,7 +146,8 @@ abstract class FhirNumber extends PrimitiveType
   // Overrides from PrimitiveType
   // --------------------------------------------------------------------------
 
-  /// Returns `"number"` by default, though subclasses often override (e.g. `"decimal"`, `"integer"`).
+  /// Returns `"number"` by default, though subclasses often override
+  /// (e.g. `"decimal"`, `"integer"`).
   @override
   String get fhirType => 'number';
 
@@ -178,7 +187,8 @@ abstract class FhirNumber extends PrimitiveType
     });
   }
 
-  /// Converts a list of [FhirNumber] to a JSON map with parallel `'value'` and `'_value'`.
+  /// Converts a list of [FhirNumber] to a JSON map with parallel `'value'`
+  /// and `'_value'`.
   static Map<String, dynamic> toJsonList(List<FhirNumber> values) => {
         'value': values.map((val) => val.valueNum).toList(),
         '_value': values.map((val) => val.element?.toJson()).toList(),
@@ -219,8 +229,8 @@ abstract class FhirNumber extends PrimitiveType
       other.valueString == valueString &&
       other.element == element;
 
-  /// Equality operator checks if [other] is a [FhirNumber] with the same string,
-  /// or if [other] is a Dart [num] with the same numeric value.
+  /// Equality operator checks if [other] is a [FhirNumber] with the same
+  /// string, or if [other] is a Dart [num] with the same numeric value.
   @override
   // ignore: avoid_equals_and_hash_code_on_mutable_classes
   bool operator ==(Object other) =>
@@ -270,7 +280,8 @@ abstract class FhirNumber extends PrimitiveType
   FhirNumber? operator ~/(Object other) =>
       _operateOrNull(other, (a, b) => a ~/ b);
 
-  /// Negation operator (unary minus). Returns a new [FhirNumber] with negated value.
+  /// Negation operator (unary minus). Returns a new [FhirNumber]
+  /// with negated value.
   FhirNumber? operator -() =>
       valueNum == null ? null : FhirNumber.fromNum(value: -valueNum!);
 
@@ -289,7 +300,8 @@ abstract class FhirNumber extends PrimitiveType
   /// Rounds this number to the nearest integer.
   int round() => valueNum!.round();
 
-  /// Rounds this number down to the nearest integer (towards negative infinity).
+  /// Rounds this number down to the nearest integer
+  /// (towards negative infinity).
   int floor() => valueNum!.floor();
 
   /// Rounds this number up to the nearest integer (towards positive infinity).
@@ -305,12 +317,16 @@ abstract class FhirNumber extends PrimitiveType
   bool _bothNonNull(Object other) =>
       valueNum != null && _extractValue(other) != null;
 
-  /// Applies [operation] if both [this.valueNum] and `_extractValue(other)` are non-null.
+  /// Applies [operation] if both [this.valueNum] and `_extractValue(other)`
+  /// are non-null.
   /// Returns `null` otherwise.
   FhirNumber? _operateOrNull(Object other, num Function(num, num) operation) {
+    print('FhirNumber._operateOrNull: $valueNum, ${other.runtimeType}');
     if (!_bothNonNull(other)) return null;
     final otherVal = _extractValue(other)!;
-    return FhirNumber.fromNum(value: operation(valueNum!, otherVal));
+    return this is FhirDecimal || other is FhirDecimal
+        ? FhirDecimal(operation(valueNum!, otherVal))
+        : FhirNumber.fromNum(value: operation(valueNum!, otherVal));
   }
 
   /// Applies [comparison] if both sides are non-null, else returns false.

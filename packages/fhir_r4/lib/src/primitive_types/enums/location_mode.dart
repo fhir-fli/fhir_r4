@@ -6,7 +6,7 @@ part of '../primitive_types.dart';
 class LocationMode extends FhirCodeEnum {
   // Private underscore constructor for internal use.
   LocationMode._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -20,7 +20,7 @@ class LocationMode extends FhirCodeEnum {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory LocationMode(
-    String? raw, {
+    String? rawValue, {
     FhirUri? system,
     FhirString? version,
     FhirString? display,
@@ -30,9 +30,10 @@ class LocationMode extends FhirCodeEnum {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCode._validateCode(rawValue) : null;
     return LocationMode._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -45,7 +46,7 @@ class LocationMode extends FhirCodeEnum {
   }
 
   /// Create empty [LocationMode] with element only
-  factory LocationMode.empty() => LocationMode._(validatedValue: '');
+  factory LocationMode.empty() => LocationMode._(valueString: '');
 
   /// Factory constructor to create [LocationMode] from JSON.
   factory LocationMode.fromJson(Map<String, dynamic> json) {
@@ -60,14 +61,14 @@ class LocationMode extends FhirCodeEnum {
       );
     }
     return LocationMode._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// instance
   static final LocationMode instance = LocationMode._(
-    validatedValue: 'instance',
+    valueString: 'instance',
     system: 'http://hl7.org/fhir/ValueSet/location-mode'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Instance'.toFhirString,
@@ -75,14 +76,14 @@ class LocationMode extends FhirCodeEnum {
 
   /// kind
   static final LocationMode kind = LocationMode._(
-    validatedValue: 'kind',
+    valueString: 'kind',
     system: 'http://hl7.org/fhir/ValueSet/location-mode'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Kind'.toFhirString,
   );
 
   /// For instances where an Element is present but not value
-  static final LocationMode elementOnly = LocationMode._(validatedValue: '');
+  static final LocationMode elementOnly = LocationMode._(valueString: '');
 
   /// List of all enum-like values
   static final List<LocationMode> values = [
@@ -93,14 +94,14 @@ class LocationMode extends FhirCodeEnum {
   /// Clones the current instance
   @override
   LocationMode clone() => LocationMode._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   LocationMode withElement(Element? newElement) {
     return LocationMode._(
-      validatedValue: value,
+      valueString: valueString,
       element: newElement,
     );
   }
@@ -108,18 +109,18 @@ class LocationMode extends FhirCodeEnum {
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   LocationMode copyWith({
-    String? newValue,
+    dynamic newValue,
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
@@ -130,11 +131,11 @@ class LocationMode extends FhirCodeEnum {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError('Invalid input for LocationMode: $newValue');
     }
     return LocationMode._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

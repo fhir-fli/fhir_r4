@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class InvoicePriceComponentType extends FhirCodeEnum {
   // Private underscore constructor for internal use.
   InvoicePriceComponentType._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class InvoicePriceComponentType extends FhirCodeEnum {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory InvoicePriceComponentType(
-    String? raw, {
+    String? rawValue, {
     FhirUri? system,
     FhirString? version,
     FhirString? display,
@@ -29,9 +29,10 @@ class InvoicePriceComponentType extends FhirCodeEnum {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCode._validateCode(rawValue) : null;
     return InvoicePriceComponentType._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -45,7 +46,7 @@ class InvoicePriceComponentType extends FhirCodeEnum {
 
   /// Create empty [InvoicePriceComponentType] with element only
   factory InvoicePriceComponentType.empty() =>
-      InvoicePriceComponentType._(validatedValue: '');
+      InvoicePriceComponentType._(valueString: '');
 
   /// Factory constructor to create [InvoicePriceComponentType] from JSON.
   factory InvoicePriceComponentType.fromJson(Map<String, dynamic> json) {
@@ -60,14 +61,14 @@ class InvoicePriceComponentType extends FhirCodeEnum {
       );
     }
     return InvoicePriceComponentType._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// base
   static final InvoicePriceComponentType base = InvoicePriceComponentType._(
-    validatedValue: 'base',
+    valueString: 'base',
     system: 'http://hl7.org/fhir/ValueSet/invoice-priceComponentType'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'base price'.toFhirString,
@@ -76,7 +77,7 @@ class InvoicePriceComponentType extends FhirCodeEnum {
   /// surcharge
   static final InvoicePriceComponentType surcharge =
       InvoicePriceComponentType._(
-    validatedValue: 'surcharge',
+    valueString: 'surcharge',
     system: 'http://hl7.org/fhir/ValueSet/invoice-priceComponentType'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'surcharge'.toFhirString,
@@ -85,7 +86,7 @@ class InvoicePriceComponentType extends FhirCodeEnum {
   /// deduction
   static final InvoicePriceComponentType deduction =
       InvoicePriceComponentType._(
-    validatedValue: 'deduction',
+    valueString: 'deduction',
     system: 'http://hl7.org/fhir/ValueSet/invoice-priceComponentType'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'deduction'.toFhirString,
@@ -93,7 +94,7 @@ class InvoicePriceComponentType extends FhirCodeEnum {
 
   /// discount
   static final InvoicePriceComponentType discount = InvoicePriceComponentType._(
-    validatedValue: 'discount',
+    valueString: 'discount',
     system: 'http://hl7.org/fhir/ValueSet/invoice-priceComponentType'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'discount'.toFhirString,
@@ -101,7 +102,7 @@ class InvoicePriceComponentType extends FhirCodeEnum {
 
   /// tax
   static final InvoicePriceComponentType tax = InvoicePriceComponentType._(
-    validatedValue: 'tax',
+    valueString: 'tax',
     system: 'http://hl7.org/fhir/ValueSet/invoice-priceComponentType'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'tax'.toFhirString,
@@ -110,7 +111,7 @@ class InvoicePriceComponentType extends FhirCodeEnum {
   /// informational
   static final InvoicePriceComponentType informational =
       InvoicePriceComponentType._(
-    validatedValue: 'informational',
+    valueString: 'informational',
     system: 'http://hl7.org/fhir/ValueSet/invoice-priceComponentType'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'informational'.toFhirString,
@@ -118,7 +119,7 @@ class InvoicePriceComponentType extends FhirCodeEnum {
 
   /// For instances where an Element is present but not value
   static final InvoicePriceComponentType elementOnly =
-      InvoicePriceComponentType._(validatedValue: '');
+      InvoicePriceComponentType._(valueString: '');
 
   /// List of all enum-like values
   static final List<InvoicePriceComponentType> values = [
@@ -133,14 +134,14 @@ class InvoicePriceComponentType extends FhirCodeEnum {
   /// Clones the current instance
   @override
   InvoicePriceComponentType clone() => InvoicePriceComponentType._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   InvoicePriceComponentType withElement(Element? newElement) {
     return InvoicePriceComponentType._(
-      validatedValue: value,
+      valueString: valueString,
       element: newElement,
     );
   }
@@ -148,18 +149,18 @@ class InvoicePriceComponentType extends FhirCodeEnum {
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   InvoicePriceComponentType copyWith({
-    String? newValue,
+    dynamic newValue,
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
@@ -170,11 +171,12 @@ class InvoicePriceComponentType extends FhirCodeEnum {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError(
+          'Invalid input for InvoicePriceComponentType: $newValue',);
     }
     return InvoicePriceComponentType._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

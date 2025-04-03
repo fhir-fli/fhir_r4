@@ -141,6 +141,10 @@ class FhirCode extends FhirString
   @override
   String toString() => valueString ?? '';
 
+  /// Returns `true` if the Type is considered string-based, otherwise `false`
+  @override
+  bool get stringBased => true;
+
   // --------------------------------------------------------------------------
   // Clone / Copy
   // --------------------------------------------------------------------------

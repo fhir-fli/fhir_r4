@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class EventStatus extends FhirCodeEnum {
   // Private underscore constructor for internal use.
   EventStatus._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class EventStatus extends FhirCodeEnum {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory EventStatus(
-    String? raw, {
+    String? rawValue, {
     FhirUri? system,
     FhirString? version,
     FhirString? display,
@@ -29,9 +29,10 @@ class EventStatus extends FhirCodeEnum {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCode._validateCode(rawValue) : null;
     return EventStatus._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -44,7 +45,7 @@ class EventStatus extends FhirCodeEnum {
   }
 
   /// Create empty [EventStatus] with element only
-  factory EventStatus.empty() => EventStatus._(validatedValue: '');
+  factory EventStatus.empty() => EventStatus._(valueString: '');
 
   /// Factory constructor to create [EventStatus] from JSON.
   factory EventStatus.fromJson(Map<String, dynamic> json) {
@@ -59,14 +60,14 @@ class EventStatus extends FhirCodeEnum {
       );
     }
     return EventStatus._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// preparation
   static final EventStatus preparation = EventStatus._(
-    validatedValue: 'preparation',
+    valueString: 'preparation',
     system: 'http://hl7.org/fhir/ValueSet/event-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Preparation'.toFhirString,
@@ -74,7 +75,7 @@ class EventStatus extends FhirCodeEnum {
 
   /// in_progress
   static final EventStatus in_progress = EventStatus._(
-    validatedValue: 'in-progress',
+    valueString: 'in-progress',
     system: 'http://hl7.org/fhir/ValueSet/event-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'In Progress'.toFhirString,
@@ -82,7 +83,7 @@ class EventStatus extends FhirCodeEnum {
 
   /// not_done
   static final EventStatus not_done = EventStatus._(
-    validatedValue: 'not-done',
+    valueString: 'not-done',
     system: 'http://hl7.org/fhir/ValueSet/event-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Not Done'.toFhirString,
@@ -90,7 +91,7 @@ class EventStatus extends FhirCodeEnum {
 
   /// on_hold
   static final EventStatus on_hold = EventStatus._(
-    validatedValue: 'on-hold',
+    valueString: 'on-hold',
     system: 'http://hl7.org/fhir/ValueSet/event-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'On Hold'.toFhirString,
@@ -98,7 +99,7 @@ class EventStatus extends FhirCodeEnum {
 
   /// stopped
   static final EventStatus stopped = EventStatus._(
-    validatedValue: 'stopped',
+    valueString: 'stopped',
     system: 'http://hl7.org/fhir/ValueSet/event-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Stopped'.toFhirString,
@@ -106,7 +107,7 @@ class EventStatus extends FhirCodeEnum {
 
   /// completed
   static final EventStatus completed = EventStatus._(
-    validatedValue: 'completed',
+    valueString: 'completed',
     system: 'http://hl7.org/fhir/ValueSet/event-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Completed'.toFhirString,
@@ -114,7 +115,7 @@ class EventStatus extends FhirCodeEnum {
 
   /// entered_in_error
   static final EventStatus entered_in_error = EventStatus._(
-    validatedValue: 'entered-in-error',
+    valueString: 'entered-in-error',
     system: 'http://hl7.org/fhir/ValueSet/event-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Entered in Error'.toFhirString,
@@ -122,14 +123,14 @@ class EventStatus extends FhirCodeEnum {
 
   /// unknown
   static final EventStatus unknown = EventStatus._(
-    validatedValue: 'unknown',
+    valueString: 'unknown',
     system: 'http://hl7.org/fhir/ValueSet/event-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Unknown'.toFhirString,
   );
 
   /// For instances where an Element is present but not value
-  static final EventStatus elementOnly = EventStatus._(validatedValue: '');
+  static final EventStatus elementOnly = EventStatus._(valueString: '');
 
   /// List of all enum-like values
   static final List<EventStatus> values = [
@@ -146,14 +147,14 @@ class EventStatus extends FhirCodeEnum {
   /// Clones the current instance
   @override
   EventStatus clone() => EventStatus._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   EventStatus withElement(Element? newElement) {
     return EventStatus._(
-      validatedValue: value,
+      valueString: valueString,
       element: newElement,
     );
   }
@@ -161,18 +162,18 @@ class EventStatus extends FhirCodeEnum {
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   EventStatus copyWith({
-    String? newValue,
+    dynamic newValue,
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
@@ -183,11 +184,11 @@ class EventStatus extends FhirCodeEnum {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError('Invalid input for EventStatus: $newValue');
     }
     return EventStatus._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

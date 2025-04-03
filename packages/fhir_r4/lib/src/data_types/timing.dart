@@ -314,7 +314,10 @@ class Timing extends BackboneType
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -328,7 +331,10 @@ class Timing extends BackboneType
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -342,7 +348,10 @@ class Timing extends BackboneType
             return copyWith(event: newList);
           } else if (child is FhirDateTime) {
             // Add single element to existing list or create new list
-            final newList = [...?event, child];
+            final newList = [
+              ...?event,
+              child,
+            ];
             return copyWith(event: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1111,7 +1120,10 @@ class TimingRepeat extends Element {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1246,7 +1258,10 @@ class TimingRepeat extends Element {
             return copyWith(dayOfWeek: newList);
           } else if (child is DaysOfWeek) {
             // Add single element to existing list or create new list
-            final newList = [...?dayOfWeek, child];
+            final newList = [
+              ...?dayOfWeek,
+              child,
+            ];
             return copyWith(dayOfWeek: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1260,7 +1275,10 @@ class TimingRepeat extends Element {
             return copyWith(timeOfDay: newList);
           } else if (child is FhirTime) {
             // Add single element to existing list or create new list
-            final newList = [...?timeOfDay, child];
+            final newList = [
+              ...?timeOfDay,
+              child,
+            ];
             return copyWith(timeOfDay: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1274,7 +1292,10 @@ class TimingRepeat extends Element {
             return copyWith(when: newList);
           } else if (child is EventTiming) {
             // Add single element to existing list or create new list
-            final newList = [...?when, child];
+            final newList = [
+              ...?when,
+              child,
+            ];
             return copyWith(when: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1304,7 +1325,11 @@ class TimingRepeat extends Element {
         return ['FhirExtension'];
       case 'bounds':
       case 'boundsX':
-        return ['FhirDuration', 'Range', 'Period'];
+        return [
+          'FhirDuration',
+          'Range',
+          'Period',
+        ];
       case 'boundsDuration':
         return ['FhirDuration'];
       case 'boundsRange':

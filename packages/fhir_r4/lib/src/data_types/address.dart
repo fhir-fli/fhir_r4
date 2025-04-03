@@ -427,7 +427,10 @@ class Address extends DataType
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -465,7 +468,10 @@ class Address extends DataType
             return copyWith(line: newList);
           } else if (child is FhirString) {
             // Add single element to existing list or create new list
-            final newList = [...?line, child];
+            final newList = [
+              ...?line,
+              child,
+            ];
             return copyWith(line: newList);
           } else {
             throw Exception('Invalid child type for $childName');

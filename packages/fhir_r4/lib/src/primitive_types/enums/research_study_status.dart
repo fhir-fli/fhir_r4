@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class ResearchStudyStatus extends FhirCodeEnum {
   // Private underscore constructor for internal use.
   ResearchStudyStatus._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class ResearchStudyStatus extends FhirCodeEnum {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory ResearchStudyStatus(
-    String? raw, {
+    String? rawValue, {
     FhirUri? system,
     FhirString? version,
     FhirString? display,
@@ -29,9 +29,10 @@ class ResearchStudyStatus extends FhirCodeEnum {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCode._validateCode(rawValue) : null;
     return ResearchStudyStatus._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -44,8 +45,7 @@ class ResearchStudyStatus extends FhirCodeEnum {
   }
 
   /// Create empty [ResearchStudyStatus] with element only
-  factory ResearchStudyStatus.empty() =>
-      ResearchStudyStatus._(validatedValue: '');
+  factory ResearchStudyStatus.empty() => ResearchStudyStatus._(valueString: '');
 
   /// Factory constructor to create [ResearchStudyStatus] from JSON.
   factory ResearchStudyStatus.fromJson(Map<String, dynamic> json) {
@@ -60,14 +60,14 @@ class ResearchStudyStatus extends FhirCodeEnum {
       );
     }
     return ResearchStudyStatus._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// active
   static final ResearchStudyStatus active = ResearchStudyStatus._(
-    validatedValue: 'active',
+    valueString: 'active',
     system: 'http://hl7.org/fhir/ValueSet/research-study-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Active'.toFhirString,
@@ -76,7 +76,7 @@ class ResearchStudyStatus extends FhirCodeEnum {
   /// administratively_completed
   static final ResearchStudyStatus administratively_completed =
       ResearchStudyStatus._(
-    validatedValue: 'administratively-completed',
+    valueString: 'administratively-completed',
     system: 'http://hl7.org/fhir/ValueSet/research-study-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Administratively Completed'.toFhirString,
@@ -84,7 +84,7 @@ class ResearchStudyStatus extends FhirCodeEnum {
 
   /// approved
   static final ResearchStudyStatus approved = ResearchStudyStatus._(
-    validatedValue: 'approved',
+    valueString: 'approved',
     system: 'http://hl7.org/fhir/ValueSet/research-study-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Approved'.toFhirString,
@@ -92,7 +92,7 @@ class ResearchStudyStatus extends FhirCodeEnum {
 
   /// closed_to_accrual
   static final ResearchStudyStatus closed_to_accrual = ResearchStudyStatus._(
-    validatedValue: 'closed-to-accrual',
+    valueString: 'closed-to-accrual',
     system: 'http://hl7.org/fhir/ValueSet/research-study-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Closed to Accrual'.toFhirString,
@@ -101,7 +101,7 @@ class ResearchStudyStatus extends FhirCodeEnum {
   /// closed_to_accrual_and_intervention
   static final ResearchStudyStatus closed_to_accrual_and_intervention =
       ResearchStudyStatus._(
-    validatedValue: 'closed-to-accrual-and-intervention',
+    valueString: 'closed-to-accrual-and-intervention',
     system: 'http://hl7.org/fhir/ValueSet/research-study-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Closed to Accrual and Intervention'.toFhirString,
@@ -109,7 +109,7 @@ class ResearchStudyStatus extends FhirCodeEnum {
 
   /// completed
   static final ResearchStudyStatus completed = ResearchStudyStatus._(
-    validatedValue: 'completed',
+    valueString: 'completed',
     system: 'http://hl7.org/fhir/ValueSet/research-study-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Completed'.toFhirString,
@@ -117,7 +117,7 @@ class ResearchStudyStatus extends FhirCodeEnum {
 
   /// disapproved
   static final ResearchStudyStatus disapproved = ResearchStudyStatus._(
-    validatedValue: 'disapproved',
+    valueString: 'disapproved',
     system: 'http://hl7.org/fhir/ValueSet/research-study-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Disapproved'.toFhirString,
@@ -125,7 +125,7 @@ class ResearchStudyStatus extends FhirCodeEnum {
 
   /// in_review
   static final ResearchStudyStatus in_review = ResearchStudyStatus._(
-    validatedValue: 'in-review',
+    valueString: 'in-review',
     system: 'http://hl7.org/fhir/ValueSet/research-study-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'In Review'.toFhirString,
@@ -134,7 +134,7 @@ class ResearchStudyStatus extends FhirCodeEnum {
   /// temporarily_closed_to_accrual
   static final ResearchStudyStatus temporarily_closed_to_accrual =
       ResearchStudyStatus._(
-    validatedValue: 'temporarily-closed-to-accrual',
+    valueString: 'temporarily-closed-to-accrual',
     system: 'http://hl7.org/fhir/ValueSet/research-study-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Temporarily Closed to Accrual'.toFhirString,
@@ -143,7 +143,7 @@ class ResearchStudyStatus extends FhirCodeEnum {
   /// temporarily_closed_to_accrual_and_intervention
   static final ResearchStudyStatus
       temporarily_closed_to_accrual_and_intervention = ResearchStudyStatus._(
-    validatedValue: 'temporarily-closed-to-accrual-and-intervention',
+    valueString: 'temporarily-closed-to-accrual-and-intervention',
     system: 'http://hl7.org/fhir/ValueSet/research-study-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Temporarily Closed to Accrual and Intervention'.toFhirString,
@@ -151,7 +151,7 @@ class ResearchStudyStatus extends FhirCodeEnum {
 
   /// withdrawn
   static final ResearchStudyStatus withdrawn = ResearchStudyStatus._(
-    validatedValue: 'withdrawn',
+    valueString: 'withdrawn',
     system: 'http://hl7.org/fhir/ValueSet/research-study-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Withdrawn'.toFhirString,
@@ -159,7 +159,7 @@ class ResearchStudyStatus extends FhirCodeEnum {
 
   /// For instances where an Element is present but not value
   static final ResearchStudyStatus elementOnly =
-      ResearchStudyStatus._(validatedValue: '');
+      ResearchStudyStatus._(valueString: '');
 
   /// List of all enum-like values
   static final List<ResearchStudyStatus> values = [
@@ -179,14 +179,14 @@ class ResearchStudyStatus extends FhirCodeEnum {
   /// Clones the current instance
   @override
   ResearchStudyStatus clone() => ResearchStudyStatus._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ResearchStudyStatus withElement(Element? newElement) {
     return ResearchStudyStatus._(
-      validatedValue: value,
+      valueString: valueString,
       element: newElement,
     );
   }
@@ -194,18 +194,18 @@ class ResearchStudyStatus extends FhirCodeEnum {
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   ResearchStudyStatus copyWith({
-    String? newValue,
+    dynamic newValue,
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
@@ -216,11 +216,11 @@ class ResearchStudyStatus extends FhirCodeEnum {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError('Invalid input for ResearchStudyStatus: $newValue');
     }
     return ResearchStudyStatus._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

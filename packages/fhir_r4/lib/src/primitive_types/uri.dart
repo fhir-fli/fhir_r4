@@ -43,7 +43,8 @@ class FhirUri extends PrimitiveType
   // Private Internal Constructor
   // --------------------------------------------------------------------------
 
-  /// Private underscore constructor that sets [valueString] and calls [super._].
+  /// Private underscore constructor that sets [valueString] and calls
+  /// [super._].
   FhirUri._({
     required super.valueString,
     super.element,
@@ -59,9 +60,11 @@ class FhirUri extends PrimitiveType
 
   /// Creates a [FhirUri] by parsing [rawValue] as [String] or [Uri].
   ///
-  /// - If [rawValue] is `null`, [element] must be non-null (element-only usage).
+  /// - If [rawValue] is `null`, [element] must be non-null
+  /// (element-only usage).
   /// - If [rawValue] is a [String], it must be parseable by [Uri.parse].
   /// - If [rawValue] is a [Uri], we store its `.toString()`.
+  // ignore: sort_unnamed_constructors_first
   factory FhirUri(
     dynamic rawValue, {
     Element? element,
@@ -172,7 +175,8 @@ class FhirUri extends PrimitiveType
   // Getters / Properties
   // --------------------------------------------------------------------------
 
-  /// Returns the [valueString] parsed as a Dart [Uri], or `null` if [valueString] is `null`.
+  /// Returns the [valueString] parsed as a Dart [Uri], or `null` if
+  /// [valueString] is `null`.
   Uri? get valueUri => valueString == null ? null : Uri.parse(valueString!);
 
   // --------------------------------------------------------------------------
@@ -199,7 +203,8 @@ class FhirUri extends PrimitiveType
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a parallel list of [values] and [elements] into a list of [FhirUri].
+  /// Converts a parallel list of [values] and [elements] into a list of
+  /// [FhirUri].
   static List<FhirUri> fromJsonList(
     List<dynamic> values,
     List<dynamic>? elements,
@@ -218,7 +223,8 @@ class FhirUri extends PrimitiveType
     });
   }
 
-  /// Converts a list of [FhirUri] into a JSON map with `'value'` and `'_value'` arrays.
+  /// Converts a list of [FhirUri] into a JSON map with `'value'` and
+  /// `'_value'` arrays.
   static Map<String, dynamic> toJsonList(List<FhirUri> items) => {
         'value': items.map((val) => val.valueString).toList(),
         '_value': items.map((val) => val.element?.toJson()).toList(),
@@ -264,6 +270,10 @@ class FhirUri extends PrimitiveType
   @override
   // ignore: avoid_equals_and_hash_code_on_mutable_classes
   int get hashCode => Object.hash(valueString, element);
+
+  /// Returns `true` if the Type is considered string-based, otherwise `false`
+  @override
+  bool get stringBased => true;
 
   // --------------------------------------------------------------------------
   // Clone / Copy
@@ -353,7 +363,8 @@ class FhirUri extends PrimitiveType
   /// Returns the query string portion of the URI, if any.
   String? get query => valueUri?.query;
 
-  /// Splits [query] into a map, with each key mapping to a list of decoded values.
+  /// Splits [query] into a map, with each key mapping to a list of
+  /// decoded values.
   static Map<String, List<String>> splitQueryStringAll(
     String query, {
     Encoding encoding = utf8,

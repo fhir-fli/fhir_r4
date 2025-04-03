@@ -6,7 +6,7 @@ part of '../primitive_types.dart';
 class RequestResourceType extends FhirCodeEnum {
   // Private underscore constructor for internal use.
   RequestResourceType._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -20,7 +20,7 @@ class RequestResourceType extends FhirCodeEnum {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory RequestResourceType(
-    String? raw, {
+    String? rawValue, {
     FhirUri? system,
     FhirString? version,
     FhirString? display,
@@ -30,9 +30,10 @@ class RequestResourceType extends FhirCodeEnum {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCode._validateCode(rawValue) : null;
     return RequestResourceType._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -45,8 +46,7 @@ class RequestResourceType extends FhirCodeEnum {
   }
 
   /// Create empty [RequestResourceType] with element only
-  factory RequestResourceType.empty() =>
-      RequestResourceType._(validatedValue: '');
+  factory RequestResourceType.empty() => RequestResourceType._(valueString: '');
 
   /// Factory constructor to create [RequestResourceType] from JSON.
   factory RequestResourceType.fromJson(Map<String, dynamic> json) {
@@ -61,14 +61,14 @@ class RequestResourceType extends FhirCodeEnum {
       );
     }
     return RequestResourceType._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// Appointment
   static final RequestResourceType Appointment = RequestResourceType._(
-    validatedValue: 'Appointment',
+    valueString: 'Appointment',
     system: 'http://hl7.org/fhir/ValueSet/request-resource-types'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Appointment'.toFhirString,
@@ -76,7 +76,7 @@ class RequestResourceType extends FhirCodeEnum {
 
   /// AppointmentResponse
   static final RequestResourceType AppointmentResponse = RequestResourceType._(
-    validatedValue: 'AppointmentResponse',
+    valueString: 'AppointmentResponse',
     system: 'http://hl7.org/fhir/ValueSet/request-resource-types'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'AppointmentResponse'.toFhirString,
@@ -84,7 +84,7 @@ class RequestResourceType extends FhirCodeEnum {
 
   /// CarePlan
   static final RequestResourceType CarePlan = RequestResourceType._(
-    validatedValue: 'CarePlan',
+    valueString: 'CarePlan',
     system: 'http://hl7.org/fhir/ValueSet/request-resource-types'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'CarePlan'.toFhirString,
@@ -92,7 +92,7 @@ class RequestResourceType extends FhirCodeEnum {
 
   /// Claim
   static final RequestResourceType Claim = RequestResourceType._(
-    validatedValue: 'Claim',
+    valueString: 'Claim',
     system: 'http://hl7.org/fhir/ValueSet/request-resource-types'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Claim'.toFhirString,
@@ -100,7 +100,7 @@ class RequestResourceType extends FhirCodeEnum {
 
   /// CommunicationRequest
   static final RequestResourceType CommunicationRequest = RequestResourceType._(
-    validatedValue: 'CommunicationRequest',
+    valueString: 'CommunicationRequest',
     system: 'http://hl7.org/fhir/ValueSet/request-resource-types'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'CommunicationRequest'.toFhirString,
@@ -108,7 +108,7 @@ class RequestResourceType extends FhirCodeEnum {
 
   /// Contract
   static final RequestResourceType Contract = RequestResourceType._(
-    validatedValue: 'Contract',
+    valueString: 'Contract',
     system: 'http://hl7.org/fhir/ValueSet/request-resource-types'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Contract'.toFhirString,
@@ -116,7 +116,7 @@ class RequestResourceType extends FhirCodeEnum {
 
   /// DeviceRequest
   static final RequestResourceType DeviceRequest = RequestResourceType._(
-    validatedValue: 'DeviceRequest',
+    valueString: 'DeviceRequest',
     system: 'http://hl7.org/fhir/ValueSet/request-resource-types'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'DeviceRequest'.toFhirString,
@@ -124,7 +124,7 @@ class RequestResourceType extends FhirCodeEnum {
 
   /// EnrollmentRequest
   static final RequestResourceType EnrollmentRequest = RequestResourceType._(
-    validatedValue: 'EnrollmentRequest',
+    valueString: 'EnrollmentRequest',
     system: 'http://hl7.org/fhir/ValueSet/request-resource-types'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'EnrollmentRequest'.toFhirString,
@@ -133,7 +133,7 @@ class RequestResourceType extends FhirCodeEnum {
   /// ImmunizationRecommendation
   static final RequestResourceType ImmunizationRecommendation =
       RequestResourceType._(
-    validatedValue: 'ImmunizationRecommendation',
+    valueString: 'ImmunizationRecommendation',
     system: 'http://hl7.org/fhir/ValueSet/request-resource-types'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'ImmunizationRecommendation'.toFhirString,
@@ -141,7 +141,7 @@ class RequestResourceType extends FhirCodeEnum {
 
   /// MedicationRequest
   static final RequestResourceType MedicationRequest = RequestResourceType._(
-    validatedValue: 'MedicationRequest',
+    valueString: 'MedicationRequest',
     system: 'http://hl7.org/fhir/ValueSet/request-resource-types'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'MedicationRequest'.toFhirString,
@@ -149,7 +149,7 @@ class RequestResourceType extends FhirCodeEnum {
 
   /// NutritionOrder
   static final RequestResourceType NutritionOrder = RequestResourceType._(
-    validatedValue: 'NutritionOrder',
+    valueString: 'NutritionOrder',
     system: 'http://hl7.org/fhir/ValueSet/request-resource-types'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'NutritionOrder'.toFhirString,
@@ -157,7 +157,7 @@ class RequestResourceType extends FhirCodeEnum {
 
   /// ServiceRequest
   static final RequestResourceType ServiceRequest = RequestResourceType._(
-    validatedValue: 'ServiceRequest',
+    valueString: 'ServiceRequest',
     system: 'http://hl7.org/fhir/ValueSet/request-resource-types'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'ServiceRequest'.toFhirString,
@@ -165,7 +165,7 @@ class RequestResourceType extends FhirCodeEnum {
 
   /// SupplyRequest
   static final RequestResourceType SupplyRequest = RequestResourceType._(
-    validatedValue: 'SupplyRequest',
+    valueString: 'SupplyRequest',
     system: 'http://hl7.org/fhir/ValueSet/request-resource-types'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'SupplyRequest'.toFhirString,
@@ -173,7 +173,7 @@ class RequestResourceType extends FhirCodeEnum {
 
   /// Task
   static final RequestResourceType Task = RequestResourceType._(
-    validatedValue: 'Task',
+    valueString: 'Task',
     system: 'http://hl7.org/fhir/ValueSet/request-resource-types'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Task'.toFhirString,
@@ -181,7 +181,7 @@ class RequestResourceType extends FhirCodeEnum {
 
   /// VisionPrescription
   static final RequestResourceType VisionPrescription = RequestResourceType._(
-    validatedValue: 'VisionPrescription',
+    valueString: 'VisionPrescription',
     system: 'http://hl7.org/fhir/ValueSet/request-resource-types'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'VisionPrescription'.toFhirString,
@@ -189,7 +189,7 @@ class RequestResourceType extends FhirCodeEnum {
 
   /// For instances where an Element is present but not value
   static final RequestResourceType elementOnly =
-      RequestResourceType._(validatedValue: '');
+      RequestResourceType._(valueString: '');
 
   /// List of all enum-like values
   static final List<RequestResourceType> values = [
@@ -213,14 +213,14 @@ class RequestResourceType extends FhirCodeEnum {
   /// Clones the current instance
   @override
   RequestResourceType clone() => RequestResourceType._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   RequestResourceType withElement(Element? newElement) {
     return RequestResourceType._(
-      validatedValue: value,
+      valueString: valueString,
       element: newElement,
     );
   }
@@ -228,18 +228,18 @@ class RequestResourceType extends FhirCodeEnum {
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   RequestResourceType copyWith({
-    String? newValue,
+    dynamic newValue,
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
@@ -250,11 +250,11 @@ class RequestResourceType extends FhirCodeEnum {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError('Invalid input for RequestResourceType: $newValue');
     }
     return RequestResourceType._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

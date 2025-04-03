@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class MedicationRequestIntent extends FhirCodeEnum {
   // Private underscore constructor for internal use.
   MedicationRequestIntent._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class MedicationRequestIntent extends FhirCodeEnum {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory MedicationRequestIntent(
-    String? raw, {
+    String? rawValue, {
     FhirUri? system,
     FhirString? version,
     FhirString? display,
@@ -29,9 +29,10 @@ class MedicationRequestIntent extends FhirCodeEnum {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCode._validateCode(rawValue) : null;
     return MedicationRequestIntent._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -45,7 +46,7 @@ class MedicationRequestIntent extends FhirCodeEnum {
 
   /// Create empty [MedicationRequestIntent] with element only
   factory MedicationRequestIntent.empty() =>
-      MedicationRequestIntent._(validatedValue: '');
+      MedicationRequestIntent._(valueString: '');
 
   /// Factory constructor to create [MedicationRequestIntent] from JSON.
   factory MedicationRequestIntent.fromJson(Map<String, dynamic> json) {
@@ -60,14 +61,14 @@ class MedicationRequestIntent extends FhirCodeEnum {
       );
     }
     return MedicationRequestIntent._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// proposal
   static final MedicationRequestIntent proposal = MedicationRequestIntent._(
-    validatedValue: 'proposal',
+    valueString: 'proposal',
     system: 'http://hl7.org/fhir/ValueSet/medicationrequest-intent'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Proposal'.toFhirString,
@@ -75,7 +76,7 @@ class MedicationRequestIntent extends FhirCodeEnum {
 
   /// plan
   static final MedicationRequestIntent plan = MedicationRequestIntent._(
-    validatedValue: 'plan',
+    valueString: 'plan',
     system: 'http://hl7.org/fhir/ValueSet/medicationrequest-intent'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Plan'.toFhirString,
@@ -83,7 +84,7 @@ class MedicationRequestIntent extends FhirCodeEnum {
 
   /// order
   static final MedicationRequestIntent order = MedicationRequestIntent._(
-    validatedValue: 'order',
+    valueString: 'order',
     system: 'http://hl7.org/fhir/ValueSet/medicationrequest-intent'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Order'.toFhirString,
@@ -92,7 +93,7 @@ class MedicationRequestIntent extends FhirCodeEnum {
   /// original_order
   static final MedicationRequestIntent original_order =
       MedicationRequestIntent._(
-    validatedValue: 'original-order',
+    valueString: 'original-order',
     system: 'http://hl7.org/fhir/ValueSet/medicationrequest-intent'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Original Order'.toFhirString,
@@ -100,7 +101,7 @@ class MedicationRequestIntent extends FhirCodeEnum {
 
   /// reflex_order
   static final MedicationRequestIntent reflex_order = MedicationRequestIntent._(
-    validatedValue: 'reflex-order',
+    valueString: 'reflex-order',
     system: 'http://hl7.org/fhir/ValueSet/medicationrequest-intent'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Reflex Order'.toFhirString,
@@ -108,7 +109,7 @@ class MedicationRequestIntent extends FhirCodeEnum {
 
   /// filler_order
   static final MedicationRequestIntent filler_order = MedicationRequestIntent._(
-    validatedValue: 'filler-order',
+    valueString: 'filler-order',
     system: 'http://hl7.org/fhir/ValueSet/medicationrequest-intent'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Filler Order'.toFhirString,
@@ -117,7 +118,7 @@ class MedicationRequestIntent extends FhirCodeEnum {
   /// instance_order
   static final MedicationRequestIntent instance_order =
       MedicationRequestIntent._(
-    validatedValue: 'instance-order',
+    valueString: 'instance-order',
     system: 'http://hl7.org/fhir/ValueSet/medicationrequest-intent'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Instance Order'.toFhirString,
@@ -125,7 +126,7 @@ class MedicationRequestIntent extends FhirCodeEnum {
 
   /// option
   static final MedicationRequestIntent option = MedicationRequestIntent._(
-    validatedValue: 'option',
+    valueString: 'option',
     system: 'http://hl7.org/fhir/ValueSet/medicationrequest-intent'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Option'.toFhirString,
@@ -133,7 +134,7 @@ class MedicationRequestIntent extends FhirCodeEnum {
 
   /// For instances where an Element is present but not value
   static final MedicationRequestIntent elementOnly =
-      MedicationRequestIntent._(validatedValue: '');
+      MedicationRequestIntent._(valueString: '');
 
   /// List of all enum-like values
   static final List<MedicationRequestIntent> values = [
@@ -150,14 +151,14 @@ class MedicationRequestIntent extends FhirCodeEnum {
   /// Clones the current instance
   @override
   MedicationRequestIntent clone() => MedicationRequestIntent._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   MedicationRequestIntent withElement(Element? newElement) {
     return MedicationRequestIntent._(
-      validatedValue: value,
+      valueString: valueString,
       element: newElement,
     );
   }
@@ -165,18 +166,18 @@ class MedicationRequestIntent extends FhirCodeEnum {
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   MedicationRequestIntent copyWith({
-    String? newValue,
+    dynamic newValue,
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
@@ -187,11 +188,12 @@ class MedicationRequestIntent extends FhirCodeEnum {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError(
+          'Invalid input for MedicationRequestIntent: $newValue',);
     }
     return MedicationRequestIntent._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

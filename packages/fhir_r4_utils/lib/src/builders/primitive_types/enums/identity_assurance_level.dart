@@ -6,7 +6,7 @@ part of '../primitive_types.dart';
 class IdentityAssuranceLevelBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   IdentityAssuranceLevelBuilder._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -20,7 +20,7 @@ class IdentityAssuranceLevelBuilder extends FhirCodeEnumBuilder {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory IdentityAssuranceLevelBuilder(
-    String? raw, {
+    String? rawValue, {
     FhirUriBuilder? system,
     FhirStringBuilder? version,
     FhirStringBuilder? display,
@@ -30,9 +30,10 @@ class IdentityAssuranceLevelBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
     return IdentityAssuranceLevelBuilder._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -46,7 +47,7 @@ class IdentityAssuranceLevelBuilder extends FhirCodeEnumBuilder {
 
   /// Create empty [IdentityAssuranceLevelBuilder] with element only
   factory IdentityAssuranceLevelBuilder.empty() =>
-      IdentityAssuranceLevelBuilder._(validatedValue: '');
+      IdentityAssuranceLevelBuilder._(valueString: '');
 
   /// Factory constructor to create [IdentityAssuranceLevelBuilder]
   /// from JSON.
@@ -63,14 +64,14 @@ class IdentityAssuranceLevelBuilder extends FhirCodeEnumBuilder {
       );
     }
     return IdentityAssuranceLevelBuilder._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// level1
   static IdentityAssuranceLevelBuilder level1 = IdentityAssuranceLevelBuilder._(
-    validatedValue: 'level1',
+    valueString: 'level1',
     system:
         'http://hl7.org/fhir/ValueSet/identity-assuranceLevel'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -79,7 +80,7 @@ class IdentityAssuranceLevelBuilder extends FhirCodeEnumBuilder {
 
   /// level2
   static IdentityAssuranceLevelBuilder level2 = IdentityAssuranceLevelBuilder._(
-    validatedValue: 'level2',
+    valueString: 'level2',
     system:
         'http://hl7.org/fhir/ValueSet/identity-assuranceLevel'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -88,7 +89,7 @@ class IdentityAssuranceLevelBuilder extends FhirCodeEnumBuilder {
 
   /// level3
   static IdentityAssuranceLevelBuilder level3 = IdentityAssuranceLevelBuilder._(
-    validatedValue: 'level3',
+    valueString: 'level3',
     system:
         'http://hl7.org/fhir/ValueSet/identity-assuranceLevel'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -97,7 +98,7 @@ class IdentityAssuranceLevelBuilder extends FhirCodeEnumBuilder {
 
   /// level4
   static IdentityAssuranceLevelBuilder level4 = IdentityAssuranceLevelBuilder._(
-    validatedValue: 'level4',
+    valueString: 'level4',
     system:
         'http://hl7.org/fhir/ValueSet/identity-assuranceLevel'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -106,7 +107,7 @@ class IdentityAssuranceLevelBuilder extends FhirCodeEnumBuilder {
 
   /// For instances where an Element is present but not value
   static IdentityAssuranceLevelBuilder elementOnly =
-      IdentityAssuranceLevelBuilder._(validatedValue: '');
+      IdentityAssuranceLevelBuilder._(valueString: '');
 
   /// List of all enum-like values
   static List<IdentityAssuranceLevelBuilder> values = [
@@ -119,31 +120,31 @@ class IdentityAssuranceLevelBuilder extends FhirCodeEnumBuilder {
   /// Clones the current instance
   @override
   IdentityAssuranceLevelBuilder clone() => IdentityAssuranceLevelBuilder._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
   IdentityAssuranceLevelBuilder withElement(ElementBuilder? newElement) {
     return IdentityAssuranceLevelBuilder._(
-        validatedValue: value, element: newElement,);
+        valueString: valueString, element: newElement,);
   }
 
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   IdentityAssuranceLevelBuilder copyWith({
-    String? newValue,
+    dynamic newValue,
     ElementBuilder? element,
     FhirStringBuilder? id,
     List<FhirExtensionBuilder>? extension_,
@@ -154,11 +155,12 @@ class IdentityAssuranceLevelBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError(
+          'Invalid input for IdentityAssuranceLevel: $newValue',);
     }
     return IdentityAssuranceLevelBuilder._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
@@ -167,7 +169,7 @@ class IdentityAssuranceLevelBuilder extends FhirCodeEnumBuilder {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath,
+      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

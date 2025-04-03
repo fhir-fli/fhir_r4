@@ -6,7 +6,7 @@ part of '../primitive_types.dart';
 class BindingStrengthBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   BindingStrengthBuilder._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -20,7 +20,7 @@ class BindingStrengthBuilder extends FhirCodeEnumBuilder {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory BindingStrengthBuilder(
-    String? raw, {
+    String? rawValue, {
     FhirUriBuilder? system,
     FhirStringBuilder? version,
     FhirStringBuilder? display,
@@ -30,9 +30,10 @@ class BindingStrengthBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
     return BindingStrengthBuilder._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -46,7 +47,7 @@ class BindingStrengthBuilder extends FhirCodeEnumBuilder {
 
   /// Create empty [BindingStrengthBuilder] with element only
   factory BindingStrengthBuilder.empty() =>
-      BindingStrengthBuilder._(validatedValue: '');
+      BindingStrengthBuilder._(valueString: '');
 
   /// Factory constructor to create [BindingStrengthBuilder]
   /// from JSON.
@@ -63,14 +64,14 @@ class BindingStrengthBuilder extends FhirCodeEnumBuilder {
       );
     }
     return BindingStrengthBuilder._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// required_
   static BindingStrengthBuilder required_ = BindingStrengthBuilder._(
-    validatedValue: 'required',
+    valueString: 'required',
     system: 'http://hl7.org/fhir/ValueSet/binding-strength'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Required'.toFhirStringBuilder,
@@ -78,7 +79,7 @@ class BindingStrengthBuilder extends FhirCodeEnumBuilder {
 
   /// extensible
   static BindingStrengthBuilder extensible = BindingStrengthBuilder._(
-    validatedValue: 'extensible',
+    valueString: 'extensible',
     system: 'http://hl7.org/fhir/ValueSet/binding-strength'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Extensible'.toFhirStringBuilder,
@@ -86,7 +87,7 @@ class BindingStrengthBuilder extends FhirCodeEnumBuilder {
 
   /// preferred
   static BindingStrengthBuilder preferred = BindingStrengthBuilder._(
-    validatedValue: 'preferred',
+    valueString: 'preferred',
     system: 'http://hl7.org/fhir/ValueSet/binding-strength'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Preferred'.toFhirStringBuilder,
@@ -94,7 +95,7 @@ class BindingStrengthBuilder extends FhirCodeEnumBuilder {
 
   /// example
   static BindingStrengthBuilder example = BindingStrengthBuilder._(
-    validatedValue: 'example',
+    valueString: 'example',
     system: 'http://hl7.org/fhir/ValueSet/binding-strength'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Example'.toFhirStringBuilder,
@@ -102,7 +103,7 @@ class BindingStrengthBuilder extends FhirCodeEnumBuilder {
 
   /// For instances where an Element is present but not value
   static BindingStrengthBuilder elementOnly =
-      BindingStrengthBuilder._(validatedValue: '');
+      BindingStrengthBuilder._(valueString: '');
 
   /// List of all enum-like values
   static List<BindingStrengthBuilder> values = [
@@ -115,30 +116,31 @@ class BindingStrengthBuilder extends FhirCodeEnumBuilder {
   /// Clones the current instance
   @override
   BindingStrengthBuilder clone() => BindingStrengthBuilder._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
   BindingStrengthBuilder withElement(ElementBuilder? newElement) {
-    return BindingStrengthBuilder._(validatedValue: value, element: newElement);
+    return BindingStrengthBuilder._(
+        valueString: valueString, element: newElement,);
   }
 
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   BindingStrengthBuilder copyWith({
-    String? newValue,
+    dynamic newValue,
     ElementBuilder? element,
     FhirStringBuilder? id,
     List<FhirExtensionBuilder>? extension_,
@@ -149,11 +151,11 @@ class BindingStrengthBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError('Invalid input for BindingStrength: $newValue');
     }
     return BindingStrengthBuilder._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
@@ -162,7 +164,7 @@ class BindingStrengthBuilder extends FhirCodeEnumBuilder {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath,
+      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

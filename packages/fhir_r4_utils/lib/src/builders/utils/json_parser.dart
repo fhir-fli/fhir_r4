@@ -88,7 +88,7 @@ class JsonParser {
   static void addPrimitive<T extends DataTypeBuilder>(
     Map<String, dynamic> json,
     String key,
-    PrimitiveTypeBuilder<dynamic>? field,
+    PrimitiveTypeBuilder? field,
   ) {
     if (field != null) {
       final fieldJson = field.toJson();
@@ -103,7 +103,7 @@ class JsonParser {
   static void addPrimitiveList<T extends DataTypeBuilder>(
     Map<String, dynamic> json,
     String key,
-    List<PrimitiveTypeBuilder<dynamic>>? field,
+    List<PrimitiveTypeBuilder>? field,
   ) {
     if (field != null && field.isNotEmpty) {
       final fieldJson = field.map((e) => e.toJson()).toList();

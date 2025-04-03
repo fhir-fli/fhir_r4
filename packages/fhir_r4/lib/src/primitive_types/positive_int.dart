@@ -54,6 +54,7 @@ class FhirPositiveInt extends FhirNumber
 
   /// Creates a [FhirPositiveInt] from [rawValue], which must be an [int] > 0
   /// or a [String] that parses to an int > 0, or `null` (with [element]).
+  // ignore: sort_unnamed_constructors_first
   factory FhirPositiveInt(
     dynamic rawValue, {
     Element? element,
@@ -66,7 +67,8 @@ class FhirPositiveInt extends FhirNumber
 
     if (rawValue == null && element == null) {
       throw ArgumentError(
-          'A value or element is required for FhirPositiveInt.');
+        'A value or element is required for FhirPositiveInt.',
+      );
     }
     if (rawValue is num) {
       if (rawValue is int) {
@@ -120,8 +122,11 @@ class FhirPositiveInt extends FhirNumber
     final parsedElement = elemJson == null ? null : Element.fromJson(elemJson);
     final objectPath = json['objectPath'] as String? ?? 'PositiveInt';
 
-    return FhirPositiveInt(rawValue,
-        element: parsedElement, objectPath: objectPath);
+    return FhirPositiveInt(
+      rawValue,
+      element: parsedElement,
+      objectPath: objectPath,
+    );
   }
 
   /// Constructs a [FhirPositiveInt] from a YAML input ([String] or [YamlMap]).
@@ -141,7 +146,8 @@ class FhirPositiveInt extends FhirNumber
     }
   }
 
-  /// Attempts to parse [input] as a [FhirPositiveInt]. Returns `null` if unsuccessful.
+  /// Attempts to parse [input] as a [FhirPositiveInt]. Returns `null`
+  /// if unsuccessful.
   static FhirPositiveInt? tryParse(dynamic input) {
     try {
       return FhirPositiveInt(input);

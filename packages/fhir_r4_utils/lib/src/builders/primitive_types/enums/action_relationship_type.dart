@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class ActionRelationshipTypeBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   ActionRelationshipTypeBuilder._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class ActionRelationshipTypeBuilder extends FhirCodeEnumBuilder {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory ActionRelationshipTypeBuilder(
-    String? raw, {
+    String? rawValue, {
     FhirUriBuilder? system,
     FhirStringBuilder? version,
     FhirStringBuilder? display,
@@ -29,9 +29,10 @@ class ActionRelationshipTypeBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
     return ActionRelationshipTypeBuilder._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -45,7 +46,7 @@ class ActionRelationshipTypeBuilder extends FhirCodeEnumBuilder {
 
   /// Create empty [ActionRelationshipTypeBuilder] with element only
   factory ActionRelationshipTypeBuilder.empty() =>
-      ActionRelationshipTypeBuilder._(validatedValue: '');
+      ActionRelationshipTypeBuilder._(valueString: '');
 
   /// Factory constructor to create [ActionRelationshipTypeBuilder]
   /// from JSON.
@@ -62,7 +63,7 @@ class ActionRelationshipTypeBuilder extends FhirCodeEnumBuilder {
       );
     }
     return ActionRelationshipTypeBuilder._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
@@ -70,7 +71,7 @@ class ActionRelationshipTypeBuilder extends FhirCodeEnumBuilder {
   /// before_start
   static ActionRelationshipTypeBuilder before_start =
       ActionRelationshipTypeBuilder._(
-    validatedValue: 'before-start',
+    valueString: 'before-start',
     system: 'http://hl7.org/fhir/ValueSet/action-relationship-type'
         .toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -79,7 +80,7 @@ class ActionRelationshipTypeBuilder extends FhirCodeEnumBuilder {
 
   /// before
   static ActionRelationshipTypeBuilder before = ActionRelationshipTypeBuilder._(
-    validatedValue: 'before',
+    valueString: 'before',
     system: 'http://hl7.org/fhir/ValueSet/action-relationship-type'
         .toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -89,7 +90,7 @@ class ActionRelationshipTypeBuilder extends FhirCodeEnumBuilder {
   /// before_end
   static ActionRelationshipTypeBuilder before_end =
       ActionRelationshipTypeBuilder._(
-    validatedValue: 'before-end',
+    valueString: 'before-end',
     system: 'http://hl7.org/fhir/ValueSet/action-relationship-type'
         .toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -99,7 +100,7 @@ class ActionRelationshipTypeBuilder extends FhirCodeEnumBuilder {
   /// concurrent_with_start
   static ActionRelationshipTypeBuilder concurrent_with_start =
       ActionRelationshipTypeBuilder._(
-    validatedValue: 'concurrent-with-start',
+    valueString: 'concurrent-with-start',
     system: 'http://hl7.org/fhir/ValueSet/action-relationship-type'
         .toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -109,7 +110,7 @@ class ActionRelationshipTypeBuilder extends FhirCodeEnumBuilder {
   /// concurrent
   static ActionRelationshipTypeBuilder concurrent =
       ActionRelationshipTypeBuilder._(
-    validatedValue: 'concurrent',
+    valueString: 'concurrent',
     system: 'http://hl7.org/fhir/ValueSet/action-relationship-type'
         .toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -119,7 +120,7 @@ class ActionRelationshipTypeBuilder extends FhirCodeEnumBuilder {
   /// concurrent_with_end
   static ActionRelationshipTypeBuilder concurrent_with_end =
       ActionRelationshipTypeBuilder._(
-    validatedValue: 'concurrent-with-end',
+    valueString: 'concurrent-with-end',
     system: 'http://hl7.org/fhir/ValueSet/action-relationship-type'
         .toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -129,7 +130,7 @@ class ActionRelationshipTypeBuilder extends FhirCodeEnumBuilder {
   /// after_start
   static ActionRelationshipTypeBuilder after_start =
       ActionRelationshipTypeBuilder._(
-    validatedValue: 'after-start',
+    valueString: 'after-start',
     system: 'http://hl7.org/fhir/ValueSet/action-relationship-type'
         .toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -138,7 +139,7 @@ class ActionRelationshipTypeBuilder extends FhirCodeEnumBuilder {
 
   /// after
   static ActionRelationshipTypeBuilder after = ActionRelationshipTypeBuilder._(
-    validatedValue: 'after',
+    valueString: 'after',
     system: 'http://hl7.org/fhir/ValueSet/action-relationship-type'
         .toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -148,7 +149,7 @@ class ActionRelationshipTypeBuilder extends FhirCodeEnumBuilder {
   /// after_end
   static ActionRelationshipTypeBuilder after_end =
       ActionRelationshipTypeBuilder._(
-    validatedValue: 'after-end',
+    valueString: 'after-end',
     system: 'http://hl7.org/fhir/ValueSet/action-relationship-type'
         .toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -157,7 +158,7 @@ class ActionRelationshipTypeBuilder extends FhirCodeEnumBuilder {
 
   /// For instances where an Element is present but not value
   static ActionRelationshipTypeBuilder elementOnly =
-      ActionRelationshipTypeBuilder._(validatedValue: '');
+      ActionRelationshipTypeBuilder._(valueString: '');
 
   /// List of all enum-like values
   static List<ActionRelationshipTypeBuilder> values = [
@@ -175,31 +176,31 @@ class ActionRelationshipTypeBuilder extends FhirCodeEnumBuilder {
   /// Clones the current instance
   @override
   ActionRelationshipTypeBuilder clone() => ActionRelationshipTypeBuilder._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
   ActionRelationshipTypeBuilder withElement(ElementBuilder? newElement) {
     return ActionRelationshipTypeBuilder._(
-        validatedValue: value, element: newElement,);
+        valueString: valueString, element: newElement,);
   }
 
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   ActionRelationshipTypeBuilder copyWith({
-    String? newValue,
+    dynamic newValue,
     ElementBuilder? element,
     FhirStringBuilder? id,
     List<FhirExtensionBuilder>? extension_,
@@ -210,11 +211,12 @@ class ActionRelationshipTypeBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError(
+          'Invalid input for ActionRelationshipType: $newValue',);
     }
     return ActionRelationshipTypeBuilder._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
@@ -223,7 +225,7 @@ class ActionRelationshipTypeBuilder extends FhirCodeEnumBuilder {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath,
+      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

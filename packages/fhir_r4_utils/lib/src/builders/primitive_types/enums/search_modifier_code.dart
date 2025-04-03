@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class SearchModifierCodeBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   SearchModifierCodeBuilder._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class SearchModifierCodeBuilder extends FhirCodeEnumBuilder {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory SearchModifierCodeBuilder(
-    String? raw, {
+    String? rawValue, {
     FhirUriBuilder? system,
     FhirStringBuilder? version,
     FhirStringBuilder? display,
@@ -29,9 +29,10 @@ class SearchModifierCodeBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
     return SearchModifierCodeBuilder._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -45,7 +46,7 @@ class SearchModifierCodeBuilder extends FhirCodeEnumBuilder {
 
   /// Create empty [SearchModifierCodeBuilder] with element only
   factory SearchModifierCodeBuilder.empty() =>
-      SearchModifierCodeBuilder._(validatedValue: '');
+      SearchModifierCodeBuilder._(valueString: '');
 
   /// Factory constructor to create [SearchModifierCodeBuilder]
   /// from JSON.
@@ -62,14 +63,14 @@ class SearchModifierCodeBuilder extends FhirCodeEnumBuilder {
       );
     }
     return SearchModifierCodeBuilder._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// missing
   static SearchModifierCodeBuilder missing = SearchModifierCodeBuilder._(
-    validatedValue: 'missing',
+    valueString: 'missing',
     system:
         'http://hl7.org/fhir/ValueSet/search-modifier-code'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -78,7 +79,7 @@ class SearchModifierCodeBuilder extends FhirCodeEnumBuilder {
 
   /// exact
   static SearchModifierCodeBuilder exact = SearchModifierCodeBuilder._(
-    validatedValue: 'exact',
+    valueString: 'exact',
     system:
         'http://hl7.org/fhir/ValueSet/search-modifier-code'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -87,7 +88,7 @@ class SearchModifierCodeBuilder extends FhirCodeEnumBuilder {
 
   /// contains_
   static SearchModifierCodeBuilder contains_ = SearchModifierCodeBuilder._(
-    validatedValue: 'contains',
+    valueString: 'contains',
     system:
         'http://hl7.org/fhir/ValueSet/search-modifier-code'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -96,7 +97,7 @@ class SearchModifierCodeBuilder extends FhirCodeEnumBuilder {
 
   /// not
   static SearchModifierCodeBuilder not = SearchModifierCodeBuilder._(
-    validatedValue: 'not',
+    valueString: 'not',
     system:
         'http://hl7.org/fhir/ValueSet/search-modifier-code'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -105,7 +106,7 @@ class SearchModifierCodeBuilder extends FhirCodeEnumBuilder {
 
   /// text
   static SearchModifierCodeBuilder text = SearchModifierCodeBuilder._(
-    validatedValue: 'text',
+    valueString: 'text',
     system:
         'http://hl7.org/fhir/ValueSet/search-modifier-code'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -114,7 +115,7 @@ class SearchModifierCodeBuilder extends FhirCodeEnumBuilder {
 
   /// in_
   static SearchModifierCodeBuilder in_ = SearchModifierCodeBuilder._(
-    validatedValue: 'in',
+    valueString: 'in',
     system:
         'http://hl7.org/fhir/ValueSet/search-modifier-code'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -123,7 +124,7 @@ class SearchModifierCodeBuilder extends FhirCodeEnumBuilder {
 
   /// not_in
   static SearchModifierCodeBuilder not_in = SearchModifierCodeBuilder._(
-    validatedValue: 'not-in',
+    valueString: 'not-in',
     system:
         'http://hl7.org/fhir/ValueSet/search-modifier-code'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -132,7 +133,7 @@ class SearchModifierCodeBuilder extends FhirCodeEnumBuilder {
 
   /// below
   static SearchModifierCodeBuilder below = SearchModifierCodeBuilder._(
-    validatedValue: 'below',
+    valueString: 'below',
     system:
         'http://hl7.org/fhir/ValueSet/search-modifier-code'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -141,7 +142,7 @@ class SearchModifierCodeBuilder extends FhirCodeEnumBuilder {
 
   /// above
   static SearchModifierCodeBuilder above = SearchModifierCodeBuilder._(
-    validatedValue: 'above',
+    valueString: 'above',
     system:
         'http://hl7.org/fhir/ValueSet/search-modifier-code'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -150,7 +151,7 @@ class SearchModifierCodeBuilder extends FhirCodeEnumBuilder {
 
   /// type
   static SearchModifierCodeBuilder type = SearchModifierCodeBuilder._(
-    validatedValue: 'type',
+    valueString: 'type',
     system:
         'http://hl7.org/fhir/ValueSet/search-modifier-code'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -159,7 +160,7 @@ class SearchModifierCodeBuilder extends FhirCodeEnumBuilder {
 
   /// identifier
   static SearchModifierCodeBuilder identifier = SearchModifierCodeBuilder._(
-    validatedValue: 'identifier',
+    valueString: 'identifier',
     system:
         'http://hl7.org/fhir/ValueSet/search-modifier-code'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -168,7 +169,7 @@ class SearchModifierCodeBuilder extends FhirCodeEnumBuilder {
 
   /// ofType
   static SearchModifierCodeBuilder ofType = SearchModifierCodeBuilder._(
-    validatedValue: 'ofType',
+    valueString: 'ofType',
     system:
         'http://hl7.org/fhir/ValueSet/search-modifier-code'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -177,7 +178,7 @@ class SearchModifierCodeBuilder extends FhirCodeEnumBuilder {
 
   /// For instances where an Element is present but not value
   static SearchModifierCodeBuilder elementOnly =
-      SearchModifierCodeBuilder._(validatedValue: '');
+      SearchModifierCodeBuilder._(valueString: '');
 
   /// List of all enum-like values
   static List<SearchModifierCodeBuilder> values = [
@@ -198,31 +199,31 @@ class SearchModifierCodeBuilder extends FhirCodeEnumBuilder {
   /// Clones the current instance
   @override
   SearchModifierCodeBuilder clone() => SearchModifierCodeBuilder._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
   SearchModifierCodeBuilder withElement(ElementBuilder? newElement) {
     return SearchModifierCodeBuilder._(
-        validatedValue: value, element: newElement,);
+        valueString: valueString, element: newElement,);
   }
 
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   SearchModifierCodeBuilder copyWith({
-    String? newValue,
+    dynamic newValue,
     ElementBuilder? element,
     FhirStringBuilder? id,
     List<FhirExtensionBuilder>? extension_,
@@ -233,11 +234,11 @@ class SearchModifierCodeBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError('Invalid input for SearchModifierCode: $newValue');
     }
     return SearchModifierCodeBuilder._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
@@ -246,7 +247,7 @@ class SearchModifierCodeBuilder extends FhirCodeEnumBuilder {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath,
+      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

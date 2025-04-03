@@ -6,7 +6,7 @@ part of '../primitive_types.dart';
 class QuestionnaireItemTypeBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   QuestionnaireItemTypeBuilder._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -20,7 +20,7 @@ class QuestionnaireItemTypeBuilder extends FhirCodeEnumBuilder {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory QuestionnaireItemTypeBuilder(
-    String? raw, {
+    String? rawValue, {
     FhirUriBuilder? system,
     FhirStringBuilder? version,
     FhirStringBuilder? display,
@@ -30,9 +30,10 @@ class QuestionnaireItemTypeBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
     return QuestionnaireItemTypeBuilder._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -46,7 +47,7 @@ class QuestionnaireItemTypeBuilder extends FhirCodeEnumBuilder {
 
   /// Create empty [QuestionnaireItemTypeBuilder] with element only
   factory QuestionnaireItemTypeBuilder.empty() =>
-      QuestionnaireItemTypeBuilder._(validatedValue: '');
+      QuestionnaireItemTypeBuilder._(valueString: '');
 
   /// Factory constructor to create [QuestionnaireItemTypeBuilder]
   /// from JSON.
@@ -63,14 +64,14 @@ class QuestionnaireItemTypeBuilder extends FhirCodeEnumBuilder {
       );
     }
     return QuestionnaireItemTypeBuilder._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// group
   static QuestionnaireItemTypeBuilder group = QuestionnaireItemTypeBuilder._(
-    validatedValue: 'group',
+    valueString: 'group',
     system: 'http://hl7.org/fhir/ValueSet/item-type'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Group'.toFhirStringBuilder,
@@ -78,7 +79,7 @@ class QuestionnaireItemTypeBuilder extends FhirCodeEnumBuilder {
 
   /// display_
   static QuestionnaireItemTypeBuilder display_ = QuestionnaireItemTypeBuilder._(
-    validatedValue: 'display',
+    valueString: 'display',
     system: 'http://hl7.org/fhir/ValueSet/item-type'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Display'.toFhirStringBuilder,
@@ -86,7 +87,7 @@ class QuestionnaireItemTypeBuilder extends FhirCodeEnumBuilder {
 
   /// question
   static QuestionnaireItemTypeBuilder question = QuestionnaireItemTypeBuilder._(
-    validatedValue: 'question',
+    valueString: 'question',
     system: 'http://hl7.org/fhir/ValueSet/item-type'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Question'.toFhirStringBuilder,
@@ -94,7 +95,7 @@ class QuestionnaireItemTypeBuilder extends FhirCodeEnumBuilder {
 
   /// boolean
   static QuestionnaireItemTypeBuilder boolean = QuestionnaireItemTypeBuilder._(
-    validatedValue: 'boolean',
+    valueString: 'boolean',
     system: 'http://hl7.org/fhir/ValueSet/item-type'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Boolean'.toFhirStringBuilder,
@@ -102,7 +103,7 @@ class QuestionnaireItemTypeBuilder extends FhirCodeEnumBuilder {
 
   /// decimal
   static QuestionnaireItemTypeBuilder decimal = QuestionnaireItemTypeBuilder._(
-    validatedValue: 'decimal',
+    valueString: 'decimal',
     system: 'http://hl7.org/fhir/ValueSet/item-type'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Decimal'.toFhirStringBuilder,
@@ -110,7 +111,7 @@ class QuestionnaireItemTypeBuilder extends FhirCodeEnumBuilder {
 
   /// integer
   static QuestionnaireItemTypeBuilder integer = QuestionnaireItemTypeBuilder._(
-    validatedValue: 'integer',
+    valueString: 'integer',
     system: 'http://hl7.org/fhir/ValueSet/item-type'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Integer'.toFhirStringBuilder,
@@ -118,7 +119,7 @@ class QuestionnaireItemTypeBuilder extends FhirCodeEnumBuilder {
 
   /// date
   static QuestionnaireItemTypeBuilder date = QuestionnaireItemTypeBuilder._(
-    validatedValue: 'date',
+    valueString: 'date',
     system: 'http://hl7.org/fhir/ValueSet/item-type'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Date'.toFhirStringBuilder,
@@ -126,7 +127,7 @@ class QuestionnaireItemTypeBuilder extends FhirCodeEnumBuilder {
 
   /// dateTime
   static QuestionnaireItemTypeBuilder dateTime = QuestionnaireItemTypeBuilder._(
-    validatedValue: 'dateTime',
+    valueString: 'dateTime',
     system: 'http://hl7.org/fhir/ValueSet/item-type'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Date Time'.toFhirStringBuilder,
@@ -134,7 +135,7 @@ class QuestionnaireItemTypeBuilder extends FhirCodeEnumBuilder {
 
   /// time
   static QuestionnaireItemTypeBuilder time = QuestionnaireItemTypeBuilder._(
-    validatedValue: 'time',
+    valueString: 'time',
     system: 'http://hl7.org/fhir/ValueSet/item-type'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Time'.toFhirStringBuilder,
@@ -142,7 +143,7 @@ class QuestionnaireItemTypeBuilder extends FhirCodeEnumBuilder {
 
   /// string
   static QuestionnaireItemTypeBuilder string = QuestionnaireItemTypeBuilder._(
-    validatedValue: 'string',
+    valueString: 'string',
     system: 'http://hl7.org/fhir/ValueSet/item-type'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'String'.toFhirStringBuilder,
@@ -150,7 +151,7 @@ class QuestionnaireItemTypeBuilder extends FhirCodeEnumBuilder {
 
   /// text
   static QuestionnaireItemTypeBuilder text = QuestionnaireItemTypeBuilder._(
-    validatedValue: 'text',
+    valueString: 'text',
     system: 'http://hl7.org/fhir/ValueSet/item-type'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Text'.toFhirStringBuilder,
@@ -158,7 +159,7 @@ class QuestionnaireItemTypeBuilder extends FhirCodeEnumBuilder {
 
   /// url
   static QuestionnaireItemTypeBuilder url = QuestionnaireItemTypeBuilder._(
-    validatedValue: 'url',
+    valueString: 'url',
     system: 'http://hl7.org/fhir/ValueSet/item-type'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Url'.toFhirStringBuilder,
@@ -166,7 +167,7 @@ class QuestionnaireItemTypeBuilder extends FhirCodeEnumBuilder {
 
   /// choice
   static QuestionnaireItemTypeBuilder choice = QuestionnaireItemTypeBuilder._(
-    validatedValue: 'choice',
+    valueString: 'choice',
     system: 'http://hl7.org/fhir/ValueSet/item-type'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Choice'.toFhirStringBuilder,
@@ -175,7 +176,7 @@ class QuestionnaireItemTypeBuilder extends FhirCodeEnumBuilder {
   /// open_choice
   static QuestionnaireItemTypeBuilder open_choice =
       QuestionnaireItemTypeBuilder._(
-    validatedValue: 'open-choice',
+    valueString: 'open-choice',
     system: 'http://hl7.org/fhir/ValueSet/item-type'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Open Choice'.toFhirStringBuilder,
@@ -184,7 +185,7 @@ class QuestionnaireItemTypeBuilder extends FhirCodeEnumBuilder {
   /// attachment
   static QuestionnaireItemTypeBuilder attachment =
       QuestionnaireItemTypeBuilder._(
-    validatedValue: 'attachment',
+    valueString: 'attachment',
     system: 'http://hl7.org/fhir/ValueSet/item-type'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Attachment'.toFhirStringBuilder,
@@ -193,7 +194,7 @@ class QuestionnaireItemTypeBuilder extends FhirCodeEnumBuilder {
   /// reference
   static QuestionnaireItemTypeBuilder reference =
       QuestionnaireItemTypeBuilder._(
-    validatedValue: 'reference',
+    valueString: 'reference',
     system: 'http://hl7.org/fhir/ValueSet/item-type'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Reference'.toFhirStringBuilder,
@@ -201,7 +202,7 @@ class QuestionnaireItemTypeBuilder extends FhirCodeEnumBuilder {
 
   /// quantity
   static QuestionnaireItemTypeBuilder quantity = QuestionnaireItemTypeBuilder._(
-    validatedValue: 'quantity',
+    valueString: 'quantity',
     system: 'http://hl7.org/fhir/ValueSet/item-type'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Quantity'.toFhirStringBuilder,
@@ -209,7 +210,7 @@ class QuestionnaireItemTypeBuilder extends FhirCodeEnumBuilder {
 
   /// For instances where an Element is present but not value
   static QuestionnaireItemTypeBuilder elementOnly =
-      QuestionnaireItemTypeBuilder._(validatedValue: '');
+      QuestionnaireItemTypeBuilder._(valueString: '');
 
   /// List of all enum-like values
   static List<QuestionnaireItemTypeBuilder> values = [
@@ -235,31 +236,31 @@ class QuestionnaireItemTypeBuilder extends FhirCodeEnumBuilder {
   /// Clones the current instance
   @override
   QuestionnaireItemTypeBuilder clone() => QuestionnaireItemTypeBuilder._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
   QuestionnaireItemTypeBuilder withElement(ElementBuilder? newElement) {
     return QuestionnaireItemTypeBuilder._(
-        validatedValue: value, element: newElement,);
+        valueString: valueString, element: newElement,);
   }
 
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   QuestionnaireItemTypeBuilder copyWith({
-    String? newValue,
+    dynamic newValue,
     ElementBuilder? element,
     FhirStringBuilder? id,
     List<FhirExtensionBuilder>? extension_,
@@ -270,11 +271,11 @@ class QuestionnaireItemTypeBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError('Invalid input for QuestionnaireItemType: $newValue');
     }
     return QuestionnaireItemTypeBuilder._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
@@ -283,7 +284,7 @@ class QuestionnaireItemTypeBuilder extends FhirCodeEnumBuilder {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath,
+      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

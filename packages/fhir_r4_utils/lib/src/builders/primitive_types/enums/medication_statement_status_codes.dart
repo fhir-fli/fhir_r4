@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class MedicationStatementStatusCodesBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   MedicationStatementStatusCodesBuilder._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class MedicationStatementStatusCodesBuilder extends FhirCodeEnumBuilder {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory MedicationStatementStatusCodesBuilder(
-    String? raw, {
+    String? rawValue, {
     FhirUriBuilder? system,
     FhirStringBuilder? version,
     FhirStringBuilder? display,
@@ -29,9 +29,10 @@ class MedicationStatementStatusCodesBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
     return MedicationStatementStatusCodesBuilder._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -45,7 +46,7 @@ class MedicationStatementStatusCodesBuilder extends FhirCodeEnumBuilder {
 
   /// Create empty [MedicationStatementStatusCodesBuilder] with element only
   factory MedicationStatementStatusCodesBuilder.empty() =>
-      MedicationStatementStatusCodesBuilder._(validatedValue: '');
+      MedicationStatementStatusCodesBuilder._(valueString: '');
 
   /// Factory constructor to create [MedicationStatementStatusCodesBuilder]
   /// from JSON.
@@ -64,7 +65,7 @@ class MedicationStatementStatusCodesBuilder extends FhirCodeEnumBuilder {
       );
     }
     return MedicationStatementStatusCodesBuilder._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
@@ -72,7 +73,7 @@ class MedicationStatementStatusCodesBuilder extends FhirCodeEnumBuilder {
   /// active
   static MedicationStatementStatusCodesBuilder active =
       MedicationStatementStatusCodesBuilder._(
-    validatedValue: 'active',
+    valueString: 'active',
     system: 'http://hl7.org/fhir/ValueSet/medication-statement-status'
         .toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -82,7 +83,7 @@ class MedicationStatementStatusCodesBuilder extends FhirCodeEnumBuilder {
   /// completed
   static MedicationStatementStatusCodesBuilder completed =
       MedicationStatementStatusCodesBuilder._(
-    validatedValue: 'completed',
+    valueString: 'completed',
     system: 'http://hl7.org/fhir/ValueSet/medication-statement-status'
         .toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -92,7 +93,7 @@ class MedicationStatementStatusCodesBuilder extends FhirCodeEnumBuilder {
   /// entered_in_error
   static MedicationStatementStatusCodesBuilder entered_in_error =
       MedicationStatementStatusCodesBuilder._(
-    validatedValue: 'entered-in-error',
+    valueString: 'entered-in-error',
     system: 'http://hl7.org/fhir/ValueSet/medication-statement-status'
         .toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -102,7 +103,7 @@ class MedicationStatementStatusCodesBuilder extends FhirCodeEnumBuilder {
   /// intended
   static MedicationStatementStatusCodesBuilder intended =
       MedicationStatementStatusCodesBuilder._(
-    validatedValue: 'intended',
+    valueString: 'intended',
     system: 'http://hl7.org/fhir/ValueSet/medication-statement-status'
         .toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -112,7 +113,7 @@ class MedicationStatementStatusCodesBuilder extends FhirCodeEnumBuilder {
   /// stopped
   static MedicationStatementStatusCodesBuilder stopped =
       MedicationStatementStatusCodesBuilder._(
-    validatedValue: 'stopped',
+    valueString: 'stopped',
     system: 'http://hl7.org/fhir/ValueSet/medication-statement-status'
         .toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -122,7 +123,7 @@ class MedicationStatementStatusCodesBuilder extends FhirCodeEnumBuilder {
   /// on_hold
   static MedicationStatementStatusCodesBuilder on_hold =
       MedicationStatementStatusCodesBuilder._(
-    validatedValue: 'on-hold',
+    valueString: 'on-hold',
     system: 'http://hl7.org/fhir/ValueSet/medication-statement-status'
         .toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -132,7 +133,7 @@ class MedicationStatementStatusCodesBuilder extends FhirCodeEnumBuilder {
   /// unknown
   static MedicationStatementStatusCodesBuilder unknown =
       MedicationStatementStatusCodesBuilder._(
-    validatedValue: 'unknown',
+    valueString: 'unknown',
     system: 'http://hl7.org/fhir/ValueSet/medication-statement-status'
         .toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -142,7 +143,7 @@ class MedicationStatementStatusCodesBuilder extends FhirCodeEnumBuilder {
   /// not_taken
   static MedicationStatementStatusCodesBuilder not_taken =
       MedicationStatementStatusCodesBuilder._(
-    validatedValue: 'not-taken',
+    valueString: 'not-taken',
     system: 'http://hl7.org/fhir/ValueSet/medication-statement-status'
         .toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -151,7 +152,7 @@ class MedicationStatementStatusCodesBuilder extends FhirCodeEnumBuilder {
 
   /// For instances where an Element is present but not value
   static MedicationStatementStatusCodesBuilder elementOnly =
-      MedicationStatementStatusCodesBuilder._(validatedValue: '');
+      MedicationStatementStatusCodesBuilder._(valueString: '');
 
   /// List of all enum-like values
   static List<MedicationStatementStatusCodesBuilder> values = [
@@ -169,7 +170,7 @@ class MedicationStatementStatusCodesBuilder extends FhirCodeEnumBuilder {
   @override
   MedicationStatementStatusCodesBuilder clone() =>
       MedicationStatementStatusCodesBuilder._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as ElementBuilder?,
       );
 
@@ -177,24 +178,24 @@ class MedicationStatementStatusCodesBuilder extends FhirCodeEnumBuilder {
   MedicationStatementStatusCodesBuilder withElement(
       ElementBuilder? newElement,) {
     return MedicationStatementStatusCodesBuilder._(
-        validatedValue: value, element: newElement,);
+        valueString: valueString, element: newElement,);
   }
 
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   MedicationStatementStatusCodesBuilder copyWith({
-    String? newValue,
+    dynamic newValue,
     ElementBuilder? element,
     FhirStringBuilder? id,
     List<FhirExtensionBuilder>? extension_,
@@ -205,11 +206,12 @@ class MedicationStatementStatusCodesBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError(
+          'Invalid input for MedicationStatementStatusCodes: $newValue',);
     }
     return MedicationStatementStatusCodesBuilder._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
@@ -218,7 +220,7 @@ class MedicationStatementStatusCodesBuilder extends FhirCodeEnumBuilder {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath,
+      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

@@ -622,6 +622,21 @@ class ConsentBuilder extends DomainResourceBuilder {
           if (child is CommonLanguagesBuilder) {
             language = child;
             return;
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              // For enums, try to create directly from the string value
+              try {
+                final converted = CommonLanguagesBuilder(stringValue);
+                language = converted;
+                return;
+              } catch (e) {
+                // Continue if enum creation fails
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
           throw Exception('Invalid child type for $childName');
         }
@@ -641,7 +656,10 @@ class ConsentBuilder extends DomainResourceBuilder {
             return;
           } else if (child is ResourceBuilder) {
             // Add single element to existing list or create new list
-            contained = [...(contained ?? []), child];
+            contained = [
+              ...(contained ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -654,7 +672,10 @@ class ConsentBuilder extends DomainResourceBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -667,7 +688,10 @@ class ConsentBuilder extends DomainResourceBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -680,7 +704,10 @@ class ConsentBuilder extends DomainResourceBuilder {
             return;
           } else if (child is IdentifierBuilder) {
             // Add single element to existing list or create new list
-            identifier = [...(identifier ?? []), child];
+            identifier = [
+              ...(identifier ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -690,6 +717,21 @@ class ConsentBuilder extends DomainResourceBuilder {
           if (child is ConsentStateBuilder) {
             status = child;
             return;
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              // For enums, try to create directly from the string value
+              try {
+                final converted = ConsentStateBuilder(stringValue);
+                status = converted;
+                return;
+              } catch (e) {
+                // Continue if enum creation fails
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
           throw Exception('Invalid child type for $childName');
         }
@@ -709,7 +751,10 @@ class ConsentBuilder extends DomainResourceBuilder {
             return;
           } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            category = [...(category ?? []), child];
+            category = [
+              ...(category ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -750,7 +795,10 @@ class ConsentBuilder extends DomainResourceBuilder {
             return;
           } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            performer = [...(performer ?? []), child];
+            performer = [
+              ...(performer ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -763,7 +811,10 @@ class ConsentBuilder extends DomainResourceBuilder {
             return;
           } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            organization = [...(organization ?? []), child];
+            organization = [
+              ...(organization ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -811,7 +862,10 @@ class ConsentBuilder extends DomainResourceBuilder {
             return;
           } else if (child is ConsentPolicyBuilder) {
             // Add single element to existing list or create new list
-            policy = [...(policy ?? []), child];
+            policy = [
+              ...(policy ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -832,7 +886,10 @@ class ConsentBuilder extends DomainResourceBuilder {
             return;
           } else if (child is ConsentVerificationBuilder) {
             // Add single element to existing list or create new list
-            verification = [...(verification ?? []), child];
+            verification = [
+              ...(verification ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -889,7 +946,10 @@ class ConsentBuilder extends DomainResourceBuilder {
         return ['ReferenceBuilder'];
       case 'source':
       case 'sourceX':
-        return ['AttachmentBuilder', 'ReferenceBuilder'];
+        return [
+          'AttachmentBuilder',
+          'ReferenceBuilder',
+        ];
       case 'sourceAttachment':
         return ['AttachmentBuilder'];
       case 'sourceReference':
@@ -1551,7 +1611,10 @@ class ConsentPolicyBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -1564,7 +1627,10 @@ class ConsentPolicyBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -2047,7 +2113,10 @@ class ConsentVerificationBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -2060,7 +2129,10 @@ class ConsentVerificationBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -2742,7 +2814,10 @@ class ConsentProvisionBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -2755,7 +2830,10 @@ class ConsentProvisionBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -2765,6 +2843,21 @@ class ConsentProvisionBuilder extends BackboneElementBuilder {
           if (child is ConsentProvisionTypeBuilder) {
             type = child;
             return;
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              // For enums, try to create directly from the string value
+              try {
+                final converted = ConsentProvisionTypeBuilder(stringValue);
+                type = converted;
+                return;
+              } catch (e) {
+                // Continue if enum creation fails
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
           throw Exception('Invalid child type for $childName');
         }
@@ -2784,7 +2877,10 @@ class ConsentProvisionBuilder extends BackboneElementBuilder {
             return;
           } else if (child is ConsentActorBuilder) {
             // Add single element to existing list or create new list
-            actor = [...(actor ?? []), child];
+            actor = [
+              ...(actor ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -2797,7 +2893,10 @@ class ConsentProvisionBuilder extends BackboneElementBuilder {
             return;
           } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            action = [...(action ?? []), child];
+            action = [
+              ...(action ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -2810,7 +2909,10 @@ class ConsentProvisionBuilder extends BackboneElementBuilder {
             return;
           } else if (child is CodingBuilder) {
             // Add single element to existing list or create new list
-            securityLabel = [...(securityLabel ?? []), child];
+            securityLabel = [
+              ...(securityLabel ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -2823,7 +2925,10 @@ class ConsentProvisionBuilder extends BackboneElementBuilder {
             return;
           } else if (child is CodingBuilder) {
             // Add single element to existing list or create new list
-            purpose = [...(purpose ?? []), child];
+            purpose = [
+              ...(purpose ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -2836,7 +2941,10 @@ class ConsentProvisionBuilder extends BackboneElementBuilder {
             return;
           } else if (child is CodingBuilder) {
             // Add single element to existing list or create new list
-            class_ = [...(class_ ?? []), child];
+            class_ = [
+              ...(class_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -2849,7 +2957,10 @@ class ConsentProvisionBuilder extends BackboneElementBuilder {
             return;
           } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            code = [...(code ?? []), child];
+            code = [
+              ...(code ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -2870,7 +2981,10 @@ class ConsentProvisionBuilder extends BackboneElementBuilder {
             return;
           } else if (child is ConsentDataBuilder) {
             // Add single element to existing list or create new list
-            data = [...(data ?? []), child];
+            data = [
+              ...(data ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -2883,7 +2997,10 @@ class ConsentProvisionBuilder extends BackboneElementBuilder {
             return;
           } else if (child is ConsentProvisionBuilder) {
             // Add single element to existing list or create new list
-            provision = [...(provision ?? []), child];
+            provision = [
+              ...(provision ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -3463,7 +3580,10 @@ class ConsentActorBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -3476,7 +3596,10 @@ class ConsentActorBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -3918,7 +4041,10 @@ class ConsentDataBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -3931,7 +4057,10 @@ class ConsentDataBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -3941,6 +4070,21 @@ class ConsentDataBuilder extends BackboneElementBuilder {
           if (child is ConsentDataMeaningBuilder) {
             meaning = child;
             return;
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              // For enums, try to create directly from the string value
+              try {
+                final converted = ConsentDataMeaningBuilder(stringValue);
+                meaning = converted;
+                return;
+              } catch (e) {
+                // Continue if enum creation fails
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
           throw Exception('Invalid child type for $childName');
         }

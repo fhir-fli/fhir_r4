@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class DeviceMetricOperationalStatusBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   DeviceMetricOperationalStatusBuilder._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class DeviceMetricOperationalStatusBuilder extends FhirCodeEnumBuilder {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory DeviceMetricOperationalStatusBuilder(
-    String? raw, {
+    String? rawValue, {
     FhirUriBuilder? system,
     FhirStringBuilder? version,
     FhirStringBuilder? display,
@@ -29,9 +29,10 @@ class DeviceMetricOperationalStatusBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
     return DeviceMetricOperationalStatusBuilder._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -45,7 +46,7 @@ class DeviceMetricOperationalStatusBuilder extends FhirCodeEnumBuilder {
 
   /// Create empty [DeviceMetricOperationalStatusBuilder] with element only
   factory DeviceMetricOperationalStatusBuilder.empty() =>
-      DeviceMetricOperationalStatusBuilder._(validatedValue: '');
+      DeviceMetricOperationalStatusBuilder._(valueString: '');
 
   /// Factory constructor to create [DeviceMetricOperationalStatusBuilder]
   /// from JSON.
@@ -64,7 +65,7 @@ class DeviceMetricOperationalStatusBuilder extends FhirCodeEnumBuilder {
       );
     }
     return DeviceMetricOperationalStatusBuilder._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
@@ -72,7 +73,7 @@ class DeviceMetricOperationalStatusBuilder extends FhirCodeEnumBuilder {
   /// on_
   static DeviceMetricOperationalStatusBuilder on_ =
       DeviceMetricOperationalStatusBuilder._(
-    validatedValue: 'on',
+    valueString: 'on',
     system: 'http://hl7.org/fhir/ValueSet/metric-operational-status'
         .toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -82,7 +83,7 @@ class DeviceMetricOperationalStatusBuilder extends FhirCodeEnumBuilder {
   /// off
   static DeviceMetricOperationalStatusBuilder off =
       DeviceMetricOperationalStatusBuilder._(
-    validatedValue: 'off',
+    valueString: 'off',
     system: 'http://hl7.org/fhir/ValueSet/metric-operational-status'
         .toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -92,7 +93,7 @@ class DeviceMetricOperationalStatusBuilder extends FhirCodeEnumBuilder {
   /// standby
   static DeviceMetricOperationalStatusBuilder standby =
       DeviceMetricOperationalStatusBuilder._(
-    validatedValue: 'standby',
+    valueString: 'standby',
     system: 'http://hl7.org/fhir/ValueSet/metric-operational-status'
         .toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -102,7 +103,7 @@ class DeviceMetricOperationalStatusBuilder extends FhirCodeEnumBuilder {
   /// entered_in_error
   static DeviceMetricOperationalStatusBuilder entered_in_error =
       DeviceMetricOperationalStatusBuilder._(
-    validatedValue: 'entered-in-error',
+    valueString: 'entered-in-error',
     system: 'http://hl7.org/fhir/ValueSet/metric-operational-status'
         .toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -111,7 +112,7 @@ class DeviceMetricOperationalStatusBuilder extends FhirCodeEnumBuilder {
 
   /// For instances where an Element is present but not value
   static DeviceMetricOperationalStatusBuilder elementOnly =
-      DeviceMetricOperationalStatusBuilder._(validatedValue: '');
+      DeviceMetricOperationalStatusBuilder._(valueString: '');
 
   /// List of all enum-like values
   static List<DeviceMetricOperationalStatusBuilder> values = [
@@ -125,31 +126,31 @@ class DeviceMetricOperationalStatusBuilder extends FhirCodeEnumBuilder {
   @override
   DeviceMetricOperationalStatusBuilder clone() =>
       DeviceMetricOperationalStatusBuilder._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
   DeviceMetricOperationalStatusBuilder withElement(ElementBuilder? newElement) {
     return DeviceMetricOperationalStatusBuilder._(
-        validatedValue: value, element: newElement,);
+        valueString: valueString, element: newElement,);
   }
 
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   DeviceMetricOperationalStatusBuilder copyWith({
-    String? newValue,
+    dynamic newValue,
     ElementBuilder? element,
     FhirStringBuilder? id,
     List<FhirExtensionBuilder>? extension_,
@@ -160,11 +161,12 @@ class DeviceMetricOperationalStatusBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError(
+          'Invalid input for DeviceMetricOperationalStatus: $newValue',);
     }
     return DeviceMetricOperationalStatusBuilder._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
@@ -173,7 +175,7 @@ class DeviceMetricOperationalStatusBuilder extends FhirCodeEnumBuilder {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath,
+      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

@@ -854,6 +854,21 @@ class ClaimBuilder extends DomainResourceBuilder {
           if (child is CommonLanguagesBuilder) {
             language = child;
             return;
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              // For enums, try to create directly from the string value
+              try {
+                final converted = CommonLanguagesBuilder(stringValue);
+                language = converted;
+                return;
+              } catch (e) {
+                // Continue if enum creation fails
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
           throw Exception('Invalid child type for $childName');
         }
@@ -873,7 +888,10 @@ class ClaimBuilder extends DomainResourceBuilder {
             return;
           } else if (child is ResourceBuilder) {
             // Add single element to existing list or create new list
-            contained = [...(contained ?? []), child];
+            contained = [
+              ...(contained ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -886,7 +904,10 @@ class ClaimBuilder extends DomainResourceBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -899,7 +920,10 @@ class ClaimBuilder extends DomainResourceBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -912,7 +936,10 @@ class ClaimBuilder extends DomainResourceBuilder {
             return;
           } else if (child is IdentifierBuilder) {
             // Add single element to existing list or create new list
-            identifier = [...(identifier ?? []), child];
+            identifier = [
+              ...(identifier ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -922,6 +949,22 @@ class ClaimBuilder extends DomainResourceBuilder {
           if (child is FinancialResourceStatusCodesBuilder) {
             status = child;
             return;
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              // For enums, try to create directly from the string value
+              try {
+                final converted =
+                    FinancialResourceStatusCodesBuilder(stringValue);
+                status = converted;
+                return;
+              } catch (e) {
+                // Continue if enum creation fails
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
           throw Exception('Invalid child type for $childName');
         }
@@ -946,6 +989,21 @@ class ClaimBuilder extends DomainResourceBuilder {
           if (child is UseBuilder) {
             use = child;
             return;
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              // For enums, try to create directly from the string value
+              try {
+                final converted = UseBuilder(stringValue);
+                use = converted;
+                return;
+              } catch (e) {
+                // Continue if enum creation fails
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
           throw Exception('Invalid child type for $childName');
         }
@@ -1033,7 +1091,10 @@ class ClaimBuilder extends DomainResourceBuilder {
             return;
           } else if (child is ClaimRelatedBuilder) {
             // Add single element to existing list or create new list
-            related = [...(related ?? []), child];
+            related = [
+              ...(related ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -1086,7 +1147,10 @@ class ClaimBuilder extends DomainResourceBuilder {
             return;
           } else if (child is ClaimCareTeamBuilder) {
             // Add single element to existing list or create new list
-            careTeam = [...(careTeam ?? []), child];
+            careTeam = [
+              ...(careTeam ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -1099,7 +1163,10 @@ class ClaimBuilder extends DomainResourceBuilder {
             return;
           } else if (child is ClaimSupportingInfoBuilder) {
             // Add single element to existing list or create new list
-            supportingInfo = [...(supportingInfo ?? []), child];
+            supportingInfo = [
+              ...(supportingInfo ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -1112,7 +1179,10 @@ class ClaimBuilder extends DomainResourceBuilder {
             return;
           } else if (child is ClaimDiagnosisBuilder) {
             // Add single element to existing list or create new list
-            diagnosis = [...(diagnosis ?? []), child];
+            diagnosis = [
+              ...(diagnosis ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -1125,7 +1195,10 @@ class ClaimBuilder extends DomainResourceBuilder {
             return;
           } else if (child is ClaimProcedureBuilder) {
             // Add single element to existing list or create new list
-            procedure = [...(procedure ?? []), child];
+            procedure = [
+              ...(procedure ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -1138,7 +1211,10 @@ class ClaimBuilder extends DomainResourceBuilder {
             return;
           } else if (child is ClaimInsuranceBuilder) {
             // Add single element to existing list or create new list
-            insurance = [...(insurance ?? []), child];
+            insurance = [
+              ...(insurance ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -1159,7 +1235,10 @@ class ClaimBuilder extends DomainResourceBuilder {
             return;
           } else if (child is ClaimItemBuilder) {
             // Add single element to existing list or create new list
-            item = [...(item ?? []), child];
+            item = [
+              ...(item ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -2118,7 +2197,10 @@ class ClaimRelatedBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -2131,7 +2213,10 @@ class ClaimRelatedBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -2597,7 +2682,10 @@ class ClaimPayeeBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -2610,7 +2698,10 @@ class ClaimPayeeBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -3103,7 +3194,10 @@ class ClaimCareTeamBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -3116,7 +3210,10 @@ class ClaimCareTeamBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -3130,7 +3227,8 @@ class ClaimCareTeamBuilder extends BackboneElementBuilder {
             // Try to convert from one primitive type to another
             try {
               final stringValue = child.toString();
-              // For number types, first parse to num then pass the number directly
+              // For number types,
+              // first parse to num then pass the number directly
               final numValue = num.tryParse(stringValue);
               if (numValue != null) {
                 final converted = FhirPositiveIntBuilder.tryParse(numValue);
@@ -3805,7 +3903,10 @@ class ClaimSupportingInfoBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -3818,7 +3919,10 @@ class ClaimSupportingInfoBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -3832,7 +3936,8 @@ class ClaimSupportingInfoBuilder extends BackboneElementBuilder {
             // Try to convert from one primitive type to another
             try {
               final stringValue = child.toString();
-              // For number types, first parse to num then pass the number directly
+              // For number types,
+              // first parse to num then pass the number directly
               final numValue = num.tryParse(stringValue);
               if (numValue != null) {
                 final converted = FhirPositiveIntBuilder.tryParse(numValue);
@@ -4004,7 +4109,10 @@ class ClaimSupportingInfoBuilder extends BackboneElementBuilder {
         return ['CodeableConceptBuilder'];
       case 'timing':
       case 'timingX':
-        return ['FhirDateBuilder', 'PeriodBuilder'];
+        return [
+          'FhirDateBuilder',
+          'PeriodBuilder',
+        ];
       case 'timingDate':
         return ['FhirDateBuilder'];
       case 'timingPeriod':
@@ -4602,7 +4710,10 @@ class ClaimDiagnosisBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -4615,7 +4726,10 @@ class ClaimDiagnosisBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -4629,7 +4743,8 @@ class ClaimDiagnosisBuilder extends BackboneElementBuilder {
             // Try to convert from one primitive type to another
             try {
               final stringValue = child.toString();
-              // For number types, first parse to num then pass the number directly
+              // For number types,
+              // first parse to num then pass the number directly
               final numValue = num.tryParse(stringValue);
               if (numValue != null) {
                 final converted = FhirPositiveIntBuilder.tryParse(numValue);
@@ -4687,7 +4802,10 @@ class ClaimDiagnosisBuilder extends BackboneElementBuilder {
             return;
           } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            type = [...(type ?? []), child];
+            type = [
+              ...(type ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -4728,7 +4846,10 @@ class ClaimDiagnosisBuilder extends BackboneElementBuilder {
         return ['FhirPositiveIntBuilder'];
       case 'diagnosis':
       case 'diagnosisX':
-        return ['CodeableConceptBuilder', 'ReferenceBuilder'];
+        return [
+          'CodeableConceptBuilder',
+          'ReferenceBuilder',
+        ];
       case 'diagnosisCodeableConcept':
         return ['CodeableConceptBuilder'];
       case 'diagnosisReference':
@@ -5276,7 +5397,10 @@ class ClaimProcedureBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -5289,7 +5413,10 @@ class ClaimProcedureBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -5303,7 +5430,8 @@ class ClaimProcedureBuilder extends BackboneElementBuilder {
             // Try to convert from one primitive type to another
             try {
               final stringValue = child.toString();
-              // For number types, first parse to num then pass the number directly
+              // For number types,
+              // first parse to num then pass the number directly
               final numValue = num.tryParse(stringValue);
               if (numValue != null) {
                 final converted = FhirPositiveIntBuilder.tryParse(numValue);
@@ -5326,7 +5454,10 @@ class ClaimProcedureBuilder extends BackboneElementBuilder {
             return;
           } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            type = [...(type ?? []), child];
+            type = [
+              ...(type ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -5394,7 +5525,10 @@ class ClaimProcedureBuilder extends BackboneElementBuilder {
             return;
           } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            udi = [...(udi ?? []), child];
+            udi = [
+              ...(udi ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -5423,7 +5557,10 @@ class ClaimProcedureBuilder extends BackboneElementBuilder {
         return ['FhirDateTimeBuilder'];
       case 'procedure':
       case 'procedureX':
-        return ['CodeableConceptBuilder', 'ReferenceBuilder'];
+        return [
+          'CodeableConceptBuilder',
+          'ReferenceBuilder',
+        ];
       case 'procedureCodeableConcept':
         return ['CodeableConceptBuilder'];
       case 'procedureReference':
@@ -5976,7 +6113,10 @@ class ClaimInsuranceBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -5989,7 +6129,10 @@ class ClaimInsuranceBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -6003,7 +6146,8 @@ class ClaimInsuranceBuilder extends BackboneElementBuilder {
             // Try to convert from one primitive type to another
             try {
               final stringValue = child.toString();
-              // For number types, first parse to num then pass the number directly
+              // For number types,
+              // first parse to num then pass the number directly
               final numValue = num.tryParse(stringValue);
               if (numValue != null) {
                 final converted = FhirPositiveIntBuilder.tryParse(numValue);
@@ -6082,7 +6226,10 @@ class ClaimInsuranceBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirStringBuilder) {
             // Add single element to existing list or create new list
-            preAuthRef = [...(preAuthRef ?? []), child];
+            preAuthRef = [
+              ...(preAuthRef ?? []),
+              child,
+            ];
             return;
           } else if (child is List<PrimitiveTypeBuilder>) {
             // Try to convert list of primitive types
@@ -6674,7 +6821,10 @@ class ClaimAccidentBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -6687,7 +6837,10 @@ class ClaimAccidentBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -6777,7 +6930,10 @@ class ClaimAccidentBuilder extends BackboneElementBuilder {
         return ['CodeableConceptBuilder'];
       case 'location':
       case 'locationX':
-        return ['AddressBuilder', 'ReferenceBuilder'];
+        return [
+          'AddressBuilder',
+          'ReferenceBuilder',
+        ];
       case 'locationAddress':
         return ['AddressBuilder'];
       case 'locationReference':
@@ -7625,7 +7781,10 @@ class ClaimItemBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -7638,7 +7797,10 @@ class ClaimItemBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -7652,7 +7814,8 @@ class ClaimItemBuilder extends BackboneElementBuilder {
             // Try to convert from one primitive type to another
             try {
               final stringValue = child.toString();
-              // For number types, first parse to num then pass the number directly
+              // For number types,
+              // first parse to num then pass the number directly
               final numValue = num.tryParse(stringValue);
               if (numValue != null) {
                 final converted = FhirPositiveIntBuilder.tryParse(numValue);
@@ -7675,7 +7838,10 @@ class ClaimItemBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirPositiveIntBuilder) {
             // Add single element to existing list or create new list
-            careTeamSequence = [...(careTeamSequence ?? []), child];
+            careTeamSequence = [
+              ...(careTeamSequence ?? []),
+              child,
+            ];
             return;
           } else if (child is List<PrimitiveTypeBuilder>) {
             // Try to convert list of primitive types
@@ -7683,7 +7849,8 @@ class ClaimItemBuilder extends BackboneElementBuilder {
             for (final element in child) {
               try {
                 final stringValue = element.toString();
-                // For number types, first parse to num then pass the number directly
+                // For number types,
+                // first parse to num then pass the number directly
                 final numValue = num.tryParse(stringValue);
                 if (numValue != null) {
                   final converted = FhirPositiveIntBuilder.tryParse(numValue);
@@ -7703,7 +7870,8 @@ class ClaimItemBuilder extends BackboneElementBuilder {
             // Try to convert a single primitive
             try {
               final stringValue = child.toString();
-              // For number types, first parse to num then pass the number directly
+              // For number types,
+              // first parse to num then pass the number directly
               final numValue = num.tryParse(stringValue);
               if (numValue != null) {
                 final converted = FhirPositiveIntBuilder.tryParse(numValue);
@@ -7726,7 +7894,10 @@ class ClaimItemBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirPositiveIntBuilder) {
             // Add single element to existing list or create new list
-            diagnosisSequence = [...(diagnosisSequence ?? []), child];
+            diagnosisSequence = [
+              ...(diagnosisSequence ?? []),
+              child,
+            ];
             return;
           } else if (child is List<PrimitiveTypeBuilder>) {
             // Try to convert list of primitive types
@@ -7734,7 +7905,8 @@ class ClaimItemBuilder extends BackboneElementBuilder {
             for (final element in child) {
               try {
                 final stringValue = element.toString();
-                // For number types, first parse to num then pass the number directly
+                // For number types,
+                // first parse to num then pass the number directly
                 final numValue = num.tryParse(stringValue);
                 if (numValue != null) {
                   final converted = FhirPositiveIntBuilder.tryParse(numValue);
@@ -7754,7 +7926,8 @@ class ClaimItemBuilder extends BackboneElementBuilder {
             // Try to convert a single primitive
             try {
               final stringValue = child.toString();
-              // For number types, first parse to num then pass the number directly
+              // For number types,
+              // first parse to num then pass the number directly
               final numValue = num.tryParse(stringValue);
               if (numValue != null) {
                 final converted = FhirPositiveIntBuilder.tryParse(numValue);
@@ -7777,7 +7950,10 @@ class ClaimItemBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirPositiveIntBuilder) {
             // Add single element to existing list or create new list
-            procedureSequence = [...(procedureSequence ?? []), child];
+            procedureSequence = [
+              ...(procedureSequence ?? []),
+              child,
+            ];
             return;
           } else if (child is List<PrimitiveTypeBuilder>) {
             // Try to convert list of primitive types
@@ -7785,7 +7961,8 @@ class ClaimItemBuilder extends BackboneElementBuilder {
             for (final element in child) {
               try {
                 final stringValue = element.toString();
-                // For number types, first parse to num then pass the number directly
+                // For number types,
+                // first parse to num then pass the number directly
                 final numValue = num.tryParse(stringValue);
                 if (numValue != null) {
                   final converted = FhirPositiveIntBuilder.tryParse(numValue);
@@ -7805,7 +7982,8 @@ class ClaimItemBuilder extends BackboneElementBuilder {
             // Try to convert a single primitive
             try {
               final stringValue = child.toString();
-              // For number types, first parse to num then pass the number directly
+              // For number types,
+              // first parse to num then pass the number directly
               final numValue = num.tryParse(stringValue);
               if (numValue != null) {
                 final converted = FhirPositiveIntBuilder.tryParse(numValue);
@@ -7828,7 +8006,10 @@ class ClaimItemBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirPositiveIntBuilder) {
             // Add single element to existing list or create new list
-            informationSequence = [...(informationSequence ?? []), child];
+            informationSequence = [
+              ...(informationSequence ?? []),
+              child,
+            ];
             return;
           } else if (child is List<PrimitiveTypeBuilder>) {
             // Try to convert list of primitive types
@@ -7836,7 +8017,8 @@ class ClaimItemBuilder extends BackboneElementBuilder {
             for (final element in child) {
               try {
                 final stringValue = element.toString();
-                // For number types, first parse to num then pass the number directly
+                // For number types,
+                // first parse to num then pass the number directly
                 final numValue = num.tryParse(stringValue);
                 if (numValue != null) {
                   final converted = FhirPositiveIntBuilder.tryParse(numValue);
@@ -7856,7 +8038,8 @@ class ClaimItemBuilder extends BackboneElementBuilder {
             // Try to convert a single primitive
             try {
               final stringValue = child.toString();
-              // For number types, first parse to num then pass the number directly
+              // For number types,
+              // first parse to num then pass the number directly
               final numValue = num.tryParse(stringValue);
               if (numValue != null) {
                 final converted = FhirPositiveIntBuilder.tryParse(numValue);
@@ -7906,7 +8089,10 @@ class ClaimItemBuilder extends BackboneElementBuilder {
             return;
           } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            modifier = [...(modifier ?? []), child];
+            modifier = [
+              ...(modifier ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -7919,7 +8105,10 @@ class ClaimItemBuilder extends BackboneElementBuilder {
             return;
           } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            programCode = [...(programCode ?? []), child];
+            programCode = [
+              ...(programCode ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -8032,7 +8221,8 @@ class ClaimItemBuilder extends BackboneElementBuilder {
             // Try to convert from one primitive type to another
             try {
               final stringValue = child.toString();
-              // For number types, first parse to num then pass the number directly
+              // For number types,
+              // first parse to num then pass the number directly
               final numValue = num.tryParse(stringValue);
               if (numValue != null) {
                 final converted = FhirDecimalBuilder.tryParse(numValue);
@@ -8063,7 +8253,10 @@ class ClaimItemBuilder extends BackboneElementBuilder {
             return;
           } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            udi = [...(udi ?? []), child];
+            udi = [
+              ...(udi ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -8084,7 +8277,10 @@ class ClaimItemBuilder extends BackboneElementBuilder {
             return;
           } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            subSite = [...(subSite ?? []), child];
+            subSite = [
+              ...(subSite ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -8097,7 +8293,10 @@ class ClaimItemBuilder extends BackboneElementBuilder {
             return;
           } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            encounter = [...(encounter ?? []), child];
+            encounter = [
+              ...(encounter ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -8110,7 +8309,10 @@ class ClaimItemBuilder extends BackboneElementBuilder {
             return;
           } else if (child is ClaimDetailBuilder) {
             // Add single element to existing list or create new list
-            detail = [...(detail ?? []), child];
+            detail = [
+              ...(detail ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -8153,14 +8355,21 @@ class ClaimItemBuilder extends BackboneElementBuilder {
         return ['CodeableConceptBuilder'];
       case 'serviced':
       case 'servicedX':
-        return ['FhirDateBuilder', 'PeriodBuilder'];
+        return [
+          'FhirDateBuilder',
+          'PeriodBuilder',
+        ];
       case 'servicedDate':
         return ['FhirDateBuilder'];
       case 'servicedPeriod':
         return ['PeriodBuilder'];
       case 'location':
       case 'locationX':
-        return ['CodeableConceptBuilder', 'AddressBuilder', 'ReferenceBuilder'];
+        return [
+          'CodeableConceptBuilder',
+          'AddressBuilder',
+          'ReferenceBuilder',
+        ];
       case 'locationCodeableConcept':
         return ['CodeableConceptBuilder'];
       case 'locationAddress':
@@ -9086,7 +9295,10 @@ class ClaimDetailBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -9099,7 +9311,10 @@ class ClaimDetailBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -9113,7 +9328,8 @@ class ClaimDetailBuilder extends BackboneElementBuilder {
             // Try to convert from one primitive type to another
             try {
               final stringValue = child.toString();
-              // For number types, first parse to num then pass the number directly
+              // For number types,
+              // first parse to num then pass the number directly
               final numValue = num.tryParse(stringValue);
               if (numValue != null) {
                 final converted = FhirPositiveIntBuilder.tryParse(numValue);
@@ -9160,7 +9376,10 @@ class ClaimDetailBuilder extends BackboneElementBuilder {
             return;
           } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            modifier = [...(modifier ?? []), child];
+            modifier = [
+              ...(modifier ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -9173,7 +9392,10 @@ class ClaimDetailBuilder extends BackboneElementBuilder {
             return;
           } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            programCode = [...(programCode ?? []), child];
+            programCode = [
+              ...(programCode ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -9203,7 +9425,8 @@ class ClaimDetailBuilder extends BackboneElementBuilder {
             // Try to convert from one primitive type to another
             try {
               final stringValue = child.toString();
-              // For number types, first parse to num then pass the number directly
+              // For number types,
+              // first parse to num then pass the number directly
               final numValue = num.tryParse(stringValue);
               if (numValue != null) {
                 final converted = FhirDecimalBuilder.tryParse(numValue);
@@ -9234,7 +9457,10 @@ class ClaimDetailBuilder extends BackboneElementBuilder {
             return;
           } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            udi = [...(udi ?? []), child];
+            udi = [
+              ...(udi ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -9247,7 +9473,10 @@ class ClaimDetailBuilder extends BackboneElementBuilder {
             return;
           } else if (child is ClaimSubDetailBuilder) {
             // Add single element to existing list or create new list
-            subDetail = [...(subDetail ?? []), child];
+            subDetail = [
+              ...(subDetail ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -10017,7 +10246,10 @@ class ClaimSubDetailBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -10030,7 +10262,10 @@ class ClaimSubDetailBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -10044,7 +10279,8 @@ class ClaimSubDetailBuilder extends BackboneElementBuilder {
             // Try to convert from one primitive type to another
             try {
               final stringValue = child.toString();
-              // For number types, first parse to num then pass the number directly
+              // For number types,
+              // first parse to num then pass the number directly
               final numValue = num.tryParse(stringValue);
               if (numValue != null) {
                 final converted = FhirPositiveIntBuilder.tryParse(numValue);
@@ -10091,7 +10327,10 @@ class ClaimSubDetailBuilder extends BackboneElementBuilder {
             return;
           } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            modifier = [...(modifier ?? []), child];
+            modifier = [
+              ...(modifier ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -10104,7 +10343,10 @@ class ClaimSubDetailBuilder extends BackboneElementBuilder {
             return;
           } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            programCode = [...(programCode ?? []), child];
+            programCode = [
+              ...(programCode ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -10134,7 +10376,8 @@ class ClaimSubDetailBuilder extends BackboneElementBuilder {
             // Try to convert from one primitive type to another
             try {
               final stringValue = child.toString();
-              // For number types, first parse to num then pass the number directly
+              // For number types,
+              // first parse to num then pass the number directly
               final numValue = num.tryParse(stringValue);
               if (numValue != null) {
                 final converted = FhirDecimalBuilder.tryParse(numValue);
@@ -10165,7 +10408,10 @@ class ClaimSubDetailBuilder extends BackboneElementBuilder {
             return;
           } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            udi = [...(udi ?? []), child];
+            udi = [
+              ...(udi ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');

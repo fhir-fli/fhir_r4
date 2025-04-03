@@ -751,7 +751,7 @@ abstract class FhirDateTimeBase extends PrimitiveType
         message: 'Two values were passed to the date time '
             '"$comparator" comparison operator, but there was an error '
             'comparing them.\n'
-            'Argument 1: $valueString (${runtimeType})\n'
+            'Argument 1: $valueString ($runtimeType)\n'
             'Argument 2: $o (${o.runtimeType})',
       );
 

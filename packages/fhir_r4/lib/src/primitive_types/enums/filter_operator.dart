@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class FilterOperator extends FhirCodeEnum {
   // Private underscore constructor for internal use.
   FilterOperator._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class FilterOperator extends FhirCodeEnum {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory FilterOperator(
-    String? raw, {
+    String? rawValue, {
     FhirUri? system,
     FhirString? version,
     FhirString? display,
@@ -29,9 +29,10 @@ class FilterOperator extends FhirCodeEnum {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCode._validateCode(rawValue) : null;
     return FilterOperator._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -44,7 +45,7 @@ class FilterOperator extends FhirCodeEnum {
   }
 
   /// Create empty [FilterOperator] with element only
-  factory FilterOperator.empty() => FilterOperator._(validatedValue: '');
+  factory FilterOperator.empty() => FilterOperator._(valueString: '');
 
   /// Factory constructor to create [FilterOperator] from JSON.
   factory FilterOperator.fromJson(Map<String, dynamic> json) {
@@ -59,14 +60,14 @@ class FilterOperator extends FhirCodeEnum {
       );
     }
     return FilterOperator._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// eq
   static final FilterOperator eq = FilterOperator._(
-    validatedValue: '=',
+    valueString: '=',
     system: 'http://hl7.org/fhir/ValueSet/filter-operator'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Equals'.toFhirString,
@@ -74,7 +75,7 @@ class FilterOperator extends FhirCodeEnum {
 
   /// is_a
   static final FilterOperator is_a = FilterOperator._(
-    validatedValue: 'is-a',
+    valueString: 'is-a',
     system: 'http://hl7.org/fhir/ValueSet/filter-operator'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Is A (by subsumption)'.toFhirString,
@@ -82,7 +83,7 @@ class FilterOperator extends FhirCodeEnum {
 
   /// descendent_of
   static final FilterOperator descendent_of = FilterOperator._(
-    validatedValue: 'descendent-of',
+    valueString: 'descendent-of',
     system: 'http://hl7.org/fhir/ValueSet/filter-operator'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Descendent Of (by subsumption)'.toFhirString,
@@ -90,7 +91,7 @@ class FilterOperator extends FhirCodeEnum {
 
   /// is_not_a
   static final FilterOperator is_not_a = FilterOperator._(
-    validatedValue: 'is-not-a',
+    valueString: 'is-not-a',
     system: 'http://hl7.org/fhir/ValueSet/filter-operator'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Not (Is A) (by subsumption)'.toFhirString,
@@ -98,7 +99,7 @@ class FilterOperator extends FhirCodeEnum {
 
   /// regex
   static final FilterOperator regex = FilterOperator._(
-    validatedValue: 'regex',
+    valueString: 'regex',
     system: 'http://hl7.org/fhir/ValueSet/filter-operator'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Regular Expression'.toFhirString,
@@ -106,7 +107,7 @@ class FilterOperator extends FhirCodeEnum {
 
   /// in_
   static final FilterOperator in_ = FilterOperator._(
-    validatedValue: 'in',
+    valueString: 'in',
     system: 'http://hl7.org/fhir/ValueSet/filter-operator'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'In Set'.toFhirString,
@@ -114,7 +115,7 @@ class FilterOperator extends FhirCodeEnum {
 
   /// not_in
   static final FilterOperator not_in = FilterOperator._(
-    validatedValue: 'not-in',
+    valueString: 'not-in',
     system: 'http://hl7.org/fhir/ValueSet/filter-operator'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Not in Set'.toFhirString,
@@ -122,7 +123,7 @@ class FilterOperator extends FhirCodeEnum {
 
   /// generalizes
   static final FilterOperator generalizes = FilterOperator._(
-    validatedValue: 'generalizes',
+    valueString: 'generalizes',
     system: 'http://hl7.org/fhir/ValueSet/filter-operator'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Generalizes (by Subsumption)'.toFhirString,
@@ -130,15 +131,14 @@ class FilterOperator extends FhirCodeEnum {
 
   /// exists
   static final FilterOperator exists = FilterOperator._(
-    validatedValue: 'exists',
+    valueString: 'exists',
     system: 'http://hl7.org/fhir/ValueSet/filter-operator'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Exists'.toFhirString,
   );
 
   /// For instances where an Element is present but not value
-  static final FilterOperator elementOnly =
-      FilterOperator._(validatedValue: '');
+  static final FilterOperator elementOnly = FilterOperator._(valueString: '');
 
   /// List of all enum-like values
   static final List<FilterOperator> values = [
@@ -156,14 +156,14 @@ class FilterOperator extends FhirCodeEnum {
   /// Clones the current instance
   @override
   FilterOperator clone() => FilterOperator._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   FilterOperator withElement(Element? newElement) {
     return FilterOperator._(
-      validatedValue: value,
+      valueString: valueString,
       element: newElement,
     );
   }
@@ -171,18 +171,18 @@ class FilterOperator extends FhirCodeEnum {
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   FilterOperator copyWith({
-    String? newValue,
+    dynamic newValue,
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
@@ -193,11 +193,11 @@ class FilterOperator extends FhirCodeEnum {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError('Invalid input for FilterOperator: $newValue');
     }
     return FilterOperator._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

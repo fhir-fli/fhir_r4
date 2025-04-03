@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class DeviceMetricCalibrationTypeBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   DeviceMetricCalibrationTypeBuilder._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class DeviceMetricCalibrationTypeBuilder extends FhirCodeEnumBuilder {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory DeviceMetricCalibrationTypeBuilder(
-    String? raw, {
+    String? rawValue, {
     FhirUriBuilder? system,
     FhirStringBuilder? version,
     FhirStringBuilder? display,
@@ -29,9 +29,10 @@ class DeviceMetricCalibrationTypeBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
     return DeviceMetricCalibrationTypeBuilder._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -45,7 +46,7 @@ class DeviceMetricCalibrationTypeBuilder extends FhirCodeEnumBuilder {
 
   /// Create empty [DeviceMetricCalibrationTypeBuilder] with element only
   factory DeviceMetricCalibrationTypeBuilder.empty() =>
-      DeviceMetricCalibrationTypeBuilder._(validatedValue: '');
+      DeviceMetricCalibrationTypeBuilder._(valueString: '');
 
   /// Factory constructor to create [DeviceMetricCalibrationTypeBuilder]
   /// from JSON.
@@ -64,7 +65,7 @@ class DeviceMetricCalibrationTypeBuilder extends FhirCodeEnumBuilder {
       );
     }
     return DeviceMetricCalibrationTypeBuilder._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
@@ -72,7 +73,7 @@ class DeviceMetricCalibrationTypeBuilder extends FhirCodeEnumBuilder {
   /// unspecified
   static DeviceMetricCalibrationTypeBuilder unspecified =
       DeviceMetricCalibrationTypeBuilder._(
-    validatedValue: 'unspecified',
+    valueString: 'unspecified',
     system:
         'http://hl7.org/fhir/ValueSet/metric-calibration-type'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -82,7 +83,7 @@ class DeviceMetricCalibrationTypeBuilder extends FhirCodeEnumBuilder {
   /// offset
   static DeviceMetricCalibrationTypeBuilder offset =
       DeviceMetricCalibrationTypeBuilder._(
-    validatedValue: 'offset',
+    valueString: 'offset',
     system:
         'http://hl7.org/fhir/ValueSet/metric-calibration-type'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -92,7 +93,7 @@ class DeviceMetricCalibrationTypeBuilder extends FhirCodeEnumBuilder {
   /// gain
   static DeviceMetricCalibrationTypeBuilder gain =
       DeviceMetricCalibrationTypeBuilder._(
-    validatedValue: 'gain',
+    valueString: 'gain',
     system:
         'http://hl7.org/fhir/ValueSet/metric-calibration-type'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -102,7 +103,7 @@ class DeviceMetricCalibrationTypeBuilder extends FhirCodeEnumBuilder {
   /// two_point
   static DeviceMetricCalibrationTypeBuilder two_point =
       DeviceMetricCalibrationTypeBuilder._(
-    validatedValue: 'two-point',
+    valueString: 'two-point',
     system:
         'http://hl7.org/fhir/ValueSet/metric-calibration-type'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -111,7 +112,7 @@ class DeviceMetricCalibrationTypeBuilder extends FhirCodeEnumBuilder {
 
   /// For instances where an Element is present but not value
   static DeviceMetricCalibrationTypeBuilder elementOnly =
-      DeviceMetricCalibrationTypeBuilder._(validatedValue: '');
+      DeviceMetricCalibrationTypeBuilder._(valueString: '');
 
   /// List of all enum-like values
   static List<DeviceMetricCalibrationTypeBuilder> values = [
@@ -125,31 +126,31 @@ class DeviceMetricCalibrationTypeBuilder extends FhirCodeEnumBuilder {
   @override
   DeviceMetricCalibrationTypeBuilder clone() =>
       DeviceMetricCalibrationTypeBuilder._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
   DeviceMetricCalibrationTypeBuilder withElement(ElementBuilder? newElement) {
     return DeviceMetricCalibrationTypeBuilder._(
-        validatedValue: value, element: newElement,);
+        valueString: valueString, element: newElement,);
   }
 
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   DeviceMetricCalibrationTypeBuilder copyWith({
-    String? newValue,
+    dynamic newValue,
     ElementBuilder? element,
     FhirStringBuilder? id,
     List<FhirExtensionBuilder>? extension_,
@@ -160,11 +161,12 @@ class DeviceMetricCalibrationTypeBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError(
+          'Invalid input for DeviceMetricCalibrationType: $newValue',);
     }
     return DeviceMetricCalibrationTypeBuilder._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
@@ -173,7 +175,7 @@ class DeviceMetricCalibrationTypeBuilder extends FhirCodeEnumBuilder {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath,
+      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

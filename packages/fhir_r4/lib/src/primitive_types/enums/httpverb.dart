@@ -6,7 +6,7 @@ part of '../primitive_types.dart';
 class HTTPVerb extends FhirCodeEnum {
   // Private underscore constructor for internal use.
   HTTPVerb._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -20,7 +20,7 @@ class HTTPVerb extends FhirCodeEnum {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory HTTPVerb(
-    String? raw, {
+    String? rawValue, {
     FhirUri? system,
     FhirString? version,
     FhirString? display,
@@ -30,9 +30,10 @@ class HTTPVerb extends FhirCodeEnum {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCode._validateCode(rawValue) : null;
     return HTTPVerb._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -45,7 +46,7 @@ class HTTPVerb extends FhirCodeEnum {
   }
 
   /// Create empty [HTTPVerb] with element only
-  factory HTTPVerb.empty() => HTTPVerb._(validatedValue: '');
+  factory HTTPVerb.empty() => HTTPVerb._(valueString: '');
 
   /// Factory constructor to create [HTTPVerb] from JSON.
   factory HTTPVerb.fromJson(Map<String, dynamic> json) {
@@ -60,14 +61,14 @@ class HTTPVerb extends FhirCodeEnum {
       );
     }
     return HTTPVerb._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// GET
   static final HTTPVerb GET = HTTPVerb._(
-    validatedValue: 'GET',
+    valueString: 'GET',
     system: 'http://hl7.org/fhir/ValueSet/http-verb'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'GET'.toFhirString,
@@ -75,7 +76,7 @@ class HTTPVerb extends FhirCodeEnum {
 
   /// HEAD
   static final HTTPVerb HEAD = HTTPVerb._(
-    validatedValue: 'HEAD',
+    valueString: 'HEAD',
     system: 'http://hl7.org/fhir/ValueSet/http-verb'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'HEAD'.toFhirString,
@@ -83,7 +84,7 @@ class HTTPVerb extends FhirCodeEnum {
 
   /// POST
   static final HTTPVerb POST = HTTPVerb._(
-    validatedValue: 'POST',
+    valueString: 'POST',
     system: 'http://hl7.org/fhir/ValueSet/http-verb'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'POST'.toFhirString,
@@ -91,7 +92,7 @@ class HTTPVerb extends FhirCodeEnum {
 
   /// PUT
   static final HTTPVerb PUT = HTTPVerb._(
-    validatedValue: 'PUT',
+    valueString: 'PUT',
     system: 'http://hl7.org/fhir/ValueSet/http-verb'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'PUT'.toFhirString,
@@ -99,7 +100,7 @@ class HTTPVerb extends FhirCodeEnum {
 
   /// DELETE
   static final HTTPVerb DELETE = HTTPVerb._(
-    validatedValue: 'DELETE',
+    valueString: 'DELETE',
     system: 'http://hl7.org/fhir/ValueSet/http-verb'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'DELETE'.toFhirString,
@@ -107,14 +108,14 @@ class HTTPVerb extends FhirCodeEnum {
 
   /// PATCH
   static final HTTPVerb PATCH = HTTPVerb._(
-    validatedValue: 'PATCH',
+    valueString: 'PATCH',
     system: 'http://hl7.org/fhir/ValueSet/http-verb'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'PATCH'.toFhirString,
   );
 
   /// For instances where an Element is present but not value
-  static final HTTPVerb elementOnly = HTTPVerb._(validatedValue: '');
+  static final HTTPVerb elementOnly = HTTPVerb._(valueString: '');
 
   /// List of all enum-like values
   static final List<HTTPVerb> values = [
@@ -129,14 +130,14 @@ class HTTPVerb extends FhirCodeEnum {
   /// Clones the current instance
   @override
   HTTPVerb clone() => HTTPVerb._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   HTTPVerb withElement(Element? newElement) {
     return HTTPVerb._(
-      validatedValue: value,
+      valueString: valueString,
       element: newElement,
     );
   }
@@ -144,18 +145,18 @@ class HTTPVerb extends FhirCodeEnum {
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   HTTPVerb copyWith({
-    String? newValue,
+    dynamic newValue,
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
@@ -166,11 +167,11 @@ class HTTPVerb extends FhirCodeEnum {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError('Invalid input for HTTPVerb: $newValue');
     }
     return HTTPVerb._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

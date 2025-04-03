@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class GroupType extends FhirCodeEnum {
   // Private underscore constructor for internal use.
   GroupType._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class GroupType extends FhirCodeEnum {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory GroupType(
-    String? raw, {
+    String? rawValue, {
     FhirUri? system,
     FhirString? version,
     FhirString? display,
@@ -29,9 +29,10 @@ class GroupType extends FhirCodeEnum {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCode._validateCode(rawValue) : null;
     return GroupType._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -44,7 +45,7 @@ class GroupType extends FhirCodeEnum {
   }
 
   /// Create empty [GroupType] with element only
-  factory GroupType.empty() => GroupType._(validatedValue: '');
+  factory GroupType.empty() => GroupType._(valueString: '');
 
   /// Factory constructor to create [GroupType] from JSON.
   factory GroupType.fromJson(Map<String, dynamic> json) {
@@ -59,14 +60,14 @@ class GroupType extends FhirCodeEnum {
       );
     }
     return GroupType._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// person
   static final GroupType person = GroupType._(
-    validatedValue: 'person',
+    valueString: 'person',
     system: 'http://hl7.org/fhir/ValueSet/group-type'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Person'.toFhirString,
@@ -74,7 +75,7 @@ class GroupType extends FhirCodeEnum {
 
   /// animal
   static final GroupType animal = GroupType._(
-    validatedValue: 'animal',
+    valueString: 'animal',
     system: 'http://hl7.org/fhir/ValueSet/group-type'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Animal'.toFhirString,
@@ -82,7 +83,7 @@ class GroupType extends FhirCodeEnum {
 
   /// practitioner
   static final GroupType practitioner = GroupType._(
-    validatedValue: 'practitioner',
+    valueString: 'practitioner',
     system: 'http://hl7.org/fhir/ValueSet/group-type'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Practitioner'.toFhirString,
@@ -90,7 +91,7 @@ class GroupType extends FhirCodeEnum {
 
   /// device
   static final GroupType device = GroupType._(
-    validatedValue: 'device',
+    valueString: 'device',
     system: 'http://hl7.org/fhir/ValueSet/group-type'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Device'.toFhirString,
@@ -98,7 +99,7 @@ class GroupType extends FhirCodeEnum {
 
   /// medication
   static final GroupType medication = GroupType._(
-    validatedValue: 'medication',
+    valueString: 'medication',
     system: 'http://hl7.org/fhir/ValueSet/group-type'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Medication'.toFhirString,
@@ -106,14 +107,14 @@ class GroupType extends FhirCodeEnum {
 
   /// substance
   static final GroupType substance = GroupType._(
-    validatedValue: 'substance',
+    valueString: 'substance',
     system: 'http://hl7.org/fhir/ValueSet/group-type'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Substance'.toFhirString,
   );
 
   /// For instances where an Element is present but not value
-  static final GroupType elementOnly = GroupType._(validatedValue: '');
+  static final GroupType elementOnly = GroupType._(valueString: '');
 
   /// List of all enum-like values
   static final List<GroupType> values = [
@@ -128,14 +129,14 @@ class GroupType extends FhirCodeEnum {
   /// Clones the current instance
   @override
   GroupType clone() => GroupType._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   GroupType withElement(Element? newElement) {
     return GroupType._(
-      validatedValue: value,
+      valueString: valueString,
       element: newElement,
     );
   }
@@ -143,18 +144,18 @@ class GroupType extends FhirCodeEnum {
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   GroupType copyWith({
-    String? newValue,
+    dynamic newValue,
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
@@ -165,11 +166,11 @@ class GroupType extends FhirCodeEnum {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError('Invalid input for GroupType: $newValue');
     }
     return GroupType._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

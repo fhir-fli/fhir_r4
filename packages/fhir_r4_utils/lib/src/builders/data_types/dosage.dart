@@ -506,7 +506,10 @@ class DosageBuilder extends BackboneTypeBuilder
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -519,7 +522,10 @@ class DosageBuilder extends BackboneTypeBuilder
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -533,7 +539,8 @@ class DosageBuilder extends BackboneTypeBuilder
             // Try to convert from one primitive type to another
             try {
               final stringValue = child.toString();
-              // For number types, first parse to num then pass the number directly
+              // For number types,
+              // first parse to num then pass the number directly
               final numValue = num.tryParse(stringValue);
               if (numValue != null) {
                 final converted = FhirIntegerBuilder.tryParse(numValue);
@@ -576,7 +583,10 @@ class DosageBuilder extends BackboneTypeBuilder
             return;
           } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            additionalInstruction = [...(additionalInstruction ?? []), child];
+            additionalInstruction = [
+              ...(additionalInstruction ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -676,7 +686,10 @@ class DosageBuilder extends BackboneTypeBuilder
             return;
           } else if (child is DosageDoseAndRateBuilder) {
             // Add single element to existing list or create new list
-            doseAndRate = [...(doseAndRate ?? []), child];
+            doseAndRate = [
+              ...(doseAndRate ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -733,7 +746,10 @@ class DosageBuilder extends BackboneTypeBuilder
         return ['TimingBuilder'];
       case 'asNeeded':
       case 'asNeededX':
-        return ['FhirBooleanBuilder', 'CodeableConceptBuilder'];
+        return [
+          'FhirBooleanBuilder',
+          'CodeableConceptBuilder',
+        ];
       case 'asNeededBoolean':
         return ['FhirBooleanBuilder'];
       case 'asNeededCodeableConcept':
@@ -1379,7 +1395,10 @@ class DosageDoseAndRateBuilder extends ElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -1493,14 +1512,21 @@ class DosageDoseAndRateBuilder extends ElementBuilder {
         return ['CodeableConceptBuilder'];
       case 'dose':
       case 'doseX':
-        return ['RangeBuilder', 'QuantityBuilder'];
+        return [
+          'RangeBuilder',
+          'QuantityBuilder',
+        ];
       case 'doseRange':
         return ['RangeBuilder'];
       case 'doseQuantity':
         return ['QuantityBuilder'];
       case 'rate':
       case 'rateX':
-        return ['RatioBuilder', 'RangeBuilder', 'QuantityBuilder'];
+        return [
+          'RatioBuilder',
+          'RangeBuilder',
+          'QuantityBuilder',
+        ];
       case 'rateRatio':
         return ['RatioBuilder'];
       case 'rateRange':

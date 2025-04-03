@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class AccountStatusBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   AccountStatusBuilder._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class AccountStatusBuilder extends FhirCodeEnumBuilder {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory AccountStatusBuilder(
-    String? raw, {
+    String? rawValue, {
     FhirUriBuilder? system,
     FhirStringBuilder? version,
     FhirStringBuilder? display,
@@ -29,9 +29,10 @@ class AccountStatusBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
     return AccountStatusBuilder._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -45,7 +46,7 @@ class AccountStatusBuilder extends FhirCodeEnumBuilder {
 
   /// Create empty [AccountStatusBuilder] with element only
   factory AccountStatusBuilder.empty() =>
-      AccountStatusBuilder._(validatedValue: '');
+      AccountStatusBuilder._(valueString: '');
 
   /// Factory constructor to create [AccountStatusBuilder]
   /// from JSON.
@@ -62,14 +63,14 @@ class AccountStatusBuilder extends FhirCodeEnumBuilder {
       );
     }
     return AccountStatusBuilder._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// active
   static AccountStatusBuilder active = AccountStatusBuilder._(
-    validatedValue: 'active',
+    valueString: 'active',
     system: 'http://hl7.org/fhir/ValueSet/account-status'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Active'.toFhirStringBuilder,
@@ -77,7 +78,7 @@ class AccountStatusBuilder extends FhirCodeEnumBuilder {
 
   /// inactive
   static AccountStatusBuilder inactive = AccountStatusBuilder._(
-    validatedValue: 'inactive',
+    valueString: 'inactive',
     system: 'http://hl7.org/fhir/ValueSet/account-status'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Inactive'.toFhirStringBuilder,
@@ -85,7 +86,7 @@ class AccountStatusBuilder extends FhirCodeEnumBuilder {
 
   /// entered_in_error
   static AccountStatusBuilder entered_in_error = AccountStatusBuilder._(
-    validatedValue: 'entered-in-error',
+    valueString: 'entered-in-error',
     system: 'http://hl7.org/fhir/ValueSet/account-status'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Entered in error'.toFhirStringBuilder,
@@ -93,7 +94,7 @@ class AccountStatusBuilder extends FhirCodeEnumBuilder {
 
   /// on_hold
   static AccountStatusBuilder on_hold = AccountStatusBuilder._(
-    validatedValue: 'on-hold',
+    valueString: 'on-hold',
     system: 'http://hl7.org/fhir/ValueSet/account-status'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'On Hold'.toFhirStringBuilder,
@@ -101,7 +102,7 @@ class AccountStatusBuilder extends FhirCodeEnumBuilder {
 
   /// unknown
   static AccountStatusBuilder unknown = AccountStatusBuilder._(
-    validatedValue: 'unknown',
+    valueString: 'unknown',
     system: 'http://hl7.org/fhir/ValueSet/account-status'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Unknown'.toFhirStringBuilder,
@@ -109,7 +110,7 @@ class AccountStatusBuilder extends FhirCodeEnumBuilder {
 
   /// For instances where an Element is present but not value
   static AccountStatusBuilder elementOnly =
-      AccountStatusBuilder._(validatedValue: '');
+      AccountStatusBuilder._(valueString: '');
 
   /// List of all enum-like values
   static List<AccountStatusBuilder> values = [
@@ -123,30 +124,31 @@ class AccountStatusBuilder extends FhirCodeEnumBuilder {
   /// Clones the current instance
   @override
   AccountStatusBuilder clone() => AccountStatusBuilder._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
   AccountStatusBuilder withElement(ElementBuilder? newElement) {
-    return AccountStatusBuilder._(validatedValue: value, element: newElement);
+    return AccountStatusBuilder._(
+        valueString: valueString, element: newElement,);
   }
 
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   AccountStatusBuilder copyWith({
-    String? newValue,
+    dynamic newValue,
     ElementBuilder? element,
     FhirStringBuilder? id,
     List<FhirExtensionBuilder>? extension_,
@@ -157,11 +159,11 @@ class AccountStatusBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError('Invalid input for AccountStatus: $newValue');
     }
     return AccountStatusBuilder._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
@@ -170,7 +172,7 @@ class AccountStatusBuilder extends FhirCodeEnumBuilder {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath,
+      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

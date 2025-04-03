@@ -27,7 +27,8 @@ class FhirBase64Binary extends PrimitiveType
   // Private Internal Constructor
   // --------------------------------------------------------------------------
 
-  /// Private underscore constructor that directly sets [valueString] and calls [super._].
+  /// Private underscore constructor that directly sets [valueString] and
+  /// calls [super._].
   FhirBase64Binary._({
     required super.valueString,
     super.element,
@@ -43,9 +44,12 @@ class FhirBase64Binary extends PrimitiveType
 
   /// Creates a [FhirBase64Binary] by parsing [rawValue].
   ///
-  /// - If [rawValue] is `null`, [element] must be non-null (element-only usage).
-  /// - If [rawValue] is a [String], it must be valid Base64 (whitespace is ignored).
+  /// - If [rawValue] is `null`, [element] must be non-null
+  /// (element-only usage).
+  /// - If [rawValue] is a [String], it must be valid Base64
+  /// (whitespace is ignored).
   /// - Otherwise, throws an [ArgumentError].
+  // ignore: sort_unnamed_constructors_first
   factory FhirBase64Binary(
     dynamic rawValue, {
     Element? element,
@@ -57,7 +61,8 @@ class FhirBase64Binary extends PrimitiveType
     String? validatedValue;
     if (rawValue == null && element == null) {
       throw ArgumentError(
-          'A value or element is required for FhirBase64Binary.');
+        'A value or element is required for FhirBase64Binary.',
+      );
     }
     if (rawValue is String) {
       validatedValue = _validateBase64(rawValue);
@@ -135,14 +140,18 @@ class FhirBase64Binary extends PrimitiveType
   // Validation
   // --------------------------------------------------------------------------
 
-  /// Validates a [String] as well-formed Base64 (ignoring whitespace).
+  /// Validate the string as Base64
   static String _validateBase64(String raw) {
-    // Remove any whitespace first:
-    final noWhitespace = raw.replaceAll(RegExp(r'\s'), '');
-    if (noWhitespace.length % 4 == 0 && _isBase64(noWhitespace)) {
-      return noWhitespace;
+    if (raw.length % 4 == 0 && _isBase64(raw)) {
+      return raw;
+    } else {
+      // If the raw has whitespace, try removing it, then re-check.
+      final formatted = raw.replaceAll(RegExp(r'\s'), '');
+      if (formatted.length % 4 == 0 && _isBase64(formatted)) {
+        return raw;
+      }
+      throw const FormatException('Invalid Base64 String');
     }
-    throw const FormatException('Invalid Base64 String');
   }
 
   /// Returns `true` if [input] can be Base64-decoded without error.
@@ -257,9 +266,10 @@ class FhirBase64Binary extends PrimitiveType
   /// Deep equality check for [FhirBase64Binary].
   @override
   bool equalsDeep(FhirBase? other) =>
-      other is FhirBase64Binary &&
-      valueString == other.valueString &&
-      element == other.element;
+      identical(this, other) ||
+      (other is FhirBase64Binary &&
+          other.valueString == valueString &&
+          other.element == element);
 
   /// Operator `==` override.
   @override

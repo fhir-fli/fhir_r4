@@ -140,8 +140,8 @@ class WorkerContext {
 
   // Utility methods for loading resources
   void loadStructureDefinition(StructureDefinition sd) {
-    if (sd.name.value != null) {
-      _structures[sd.name.value!] = sd;
+    if (sd.name.valueString != null) {
+      _structures[sd.name.valueString!] = sd;
     }
   }
 
@@ -150,7 +150,8 @@ class WorkerContext {
   }
 
   void loadResource(Resource resource) {
-    final uri = resource.id?.value ?? resource.meta?.versionId?.value;
+    final uri =
+        resource.id?.valueString ?? resource.meta?.versionId?.valueString;
     if (uri != null) {
       _resources[uri] = resource;
     }
@@ -390,13 +391,14 @@ class WorkerContext {
       if (isTxCaching &&
           cacheId != null &&
           vs.url != null &&
-          cached.contains('${vs.url!.value}|${vs.version?.value}')) {
+          cached
+              .contains('${vs.url!.valueString}|${vs.version?.valueString}')) {
         pin.parameter?.add(
           ParametersParameter(
             name: 'url'.toFhirString,
             valueX: FhirUri(
-              '${vs.url!.value}'
-              '${vs.version != null ? '|${vs.version!.value}' : ''}',
+              '${vs.url!.valueString}'
+              '${vs.version != null ? '|${vs.version!.valueString}' : ''}',
             ),
           ),
         );
@@ -417,7 +419,7 @@ class WorkerContext {
           ),
         );
         if (vs.url != null) {
-          cached.add('${vs.url!.value}|${vs.version?.value}');
+          cached.add('${vs.url!.valueString}|${vs.version?.valueString}');
         }
       }
       cache = true;
@@ -555,19 +557,19 @@ class WorkerContext {
       if (parameter.valueX != null) {
         final name = parameter.name;
         final value = parameter.valueX;
-        if (name.value == 'result' && value is FhirBoolean) {
-          ok = value.value ?? false;
-        } else if (name.value == 'message' && value is FhirString) {
-          message = value.value ?? 'No Message returned';
-        } else if (name.value == 'display' && value is FhirString) {
-          display = value.value;
-        } else if (name.value == 'system' && value is FhirString) {
-          system = value.value;
-        } else if (name.value == 'code' && value is FhirString) {
-          code = value.value;
-        } else if (name.value == 'cause' && value is FhirString) {
+        if (name.valueString == 'result' && value is FhirBoolean) {
+          ok = value.valueBoolean ?? false;
+        } else if (name.valueString == 'message' && value is FhirString) {
+          message = value.valueString ?? 'No Message returned';
+        } else if (name.valueString == 'display' && value is FhirString) {
+          display = value.valueString;
+        } else if (name.valueString == 'system' && value is FhirString) {
+          system = value.valueString;
+        } else if (name.valueString == 'code' && value is FhirString) {
+          code = value.valueString;
+        } else if (name.valueString == 'cause' && value is FhirString) {
           try {
-            final issueType = value.value ?? '';
+            final issueType = value.valueString ?? '';
             switch (issueType) {
               case 'unknown':
                 errorClass = TerminologyServiceErrorClass.unknown;

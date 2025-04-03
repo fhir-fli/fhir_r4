@@ -342,7 +342,10 @@ class FhirMetaBuilder extends DataTypeBuilder
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -415,7 +418,10 @@ class FhirMetaBuilder extends DataTypeBuilder
             return;
           } else if (child is FhirCanonicalBuilder) {
             // Add single element to existing list or create new list
-            profile = [...(profile ?? []), child];
+            profile = [
+              ...(profile ?? []),
+              child,
+            ];
             return;
           } else if (child is List<PrimitiveTypeBuilder>) {
             // Try to convert list of primitive types
@@ -458,7 +464,10 @@ class FhirMetaBuilder extends DataTypeBuilder
             return;
           } else if (child is CodingBuilder) {
             // Add single element to existing list or create new list
-            security = [...(security ?? []), child];
+            security = [
+              ...(security ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -471,7 +480,10 @@ class FhirMetaBuilder extends DataTypeBuilder
             return;
           } else if (child is CodingBuilder) {
             // Add single element to existing list or create new list
-            tag = [...(tag ?? []), child];
+            tag = [
+              ...(tag ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');

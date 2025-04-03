@@ -620,7 +620,10 @@ class OrganizationAffiliation extends DomainResource {
             return copyWith(contained: newList);
           } else if (child is Resource) {
             // Add single element to existing list or create new list
-            final newList = [...?contained, child];
+            final newList = [
+              ...?contained,
+              child,
+            ];
             return copyWith(contained: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -634,7 +637,10 @@ class OrganizationAffiliation extends DomainResource {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -648,7 +654,10 @@ class OrganizationAffiliation extends DomainResource {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -662,7 +671,10 @@ class OrganizationAffiliation extends DomainResource {
             return copyWith(identifier: newList);
           } else if (child is Identifier) {
             // Add single element to existing list or create new list
-            final newList = [...?identifier, child];
+            final newList = [
+              ...?identifier,
+              child,
+            ];
             return copyWith(identifier: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -708,7 +720,10 @@ class OrganizationAffiliation extends DomainResource {
             return copyWith(network: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...?network, child];
+            final newList = [
+              ...?network,
+              child,
+            ];
             return copyWith(network: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -722,7 +737,10 @@ class OrganizationAffiliation extends DomainResource {
             return copyWith(code: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...?code, child];
+            final newList = [
+              ...?code,
+              child,
+            ];
             return copyWith(code: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -736,7 +754,10 @@ class OrganizationAffiliation extends DomainResource {
             return copyWith(specialty: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...?specialty, child];
+            final newList = [
+              ...?specialty,
+              child,
+            ];
             return copyWith(specialty: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -750,7 +771,10 @@ class OrganizationAffiliation extends DomainResource {
             return copyWith(location: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...?location, child];
+            final newList = [
+              ...?location,
+              child,
+            ];
             return copyWith(location: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -764,7 +788,10 @@ class OrganizationAffiliation extends DomainResource {
             return copyWith(healthcareService: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...?healthcareService, child];
+            final newList = [
+              ...?healthcareService,
+              child,
+            ];
             return copyWith(healthcareService: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -778,7 +805,10 @@ class OrganizationAffiliation extends DomainResource {
             return copyWith(telecom: newList);
           } else if (child is ContactPoint) {
             // Add single element to existing list or create new list
-            final newList = [...?telecom, child];
+            final newList = [
+              ...?telecom,
+              child,
+            ];
             return copyWith(telecom: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -792,7 +822,10 @@ class OrganizationAffiliation extends DomainResource {
             return copyWith(endpoint: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...?endpoint, child];
+            final newList = [
+              ...?endpoint,
+              child,
+            ];
             return copyWith(endpoint: newList);
           } else {
             throw Exception('Invalid child type for $childName');

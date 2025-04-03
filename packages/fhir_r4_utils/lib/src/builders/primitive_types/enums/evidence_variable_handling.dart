@@ -6,7 +6,7 @@ part of '../primitive_types.dart';
 class EvidenceVariableHandlingBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   EvidenceVariableHandlingBuilder._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -20,7 +20,7 @@ class EvidenceVariableHandlingBuilder extends FhirCodeEnumBuilder {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory EvidenceVariableHandlingBuilder(
-    String? raw, {
+    String? rawValue, {
     FhirUriBuilder? system,
     FhirStringBuilder? version,
     FhirStringBuilder? display,
@@ -30,9 +30,10 @@ class EvidenceVariableHandlingBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
     return EvidenceVariableHandlingBuilder._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -46,7 +47,7 @@ class EvidenceVariableHandlingBuilder extends FhirCodeEnumBuilder {
 
   /// Create empty [EvidenceVariableHandlingBuilder] with element only
   factory EvidenceVariableHandlingBuilder.empty() =>
-      EvidenceVariableHandlingBuilder._(validatedValue: '');
+      EvidenceVariableHandlingBuilder._(valueString: '');
 
   /// Factory constructor to create [EvidenceVariableHandlingBuilder]
   /// from JSON.
@@ -63,7 +64,7 @@ class EvidenceVariableHandlingBuilder extends FhirCodeEnumBuilder {
       );
     }
     return EvidenceVariableHandlingBuilder._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
@@ -71,7 +72,7 @@ class EvidenceVariableHandlingBuilder extends FhirCodeEnumBuilder {
   /// continuous
   static EvidenceVariableHandlingBuilder continuous =
       EvidenceVariableHandlingBuilder._(
-    validatedValue: 'continuous',
+    valueString: 'continuous',
     system: 'http://hl7.org/fhir/ValueSet/variable-handling'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'continuous variable'.toFhirStringBuilder,
@@ -80,7 +81,7 @@ class EvidenceVariableHandlingBuilder extends FhirCodeEnumBuilder {
   /// dichotomous
   static EvidenceVariableHandlingBuilder dichotomous =
       EvidenceVariableHandlingBuilder._(
-    validatedValue: 'dichotomous',
+    valueString: 'dichotomous',
     system: 'http://hl7.org/fhir/ValueSet/variable-handling'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'dichotomous variable'.toFhirStringBuilder,
@@ -89,7 +90,7 @@ class EvidenceVariableHandlingBuilder extends FhirCodeEnumBuilder {
   /// ordinal
   static EvidenceVariableHandlingBuilder ordinal =
       EvidenceVariableHandlingBuilder._(
-    validatedValue: 'ordinal',
+    valueString: 'ordinal',
     system: 'http://hl7.org/fhir/ValueSet/variable-handling'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'ordinal variable'.toFhirStringBuilder,
@@ -98,7 +99,7 @@ class EvidenceVariableHandlingBuilder extends FhirCodeEnumBuilder {
   /// polychotomous
   static EvidenceVariableHandlingBuilder polychotomous =
       EvidenceVariableHandlingBuilder._(
-    validatedValue: 'polychotomous',
+    valueString: 'polychotomous',
     system: 'http://hl7.org/fhir/ValueSet/variable-handling'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'polychotomous variable'.toFhirStringBuilder,
@@ -106,7 +107,7 @@ class EvidenceVariableHandlingBuilder extends FhirCodeEnumBuilder {
 
   /// For instances where an Element is present but not value
   static EvidenceVariableHandlingBuilder elementOnly =
-      EvidenceVariableHandlingBuilder._(validatedValue: '');
+      EvidenceVariableHandlingBuilder._(valueString: '');
 
   /// List of all enum-like values
   static List<EvidenceVariableHandlingBuilder> values = [
@@ -119,31 +120,31 @@ class EvidenceVariableHandlingBuilder extends FhirCodeEnumBuilder {
   /// Clones the current instance
   @override
   EvidenceVariableHandlingBuilder clone() => EvidenceVariableHandlingBuilder._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
   EvidenceVariableHandlingBuilder withElement(ElementBuilder? newElement) {
     return EvidenceVariableHandlingBuilder._(
-        validatedValue: value, element: newElement,);
+        valueString: valueString, element: newElement,);
   }
 
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   EvidenceVariableHandlingBuilder copyWith({
-    String? newValue,
+    dynamic newValue,
     ElementBuilder? element,
     FhirStringBuilder? id,
     List<FhirExtensionBuilder>? extension_,
@@ -154,11 +155,12 @@ class EvidenceVariableHandlingBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError(
+          'Invalid input for EvidenceVariableHandling: $newValue',);
     }
     return EvidenceVariableHandlingBuilder._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
@@ -167,7 +169,7 @@ class EvidenceVariableHandlingBuilder extends FhirCodeEnumBuilder {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath,
+      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

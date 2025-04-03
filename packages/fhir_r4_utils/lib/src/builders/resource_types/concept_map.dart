@@ -680,6 +680,21 @@ class ConceptMapBuilder extends CanonicalResourceBuilder {
           if (child is CommonLanguagesBuilder) {
             language = child;
             return;
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              // For enums, try to create directly from the string value
+              try {
+                final converted = CommonLanguagesBuilder(stringValue);
+                language = converted;
+                return;
+              } catch (e) {
+                // Continue if enum creation fails
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
           throw Exception('Invalid child type for $childName');
         }
@@ -699,7 +714,10 @@ class ConceptMapBuilder extends CanonicalResourceBuilder {
             return;
           } else if (child is ResourceBuilder) {
             // Add single element to existing list or create new list
-            contained = [...(contained ?? []), child];
+            contained = [
+              ...(contained ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -712,7 +730,10 @@ class ConceptMapBuilder extends CanonicalResourceBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -725,7 +746,10 @@ class ConceptMapBuilder extends CanonicalResourceBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -823,6 +847,21 @@ class ConceptMapBuilder extends CanonicalResourceBuilder {
           if (child is PublicationStatusBuilder) {
             status = child;
             return;
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              // For enums, try to create directly from the string value
+              try {
+                final converted = PublicationStatusBuilder(stringValue);
+                status = converted;
+                return;
+              } catch (e) {
+                // Continue if enum creation fails
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
           throw Exception('Invalid child type for $childName');
         }
@@ -894,7 +933,10 @@ class ConceptMapBuilder extends CanonicalResourceBuilder {
             return;
           } else if (child is ContactDetailBuilder) {
             // Add single element to existing list or create new list
-            contact = [...(contact ?? []), child];
+            contact = [
+              ...(contact ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -927,7 +969,10 @@ class ConceptMapBuilder extends CanonicalResourceBuilder {
             return;
           } else if (child is UsageContextBuilder) {
             // Add single element to existing list or create new list
-            useContext = [...(useContext ?? []), child];
+            useContext = [
+              ...(useContext ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -940,7 +985,10 @@ class ConceptMapBuilder extends CanonicalResourceBuilder {
             return;
           } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            jurisdiction = [...(jurisdiction ?? []), child];
+            jurisdiction = [
+              ...(jurisdiction ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -1063,7 +1111,10 @@ class ConceptMapBuilder extends CanonicalResourceBuilder {
             return;
           } else if (child is ConceptMapGroupBuilder) {
             // Add single element to existing list or create new list
-            group = [...(group ?? []), child];
+            group = [
+              ...(group ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -1126,14 +1177,20 @@ class ConceptMapBuilder extends CanonicalResourceBuilder {
         return ['FhirMarkdownBuilder'];
       case 'source':
       case 'sourceX':
-        return ['FhirUriBuilder', 'FhirCanonicalBuilder'];
+        return [
+          'FhirUriBuilder',
+          'FhirCanonicalBuilder',
+        ];
       case 'sourceUri':
         return ['FhirUriBuilder'];
       case 'sourceCanonical':
         return ['FhirCanonicalBuilder'];
       case 'target':
       case 'targetX':
-        return ['FhirUriBuilder', 'FhirCanonicalBuilder'];
+        return [
+          'FhirUriBuilder',
+          'FhirCanonicalBuilder',
+        ];
       case 'targetUri':
         return ['FhirUriBuilder'];
       case 'targetCanonical':
@@ -1945,7 +2002,10 @@ class ConceptMapGroupBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -1958,7 +2018,10 @@ class ConceptMapGroupBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -2051,7 +2114,10 @@ class ConceptMapGroupBuilder extends BackboneElementBuilder {
             return;
           } else if (child is ConceptMapElementBuilder) {
             // Add single element to existing list or create new list
-            element = [...(element ?? []), child];
+            element = [
+              ...(element ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -2573,7 +2639,10 @@ class ConceptMapElementBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -2586,7 +2655,10 @@ class ConceptMapElementBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -2639,7 +2711,10 @@ class ConceptMapElementBuilder extends BackboneElementBuilder {
             return;
           } else if (child is ConceptMapTargetBuilder) {
             // Add single element to existing list or create new list
-            target = [...(target ?? []), child];
+            target = [
+              ...(target ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -3165,7 +3240,10 @@ class ConceptMapTargetBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -3178,7 +3256,10 @@ class ConceptMapTargetBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -3228,6 +3309,21 @@ class ConceptMapTargetBuilder extends BackboneElementBuilder {
           if (child is ConceptMapEquivalenceBuilder) {
             equivalence = child;
             return;
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              // For enums, try to create directly from the string value
+              try {
+                final converted = ConceptMapEquivalenceBuilder(stringValue);
+                equivalence = converted;
+                return;
+              } catch (e) {
+                // Continue if enum creation fails
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
           throw Exception('Invalid child type for $childName');
         }
@@ -3259,7 +3355,10 @@ class ConceptMapTargetBuilder extends BackboneElementBuilder {
             return;
           } else if (child is ConceptMapDependsOnBuilder) {
             // Add single element to existing list or create new list
-            dependsOn = [...(dependsOn ?? []), child];
+            dependsOn = [
+              ...(dependsOn ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -3272,7 +3371,10 @@ class ConceptMapTargetBuilder extends BackboneElementBuilder {
             return;
           } else if (child is ConceptMapDependsOnBuilder) {
             // Add single element to existing list or create new list
-            product = [...(product ?? []), child];
+            product = [
+              ...(product ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -3805,7 +3907,10 @@ class ConceptMapDependsOnBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -3818,7 +3923,10 @@ class ConceptMapDependsOnBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -4400,7 +4508,10 @@ class ConceptMapUnmappedBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -4413,7 +4524,10 @@ class ConceptMapUnmappedBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -4423,6 +4537,22 @@ class ConceptMapUnmappedBuilder extends BackboneElementBuilder {
           if (child is ConceptMapGroupUnmappedModeBuilder) {
             mode = child;
             return;
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              // For enums, try to create directly from the string value
+              try {
+                final converted =
+                    ConceptMapGroupUnmappedModeBuilder(stringValue);
+                mode = converted;
+                return;
+              } catch (e) {
+                // Continue if enum creation fails
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
           throw Exception('Invalid child type for $childName');
         }

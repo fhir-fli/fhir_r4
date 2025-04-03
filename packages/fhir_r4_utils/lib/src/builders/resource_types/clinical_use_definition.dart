@@ -554,6 +554,21 @@ class ClinicalUseDefinitionBuilder extends DomainResourceBuilder {
           if (child is CommonLanguagesBuilder) {
             language = child;
             return;
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              // For enums, try to create directly from the string value
+              try {
+                final converted = CommonLanguagesBuilder(stringValue);
+                language = converted;
+                return;
+              } catch (e) {
+                // Continue if enum creation fails
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
           throw Exception('Invalid child type for $childName');
         }
@@ -573,7 +588,10 @@ class ClinicalUseDefinitionBuilder extends DomainResourceBuilder {
             return;
           } else if (child is ResourceBuilder) {
             // Add single element to existing list or create new list
-            contained = [...(contained ?? []), child];
+            contained = [
+              ...(contained ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -586,7 +604,10 @@ class ClinicalUseDefinitionBuilder extends DomainResourceBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -599,7 +620,10 @@ class ClinicalUseDefinitionBuilder extends DomainResourceBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -612,7 +636,10 @@ class ClinicalUseDefinitionBuilder extends DomainResourceBuilder {
             return;
           } else if (child is IdentifierBuilder) {
             // Add single element to existing list or create new list
-            identifier = [...(identifier ?? []), child];
+            identifier = [
+              ...(identifier ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -622,6 +649,21 @@ class ClinicalUseDefinitionBuilder extends DomainResourceBuilder {
           if (child is ClinicalUseDefinitionTypeBuilder) {
             type = child;
             return;
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              // For enums, try to create directly from the string value
+              try {
+                final converted = ClinicalUseDefinitionTypeBuilder(stringValue);
+                type = converted;
+                return;
+              } catch (e) {
+                // Continue if enum creation fails
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
           throw Exception('Invalid child type for $childName');
         }
@@ -633,7 +675,10 @@ class ClinicalUseDefinitionBuilder extends DomainResourceBuilder {
             return;
           } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            category = [...(category ?? []), child];
+            category = [
+              ...(category ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -646,7 +691,10 @@ class ClinicalUseDefinitionBuilder extends DomainResourceBuilder {
             return;
           } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            subject = [...(subject ?? []), child];
+            subject = [
+              ...(subject ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -691,7 +739,10 @@ class ClinicalUseDefinitionBuilder extends DomainResourceBuilder {
             return;
           } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            population = [...(population ?? []), child];
+            population = [
+              ...(population ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -1438,7 +1489,10 @@ class ClinicalUseDefinitionContraindicationBuilder
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -1451,7 +1505,10 @@ class ClinicalUseDefinitionContraindicationBuilder
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -1480,7 +1537,10 @@ class ClinicalUseDefinitionContraindicationBuilder
             return;
           } else if (child is CodeableReferenceBuilder) {
             // Add single element to existing list or create new list
-            comorbidity = [...(comorbidity ?? []), child];
+            comorbidity = [
+              ...(comorbidity ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -1493,7 +1553,10 @@ class ClinicalUseDefinitionContraindicationBuilder
             return;
           } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            indication = [...(indication ?? []), child];
+            indication = [
+              ...(indication ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -1506,7 +1569,10 @@ class ClinicalUseDefinitionContraindicationBuilder
             return;
           } else if (child is ClinicalUseDefinitionOtherTherapyBuilder) {
             // Add single element to existing list or create new list
-            otherTherapy = [...(otherTherapy ?? []), child];
+            otherTherapy = [
+              ...(otherTherapy ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -1987,7 +2053,10 @@ class ClinicalUseDefinitionOtherTherapyBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -2000,7 +2069,10 @@ class ClinicalUseDefinitionOtherTherapyBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -2571,7 +2643,10 @@ class ClinicalUseDefinitionIndicationBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -2584,7 +2659,10 @@ class ClinicalUseDefinitionIndicationBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -2613,7 +2691,10 @@ class ClinicalUseDefinitionIndicationBuilder extends BackboneElementBuilder {
             return;
           } else if (child is CodeableReferenceBuilder) {
             // Add single element to existing list or create new list
-            comorbidity = [...(comorbidity ?? []), child];
+            comorbidity = [
+              ...(comorbidity ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -2669,7 +2750,10 @@ class ClinicalUseDefinitionIndicationBuilder extends BackboneElementBuilder {
             return;
           } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            undesirableEffect = [...(undesirableEffect ?? []), child];
+            undesirableEffect = [
+              ...(undesirableEffect ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -2682,7 +2766,10 @@ class ClinicalUseDefinitionIndicationBuilder extends BackboneElementBuilder {
             return;
           } else if (child is ClinicalUseDefinitionOtherTherapyBuilder) {
             // Add single element to existing list or create new list
-            otherTherapy = [...(otherTherapy ?? []), child];
+            otherTherapy = [
+              ...(otherTherapy ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -2713,7 +2800,10 @@ class ClinicalUseDefinitionIndicationBuilder extends BackboneElementBuilder {
         return ['CodeableReferenceBuilder'];
       case 'duration':
       case 'durationX':
-        return ['RangeBuilder', 'FhirStringBuilder'];
+        return [
+          'RangeBuilder',
+          'FhirStringBuilder',
+        ];
       case 'durationRange':
         return ['RangeBuilder'];
       case 'durationString':
@@ -3267,7 +3357,10 @@ class ClinicalUseDefinitionInteractionBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -3280,7 +3373,10 @@ class ClinicalUseDefinitionInteractionBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -3293,7 +3389,10 @@ class ClinicalUseDefinitionInteractionBuilder extends BackboneElementBuilder {
             return;
           } else if (child is ClinicalUseDefinitionInteractantBuilder) {
             // Add single element to existing list or create new list
-            interactant = [...(interactant ?? []), child];
+            interactant = [
+              ...(interactant ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -3330,7 +3429,10 @@ class ClinicalUseDefinitionInteractionBuilder extends BackboneElementBuilder {
             return;
           } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            management = [...(management ?? []), child];
+            management = [
+              ...(management ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -3816,7 +3918,10 @@ class ClinicalUseDefinitionInteractantBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -3829,7 +3934,10 @@ class ClinicalUseDefinitionInteractantBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -3887,7 +3995,10 @@ class ClinicalUseDefinitionInteractantBuilder extends BackboneElementBuilder {
         return ['FhirExtensionBuilder'];
       case 'item':
       case 'itemX':
-        return ['ReferenceBuilder', 'CodeableConceptBuilder'];
+        return [
+          'ReferenceBuilder',
+          'CodeableConceptBuilder',
+        ];
       case 'itemReference':
         return ['ReferenceBuilder'];
       case 'itemCodeableConcept':
@@ -4303,7 +4414,10 @@ class ClinicalUseDefinitionUndesirableEffectBuilder
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -4316,7 +4430,10 @@ class ClinicalUseDefinitionUndesirableEffectBuilder
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -4788,7 +4905,10 @@ class ClinicalUseDefinitionWarningBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -4801,7 +4921,10 @@ class ClinicalUseDefinitionWarningBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');

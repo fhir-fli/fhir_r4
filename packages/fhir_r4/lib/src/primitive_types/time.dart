@@ -49,7 +49,9 @@ class FhirTime extends PrimitiveType
   // Public Factories
   // --------------------------------------------------------------------------
 
-  /// Creates a [FhirTime] from [rawValue], validating if it's a valid HH:MM[:SS[.sss]] format.
+  /// Creates a [FhirTime] from [rawValue], validating if it's a valid
+  /// HH:MM[:SS[.sss]] format.
+  // ignore: sort_unnamed_constructors_first
   factory FhirTime(
     dynamic rawValue, {
     Element? element,
@@ -69,7 +71,8 @@ class FhirTime extends PrimitiveType
     );
   }
 
-  /// Creates a [FhirTime] from specific [hour], [minute], [second], [millisecond].
+  /// Creates a [FhirTime] from specific [hour], [minute], [second],
+  /// [millisecond].
   ///
   /// - [hour] must be [0..23].
   /// - [minute], [second] must be [0..59].
@@ -80,7 +83,7 @@ class FhirTime extends PrimitiveType
     int? second,
     int? millisecond,
   }) {
-    var h = hour?.toString().padLeft(2, '0') ?? '00';
+    final h = hour?.toString().padLeft(2, '0') ?? '00';
     var output = h;
 
     if (minute != null) {
@@ -125,7 +128,8 @@ class FhirTime extends PrimitiveType
     }
   }
 
-  /// Attempts to parse [input] into a [FhirTime]. Returns `null` if parsing fails.
+  /// Attempts to parse [input] into a [FhirTime]. Returns `null`
+  /// if parsing fails.
   static FhirTime? tryParse(dynamic input) {
     if (input is String) {
       try {
@@ -190,7 +194,8 @@ class FhirTime extends PrimitiveType
       other.valueString == valueString &&
       other.element == element;
 
-  /// Overridden equality operator checking if [other] is a [FhirTime] with same string.
+  /// Overridden equality operator checking if [other] is a [FhirTime]
+  /// with same string.
   @override
   // ignore: avoid_equals_and_hash_code_on_mutable_classes
   bool operator ==(Object other) => _compare(Comparator.equal, other) ?? false;
@@ -256,7 +261,8 @@ class FhirTime extends PrimitiveType
   // Arithmetic (Add / Subtract Time)
   // --------------------------------------------------------------------------
 
-  /// Adds hours, minutes, seconds, and milliseconds to this time (wrapping at 24h).
+  /// Adds hours, minutes, seconds, and milliseconds to this time
+  /// (wrapping at 24h).
   FhirTime plus({
     int hours = 0,
     int minutes = 0,
@@ -280,7 +286,8 @@ class FhirTime extends PrimitiveType
     );
   }
 
-  /// Subtracts hours, minutes, seconds, milliseconds from this time (wrapping at 24h).
+  /// Subtracts hours, minutes, seconds, milliseconds from this time
+  /// (wrapping at 24h).
   FhirTime subtract({
     int hours = 0,
     int minutes = 0,
@@ -408,40 +415,35 @@ class FhirTime extends PrimitiveType
 
     if (valueString == null || rhs.valueString == null) return null;
 
-    // Parse them into numeric parts. Possibly HH:MM:SS[.mmm]
-    final lhsParts = valueString!.split(RegExp(r'[:\.]'));
-    final rhsParts = rhs.valueString!.split(RegExp(r'[:\.]'));
+    final lhsParts = valueString!.split(':');
+    final rhsParts = rhs.valueString!.split(':');
 
-    // Pad with zeros if lengths differ
-    final maxLen = math.max(lhsParts.length, rhsParts.length);
-    while (lhsParts.length < maxLen) lhsParts.add('0');
-    while (rhsParts.length < maxLen) rhsParts.add('0');
+    if (lhsParts.length != rhsParts.length) return null;
 
     // Compare each numeric component
-    for (var i = 0; i < maxLen; i++) {
+    for (var i = 0; i < lhsParts.length; i++) {
       final lhsVal = double.parse(lhsParts[i]);
       final rhsVal = double.parse(rhsParts[i]);
       switch (comparator) {
         case Comparator.equal:
         case Comparator.equivalent:
           if (lhsVal != rhsVal) return false;
-          break; // keep checking until mismatch or end
+        // keep checking until mismatch or end
         case Comparator.greaterThan:
           if (lhsVal < rhsVal) return false;
           if (lhsVal > rhsVal) return true;
-          break; // next component
+        // next component
         case Comparator.lessThan:
           if (lhsVal > rhsVal) return false;
           if (lhsVal < rhsVal) return true;
-          break;
+
         case Comparator.greaterThanEqual:
           if (lhsVal < rhsVal) return false;
           if (lhsVal > rhsVal) return true;
-          break;
+
         case Comparator.lessThanEqual:
           if (lhsVal > rhsVal) return false;
           if (lhsVal < rhsVal) return true;
-          break;
       }
     }
 

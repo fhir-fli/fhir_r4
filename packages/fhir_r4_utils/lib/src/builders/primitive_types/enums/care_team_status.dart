@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class CareTeamStatusBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   CareTeamStatusBuilder._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class CareTeamStatusBuilder extends FhirCodeEnumBuilder {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory CareTeamStatusBuilder(
-    String? raw, {
+    String? rawValue, {
     FhirUriBuilder? system,
     FhirStringBuilder? version,
     FhirStringBuilder? display,
@@ -29,9 +29,10 @@ class CareTeamStatusBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
     return CareTeamStatusBuilder._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -45,7 +46,7 @@ class CareTeamStatusBuilder extends FhirCodeEnumBuilder {
 
   /// Create empty [CareTeamStatusBuilder] with element only
   factory CareTeamStatusBuilder.empty() =>
-      CareTeamStatusBuilder._(validatedValue: '');
+      CareTeamStatusBuilder._(valueString: '');
 
   /// Factory constructor to create [CareTeamStatusBuilder]
   /// from JSON.
@@ -62,14 +63,14 @@ class CareTeamStatusBuilder extends FhirCodeEnumBuilder {
       );
     }
     return CareTeamStatusBuilder._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// proposed
   static CareTeamStatusBuilder proposed = CareTeamStatusBuilder._(
-    validatedValue: 'proposed',
+    valueString: 'proposed',
     system: 'http://hl7.org/fhir/ValueSet/care-team-status'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Proposed'.toFhirStringBuilder,
@@ -77,7 +78,7 @@ class CareTeamStatusBuilder extends FhirCodeEnumBuilder {
 
   /// active
   static CareTeamStatusBuilder active = CareTeamStatusBuilder._(
-    validatedValue: 'active',
+    valueString: 'active',
     system: 'http://hl7.org/fhir/ValueSet/care-team-status'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Active'.toFhirStringBuilder,
@@ -85,7 +86,7 @@ class CareTeamStatusBuilder extends FhirCodeEnumBuilder {
 
   /// suspended
   static CareTeamStatusBuilder suspended = CareTeamStatusBuilder._(
-    validatedValue: 'suspended',
+    valueString: 'suspended',
     system: 'http://hl7.org/fhir/ValueSet/care-team-status'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Suspended'.toFhirStringBuilder,
@@ -93,7 +94,7 @@ class CareTeamStatusBuilder extends FhirCodeEnumBuilder {
 
   /// inactive
   static CareTeamStatusBuilder inactive = CareTeamStatusBuilder._(
-    validatedValue: 'inactive',
+    valueString: 'inactive',
     system: 'http://hl7.org/fhir/ValueSet/care-team-status'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Inactive'.toFhirStringBuilder,
@@ -101,7 +102,7 @@ class CareTeamStatusBuilder extends FhirCodeEnumBuilder {
 
   /// entered_in_error
   static CareTeamStatusBuilder entered_in_error = CareTeamStatusBuilder._(
-    validatedValue: 'entered-in-error',
+    valueString: 'entered-in-error',
     system: 'http://hl7.org/fhir/ValueSet/care-team-status'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Entered in Error'.toFhirStringBuilder,
@@ -109,7 +110,7 @@ class CareTeamStatusBuilder extends FhirCodeEnumBuilder {
 
   /// For instances where an Element is present but not value
   static CareTeamStatusBuilder elementOnly =
-      CareTeamStatusBuilder._(validatedValue: '');
+      CareTeamStatusBuilder._(valueString: '');
 
   /// List of all enum-like values
   static List<CareTeamStatusBuilder> values = [
@@ -123,30 +124,31 @@ class CareTeamStatusBuilder extends FhirCodeEnumBuilder {
   /// Clones the current instance
   @override
   CareTeamStatusBuilder clone() => CareTeamStatusBuilder._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
   CareTeamStatusBuilder withElement(ElementBuilder? newElement) {
-    return CareTeamStatusBuilder._(validatedValue: value, element: newElement);
+    return CareTeamStatusBuilder._(
+        valueString: valueString, element: newElement,);
   }
 
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   CareTeamStatusBuilder copyWith({
-    String? newValue,
+    dynamic newValue,
     ElementBuilder? element,
     FhirStringBuilder? id,
     List<FhirExtensionBuilder>? extension_,
@@ -157,11 +159,11 @@ class CareTeamStatusBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError('Invalid input for CareTeamStatus: $newValue');
     }
     return CareTeamStatusBuilder._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
@@ -170,7 +172,7 @@ class CareTeamStatusBuilder extends FhirCodeEnumBuilder {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath,
+      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

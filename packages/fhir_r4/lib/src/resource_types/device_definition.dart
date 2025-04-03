@@ -858,7 +858,10 @@ class DeviceDefinition extends DomainResource {
             return copyWith(contained: newList);
           } else if (child is Resource) {
             // Add single element to existing list or create new list
-            final newList = [...?contained, child];
+            final newList = [
+              ...?contained,
+              child,
+            ];
             return copyWith(contained: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -872,7 +875,10 @@ class DeviceDefinition extends DomainResource {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -886,7 +892,10 @@ class DeviceDefinition extends DomainResource {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -900,7 +909,10 @@ class DeviceDefinition extends DomainResource {
             return copyWith(identifier: newList);
           } else if (child is Identifier) {
             // Add single element to existing list or create new list
-            final newList = [...?identifier, child];
+            final newList = [
+              ...?identifier,
+              child,
+            ];
             return copyWith(identifier: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -914,7 +926,10 @@ class DeviceDefinition extends DomainResource {
             return copyWith(udiDeviceIdentifier: newList);
           } else if (child is DeviceDefinitionUdiDeviceIdentifier) {
             // Add single element to existing list or create new list
-            final newList = [...?udiDeviceIdentifier, child];
+            final newList = [
+              ...?udiDeviceIdentifier,
+              child,
+            ];
             return copyWith(udiDeviceIdentifier: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -958,7 +973,10 @@ class DeviceDefinition extends DomainResource {
             return copyWith(deviceName: newList);
           } else if (child is DeviceDefinitionDeviceName) {
             // Add single element to existing list or create new list
-            final newList = [...?deviceName, child];
+            final newList = [
+              ...?deviceName,
+              child,
+            ];
             return copyWith(deviceName: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -988,7 +1006,10 @@ class DeviceDefinition extends DomainResource {
             return copyWith(specialization: newList);
           } else if (child is DeviceDefinitionSpecialization) {
             // Add single element to existing list or create new list
-            final newList = [...?specialization, child];
+            final newList = [
+              ...?specialization,
+              child,
+            ];
             return copyWith(specialization: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1002,7 +1023,10 @@ class DeviceDefinition extends DomainResource {
             return copyWith(version: newList);
           } else if (child is FhirString) {
             // Add single element to existing list or create new list
-            final newList = [...?version, child];
+            final newList = [
+              ...?version,
+              child,
+            ];
             return copyWith(version: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1016,7 +1040,10 @@ class DeviceDefinition extends DomainResource {
             return copyWith(safety: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...?safety, child];
+            final newList = [
+              ...?safety,
+              child,
+            ];
             return copyWith(safety: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1030,7 +1057,10 @@ class DeviceDefinition extends DomainResource {
             return copyWith(shelfLifeStorage: newList);
           } else if (child is ProductShelfLife) {
             // Add single element to existing list or create new list
-            final newList = [...?shelfLifeStorage, child];
+            final newList = [
+              ...?shelfLifeStorage,
+              child,
+            ];
             return copyWith(shelfLifeStorage: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1052,7 +1082,10 @@ class DeviceDefinition extends DomainResource {
             return copyWith(languageCode: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...?languageCode, child];
+            final newList = [
+              ...?languageCode,
+              child,
+            ];
             return copyWith(languageCode: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1066,7 +1099,10 @@ class DeviceDefinition extends DomainResource {
             return copyWith(capability: newList);
           } else if (child is DeviceDefinitionCapability) {
             // Add single element to existing list or create new list
-            final newList = [...?capability, child];
+            final newList = [
+              ...?capability,
+              child,
+            ];
             return copyWith(capability: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1080,7 +1116,10 @@ class DeviceDefinition extends DomainResource {
             return copyWith(property: newList);
           } else if (child is DeviceDefinitionProperty) {
             // Add single element to existing list or create new list
-            final newList = [...?property, child];
+            final newList = [
+              ...?property,
+              child,
+            ];
             return copyWith(property: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1102,7 +1141,10 @@ class DeviceDefinition extends DomainResource {
             return copyWith(contact: newList);
           } else if (child is ContactPoint) {
             // Add single element to existing list or create new list
-            final newList = [...?contact, child];
+            final newList = [
+              ...?contact,
+              child,
+            ];
             return copyWith(contact: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1132,7 +1174,10 @@ class DeviceDefinition extends DomainResource {
             return copyWith(note: newList);
           } else if (child is Annotation) {
             // Add single element to existing list or create new list
-            final newList = [...?note, child];
+            final newList = [
+              ...?note,
+              child,
+            ];
             return copyWith(note: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1162,7 +1207,10 @@ class DeviceDefinition extends DomainResource {
             return copyWith(material: newList);
           } else if (child is DeviceDefinitionMaterial) {
             // Add single element to existing list or create new list
-            final newList = [...?material, child];
+            final newList = [
+              ...?material,
+              child,
+            ];
             return copyWith(material: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1200,7 +1248,10 @@ class DeviceDefinition extends DomainResource {
         return ['DeviceDefinitionUdiDeviceIdentifier'];
       case 'manufacturer':
       case 'manufacturerX':
-        return ['FhirString', 'Reference'];
+        return [
+          'FhirString',
+          'Reference',
+        ];
       case 'manufacturerString':
         return ['FhirString'];
       case 'manufacturerReference':
@@ -2214,7 +2265,10 @@ class DeviceDefinitionUdiDeviceIdentifier extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2228,7 +2282,10 @@ class DeviceDefinitionUdiDeviceIdentifier extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2711,7 +2768,10 @@ class DeviceDefinitionDeviceName extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2725,7 +2785,10 @@ class DeviceDefinitionDeviceName extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -3182,7 +3245,10 @@ class DeviceDefinitionSpecialization extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -3196,7 +3262,10 @@ class DeviceDefinitionSpecialization extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -3655,7 +3724,10 @@ class DeviceDefinitionCapability extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -3669,7 +3741,10 @@ class DeviceDefinitionCapability extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -3691,7 +3766,10 @@ class DeviceDefinitionCapability extends BackboneElement {
             return copyWith(description: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...?description, child];
+            final newList = [
+              ...?description,
+              child,
+            ];
             return copyWith(description: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -4164,7 +4242,10 @@ class DeviceDefinitionProperty extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -4178,7 +4259,10 @@ class DeviceDefinitionProperty extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -4200,7 +4284,10 @@ class DeviceDefinitionProperty extends BackboneElement {
             return copyWith(valueQuantity: newList);
           } else if (child is Quantity) {
             // Add single element to existing list or create new list
-            final newList = [...?valueQuantity, child];
+            final newList = [
+              ...?valueQuantity,
+              child,
+            ];
             return copyWith(valueQuantity: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -4214,7 +4301,10 @@ class DeviceDefinitionProperty extends BackboneElement {
             return copyWith(valueCode: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...?valueCode, child];
+            final newList = [
+              ...?valueCode,
+              child,
+            ];
             return copyWith(valueCode: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -4702,7 +4792,10 @@ class DeviceDefinitionMaterial extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -4716,7 +4809,10 @@ class DeviceDefinitionMaterial extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');

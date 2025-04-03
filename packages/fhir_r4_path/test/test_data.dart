@@ -6,7 +6,7 @@ import 'package:fhir_r4_path/fhir_r4_path.dart';
 final worker = WorkerContext();
 final testEngine = FHIRPathEngine(worker);
 List<dynamic> toJsonList(List<FhirBase> list) =>
-    list.map((e) => e is PrimitiveType ? e.value : e.toJson()).toList();
+    list.map((e) => e is PrimitiveType ? e.valueString : e.toJson()).toList();
 
 final patient1 = Patient.fromJson(<String, dynamic>{
   'resourceType': 'Patient',

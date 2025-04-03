@@ -860,6 +860,21 @@ class DeviceRequestBuilder extends DomainResourceBuilder {
           if (child is CommonLanguagesBuilder) {
             language = child;
             return;
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              // For enums, try to create directly from the string value
+              try {
+                final converted = CommonLanguagesBuilder(stringValue);
+                language = converted;
+                return;
+              } catch (e) {
+                // Continue if enum creation fails
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
           throw Exception('Invalid child type for $childName');
         }
@@ -879,7 +894,10 @@ class DeviceRequestBuilder extends DomainResourceBuilder {
             return;
           } else if (child is ResourceBuilder) {
             // Add single element to existing list or create new list
-            contained = [...(contained ?? []), child];
+            contained = [
+              ...(contained ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -892,7 +910,10 @@ class DeviceRequestBuilder extends DomainResourceBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -905,7 +926,10 @@ class DeviceRequestBuilder extends DomainResourceBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -918,7 +942,10 @@ class DeviceRequestBuilder extends DomainResourceBuilder {
             return;
           } else if (child is IdentifierBuilder) {
             // Add single element to existing list or create new list
-            identifier = [...(identifier ?? []), child];
+            identifier = [
+              ...(identifier ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -931,7 +958,10 @@ class DeviceRequestBuilder extends DomainResourceBuilder {
             return;
           } else if (child is FhirCanonicalBuilder) {
             // Add single element to existing list or create new list
-            instantiatesCanonical = [...(instantiatesCanonical ?? []), child];
+            instantiatesCanonical = [
+              ...(instantiatesCanonical ?? []),
+              child,
+            ];
             return;
           } else if (child is List<PrimitiveTypeBuilder>) {
             // Try to convert list of primitive types
@@ -977,7 +1007,10 @@ class DeviceRequestBuilder extends DomainResourceBuilder {
             return;
           } else if (child is FhirUriBuilder) {
             // Add single element to existing list or create new list
-            instantiatesUri = [...(instantiatesUri ?? []), child];
+            instantiatesUri = [
+              ...(instantiatesUri ?? []),
+              child,
+            ];
             return;
           } else if (child is List<PrimitiveTypeBuilder>) {
             // Try to convert list of primitive types
@@ -1020,7 +1053,10 @@ class DeviceRequestBuilder extends DomainResourceBuilder {
             return;
           } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            basedOn = [...(basedOn ?? []), child];
+            basedOn = [
+              ...(basedOn ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -1033,7 +1069,10 @@ class DeviceRequestBuilder extends DomainResourceBuilder {
             return;
           } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            priorRequest = [...(priorRequest ?? []), child];
+            priorRequest = [
+              ...(priorRequest ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -1051,6 +1090,21 @@ class DeviceRequestBuilder extends DomainResourceBuilder {
           if (child is RequestStatusBuilder) {
             status = child;
             return;
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              // For enums, try to create directly from the string value
+              try {
+                final converted = RequestStatusBuilder(stringValue);
+                status = converted;
+                return;
+              } catch (e) {
+                // Continue if enum creation fails
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
           throw Exception('Invalid child type for $childName');
         }
@@ -1059,6 +1113,21 @@ class DeviceRequestBuilder extends DomainResourceBuilder {
           if (child is RequestIntentBuilder) {
             intent = child;
             return;
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              // For enums, try to create directly from the string value
+              try {
+                final converted = RequestIntentBuilder(stringValue);
+                intent = converted;
+                return;
+              } catch (e) {
+                // Continue if enum creation fails
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
           throw Exception('Invalid child type for $childName');
         }
@@ -1067,6 +1136,21 @@ class DeviceRequestBuilder extends DomainResourceBuilder {
           if (child is RequestPriorityBuilder) {
             priority = child;
             return;
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              // For enums, try to create directly from the string value
+              try {
+                final converted = RequestPriorityBuilder(stringValue);
+                priority = converted;
+                return;
+              } catch (e) {
+                // Continue if enum creation fails
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
           throw Exception('Invalid child type for $childName');
         }
@@ -1113,7 +1197,10 @@ class DeviceRequestBuilder extends DomainResourceBuilder {
             return;
           } else if (child is DeviceRequestParameterBuilder) {
             // Add single element to existing list or create new list
-            parameter = [...(parameter ?? []), child];
+            parameter = [
+              ...(parameter ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -1234,7 +1321,10 @@ class DeviceRequestBuilder extends DomainResourceBuilder {
             return;
           } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            reasonCode = [...(reasonCode ?? []), child];
+            reasonCode = [
+              ...(reasonCode ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -1247,7 +1337,10 @@ class DeviceRequestBuilder extends DomainResourceBuilder {
             return;
           } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            reasonReference = [...(reasonReference ?? []), child];
+            reasonReference = [
+              ...(reasonReference ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -1260,7 +1353,10 @@ class DeviceRequestBuilder extends DomainResourceBuilder {
             return;
           } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            insurance = [...(insurance ?? []), child];
+            insurance = [
+              ...(insurance ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -1273,7 +1369,10 @@ class DeviceRequestBuilder extends DomainResourceBuilder {
             return;
           } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            supportingInfo = [...(supportingInfo ?? []), child];
+            supportingInfo = [
+              ...(supportingInfo ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -1286,7 +1385,10 @@ class DeviceRequestBuilder extends DomainResourceBuilder {
             return;
           } else if (child is AnnotationBuilder) {
             // Add single element to existing list or create new list
-            note = [...(note ?? []), child];
+            note = [
+              ...(note ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -1299,7 +1401,10 @@ class DeviceRequestBuilder extends DomainResourceBuilder {
             return;
           } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            relevantHistory = [...(relevantHistory ?? []), child];
+            relevantHistory = [
+              ...(relevantHistory ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -1350,7 +1455,10 @@ class DeviceRequestBuilder extends DomainResourceBuilder {
         return ['FhirCodeEnumBuilder'];
       case 'code':
       case 'codeX':
-        return ['ReferenceBuilder', 'CodeableConceptBuilder'];
+        return [
+          'ReferenceBuilder',
+          'CodeableConceptBuilder',
+        ];
       case 'codeReference':
         return ['ReferenceBuilder'];
       case 'codeCodeableConcept':
@@ -1363,7 +1471,11 @@ class DeviceRequestBuilder extends DomainResourceBuilder {
         return ['ReferenceBuilder'];
       case 'occurrence':
       case 'occurrenceX':
-        return ['FhirDateTimeBuilder', 'PeriodBuilder', 'TimingBuilder'];
+        return [
+          'FhirDateTimeBuilder',
+          'PeriodBuilder',
+          'TimingBuilder',
+        ];
       case 'occurrenceDateTime':
         return ['FhirDateTimeBuilder'];
       case 'occurrencePeriod':
@@ -2255,7 +2367,10 @@ class DeviceRequestParameterBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -2268,7 +2383,10 @@ class DeviceRequestParameterBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');

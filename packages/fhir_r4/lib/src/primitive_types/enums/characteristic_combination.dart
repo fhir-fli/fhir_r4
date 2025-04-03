@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class CharacteristicCombination extends FhirCodeEnum {
   // Private underscore constructor for internal use.
   CharacteristicCombination._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class CharacteristicCombination extends FhirCodeEnum {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory CharacteristicCombination(
-    String? raw, {
+    String? rawValue, {
     FhirUri? system,
     FhirString? version,
     FhirString? display,
@@ -29,9 +29,10 @@ class CharacteristicCombination extends FhirCodeEnum {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCode._validateCode(rawValue) : null;
     return CharacteristicCombination._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -45,7 +46,7 @@ class CharacteristicCombination extends FhirCodeEnum {
 
   /// Create empty [CharacteristicCombination] with element only
   factory CharacteristicCombination.empty() =>
-      CharacteristicCombination._(validatedValue: '');
+      CharacteristicCombination._(valueString: '');
 
   /// Factory constructor to create [CharacteristicCombination] from JSON.
   factory CharacteristicCombination.fromJson(Map<String, dynamic> json) {
@@ -60,7 +61,7 @@ class CharacteristicCombination extends FhirCodeEnum {
       );
     }
     return CharacteristicCombination._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
@@ -68,7 +69,7 @@ class CharacteristicCombination extends FhirCodeEnum {
   /// intersection
   static final CharacteristicCombination intersection =
       CharacteristicCombination._(
-    validatedValue: 'intersection',
+    valueString: 'intersection',
     system: 'http://hl7.org/fhir/ValueSet/characteristic-combination'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'intersection'.toFhirString,
@@ -76,7 +77,7 @@ class CharacteristicCombination extends FhirCodeEnum {
 
   /// union
   static final CharacteristicCombination union = CharacteristicCombination._(
-    validatedValue: 'union',
+    valueString: 'union',
     system: 'http://hl7.org/fhir/ValueSet/characteristic-combination'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'union'.toFhirString,
@@ -84,7 +85,7 @@ class CharacteristicCombination extends FhirCodeEnum {
 
   /// For instances where an Element is present but not value
   static final CharacteristicCombination elementOnly =
-      CharacteristicCombination._(validatedValue: '');
+      CharacteristicCombination._(valueString: '');
 
   /// List of all enum-like values
   static final List<CharacteristicCombination> values = [
@@ -95,14 +96,14 @@ class CharacteristicCombination extends FhirCodeEnum {
   /// Clones the current instance
   @override
   CharacteristicCombination clone() => CharacteristicCombination._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   CharacteristicCombination withElement(Element? newElement) {
     return CharacteristicCombination._(
-      validatedValue: value,
+      valueString: valueString,
       element: newElement,
     );
   }
@@ -110,18 +111,18 @@ class CharacteristicCombination extends FhirCodeEnum {
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   CharacteristicCombination copyWith({
-    String? newValue,
+    dynamic newValue,
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
@@ -132,11 +133,12 @@ class CharacteristicCombination extends FhirCodeEnum {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError(
+          'Invalid input for CharacteristicCombination: $newValue',);
     }
     return CharacteristicCombination._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

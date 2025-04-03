@@ -879,7 +879,10 @@ class Encounter extends DomainResource {
             return copyWith(contained: newList);
           } else if (child is Resource) {
             // Add single element to existing list or create new list
-            final newList = [...?contained, child];
+            final newList = [
+              ...?contained,
+              child,
+            ];
             return copyWith(contained: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -893,7 +896,10 @@ class Encounter extends DomainResource {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -907,7 +913,10 @@ class Encounter extends DomainResource {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -921,7 +930,10 @@ class Encounter extends DomainResource {
             return copyWith(identifier: newList);
           } else if (child is Identifier) {
             // Add single element to existing list or create new list
-            final newList = [...?identifier, child];
+            final newList = [
+              ...?identifier,
+              child,
+            ];
             return copyWith(identifier: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -943,7 +955,10 @@ class Encounter extends DomainResource {
             return copyWith(statusHistory: newList);
           } else if (child is EncounterStatusHistory) {
             // Add single element to existing list or create new list
-            final newList = [...?statusHistory, child];
+            final newList = [
+              ...?statusHistory,
+              child,
+            ];
             return copyWith(statusHistory: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -965,7 +980,10 @@ class Encounter extends DomainResource {
             return copyWith(classHistory: newList);
           } else if (child is EncounterClassHistory) {
             // Add single element to existing list or create new list
-            final newList = [...?classHistory, child];
+            final newList = [
+              ...?classHistory,
+              child,
+            ];
             return copyWith(classHistory: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -979,7 +997,10 @@ class Encounter extends DomainResource {
             return copyWith(type: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...?type, child];
+            final newList = [
+              ...?type,
+              child,
+            ];
             return copyWith(type: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1017,7 +1038,10 @@ class Encounter extends DomainResource {
             return copyWith(episodeOfCare: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...?episodeOfCare, child];
+            final newList = [
+              ...?episodeOfCare,
+              child,
+            ];
             return copyWith(episodeOfCare: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1031,7 +1055,10 @@ class Encounter extends DomainResource {
             return copyWith(basedOn: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...?basedOn, child];
+            final newList = [
+              ...?basedOn,
+              child,
+            ];
             return copyWith(basedOn: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1045,7 +1072,10 @@ class Encounter extends DomainResource {
             return copyWith(participant: newList);
           } else if (child is EncounterParticipant) {
             // Add single element to existing list or create new list
-            final newList = [...?participant, child];
+            final newList = [
+              ...?participant,
+              child,
+            ];
             return copyWith(participant: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1059,7 +1089,10 @@ class Encounter extends DomainResource {
             return copyWith(appointment: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...?appointment, child];
+            final newList = [
+              ...?appointment,
+              child,
+            ];
             return copyWith(appointment: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1089,7 +1122,10 @@ class Encounter extends DomainResource {
             return copyWith(reasonCode: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...?reasonCode, child];
+            final newList = [
+              ...?reasonCode,
+              child,
+            ];
             return copyWith(reasonCode: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1103,7 +1139,10 @@ class Encounter extends DomainResource {
             return copyWith(reasonReference: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...?reasonReference, child];
+            final newList = [
+              ...?reasonReference,
+              child,
+            ];
             return copyWith(reasonReference: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1117,7 +1156,10 @@ class Encounter extends DomainResource {
             return copyWith(diagnosis: newList);
           } else if (child is EncounterDiagnosis) {
             // Add single element to existing list or create new list
-            final newList = [...?diagnosis, child];
+            final newList = [
+              ...?diagnosis,
+              child,
+            ];
             return copyWith(diagnosis: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1131,7 +1173,10 @@ class Encounter extends DomainResource {
             return copyWith(account: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...?account, child];
+            final newList = [
+              ...?account,
+              child,
+            ];
             return copyWith(account: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1153,7 +1198,10 @@ class Encounter extends DomainResource {
             return copyWith(location: newList);
           } else if (child is EncounterLocation) {
             // Add single element to existing list or create new list
-            final newList = [...?location, child];
+            final newList = [
+              ...?location,
+              child,
+            ];
             return copyWith(location: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2203,7 +2251,10 @@ class EncounterStatusHistory extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2217,7 +2268,10 @@ class EncounterStatusHistory extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2676,7 +2730,10 @@ class EncounterClassHistory extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2690,7 +2747,10 @@ class EncounterClassHistory extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -3170,7 +3230,10 @@ class EncounterParticipant extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -3184,7 +3247,10 @@ class EncounterParticipant extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -3198,7 +3264,10 @@ class EncounterParticipant extends BackboneElement {
             return copyWith(type: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...?type, child];
+            final newList = [
+              ...?type,
+              child,
+            ];
             return copyWith(type: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -3703,7 +3772,10 @@ class EncounterDiagnosis extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -3717,7 +3789,10 @@ class EncounterDiagnosis extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -4354,7 +4429,10 @@ class EncounterHospitalization extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -4368,7 +4446,10 @@ class EncounterHospitalization extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -4414,7 +4495,10 @@ class EncounterHospitalization extends BackboneElement {
             return copyWith(dietPreference: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...?dietPreference, child];
+            final newList = [
+              ...?dietPreference,
+              child,
+            ];
             return copyWith(dietPreference: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -4428,7 +4512,10 @@ class EncounterHospitalization extends BackboneElement {
             return copyWith(specialCourtesy: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...?specialCourtesy, child];
+            final newList = [
+              ...?specialCourtesy,
+              child,
+            ];
             return copyWith(specialCourtesy: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -4442,7 +4529,10 @@ class EncounterHospitalization extends BackboneElement {
             return copyWith(specialArrangement: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...?specialArrangement, child];
+            final newList = [
+              ...?specialArrangement,
+              child,
+            ];
             return copyWith(specialArrangement: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -5102,7 +5192,10 @@ class EncounterLocation extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -5116,7 +5209,10 @@ class EncounterLocation extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');

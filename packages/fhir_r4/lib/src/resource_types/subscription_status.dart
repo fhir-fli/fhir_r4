@@ -491,7 +491,10 @@ class SubscriptionStatus extends DomainResource {
             return copyWith(contained: newList);
           } else if (child is Resource) {
             // Add single element to existing list or create new list
-            final newList = [...?contained, child];
+            final newList = [
+              ...?contained,
+              child,
+            ];
             return copyWith(contained: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -505,7 +508,10 @@ class SubscriptionStatus extends DomainResource {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -519,7 +525,10 @@ class SubscriptionStatus extends DomainResource {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -557,7 +566,10 @@ class SubscriptionStatus extends DomainResource {
             return copyWith(notificationEvent: newList);
           } else if (child is SubscriptionStatusNotificationEvent) {
             // Add single element to existing list or create new list
-            final newList = [...?notificationEvent, child];
+            final newList = [
+              ...?notificationEvent,
+              child,
+            ];
             return copyWith(notificationEvent: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -587,7 +599,10 @@ class SubscriptionStatus extends DomainResource {
             return copyWith(error: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...?error, child];
+            final newList = [
+              ...?error,
+              child,
+            ];
             return copyWith(error: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1293,7 +1308,10 @@ class SubscriptionStatusNotificationEvent extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1307,7 +1325,10 @@ class SubscriptionStatusNotificationEvent extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1345,7 +1366,10 @@ class SubscriptionStatusNotificationEvent extends BackboneElement {
             return copyWith(additionalContext: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...?additionalContext, child];
+            final newList = [
+              ...?additionalContext,
+              child,
+            ];
             return copyWith(additionalContext: newList);
           } else {
             throw Exception('Invalid child type for $childName');

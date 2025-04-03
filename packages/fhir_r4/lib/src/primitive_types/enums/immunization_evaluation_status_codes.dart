@@ -8,7 +8,7 @@ part of '../primitive_types.dart';
 class ImmunizationEvaluationStatusCodes extends FhirCodeEnum {
   // Private underscore constructor for internal use.
   ImmunizationEvaluationStatusCodes._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -22,7 +22,7 @@ class ImmunizationEvaluationStatusCodes extends FhirCodeEnum {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory ImmunizationEvaluationStatusCodes(
-    String? raw, {
+    String? rawValue, {
     FhirUri? system,
     FhirString? version,
     FhirString? display,
@@ -32,9 +32,10 @@ class ImmunizationEvaluationStatusCodes extends FhirCodeEnum {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCode._validateCode(rawValue) : null;
     return ImmunizationEvaluationStatusCodes._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -48,7 +49,7 @@ class ImmunizationEvaluationStatusCodes extends FhirCodeEnum {
 
   /// Create empty [ImmunizationEvaluationStatusCodes] with element only
   factory ImmunizationEvaluationStatusCodes.empty() =>
-      ImmunizationEvaluationStatusCodes._(validatedValue: '');
+      ImmunizationEvaluationStatusCodes._(valueString: '');
 
   /// Factory constructor to create [ImmunizationEvaluationStatusCodes] from JSON.
   factory ImmunizationEvaluationStatusCodes.fromJson(
@@ -64,7 +65,7 @@ class ImmunizationEvaluationStatusCodes extends FhirCodeEnum {
       );
     }
     return ImmunizationEvaluationStatusCodes._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
@@ -72,7 +73,7 @@ class ImmunizationEvaluationStatusCodes extends FhirCodeEnum {
   /// in_progress
   static final ImmunizationEvaluationStatusCodes in_progress =
       ImmunizationEvaluationStatusCodes._(
-    validatedValue: 'in-progress',
+    valueString: 'in-progress',
     system:
         'http://hl7.org/fhir/ValueSet/immunization-evaluation-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
@@ -82,7 +83,7 @@ class ImmunizationEvaluationStatusCodes extends FhirCodeEnum {
   /// not_done
   static final ImmunizationEvaluationStatusCodes not_done =
       ImmunizationEvaluationStatusCodes._(
-    validatedValue: 'not-done',
+    valueString: 'not-done',
     system:
         'http://hl7.org/fhir/ValueSet/immunization-evaluation-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
@@ -92,7 +93,7 @@ class ImmunizationEvaluationStatusCodes extends FhirCodeEnum {
   /// on_hold
   static final ImmunizationEvaluationStatusCodes on_hold =
       ImmunizationEvaluationStatusCodes._(
-    validatedValue: 'on-hold',
+    valueString: 'on-hold',
     system:
         'http://hl7.org/fhir/ValueSet/immunization-evaluation-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
@@ -102,7 +103,7 @@ class ImmunizationEvaluationStatusCodes extends FhirCodeEnum {
   /// completed
   static final ImmunizationEvaluationStatusCodes completed =
       ImmunizationEvaluationStatusCodes._(
-    validatedValue: 'completed',
+    valueString: 'completed',
     system:
         'http://hl7.org/fhir/ValueSet/immunization-evaluation-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
@@ -112,7 +113,7 @@ class ImmunizationEvaluationStatusCodes extends FhirCodeEnum {
   /// entered_in_error
   static final ImmunizationEvaluationStatusCodes entered_in_error =
       ImmunizationEvaluationStatusCodes._(
-    validatedValue: 'entered-in-error',
+    valueString: 'entered-in-error',
     system:
         'http://hl7.org/fhir/ValueSet/immunization-evaluation-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
@@ -122,7 +123,7 @@ class ImmunizationEvaluationStatusCodes extends FhirCodeEnum {
   /// stopped
   static final ImmunizationEvaluationStatusCodes stopped =
       ImmunizationEvaluationStatusCodes._(
-    validatedValue: 'stopped',
+    valueString: 'stopped',
     system:
         'http://hl7.org/fhir/ValueSet/immunization-evaluation-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
@@ -132,7 +133,7 @@ class ImmunizationEvaluationStatusCodes extends FhirCodeEnum {
   /// unknown
   static final ImmunizationEvaluationStatusCodes unknown =
       ImmunizationEvaluationStatusCodes._(
-    validatedValue: 'unknown',
+    valueString: 'unknown',
     system:
         'http://hl7.org/fhir/ValueSet/immunization-evaluation-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
@@ -141,7 +142,7 @@ class ImmunizationEvaluationStatusCodes extends FhirCodeEnum {
 
   /// For instances where an Element is present but not value
   static final ImmunizationEvaluationStatusCodes elementOnly =
-      ImmunizationEvaluationStatusCodes._(validatedValue: '');
+      ImmunizationEvaluationStatusCodes._(valueString: '');
 
   /// List of all enum-like values
   static final List<ImmunizationEvaluationStatusCodes> values = [
@@ -158,14 +159,14 @@ class ImmunizationEvaluationStatusCodes extends FhirCodeEnum {
   @override
   ImmunizationEvaluationStatusCodes clone() =>
       ImmunizationEvaluationStatusCodes._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ImmunizationEvaluationStatusCodes withElement(Element? newElement) {
     return ImmunizationEvaluationStatusCodes._(
-      validatedValue: value,
+      valueString: valueString,
       element: newElement,
     );
   }
@@ -173,18 +174,18 @@ class ImmunizationEvaluationStatusCodes extends FhirCodeEnum {
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   ImmunizationEvaluationStatusCodes copyWith({
-    String? newValue,
+    dynamic newValue,
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
@@ -195,11 +196,12 @@ class ImmunizationEvaluationStatusCodes extends FhirCodeEnum {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError(
+          'Invalid input for ImmunizationEvaluationStatusCodes: $newValue',);
     }
     return ImmunizationEvaluationStatusCodes._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

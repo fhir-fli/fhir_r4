@@ -6,7 +6,7 @@ part of '../primitive_types.dart';
 class CarePlanActivityStatusBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   CarePlanActivityStatusBuilder._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -20,7 +20,7 @@ class CarePlanActivityStatusBuilder extends FhirCodeEnumBuilder {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory CarePlanActivityStatusBuilder(
-    String? raw, {
+    String? rawValue, {
     FhirUriBuilder? system,
     FhirStringBuilder? version,
     FhirStringBuilder? display,
@@ -30,9 +30,10 @@ class CarePlanActivityStatusBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
     return CarePlanActivityStatusBuilder._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -46,7 +47,7 @@ class CarePlanActivityStatusBuilder extends FhirCodeEnumBuilder {
 
   /// Create empty [CarePlanActivityStatusBuilder] with element only
   factory CarePlanActivityStatusBuilder.empty() =>
-      CarePlanActivityStatusBuilder._(validatedValue: '');
+      CarePlanActivityStatusBuilder._(valueString: '');
 
   /// Factory constructor to create [CarePlanActivityStatusBuilder]
   /// from JSON.
@@ -63,7 +64,7 @@ class CarePlanActivityStatusBuilder extends FhirCodeEnumBuilder {
       );
     }
     return CarePlanActivityStatusBuilder._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
@@ -71,7 +72,7 @@ class CarePlanActivityStatusBuilder extends FhirCodeEnumBuilder {
   /// not_started
   static CarePlanActivityStatusBuilder not_started =
       CarePlanActivityStatusBuilder._(
-    validatedValue: 'not-started',
+    valueString: 'not-started',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-status'
         .toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -81,7 +82,7 @@ class CarePlanActivityStatusBuilder extends FhirCodeEnumBuilder {
   /// scheduled
   static CarePlanActivityStatusBuilder scheduled =
       CarePlanActivityStatusBuilder._(
-    validatedValue: 'scheduled',
+    valueString: 'scheduled',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-status'
         .toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -91,7 +92,7 @@ class CarePlanActivityStatusBuilder extends FhirCodeEnumBuilder {
   /// in_progress
   static CarePlanActivityStatusBuilder in_progress =
       CarePlanActivityStatusBuilder._(
-    validatedValue: 'in-progress',
+    valueString: 'in-progress',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-status'
         .toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -101,7 +102,7 @@ class CarePlanActivityStatusBuilder extends FhirCodeEnumBuilder {
   /// on_hold
   static CarePlanActivityStatusBuilder on_hold =
       CarePlanActivityStatusBuilder._(
-    validatedValue: 'on-hold',
+    valueString: 'on-hold',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-status'
         .toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -111,7 +112,7 @@ class CarePlanActivityStatusBuilder extends FhirCodeEnumBuilder {
   /// completed
   static CarePlanActivityStatusBuilder completed =
       CarePlanActivityStatusBuilder._(
-    validatedValue: 'completed',
+    valueString: 'completed',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-status'
         .toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -121,7 +122,7 @@ class CarePlanActivityStatusBuilder extends FhirCodeEnumBuilder {
   /// cancelled
   static CarePlanActivityStatusBuilder cancelled =
       CarePlanActivityStatusBuilder._(
-    validatedValue: 'cancelled',
+    valueString: 'cancelled',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-status'
         .toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -131,7 +132,7 @@ class CarePlanActivityStatusBuilder extends FhirCodeEnumBuilder {
   /// stopped
   static CarePlanActivityStatusBuilder stopped =
       CarePlanActivityStatusBuilder._(
-    validatedValue: 'stopped',
+    valueString: 'stopped',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-status'
         .toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -141,7 +142,7 @@ class CarePlanActivityStatusBuilder extends FhirCodeEnumBuilder {
   /// unknown
   static CarePlanActivityStatusBuilder unknown =
       CarePlanActivityStatusBuilder._(
-    validatedValue: 'unknown',
+    valueString: 'unknown',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-status'
         .toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -151,7 +152,7 @@ class CarePlanActivityStatusBuilder extends FhirCodeEnumBuilder {
   /// entered_in_error
   static CarePlanActivityStatusBuilder entered_in_error =
       CarePlanActivityStatusBuilder._(
-    validatedValue: 'entered-in-error',
+    valueString: 'entered-in-error',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-status'
         .toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -160,7 +161,7 @@ class CarePlanActivityStatusBuilder extends FhirCodeEnumBuilder {
 
   /// For instances where an Element is present but not value
   static CarePlanActivityStatusBuilder elementOnly =
-      CarePlanActivityStatusBuilder._(validatedValue: '');
+      CarePlanActivityStatusBuilder._(valueString: '');
 
   /// List of all enum-like values
   static List<CarePlanActivityStatusBuilder> values = [
@@ -178,31 +179,31 @@ class CarePlanActivityStatusBuilder extends FhirCodeEnumBuilder {
   /// Clones the current instance
   @override
   CarePlanActivityStatusBuilder clone() => CarePlanActivityStatusBuilder._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
   CarePlanActivityStatusBuilder withElement(ElementBuilder? newElement) {
     return CarePlanActivityStatusBuilder._(
-        validatedValue: value, element: newElement,);
+        valueString: valueString, element: newElement,);
   }
 
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   CarePlanActivityStatusBuilder copyWith({
-    String? newValue,
+    dynamic newValue,
     ElementBuilder? element,
     FhirStringBuilder? id,
     List<FhirExtensionBuilder>? extension_,
@@ -213,11 +214,12 @@ class CarePlanActivityStatusBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError(
+          'Invalid input for CarePlanActivityStatus: $newValue',);
     }
     return CarePlanActivityStatusBuilder._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
@@ -226,7 +228,7 @@ class CarePlanActivityStatusBuilder extends FhirCodeEnumBuilder {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath,
+      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

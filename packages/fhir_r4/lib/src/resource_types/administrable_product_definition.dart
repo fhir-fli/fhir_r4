@@ -596,7 +596,10 @@ class AdministrableProductDefinition extends DomainResource {
             return copyWith(contained: newList);
           } else if (child is Resource) {
             // Add single element to existing list or create new list
-            final newList = [...?contained, child];
+            final newList = [
+              ...?contained,
+              child,
+            ];
             return copyWith(contained: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -610,7 +613,10 @@ class AdministrableProductDefinition extends DomainResource {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -624,7 +630,10 @@ class AdministrableProductDefinition extends DomainResource {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -638,7 +647,10 @@ class AdministrableProductDefinition extends DomainResource {
             return copyWith(identifier: newList);
           } else if (child is Identifier) {
             // Add single element to existing list or create new list
-            final newList = [...?identifier, child];
+            final newList = [
+              ...?identifier,
+              child,
+            ];
             return copyWith(identifier: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -660,7 +672,10 @@ class AdministrableProductDefinition extends DomainResource {
             return copyWith(formOf: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...?formOf, child];
+            final newList = [
+              ...?formOf,
+              child,
+            ];
             return copyWith(formOf: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -690,7 +705,10 @@ class AdministrableProductDefinition extends DomainResource {
             return copyWith(producedFrom: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...?producedFrom, child];
+            final newList = [
+              ...?producedFrom,
+              child,
+            ];
             return copyWith(producedFrom: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -704,7 +722,10 @@ class AdministrableProductDefinition extends DomainResource {
             return copyWith(ingredient: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...?ingredient, child];
+            final newList = [
+              ...?ingredient,
+              child,
+            ];
             return copyWith(ingredient: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -726,7 +747,10 @@ class AdministrableProductDefinition extends DomainResource {
             return copyWith(property: newList);
           } else if (child is AdministrableProductDefinitionProperty) {
             // Add single element to existing list or create new list
-            final newList = [...?property, child];
+            final newList = [
+              ...?property,
+              child,
+            ];
             return copyWith(property: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -742,7 +766,10 @@ class AdministrableProductDefinition extends DomainResource {
           } else if (child
               is AdministrableProductDefinitionRouteOfAdministration) {
             // Add single element to existing list or create new list
-            final newList = [...routeOfAdministration, child];
+            final newList = [
+              ...routeOfAdministration,
+              child,
+            ];
             return copyWith(routeOfAdministration: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1541,7 +1568,10 @@ class AdministrableProductDefinitionProperty extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1555,7 +1585,10 @@ class AdministrableProductDefinitionProperty extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2250,7 +2283,10 @@ class AdministrableProductDefinitionRouteOfAdministration
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2264,7 +2300,10 @@ class AdministrableProductDefinitionRouteOfAdministration
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2326,7 +2365,10 @@ class AdministrableProductDefinitionRouteOfAdministration
             return copyWith(targetSpecies: newList);
           } else if (child is AdministrableProductDefinitionTargetSpecies) {
             // Add single element to existing list or create new list
-            final newList = [...?targetSpecies, child];
+            final newList = [
+              ...?targetSpecies,
+              child,
+            ];
             return copyWith(targetSpecies: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2884,7 +2926,10 @@ class AdministrableProductDefinitionTargetSpecies extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2898,7 +2943,10 @@ class AdministrableProductDefinitionTargetSpecies extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2920,7 +2968,10 @@ class AdministrableProductDefinitionTargetSpecies extends BackboneElement {
             return copyWith(withdrawalPeriod: newList);
           } else if (child is AdministrableProductDefinitionWithdrawalPeriod) {
             // Add single element to existing list or create new list
-            final newList = [...?withdrawalPeriod, child];
+            final newList = [
+              ...?withdrawalPeriod,
+              child,
+            ];
             return copyWith(withdrawalPeriod: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -3388,7 +3439,10 @@ class AdministrableProductDefinitionWithdrawalPeriod extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -3402,7 +3456,10 @@ class AdministrableProductDefinitionWithdrawalPeriod extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');

@@ -520,7 +520,10 @@ class Ingredient extends DomainResource {
             return copyWith(contained: newList);
           } else if (child is Resource) {
             // Add single element to existing list or create new list
-            final newList = [...?contained, child];
+            final newList = [
+              ...?contained,
+              child,
+            ];
             return copyWith(contained: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -534,7 +537,10 @@ class Ingredient extends DomainResource {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -548,7 +554,10 @@ class Ingredient extends DomainResource {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -578,7 +587,10 @@ class Ingredient extends DomainResource {
             return copyWith(for_: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...?for_, child];
+            final newList = [
+              ...?for_,
+              child,
+            ];
             return copyWith(for_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -600,7 +612,10 @@ class Ingredient extends DomainResource {
             return copyWith(function_: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...?function_, child];
+            final newList = [
+              ...?function_,
+              child,
+            ];
             return copyWith(function_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -622,7 +637,10 @@ class Ingredient extends DomainResource {
             return copyWith(manufacturer: newList);
           } else if (child is IngredientManufacturer) {
             // Add single element to existing list or create new list
-            final newList = [...?manufacturer, child];
+            final newList = [
+              ...?manufacturer,
+              child,
+            ];
             return copyWith(manufacturer: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1315,7 +1333,10 @@ class IngredientManufacturer extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1329,7 +1350,10 @@ class IngredientManufacturer extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1792,7 +1816,10 @@ class IngredientSubstance extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1806,7 +1833,10 @@ class IngredientSubstance extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1828,7 +1858,10 @@ class IngredientSubstance extends BackboneElement {
             return copyWith(strength: newList);
           } else if (child is IngredientStrength) {
             // Add single element to existing list or create new list
-            final newList = [...?strength, child];
+            final newList = [
+              ...?strength,
+              child,
+            ];
             return copyWith(strength: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2443,7 +2476,10 @@ class IngredientStrength extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2457,7 +2493,10 @@ class IngredientStrength extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2555,7 +2594,10 @@ class IngredientStrength extends BackboneElement {
             return copyWith(country: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...?country, child];
+            final newList = [
+              ...?country,
+              child,
+            ];
             return copyWith(country: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2569,7 +2611,10 @@ class IngredientStrength extends BackboneElement {
             return copyWith(referenceStrength: newList);
           } else if (child is IngredientReferenceStrength) {
             // Add single element to existing list or create new list
-            final newList = [...?referenceStrength, child];
+            final newList = [
+              ...?referenceStrength,
+              child,
+            ];
             return copyWith(referenceStrength: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2593,7 +2638,10 @@ class IngredientStrength extends BackboneElement {
         return ['FhirExtension'];
       case 'presentation':
       case 'presentationX':
-        return ['Ratio', 'RatioRange'];
+        return [
+          'Ratio',
+          'RatioRange',
+        ];
       case 'presentationRatio':
         return ['Ratio'];
       case 'presentationRatioRange':
@@ -2602,7 +2650,10 @@ class IngredientStrength extends BackboneElement {
         return ['FhirString'];
       case 'concentration':
       case 'concentrationX':
-        return ['Ratio', 'RatioRange'];
+        return [
+          'Ratio',
+          'RatioRange',
+        ];
       case 'concentrationRatio':
         return ['Ratio'];
       case 'concentrationRatioRange':
@@ -3219,7 +3270,10 @@ class IngredientReferenceStrength extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -3233,7 +3287,10 @@ class IngredientReferenceStrength extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -3293,7 +3350,10 @@ class IngredientReferenceStrength extends BackboneElement {
             return copyWith(country: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...?country, child];
+            final newList = [
+              ...?country,
+              child,
+            ];
             return copyWith(country: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -3319,7 +3379,10 @@ class IngredientReferenceStrength extends BackboneElement {
         return ['CodeableReference'];
       case 'strength':
       case 'strengthX':
-        return ['Ratio', 'RatioRange'];
+        return [
+          'Ratio',
+          'RatioRange',
+        ];
       case 'strengthRatio':
         return ['Ratio'];
       case 'strengthRatioRange':

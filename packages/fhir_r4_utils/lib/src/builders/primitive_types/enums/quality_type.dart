@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class QualityTypeBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   QualityTypeBuilder._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class QualityTypeBuilder extends FhirCodeEnumBuilder {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory QualityTypeBuilder(
-    String? raw, {
+    String? rawValue, {
     FhirUriBuilder? system,
     FhirStringBuilder? version,
     FhirStringBuilder? display,
@@ -29,9 +29,10 @@ class QualityTypeBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
     return QualityTypeBuilder._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -44,8 +45,7 @@ class QualityTypeBuilder extends FhirCodeEnumBuilder {
   }
 
   /// Create empty [QualityTypeBuilder] with element only
-  factory QualityTypeBuilder.empty() =>
-      QualityTypeBuilder._(validatedValue: '');
+  factory QualityTypeBuilder.empty() => QualityTypeBuilder._(valueString: '');
 
   /// Factory constructor to create [QualityTypeBuilder]
   /// from JSON.
@@ -62,14 +62,14 @@ class QualityTypeBuilder extends FhirCodeEnumBuilder {
       );
     }
     return QualityTypeBuilder._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// indel
   static QualityTypeBuilder indel = QualityTypeBuilder._(
-    validatedValue: 'indel',
+    valueString: 'indel',
     system: 'http://hl7.org/fhir/ValueSet/quality-type'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'INDEL Comparison'.toFhirStringBuilder,
@@ -77,7 +77,7 @@ class QualityTypeBuilder extends FhirCodeEnumBuilder {
 
   /// snp
   static QualityTypeBuilder snp = QualityTypeBuilder._(
-    validatedValue: 'snp',
+    valueString: 'snp',
     system: 'http://hl7.org/fhir/ValueSet/quality-type'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'SNP Comparison'.toFhirStringBuilder,
@@ -85,15 +85,14 @@ class QualityTypeBuilder extends FhirCodeEnumBuilder {
 
   /// unknown
   static QualityTypeBuilder unknown = QualityTypeBuilder._(
-    validatedValue: 'unknown',
+    valueString: 'unknown',
     system: 'http://hl7.org/fhir/ValueSet/quality-type'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'UNKNOWN Comparison'.toFhirStringBuilder,
   );
 
   /// For instances where an Element is present but not value
-  static QualityTypeBuilder elementOnly =
-      QualityTypeBuilder._(validatedValue: '');
+  static QualityTypeBuilder elementOnly = QualityTypeBuilder._(valueString: '');
 
   /// List of all enum-like values
   static List<QualityTypeBuilder> values = [
@@ -105,30 +104,30 @@ class QualityTypeBuilder extends FhirCodeEnumBuilder {
   /// Clones the current instance
   @override
   QualityTypeBuilder clone() => QualityTypeBuilder._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
   QualityTypeBuilder withElement(ElementBuilder? newElement) {
-    return QualityTypeBuilder._(validatedValue: value, element: newElement);
+    return QualityTypeBuilder._(valueString: valueString, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   QualityTypeBuilder copyWith({
-    String? newValue,
+    dynamic newValue,
     ElementBuilder? element,
     FhirStringBuilder? id,
     List<FhirExtensionBuilder>? extension_,
@@ -139,11 +138,11 @@ class QualityTypeBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError('Invalid input for QualityType: $newValue');
     }
     return QualityTypeBuilder._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
@@ -152,7 +151,7 @@ class QualityTypeBuilder extends FhirCodeEnumBuilder {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath,
+      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

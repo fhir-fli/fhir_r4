@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class ProvenanceEntityRoleBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   ProvenanceEntityRoleBuilder._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class ProvenanceEntityRoleBuilder extends FhirCodeEnumBuilder {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory ProvenanceEntityRoleBuilder(
-    String? raw, {
+    String? rawValue, {
     FhirUriBuilder? system,
     FhirStringBuilder? version,
     FhirStringBuilder? display,
@@ -29,9 +29,10 @@ class ProvenanceEntityRoleBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
     return ProvenanceEntityRoleBuilder._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -45,7 +46,7 @@ class ProvenanceEntityRoleBuilder extends FhirCodeEnumBuilder {
 
   /// Create empty [ProvenanceEntityRoleBuilder] with element only
   factory ProvenanceEntityRoleBuilder.empty() =>
-      ProvenanceEntityRoleBuilder._(validatedValue: '');
+      ProvenanceEntityRoleBuilder._(valueString: '');
 
   /// Factory constructor to create [ProvenanceEntityRoleBuilder]
   /// from JSON.
@@ -62,14 +63,14 @@ class ProvenanceEntityRoleBuilder extends FhirCodeEnumBuilder {
       );
     }
     return ProvenanceEntityRoleBuilder._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// derivation
   static ProvenanceEntityRoleBuilder derivation = ProvenanceEntityRoleBuilder._(
-    validatedValue: 'derivation',
+    valueString: 'derivation',
     system:
         'http://hl7.org/fhir/ValueSet/provenance-entity-role'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -78,7 +79,7 @@ class ProvenanceEntityRoleBuilder extends FhirCodeEnumBuilder {
 
   /// revision
   static ProvenanceEntityRoleBuilder revision = ProvenanceEntityRoleBuilder._(
-    validatedValue: 'revision',
+    valueString: 'revision',
     system:
         'http://hl7.org/fhir/ValueSet/provenance-entity-role'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -87,7 +88,7 @@ class ProvenanceEntityRoleBuilder extends FhirCodeEnumBuilder {
 
   /// quotation
   static ProvenanceEntityRoleBuilder quotation = ProvenanceEntityRoleBuilder._(
-    validatedValue: 'quotation',
+    valueString: 'quotation',
     system:
         'http://hl7.org/fhir/ValueSet/provenance-entity-role'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -96,7 +97,7 @@ class ProvenanceEntityRoleBuilder extends FhirCodeEnumBuilder {
 
   /// source
   static ProvenanceEntityRoleBuilder source = ProvenanceEntityRoleBuilder._(
-    validatedValue: 'source',
+    valueString: 'source',
     system:
         'http://hl7.org/fhir/ValueSet/provenance-entity-role'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -105,7 +106,7 @@ class ProvenanceEntityRoleBuilder extends FhirCodeEnumBuilder {
 
   /// removal
   static ProvenanceEntityRoleBuilder removal = ProvenanceEntityRoleBuilder._(
-    validatedValue: 'removal',
+    valueString: 'removal',
     system:
         'http://hl7.org/fhir/ValueSet/provenance-entity-role'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -114,7 +115,7 @@ class ProvenanceEntityRoleBuilder extends FhirCodeEnumBuilder {
 
   /// For instances where an Element is present but not value
   static ProvenanceEntityRoleBuilder elementOnly =
-      ProvenanceEntityRoleBuilder._(validatedValue: '');
+      ProvenanceEntityRoleBuilder._(valueString: '');
 
   /// List of all enum-like values
   static List<ProvenanceEntityRoleBuilder> values = [
@@ -128,31 +129,31 @@ class ProvenanceEntityRoleBuilder extends FhirCodeEnumBuilder {
   /// Clones the current instance
   @override
   ProvenanceEntityRoleBuilder clone() => ProvenanceEntityRoleBuilder._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
   ProvenanceEntityRoleBuilder withElement(ElementBuilder? newElement) {
     return ProvenanceEntityRoleBuilder._(
-        validatedValue: value, element: newElement,);
+        valueString: valueString, element: newElement,);
   }
 
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   ProvenanceEntityRoleBuilder copyWith({
-    String? newValue,
+    dynamic newValue,
     ElementBuilder? element,
     FhirStringBuilder? id,
     List<FhirExtensionBuilder>? extension_,
@@ -163,11 +164,11 @@ class ProvenanceEntityRoleBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError('Invalid input for ProvenanceEntityRole: $newValue');
     }
     return ProvenanceEntityRoleBuilder._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
@@ -176,7 +177,7 @@ class ProvenanceEntityRoleBuilder extends FhirCodeEnumBuilder {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath,
+      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

@@ -356,7 +356,10 @@ class HumanName extends DataType
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -394,7 +397,10 @@ class HumanName extends DataType
             return copyWith(given: newList);
           } else if (child is FhirString) {
             // Add single element to existing list or create new list
-            final newList = [...?given, child];
+            final newList = [
+              ...?given,
+              child,
+            ];
             return copyWith(given: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -408,7 +414,10 @@ class HumanName extends DataType
             return copyWith(prefix: newList);
           } else if (child is FhirString) {
             // Add single element to existing list or create new list
-            final newList = [...?prefix, child];
+            final newList = [
+              ...?prefix,
+              child,
+            ];
             return copyWith(prefix: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -422,7 +431,10 @@ class HumanName extends DataType
             return copyWith(suffix: newList);
           } else if (child is FhirString) {
             // Add single element to existing list or create new list
-            final newList = [...?suffix, child];
+            final newList = [
+              ...?suffix,
+              child,
+            ];
             return copyWith(suffix: newList);
           } else {
             throw Exception('Invalid child type for $childName');

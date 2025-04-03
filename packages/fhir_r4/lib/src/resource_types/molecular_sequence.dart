@@ -694,7 +694,10 @@ class MolecularSequence extends DomainResource {
             return copyWith(contained: newList);
           } else if (child is Resource) {
             // Add single element to existing list or create new list
-            final newList = [...?contained, child];
+            final newList = [
+              ...?contained,
+              child,
+            ];
             return copyWith(contained: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -708,7 +711,10 @@ class MolecularSequence extends DomainResource {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -722,7 +728,10 @@ class MolecularSequence extends DomainResource {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -736,7 +745,10 @@ class MolecularSequence extends DomainResource {
             return copyWith(identifier: newList);
           } else if (child is Identifier) {
             // Add single element to existing list or create new list
-            final newList = [...?identifier, child];
+            final newList = [
+              ...?identifier,
+              child,
+            ];
             return copyWith(identifier: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -814,7 +826,10 @@ class MolecularSequence extends DomainResource {
             return copyWith(variant: newList);
           } else if (child is MolecularSequenceVariant) {
             // Add single element to existing list or create new list
-            final newList = [...?variant, child];
+            final newList = [
+              ...?variant,
+              child,
+            ];
             return copyWith(variant: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -836,7 +851,10 @@ class MolecularSequence extends DomainResource {
             return copyWith(quality: newList);
           } else if (child is MolecularSequenceQuality) {
             // Add single element to existing list or create new list
-            final newList = [...?quality, child];
+            final newList = [
+              ...?quality,
+              child,
+            ];
             return copyWith(quality: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -858,7 +876,10 @@ class MolecularSequence extends DomainResource {
             return copyWith(repository: newList);
           } else if (child is MolecularSequenceRepository) {
             // Add single element to existing list or create new list
-            final newList = [...?repository, child];
+            final newList = [
+              ...?repository,
+              child,
+            ];
             return copyWith(repository: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -872,7 +893,10 @@ class MolecularSequence extends DomainResource {
             return copyWith(pointer: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...?pointer, child];
+            final newList = [
+              ...?pointer,
+              child,
+            ];
             return copyWith(pointer: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -886,7 +910,10 @@ class MolecularSequence extends DomainResource {
             return copyWith(structureVariant: newList);
           } else if (child is MolecularSequenceStructureVariant) {
             // Add single element to existing list or create new list
-            final newList = [...?structureVariant, child];
+            final newList = [
+              ...?structureVariant,
+              child,
+            ];
             return copyWith(structureVariant: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1904,7 +1931,10 @@ class MolecularSequenceReferenceSeq extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1918,7 +1948,10 @@ class MolecularSequenceReferenceSeq extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2681,7 +2714,10 @@ class MolecularSequenceVariant extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2695,7 +2731,10 @@ class MolecularSequenceVariant extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -3551,7 +3590,10 @@ class MolecularSequenceQuality extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -3565,7 +3607,10 @@ class MolecularSequenceQuality extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -4505,7 +4550,10 @@ class MolecularSequenceRoc extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -4519,7 +4567,10 @@ class MolecularSequenceRoc extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -4533,7 +4584,10 @@ class MolecularSequenceRoc extends BackboneElement {
             return copyWith(score: newList);
           } else if (child is FhirInteger) {
             // Add single element to existing list or create new list
-            final newList = [...?score, child];
+            final newList = [
+              ...?score,
+              child,
+            ];
             return copyWith(score: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -4547,7 +4601,10 @@ class MolecularSequenceRoc extends BackboneElement {
             return copyWith(numTP: newList);
           } else if (child is FhirInteger) {
             // Add single element to existing list or create new list
-            final newList = [...?numTP, child];
+            final newList = [
+              ...?numTP,
+              child,
+            ];
             return copyWith(numTP: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -4561,7 +4618,10 @@ class MolecularSequenceRoc extends BackboneElement {
             return copyWith(numFP: newList);
           } else if (child is FhirInteger) {
             // Add single element to existing list or create new list
-            final newList = [...?numFP, child];
+            final newList = [
+              ...?numFP,
+              child,
+            ];
             return copyWith(numFP: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -4575,7 +4635,10 @@ class MolecularSequenceRoc extends BackboneElement {
             return copyWith(numFN: newList);
           } else if (child is FhirInteger) {
             // Add single element to existing list or create new list
-            final newList = [...?numFN, child];
+            final newList = [
+              ...?numFN,
+              child,
+            ];
             return copyWith(numFN: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -4589,7 +4652,10 @@ class MolecularSequenceRoc extends BackboneElement {
             return copyWith(precision: newList);
           } else if (child is FhirDecimal) {
             // Add single element to existing list or create new list
-            final newList = [...?precision, child];
+            final newList = [
+              ...?precision,
+              child,
+            ];
             return copyWith(precision: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -4603,7 +4669,10 @@ class MolecularSequenceRoc extends BackboneElement {
             return copyWith(sensitivity: newList);
           } else if (child is FhirDecimal) {
             // Add single element to existing list or create new list
-            final newList = [...?sensitivity, child];
+            final newList = [
+              ...?sensitivity,
+              child,
+            ];
             return copyWith(sensitivity: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -4617,7 +4686,10 @@ class MolecularSequenceRoc extends BackboneElement {
             return copyWith(fMeasure: newList);
           } else if (child is FhirDecimal) {
             // Add single element to existing list or create new list
-            final newList = [...?fMeasure, child];
+            final newList = [
+              ...?fMeasure,
+              child,
+            ];
             return copyWith(fMeasure: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -5278,7 +5350,10 @@ class MolecularSequenceRepository extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -5292,7 +5367,10 @@ class MolecularSequenceRepository extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -5925,7 +6003,10 @@ class MolecularSequenceStructureVariant extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -5939,7 +6020,10 @@ class MolecularSequenceStructureVariant extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -6486,7 +6570,10 @@ class MolecularSequenceOuter extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -6500,7 +6587,10 @@ class MolecularSequenceOuter extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -6960,7 +7050,10 @@ class MolecularSequenceInner extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -6974,7 +7067,10 @@ class MolecularSequenceInner extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');

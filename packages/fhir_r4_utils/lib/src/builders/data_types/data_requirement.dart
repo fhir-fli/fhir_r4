@@ -425,7 +425,10 @@ class DataRequirementBuilder extends DataTypeBuilder
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -435,6 +438,21 @@ class DataRequirementBuilder extends DataTypeBuilder
           if (child is FHIRAllTypesBuilder) {
             type = child;
             return;
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              // For enums, try to create directly from the string value
+              try {
+                final converted = FHIRAllTypesBuilder(stringValue);
+                type = converted;
+                return;
+              } catch (e) {
+                // Continue if enum creation fails
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
           throw Exception('Invalid child type for $childName');
         }
@@ -446,7 +464,10 @@ class DataRequirementBuilder extends DataTypeBuilder
             return;
           } else if (child is FhirCanonicalBuilder) {
             // Add single element to existing list or create new list
-            profile = [...(profile ?? []), child];
+            profile = [
+              ...(profile ?? []),
+              child,
+            ];
             return;
           } else if (child is List<PrimitiveTypeBuilder>) {
             // Try to convert list of primitive types
@@ -524,7 +545,10 @@ class DataRequirementBuilder extends DataTypeBuilder
             return;
           } else if (child is FhirStringBuilder) {
             // Add single element to existing list or create new list
-            mustSupport = [...(mustSupport ?? []), child];
+            mustSupport = [
+              ...(mustSupport ?? []),
+              child,
+            ];
             return;
           } else if (child is List<PrimitiveTypeBuilder>) {
             // Try to convert list of primitive types
@@ -567,7 +591,10 @@ class DataRequirementBuilder extends DataTypeBuilder
             return;
           } else if (child is DataRequirementCodeFilterBuilder) {
             // Add single element to existing list or create new list
-            codeFilter = [...(codeFilter ?? []), child];
+            codeFilter = [
+              ...(codeFilter ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -580,7 +607,10 @@ class DataRequirementBuilder extends DataTypeBuilder
             return;
           } else if (child is DataRequirementDateFilterBuilder) {
             // Add single element to existing list or create new list
-            dateFilter = [...(dateFilter ?? []), child];
+            dateFilter = [
+              ...(dateFilter ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -594,7 +624,8 @@ class DataRequirementBuilder extends DataTypeBuilder
             // Try to convert from one primitive type to another
             try {
               final stringValue = child.toString();
-              // For number types, first parse to num then pass the number directly
+              // For number types,
+              // first parse to num then pass the number directly
               final numValue = num.tryParse(stringValue);
               if (numValue != null) {
                 final converted = FhirPositiveIntBuilder.tryParse(numValue);
@@ -617,7 +648,10 @@ class DataRequirementBuilder extends DataTypeBuilder
             return;
           } else if (child is DataRequirementSortBuilder) {
             // Add single element to existing list or create new list
-            sort = [...(sort ?? []), child];
+            sort = [
+              ...(sort ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -642,7 +676,10 @@ class DataRequirementBuilder extends DataTypeBuilder
         return ['FhirCanonicalBuilder'];
       case 'subject':
       case 'subjectX':
-        return ['CodeableConceptBuilder', 'ReferenceBuilder'];
+        return [
+          'CodeableConceptBuilder',
+          'ReferenceBuilder',
+        ];
       case 'subjectCodeableConcept':
         return ['CodeableConceptBuilder'];
       case 'subjectReference':
@@ -1179,7 +1216,10 @@ class DataRequirementCodeFilterBuilder extends ElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -1252,7 +1292,10 @@ class DataRequirementCodeFilterBuilder extends ElementBuilder {
             return;
           } else if (child is CodingBuilder) {
             // Add single element to existing list or create new list
-            code = [...(code ?? []), child];
+            code = [
+              ...(code ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -1745,7 +1788,10 @@ class DataRequirementDateFilterBuilder extends ElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -1858,7 +1904,11 @@ class DataRequirementDateFilterBuilder extends ElementBuilder {
         return ['FhirStringBuilder'];
       case 'value':
       case 'valueX':
-        return ['FhirDateTimeBuilder', 'PeriodBuilder', 'FhirDurationBuilder'];
+        return [
+          'FhirDateTimeBuilder',
+          'PeriodBuilder',
+          'FhirDurationBuilder',
+        ];
       case 'valueDateTime':
         return ['FhirDateTimeBuilder'];
       case 'valuePeriod':
@@ -2261,7 +2311,10 @@ class DataRequirementSortBuilder extends ElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -2291,6 +2344,21 @@ class DataRequirementSortBuilder extends ElementBuilder {
           if (child is SortDirectionBuilder) {
             direction = child;
             return;
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              // For enums, try to create directly from the string value
+              try {
+                final converted = SortDirectionBuilder(stringValue);
+                direction = converted;
+                return;
+              } catch (e) {
+                // Continue if enum creation fails
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
           throw Exception('Invalid child type for $childName');
         }

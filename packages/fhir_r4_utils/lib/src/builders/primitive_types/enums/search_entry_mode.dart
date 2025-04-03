@@ -7,7 +7,7 @@ part of '../primitive_types.dart';
 class SearchEntryModeBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   SearchEntryModeBuilder._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -21,7 +21,7 @@ class SearchEntryModeBuilder extends FhirCodeEnumBuilder {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory SearchEntryModeBuilder(
-    String? raw, {
+    String? rawValue, {
     FhirUriBuilder? system,
     FhirStringBuilder? version,
     FhirStringBuilder? display,
@@ -31,9 +31,10 @@ class SearchEntryModeBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
     return SearchEntryModeBuilder._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -47,7 +48,7 @@ class SearchEntryModeBuilder extends FhirCodeEnumBuilder {
 
   /// Create empty [SearchEntryModeBuilder] with element only
   factory SearchEntryModeBuilder.empty() =>
-      SearchEntryModeBuilder._(validatedValue: '');
+      SearchEntryModeBuilder._(valueString: '');
 
   /// Factory constructor to create [SearchEntryModeBuilder]
   /// from JSON.
@@ -64,14 +65,14 @@ class SearchEntryModeBuilder extends FhirCodeEnumBuilder {
       );
     }
     return SearchEntryModeBuilder._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// match
   static SearchEntryModeBuilder match = SearchEntryModeBuilder._(
-    validatedValue: 'match',
+    valueString: 'match',
     system: 'http://hl7.org/fhir/ValueSet/search-entry-mode'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Match'.toFhirStringBuilder,
@@ -79,7 +80,7 @@ class SearchEntryModeBuilder extends FhirCodeEnumBuilder {
 
   /// include
   static SearchEntryModeBuilder include = SearchEntryModeBuilder._(
-    validatedValue: 'include',
+    valueString: 'include',
     system: 'http://hl7.org/fhir/ValueSet/search-entry-mode'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Include'.toFhirStringBuilder,
@@ -87,7 +88,7 @@ class SearchEntryModeBuilder extends FhirCodeEnumBuilder {
 
   /// outcome
   static SearchEntryModeBuilder outcome = SearchEntryModeBuilder._(
-    validatedValue: 'outcome',
+    valueString: 'outcome',
     system: 'http://hl7.org/fhir/ValueSet/search-entry-mode'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Outcome'.toFhirStringBuilder,
@@ -95,7 +96,7 @@ class SearchEntryModeBuilder extends FhirCodeEnumBuilder {
 
   /// For instances where an Element is present but not value
   static SearchEntryModeBuilder elementOnly =
-      SearchEntryModeBuilder._(validatedValue: '');
+      SearchEntryModeBuilder._(valueString: '');
 
   /// List of all enum-like values
   static List<SearchEntryModeBuilder> values = [
@@ -107,30 +108,31 @@ class SearchEntryModeBuilder extends FhirCodeEnumBuilder {
   /// Clones the current instance
   @override
   SearchEntryModeBuilder clone() => SearchEntryModeBuilder._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
   SearchEntryModeBuilder withElement(ElementBuilder? newElement) {
-    return SearchEntryModeBuilder._(validatedValue: value, element: newElement);
+    return SearchEntryModeBuilder._(
+        valueString: valueString, element: newElement,);
   }
 
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   SearchEntryModeBuilder copyWith({
-    String? newValue,
+    dynamic newValue,
     ElementBuilder? element,
     FhirStringBuilder? id,
     List<FhirExtensionBuilder>? extension_,
@@ -141,11 +143,11 @@ class SearchEntryModeBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError('Invalid input for SearchEntryMode: $newValue');
     }
     return SearchEntryModeBuilder._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
@@ -154,7 +156,7 @@ class SearchEntryModeBuilder extends FhirCodeEnumBuilder {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath,
+      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

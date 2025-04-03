@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class QuantityComparator extends FhirCodeEnum {
   // Private underscore constructor for internal use.
   QuantityComparator._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class QuantityComparator extends FhirCodeEnum {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory QuantityComparator(
-    String? raw, {
+    String? rawValue, {
     FhirUri? system,
     FhirString? version,
     FhirString? display,
@@ -29,9 +29,10 @@ class QuantityComparator extends FhirCodeEnum {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCode._validateCode(rawValue) : null;
     return QuantityComparator._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -44,8 +45,7 @@ class QuantityComparator extends FhirCodeEnum {
   }
 
   /// Create empty [QuantityComparator] with element only
-  factory QuantityComparator.empty() =>
-      QuantityComparator._(validatedValue: '');
+  factory QuantityComparator.empty() => QuantityComparator._(valueString: '');
 
   /// Factory constructor to create [QuantityComparator] from JSON.
   factory QuantityComparator.fromJson(Map<String, dynamic> json) {
@@ -60,14 +60,14 @@ class QuantityComparator extends FhirCodeEnum {
       );
     }
     return QuantityComparator._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// lt
   static final QuantityComparator lt = QuantityComparator._(
-    validatedValue: '<',
+    valueString: '<',
     system: 'http://hl7.org/fhir/ValueSet/quantity-comparator'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Less than'.toFhirString,
@@ -75,7 +75,7 @@ class QuantityComparator extends FhirCodeEnum {
 
   /// le
   static final QuantityComparator le = QuantityComparator._(
-    validatedValue: '<=',
+    valueString: '<=',
     system: 'http://hl7.org/fhir/ValueSet/quantity-comparator'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Less or Equal to'.toFhirString,
@@ -83,7 +83,7 @@ class QuantityComparator extends FhirCodeEnum {
 
   /// ge
   static final QuantityComparator ge = QuantityComparator._(
-    validatedValue: '>=',
+    valueString: '>=',
     system: 'http://hl7.org/fhir/ValueSet/quantity-comparator'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Greater or Equal to'.toFhirString,
@@ -91,7 +91,7 @@ class QuantityComparator extends FhirCodeEnum {
 
   /// gt
   static final QuantityComparator gt = QuantityComparator._(
-    validatedValue: '>',
+    valueString: '>',
     system: 'http://hl7.org/fhir/ValueSet/quantity-comparator'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Greater than'.toFhirString,
@@ -99,7 +99,7 @@ class QuantityComparator extends FhirCodeEnum {
 
   /// For instances where an Element is present but not value
   static final QuantityComparator elementOnly =
-      QuantityComparator._(validatedValue: '');
+      QuantityComparator._(valueString: '');
 
   /// List of all enum-like values
   static final List<QuantityComparator> values = [
@@ -112,14 +112,14 @@ class QuantityComparator extends FhirCodeEnum {
   /// Clones the current instance
   @override
   QuantityComparator clone() => QuantityComparator._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   QuantityComparator withElement(Element? newElement) {
     return QuantityComparator._(
-      validatedValue: value,
+      valueString: valueString,
       element: newElement,
     );
   }
@@ -127,18 +127,18 @@ class QuantityComparator extends FhirCodeEnum {
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   QuantityComparator copyWith({
-    String? newValue,
+    dynamic newValue,
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
@@ -149,11 +149,11 @@ class QuantityComparator extends FhirCodeEnum {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError('Invalid input for QuantityComparator: $newValue');
     }
     return QuantityComparator._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

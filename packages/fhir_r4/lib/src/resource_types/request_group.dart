@@ -739,7 +739,10 @@ class RequestGroup extends DomainResource {
             return copyWith(contained: newList);
           } else if (child is Resource) {
             // Add single element to existing list or create new list
-            final newList = [...?contained, child];
+            final newList = [
+              ...?contained,
+              child,
+            ];
             return copyWith(contained: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -753,7 +756,10 @@ class RequestGroup extends DomainResource {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -767,7 +773,10 @@ class RequestGroup extends DomainResource {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -781,7 +790,10 @@ class RequestGroup extends DomainResource {
             return copyWith(identifier: newList);
           } else if (child is Identifier) {
             // Add single element to existing list or create new list
-            final newList = [...?identifier, child];
+            final newList = [
+              ...?identifier,
+              child,
+            ];
             return copyWith(identifier: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -795,7 +807,10 @@ class RequestGroup extends DomainResource {
             return copyWith(instantiatesCanonical: newList);
           } else if (child is FhirCanonical) {
             // Add single element to existing list or create new list
-            final newList = [...?instantiatesCanonical, child];
+            final newList = [
+              ...?instantiatesCanonical,
+              child,
+            ];
             return copyWith(instantiatesCanonical: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -809,7 +824,10 @@ class RequestGroup extends DomainResource {
             return copyWith(instantiatesUri: newList);
           } else if (child is FhirUri) {
             // Add single element to existing list or create new list
-            final newList = [...?instantiatesUri, child];
+            final newList = [
+              ...?instantiatesUri,
+              child,
+            ];
             return copyWith(instantiatesUri: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -823,7 +841,10 @@ class RequestGroup extends DomainResource {
             return copyWith(basedOn: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...?basedOn, child];
+            final newList = [
+              ...?basedOn,
+              child,
+            ];
             return copyWith(basedOn: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -837,7 +858,10 @@ class RequestGroup extends DomainResource {
             return copyWith(replaces: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...?replaces, child];
+            final newList = [
+              ...?replaces,
+              child,
+            ];
             return copyWith(replaces: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -923,7 +947,10 @@ class RequestGroup extends DomainResource {
             return copyWith(reasonCode: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...?reasonCode, child];
+            final newList = [
+              ...?reasonCode,
+              child,
+            ];
             return copyWith(reasonCode: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -937,7 +964,10 @@ class RequestGroup extends DomainResource {
             return copyWith(reasonReference: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...?reasonReference, child];
+            final newList = [
+              ...?reasonReference,
+              child,
+            ];
             return copyWith(reasonReference: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -951,7 +981,10 @@ class RequestGroup extends DomainResource {
             return copyWith(note: newList);
           } else if (child is Annotation) {
             // Add single element to existing list or create new list
-            final newList = [...?note, child];
+            final newList = [
+              ...?note,
+              child,
+            ];
             return copyWith(note: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -965,7 +998,10 @@ class RequestGroup extends DomainResource {
             return copyWith(action: newList);
           } else if (child is RequestGroupAction) {
             // Add single element to existing list or create new list
-            final newList = [...?action, child];
+            final newList = [
+              ...?action,
+              child,
+            ];
             return copyWith(action: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2305,7 +2341,10 @@ class RequestGroupAction extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2319,7 +2358,10 @@ class RequestGroupAction extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2373,7 +2415,10 @@ class RequestGroupAction extends BackboneElement {
             return copyWith(code: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...?code, child];
+            final newList = [
+              ...?code,
+              child,
+            ];
             return copyWith(code: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2387,7 +2432,10 @@ class RequestGroupAction extends BackboneElement {
             return copyWith(documentation: newList);
           } else if (child is RelatedArtifact) {
             // Add single element to existing list or create new list
-            final newList = [...?documentation, child];
+            final newList = [
+              ...?documentation,
+              child,
+            ];
             return copyWith(documentation: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2401,7 +2449,10 @@ class RequestGroupAction extends BackboneElement {
             return copyWith(condition: newList);
           } else if (child is RequestGroupCondition) {
             // Add single element to existing list or create new list
-            final newList = [...?condition, child];
+            final newList = [
+              ...?condition,
+              child,
+            ];
             return copyWith(condition: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2415,7 +2466,10 @@ class RequestGroupAction extends BackboneElement {
             return copyWith(relatedAction: newList);
           } else if (child is RequestGroupRelatedAction) {
             // Add single element to existing list or create new list
-            final newList = [...?relatedAction, child];
+            final newList = [
+              ...?relatedAction,
+              child,
+            ];
             return copyWith(relatedAction: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2503,7 +2557,10 @@ class RequestGroupAction extends BackboneElement {
             return copyWith(participant: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...?participant, child];
+            final newList = [
+              ...?participant,
+              child,
+            ];
             return copyWith(participant: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2573,7 +2630,10 @@ class RequestGroupAction extends BackboneElement {
             return copyWith(action: newList);
           } else if (child is RequestGroupAction) {
             // Add single element to existing list or create new list
-            final newList = [...?action, child];
+            final newList = [
+              ...?action,
+              child,
+            ];
             return copyWith(action: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -3449,7 +3509,10 @@ class RequestGroupCondition extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -3463,7 +3526,10 @@ class RequestGroupCondition extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -3959,7 +4025,10 @@ class RequestGroupRelatedAction extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -3973,7 +4042,10 @@ class RequestGroupRelatedAction extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -4047,7 +4119,10 @@ class RequestGroupRelatedAction extends BackboneElement {
         return ['FhirCode'];
       case 'offset':
       case 'offsetX':
-        return ['FhirDuration', 'Range'];
+        return [
+          'FhirDuration',
+          'Range',
+        ];
       case 'offsetDuration':
         return ['FhirDuration'];
       case 'offsetRange':

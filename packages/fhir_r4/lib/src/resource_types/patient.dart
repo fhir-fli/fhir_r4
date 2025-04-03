@@ -745,7 +745,10 @@ class Patient extends DomainResource {
             return copyWith(contained: newList);
           } else if (child is Resource) {
             // Add single element to existing list or create new list
-            final newList = [...?contained, child];
+            final newList = [
+              ...?contained,
+              child,
+            ];
             return copyWith(contained: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -759,7 +762,10 @@ class Patient extends DomainResource {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -773,7 +779,10 @@ class Patient extends DomainResource {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -787,7 +796,10 @@ class Patient extends DomainResource {
             return copyWith(identifier: newList);
           } else if (child is Identifier) {
             // Add single element to existing list or create new list
-            final newList = [...?identifier, child];
+            final newList = [
+              ...?identifier,
+              child,
+            ];
             return copyWith(identifier: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -809,7 +821,10 @@ class Patient extends DomainResource {
             return copyWith(name: newList);
           } else if (child is HumanName) {
             // Add single element to existing list or create new list
-            final newList = [...?name, child];
+            final newList = [
+              ...?name,
+              child,
+            ];
             return copyWith(name: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -823,7 +838,10 @@ class Patient extends DomainResource {
             return copyWith(telecom: newList);
           } else if (child is ContactPoint) {
             // Add single element to existing list or create new list
-            final newList = [...?telecom, child];
+            final newList = [
+              ...?telecom,
+              child,
+            ];
             return copyWith(telecom: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -883,7 +901,10 @@ class Patient extends DomainResource {
             return copyWith(address: newList);
           } else if (child is Address) {
             // Add single element to existing list or create new list
-            final newList = [...?address, child];
+            final newList = [
+              ...?address,
+              child,
+            ];
             return copyWith(address: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -935,7 +956,10 @@ class Patient extends DomainResource {
             return copyWith(photo: newList);
           } else if (child is Attachment) {
             // Add single element to existing list or create new list
-            final newList = [...?photo, child];
+            final newList = [
+              ...?photo,
+              child,
+            ];
             return copyWith(photo: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -949,7 +973,10 @@ class Patient extends DomainResource {
             return copyWith(contact: newList);
           } else if (child is PatientContact) {
             // Add single element to existing list or create new list
-            final newList = [...?contact, child];
+            final newList = [
+              ...?contact,
+              child,
+            ];
             return copyWith(contact: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -963,7 +990,10 @@ class Patient extends DomainResource {
             return copyWith(communication: newList);
           } else if (child is PatientCommunication) {
             // Add single element to existing list or create new list
-            final newList = [...?communication, child];
+            final newList = [
+              ...?communication,
+              child,
+            ];
             return copyWith(communication: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -977,7 +1007,10 @@ class Patient extends DomainResource {
             return copyWith(generalPractitioner: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...?generalPractitioner, child];
+            final newList = [
+              ...?generalPractitioner,
+              child,
+            ];
             return copyWith(generalPractitioner: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -999,7 +1032,10 @@ class Patient extends DomainResource {
             return copyWith(link: newList);
           } else if (child is PatientLink) {
             // Add single element to existing list or create new list
-            final newList = [...?link, child];
+            final newList = [
+              ...?link,
+              child,
+            ];
             return copyWith(link: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1045,7 +1081,10 @@ class Patient extends DomainResource {
         return ['FhirDate'];
       case 'deceased':
       case 'deceasedX':
-        return ['FhirBoolean', 'FhirDateTime'];
+        return [
+          'FhirBoolean',
+          'FhirDateTime',
+        ];
       case 'deceasedBoolean':
         return ['FhirBoolean'];
       case 'deceasedDateTime':
@@ -1056,7 +1095,10 @@ class Patient extends DomainResource {
         return ['CodeableConcept'];
       case 'multipleBirth':
       case 'multipleBirthX':
-        return ['FhirBoolean', 'FhirInteger'];
+        return [
+          'FhirBoolean',
+          'FhirInteger',
+        ];
       case 'multipleBirthBoolean':
         return ['FhirBoolean'];
       case 'multipleBirthInteger':
@@ -2011,7 +2053,10 @@ class PatientContact extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2025,7 +2070,10 @@ class PatientContact extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2039,7 +2087,10 @@ class PatientContact extends BackboneElement {
             return copyWith(relationship: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...?relationship, child];
+            final newList = [
+              ...?relationship,
+              child,
+            ];
             return copyWith(relationship: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2061,7 +2112,10 @@ class PatientContact extends BackboneElement {
             return copyWith(telecom: newList);
           } else if (child is ContactPoint) {
             // Add single element to existing list or create new list
-            final newList = [...?telecom, child];
+            final newList = [
+              ...?telecom,
+              child,
+            ];
             return copyWith(telecom: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2651,7 +2705,10 @@ class PatientCommunication extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2665,7 +2722,10 @@ class PatientCommunication extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -3120,7 +3180,10 @@ class PatientLink extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -3134,7 +3197,10 @@ class PatientLink extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');

@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class UseBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   UseBuilder._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class UseBuilder extends FhirCodeEnumBuilder {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory UseBuilder(
-    String? raw, {
+    String? rawValue, {
     FhirUriBuilder? system,
     FhirStringBuilder? version,
     FhirStringBuilder? display,
@@ -29,9 +29,10 @@ class UseBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
     return UseBuilder._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -44,7 +45,7 @@ class UseBuilder extends FhirCodeEnumBuilder {
   }
 
   /// Create empty [UseBuilder] with element only
-  factory UseBuilder.empty() => UseBuilder._(validatedValue: '');
+  factory UseBuilder.empty() => UseBuilder._(valueString: '');
 
   /// Factory constructor to create [UseBuilder]
   /// from JSON.
@@ -61,14 +62,14 @@ class UseBuilder extends FhirCodeEnumBuilder {
       );
     }
     return UseBuilder._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// claim
   static UseBuilder claim = UseBuilder._(
-    validatedValue: 'claim',
+    valueString: 'claim',
     system: 'http://hl7.org/fhir/ValueSet/claim-use'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Claim'.toFhirStringBuilder,
@@ -76,7 +77,7 @@ class UseBuilder extends FhirCodeEnumBuilder {
 
   /// preauthorization
   static UseBuilder preauthorization = UseBuilder._(
-    validatedValue: 'preauthorization',
+    valueString: 'preauthorization',
     system: 'http://hl7.org/fhir/ValueSet/claim-use'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Preauthorization'.toFhirStringBuilder,
@@ -84,14 +85,14 @@ class UseBuilder extends FhirCodeEnumBuilder {
 
   /// predetermination
   static UseBuilder predetermination = UseBuilder._(
-    validatedValue: 'predetermination',
+    valueString: 'predetermination',
     system: 'http://hl7.org/fhir/ValueSet/claim-use'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Predetermination'.toFhirStringBuilder,
   );
 
   /// For instances where an Element is present but not value
-  static UseBuilder elementOnly = UseBuilder._(validatedValue: '');
+  static UseBuilder elementOnly = UseBuilder._(valueString: '');
 
   /// List of all enum-like values
   static List<UseBuilder> values = [
@@ -103,30 +104,30 @@ class UseBuilder extends FhirCodeEnumBuilder {
   /// Clones the current instance
   @override
   UseBuilder clone() => UseBuilder._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
   UseBuilder withElement(ElementBuilder? newElement) {
-    return UseBuilder._(validatedValue: value, element: newElement);
+    return UseBuilder._(valueString: valueString, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   UseBuilder copyWith({
-    String? newValue,
+    dynamic newValue,
     ElementBuilder? element,
     FhirStringBuilder? id,
     List<FhirExtensionBuilder>? extension_,
@@ -137,11 +138,11 @@ class UseBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError('Invalid input for Use: $newValue');
     }
     return UseBuilder._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
@@ -150,7 +151,7 @@ class UseBuilder extends FhirCodeEnumBuilder {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath,
+      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

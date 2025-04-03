@@ -11,12 +11,13 @@ String? findCode(ElementDefinition element, String path) {
     return element.type?.first.code.toString();
   } else if ((element.type?.length ?? 0) > 1) {
     // Handle polymorphic types
-    if (element.path.value?.endsWith('[x]') ?? false) {
+    if (element.path.valueString?.endsWith('[x]') ?? false) {
       final type = path
           .split('.')
           .last
           .replaceAll(
-            element.path.value?.split('.').last.replaceAll('[x]', '') ?? '',
+            element.path.valueString?.split('.').last.replaceAll('[x]', '') ??
+                '',
             '',
           )
           .toLowerCase();
@@ -56,11 +57,11 @@ Map<String, ElementDefinition> extractElements(
   final map = <String, ElementDefinition>{};
   for (final element
       in structureDefinition.snapshot?.element ?? <ElementDefinition>[]) {
-    map[element.path.value!] = element;
+    map[element.path.valueString!] = element;
   }
   for (final element
       in structureDefinition.differential?.element ?? <ElementDefinition>[]) {
-    map[element.path.value!] = element;
+    map[element.path.valueString!] = element;
   }
   return map;
 }

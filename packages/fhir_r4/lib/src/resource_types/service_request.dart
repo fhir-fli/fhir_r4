@@ -1180,7 +1180,10 @@ class ServiceRequest extends DomainResource {
             return copyWith(contained: newList);
           } else if (child is Resource) {
             // Add single element to existing list or create new list
-            final newList = [...?contained, child];
+            final newList = [
+              ...?contained,
+              child,
+            ];
             return copyWith(contained: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1194,7 +1197,10 @@ class ServiceRequest extends DomainResource {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1208,7 +1214,10 @@ class ServiceRequest extends DomainResource {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1222,7 +1231,10 @@ class ServiceRequest extends DomainResource {
             return copyWith(identifier: newList);
           } else if (child is Identifier) {
             // Add single element to existing list or create new list
-            final newList = [...?identifier, child];
+            final newList = [
+              ...?identifier,
+              child,
+            ];
             return copyWith(identifier: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1236,7 +1248,10 @@ class ServiceRequest extends DomainResource {
             return copyWith(instantiatesCanonical: newList);
           } else if (child is FhirCanonical) {
             // Add single element to existing list or create new list
-            final newList = [...?instantiatesCanonical, child];
+            final newList = [
+              ...?instantiatesCanonical,
+              child,
+            ];
             return copyWith(instantiatesCanonical: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1250,7 +1265,10 @@ class ServiceRequest extends DomainResource {
             return copyWith(instantiatesUri: newList);
           } else if (child is FhirUri) {
             // Add single element to existing list or create new list
-            final newList = [...?instantiatesUri, child];
+            final newList = [
+              ...?instantiatesUri,
+              child,
+            ];
             return copyWith(instantiatesUri: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1264,7 +1282,10 @@ class ServiceRequest extends DomainResource {
             return copyWith(basedOn: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...?basedOn, child];
+            final newList = [
+              ...?basedOn,
+              child,
+            ];
             return copyWith(basedOn: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1278,7 +1299,10 @@ class ServiceRequest extends DomainResource {
             return copyWith(replaces: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...?replaces, child];
+            final newList = [
+              ...?replaces,
+              child,
+            ];
             return copyWith(replaces: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1316,7 +1340,10 @@ class ServiceRequest extends DomainResource {
             return copyWith(category: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...?category, child];
+            final newList = [
+              ...?category,
+              child,
+            ];
             return copyWith(category: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1354,7 +1381,10 @@ class ServiceRequest extends DomainResource {
             return copyWith(orderDetail: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...?orderDetail, child];
+            final newList = [
+              ...?orderDetail,
+              child,
+            ];
             return copyWith(orderDetail: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1520,7 +1550,10 @@ class ServiceRequest extends DomainResource {
             return copyWith(performer: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...?performer, child];
+            final newList = [
+              ...?performer,
+              child,
+            ];
             return copyWith(performer: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1534,7 +1567,10 @@ class ServiceRequest extends DomainResource {
             return copyWith(locationCode: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...?locationCode, child];
+            final newList = [
+              ...?locationCode,
+              child,
+            ];
             return copyWith(locationCode: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1548,7 +1584,10 @@ class ServiceRequest extends DomainResource {
             return copyWith(locationReference: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...?locationReference, child];
+            final newList = [
+              ...?locationReference,
+              child,
+            ];
             return copyWith(locationReference: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1562,7 +1601,10 @@ class ServiceRequest extends DomainResource {
             return copyWith(reasonCode: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...?reasonCode, child];
+            final newList = [
+              ...?reasonCode,
+              child,
+            ];
             return copyWith(reasonCode: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1576,7 +1618,10 @@ class ServiceRequest extends DomainResource {
             return copyWith(reasonReference: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...?reasonReference, child];
+            final newList = [
+              ...?reasonReference,
+              child,
+            ];
             return copyWith(reasonReference: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1590,7 +1635,10 @@ class ServiceRequest extends DomainResource {
             return copyWith(insurance: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...?insurance, child];
+            final newList = [
+              ...?insurance,
+              child,
+            ];
             return copyWith(insurance: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1604,7 +1652,10 @@ class ServiceRequest extends DomainResource {
             return copyWith(supportingInfo: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...?supportingInfo, child];
+            final newList = [
+              ...?supportingInfo,
+              child,
+            ];
             return copyWith(supportingInfo: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1618,7 +1669,10 @@ class ServiceRequest extends DomainResource {
             return copyWith(specimen: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...?specimen, child];
+            final newList = [
+              ...?specimen,
+              child,
+            ];
             return copyWith(specimen: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1632,7 +1686,10 @@ class ServiceRequest extends DomainResource {
             return copyWith(bodySite: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...?bodySite, child];
+            final newList = [
+              ...?bodySite,
+              child,
+            ];
             return copyWith(bodySite: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1646,7 +1703,10 @@ class ServiceRequest extends DomainResource {
             return copyWith(note: newList);
           } else if (child is Annotation) {
             // Add single element to existing list or create new list
-            final newList = [...?note, child];
+            final newList = [
+              ...?note,
+              child,
+            ];
             return copyWith(note: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1668,7 +1728,10 @@ class ServiceRequest extends DomainResource {
             return copyWith(relevantHistory: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...?relevantHistory, child];
+            final newList = [
+              ...?relevantHistory,
+              child,
+            ];
             return copyWith(relevantHistory: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1728,7 +1791,11 @@ class ServiceRequest extends DomainResource {
         return ['CodeableConcept'];
       case 'quantity':
       case 'quantityX':
-        return ['Quantity', 'Ratio', 'Range'];
+        return [
+          'Quantity',
+          'Ratio',
+          'Range',
+        ];
       case 'quantityQuantity':
         return ['Quantity'];
       case 'quantityRatio':
@@ -1741,7 +1808,11 @@ class ServiceRequest extends DomainResource {
         return ['Reference'];
       case 'occurrence':
       case 'occurrenceX':
-        return ['FhirDateTime', 'Period', 'Timing'];
+        return [
+          'FhirDateTime',
+          'Period',
+          'Timing',
+        ];
       case 'occurrenceDateTime':
         return ['FhirDateTime'];
       case 'occurrencePeriod':
@@ -1750,7 +1821,10 @@ class ServiceRequest extends DomainResource {
         return ['Timing'];
       case 'asNeeded':
       case 'asNeededX':
-        return ['FhirBoolean', 'CodeableConcept'];
+        return [
+          'FhirBoolean',
+          'CodeableConcept',
+        ];
       case 'asNeededBoolean':
         return ['FhirBoolean'];
       case 'asNeededCodeableConcept':

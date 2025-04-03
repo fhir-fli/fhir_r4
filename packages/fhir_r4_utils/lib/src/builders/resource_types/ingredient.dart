@@ -496,6 +496,21 @@ class IngredientBuilder extends DomainResourceBuilder {
           if (child is CommonLanguagesBuilder) {
             language = child;
             return;
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              // For enums, try to create directly from the string value
+              try {
+                final converted = CommonLanguagesBuilder(stringValue);
+                language = converted;
+                return;
+              } catch (e) {
+                // Continue if enum creation fails
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
           throw Exception('Invalid child type for $childName');
         }
@@ -515,7 +530,10 @@ class IngredientBuilder extends DomainResourceBuilder {
             return;
           } else if (child is ResourceBuilder) {
             // Add single element to existing list or create new list
-            contained = [...(contained ?? []), child];
+            contained = [
+              ...(contained ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -528,7 +546,10 @@ class IngredientBuilder extends DomainResourceBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -541,7 +562,10 @@ class IngredientBuilder extends DomainResourceBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -559,6 +583,21 @@ class IngredientBuilder extends DomainResourceBuilder {
           if (child is PublicationStatusBuilder) {
             status = child;
             return;
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              // For enums, try to create directly from the string value
+              try {
+                final converted = PublicationStatusBuilder(stringValue);
+                status = converted;
+                return;
+              } catch (e) {
+                // Continue if enum creation fails
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
           throw Exception('Invalid child type for $childName');
         }
@@ -570,7 +609,10 @@ class IngredientBuilder extends DomainResourceBuilder {
             return;
           } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            for_ = [...(for_ ?? []), child];
+            for_ = [
+              ...(for_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -591,7 +633,10 @@ class IngredientBuilder extends DomainResourceBuilder {
             return;
           } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            function_ = [...(function_ ?? []), child];
+            function_ = [
+              ...(function_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -624,7 +669,10 @@ class IngredientBuilder extends DomainResourceBuilder {
             return;
           } else if (child is IngredientManufacturerBuilder) {
             // Add single element to existing list or create new list
-            manufacturer = [...(manufacturer ?? []), child];
+            manufacturer = [
+              ...(manufacturer ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -1250,7 +1298,10 @@ class IngredientManufacturerBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -1263,7 +1314,10 @@ class IngredientManufacturerBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -1273,6 +1327,22 @@ class IngredientManufacturerBuilder extends BackboneElementBuilder {
           if (child is IngredientManufacturerRoleBuilder) {
             role = child;
             return;
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              // For enums, try to create directly from the string value
+              try {
+                final converted =
+                    IngredientManufacturerRoleBuilder(stringValue);
+                role = converted;
+                return;
+              } catch (e) {
+                // Continue if enum creation fails
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
           throw Exception('Invalid child type for $childName');
         }
@@ -1710,7 +1780,10 @@ class IngredientSubstanceBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -1723,7 +1796,10 @@ class IngredientSubstanceBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -1744,7 +1820,10 @@ class IngredientSubstanceBuilder extends BackboneElementBuilder {
             return;
           } else if (child is IngredientStrengthBuilder) {
             // Add single element to existing list or create new list
-            strength = [...(strength ?? []), child];
+            strength = [
+              ...(strength ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -2334,7 +2413,10 @@ class IngredientStrengthBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -2347,7 +2429,10 @@ class IngredientStrengthBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -2490,7 +2575,10 @@ class IngredientStrengthBuilder extends BackboneElementBuilder {
             return;
           } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            country = [...(country ?? []), child];
+            country = [
+              ...(country ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -2503,7 +2591,10 @@ class IngredientStrengthBuilder extends BackboneElementBuilder {
             return;
           } else if (child is IngredientReferenceStrengthBuilder) {
             // Add single element to existing list or create new list
-            referenceStrength = [...(referenceStrength ?? []), child];
+            referenceStrength = [
+              ...(referenceStrength ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -2526,7 +2617,10 @@ class IngredientStrengthBuilder extends BackboneElementBuilder {
         return ['FhirExtensionBuilder'];
       case 'presentation':
       case 'presentationX':
-        return ['RatioBuilder', 'RatioRangeBuilder'];
+        return [
+          'RatioBuilder',
+          'RatioRangeBuilder',
+        ];
       case 'presentationRatio':
         return ['RatioBuilder'];
       case 'presentationRatioRange':
@@ -2535,7 +2629,10 @@ class IngredientStrengthBuilder extends BackboneElementBuilder {
         return ['FhirStringBuilder'];
       case 'concentration':
       case 'concentrationX':
-        return ['RatioBuilder', 'RatioRangeBuilder'];
+        return [
+          'RatioBuilder',
+          'RatioRangeBuilder',
+        ];
       case 'concentrationRatio':
         return ['RatioBuilder'];
       case 'concentrationRatioRange':
@@ -3107,7 +3204,10 @@ class IngredientReferenceStrengthBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -3120,7 +3220,10 @@ class IngredientReferenceStrengthBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -3196,7 +3299,10 @@ class IngredientReferenceStrengthBuilder extends BackboneElementBuilder {
             return;
           } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            country = [...(country ?? []), child];
+            country = [
+              ...(country ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -3221,7 +3327,10 @@ class IngredientReferenceStrengthBuilder extends BackboneElementBuilder {
         return ['CodeableReferenceBuilder'];
       case 'strength':
       case 'strengthX':
-        return ['RatioBuilder', 'RatioRangeBuilder'];
+        return [
+          'RatioBuilder',
+          'RatioRangeBuilder',
+        ];
       case 'strengthRatio':
         return ['RatioBuilder'];
       case 'strengthRatioRange':

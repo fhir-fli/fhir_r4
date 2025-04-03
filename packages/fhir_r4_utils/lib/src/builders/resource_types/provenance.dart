@@ -565,6 +565,21 @@ class ProvenanceBuilder extends DomainResourceBuilder {
           if (child is CommonLanguagesBuilder) {
             language = child;
             return;
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              // For enums, try to create directly from the string value
+              try {
+                final converted = CommonLanguagesBuilder(stringValue);
+                language = converted;
+                return;
+              } catch (e) {
+                // Continue if enum creation fails
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
           throw Exception('Invalid child type for $childName');
         }
@@ -584,7 +599,10 @@ class ProvenanceBuilder extends DomainResourceBuilder {
             return;
           } else if (child is ResourceBuilder) {
             // Add single element to existing list or create new list
-            contained = [...(contained ?? []), child];
+            contained = [
+              ...(contained ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -597,7 +615,10 @@ class ProvenanceBuilder extends DomainResourceBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -610,7 +631,10 @@ class ProvenanceBuilder extends DomainResourceBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -623,7 +647,10 @@ class ProvenanceBuilder extends DomainResourceBuilder {
             return;
           } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            target = [...(target ?? []), child];
+            target = [
+              ...(target ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -691,7 +718,10 @@ class ProvenanceBuilder extends DomainResourceBuilder {
             return;
           } else if (child is FhirUriBuilder) {
             // Add single element to existing list or create new list
-            policy = [...(policy ?? []), child];
+            policy = [
+              ...(policy ?? []),
+              child,
+            ];
             return;
           } else if (child is List<PrimitiveTypeBuilder>) {
             // Try to convert list of primitive types
@@ -742,7 +772,10 @@ class ProvenanceBuilder extends DomainResourceBuilder {
             return;
           } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            reason = [...(reason ?? []), child];
+            reason = [
+              ...(reason ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -763,7 +796,10 @@ class ProvenanceBuilder extends DomainResourceBuilder {
             return;
           } else if (child is ProvenanceAgentBuilder) {
             // Add single element to existing list or create new list
-            agent = [...(agent ?? []), child];
+            agent = [
+              ...(agent ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -776,7 +812,10 @@ class ProvenanceBuilder extends DomainResourceBuilder {
             return;
           } else if (child is ProvenanceEntityBuilder) {
             // Add single element to existing list or create new list
-            entity = [...(entity ?? []), child];
+            entity = [
+              ...(entity ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -789,7 +828,10 @@ class ProvenanceBuilder extends DomainResourceBuilder {
             return;
           } else if (child is SignatureBuilder) {
             // Add single element to existing list or create new list
-            signature = [...(signature ?? []), child];
+            signature = [
+              ...(signature ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -824,7 +866,10 @@ class ProvenanceBuilder extends DomainResourceBuilder {
         return ['ReferenceBuilder'];
       case 'occurred':
       case 'occurredX':
-        return ['PeriodBuilder', 'FhirDateTimeBuilder'];
+        return [
+          'PeriodBuilder',
+          'FhirDateTimeBuilder',
+        ];
       case 'occurredPeriod':
         return ['PeriodBuilder'];
       case 'occurredDateTime':
@@ -1484,7 +1529,10 @@ class ProvenanceAgentBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -1497,7 +1545,10 @@ class ProvenanceAgentBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -1518,7 +1569,10 @@ class ProvenanceAgentBuilder extends BackboneElementBuilder {
             return;
           } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            role = [...(role ?? []), child];
+            role = [
+              ...(role ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -2016,7 +2070,10 @@ class ProvenanceEntityBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -2029,7 +2086,10 @@ class ProvenanceEntityBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -2039,6 +2099,21 @@ class ProvenanceEntityBuilder extends BackboneElementBuilder {
           if (child is ProvenanceEntityRoleBuilder) {
             role = child;
             return;
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              // For enums, try to create directly from the string value
+              try {
+                final converted = ProvenanceEntityRoleBuilder(stringValue);
+                role = converted;
+                return;
+              } catch (e) {
+                // Continue if enum creation fails
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
           throw Exception('Invalid child type for $childName');
         }
@@ -2058,7 +2133,10 @@ class ProvenanceEntityBuilder extends BackboneElementBuilder {
             return;
           } else if (child is ProvenanceAgentBuilder) {
             // Add single element to existing list or create new list
-            agent = [...(agent ?? []), child];
+            agent = [
+              ...(agent ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');

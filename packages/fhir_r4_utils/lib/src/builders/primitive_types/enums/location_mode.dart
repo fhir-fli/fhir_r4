@@ -6,7 +6,7 @@ part of '../primitive_types.dart';
 class LocationModeBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   LocationModeBuilder._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -20,7 +20,7 @@ class LocationModeBuilder extends FhirCodeEnumBuilder {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory LocationModeBuilder(
-    String? raw, {
+    String? rawValue, {
     FhirUriBuilder? system,
     FhirStringBuilder? version,
     FhirStringBuilder? display,
@@ -30,9 +30,10 @@ class LocationModeBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
     return LocationModeBuilder._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -45,8 +46,7 @@ class LocationModeBuilder extends FhirCodeEnumBuilder {
   }
 
   /// Create empty [LocationModeBuilder] with element only
-  factory LocationModeBuilder.empty() =>
-      LocationModeBuilder._(validatedValue: '');
+  factory LocationModeBuilder.empty() => LocationModeBuilder._(valueString: '');
 
   /// Factory constructor to create [LocationModeBuilder]
   /// from JSON.
@@ -63,14 +63,14 @@ class LocationModeBuilder extends FhirCodeEnumBuilder {
       );
     }
     return LocationModeBuilder._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// instance
   static LocationModeBuilder instance = LocationModeBuilder._(
-    validatedValue: 'instance',
+    valueString: 'instance',
     system: 'http://hl7.org/fhir/ValueSet/location-mode'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Instance'.toFhirStringBuilder,
@@ -78,7 +78,7 @@ class LocationModeBuilder extends FhirCodeEnumBuilder {
 
   /// kind
   static LocationModeBuilder kind = LocationModeBuilder._(
-    validatedValue: 'kind',
+    valueString: 'kind',
     system: 'http://hl7.org/fhir/ValueSet/location-mode'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Kind'.toFhirStringBuilder,
@@ -86,7 +86,7 @@ class LocationModeBuilder extends FhirCodeEnumBuilder {
 
   /// For instances where an Element is present but not value
   static LocationModeBuilder elementOnly =
-      LocationModeBuilder._(validatedValue: '');
+      LocationModeBuilder._(valueString: '');
 
   /// List of all enum-like values
   static List<LocationModeBuilder> values = [
@@ -97,30 +97,30 @@ class LocationModeBuilder extends FhirCodeEnumBuilder {
   /// Clones the current instance
   @override
   LocationModeBuilder clone() => LocationModeBuilder._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
   LocationModeBuilder withElement(ElementBuilder? newElement) {
-    return LocationModeBuilder._(validatedValue: value, element: newElement);
+    return LocationModeBuilder._(valueString: valueString, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   LocationModeBuilder copyWith({
-    String? newValue,
+    dynamic newValue,
     ElementBuilder? element,
     FhirStringBuilder? id,
     List<FhirExtensionBuilder>? extension_,
@@ -131,11 +131,11 @@ class LocationModeBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError('Invalid input for LocationMode: $newValue');
     }
     return LocationModeBuilder._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
@@ -144,7 +144,7 @@ class LocationModeBuilder extends FhirCodeEnumBuilder {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath,
+      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

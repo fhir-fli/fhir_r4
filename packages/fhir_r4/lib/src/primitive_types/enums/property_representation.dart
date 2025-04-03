@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class PropertyRepresentation extends FhirCodeEnum {
   // Private underscore constructor for internal use.
   PropertyRepresentation._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class PropertyRepresentation extends FhirCodeEnum {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory PropertyRepresentation(
-    String? raw, {
+    String? rawValue, {
     FhirUri? system,
     FhirString? version,
     FhirString? display,
@@ -29,9 +29,10 @@ class PropertyRepresentation extends FhirCodeEnum {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCode._validateCode(rawValue) : null;
     return PropertyRepresentation._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -45,7 +46,7 @@ class PropertyRepresentation extends FhirCodeEnum {
 
   /// Create empty [PropertyRepresentation] with element only
   factory PropertyRepresentation.empty() =>
-      PropertyRepresentation._(validatedValue: '');
+      PropertyRepresentation._(valueString: '');
 
   /// Factory constructor to create [PropertyRepresentation] from JSON.
   factory PropertyRepresentation.fromJson(Map<String, dynamic> json) {
@@ -60,14 +61,14 @@ class PropertyRepresentation extends FhirCodeEnum {
       );
     }
     return PropertyRepresentation._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// xmlAttr
   static final PropertyRepresentation xmlAttr = PropertyRepresentation._(
-    validatedValue: 'xmlAttr',
+    valueString: 'xmlAttr',
     system: 'http://hl7.org/fhir/ValueSet/property-representation'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'XML Attribute'.toFhirString,
@@ -75,7 +76,7 @@ class PropertyRepresentation extends FhirCodeEnum {
 
   /// xmlText
   static final PropertyRepresentation xmlText = PropertyRepresentation._(
-    validatedValue: 'xmlText',
+    valueString: 'xmlText',
     system: 'http://hl7.org/fhir/ValueSet/property-representation'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'XML Text'.toFhirString,
@@ -83,7 +84,7 @@ class PropertyRepresentation extends FhirCodeEnum {
 
   /// typeAttr
   static final PropertyRepresentation typeAttr = PropertyRepresentation._(
-    validatedValue: 'typeAttr',
+    valueString: 'typeAttr',
     system: 'http://hl7.org/fhir/ValueSet/property-representation'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Type Attribute'.toFhirString,
@@ -91,7 +92,7 @@ class PropertyRepresentation extends FhirCodeEnum {
 
   /// cdaText
   static final PropertyRepresentation cdaText = PropertyRepresentation._(
-    validatedValue: 'cdaText',
+    valueString: 'cdaText',
     system: 'http://hl7.org/fhir/ValueSet/property-representation'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'CDA Text Format'.toFhirString,
@@ -99,7 +100,7 @@ class PropertyRepresentation extends FhirCodeEnum {
 
   /// xhtml
   static final PropertyRepresentation xhtml = PropertyRepresentation._(
-    validatedValue: 'xhtml',
+    valueString: 'xhtml',
     system: 'http://hl7.org/fhir/ValueSet/property-representation'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'XHTML'.toFhirString,
@@ -107,7 +108,7 @@ class PropertyRepresentation extends FhirCodeEnum {
 
   /// For instances where an Element is present but not value
   static final PropertyRepresentation elementOnly =
-      PropertyRepresentation._(validatedValue: '');
+      PropertyRepresentation._(valueString: '');
 
   /// List of all enum-like values
   static final List<PropertyRepresentation> values = [
@@ -121,14 +122,14 @@ class PropertyRepresentation extends FhirCodeEnum {
   /// Clones the current instance
   @override
   PropertyRepresentation clone() => PropertyRepresentation._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   PropertyRepresentation withElement(Element? newElement) {
     return PropertyRepresentation._(
-      validatedValue: value,
+      valueString: valueString,
       element: newElement,
     );
   }
@@ -136,18 +137,18 @@ class PropertyRepresentation extends FhirCodeEnum {
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   PropertyRepresentation copyWith({
-    String? newValue,
+    dynamic newValue,
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
@@ -158,11 +159,12 @@ class PropertyRepresentation extends FhirCodeEnum {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError(
+          'Invalid input for PropertyRepresentation: $newValue',);
     }
     return PropertyRepresentation._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

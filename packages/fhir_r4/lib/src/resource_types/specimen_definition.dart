@@ -469,7 +469,10 @@ class SpecimenDefinition extends DomainResource {
             return copyWith(contained: newList);
           } else if (child is Resource) {
             // Add single element to existing list or create new list
-            final newList = [...?contained, child];
+            final newList = [
+              ...?contained,
+              child,
+            ];
             return copyWith(contained: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -483,7 +486,10 @@ class SpecimenDefinition extends DomainResource {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -497,7 +503,10 @@ class SpecimenDefinition extends DomainResource {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -527,7 +536,10 @@ class SpecimenDefinition extends DomainResource {
             return copyWith(patientPreparation: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...?patientPreparation, child];
+            final newList = [
+              ...?patientPreparation,
+              child,
+            ];
             return copyWith(patientPreparation: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -549,7 +561,10 @@ class SpecimenDefinition extends DomainResource {
             return copyWith(collection: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...?collection, child];
+            final newList = [
+              ...?collection,
+              child,
+            ];
             return copyWith(collection: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -563,7 +578,10 @@ class SpecimenDefinition extends DomainResource {
             return copyWith(typeTested: newList);
           } else if (child is SpecimenDefinitionTypeTested) {
             // Add single element to existing list or create new list
-            final newList = [...?typeTested, child];
+            final newList = [
+              ...?typeTested,
+              child,
+            ];
             return copyWith(typeTested: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1333,7 +1351,10 @@ class SpecimenDefinitionTypeTested extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1347,7 +1368,10 @@ class SpecimenDefinitionTypeTested extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1409,7 +1433,10 @@ class SpecimenDefinitionTypeTested extends BackboneElement {
             return copyWith(rejectionCriterion: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...?rejectionCriterion, child];
+            final newList = [
+              ...?rejectionCriterion,
+              child,
+            ];
             return copyWith(rejectionCriterion: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1423,7 +1450,10 @@ class SpecimenDefinitionTypeTested extends BackboneElement {
             return copyWith(handling: newList);
           } else if (child is SpecimenDefinitionHandling) {
             // Add single element to existing list or create new list
-            final newList = [...?handling, child];
+            final newList = [
+              ...?handling,
+              child,
+            ];
             return copyWith(handling: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2144,7 +2174,10 @@ class SpecimenDefinitionContainer extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2158,7 +2191,10 @@ class SpecimenDefinitionContainer extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2242,7 +2278,10 @@ class SpecimenDefinitionContainer extends BackboneElement {
             return copyWith(additive: newList);
           } else if (child is SpecimenDefinitionAdditive) {
             // Add single element to existing list or create new list
-            final newList = [...?additive, child];
+            final newList = [
+              ...?additive,
+              child,
+            ];
             return copyWith(additive: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2284,7 +2323,10 @@ class SpecimenDefinitionContainer extends BackboneElement {
         return ['Quantity'];
       case 'minimumVolume':
       case 'minimumVolumeX':
-        return ['Quantity', 'FhirString'];
+        return [
+          'Quantity',
+          'FhirString',
+        ];
       case 'minimumVolumeQuantity':
         return ['Quantity'];
       case 'minimumVolumeString':
@@ -2837,7 +2879,10 @@ class SpecimenDefinitionAdditive extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2851,7 +2896,10 @@ class SpecimenDefinitionAdditive extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2905,7 +2953,10 @@ class SpecimenDefinitionAdditive extends BackboneElement {
         return ['FhirExtension'];
       case 'additive':
       case 'additiveX':
-        return ['CodeableConcept', 'Reference'];
+        return [
+          'CodeableConcept',
+          'Reference',
+        ];
       case 'additiveCodeableConcept':
         return ['CodeableConcept'];
       case 'additiveReference':
@@ -3358,7 +3409,10 @@ class SpecimenDefinitionHandling extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -3372,7 +3426,10 @@ class SpecimenDefinitionHandling extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');

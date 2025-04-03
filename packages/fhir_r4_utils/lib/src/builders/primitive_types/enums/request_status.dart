@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class RequestStatusBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   RequestStatusBuilder._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class RequestStatusBuilder extends FhirCodeEnumBuilder {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory RequestStatusBuilder(
-    String? raw, {
+    String? rawValue, {
     FhirUriBuilder? system,
     FhirStringBuilder? version,
     FhirStringBuilder? display,
@@ -29,9 +29,10 @@ class RequestStatusBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
     return RequestStatusBuilder._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -45,7 +46,7 @@ class RequestStatusBuilder extends FhirCodeEnumBuilder {
 
   /// Create empty [RequestStatusBuilder] with element only
   factory RequestStatusBuilder.empty() =>
-      RequestStatusBuilder._(validatedValue: '');
+      RequestStatusBuilder._(valueString: '');
 
   /// Factory constructor to create [RequestStatusBuilder]
   /// from JSON.
@@ -62,14 +63,14 @@ class RequestStatusBuilder extends FhirCodeEnumBuilder {
       );
     }
     return RequestStatusBuilder._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// draft
   static RequestStatusBuilder draft = RequestStatusBuilder._(
-    validatedValue: 'draft',
+    valueString: 'draft',
     system: 'http://hl7.org/fhir/ValueSet/request-status'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Draft'.toFhirStringBuilder,
@@ -77,7 +78,7 @@ class RequestStatusBuilder extends FhirCodeEnumBuilder {
 
   /// active
   static RequestStatusBuilder active = RequestStatusBuilder._(
-    validatedValue: 'active',
+    valueString: 'active',
     system: 'http://hl7.org/fhir/ValueSet/request-status'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Active'.toFhirStringBuilder,
@@ -85,7 +86,7 @@ class RequestStatusBuilder extends FhirCodeEnumBuilder {
 
   /// on_hold
   static RequestStatusBuilder on_hold = RequestStatusBuilder._(
-    validatedValue: 'on-hold',
+    valueString: 'on-hold',
     system: 'http://hl7.org/fhir/ValueSet/request-status'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'On Hold'.toFhirStringBuilder,
@@ -93,7 +94,7 @@ class RequestStatusBuilder extends FhirCodeEnumBuilder {
 
   /// revoked
   static RequestStatusBuilder revoked = RequestStatusBuilder._(
-    validatedValue: 'revoked',
+    valueString: 'revoked',
     system: 'http://hl7.org/fhir/ValueSet/request-status'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Revoked'.toFhirStringBuilder,
@@ -101,7 +102,7 @@ class RequestStatusBuilder extends FhirCodeEnumBuilder {
 
   /// completed
   static RequestStatusBuilder completed = RequestStatusBuilder._(
-    validatedValue: 'completed',
+    valueString: 'completed',
     system: 'http://hl7.org/fhir/ValueSet/request-status'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Completed'.toFhirStringBuilder,
@@ -109,7 +110,7 @@ class RequestStatusBuilder extends FhirCodeEnumBuilder {
 
   /// entered_in_error
   static RequestStatusBuilder entered_in_error = RequestStatusBuilder._(
-    validatedValue: 'entered-in-error',
+    valueString: 'entered-in-error',
     system: 'http://hl7.org/fhir/ValueSet/request-status'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Entered in Error'.toFhirStringBuilder,
@@ -117,7 +118,7 @@ class RequestStatusBuilder extends FhirCodeEnumBuilder {
 
   /// unknown
   static RequestStatusBuilder unknown = RequestStatusBuilder._(
-    validatedValue: 'unknown',
+    valueString: 'unknown',
     system: 'http://hl7.org/fhir/ValueSet/request-status'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Unknown'.toFhirStringBuilder,
@@ -125,7 +126,7 @@ class RequestStatusBuilder extends FhirCodeEnumBuilder {
 
   /// For instances where an Element is present but not value
   static RequestStatusBuilder elementOnly =
-      RequestStatusBuilder._(validatedValue: '');
+      RequestStatusBuilder._(valueString: '');
 
   /// List of all enum-like values
   static List<RequestStatusBuilder> values = [
@@ -141,30 +142,31 @@ class RequestStatusBuilder extends FhirCodeEnumBuilder {
   /// Clones the current instance
   @override
   RequestStatusBuilder clone() => RequestStatusBuilder._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
   RequestStatusBuilder withElement(ElementBuilder? newElement) {
-    return RequestStatusBuilder._(validatedValue: value, element: newElement);
+    return RequestStatusBuilder._(
+        valueString: valueString, element: newElement,);
   }
 
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   RequestStatusBuilder copyWith({
-    String? newValue,
+    dynamic newValue,
     ElementBuilder? element,
     FhirStringBuilder? id,
     List<FhirExtensionBuilder>? extension_,
@@ -175,11 +177,11 @@ class RequestStatusBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError('Invalid input for RequestStatus: $newValue');
     }
     return RequestStatusBuilder._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
@@ -188,7 +190,7 @@ class RequestStatusBuilder extends FhirCodeEnumBuilder {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath,
+      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

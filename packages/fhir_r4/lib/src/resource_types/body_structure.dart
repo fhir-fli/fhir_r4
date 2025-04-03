@@ -514,7 +514,10 @@ class BodyStructure extends DomainResource {
             return copyWith(contained: newList);
           } else if (child is Resource) {
             // Add single element to existing list or create new list
-            final newList = [...?contained, child];
+            final newList = [
+              ...?contained,
+              child,
+            ];
             return copyWith(contained: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -528,7 +531,10 @@ class BodyStructure extends DomainResource {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -542,7 +548,10 @@ class BodyStructure extends DomainResource {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -556,7 +565,10 @@ class BodyStructure extends DomainResource {
             return copyWith(identifier: newList);
           } else if (child is Identifier) {
             // Add single element to existing list or create new list
-            final newList = [...?identifier, child];
+            final newList = [
+              ...?identifier,
+              child,
+            ];
             return copyWith(identifier: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -594,7 +606,10 @@ class BodyStructure extends DomainResource {
             return copyWith(locationQualifier: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...?locationQualifier, child];
+            final newList = [
+              ...?locationQualifier,
+              child,
+            ];
             return copyWith(locationQualifier: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -616,7 +631,10 @@ class BodyStructure extends DomainResource {
             return copyWith(image: newList);
           } else if (child is Attachment) {
             // Add single element to existing list or create new list
-            final newList = [...?image, child];
+            final newList = [
+              ...?image,
+              child,
+            ];
             return copyWith(image: newList);
           } else {
             throw Exception('Invalid child type for $childName');

@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class DocumentRelationshipType extends FhirCodeEnum {
   // Private underscore constructor for internal use.
   DocumentRelationshipType._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class DocumentRelationshipType extends FhirCodeEnum {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory DocumentRelationshipType(
-    String? raw, {
+    String? rawValue, {
     FhirUri? system,
     FhirString? version,
     FhirString? display,
@@ -29,9 +29,10 @@ class DocumentRelationshipType extends FhirCodeEnum {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCode._validateCode(rawValue) : null;
     return DocumentRelationshipType._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -45,7 +46,7 @@ class DocumentRelationshipType extends FhirCodeEnum {
 
   /// Create empty [DocumentRelationshipType] with element only
   factory DocumentRelationshipType.empty() =>
-      DocumentRelationshipType._(validatedValue: '');
+      DocumentRelationshipType._(valueString: '');
 
   /// Factory constructor to create [DocumentRelationshipType] from JSON.
   factory DocumentRelationshipType.fromJson(Map<String, dynamic> json) {
@@ -60,14 +61,14 @@ class DocumentRelationshipType extends FhirCodeEnum {
       );
     }
     return DocumentRelationshipType._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// replaces
   static final DocumentRelationshipType replaces = DocumentRelationshipType._(
-    validatedValue: 'replaces',
+    valueString: 'replaces',
     system: 'http://hl7.org/fhir/ValueSet/document-relationship-type'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Replaces'.toFhirString,
@@ -75,7 +76,7 @@ class DocumentRelationshipType extends FhirCodeEnum {
 
   /// transforms
   static final DocumentRelationshipType transforms = DocumentRelationshipType._(
-    validatedValue: 'transforms',
+    valueString: 'transforms',
     system: 'http://hl7.org/fhir/ValueSet/document-relationship-type'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Transforms'.toFhirString,
@@ -83,7 +84,7 @@ class DocumentRelationshipType extends FhirCodeEnum {
 
   /// signs
   static final DocumentRelationshipType signs = DocumentRelationshipType._(
-    validatedValue: 'signs',
+    valueString: 'signs',
     system: 'http://hl7.org/fhir/ValueSet/document-relationship-type'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Signs'.toFhirString,
@@ -91,7 +92,7 @@ class DocumentRelationshipType extends FhirCodeEnum {
 
   /// appends
   static final DocumentRelationshipType appends = DocumentRelationshipType._(
-    validatedValue: 'appends',
+    valueString: 'appends',
     system: 'http://hl7.org/fhir/ValueSet/document-relationship-type'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Appends'.toFhirString,
@@ -99,7 +100,7 @@ class DocumentRelationshipType extends FhirCodeEnum {
 
   /// For instances where an Element is present but not value
   static final DocumentRelationshipType elementOnly =
-      DocumentRelationshipType._(validatedValue: '');
+      DocumentRelationshipType._(valueString: '');
 
   /// List of all enum-like values
   static final List<DocumentRelationshipType> values = [
@@ -112,14 +113,14 @@ class DocumentRelationshipType extends FhirCodeEnum {
   /// Clones the current instance
   @override
   DocumentRelationshipType clone() => DocumentRelationshipType._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   DocumentRelationshipType withElement(Element? newElement) {
     return DocumentRelationshipType._(
-      validatedValue: value,
+      valueString: valueString,
       element: newElement,
     );
   }
@@ -127,18 +128,18 @@ class DocumentRelationshipType extends FhirCodeEnum {
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   DocumentRelationshipType copyWith({
-    String? newValue,
+    dynamic newValue,
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
@@ -149,11 +150,12 @@ class DocumentRelationshipType extends FhirCodeEnum {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError(
+          'Invalid input for DocumentRelationshipType: $newValue',);
     }
     return DocumentRelationshipType._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

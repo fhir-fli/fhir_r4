@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class NarrativeStatusBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   NarrativeStatusBuilder._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class NarrativeStatusBuilder extends FhirCodeEnumBuilder {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory NarrativeStatusBuilder(
-    String? raw, {
+    String? rawValue, {
     FhirUriBuilder? system,
     FhirStringBuilder? version,
     FhirStringBuilder? display,
@@ -29,9 +29,10 @@ class NarrativeStatusBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
     return NarrativeStatusBuilder._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -45,7 +46,7 @@ class NarrativeStatusBuilder extends FhirCodeEnumBuilder {
 
   /// Create empty [NarrativeStatusBuilder] with element only
   factory NarrativeStatusBuilder.empty() =>
-      NarrativeStatusBuilder._(validatedValue: '');
+      NarrativeStatusBuilder._(valueString: '');
 
   /// Factory constructor to create [NarrativeStatusBuilder]
   /// from JSON.
@@ -62,14 +63,14 @@ class NarrativeStatusBuilder extends FhirCodeEnumBuilder {
       );
     }
     return NarrativeStatusBuilder._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// generated
   static NarrativeStatusBuilder generated = NarrativeStatusBuilder._(
-    validatedValue: 'generated',
+    valueString: 'generated',
     system: 'http://hl7.org/fhir/ValueSet/narrative-status'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Generated'.toFhirStringBuilder,
@@ -77,7 +78,7 @@ class NarrativeStatusBuilder extends FhirCodeEnumBuilder {
 
   /// extensions
   static NarrativeStatusBuilder extensions = NarrativeStatusBuilder._(
-    validatedValue: 'extensions',
+    valueString: 'extensions',
     system: 'http://hl7.org/fhir/ValueSet/narrative-status'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Extensions'.toFhirStringBuilder,
@@ -85,7 +86,7 @@ class NarrativeStatusBuilder extends FhirCodeEnumBuilder {
 
   /// additional
   static NarrativeStatusBuilder additional = NarrativeStatusBuilder._(
-    validatedValue: 'additional',
+    valueString: 'additional',
     system: 'http://hl7.org/fhir/ValueSet/narrative-status'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Additional'.toFhirStringBuilder,
@@ -93,7 +94,7 @@ class NarrativeStatusBuilder extends FhirCodeEnumBuilder {
 
   /// empty_
   static NarrativeStatusBuilder empty_ = NarrativeStatusBuilder._(
-    validatedValue: 'empty',
+    valueString: 'empty',
     system: 'http://hl7.org/fhir/ValueSet/narrative-status'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Empty'.toFhirStringBuilder,
@@ -101,7 +102,7 @@ class NarrativeStatusBuilder extends FhirCodeEnumBuilder {
 
   /// For instances where an Element is present but not value
   static NarrativeStatusBuilder elementOnly =
-      NarrativeStatusBuilder._(validatedValue: '');
+      NarrativeStatusBuilder._(valueString: '');
 
   /// List of all enum-like values
   static List<NarrativeStatusBuilder> values = [
@@ -114,30 +115,31 @@ class NarrativeStatusBuilder extends FhirCodeEnumBuilder {
   /// Clones the current instance
   @override
   NarrativeStatusBuilder clone() => NarrativeStatusBuilder._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
   NarrativeStatusBuilder withElement(ElementBuilder? newElement) {
-    return NarrativeStatusBuilder._(validatedValue: value, element: newElement);
+    return NarrativeStatusBuilder._(
+        valueString: valueString, element: newElement,);
   }
 
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   NarrativeStatusBuilder copyWith({
-    String? newValue,
+    dynamic newValue,
     ElementBuilder? element,
     FhirStringBuilder? id,
     List<FhirExtensionBuilder>? extension_,
@@ -148,11 +150,11 @@ class NarrativeStatusBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError('Invalid input for NarrativeStatus: $newValue');
     }
     return NarrativeStatusBuilder._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
@@ -161,7 +163,7 @@ class NarrativeStatusBuilder extends FhirCodeEnumBuilder {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath,
+      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

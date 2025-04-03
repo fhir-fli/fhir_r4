@@ -51,6 +51,7 @@ class FhirId extends FhirUri
   /// - If [rawValue] is a [String], it must pass [_validateId].
   /// - If [rawValue] is a [Uri], we convert it to a string and validate.
   /// - Otherwise, an [ArgumentError] is thrown.
+  // ignore: sort_unnamed_constructors_first
   factory FhirId(
     dynamic rawValue, {
     Element? element,
@@ -154,6 +155,10 @@ class FhirId extends FhirUri
   @override
   String get fhirType => 'id';
 
+  /// Returns `true` if the Type is considered string-based, otherwise `false`
+  @override
+  bool get stringBased => true;
+
   // --------------------------------------------------------------------------
   // JSON Serialization
   // --------------------------------------------------------------------------
@@ -217,6 +222,10 @@ class FhirId extends FhirUri
       identical(this, other) ||
       (other is FhirId && other.valueString == valueString) ||
       (other is String && other == valueString);
+
+  @override
+  // ignore: avoid_equals_and_hash_code_on_mutable_classes
+  bool operator ==(Object other) => equals(other);
 
   @override
   // ignore: avoid_equals_and_hash_code_on_mutable_classes

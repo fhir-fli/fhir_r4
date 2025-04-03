@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class ActionConditionKindBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   ActionConditionKindBuilder._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class ActionConditionKindBuilder extends FhirCodeEnumBuilder {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory ActionConditionKindBuilder(
-    String? raw, {
+    String? rawValue, {
     FhirUriBuilder? system,
     FhirStringBuilder? version,
     FhirStringBuilder? display,
@@ -29,9 +29,10 @@ class ActionConditionKindBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
     return ActionConditionKindBuilder._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -45,7 +46,7 @@ class ActionConditionKindBuilder extends FhirCodeEnumBuilder {
 
   /// Create empty [ActionConditionKindBuilder] with element only
   factory ActionConditionKindBuilder.empty() =>
-      ActionConditionKindBuilder._(validatedValue: '');
+      ActionConditionKindBuilder._(valueString: '');
 
   /// Factory constructor to create [ActionConditionKindBuilder]
   /// from JSON.
@@ -62,7 +63,7 @@ class ActionConditionKindBuilder extends FhirCodeEnumBuilder {
       );
     }
     return ActionConditionKindBuilder._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
@@ -70,7 +71,7 @@ class ActionConditionKindBuilder extends FhirCodeEnumBuilder {
   /// applicability
   static ActionConditionKindBuilder applicability =
       ActionConditionKindBuilder._(
-    validatedValue: 'applicability',
+    valueString: 'applicability',
     system:
         'http://hl7.org/fhir/ValueSet/action-condition-kind'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -79,7 +80,7 @@ class ActionConditionKindBuilder extends FhirCodeEnumBuilder {
 
   /// start
   static ActionConditionKindBuilder start = ActionConditionKindBuilder._(
-    validatedValue: 'start',
+    valueString: 'start',
     system:
         'http://hl7.org/fhir/ValueSet/action-condition-kind'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -88,7 +89,7 @@ class ActionConditionKindBuilder extends FhirCodeEnumBuilder {
 
   /// stop
   static ActionConditionKindBuilder stop = ActionConditionKindBuilder._(
-    validatedValue: 'stop',
+    valueString: 'stop',
     system:
         'http://hl7.org/fhir/ValueSet/action-condition-kind'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -97,7 +98,7 @@ class ActionConditionKindBuilder extends FhirCodeEnumBuilder {
 
   /// For instances where an Element is present but not value
   static ActionConditionKindBuilder elementOnly =
-      ActionConditionKindBuilder._(validatedValue: '');
+      ActionConditionKindBuilder._(valueString: '');
 
   /// List of all enum-like values
   static List<ActionConditionKindBuilder> values = [
@@ -109,31 +110,31 @@ class ActionConditionKindBuilder extends FhirCodeEnumBuilder {
   /// Clones the current instance
   @override
   ActionConditionKindBuilder clone() => ActionConditionKindBuilder._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
   ActionConditionKindBuilder withElement(ElementBuilder? newElement) {
     return ActionConditionKindBuilder._(
-        validatedValue: value, element: newElement,);
+        valueString: valueString, element: newElement,);
   }
 
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   ActionConditionKindBuilder copyWith({
-    String? newValue,
+    dynamic newValue,
     ElementBuilder? element,
     FhirStringBuilder? id,
     List<FhirExtensionBuilder>? extension_,
@@ -144,11 +145,11 @@ class ActionConditionKindBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError('Invalid input for ActionConditionKind: $newValue');
     }
     return ActionConditionKindBuilder._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
@@ -157,7 +158,7 @@ class ActionConditionKindBuilder extends FhirCodeEnumBuilder {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath,
+      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

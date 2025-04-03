@@ -85,7 +85,9 @@ class FhirString extends PrimitiveType
   // Public Factories
   // --------------------------------------------------------------------------
 
-  /// Creates a [FhirString]. If [rawValue] is non-null, `toString()` is applied.
+  /// Creates a [FhirString]. If [rawValue] is non-null, `toString()` is
+  /// applied.
+  // ignore: sort_unnamed_constructors_first
   factory FhirString(
     dynamic rawValue, {
     Element? element,
@@ -197,6 +199,10 @@ class FhirString extends PrimitiveType
   @override
   // ignore: avoid_equals_and_hash_code_on_mutable_classes
   int get hashCode => Object.hash(valueString, element);
+
+  /// Returns `true` if the Type is considered string-based, otherwise `false`
+  @override
+  bool get stringBased => true;
 
   // --------------------------------------------------------------------------
   // Clone / Copy

@@ -444,7 +444,10 @@ class ImmunizationRecommendation extends DomainResource {
             return copyWith(contained: newList);
           } else if (child is Resource) {
             // Add single element to existing list or create new list
-            final newList = [...?contained, child];
+            final newList = [
+              ...?contained,
+              child,
+            ];
             return copyWith(contained: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -458,7 +461,10 @@ class ImmunizationRecommendation extends DomainResource {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -472,7 +478,10 @@ class ImmunizationRecommendation extends DomainResource {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -486,7 +495,10 @@ class ImmunizationRecommendation extends DomainResource {
             return copyWith(identifier: newList);
           } else if (child is Identifier) {
             // Add single element to existing list or create new list
-            final newList = [...?identifier, child];
+            final newList = [
+              ...?identifier,
+              child,
+            ];
             return copyWith(identifier: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -524,7 +536,10 @@ class ImmunizationRecommendation extends DomainResource {
             return copyWith(recommendation: newList);
           } else if (child is ImmunizationRecommendationRecommendation) {
             // Add single element to existing list or create new list
-            final newList = [...recommendation, child];
+            final newList = [
+              ...recommendation,
+              child,
+            ];
             return copyWith(recommendation: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1412,7 +1427,10 @@ class ImmunizationRecommendationRecommendation extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1426,7 +1444,10 @@ class ImmunizationRecommendationRecommendation extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1440,7 +1461,10 @@ class ImmunizationRecommendationRecommendation extends BackboneElement {
             return copyWith(vaccineCode: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...?vaccineCode, child];
+            final newList = [
+              ...?vaccineCode,
+              child,
+            ];
             return copyWith(vaccineCode: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1462,7 +1486,10 @@ class ImmunizationRecommendationRecommendation extends BackboneElement {
             return copyWith(contraindicatedVaccineCode: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...?contraindicatedVaccineCode, child];
+            final newList = [
+              ...?contraindicatedVaccineCode,
+              child,
+            ];
             return copyWith(contraindicatedVaccineCode: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1484,7 +1511,10 @@ class ImmunizationRecommendationRecommendation extends BackboneElement {
             return copyWith(forecastReason: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...?forecastReason, child];
+            final newList = [
+              ...?forecastReason,
+              child,
+            ];
             return copyWith(forecastReason: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1498,7 +1528,10 @@ class ImmunizationRecommendationRecommendation extends BackboneElement {
             return copyWith(dateCriterion: newList);
           } else if (child is ImmunizationRecommendationDateCriterion) {
             // Add single element to existing list or create new list
-            final newList = [...?dateCriterion, child];
+            final newList = [
+              ...?dateCriterion,
+              child,
+            ];
             return copyWith(dateCriterion: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1588,7 +1621,10 @@ class ImmunizationRecommendationRecommendation extends BackboneElement {
             return copyWith(supportingImmunization: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...?supportingImmunization, child];
+            final newList = [
+              ...?supportingImmunization,
+              child,
+            ];
             return copyWith(supportingImmunization: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1602,7 +1638,10 @@ class ImmunizationRecommendationRecommendation extends BackboneElement {
             return copyWith(supportingPatientInformation: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...?supportingPatientInformation, child];
+            final newList = [
+              ...?supportingPatientInformation,
+              child,
+            ];
             return copyWith(supportingPatientInformation: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1642,14 +1681,20 @@ class ImmunizationRecommendationRecommendation extends BackboneElement {
         return ['FhirString'];
       case 'doseNumber':
       case 'doseNumberX':
-        return ['FhirPositiveInt', 'FhirString'];
+        return [
+          'FhirPositiveInt',
+          'FhirString',
+        ];
       case 'doseNumberPositiveInt':
         return ['FhirPositiveInt'];
       case 'doseNumberString':
         return ['FhirString'];
       case 'seriesDoses':
       case 'seriesDosesX':
-        return ['FhirPositiveInt', 'FhirString'];
+        return [
+          'FhirPositiveInt',
+          'FhirString',
+        ];
       case 'seriesDosesPositiveInt':
         return ['FhirPositiveInt'];
       case 'seriesDosesString':
@@ -2309,7 +2354,10 @@ class ImmunizationRecommendationDateCriterion extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2323,7 +2371,10 @@ class ImmunizationRecommendationDateCriterion extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');

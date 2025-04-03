@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class RepositoryTypeBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   RepositoryTypeBuilder._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class RepositoryTypeBuilder extends FhirCodeEnumBuilder {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory RepositoryTypeBuilder(
-    String? raw, {
+    String? rawValue, {
     FhirUriBuilder? system,
     FhirStringBuilder? version,
     FhirStringBuilder? display,
@@ -29,9 +29,10 @@ class RepositoryTypeBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
     return RepositoryTypeBuilder._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -45,7 +46,7 @@ class RepositoryTypeBuilder extends FhirCodeEnumBuilder {
 
   /// Create empty [RepositoryTypeBuilder] with element only
   factory RepositoryTypeBuilder.empty() =>
-      RepositoryTypeBuilder._(validatedValue: '');
+      RepositoryTypeBuilder._(valueString: '');
 
   /// Factory constructor to create [RepositoryTypeBuilder]
   /// from JSON.
@@ -62,14 +63,14 @@ class RepositoryTypeBuilder extends FhirCodeEnumBuilder {
       );
     }
     return RepositoryTypeBuilder._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// directlink
   static RepositoryTypeBuilder directlink = RepositoryTypeBuilder._(
-    validatedValue: 'directlink',
+    valueString: 'directlink',
     system: 'http://hl7.org/fhir/ValueSet/repository-type'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Click and see'.toFhirStringBuilder,
@@ -77,7 +78,7 @@ class RepositoryTypeBuilder extends FhirCodeEnumBuilder {
 
   /// openapi
   static RepositoryTypeBuilder openapi = RepositoryTypeBuilder._(
-    validatedValue: 'openapi',
+    valueString: 'openapi',
     system: 'http://hl7.org/fhir/ValueSet/repository-type'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display:
@@ -87,7 +88,7 @@ class RepositoryTypeBuilder extends FhirCodeEnumBuilder {
 
   /// login
   static RepositoryTypeBuilder login = RepositoryTypeBuilder._(
-    validatedValue: 'login',
+    valueString: 'login',
     system: 'http://hl7.org/fhir/ValueSet/repository-type'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Result cannot be access unless an account is logged in'
@@ -96,7 +97,7 @@ class RepositoryTypeBuilder extends FhirCodeEnumBuilder {
 
   /// oauth
   static RepositoryTypeBuilder oauth = RepositoryTypeBuilder._(
-    validatedValue: 'oauth',
+    valueString: 'oauth',
     system: 'http://hl7.org/fhir/ValueSet/repository-type'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display:
@@ -106,7 +107,7 @@ class RepositoryTypeBuilder extends FhirCodeEnumBuilder {
 
   /// other
   static RepositoryTypeBuilder other = RepositoryTypeBuilder._(
-    validatedValue: 'other',
+    valueString: 'other',
     system: 'http://hl7.org/fhir/ValueSet/repository-type'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display:
@@ -116,7 +117,7 @@ class RepositoryTypeBuilder extends FhirCodeEnumBuilder {
 
   /// For instances where an Element is present but not value
   static RepositoryTypeBuilder elementOnly =
-      RepositoryTypeBuilder._(validatedValue: '');
+      RepositoryTypeBuilder._(valueString: '');
 
   /// List of all enum-like values
   static List<RepositoryTypeBuilder> values = [
@@ -130,30 +131,31 @@ class RepositoryTypeBuilder extends FhirCodeEnumBuilder {
   /// Clones the current instance
   @override
   RepositoryTypeBuilder clone() => RepositoryTypeBuilder._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
   RepositoryTypeBuilder withElement(ElementBuilder? newElement) {
-    return RepositoryTypeBuilder._(validatedValue: value, element: newElement);
+    return RepositoryTypeBuilder._(
+        valueString: valueString, element: newElement,);
   }
 
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   RepositoryTypeBuilder copyWith({
-    String? newValue,
+    dynamic newValue,
     ElementBuilder? element,
     FhirStringBuilder? id,
     List<FhirExtensionBuilder>? extension_,
@@ -164,11 +166,11 @@ class RepositoryTypeBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError('Invalid input for RepositoryType: $newValue');
     }
     return RepositoryTypeBuilder._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
@@ -177,7 +179,7 @@ class RepositoryTypeBuilder extends FhirCodeEnumBuilder {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath,
+      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

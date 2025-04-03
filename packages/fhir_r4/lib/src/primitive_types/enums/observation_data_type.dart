@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class ObservationDataType extends FhirCodeEnum {
   // Private underscore constructor for internal use.
   ObservationDataType._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class ObservationDataType extends FhirCodeEnum {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory ObservationDataType(
-    String? raw, {
+    String? rawValue, {
     FhirUri? system,
     FhirString? version,
     FhirString? display,
@@ -29,9 +29,10 @@ class ObservationDataType extends FhirCodeEnum {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCode._validateCode(rawValue) : null;
     return ObservationDataType._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -44,8 +45,7 @@ class ObservationDataType extends FhirCodeEnum {
   }
 
   /// Create empty [ObservationDataType] with element only
-  factory ObservationDataType.empty() =>
-      ObservationDataType._(validatedValue: '');
+  factory ObservationDataType.empty() => ObservationDataType._(valueString: '');
 
   /// Factory constructor to create [ObservationDataType] from JSON.
   factory ObservationDataType.fromJson(Map<String, dynamic> json) {
@@ -60,14 +60,14 @@ class ObservationDataType extends FhirCodeEnum {
       );
     }
     return ObservationDataType._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// Quantity
   static final ObservationDataType Quantity = ObservationDataType._(
-    validatedValue: 'Quantity',
+    valueString: 'Quantity',
     system: 'http://hl7.org/fhir/ValueSet/permitted-data-type'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Quantity'.toFhirString,
@@ -75,7 +75,7 @@ class ObservationDataType extends FhirCodeEnum {
 
   /// CodeableConcept
   static final ObservationDataType CodeableConcept = ObservationDataType._(
-    validatedValue: 'CodeableConcept',
+    valueString: 'CodeableConcept',
     system: 'http://hl7.org/fhir/ValueSet/permitted-data-type'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'CodeableConcept'.toFhirString,
@@ -83,7 +83,7 @@ class ObservationDataType extends FhirCodeEnum {
 
   /// string
   static final ObservationDataType string = ObservationDataType._(
-    validatedValue: 'string',
+    valueString: 'string',
     system: 'http://hl7.org/fhir/ValueSet/permitted-data-type'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'string'.toFhirString,
@@ -91,7 +91,7 @@ class ObservationDataType extends FhirCodeEnum {
 
   /// boolean
   static final ObservationDataType boolean = ObservationDataType._(
-    validatedValue: 'boolean',
+    valueString: 'boolean',
     system: 'http://hl7.org/fhir/ValueSet/permitted-data-type'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'boolean'.toFhirString,
@@ -99,7 +99,7 @@ class ObservationDataType extends FhirCodeEnum {
 
   /// integer
   static final ObservationDataType integer = ObservationDataType._(
-    validatedValue: 'integer',
+    valueString: 'integer',
     system: 'http://hl7.org/fhir/ValueSet/permitted-data-type'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'integer'.toFhirString,
@@ -107,7 +107,7 @@ class ObservationDataType extends FhirCodeEnum {
 
   /// Range
   static final ObservationDataType Range = ObservationDataType._(
-    validatedValue: 'Range',
+    valueString: 'Range',
     system: 'http://hl7.org/fhir/ValueSet/permitted-data-type'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Range'.toFhirString,
@@ -115,7 +115,7 @@ class ObservationDataType extends FhirCodeEnum {
 
   /// Ratio
   static final ObservationDataType Ratio = ObservationDataType._(
-    validatedValue: 'Ratio',
+    valueString: 'Ratio',
     system: 'http://hl7.org/fhir/ValueSet/permitted-data-type'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Ratio'.toFhirString,
@@ -123,7 +123,7 @@ class ObservationDataType extends FhirCodeEnum {
 
   /// SampledData
   static final ObservationDataType SampledData = ObservationDataType._(
-    validatedValue: 'SampledData',
+    valueString: 'SampledData',
     system: 'http://hl7.org/fhir/ValueSet/permitted-data-type'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'SampledData'.toFhirString,
@@ -131,7 +131,7 @@ class ObservationDataType extends FhirCodeEnum {
 
   /// time
   static final ObservationDataType time = ObservationDataType._(
-    validatedValue: 'time',
+    valueString: 'time',
     system: 'http://hl7.org/fhir/ValueSet/permitted-data-type'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'time'.toFhirString,
@@ -139,7 +139,7 @@ class ObservationDataType extends FhirCodeEnum {
 
   /// dateTime
   static final ObservationDataType dateTime = ObservationDataType._(
-    validatedValue: 'dateTime',
+    valueString: 'dateTime',
     system: 'http://hl7.org/fhir/ValueSet/permitted-data-type'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'dateTime'.toFhirString,
@@ -147,7 +147,7 @@ class ObservationDataType extends FhirCodeEnum {
 
   /// Period
   static final ObservationDataType Period = ObservationDataType._(
-    validatedValue: 'Period',
+    valueString: 'Period',
     system: 'http://hl7.org/fhir/ValueSet/permitted-data-type'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Period'.toFhirString,
@@ -155,7 +155,7 @@ class ObservationDataType extends FhirCodeEnum {
 
   /// For instances where an Element is present but not value
   static final ObservationDataType elementOnly =
-      ObservationDataType._(validatedValue: '');
+      ObservationDataType._(valueString: '');
 
   /// List of all enum-like values
   static final List<ObservationDataType> values = [
@@ -175,14 +175,14 @@ class ObservationDataType extends FhirCodeEnum {
   /// Clones the current instance
   @override
   ObservationDataType clone() => ObservationDataType._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ObservationDataType withElement(Element? newElement) {
     return ObservationDataType._(
-      validatedValue: value,
+      valueString: valueString,
       element: newElement,
     );
   }
@@ -190,18 +190,18 @@ class ObservationDataType extends FhirCodeEnum {
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   ObservationDataType copyWith({
-    String? newValue,
+    dynamic newValue,
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
@@ -212,11 +212,11 @@ class ObservationDataType extends FhirCodeEnum {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError('Invalid input for ObservationDataType: $newValue');
     }
     return ObservationDataType._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

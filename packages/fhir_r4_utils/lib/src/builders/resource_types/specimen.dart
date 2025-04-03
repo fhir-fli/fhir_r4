@@ -591,6 +591,21 @@ class SpecimenBuilder extends DomainResourceBuilder {
           if (child is CommonLanguagesBuilder) {
             language = child;
             return;
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              // For enums, try to create directly from the string value
+              try {
+                final converted = CommonLanguagesBuilder(stringValue);
+                language = converted;
+                return;
+              } catch (e) {
+                // Continue if enum creation fails
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
           throw Exception('Invalid child type for $childName');
         }
@@ -610,7 +625,10 @@ class SpecimenBuilder extends DomainResourceBuilder {
             return;
           } else if (child is ResourceBuilder) {
             // Add single element to existing list or create new list
-            contained = [...(contained ?? []), child];
+            contained = [
+              ...(contained ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -623,7 +641,10 @@ class SpecimenBuilder extends DomainResourceBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -636,7 +657,10 @@ class SpecimenBuilder extends DomainResourceBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -649,7 +673,10 @@ class SpecimenBuilder extends DomainResourceBuilder {
             return;
           } else if (child is IdentifierBuilder) {
             // Add single element to existing list or create new list
-            identifier = [...(identifier ?? []), child];
+            identifier = [
+              ...(identifier ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -667,6 +694,21 @@ class SpecimenBuilder extends DomainResourceBuilder {
           if (child is SpecimenStatusBuilder) {
             status = child;
             return;
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              // For enums, try to create directly from the string value
+              try {
+                final converted = SpecimenStatusBuilder(stringValue);
+                status = converted;
+                return;
+              } catch (e) {
+                // Continue if enum creation fails
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
           throw Exception('Invalid child type for $childName');
         }
@@ -714,7 +756,10 @@ class SpecimenBuilder extends DomainResourceBuilder {
             return;
           } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            parent = [...(parent ?? []), child];
+            parent = [
+              ...(parent ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -727,7 +772,10 @@ class SpecimenBuilder extends DomainResourceBuilder {
             return;
           } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            request = [...(request ?? []), child];
+            request = [
+              ...(request ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -748,7 +796,10 @@ class SpecimenBuilder extends DomainResourceBuilder {
             return;
           } else if (child is SpecimenProcessingBuilder) {
             // Add single element to existing list or create new list
-            processing = [...(processing ?? []), child];
+            processing = [
+              ...(processing ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -761,7 +812,10 @@ class SpecimenBuilder extends DomainResourceBuilder {
             return;
           } else if (child is SpecimenContainerBuilder) {
             // Add single element to existing list or create new list
-            container = [...(container ?? []), child];
+            container = [
+              ...(container ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -774,7 +828,10 @@ class SpecimenBuilder extends DomainResourceBuilder {
             return;
           } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            condition = [...(condition ?? []), child];
+            condition = [
+              ...(condition ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -787,7 +844,10 @@ class SpecimenBuilder extends DomainResourceBuilder {
             return;
           } else if (child is AnnotationBuilder) {
             // Add single element to existing list or create new list
-            note = [...(note ?? []), child];
+            note = [
+              ...(note ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -1625,7 +1685,10 @@ class SpecimenCollectionBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -1638,7 +1701,10 @@ class SpecimenCollectionBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -1773,7 +1839,10 @@ class SpecimenCollectionBuilder extends BackboneElementBuilder {
         return ['ReferenceBuilder'];
       case 'collected':
       case 'collectedX':
-        return ['FhirDateTimeBuilder', 'PeriodBuilder'];
+        return [
+          'FhirDateTimeBuilder',
+          'PeriodBuilder',
+        ];
       case 'collectedDateTime':
         return ['FhirDateTimeBuilder'];
       case 'collectedPeriod':
@@ -1788,7 +1857,10 @@ class SpecimenCollectionBuilder extends BackboneElementBuilder {
         return ['CodeableConceptBuilder'];
       case 'fastingStatus':
       case 'fastingStatusX':
-        return ['CodeableConceptBuilder', 'FhirDurationBuilder'];
+        return [
+          'CodeableConceptBuilder',
+          'FhirDurationBuilder',
+        ];
       case 'fastingStatusCodeableConcept':
         return ['CodeableConceptBuilder'];
       case 'fastingStatusDuration':
@@ -2344,7 +2416,10 @@ class SpecimenProcessingBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -2357,7 +2432,10 @@ class SpecimenProcessingBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -2398,7 +2476,10 @@ class SpecimenProcessingBuilder extends BackboneElementBuilder {
             return;
           } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            additive = [...(additive ?? []), child];
+            additive = [
+              ...(additive ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -2462,7 +2543,10 @@ class SpecimenProcessingBuilder extends BackboneElementBuilder {
         return ['ReferenceBuilder'];
       case 'time':
       case 'timeX':
-        return ['FhirDateTimeBuilder', 'PeriodBuilder'];
+        return [
+          'FhirDateTimeBuilder',
+          'PeriodBuilder',
+        ];
       case 'timeDateTime':
         return ['FhirDateTimeBuilder'];
       case 'timePeriod':
@@ -3006,7 +3090,10 @@ class SpecimenContainerBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -3019,7 +3106,10 @@ class SpecimenContainerBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -3032,7 +3122,10 @@ class SpecimenContainerBuilder extends BackboneElementBuilder {
             return;
           } else if (child is IdentifierBuilder) {
             // Add single element to existing list or create new list
-            identifier = [...(identifier ?? []), child];
+            identifier = [
+              ...(identifier ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -3144,7 +3237,10 @@ class SpecimenContainerBuilder extends BackboneElementBuilder {
         return ['QuantityBuilder'];
       case 'additive':
       case 'additiveX':
-        return ['CodeableConceptBuilder', 'ReferenceBuilder'];
+        return [
+          'CodeableConceptBuilder',
+          'ReferenceBuilder',
+        ];
       case 'additiveCodeableConcept':
         return ['CodeableConceptBuilder'];
       case 'additiveReference':

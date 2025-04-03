@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class IssueType extends FhirCodeEnum {
   // Private underscore constructor for internal use.
   IssueType._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class IssueType extends FhirCodeEnum {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory IssueType(
-    String? raw, {
+    String? rawValue, {
     FhirUri? system,
     FhirString? version,
     FhirString? display,
@@ -29,9 +29,10 @@ class IssueType extends FhirCodeEnum {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCode._validateCode(rawValue) : null;
     return IssueType._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -44,7 +45,7 @@ class IssueType extends FhirCodeEnum {
   }
 
   /// Create empty [IssueType] with element only
-  factory IssueType.empty() => IssueType._(validatedValue: '');
+  factory IssueType.empty() => IssueType._(valueString: '');
 
   /// Factory constructor to create [IssueType] from JSON.
   factory IssueType.fromJson(Map<String, dynamic> json) {
@@ -59,14 +60,14 @@ class IssueType extends FhirCodeEnum {
       );
     }
     return IssueType._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// invalid
   static final IssueType invalid = IssueType._(
-    validatedValue: 'invalid',
+    valueString: 'invalid',
     system: 'http://hl7.org/fhir/ValueSet/issue-type'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Invalid Content'.toFhirString,
@@ -74,7 +75,7 @@ class IssueType extends FhirCodeEnum {
 
   /// structure
   static final IssueType structure = IssueType._(
-    validatedValue: 'structure',
+    valueString: 'structure',
     system: 'http://hl7.org/fhir/ValueSet/issue-type'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Structural Issue'.toFhirString,
@@ -82,7 +83,7 @@ class IssueType extends FhirCodeEnum {
 
   /// required_
   static final IssueType required_ = IssueType._(
-    validatedValue: 'required',
+    valueString: 'required',
     system: 'http://hl7.org/fhir/ValueSet/issue-type'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Required element missing'.toFhirString,
@@ -90,7 +91,7 @@ class IssueType extends FhirCodeEnum {
 
   /// value
   static final IssueType value_ = IssueType._(
-    validatedValue: 'value',
+    valueString: 'value',
     system: 'http://hl7.org/fhir/ValueSet/issue-type'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Element value invalid'.toFhirString,
@@ -98,7 +99,7 @@ class IssueType extends FhirCodeEnum {
 
   /// invariant
   static final IssueType invariant = IssueType._(
-    validatedValue: 'invariant',
+    valueString: 'invariant',
     system: 'http://hl7.org/fhir/ValueSet/issue-type'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Validation rule failed'.toFhirString,
@@ -106,7 +107,7 @@ class IssueType extends FhirCodeEnum {
 
   /// security
   static final IssueType security = IssueType._(
-    validatedValue: 'security',
+    valueString: 'security',
     system: 'http://hl7.org/fhir/ValueSet/issue-type'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Security Problem'.toFhirString,
@@ -114,7 +115,7 @@ class IssueType extends FhirCodeEnum {
 
   /// login
   static final IssueType login = IssueType._(
-    validatedValue: 'login',
+    valueString: 'login',
     system: 'http://hl7.org/fhir/ValueSet/issue-type'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Login Required'.toFhirString,
@@ -122,7 +123,7 @@ class IssueType extends FhirCodeEnum {
 
   /// unknown
   static final IssueType unknown = IssueType._(
-    validatedValue: 'unknown',
+    valueString: 'unknown',
     system: 'http://hl7.org/fhir/ValueSet/issue-type'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Unknown User'.toFhirString,
@@ -130,7 +131,7 @@ class IssueType extends FhirCodeEnum {
 
   /// expired
   static final IssueType expired = IssueType._(
-    validatedValue: 'expired',
+    valueString: 'expired',
     system: 'http://hl7.org/fhir/ValueSet/issue-type'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Session Expired'.toFhirString,
@@ -138,7 +139,7 @@ class IssueType extends FhirCodeEnum {
 
   /// forbidden
   static final IssueType forbidden = IssueType._(
-    validatedValue: 'forbidden',
+    valueString: 'forbidden',
     system: 'http://hl7.org/fhir/ValueSet/issue-type'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Forbidden'.toFhirString,
@@ -146,7 +147,7 @@ class IssueType extends FhirCodeEnum {
 
   /// suppressed
   static final IssueType suppressed = IssueType._(
-    validatedValue: 'suppressed',
+    valueString: 'suppressed',
     system: 'http://hl7.org/fhir/ValueSet/issue-type'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Information Suppressed'.toFhirString,
@@ -154,7 +155,7 @@ class IssueType extends FhirCodeEnum {
 
   /// processing
   static final IssueType processing = IssueType._(
-    validatedValue: 'processing',
+    valueString: 'processing',
     system: 'http://hl7.org/fhir/ValueSet/issue-type'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Processing Failure'.toFhirString,
@@ -162,7 +163,7 @@ class IssueType extends FhirCodeEnum {
 
   /// not_supported
   static final IssueType not_supported = IssueType._(
-    validatedValue: 'not-supported',
+    valueString: 'not-supported',
     system: 'http://hl7.org/fhir/ValueSet/issue-type'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Content not supported'.toFhirString,
@@ -170,7 +171,7 @@ class IssueType extends FhirCodeEnum {
 
   /// duplicate
   static final IssueType duplicate = IssueType._(
-    validatedValue: 'duplicate',
+    valueString: 'duplicate',
     system: 'http://hl7.org/fhir/ValueSet/issue-type'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Duplicate'.toFhirString,
@@ -178,7 +179,7 @@ class IssueType extends FhirCodeEnum {
 
   /// multiple_matches
   static final IssueType multiple_matches = IssueType._(
-    validatedValue: 'multiple-matches',
+    valueString: 'multiple-matches',
     system: 'http://hl7.org/fhir/ValueSet/issue-type'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Multiple Matches'.toFhirString,
@@ -186,7 +187,7 @@ class IssueType extends FhirCodeEnum {
 
   /// not_found
   static final IssueType not_found = IssueType._(
-    validatedValue: 'not-found',
+    valueString: 'not-found',
     system: 'http://hl7.org/fhir/ValueSet/issue-type'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Not Found'.toFhirString,
@@ -194,7 +195,7 @@ class IssueType extends FhirCodeEnum {
 
   /// deleted
   static final IssueType deleted = IssueType._(
-    validatedValue: 'deleted',
+    valueString: 'deleted',
     system: 'http://hl7.org/fhir/ValueSet/issue-type'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Deleted'.toFhirString,
@@ -202,7 +203,7 @@ class IssueType extends FhirCodeEnum {
 
   /// too_long
   static final IssueType too_long = IssueType._(
-    validatedValue: 'too-long',
+    valueString: 'too-long',
     system: 'http://hl7.org/fhir/ValueSet/issue-type'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Content Too Long'.toFhirString,
@@ -210,7 +211,7 @@ class IssueType extends FhirCodeEnum {
 
   /// code_invalid
   static final IssueType code_invalid = IssueType._(
-    validatedValue: 'code-invalid',
+    valueString: 'code-invalid',
     system: 'http://hl7.org/fhir/ValueSet/issue-type'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Invalid Code'.toFhirString,
@@ -218,7 +219,7 @@ class IssueType extends FhirCodeEnum {
 
   /// extension_
   static final IssueType extensionValue = IssueType._(
-    validatedValue: 'extension',
+    valueString: 'extension',
     system: 'http://hl7.org/fhir/ValueSet/issue-type'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Unacceptable Extension'.toFhirString,
@@ -226,7 +227,7 @@ class IssueType extends FhirCodeEnum {
 
   /// too_costly
   static final IssueType too_costly = IssueType._(
-    validatedValue: 'too-costly',
+    valueString: 'too-costly',
     system: 'http://hl7.org/fhir/ValueSet/issue-type'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Operation Too Costly'.toFhirString,
@@ -234,7 +235,7 @@ class IssueType extends FhirCodeEnum {
 
   /// business_rule
   static final IssueType business_rule = IssueType._(
-    validatedValue: 'business-rule',
+    valueString: 'business-rule',
     system: 'http://hl7.org/fhir/ValueSet/issue-type'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Business Rule Violation'.toFhirString,
@@ -242,7 +243,7 @@ class IssueType extends FhirCodeEnum {
 
   /// conflict
   static final IssueType conflict = IssueType._(
-    validatedValue: 'conflict',
+    valueString: 'conflict',
     system: 'http://hl7.org/fhir/ValueSet/issue-type'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Edit Version Conflict'.toFhirString,
@@ -250,7 +251,7 @@ class IssueType extends FhirCodeEnum {
 
   /// transient
   static final IssueType transient = IssueType._(
-    validatedValue: 'transient',
+    valueString: 'transient',
     system: 'http://hl7.org/fhir/ValueSet/issue-type'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Transient Issue'.toFhirString,
@@ -258,7 +259,7 @@ class IssueType extends FhirCodeEnum {
 
   /// lock_error
   static final IssueType lock_error = IssueType._(
-    validatedValue: 'lock-error',
+    valueString: 'lock-error',
     system: 'http://hl7.org/fhir/ValueSet/issue-type'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Lock Error'.toFhirString,
@@ -266,7 +267,7 @@ class IssueType extends FhirCodeEnum {
 
   /// no_store
   static final IssueType no_store = IssueType._(
-    validatedValue: 'no-store',
+    valueString: 'no-store',
     system: 'http://hl7.org/fhir/ValueSet/issue-type'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'No Store Available'.toFhirString,
@@ -274,7 +275,7 @@ class IssueType extends FhirCodeEnum {
 
   /// exception
   static final IssueType exception = IssueType._(
-    validatedValue: 'exception',
+    valueString: 'exception',
     system: 'http://hl7.org/fhir/ValueSet/issue-type'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Exception'.toFhirString,
@@ -282,7 +283,7 @@ class IssueType extends FhirCodeEnum {
 
   /// timeout
   static final IssueType timeout = IssueType._(
-    validatedValue: 'timeout',
+    valueString: 'timeout',
     system: 'http://hl7.org/fhir/ValueSet/issue-type'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Timeout'.toFhirString,
@@ -290,7 +291,7 @@ class IssueType extends FhirCodeEnum {
 
   /// incomplete
   static final IssueType incomplete = IssueType._(
-    validatedValue: 'incomplete',
+    valueString: 'incomplete',
     system: 'http://hl7.org/fhir/ValueSet/issue-type'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Incomplete Results'.toFhirString,
@@ -298,7 +299,7 @@ class IssueType extends FhirCodeEnum {
 
   /// throttled
   static final IssueType throttled = IssueType._(
-    validatedValue: 'throttled',
+    valueString: 'throttled',
     system: 'http://hl7.org/fhir/ValueSet/issue-type'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Throttled'.toFhirString,
@@ -306,14 +307,14 @@ class IssueType extends FhirCodeEnum {
 
   /// informational
   static final IssueType informational = IssueType._(
-    validatedValue: 'informational',
+    valueString: 'informational',
     system: 'http://hl7.org/fhir/ValueSet/issue-type'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Informational Note'.toFhirString,
   );
 
   /// For instances where an Element is present but not value
-  static final IssueType elementOnly = IssueType._(validatedValue: '');
+  static final IssueType elementOnly = IssueType._(valueString: '');
 
   /// List of all enum-like values
   static final List<IssueType> values = [
@@ -353,14 +354,14 @@ class IssueType extends FhirCodeEnum {
   /// Clones the current instance
   @override
   IssueType clone() => IssueType._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   IssueType withElement(Element? newElement) {
     return IssueType._(
-      validatedValue: value,
+      valueString: valueString,
       element: newElement,
     );
   }
@@ -368,18 +369,18 @@ class IssueType extends FhirCodeEnum {
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   IssueType copyWith({
-    String? newValue,
+    dynamic newValue,
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
@@ -390,11 +391,11 @@ class IssueType extends FhirCodeEnum {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError('Invalid input for IssueType: $newValue');
     }
     return IssueType._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

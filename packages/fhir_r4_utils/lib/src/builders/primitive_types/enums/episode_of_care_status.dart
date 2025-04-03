@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class EpisodeOfCareStatusBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   EpisodeOfCareStatusBuilder._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class EpisodeOfCareStatusBuilder extends FhirCodeEnumBuilder {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory EpisodeOfCareStatusBuilder(
-    String? raw, {
+    String? rawValue, {
     FhirUriBuilder? system,
     FhirStringBuilder? version,
     FhirStringBuilder? display,
@@ -29,9 +29,10 @@ class EpisodeOfCareStatusBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
     return EpisodeOfCareStatusBuilder._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -45,7 +46,7 @@ class EpisodeOfCareStatusBuilder extends FhirCodeEnumBuilder {
 
   /// Create empty [EpisodeOfCareStatusBuilder] with element only
   factory EpisodeOfCareStatusBuilder.empty() =>
-      EpisodeOfCareStatusBuilder._(validatedValue: '');
+      EpisodeOfCareStatusBuilder._(valueString: '');
 
   /// Factory constructor to create [EpisodeOfCareStatusBuilder]
   /// from JSON.
@@ -62,14 +63,14 @@ class EpisodeOfCareStatusBuilder extends FhirCodeEnumBuilder {
       );
     }
     return EpisodeOfCareStatusBuilder._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// planned
   static EpisodeOfCareStatusBuilder planned = EpisodeOfCareStatusBuilder._(
-    validatedValue: 'planned',
+    valueString: 'planned',
     system:
         'http://hl7.org/fhir/ValueSet/episode-of-care-status'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -78,7 +79,7 @@ class EpisodeOfCareStatusBuilder extends FhirCodeEnumBuilder {
 
   /// waitlist
   static EpisodeOfCareStatusBuilder waitlist = EpisodeOfCareStatusBuilder._(
-    validatedValue: 'waitlist',
+    valueString: 'waitlist',
     system:
         'http://hl7.org/fhir/ValueSet/episode-of-care-status'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -87,7 +88,7 @@ class EpisodeOfCareStatusBuilder extends FhirCodeEnumBuilder {
 
   /// active
   static EpisodeOfCareStatusBuilder active = EpisodeOfCareStatusBuilder._(
-    validatedValue: 'active',
+    valueString: 'active',
     system:
         'http://hl7.org/fhir/ValueSet/episode-of-care-status'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -96,7 +97,7 @@ class EpisodeOfCareStatusBuilder extends FhirCodeEnumBuilder {
 
   /// onhold
   static EpisodeOfCareStatusBuilder onhold = EpisodeOfCareStatusBuilder._(
-    validatedValue: 'onhold',
+    valueString: 'onhold',
     system:
         'http://hl7.org/fhir/ValueSet/episode-of-care-status'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -105,7 +106,7 @@ class EpisodeOfCareStatusBuilder extends FhirCodeEnumBuilder {
 
   /// finished
   static EpisodeOfCareStatusBuilder finished = EpisodeOfCareStatusBuilder._(
-    validatedValue: 'finished',
+    valueString: 'finished',
     system:
         'http://hl7.org/fhir/ValueSet/episode-of-care-status'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -114,7 +115,7 @@ class EpisodeOfCareStatusBuilder extends FhirCodeEnumBuilder {
 
   /// cancelled
   static EpisodeOfCareStatusBuilder cancelled = EpisodeOfCareStatusBuilder._(
-    validatedValue: 'cancelled',
+    valueString: 'cancelled',
     system:
         'http://hl7.org/fhir/ValueSet/episode-of-care-status'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -124,7 +125,7 @@ class EpisodeOfCareStatusBuilder extends FhirCodeEnumBuilder {
   /// entered_in_error
   static EpisodeOfCareStatusBuilder entered_in_error =
       EpisodeOfCareStatusBuilder._(
-    validatedValue: 'entered-in-error',
+    valueString: 'entered-in-error',
     system:
         'http://hl7.org/fhir/ValueSet/episode-of-care-status'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -133,7 +134,7 @@ class EpisodeOfCareStatusBuilder extends FhirCodeEnumBuilder {
 
   /// For instances where an Element is present but not value
   static EpisodeOfCareStatusBuilder elementOnly =
-      EpisodeOfCareStatusBuilder._(validatedValue: '');
+      EpisodeOfCareStatusBuilder._(valueString: '');
 
   /// List of all enum-like values
   static List<EpisodeOfCareStatusBuilder> values = [
@@ -149,31 +150,31 @@ class EpisodeOfCareStatusBuilder extends FhirCodeEnumBuilder {
   /// Clones the current instance
   @override
   EpisodeOfCareStatusBuilder clone() => EpisodeOfCareStatusBuilder._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
   EpisodeOfCareStatusBuilder withElement(ElementBuilder? newElement) {
     return EpisodeOfCareStatusBuilder._(
-        validatedValue: value, element: newElement,);
+        valueString: valueString, element: newElement,);
   }
 
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   EpisodeOfCareStatusBuilder copyWith({
-    String? newValue,
+    dynamic newValue,
     ElementBuilder? element,
     FhirStringBuilder? id,
     List<FhirExtensionBuilder>? extension_,
@@ -184,11 +185,11 @@ class EpisodeOfCareStatusBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError('Invalid input for EpisodeOfCareStatus: $newValue');
     }
     return EpisodeOfCareStatusBuilder._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
@@ -197,7 +198,7 @@ class EpisodeOfCareStatusBuilder extends FhirCodeEnumBuilder {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath,
+      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

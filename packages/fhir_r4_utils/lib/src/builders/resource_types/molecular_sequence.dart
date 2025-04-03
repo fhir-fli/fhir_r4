@@ -649,6 +649,21 @@ class MolecularSequenceBuilder extends DomainResourceBuilder {
           if (child is CommonLanguagesBuilder) {
             language = child;
             return;
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              // For enums, try to create directly from the string value
+              try {
+                final converted = CommonLanguagesBuilder(stringValue);
+                language = converted;
+                return;
+              } catch (e) {
+                // Continue if enum creation fails
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
           throw Exception('Invalid child type for $childName');
         }
@@ -668,7 +683,10 @@ class MolecularSequenceBuilder extends DomainResourceBuilder {
             return;
           } else if (child is ResourceBuilder) {
             // Add single element to existing list or create new list
-            contained = [...(contained ?? []), child];
+            contained = [
+              ...(contained ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -681,7 +699,10 @@ class MolecularSequenceBuilder extends DomainResourceBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -694,7 +715,10 @@ class MolecularSequenceBuilder extends DomainResourceBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -707,7 +731,10 @@ class MolecularSequenceBuilder extends DomainResourceBuilder {
             return;
           } else if (child is IdentifierBuilder) {
             // Add single element to existing list or create new list
-            identifier = [...(identifier ?? []), child];
+            identifier = [
+              ...(identifier ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -717,6 +744,21 @@ class MolecularSequenceBuilder extends DomainResourceBuilder {
           if (child is SequenceTypeBuilder) {
             type = child;
             return;
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              // For enums, try to create directly from the string value
+              try {
+                final converted = SequenceTypeBuilder(stringValue);
+                type = converted;
+                return;
+              } catch (e) {
+                // Continue if enum creation fails
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
           throw Exception('Invalid child type for $childName');
         }
@@ -729,7 +771,8 @@ class MolecularSequenceBuilder extends DomainResourceBuilder {
             // Try to convert from one primitive type to another
             try {
               final stringValue = child.toString();
-              // For number types, first parse to num then pass the number directly
+              // For number types,
+              // first parse to num then pass the number directly
               final numValue = num.tryParse(stringValue);
               if (numValue != null) {
                 final converted = FhirIntegerBuilder.tryParse(numValue);
@@ -800,7 +843,10 @@ class MolecularSequenceBuilder extends DomainResourceBuilder {
             return;
           } else if (child is MolecularSequenceVariantBuilder) {
             // Add single element to existing list or create new list
-            variant = [...(variant ?? []), child];
+            variant = [
+              ...(variant ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -833,7 +879,10 @@ class MolecularSequenceBuilder extends DomainResourceBuilder {
             return;
           } else if (child is MolecularSequenceQualityBuilder) {
             // Add single element to existing list or create new list
-            quality = [...(quality ?? []), child];
+            quality = [
+              ...(quality ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -847,7 +896,8 @@ class MolecularSequenceBuilder extends DomainResourceBuilder {
             // Try to convert from one primitive type to another
             try {
               final stringValue = child.toString();
-              // For number types, first parse to num then pass the number directly
+              // For number types,
+              // first parse to num then pass the number directly
               final numValue = num.tryParse(stringValue);
               if (numValue != null) {
                 final converted = FhirIntegerBuilder.tryParse(numValue);
@@ -870,7 +920,10 @@ class MolecularSequenceBuilder extends DomainResourceBuilder {
             return;
           } else if (child is MolecularSequenceRepositoryBuilder) {
             // Add single element to existing list or create new list
-            repository = [...(repository ?? []), child];
+            repository = [
+              ...(repository ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -883,7 +936,10 @@ class MolecularSequenceBuilder extends DomainResourceBuilder {
             return;
           } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            pointer = [...(pointer ?? []), child];
+            pointer = [
+              ...(pointer ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -896,7 +952,10 @@ class MolecularSequenceBuilder extends DomainResourceBuilder {
             return;
           } else if (child is MolecularSequenceStructureVariantBuilder) {
             // Add single element to existing list or create new list
-            structureVariant = [...(structureVariant ?? []), child];
+            structureVariant = [
+              ...(structureVariant ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -1781,7 +1840,10 @@ class MolecularSequenceReferenceSeqBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -1794,7 +1856,10 @@ class MolecularSequenceReferenceSeqBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -1832,6 +1897,21 @@ class MolecularSequenceReferenceSeqBuilder extends BackboneElementBuilder {
           if (child is OrientationTypeBuilder) {
             orientation = child;
             return;
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              // For enums, try to create directly from the string value
+              try {
+                final converted = OrientationTypeBuilder(stringValue);
+                orientation = converted;
+                return;
+              } catch (e) {
+                // Continue if enum creation fails
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
           throw Exception('Invalid child type for $childName');
         }
@@ -1876,6 +1956,21 @@ class MolecularSequenceReferenceSeqBuilder extends BackboneElementBuilder {
           if (child is StrandTypeBuilder) {
             strand = child;
             return;
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              // For enums, try to create directly from the string value
+              try {
+                final converted = StrandTypeBuilder(stringValue);
+                strand = converted;
+                return;
+              } catch (e) {
+                // Continue if enum creation fails
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
           throw Exception('Invalid child type for $childName');
         }
@@ -1888,7 +1983,8 @@ class MolecularSequenceReferenceSeqBuilder extends BackboneElementBuilder {
             // Try to convert from one primitive type to another
             try {
               final stringValue = child.toString();
-              // For number types, first parse to num then pass the number directly
+              // For number types,
+              // first parse to num then pass the number directly
               final numValue = num.tryParse(stringValue);
               if (numValue != null) {
                 final converted = FhirIntegerBuilder.tryParse(numValue);
@@ -1912,7 +2008,8 @@ class MolecularSequenceReferenceSeqBuilder extends BackboneElementBuilder {
             // Try to convert from one primitive type to another
             try {
               final stringValue = child.toString();
-              // For number types, first parse to num then pass the number directly
+              // For number types,
+              // first parse to num then pass the number directly
               final numValue = num.tryParse(stringValue);
               if (numValue != null) {
                 final converted = FhirIntegerBuilder.tryParse(numValue);
@@ -2557,7 +2654,10 @@ class MolecularSequenceVariantBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -2570,7 +2670,10 @@ class MolecularSequenceVariantBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -2584,7 +2687,8 @@ class MolecularSequenceVariantBuilder extends BackboneElementBuilder {
             // Try to convert from one primitive type to another
             try {
               final stringValue = child.toString();
-              // For number types, first parse to num then pass the number directly
+              // For number types,
+              // first parse to num then pass the number directly
               final numValue = num.tryParse(stringValue);
               if (numValue != null) {
                 final converted = FhirIntegerBuilder.tryParse(numValue);
@@ -2608,7 +2712,8 @@ class MolecularSequenceVariantBuilder extends BackboneElementBuilder {
             // Try to convert from one primitive type to another
             try {
               final stringValue = child.toString();
-              // For number types, first parse to num then pass the number directly
+              // For number types,
+              // first parse to num then pass the number directly
               final numValue = num.tryParse(stringValue);
               if (numValue != null) {
                 final converted = FhirIntegerBuilder.tryParse(numValue);
@@ -3424,7 +3529,10 @@ class MolecularSequenceQualityBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -3437,7 +3545,10 @@ class MolecularSequenceQualityBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -3447,6 +3558,21 @@ class MolecularSequenceQualityBuilder extends BackboneElementBuilder {
           if (child is QualityTypeBuilder) {
             type = child;
             return;
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              // For enums, try to create directly from the string value
+              try {
+                final converted = QualityTypeBuilder(stringValue);
+                type = converted;
+                return;
+              } catch (e) {
+                // Continue if enum creation fails
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
           throw Exception('Invalid child type for $childName');
         }
@@ -3467,7 +3593,8 @@ class MolecularSequenceQualityBuilder extends BackboneElementBuilder {
             // Try to convert from one primitive type to another
             try {
               final stringValue = child.toString();
-              // For number types, first parse to num then pass the number directly
+              // For number types,
+              // first parse to num then pass the number directly
               final numValue = num.tryParse(stringValue);
               if (numValue != null) {
                 final converted = FhirIntegerBuilder.tryParse(numValue);
@@ -3491,7 +3618,8 @@ class MolecularSequenceQualityBuilder extends BackboneElementBuilder {
             // Try to convert from one primitive type to another
             try {
               final stringValue = child.toString();
-              // For number types, first parse to num then pass the number directly
+              // For number types,
+              // first parse to num then pass the number directly
               final numValue = num.tryParse(stringValue);
               if (numValue != null) {
                 final converted = FhirIntegerBuilder.tryParse(numValue);
@@ -3531,7 +3659,8 @@ class MolecularSequenceQualityBuilder extends BackboneElementBuilder {
             // Try to convert from one primitive type to another
             try {
               final stringValue = child.toString();
-              // For number types, first parse to num then pass the number directly
+              // For number types,
+              // first parse to num then pass the number directly
               final numValue = num.tryParse(stringValue);
               if (numValue != null) {
                 final converted = FhirDecimalBuilder.tryParse(numValue);
@@ -3555,7 +3684,8 @@ class MolecularSequenceQualityBuilder extends BackboneElementBuilder {
             // Try to convert from one primitive type to another
             try {
               final stringValue = child.toString();
-              // For number types, first parse to num then pass the number directly
+              // For number types,
+              // first parse to num then pass the number directly
               final numValue = num.tryParse(stringValue);
               if (numValue != null) {
                 final converted = FhirDecimalBuilder.tryParse(numValue);
@@ -3579,7 +3709,8 @@ class MolecularSequenceQualityBuilder extends BackboneElementBuilder {
             // Try to convert from one primitive type to another
             try {
               final stringValue = child.toString();
-              // For number types, first parse to num then pass the number directly
+              // For number types,
+              // first parse to num then pass the number directly
               final numValue = num.tryParse(stringValue);
               if (numValue != null) {
                 final converted = FhirDecimalBuilder.tryParse(numValue);
@@ -3603,7 +3734,8 @@ class MolecularSequenceQualityBuilder extends BackboneElementBuilder {
             // Try to convert from one primitive type to another
             try {
               final stringValue = child.toString();
-              // For number types, first parse to num then pass the number directly
+              // For number types,
+              // first parse to num then pass the number directly
               final numValue = num.tryParse(stringValue);
               if (numValue != null) {
                 final converted = FhirDecimalBuilder.tryParse(numValue);
@@ -3627,7 +3759,8 @@ class MolecularSequenceQualityBuilder extends BackboneElementBuilder {
             // Try to convert from one primitive type to another
             try {
               final stringValue = child.toString();
-              // For number types, first parse to num then pass the number directly
+              // For number types,
+              // first parse to num then pass the number directly
               final numValue = num.tryParse(stringValue);
               if (numValue != null) {
                 final converted = FhirDecimalBuilder.tryParse(numValue);
@@ -3651,7 +3784,8 @@ class MolecularSequenceQualityBuilder extends BackboneElementBuilder {
             // Try to convert from one primitive type to another
             try {
               final stringValue = child.toString();
-              // For number types, first parse to num then pass the number directly
+              // For number types,
+              // first parse to num then pass the number directly
               final numValue = num.tryParse(stringValue);
               if (numValue != null) {
                 final converted = FhirDecimalBuilder.tryParse(numValue);
@@ -3675,7 +3809,8 @@ class MolecularSequenceQualityBuilder extends BackboneElementBuilder {
             // Try to convert from one primitive type to another
             try {
               final stringValue = child.toString();
-              // For number types, first parse to num then pass the number directly
+              // For number types,
+              // first parse to num then pass the number directly
               final numValue = num.tryParse(stringValue);
               if (numValue != null) {
                 final converted = FhirDecimalBuilder.tryParse(numValue);
@@ -3699,7 +3834,8 @@ class MolecularSequenceQualityBuilder extends BackboneElementBuilder {
             // Try to convert from one primitive type to another
             try {
               final stringValue = child.toString();
-              // For number types, first parse to num then pass the number directly
+              // For number types,
+              // first parse to num then pass the number directly
               final numValue = num.tryParse(stringValue);
               if (numValue != null) {
                 final converted = FhirDecimalBuilder.tryParse(numValue);
@@ -4454,7 +4590,10 @@ class MolecularSequenceRocBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -4467,7 +4606,10 @@ class MolecularSequenceRocBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -4480,7 +4622,10 @@ class MolecularSequenceRocBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirIntegerBuilder) {
             // Add single element to existing list or create new list
-            score = [...(score ?? []), child];
+            score = [
+              ...(score ?? []),
+              child,
+            ];
             return;
           } else if (child is List<PrimitiveTypeBuilder>) {
             // Try to convert list of primitive types
@@ -4488,7 +4633,8 @@ class MolecularSequenceRocBuilder extends BackboneElementBuilder {
             for (final element in child) {
               try {
                 final stringValue = element.toString();
-                // For number types, first parse to num then pass the number directly
+                // For number types,
+                // first parse to num then pass the number directly
                 final numValue = num.tryParse(stringValue);
                 if (numValue != null) {
                   final converted = FhirIntegerBuilder.tryParse(numValue);
@@ -4508,7 +4654,8 @@ class MolecularSequenceRocBuilder extends BackboneElementBuilder {
             // Try to convert a single primitive
             try {
               final stringValue = child.toString();
-              // For number types, first parse to num then pass the number directly
+              // For number types,
+              // first parse to num then pass the number directly
               final numValue = num.tryParse(stringValue);
               if (numValue != null) {
                 final converted = FhirIntegerBuilder.tryParse(numValue);
@@ -4531,7 +4678,10 @@ class MolecularSequenceRocBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirIntegerBuilder) {
             // Add single element to existing list or create new list
-            numTP = [...(numTP ?? []), child];
+            numTP = [
+              ...(numTP ?? []),
+              child,
+            ];
             return;
           } else if (child is List<PrimitiveTypeBuilder>) {
             // Try to convert list of primitive types
@@ -4539,7 +4689,8 @@ class MolecularSequenceRocBuilder extends BackboneElementBuilder {
             for (final element in child) {
               try {
                 final stringValue = element.toString();
-                // For number types, first parse to num then pass the number directly
+                // For number types,
+                // first parse to num then pass the number directly
                 final numValue = num.tryParse(stringValue);
                 if (numValue != null) {
                   final converted = FhirIntegerBuilder.tryParse(numValue);
@@ -4559,7 +4710,8 @@ class MolecularSequenceRocBuilder extends BackboneElementBuilder {
             // Try to convert a single primitive
             try {
               final stringValue = child.toString();
-              // For number types, first parse to num then pass the number directly
+              // For number types,
+              // first parse to num then pass the number directly
               final numValue = num.tryParse(stringValue);
               if (numValue != null) {
                 final converted = FhirIntegerBuilder.tryParse(numValue);
@@ -4582,7 +4734,10 @@ class MolecularSequenceRocBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirIntegerBuilder) {
             // Add single element to existing list or create new list
-            numFP = [...(numFP ?? []), child];
+            numFP = [
+              ...(numFP ?? []),
+              child,
+            ];
             return;
           } else if (child is List<PrimitiveTypeBuilder>) {
             // Try to convert list of primitive types
@@ -4590,7 +4745,8 @@ class MolecularSequenceRocBuilder extends BackboneElementBuilder {
             for (final element in child) {
               try {
                 final stringValue = element.toString();
-                // For number types, first parse to num then pass the number directly
+                // For number types,
+                // first parse to num then pass the number directly
                 final numValue = num.tryParse(stringValue);
                 if (numValue != null) {
                   final converted = FhirIntegerBuilder.tryParse(numValue);
@@ -4610,7 +4766,8 @@ class MolecularSequenceRocBuilder extends BackboneElementBuilder {
             // Try to convert a single primitive
             try {
               final stringValue = child.toString();
-              // For number types, first parse to num then pass the number directly
+              // For number types,
+              // first parse to num then pass the number directly
               final numValue = num.tryParse(stringValue);
               if (numValue != null) {
                 final converted = FhirIntegerBuilder.tryParse(numValue);
@@ -4633,7 +4790,10 @@ class MolecularSequenceRocBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirIntegerBuilder) {
             // Add single element to existing list or create new list
-            numFN = [...(numFN ?? []), child];
+            numFN = [
+              ...(numFN ?? []),
+              child,
+            ];
             return;
           } else if (child is List<PrimitiveTypeBuilder>) {
             // Try to convert list of primitive types
@@ -4641,7 +4801,8 @@ class MolecularSequenceRocBuilder extends BackboneElementBuilder {
             for (final element in child) {
               try {
                 final stringValue = element.toString();
-                // For number types, first parse to num then pass the number directly
+                // For number types,
+                // first parse to num then pass the number directly
                 final numValue = num.tryParse(stringValue);
                 if (numValue != null) {
                   final converted = FhirIntegerBuilder.tryParse(numValue);
@@ -4661,7 +4822,8 @@ class MolecularSequenceRocBuilder extends BackboneElementBuilder {
             // Try to convert a single primitive
             try {
               final stringValue = child.toString();
-              // For number types, first parse to num then pass the number directly
+              // For number types,
+              // first parse to num then pass the number directly
               final numValue = num.tryParse(stringValue);
               if (numValue != null) {
                 final converted = FhirIntegerBuilder.tryParse(numValue);
@@ -4684,7 +4846,10 @@ class MolecularSequenceRocBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirDecimalBuilder) {
             // Add single element to existing list or create new list
-            precision = [...(precision ?? []), child];
+            precision = [
+              ...(precision ?? []),
+              child,
+            ];
             return;
           } else if (child is List<PrimitiveTypeBuilder>) {
             // Try to convert list of primitive types
@@ -4692,7 +4857,8 @@ class MolecularSequenceRocBuilder extends BackboneElementBuilder {
             for (final element in child) {
               try {
                 final stringValue = element.toString();
-                // For number types, first parse to num then pass the number directly
+                // For number types,
+                // first parse to num then pass the number directly
                 final numValue = num.tryParse(stringValue);
                 if (numValue != null) {
                   final converted = FhirDecimalBuilder.tryParse(numValue);
@@ -4712,7 +4878,8 @@ class MolecularSequenceRocBuilder extends BackboneElementBuilder {
             // Try to convert a single primitive
             try {
               final stringValue = child.toString();
-              // For number types, first parse to num then pass the number directly
+              // For number types,
+              // first parse to num then pass the number directly
               final numValue = num.tryParse(stringValue);
               if (numValue != null) {
                 final converted = FhirDecimalBuilder.tryParse(numValue);
@@ -4735,7 +4902,10 @@ class MolecularSequenceRocBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirDecimalBuilder) {
             // Add single element to existing list or create new list
-            sensitivity = [...(sensitivity ?? []), child];
+            sensitivity = [
+              ...(sensitivity ?? []),
+              child,
+            ];
             return;
           } else if (child is List<PrimitiveTypeBuilder>) {
             // Try to convert list of primitive types
@@ -4743,7 +4913,8 @@ class MolecularSequenceRocBuilder extends BackboneElementBuilder {
             for (final element in child) {
               try {
                 final stringValue = element.toString();
-                // For number types, first parse to num then pass the number directly
+                // For number types,
+                // first parse to num then pass the number directly
                 final numValue = num.tryParse(stringValue);
                 if (numValue != null) {
                   final converted = FhirDecimalBuilder.tryParse(numValue);
@@ -4763,7 +4934,8 @@ class MolecularSequenceRocBuilder extends BackboneElementBuilder {
             // Try to convert a single primitive
             try {
               final stringValue = child.toString();
-              // For number types, first parse to num then pass the number directly
+              // For number types,
+              // first parse to num then pass the number directly
               final numValue = num.tryParse(stringValue);
               if (numValue != null) {
                 final converted = FhirDecimalBuilder.tryParse(numValue);
@@ -4786,7 +4958,10 @@ class MolecularSequenceRocBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirDecimalBuilder) {
             // Add single element to existing list or create new list
-            fMeasure = [...(fMeasure ?? []), child];
+            fMeasure = [
+              ...(fMeasure ?? []),
+              child,
+            ];
             return;
           } else if (child is List<PrimitiveTypeBuilder>) {
             // Try to convert list of primitive types
@@ -4794,7 +4969,8 @@ class MolecularSequenceRocBuilder extends BackboneElementBuilder {
             for (final element in child) {
               try {
                 final stringValue = element.toString();
-                // For number types, first parse to num then pass the number directly
+                // For number types,
+                // first parse to num then pass the number directly
                 final numValue = num.tryParse(stringValue);
                 if (numValue != null) {
                   final converted = FhirDecimalBuilder.tryParse(numValue);
@@ -4814,7 +4990,8 @@ class MolecularSequenceRocBuilder extends BackboneElementBuilder {
             // Try to convert a single primitive
             try {
               final stringValue = child.toString();
-              // For number types, first parse to num then pass the number directly
+              // For number types,
+              // first parse to num then pass the number directly
               final numValue = num.tryParse(stringValue);
               if (numValue != null) {
                 final converted = FhirDecimalBuilder.tryParse(numValue);
@@ -5410,7 +5587,10 @@ class MolecularSequenceRepositoryBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -5423,7 +5603,10 @@ class MolecularSequenceRepositoryBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -5433,6 +5616,21 @@ class MolecularSequenceRepositoryBuilder extends BackboneElementBuilder {
           if (child is RepositoryTypeBuilder) {
             type = child;
             return;
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              // For enums, try to create directly from the string value
+              try {
+                final converted = RepositoryTypeBuilder(stringValue);
+                type = converted;
+                return;
+              } catch (e) {
+                // Continue if enum creation fails
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
           throw Exception('Invalid child type for $childName');
         }
@@ -6076,7 +6274,10 @@ class MolecularSequenceStructureVariantBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -6089,7 +6290,10 @@ class MolecularSequenceStructureVariantBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -6131,7 +6335,8 @@ class MolecularSequenceStructureVariantBuilder extends BackboneElementBuilder {
             // Try to convert from one primitive type to another
             try {
               final stringValue = child.toString();
-              // For number types, first parse to num then pass the number directly
+              // For number types,
+              // first parse to num then pass the number directly
               final numValue = num.tryParse(stringValue);
               if (numValue != null) {
                 final converted = FhirIntegerBuilder.tryParse(numValue);
@@ -6637,7 +6842,10 @@ class MolecularSequenceOuterBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -6650,7 +6858,10 @@ class MolecularSequenceOuterBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -6664,7 +6875,8 @@ class MolecularSequenceOuterBuilder extends BackboneElementBuilder {
             // Try to convert from one primitive type to another
             try {
               final stringValue = child.toString();
-              // For number types, first parse to num then pass the number directly
+              // For number types,
+              // first parse to num then pass the number directly
               final numValue = num.tryParse(stringValue);
               if (numValue != null) {
                 final converted = FhirIntegerBuilder.tryParse(numValue);
@@ -6688,7 +6900,8 @@ class MolecularSequenceOuterBuilder extends BackboneElementBuilder {
             // Try to convert from one primitive type to another
             try {
               final stringValue = child.toString();
-              // For number types, first parse to num then pass the number directly
+              // For number types,
+              // first parse to num then pass the number directly
               final numValue = num.tryParse(stringValue);
               if (numValue != null) {
                 final converted = FhirIntegerBuilder.tryParse(numValue);
@@ -7126,7 +7339,10 @@ class MolecularSequenceInnerBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -7139,7 +7355,10 @@ class MolecularSequenceInnerBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -7153,7 +7372,8 @@ class MolecularSequenceInnerBuilder extends BackboneElementBuilder {
             // Try to convert from one primitive type to another
             try {
               final stringValue = child.toString();
-              // For number types, first parse to num then pass the number directly
+              // For number types,
+              // first parse to num then pass the number directly
               final numValue = num.tryParse(stringValue);
               if (numValue != null) {
                 final converted = FhirIntegerBuilder.tryParse(numValue);
@@ -7177,7 +7397,8 @@ class MolecularSequenceInnerBuilder extends BackboneElementBuilder {
             // Try to convert from one primitive type to another
             try {
               final stringValue = child.toString();
-              // For number types, first parse to num then pass the number directly
+              // For number types,
+              // first parse to num then pass the number directly
               final numValue = num.tryParse(stringValue);
               if (numValue != null) {
                 final converted = FhirIntegerBuilder.tryParse(numValue);

@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class EndpointStatusBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   EndpointStatusBuilder._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class EndpointStatusBuilder extends FhirCodeEnumBuilder {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory EndpointStatusBuilder(
-    String? raw, {
+    String? rawValue, {
     FhirUriBuilder? system,
     FhirStringBuilder? version,
     FhirStringBuilder? display,
@@ -29,9 +29,10 @@ class EndpointStatusBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
     return EndpointStatusBuilder._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -45,7 +46,7 @@ class EndpointStatusBuilder extends FhirCodeEnumBuilder {
 
   /// Create empty [EndpointStatusBuilder] with element only
   factory EndpointStatusBuilder.empty() =>
-      EndpointStatusBuilder._(validatedValue: '');
+      EndpointStatusBuilder._(valueString: '');
 
   /// Factory constructor to create [EndpointStatusBuilder]
   /// from JSON.
@@ -62,14 +63,14 @@ class EndpointStatusBuilder extends FhirCodeEnumBuilder {
       );
     }
     return EndpointStatusBuilder._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// active
   static EndpointStatusBuilder active = EndpointStatusBuilder._(
-    validatedValue: 'active',
+    valueString: 'active',
     system: 'http://hl7.org/fhir/ValueSet/endpoint-status'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Active'.toFhirStringBuilder,
@@ -77,7 +78,7 @@ class EndpointStatusBuilder extends FhirCodeEnumBuilder {
 
   /// suspended
   static EndpointStatusBuilder suspended = EndpointStatusBuilder._(
-    validatedValue: 'suspended',
+    valueString: 'suspended',
     system: 'http://hl7.org/fhir/ValueSet/endpoint-status'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Suspended'.toFhirStringBuilder,
@@ -85,7 +86,7 @@ class EndpointStatusBuilder extends FhirCodeEnumBuilder {
 
   /// error
   static EndpointStatusBuilder error = EndpointStatusBuilder._(
-    validatedValue: 'error',
+    valueString: 'error',
     system: 'http://hl7.org/fhir/ValueSet/endpoint-status'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Error'.toFhirStringBuilder,
@@ -93,7 +94,7 @@ class EndpointStatusBuilder extends FhirCodeEnumBuilder {
 
   /// off
   static EndpointStatusBuilder off = EndpointStatusBuilder._(
-    validatedValue: 'off',
+    valueString: 'off',
     system: 'http://hl7.org/fhir/ValueSet/endpoint-status'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Off'.toFhirStringBuilder,
@@ -101,7 +102,7 @@ class EndpointStatusBuilder extends FhirCodeEnumBuilder {
 
   /// entered_in_error
   static EndpointStatusBuilder entered_in_error = EndpointStatusBuilder._(
-    validatedValue: 'entered-in-error',
+    valueString: 'entered-in-error',
     system: 'http://hl7.org/fhir/ValueSet/endpoint-status'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Entered in error'.toFhirStringBuilder,
@@ -109,7 +110,7 @@ class EndpointStatusBuilder extends FhirCodeEnumBuilder {
 
   /// test
   static EndpointStatusBuilder test = EndpointStatusBuilder._(
-    validatedValue: 'test',
+    valueString: 'test',
     system: 'http://hl7.org/fhir/ValueSet/endpoint-status'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Test'.toFhirStringBuilder,
@@ -117,7 +118,7 @@ class EndpointStatusBuilder extends FhirCodeEnumBuilder {
 
   /// For instances where an Element is present but not value
   static EndpointStatusBuilder elementOnly =
-      EndpointStatusBuilder._(validatedValue: '');
+      EndpointStatusBuilder._(valueString: '');
 
   /// List of all enum-like values
   static List<EndpointStatusBuilder> values = [
@@ -132,30 +133,31 @@ class EndpointStatusBuilder extends FhirCodeEnumBuilder {
   /// Clones the current instance
   @override
   EndpointStatusBuilder clone() => EndpointStatusBuilder._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
   EndpointStatusBuilder withElement(ElementBuilder? newElement) {
-    return EndpointStatusBuilder._(validatedValue: value, element: newElement);
+    return EndpointStatusBuilder._(
+        valueString: valueString, element: newElement,);
   }
 
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   EndpointStatusBuilder copyWith({
-    String? newValue,
+    dynamic newValue,
     ElementBuilder? element,
     FhirStringBuilder? id,
     List<FhirExtensionBuilder>? extension_,
@@ -166,11 +168,11 @@ class EndpointStatusBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError('Invalid input for EndpointStatus: $newValue');
     }
     return EndpointStatusBuilder._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
@@ -179,7 +181,7 @@ class EndpointStatusBuilder extends FhirCodeEnumBuilder {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath,
+      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

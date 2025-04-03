@@ -205,9 +205,9 @@ class TerminologyCache {
           if (entry.validationResult?.system != null) {
             fields['system'] = _escapeJson(entry.validationResult!.system!);
           }
-          if (entry.validationResult?.severity?.value != null) {
+          if (entry.validationResult?.severity?.valueString != null) {
             fields['severity'] =
-                _escapeJson(entry.validationResult!.severity!.value!);
+                _escapeJson(entry.validationResult!.severity!.valueString!);
           }
           if (entry.validationResult?.message != null) {
             fields['error'] = _escapeJson(entry.validationResult!.message!);
@@ -256,13 +256,13 @@ class TerminologyCache {
   String _getIncSummary(ValueSetInclude cc) {
     final buffer = StringBuffer();
     for (final uri in cc.valueSet ?? <FhirCanonical>[]) {
-      buffer.write(uri.value);
+      buffer.write(uri.valueString);
     }
 
     final valueSetsDescription = buffer.isNotEmpty
         ? ' where the codes are in the value sets ($buffer)'
         : '';
-    final system = cc.system?.value;
+    final system = cc.system?.valueString;
 
     if (cc.concept != null && cc.concept!.isNotEmpty) {
       return '${cc.concept!.length} codes from $system$valueSetsDescription';
@@ -271,8 +271,8 @@ class TerminologyCache {
     if (cc.filter != null && cc.filter!.isNotEmpty) {
       final filters = cc.filter!
           .map(
-            (filter) => '${filter.property.value} '
-                '${filter.op.value} ${filter.value.value}',
+            (filter) => '${filter.property.valueString} '
+                '${filter.op.valueString} ${filter.value.valueString}',
           )
           .join(' & ');
       return 'from $system where $filters$valueSetsDescription';
@@ -283,9 +283,9 @@ class TerminologyCache {
 
   /// Summarizes a [Coding].
   String summaryForCoding(Coding coding) {
-    return '${coding.system?.value ?? 'unknown'}#'
-        '${coding.code?.value ?? 'unknown'}: '
-        '"${coding.display?.value ?? 'unknown'}"';
+    return '${coding.system?.valueString ?? 'unknown'}#'
+        '${coding.code?.valueString ?? 'unknown'}: '
+        '"${coding.display?.valueString ?? 'unknown'}"';
   }
 
   /// Summarizes a [CodeableConcept].
@@ -298,7 +298,7 @@ class TerminologyCache {
       buffer.write(summaryForCoding(codings[i]));
     }
 
-    buffer.write('}: "${codeableConcept.text?.value ?? 'unknown'}"');
+    buffer.write('}: "${codeableConcept.text?.valueString ?? 'unknown'}"');
     return buffer.toString();
   }
 
@@ -411,7 +411,7 @@ class TerminologyCache {
   ValueSetCacheToken generateExpandToken(ValueSet vs, bool hierarchical) {
     return ValueSetCacheToken(
       vs.url?.toString(),
-      vs.version?.value,
+      vs.version?.valueString,
       hierarchical,
     );
   }

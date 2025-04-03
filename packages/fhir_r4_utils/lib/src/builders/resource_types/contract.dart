@@ -1071,6 +1071,21 @@ class ContractBuilder extends DomainResourceBuilder {
           if (child is CommonLanguagesBuilder) {
             language = child;
             return;
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              // For enums, try to create directly from the string value
+              try {
+                final converted = CommonLanguagesBuilder(stringValue);
+                language = converted;
+                return;
+              } catch (e) {
+                // Continue if enum creation fails
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
           throw Exception('Invalid child type for $childName');
         }
@@ -1090,7 +1105,10 @@ class ContractBuilder extends DomainResourceBuilder {
             return;
           } else if (child is ResourceBuilder) {
             // Add single element to existing list or create new list
-            contained = [...(contained ?? []), child];
+            contained = [
+              ...(contained ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -1103,7 +1121,10 @@ class ContractBuilder extends DomainResourceBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -1116,7 +1137,10 @@ class ContractBuilder extends DomainResourceBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -1129,7 +1153,10 @@ class ContractBuilder extends DomainResourceBuilder {
             return;
           } else if (child is IdentifierBuilder) {
             // Add single element to existing list or create new list
-            identifier = [...(identifier ?? []), child];
+            identifier = [
+              ...(identifier ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -1179,6 +1206,22 @@ class ContractBuilder extends DomainResourceBuilder {
           if (child is ContractResourceStatusCodesBuilder) {
             status = child;
             return;
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              // For enums, try to create directly from the string value
+              try {
+                final converted =
+                    ContractResourceStatusCodesBuilder(stringValue);
+                status = converted;
+                return;
+              } catch (e) {
+                // Continue if enum creation fails
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
           throw Exception('Invalid child type for $childName');
         }
@@ -1270,7 +1313,10 @@ class ContractBuilder extends DomainResourceBuilder {
             return;
           } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            subject = [...(subject ?? []), child];
+            subject = [
+              ...(subject ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -1283,7 +1329,10 @@ class ContractBuilder extends DomainResourceBuilder {
             return;
           } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            authority = [...(authority ?? []), child];
+            authority = [
+              ...(authority ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -1296,7 +1345,10 @@ class ContractBuilder extends DomainResourceBuilder {
             return;
           } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            domain = [...(domain ?? []), child];
+            domain = [
+              ...(domain ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -1309,7 +1361,10 @@ class ContractBuilder extends DomainResourceBuilder {
             return;
           } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            site = [...(site ?? []), child];
+            site = [
+              ...(site ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -1382,7 +1437,10 @@ class ContractBuilder extends DomainResourceBuilder {
             return;
           } else if (child is FhirStringBuilder) {
             // Add single element to existing list or create new list
-            alias = [...(alias ?? []), child];
+            alias = [
+              ...(alias ?? []),
+              child,
+            ];
             return;
           } else if (child is List<PrimitiveTypeBuilder>) {
             // Try to convert list of primitive types
@@ -1484,7 +1542,10 @@ class ContractBuilder extends DomainResourceBuilder {
             return;
           } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            subType = [...(subType ?? []), child];
+            subType = [
+              ...(subType ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -1505,7 +1566,10 @@ class ContractBuilder extends DomainResourceBuilder {
             return;
           } else if (child is ContractTermBuilder) {
             // Add single element to existing list or create new list
-            term = [...(term ?? []), child];
+            term = [
+              ...(term ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -1518,7 +1582,10 @@ class ContractBuilder extends DomainResourceBuilder {
             return;
           } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            supportingInfo = [...(supportingInfo ?? []), child];
+            supportingInfo = [
+              ...(supportingInfo ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -1531,7 +1598,10 @@ class ContractBuilder extends DomainResourceBuilder {
             return;
           } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            relevantHistory = [...(relevantHistory ?? []), child];
+            relevantHistory = [
+              ...(relevantHistory ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -1544,7 +1614,10 @@ class ContractBuilder extends DomainResourceBuilder {
             return;
           } else if (child is ContractSignerBuilder) {
             // Add single element to existing list or create new list
-            signer = [...(signer ?? []), child];
+            signer = [
+              ...(signer ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -1557,7 +1630,10 @@ class ContractBuilder extends DomainResourceBuilder {
             return;
           } else if (child is ContractFriendlyBuilder) {
             // Add single element to existing list or create new list
-            friendly = [...(friendly ?? []), child];
+            friendly = [
+              ...(friendly ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -1570,7 +1646,10 @@ class ContractBuilder extends DomainResourceBuilder {
             return;
           } else if (child is ContractLegalBuilder) {
             // Add single element to existing list or create new list
-            legal = [...(legal ?? []), child];
+            legal = [
+              ...(legal ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -1583,7 +1662,10 @@ class ContractBuilder extends DomainResourceBuilder {
             return;
           } else if (child is ContractRuleBuilder) {
             // Add single element to existing list or create new list
-            rule = [...(rule ?? []), child];
+            rule = [
+              ...(rule ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -1693,7 +1775,10 @@ class ContractBuilder extends DomainResourceBuilder {
         return ['CodeableConceptBuilder'];
       case 'topic':
       case 'topicX':
-        return ['CodeableConceptBuilder', 'ReferenceBuilder'];
+        return [
+          'CodeableConceptBuilder',
+          'ReferenceBuilder',
+        ];
       case 'topicCodeableConcept':
         return ['CodeableConceptBuilder'];
       case 'topicReference':
@@ -1720,7 +1805,10 @@ class ContractBuilder extends DomainResourceBuilder {
         return ['ContractRuleBuilder'];
       case 'legallyBinding':
       case 'legallyBindingX':
-        return ['AttachmentBuilder', 'ReferenceBuilder'];
+        return [
+          'AttachmentBuilder',
+          'ReferenceBuilder',
+        ];
       case 'legallyBindingAttachment':
         return ['AttachmentBuilder'];
       case 'legallyBindingReference':
@@ -2760,7 +2848,10 @@ class ContractContentDefinitionBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -2773,7 +2864,10 @@ class ContractContentDefinitionBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -2827,6 +2921,22 @@ class ContractContentDefinitionBuilder extends BackboneElementBuilder {
           if (child is ContractResourcePublicationStatusCodesBuilder) {
             publicationStatus = child;
             return;
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              // For enums, try to create directly from the string value
+              try {
+                final converted =
+                    ContractResourcePublicationStatusCodesBuilder(stringValue);
+                publicationStatus = converted;
+                return;
+              } catch (e) {
+                // Continue if enum creation fails
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
           throw Exception('Invalid child type for $childName');
         }
@@ -3556,7 +3666,10 @@ class ContractTermBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -3569,7 +3682,10 @@ class ContractTermBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -3689,7 +3805,10 @@ class ContractTermBuilder extends BackboneElementBuilder {
             return;
           } else if (child is ContractSecurityLabelBuilder) {
             // Add single element to existing list or create new list
-            securityLabel = [...(securityLabel ?? []), child];
+            securityLabel = [
+              ...(securityLabel ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -3710,7 +3829,10 @@ class ContractTermBuilder extends BackboneElementBuilder {
             return;
           } else if (child is ContractAssetBuilder) {
             // Add single element to existing list or create new list
-            asset = [...(asset ?? []), child];
+            asset = [
+              ...(asset ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -3723,7 +3845,10 @@ class ContractTermBuilder extends BackboneElementBuilder {
             return;
           } else if (child is ContractActionBuilder) {
             // Add single element to existing list or create new list
-            action = [...(action ?? []), child];
+            action = [
+              ...(action ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -3736,7 +3861,10 @@ class ContractTermBuilder extends BackboneElementBuilder {
             return;
           } else if (child is ContractTermBuilder) {
             // Add single element to existing list or create new list
-            group = [...(group ?? []), child];
+            group = [
+              ...(group ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -3765,7 +3893,10 @@ class ContractTermBuilder extends BackboneElementBuilder {
         return ['PeriodBuilder'];
       case 'topic':
       case 'topicX':
-        return ['CodeableConceptBuilder', 'ReferenceBuilder'];
+        return [
+          'CodeableConceptBuilder',
+          'ReferenceBuilder',
+        ];
       case 'topicCodeableConcept':
         return ['CodeableConceptBuilder'];
       case 'topicReference':
@@ -4389,7 +4520,10 @@ class ContractSecurityLabelBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -4402,7 +4536,10 @@ class ContractSecurityLabelBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -4415,7 +4552,10 @@ class ContractSecurityLabelBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirUnsignedIntBuilder) {
             // Add single element to existing list or create new list
-            number = [...(number ?? []), child];
+            number = [
+              ...(number ?? []),
+              child,
+            ];
             return;
           } else if (child is List<PrimitiveTypeBuilder>) {
             // Try to convert list of primitive types
@@ -4423,7 +4563,8 @@ class ContractSecurityLabelBuilder extends BackboneElementBuilder {
             for (final element in child) {
               try {
                 final stringValue = element.toString();
-                // For number types, first parse to num then pass the number directly
+                // For number types,
+                // first parse to num then pass the number directly
                 final numValue = num.tryParse(stringValue);
                 if (numValue != null) {
                   final converted = FhirUnsignedIntBuilder.tryParse(numValue);
@@ -4443,7 +4584,8 @@ class ContractSecurityLabelBuilder extends BackboneElementBuilder {
             // Try to convert a single primitive
             try {
               final stringValue = child.toString();
-              // For number types, first parse to num then pass the number directly
+              // For number types,
+              // first parse to num then pass the number directly
               final numValue = num.tryParse(stringValue);
               if (numValue != null) {
                 final converted = FhirUnsignedIntBuilder.tryParse(numValue);
@@ -4474,7 +4616,10 @@ class ContractSecurityLabelBuilder extends BackboneElementBuilder {
             return;
           } else if (child is CodingBuilder) {
             // Add single element to existing list or create new list
-            category = [...(category ?? []), child];
+            category = [
+              ...(category ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -4487,7 +4632,10 @@ class ContractSecurityLabelBuilder extends BackboneElementBuilder {
             return;
           } else if (child is CodingBuilder) {
             // Add single element to existing list or create new list
-            control = [...(control ?? []), child];
+            control = [
+              ...(control ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -5102,7 +5250,10 @@ class ContractOfferBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -5115,7 +5266,10 @@ class ContractOfferBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -5128,7 +5282,10 @@ class ContractOfferBuilder extends BackboneElementBuilder {
             return;
           } else if (child is IdentifierBuilder) {
             // Add single element to existing list or create new list
-            identifier = [...(identifier ?? []), child];
+            identifier = [
+              ...(identifier ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -5141,7 +5298,10 @@ class ContractOfferBuilder extends BackboneElementBuilder {
             return;
           } else if (child is ContractPartyBuilder) {
             // Add single element to existing list or create new list
-            party = [...(party ?? []), child];
+            party = [
+              ...(party ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -5178,7 +5338,10 @@ class ContractOfferBuilder extends BackboneElementBuilder {
             return;
           } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            decisionMode = [...(decisionMode ?? []), child];
+            decisionMode = [
+              ...(decisionMode ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -5191,7 +5354,10 @@ class ContractOfferBuilder extends BackboneElementBuilder {
             return;
           } else if (child is ContractAnswerBuilder) {
             // Add single element to existing list or create new list
-            answer = [...(answer ?? []), child];
+            answer = [
+              ...(answer ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -5224,7 +5390,10 @@ class ContractOfferBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirStringBuilder) {
             // Add single element to existing list or create new list
-            linkId = [...(linkId ?? []), child];
+            linkId = [
+              ...(linkId ?? []),
+              child,
+            ];
             return;
           } else if (child is List<PrimitiveTypeBuilder>) {
             // Try to convert list of primitive types
@@ -5267,7 +5436,10 @@ class ContractOfferBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirUnsignedIntBuilder) {
             // Add single element to existing list or create new list
-            securityLabelNumber = [...(securityLabelNumber ?? []), child];
+            securityLabelNumber = [
+              ...(securityLabelNumber ?? []),
+              child,
+            ];
             return;
           } else if (child is List<PrimitiveTypeBuilder>) {
             // Try to convert list of primitive types
@@ -5275,7 +5447,8 @@ class ContractOfferBuilder extends BackboneElementBuilder {
             for (final element in child) {
               try {
                 final stringValue = element.toString();
-                // For number types, first parse to num then pass the number directly
+                // For number types,
+                // first parse to num then pass the number directly
                 final numValue = num.tryParse(stringValue);
                 if (numValue != null) {
                   final converted = FhirUnsignedIntBuilder.tryParse(numValue);
@@ -5295,7 +5468,8 @@ class ContractOfferBuilder extends BackboneElementBuilder {
             // Try to convert a single primitive
             try {
               final stringValue = child.toString();
-              // For number types, first parse to num then pass the number directly
+              // For number types,
+              // first parse to num then pass the number directly
               final numValue = num.tryParse(stringValue);
               if (numValue != null) {
                 final converted = FhirUnsignedIntBuilder.tryParse(numValue);
@@ -5871,7 +6045,10 @@ class ContractPartyBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -5884,7 +6061,10 @@ class ContractPartyBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -5897,7 +6077,10 @@ class ContractPartyBuilder extends BackboneElementBuilder {
             return;
           } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            reference = [...(reference ?? []), child];
+            reference = [
+              ...(reference ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -6418,7 +6601,10 @@ class ContractAnswerBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -6431,7 +6617,10 @@ class ContractAnswerBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -7361,7 +7550,10 @@ class ContractAssetBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -7374,7 +7566,10 @@ class ContractAssetBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -7395,7 +7590,10 @@ class ContractAssetBuilder extends BackboneElementBuilder {
             return;
           } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            type = [...(type ?? []), child];
+            type = [
+              ...(type ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -7408,7 +7606,10 @@ class ContractAssetBuilder extends BackboneElementBuilder {
             return;
           } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            typeReference = [...(typeReference ?? []), child];
+            typeReference = [
+              ...(typeReference ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -7421,7 +7622,10 @@ class ContractAssetBuilder extends BackboneElementBuilder {
             return;
           } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            subtype = [...(subtype ?? []), child];
+            subtype = [
+              ...(subtype ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -7442,7 +7646,10 @@ class ContractAssetBuilder extends BackboneElementBuilder {
             return;
           } else if (child is ContractContextBuilder) {
             // Add single element to existing list or create new list
-            context = [...(context ?? []), child];
+            context = [
+              ...(context ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -7475,7 +7682,10 @@ class ContractAssetBuilder extends BackboneElementBuilder {
             return;
           } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            periodType = [...(periodType ?? []), child];
+            periodType = [
+              ...(periodType ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -7488,7 +7698,10 @@ class ContractAssetBuilder extends BackboneElementBuilder {
             return;
           } else if (child is PeriodBuilder) {
             // Add single element to existing list or create new list
-            period = [...(period ?? []), child];
+            period = [
+              ...(period ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -7501,7 +7714,10 @@ class ContractAssetBuilder extends BackboneElementBuilder {
             return;
           } else if (child is PeriodBuilder) {
             // Add single element to existing list or create new list
-            usePeriod = [...(usePeriod ?? []), child];
+            usePeriod = [
+              ...(usePeriod ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -7534,7 +7750,10 @@ class ContractAssetBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirStringBuilder) {
             // Add single element to existing list or create new list
-            linkId = [...(linkId ?? []), child];
+            linkId = [
+              ...(linkId ?? []),
+              child,
+            ];
             return;
           } else if (child is List<PrimitiveTypeBuilder>) {
             // Try to convert list of primitive types
@@ -7577,7 +7796,10 @@ class ContractAssetBuilder extends BackboneElementBuilder {
             return;
           } else if (child is ContractAnswerBuilder) {
             // Add single element to existing list or create new list
-            answer = [...(answer ?? []), child];
+            answer = [
+              ...(answer ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -7590,7 +7812,10 @@ class ContractAssetBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirUnsignedIntBuilder) {
             // Add single element to existing list or create new list
-            securityLabelNumber = [...(securityLabelNumber ?? []), child];
+            securityLabelNumber = [
+              ...(securityLabelNumber ?? []),
+              child,
+            ];
             return;
           } else if (child is List<PrimitiveTypeBuilder>) {
             // Try to convert list of primitive types
@@ -7598,7 +7823,8 @@ class ContractAssetBuilder extends BackboneElementBuilder {
             for (final element in child) {
               try {
                 final stringValue = element.toString();
-                // For number types, first parse to num then pass the number directly
+                // For number types,
+                // first parse to num then pass the number directly
                 final numValue = num.tryParse(stringValue);
                 if (numValue != null) {
                   final converted = FhirUnsignedIntBuilder.tryParse(numValue);
@@ -7618,7 +7844,8 @@ class ContractAssetBuilder extends BackboneElementBuilder {
             // Try to convert a single primitive
             try {
               final stringValue = child.toString();
-              // For number types, first parse to num then pass the number directly
+              // For number types,
+              // first parse to num then pass the number directly
               final numValue = num.tryParse(stringValue);
               if (numValue != null) {
                 final converted = FhirUnsignedIntBuilder.tryParse(numValue);
@@ -7644,7 +7871,10 @@ class ContractAssetBuilder extends BackboneElementBuilder {
             return;
           } else if (child is ContractValuedItemBuilder) {
             // Add single element to existing list or create new list
-            valuedItem = [...(valuedItem ?? []), child];
+            valuedItem = [
+              ...(valuedItem ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -8312,7 +8542,10 @@ class ContractContextBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -8325,7 +8558,10 @@ class ContractContextBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -8346,7 +8582,10 @@ class ContractContextBuilder extends BackboneElementBuilder {
             return;
           } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            code = [...(code ?? []), child];
+            code = [
+              ...(code ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -9051,7 +9290,10 @@ class ContractValuedItemBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -9064,7 +9306,10 @@ class ContractValuedItemBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -9157,7 +9402,8 @@ class ContractValuedItemBuilder extends BackboneElementBuilder {
             // Try to convert from one primitive type to another
             try {
               final stringValue = child.toString();
-              // For number types, first parse to num then pass the number directly
+              // For number types,
+              // first parse to num then pass the number directly
               final numValue = num.tryParse(stringValue);
               if (numValue != null) {
                 final converted = FhirDecimalBuilder.tryParse(numValue);
@@ -9181,7 +9427,8 @@ class ContractValuedItemBuilder extends BackboneElementBuilder {
             // Try to convert from one primitive type to another
             try {
               final stringValue = child.toString();
-              // For number types, first parse to num then pass the number directly
+              // For number types,
+              // first parse to num then pass the number directly
               final numValue = num.tryParse(stringValue);
               if (numValue != null) {
                 final converted = FhirDecimalBuilder.tryParse(numValue);
@@ -9268,7 +9515,10 @@ class ContractValuedItemBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirStringBuilder) {
             // Add single element to existing list or create new list
-            linkId = [...(linkId ?? []), child];
+            linkId = [
+              ...(linkId ?? []),
+              child,
+            ];
             return;
           } else if (child is List<PrimitiveTypeBuilder>) {
             // Try to convert list of primitive types
@@ -9311,7 +9561,10 @@ class ContractValuedItemBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirUnsignedIntBuilder) {
             // Add single element to existing list or create new list
-            securityLabelNumber = [...(securityLabelNumber ?? []), child];
+            securityLabelNumber = [
+              ...(securityLabelNumber ?? []),
+              child,
+            ];
             return;
           } else if (child is List<PrimitiveTypeBuilder>) {
             // Try to convert list of primitive types
@@ -9319,7 +9572,8 @@ class ContractValuedItemBuilder extends BackboneElementBuilder {
             for (final element in child) {
               try {
                 final stringValue = element.toString();
-                // For number types, first parse to num then pass the number directly
+                // For number types,
+                // first parse to num then pass the number directly
                 final numValue = num.tryParse(stringValue);
                 if (numValue != null) {
                   final converted = FhirUnsignedIntBuilder.tryParse(numValue);
@@ -9339,7 +9593,8 @@ class ContractValuedItemBuilder extends BackboneElementBuilder {
             // Try to convert a single primitive
             try {
               final stringValue = child.toString();
-              // For number types, first parse to num then pass the number directly
+              // For number types,
+              // first parse to num then pass the number directly
               final numValue = num.tryParse(stringValue);
               if (numValue != null) {
                 final converted = FhirUnsignedIntBuilder.tryParse(numValue);
@@ -9375,7 +9630,10 @@ class ContractValuedItemBuilder extends BackboneElementBuilder {
         return ['FhirExtensionBuilder'];
       case 'entity':
       case 'entityX':
-        return ['CodeableConceptBuilder', 'ReferenceBuilder'];
+        return [
+          'CodeableConceptBuilder',
+          'ReferenceBuilder',
+        ];
       case 'entityCodeableConcept':
         return ['CodeableConceptBuilder'];
       case 'entityReference':
@@ -10393,7 +10651,10 @@ class ContractActionBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -10406,7 +10667,10 @@ class ContractActionBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -10447,7 +10711,10 @@ class ContractActionBuilder extends BackboneElementBuilder {
             return;
           } else if (child is ContractSubjectBuilder) {
             // Add single element to existing list or create new list
-            subject = [...(subject ?? []), child];
+            subject = [
+              ...(subject ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -10468,7 +10735,10 @@ class ContractActionBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirStringBuilder) {
             // Add single element to existing list or create new list
-            linkId = [...(linkId ?? []), child];
+            linkId = [
+              ...(linkId ?? []),
+              child,
+            ];
             return;
           } else if (child is List<PrimitiveTypeBuilder>) {
             // Try to convert list of primitive types
@@ -10527,7 +10797,10 @@ class ContractActionBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirStringBuilder) {
             // Add single element to existing list or create new list
-            contextLinkId = [...(contextLinkId ?? []), child];
+            contextLinkId = [
+              ...(contextLinkId ?? []),
+              child,
+            ];
             return;
           } else if (child is List<PrimitiveTypeBuilder>) {
             // Try to convert list of primitive types
@@ -10618,7 +10891,10 @@ class ContractActionBuilder extends BackboneElementBuilder {
             return;
           } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            requester = [...(requester ?? []), child];
+            requester = [
+              ...(requester ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -10631,7 +10907,10 @@ class ContractActionBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirStringBuilder) {
             // Add single element to existing list or create new list
-            requesterLinkId = [...(requesterLinkId ?? []), child];
+            requesterLinkId = [
+              ...(requesterLinkId ?? []),
+              child,
+            ];
             return;
           } else if (child is List<PrimitiveTypeBuilder>) {
             // Try to convert list of primitive types
@@ -10674,7 +10953,10 @@ class ContractActionBuilder extends BackboneElementBuilder {
             return;
           } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            performerType = [...(performerType ?? []), child];
+            performerType = [
+              ...(performerType ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -10703,7 +10985,10 @@ class ContractActionBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirStringBuilder) {
             // Add single element to existing list or create new list
-            performerLinkId = [...(performerLinkId ?? []), child];
+            performerLinkId = [
+              ...(performerLinkId ?? []),
+              child,
+            ];
             return;
           } else if (child is List<PrimitiveTypeBuilder>) {
             // Try to convert list of primitive types
@@ -10746,7 +11031,10 @@ class ContractActionBuilder extends BackboneElementBuilder {
             return;
           } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            reasonCode = [...(reasonCode ?? []), child];
+            reasonCode = [
+              ...(reasonCode ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -10759,7 +11047,10 @@ class ContractActionBuilder extends BackboneElementBuilder {
             return;
           } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            reasonReference = [...(reasonReference ?? []), child];
+            reasonReference = [
+              ...(reasonReference ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -10772,7 +11063,10 @@ class ContractActionBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirStringBuilder) {
             // Add single element to existing list or create new list
-            reason = [...(reason ?? []), child];
+            reason = [
+              ...(reason ?? []),
+              child,
+            ];
             return;
           } else if (child is List<PrimitiveTypeBuilder>) {
             // Try to convert list of primitive types
@@ -10815,7 +11109,10 @@ class ContractActionBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirStringBuilder) {
             // Add single element to existing list or create new list
-            reasonLinkId = [...(reasonLinkId ?? []), child];
+            reasonLinkId = [
+              ...(reasonLinkId ?? []),
+              child,
+            ];
             return;
           } else if (child is List<PrimitiveTypeBuilder>) {
             // Try to convert list of primitive types
@@ -10858,7 +11155,10 @@ class ContractActionBuilder extends BackboneElementBuilder {
             return;
           } else if (child is AnnotationBuilder) {
             // Add single element to existing list or create new list
-            note = [...(note ?? []), child];
+            note = [
+              ...(note ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -10871,7 +11171,10 @@ class ContractActionBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirUnsignedIntBuilder) {
             // Add single element to existing list or create new list
-            securityLabelNumber = [...(securityLabelNumber ?? []), child];
+            securityLabelNumber = [
+              ...(securityLabelNumber ?? []),
+              child,
+            ];
             return;
           } else if (child is List<PrimitiveTypeBuilder>) {
             // Try to convert list of primitive types
@@ -10879,7 +11182,8 @@ class ContractActionBuilder extends BackboneElementBuilder {
             for (final element in child) {
               try {
                 final stringValue = element.toString();
-                // For number types, first parse to num then pass the number directly
+                // For number types,
+                // first parse to num then pass the number directly
                 final numValue = num.tryParse(stringValue);
                 if (numValue != null) {
                   final converted = FhirUnsignedIntBuilder.tryParse(numValue);
@@ -10899,7 +11203,8 @@ class ContractActionBuilder extends BackboneElementBuilder {
             // Try to convert a single primitive
             try {
               final stringValue = child.toString();
-              // For number types, first parse to num then pass the number directly
+              // For number types,
+              // first parse to num then pass the number directly
               final numValue = num.tryParse(stringValue);
               if (numValue != null) {
                 final converted = FhirUnsignedIntBuilder.tryParse(numValue);
@@ -10951,7 +11256,11 @@ class ContractActionBuilder extends BackboneElementBuilder {
         return ['FhirStringBuilder'];
       case 'occurrence':
       case 'occurrenceX':
-        return ['FhirDateTimeBuilder', 'PeriodBuilder', 'TimingBuilder'];
+        return [
+          'FhirDateTimeBuilder',
+          'PeriodBuilder',
+          'TimingBuilder',
+        ];
       case 'occurrenceDateTime':
         return ['FhirDateTimeBuilder'];
       case 'occurrencePeriod':
@@ -11681,7 +11990,10 @@ class ContractSubjectBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -11694,7 +12006,10 @@ class ContractSubjectBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -11707,7 +12022,10 @@ class ContractSubjectBuilder extends BackboneElementBuilder {
             return;
           } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            reference = [...(reference ?? []), child];
+            reference = [
+              ...(reference ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -12162,7 +12480,10 @@ class ContractSignerBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -12175,7 +12496,10 @@ class ContractSignerBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -12204,7 +12528,10 @@ class ContractSignerBuilder extends BackboneElementBuilder {
             return;
           } else if (child is SignatureBuilder) {
             // Add single element to existing list or create new list
-            signature = [...(signature ?? []), child];
+            signature = [
+              ...(signature ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -12660,7 +12987,10 @@ class ContractFriendlyBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -12673,7 +13003,10 @@ class ContractFriendlyBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -12731,7 +13064,10 @@ class ContractFriendlyBuilder extends BackboneElementBuilder {
         return ['FhirExtensionBuilder'];
       case 'content':
       case 'contentX':
-        return ['AttachmentBuilder', 'ReferenceBuilder'];
+        return [
+          'AttachmentBuilder',
+          'ReferenceBuilder',
+        ];
       case 'contentAttachment':
         return ['AttachmentBuilder'];
       case 'contentReference':
@@ -13134,7 +13470,10 @@ class ContractLegalBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -13147,7 +13486,10 @@ class ContractLegalBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -13205,7 +13547,10 @@ class ContractLegalBuilder extends BackboneElementBuilder {
         return ['FhirExtensionBuilder'];
       case 'content':
       case 'contentX':
-        return ['AttachmentBuilder', 'ReferenceBuilder'];
+        return [
+          'AttachmentBuilder',
+          'ReferenceBuilder',
+        ];
       case 'contentAttachment':
         return ['AttachmentBuilder'];
       case 'contentReference':
@@ -13610,7 +13955,10 @@ class ContractRuleBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -13623,7 +13971,10 @@ class ContractRuleBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -13681,7 +14032,10 @@ class ContractRuleBuilder extends BackboneElementBuilder {
         return ['FhirExtensionBuilder'];
       case 'content':
       case 'contentX':
-        return ['AttachmentBuilder', 'ReferenceBuilder'];
+        return [
+          'AttachmentBuilder',
+          'ReferenceBuilder',
+        ];
       case 'contentAttachment':
         return ['AttachmentBuilder'];
       case 'contentReference':

@@ -220,7 +220,7 @@ class ValueSetExpanderSimple implements ValueSetExpander {
       return expansion;
     }
 
-    final system = component.system!.value!;
+    final system = component.system!.valueString!;
     var newExpansion = expansion;
 
     // Handle concept lists (direct list of included codes)
@@ -228,15 +228,15 @@ class ValueSetExpanderSimple implements ValueSetExpander {
       for (final concept in component.concept!) {
         if (include) {
           newExpansion = addCodeToExpansion(
-            system.toString(),
+            system,
             concept,
             newExpansion,
             includeDefinition,
           );
         } else {
           newExpansion = removeCodeFromExpansion(
-            system.toString(),
-            concept.code.value!,
+            system,
+            concept.code.valueString!,
             newExpansion,
           );
         }
@@ -247,7 +247,7 @@ class ValueSetExpanderSimple implements ValueSetExpander {
     if (component.filter != null && component.filter!.isNotEmpty) {
       newExpansion = processFilters(
         component,
-        system.toString(),
+        system,
         expansion,
         include,
         excludeNested,
@@ -260,7 +260,7 @@ class ValueSetExpanderSimple implements ValueSetExpander {
     if (component.valueSet != null && component.valueSet!.isNotEmpty) {
       for (final vsRef in component.valueSet!) {
         newExpansion = processValueSetReference(
-          vsRef.value!.toString(),
+          vsRef.valueString!,
           expansion,
           include,
           excludeNested,
@@ -299,9 +299,9 @@ class ValueSetExpanderSimple implements ValueSetExpander {
 
     // Process each filter
     for (final filter in component.filter!) {
-      final property = filter.property.value!;
+      final property = filter.property.valueString!;
       final op = filter.op;
-      final value = filter.value.value!;
+      final value = filter.value.valueString!;
 
       // Find all concepts that match the filter
       final matchingConcepts =
@@ -331,7 +331,7 @@ class ValueSetExpanderSimple implements ValueSetExpander {
         } else {
           newExpansion = removeCodeFromExpansion(
             system,
-            concept.code.value!,
+            concept.code.valueString!,
             newExpansion,
           );
 
@@ -384,7 +384,7 @@ class ValueSetExpanderSimple implements ValueSetExpander {
   ) {
     // Handle special property for code
     if (property == 'code') {
-      final code = concept.code.value!;
+      final code = concept.code.valueString!;
 
       switch (op.toString()) {
         case '=':
@@ -412,7 +412,7 @@ class ValueSetExpanderSimple implements ValueSetExpander {
 
     // Handle special property for display
     if (property == 'display') {
-      final display = concept.display?.value ?? '';
+      final display = concept.display?.valueString ?? '';
 
       switch (op.toString()) {
         case '=':
@@ -433,7 +433,7 @@ class ValueSetExpanderSimple implements ValueSetExpander {
     // Check concept properties
     if (concept.property != null) {
       for (final prop in concept.property!) {
-        if (prop.code.value! == property) {
+        if (prop.code.valueString! == property) {
           return matchesPropertyValue(prop.valueX, op, value);
         }
       }
@@ -456,19 +456,19 @@ class ValueSetExpanderSimple implements ValueSetExpander {
     // Convert the property value to a string for comparison
     String strValue;
     if (propValue is FhirCode) {
-      strValue = propValue.value ?? '';
+      strValue = propValue.valueString ?? '';
     } else if (propValue is Coding) {
-      strValue = propValue.code?.value ?? '';
+      strValue = propValue.code?.valueString ?? '';
     } else if (propValue is CodeableConcept) {
-      strValue = propValue.coding?.firstOrNull?.code?.value ?? '';
+      strValue = propValue.coding?.firstOrNull?.code?.valueString ?? '';
     } else if (propValue is FhirBoolean) {
-      strValue = propValue.value.toString();
+      strValue = propValue.valueString ?? '';
     } else if (propValue is FhirString) {
-      strValue = propValue.value ?? '';
+      strValue = propValue.valueString ?? '';
     } else if (propValue is FhirUri) {
-      strValue = propValue.value!.toString();
+      strValue = propValue.valueString ?? '';
     } else if (propValue is FhirDateTime) {
-      strValue = propValue.value ?? '';
+      strValue = propValue.valueString ?? '';
     } else {
       strValue = propValue.toJson().toString();
     }
@@ -496,7 +496,7 @@ class ValueSetExpanderSimple implements ValueSetExpander {
     }
 
     for (final child in concept.concept!) {
-      if (child.code.value! == parentCode) {
+      if (child.code.valueString! == parentCode) {
         return true;
       }
 
@@ -537,8 +537,8 @@ class ValueSetExpanderSimple implements ValueSetExpander {
           );
         } else {
           newExpansion = removeCodeFromExpansion(
-            item.system!.value!.toString(),
-            item.code!.value!,
+            item.system!.valueString!,
+            item.code!.valueString!,
             newExpansion,
           );
         }
@@ -584,7 +584,7 @@ class ValueSetExpanderSimple implements ValueSetExpander {
     bool includeDefinition,
   ) {
     // Check if the code is already in the expansion
-    if (isCodeInExpansion(system, concept.code.value!, expansion)) {
+    if (isCodeInExpansion(system, concept.code.valueString!, expansion)) {
       return expansion;
     }
 
@@ -625,7 +625,7 @@ class ValueSetExpanderSimple implements ValueSetExpander {
     String code,
   ) {
     for (final item in items) {
-      if (item.system?.toString() == system && item.code?.value == code) {
+      if (item.system?.toString() == system && item.code?.valueString == code) {
         return item;
       }
 
@@ -667,7 +667,8 @@ class ValueSetExpanderSimple implements ValueSetExpander {
   ) {
     // Find and remove direct matches
     items.removeWhere(
-      (item) => item.system?.toString() == system && item.code?.value == code,
+      (item) =>
+          item.system?.toString() == system && item.code?.valueString == code,
     );
 
     final newItems = <ValueSetContains>[];
@@ -730,8 +731,11 @@ class ValueSetExpanderSimple implements ValueSetExpander {
     var newExpansion = expansion;
 
     for (final child in parent.concept!) {
-      newExpansion =
-          removeCodeFromExpansion(system, child.code.value!, newExpansion);
+      newExpansion = removeCodeFromExpansion(
+        system,
+        child.code.valueString!,
+        newExpansion,
+      );
 
       // Recursively remove the child's children
       newExpansion = removeChildConcepts(child, system, newExpansion);
@@ -767,8 +771,8 @@ class ValueSetExpanderSimple implements ValueSetExpander {
     }
 
     for (final param in parameters.parameter ?? <ParametersParameter>[]) {
-      if (param.name.value == name && param.valueX is FhirBoolean) {
-        return (param.valueX! as FhirBoolean).value ?? defaultValue;
+      if (param.name.valueString == name && param.valueX is FhirBoolean) {
+        return (param.valueX! as FhirBoolean).valueBoolean ?? defaultValue;
       }
     }
 
@@ -896,13 +900,13 @@ class ValueSetChecker {
     if (component.system?.extension_ != null) {
       final extensions = component.system?.extension_?.where(
             (ext) =>
-                ext.url.value ==
+                ext.url.valueString ==
                 'http://hl7.org/fhir/StructureDefinition/valueSet-system',
           ) ??
           [];
 
       for (final ext in extensions) {
-        final ref = (ext.valueX as FhirString?)?.value;
+        final ref = (ext.valueX as FhirString?)?.valueString;
         if (ref != null) {
           if (ref.startsWith('#')) {
             // Handle contained resources
@@ -913,7 +917,7 @@ class ValueSetChecker {
                       (proxy.resource as DomainResource?)?.contained ??
                       <DomainResource>[],
                 )
-                .firstWhereOrNull((r) => r.id?.value == id);
+                .firstWhereOrNull((r) => r.id?.valueString == id);
 
             if (containedResource is CodeSystem) {
               localSystems.add(containedResource);
@@ -1044,8 +1048,8 @@ class ValueSetChecker {
 
   bool _checkExpansion(Coding coding) {
     for (final item in valueSet!.expansion!.contains ?? <ValueSetContains>[]) {
-      if (item.system?.value == coding.system?.value &&
-          item.code?.value == coding.code?.value) {
+      if (item.system?.valueString == coding.system?.valueString &&
+          item.code?.valueString == coding.code?.valueString) {
         return true;
       }
       if ((item.contains?.isNotEmpty ?? false) &&
@@ -1064,8 +1068,8 @@ class ValueSetChecker {
     List<ValueSetContains> items,
   ) {
     for (final item in items) {
-      if (item.system?.value == coding.system?.value &&
-          item.code?.value == coding.code?.value) {
+      if (item.system?.valueString == coding.system?.valueString &&
+          item.code?.valueString == coding.code?.valueString) {
         return true;
       }
       if ((item.contains?.isNotEmpty ?? false) &&
@@ -1121,7 +1125,7 @@ extension ValueSetExpansionExtensions on WorkerContext {
 
     // Setup parameter defaults if not present
     bool hasParam(String name) {
-      return params.parameter?.any((p) => p.name.value == name) ?? false;
+      return params.parameter?.any((p) => p.name.valueString == name) ?? false;
     }
 
     if (!hasParam('includeDefinition')) {

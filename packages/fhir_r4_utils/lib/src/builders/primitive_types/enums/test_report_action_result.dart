@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class TestReportActionResultBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   TestReportActionResultBuilder._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class TestReportActionResultBuilder extends FhirCodeEnumBuilder {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory TestReportActionResultBuilder(
-    String? raw, {
+    String? rawValue, {
     FhirUriBuilder? system,
     FhirStringBuilder? version,
     FhirStringBuilder? display,
@@ -29,9 +29,10 @@ class TestReportActionResultBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
     return TestReportActionResultBuilder._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -45,7 +46,7 @@ class TestReportActionResultBuilder extends FhirCodeEnumBuilder {
 
   /// Create empty [TestReportActionResultBuilder] with element only
   factory TestReportActionResultBuilder.empty() =>
-      TestReportActionResultBuilder._(validatedValue: '');
+      TestReportActionResultBuilder._(valueString: '');
 
   /// Factory constructor to create [TestReportActionResultBuilder]
   /// from JSON.
@@ -62,14 +63,14 @@ class TestReportActionResultBuilder extends FhirCodeEnumBuilder {
       );
     }
     return TestReportActionResultBuilder._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// pass
   static TestReportActionResultBuilder pass = TestReportActionResultBuilder._(
-    validatedValue: 'pass',
+    valueString: 'pass',
     system: 'http://hl7.org/fhir/ValueSet/report-action-result-codes'
         .toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -78,7 +79,7 @@ class TestReportActionResultBuilder extends FhirCodeEnumBuilder {
 
   /// skip
   static TestReportActionResultBuilder skip = TestReportActionResultBuilder._(
-    validatedValue: 'skip',
+    valueString: 'skip',
     system: 'http://hl7.org/fhir/ValueSet/report-action-result-codes'
         .toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -87,7 +88,7 @@ class TestReportActionResultBuilder extends FhirCodeEnumBuilder {
 
   /// fail
   static TestReportActionResultBuilder fail = TestReportActionResultBuilder._(
-    validatedValue: 'fail',
+    valueString: 'fail',
     system: 'http://hl7.org/fhir/ValueSet/report-action-result-codes'
         .toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -97,7 +98,7 @@ class TestReportActionResultBuilder extends FhirCodeEnumBuilder {
   /// warning
   static TestReportActionResultBuilder warning =
       TestReportActionResultBuilder._(
-    validatedValue: 'warning',
+    valueString: 'warning',
     system: 'http://hl7.org/fhir/ValueSet/report-action-result-codes'
         .toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -106,7 +107,7 @@ class TestReportActionResultBuilder extends FhirCodeEnumBuilder {
 
   /// error
   static TestReportActionResultBuilder error = TestReportActionResultBuilder._(
-    validatedValue: 'error',
+    valueString: 'error',
     system: 'http://hl7.org/fhir/ValueSet/report-action-result-codes'
         .toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -115,7 +116,7 @@ class TestReportActionResultBuilder extends FhirCodeEnumBuilder {
 
   /// For instances where an Element is present but not value
   static TestReportActionResultBuilder elementOnly =
-      TestReportActionResultBuilder._(validatedValue: '');
+      TestReportActionResultBuilder._(valueString: '');
 
   /// List of all enum-like values
   static List<TestReportActionResultBuilder> values = [
@@ -129,31 +130,31 @@ class TestReportActionResultBuilder extends FhirCodeEnumBuilder {
   /// Clones the current instance
   @override
   TestReportActionResultBuilder clone() => TestReportActionResultBuilder._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
   TestReportActionResultBuilder withElement(ElementBuilder? newElement) {
     return TestReportActionResultBuilder._(
-        validatedValue: value, element: newElement,);
+        valueString: valueString, element: newElement,);
   }
 
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   TestReportActionResultBuilder copyWith({
-    String? newValue,
+    dynamic newValue,
     ElementBuilder? element,
     FhirStringBuilder? id,
     List<FhirExtensionBuilder>? extension_,
@@ -164,11 +165,12 @@ class TestReportActionResultBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError(
+          'Invalid input for TestReportActionResult: $newValue',);
     }
     return TestReportActionResultBuilder._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
@@ -177,7 +179,7 @@ class TestReportActionResultBuilder extends FhirCodeEnumBuilder {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath,
+      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

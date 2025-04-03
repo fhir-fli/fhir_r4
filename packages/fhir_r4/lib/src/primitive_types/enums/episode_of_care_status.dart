@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class EpisodeOfCareStatus extends FhirCodeEnum {
   // Private underscore constructor for internal use.
   EpisodeOfCareStatus._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class EpisodeOfCareStatus extends FhirCodeEnum {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory EpisodeOfCareStatus(
-    String? raw, {
+    String? rawValue, {
     FhirUri? system,
     FhirString? version,
     FhirString? display,
@@ -29,9 +29,10 @@ class EpisodeOfCareStatus extends FhirCodeEnum {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCode._validateCode(rawValue) : null;
     return EpisodeOfCareStatus._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -44,8 +45,7 @@ class EpisodeOfCareStatus extends FhirCodeEnum {
   }
 
   /// Create empty [EpisodeOfCareStatus] with element only
-  factory EpisodeOfCareStatus.empty() =>
-      EpisodeOfCareStatus._(validatedValue: '');
+  factory EpisodeOfCareStatus.empty() => EpisodeOfCareStatus._(valueString: '');
 
   /// Factory constructor to create [EpisodeOfCareStatus] from JSON.
   factory EpisodeOfCareStatus.fromJson(Map<String, dynamic> json) {
@@ -60,14 +60,14 @@ class EpisodeOfCareStatus extends FhirCodeEnum {
       );
     }
     return EpisodeOfCareStatus._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// planned
   static final EpisodeOfCareStatus planned = EpisodeOfCareStatus._(
-    validatedValue: 'planned',
+    valueString: 'planned',
     system: 'http://hl7.org/fhir/ValueSet/episode-of-care-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Planned'.toFhirString,
@@ -75,7 +75,7 @@ class EpisodeOfCareStatus extends FhirCodeEnum {
 
   /// waitlist
   static final EpisodeOfCareStatus waitlist = EpisodeOfCareStatus._(
-    validatedValue: 'waitlist',
+    valueString: 'waitlist',
     system: 'http://hl7.org/fhir/ValueSet/episode-of-care-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Waitlist'.toFhirString,
@@ -83,7 +83,7 @@ class EpisodeOfCareStatus extends FhirCodeEnum {
 
   /// active
   static final EpisodeOfCareStatus active = EpisodeOfCareStatus._(
-    validatedValue: 'active',
+    valueString: 'active',
     system: 'http://hl7.org/fhir/ValueSet/episode-of-care-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Active'.toFhirString,
@@ -91,7 +91,7 @@ class EpisodeOfCareStatus extends FhirCodeEnum {
 
   /// onhold
   static final EpisodeOfCareStatus onhold = EpisodeOfCareStatus._(
-    validatedValue: 'onhold',
+    valueString: 'onhold',
     system: 'http://hl7.org/fhir/ValueSet/episode-of-care-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'On Hold'.toFhirString,
@@ -99,7 +99,7 @@ class EpisodeOfCareStatus extends FhirCodeEnum {
 
   /// finished
   static final EpisodeOfCareStatus finished = EpisodeOfCareStatus._(
-    validatedValue: 'finished',
+    valueString: 'finished',
     system: 'http://hl7.org/fhir/ValueSet/episode-of-care-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Finished'.toFhirString,
@@ -107,7 +107,7 @@ class EpisodeOfCareStatus extends FhirCodeEnum {
 
   /// cancelled
   static final EpisodeOfCareStatus cancelled = EpisodeOfCareStatus._(
-    validatedValue: 'cancelled',
+    valueString: 'cancelled',
     system: 'http://hl7.org/fhir/ValueSet/episode-of-care-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Cancelled'.toFhirString,
@@ -115,7 +115,7 @@ class EpisodeOfCareStatus extends FhirCodeEnum {
 
   /// entered_in_error
   static final EpisodeOfCareStatus entered_in_error = EpisodeOfCareStatus._(
-    validatedValue: 'entered-in-error',
+    valueString: 'entered-in-error',
     system: 'http://hl7.org/fhir/ValueSet/episode-of-care-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Entered in Error'.toFhirString,
@@ -123,7 +123,7 @@ class EpisodeOfCareStatus extends FhirCodeEnum {
 
   /// For instances where an Element is present but not value
   static final EpisodeOfCareStatus elementOnly =
-      EpisodeOfCareStatus._(validatedValue: '');
+      EpisodeOfCareStatus._(valueString: '');
 
   /// List of all enum-like values
   static final List<EpisodeOfCareStatus> values = [
@@ -139,14 +139,14 @@ class EpisodeOfCareStatus extends FhirCodeEnum {
   /// Clones the current instance
   @override
   EpisodeOfCareStatus clone() => EpisodeOfCareStatus._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   EpisodeOfCareStatus withElement(Element? newElement) {
     return EpisodeOfCareStatus._(
-      validatedValue: value,
+      valueString: valueString,
       element: newElement,
     );
   }
@@ -154,18 +154,18 @@ class EpisodeOfCareStatus extends FhirCodeEnum {
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   EpisodeOfCareStatus copyWith({
-    String? newValue,
+    dynamic newValue,
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
@@ -176,11 +176,11 @@ class EpisodeOfCareStatus extends FhirCodeEnum {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError('Invalid input for EpisodeOfCareStatus: $newValue');
     }
     return EpisodeOfCareStatus._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

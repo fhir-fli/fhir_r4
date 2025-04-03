@@ -619,7 +619,10 @@ class ObservationDefinition extends DomainResource {
             return copyWith(contained: newList);
           } else if (child is Resource) {
             // Add single element to existing list or create new list
-            final newList = [...?contained, child];
+            final newList = [
+              ...?contained,
+              child,
+            ];
             return copyWith(contained: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -633,7 +636,10 @@ class ObservationDefinition extends DomainResource {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -647,7 +653,10 @@ class ObservationDefinition extends DomainResource {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -661,7 +670,10 @@ class ObservationDefinition extends DomainResource {
             return copyWith(category: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...?category, child];
+            final newList = [
+              ...?category,
+              child,
+            ];
             return copyWith(category: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -683,7 +695,10 @@ class ObservationDefinition extends DomainResource {
             return copyWith(identifier: newList);
           } else if (child is Identifier) {
             // Add single element to existing list or create new list
-            final newList = [...?identifier, child];
+            final newList = [
+              ...?identifier,
+              child,
+            ];
             return copyWith(identifier: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -697,7 +712,10 @@ class ObservationDefinition extends DomainResource {
             return copyWith(permittedDataType: newList);
           } else if (child is ObservationDataType) {
             // Add single element to existing list or create new list
-            final newList = [...?permittedDataType, child];
+            final newList = [
+              ...?permittedDataType,
+              child,
+            ];
             return copyWith(permittedDataType: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -743,7 +761,10 @@ class ObservationDefinition extends DomainResource {
             return copyWith(qualifiedInterval: newList);
           } else if (child is ObservationDefinitionQualifiedInterval) {
             // Add single element to existing list or create new list
-            final newList = [...?qualifiedInterval, child];
+            final newList = [
+              ...?qualifiedInterval,
+              child,
+            ];
             return copyWith(qualifiedInterval: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1614,7 +1635,10 @@ class ObservationDefinitionQuantitativeDetails extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1628,7 +1652,10 @@ class ObservationDefinitionQuantitativeDetails extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2275,7 +2302,10 @@ class ObservationDefinitionQualifiedInterval extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2289,7 +2319,10 @@ class ObservationDefinitionQualifiedInterval extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2327,7 +2360,10 @@ class ObservationDefinitionQualifiedInterval extends BackboneElement {
             return copyWith(appliesTo: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...?appliesTo, child];
+            final newList = [
+              ...?appliesTo,
+              child,
+            ];
             return copyWith(appliesTo: newList);
           } else {
             throw Exception('Invalid child type for $childName');

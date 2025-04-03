@@ -618,7 +618,10 @@ class GraphDefinition extends CanonicalResource {
             return copyWith(contained: newList);
           } else if (child is Resource) {
             // Add single element to existing list or create new list
-            final newList = [...?contained, child];
+            final newList = [
+              ...?contained,
+              child,
+            ];
             return copyWith(contained: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -632,7 +635,10 @@ class GraphDefinition extends CanonicalResource {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -646,7 +652,10 @@ class GraphDefinition extends CanonicalResource {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -716,7 +725,10 @@ class GraphDefinition extends CanonicalResource {
             return copyWith(contact: newList);
           } else if (child is ContactDetail) {
             // Add single element to existing list or create new list
-            final newList = [...?contact, child];
+            final newList = [
+              ...?contact,
+              child,
+            ];
             return copyWith(contact: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -738,7 +750,10 @@ class GraphDefinition extends CanonicalResource {
             return copyWith(useContext: newList);
           } else if (child is UsageContext) {
             // Add single element to existing list or create new list
-            final newList = [...?useContext, child];
+            final newList = [
+              ...?useContext,
+              child,
+            ];
             return copyWith(useContext: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -752,7 +767,10 @@ class GraphDefinition extends CanonicalResource {
             return copyWith(jurisdiction: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...?jurisdiction, child];
+            final newList = [
+              ...?jurisdiction,
+              child,
+            ];
             return copyWith(jurisdiction: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -790,7 +808,10 @@ class GraphDefinition extends CanonicalResource {
             return copyWith(link: newList);
           } else if (child is GraphDefinitionLink) {
             // Add single element to existing list or create new list
-            final newList = [...?link, child];
+            final newList = [
+              ...?link,
+              child,
+            ];
             return copyWith(link: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1703,7 +1724,10 @@ class GraphDefinitionLink extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1717,7 +1741,10 @@ class GraphDefinitionLink extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1771,7 +1798,10 @@ class GraphDefinitionLink extends BackboneElement {
             return copyWith(target: newList);
           } else if (child is GraphDefinitionTarget) {
             // Add single element to existing list or create new list
-            final newList = [...?target, child];
+            final newList = [
+              ...?target,
+              child,
+            ];
             return copyWith(target: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2367,7 +2397,10 @@ class GraphDefinitionTarget extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2381,7 +2414,10 @@ class GraphDefinitionTarget extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2419,7 +2455,10 @@ class GraphDefinitionTarget extends BackboneElement {
             return copyWith(compartment: newList);
           } else if (child is GraphDefinitionCompartment) {
             // Add single element to existing list or create new list
-            final newList = [...?compartment, child];
+            final newList = [
+              ...?compartment,
+              child,
+            ];
             return copyWith(compartment: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2433,7 +2472,10 @@ class GraphDefinitionTarget extends BackboneElement {
             return copyWith(link: newList);
           } else if (child is GraphDefinitionLink) {
             // Add single element to existing list or create new list
-            final newList = [...?link, child];
+            final newList = [
+              ...?link,
+              child,
+            ];
             return copyWith(link: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -3003,7 +3045,10 @@ class GraphDefinitionCompartment extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -3017,7 +3062,10 @@ class GraphDefinitionCompartment extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');

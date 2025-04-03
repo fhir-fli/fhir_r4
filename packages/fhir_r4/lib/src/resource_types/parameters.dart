@@ -278,7 +278,10 @@ class Parameters extends Resource {
             return copyWith(parameter: newList);
           } else if (child is ParametersParameter) {
             // Add single element to existing list or create new list
-            final newList = [...?parameter, child];
+            final newList = [
+              ...?parameter,
+              child,
+            ];
             return copyWith(parameter: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1163,7 +1166,10 @@ class ParametersParameter extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1177,7 +1183,10 @@ class ParametersParameter extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1765,7 +1774,10 @@ class ParametersParameter extends BackboneElement {
             return copyWith(part_: newList);
           } else if (child is ParametersParameter) {
             // Add single element to existing list or create new list
-            final newList = [...?part_, child];
+            final newList = [
+              ...?part_,
+              child,
+            ];
             return copyWith(part_: newList);
           } else {
             throw Exception('Invalid child type for $childName');

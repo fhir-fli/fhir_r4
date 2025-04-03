@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class ResponseType extends FhirCodeEnum {
   // Private underscore constructor for internal use.
   ResponseType._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class ResponseType extends FhirCodeEnum {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory ResponseType(
-    String? raw, {
+    String? rawValue, {
     FhirUri? system,
     FhirString? version,
     FhirString? display,
@@ -29,9 +29,10 @@ class ResponseType extends FhirCodeEnum {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCode._validateCode(rawValue) : null;
     return ResponseType._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -44,7 +45,7 @@ class ResponseType extends FhirCodeEnum {
   }
 
   /// Create empty [ResponseType] with element only
-  factory ResponseType.empty() => ResponseType._(validatedValue: '');
+  factory ResponseType.empty() => ResponseType._(valueString: '');
 
   /// Factory constructor to create [ResponseType] from JSON.
   factory ResponseType.fromJson(Map<String, dynamic> json) {
@@ -59,14 +60,14 @@ class ResponseType extends FhirCodeEnum {
       );
     }
     return ResponseType._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// ok
   static final ResponseType ok = ResponseType._(
-    validatedValue: 'ok',
+    valueString: 'ok',
     system: 'http://hl7.org/fhir/ValueSet/response-code'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'OK'.toFhirString,
@@ -74,7 +75,7 @@ class ResponseType extends FhirCodeEnum {
 
   /// transient_error
   static final ResponseType transient_error = ResponseType._(
-    validatedValue: 'transient-error',
+    valueString: 'transient-error',
     system: 'http://hl7.org/fhir/ValueSet/response-code'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Transient Error'.toFhirString,
@@ -82,14 +83,14 @@ class ResponseType extends FhirCodeEnum {
 
   /// fatal_error
   static final ResponseType fatal_error = ResponseType._(
-    validatedValue: 'fatal-error',
+    valueString: 'fatal-error',
     system: 'http://hl7.org/fhir/ValueSet/response-code'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Fatal Error'.toFhirString,
   );
 
   /// For instances where an Element is present but not value
-  static final ResponseType elementOnly = ResponseType._(validatedValue: '');
+  static final ResponseType elementOnly = ResponseType._(valueString: '');
 
   /// List of all enum-like values
   static final List<ResponseType> values = [
@@ -101,14 +102,14 @@ class ResponseType extends FhirCodeEnum {
   /// Clones the current instance
   @override
   ResponseType clone() => ResponseType._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ResponseType withElement(Element? newElement) {
     return ResponseType._(
-      validatedValue: value,
+      valueString: valueString,
       element: newElement,
     );
   }
@@ -116,18 +117,18 @@ class ResponseType extends FhirCodeEnum {
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   ResponseType copyWith({
-    String? newValue,
+    dynamic newValue,
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
@@ -138,11 +139,11 @@ class ResponseType extends FhirCodeEnum {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError('Invalid input for ResponseType: $newValue');
     }
     return ResponseType._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

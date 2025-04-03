@@ -74,7 +74,9 @@ class FhirBoolean extends PrimitiveType
   ///
   /// - If [rawValue] is `null`, [element] must be non-null.
   /// - If [rawValue] is a [bool], it is converted to `"true"` or `"false"`.
-  /// - If [rawValue] is a [String], it must match `"true"` or `"false"` (case-insensitive).
+  /// - If [rawValue] is a [String], it must match `"true"` or `"false"`
+  /// (case-insensitive).
+  // ignore: sort_unnamed_constructors_first
   factory FhirBoolean(
     dynamic rawValue, {
     Element? element,

@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class SlotStatus extends FhirCodeEnum {
   // Private underscore constructor for internal use.
   SlotStatus._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class SlotStatus extends FhirCodeEnum {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory SlotStatus(
-    String? raw, {
+    String? rawValue, {
     FhirUri? system,
     FhirString? version,
     FhirString? display,
@@ -29,9 +29,10 @@ class SlotStatus extends FhirCodeEnum {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCode._validateCode(rawValue) : null;
     return SlotStatus._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -44,7 +45,7 @@ class SlotStatus extends FhirCodeEnum {
   }
 
   /// Create empty [SlotStatus] with element only
-  factory SlotStatus.empty() => SlotStatus._(validatedValue: '');
+  factory SlotStatus.empty() => SlotStatus._(valueString: '');
 
   /// Factory constructor to create [SlotStatus] from JSON.
   factory SlotStatus.fromJson(Map<String, dynamic> json) {
@@ -59,14 +60,14 @@ class SlotStatus extends FhirCodeEnum {
       );
     }
     return SlotStatus._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// busy
   static final SlotStatus busy = SlotStatus._(
-    validatedValue: 'busy',
+    valueString: 'busy',
     system: 'http://hl7.org/fhir/ValueSet/slotstatus'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Busy'.toFhirString,
@@ -74,7 +75,7 @@ class SlotStatus extends FhirCodeEnum {
 
   /// free
   static final SlotStatus free = SlotStatus._(
-    validatedValue: 'free',
+    valueString: 'free',
     system: 'http://hl7.org/fhir/ValueSet/slotstatus'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Free'.toFhirString,
@@ -82,7 +83,7 @@ class SlotStatus extends FhirCodeEnum {
 
   /// busy_unavailable
   static final SlotStatus busy_unavailable = SlotStatus._(
-    validatedValue: 'busy-unavailable',
+    valueString: 'busy-unavailable',
     system: 'http://hl7.org/fhir/ValueSet/slotstatus'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Busy (Unavailable)'.toFhirString,
@@ -90,7 +91,7 @@ class SlotStatus extends FhirCodeEnum {
 
   /// busy_tentative
   static final SlotStatus busy_tentative = SlotStatus._(
-    validatedValue: 'busy-tentative',
+    valueString: 'busy-tentative',
     system: 'http://hl7.org/fhir/ValueSet/slotstatus'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Busy (Tentative)'.toFhirString,
@@ -98,14 +99,14 @@ class SlotStatus extends FhirCodeEnum {
 
   /// entered_in_error
   static final SlotStatus entered_in_error = SlotStatus._(
-    validatedValue: 'entered-in-error',
+    valueString: 'entered-in-error',
     system: 'http://hl7.org/fhir/ValueSet/slotstatus'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Entered in error'.toFhirString,
   );
 
   /// For instances where an Element is present but not value
-  static final SlotStatus elementOnly = SlotStatus._(validatedValue: '');
+  static final SlotStatus elementOnly = SlotStatus._(valueString: '');
 
   /// List of all enum-like values
   static final List<SlotStatus> values = [
@@ -119,14 +120,14 @@ class SlotStatus extends FhirCodeEnum {
   /// Clones the current instance
   @override
   SlotStatus clone() => SlotStatus._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   SlotStatus withElement(Element? newElement) {
     return SlotStatus._(
-      validatedValue: value,
+      valueString: valueString,
       element: newElement,
     );
   }
@@ -134,18 +135,18 @@ class SlotStatus extends FhirCodeEnum {
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   SlotStatus copyWith({
-    String? newValue,
+    dynamic newValue,
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
@@ -156,11 +157,11 @@ class SlotStatus extends FhirCodeEnum {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError('Invalid input for SlotStatus: $newValue');
     }
     return SlotStatus._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

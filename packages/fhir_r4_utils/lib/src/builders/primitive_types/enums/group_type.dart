@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class GroupTypeBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   GroupTypeBuilder._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class GroupTypeBuilder extends FhirCodeEnumBuilder {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory GroupTypeBuilder(
-    String? raw, {
+    String? rawValue, {
     FhirUriBuilder? system,
     FhirStringBuilder? version,
     FhirStringBuilder? display,
@@ -29,9 +29,10 @@ class GroupTypeBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
     return GroupTypeBuilder._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -44,7 +45,7 @@ class GroupTypeBuilder extends FhirCodeEnumBuilder {
   }
 
   /// Create empty [GroupTypeBuilder] with element only
-  factory GroupTypeBuilder.empty() => GroupTypeBuilder._(validatedValue: '');
+  factory GroupTypeBuilder.empty() => GroupTypeBuilder._(valueString: '');
 
   /// Factory constructor to create [GroupTypeBuilder]
   /// from JSON.
@@ -61,14 +62,14 @@ class GroupTypeBuilder extends FhirCodeEnumBuilder {
       );
     }
     return GroupTypeBuilder._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// person
   static GroupTypeBuilder person = GroupTypeBuilder._(
-    validatedValue: 'person',
+    valueString: 'person',
     system: 'http://hl7.org/fhir/ValueSet/group-type'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Person'.toFhirStringBuilder,
@@ -76,7 +77,7 @@ class GroupTypeBuilder extends FhirCodeEnumBuilder {
 
   /// animal
   static GroupTypeBuilder animal = GroupTypeBuilder._(
-    validatedValue: 'animal',
+    valueString: 'animal',
     system: 'http://hl7.org/fhir/ValueSet/group-type'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Animal'.toFhirStringBuilder,
@@ -84,7 +85,7 @@ class GroupTypeBuilder extends FhirCodeEnumBuilder {
 
   /// practitioner
   static GroupTypeBuilder practitioner = GroupTypeBuilder._(
-    validatedValue: 'practitioner',
+    valueString: 'practitioner',
     system: 'http://hl7.org/fhir/ValueSet/group-type'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Practitioner'.toFhirStringBuilder,
@@ -92,7 +93,7 @@ class GroupTypeBuilder extends FhirCodeEnumBuilder {
 
   /// device
   static GroupTypeBuilder device = GroupTypeBuilder._(
-    validatedValue: 'device',
+    valueString: 'device',
     system: 'http://hl7.org/fhir/ValueSet/group-type'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Device'.toFhirStringBuilder,
@@ -100,7 +101,7 @@ class GroupTypeBuilder extends FhirCodeEnumBuilder {
 
   /// medication
   static GroupTypeBuilder medication = GroupTypeBuilder._(
-    validatedValue: 'medication',
+    valueString: 'medication',
     system: 'http://hl7.org/fhir/ValueSet/group-type'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Medication'.toFhirStringBuilder,
@@ -108,14 +109,14 @@ class GroupTypeBuilder extends FhirCodeEnumBuilder {
 
   /// substance
   static GroupTypeBuilder substance = GroupTypeBuilder._(
-    validatedValue: 'substance',
+    valueString: 'substance',
     system: 'http://hl7.org/fhir/ValueSet/group-type'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Substance'.toFhirStringBuilder,
   );
 
   /// For instances where an Element is present but not value
-  static GroupTypeBuilder elementOnly = GroupTypeBuilder._(validatedValue: '');
+  static GroupTypeBuilder elementOnly = GroupTypeBuilder._(valueString: '');
 
   /// List of all enum-like values
   static List<GroupTypeBuilder> values = [
@@ -130,30 +131,30 @@ class GroupTypeBuilder extends FhirCodeEnumBuilder {
   /// Clones the current instance
   @override
   GroupTypeBuilder clone() => GroupTypeBuilder._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
   GroupTypeBuilder withElement(ElementBuilder? newElement) {
-    return GroupTypeBuilder._(validatedValue: value, element: newElement);
+    return GroupTypeBuilder._(valueString: valueString, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   GroupTypeBuilder copyWith({
-    String? newValue,
+    dynamic newValue,
     ElementBuilder? element,
     FhirStringBuilder? id,
     List<FhirExtensionBuilder>? extension_,
@@ -164,11 +165,11 @@ class GroupTypeBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError('Invalid input for GroupType: $newValue');
     }
     return GroupTypeBuilder._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
@@ -177,7 +178,7 @@ class GroupTypeBuilder extends FhirCodeEnumBuilder {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath,
+      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

@@ -54,6 +54,7 @@ class FhirUrl extends FhirUri
   /// - If [rawValue] is a [String], it is validated via [FhirUri.validateUri].
   /// - If [rawValue] is a [Uri], we store its string form.
   /// - Otherwise, throws an [ArgumentError].
+  // ignore: sort_unnamed_constructors_first
   factory FhirUrl(
     dynamic rawValue, {
     Element? element,
@@ -212,7 +213,15 @@ class FhirUrl extends FhirUri
 
   @override
   // ignore: avoid_equals_and_hash_code_on_mutable_classes
+  bool operator ==(Object other) => equals(other);
+
+  @override
+  // ignore: avoid_equals_and_hash_code_on_mutable_classes
   int get hashCode => Object.hash(valueString, element);
+
+  /// Returns `true` if the Type is considered string-based, otherwise `false`
+  @override
+  bool get stringBased => true;
 
   // --------------------------------------------------------------------------
   // Clone / Copy

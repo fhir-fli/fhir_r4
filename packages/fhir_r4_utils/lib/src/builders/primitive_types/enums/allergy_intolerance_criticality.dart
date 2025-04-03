@@ -6,7 +6,7 @@ part of '../primitive_types.dart';
 class AllergyIntoleranceCriticalityBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   AllergyIntoleranceCriticalityBuilder._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -20,7 +20,7 @@ class AllergyIntoleranceCriticalityBuilder extends FhirCodeEnumBuilder {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory AllergyIntoleranceCriticalityBuilder(
-    String? raw, {
+    String? rawValue, {
     FhirUriBuilder? system,
     FhirStringBuilder? version,
     FhirStringBuilder? display,
@@ -30,9 +30,10 @@ class AllergyIntoleranceCriticalityBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
     return AllergyIntoleranceCriticalityBuilder._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -46,7 +47,7 @@ class AllergyIntoleranceCriticalityBuilder extends FhirCodeEnumBuilder {
 
   /// Create empty [AllergyIntoleranceCriticalityBuilder] with element only
   factory AllergyIntoleranceCriticalityBuilder.empty() =>
-      AllergyIntoleranceCriticalityBuilder._(validatedValue: '');
+      AllergyIntoleranceCriticalityBuilder._(valueString: '');
 
   /// Factory constructor to create [AllergyIntoleranceCriticalityBuilder]
   /// from JSON.
@@ -65,7 +66,7 @@ class AllergyIntoleranceCriticalityBuilder extends FhirCodeEnumBuilder {
       );
     }
     return AllergyIntoleranceCriticalityBuilder._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
@@ -73,7 +74,7 @@ class AllergyIntoleranceCriticalityBuilder extends FhirCodeEnumBuilder {
   /// low
   static AllergyIntoleranceCriticalityBuilder low =
       AllergyIntoleranceCriticalityBuilder._(
-    validatedValue: 'low',
+    valueString: 'low',
     system: 'http://hl7.org/fhir/ValueSet/allergy-intolerance-criticality'
         .toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -83,7 +84,7 @@ class AllergyIntoleranceCriticalityBuilder extends FhirCodeEnumBuilder {
   /// high
   static AllergyIntoleranceCriticalityBuilder high =
       AllergyIntoleranceCriticalityBuilder._(
-    validatedValue: 'high',
+    valueString: 'high',
     system: 'http://hl7.org/fhir/ValueSet/allergy-intolerance-criticality'
         .toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -93,7 +94,7 @@ class AllergyIntoleranceCriticalityBuilder extends FhirCodeEnumBuilder {
   /// unable_to_assess
   static AllergyIntoleranceCriticalityBuilder unable_to_assess =
       AllergyIntoleranceCriticalityBuilder._(
-    validatedValue: 'unable-to-assess',
+    valueString: 'unable-to-assess',
     system: 'http://hl7.org/fhir/ValueSet/allergy-intolerance-criticality'
         .toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -102,7 +103,7 @@ class AllergyIntoleranceCriticalityBuilder extends FhirCodeEnumBuilder {
 
   /// For instances where an Element is present but not value
   static AllergyIntoleranceCriticalityBuilder elementOnly =
-      AllergyIntoleranceCriticalityBuilder._(validatedValue: '');
+      AllergyIntoleranceCriticalityBuilder._(valueString: '');
 
   /// List of all enum-like values
   static List<AllergyIntoleranceCriticalityBuilder> values = [
@@ -115,31 +116,31 @@ class AllergyIntoleranceCriticalityBuilder extends FhirCodeEnumBuilder {
   @override
   AllergyIntoleranceCriticalityBuilder clone() =>
       AllergyIntoleranceCriticalityBuilder._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
   AllergyIntoleranceCriticalityBuilder withElement(ElementBuilder? newElement) {
     return AllergyIntoleranceCriticalityBuilder._(
-        validatedValue: value, element: newElement,);
+        valueString: valueString, element: newElement,);
   }
 
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   AllergyIntoleranceCriticalityBuilder copyWith({
-    String? newValue,
+    dynamic newValue,
     ElementBuilder? element,
     FhirStringBuilder? id,
     List<FhirExtensionBuilder>? extension_,
@@ -150,11 +151,12 @@ class AllergyIntoleranceCriticalityBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError(
+          'Invalid input for AllergyIntoleranceCriticality: $newValue',);
     }
     return AllergyIntoleranceCriticalityBuilder._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
@@ -163,7 +165,7 @@ class AllergyIntoleranceCriticalityBuilder extends FhirCodeEnumBuilder {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath,
+      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

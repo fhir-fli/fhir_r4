@@ -590,7 +590,10 @@ class BiologicallyDerivedProduct extends DomainResource {
             return copyWith(contained: newList);
           } else if (child is Resource) {
             // Add single element to existing list or create new list
-            final newList = [...?contained, child];
+            final newList = [
+              ...?contained,
+              child,
+            ];
             return copyWith(contained: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -604,7 +607,10 @@ class BiologicallyDerivedProduct extends DomainResource {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -618,7 +624,10 @@ class BiologicallyDerivedProduct extends DomainResource {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -632,7 +641,10 @@ class BiologicallyDerivedProduct extends DomainResource {
             return copyWith(identifier: newList);
           } else if (child is Identifier) {
             // Add single element to existing list or create new list
-            final newList = [...?identifier, child];
+            final newList = [
+              ...?identifier,
+              child,
+            ];
             return copyWith(identifier: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -670,7 +682,10 @@ class BiologicallyDerivedProduct extends DomainResource {
             return copyWith(request: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...?request, child];
+            final newList = [
+              ...?request,
+              child,
+            ];
             return copyWith(request: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -692,7 +707,10 @@ class BiologicallyDerivedProduct extends DomainResource {
             return copyWith(parent: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...?parent, child];
+            final newList = [
+              ...?parent,
+              child,
+            ];
             return copyWith(parent: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -714,7 +732,10 @@ class BiologicallyDerivedProduct extends DomainResource {
             return copyWith(processing: newList);
           } else if (child is BiologicallyDerivedProductProcessing) {
             // Add single element to existing list or create new list
-            final newList = [...?processing, child];
+            final newList = [
+              ...?processing,
+              child,
+            ];
             return copyWith(processing: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -736,7 +757,10 @@ class BiologicallyDerivedProduct extends DomainResource {
             return copyWith(storage: newList);
           } else if (child is BiologicallyDerivedProductStorage) {
             // Add single element to existing list or create new list
-            final newList = [...?storage, child];
+            final newList = [
+              ...?storage,
+              child,
+            ];
             return copyWith(storage: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1529,7 +1553,10 @@ class BiologicallyDerivedProductCollection extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1543,7 +1570,10 @@ class BiologicallyDerivedProductCollection extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1617,7 +1647,10 @@ class BiologicallyDerivedProductCollection extends BackboneElement {
         return ['Reference'];
       case 'collected':
       case 'collectedX':
-        return ['FhirDateTime', 'Period'];
+        return [
+          'FhirDateTime',
+          'Period',
+        ];
       case 'collectedDateTime':
         return ['FhirDateTime'];
       case 'collectedPeriod':
@@ -2127,7 +2160,10 @@ class BiologicallyDerivedProductProcessing extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2141,7 +2177,10 @@ class BiologicallyDerivedProductProcessing extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2225,7 +2264,10 @@ class BiologicallyDerivedProductProcessing extends BackboneElement {
         return ['Reference'];
       case 'time':
       case 'timeX':
-        return ['FhirDateTime', 'Period'];
+        return [
+          'FhirDateTime',
+          'Period',
+        ];
       case 'timeDateTime':
         return ['FhirDateTime'];
       case 'timePeriod':
@@ -2714,7 +2756,10 @@ class BiologicallyDerivedProductManipulation extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2728,7 +2773,10 @@ class BiologicallyDerivedProductManipulation extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2792,7 +2840,10 @@ class BiologicallyDerivedProductManipulation extends BackboneElement {
         return ['FhirString'];
       case 'time':
       case 'timeX':
-        return ['FhirDateTime', 'Period'];
+        return [
+          'FhirDateTime',
+          'Period',
+        ];
       case 'timeDateTime':
         return ['FhirDateTime'];
       case 'timePeriod':
@@ -3260,7 +3311,10 @@ class BiologicallyDerivedProductStorage extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -3274,7 +3328,10 @@ class BiologicallyDerivedProductStorage extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');

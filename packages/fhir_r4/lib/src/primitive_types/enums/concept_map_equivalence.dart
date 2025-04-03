@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class ConceptMapEquivalence extends FhirCodeEnum {
   // Private underscore constructor for internal use.
   ConceptMapEquivalence._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class ConceptMapEquivalence extends FhirCodeEnum {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory ConceptMapEquivalence(
-    String? raw, {
+    String? rawValue, {
     FhirUri? system,
     FhirString? version,
     FhirString? display,
@@ -29,9 +29,10 @@ class ConceptMapEquivalence extends FhirCodeEnum {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCode._validateCode(rawValue) : null;
     return ConceptMapEquivalence._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -45,7 +46,7 @@ class ConceptMapEquivalence extends FhirCodeEnum {
 
   /// Create empty [ConceptMapEquivalence] with element only
   factory ConceptMapEquivalence.empty() =>
-      ConceptMapEquivalence._(validatedValue: '');
+      ConceptMapEquivalence._(valueString: '');
 
   /// Factory constructor to create [ConceptMapEquivalence] from JSON.
   factory ConceptMapEquivalence.fromJson(Map<String, dynamic> json) {
@@ -60,14 +61,14 @@ class ConceptMapEquivalence extends FhirCodeEnum {
       );
     }
     return ConceptMapEquivalence._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// relatedto
   static final ConceptMapEquivalence relatedto = ConceptMapEquivalence._(
-    validatedValue: 'relatedto',
+    valueString: 'relatedto',
     system: 'http://hl7.org/fhir/ValueSet/concept-map-equivalence'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Related To'.toFhirString,
@@ -75,7 +76,7 @@ class ConceptMapEquivalence extends FhirCodeEnum {
 
   /// equivalent
   static final ConceptMapEquivalence equivalent = ConceptMapEquivalence._(
-    validatedValue: 'equivalent',
+    valueString: 'equivalent',
     system: 'http://hl7.org/fhir/ValueSet/concept-map-equivalence'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Equivalent'.toFhirString,
@@ -83,7 +84,7 @@ class ConceptMapEquivalence extends FhirCodeEnum {
 
   /// equal
   static final ConceptMapEquivalence equal = ConceptMapEquivalence._(
-    validatedValue: 'equal',
+    valueString: 'equal',
     system: 'http://hl7.org/fhir/ValueSet/concept-map-equivalence'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Equal'.toFhirString,
@@ -91,7 +92,7 @@ class ConceptMapEquivalence extends FhirCodeEnum {
 
   /// wider
   static final ConceptMapEquivalence wider = ConceptMapEquivalence._(
-    validatedValue: 'wider',
+    valueString: 'wider',
     system: 'http://hl7.org/fhir/ValueSet/concept-map-equivalence'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Wider'.toFhirString,
@@ -99,7 +100,7 @@ class ConceptMapEquivalence extends FhirCodeEnum {
 
   /// subsumes
   static final ConceptMapEquivalence subsumes = ConceptMapEquivalence._(
-    validatedValue: 'subsumes',
+    valueString: 'subsumes',
     system: 'http://hl7.org/fhir/ValueSet/concept-map-equivalence'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Subsumes'.toFhirString,
@@ -107,7 +108,7 @@ class ConceptMapEquivalence extends FhirCodeEnum {
 
   /// narrower
   static final ConceptMapEquivalence narrower = ConceptMapEquivalence._(
-    validatedValue: 'narrower',
+    valueString: 'narrower',
     system: 'http://hl7.org/fhir/ValueSet/concept-map-equivalence'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Narrower'.toFhirString,
@@ -115,7 +116,7 @@ class ConceptMapEquivalence extends FhirCodeEnum {
 
   /// specializes
   static final ConceptMapEquivalence specializes = ConceptMapEquivalence._(
-    validatedValue: 'specializes',
+    valueString: 'specializes',
     system: 'http://hl7.org/fhir/ValueSet/concept-map-equivalence'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Specializes'.toFhirString,
@@ -123,7 +124,7 @@ class ConceptMapEquivalence extends FhirCodeEnum {
 
   /// inexact
   static final ConceptMapEquivalence inexact = ConceptMapEquivalence._(
-    validatedValue: 'inexact',
+    valueString: 'inexact',
     system: 'http://hl7.org/fhir/ValueSet/concept-map-equivalence'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Inexact'.toFhirString,
@@ -131,7 +132,7 @@ class ConceptMapEquivalence extends FhirCodeEnum {
 
   /// unmatched
   static final ConceptMapEquivalence unmatched = ConceptMapEquivalence._(
-    validatedValue: 'unmatched',
+    valueString: 'unmatched',
     system: 'http://hl7.org/fhir/ValueSet/concept-map-equivalence'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Unmatched'.toFhirString,
@@ -139,7 +140,7 @@ class ConceptMapEquivalence extends FhirCodeEnum {
 
   /// disjoint
   static final ConceptMapEquivalence disjoint = ConceptMapEquivalence._(
-    validatedValue: 'disjoint',
+    valueString: 'disjoint',
     system: 'http://hl7.org/fhir/ValueSet/concept-map-equivalence'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Disjoint'.toFhirString,
@@ -147,7 +148,7 @@ class ConceptMapEquivalence extends FhirCodeEnum {
 
   /// For instances where an Element is present but not value
   static final ConceptMapEquivalence elementOnly =
-      ConceptMapEquivalence._(validatedValue: '');
+      ConceptMapEquivalence._(valueString: '');
 
   /// List of all enum-like values
   static final List<ConceptMapEquivalence> values = [
@@ -166,14 +167,14 @@ class ConceptMapEquivalence extends FhirCodeEnum {
   /// Clones the current instance
   @override
   ConceptMapEquivalence clone() => ConceptMapEquivalence._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ConceptMapEquivalence withElement(Element? newElement) {
     return ConceptMapEquivalence._(
-      validatedValue: value,
+      valueString: valueString,
       element: newElement,
     );
   }
@@ -181,18 +182,18 @@ class ConceptMapEquivalence extends FhirCodeEnum {
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   ConceptMapEquivalence copyWith({
-    String? newValue,
+    dynamic newValue,
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
@@ -203,11 +204,11 @@ class ConceptMapEquivalence extends FhirCodeEnum {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError('Invalid input for ConceptMapEquivalence: $newValue');
     }
     return ConceptMapEquivalence._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

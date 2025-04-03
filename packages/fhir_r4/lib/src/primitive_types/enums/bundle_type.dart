@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class BundleType extends FhirCodeEnum {
   // Private underscore constructor for internal use.
   BundleType._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class BundleType extends FhirCodeEnum {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory BundleType(
-    String? raw, {
+    String? rawValue, {
     FhirUri? system,
     FhirString? version,
     FhirString? display,
@@ -29,9 +29,10 @@ class BundleType extends FhirCodeEnum {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCode._validateCode(rawValue) : null;
     return BundleType._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -44,7 +45,7 @@ class BundleType extends FhirCodeEnum {
   }
 
   /// Create empty [BundleType] with element only
-  factory BundleType.empty() => BundleType._(validatedValue: '');
+  factory BundleType.empty() => BundleType._(valueString: '');
 
   /// Factory constructor to create [BundleType] from JSON.
   factory BundleType.fromJson(Map<String, dynamic> json) {
@@ -59,14 +60,14 @@ class BundleType extends FhirCodeEnum {
       );
     }
     return BundleType._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// document
   static final BundleType document = BundleType._(
-    validatedValue: 'document',
+    valueString: 'document',
     system: 'http://hl7.org/fhir/ValueSet/bundle-type'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Document'.toFhirString,
@@ -74,7 +75,7 @@ class BundleType extends FhirCodeEnum {
 
   /// message
   static final BundleType message = BundleType._(
-    validatedValue: 'message',
+    valueString: 'message',
     system: 'http://hl7.org/fhir/ValueSet/bundle-type'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Message'.toFhirString,
@@ -82,7 +83,7 @@ class BundleType extends FhirCodeEnum {
 
   /// transaction
   static final BundleType transaction = BundleType._(
-    validatedValue: 'transaction',
+    valueString: 'transaction',
     system: 'http://hl7.org/fhir/ValueSet/bundle-type'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Transaction'.toFhirString,
@@ -90,7 +91,7 @@ class BundleType extends FhirCodeEnum {
 
   /// transaction_response
   static final BundleType transaction_response = BundleType._(
-    validatedValue: 'transaction-response',
+    valueString: 'transaction-response',
     system: 'http://hl7.org/fhir/ValueSet/bundle-type'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Transaction Response'.toFhirString,
@@ -98,7 +99,7 @@ class BundleType extends FhirCodeEnum {
 
   /// batch
   static final BundleType batch = BundleType._(
-    validatedValue: 'batch',
+    valueString: 'batch',
     system: 'http://hl7.org/fhir/ValueSet/bundle-type'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Batch'.toFhirString,
@@ -106,7 +107,7 @@ class BundleType extends FhirCodeEnum {
 
   /// batch_response
   static final BundleType batch_response = BundleType._(
-    validatedValue: 'batch-response',
+    valueString: 'batch-response',
     system: 'http://hl7.org/fhir/ValueSet/bundle-type'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Batch Response'.toFhirString,
@@ -114,7 +115,7 @@ class BundleType extends FhirCodeEnum {
 
   /// history
   static final BundleType history = BundleType._(
-    validatedValue: 'history',
+    valueString: 'history',
     system: 'http://hl7.org/fhir/ValueSet/bundle-type'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'History List'.toFhirString,
@@ -122,7 +123,7 @@ class BundleType extends FhirCodeEnum {
 
   /// searchset
   static final BundleType searchset = BundleType._(
-    validatedValue: 'searchset',
+    valueString: 'searchset',
     system: 'http://hl7.org/fhir/ValueSet/bundle-type'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Search Results'.toFhirString,
@@ -130,14 +131,14 @@ class BundleType extends FhirCodeEnum {
 
   /// collection
   static final BundleType collection = BundleType._(
-    validatedValue: 'collection',
+    valueString: 'collection',
     system: 'http://hl7.org/fhir/ValueSet/bundle-type'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Collection'.toFhirString,
   );
 
   /// For instances where an Element is present but not value
-  static final BundleType elementOnly = BundleType._(validatedValue: '');
+  static final BundleType elementOnly = BundleType._(valueString: '');
 
   /// List of all enum-like values
   static final List<BundleType> values = [
@@ -155,14 +156,14 @@ class BundleType extends FhirCodeEnum {
   /// Clones the current instance
   @override
   BundleType clone() => BundleType._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   BundleType withElement(Element? newElement) {
     return BundleType._(
-      validatedValue: value,
+      valueString: valueString,
       element: newElement,
     );
   }
@@ -170,18 +171,18 @@ class BundleType extends FhirCodeEnum {
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   BundleType copyWith({
-    String? newValue,
+    dynamic newValue,
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
@@ -192,11 +193,11 @@ class BundleType extends FhirCodeEnum {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError('Invalid input for BundleType: $newValue');
     }
     return BundleType._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

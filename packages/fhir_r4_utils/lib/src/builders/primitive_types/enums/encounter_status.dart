@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class EncounterStatusBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   EncounterStatusBuilder._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class EncounterStatusBuilder extends FhirCodeEnumBuilder {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory EncounterStatusBuilder(
-    String? raw, {
+    String? rawValue, {
     FhirUriBuilder? system,
     FhirStringBuilder? version,
     FhirStringBuilder? display,
@@ -29,9 +29,10 @@ class EncounterStatusBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
     return EncounterStatusBuilder._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -45,7 +46,7 @@ class EncounterStatusBuilder extends FhirCodeEnumBuilder {
 
   /// Create empty [EncounterStatusBuilder] with element only
   factory EncounterStatusBuilder.empty() =>
-      EncounterStatusBuilder._(validatedValue: '');
+      EncounterStatusBuilder._(valueString: '');
 
   /// Factory constructor to create [EncounterStatusBuilder]
   /// from JSON.
@@ -62,14 +63,14 @@ class EncounterStatusBuilder extends FhirCodeEnumBuilder {
       );
     }
     return EncounterStatusBuilder._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// planned
   static EncounterStatusBuilder planned = EncounterStatusBuilder._(
-    validatedValue: 'planned',
+    valueString: 'planned',
     system: 'http://hl7.org/fhir/ValueSet/encounter-status'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Planned'.toFhirStringBuilder,
@@ -77,7 +78,7 @@ class EncounterStatusBuilder extends FhirCodeEnumBuilder {
 
   /// arrived
   static EncounterStatusBuilder arrived = EncounterStatusBuilder._(
-    validatedValue: 'arrived',
+    valueString: 'arrived',
     system: 'http://hl7.org/fhir/ValueSet/encounter-status'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Arrived'.toFhirStringBuilder,
@@ -85,7 +86,7 @@ class EncounterStatusBuilder extends FhirCodeEnumBuilder {
 
   /// triaged
   static EncounterStatusBuilder triaged = EncounterStatusBuilder._(
-    validatedValue: 'triaged',
+    valueString: 'triaged',
     system: 'http://hl7.org/fhir/ValueSet/encounter-status'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Triaged'.toFhirStringBuilder,
@@ -93,7 +94,7 @@ class EncounterStatusBuilder extends FhirCodeEnumBuilder {
 
   /// in_progress
   static EncounterStatusBuilder in_progress = EncounterStatusBuilder._(
-    validatedValue: 'in-progress',
+    valueString: 'in-progress',
     system: 'http://hl7.org/fhir/ValueSet/encounter-status'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'In Progress'.toFhirStringBuilder,
@@ -101,7 +102,7 @@ class EncounterStatusBuilder extends FhirCodeEnumBuilder {
 
   /// onleave
   static EncounterStatusBuilder onleave = EncounterStatusBuilder._(
-    validatedValue: 'onleave',
+    valueString: 'onleave',
     system: 'http://hl7.org/fhir/ValueSet/encounter-status'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'On Leave'.toFhirStringBuilder,
@@ -109,7 +110,7 @@ class EncounterStatusBuilder extends FhirCodeEnumBuilder {
 
   /// finished
   static EncounterStatusBuilder finished = EncounterStatusBuilder._(
-    validatedValue: 'finished',
+    valueString: 'finished',
     system: 'http://hl7.org/fhir/ValueSet/encounter-status'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Finished'.toFhirStringBuilder,
@@ -117,7 +118,7 @@ class EncounterStatusBuilder extends FhirCodeEnumBuilder {
 
   /// cancelled
   static EncounterStatusBuilder cancelled = EncounterStatusBuilder._(
-    validatedValue: 'cancelled',
+    valueString: 'cancelled',
     system: 'http://hl7.org/fhir/ValueSet/encounter-status'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Cancelled'.toFhirStringBuilder,
@@ -125,7 +126,7 @@ class EncounterStatusBuilder extends FhirCodeEnumBuilder {
 
   /// entered_in_error
   static EncounterStatusBuilder entered_in_error = EncounterStatusBuilder._(
-    validatedValue: 'entered-in-error',
+    valueString: 'entered-in-error',
     system: 'http://hl7.org/fhir/ValueSet/encounter-status'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Entered in Error'.toFhirStringBuilder,
@@ -133,7 +134,7 @@ class EncounterStatusBuilder extends FhirCodeEnumBuilder {
 
   /// unknown
   static EncounterStatusBuilder unknown = EncounterStatusBuilder._(
-    validatedValue: 'unknown',
+    valueString: 'unknown',
     system: 'http://hl7.org/fhir/ValueSet/encounter-status'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Unknown'.toFhirStringBuilder,
@@ -141,7 +142,7 @@ class EncounterStatusBuilder extends FhirCodeEnumBuilder {
 
   /// For instances where an Element is present but not value
   static EncounterStatusBuilder elementOnly =
-      EncounterStatusBuilder._(validatedValue: '');
+      EncounterStatusBuilder._(valueString: '');
 
   /// List of all enum-like values
   static List<EncounterStatusBuilder> values = [
@@ -159,30 +160,31 @@ class EncounterStatusBuilder extends FhirCodeEnumBuilder {
   /// Clones the current instance
   @override
   EncounterStatusBuilder clone() => EncounterStatusBuilder._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
   EncounterStatusBuilder withElement(ElementBuilder? newElement) {
-    return EncounterStatusBuilder._(validatedValue: value, element: newElement);
+    return EncounterStatusBuilder._(
+        valueString: valueString, element: newElement,);
   }
 
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   EncounterStatusBuilder copyWith({
-    String? newValue,
+    dynamic newValue,
     ElementBuilder? element,
     FhirStringBuilder? id,
     List<FhirExtensionBuilder>? extension_,
@@ -193,11 +195,11 @@ class EncounterStatusBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError('Invalid input for EncounterStatus: $newValue');
     }
     return EncounterStatusBuilder._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
@@ -206,7 +208,7 @@ class EncounterStatusBuilder extends FhirCodeEnumBuilder {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath,
+      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

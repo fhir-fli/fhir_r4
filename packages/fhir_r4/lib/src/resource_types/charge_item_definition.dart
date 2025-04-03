@@ -874,7 +874,10 @@ class ChargeItemDefinition extends DomainResource {
             return copyWith(contained: newList);
           } else if (child is Resource) {
             // Add single element to existing list or create new list
-            final newList = [...?contained, child];
+            final newList = [
+              ...?contained,
+              child,
+            ];
             return copyWith(contained: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -888,7 +891,10 @@ class ChargeItemDefinition extends DomainResource {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -902,7 +908,10 @@ class ChargeItemDefinition extends DomainResource {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -924,7 +933,10 @@ class ChargeItemDefinition extends DomainResource {
             return copyWith(identifier: newList);
           } else if (child is Identifier) {
             // Add single element to existing list or create new list
-            final newList = [...?identifier, child];
+            final newList = [
+              ...?identifier,
+              child,
+            ];
             return copyWith(identifier: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -954,7 +966,10 @@ class ChargeItemDefinition extends DomainResource {
             return copyWith(derivedFromUri: newList);
           } else if (child is FhirUri) {
             // Add single element to existing list or create new list
-            final newList = [...?derivedFromUri, child];
+            final newList = [
+              ...?derivedFromUri,
+              child,
+            ];
             return copyWith(derivedFromUri: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -968,7 +983,10 @@ class ChargeItemDefinition extends DomainResource {
             return copyWith(partOf: newList);
           } else if (child is FhirCanonical) {
             // Add single element to existing list or create new list
-            final newList = [...?partOf, child];
+            final newList = [
+              ...?partOf,
+              child,
+            ];
             return copyWith(partOf: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -982,7 +1000,10 @@ class ChargeItemDefinition extends DomainResource {
             return copyWith(replaces: newList);
           } else if (child is FhirCanonical) {
             // Add single element to existing list or create new list
-            final newList = [...?replaces, child];
+            final newList = [
+              ...?replaces,
+              child,
+            ];
             return copyWith(replaces: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1028,7 +1049,10 @@ class ChargeItemDefinition extends DomainResource {
             return copyWith(contact: newList);
           } else if (child is ContactDetail) {
             // Add single element to existing list or create new list
-            final newList = [...?contact, child];
+            final newList = [
+              ...?contact,
+              child,
+            ];
             return copyWith(contact: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1050,7 +1074,10 @@ class ChargeItemDefinition extends DomainResource {
             return copyWith(useContext: newList);
           } else if (child is UsageContext) {
             // Add single element to existing list or create new list
-            final newList = [...?useContext, child];
+            final newList = [
+              ...?useContext,
+              child,
+            ];
             return copyWith(useContext: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1064,7 +1091,10 @@ class ChargeItemDefinition extends DomainResource {
             return copyWith(jurisdiction: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...?jurisdiction, child];
+            final newList = [
+              ...?jurisdiction,
+              child,
+            ];
             return copyWith(jurisdiction: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1118,7 +1148,10 @@ class ChargeItemDefinition extends DomainResource {
             return copyWith(instance: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...?instance, child];
+            final newList = [
+              ...?instance,
+              child,
+            ];
             return copyWith(instance: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1132,7 +1165,10 @@ class ChargeItemDefinition extends DomainResource {
             return copyWith(applicability: newList);
           } else if (child is ChargeItemDefinitionApplicability) {
             // Add single element to existing list or create new list
-            final newList = [...?applicability, child];
+            final newList = [
+              ...?applicability,
+              child,
+            ];
             return copyWith(applicability: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1146,7 +1182,10 @@ class ChargeItemDefinition extends DomainResource {
             return copyWith(propertyGroup: newList);
           } else if (child is ChargeItemDefinitionPropertyGroup) {
             // Add single element to existing list or create new list
-            final newList = [...?propertyGroup, child];
+            final newList = [
+              ...?propertyGroup,
+              child,
+            ];
             return copyWith(propertyGroup: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2193,7 +2232,10 @@ class ChargeItemDefinitionApplicability extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2207,7 +2249,10 @@ class ChargeItemDefinitionApplicability extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2709,7 +2754,10 @@ class ChargeItemDefinitionPropertyGroup extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2723,7 +2771,10 @@ class ChargeItemDefinitionPropertyGroup extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2737,7 +2788,10 @@ class ChargeItemDefinitionPropertyGroup extends BackboneElement {
             return copyWith(applicability: newList);
           } else if (child is ChargeItemDefinitionApplicability) {
             // Add single element to existing list or create new list
-            final newList = [...?applicability, child];
+            final newList = [
+              ...?applicability,
+              child,
+            ];
             return copyWith(applicability: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2751,7 +2805,10 @@ class ChargeItemDefinitionPropertyGroup extends BackboneElement {
             return copyWith(priceComponent: newList);
           } else if (child is ChargeItemDefinitionPriceComponent) {
             // Add single element to existing list or create new list
-            final newList = [...?priceComponent, child];
+            final newList = [
+              ...?priceComponent,
+              child,
+            ];
             return copyWith(priceComponent: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -3247,7 +3304,10 @@ class ChargeItemDefinitionPriceComponent extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -3261,7 +3321,10 @@ class ChargeItemDefinitionPriceComponent extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');

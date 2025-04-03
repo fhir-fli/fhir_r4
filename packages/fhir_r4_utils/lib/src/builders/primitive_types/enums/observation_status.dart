@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class ObservationStatusBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   ObservationStatusBuilder._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class ObservationStatusBuilder extends FhirCodeEnumBuilder {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory ObservationStatusBuilder(
-    String? raw, {
+    String? rawValue, {
     FhirUriBuilder? system,
     FhirStringBuilder? version,
     FhirStringBuilder? display,
@@ -29,9 +29,10 @@ class ObservationStatusBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
     return ObservationStatusBuilder._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -45,7 +46,7 @@ class ObservationStatusBuilder extends FhirCodeEnumBuilder {
 
   /// Create empty [ObservationStatusBuilder] with element only
   factory ObservationStatusBuilder.empty() =>
-      ObservationStatusBuilder._(validatedValue: '');
+      ObservationStatusBuilder._(valueString: '');
 
   /// Factory constructor to create [ObservationStatusBuilder]
   /// from JSON.
@@ -62,14 +63,14 @@ class ObservationStatusBuilder extends FhirCodeEnumBuilder {
       );
     }
     return ObservationStatusBuilder._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// registered
   static ObservationStatusBuilder registered = ObservationStatusBuilder._(
-    validatedValue: 'registered',
+    valueString: 'registered',
     system: 'http://hl7.org/fhir/ValueSet/observation-status'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Registered'.toFhirStringBuilder,
@@ -77,7 +78,7 @@ class ObservationStatusBuilder extends FhirCodeEnumBuilder {
 
   /// preliminary
   static ObservationStatusBuilder preliminary = ObservationStatusBuilder._(
-    validatedValue: 'preliminary',
+    valueString: 'preliminary',
     system: 'http://hl7.org/fhir/ValueSet/observation-status'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Preliminary'.toFhirStringBuilder,
@@ -85,7 +86,7 @@ class ObservationStatusBuilder extends FhirCodeEnumBuilder {
 
   /// final_
   static ObservationStatusBuilder final_ = ObservationStatusBuilder._(
-    validatedValue: 'final',
+    valueString: 'final',
     system: 'http://hl7.org/fhir/ValueSet/observation-status'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Final'.toFhirStringBuilder,
@@ -93,7 +94,7 @@ class ObservationStatusBuilder extends FhirCodeEnumBuilder {
 
   /// amended
   static ObservationStatusBuilder amended = ObservationStatusBuilder._(
-    validatedValue: 'amended',
+    valueString: 'amended',
     system: 'http://hl7.org/fhir/ValueSet/observation-status'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Amended'.toFhirStringBuilder,
@@ -101,7 +102,7 @@ class ObservationStatusBuilder extends FhirCodeEnumBuilder {
 
   /// corrected
   static ObservationStatusBuilder corrected = ObservationStatusBuilder._(
-    validatedValue: 'corrected',
+    valueString: 'corrected',
     system: 'http://hl7.org/fhir/ValueSet/observation-status'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Corrected'.toFhirStringBuilder,
@@ -109,7 +110,7 @@ class ObservationStatusBuilder extends FhirCodeEnumBuilder {
 
   /// cancelled
   static ObservationStatusBuilder cancelled = ObservationStatusBuilder._(
-    validatedValue: 'cancelled',
+    valueString: 'cancelled',
     system: 'http://hl7.org/fhir/ValueSet/observation-status'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Cancelled'.toFhirStringBuilder,
@@ -117,7 +118,7 @@ class ObservationStatusBuilder extends FhirCodeEnumBuilder {
 
   /// entered_in_error
   static ObservationStatusBuilder entered_in_error = ObservationStatusBuilder._(
-    validatedValue: 'entered-in-error',
+    valueString: 'entered-in-error',
     system: 'http://hl7.org/fhir/ValueSet/observation-status'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Entered in Error'.toFhirStringBuilder,
@@ -125,7 +126,7 @@ class ObservationStatusBuilder extends FhirCodeEnumBuilder {
 
   /// unknown
   static ObservationStatusBuilder unknown = ObservationStatusBuilder._(
-    validatedValue: 'unknown',
+    valueString: 'unknown',
     system: 'http://hl7.org/fhir/ValueSet/observation-status'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Unknown'.toFhirStringBuilder,
@@ -133,7 +134,7 @@ class ObservationStatusBuilder extends FhirCodeEnumBuilder {
 
   /// For instances where an Element is present but not value
   static ObservationStatusBuilder elementOnly =
-      ObservationStatusBuilder._(validatedValue: '');
+      ObservationStatusBuilder._(valueString: '');
 
   /// List of all enum-like values
   static List<ObservationStatusBuilder> values = [
@@ -150,31 +151,31 @@ class ObservationStatusBuilder extends FhirCodeEnumBuilder {
   /// Clones the current instance
   @override
   ObservationStatusBuilder clone() => ObservationStatusBuilder._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
   ObservationStatusBuilder withElement(ElementBuilder? newElement) {
     return ObservationStatusBuilder._(
-        validatedValue: value, element: newElement,);
+        valueString: valueString, element: newElement,);
   }
 
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   ObservationStatusBuilder copyWith({
-    String? newValue,
+    dynamic newValue,
     ElementBuilder? element,
     FhirStringBuilder? id,
     List<FhirExtensionBuilder>? extension_,
@@ -185,11 +186,11 @@ class ObservationStatusBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError('Invalid input for ObservationStatus: $newValue');
     }
     return ObservationStatusBuilder._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
@@ -198,7 +199,7 @@ class ObservationStatusBuilder extends FhirCodeEnumBuilder {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath,
+      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

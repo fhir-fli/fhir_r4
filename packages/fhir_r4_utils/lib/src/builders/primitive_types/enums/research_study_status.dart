@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class ResearchStudyStatusBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   ResearchStudyStatusBuilder._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class ResearchStudyStatusBuilder extends FhirCodeEnumBuilder {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory ResearchStudyStatusBuilder(
-    String? raw, {
+    String? rawValue, {
     FhirUriBuilder? system,
     FhirStringBuilder? version,
     FhirStringBuilder? display,
@@ -29,9 +29,10 @@ class ResearchStudyStatusBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
     return ResearchStudyStatusBuilder._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -45,7 +46,7 @@ class ResearchStudyStatusBuilder extends FhirCodeEnumBuilder {
 
   /// Create empty [ResearchStudyStatusBuilder] with element only
   factory ResearchStudyStatusBuilder.empty() =>
-      ResearchStudyStatusBuilder._(validatedValue: '');
+      ResearchStudyStatusBuilder._(valueString: '');
 
   /// Factory constructor to create [ResearchStudyStatusBuilder]
   /// from JSON.
@@ -62,14 +63,14 @@ class ResearchStudyStatusBuilder extends FhirCodeEnumBuilder {
       );
     }
     return ResearchStudyStatusBuilder._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// active
   static ResearchStudyStatusBuilder active = ResearchStudyStatusBuilder._(
-    validatedValue: 'active',
+    valueString: 'active',
     system:
         'http://hl7.org/fhir/ValueSet/research-study-status'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -79,7 +80,7 @@ class ResearchStudyStatusBuilder extends FhirCodeEnumBuilder {
   /// administratively_completed
   static ResearchStudyStatusBuilder administratively_completed =
       ResearchStudyStatusBuilder._(
-    validatedValue: 'administratively-completed',
+    valueString: 'administratively-completed',
     system:
         'http://hl7.org/fhir/ValueSet/research-study-status'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -88,7 +89,7 @@ class ResearchStudyStatusBuilder extends FhirCodeEnumBuilder {
 
   /// approved
   static ResearchStudyStatusBuilder approved = ResearchStudyStatusBuilder._(
-    validatedValue: 'approved',
+    valueString: 'approved',
     system:
         'http://hl7.org/fhir/ValueSet/research-study-status'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -98,7 +99,7 @@ class ResearchStudyStatusBuilder extends FhirCodeEnumBuilder {
   /// closed_to_accrual
   static ResearchStudyStatusBuilder closed_to_accrual =
       ResearchStudyStatusBuilder._(
-    validatedValue: 'closed-to-accrual',
+    valueString: 'closed-to-accrual',
     system:
         'http://hl7.org/fhir/ValueSet/research-study-status'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -108,7 +109,7 @@ class ResearchStudyStatusBuilder extends FhirCodeEnumBuilder {
   /// closed_to_accrual_and_intervention
   static ResearchStudyStatusBuilder closed_to_accrual_and_intervention =
       ResearchStudyStatusBuilder._(
-    validatedValue: 'closed-to-accrual-and-intervention',
+    valueString: 'closed-to-accrual-and-intervention',
     system:
         'http://hl7.org/fhir/ValueSet/research-study-status'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -117,7 +118,7 @@ class ResearchStudyStatusBuilder extends FhirCodeEnumBuilder {
 
   /// completed
   static ResearchStudyStatusBuilder completed = ResearchStudyStatusBuilder._(
-    validatedValue: 'completed',
+    valueString: 'completed',
     system:
         'http://hl7.org/fhir/ValueSet/research-study-status'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -126,7 +127,7 @@ class ResearchStudyStatusBuilder extends FhirCodeEnumBuilder {
 
   /// disapproved
   static ResearchStudyStatusBuilder disapproved = ResearchStudyStatusBuilder._(
-    validatedValue: 'disapproved',
+    valueString: 'disapproved',
     system:
         'http://hl7.org/fhir/ValueSet/research-study-status'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -135,7 +136,7 @@ class ResearchStudyStatusBuilder extends FhirCodeEnumBuilder {
 
   /// in_review
   static ResearchStudyStatusBuilder in_review = ResearchStudyStatusBuilder._(
-    validatedValue: 'in-review',
+    valueString: 'in-review',
     system:
         'http://hl7.org/fhir/ValueSet/research-study-status'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -145,7 +146,7 @@ class ResearchStudyStatusBuilder extends FhirCodeEnumBuilder {
   /// temporarily_closed_to_accrual
   static ResearchStudyStatusBuilder temporarily_closed_to_accrual =
       ResearchStudyStatusBuilder._(
-    validatedValue: 'temporarily-closed-to-accrual',
+    valueString: 'temporarily-closed-to-accrual',
     system:
         'http://hl7.org/fhir/ValueSet/research-study-status'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -156,7 +157,7 @@ class ResearchStudyStatusBuilder extends FhirCodeEnumBuilder {
   static ResearchStudyStatusBuilder
       temporarily_closed_to_accrual_and_intervention =
       ResearchStudyStatusBuilder._(
-    validatedValue: 'temporarily-closed-to-accrual-and-intervention',
+    valueString: 'temporarily-closed-to-accrual-and-intervention',
     system:
         'http://hl7.org/fhir/ValueSet/research-study-status'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -166,7 +167,7 @@ class ResearchStudyStatusBuilder extends FhirCodeEnumBuilder {
 
   /// withdrawn
   static ResearchStudyStatusBuilder withdrawn = ResearchStudyStatusBuilder._(
-    validatedValue: 'withdrawn',
+    valueString: 'withdrawn',
     system:
         'http://hl7.org/fhir/ValueSet/research-study-status'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -175,7 +176,7 @@ class ResearchStudyStatusBuilder extends FhirCodeEnumBuilder {
 
   /// For instances where an Element is present but not value
   static ResearchStudyStatusBuilder elementOnly =
-      ResearchStudyStatusBuilder._(validatedValue: '');
+      ResearchStudyStatusBuilder._(valueString: '');
 
   /// List of all enum-like values
   static List<ResearchStudyStatusBuilder> values = [
@@ -195,31 +196,31 @@ class ResearchStudyStatusBuilder extends FhirCodeEnumBuilder {
   /// Clones the current instance
   @override
   ResearchStudyStatusBuilder clone() => ResearchStudyStatusBuilder._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
   ResearchStudyStatusBuilder withElement(ElementBuilder? newElement) {
     return ResearchStudyStatusBuilder._(
-        validatedValue: value, element: newElement,);
+        valueString: valueString, element: newElement,);
   }
 
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   ResearchStudyStatusBuilder copyWith({
-    String? newValue,
+    dynamic newValue,
     ElementBuilder? element,
     FhirStringBuilder? id,
     List<FhirExtensionBuilder>? extension_,
@@ -230,11 +231,11 @@ class ResearchStudyStatusBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError('Invalid input for ResearchStudyStatus: $newValue');
     }
     return ResearchStudyStatusBuilder._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
@@ -243,7 +244,7 @@ class ResearchStudyStatusBuilder extends FhirCodeEnumBuilder {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath,
+      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

@@ -8,7 +8,7 @@ part of '../primitive_types.dart';
 class SPDXLicense extends FhirCodeEnum {
   // Private underscore constructor for internal use.
   SPDXLicense._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -22,7 +22,7 @@ class SPDXLicense extends FhirCodeEnum {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory SPDXLicense(
-    String? raw, {
+    String? rawValue, {
     FhirUri? system,
     FhirString? version,
     FhirString? display,
@@ -32,9 +32,10 @@ class SPDXLicense extends FhirCodeEnum {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCode._validateCode(rawValue) : null;
     return SPDXLicense._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -47,7 +48,7 @@ class SPDXLicense extends FhirCodeEnum {
   }
 
   /// Create empty [SPDXLicense] with element only
-  factory SPDXLicense.empty() => SPDXLicense._(validatedValue: '');
+  factory SPDXLicense.empty() => SPDXLicense._(valueString: '');
 
   /// Factory constructor to create [SPDXLicense] from JSON.
   factory SPDXLicense.fromJson(Map<String, dynamic> json) {
@@ -62,14 +63,14 @@ class SPDXLicense extends FhirCodeEnum {
       );
     }
     return SPDXLicense._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// not_open_source
   static final SPDXLicense not_open_source = SPDXLicense._(
-    validatedValue: 'not-open-source',
+    valueString: 'not-open-source',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Not open source'.toFhirString,
@@ -77,7 +78,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// value0BSD
   static final SPDXLicense value0BSD = SPDXLicense._(
-    validatedValue: '0BSD',
+    valueString: '0BSD',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'BSD Zero Clause License'.toFhirString,
@@ -85,7 +86,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// AAL
   static final SPDXLicense AAL = SPDXLicense._(
-    validatedValue: 'AAL',
+    valueString: 'AAL',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Attribution Assurance License'.toFhirString,
@@ -93,7 +94,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// Abstyles
   static final SPDXLicense Abstyles = SPDXLicense._(
-    validatedValue: 'Abstyles',
+    valueString: 'Abstyles',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Abstyles License'.toFhirString,
@@ -101,7 +102,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// Adobe_2006
   static final SPDXLicense Adobe_2006 = SPDXLicense._(
-    validatedValue: 'Adobe-2006',
+    valueString: 'Adobe-2006',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display:
@@ -110,7 +111,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// Adobe_Glyph
   static final SPDXLicense Adobe_Glyph = SPDXLicense._(
-    validatedValue: 'Adobe-Glyph',
+    valueString: 'Adobe-Glyph',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Adobe Glyph List License'.toFhirString,
@@ -118,7 +119,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// ADSL
   static final SPDXLicense ADSL = SPDXLicense._(
-    validatedValue: 'ADSL',
+    valueString: 'ADSL',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Amazon Digital Services License'.toFhirString,
@@ -126,7 +127,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// AFL_1_1
   static final SPDXLicense AFL_1_1 = SPDXLicense._(
-    validatedValue: 'AFL-1.1',
+    valueString: 'AFL-1.1',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Academic Free License v1.1'.toFhirString,
@@ -134,7 +135,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// AFL_1_2
   static final SPDXLicense AFL_1_2 = SPDXLicense._(
-    validatedValue: 'AFL-1.2',
+    valueString: 'AFL-1.2',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Academic Free License v1.2'.toFhirString,
@@ -142,7 +143,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// AFL_2_0
   static final SPDXLicense AFL_2_0 = SPDXLicense._(
-    validatedValue: 'AFL-2.0',
+    valueString: 'AFL-2.0',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Academic Free License v2.0'.toFhirString,
@@ -150,7 +151,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// AFL_2_1
   static final SPDXLicense AFL_2_1 = SPDXLicense._(
-    validatedValue: 'AFL-2.1',
+    valueString: 'AFL-2.1',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Academic Free License v2.1'.toFhirString,
@@ -158,7 +159,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// AFL_3_0
   static final SPDXLicense AFL_3_0 = SPDXLicense._(
-    validatedValue: 'AFL-3.0',
+    valueString: 'AFL-3.0',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Academic Free License v3.0'.toFhirString,
@@ -166,7 +167,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// Afmparse
   static final SPDXLicense Afmparse = SPDXLicense._(
-    validatedValue: 'Afmparse',
+    valueString: 'Afmparse',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Afmparse License'.toFhirString,
@@ -174,7 +175,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// AGPL_1_0_only
   static final SPDXLicense AGPL_1_0_only = SPDXLicense._(
-    validatedValue: 'AGPL-1.0-only',
+    valueString: 'AGPL-1.0-only',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Affero General Public License v1.0 only'.toFhirString,
@@ -182,7 +183,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// AGPL_1_0_or_later
   static final SPDXLicense AGPL_1_0_or_later = SPDXLicense._(
-    validatedValue: 'AGPL-1.0-or-later',
+    valueString: 'AGPL-1.0-or-later',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Affero General Public License v1.0 or later'.toFhirString,
@@ -190,7 +191,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// AGPL_3_0_only
   static final SPDXLicense AGPL_3_0_only = SPDXLicense._(
-    validatedValue: 'AGPL-3.0-only',
+    valueString: 'AGPL-3.0-only',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'GNU Affero General Public License v3.0 only'.toFhirString,
@@ -198,7 +199,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// AGPL_3_0_or_later
   static final SPDXLicense AGPL_3_0_or_later = SPDXLicense._(
-    validatedValue: 'AGPL-3.0-or-later',
+    valueString: 'AGPL-3.0-or-later',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'GNU Affero General Public License v3.0 or later'.toFhirString,
@@ -206,7 +207,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// Aladdin
   static final SPDXLicense Aladdin = SPDXLicense._(
-    validatedValue: 'Aladdin',
+    valueString: 'Aladdin',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Aladdin Free Public License'.toFhirString,
@@ -214,7 +215,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// AMDPLPA
   static final SPDXLicense AMDPLPA = SPDXLicense._(
-    validatedValue: 'AMDPLPA',
+    valueString: 'AMDPLPA',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: "AMD's plpa_map.c License".toFhirString,
@@ -222,7 +223,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// AML
   static final SPDXLicense AML = SPDXLicense._(
-    validatedValue: 'AML',
+    valueString: 'AML',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Apple MIT License'.toFhirString,
@@ -230,7 +231,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// AMPAS
   static final SPDXLicense AMPAS = SPDXLicense._(
-    validatedValue: 'AMPAS',
+    valueString: 'AMPAS',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Academy of Motion Picture Arts and Sciences BSD'.toFhirString,
@@ -238,7 +239,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// ANTLR_PD
   static final SPDXLicense ANTLR_PD = SPDXLicense._(
-    validatedValue: 'ANTLR-PD',
+    valueString: 'ANTLR-PD',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'ANTLR Software Rights Notice'.toFhirString,
@@ -246,7 +247,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// Apache_1_0
   static final SPDXLicense Apache_1_0 = SPDXLicense._(
-    validatedValue: 'Apache-1.0',
+    valueString: 'Apache-1.0',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Apache License 1.0'.toFhirString,
@@ -254,7 +255,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// Apache_1_1
   static final SPDXLicense Apache_1_1 = SPDXLicense._(
-    validatedValue: 'Apache-1.1',
+    valueString: 'Apache-1.1',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Apache License 1.1'.toFhirString,
@@ -262,7 +263,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// Apache_2_0
   static final SPDXLicense Apache_2_0 = SPDXLicense._(
-    validatedValue: 'Apache-2.0',
+    valueString: 'Apache-2.0',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Apache License 2.0'.toFhirString,
@@ -270,7 +271,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// APAFML
   static final SPDXLicense APAFML = SPDXLicense._(
-    validatedValue: 'APAFML',
+    valueString: 'APAFML',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Adobe Postscript AFM License'.toFhirString,
@@ -278,7 +279,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// APL_1_0
   static final SPDXLicense APL_1_0 = SPDXLicense._(
-    validatedValue: 'APL-1.0',
+    valueString: 'APL-1.0',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Adaptive Public License 1.0'.toFhirString,
@@ -286,7 +287,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// APSL_1_0
   static final SPDXLicense APSL_1_0 = SPDXLicense._(
-    validatedValue: 'APSL-1.0',
+    valueString: 'APSL-1.0',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Apple Public Source License 1.0'.toFhirString,
@@ -294,7 +295,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// APSL_1_1
   static final SPDXLicense APSL_1_1 = SPDXLicense._(
-    validatedValue: 'APSL-1.1',
+    valueString: 'APSL-1.1',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Apple Public Source License 1.1'.toFhirString,
@@ -302,7 +303,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// APSL_1_2
   static final SPDXLicense APSL_1_2 = SPDXLicense._(
-    validatedValue: 'APSL-1.2',
+    valueString: 'APSL-1.2',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Apple Public Source License 1.2'.toFhirString,
@@ -310,7 +311,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// APSL_2_0
   static final SPDXLicense APSL_2_0 = SPDXLicense._(
-    validatedValue: 'APSL-2.0',
+    valueString: 'APSL-2.0',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Apple Public Source License 2.0'.toFhirString,
@@ -318,7 +319,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// Artistic_1_0_cl8
   static final SPDXLicense Artistic_1_0_cl8 = SPDXLicense._(
-    validatedValue: 'Artistic-1.0-cl8',
+    valueString: 'Artistic-1.0-cl8',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Artistic License 1.0 w/clause 8'.toFhirString,
@@ -326,7 +327,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// Artistic_1_0_Perl
   static final SPDXLicense Artistic_1_0_Perl = SPDXLicense._(
-    validatedValue: 'Artistic-1.0-Perl',
+    valueString: 'Artistic-1.0-Perl',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Artistic License 1.0 (Perl)'.toFhirString,
@@ -334,7 +335,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// Artistic_1_0
   static final SPDXLicense Artistic_1_0 = SPDXLicense._(
-    validatedValue: 'Artistic-1.0',
+    valueString: 'Artistic-1.0',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Artistic License 1.0'.toFhirString,
@@ -342,7 +343,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// Artistic_2_0
   static final SPDXLicense Artistic_2_0 = SPDXLicense._(
-    validatedValue: 'Artistic-2.0',
+    valueString: 'Artistic-2.0',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Artistic License 2.0'.toFhirString,
@@ -350,7 +351,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// Bahyph
   static final SPDXLicense Bahyph = SPDXLicense._(
-    validatedValue: 'Bahyph',
+    valueString: 'Bahyph',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Bahyph License'.toFhirString,
@@ -358,7 +359,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// Barr
   static final SPDXLicense Barr = SPDXLicense._(
-    validatedValue: 'Barr',
+    valueString: 'Barr',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Barr License'.toFhirString,
@@ -366,7 +367,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// Beerware
   static final SPDXLicense Beerware = SPDXLicense._(
-    validatedValue: 'Beerware',
+    valueString: 'Beerware',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Beerware License'.toFhirString,
@@ -374,7 +375,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// BitTorrent_1_0
   static final SPDXLicense BitTorrent_1_0 = SPDXLicense._(
-    validatedValue: 'BitTorrent-1.0',
+    valueString: 'BitTorrent-1.0',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'BitTorrent Open Source License v1.0'.toFhirString,
@@ -382,7 +383,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// BitTorrent_1_1
   static final SPDXLicense BitTorrent_1_1 = SPDXLicense._(
-    validatedValue: 'BitTorrent-1.1',
+    valueString: 'BitTorrent-1.1',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'BitTorrent Open Source License v1.1'.toFhirString,
@@ -390,7 +391,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// Borceux
   static final SPDXLicense Borceux = SPDXLicense._(
-    validatedValue: 'Borceux',
+    valueString: 'Borceux',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Borceux license'.toFhirString,
@@ -398,7 +399,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// BSD_1_Clause
   static final SPDXLicense BSD_1_Clause = SPDXLicense._(
-    validatedValue: 'BSD-1-Clause',
+    valueString: 'BSD-1-Clause',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'BSD 1-Clause License'.toFhirString,
@@ -406,7 +407,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// BSD_2_Clause_FreeBSD
   static final SPDXLicense BSD_2_Clause_FreeBSD = SPDXLicense._(
-    validatedValue: 'BSD-2-Clause-FreeBSD',
+    valueString: 'BSD-2-Clause-FreeBSD',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'BSD 2-Clause FreeBSD License'.toFhirString,
@@ -414,7 +415,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// BSD_2_Clause_NetBSD
   static final SPDXLicense BSD_2_Clause_NetBSD = SPDXLicense._(
-    validatedValue: 'BSD-2-Clause-NetBSD',
+    valueString: 'BSD-2-Clause-NetBSD',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'BSD 2-Clause NetBSD License'.toFhirString,
@@ -422,7 +423,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// BSD_2_Clause_Patent
   static final SPDXLicense BSD_2_Clause_Patent = SPDXLicense._(
-    validatedValue: 'BSD-2-Clause-Patent',
+    valueString: 'BSD-2-Clause-Patent',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'BSD-2-Clause Plus Patent License'.toFhirString,
@@ -430,7 +431,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// BSD_2_Clause
   static final SPDXLicense BSD_2_Clause = SPDXLicense._(
-    validatedValue: 'BSD-2-Clause',
+    valueString: 'BSD-2-Clause',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'BSD 2-Clause "Simplified" License'.toFhirString,
@@ -438,7 +439,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// BSD_3_Clause_Attribution
   static final SPDXLicense BSD_3_Clause_Attribution = SPDXLicense._(
-    validatedValue: 'BSD-3-Clause-Attribution',
+    valueString: 'BSD-3-Clause-Attribution',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'BSD with attribution'.toFhirString,
@@ -446,7 +447,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// BSD_3_Clause_Clear
   static final SPDXLicense BSD_3_Clause_Clear = SPDXLicense._(
-    validatedValue: 'BSD-3-Clause-Clear',
+    valueString: 'BSD-3-Clause-Clear',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'BSD 3-Clause Clear License'.toFhirString,
@@ -454,7 +455,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// BSD_3_Clause_LBNL
   static final SPDXLicense BSD_3_Clause_LBNL = SPDXLicense._(
-    validatedValue: 'BSD-3-Clause-LBNL',
+    valueString: 'BSD-3-Clause-LBNL',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Lawrence Berkeley National Labs BSD variant license'.toFhirString,
@@ -462,7 +463,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// BSD_3_Clause_No_Nuclear_License_2014
   static final SPDXLicense BSD_3_Clause_No_Nuclear_License_2014 = SPDXLicense._(
-    validatedValue: 'BSD-3-Clause-No-Nuclear-License-2014',
+    valueString: 'BSD-3-Clause-No-Nuclear-License-2014',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'BSD 3-Clause No Nuclear License 2014'.toFhirString,
@@ -470,7 +471,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// BSD_3_Clause_No_Nuclear_License
   static final SPDXLicense BSD_3_Clause_No_Nuclear_License = SPDXLicense._(
-    validatedValue: 'BSD-3-Clause-No-Nuclear-License',
+    valueString: 'BSD-3-Clause-No-Nuclear-License',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'BSD 3-Clause No Nuclear License'.toFhirString,
@@ -478,7 +479,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// BSD_3_Clause_No_Nuclear_Warranty
   static final SPDXLicense BSD_3_Clause_No_Nuclear_Warranty = SPDXLicense._(
-    validatedValue: 'BSD-3-Clause-No-Nuclear-Warranty',
+    valueString: 'BSD-3-Clause-No-Nuclear-Warranty',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'BSD 3-Clause No Nuclear Warranty'.toFhirString,
@@ -486,7 +487,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// BSD_3_Clause
   static final SPDXLicense BSD_3_Clause = SPDXLicense._(
-    validatedValue: 'BSD-3-Clause',
+    valueString: 'BSD-3-Clause',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'BSD 3-Clause "New" or "Revised" License'.toFhirString,
@@ -494,7 +495,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// BSD_4_Clause_UC
   static final SPDXLicense BSD_4_Clause_UC = SPDXLicense._(
-    validatedValue: 'BSD-4-Clause-UC',
+    valueString: 'BSD-4-Clause-UC',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'BSD-4-Clause (University of California-Specific)'.toFhirString,
@@ -502,7 +503,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// BSD_4_Clause
   static final SPDXLicense BSD_4_Clause = SPDXLicense._(
-    validatedValue: 'BSD-4-Clause',
+    valueString: 'BSD-4-Clause',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'BSD 4-Clause "Original" or "Old" License'.toFhirString,
@@ -510,7 +511,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// BSD_Protection
   static final SPDXLicense BSD_Protection = SPDXLicense._(
-    validatedValue: 'BSD-Protection',
+    valueString: 'BSD-Protection',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'BSD Protection License'.toFhirString,
@@ -518,7 +519,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// BSD_Source_Code
   static final SPDXLicense BSD_Source_Code = SPDXLicense._(
-    validatedValue: 'BSD-Source-Code',
+    valueString: 'BSD-Source-Code',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'BSD Source Code Attribution'.toFhirString,
@@ -526,7 +527,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// BSL_1_0
   static final SPDXLicense BSL_1_0 = SPDXLicense._(
-    validatedValue: 'BSL-1.0',
+    valueString: 'BSL-1.0',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Boost Software License 1.0'.toFhirString,
@@ -534,7 +535,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// bzip2_1_0_5
   static final SPDXLicense bzip2_1_0_5 = SPDXLicense._(
-    validatedValue: 'bzip2-1.0.5',
+    valueString: 'bzip2-1.0.5',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'bzip2 and libbzip2 License v1.0.5'.toFhirString,
@@ -542,7 +543,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// bzip2_1_0_6
   static final SPDXLicense bzip2_1_0_6 = SPDXLicense._(
-    validatedValue: 'bzip2-1.0.6',
+    valueString: 'bzip2-1.0.6',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'bzip2 and libbzip2 License v1.0.6'.toFhirString,
@@ -550,7 +551,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// Caldera
   static final SPDXLicense Caldera = SPDXLicense._(
-    validatedValue: 'Caldera',
+    valueString: 'Caldera',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Caldera License'.toFhirString,
@@ -558,7 +559,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// CATOSL_1_1
   static final SPDXLicense CATOSL_1_1 = SPDXLicense._(
-    validatedValue: 'CATOSL-1.1',
+    valueString: 'CATOSL-1.1',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Computer Associates Trusted Open Source License 1.1'.toFhirString,
@@ -566,7 +567,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// CC_BY_1_0
   static final SPDXLicense CC_BY_1_0 = SPDXLicense._(
-    validatedValue: 'CC-BY-1.0',
+    valueString: 'CC-BY-1.0',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Creative Commons Attribution 1.0 Generic'.toFhirString,
@@ -574,7 +575,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// CC_BY_2_0
   static final SPDXLicense CC_BY_2_0 = SPDXLicense._(
-    validatedValue: 'CC-BY-2.0',
+    valueString: 'CC-BY-2.0',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Creative Commons Attribution 2.0 Generic'.toFhirString,
@@ -582,7 +583,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// CC_BY_2_5
   static final SPDXLicense CC_BY_2_5 = SPDXLicense._(
-    validatedValue: 'CC-BY-2.5',
+    valueString: 'CC-BY-2.5',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Creative Commons Attribution 2.5 Generic'.toFhirString,
@@ -590,7 +591,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// CC_BY_3_0
   static final SPDXLicense CC_BY_3_0 = SPDXLicense._(
-    validatedValue: 'CC-BY-3.0',
+    valueString: 'CC-BY-3.0',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Creative Commons Attribution 3.0 Unported'.toFhirString,
@@ -598,7 +599,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// CC_BY_4_0
   static final SPDXLicense CC_BY_4_0 = SPDXLicense._(
-    validatedValue: 'CC-BY-4.0',
+    valueString: 'CC-BY-4.0',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Creative Commons Attribution 4.0 International'.toFhirString,
@@ -606,7 +607,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// CC_BY_NC_1_0
   static final SPDXLicense CC_BY_NC_1_0 = SPDXLicense._(
-    validatedValue: 'CC-BY-NC-1.0',
+    valueString: 'CC-BY-NC-1.0',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display:
@@ -615,7 +616,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// CC_BY_NC_2_0
   static final SPDXLicense CC_BY_NC_2_0 = SPDXLicense._(
-    validatedValue: 'CC-BY-NC-2.0',
+    valueString: 'CC-BY-NC-2.0',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display:
@@ -624,7 +625,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// CC_BY_NC_2_5
   static final SPDXLicense CC_BY_NC_2_5 = SPDXLicense._(
-    validatedValue: 'CC-BY-NC-2.5',
+    valueString: 'CC-BY-NC-2.5',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display:
@@ -633,7 +634,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// CC_BY_NC_3_0
   static final SPDXLicense CC_BY_NC_3_0 = SPDXLicense._(
-    validatedValue: 'CC-BY-NC-3.0',
+    valueString: 'CC-BY-NC-3.0',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display:
@@ -642,7 +643,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// CC_BY_NC_4_0
   static final SPDXLicense CC_BY_NC_4_0 = SPDXLicense._(
-    validatedValue: 'CC-BY-NC-4.0',
+    valueString: 'CC-BY-NC-4.0',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Creative Commons Attribution Non Commercial 4.0 International'
@@ -651,7 +652,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// CC_BY_NC_ND_1_0
   static final SPDXLicense CC_BY_NC_ND_1_0 = SPDXLicense._(
-    validatedValue: 'CC-BY-NC-ND-1.0',
+    valueString: 'CC-BY-NC-ND-1.0',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display:
@@ -661,7 +662,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// CC_BY_NC_ND_2_0
   static final SPDXLicense CC_BY_NC_ND_2_0 = SPDXLicense._(
-    validatedValue: 'CC-BY-NC-ND-2.0',
+    valueString: 'CC-BY-NC-ND-2.0',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display:
@@ -671,7 +672,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// CC_BY_NC_ND_2_5
   static final SPDXLicense CC_BY_NC_ND_2_5 = SPDXLicense._(
-    validatedValue: 'CC-BY-NC-ND-2.5',
+    valueString: 'CC-BY-NC-ND-2.5',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display:
@@ -681,7 +682,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// CC_BY_NC_ND_3_0
   static final SPDXLicense CC_BY_NC_ND_3_0 = SPDXLicense._(
-    validatedValue: 'CC-BY-NC-ND-3.0',
+    valueString: 'CC-BY-NC-ND-3.0',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display:
@@ -691,7 +692,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// CC_BY_NC_ND_4_0
   static final SPDXLicense CC_BY_NC_ND_4_0 = SPDXLicense._(
-    validatedValue: 'CC-BY-NC-ND-4.0',
+    valueString: 'CC-BY-NC-ND-4.0',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display:
@@ -701,7 +702,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// CC_BY_NC_SA_1_0
   static final SPDXLicense CC_BY_NC_SA_1_0 = SPDXLicense._(
-    validatedValue: 'CC-BY-NC-SA-1.0',
+    valueString: 'CC-BY-NC-SA-1.0',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display:
@@ -711,7 +712,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// CC_BY_NC_SA_2_0
   static final SPDXLicense CC_BY_NC_SA_2_0 = SPDXLicense._(
-    validatedValue: 'CC-BY-NC-SA-2.0',
+    valueString: 'CC-BY-NC-SA-2.0',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display:
@@ -721,7 +722,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// CC_BY_NC_SA_2_5
   static final SPDXLicense CC_BY_NC_SA_2_5 = SPDXLicense._(
-    validatedValue: 'CC-BY-NC-SA-2.5',
+    valueString: 'CC-BY-NC-SA-2.5',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display:
@@ -731,7 +732,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// CC_BY_NC_SA_3_0
   static final SPDXLicense CC_BY_NC_SA_3_0 = SPDXLicense._(
-    validatedValue: 'CC-BY-NC-SA-3.0',
+    valueString: 'CC-BY-NC-SA-3.0',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display:
@@ -741,7 +742,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// CC_BY_NC_SA_4_0
   static final SPDXLicense CC_BY_NC_SA_4_0 = SPDXLicense._(
-    validatedValue: 'CC-BY-NC-SA-4.0',
+    valueString: 'CC-BY-NC-SA-4.0',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display:
@@ -751,7 +752,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// CC_BY_ND_1_0
   static final SPDXLicense CC_BY_ND_1_0 = SPDXLicense._(
-    validatedValue: 'CC-BY-ND-1.0',
+    valueString: 'CC-BY-ND-1.0',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display:
@@ -760,7 +761,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// CC_BY_ND_2_0
   static final SPDXLicense CC_BY_ND_2_0 = SPDXLicense._(
-    validatedValue: 'CC-BY-ND-2.0',
+    valueString: 'CC-BY-ND-2.0',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display:
@@ -769,7 +770,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// CC_BY_ND_2_5
   static final SPDXLicense CC_BY_ND_2_5 = SPDXLicense._(
-    validatedValue: 'CC-BY-ND-2.5',
+    valueString: 'CC-BY-ND-2.5',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display:
@@ -778,7 +779,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// CC_BY_ND_3_0
   static final SPDXLicense CC_BY_ND_3_0 = SPDXLicense._(
-    validatedValue: 'CC-BY-ND-3.0',
+    valueString: 'CC-BY-ND-3.0',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display:
@@ -787,7 +788,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// CC_BY_ND_4_0
   static final SPDXLicense CC_BY_ND_4_0 = SPDXLicense._(
-    validatedValue: 'CC-BY-ND-4.0',
+    valueString: 'CC-BY-ND-4.0',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Creative Commons Attribution No Derivatives 4.0 International'
@@ -796,7 +797,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// CC_BY_SA_1_0
   static final SPDXLicense CC_BY_SA_1_0 = SPDXLicense._(
-    validatedValue: 'CC-BY-SA-1.0',
+    valueString: 'CC-BY-SA-1.0',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display:
@@ -805,7 +806,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// CC_BY_SA_2_0
   static final SPDXLicense CC_BY_SA_2_0 = SPDXLicense._(
-    validatedValue: 'CC-BY-SA-2.0',
+    valueString: 'CC-BY-SA-2.0',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display:
@@ -814,7 +815,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// CC_BY_SA_2_5
   static final SPDXLicense CC_BY_SA_2_5 = SPDXLicense._(
-    validatedValue: 'CC-BY-SA-2.5',
+    valueString: 'CC-BY-SA-2.5',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display:
@@ -823,7 +824,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// CC_BY_SA_3_0
   static final SPDXLicense CC_BY_SA_3_0 = SPDXLicense._(
-    validatedValue: 'CC-BY-SA-3.0',
+    valueString: 'CC-BY-SA-3.0',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display:
@@ -832,7 +833,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// CC_BY_SA_4_0
   static final SPDXLicense CC_BY_SA_4_0 = SPDXLicense._(
-    validatedValue: 'CC-BY-SA-4.0',
+    valueString: 'CC-BY-SA-4.0',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Creative Commons Attribution Share Alike 4.0 International'
@@ -841,7 +842,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// CC0_1_0
   static final SPDXLicense CC0_1_0 = SPDXLicense._(
-    validatedValue: 'CC0-1.0',
+    valueString: 'CC0-1.0',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Creative Commons Zero v1.0 Universal'.toFhirString,
@@ -849,7 +850,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// CDDL_1_0
   static final SPDXLicense CDDL_1_0 = SPDXLicense._(
-    validatedValue: 'CDDL-1.0',
+    valueString: 'CDDL-1.0',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Common Development and Distribution License 1.0'.toFhirString,
@@ -857,7 +858,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// CDDL_1_1
   static final SPDXLicense CDDL_1_1 = SPDXLicense._(
-    validatedValue: 'CDDL-1.1',
+    valueString: 'CDDL-1.1',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Common Development and Distribution License 1.1'.toFhirString,
@@ -865,7 +866,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// CDLA_Permissive_1_0
   static final SPDXLicense CDLA_Permissive_1_0 = SPDXLicense._(
-    validatedValue: 'CDLA-Permissive-1.0',
+    valueString: 'CDLA-Permissive-1.0',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Community Data License Agreement Permissive 1.0'.toFhirString,
@@ -873,7 +874,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// CDLA_Sharing_1_0
   static final SPDXLicense CDLA_Sharing_1_0 = SPDXLicense._(
-    validatedValue: 'CDLA-Sharing-1.0',
+    valueString: 'CDLA-Sharing-1.0',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Community Data License Agreement Sharing 1.0'.toFhirString,
@@ -881,7 +882,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// CECILL_1_0
   static final SPDXLicense CECILL_1_0 = SPDXLicense._(
-    validatedValue: 'CECILL-1.0',
+    valueString: 'CECILL-1.0',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'CeCILL Free Software License Agreement v1.0'.toFhirString,
@@ -889,7 +890,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// CECILL_1_1
   static final SPDXLicense CECILL_1_1 = SPDXLicense._(
-    validatedValue: 'CECILL-1.1',
+    valueString: 'CECILL-1.1',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'CeCILL Free Software License Agreement v1.1'.toFhirString,
@@ -897,7 +898,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// CECILL_2_0
   static final SPDXLicense CECILL_2_0 = SPDXLicense._(
-    validatedValue: 'CECILL-2.0',
+    valueString: 'CECILL-2.0',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'CeCILL Free Software License Agreement v2.0'.toFhirString,
@@ -905,7 +906,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// CECILL_2_1
   static final SPDXLicense CECILL_2_1 = SPDXLicense._(
-    validatedValue: 'CECILL-2.1',
+    valueString: 'CECILL-2.1',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'CeCILL Free Software License Agreement v2.1'.toFhirString,
@@ -913,7 +914,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// CECILL_B
   static final SPDXLicense CECILL_B = SPDXLicense._(
-    validatedValue: 'CECILL-B',
+    valueString: 'CECILL-B',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'CeCILL-B Free Software License Agreement'.toFhirString,
@@ -921,7 +922,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// CECILL_C
   static final SPDXLicense CECILL_C = SPDXLicense._(
-    validatedValue: 'CECILL-C',
+    valueString: 'CECILL-C',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'CeCILL-C Free Software License Agreement'.toFhirString,
@@ -929,7 +930,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// ClArtistic
   static final SPDXLicense ClArtistic = SPDXLicense._(
-    validatedValue: 'ClArtistic',
+    valueString: 'ClArtistic',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Clarified Artistic License'.toFhirString,
@@ -937,7 +938,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// CNRI_Jython
   static final SPDXLicense CNRI_Jython = SPDXLicense._(
-    validatedValue: 'CNRI-Jython',
+    valueString: 'CNRI-Jython',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'CNRI Jython License'.toFhirString,
@@ -945,7 +946,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// CNRI_Python_GPL_Compatible
   static final SPDXLicense CNRI_Python_GPL_Compatible = SPDXLicense._(
-    validatedValue: 'CNRI-Python-GPL-Compatible',
+    valueString: 'CNRI-Python-GPL-Compatible',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display:
@@ -954,7 +955,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// CNRI_Python
   static final SPDXLicense CNRI_Python = SPDXLicense._(
-    validatedValue: 'CNRI-Python',
+    valueString: 'CNRI-Python',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'CNRI Python License'.toFhirString,
@@ -962,7 +963,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// Condor_1_1
   static final SPDXLicense Condor_1_1 = SPDXLicense._(
-    validatedValue: 'Condor-1.1',
+    valueString: 'Condor-1.1',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Condor Public License v1.1'.toFhirString,
@@ -970,7 +971,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// CPAL_1_0
   static final SPDXLicense CPAL_1_0 = SPDXLicense._(
-    validatedValue: 'CPAL-1.0',
+    valueString: 'CPAL-1.0',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Common Public Attribution License 1.0'.toFhirString,
@@ -978,7 +979,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// CPL_1_0
   static final SPDXLicense CPL_1_0 = SPDXLicense._(
-    validatedValue: 'CPL-1.0',
+    valueString: 'CPL-1.0',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Common Public License 1.0'.toFhirString,
@@ -986,7 +987,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// CPOL_1_02
   static final SPDXLicense CPOL_1_02 = SPDXLicense._(
-    validatedValue: 'CPOL-1.02',
+    valueString: 'CPOL-1.02',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Code Project Open License 1.02'.toFhirString,
@@ -994,7 +995,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// Crossword
   static final SPDXLicense Crossword = SPDXLicense._(
-    validatedValue: 'Crossword',
+    valueString: 'Crossword',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Crossword License'.toFhirString,
@@ -1002,7 +1003,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// CrystalStacker
   static final SPDXLicense CrystalStacker = SPDXLicense._(
-    validatedValue: 'CrystalStacker',
+    valueString: 'CrystalStacker',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'CrystalStacker License'.toFhirString,
@@ -1010,7 +1011,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// CUA_OPL_1_0
   static final SPDXLicense CUA_OPL_1_0 = SPDXLicense._(
-    validatedValue: 'CUA-OPL-1.0',
+    valueString: 'CUA-OPL-1.0',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'CUA Office Public License v1.0'.toFhirString,
@@ -1018,7 +1019,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// Cube
   static final SPDXLicense Cube = SPDXLicense._(
-    validatedValue: 'Cube',
+    valueString: 'Cube',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Cube License'.toFhirString,
@@ -1026,7 +1027,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// curl
   static final SPDXLicense curl = SPDXLicense._(
-    validatedValue: 'curl',
+    valueString: 'curl',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'curl License'.toFhirString,
@@ -1034,7 +1035,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// D_FSL_1_0
   static final SPDXLicense D_FSL_1_0 = SPDXLicense._(
-    validatedValue: 'D-FSL-1.0',
+    valueString: 'D-FSL-1.0',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Deutsche Freie Software Lizenz'.toFhirString,
@@ -1042,7 +1043,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// diffmark
   static final SPDXLicense diffmark = SPDXLicense._(
-    validatedValue: 'diffmark',
+    valueString: 'diffmark',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'diffmark license'.toFhirString,
@@ -1050,7 +1051,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// DOC
   static final SPDXLicense DOC = SPDXLicense._(
-    validatedValue: 'DOC',
+    valueString: 'DOC',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'DOC License'.toFhirString,
@@ -1058,7 +1059,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// Dotseqn
   static final SPDXLicense Dotseqn = SPDXLicense._(
-    validatedValue: 'Dotseqn',
+    valueString: 'Dotseqn',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Dotseqn License'.toFhirString,
@@ -1066,7 +1067,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// DSDP
   static final SPDXLicense DSDP = SPDXLicense._(
-    validatedValue: 'DSDP',
+    valueString: 'DSDP',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'DSDP License'.toFhirString,
@@ -1074,7 +1075,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// dvipdfm
   static final SPDXLicense dvipdfm = SPDXLicense._(
-    validatedValue: 'dvipdfm',
+    valueString: 'dvipdfm',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'dvipdfm License'.toFhirString,
@@ -1082,7 +1083,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// ECL_1_0
   static final SPDXLicense ECL_1_0 = SPDXLicense._(
-    validatedValue: 'ECL-1.0',
+    valueString: 'ECL-1.0',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Educational Community License v1.0'.toFhirString,
@@ -1090,7 +1091,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// ECL_2_0
   static final SPDXLicense ECL_2_0 = SPDXLicense._(
-    validatedValue: 'ECL-2.0',
+    valueString: 'ECL-2.0',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Educational Community License v2.0'.toFhirString,
@@ -1098,7 +1099,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// EFL_1_0
   static final SPDXLicense EFL_1_0 = SPDXLicense._(
-    validatedValue: 'EFL-1.0',
+    valueString: 'EFL-1.0',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Eiffel Forum License v1.0'.toFhirString,
@@ -1106,7 +1107,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// EFL_2_0
   static final SPDXLicense EFL_2_0 = SPDXLicense._(
-    validatedValue: 'EFL-2.0',
+    valueString: 'EFL-2.0',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Eiffel Forum License v2.0'.toFhirString,
@@ -1114,7 +1115,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// eGenix
   static final SPDXLicense eGenix = SPDXLicense._(
-    validatedValue: 'eGenix',
+    valueString: 'eGenix',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'eGenix.com Public License 1.1.0'.toFhirString,
@@ -1122,7 +1123,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// Entessa
   static final SPDXLicense Entessa = SPDXLicense._(
-    validatedValue: 'Entessa',
+    valueString: 'Entessa',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Entessa Public License v1.0'.toFhirString,
@@ -1130,7 +1131,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// EPL_1_0
   static final SPDXLicense EPL_1_0 = SPDXLicense._(
-    validatedValue: 'EPL-1.0',
+    valueString: 'EPL-1.0',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Eclipse Public License 1.0'.toFhirString,
@@ -1138,7 +1139,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// EPL_2_0
   static final SPDXLicense EPL_2_0 = SPDXLicense._(
-    validatedValue: 'EPL-2.0',
+    valueString: 'EPL-2.0',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Eclipse Public License 2.0'.toFhirString,
@@ -1146,7 +1147,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// ErlPL_1_1
   static final SPDXLicense ErlPL_1_1 = SPDXLicense._(
-    validatedValue: 'ErlPL-1.1',
+    valueString: 'ErlPL-1.1',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Erlang Public License v1.1'.toFhirString,
@@ -1154,7 +1155,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// EUDatagrid
   static final SPDXLicense EUDatagrid = SPDXLicense._(
-    validatedValue: 'EUDatagrid',
+    valueString: 'EUDatagrid',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'EU DataGrid Software License'.toFhirString,
@@ -1162,7 +1163,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// EUPL_1_0
   static final SPDXLicense EUPL_1_0 = SPDXLicense._(
-    validatedValue: 'EUPL-1.0',
+    valueString: 'EUPL-1.0',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'European Union Public License 1.0'.toFhirString,
@@ -1170,7 +1171,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// EUPL_1_1
   static final SPDXLicense EUPL_1_1 = SPDXLicense._(
-    validatedValue: 'EUPL-1.1',
+    valueString: 'EUPL-1.1',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'European Union Public License 1.1'.toFhirString,
@@ -1178,7 +1179,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// EUPL_1_2
   static final SPDXLicense EUPL_1_2 = SPDXLicense._(
-    validatedValue: 'EUPL-1.2',
+    valueString: 'EUPL-1.2',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'European Union Public License 1.2'.toFhirString,
@@ -1186,7 +1187,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// Eurosym
   static final SPDXLicense Eurosym = SPDXLicense._(
-    validatedValue: 'Eurosym',
+    valueString: 'Eurosym',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Eurosym License'.toFhirString,
@@ -1194,7 +1195,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// Fair
   static final SPDXLicense Fair = SPDXLicense._(
-    validatedValue: 'Fair',
+    valueString: 'Fair',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Fair License'.toFhirString,
@@ -1202,7 +1203,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// Frameworx_1_0
   static final SPDXLicense Frameworx_1_0 = SPDXLicense._(
-    validatedValue: 'Frameworx-1.0',
+    valueString: 'Frameworx-1.0',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Frameworx Open License 1.0'.toFhirString,
@@ -1210,7 +1211,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// FreeImage
   static final SPDXLicense FreeImage = SPDXLicense._(
-    validatedValue: 'FreeImage',
+    valueString: 'FreeImage',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'FreeImage Public License v1.0'.toFhirString,
@@ -1218,7 +1219,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// FSFAP
   static final SPDXLicense FSFAP = SPDXLicense._(
-    validatedValue: 'FSFAP',
+    valueString: 'FSFAP',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'FSF All Permissive License'.toFhirString,
@@ -1226,7 +1227,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// FSFUL
   static final SPDXLicense FSFUL = SPDXLicense._(
-    validatedValue: 'FSFUL',
+    valueString: 'FSFUL',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'FSF Unlimited License'.toFhirString,
@@ -1234,7 +1235,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// FSFULLR
   static final SPDXLicense FSFULLR = SPDXLicense._(
-    validatedValue: 'FSFULLR',
+    valueString: 'FSFULLR',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'FSF Unlimited License (with License Retention)'.toFhirString,
@@ -1242,7 +1243,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// FTL
   static final SPDXLicense FTL = SPDXLicense._(
-    validatedValue: 'FTL',
+    valueString: 'FTL',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Freetype Project License'.toFhirString,
@@ -1250,7 +1251,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// GFDL_1_1_only
   static final SPDXLicense GFDL_1_1_only = SPDXLicense._(
-    validatedValue: 'GFDL-1.1-only',
+    valueString: 'GFDL-1.1-only',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'GNU Free Documentation License v1.1 only'.toFhirString,
@@ -1258,7 +1259,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// GFDL_1_1_or_later
   static final SPDXLicense GFDL_1_1_or_later = SPDXLicense._(
-    validatedValue: 'GFDL-1.1-or-later',
+    valueString: 'GFDL-1.1-or-later',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'GNU Free Documentation License v1.1 or later'.toFhirString,
@@ -1266,7 +1267,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// GFDL_1_2_only
   static final SPDXLicense GFDL_1_2_only = SPDXLicense._(
-    validatedValue: 'GFDL-1.2-only',
+    valueString: 'GFDL-1.2-only',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'GNU Free Documentation License v1.2 only'.toFhirString,
@@ -1274,7 +1275,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// GFDL_1_2_or_later
   static final SPDXLicense GFDL_1_2_or_later = SPDXLicense._(
-    validatedValue: 'GFDL-1.2-or-later',
+    valueString: 'GFDL-1.2-or-later',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'GNU Free Documentation License v1.2 or later'.toFhirString,
@@ -1282,7 +1283,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// GFDL_1_3_only
   static final SPDXLicense GFDL_1_3_only = SPDXLicense._(
-    validatedValue: 'GFDL-1.3-only',
+    valueString: 'GFDL-1.3-only',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'GNU Free Documentation License v1.3 only'.toFhirString,
@@ -1290,7 +1291,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// GFDL_1_3_or_later
   static final SPDXLicense GFDL_1_3_or_later = SPDXLicense._(
-    validatedValue: 'GFDL-1.3-or-later',
+    valueString: 'GFDL-1.3-or-later',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'GNU Free Documentation License v1.3 or later'.toFhirString,
@@ -1298,7 +1299,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// Giftware
   static final SPDXLicense Giftware = SPDXLicense._(
-    validatedValue: 'Giftware',
+    valueString: 'Giftware',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Giftware License'.toFhirString,
@@ -1306,7 +1307,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// GL2PS
   static final SPDXLicense GL2PS = SPDXLicense._(
-    validatedValue: 'GL2PS',
+    valueString: 'GL2PS',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'GL2PS License'.toFhirString,
@@ -1314,7 +1315,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// Glide
   static final SPDXLicense Glide = SPDXLicense._(
-    validatedValue: 'Glide',
+    valueString: 'Glide',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: '3dfx Glide License'.toFhirString,
@@ -1322,7 +1323,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// Glulxe
   static final SPDXLicense Glulxe = SPDXLicense._(
-    validatedValue: 'Glulxe',
+    valueString: 'Glulxe',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Glulxe License'.toFhirString,
@@ -1330,7 +1331,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// gnuplot
   static final SPDXLicense gnuplot = SPDXLicense._(
-    validatedValue: 'gnuplot',
+    valueString: 'gnuplot',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'gnuplot License'.toFhirString,
@@ -1338,7 +1339,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// GPL_1_0_only
   static final SPDXLicense GPL_1_0_only = SPDXLicense._(
-    validatedValue: 'GPL-1.0-only',
+    valueString: 'GPL-1.0-only',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'GNU General Public License v1.0 only'.toFhirString,
@@ -1346,7 +1347,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// GPL_1_0_or_later
   static final SPDXLicense GPL_1_0_or_later = SPDXLicense._(
-    validatedValue: 'GPL-1.0-or-later',
+    valueString: 'GPL-1.0-or-later',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'GNU General Public License v1.0 or later'.toFhirString,
@@ -1354,7 +1355,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// GPL_2_0_only
   static final SPDXLicense GPL_2_0_only = SPDXLicense._(
-    validatedValue: 'GPL-2.0-only',
+    valueString: 'GPL-2.0-only',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'GNU General Public License v2.0 only'.toFhirString,
@@ -1362,7 +1363,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// GPL_2_0_or_later
   static final SPDXLicense GPL_2_0_or_later = SPDXLicense._(
-    validatedValue: 'GPL-2.0-or-later',
+    valueString: 'GPL-2.0-or-later',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'GNU General Public License v2.0 or later'.toFhirString,
@@ -1370,7 +1371,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// GPL_3_0_only
   static final SPDXLicense GPL_3_0_only = SPDXLicense._(
-    validatedValue: 'GPL-3.0-only',
+    valueString: 'GPL-3.0-only',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'GNU General Public License v3.0 only'.toFhirString,
@@ -1378,7 +1379,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// GPL_3_0_or_later
   static final SPDXLicense GPL_3_0_or_later = SPDXLicense._(
-    validatedValue: 'GPL-3.0-or-later',
+    valueString: 'GPL-3.0-or-later',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'GNU General Public License v3.0 or later'.toFhirString,
@@ -1386,7 +1387,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// gSOAP_1_3b
   static final SPDXLicense gSOAP_1_3b = SPDXLicense._(
-    validatedValue: 'gSOAP-1.3b',
+    valueString: 'gSOAP-1.3b',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'gSOAP Public License v1.3b'.toFhirString,
@@ -1394,7 +1395,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// HaskellReport
   static final SPDXLicense HaskellReport = SPDXLicense._(
-    validatedValue: 'HaskellReport',
+    valueString: 'HaskellReport',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Haskell Language Report License'.toFhirString,
@@ -1402,7 +1403,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// HPND
   static final SPDXLicense HPND = SPDXLicense._(
-    validatedValue: 'HPND',
+    valueString: 'HPND',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Historical Permission Notice and Disclaimer'.toFhirString,
@@ -1410,7 +1411,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// IBM_pibs
   static final SPDXLicense IBM_pibs = SPDXLicense._(
-    validatedValue: 'IBM-pibs',
+    valueString: 'IBM-pibs',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'IBM PowerPC Initialization and Boot Software'.toFhirString,
@@ -1418,7 +1419,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// ICU
   static final SPDXLicense ICU = SPDXLicense._(
-    validatedValue: 'ICU',
+    valueString: 'ICU',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'ICU License'.toFhirString,
@@ -1426,7 +1427,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// IJG
   static final SPDXLicense IJG = SPDXLicense._(
-    validatedValue: 'IJG',
+    valueString: 'IJG',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Independent JPEG Group License'.toFhirString,
@@ -1434,7 +1435,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// ImageMagick
   static final SPDXLicense ImageMagick = SPDXLicense._(
-    validatedValue: 'ImageMagick',
+    valueString: 'ImageMagick',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'ImageMagick License'.toFhirString,
@@ -1442,7 +1443,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// iMatix
   static final SPDXLicense iMatix = SPDXLicense._(
-    validatedValue: 'iMatix',
+    valueString: 'iMatix',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'iMatix Standard Function Library Agreement'.toFhirString,
@@ -1450,7 +1451,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// Imlib2
   static final SPDXLicense Imlib2 = SPDXLicense._(
-    validatedValue: 'Imlib2',
+    valueString: 'Imlib2',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Imlib2 License'.toFhirString,
@@ -1458,7 +1459,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// Info_ZIP
   static final SPDXLicense Info_ZIP = SPDXLicense._(
-    validatedValue: 'Info-ZIP',
+    valueString: 'Info-ZIP',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Info-ZIP License'.toFhirString,
@@ -1466,7 +1467,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// Intel_ACPI
   static final SPDXLicense Intel_ACPI = SPDXLicense._(
-    validatedValue: 'Intel-ACPI',
+    valueString: 'Intel-ACPI',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Intel ACPI Software License Agreement'.toFhirString,
@@ -1474,7 +1475,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// Intel
   static final SPDXLicense Intel = SPDXLicense._(
-    validatedValue: 'Intel',
+    valueString: 'Intel',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Intel Open Source License'.toFhirString,
@@ -1482,7 +1483,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// Interbase_1_0
   static final SPDXLicense Interbase_1_0 = SPDXLicense._(
-    validatedValue: 'Interbase-1.0',
+    valueString: 'Interbase-1.0',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Interbase Public License v1.0'.toFhirString,
@@ -1490,7 +1491,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// IPA
   static final SPDXLicense IPA = SPDXLicense._(
-    validatedValue: 'IPA',
+    valueString: 'IPA',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'IPA Font License'.toFhirString,
@@ -1498,7 +1499,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// IPL_1_0
   static final SPDXLicense IPL_1_0 = SPDXLicense._(
-    validatedValue: 'IPL-1.0',
+    valueString: 'IPL-1.0',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'IBM Public License v1.0'.toFhirString,
@@ -1506,7 +1507,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// ISC
   static final SPDXLicense ISC = SPDXLicense._(
-    validatedValue: 'ISC',
+    valueString: 'ISC',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'ISC License'.toFhirString,
@@ -1514,7 +1515,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// JasPer_2_0
   static final SPDXLicense JasPer_2_0 = SPDXLicense._(
-    validatedValue: 'JasPer-2.0',
+    valueString: 'JasPer-2.0',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'JasPer License'.toFhirString,
@@ -1522,7 +1523,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// JSON
   static final SPDXLicense JSON = SPDXLicense._(
-    validatedValue: 'JSON',
+    valueString: 'JSON',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'JSON License'.toFhirString,
@@ -1530,7 +1531,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// LAL_1_2
   static final SPDXLicense LAL_1_2 = SPDXLicense._(
-    validatedValue: 'LAL-1.2',
+    valueString: 'LAL-1.2',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Licence Art Libre 1.2'.toFhirString,
@@ -1538,7 +1539,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// LAL_1_3
   static final SPDXLicense LAL_1_3 = SPDXLicense._(
-    validatedValue: 'LAL-1.3',
+    valueString: 'LAL-1.3',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Licence Art Libre 1.3'.toFhirString,
@@ -1546,7 +1547,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// Latex2e
   static final SPDXLicense Latex2e = SPDXLicense._(
-    validatedValue: 'Latex2e',
+    valueString: 'Latex2e',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Latex2e License'.toFhirString,
@@ -1554,7 +1555,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// Leptonica
   static final SPDXLicense Leptonica = SPDXLicense._(
-    validatedValue: 'Leptonica',
+    valueString: 'Leptonica',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Leptonica License'.toFhirString,
@@ -1562,7 +1563,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// LGPL_2_0_only
   static final SPDXLicense LGPL_2_0_only = SPDXLicense._(
-    validatedValue: 'LGPL-2.0-only',
+    valueString: 'LGPL-2.0-only',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'GNU Library General Public License v2 only'.toFhirString,
@@ -1570,7 +1571,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// LGPL_2_0_or_later
   static final SPDXLicense LGPL_2_0_or_later = SPDXLicense._(
-    validatedValue: 'LGPL-2.0-or-later',
+    valueString: 'LGPL-2.0-or-later',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'GNU Library General Public License v2 or later'.toFhirString,
@@ -1578,7 +1579,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// LGPL_2_1_only
   static final SPDXLicense LGPL_2_1_only = SPDXLicense._(
-    validatedValue: 'LGPL-2.1-only',
+    valueString: 'LGPL-2.1-only',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'GNU Lesser General Public License v2.1 only'.toFhirString,
@@ -1586,7 +1587,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// LGPL_2_1_or_later
   static final SPDXLicense LGPL_2_1_or_later = SPDXLicense._(
-    validatedValue: 'LGPL-2.1-or-later',
+    valueString: 'LGPL-2.1-or-later',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'GNU Lesser General Public License v2.1 or later'.toFhirString,
@@ -1594,7 +1595,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// LGPL_3_0_only
   static final SPDXLicense LGPL_3_0_only = SPDXLicense._(
-    validatedValue: 'LGPL-3.0-only',
+    valueString: 'LGPL-3.0-only',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'GNU Lesser General Public License v3.0 only'.toFhirString,
@@ -1602,7 +1603,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// LGPL_3_0_or_later
   static final SPDXLicense LGPL_3_0_or_later = SPDXLicense._(
-    validatedValue: 'LGPL-3.0-or-later',
+    valueString: 'LGPL-3.0-or-later',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'GNU Lesser General Public License v3.0 or later'.toFhirString,
@@ -1610,7 +1611,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// LGPLLR
   static final SPDXLicense LGPLLR = SPDXLicense._(
-    validatedValue: 'LGPLLR',
+    valueString: 'LGPLLR',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display:
@@ -1619,7 +1620,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// Libpng
   static final SPDXLicense Libpng = SPDXLicense._(
-    validatedValue: 'Libpng',
+    valueString: 'Libpng',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'libpng License'.toFhirString,
@@ -1627,7 +1628,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// libtiff
   static final SPDXLicense libtiff = SPDXLicense._(
-    validatedValue: 'libtiff',
+    valueString: 'libtiff',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'libtiff License'.toFhirString,
@@ -1635,7 +1636,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// LiLiQ_P_1_1
   static final SPDXLicense LiLiQ_P_1_1 = SPDXLicense._(
-    validatedValue: 'LiLiQ-P-1.1',
+    valueString: 'LiLiQ-P-1.1',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Licence Libre du Québec – Permissive version 1.1'.toFhirString,
@@ -1643,7 +1644,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// LiLiQ_R_1_1
   static final SPDXLicense LiLiQ_R_1_1 = SPDXLicense._(
-    validatedValue: 'LiLiQ-R-1.1',
+    valueString: 'LiLiQ-R-1.1',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Licence Libre du Québec – Réciprocité version 1.1'.toFhirString,
@@ -1651,7 +1652,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// LiLiQ_Rplus_1_1
   static final SPDXLicense LiLiQ_Rplus_1_1 = SPDXLicense._(
-    validatedValue: 'LiLiQ-Rplus-1.1',
+    valueString: 'LiLiQ-Rplus-1.1',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display:
@@ -1660,7 +1661,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// Linux_OpenIB
   static final SPDXLicense Linux_OpenIB = SPDXLicense._(
-    validatedValue: 'Linux-OpenIB',
+    valueString: 'Linux-OpenIB',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Linux Kernel Variant of OpenIB.org license'.toFhirString,
@@ -1668,7 +1669,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// LPL_1_0
   static final SPDXLicense LPL_1_0 = SPDXLicense._(
-    validatedValue: 'LPL-1.0',
+    valueString: 'LPL-1.0',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Lucent Public License Version 1.0'.toFhirString,
@@ -1676,7 +1677,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// LPL_1_02
   static final SPDXLicense LPL_1_02 = SPDXLicense._(
-    validatedValue: 'LPL-1.02',
+    valueString: 'LPL-1.02',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Lucent Public License v1.02'.toFhirString,
@@ -1684,7 +1685,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// LPPL_1_0
   static final SPDXLicense LPPL_1_0 = SPDXLicense._(
-    validatedValue: 'LPPL-1.0',
+    valueString: 'LPPL-1.0',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'LaTeX Project Public License v1.0'.toFhirString,
@@ -1692,7 +1693,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// LPPL_1_1
   static final SPDXLicense LPPL_1_1 = SPDXLicense._(
-    validatedValue: 'LPPL-1.1',
+    valueString: 'LPPL-1.1',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'LaTeX Project Public License v1.1'.toFhirString,
@@ -1700,7 +1701,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// LPPL_1_2
   static final SPDXLicense LPPL_1_2 = SPDXLicense._(
-    validatedValue: 'LPPL-1.2',
+    valueString: 'LPPL-1.2',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'LaTeX Project Public License v1.2'.toFhirString,
@@ -1708,7 +1709,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// LPPL_1_3a
   static final SPDXLicense LPPL_1_3a = SPDXLicense._(
-    validatedValue: 'LPPL-1.3a',
+    valueString: 'LPPL-1.3a',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'LaTeX Project Public License v1.3a'.toFhirString,
@@ -1716,7 +1717,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// LPPL_1_3c
   static final SPDXLicense LPPL_1_3c = SPDXLicense._(
-    validatedValue: 'LPPL-1.3c',
+    valueString: 'LPPL-1.3c',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'LaTeX Project Public License v1.3c'.toFhirString,
@@ -1724,7 +1725,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// MakeIndex
   static final SPDXLicense MakeIndex = SPDXLicense._(
-    validatedValue: 'MakeIndex',
+    valueString: 'MakeIndex',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'MakeIndex License'.toFhirString,
@@ -1732,7 +1733,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// MirOS
   static final SPDXLicense MirOS = SPDXLicense._(
-    validatedValue: 'MirOS',
+    valueString: 'MirOS',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'MirOS License'.toFhirString,
@@ -1740,7 +1741,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// MIT_0
   static final SPDXLicense MIT_0 = SPDXLicense._(
-    validatedValue: 'MIT-0',
+    valueString: 'MIT-0',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'MIT No Attribution'.toFhirString,
@@ -1748,7 +1749,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// MIT_advertising
   static final SPDXLicense MIT_advertising = SPDXLicense._(
-    validatedValue: 'MIT-advertising',
+    valueString: 'MIT-advertising',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Enlightenment License (e16)'.toFhirString,
@@ -1756,7 +1757,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// MIT_CMU
   static final SPDXLicense MIT_CMU = SPDXLicense._(
-    validatedValue: 'MIT-CMU',
+    valueString: 'MIT-CMU',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'CMU License'.toFhirString,
@@ -1764,7 +1765,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// MIT_enna
   static final SPDXLicense MIT_enna = SPDXLicense._(
-    validatedValue: 'MIT-enna',
+    valueString: 'MIT-enna',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'enna License'.toFhirString,
@@ -1772,7 +1773,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// MIT_feh
   static final SPDXLicense MIT_feh = SPDXLicense._(
-    validatedValue: 'MIT-feh',
+    valueString: 'MIT-feh',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'feh License'.toFhirString,
@@ -1780,7 +1781,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// MIT
   static final SPDXLicense MIT = SPDXLicense._(
-    validatedValue: 'MIT',
+    valueString: 'MIT',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'MIT License'.toFhirString,
@@ -1788,7 +1789,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// MITNFA
   static final SPDXLicense MITNFA = SPDXLicense._(
-    validatedValue: 'MITNFA',
+    valueString: 'MITNFA',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'MIT +no-false-attribs license'.toFhirString,
@@ -1796,7 +1797,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// Motosoto
   static final SPDXLicense Motosoto = SPDXLicense._(
-    validatedValue: 'Motosoto',
+    valueString: 'Motosoto',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Motosoto License'.toFhirString,
@@ -1804,7 +1805,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// mpich2
   static final SPDXLicense mpich2 = SPDXLicense._(
-    validatedValue: 'mpich2',
+    valueString: 'mpich2',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'mpich2 License'.toFhirString,
@@ -1812,7 +1813,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// MPL_1_0
   static final SPDXLicense MPL_1_0 = SPDXLicense._(
-    validatedValue: 'MPL-1.0',
+    valueString: 'MPL-1.0',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Mozilla Public License 1.0'.toFhirString,
@@ -1820,7 +1821,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// MPL_1_1
   static final SPDXLicense MPL_1_1 = SPDXLicense._(
-    validatedValue: 'MPL-1.1',
+    valueString: 'MPL-1.1',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Mozilla Public License 1.1'.toFhirString,
@@ -1828,7 +1829,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// MPL_2_0_no_copyleft_exception
   static final SPDXLicense MPL_2_0_no_copyleft_exception = SPDXLicense._(
-    validatedValue: 'MPL-2.0-no-copyleft-exception',
+    valueString: 'MPL-2.0-no-copyleft-exception',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Mozilla Public License 2.0 (no copyleft exception)'.toFhirString,
@@ -1836,7 +1837,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// MPL_2_0
   static final SPDXLicense MPL_2_0 = SPDXLicense._(
-    validatedValue: 'MPL-2.0',
+    valueString: 'MPL-2.0',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Mozilla Public License 2.0'.toFhirString,
@@ -1844,7 +1845,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// MS_PL
   static final SPDXLicense MS_PL = SPDXLicense._(
-    validatedValue: 'MS-PL',
+    valueString: 'MS-PL',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Microsoft Public License'.toFhirString,
@@ -1852,7 +1853,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// MS_RL
   static final SPDXLicense MS_RL = SPDXLicense._(
-    validatedValue: 'MS-RL',
+    valueString: 'MS-RL',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Microsoft Reciprocal License'.toFhirString,
@@ -1860,7 +1861,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// MTLL
   static final SPDXLicense MTLL = SPDXLicense._(
-    validatedValue: 'MTLL',
+    valueString: 'MTLL',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Matrix Template Library License'.toFhirString,
@@ -1868,7 +1869,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// Multics
   static final SPDXLicense Multics = SPDXLicense._(
-    validatedValue: 'Multics',
+    valueString: 'Multics',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Multics License'.toFhirString,
@@ -1876,7 +1877,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// Mup
   static final SPDXLicense Mup = SPDXLicense._(
-    validatedValue: 'Mup',
+    valueString: 'Mup',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Mup License'.toFhirString,
@@ -1884,7 +1885,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// NASA_1_3
   static final SPDXLicense NASA_1_3 = SPDXLicense._(
-    validatedValue: 'NASA-1.3',
+    valueString: 'NASA-1.3',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'NASA Open Source Agreement 1.3'.toFhirString,
@@ -1892,7 +1893,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// Naumen
   static final SPDXLicense Naumen = SPDXLicense._(
-    validatedValue: 'Naumen',
+    valueString: 'Naumen',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Naumen Public License'.toFhirString,
@@ -1900,7 +1901,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// NBPL_1_0
   static final SPDXLicense NBPL_1_0 = SPDXLicense._(
-    validatedValue: 'NBPL-1.0',
+    valueString: 'NBPL-1.0',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Net Boolean Public License v1'.toFhirString,
@@ -1908,7 +1909,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// NCSA
   static final SPDXLicense NCSA = SPDXLicense._(
-    validatedValue: 'NCSA',
+    valueString: 'NCSA',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'University of Illinois/NCSA Open Source License'.toFhirString,
@@ -1916,7 +1917,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// Net_SNMP
   static final SPDXLicense Net_SNMP = SPDXLicense._(
-    validatedValue: 'Net-SNMP',
+    valueString: 'Net-SNMP',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Net-SNMP License'.toFhirString,
@@ -1924,7 +1925,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// NetCDF
   static final SPDXLicense NetCDF = SPDXLicense._(
-    validatedValue: 'NetCDF',
+    valueString: 'NetCDF',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'NetCDF license'.toFhirString,
@@ -1932,7 +1933,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// Newsletr
   static final SPDXLicense Newsletr = SPDXLicense._(
-    validatedValue: 'Newsletr',
+    valueString: 'Newsletr',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Newsletr License'.toFhirString,
@@ -1940,7 +1941,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// NGPL
   static final SPDXLicense NGPL = SPDXLicense._(
-    validatedValue: 'NGPL',
+    valueString: 'NGPL',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Nethack General Public License'.toFhirString,
@@ -1948,7 +1949,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// NLOD_1_0
   static final SPDXLicense NLOD_1_0 = SPDXLicense._(
-    validatedValue: 'NLOD-1.0',
+    valueString: 'NLOD-1.0',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Norwegian Licence for Open Government Data'.toFhirString,
@@ -1956,7 +1957,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// NLPL
   static final SPDXLicense NLPL = SPDXLicense._(
-    validatedValue: 'NLPL',
+    valueString: 'NLPL',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'No Limit Public License'.toFhirString,
@@ -1964,7 +1965,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// Nokia
   static final SPDXLicense Nokia = SPDXLicense._(
-    validatedValue: 'Nokia',
+    valueString: 'Nokia',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Nokia Open Source License'.toFhirString,
@@ -1972,7 +1973,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// NOSL
   static final SPDXLicense NOSL = SPDXLicense._(
-    validatedValue: 'NOSL',
+    valueString: 'NOSL',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Netizen Open Source License'.toFhirString,
@@ -1980,7 +1981,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// Noweb
   static final SPDXLicense Noweb = SPDXLicense._(
-    validatedValue: 'Noweb',
+    valueString: 'Noweb',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Noweb License'.toFhirString,
@@ -1988,7 +1989,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// NPL_1_0
   static final SPDXLicense NPL_1_0 = SPDXLicense._(
-    validatedValue: 'NPL-1.0',
+    valueString: 'NPL-1.0',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Netscape Public License v1.0'.toFhirString,
@@ -1996,7 +1997,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// NPL_1_1
   static final SPDXLicense NPL_1_1 = SPDXLicense._(
-    validatedValue: 'NPL-1.1',
+    valueString: 'NPL-1.1',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Netscape Public License v1.1'.toFhirString,
@@ -2004,7 +2005,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// NPOSL_3_0
   static final SPDXLicense NPOSL_3_0 = SPDXLicense._(
-    validatedValue: 'NPOSL-3.0',
+    valueString: 'NPOSL-3.0',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Non-Profit Open Software License 3.0'.toFhirString,
@@ -2012,7 +2013,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// NRL
   static final SPDXLicense NRL = SPDXLicense._(
-    validatedValue: 'NRL',
+    valueString: 'NRL',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'NRL License'.toFhirString,
@@ -2020,7 +2021,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// NTP
   static final SPDXLicense NTP = SPDXLicense._(
-    validatedValue: 'NTP',
+    valueString: 'NTP',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'NTP License'.toFhirString,
@@ -2028,7 +2029,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// OCCT_PL
   static final SPDXLicense OCCT_PL = SPDXLicense._(
-    validatedValue: 'OCCT-PL',
+    valueString: 'OCCT-PL',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Open CASCADE Technology Public License'.toFhirString,
@@ -2036,7 +2037,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// OCLC_2_0
   static final SPDXLicense OCLC_2_0 = SPDXLicense._(
-    validatedValue: 'OCLC-2.0',
+    valueString: 'OCLC-2.0',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'OCLC Research Public License 2.0'.toFhirString,
@@ -2044,7 +2045,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// ODbL_1_0
   static final SPDXLicense ODbL_1_0 = SPDXLicense._(
-    validatedValue: 'ODbL-1.0',
+    valueString: 'ODbL-1.0',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'ODC Open Database License v1.0'.toFhirString,
@@ -2052,7 +2053,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// OFL_1_0
   static final SPDXLicense OFL_1_0 = SPDXLicense._(
-    validatedValue: 'OFL-1.0',
+    valueString: 'OFL-1.0',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'SIL Open Font License 1.0'.toFhirString,
@@ -2060,7 +2061,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// OFL_1_1
   static final SPDXLicense OFL_1_1 = SPDXLicense._(
-    validatedValue: 'OFL-1.1',
+    valueString: 'OFL-1.1',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'SIL Open Font License 1.1'.toFhirString,
@@ -2068,7 +2069,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// OGTSL
   static final SPDXLicense OGTSL = SPDXLicense._(
-    validatedValue: 'OGTSL',
+    valueString: 'OGTSL',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Open Group Test Suite License'.toFhirString,
@@ -2076,7 +2077,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// OLDAP_1_1
   static final SPDXLicense OLDAP_1_1 = SPDXLicense._(
-    validatedValue: 'OLDAP-1.1',
+    valueString: 'OLDAP-1.1',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Open LDAP Public License v1.1'.toFhirString,
@@ -2084,7 +2085,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// OLDAP_1_2
   static final SPDXLicense OLDAP_1_2 = SPDXLicense._(
-    validatedValue: 'OLDAP-1.2',
+    valueString: 'OLDAP-1.2',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Open LDAP Public License v1.2'.toFhirString,
@@ -2092,7 +2093,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// OLDAP_1_3
   static final SPDXLicense OLDAP_1_3 = SPDXLicense._(
-    validatedValue: 'OLDAP-1.3',
+    valueString: 'OLDAP-1.3',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Open LDAP Public License v1.3'.toFhirString,
@@ -2100,7 +2101,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// OLDAP_1_4
   static final SPDXLicense OLDAP_1_4 = SPDXLicense._(
-    validatedValue: 'OLDAP-1.4',
+    valueString: 'OLDAP-1.4',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Open LDAP Public License v1.4'.toFhirString,
@@ -2108,7 +2109,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// OLDAP_2_0_1
   static final SPDXLicense OLDAP_2_0_1 = SPDXLicense._(
-    validatedValue: 'OLDAP-2.0.1',
+    valueString: 'OLDAP-2.0.1',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Open LDAP Public License v2.0.1'.toFhirString,
@@ -2116,7 +2117,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// OLDAP_2_0
   static final SPDXLicense OLDAP_2_0 = SPDXLicense._(
-    validatedValue: 'OLDAP-2.0',
+    valueString: 'OLDAP-2.0',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Open LDAP Public License v2.0 (or possibly 2.0A and 2.0B)'
@@ -2125,7 +2126,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// OLDAP_2_1
   static final SPDXLicense OLDAP_2_1 = SPDXLicense._(
-    validatedValue: 'OLDAP-2.1',
+    valueString: 'OLDAP-2.1',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Open LDAP Public License v2.1'.toFhirString,
@@ -2133,7 +2134,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// OLDAP_2_2_1
   static final SPDXLicense OLDAP_2_2_1 = SPDXLicense._(
-    validatedValue: 'OLDAP-2.2.1',
+    valueString: 'OLDAP-2.2.1',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Open LDAP Public License v2.2.1'.toFhirString,
@@ -2141,7 +2142,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// OLDAP_2_2_2
   static final SPDXLicense OLDAP_2_2_2 = SPDXLicense._(
-    validatedValue: 'OLDAP-2.2.2',
+    valueString: 'OLDAP-2.2.2',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Open LDAP Public License 2.2.2'.toFhirString,
@@ -2149,7 +2150,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// OLDAP_2_2
   static final SPDXLicense OLDAP_2_2 = SPDXLicense._(
-    validatedValue: 'OLDAP-2.2',
+    valueString: 'OLDAP-2.2',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Open LDAP Public License v2.2'.toFhirString,
@@ -2157,7 +2158,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// OLDAP_2_3
   static final SPDXLicense OLDAP_2_3 = SPDXLicense._(
-    validatedValue: 'OLDAP-2.3',
+    valueString: 'OLDAP-2.3',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Open LDAP Public License v2.3'.toFhirString,
@@ -2165,7 +2166,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// OLDAP_2_4
   static final SPDXLicense OLDAP_2_4 = SPDXLicense._(
-    validatedValue: 'OLDAP-2.4',
+    valueString: 'OLDAP-2.4',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Open LDAP Public License v2.4'.toFhirString,
@@ -2173,7 +2174,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// OLDAP_2_5
   static final SPDXLicense OLDAP_2_5 = SPDXLicense._(
-    validatedValue: 'OLDAP-2.5',
+    valueString: 'OLDAP-2.5',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Open LDAP Public License v2.5'.toFhirString,
@@ -2181,7 +2182,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// OLDAP_2_6
   static final SPDXLicense OLDAP_2_6 = SPDXLicense._(
-    validatedValue: 'OLDAP-2.6',
+    valueString: 'OLDAP-2.6',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Open LDAP Public License v2.6'.toFhirString,
@@ -2189,7 +2190,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// OLDAP_2_7
   static final SPDXLicense OLDAP_2_7 = SPDXLicense._(
-    validatedValue: 'OLDAP-2.7',
+    valueString: 'OLDAP-2.7',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Open LDAP Public License v2.7'.toFhirString,
@@ -2197,7 +2198,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// OLDAP_2_8
   static final SPDXLicense OLDAP_2_8 = SPDXLicense._(
-    validatedValue: 'OLDAP-2.8',
+    valueString: 'OLDAP-2.8',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Open LDAP Public License v2.8'.toFhirString,
@@ -2205,7 +2206,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// OML
   static final SPDXLicense OML = SPDXLicense._(
-    validatedValue: 'OML',
+    valueString: 'OML',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Open Market License'.toFhirString,
@@ -2213,7 +2214,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// OpenSSL
   static final SPDXLicense OpenSSL = SPDXLicense._(
-    validatedValue: 'OpenSSL',
+    valueString: 'OpenSSL',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'OpenSSL License'.toFhirString,
@@ -2221,7 +2222,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// OPL_1_0
   static final SPDXLicense OPL_1_0 = SPDXLicense._(
-    validatedValue: 'OPL-1.0',
+    valueString: 'OPL-1.0',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Open Public License v1.0'.toFhirString,
@@ -2229,7 +2230,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// OSET_PL_2_1
   static final SPDXLicense OSET_PL_2_1 = SPDXLicense._(
-    validatedValue: 'OSET-PL-2.1',
+    valueString: 'OSET-PL-2.1',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'OSET Public License version 2.1'.toFhirString,
@@ -2237,7 +2238,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// OSL_1_0
   static final SPDXLicense OSL_1_0 = SPDXLicense._(
-    validatedValue: 'OSL-1.0',
+    valueString: 'OSL-1.0',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Open Software License 1.0'.toFhirString,
@@ -2245,7 +2246,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// OSL_1_1
   static final SPDXLicense OSL_1_1 = SPDXLicense._(
-    validatedValue: 'OSL-1.1',
+    valueString: 'OSL-1.1',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Open Software License 1.1'.toFhirString,
@@ -2253,7 +2254,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// OSL_2_0
   static final SPDXLicense OSL_2_0 = SPDXLicense._(
-    validatedValue: 'OSL-2.0',
+    valueString: 'OSL-2.0',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Open Software License 2.0'.toFhirString,
@@ -2261,7 +2262,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// OSL_2_1
   static final SPDXLicense OSL_2_1 = SPDXLicense._(
-    validatedValue: 'OSL-2.1',
+    valueString: 'OSL-2.1',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Open Software License 2.1'.toFhirString,
@@ -2269,7 +2270,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// OSL_3_0
   static final SPDXLicense OSL_3_0 = SPDXLicense._(
-    validatedValue: 'OSL-3.0',
+    valueString: 'OSL-3.0',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Open Software License 3.0'.toFhirString,
@@ -2277,7 +2278,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// PDDL_1_0
   static final SPDXLicense PDDL_1_0 = SPDXLicense._(
-    validatedValue: 'PDDL-1.0',
+    valueString: 'PDDL-1.0',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'ODC Public Domain Dedication & License 1.0'.toFhirString,
@@ -2285,7 +2286,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// PHP_3_0
   static final SPDXLicense PHP_3_0 = SPDXLicense._(
-    validatedValue: 'PHP-3.0',
+    valueString: 'PHP-3.0',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'PHP License v3.0'.toFhirString,
@@ -2293,7 +2294,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// PHP_3_01
   static final SPDXLicense PHP_3_01 = SPDXLicense._(
-    validatedValue: 'PHP-3.01',
+    valueString: 'PHP-3.01',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'PHP License v3.01'.toFhirString,
@@ -2301,7 +2302,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// Plexus
   static final SPDXLicense Plexus = SPDXLicense._(
-    validatedValue: 'Plexus',
+    valueString: 'Plexus',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Plexus Classworlds License'.toFhirString,
@@ -2309,7 +2310,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// PostgreSQL
   static final SPDXLicense PostgreSQL = SPDXLicense._(
-    validatedValue: 'PostgreSQL',
+    valueString: 'PostgreSQL',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'PostgreSQL License'.toFhirString,
@@ -2317,7 +2318,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// psfrag
   static final SPDXLicense psfrag = SPDXLicense._(
-    validatedValue: 'psfrag',
+    valueString: 'psfrag',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'psfrag License'.toFhirString,
@@ -2325,7 +2326,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// psutils
   static final SPDXLicense psutils = SPDXLicense._(
-    validatedValue: 'psutils',
+    valueString: 'psutils',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'psutils License'.toFhirString,
@@ -2333,7 +2334,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// Python_2_0
   static final SPDXLicense Python_2_0 = SPDXLicense._(
-    validatedValue: 'Python-2.0',
+    valueString: 'Python-2.0',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Python License 2.0'.toFhirString,
@@ -2341,7 +2342,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// Qhull
   static final SPDXLicense Qhull = SPDXLicense._(
-    validatedValue: 'Qhull',
+    valueString: 'Qhull',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Qhull License'.toFhirString,
@@ -2349,7 +2350,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// QPL_1_0
   static final SPDXLicense QPL_1_0 = SPDXLicense._(
-    validatedValue: 'QPL-1.0',
+    valueString: 'QPL-1.0',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Q Public License 1.0'.toFhirString,
@@ -2357,7 +2358,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// Rdisc
   static final SPDXLicense Rdisc = SPDXLicense._(
-    validatedValue: 'Rdisc',
+    valueString: 'Rdisc',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Rdisc License'.toFhirString,
@@ -2365,7 +2366,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// RHeCos_1_1
   static final SPDXLicense RHeCos_1_1 = SPDXLicense._(
-    validatedValue: 'RHeCos-1.1',
+    valueString: 'RHeCos-1.1',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Red Hat eCos Public License v1.1'.toFhirString,
@@ -2373,7 +2374,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// RPL_1_1
   static final SPDXLicense RPL_1_1 = SPDXLicense._(
-    validatedValue: 'RPL-1.1',
+    valueString: 'RPL-1.1',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Reciprocal Public License 1.1'.toFhirString,
@@ -2381,7 +2382,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// RPL_1_5
   static final SPDXLicense RPL_1_5 = SPDXLicense._(
-    validatedValue: 'RPL-1.5',
+    valueString: 'RPL-1.5',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Reciprocal Public License 1.5'.toFhirString,
@@ -2389,7 +2390,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// RPSL_1_0
   static final SPDXLicense RPSL_1_0 = SPDXLicense._(
-    validatedValue: 'RPSL-1.0',
+    valueString: 'RPSL-1.0',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'RealNetworks Public Source License v1.0'.toFhirString,
@@ -2397,7 +2398,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// RSA_MD
   static final SPDXLicense RSA_MD = SPDXLicense._(
-    validatedValue: 'RSA-MD',
+    valueString: 'RSA-MD',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'RSA Message-Digest License'.toFhirString,
@@ -2405,7 +2406,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// RSCPL
   static final SPDXLicense RSCPL = SPDXLicense._(
-    validatedValue: 'RSCPL',
+    valueString: 'RSCPL',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Ricoh Source Code Public License'.toFhirString,
@@ -2413,7 +2414,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// Ruby
   static final SPDXLicense Ruby = SPDXLicense._(
-    validatedValue: 'Ruby',
+    valueString: 'Ruby',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Ruby License'.toFhirString,
@@ -2421,7 +2422,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// SAX_PD
   static final SPDXLicense SAX_PD = SPDXLicense._(
-    validatedValue: 'SAX-PD',
+    valueString: 'SAX-PD',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Sax Public Domain Notice'.toFhirString,
@@ -2429,7 +2430,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// Saxpath
   static final SPDXLicense Saxpath = SPDXLicense._(
-    validatedValue: 'Saxpath',
+    valueString: 'Saxpath',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Saxpath License'.toFhirString,
@@ -2437,7 +2438,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// SCEA
   static final SPDXLicense SCEA = SPDXLicense._(
-    validatedValue: 'SCEA',
+    valueString: 'SCEA',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'SCEA Shared Source License'.toFhirString,
@@ -2445,7 +2446,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// Sendmail
   static final SPDXLicense Sendmail = SPDXLicense._(
-    validatedValue: 'Sendmail',
+    valueString: 'Sendmail',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Sendmail License'.toFhirString,
@@ -2453,7 +2454,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// SGI_B_1_0
   static final SPDXLicense SGI_B_1_0 = SPDXLicense._(
-    validatedValue: 'SGI-B-1.0',
+    valueString: 'SGI-B-1.0',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'SGI Free Software License B v1.0'.toFhirString,
@@ -2461,7 +2462,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// SGI_B_1_1
   static final SPDXLicense SGI_B_1_1 = SPDXLicense._(
-    validatedValue: 'SGI-B-1.1',
+    valueString: 'SGI-B-1.1',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'SGI Free Software License B v1.1'.toFhirString,
@@ -2469,7 +2470,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// SGI_B_2_0
   static final SPDXLicense SGI_B_2_0 = SPDXLicense._(
-    validatedValue: 'SGI-B-2.0',
+    valueString: 'SGI-B-2.0',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'SGI Free Software License B v2.0'.toFhirString,
@@ -2477,7 +2478,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// SimPL_2_0
   static final SPDXLicense SimPL_2_0 = SPDXLicense._(
-    validatedValue: 'SimPL-2.0',
+    valueString: 'SimPL-2.0',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Simple Public License 2.0'.toFhirString,
@@ -2485,7 +2486,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// SISSL_1_2
   static final SPDXLicense SISSL_1_2 = SPDXLicense._(
-    validatedValue: 'SISSL-1.2',
+    valueString: 'SISSL-1.2',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Sun Industry Standards Source License v1.2'.toFhirString,
@@ -2493,7 +2494,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// SISSL
   static final SPDXLicense SISSL = SPDXLicense._(
-    validatedValue: 'SISSL',
+    valueString: 'SISSL',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Sun Industry Standards Source License v1.1'.toFhirString,
@@ -2501,7 +2502,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// Sleepycat
   static final SPDXLicense Sleepycat = SPDXLicense._(
-    validatedValue: 'Sleepycat',
+    valueString: 'Sleepycat',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Sleepycat License'.toFhirString,
@@ -2509,7 +2510,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// SMLNJ
   static final SPDXLicense SMLNJ = SPDXLicense._(
-    validatedValue: 'SMLNJ',
+    valueString: 'SMLNJ',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Standard ML of New Jersey License'.toFhirString,
@@ -2517,7 +2518,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// SMPPL
   static final SPDXLicense SMPPL = SPDXLicense._(
-    validatedValue: 'SMPPL',
+    valueString: 'SMPPL',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Secure Messaging Protocol Public License'.toFhirString,
@@ -2525,7 +2526,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// SNIA
   static final SPDXLicense SNIA = SPDXLicense._(
-    validatedValue: 'SNIA',
+    valueString: 'SNIA',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'SNIA Public License 1.1'.toFhirString,
@@ -2533,7 +2534,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// Spencer_86
   static final SPDXLicense Spencer_86 = SPDXLicense._(
-    validatedValue: 'Spencer-86',
+    valueString: 'Spencer-86',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Spencer License 86'.toFhirString,
@@ -2541,7 +2542,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// Spencer_94
   static final SPDXLicense Spencer_94 = SPDXLicense._(
-    validatedValue: 'Spencer-94',
+    valueString: 'Spencer-94',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Spencer License 94'.toFhirString,
@@ -2549,7 +2550,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// Spencer_99
   static final SPDXLicense Spencer_99 = SPDXLicense._(
-    validatedValue: 'Spencer-99',
+    valueString: 'Spencer-99',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Spencer License 99'.toFhirString,
@@ -2557,7 +2558,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// SPL_1_0
   static final SPDXLicense SPL_1_0 = SPDXLicense._(
-    validatedValue: 'SPL-1.0',
+    valueString: 'SPL-1.0',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Sun Public License v1.0'.toFhirString,
@@ -2565,7 +2566,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// SugarCRM_1_1_3
   static final SPDXLicense SugarCRM_1_1_3 = SPDXLicense._(
-    validatedValue: 'SugarCRM-1.1.3',
+    valueString: 'SugarCRM-1.1.3',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'SugarCRM Public License v1.1.3'.toFhirString,
@@ -2573,7 +2574,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// SWL
   static final SPDXLicense SWL = SPDXLicense._(
-    validatedValue: 'SWL',
+    valueString: 'SWL',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display:
@@ -2582,7 +2583,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// TCL
   static final SPDXLicense TCL = SPDXLicense._(
-    validatedValue: 'TCL',
+    valueString: 'TCL',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'TCL/TK License'.toFhirString,
@@ -2590,7 +2591,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// TCP_wrappers
   static final SPDXLicense TCP_wrappers = SPDXLicense._(
-    validatedValue: 'TCP-wrappers',
+    valueString: 'TCP-wrappers',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'TCP Wrappers License'.toFhirString,
@@ -2598,7 +2599,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// TMate
   static final SPDXLicense TMate = SPDXLicense._(
-    validatedValue: 'TMate',
+    valueString: 'TMate',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'TMate Open Source License'.toFhirString,
@@ -2606,7 +2607,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// TORQUE_1_1
   static final SPDXLicense TORQUE_1_1 = SPDXLicense._(
-    validatedValue: 'TORQUE-1.1',
+    valueString: 'TORQUE-1.1',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'TORQUE v2.5+ Software License v1.1'.toFhirString,
@@ -2614,7 +2615,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// TOSL
   static final SPDXLicense TOSL = SPDXLicense._(
-    validatedValue: 'TOSL',
+    valueString: 'TOSL',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Trusster Open Source License'.toFhirString,
@@ -2622,7 +2623,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// Unicode_DFS_2015
   static final SPDXLicense Unicode_DFS_2015 = SPDXLicense._(
-    validatedValue: 'Unicode-DFS-2015',
+    valueString: 'Unicode-DFS-2015',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Unicode License Agreement - Data Files and Software (2015)'
@@ -2631,7 +2632,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// Unicode_DFS_2016
   static final SPDXLicense Unicode_DFS_2016 = SPDXLicense._(
-    validatedValue: 'Unicode-DFS-2016',
+    valueString: 'Unicode-DFS-2016',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Unicode License Agreement - Data Files and Software (2016)'
@@ -2640,7 +2641,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// Unicode_TOU
   static final SPDXLicense Unicode_TOU = SPDXLicense._(
-    validatedValue: 'Unicode-TOU',
+    valueString: 'Unicode-TOU',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Unicode Terms of Use'.toFhirString,
@@ -2648,7 +2649,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// Unlicense
   static final SPDXLicense Unlicense = SPDXLicense._(
-    validatedValue: 'Unlicense',
+    valueString: 'Unlicense',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'The Unlicense'.toFhirString,
@@ -2656,7 +2657,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// UPL_1_0
   static final SPDXLicense UPL_1_0 = SPDXLicense._(
-    validatedValue: 'UPL-1.0',
+    valueString: 'UPL-1.0',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Universal Permissive License v1.0'.toFhirString,
@@ -2664,7 +2665,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// Vim
   static final SPDXLicense Vim = SPDXLicense._(
-    validatedValue: 'Vim',
+    valueString: 'Vim',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Vim License'.toFhirString,
@@ -2672,7 +2673,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// VOSTROM
   static final SPDXLicense VOSTROM = SPDXLicense._(
-    validatedValue: 'VOSTROM',
+    valueString: 'VOSTROM',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'VOSTROM Public License for Open Source'.toFhirString,
@@ -2680,7 +2681,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// VSL_1_0
   static final SPDXLicense VSL_1_0 = SPDXLicense._(
-    validatedValue: 'VSL-1.0',
+    valueString: 'VSL-1.0',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Vovida Software License v1.0'.toFhirString,
@@ -2688,7 +2689,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// W3C_19980720
   static final SPDXLicense W3C_19980720 = SPDXLicense._(
-    validatedValue: 'W3C-19980720',
+    valueString: 'W3C-19980720',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'W3C Software Notice and License (1998-07-20)'.toFhirString,
@@ -2696,7 +2697,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// W3C_20150513
   static final SPDXLicense W3C_20150513 = SPDXLicense._(
-    validatedValue: 'W3C-20150513',
+    valueString: 'W3C-20150513',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display:
@@ -2705,7 +2706,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// W3C
   static final SPDXLicense W3C = SPDXLicense._(
-    validatedValue: 'W3C',
+    valueString: 'W3C',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'W3C Software Notice and License (2002-12-31)'.toFhirString,
@@ -2713,7 +2714,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// Watcom_1_0
   static final SPDXLicense Watcom_1_0 = SPDXLicense._(
-    validatedValue: 'Watcom-1.0',
+    valueString: 'Watcom-1.0',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Sybase Open Watcom Public License 1.0'.toFhirString,
@@ -2721,7 +2722,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// Wsuipa
   static final SPDXLicense Wsuipa = SPDXLicense._(
-    validatedValue: 'Wsuipa',
+    valueString: 'Wsuipa',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Wsuipa License'.toFhirString,
@@ -2729,7 +2730,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// WTFPL
   static final SPDXLicense WTFPL = SPDXLicense._(
-    validatedValue: 'WTFPL',
+    valueString: 'WTFPL',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Do What The F*ck You Want To Public License'.toFhirString,
@@ -2737,7 +2738,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// X11
   static final SPDXLicense X11 = SPDXLicense._(
-    validatedValue: 'X11',
+    valueString: 'X11',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'X11 License'.toFhirString,
@@ -2745,7 +2746,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// Xerox
   static final SPDXLicense Xerox = SPDXLicense._(
-    validatedValue: 'Xerox',
+    valueString: 'Xerox',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Xerox License'.toFhirString,
@@ -2753,7 +2754,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// XFree86_1_1
   static final SPDXLicense XFree86_1_1 = SPDXLicense._(
-    validatedValue: 'XFree86-1.1',
+    valueString: 'XFree86-1.1',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'XFree86 License 1.1'.toFhirString,
@@ -2761,7 +2762,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// xinetd
   static final SPDXLicense xinetd = SPDXLicense._(
-    validatedValue: 'xinetd',
+    valueString: 'xinetd',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'xinetd License'.toFhirString,
@@ -2769,7 +2770,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// Xnet
   static final SPDXLicense Xnet = SPDXLicense._(
-    validatedValue: 'Xnet',
+    valueString: 'Xnet',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'X.Net License'.toFhirString,
@@ -2777,7 +2778,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// xpp
   static final SPDXLicense xpp = SPDXLicense._(
-    validatedValue: 'xpp',
+    valueString: 'xpp',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'XPP License'.toFhirString,
@@ -2785,7 +2786,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// XSkat
   static final SPDXLicense XSkat = SPDXLicense._(
-    validatedValue: 'XSkat',
+    valueString: 'XSkat',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'XSkat License'.toFhirString,
@@ -2793,7 +2794,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// YPL_1_0
   static final SPDXLicense YPL_1_0 = SPDXLicense._(
-    validatedValue: 'YPL-1.0',
+    valueString: 'YPL-1.0',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Yahoo! Public License v1.0'.toFhirString,
@@ -2801,7 +2802,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// YPL_1_1
   static final SPDXLicense YPL_1_1 = SPDXLicense._(
-    validatedValue: 'YPL-1.1',
+    valueString: 'YPL-1.1',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Yahoo! Public License v1.1'.toFhirString,
@@ -2809,7 +2810,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// Zed
   static final SPDXLicense Zed = SPDXLicense._(
-    validatedValue: 'Zed',
+    valueString: 'Zed',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Zed License'.toFhirString,
@@ -2817,7 +2818,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// Zend_2_0
   static final SPDXLicense Zend_2_0 = SPDXLicense._(
-    validatedValue: 'Zend-2.0',
+    valueString: 'Zend-2.0',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Zend License v2.0'.toFhirString,
@@ -2825,7 +2826,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// Zimbra_1_3
   static final SPDXLicense Zimbra_1_3 = SPDXLicense._(
-    validatedValue: 'Zimbra-1.3',
+    valueString: 'Zimbra-1.3',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Zimbra Public License v1.3'.toFhirString,
@@ -2833,7 +2834,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// Zimbra_1_4
   static final SPDXLicense Zimbra_1_4 = SPDXLicense._(
-    validatedValue: 'Zimbra-1.4',
+    valueString: 'Zimbra-1.4',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Zimbra Public License v1.4'.toFhirString,
@@ -2841,7 +2842,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// zlib_acknowledgement
   static final SPDXLicense zlib_acknowledgement = SPDXLicense._(
-    validatedValue: 'zlib-acknowledgement',
+    valueString: 'zlib-acknowledgement',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'zlib/libpng License with Acknowledgement'.toFhirString,
@@ -2849,7 +2850,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// Zlib
   static final SPDXLicense Zlib = SPDXLicense._(
-    validatedValue: 'Zlib',
+    valueString: 'Zlib',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'zlib License'.toFhirString,
@@ -2857,7 +2858,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// ZPL_1_1
   static final SPDXLicense ZPL_1_1 = SPDXLicense._(
-    validatedValue: 'ZPL-1.1',
+    valueString: 'ZPL-1.1',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Zope Public License 1.1'.toFhirString,
@@ -2865,7 +2866,7 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// ZPL_2_0
   static final SPDXLicense ZPL_2_0 = SPDXLicense._(
-    validatedValue: 'ZPL-2.0',
+    valueString: 'ZPL-2.0',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Zope Public License 2.0'.toFhirString,
@@ -2873,14 +2874,14 @@ class SPDXLicense extends FhirCodeEnum {
 
   /// ZPL_2_1
   static final SPDXLicense ZPL_2_1 = SPDXLicense._(
-    validatedValue: 'ZPL-2.1',
+    valueString: 'ZPL-2.1',
     system: 'http://hl7.org/fhir/ValueSet/spdx-license'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Zope Public License 2.1'.toFhirString,
   );
 
   /// For instances where an Element is present but not value
-  static final SPDXLicense elementOnly = SPDXLicense._(validatedValue: '');
+  static final SPDXLicense elementOnly = SPDXLicense._(valueString: '');
 
   /// List of all enum-like values
   static final List<SPDXLicense> values = [
@@ -3235,14 +3236,14 @@ class SPDXLicense extends FhirCodeEnum {
   /// Clones the current instance
   @override
   SPDXLicense clone() => SPDXLicense._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   SPDXLicense withElement(Element? newElement) {
     return SPDXLicense._(
-      validatedValue: value,
+      valueString: valueString,
       element: newElement,
     );
   }
@@ -3250,18 +3251,18 @@ class SPDXLicense extends FhirCodeEnum {
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   SPDXLicense copyWith({
-    String? newValue,
+    dynamic newValue,
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
@@ -3272,11 +3273,11 @@ class SPDXLicense extends FhirCodeEnum {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError('Invalid input for SPDXLicense: $newValue');
     }
     return SPDXLicense._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

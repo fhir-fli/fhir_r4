@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class ObservationDataTypeBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   ObservationDataTypeBuilder._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class ObservationDataTypeBuilder extends FhirCodeEnumBuilder {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory ObservationDataTypeBuilder(
-    String? raw, {
+    String? rawValue, {
     FhirUriBuilder? system,
     FhirStringBuilder? version,
     FhirStringBuilder? display,
@@ -29,9 +29,10 @@ class ObservationDataTypeBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
     return ObservationDataTypeBuilder._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -45,7 +46,7 @@ class ObservationDataTypeBuilder extends FhirCodeEnumBuilder {
 
   /// Create empty [ObservationDataTypeBuilder] with element only
   factory ObservationDataTypeBuilder.empty() =>
-      ObservationDataTypeBuilder._(validatedValue: '');
+      ObservationDataTypeBuilder._(valueString: '');
 
   /// Factory constructor to create [ObservationDataTypeBuilder]
   /// from JSON.
@@ -62,14 +63,14 @@ class ObservationDataTypeBuilder extends FhirCodeEnumBuilder {
       );
     }
     return ObservationDataTypeBuilder._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// Quantity
   static ObservationDataTypeBuilder Quantity = ObservationDataTypeBuilder._(
-    validatedValue: 'Quantity',
+    valueString: 'Quantity',
     system: 'http://hl7.org/fhir/ValueSet/permitted-data-type'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Quantity'.toFhirStringBuilder,
@@ -78,7 +79,7 @@ class ObservationDataTypeBuilder extends FhirCodeEnumBuilder {
   /// CodeableConcept
   static ObservationDataTypeBuilder CodeableConcept =
       ObservationDataTypeBuilder._(
-    validatedValue: 'CodeableConcept',
+    valueString: 'CodeableConcept',
     system: 'http://hl7.org/fhir/ValueSet/permitted-data-type'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'CodeableConcept'.toFhirStringBuilder,
@@ -86,7 +87,7 @@ class ObservationDataTypeBuilder extends FhirCodeEnumBuilder {
 
   /// string
   static ObservationDataTypeBuilder string = ObservationDataTypeBuilder._(
-    validatedValue: 'string',
+    valueString: 'string',
     system: 'http://hl7.org/fhir/ValueSet/permitted-data-type'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'string'.toFhirStringBuilder,
@@ -94,7 +95,7 @@ class ObservationDataTypeBuilder extends FhirCodeEnumBuilder {
 
   /// boolean
   static ObservationDataTypeBuilder boolean = ObservationDataTypeBuilder._(
-    validatedValue: 'boolean',
+    valueString: 'boolean',
     system: 'http://hl7.org/fhir/ValueSet/permitted-data-type'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'boolean'.toFhirStringBuilder,
@@ -102,7 +103,7 @@ class ObservationDataTypeBuilder extends FhirCodeEnumBuilder {
 
   /// integer
   static ObservationDataTypeBuilder integer = ObservationDataTypeBuilder._(
-    validatedValue: 'integer',
+    valueString: 'integer',
     system: 'http://hl7.org/fhir/ValueSet/permitted-data-type'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'integer'.toFhirStringBuilder,
@@ -110,7 +111,7 @@ class ObservationDataTypeBuilder extends FhirCodeEnumBuilder {
 
   /// Range
   static ObservationDataTypeBuilder Range = ObservationDataTypeBuilder._(
-    validatedValue: 'Range',
+    valueString: 'Range',
     system: 'http://hl7.org/fhir/ValueSet/permitted-data-type'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Range'.toFhirStringBuilder,
@@ -118,7 +119,7 @@ class ObservationDataTypeBuilder extends FhirCodeEnumBuilder {
 
   /// Ratio
   static ObservationDataTypeBuilder Ratio = ObservationDataTypeBuilder._(
-    validatedValue: 'Ratio',
+    valueString: 'Ratio',
     system: 'http://hl7.org/fhir/ValueSet/permitted-data-type'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Ratio'.toFhirStringBuilder,
@@ -126,7 +127,7 @@ class ObservationDataTypeBuilder extends FhirCodeEnumBuilder {
 
   /// SampledData
   static ObservationDataTypeBuilder SampledData = ObservationDataTypeBuilder._(
-    validatedValue: 'SampledData',
+    valueString: 'SampledData',
     system: 'http://hl7.org/fhir/ValueSet/permitted-data-type'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'SampledData'.toFhirStringBuilder,
@@ -134,7 +135,7 @@ class ObservationDataTypeBuilder extends FhirCodeEnumBuilder {
 
   /// time
   static ObservationDataTypeBuilder time = ObservationDataTypeBuilder._(
-    validatedValue: 'time',
+    valueString: 'time',
     system: 'http://hl7.org/fhir/ValueSet/permitted-data-type'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'time'.toFhirStringBuilder,
@@ -142,7 +143,7 @@ class ObservationDataTypeBuilder extends FhirCodeEnumBuilder {
 
   /// dateTime
   static ObservationDataTypeBuilder dateTime = ObservationDataTypeBuilder._(
-    validatedValue: 'dateTime',
+    valueString: 'dateTime',
     system: 'http://hl7.org/fhir/ValueSet/permitted-data-type'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'dateTime'.toFhirStringBuilder,
@@ -150,7 +151,7 @@ class ObservationDataTypeBuilder extends FhirCodeEnumBuilder {
 
   /// Period
   static ObservationDataTypeBuilder Period = ObservationDataTypeBuilder._(
-    validatedValue: 'Period',
+    valueString: 'Period',
     system: 'http://hl7.org/fhir/ValueSet/permitted-data-type'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Period'.toFhirStringBuilder,
@@ -158,7 +159,7 @@ class ObservationDataTypeBuilder extends FhirCodeEnumBuilder {
 
   /// For instances where an Element is present but not value
   static ObservationDataTypeBuilder elementOnly =
-      ObservationDataTypeBuilder._(validatedValue: '');
+      ObservationDataTypeBuilder._(valueString: '');
 
   /// List of all enum-like values
   static List<ObservationDataTypeBuilder> values = [
@@ -178,31 +179,31 @@ class ObservationDataTypeBuilder extends FhirCodeEnumBuilder {
   /// Clones the current instance
   @override
   ObservationDataTypeBuilder clone() => ObservationDataTypeBuilder._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
   ObservationDataTypeBuilder withElement(ElementBuilder? newElement) {
     return ObservationDataTypeBuilder._(
-        validatedValue: value, element: newElement,);
+        valueString: valueString, element: newElement,);
   }
 
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   ObservationDataTypeBuilder copyWith({
-    String? newValue,
+    dynamic newValue,
     ElementBuilder? element,
     FhirStringBuilder? id,
     List<FhirExtensionBuilder>? extension_,
@@ -213,11 +214,11 @@ class ObservationDataTypeBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError('Invalid input for ObservationDataType: $newValue');
     }
     return ObservationDataTypeBuilder._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
@@ -226,7 +227,7 @@ class ObservationDataTypeBuilder extends FhirCodeEnumBuilder {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath,
+      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

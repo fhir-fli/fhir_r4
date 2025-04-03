@@ -60,7 +60,7 @@ abstract class FhirBaseBuilder {
   /// Checks if the object is empty.
   bool isEmpty() =>
       this is PrimitiveTypeBuilder &&
-      (this as PrimitiveTypeBuilder).value == null;
+      (this as PrimitiveTypeBuilder).valueString == null;
 
   /// Checks if the object has user data for a given key.
   bool hasUserData(String name) => userData?.containsKey(name) ?? false;

@@ -12,7 +12,7 @@ extension FhirInstantStringExtension on String {
   FhirInstant get toFhirInstant => FhirInstant.fromString(this);
 }
 
-/// [FhirInstant] represents an instant in time as defined by the FHIR spec.
+/// [FhirInstant] represents an instant in time (full date/time with second precision and timezone).
 class FhirInstant extends FhirDateTimeBase
     implements
         EffectiveXObservation,
@@ -27,9 +27,11 @@ class FhirInstant extends FhirDateTimeBase
         MaxValueXElementDefinition,
         ValueXElementDefinitionExample,
         ValueXExtension {
-  /// Private underscore constructor.
-  /// Notice it calls `super._internal(...)` with the final fields.
-  /// We do NO extra runtime logic here—just assignment.
+  // --------------------------------------------------------------------------
+  // Private Internal Constructor
+  // --------------------------------------------------------------------------
+
+  /// Private underscore constructor delegating to [FhirDateTimeBase].
   FhirInstant._({
     required super.valueString,
     required super.year,
@@ -49,8 +51,11 @@ class FhirInstant extends FhirDateTimeBase
     super.objectPath = 'Instant',
   }) : super._();
 
-  /// Public **factory** that replaces your old `fromBase` constructor logic.
-  /// We parse or assign the provided fields, then call the private underscore.
+  // --------------------------------------------------------------------------
+  // Public Factories
+  // --------------------------------------------------------------------------
+
+  /// Creates a [FhirInstant] from the base fields.
   factory FhirInstant.fromBase({
     required String? valueString,
     required int? year,
@@ -69,8 +74,6 @@ class FhirInstant extends FhirDateTimeBase
     bool? disallowExtensions,
     String objectPath = 'DateTime',
   }) {
-    // If you need any specialized logic, do it here.
-    // Otherwise, just pass everything to the private constructor:
     return FhirInstant._(
       valueString: valueString,
       year: year,
@@ -91,7 +94,7 @@ class FhirInstant extends FhirDateTimeBase
     );
   }
 
-  /// Factory constructor to create a [FhirInstant] from individual units.
+  /// Constructs a [FhirInstant] from individual date/time components (with mandatory precision).
   factory FhirInstant.fromUnits({
     required int year,
     required int month,
@@ -119,7 +122,7 @@ class FhirInstant extends FhirDateTimeBase
         element: element,
       ) as FhirInstant;
 
-  /// Factory constructor to create a [FhirInstant] from a [String].
+  /// Constructs a [FhirInstant] from a raw string.
   factory FhirInstant.fromString(
     String valueString, {
     Element? element,
@@ -143,7 +146,7 @@ class FhirInstant extends FhirDateTimeBase
         objectPath: objectPath,
       ) as FhirInstant;
 
-  /// Factory constructor to create a [FhirInstant] from a [DateTime].
+  /// Constructs a [FhirInstant] from a Dart [DateTime].
   factory FhirInstant.fromDateTime(
     DateTime input, {
     Element? element,
@@ -165,7 +168,7 @@ class FhirInstant extends FhirDateTimeBase
         annotations: annotations,
       ) as FhirInstant;
 
-  /// Creates empty [FhirInstant] object
+  /// Creates an empty [FhirInstant].
   factory FhirInstant.empty() => FhirInstant.fromBase(
         valueString: null,
         year: null,
@@ -181,7 +184,7 @@ class FhirInstant extends FhirDateTimeBase
         element: Element.empty(),
       );
 
-  /// Factory constructor to create a [FhirInstant] from JSON input.
+  /// Creates a [FhirInstant] from JSON.
   factory FhirInstant.fromJson(Map<String, dynamic> json) {
     final value = json['value'];
     final element = json['_value'] is Map<String, dynamic>
@@ -198,12 +201,12 @@ class FhirInstant extends FhirDateTimeBase
       ) as FhirInstant;
     } else {
       throw const FormatException(
-        'Invalid input for FhirInstant: Input must be a String or DateTime.',
+        'Invalid FhirInstant JSON: must be a String or DateTime.',
       );
     }
   }
 
-  /// Factory constructor to create [FhirInstant] from YAML input.
+  /// Creates a [FhirInstant] from YAML.
   static FhirInstant fromYaml(dynamic yaml) => yaml is String
       ? FhirInstant.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, dynamic>,
@@ -213,13 +216,10 @@ class FhirInstant extends FhirDateTimeBase
               jsonDecode(jsonEncode(yaml)) as Map<String, dynamic>,
             )
           : throw ArgumentError(
-              'FhirInstant cannot be constructed from the provided input,'
-              ' it must be a YAML string or map.',
+              'FhirInstant cannot be constructed from provided YAML input.',
             );
 
-  /// Tries to parse a value into a [FhirInstant].
-  ///
-  /// Supports String and DateTime inputs.
+  /// Tries to parse [value] into a [FhirInstant].
   static FhirInstant? tryParse(dynamic value) {
     try {
       if (value is DateTime) {
@@ -233,11 +233,13 @@ class FhirInstant extends FhirDateTimeBase
     return null;
   }
 
-  /// Returns the FHIR type as 'instant'.
+  // --------------------------------------------------------------------------
+  // Overrides
+  // --------------------------------------------------------------------------
+
   @override
   String get fhirType => 'instant';
 
-  /// Hash code based on the value of the [FhirInstant].
   @override
   // ignore: avoid_equals_and_hash_code_on_mutable_classes
   int get hashCode => valueString.hashCode;
@@ -248,51 +250,69 @@ class FhirInstant extends FhirDateTimeBase
       other.valueString == valueString &&
       other.element == element;
 
-  /// Compares two [FhirInstant] objects for equality.
   @override
   // ignore: avoid_equals_and_hash_code_on_mutable_classes
   bool operator ==(Object other) => equals(other);
 
-  /// Checks equality between [FhirInstant] and other types.
   @override
   bool equals(Object other) => isEqual(other) ?? false;
 
-  /// Adds a duration to a [FhirInstant].
+  /// Arithmetic
+  ///
+  /// Adds or subtracts an [ExtendedDuration] to/from this [FhirInstant].
+  ///
+  /// [ExtendedDuration] is a custom class that represents a duration of time.
+  /// The `plus` and `minus` methods are used to add or subtract the duration
+  /// from the [FhirInstant].
+  ///
+  /// The `operator +` and `operator -` methods are overridden to provide
+  /// shorthand syntax for adding or subtracting the duration.
+  ///
+
+  /// The `plus` method returns a new [FhirInstant] with the duration added.
   FhirInstant plus(ExtendedDuration other) =>
       FhirDateTimeBase.plus<FhirInstant>(this, other) as FhirInstant;
 
-  /// Subtracts a duration from a [FhirInstant].
-  FhirInstant subtract(ExtendedDuration other) =>
-      FhirDateTimeBase.minus<FhirInstant>(this, other) as FhirInstant;
-
-  /// Subtracts a duration from a [FhirInstant].
+  /// The `minus` method returns a new [FhirInstant] with the
+  /// duration subtracted.
   FhirInstant minus(ExtendedDuration other) =>
       FhirDateTimeBase.minus<FhirInstant>(this, other) as FhirInstant;
 
-  /// Adds a duration to a [FhirInstant] using the `+` operator.
+  /// The `operator +` method returns a new [FhirInstant] with the
+  /// duration added.
   @override
   FhirInstant operator +(ExtendedDuration other) =>
       FhirDateTimeBase.plus<FhirInstant>(this, other) as FhirInstant;
 
-  /// Subtracts a duration from a [FhirInstant] using the `-` operator.
+  /// The `operator -` method returns a new [FhirInstant] with the
+  /// duration subtracted.
   @override
   FhirInstant operator -(ExtendedDuration other) =>
       FhirDateTimeBase.minus<FhirInstant>(this, other) as FhirInstant;
 
-  /// Clones the [FhirInstant] object.
+  /// The `subtract` method is an alias for the `minus` method.
+  FhirInstant subtract(ExtendedDuration other) =>
+      FhirDateTimeBase.minus<FhirInstant>(this, other) as FhirInstant;
+
+  /// Clone
   @override
   FhirInstant clone() => FhirInstant.fromJson(toJson());
 
+  /// JSON
   @override
   Map<String, dynamic> toJson() => {
         if (valueString?.isNotEmpty ?? false) 'value': valueString,
-        if (element != null) '_value': element?.toJson(),
+        if (element != null) '_value': element!.toJson(),
       };
 
-  /// Creates a copy of the [FhirInstant], allowing modifications to properties.
+  // --------------------------------------------------------------------------
+  // copyWith
+  // --------------------------------------------------------------------------
+
+  /// Creates a new [FhirInstant] instance with updated properties.
   @override
   FhirInstant copyWith({
-    String? newValue,
+    dynamic newValue,
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
@@ -323,14 +343,14 @@ class FhirInstant extends FhirDateTimeBase
     ) as FhirInstant;
   }
 
-  /// Returns a new [FhirInstant] with extensions disallowed.
+  /// Shorthand to set `disallowExtensions = true`.
   FhirInstant noExtensions() => copyWith(disallowExtensions: true);
 
   /// Creates an empty property in the object
   @override
   FhirInstant createProperty(String propertyName) => this;
 
-  /// Clears the specified fields in a [FhirInstant] object
+  /// Clears specified fields in a [FhirInstant].
   @override
   FhirInstant clear({
     bool value = false,

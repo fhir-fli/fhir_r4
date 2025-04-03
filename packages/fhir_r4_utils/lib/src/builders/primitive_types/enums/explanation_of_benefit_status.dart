@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class ExplanationOfBenefitStatusBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   ExplanationOfBenefitStatusBuilder._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class ExplanationOfBenefitStatusBuilder extends FhirCodeEnumBuilder {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory ExplanationOfBenefitStatusBuilder(
-    String? raw, {
+    String? rawValue, {
     FhirUriBuilder? system,
     FhirStringBuilder? version,
     FhirStringBuilder? display,
@@ -29,9 +29,10 @@ class ExplanationOfBenefitStatusBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
     return ExplanationOfBenefitStatusBuilder._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -45,7 +46,7 @@ class ExplanationOfBenefitStatusBuilder extends FhirCodeEnumBuilder {
 
   /// Create empty [ExplanationOfBenefitStatusBuilder] with element only
   factory ExplanationOfBenefitStatusBuilder.empty() =>
-      ExplanationOfBenefitStatusBuilder._(validatedValue: '');
+      ExplanationOfBenefitStatusBuilder._(valueString: '');
 
   /// Factory constructor to create [ExplanationOfBenefitStatusBuilder]
   /// from JSON.
@@ -63,7 +64,7 @@ class ExplanationOfBenefitStatusBuilder extends FhirCodeEnumBuilder {
       );
     }
     return ExplanationOfBenefitStatusBuilder._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
@@ -71,7 +72,7 @@ class ExplanationOfBenefitStatusBuilder extends FhirCodeEnumBuilder {
   /// active
   static ExplanationOfBenefitStatusBuilder active =
       ExplanationOfBenefitStatusBuilder._(
-    validatedValue: 'active',
+    valueString: 'active',
     system: 'http://hl7.org/fhir/ValueSet/explanationofbenefit-status'
         .toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -81,7 +82,7 @@ class ExplanationOfBenefitStatusBuilder extends FhirCodeEnumBuilder {
   /// cancelled
   static ExplanationOfBenefitStatusBuilder cancelled =
       ExplanationOfBenefitStatusBuilder._(
-    validatedValue: 'cancelled',
+    valueString: 'cancelled',
     system: 'http://hl7.org/fhir/ValueSet/explanationofbenefit-status'
         .toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -91,7 +92,7 @@ class ExplanationOfBenefitStatusBuilder extends FhirCodeEnumBuilder {
   /// draft
   static ExplanationOfBenefitStatusBuilder draft =
       ExplanationOfBenefitStatusBuilder._(
-    validatedValue: 'draft',
+    valueString: 'draft',
     system: 'http://hl7.org/fhir/ValueSet/explanationofbenefit-status'
         .toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -101,7 +102,7 @@ class ExplanationOfBenefitStatusBuilder extends FhirCodeEnumBuilder {
   /// entered_in_error
   static ExplanationOfBenefitStatusBuilder entered_in_error =
       ExplanationOfBenefitStatusBuilder._(
-    validatedValue: 'entered-in-error',
+    valueString: 'entered-in-error',
     system: 'http://hl7.org/fhir/ValueSet/explanationofbenefit-status'
         .toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -110,7 +111,7 @@ class ExplanationOfBenefitStatusBuilder extends FhirCodeEnumBuilder {
 
   /// For instances where an Element is present but not value
   static ExplanationOfBenefitStatusBuilder elementOnly =
-      ExplanationOfBenefitStatusBuilder._(validatedValue: '');
+      ExplanationOfBenefitStatusBuilder._(valueString: '');
 
   /// List of all enum-like values
   static List<ExplanationOfBenefitStatusBuilder> values = [
@@ -124,31 +125,31 @@ class ExplanationOfBenefitStatusBuilder extends FhirCodeEnumBuilder {
   @override
   ExplanationOfBenefitStatusBuilder clone() =>
       ExplanationOfBenefitStatusBuilder._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
   ExplanationOfBenefitStatusBuilder withElement(ElementBuilder? newElement) {
     return ExplanationOfBenefitStatusBuilder._(
-        validatedValue: value, element: newElement,);
+        valueString: valueString, element: newElement,);
   }
 
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   ExplanationOfBenefitStatusBuilder copyWith({
-    String? newValue,
+    dynamic newValue,
     ElementBuilder? element,
     FhirStringBuilder? id,
     List<FhirExtensionBuilder>? extension_,
@@ -159,11 +160,12 @@ class ExplanationOfBenefitStatusBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError(
+          'Invalid input for ExplanationOfBenefitStatus: $newValue',);
     }
     return ExplanationOfBenefitStatusBuilder._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
@@ -172,7 +174,7 @@ class ExplanationOfBenefitStatusBuilder extends FhirCodeEnumBuilder {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath,
+      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

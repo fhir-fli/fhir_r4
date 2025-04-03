@@ -558,6 +558,21 @@ class BiologicallyDerivedProductBuilder extends DomainResourceBuilder {
           if (child is CommonLanguagesBuilder) {
             language = child;
             return;
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              // For enums, try to create directly from the string value
+              try {
+                final converted = CommonLanguagesBuilder(stringValue);
+                language = converted;
+                return;
+              } catch (e) {
+                // Continue if enum creation fails
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
           throw Exception('Invalid child type for $childName');
         }
@@ -577,7 +592,10 @@ class BiologicallyDerivedProductBuilder extends DomainResourceBuilder {
             return;
           } else if (child is ResourceBuilder) {
             // Add single element to existing list or create new list
-            contained = [...(contained ?? []), child];
+            contained = [
+              ...(contained ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -590,7 +608,10 @@ class BiologicallyDerivedProductBuilder extends DomainResourceBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -603,7 +624,10 @@ class BiologicallyDerivedProductBuilder extends DomainResourceBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -616,7 +640,10 @@ class BiologicallyDerivedProductBuilder extends DomainResourceBuilder {
             return;
           } else if (child is IdentifierBuilder) {
             // Add single element to existing list or create new list
-            identifier = [...(identifier ?? []), child];
+            identifier = [
+              ...(identifier ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -626,6 +653,22 @@ class BiologicallyDerivedProductBuilder extends DomainResourceBuilder {
           if (child is BiologicallyDerivedProductCategoryBuilder) {
             productCategory = child;
             return;
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              // For enums, try to create directly from the string value
+              try {
+                final converted =
+                    BiologicallyDerivedProductCategoryBuilder(stringValue);
+                productCategory = converted;
+                return;
+              } catch (e) {
+                // Continue if enum creation fails
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
           throw Exception('Invalid child type for $childName');
         }
@@ -642,6 +685,22 @@ class BiologicallyDerivedProductBuilder extends DomainResourceBuilder {
           if (child is BiologicallyDerivedProductStatusBuilder) {
             status = child;
             return;
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              // For enums, try to create directly from the string value
+              try {
+                final converted =
+                    BiologicallyDerivedProductStatusBuilder(stringValue);
+                status = converted;
+                return;
+              } catch (e) {
+                // Continue if enum creation fails
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
           throw Exception('Invalid child type for $childName');
         }
@@ -653,7 +712,10 @@ class BiologicallyDerivedProductBuilder extends DomainResourceBuilder {
             return;
           } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            request = [...(request ?? []), child];
+            request = [
+              ...(request ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -667,7 +729,8 @@ class BiologicallyDerivedProductBuilder extends DomainResourceBuilder {
             // Try to convert from one primitive type to another
             try {
               final stringValue = child.toString();
-              // For number types, first parse to num then pass the number directly
+              // For number types,
+              // first parse to num then pass the number directly
               final numValue = num.tryParse(stringValue);
               if (numValue != null) {
                 final converted = FhirIntegerBuilder.tryParse(numValue);
@@ -690,7 +753,10 @@ class BiologicallyDerivedProductBuilder extends DomainResourceBuilder {
             return;
           } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            parent = [...(parent ?? []), child];
+            parent = [
+              ...(parent ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -711,7 +777,10 @@ class BiologicallyDerivedProductBuilder extends DomainResourceBuilder {
             return;
           } else if (child is BiologicallyDerivedProductProcessingBuilder) {
             // Add single element to existing list or create new list
-            processing = [...(processing ?? []), child];
+            processing = [
+              ...(processing ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -732,7 +801,10 @@ class BiologicallyDerivedProductBuilder extends DomainResourceBuilder {
             return;
           } else if (child is BiologicallyDerivedProductStorageBuilder) {
             // Add single element to existing list or create new list
-            storage = [...(storage ?? []), child];
+            storage = [
+              ...(storage ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -1439,7 +1511,10 @@ class BiologicallyDerivedProductCollectionBuilder
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -1452,7 +1527,10 @@ class BiologicallyDerivedProductCollectionBuilder
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -1530,7 +1608,10 @@ class BiologicallyDerivedProductCollectionBuilder
         return ['ReferenceBuilder'];
       case 'collected':
       case 'collectedX':
-        return ['FhirDateTimeBuilder', 'PeriodBuilder'];
+        return [
+          'FhirDateTimeBuilder',
+          'PeriodBuilder',
+        ];
       case 'collectedDateTime':
         return ['FhirDateTimeBuilder'];
       case 'collectedPeriod':
@@ -2020,7 +2101,10 @@ class BiologicallyDerivedProductProcessingBuilder
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -2033,7 +2117,10 @@ class BiologicallyDerivedProductProcessingBuilder
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -2133,7 +2220,10 @@ class BiologicallyDerivedProductProcessingBuilder
         return ['ReferenceBuilder'];
       case 'time':
       case 'timeX':
-        return ['FhirDateTimeBuilder', 'PeriodBuilder'];
+        return [
+          'FhirDateTimeBuilder',
+          'PeriodBuilder',
+        ];
       case 'timeDateTime':
         return ['FhirDateTimeBuilder'];
       case 'timePeriod':
@@ -2604,7 +2694,10 @@ class BiologicallyDerivedProductManipulationBuilder
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -2617,7 +2710,10 @@ class BiologicallyDerivedProductManipulationBuilder
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -2697,7 +2793,10 @@ class BiologicallyDerivedProductManipulationBuilder
         return ['FhirStringBuilder'];
       case 'time':
       case 'timeX':
-        return ['FhirDateTimeBuilder', 'PeriodBuilder'];
+        return [
+          'FhirDateTimeBuilder',
+          'PeriodBuilder',
+        ];
       case 'timeDateTime':
         return ['FhirDateTimeBuilder'];
       case 'timePeriod':
@@ -3145,7 +3244,10 @@ class BiologicallyDerivedProductStorageBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -3158,7 +3260,10 @@ class BiologicallyDerivedProductStorageBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -3192,7 +3297,8 @@ class BiologicallyDerivedProductStorageBuilder extends BackboneElementBuilder {
             // Try to convert from one primitive type to another
             try {
               final stringValue = child.toString();
-              // For number types, first parse to num then pass the number directly
+              // For number types,
+              // first parse to num then pass the number directly
               final numValue = num.tryParse(stringValue);
               if (numValue != null) {
                 final converted = FhirDecimalBuilder.tryParse(numValue);
@@ -3212,6 +3318,22 @@ class BiologicallyDerivedProductStorageBuilder extends BackboneElementBuilder {
           if (child is BiologicallyDerivedProductStorageScaleBuilder) {
             scale = child;
             return;
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              // For enums, try to create directly from the string value
+              try {
+                final converted =
+                    BiologicallyDerivedProductStorageScaleBuilder(stringValue);
+                scale = converted;
+                return;
+              } catch (e) {
+                // Continue if enum creation fails
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
           throw Exception('Invalid child type for $childName');
         }

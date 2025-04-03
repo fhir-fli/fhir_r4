@@ -6,7 +6,7 @@ part of '../primitive_types.dart';
 class GoalLifecycleStatus extends FhirCodeEnum {
   // Private underscore constructor for internal use.
   GoalLifecycleStatus._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -20,7 +20,7 @@ class GoalLifecycleStatus extends FhirCodeEnum {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory GoalLifecycleStatus(
-    String? raw, {
+    String? rawValue, {
     FhirUri? system,
     FhirString? version,
     FhirString? display,
@@ -30,9 +30,10 @@ class GoalLifecycleStatus extends FhirCodeEnum {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCode._validateCode(rawValue) : null;
     return GoalLifecycleStatus._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -45,8 +46,7 @@ class GoalLifecycleStatus extends FhirCodeEnum {
   }
 
   /// Create empty [GoalLifecycleStatus] with element only
-  factory GoalLifecycleStatus.empty() =>
-      GoalLifecycleStatus._(validatedValue: '');
+  factory GoalLifecycleStatus.empty() => GoalLifecycleStatus._(valueString: '');
 
   /// Factory constructor to create [GoalLifecycleStatus] from JSON.
   factory GoalLifecycleStatus.fromJson(Map<String, dynamic> json) {
@@ -61,14 +61,14 @@ class GoalLifecycleStatus extends FhirCodeEnum {
       );
     }
     return GoalLifecycleStatus._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// proposed
   static final GoalLifecycleStatus proposed = GoalLifecycleStatus._(
-    validatedValue: 'proposed',
+    valueString: 'proposed',
     system: 'http://hl7.org/fhir/ValueSet/goal-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Proposed'.toFhirString,
@@ -76,7 +76,7 @@ class GoalLifecycleStatus extends FhirCodeEnum {
 
   /// planned
   static final GoalLifecycleStatus planned = GoalLifecycleStatus._(
-    validatedValue: 'planned',
+    valueString: 'planned',
     system: 'http://hl7.org/fhir/ValueSet/goal-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Planned'.toFhirString,
@@ -84,7 +84,7 @@ class GoalLifecycleStatus extends FhirCodeEnum {
 
   /// accepted
   static final GoalLifecycleStatus accepted = GoalLifecycleStatus._(
-    validatedValue: 'accepted',
+    valueString: 'accepted',
     system: 'http://hl7.org/fhir/ValueSet/goal-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Accepted'.toFhirString,
@@ -92,7 +92,7 @@ class GoalLifecycleStatus extends FhirCodeEnum {
 
   /// active
   static final GoalLifecycleStatus active = GoalLifecycleStatus._(
-    validatedValue: 'active',
+    valueString: 'active',
     system: 'http://hl7.org/fhir/ValueSet/goal-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Active'.toFhirString,
@@ -100,7 +100,7 @@ class GoalLifecycleStatus extends FhirCodeEnum {
 
   /// on_hold
   static final GoalLifecycleStatus on_hold = GoalLifecycleStatus._(
-    validatedValue: 'on-hold',
+    valueString: 'on-hold',
     system: 'http://hl7.org/fhir/ValueSet/goal-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'On Hold'.toFhirString,
@@ -108,7 +108,7 @@ class GoalLifecycleStatus extends FhirCodeEnum {
 
   /// completed
   static final GoalLifecycleStatus completed = GoalLifecycleStatus._(
-    validatedValue: 'completed',
+    valueString: 'completed',
     system: 'http://hl7.org/fhir/ValueSet/goal-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Completed'.toFhirString,
@@ -116,7 +116,7 @@ class GoalLifecycleStatus extends FhirCodeEnum {
 
   /// cancelled
   static final GoalLifecycleStatus cancelled = GoalLifecycleStatus._(
-    validatedValue: 'cancelled',
+    valueString: 'cancelled',
     system: 'http://hl7.org/fhir/ValueSet/goal-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Cancelled'.toFhirString,
@@ -124,7 +124,7 @@ class GoalLifecycleStatus extends FhirCodeEnum {
 
   /// entered_in_error
   static final GoalLifecycleStatus entered_in_error = GoalLifecycleStatus._(
-    validatedValue: 'entered-in-error',
+    valueString: 'entered-in-error',
     system: 'http://hl7.org/fhir/ValueSet/goal-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Entered in Error'.toFhirString,
@@ -132,7 +132,7 @@ class GoalLifecycleStatus extends FhirCodeEnum {
 
   /// rejected
   static final GoalLifecycleStatus rejected = GoalLifecycleStatus._(
-    validatedValue: 'rejected',
+    valueString: 'rejected',
     system: 'http://hl7.org/fhir/ValueSet/goal-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Rejected'.toFhirString,
@@ -140,7 +140,7 @@ class GoalLifecycleStatus extends FhirCodeEnum {
 
   /// For instances where an Element is present but not value
   static final GoalLifecycleStatus elementOnly =
-      GoalLifecycleStatus._(validatedValue: '');
+      GoalLifecycleStatus._(valueString: '');
 
   /// List of all enum-like values
   static final List<GoalLifecycleStatus> values = [
@@ -158,14 +158,14 @@ class GoalLifecycleStatus extends FhirCodeEnum {
   /// Clones the current instance
   @override
   GoalLifecycleStatus clone() => GoalLifecycleStatus._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   GoalLifecycleStatus withElement(Element? newElement) {
     return GoalLifecycleStatus._(
-      validatedValue: value,
+      valueString: valueString,
       element: newElement,
     );
   }
@@ -173,18 +173,18 @@ class GoalLifecycleStatus extends FhirCodeEnum {
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   GoalLifecycleStatus copyWith({
-    String? newValue,
+    dynamic newValue,
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
@@ -195,11 +195,11 @@ class GoalLifecycleStatus extends FhirCodeEnum {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError('Invalid input for GoalLifecycleStatus: $newValue');
     }
     return GoalLifecycleStatus._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

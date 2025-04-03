@@ -1278,7 +1278,10 @@ class ExplanationOfBenefit extends DomainResource {
             return copyWith(contained: newList);
           } else if (child is Resource) {
             // Add single element to existing list or create new list
-            final newList = [...?contained, child];
+            final newList = [
+              ...?contained,
+              child,
+            ];
             return copyWith(contained: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1292,7 +1295,10 @@ class ExplanationOfBenefit extends DomainResource {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1306,7 +1312,10 @@ class ExplanationOfBenefit extends DomainResource {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1320,7 +1329,10 @@ class ExplanationOfBenefit extends DomainResource {
             return copyWith(identifier: newList);
           } else if (child is Identifier) {
             // Add single element to existing list or create new list
-            final newList = [...?identifier, child];
+            final newList = [
+              ...?identifier,
+              child,
+            ];
             return copyWith(identifier: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1438,7 +1450,10 @@ class ExplanationOfBenefit extends DomainResource {
             return copyWith(related: newList);
           } else if (child is ExplanationOfBenefitRelated) {
             // Add single element to existing list or create new list
-            final newList = [...?related, child];
+            final newList = [
+              ...?related,
+              child,
+            ];
             return copyWith(related: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1524,7 +1539,10 @@ class ExplanationOfBenefit extends DomainResource {
             return copyWith(preAuthRef: newList);
           } else if (child is FhirString) {
             // Add single element to existing list or create new list
-            final newList = [...?preAuthRef, child];
+            final newList = [
+              ...?preAuthRef,
+              child,
+            ];
             return copyWith(preAuthRef: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1538,7 +1556,10 @@ class ExplanationOfBenefit extends DomainResource {
             return copyWith(preAuthRefPeriod: newList);
           } else if (child is Period) {
             // Add single element to existing list or create new list
-            final newList = [...?preAuthRefPeriod, child];
+            final newList = [
+              ...?preAuthRefPeriod,
+              child,
+            ];
             return copyWith(preAuthRefPeriod: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1552,7 +1573,10 @@ class ExplanationOfBenefit extends DomainResource {
             return copyWith(careTeam: newList);
           } else if (child is ExplanationOfBenefitCareTeam) {
             // Add single element to existing list or create new list
-            final newList = [...?careTeam, child];
+            final newList = [
+              ...?careTeam,
+              child,
+            ];
             return copyWith(careTeam: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1566,7 +1590,10 @@ class ExplanationOfBenefit extends DomainResource {
             return copyWith(supportingInfo: newList);
           } else if (child is ExplanationOfBenefitSupportingInfo) {
             // Add single element to existing list or create new list
-            final newList = [...?supportingInfo, child];
+            final newList = [
+              ...?supportingInfo,
+              child,
+            ];
             return copyWith(supportingInfo: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1580,7 +1607,10 @@ class ExplanationOfBenefit extends DomainResource {
             return copyWith(diagnosis: newList);
           } else if (child is ExplanationOfBenefitDiagnosis) {
             // Add single element to existing list or create new list
-            final newList = [...?diagnosis, child];
+            final newList = [
+              ...?diagnosis,
+              child,
+            ];
             return copyWith(diagnosis: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1594,7 +1624,10 @@ class ExplanationOfBenefit extends DomainResource {
             return copyWith(procedure: newList);
           } else if (child is ExplanationOfBenefitProcedure) {
             // Add single element to existing list or create new list
-            final newList = [...?procedure, child];
+            final newList = [
+              ...?procedure,
+              child,
+            ];
             return copyWith(procedure: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1616,7 +1649,10 @@ class ExplanationOfBenefit extends DomainResource {
             return copyWith(insurance: newList);
           } else if (child is ExplanationOfBenefitInsurance) {
             // Add single element to existing list or create new list
-            final newList = [...insurance, child];
+            final newList = [
+              ...insurance,
+              child,
+            ];
             return copyWith(insurance: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1638,7 +1674,10 @@ class ExplanationOfBenefit extends DomainResource {
             return copyWith(item: newList);
           } else if (child is ExplanationOfBenefitItem) {
             // Add single element to existing list or create new list
-            final newList = [...?item, child];
+            final newList = [
+              ...?item,
+              child,
+            ];
             return copyWith(item: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1652,7 +1691,10 @@ class ExplanationOfBenefit extends DomainResource {
             return copyWith(addItem: newList);
           } else if (child is ExplanationOfBenefitAddItem) {
             // Add single element to existing list or create new list
-            final newList = [...?addItem, child];
+            final newList = [
+              ...?addItem,
+              child,
+            ];
             return copyWith(addItem: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1666,7 +1708,10 @@ class ExplanationOfBenefit extends DomainResource {
             return copyWith(adjudication: newList);
           } else if (child is ExplanationOfBenefitAdjudication) {
             // Add single element to existing list or create new list
-            final newList = [...?adjudication, child];
+            final newList = [
+              ...?adjudication,
+              child,
+            ];
             return copyWith(adjudication: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1680,7 +1725,10 @@ class ExplanationOfBenefit extends DomainResource {
             return copyWith(total: newList);
           } else if (child is ExplanationOfBenefitTotal) {
             // Add single element to existing list or create new list
-            final newList = [...?total, child];
+            final newList = [
+              ...?total,
+              child,
+            ];
             return copyWith(total: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1718,7 +1766,10 @@ class ExplanationOfBenefit extends DomainResource {
             return copyWith(processNote: newList);
           } else if (child is ExplanationOfBenefitProcessNote) {
             // Add single element to existing list or create new list
-            final newList = [...?processNote, child];
+            final newList = [
+              ...?processNote,
+              child,
+            ];
             return copyWith(processNote: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1740,7 +1791,10 @@ class ExplanationOfBenefit extends DomainResource {
             return copyWith(benefitBalance: newList);
           } else if (child is ExplanationOfBenefitBenefitBalance) {
             // Add single element to existing list or create new list
-            final newList = [...?benefitBalance, child];
+            final newList = [
+              ...?benefitBalance,
+              child,
+            ];
             return copyWith(benefitBalance: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -3218,7 +3272,10 @@ class ExplanationOfBenefitRelated extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -3232,7 +3289,10 @@ class ExplanationOfBenefitRelated extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -3720,7 +3780,10 @@ class ExplanationOfBenefitPayee extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -3734,7 +3797,10 @@ class ExplanationOfBenefitPayee extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -4252,7 +4318,10 @@ class ExplanationOfBenefitCareTeam extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -4266,7 +4335,10 @@ class ExplanationOfBenefitCareTeam extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -4960,7 +5032,10 @@ class ExplanationOfBenefitSupportingInfo extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -4974,7 +5049,10 @@ class ExplanationOfBenefitSupportingInfo extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -5129,7 +5207,10 @@ class ExplanationOfBenefitSupportingInfo extends BackboneElement {
         return ['CodeableConcept'];
       case 'timing':
       case 'timingX':
-        return ['FhirDate', 'Period'];
+        return [
+          'FhirDate',
+          'Period',
+        ];
       case 'timingDate':
         return ['FhirDate'];
       case 'timingPeriod':
@@ -5767,7 +5848,10 @@ class ExplanationOfBenefitDiagnosis extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -5781,7 +5865,10 @@ class ExplanationOfBenefitDiagnosis extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -5833,7 +5920,10 @@ class ExplanationOfBenefitDiagnosis extends BackboneElement {
             return copyWith(type: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...?type, child];
+            final newList = [
+              ...?type,
+              child,
+            ];
             return copyWith(type: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -5875,7 +5965,10 @@ class ExplanationOfBenefitDiagnosis extends BackboneElement {
         return ['FhirPositiveInt'];
       case 'diagnosis':
       case 'diagnosisX':
-        return ['CodeableConcept', 'Reference'];
+        return [
+          'CodeableConcept',
+          'Reference',
+        ];
       case 'diagnosisCodeableConcept':
         return ['CodeableConcept'];
       case 'diagnosisReference':
@@ -6459,7 +6552,10 @@ class ExplanationOfBenefitProcedure extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -6473,7 +6569,10 @@ class ExplanationOfBenefitProcedure extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -6495,7 +6594,10 @@ class ExplanationOfBenefitProcedure extends BackboneElement {
             return copyWith(type: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...?type, child];
+            final newList = [
+              ...?type,
+              child,
+            ];
             return copyWith(type: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -6547,7 +6649,10 @@ class ExplanationOfBenefitProcedure extends BackboneElement {
             return copyWith(udi: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...?udi, child];
+            final newList = [
+              ...?udi,
+              child,
+            ];
             return copyWith(udi: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -6577,7 +6682,10 @@ class ExplanationOfBenefitProcedure extends BackboneElement {
         return ['FhirDateTime'];
       case 'procedure':
       case 'procedureX':
-        return ['CodeableConcept', 'Reference'];
+        return [
+          'CodeableConcept',
+          'Reference',
+        ];
       case 'procedureCodeableConcept':
         return ['CodeableConcept'];
       case 'procedureReference':
@@ -7096,7 +7204,10 @@ class ExplanationOfBenefitInsurance extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -7110,7 +7221,10 @@ class ExplanationOfBenefitInsurance extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -7140,7 +7254,10 @@ class ExplanationOfBenefitInsurance extends BackboneElement {
             return copyWith(preAuthRef: newList);
           } else if (child is FhirString) {
             // Add single element to existing list or create new list
-            final newList = [...?preAuthRef, child];
+            final newList = [
+              ...?preAuthRef,
+              child,
+            ];
             return copyWith(preAuthRef: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -7649,7 +7766,10 @@ class ExplanationOfBenefitAccident extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -7663,7 +7783,10 @@ class ExplanationOfBenefitAccident extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -7737,7 +7860,10 @@ class ExplanationOfBenefitAccident extends BackboneElement {
         return ['CodeableConcept'];
       case 'location':
       case 'locationX':
-        return ['Address', 'Reference'];
+        return [
+          'Address',
+          'Reference',
+        ];
       case 'locationAddress':
         return ['Address'];
       case 'locationReference':
@@ -8698,7 +8824,10 @@ class ExplanationOfBenefitItem extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -8712,7 +8841,10 @@ class ExplanationOfBenefitItem extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -8734,7 +8866,10 @@ class ExplanationOfBenefitItem extends BackboneElement {
             return copyWith(careTeamSequence: newList);
           } else if (child is FhirPositiveInt) {
             // Add single element to existing list or create new list
-            final newList = [...?careTeamSequence, child];
+            final newList = [
+              ...?careTeamSequence,
+              child,
+            ];
             return copyWith(careTeamSequence: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -8748,7 +8883,10 @@ class ExplanationOfBenefitItem extends BackboneElement {
             return copyWith(diagnosisSequence: newList);
           } else if (child is FhirPositiveInt) {
             // Add single element to existing list or create new list
-            final newList = [...?diagnosisSequence, child];
+            final newList = [
+              ...?diagnosisSequence,
+              child,
+            ];
             return copyWith(diagnosisSequence: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -8762,7 +8900,10 @@ class ExplanationOfBenefitItem extends BackboneElement {
             return copyWith(procedureSequence: newList);
           } else if (child is FhirPositiveInt) {
             // Add single element to existing list or create new list
-            final newList = [...?procedureSequence, child];
+            final newList = [
+              ...?procedureSequence,
+              child,
+            ];
             return copyWith(procedureSequence: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -8776,7 +8917,10 @@ class ExplanationOfBenefitItem extends BackboneElement {
             return copyWith(informationSequence: newList);
           } else if (child is FhirPositiveInt) {
             // Add single element to existing list or create new list
-            final newList = [...?informationSequence, child];
+            final newList = [
+              ...?informationSequence,
+              child,
+            ];
             return copyWith(informationSequence: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -8814,7 +8958,10 @@ class ExplanationOfBenefitItem extends BackboneElement {
             return copyWith(modifier: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...?modifier, child];
+            final newList = [
+              ...?modifier,
+              child,
+            ];
             return copyWith(modifier: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -8828,7 +8975,10 @@ class ExplanationOfBenefitItem extends BackboneElement {
             return copyWith(programCode: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...?programCode, child];
+            final newList = [
+              ...?programCode,
+              child,
+            ];
             return copyWith(programCode: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -8945,7 +9095,10 @@ class ExplanationOfBenefitItem extends BackboneElement {
             return copyWith(udi: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...?udi, child];
+            final newList = [
+              ...?udi,
+              child,
+            ];
             return copyWith(udi: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -8967,7 +9120,10 @@ class ExplanationOfBenefitItem extends BackboneElement {
             return copyWith(subSite: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...?subSite, child];
+            final newList = [
+              ...?subSite,
+              child,
+            ];
             return copyWith(subSite: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -8981,7 +9137,10 @@ class ExplanationOfBenefitItem extends BackboneElement {
             return copyWith(encounter: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...?encounter, child];
+            final newList = [
+              ...?encounter,
+              child,
+            ];
             return copyWith(encounter: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -8995,7 +9154,10 @@ class ExplanationOfBenefitItem extends BackboneElement {
             return copyWith(noteNumber: newList);
           } else if (child is FhirPositiveInt) {
             // Add single element to existing list or create new list
-            final newList = [...?noteNumber, child];
+            final newList = [
+              ...?noteNumber,
+              child,
+            ];
             return copyWith(noteNumber: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -9009,7 +9171,10 @@ class ExplanationOfBenefitItem extends BackboneElement {
             return copyWith(adjudication: newList);
           } else if (child is ExplanationOfBenefitAdjudication) {
             // Add single element to existing list or create new list
-            final newList = [...?adjudication, child];
+            final newList = [
+              ...?adjudication,
+              child,
+            ];
             return copyWith(adjudication: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -9023,7 +9188,10 @@ class ExplanationOfBenefitItem extends BackboneElement {
             return copyWith(detail: newList);
           } else if (child is ExplanationOfBenefitDetail) {
             // Add single element to existing list or create new list
-            final newList = [...?detail, child];
+            final newList = [
+              ...?detail,
+              child,
+            ];
             return copyWith(detail: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -9067,14 +9235,21 @@ class ExplanationOfBenefitItem extends BackboneElement {
         return ['CodeableConcept'];
       case 'serviced':
       case 'servicedX':
-        return ['FhirDate', 'Period'];
+        return [
+          'FhirDate',
+          'Period',
+        ];
       case 'servicedDate':
         return ['FhirDate'];
       case 'servicedPeriod':
         return ['Period'];
       case 'location':
       case 'locationX':
-        return ['CodeableConcept', 'Address', 'Reference'];
+        return [
+          'CodeableConcept',
+          'Address',
+          'Reference',
+        ];
       case 'locationCodeableConcept':
         return ['CodeableConcept'];
       case 'locationAddress':
@@ -10034,7 +10209,10 @@ class ExplanationOfBenefitAdjudication extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -10048,7 +10226,10 @@ class ExplanationOfBenefitAdjudication extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -10833,7 +11014,10 @@ class ExplanationOfBenefitDetail extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -10847,7 +11031,10 @@ class ExplanationOfBenefitDetail extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -10893,7 +11080,10 @@ class ExplanationOfBenefitDetail extends BackboneElement {
             return copyWith(modifier: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...?modifier, child];
+            final newList = [
+              ...?modifier,
+              child,
+            ];
             return copyWith(modifier: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -10907,7 +11097,10 @@ class ExplanationOfBenefitDetail extends BackboneElement {
             return copyWith(programCode: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...?programCode, child];
+            final newList = [
+              ...?programCode,
+              child,
+            ];
             return copyWith(programCode: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -10953,7 +11146,10 @@ class ExplanationOfBenefitDetail extends BackboneElement {
             return copyWith(udi: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...?udi, child];
+            final newList = [
+              ...?udi,
+              child,
+            ];
             return copyWith(udi: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -10967,7 +11163,10 @@ class ExplanationOfBenefitDetail extends BackboneElement {
             return copyWith(noteNumber: newList);
           } else if (child is FhirPositiveInt) {
             // Add single element to existing list or create new list
-            final newList = [...?noteNumber, child];
+            final newList = [
+              ...?noteNumber,
+              child,
+            ];
             return copyWith(noteNumber: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -10981,7 +11180,10 @@ class ExplanationOfBenefitDetail extends BackboneElement {
             return copyWith(adjudication: newList);
           } else if (child is ExplanationOfBenefitAdjudication) {
             // Add single element to existing list or create new list
-            final newList = [...?adjudication, child];
+            final newList = [
+              ...?adjudication,
+              child,
+            ];
             return copyWith(adjudication: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -10995,7 +11197,10 @@ class ExplanationOfBenefitDetail extends BackboneElement {
             return copyWith(subDetail: newList);
           } else if (child is ExplanationOfBenefitSubDetail) {
             // Add single element to existing list or create new list
-            final newList = [...?subDetail, child];
+            final newList = [
+              ...?subDetail,
+              child,
+            ];
             return copyWith(subDetail: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -11958,7 +12163,10 @@ class ExplanationOfBenefitSubDetail extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -11972,7 +12180,10 @@ class ExplanationOfBenefitSubDetail extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -12018,7 +12229,10 @@ class ExplanationOfBenefitSubDetail extends BackboneElement {
             return copyWith(modifier: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...?modifier, child];
+            final newList = [
+              ...?modifier,
+              child,
+            ];
             return copyWith(modifier: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -12032,7 +12246,10 @@ class ExplanationOfBenefitSubDetail extends BackboneElement {
             return copyWith(programCode: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...?programCode, child];
+            final newList = [
+              ...?programCode,
+              child,
+            ];
             return copyWith(programCode: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -12078,7 +12295,10 @@ class ExplanationOfBenefitSubDetail extends BackboneElement {
             return copyWith(udi: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...?udi, child];
+            final newList = [
+              ...?udi,
+              child,
+            ];
             return copyWith(udi: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -12092,7 +12312,10 @@ class ExplanationOfBenefitSubDetail extends BackboneElement {
             return copyWith(noteNumber: newList);
           } else if (child is FhirPositiveInt) {
             // Add single element to existing list or create new list
-            final newList = [...?noteNumber, child];
+            final newList = [
+              ...?noteNumber,
+              child,
+            ];
             return copyWith(noteNumber: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -12106,7 +12329,10 @@ class ExplanationOfBenefitSubDetail extends BackboneElement {
             return copyWith(adjudication: newList);
           } else if (child is ExplanationOfBenefitAdjudication) {
             // Add single element to existing list or create new list
-            final newList = [...?adjudication, child];
+            final newList = [
+              ...?adjudication,
+              child,
+            ];
             return copyWith(adjudication: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -13206,7 +13432,10 @@ class ExplanationOfBenefitAddItem extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -13220,7 +13449,10 @@ class ExplanationOfBenefitAddItem extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -13234,7 +13466,10 @@ class ExplanationOfBenefitAddItem extends BackboneElement {
             return copyWith(itemSequence: newList);
           } else if (child is FhirPositiveInt) {
             // Add single element to existing list or create new list
-            final newList = [...?itemSequence, child];
+            final newList = [
+              ...?itemSequence,
+              child,
+            ];
             return copyWith(itemSequence: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -13248,7 +13483,10 @@ class ExplanationOfBenefitAddItem extends BackboneElement {
             return copyWith(detailSequence: newList);
           } else if (child is FhirPositiveInt) {
             // Add single element to existing list or create new list
-            final newList = [...?detailSequence, child];
+            final newList = [
+              ...?detailSequence,
+              child,
+            ];
             return copyWith(detailSequence: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -13262,7 +13500,10 @@ class ExplanationOfBenefitAddItem extends BackboneElement {
             return copyWith(subDetailSequence: newList);
           } else if (child is FhirPositiveInt) {
             // Add single element to existing list or create new list
-            final newList = [...?subDetailSequence, child];
+            final newList = [
+              ...?subDetailSequence,
+              child,
+            ];
             return copyWith(subDetailSequence: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -13276,7 +13517,10 @@ class ExplanationOfBenefitAddItem extends BackboneElement {
             return copyWith(provider: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...?provider, child];
+            final newList = [
+              ...?provider,
+              child,
+            ];
             return copyWith(provider: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -13298,7 +13542,10 @@ class ExplanationOfBenefitAddItem extends BackboneElement {
             return copyWith(modifier: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...?modifier, child];
+            final newList = [
+              ...?modifier,
+              child,
+            ];
             return copyWith(modifier: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -13312,7 +13559,10 @@ class ExplanationOfBenefitAddItem extends BackboneElement {
             return copyWith(programCode: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...?programCode, child];
+            final newList = [
+              ...?programCode,
+              child,
+            ];
             return copyWith(programCode: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -13437,7 +13687,10 @@ class ExplanationOfBenefitAddItem extends BackboneElement {
             return copyWith(subSite: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...?subSite, child];
+            final newList = [
+              ...?subSite,
+              child,
+            ];
             return copyWith(subSite: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -13451,7 +13704,10 @@ class ExplanationOfBenefitAddItem extends BackboneElement {
             return copyWith(noteNumber: newList);
           } else if (child is FhirPositiveInt) {
             // Add single element to existing list or create new list
-            final newList = [...?noteNumber, child];
+            final newList = [
+              ...?noteNumber,
+              child,
+            ];
             return copyWith(noteNumber: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -13465,7 +13721,10 @@ class ExplanationOfBenefitAddItem extends BackboneElement {
             return copyWith(adjudication: newList);
           } else if (child is ExplanationOfBenefitAdjudication) {
             // Add single element to existing list or create new list
-            final newList = [...?adjudication, child];
+            final newList = [
+              ...?adjudication,
+              child,
+            ];
             return copyWith(adjudication: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -13479,7 +13738,10 @@ class ExplanationOfBenefitAddItem extends BackboneElement {
             return copyWith(detail: newList);
           } else if (child is ExplanationOfBenefitDetail) {
             // Add single element to existing list or create new list
-            final newList = [...?detail, child];
+            final newList = [
+              ...?detail,
+              child,
+            ];
             return copyWith(detail: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -13517,14 +13779,21 @@ class ExplanationOfBenefitAddItem extends BackboneElement {
         return ['CodeableConcept'];
       case 'serviced':
       case 'servicedX':
-        return ['FhirDate', 'Period'];
+        return [
+          'FhirDate',
+          'Period',
+        ];
       case 'servicedDate':
         return ['FhirDate'];
       case 'servicedPeriod':
         return ['Period'];
       case 'location':
       case 'locationX':
-        return ['CodeableConcept', 'Address', 'Reference'];
+        return [
+          'CodeableConcept',
+          'Address',
+          'Reference',
+        ];
       case 'locationCodeableConcept':
         return ['CodeableConcept'];
       case 'locationAddress':
@@ -14490,7 +14759,10 @@ class ExplanationOfBenefitDetail1 extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -14504,7 +14776,10 @@ class ExplanationOfBenefitDetail1 extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -14526,7 +14801,10 @@ class ExplanationOfBenefitDetail1 extends BackboneElement {
             return copyWith(modifier: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...?modifier, child];
+            final newList = [
+              ...?modifier,
+              child,
+            ];
             return copyWith(modifier: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -14572,7 +14850,10 @@ class ExplanationOfBenefitDetail1 extends BackboneElement {
             return copyWith(noteNumber: newList);
           } else if (child is FhirPositiveInt) {
             // Add single element to existing list or create new list
-            final newList = [...?noteNumber, child];
+            final newList = [
+              ...?noteNumber,
+              child,
+            ];
             return copyWith(noteNumber: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -14586,7 +14867,10 @@ class ExplanationOfBenefitDetail1 extends BackboneElement {
             return copyWith(adjudication: newList);
           } else if (child is ExplanationOfBenefitAdjudication) {
             // Add single element to existing list or create new list
-            final newList = [...?adjudication, child];
+            final newList = [
+              ...?adjudication,
+              child,
+            ];
             return copyWith(adjudication: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -14600,7 +14884,10 @@ class ExplanationOfBenefitDetail1 extends BackboneElement {
             return copyWith(subDetail: newList);
           } else if (child is ExplanationOfBenefitSubDetail) {
             // Add single element to existing list or create new list
-            final newList = [...?subDetail, child];
+            final newList = [
+              ...?subDetail,
+              child,
+            ];
             return copyWith(subDetail: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -15341,7 +15628,10 @@ class ExplanationOfBenefitSubDetail1 extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -15355,7 +15645,10 @@ class ExplanationOfBenefitSubDetail1 extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -15377,7 +15670,10 @@ class ExplanationOfBenefitSubDetail1 extends BackboneElement {
             return copyWith(modifier: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...?modifier, child];
+            final newList = [
+              ...?modifier,
+              child,
+            ];
             return copyWith(modifier: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -15423,7 +15719,10 @@ class ExplanationOfBenefitSubDetail1 extends BackboneElement {
             return copyWith(noteNumber: newList);
           } else if (child is FhirPositiveInt) {
             // Add single element to existing list or create new list
-            final newList = [...?noteNumber, child];
+            final newList = [
+              ...?noteNumber,
+              child,
+            ];
             return copyWith(noteNumber: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -15437,7 +15736,10 @@ class ExplanationOfBenefitSubDetail1 extends BackboneElement {
             return copyWith(adjudication: newList);
           } else if (child is ExplanationOfBenefitAdjudication) {
             // Add single element to existing list or create new list
-            final newList = [...?adjudication, child];
+            final newList = [
+              ...?adjudication,
+              child,
+            ];
             return copyWith(adjudication: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -16017,7 +16319,10 @@ class ExplanationOfBenefitTotal extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -16031,7 +16336,10 @@ class ExplanationOfBenefitTotal extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -16569,7 +16877,10 @@ class ExplanationOfBenefitPayment extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -16583,7 +16894,10 @@ class ExplanationOfBenefitPayment extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -17197,7 +17511,10 @@ class ExplanationOfBenefitProcessNote extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -17211,7 +17528,10 @@ class ExplanationOfBenefitProcessNote extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -17855,7 +18175,10 @@ class ExplanationOfBenefitBenefitBalance extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -17869,7 +18192,10 @@ class ExplanationOfBenefitBenefitBalance extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -17939,7 +18265,10 @@ class ExplanationOfBenefitBenefitBalance extends BackboneElement {
             return copyWith(financial: newList);
           } else if (child is ExplanationOfBenefitFinancial) {
             // Add single element to existing list or create new list
-            final newList = [...?financial, child];
+            final newList = [
+              ...?financial,
+              child,
+            ];
             return copyWith(financial: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -18578,7 +18907,10 @@ class ExplanationOfBenefitFinancial extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -18592,7 +18924,10 @@ class ExplanationOfBenefitFinancial extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -18697,7 +19032,11 @@ class ExplanationOfBenefitFinancial extends BackboneElement {
         return ['CodeableConcept'];
       case 'allowed':
       case 'allowedX':
-        return ['FhirUnsignedInt', 'FhirString', 'Money'];
+        return [
+          'FhirUnsignedInt',
+          'FhirString',
+          'Money',
+        ];
       case 'allowedUnsignedInt':
         return ['FhirUnsignedInt'];
       case 'allowedString':
@@ -18706,7 +19045,10 @@ class ExplanationOfBenefitFinancial extends BackboneElement {
         return ['Money'];
       case 'used':
       case 'usedX':
-        return ['FhirUnsignedInt', 'Money'];
+        return [
+          'FhirUnsignedInt',
+          'Money',
+        ];
       case 'usedUnsignedInt':
         return ['FhirUnsignedInt'];
       case 'usedMoney':

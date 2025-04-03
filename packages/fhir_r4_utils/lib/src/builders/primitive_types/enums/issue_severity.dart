@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class IssueSeverityBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   IssueSeverityBuilder._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class IssueSeverityBuilder extends FhirCodeEnumBuilder {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory IssueSeverityBuilder(
-    String? raw, {
+    String? rawValue, {
     FhirUriBuilder? system,
     FhirStringBuilder? version,
     FhirStringBuilder? display,
@@ -29,9 +29,10 @@ class IssueSeverityBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
     return IssueSeverityBuilder._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -45,7 +46,7 @@ class IssueSeverityBuilder extends FhirCodeEnumBuilder {
 
   /// Create empty [IssueSeverityBuilder] with element only
   factory IssueSeverityBuilder.empty() =>
-      IssueSeverityBuilder._(validatedValue: '');
+      IssueSeverityBuilder._(valueString: '');
 
   /// Factory constructor to create [IssueSeverityBuilder]
   /// from JSON.
@@ -62,14 +63,14 @@ class IssueSeverityBuilder extends FhirCodeEnumBuilder {
       );
     }
     return IssueSeverityBuilder._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// fatal
   static IssueSeverityBuilder fatal = IssueSeverityBuilder._(
-    validatedValue: 'fatal',
+    valueString: 'fatal',
     system: 'http://hl7.org/fhir/ValueSet/issue-severity'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Fatal'.toFhirStringBuilder,
@@ -77,7 +78,7 @@ class IssueSeverityBuilder extends FhirCodeEnumBuilder {
 
   /// error
   static IssueSeverityBuilder error = IssueSeverityBuilder._(
-    validatedValue: 'error',
+    valueString: 'error',
     system: 'http://hl7.org/fhir/ValueSet/issue-severity'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Error'.toFhirStringBuilder,
@@ -85,7 +86,7 @@ class IssueSeverityBuilder extends FhirCodeEnumBuilder {
 
   /// warning
   static IssueSeverityBuilder warning = IssueSeverityBuilder._(
-    validatedValue: 'warning',
+    valueString: 'warning',
     system: 'http://hl7.org/fhir/ValueSet/issue-severity'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Warning'.toFhirStringBuilder,
@@ -93,7 +94,7 @@ class IssueSeverityBuilder extends FhirCodeEnumBuilder {
 
   /// information
   static IssueSeverityBuilder information = IssueSeverityBuilder._(
-    validatedValue: 'information',
+    valueString: 'information',
     system: 'http://hl7.org/fhir/ValueSet/issue-severity'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Information'.toFhirStringBuilder,
@@ -101,7 +102,7 @@ class IssueSeverityBuilder extends FhirCodeEnumBuilder {
 
   /// For instances where an Element is present but not value
   static IssueSeverityBuilder elementOnly =
-      IssueSeverityBuilder._(validatedValue: '');
+      IssueSeverityBuilder._(valueString: '');
 
   /// List of all enum-like values
   static List<IssueSeverityBuilder> values = [
@@ -114,30 +115,31 @@ class IssueSeverityBuilder extends FhirCodeEnumBuilder {
   /// Clones the current instance
   @override
   IssueSeverityBuilder clone() => IssueSeverityBuilder._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
   IssueSeverityBuilder withElement(ElementBuilder? newElement) {
-    return IssueSeverityBuilder._(validatedValue: value, element: newElement);
+    return IssueSeverityBuilder._(
+        valueString: valueString, element: newElement,);
   }
 
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   IssueSeverityBuilder copyWith({
-    String? newValue,
+    dynamic newValue,
     ElementBuilder? element,
     FhirStringBuilder? id,
     List<FhirExtensionBuilder>? extension_,
@@ -148,11 +150,11 @@ class IssueSeverityBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError('Invalid input for IssueSeverity: $newValue');
     }
     return IssueSeverityBuilder._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
@@ -161,7 +163,7 @@ class IssueSeverityBuilder extends FhirCodeEnumBuilder {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath,
+      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

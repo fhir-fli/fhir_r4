@@ -469,7 +469,10 @@ class ProdCharacteristic extends BackboneType {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -483,7 +486,10 @@ class ProdCharacteristic extends BackboneType {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -553,7 +559,10 @@ class ProdCharacteristic extends BackboneType {
             return copyWith(color: newList);
           } else if (child is FhirString) {
             // Add single element to existing list or create new list
-            final newList = [...?color, child];
+            final newList = [
+              ...?color,
+              child,
+            ];
             return copyWith(color: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -567,7 +576,10 @@ class ProdCharacteristic extends BackboneType {
             return copyWith(imprint: newList);
           } else if (child is FhirString) {
             // Add single element to existing list or create new list
-            final newList = [...?imprint, child];
+            final newList = [
+              ...?imprint,
+              child,
+            ];
             return copyWith(imprint: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -581,7 +593,10 @@ class ProdCharacteristic extends BackboneType {
             return copyWith(image: newList);
           } else if (child is Attachment) {
             // Add single element to existing list or create new list
-            final newList = [...?image, child];
+            final newList = [
+              ...?image,
+              child,
+            ];
             return copyWith(image: newList);
           } else {
             throw Exception('Invalid child type for $childName');

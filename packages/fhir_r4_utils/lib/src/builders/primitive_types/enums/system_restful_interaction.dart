@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class SystemRestfulInteractionBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   SystemRestfulInteractionBuilder._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class SystemRestfulInteractionBuilder extends FhirCodeEnumBuilder {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory SystemRestfulInteractionBuilder(
-    String? raw, {
+    String? rawValue, {
     FhirUriBuilder? system,
     FhirStringBuilder? version,
     FhirStringBuilder? display,
@@ -29,9 +29,10 @@ class SystemRestfulInteractionBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
     return SystemRestfulInteractionBuilder._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -45,7 +46,7 @@ class SystemRestfulInteractionBuilder extends FhirCodeEnumBuilder {
 
   /// Create empty [SystemRestfulInteractionBuilder] with element only
   factory SystemRestfulInteractionBuilder.empty() =>
-      SystemRestfulInteractionBuilder._(validatedValue: '');
+      SystemRestfulInteractionBuilder._(valueString: '');
 
   /// Factory constructor to create [SystemRestfulInteractionBuilder]
   /// from JSON.
@@ -62,7 +63,7 @@ class SystemRestfulInteractionBuilder extends FhirCodeEnumBuilder {
       );
     }
     return SystemRestfulInteractionBuilder._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
@@ -70,7 +71,7 @@ class SystemRestfulInteractionBuilder extends FhirCodeEnumBuilder {
   /// read
   static SystemRestfulInteractionBuilder read =
       SystemRestfulInteractionBuilder._(
-    validatedValue: 'read',
+    valueString: 'read',
     system: 'http://hl7.org/fhir/ValueSet/system-restful-interaction'
         .toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -80,7 +81,7 @@ class SystemRestfulInteractionBuilder extends FhirCodeEnumBuilder {
   /// vread
   static SystemRestfulInteractionBuilder vread =
       SystemRestfulInteractionBuilder._(
-    validatedValue: 'vread',
+    valueString: 'vread',
     system: 'http://hl7.org/fhir/ValueSet/system-restful-interaction'
         .toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -90,7 +91,7 @@ class SystemRestfulInteractionBuilder extends FhirCodeEnumBuilder {
   /// update
   static SystemRestfulInteractionBuilder update =
       SystemRestfulInteractionBuilder._(
-    validatedValue: 'update',
+    valueString: 'update',
     system: 'http://hl7.org/fhir/ValueSet/system-restful-interaction'
         .toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -100,7 +101,7 @@ class SystemRestfulInteractionBuilder extends FhirCodeEnumBuilder {
   /// patch
   static SystemRestfulInteractionBuilder patch =
       SystemRestfulInteractionBuilder._(
-    validatedValue: 'patch',
+    valueString: 'patch',
     system: 'http://hl7.org/fhir/ValueSet/system-restful-interaction'
         .toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -110,7 +111,7 @@ class SystemRestfulInteractionBuilder extends FhirCodeEnumBuilder {
   /// delete
   static SystemRestfulInteractionBuilder delete =
       SystemRestfulInteractionBuilder._(
-    validatedValue: 'delete',
+    valueString: 'delete',
     system: 'http://hl7.org/fhir/ValueSet/system-restful-interaction'
         .toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -120,7 +121,7 @@ class SystemRestfulInteractionBuilder extends FhirCodeEnumBuilder {
   /// history
   static SystemRestfulInteractionBuilder history =
       SystemRestfulInteractionBuilder._(
-    validatedValue: 'history',
+    valueString: 'history',
     system: 'http://hl7.org/fhir/ValueSet/system-restful-interaction'
         .toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -130,7 +131,7 @@ class SystemRestfulInteractionBuilder extends FhirCodeEnumBuilder {
   /// history_instance
   static SystemRestfulInteractionBuilder history_instance =
       SystemRestfulInteractionBuilder._(
-    validatedValue: 'history-instance',
+    valueString: 'history-instance',
     system: 'http://hl7.org/fhir/ValueSet/system-restful-interaction'
         .toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -140,7 +141,7 @@ class SystemRestfulInteractionBuilder extends FhirCodeEnumBuilder {
   /// history_type
   static SystemRestfulInteractionBuilder history_type =
       SystemRestfulInteractionBuilder._(
-    validatedValue: 'history-type',
+    valueString: 'history-type',
     system: 'http://hl7.org/fhir/ValueSet/system-restful-interaction'
         .toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -150,7 +151,7 @@ class SystemRestfulInteractionBuilder extends FhirCodeEnumBuilder {
   /// history_system
   static SystemRestfulInteractionBuilder history_system =
       SystemRestfulInteractionBuilder._(
-    validatedValue: 'history-system',
+    valueString: 'history-system',
     system: 'http://hl7.org/fhir/ValueSet/system-restful-interaction'
         .toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -160,7 +161,7 @@ class SystemRestfulInteractionBuilder extends FhirCodeEnumBuilder {
   /// create
   static SystemRestfulInteractionBuilder create =
       SystemRestfulInteractionBuilder._(
-    validatedValue: 'create',
+    valueString: 'create',
     system: 'http://hl7.org/fhir/ValueSet/system-restful-interaction'
         .toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -170,7 +171,7 @@ class SystemRestfulInteractionBuilder extends FhirCodeEnumBuilder {
   /// search
   static SystemRestfulInteractionBuilder search =
       SystemRestfulInteractionBuilder._(
-    validatedValue: 'search',
+    valueString: 'search',
     system: 'http://hl7.org/fhir/ValueSet/system-restful-interaction'
         .toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -180,7 +181,7 @@ class SystemRestfulInteractionBuilder extends FhirCodeEnumBuilder {
   /// search_type
   static SystemRestfulInteractionBuilder search_type =
       SystemRestfulInteractionBuilder._(
-    validatedValue: 'search-type',
+    valueString: 'search-type',
     system: 'http://hl7.org/fhir/ValueSet/system-restful-interaction'
         .toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -190,7 +191,7 @@ class SystemRestfulInteractionBuilder extends FhirCodeEnumBuilder {
   /// search_system
   static SystemRestfulInteractionBuilder search_system =
       SystemRestfulInteractionBuilder._(
-    validatedValue: 'search-system',
+    valueString: 'search-system',
     system: 'http://hl7.org/fhir/ValueSet/system-restful-interaction'
         .toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -200,7 +201,7 @@ class SystemRestfulInteractionBuilder extends FhirCodeEnumBuilder {
   /// capabilities
   static SystemRestfulInteractionBuilder capabilities =
       SystemRestfulInteractionBuilder._(
-    validatedValue: 'capabilities',
+    valueString: 'capabilities',
     system: 'http://hl7.org/fhir/ValueSet/system-restful-interaction'
         .toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -210,7 +211,7 @@ class SystemRestfulInteractionBuilder extends FhirCodeEnumBuilder {
   /// transaction
   static SystemRestfulInteractionBuilder transaction =
       SystemRestfulInteractionBuilder._(
-    validatedValue: 'transaction',
+    valueString: 'transaction',
     system: 'http://hl7.org/fhir/ValueSet/system-restful-interaction'
         .toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -220,7 +221,7 @@ class SystemRestfulInteractionBuilder extends FhirCodeEnumBuilder {
   /// batch
   static SystemRestfulInteractionBuilder batch =
       SystemRestfulInteractionBuilder._(
-    validatedValue: 'batch',
+    valueString: 'batch',
     system: 'http://hl7.org/fhir/ValueSet/system-restful-interaction'
         .toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -230,7 +231,7 @@ class SystemRestfulInteractionBuilder extends FhirCodeEnumBuilder {
   /// operation
   static SystemRestfulInteractionBuilder operation =
       SystemRestfulInteractionBuilder._(
-    validatedValue: 'operation',
+    valueString: 'operation',
     system: 'http://hl7.org/fhir/ValueSet/system-restful-interaction'
         .toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
@@ -239,7 +240,7 @@ class SystemRestfulInteractionBuilder extends FhirCodeEnumBuilder {
 
   /// For instances where an Element is present but not value
   static SystemRestfulInteractionBuilder elementOnly =
-      SystemRestfulInteractionBuilder._(validatedValue: '');
+      SystemRestfulInteractionBuilder._(valueString: '');
 
   /// List of all enum-like values
   static List<SystemRestfulInteractionBuilder> values = [
@@ -265,31 +266,31 @@ class SystemRestfulInteractionBuilder extends FhirCodeEnumBuilder {
   /// Clones the current instance
   @override
   SystemRestfulInteractionBuilder clone() => SystemRestfulInteractionBuilder._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
   SystemRestfulInteractionBuilder withElement(ElementBuilder? newElement) {
     return SystemRestfulInteractionBuilder._(
-        validatedValue: value, element: newElement,);
+        valueString: valueString, element: newElement,);
   }
 
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   SystemRestfulInteractionBuilder copyWith({
-    String? newValue,
+    dynamic newValue,
     ElementBuilder? element,
     FhirStringBuilder? id,
     List<FhirExtensionBuilder>? extension_,
@@ -300,11 +301,12 @@ class SystemRestfulInteractionBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError(
+          'Invalid input for SystemRestfulInteraction: $newValue',);
     }
     return SystemRestfulInteractionBuilder._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
@@ -313,7 +315,7 @@ class SystemRestfulInteractionBuilder extends FhirCodeEnumBuilder {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath,
+      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

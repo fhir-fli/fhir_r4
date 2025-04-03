@@ -6,7 +6,7 @@ part of '../primitive_types.dart';
 class CarePlanActivityStatus extends FhirCodeEnum {
   // Private underscore constructor for internal use.
   CarePlanActivityStatus._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -20,7 +20,7 @@ class CarePlanActivityStatus extends FhirCodeEnum {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory CarePlanActivityStatus(
-    String? raw, {
+    String? rawValue, {
     FhirUri? system,
     FhirString? version,
     FhirString? display,
@@ -30,9 +30,10 @@ class CarePlanActivityStatus extends FhirCodeEnum {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCode._validateCode(rawValue) : null;
     return CarePlanActivityStatus._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -46,7 +47,7 @@ class CarePlanActivityStatus extends FhirCodeEnum {
 
   /// Create empty [CarePlanActivityStatus] with element only
   factory CarePlanActivityStatus.empty() =>
-      CarePlanActivityStatus._(validatedValue: '');
+      CarePlanActivityStatus._(valueString: '');
 
   /// Factory constructor to create [CarePlanActivityStatus] from JSON.
   factory CarePlanActivityStatus.fromJson(Map<String, dynamic> json) {
@@ -61,14 +62,14 @@ class CarePlanActivityStatus extends FhirCodeEnum {
       );
     }
     return CarePlanActivityStatus._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// not_started
   static final CarePlanActivityStatus not_started = CarePlanActivityStatus._(
-    validatedValue: 'not-started',
+    valueString: 'not-started',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Not Started'.toFhirString,
@@ -76,7 +77,7 @@ class CarePlanActivityStatus extends FhirCodeEnum {
 
   /// scheduled
   static final CarePlanActivityStatus scheduled = CarePlanActivityStatus._(
-    validatedValue: 'scheduled',
+    valueString: 'scheduled',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Scheduled'.toFhirString,
@@ -84,7 +85,7 @@ class CarePlanActivityStatus extends FhirCodeEnum {
 
   /// in_progress
   static final CarePlanActivityStatus in_progress = CarePlanActivityStatus._(
-    validatedValue: 'in-progress',
+    valueString: 'in-progress',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'In Progress'.toFhirString,
@@ -92,7 +93,7 @@ class CarePlanActivityStatus extends FhirCodeEnum {
 
   /// on_hold
   static final CarePlanActivityStatus on_hold = CarePlanActivityStatus._(
-    validatedValue: 'on-hold',
+    valueString: 'on-hold',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'On Hold'.toFhirString,
@@ -100,7 +101,7 @@ class CarePlanActivityStatus extends FhirCodeEnum {
 
   /// completed
   static final CarePlanActivityStatus completed = CarePlanActivityStatus._(
-    validatedValue: 'completed',
+    valueString: 'completed',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Completed'.toFhirString,
@@ -108,7 +109,7 @@ class CarePlanActivityStatus extends FhirCodeEnum {
 
   /// cancelled
   static final CarePlanActivityStatus cancelled = CarePlanActivityStatus._(
-    validatedValue: 'cancelled',
+    valueString: 'cancelled',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Cancelled'.toFhirString,
@@ -116,7 +117,7 @@ class CarePlanActivityStatus extends FhirCodeEnum {
 
   /// stopped
   static final CarePlanActivityStatus stopped = CarePlanActivityStatus._(
-    validatedValue: 'stopped',
+    valueString: 'stopped',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Stopped'.toFhirString,
@@ -124,7 +125,7 @@ class CarePlanActivityStatus extends FhirCodeEnum {
 
   /// unknown
   static final CarePlanActivityStatus unknown = CarePlanActivityStatus._(
-    validatedValue: 'unknown',
+    valueString: 'unknown',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Unknown'.toFhirString,
@@ -133,7 +134,7 @@ class CarePlanActivityStatus extends FhirCodeEnum {
   /// entered_in_error
   static final CarePlanActivityStatus entered_in_error =
       CarePlanActivityStatus._(
-    validatedValue: 'entered-in-error',
+    valueString: 'entered-in-error',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Entered in Error'.toFhirString,
@@ -141,7 +142,7 @@ class CarePlanActivityStatus extends FhirCodeEnum {
 
   /// For instances where an Element is present but not value
   static final CarePlanActivityStatus elementOnly =
-      CarePlanActivityStatus._(validatedValue: '');
+      CarePlanActivityStatus._(valueString: '');
 
   /// List of all enum-like values
   static final List<CarePlanActivityStatus> values = [
@@ -159,14 +160,14 @@ class CarePlanActivityStatus extends FhirCodeEnum {
   /// Clones the current instance
   @override
   CarePlanActivityStatus clone() => CarePlanActivityStatus._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   CarePlanActivityStatus withElement(Element? newElement) {
     return CarePlanActivityStatus._(
-      validatedValue: value,
+      valueString: valueString,
       element: newElement,
     );
   }
@@ -174,18 +175,18 @@ class CarePlanActivityStatus extends FhirCodeEnum {
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   CarePlanActivityStatus copyWith({
-    String? newValue,
+    dynamic newValue,
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
@@ -196,11 +197,12 @@ class CarePlanActivityStatus extends FhirCodeEnum {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError(
+          'Invalid input for CarePlanActivityStatus: $newValue',);
     }
     return CarePlanActivityStatus._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

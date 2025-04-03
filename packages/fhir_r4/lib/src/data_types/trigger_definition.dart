@@ -355,7 +355,10 @@ class TriggerDefinition extends DataType
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -437,7 +440,10 @@ class TriggerDefinition extends DataType
             return copyWith(data: newList);
           } else if (child is DataRequirement) {
             // Add single element to existing list or create new list
-            final newList = [...?data, child];
+            final newList = [
+              ...?data,
+              child,
+            ];
             return copyWith(data: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -471,7 +477,12 @@ class TriggerDefinition extends DataType
         return ['FhirString'];
       case 'timing':
       case 'timingX':
-        return ['Timing', 'Reference', 'FhirDate', 'FhirDateTime'];
+        return [
+          'Timing',
+          'Reference',
+          'FhirDate',
+          'FhirDateTime',
+        ];
       case 'timingTiming':
         return ['Timing'];
       case 'timingReference':

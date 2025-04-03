@@ -55,6 +55,7 @@ class FhirUuid extends FhirUri
   /// - A [Uuid] (from the `uuid` package).
   ///
   /// If [rawValue] is a string, we validate it with [_validateUuid].
+  // ignore: sort_unnamed_constructors_first
   factory FhirUuid(
     dynamic rawValue, {
     Element? element,
@@ -68,7 +69,7 @@ class FhirUuid extends FhirUri
     if (rawValue == null && element == null) {
       throw ArgumentError('A value or element is required for FhirUuid.');
     }
-    if (rawValue is Uuid) {
+    if (rawValue is UuidValue) {
       parsedValue = rawValue.toString();
     } else if (rawValue is String) {
       parsedValue = _validateUuid(rawValue);
@@ -245,7 +246,8 @@ class FhirUuid extends FhirUri
     return Uuid.parse(uuidString);
   }
 
-  /// Parses [other] into a byte list, supporting [FhirUuid], [Uuid], or valid [String].
+  /// Parses [other] into a byte list, supporting [FhirUuid], [Uuid], or
+  /// valid [String].
   List<int> _parseToBytes(dynamic other) {
     if (other == null) {
       throw ArgumentError('Cannot perform bitwise operations with null.');
@@ -283,8 +285,8 @@ class FhirUuid extends FhirUri
   String toString() => valueString ?? '';
 
   /// Returns the 16-byte representation of this UUID, or null if no value.
-  List<int>? get valueUuid =>
-      valueString == null ? null : Uuid.parse(valueString!);
+  UuidValue? get valueUuid =>
+      valueString == null ? null : UuidValue.fromString(valueString!);
 
   /// Deep equality check (compares string and element).
   @override
@@ -294,7 +296,8 @@ class FhirUuid extends FhirUri
           other.element == element) ||
       (other is UuidValue && other.toString() == valueString);
 
-  /// Shallow equality for convenience (also checks [UuidValue] or a valid string).
+  /// Shallow equality for convenience (also checks [UuidValue]
+  /// or a valid string).
   @override
   bool equals(Object other) {
     if (identical(this, other)) return true;
@@ -322,6 +325,10 @@ class FhirUuid extends FhirUri
   @override
   // ignore: avoid_equals_and_hash_code_on_mutable_classes
   int get hashCode => Object.hash(valueString, element);
+
+  /// Returns `true` if the Type is considered string-based, otherwise `false`
+  @override
+  bool get stringBased => true;
 
   // --------------------------------------------------------------------------
   // Clone / Copy

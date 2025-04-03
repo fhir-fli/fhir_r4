@@ -792,6 +792,21 @@ class FamilyMemberHistoryBuilder extends DomainResourceBuilder {
           if (child is CommonLanguagesBuilder) {
             language = child;
             return;
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              // For enums, try to create directly from the string value
+              try {
+                final converted = CommonLanguagesBuilder(stringValue);
+                language = converted;
+                return;
+              } catch (e) {
+                // Continue if enum creation fails
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
           throw Exception('Invalid child type for $childName');
         }
@@ -811,7 +826,10 @@ class FamilyMemberHistoryBuilder extends DomainResourceBuilder {
             return;
           } else if (child is ResourceBuilder) {
             // Add single element to existing list or create new list
-            contained = [...(contained ?? []), child];
+            contained = [
+              ...(contained ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -824,7 +842,10 @@ class FamilyMemberHistoryBuilder extends DomainResourceBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -837,7 +858,10 @@ class FamilyMemberHistoryBuilder extends DomainResourceBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -850,7 +874,10 @@ class FamilyMemberHistoryBuilder extends DomainResourceBuilder {
             return;
           } else if (child is IdentifierBuilder) {
             // Add single element to existing list or create new list
-            identifier = [...(identifier ?? []), child];
+            identifier = [
+              ...(identifier ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -863,7 +890,10 @@ class FamilyMemberHistoryBuilder extends DomainResourceBuilder {
             return;
           } else if (child is FhirCanonicalBuilder) {
             // Add single element to existing list or create new list
-            instantiatesCanonical = [...(instantiatesCanonical ?? []), child];
+            instantiatesCanonical = [
+              ...(instantiatesCanonical ?? []),
+              child,
+            ];
             return;
           } else if (child is List<PrimitiveTypeBuilder>) {
             // Try to convert list of primitive types
@@ -909,7 +939,10 @@ class FamilyMemberHistoryBuilder extends DomainResourceBuilder {
             return;
           } else if (child is FhirUriBuilder) {
             // Add single element to existing list or create new list
-            instantiatesUri = [...(instantiatesUri ?? []), child];
+            instantiatesUri = [
+              ...(instantiatesUri ?? []),
+              child,
+            ];
             return;
           } else if (child is List<PrimitiveTypeBuilder>) {
             // Try to convert list of primitive types
@@ -949,6 +982,21 @@ class FamilyMemberHistoryBuilder extends DomainResourceBuilder {
           if (child is FamilyHistoryStatusBuilder) {
             status = child;
             return;
+          } else if (child is PrimitiveTypeBuilder) {
+            // Try to convert from one primitive type to another
+            try {
+              final stringValue = child.toString();
+              // For enums, try to create directly from the string value
+              try {
+                final converted = FamilyHistoryStatusBuilder(stringValue);
+                status = converted;
+                return;
+              } catch (e) {
+                // Continue if enum creation fails
+              }
+            } catch (e) {
+              // Continue if conversion fails
+            }
           }
           throw Exception('Invalid child type for $childName');
         }
@@ -1222,7 +1270,10 @@ class FamilyMemberHistoryBuilder extends DomainResourceBuilder {
             return;
           } else if (child is CodeableConceptBuilder) {
             // Add single element to existing list or create new list
-            reasonCode = [...(reasonCode ?? []), child];
+            reasonCode = [
+              ...(reasonCode ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -1235,7 +1286,10 @@ class FamilyMemberHistoryBuilder extends DomainResourceBuilder {
             return;
           } else if (child is ReferenceBuilder) {
             // Add single element to existing list or create new list
-            reasonReference = [...(reasonReference ?? []), child];
+            reasonReference = [
+              ...(reasonReference ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -1248,7 +1302,10 @@ class FamilyMemberHistoryBuilder extends DomainResourceBuilder {
             return;
           } else if (child is AnnotationBuilder) {
             // Add single element to existing list or create new list
-            note = [...(note ?? []), child];
+            note = [
+              ...(note ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -1261,7 +1318,10 @@ class FamilyMemberHistoryBuilder extends DomainResourceBuilder {
             return;
           } else if (child is FamilyMemberHistoryConditionBuilder) {
             // Add single element to existing list or create new list
-            condition = [...(condition ?? []), child];
+            condition = [
+              ...(condition ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -1314,7 +1374,11 @@ class FamilyMemberHistoryBuilder extends DomainResourceBuilder {
         return ['CodeableConceptBuilder'];
       case 'born':
       case 'bornX':
-        return ['PeriodBuilder', 'FhirDateBuilder', 'FhirStringBuilder'];
+        return [
+          'PeriodBuilder',
+          'FhirDateBuilder',
+          'FhirStringBuilder',
+        ];
       case 'bornPeriod':
         return ['PeriodBuilder'];
       case 'bornDate':
@@ -1323,7 +1387,11 @@ class FamilyMemberHistoryBuilder extends DomainResourceBuilder {
         return ['FhirStringBuilder'];
       case 'age':
       case 'ageX':
-        return ['AgeBuilder', 'RangeBuilder', 'FhirStringBuilder'];
+        return [
+          'AgeBuilder',
+          'RangeBuilder',
+          'FhirStringBuilder',
+        ];
       case 'ageAge':
         return ['AgeBuilder'];
       case 'ageRange':
@@ -2227,7 +2295,10 @@ class FamilyMemberHistoryConditionBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -2240,7 +2311,10 @@ class FamilyMemberHistoryConditionBuilder extends BackboneElementBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -2350,7 +2424,10 @@ class FamilyMemberHistoryConditionBuilder extends BackboneElementBuilder {
             return;
           } else if (child is AnnotationBuilder) {
             // Add single element to existing list or create new list
-            note = [...(note ?? []), child];
+            note = [
+              ...(note ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');

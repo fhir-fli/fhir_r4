@@ -869,7 +869,10 @@ class CapabilityStatement extends CanonicalResource {
             return copyWith(contained: newList);
           } else if (child is Resource) {
             // Add single element to existing list or create new list
-            final newList = [...?contained, child];
+            final newList = [
+              ...?contained,
+              child,
+            ];
             return copyWith(contained: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -883,7 +886,10 @@ class CapabilityStatement extends CanonicalResource {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -897,7 +903,10 @@ class CapabilityStatement extends CanonicalResource {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -975,7 +984,10 @@ class CapabilityStatement extends CanonicalResource {
             return copyWith(contact: newList);
           } else if (child is ContactDetail) {
             // Add single element to existing list or create new list
-            final newList = [...?contact, child];
+            final newList = [
+              ...?contact,
+              child,
+            ];
             return copyWith(contact: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -997,7 +1009,10 @@ class CapabilityStatement extends CanonicalResource {
             return copyWith(useContext: newList);
           } else if (child is UsageContext) {
             // Add single element to existing list or create new list
-            final newList = [...?useContext, child];
+            final newList = [
+              ...?useContext,
+              child,
+            ];
             return copyWith(useContext: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1011,7 +1026,10 @@ class CapabilityStatement extends CanonicalResource {
             return copyWith(jurisdiction: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...?jurisdiction, child];
+            final newList = [
+              ...?jurisdiction,
+              child,
+            ];
             return copyWith(jurisdiction: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1049,7 +1067,10 @@ class CapabilityStatement extends CanonicalResource {
             return copyWith(instantiates: newList);
           } else if (child is FhirCanonical) {
             // Add single element to existing list or create new list
-            final newList = [...?instantiates, child];
+            final newList = [
+              ...?instantiates,
+              child,
+            ];
             return copyWith(instantiates: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1063,7 +1084,10 @@ class CapabilityStatement extends CanonicalResource {
             return copyWith(imports: newList);
           } else if (child is FhirCanonical) {
             // Add single element to existing list or create new list
-            final newList = [...?imports, child];
+            final newList = [
+              ...?imports,
+              child,
+            ];
             return copyWith(imports: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1101,7 +1125,10 @@ class CapabilityStatement extends CanonicalResource {
             return copyWith(format: newList);
           } else if (child is FhirCode) {
             // Add single element to existing list or create new list
-            final newList = [...format, child];
+            final newList = [
+              ...format,
+              child,
+            ];
             return copyWith(format: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1115,7 +1142,10 @@ class CapabilityStatement extends CanonicalResource {
             return copyWith(patchFormat: newList);
           } else if (child is FhirCode) {
             // Add single element to existing list or create new list
-            final newList = [...?patchFormat, child];
+            final newList = [
+              ...?patchFormat,
+              child,
+            ];
             return copyWith(patchFormat: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1129,7 +1159,10 @@ class CapabilityStatement extends CanonicalResource {
             return copyWith(implementationGuide: newList);
           } else if (child is FhirCanonical) {
             // Add single element to existing list or create new list
-            final newList = [...?implementationGuide, child];
+            final newList = [
+              ...?implementationGuide,
+              child,
+            ];
             return copyWith(implementationGuide: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1143,7 +1176,10 @@ class CapabilityStatement extends CanonicalResource {
             return copyWith(rest: newList);
           } else if (child is CapabilityStatementRest) {
             // Add single element to existing list or create new list
-            final newList = [...?rest, child];
+            final newList = [
+              ...?rest,
+              child,
+            ];
             return copyWith(rest: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1157,7 +1193,10 @@ class CapabilityStatement extends CanonicalResource {
             return copyWith(messaging: newList);
           } else if (child is CapabilityStatementMessaging) {
             // Add single element to existing list or create new list
-            final newList = [...?messaging, child];
+            final newList = [
+              ...?messaging,
+              child,
+            ];
             return copyWith(messaging: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1171,7 +1210,10 @@ class CapabilityStatement extends CanonicalResource {
             return copyWith(document: newList);
           } else if (child is CapabilityStatementDocument) {
             // Add single element to existing list or create new list
-            final newList = [...?document, child];
+            final newList = [
+              ...?document,
+              child,
+            ];
             return copyWith(document: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2278,7 +2320,10 @@ class CapabilityStatementSoftware extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2292,7 +2337,10 @@ class CapabilityStatementSoftware extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2802,7 +2850,10 @@ class CapabilityStatementImplementation extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2816,7 +2867,10 @@ class CapabilityStatementImplementation extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -3446,7 +3500,10 @@ class CapabilityStatementRest extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -3460,7 +3517,10 @@ class CapabilityStatementRest extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -3498,7 +3558,10 @@ class CapabilityStatementRest extends BackboneElement {
             return copyWith(resource: newList);
           } else if (child is CapabilityStatementResource) {
             // Add single element to existing list or create new list
-            final newList = [...?resource, child];
+            final newList = [
+              ...?resource,
+              child,
+            ];
             return copyWith(resource: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -3512,7 +3575,10 @@ class CapabilityStatementRest extends BackboneElement {
             return copyWith(interaction: newList);
           } else if (child is CapabilityStatementInteraction) {
             // Add single element to existing list or create new list
-            final newList = [...?interaction, child];
+            final newList = [
+              ...?interaction,
+              child,
+            ];
             return copyWith(interaction: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -3526,7 +3592,10 @@ class CapabilityStatementRest extends BackboneElement {
             return copyWith(searchParam: newList);
           } else if (child is CapabilityStatementSearchParam) {
             // Add single element to existing list or create new list
-            final newList = [...?searchParam, child];
+            final newList = [
+              ...?searchParam,
+              child,
+            ];
             return copyWith(searchParam: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -3540,7 +3609,10 @@ class CapabilityStatementRest extends BackboneElement {
             return copyWith(operation: newList);
           } else if (child is CapabilityStatementOperation) {
             // Add single element to existing list or create new list
-            final newList = [...?operation, child];
+            final newList = [
+              ...?operation,
+              child,
+            ];
             return copyWith(operation: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -3554,7 +3626,10 @@ class CapabilityStatementRest extends BackboneElement {
             return copyWith(compartment: newList);
           } else if (child is FhirCanonical) {
             // Add single element to existing list or create new list
-            final newList = [...?compartment, child];
+            final newList = [
+              ...?compartment,
+              child,
+            ];
             return copyWith(compartment: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -4166,7 +4241,10 @@ class CapabilityStatementSecurity extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -4180,7 +4258,10 @@ class CapabilityStatementSecurity extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -4202,7 +4283,10 @@ class CapabilityStatementSecurity extends BackboneElement {
             return copyWith(service: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...?service, child];
+            final newList = [
+              ...?service,
+              child,
+            ];
             return copyWith(service: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -5013,7 +5097,10 @@ class CapabilityStatementResource extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -5027,7 +5114,10 @@ class CapabilityStatementResource extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -5057,7 +5147,10 @@ class CapabilityStatementResource extends BackboneElement {
             return copyWith(supportedProfile: newList);
           } else if (child is FhirCanonical) {
             // Add single element to existing list or create new list
-            final newList = [...?supportedProfile, child];
+            final newList = [
+              ...?supportedProfile,
+              child,
+            ];
             return copyWith(supportedProfile: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -5079,7 +5172,10 @@ class CapabilityStatementResource extends BackboneElement {
             return copyWith(interaction: newList);
           } else if (child is CapabilityStatementInteraction) {
             // Add single element to existing list or create new list
-            final newList = [...?interaction, child];
+            final newList = [
+              ...?interaction,
+              child,
+            ];
             return copyWith(interaction: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -5149,7 +5245,10 @@ class CapabilityStatementResource extends BackboneElement {
             return copyWith(referencePolicy: newList);
           } else if (child is ReferenceHandlingPolicy) {
             // Add single element to existing list or create new list
-            final newList = [...?referencePolicy, child];
+            final newList = [
+              ...?referencePolicy,
+              child,
+            ];
             return copyWith(referencePolicy: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -5163,7 +5262,10 @@ class CapabilityStatementResource extends BackboneElement {
             return copyWith(searchInclude: newList);
           } else if (child is FhirString) {
             // Add single element to existing list or create new list
-            final newList = [...?searchInclude, child];
+            final newList = [
+              ...?searchInclude,
+              child,
+            ];
             return copyWith(searchInclude: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -5177,7 +5279,10 @@ class CapabilityStatementResource extends BackboneElement {
             return copyWith(searchRevInclude: newList);
           } else if (child is FhirString) {
             // Add single element to existing list or create new list
-            final newList = [...?searchRevInclude, child];
+            final newList = [
+              ...?searchRevInclude,
+              child,
+            ];
             return copyWith(searchRevInclude: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -5191,7 +5296,10 @@ class CapabilityStatementResource extends BackboneElement {
             return copyWith(searchParam: newList);
           } else if (child is CapabilityStatementSearchParam) {
             // Add single element to existing list or create new list
-            final newList = [...?searchParam, child];
+            final newList = [
+              ...?searchParam,
+              child,
+            ];
             return copyWith(searchParam: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -5205,7 +5313,10 @@ class CapabilityStatementResource extends BackboneElement {
             return copyWith(operation: newList);
           } else if (child is CapabilityStatementOperation) {
             // Add single element to existing list or create new list
-            final newList = [...?operation, child];
+            final newList = [
+              ...?operation,
+              child,
+            ];
             return copyWith(operation: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -5990,7 +6101,10 @@ class CapabilityStatementInteraction extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -6004,7 +6118,10 @@ class CapabilityStatementInteraction extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -6509,7 +6626,10 @@ class CapabilityStatementSearchParam extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -6523,7 +6643,10 @@ class CapabilityStatementSearchParam extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -7069,7 +7192,10 @@ class CapabilityStatementOperation extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -7083,7 +7209,10 @@ class CapabilityStatementOperation extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -7569,7 +7698,10 @@ class CapabilityStatementInteraction1 extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -7583,7 +7715,10 @@ class CapabilityStatementInteraction1 extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -8094,7 +8229,10 @@ class CapabilityStatementMessaging extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -8108,7 +8246,10 @@ class CapabilityStatementMessaging extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -8122,7 +8263,10 @@ class CapabilityStatementMessaging extends BackboneElement {
             return copyWith(endpoint: newList);
           } else if (child is CapabilityStatementEndpoint) {
             // Add single element to existing list or create new list
-            final newList = [...?endpoint, child];
+            final newList = [
+              ...?endpoint,
+              child,
+            ];
             return copyWith(endpoint: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -8152,7 +8296,10 @@ class CapabilityStatementMessaging extends BackboneElement {
             return copyWith(supportedMessage: newList);
           } else if (child is CapabilityStatementSupportedMessage) {
             // Add single element to existing list or create new list
-            final newList = [...?supportedMessage, child];
+            final newList = [
+              ...?supportedMessage,
+              child,
+            ];
             return copyWith(supportedMessage: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -8644,7 +8791,10 @@ class CapabilityStatementEndpoint extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -8658,7 +8808,10 @@ class CapabilityStatementEndpoint extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -9115,7 +9268,10 @@ class CapabilityStatementSupportedMessage extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -9129,7 +9285,10 @@ class CapabilityStatementSupportedMessage extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -9606,7 +9765,10 @@ class CapabilityStatementDocument extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -9620,7 +9782,10 @@ class CapabilityStatementDocument extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');

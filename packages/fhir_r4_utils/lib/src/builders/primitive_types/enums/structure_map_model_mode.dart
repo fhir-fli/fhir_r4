@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class StructureMapModelModeBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   StructureMapModelModeBuilder._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class StructureMapModelModeBuilder extends FhirCodeEnumBuilder {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory StructureMapModelModeBuilder(
-    String? raw, {
+    String? rawValue, {
     FhirUriBuilder? system,
     FhirStringBuilder? version,
     FhirStringBuilder? display,
@@ -29,9 +29,10 @@ class StructureMapModelModeBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
     return StructureMapModelModeBuilder._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -45,7 +46,7 @@ class StructureMapModelModeBuilder extends FhirCodeEnumBuilder {
 
   /// Create empty [StructureMapModelModeBuilder] with element only
   factory StructureMapModelModeBuilder.empty() =>
-      StructureMapModelModeBuilder._(validatedValue: '');
+      StructureMapModelModeBuilder._(valueString: '');
 
   /// Factory constructor to create [StructureMapModelModeBuilder]
   /// from JSON.
@@ -62,14 +63,14 @@ class StructureMapModelModeBuilder extends FhirCodeEnumBuilder {
       );
     }
     return StructureMapModelModeBuilder._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// source
   static StructureMapModelModeBuilder source = StructureMapModelModeBuilder._(
-    validatedValue: 'source',
+    valueString: 'source',
     system: 'http://hl7.org/fhir/ValueSet/map-model-mode'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Source Structure Definition'.toFhirStringBuilder,
@@ -77,7 +78,7 @@ class StructureMapModelModeBuilder extends FhirCodeEnumBuilder {
 
   /// queried
   static StructureMapModelModeBuilder queried = StructureMapModelModeBuilder._(
-    validatedValue: 'queried',
+    valueString: 'queried',
     system: 'http://hl7.org/fhir/ValueSet/map-model-mode'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Queried Structure Definition'.toFhirStringBuilder,
@@ -85,7 +86,7 @@ class StructureMapModelModeBuilder extends FhirCodeEnumBuilder {
 
   /// target
   static StructureMapModelModeBuilder target = StructureMapModelModeBuilder._(
-    validatedValue: 'target',
+    valueString: 'target',
     system: 'http://hl7.org/fhir/ValueSet/map-model-mode'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Target Structure Definition'.toFhirStringBuilder,
@@ -93,7 +94,7 @@ class StructureMapModelModeBuilder extends FhirCodeEnumBuilder {
 
   /// produced
   static StructureMapModelModeBuilder produced = StructureMapModelModeBuilder._(
-    validatedValue: 'produced',
+    valueString: 'produced',
     system: 'http://hl7.org/fhir/ValueSet/map-model-mode'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Produced Structure Definition'.toFhirStringBuilder,
@@ -101,7 +102,7 @@ class StructureMapModelModeBuilder extends FhirCodeEnumBuilder {
 
   /// For instances where an Element is present but not value
   static StructureMapModelModeBuilder elementOnly =
-      StructureMapModelModeBuilder._(validatedValue: '');
+      StructureMapModelModeBuilder._(valueString: '');
 
   /// List of all enum-like values
   static List<StructureMapModelModeBuilder> values = [
@@ -114,31 +115,31 @@ class StructureMapModelModeBuilder extends FhirCodeEnumBuilder {
   /// Clones the current instance
   @override
   StructureMapModelModeBuilder clone() => StructureMapModelModeBuilder._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
   StructureMapModelModeBuilder withElement(ElementBuilder? newElement) {
     return StructureMapModelModeBuilder._(
-        validatedValue: value, element: newElement,);
+        valueString: valueString, element: newElement,);
   }
 
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   StructureMapModelModeBuilder copyWith({
-    String? newValue,
+    dynamic newValue,
     ElementBuilder? element,
     FhirStringBuilder? id,
     List<FhirExtensionBuilder>? extension_,
@@ -149,11 +150,11 @@ class StructureMapModelModeBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError('Invalid input for StructureMapModelMode: $newValue');
     }
     return StructureMapModelModeBuilder._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
@@ -162,7 +163,7 @@ class StructureMapModelModeBuilder extends FhirCodeEnumBuilder {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath,
+      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

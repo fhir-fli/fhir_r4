@@ -65,7 +65,7 @@ class DefinitionResolver {
     final structure = map?.structure?.firstWhereOrNull(
           (s) =>
               s.url.toString() == type ||
-              s.alias?.value?.toLowerCase() == type.toLowerCase(),
+              s.alias?.valueString?.toLowerCase() == type.toLowerCase(),
         ) ??
         map?.structure?.firstWhereOrNull(
           (s) =>
@@ -162,12 +162,12 @@ class DefinitionResolver {
       ...?structureDef.snapshot?.element,
       ...?structureDef.differential?.element,
     ]) {
-      if (el.path.value == path) {
+      if (el.path.valueString == path) {
         return el;
       }
       // Handle polymorphic elements containing '[x]'
-      if (el.path.value?.contains('[x]') ?? false) {
-        final polymorphicBase = el.path.value!.split('[x]').first;
+      if (el.path.valueString?.contains('[x]') ?? false) {
+        final polymorphicBase = el.path.valueString!.split('[x]').first;
         if (path.startsWith(polymorphicBase)) {
           return el;
         }
@@ -205,13 +205,13 @@ class DefinitionResolver {
     final resolvedSrcType = await _resolveType(map, srcType);
     final resolvedTgtType = await _resolveType(map, tgtType);
 
-    return resolvedSrcType == inputs['source']?.value &&
-        resolvedTgtType == inputs['target']?.value;
+    return resolvedSrcType == inputs['source']?.valueString &&
+        resolvedTgtType == inputs['target']?.valueString;
   }
 
   Future<String?> _resolveType(StructureMap map, String? type) async {
     for (final structure in map.structure ?? <StructureMapStructure>[]) {
-      if (structure.alias != null && structure.alias?.value == type) {
+      if (structure.alias != null && structure.alias?.valueString == type) {
         return (await resolve(structure.url.toString()))?.type.toString() ??
             type;
       }
@@ -251,7 +251,7 @@ class DefinitionResolver {
 ///
 /// Returns the resolved type as a string, or `null` if no match is found.
 String? resolvePolymorphicType(ElementDefinition elementDef, String path) {
-  final edPath = elementDef.path.value;
+  final edPath = elementDef.path.valueString;
   if (edPath == null || !edPath.endsWith('[x]')) return null;
   final polyMorphicBase =
       edPath.substring(0, edPath.length - 3).split('.').last;

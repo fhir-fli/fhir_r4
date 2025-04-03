@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class TestReportResult extends FhirCodeEnum {
   // Private underscore constructor for internal use.
   TestReportResult._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class TestReportResult extends FhirCodeEnum {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory TestReportResult(
-    String? raw, {
+    String? rawValue, {
     FhirUri? system,
     FhirString? version,
     FhirString? display,
@@ -29,9 +29,10 @@ class TestReportResult extends FhirCodeEnum {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCode._validateCode(rawValue) : null;
     return TestReportResult._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -44,7 +45,7 @@ class TestReportResult extends FhirCodeEnum {
   }
 
   /// Create empty [TestReportResult] with element only
-  factory TestReportResult.empty() => TestReportResult._(validatedValue: '');
+  factory TestReportResult.empty() => TestReportResult._(valueString: '');
 
   /// Factory constructor to create [TestReportResult] from JSON.
   factory TestReportResult.fromJson(Map<String, dynamic> json) {
@@ -59,14 +60,14 @@ class TestReportResult extends FhirCodeEnum {
       );
     }
     return TestReportResult._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// pass
   static final TestReportResult pass = TestReportResult._(
-    validatedValue: 'pass',
+    valueString: 'pass',
     system: 'http://hl7.org/fhir/ValueSet/report-result-codes'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Pass'.toFhirString,
@@ -74,7 +75,7 @@ class TestReportResult extends FhirCodeEnum {
 
   /// fail
   static final TestReportResult fail = TestReportResult._(
-    validatedValue: 'fail',
+    valueString: 'fail',
     system: 'http://hl7.org/fhir/ValueSet/report-result-codes'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Fail'.toFhirString,
@@ -82,7 +83,7 @@ class TestReportResult extends FhirCodeEnum {
 
   /// pending
   static final TestReportResult pending = TestReportResult._(
-    validatedValue: 'pending',
+    valueString: 'pending',
     system: 'http://hl7.org/fhir/ValueSet/report-result-codes'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Pending'.toFhirString,
@@ -90,7 +91,7 @@ class TestReportResult extends FhirCodeEnum {
 
   /// For instances where an Element is present but not value
   static final TestReportResult elementOnly =
-      TestReportResult._(validatedValue: '');
+      TestReportResult._(valueString: '');
 
   /// List of all enum-like values
   static final List<TestReportResult> values = [
@@ -102,14 +103,14 @@ class TestReportResult extends FhirCodeEnum {
   /// Clones the current instance
   @override
   TestReportResult clone() => TestReportResult._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   TestReportResult withElement(Element? newElement) {
     return TestReportResult._(
-      validatedValue: value,
+      valueString: valueString,
       element: newElement,
     );
   }
@@ -117,18 +118,18 @@ class TestReportResult extends FhirCodeEnum {
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   TestReportResult copyWith({
-    String? newValue,
+    dynamic newValue,
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
@@ -139,11 +140,11 @@ class TestReportResult extends FhirCodeEnum {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError('Invalid input for TestReportResult: $newValue');
     }
     return TestReportResult._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

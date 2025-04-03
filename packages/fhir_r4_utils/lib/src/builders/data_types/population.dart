@@ -323,7 +323,10 @@ class PopulationBuilder extends BackboneTypeBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            extension_ = [...(extension_ ?? []), child];
+            extension_ = [
+              ...(extension_ ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -336,7 +339,10 @@ class PopulationBuilder extends BackboneTypeBuilder {
             return;
           } else if (child is FhirExtensionBuilder) {
             // Add single element to existing list or create new list
-            modifierExtension = [...(modifierExtension ?? []), child];
+            modifierExtension = [
+              ...(modifierExtension ?? []),
+              child,
+            ];
             return;
           }
           throw Exception('Invalid child type for $childName');
@@ -418,7 +424,10 @@ class PopulationBuilder extends BackboneTypeBuilder {
         return ['FhirExtensionBuilder'];
       case 'age':
       case 'ageX':
-        return ['RangeBuilder', 'CodeableConceptBuilder'];
+        return [
+          'RangeBuilder',
+          'CodeableConceptBuilder',
+        ];
       case 'ageRange':
         return ['RangeBuilder'];
       case 'ageCodeableConcept':

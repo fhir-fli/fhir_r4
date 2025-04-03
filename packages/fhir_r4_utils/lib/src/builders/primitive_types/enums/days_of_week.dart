@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class DaysOfWeekBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   DaysOfWeekBuilder._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class DaysOfWeekBuilder extends FhirCodeEnumBuilder {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory DaysOfWeekBuilder(
-    String? raw, {
+    String? rawValue, {
     FhirUriBuilder? system,
     FhirStringBuilder? version,
     FhirStringBuilder? display,
@@ -29,9 +29,10 @@ class DaysOfWeekBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
     return DaysOfWeekBuilder._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -44,7 +45,7 @@ class DaysOfWeekBuilder extends FhirCodeEnumBuilder {
   }
 
   /// Create empty [DaysOfWeekBuilder] with element only
-  factory DaysOfWeekBuilder.empty() => DaysOfWeekBuilder._(validatedValue: '');
+  factory DaysOfWeekBuilder.empty() => DaysOfWeekBuilder._(valueString: '');
 
   /// Factory constructor to create [DaysOfWeekBuilder]
   /// from JSON.
@@ -61,14 +62,14 @@ class DaysOfWeekBuilder extends FhirCodeEnumBuilder {
       );
     }
     return DaysOfWeekBuilder._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// mon
   static DaysOfWeekBuilder mon = DaysOfWeekBuilder._(
-    validatedValue: 'mon',
+    valueString: 'mon',
     system: 'http://hl7.org/fhir/ValueSet/days-of-week'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Monday'.toFhirStringBuilder,
@@ -76,7 +77,7 @@ class DaysOfWeekBuilder extends FhirCodeEnumBuilder {
 
   /// tue
   static DaysOfWeekBuilder tue = DaysOfWeekBuilder._(
-    validatedValue: 'tue',
+    valueString: 'tue',
     system: 'http://hl7.org/fhir/ValueSet/days-of-week'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Tuesday'.toFhirStringBuilder,
@@ -84,7 +85,7 @@ class DaysOfWeekBuilder extends FhirCodeEnumBuilder {
 
   /// wed
   static DaysOfWeekBuilder wed = DaysOfWeekBuilder._(
-    validatedValue: 'wed',
+    valueString: 'wed',
     system: 'http://hl7.org/fhir/ValueSet/days-of-week'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Wednesday'.toFhirStringBuilder,
@@ -92,7 +93,7 @@ class DaysOfWeekBuilder extends FhirCodeEnumBuilder {
 
   /// thu
   static DaysOfWeekBuilder thu = DaysOfWeekBuilder._(
-    validatedValue: 'thu',
+    valueString: 'thu',
     system: 'http://hl7.org/fhir/ValueSet/days-of-week'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Thursday'.toFhirStringBuilder,
@@ -100,7 +101,7 @@ class DaysOfWeekBuilder extends FhirCodeEnumBuilder {
 
   /// fri
   static DaysOfWeekBuilder fri = DaysOfWeekBuilder._(
-    validatedValue: 'fri',
+    valueString: 'fri',
     system: 'http://hl7.org/fhir/ValueSet/days-of-week'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Friday'.toFhirStringBuilder,
@@ -108,7 +109,7 @@ class DaysOfWeekBuilder extends FhirCodeEnumBuilder {
 
   /// sat
   static DaysOfWeekBuilder sat = DaysOfWeekBuilder._(
-    validatedValue: 'sat',
+    valueString: 'sat',
     system: 'http://hl7.org/fhir/ValueSet/days-of-week'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Saturday'.toFhirStringBuilder,
@@ -116,15 +117,14 @@ class DaysOfWeekBuilder extends FhirCodeEnumBuilder {
 
   /// sun
   static DaysOfWeekBuilder sun = DaysOfWeekBuilder._(
-    validatedValue: 'sun',
+    valueString: 'sun',
     system: 'http://hl7.org/fhir/ValueSet/days-of-week'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Sunday'.toFhirStringBuilder,
   );
 
   /// For instances where an Element is present but not value
-  static DaysOfWeekBuilder elementOnly =
-      DaysOfWeekBuilder._(validatedValue: '');
+  static DaysOfWeekBuilder elementOnly = DaysOfWeekBuilder._(valueString: '');
 
   /// List of all enum-like values
   static List<DaysOfWeekBuilder> values = [
@@ -140,30 +140,30 @@ class DaysOfWeekBuilder extends FhirCodeEnumBuilder {
   /// Clones the current instance
   @override
   DaysOfWeekBuilder clone() => DaysOfWeekBuilder._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
   DaysOfWeekBuilder withElement(ElementBuilder? newElement) {
-    return DaysOfWeekBuilder._(validatedValue: value, element: newElement);
+    return DaysOfWeekBuilder._(valueString: valueString, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   DaysOfWeekBuilder copyWith({
-    String? newValue,
+    dynamic newValue,
     ElementBuilder? element,
     FhirStringBuilder? id,
     List<FhirExtensionBuilder>? extension_,
@@ -174,11 +174,11 @@ class DaysOfWeekBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError('Invalid input for DaysOfWeek: $newValue');
     }
     return DaysOfWeekBuilder._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
@@ -187,7 +187,7 @@ class DaysOfWeekBuilder extends FhirCodeEnumBuilder {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath,
+      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

@@ -6,7 +6,7 @@ part of '../primitive_types.dart';
 class RequestIntentBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   RequestIntentBuilder._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -20,7 +20,7 @@ class RequestIntentBuilder extends FhirCodeEnumBuilder {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory RequestIntentBuilder(
-    String? raw, {
+    String? rawValue, {
     FhirUriBuilder? system,
     FhirStringBuilder? version,
     FhirStringBuilder? display,
@@ -30,9 +30,10 @@ class RequestIntentBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
     return RequestIntentBuilder._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -46,7 +47,7 @@ class RequestIntentBuilder extends FhirCodeEnumBuilder {
 
   /// Create empty [RequestIntentBuilder] with element only
   factory RequestIntentBuilder.empty() =>
-      RequestIntentBuilder._(validatedValue: '');
+      RequestIntentBuilder._(valueString: '');
 
   /// Factory constructor to create [RequestIntentBuilder]
   /// from JSON.
@@ -63,14 +64,14 @@ class RequestIntentBuilder extends FhirCodeEnumBuilder {
       );
     }
     return RequestIntentBuilder._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// proposal
   static RequestIntentBuilder proposal = RequestIntentBuilder._(
-    validatedValue: 'proposal',
+    valueString: 'proposal',
     system: 'http://hl7.org/fhir/ValueSet/request-intent'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Proposal'.toFhirStringBuilder,
@@ -78,7 +79,7 @@ class RequestIntentBuilder extends FhirCodeEnumBuilder {
 
   /// plan
   static RequestIntentBuilder plan = RequestIntentBuilder._(
-    validatedValue: 'plan',
+    valueString: 'plan',
     system: 'http://hl7.org/fhir/ValueSet/request-intent'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Plan'.toFhirStringBuilder,
@@ -86,7 +87,7 @@ class RequestIntentBuilder extends FhirCodeEnumBuilder {
 
   /// directive
   static RequestIntentBuilder directive = RequestIntentBuilder._(
-    validatedValue: 'directive',
+    valueString: 'directive',
     system: 'http://hl7.org/fhir/ValueSet/request-intent'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Directive'.toFhirStringBuilder,
@@ -94,7 +95,7 @@ class RequestIntentBuilder extends FhirCodeEnumBuilder {
 
   /// order
   static RequestIntentBuilder order = RequestIntentBuilder._(
-    validatedValue: 'order',
+    valueString: 'order',
     system: 'http://hl7.org/fhir/ValueSet/request-intent'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Order'.toFhirStringBuilder,
@@ -102,7 +103,7 @@ class RequestIntentBuilder extends FhirCodeEnumBuilder {
 
   /// original_order
   static RequestIntentBuilder original_order = RequestIntentBuilder._(
-    validatedValue: 'original-order',
+    valueString: 'original-order',
     system: 'http://hl7.org/fhir/ValueSet/request-intent'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Original Order'.toFhirStringBuilder,
@@ -110,7 +111,7 @@ class RequestIntentBuilder extends FhirCodeEnumBuilder {
 
   /// reflex_order
   static RequestIntentBuilder reflex_order = RequestIntentBuilder._(
-    validatedValue: 'reflex-order',
+    valueString: 'reflex-order',
     system: 'http://hl7.org/fhir/ValueSet/request-intent'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Reflex Order'.toFhirStringBuilder,
@@ -118,7 +119,7 @@ class RequestIntentBuilder extends FhirCodeEnumBuilder {
 
   /// filler_order
   static RequestIntentBuilder filler_order = RequestIntentBuilder._(
-    validatedValue: 'filler-order',
+    valueString: 'filler-order',
     system: 'http://hl7.org/fhir/ValueSet/request-intent'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Filler Order'.toFhirStringBuilder,
@@ -126,7 +127,7 @@ class RequestIntentBuilder extends FhirCodeEnumBuilder {
 
   /// instance_order
   static RequestIntentBuilder instance_order = RequestIntentBuilder._(
-    validatedValue: 'instance-order',
+    valueString: 'instance-order',
     system: 'http://hl7.org/fhir/ValueSet/request-intent'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Instance Order'.toFhirStringBuilder,
@@ -134,7 +135,7 @@ class RequestIntentBuilder extends FhirCodeEnumBuilder {
 
   /// option
   static RequestIntentBuilder option = RequestIntentBuilder._(
-    validatedValue: 'option',
+    valueString: 'option',
     system: 'http://hl7.org/fhir/ValueSet/request-intent'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Option'.toFhirStringBuilder,
@@ -142,7 +143,7 @@ class RequestIntentBuilder extends FhirCodeEnumBuilder {
 
   /// For instances where an Element is present but not value
   static RequestIntentBuilder elementOnly =
-      RequestIntentBuilder._(validatedValue: '');
+      RequestIntentBuilder._(valueString: '');
 
   /// List of all enum-like values
   static List<RequestIntentBuilder> values = [
@@ -160,30 +161,31 @@ class RequestIntentBuilder extends FhirCodeEnumBuilder {
   /// Clones the current instance
   @override
   RequestIntentBuilder clone() => RequestIntentBuilder._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
   RequestIntentBuilder withElement(ElementBuilder? newElement) {
-    return RequestIntentBuilder._(validatedValue: value, element: newElement);
+    return RequestIntentBuilder._(
+        valueString: valueString, element: newElement,);
   }
 
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   RequestIntentBuilder copyWith({
-    String? newValue,
+    dynamic newValue,
     ElementBuilder? element,
     FhirStringBuilder? id,
     List<FhirExtensionBuilder>? extension_,
@@ -194,11 +196,11 @@ class RequestIntentBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError('Invalid input for RequestIntent: $newValue');
     }
     return RequestIntentBuilder._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
@@ -207,7 +209,7 @@ class RequestIntentBuilder extends FhirCodeEnumBuilder {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath,
+      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

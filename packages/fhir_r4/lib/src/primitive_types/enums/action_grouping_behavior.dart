@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class ActionGroupingBehavior extends FhirCodeEnum {
   // Private underscore constructor for internal use.
   ActionGroupingBehavior._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class ActionGroupingBehavior extends FhirCodeEnum {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory ActionGroupingBehavior(
-    String? raw, {
+    String? rawValue, {
     FhirUri? system,
     FhirString? version,
     FhirString? display,
@@ -29,9 +29,10 @@ class ActionGroupingBehavior extends FhirCodeEnum {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCode._validateCode(rawValue) : null;
     return ActionGroupingBehavior._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -45,7 +46,7 @@ class ActionGroupingBehavior extends FhirCodeEnum {
 
   /// Create empty [ActionGroupingBehavior] with element only
   factory ActionGroupingBehavior.empty() =>
-      ActionGroupingBehavior._(validatedValue: '');
+      ActionGroupingBehavior._(valueString: '');
 
   /// Factory constructor to create [ActionGroupingBehavior] from JSON.
   factory ActionGroupingBehavior.fromJson(Map<String, dynamic> json) {
@@ -60,14 +61,14 @@ class ActionGroupingBehavior extends FhirCodeEnum {
       );
     }
     return ActionGroupingBehavior._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// visual_group
   static final ActionGroupingBehavior visual_group = ActionGroupingBehavior._(
-    validatedValue: 'visual-group',
+    valueString: 'visual-group',
     system: 'http://hl7.org/fhir/ValueSet/action-grouping-behavior'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Visual Group'.toFhirString,
@@ -75,7 +76,7 @@ class ActionGroupingBehavior extends FhirCodeEnum {
 
   /// logical_group
   static final ActionGroupingBehavior logical_group = ActionGroupingBehavior._(
-    validatedValue: 'logical-group',
+    valueString: 'logical-group',
     system: 'http://hl7.org/fhir/ValueSet/action-grouping-behavior'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Logical Group'.toFhirString,
@@ -83,7 +84,7 @@ class ActionGroupingBehavior extends FhirCodeEnum {
 
   /// sentence_group
   static final ActionGroupingBehavior sentence_group = ActionGroupingBehavior._(
-    validatedValue: 'sentence-group',
+    valueString: 'sentence-group',
     system: 'http://hl7.org/fhir/ValueSet/action-grouping-behavior'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Sentence Group'.toFhirString,
@@ -91,7 +92,7 @@ class ActionGroupingBehavior extends FhirCodeEnum {
 
   /// For instances where an Element is present but not value
   static final ActionGroupingBehavior elementOnly =
-      ActionGroupingBehavior._(validatedValue: '');
+      ActionGroupingBehavior._(valueString: '');
 
   /// List of all enum-like values
   static final List<ActionGroupingBehavior> values = [
@@ -103,14 +104,14 @@ class ActionGroupingBehavior extends FhirCodeEnum {
   /// Clones the current instance
   @override
   ActionGroupingBehavior clone() => ActionGroupingBehavior._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ActionGroupingBehavior withElement(Element? newElement) {
     return ActionGroupingBehavior._(
-      validatedValue: value,
+      valueString: valueString,
       element: newElement,
     );
   }
@@ -118,18 +119,18 @@ class ActionGroupingBehavior extends FhirCodeEnum {
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   ActionGroupingBehavior copyWith({
-    String? newValue,
+    dynamic newValue,
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
@@ -140,11 +141,12 @@ class ActionGroupingBehavior extends FhirCodeEnum {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError(
+          'Invalid input for ActionGroupingBehavior: $newValue',);
     }
     return ActionGroupingBehavior._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

@@ -273,6 +273,10 @@ class FhirXhtml extends PrimitiveType {
   @override
   String? get primitiveValue => valueString;
 
+  /// Returns `true` if the Type is considered string-based, otherwise `false`
+  @override
+  bool get stringBased => true;
+
   // --------------------------------------------------------------------------
   // Clone / Copy
   // --------------------------------------------------------------------------
@@ -331,6 +335,10 @@ class FhirXhtml extends PrimitiveType {
       identical(this, other) ||
       (other is FhirXhtml && other.valueString == valueString) ||
       (other is String && other == valueString);
+
+  @override
+  // ignore: avoid_equals_and_hash_code_on_mutable_classes
+  bool operator ==(Object other) => equals(other);
 
   @override
   // ignore: avoid_equals_and_hash_code_on_mutable_classes

@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class ContactPointUseBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   ContactPointUseBuilder._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class ContactPointUseBuilder extends FhirCodeEnumBuilder {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory ContactPointUseBuilder(
-    String? raw, {
+    String? rawValue, {
     FhirUriBuilder? system,
     FhirStringBuilder? version,
     FhirStringBuilder? display,
@@ -29,9 +29,10 @@ class ContactPointUseBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
     return ContactPointUseBuilder._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -45,7 +46,7 @@ class ContactPointUseBuilder extends FhirCodeEnumBuilder {
 
   /// Create empty [ContactPointUseBuilder] with element only
   factory ContactPointUseBuilder.empty() =>
-      ContactPointUseBuilder._(validatedValue: '');
+      ContactPointUseBuilder._(valueString: '');
 
   /// Factory constructor to create [ContactPointUseBuilder]
   /// from JSON.
@@ -62,14 +63,14 @@ class ContactPointUseBuilder extends FhirCodeEnumBuilder {
       );
     }
     return ContactPointUseBuilder._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// home
   static ContactPointUseBuilder home = ContactPointUseBuilder._(
-    validatedValue: 'home',
+    valueString: 'home',
     system: 'http://hl7.org/fhir/ValueSet/contact-point-use'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Home'.toFhirStringBuilder,
@@ -77,7 +78,7 @@ class ContactPointUseBuilder extends FhirCodeEnumBuilder {
 
   /// work
   static ContactPointUseBuilder work = ContactPointUseBuilder._(
-    validatedValue: 'work',
+    valueString: 'work',
     system: 'http://hl7.org/fhir/ValueSet/contact-point-use'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Work'.toFhirStringBuilder,
@@ -85,7 +86,7 @@ class ContactPointUseBuilder extends FhirCodeEnumBuilder {
 
   /// temp
   static ContactPointUseBuilder temp = ContactPointUseBuilder._(
-    validatedValue: 'temp',
+    valueString: 'temp',
     system: 'http://hl7.org/fhir/ValueSet/contact-point-use'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Temp'.toFhirStringBuilder,
@@ -93,7 +94,7 @@ class ContactPointUseBuilder extends FhirCodeEnumBuilder {
 
   /// old
   static ContactPointUseBuilder old = ContactPointUseBuilder._(
-    validatedValue: 'old',
+    valueString: 'old',
     system: 'http://hl7.org/fhir/ValueSet/contact-point-use'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Old'.toFhirStringBuilder,
@@ -101,7 +102,7 @@ class ContactPointUseBuilder extends FhirCodeEnumBuilder {
 
   /// mobile
   static ContactPointUseBuilder mobile = ContactPointUseBuilder._(
-    validatedValue: 'mobile',
+    valueString: 'mobile',
     system: 'http://hl7.org/fhir/ValueSet/contact-point-use'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Mobile'.toFhirStringBuilder,
@@ -109,7 +110,7 @@ class ContactPointUseBuilder extends FhirCodeEnumBuilder {
 
   /// For instances where an Element is present but not value
   static ContactPointUseBuilder elementOnly =
-      ContactPointUseBuilder._(validatedValue: '');
+      ContactPointUseBuilder._(valueString: '');
 
   /// List of all enum-like values
   static List<ContactPointUseBuilder> values = [
@@ -123,30 +124,31 @@ class ContactPointUseBuilder extends FhirCodeEnumBuilder {
   /// Clones the current instance
   @override
   ContactPointUseBuilder clone() => ContactPointUseBuilder._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
   ContactPointUseBuilder withElement(ElementBuilder? newElement) {
-    return ContactPointUseBuilder._(validatedValue: value, element: newElement);
+    return ContactPointUseBuilder._(
+        valueString: valueString, element: newElement,);
   }
 
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   ContactPointUseBuilder copyWith({
-    String? newValue,
+    dynamic newValue,
     ElementBuilder? element,
     FhirStringBuilder? id,
     List<FhirExtensionBuilder>? extension_,
@@ -157,11 +159,11 @@ class ContactPointUseBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError('Invalid input for ContactPointUse: $newValue');
     }
     return ContactPointUseBuilder._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
@@ -170,7 +172,7 @@ class ContactPointUseBuilder extends FhirCodeEnumBuilder {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath,
+      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

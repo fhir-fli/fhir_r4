@@ -7,11 +7,13 @@ extension FhirInteger64NumExtension on num {
   FhirInteger64 get toFhirInteger64 => FhirInteger64.fromNum(this);
 }
 
+/// Extension methods on [String] to easily convert them to [FhirInteger64].
 extension FhirInteger64StringExtension on String {
   /// Converts this [String] to a [FhirInteger64].
   FhirInteger64 get toFhirInteger64 => FhirInteger64.fromString(this);
 }
 
+/// Extension methods on [BigInt] to easily convert them to [FhirInteger64].
 extension FhirInteger64BigIntExtension on BigInt {
   /// Converts this [BigInt] to a [FhirInteger64].
   FhirInteger64 get toFhirInteger64 => FhirInteger64.fromBigInt(this);
@@ -47,6 +49,7 @@ class FhirInteger64 extends PrimitiveType implements Comparable<FhirInteger64> {
   /// - A [BigInt].
   ///
   /// If [rawValue] is a [String], calls [_validateInteger64(rawValue)].
+  // ignore: sort_unnamed_constructors_first
   factory FhirInteger64(
     dynamic rawValue, {
     Element? element,

@@ -16,13 +16,13 @@ class FHIRPathEngine {
     for (final sd in worker.getStructures()) {
       if (sd.derivation == TypeDerivationRule.specialization &&
           sd.kind != StructureDefinitionKind.logical &&
-          sd.name.value != null) {
-        allTypes[sd.name.value!] = sd;
+          sd.name.valueString != null) {
+        allTypes[sd.name.valueString!] = sd;
       }
       if (sd.derivation == TypeDerivationRule.specialization &&
           sd.kind == StructureDefinitionKind.primitive_type &&
-          sd.name.value != null) {
-        primitiveTypes.add(sd.name.value!);
+          sd.name.valueString != null) {
+        primitiveTypes.add(sd.name.valueString!);
       }
     }
     _initFlags();
@@ -247,7 +247,7 @@ class FHIRPathEngine {
 
         num? value;
         if (result.constant is FhirNumber) {
-          value = (result.constant! as FhirNumber).value;
+          value = (result.constant! as FhirNumber).valueNum;
         } else if (result.constant?.primitiveValue is String) {
           value = int.tryParse(result.constant!.primitiveValue!) ??
               double.tryParse(result.constant!.primitiveValue!);
@@ -658,7 +658,7 @@ class FHIRPathEngine {
       context: base,
       thisItem: base,
     )..definedVariables = environment;
-    print('ExecuteContext: $context');
+
     return execute(context, list, node, true);
   }
 
@@ -1036,8 +1036,6 @@ class FHIRPathEngine {
   ) {
     // Acquire context for special variables ($this, $total, $index, etc.)
     var context = contextForParameter(inContext);
-    print('newcontext: $context');
-    print('expressionkind: ${exp.kind}');
 
     // This will hold the evaluated results for the current node
     var work = <FhirBase>[];
@@ -1097,10 +1095,8 @@ class FHIRPathEngine {
           work.add(context.index);
         } else {
           for (final item in focus) {
-            print('focusItem: ${item.toJson()}');
-            print('exp: $exp');
             final outcome = executeForItem(context, item, exp, atEntry: true);
-            print('outcome: ${outcome.map((e) => e.toJson()).toList()}');
+
             work.addAll(outcome);
           }
         }
@@ -1191,11 +1187,9 @@ class FHIRPathEngine {
     final result = <FhirBase>[];
     // Step 1: Resolve constants if at entry
     if (atEntry && context.appInfo != null && hostServices != null) {
-      print('name: ${exp.name}');
-      print(hostServices.runtimeType);
       final temp = hostServices!
           .resolveConstant(this, context.appInfo, exp.name, true, false);
-      print('temp: ${temp.map((e) => e.toJson()).toList()}');
+
       if (temp.isNotEmpty) {
         result.addAll(temp);
         return result;
@@ -1209,9 +1203,8 @@ class FHIRPathEngine {
         exp.name![0].toUpperCase() == exp.name![0]) {
       // Handle constant items
       if (item is PrimitiveType) {
-        print('item is PrimitiveType');
         final itemType = item.fhirType;
-        print('itemtype: $itemType');
+
         if (itemType == exp.name) {
           result.add(item);
           return result;
@@ -1222,15 +1215,14 @@ class FHIRPathEngine {
       final sd = _fetchTypeDefinition(item.fhirType);
       if (sd == null) {
         // Logical model case
-        print('logical model: ${exp.name}');
+
         if (exp.name == item.fhirType) {
           result.add(item);
         }
       } else {
         StructureDefinition? current = sd;
-        print('sdtype: ${current.type}');
+
         while (current != null) {
-          print('currenttype: ${current.type}');
           if (current.type.toString() == exp.name) {
             result.add(item);
             break;
@@ -1241,12 +1233,8 @@ class FHIRPathEngine {
         }
       }
     } else {
-      print(
-        'getting children by name: ${result.map((e) => e.toJson()).toList()}',
-      );
       // Step 3: Default case - Get children by name
       getChildrenByName(item, exp.name!, result);
-      print('got children by name: ${result.map((e) => e.toJson()).toList()}');
     }
     // Step 4: Fallback to resolve constants if result is empty
     if (atEntry &&
@@ -1258,8 +1246,6 @@ class FHIRPathEngine {
             .resolveConstant(this, context.appInfo, exp.name, false, false),
       );
     }
-
-    print('returning result: ${result.map((e) => e.toJson()).toList()}');
 
     return result;
   }
@@ -1819,7 +1805,7 @@ class FHIRPathEngine {
             'CollectionStatus.unordered',
           );
           for (final ed in sdi.snapshot?.element ?? <ElementDefinition>[]) {
-            if (ed.path.value?.startsWith(path) ?? false) {
+            if (ed.path.valueString?.startsWith(path) ?? false) {
               for (final t in ed.type ?? <ElementDefinitionType>[]) {
                 if (t.code.toString().isNotEmpty) {
                   String? tn;
@@ -1853,8 +1839,8 @@ class FHIRPathEngine {
             'CollectionStatus.unordered',
           );
           for (final ed in sdi.snapshot?.element ?? <ElementDefinition>[]) {
-            if ((ed.path.value?.startsWith(path) ?? false) &&
-                !(ed.path.value?.substring(path.length).contains('.') ??
+            if ((ed.path.valueString?.startsWith(path) ?? false) &&
+                !(ed.path.valueString?.substring(path.length).contains('.') ??
                     false)) {
               for (final t in ed.type ?? <ElementDefinitionType>[]) {
                 if (t.code.toString().isEmpty) {
@@ -1882,17 +1868,17 @@ class FHIRPathEngine {
               for (final t
                   in ed.definition?.type ?? <ElementDefinitionType>[]) {
                 if (t.code.toString().isEmpty) {
-                  if ((ed.definition?.id?.value != null &&
+                  if ((ed.definition?.id?.valueString != null &&
                           [
                             'Element.id',
                             'Extension.url',
-                          ].contains(ed.definition!.id!.value)) ||
-                      (ed.definition?.base?.path.value != null &&
+                          ].contains(ed.definition!.id!.valueString)) ||
+                      (ed.definition?.base?.path.valueString != null &&
                           [
                             'Resource.id',
                             'Element.id',
                             'Extension.url',
-                          ].contains(ed.definition!.base!.path.value))) {
+                          ].contains(ed.definition!.base!.path.valueString))) {
                     result.addTypeWithProfile(TypeDetails.FP_NS, 'string');
                   }
                   break;
@@ -2023,7 +2009,7 @@ class FHIRPathEngine {
     ExpressionNode expr,
   ) {
     for (final ed in sd.snapshot?.element ?? <ElementDefinition>[]) {
-      if (ed.path.value == path) {
+      if (ed.path.valueString == path) {
         if (ed.hasContentReference()) {
           return getElementDefinitionById(sd, ed.contentReference!.toString());
         } else {
@@ -2031,35 +2017,35 @@ class FHIRPathEngine {
         }
       }
 
-      if ((ed.path.value?.endsWith('[x]') ?? false) &&
+      if ((ed.path.valueString?.endsWith('[x]') ?? false) &&
           path.startsWith(
-            ed.path.value!.substring(0, ed.path.value!.length - 3),
+            ed.path.valueString!.substring(0, ed.path.valueString!.length - 3),
           ) &&
-          path.length == ed.path.value!.length - 3) {
+          path.length == ed.path.valueString!.length - 3) {
         return ElementDefinitionMatch(ed, null);
       }
 
       if (allowTypedName &&
-          (ed.path.value?.endsWith('[x]') ?? false) &&
+          (ed.path.valueString?.endsWith('[x]') ?? false) &&
           path.startsWith(
-            ed.path.value!.substring(0, ed.path.value!.length - 3),
+            ed.path.valueString!.substring(0, ed.path.valueString!.length - 3),
           ) &&
-          path.length > ed.path.value!.length - 3) {
+          path.length > ed.path.valueString!.length - 3) {
         final s = path
-            .substring(ed.path.value!.length - 3)
+            .substring(ed.path.valueString!.length - 3)
             .uncapitalize(); // Assuming uncapitalize is implemented somewhere
         if (primitiveTypes.contains(s)) {
           return ElementDefinitionMatch(ed, s);
         } else {
           return ElementDefinitionMatch(
             ed,
-            path.substring(ed.path.value!.length - 3),
+            path.substring(ed.path.valueString!.length - 3),
           );
         }
       }
 
-      if ((ed.path.value?.contains('.') ?? false) &&
-          path.startsWith('${ed.path.value}.') &&
+      if ((ed.path.valueString?.contains('.') ?? false) &&
+          path.startsWith('${ed.path.valueString}.') &&
           ed.type != null &&
           ed.type!.isNotEmpty &&
           !isAbstractType(ed.type!)) {
@@ -2073,26 +2059,28 @@ class FHIRPathEngine {
 
         if (nsd == null) {
           throw makeException(expr, 'FHIRPATH_NO_TYPE', [
-            ed.type![0].code.value ?? '',
+            ed.type![0].code.valueString ?? '',
             'getElementDefinition',
           ]);
         }
 
         return getElementDefinition(
           nsd,
-          '${nsd.id?.value}${path.substring(ed.path.value!.length)}',
+          '${nsd.id?.valueString}'
+          '${path.substring(ed.path.valueString!.length)}',
           allowTypedName,
           expr,
         );
       }
 
-      if (ed.hasContentReference() && path.startsWith('${ed.path.value}.')) {
+      if (ed.hasContentReference() &&
+          path.startsWith('${ed.path.valueString}.')) {
         final m = getElementDefinitionById(sd, ed.contentReference!.toString());
-        if (m?.definition?.path.value != null) {
+        if (m?.definition?.path.valueString != null) {
           return getElementDefinition(
             sd,
-            '${m!.definition!.path.value}'
-            '${path.substring(ed.path.value!.length)}',
+            '${m!.definition!.path.valueString}'
+            '${path.substring(ed.path.valueString!.length)}',
             allowTypedName,
             expr,
           );
@@ -2166,7 +2154,6 @@ class FHIRPathEngine {
   /// ***************************************
   ///
   FhirBase? _processConstant(FHIRLexer lexer) {
-    print('processing constant: ${lexer.current}');
     if (lexer.isStringConstant()) {
       return FhirString(processConstantString(lexer.take(), lexer))
           .noExtensions();
@@ -3759,9 +3746,9 @@ class FHIRPathEngine {
 
     if (l is FhirNumber && r is FhirNumber) {
       try {
-        final d1 = FhirDecimal(l.value);
-        final d2 = FhirDecimal(r.value);
-        if (d2.value == 0) {
+        final d1 = FhirDecimal(l.valueNum);
+        final d2 = FhirDecimal(r.valueNum);
+        if (d2.valueNum == 0) {
           return <FhirBase>[];
         }
         result.add((d1 / d2)! as FhirDecimal);
@@ -3823,16 +3810,16 @@ class FHIRPathEngine {
     final r = right.first;
 
     if (l is FhirInteger &&
-        l.value != null &&
+        l.valueInt != null &&
         r is FhirInteger &&
-        r.value != null) {
-      final divisor = r.value!;
+        r.valueInt != null) {
+      final divisor = r.valueInt!;
       if (divisor != 0) {
-        result.add(FhirInteger(l.value! ~/ divisor));
+        result.add(FhirInteger(l.valueInt! ~/ divisor));
       }
     } else if ((l is FhirDecimal || l is FhirInteger) &&
         (r is FhirDecimal || r is FhirInteger)) {
-      if ((r as FhirNumber).value != 0) {
+      if ((r as FhirNumber).valueNum != 0) {
         result.add(((l as FhirNumber) ~/ r)!);
       }
     } else {
@@ -3885,16 +3872,16 @@ class FHIRPathEngine {
         try {
           final d1 = l;
           final d2 = r;
-          if (d2.value != 0) {
+          if (d2.valueNum != 0) {
             result.add((d1 % d2)!);
           }
         } catch (e) {
           throw makeException(expr, 'FHIRPATH_OP_ERROR', ['mod', e.toString()]);
         }
       } else {
-        final modulus = r.value as int?;
+        final modulus = r.valueNum as int?;
         if (modulus != null && modulus != 0) {
-          result.add(FhirInteger((l % modulus)!.value));
+          result.add(FhirInteger((l % modulus)!.valueNum));
         }
       }
     } else if ((l.fhirType == 'decimal' || l.fhirType == 'integer') &&
@@ -3990,7 +3977,6 @@ class FHIRPathEngine {
     List<FhirBase> focus,
     ExpressionNode exp,
   ) {
-    print('Evaluating function: ${exp.function}');
     switch (exp.function) {
       case FpFunction.Empty:
         return funcEmpty(context, focus, exp);
@@ -5663,7 +5649,7 @@ class FHIRPathEngine {
                   : val is Resource
                       ? val.id
                       : null;
-              if (id != null && chompHash(s) == chompHash(id.value)) {
+              if (id != null && chompHash(s) == chompHash(id.valueString)) {
                 res = c.toFhirString;
                 break;
               }
@@ -6016,14 +6002,14 @@ class FHIRPathEngine {
       if (item is FhirBoolean) {
         result.add(item);
       } else if (item is FhirInteger) {
-        final i = item.value;
+        final i = item.valueInt;
         if (i == 0) {
           result.add(FhirBoolean(false).noExtensions());
         } else if (i == 1) {
           result.add(FhirBoolean(true).noExtensions());
         }
       } else if (item is FhirDecimal) {
-        final value = item.value;
+        final value = item.valueDouble;
         if (value == 0) {
           result.add(FhirBoolean(false).noExtensions());
         } else if (value == 1) {
@@ -6067,7 +6053,7 @@ class FHIRPathEngine {
       } else if (item is FhirNumber) {
         result.add(
           Quantity(
-            value: FhirDecimal(item.value),
+            value: FhirDecimal(item.valueNum),
             system: 'http://unitsofmeasure.org'.toFhirUri,
             code: '1'.toFhirCode,
           ),
@@ -6152,15 +6138,17 @@ class FHIRPathEngine {
     if (focus.isEmpty) {
       return [];
     } else if (focus.length == 1) {
-      if (focus.first is FhirDateTimeBase) {
+      if (focus.first is FhirDateTimeBase &&
+          (focus.first as FhirDateTimeBase).valueString != null) {
         return [
           FhirDateTime.fromString(
-            (focus.first as FhirDateTimeBase).valueString,
+            (focus.first as FhirDateTimeBase).valueString!,
           ),
         ];
       } else if (focus.first is FhirString) {
-        final dateTime =
-            FhirDateTime.tryParse((focus.first as FhirString).value);
+        final dateTime = (focus.first as FhirString).valueString == null
+            ? null
+            : FhirDateTime.tryParse((focus.first as FhirString).valueString);
         if (dateTime != null) {
           return [dateTime];
         }
@@ -6191,7 +6179,9 @@ class FHIRPathEngine {
         }
         return [];
       } else if (focus.first is FhirString) {
-        final date = FhirDateTime.tryParse((focus.first as FhirString).value);
+        final date = (focus.first as FhirString).valueString == null
+            ? null
+            : FhirDateTime.tryParse((focus.first as FhirString).valueString);
         if (date != null) {
           return [date];
         }
@@ -6288,10 +6278,10 @@ class FHIRPathEngine {
     if (focus.length != 1) {
       return [FhirBoolean(false)];
     } else if (focus.first is FhirInteger) {
-      final value = (focus.first as FhirInteger).value;
+      final value = (focus.first as FhirInteger).valueInt;
       return [FhirBoolean(value != null && value >= 0 && value <= 1)];
     } else if (focus.first is FhirDecimal) {
-      final value = (focus.first as FhirDecimal).value;
+      final value = (focus.first as FhirDecimal).valueDouble;
       return [FhirBoolean(value != null && (value == 0 || value == 1))];
     } else if (focus.first is FhirBoolean) {
       return [FhirBoolean(true)];
@@ -6537,7 +6527,7 @@ class FHIRPathEngine {
     final base = focus[0];
     final result = <FhirBase>[];
 
-    if (base is FhirNumber && base.value != null) {
+    if (base is FhirNumber && base.valueNum != null) {
       if (base is FhirDecimal) {
         result.add(FhirDecimal(base.abs()).noExtensions());
       } else if (base is FhirInteger) {
@@ -6583,7 +6573,7 @@ class FHIRPathEngine {
     final result = <FhirBase>[];
 
     if (base is FhirNumber) {
-      final value = base.value;
+      final value = base.valueNum;
       if (value != null) {
         try {
           result.add(FhirInteger(value.ceil()).noExtensions());
@@ -6621,7 +6611,7 @@ class FHIRPathEngine {
     final result = <FhirBase>[];
 
     if (base is FhirNumber) {
-      final value = base.value;
+      final value = base.valueNum;
       if (value != null) {
         try {
           result.add(FhirInteger(value.floor()).noExtensions());
@@ -7166,23 +7156,24 @@ class FHIRPathEngine {
   bool isBoolean(List<FhirBase> list, bool value) {
     return list.length == 1 &&
         list.first is FhirBoolean &&
-        (list.first as FhirBoolean).value == value;
+        (list.first as FhirBoolean).valueBoolean == value;
   }
 
   FpEquality asBool(FhirBase item, [bool narrow = false]) {
-    if (item is FhirBoolean && item.value != null) {
-      return item.value! ? FpEquality.true_ : FpEquality.false_;
+    if (item is FhirBoolean && item.valueBoolean != null) {
+      return item.valueBoolean! ? FpEquality.true_ : FpEquality.false_;
     }
 
     if (!narrow) {
-      if (item is FhirInteger ||
-          item is FhirPositiveInt ||
-          item is FhirUnsignedInt) {
-        return asBoolFromInt((item as FhirNumber).value.toString());
-      } else if (item is FhirDecimal) {
-        return asBoolFromDec(item.value.toString());
+      if ((item is FhirInteger ||
+              item is FhirPositiveInt ||
+              item is FhirUnsignedInt) &&
+          (item as FhirNumber).valueString != null) {
+        return asBoolFromInt(item.valueString!);
+      } else if (item is FhirDecimal && item.valueString != null) {
+        return asBoolFromDec(item.valueString!);
       } else if (item is FhirString) {
-        final lowerValue = (item.value ?? '').toLowerCase();
+        final lowerValue = (item.valueString ?? '').toLowerCase();
         if (['true', 't', 'yes', 'y', '1', '1.0'].contains(lowerValue)) {
           return FpEquality.true_;
         } else if (['false', 'f', 'no', 'n', '0', '0.0'].contains(lowerValue)) {
@@ -7260,7 +7251,7 @@ class FHIRPathEngine {
     if (items.length == 1) {
       final first = items.first;
       if (first is FhirBoolean) {
-        return first.value ?? false;
+        return first.valueBoolean ?? false;
       }
 
       final lowerValue = first.toString().toLowerCase();
@@ -7479,11 +7470,13 @@ class FHIRPathEngine {
   bool? doEquals(FhirBase left, FhirBase right) {
     if (left is Quantity && right is Quantity) {
       return qtyEqual(left, right);
-    } else if (left is Quantity && right is FhirNumber && right.value != null) {
+    } else if (left is Quantity &&
+        right is FhirNumber &&
+        right.valueNum != null) {
       return qtyEqual(
         left,
         Quantity(
-          value: FhirDecimal(right.value),
+          value: FhirDecimal(right.valueNum),
           system: 'http://unitsofmeasure.org'.toFhirUri,
           code: '1'.toFhirCode,
         ),
@@ -7535,7 +7528,7 @@ class FHIRPathEngine {
 
   Pair? qtyToCanonicalPair(Quantity q) {
     String? ucum;
-    switch (q.unit?.value) {
+    switch (q.unit?.valueString) {
       case 'year':
       case 'years':
         ucum = 'a';
@@ -7567,7 +7560,7 @@ class FHIRPathEngine {
     }
     try {
       final p = Pair(
-        value: UcumDecimal.fromNum(q.value!.value!),
+        value: UcumDecimal.fromNum(q.value!.valueDouble!),
         unit: q.code?.toString() ?? ucum ?? '1',
       );
       return worker.ucumService.getCanonicalForm(p);
@@ -7582,7 +7575,7 @@ class FHIRPathEngine {
     }
     try {
       final pair = Pair(
-        value: UcumDecimal.fromNum(q.value!.value!),
+        value: UcumDecimal.fromNum(q.value!.valueDouble!),
         unit: q.code?.toString() ?? '1',
       );
       final canonicalPair = worker.ucumService.getCanonicalForm(pair);
@@ -7607,7 +7600,7 @@ class FHIRPathEngine {
     }
     try {
       return Pair(
-        value: UcumDecimal.fromNum(q.value!.value!),
+        value: UcumDecimal.fromNum(q.value!.valueDouble!),
         unit: q.code?.toString() ?? '1',
       );
     } catch (e) {
@@ -7666,7 +7659,7 @@ class FHIRPathEngine {
 
   String convertToString(FhirBase item) {
     if (item is PrimitiveType) {
-      return item.value.toString();
+      return item.valueString ?? '';
     } else if (item is Quantity) {
       final q = item.copyWith();
       if (q.unit != null &&
@@ -7687,7 +7680,7 @@ class FHIRPathEngine {
             'seconds',
             'millisecond',
             'milliseconds',
-          ].contains(q.unit?.value) &&
+          ].contains(q.unit?.valueString) &&
           (q.system == null ||
               q.system.toString() == 'http://unitsofmeasure.org')) {
         return '${q.value} ${q.unit}';
@@ -7713,7 +7706,7 @@ class FHIRPathEngine {
       return qtyEquivalent(
         left,
         Quantity(
-          value: FhirDecimal(right.value),
+          value: FhirDecimal(right.valueNum),
           system: 'http://unitsofmeasure.org'.toFhirUri,
           code: '1'.toFhirCode,
         ),
@@ -7723,7 +7716,7 @@ class FHIRPathEngine {
       return doEquals(left, right);
     }
     if (left is FhirNumber && right is FhirNumber) {
-      return equivalentNumber(left.value, right.value);
+      return equivalentNumber(left.valueNum, right.valueNum);
     }
     if (left is FhirDateTimeBase && right is FhirDateTimeBase) {
       return left.isEquivalent(right);
@@ -7806,8 +7799,9 @@ class FHIRPathEngine {
   ) {
     var result = d.copyWith() as FhirDateTimeBase;
 
-    final value = negate ? -q.value!.value!.toInt() : q.value!.value!.toInt();
-    final unit = q.code?.value ?? q.unit?.value;
+    final value =
+        negate ? -q.value!.valueNum!.toInt() : q.value!.valueNum!.toInt();
+    final unit = q.code?.valueString ?? q.unit?.valueString;
 
     switch (unit) {
       case 'years':

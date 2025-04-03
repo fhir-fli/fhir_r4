@@ -323,7 +323,10 @@ class CodeableConcept extends DataType
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -337,7 +340,10 @@ class CodeableConcept extends DataType
             return copyWith(coding: newList);
           } else if (child is Coding) {
             // Add single element to existing list or create new list
-            final newList = [...?coding, child];
+            final newList = [
+              ...?coding,
+              child,
+            ];
             return copyWith(coding: newList);
           } else {
             throw Exception('Invalid child type for $childName');

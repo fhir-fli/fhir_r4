@@ -6,7 +6,7 @@ part of '../primitive_types.dart';
 class LinkTypeBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   LinkTypeBuilder._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -20,7 +20,7 @@ class LinkTypeBuilder extends FhirCodeEnumBuilder {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory LinkTypeBuilder(
-    String? raw, {
+    String? rawValue, {
     FhirUriBuilder? system,
     FhirStringBuilder? version,
     FhirStringBuilder? display,
@@ -30,9 +30,10 @@ class LinkTypeBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
     return LinkTypeBuilder._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -45,7 +46,7 @@ class LinkTypeBuilder extends FhirCodeEnumBuilder {
   }
 
   /// Create empty [LinkTypeBuilder] with element only
-  factory LinkTypeBuilder.empty() => LinkTypeBuilder._(validatedValue: '');
+  factory LinkTypeBuilder.empty() => LinkTypeBuilder._(valueString: '');
 
   /// Factory constructor to create [LinkTypeBuilder]
   /// from JSON.
@@ -62,14 +63,14 @@ class LinkTypeBuilder extends FhirCodeEnumBuilder {
       );
     }
     return LinkTypeBuilder._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// replaced_by
   static LinkTypeBuilder replaced_by = LinkTypeBuilder._(
-    validatedValue: 'replaced-by',
+    valueString: 'replaced-by',
     system: 'http://hl7.org/fhir/ValueSet/link-type'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Replaced-by'.toFhirStringBuilder,
@@ -77,7 +78,7 @@ class LinkTypeBuilder extends FhirCodeEnumBuilder {
 
   /// replaces
   static LinkTypeBuilder replaces = LinkTypeBuilder._(
-    validatedValue: 'replaces',
+    valueString: 'replaces',
     system: 'http://hl7.org/fhir/ValueSet/link-type'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Replaces'.toFhirStringBuilder,
@@ -85,7 +86,7 @@ class LinkTypeBuilder extends FhirCodeEnumBuilder {
 
   /// refer
   static LinkTypeBuilder refer = LinkTypeBuilder._(
-    validatedValue: 'refer',
+    valueString: 'refer',
     system: 'http://hl7.org/fhir/ValueSet/link-type'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Refer'.toFhirStringBuilder,
@@ -93,14 +94,14 @@ class LinkTypeBuilder extends FhirCodeEnumBuilder {
 
   /// seealso
   static LinkTypeBuilder seealso = LinkTypeBuilder._(
-    validatedValue: 'seealso',
+    valueString: 'seealso',
     system: 'http://hl7.org/fhir/ValueSet/link-type'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'See also'.toFhirStringBuilder,
   );
 
   /// For instances where an Element is present but not value
-  static LinkTypeBuilder elementOnly = LinkTypeBuilder._(validatedValue: '');
+  static LinkTypeBuilder elementOnly = LinkTypeBuilder._(valueString: '');
 
   /// List of all enum-like values
   static List<LinkTypeBuilder> values = [
@@ -113,30 +114,30 @@ class LinkTypeBuilder extends FhirCodeEnumBuilder {
   /// Clones the current instance
   @override
   LinkTypeBuilder clone() => LinkTypeBuilder._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
   LinkTypeBuilder withElement(ElementBuilder? newElement) {
-    return LinkTypeBuilder._(validatedValue: value, element: newElement);
+    return LinkTypeBuilder._(valueString: valueString, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   LinkTypeBuilder copyWith({
-    String? newValue,
+    dynamic newValue,
     ElementBuilder? element,
     FhirStringBuilder? id,
     List<FhirExtensionBuilder>? extension_,
@@ -147,11 +148,11 @@ class LinkTypeBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError('Invalid input for LinkType: $newValue');
     }
     return LinkTypeBuilder._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
@@ -160,7 +161,7 @@ class LinkTypeBuilder extends FhirCodeEnumBuilder {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath,
+      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

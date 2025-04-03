@@ -346,7 +346,10 @@ class FhirMeta extends DataType
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -384,7 +387,10 @@ class FhirMeta extends DataType
             return copyWith(profile: newList);
           } else if (child is FhirCanonical) {
             // Add single element to existing list or create new list
-            final newList = [...?profile, child];
+            final newList = [
+              ...?profile,
+              child,
+            ];
             return copyWith(profile: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -398,7 +404,10 @@ class FhirMeta extends DataType
             return copyWith(security: newList);
           } else if (child is Coding) {
             // Add single element to existing list or create new list
-            final newList = [...?security, child];
+            final newList = [
+              ...?security,
+              child,
+            ];
             return copyWith(security: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -412,7 +421,10 @@ class FhirMeta extends DataType
             return copyWith(tag: newList);
           } else if (child is Coding) {
             // Add single element to existing list or create new list
-            final newList = [...?tag, child];
+            final newList = [
+              ...?tag,
+              child,
+            ];
             return copyWith(tag: newList);
           } else {
             throw Exception('Invalid child type for $childName');

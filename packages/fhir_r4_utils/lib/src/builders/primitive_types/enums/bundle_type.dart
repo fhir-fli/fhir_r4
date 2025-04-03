@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class BundleTypeBuilder extends FhirCodeEnumBuilder {
   // Private underscore constructor for internal use.
   BundleTypeBuilder._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class BundleTypeBuilder extends FhirCodeEnumBuilder {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory BundleTypeBuilder(
-    String? raw, {
+    String? rawValue, {
     FhirUriBuilder? system,
     FhirStringBuilder? version,
     FhirStringBuilder? display,
@@ -29,9 +29,10 @@ class BundleTypeBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCodeBuilder._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCodeBuilder._validateCode(rawValue) : null;
     return BundleTypeBuilder._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -44,7 +45,7 @@ class BundleTypeBuilder extends FhirCodeEnumBuilder {
   }
 
   /// Create empty [BundleTypeBuilder] with element only
-  factory BundleTypeBuilder.empty() => BundleTypeBuilder._(validatedValue: '');
+  factory BundleTypeBuilder.empty() => BundleTypeBuilder._(valueString: '');
 
   /// Factory constructor to create [BundleTypeBuilder]
   /// from JSON.
@@ -61,14 +62,14 @@ class BundleTypeBuilder extends FhirCodeEnumBuilder {
       );
     }
     return BundleTypeBuilder._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// document
   static BundleTypeBuilder document = BundleTypeBuilder._(
-    validatedValue: 'document',
+    valueString: 'document',
     system: 'http://hl7.org/fhir/ValueSet/bundle-type'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Document'.toFhirStringBuilder,
@@ -76,7 +77,7 @@ class BundleTypeBuilder extends FhirCodeEnumBuilder {
 
   /// message
   static BundleTypeBuilder message = BundleTypeBuilder._(
-    validatedValue: 'message',
+    valueString: 'message',
     system: 'http://hl7.org/fhir/ValueSet/bundle-type'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Message'.toFhirStringBuilder,
@@ -84,7 +85,7 @@ class BundleTypeBuilder extends FhirCodeEnumBuilder {
 
   /// transaction
   static BundleTypeBuilder transaction = BundleTypeBuilder._(
-    validatedValue: 'transaction',
+    valueString: 'transaction',
     system: 'http://hl7.org/fhir/ValueSet/bundle-type'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Transaction'.toFhirStringBuilder,
@@ -92,7 +93,7 @@ class BundleTypeBuilder extends FhirCodeEnumBuilder {
 
   /// transaction_response
   static BundleTypeBuilder transaction_response = BundleTypeBuilder._(
-    validatedValue: 'transaction-response',
+    valueString: 'transaction-response',
     system: 'http://hl7.org/fhir/ValueSet/bundle-type'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Transaction Response'.toFhirStringBuilder,
@@ -100,7 +101,7 @@ class BundleTypeBuilder extends FhirCodeEnumBuilder {
 
   /// batch
   static BundleTypeBuilder batch = BundleTypeBuilder._(
-    validatedValue: 'batch',
+    valueString: 'batch',
     system: 'http://hl7.org/fhir/ValueSet/bundle-type'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Batch'.toFhirStringBuilder,
@@ -108,7 +109,7 @@ class BundleTypeBuilder extends FhirCodeEnumBuilder {
 
   /// batch_response
   static BundleTypeBuilder batch_response = BundleTypeBuilder._(
-    validatedValue: 'batch-response',
+    valueString: 'batch-response',
     system: 'http://hl7.org/fhir/ValueSet/bundle-type'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Batch Response'.toFhirStringBuilder,
@@ -116,7 +117,7 @@ class BundleTypeBuilder extends FhirCodeEnumBuilder {
 
   /// history
   static BundleTypeBuilder history = BundleTypeBuilder._(
-    validatedValue: 'history',
+    valueString: 'history',
     system: 'http://hl7.org/fhir/ValueSet/bundle-type'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'History List'.toFhirStringBuilder,
@@ -124,7 +125,7 @@ class BundleTypeBuilder extends FhirCodeEnumBuilder {
 
   /// searchset
   static BundleTypeBuilder searchset = BundleTypeBuilder._(
-    validatedValue: 'searchset',
+    valueString: 'searchset',
     system: 'http://hl7.org/fhir/ValueSet/bundle-type'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Search Results'.toFhirStringBuilder,
@@ -132,15 +133,14 @@ class BundleTypeBuilder extends FhirCodeEnumBuilder {
 
   /// collection
   static BundleTypeBuilder collection = BundleTypeBuilder._(
-    validatedValue: 'collection',
+    valueString: 'collection',
     system: 'http://hl7.org/fhir/ValueSet/bundle-type'.toFhirUriBuilder,
     version: '4.3.0'.toFhirStringBuilder,
     display: 'Collection'.toFhirStringBuilder,
   );
 
   /// For instances where an Element is present but not value
-  static BundleTypeBuilder elementOnly =
-      BundleTypeBuilder._(validatedValue: '');
+  static BundleTypeBuilder elementOnly = BundleTypeBuilder._(valueString: '');
 
   /// List of all enum-like values
   static List<BundleTypeBuilder> values = [
@@ -158,30 +158,30 @@ class BundleTypeBuilder extends FhirCodeEnumBuilder {
   /// Clones the current instance
   @override
   BundleTypeBuilder clone() => BundleTypeBuilder._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as ElementBuilder?,
       );
 
   /// Returns the enum value with an element attached
   BundleTypeBuilder withElement(ElementBuilder? newElement) {
-    return BundleTypeBuilder._(validatedValue: value, element: newElement);
+    return BundleTypeBuilder._(valueString: valueString, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   BundleTypeBuilder copyWith({
-    String? newValue,
+    dynamic newValue,
     ElementBuilder? element,
     FhirStringBuilder? id,
     List<FhirExtensionBuilder>? extension_,
@@ -192,11 +192,11 @@ class BundleTypeBuilder extends FhirCodeEnumBuilder {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError('Invalid input for BundleType: $newValue');
     }
     return BundleTypeBuilder._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
@@ -205,7 +205,7 @@ class BundleTypeBuilder extends FhirCodeEnumBuilder {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath,
+      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

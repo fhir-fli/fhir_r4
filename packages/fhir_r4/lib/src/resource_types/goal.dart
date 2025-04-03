@@ -715,7 +715,10 @@ class Goal extends DomainResource {
             return copyWith(contained: newList);
           } else if (child is Resource) {
             // Add single element to existing list or create new list
-            final newList = [...?contained, child];
+            final newList = [
+              ...?contained,
+              child,
+            ];
             return copyWith(contained: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -729,7 +732,10 @@ class Goal extends DomainResource {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -743,7 +749,10 @@ class Goal extends DomainResource {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -757,7 +766,10 @@ class Goal extends DomainResource {
             return copyWith(identifier: newList);
           } else if (child is Identifier) {
             // Add single element to existing list or create new list
-            final newList = [...?identifier, child];
+            final newList = [
+              ...?identifier,
+              child,
+            ];
             return copyWith(identifier: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -787,7 +799,10 @@ class Goal extends DomainResource {
             return copyWith(category: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...?category, child];
+            final newList = [
+              ...?category,
+              child,
+            ];
             return copyWith(category: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -855,7 +870,10 @@ class Goal extends DomainResource {
             return copyWith(target: newList);
           } else if (child is GoalTarget) {
             // Add single element to existing list or create new list
-            final newList = [...?target, child];
+            final newList = [
+              ...?target,
+              child,
+            ];
             return copyWith(target: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -893,7 +911,10 @@ class Goal extends DomainResource {
             return copyWith(addresses: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...?addresses, child];
+            final newList = [
+              ...?addresses,
+              child,
+            ];
             return copyWith(addresses: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -907,7 +928,10 @@ class Goal extends DomainResource {
             return copyWith(note: newList);
           } else if (child is Annotation) {
             // Add single element to existing list or create new list
-            final newList = [...?note, child];
+            final newList = [
+              ...?note,
+              child,
+            ];
             return copyWith(note: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -921,7 +945,10 @@ class Goal extends DomainResource {
             return copyWith(outcomeCode: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...?outcomeCode, child];
+            final newList = [
+              ...?outcomeCode,
+              child,
+            ];
             return copyWith(outcomeCode: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -935,7 +962,10 @@ class Goal extends DomainResource {
             return copyWith(outcomeReference: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...?outcomeReference, child];
+            final newList = [
+              ...?outcomeReference,
+              child,
+            ];
             return copyWith(outcomeReference: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -983,7 +1013,10 @@ class Goal extends DomainResource {
         return ['Reference'];
       case 'start':
       case 'startX':
-        return ['FhirDate', 'CodeableConcept'];
+        return [
+          'FhirDate',
+          'CodeableConcept',
+        ];
       case 'startDate':
         return ['FhirDate'];
       case 'startCodeableConcept':
@@ -1916,7 +1949,10 @@ class GoalTarget extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1930,7 +1966,10 @@ class GoalTarget extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2104,7 +2143,10 @@ class GoalTarget extends BackboneElement {
         return ['Ratio'];
       case 'due':
       case 'dueX':
-        return ['FhirDate', 'FhirDuration'];
+        return [
+          'FhirDate',
+          'FhirDuration',
+        ];
       case 'dueDate':
         return ['FhirDate'];
       case 'dueDuration':

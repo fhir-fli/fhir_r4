@@ -365,7 +365,10 @@ class Signature extends DataType
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -379,7 +382,10 @@ class Signature extends DataType
             return copyWith(type: newList);
           } else if (child is Coding) {
             // Add single element to existing list or create new list
-            final newList = [...type, child];
+            final newList = [
+              ...type,
+              child,
+            ];
             return copyWith(type: newList);
           } else {
             throw Exception('Invalid child type for $childName');

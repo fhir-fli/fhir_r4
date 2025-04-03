@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class VisionBase extends FhirCodeEnum {
   // Private underscore constructor for internal use.
   VisionBase._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class VisionBase extends FhirCodeEnum {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory VisionBase(
-    String? raw, {
+    String? rawValue, {
     FhirUri? system,
     FhirString? version,
     FhirString? display,
@@ -29,9 +29,10 @@ class VisionBase extends FhirCodeEnum {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCode._validateCode(rawValue) : null;
     return VisionBase._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -44,7 +45,7 @@ class VisionBase extends FhirCodeEnum {
   }
 
   /// Create empty [VisionBase] with element only
-  factory VisionBase.empty() => VisionBase._(validatedValue: '');
+  factory VisionBase.empty() => VisionBase._(valueString: '');
 
   /// Factory constructor to create [VisionBase] from JSON.
   factory VisionBase.fromJson(Map<String, dynamic> json) {
@@ -59,14 +60,14 @@ class VisionBase extends FhirCodeEnum {
       );
     }
     return VisionBase._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// up
   static final VisionBase up = VisionBase._(
-    validatedValue: 'up',
+    valueString: 'up',
     system: 'http://hl7.org/fhir/ValueSet/vision-base-codes'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Up'.toFhirString,
@@ -74,7 +75,7 @@ class VisionBase extends FhirCodeEnum {
 
   /// down
   static final VisionBase down = VisionBase._(
-    validatedValue: 'down',
+    valueString: 'down',
     system: 'http://hl7.org/fhir/ValueSet/vision-base-codes'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Down'.toFhirString,
@@ -82,7 +83,7 @@ class VisionBase extends FhirCodeEnum {
 
   /// in_
   static final VisionBase in_ = VisionBase._(
-    validatedValue: 'in',
+    valueString: 'in',
     system: 'http://hl7.org/fhir/ValueSet/vision-base-codes'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'In'.toFhirString,
@@ -90,14 +91,14 @@ class VisionBase extends FhirCodeEnum {
 
   /// out
   static final VisionBase out = VisionBase._(
-    validatedValue: 'out',
+    valueString: 'out',
     system: 'http://hl7.org/fhir/ValueSet/vision-base-codes'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Out'.toFhirString,
   );
 
   /// For instances where an Element is present but not value
-  static final VisionBase elementOnly = VisionBase._(validatedValue: '');
+  static final VisionBase elementOnly = VisionBase._(valueString: '');
 
   /// List of all enum-like values
   static final List<VisionBase> values = [
@@ -110,14 +111,14 @@ class VisionBase extends FhirCodeEnum {
   /// Clones the current instance
   @override
   VisionBase clone() => VisionBase._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   VisionBase withElement(Element? newElement) {
     return VisionBase._(
-      validatedValue: value,
+      valueString: valueString,
       element: newElement,
     );
   }
@@ -125,18 +126,18 @@ class VisionBase extends FhirCodeEnum {
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   VisionBase copyWith({
-    String? newValue,
+    dynamic newValue,
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
@@ -147,11 +148,11 @@ class VisionBase extends FhirCodeEnum {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError('Invalid input for VisionBase: $newValue');
     }
     return VisionBase._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

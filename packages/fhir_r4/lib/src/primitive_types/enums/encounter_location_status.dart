@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class EncounterLocationStatus extends FhirCodeEnum {
   // Private underscore constructor for internal use.
   EncounterLocationStatus._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class EncounterLocationStatus extends FhirCodeEnum {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory EncounterLocationStatus(
-    String? raw, {
+    String? rawValue, {
     FhirUri? system,
     FhirString? version,
     FhirString? display,
@@ -29,9 +29,10 @@ class EncounterLocationStatus extends FhirCodeEnum {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCode._validateCode(rawValue) : null;
     return EncounterLocationStatus._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -45,7 +46,7 @@ class EncounterLocationStatus extends FhirCodeEnum {
 
   /// Create empty [EncounterLocationStatus] with element only
   factory EncounterLocationStatus.empty() =>
-      EncounterLocationStatus._(validatedValue: '');
+      EncounterLocationStatus._(valueString: '');
 
   /// Factory constructor to create [EncounterLocationStatus] from JSON.
   factory EncounterLocationStatus.fromJson(Map<String, dynamic> json) {
@@ -60,14 +61,14 @@ class EncounterLocationStatus extends FhirCodeEnum {
       );
     }
     return EncounterLocationStatus._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// planned
   static final EncounterLocationStatus planned = EncounterLocationStatus._(
-    validatedValue: 'planned',
+    valueString: 'planned',
     system: 'http://hl7.org/fhir/ValueSet/encounter-location-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Planned'.toFhirString,
@@ -75,7 +76,7 @@ class EncounterLocationStatus extends FhirCodeEnum {
 
   /// active
   static final EncounterLocationStatus active = EncounterLocationStatus._(
-    validatedValue: 'active',
+    valueString: 'active',
     system: 'http://hl7.org/fhir/ValueSet/encounter-location-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Active'.toFhirString,
@@ -83,7 +84,7 @@ class EncounterLocationStatus extends FhirCodeEnum {
 
   /// reserved
   static final EncounterLocationStatus reserved = EncounterLocationStatus._(
-    validatedValue: 'reserved',
+    valueString: 'reserved',
     system: 'http://hl7.org/fhir/ValueSet/encounter-location-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Reserved'.toFhirString,
@@ -91,7 +92,7 @@ class EncounterLocationStatus extends FhirCodeEnum {
 
   /// completed
   static final EncounterLocationStatus completed = EncounterLocationStatus._(
-    validatedValue: 'completed',
+    valueString: 'completed',
     system: 'http://hl7.org/fhir/ValueSet/encounter-location-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Completed'.toFhirString,
@@ -99,7 +100,7 @@ class EncounterLocationStatus extends FhirCodeEnum {
 
   /// For instances where an Element is present but not value
   static final EncounterLocationStatus elementOnly =
-      EncounterLocationStatus._(validatedValue: '');
+      EncounterLocationStatus._(valueString: '');
 
   /// List of all enum-like values
   static final List<EncounterLocationStatus> values = [
@@ -112,14 +113,14 @@ class EncounterLocationStatus extends FhirCodeEnum {
   /// Clones the current instance
   @override
   EncounterLocationStatus clone() => EncounterLocationStatus._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   EncounterLocationStatus withElement(Element? newElement) {
     return EncounterLocationStatus._(
-      validatedValue: value,
+      valueString: valueString,
       element: newElement,
     );
   }
@@ -127,18 +128,18 @@ class EncounterLocationStatus extends FhirCodeEnum {
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   EncounterLocationStatus copyWith({
-    String? newValue,
+    dynamic newValue,
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
@@ -149,11 +150,12 @@ class EncounterLocationStatus extends FhirCodeEnum {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError(
+          'Invalid input for EncounterLocationStatus: $newValue',);
     }
     return EncounterLocationStatus._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
