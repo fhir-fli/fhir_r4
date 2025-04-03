@@ -1381,6 +1381,7 @@ class MedicationIngredient extends BackboneElement {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'item':
       case 'itemX':
         {
           if (child is ItemXMedicationIngredient) {

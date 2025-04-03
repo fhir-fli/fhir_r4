@@ -2214,6 +2214,7 @@ class QuestionnaireResponseAnswerBuilder extends BackboneElementBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'value':
       case 'valueX':
         {
           if (child is ValueXQuestionnaireResponseAnswerBuilder) {
@@ -2562,7 +2563,7 @@ class QuestionnaireResponseAnswerBuilder extends BackboneElementBuilder {
     if (id) this.id = null;
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
-    if (value) valueX = null;
+    if (value) this.valueX = null;
     if (item) this.item = null;
   }
 

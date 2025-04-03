@@ -134,7 +134,9 @@ void uuidTest() {
         newValue: UuidValue.fromString(anotherValidUuid),
       );
       expect(
-          copiedUuid.valueUuid, equals(UuidValue.fromString(anotherValidUuid)),);
+        copiedUuid.valueUuid,
+        equals(UuidValue.fromString(anotherValidUuid)),
+      );
       expect(
         originalUuid.valueUuid,
         equals(validUuidValue),

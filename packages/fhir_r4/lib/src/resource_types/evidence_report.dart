@@ -899,6 +899,7 @@ class EvidenceReport extends DomainResource {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'citeAs':
       case 'citeAsX':
         {
           if (child is CiteAsXEvidenceReport) {
@@ -2667,6 +2668,7 @@ class EvidenceReportCharacteristic extends BackboneElement {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'value':
       case 'valueX':
         {
           if (child is ValueXEvidenceReportCharacteristic) {
@@ -3318,6 +3320,7 @@ class EvidenceReportRelatesTo extends BackboneElement {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'target':
       case 'targetX':
         {
           if (child is TargetXEvidenceReportRelatesTo) {

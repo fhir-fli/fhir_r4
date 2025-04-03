@@ -800,6 +800,7 @@ class ImmunizationEvaluation extends DomainResource {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'doseNumber':
       case 'doseNumberX':
         {
           if (child is DoseNumberXImmunizationEvaluation) {
@@ -830,6 +831,7 @@ class ImmunizationEvaluation extends DomainResource {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'seriesDoses':
       case 'seriesDosesX':
         {
           if (child is SeriesDosesXImmunizationEvaluation) {

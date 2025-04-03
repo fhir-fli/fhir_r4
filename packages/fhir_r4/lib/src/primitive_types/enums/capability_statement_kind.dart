@@ -143,7 +143,7 @@ class CapabilityStatementKind extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for CapabilityStatementKind: $newValue',);
+          'Invalid input for CapabilityStatementKind: $newValue');
     }
     return CapabilityStatementKind._(
       valueString: newValue ?? valueString,

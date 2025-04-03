@@ -2475,6 +2475,7 @@ class RequestGroupAction extends BackboneElement {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'timing':
       case 'timingX':
         {
           if (child is TimingXRequestGroupAction) {
@@ -4067,6 +4068,7 @@ class RequestGroupRelatedAction extends BackboneElement {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'offset':
       case 'offsetX':
         {
           if (child is OffsetXRequestGroupRelatedAction) {

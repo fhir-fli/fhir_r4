@@ -1821,6 +1821,7 @@ class SpecimenCollection extends BackboneElement {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'collected':
       case 'collectedX':
         {
           if (child is CollectedXSpecimenCollection) {
@@ -1883,6 +1884,7 @@ class SpecimenCollection extends BackboneElement {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'fastingStatus':
       case 'fastingStatusX':
         {
           if (child is FastingStatusXSpecimenCollection) {
@@ -2609,6 +2611,7 @@ class SpecimenProcessing extends BackboneElement {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'time':
       case 'timeX':
         {
           if (child is TimeXSpecimenProcessing) {
@@ -3321,6 +3324,7 @@ class SpecimenContainer extends BackboneElement {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'additive':
       case 'additiveX':
         {
           if (child is AdditiveXSpecimenContainer) {

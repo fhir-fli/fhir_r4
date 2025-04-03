@@ -136,7 +136,7 @@ class ProvenanceEntityRoleBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   ProvenanceEntityRoleBuilder withElement(ElementBuilder? newElement) {
     return ProvenanceEntityRoleBuilder._(
-        valueString: valueString, element: newElement,);
+        valueString: valueString, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys

@@ -997,6 +997,7 @@ class MedicationDispenseBuilder extends DomainResourceBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'statusReason':
       case 'statusReasonX':
         {
           if (child is StatusReasonXMedicationDispenseBuilder) {
@@ -1040,6 +1041,7 @@ class MedicationDispenseBuilder extends DomainResourceBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'medication':
       case 'medicationX':
         {
           if (child is MedicationXMedicationDispenseBuilder) {
@@ -1633,9 +1635,9 @@ class MedicationDispenseBuilder extends DomainResourceBuilder {
     if (identifier) this.identifier = null;
     if (partOf) this.partOf = null;
     if (status) this.status = null;
-    if (statusReason) statusReasonX = null;
+    if (statusReason) this.statusReasonX = null;
     if (category) this.category = null;
-    if (medication) medicationX = null;
+    if (medication) this.medicationX = null;
     if (subject) this.subject = null;
     if (context) this.context = null;
     if (supportingInformation) this.supportingInformation = null;

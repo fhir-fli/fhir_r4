@@ -2100,6 +2100,7 @@ class SubstanceDefinitionMoietyBuilder extends BackboneElementBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'amount':
       case 'amountX':
         {
           if (child is AmountXSubstanceDefinitionMoietyBuilder) {
@@ -2284,7 +2285,7 @@ class SubstanceDefinitionMoietyBuilder extends BackboneElementBuilder {
     if (stereochemistry) this.stereochemistry = null;
     if (opticalActivity) this.opticalActivity = null;
     if (molecularFormula) this.molecularFormula = null;
-    if (amount) amountX = null;
+    if (amount) this.amountX = null;
     if (measurementType) this.measurementType = null;
   }
 
@@ -2762,6 +2763,7 @@ class SubstanceDefinitionPropertyBuilder extends BackboneElementBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'value':
       case 'valueX':
         {
           if (child is ValueXSubstanceDefinitionPropertyBuilder) {
@@ -2948,7 +2950,7 @@ class SubstanceDefinitionPropertyBuilder extends BackboneElementBuilder {
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
     if (type) this.type = null;
-    if (value) valueX = null;
+    if (value) this.valueX = null;
   }
 
   @override
@@ -7219,7 +7221,7 @@ class SubstanceDefinitionRelationshipBuilder extends BackboneElementBuilder {
     if (substanceDefinitionX != null) {
       final fhirType = substanceDefinitionX!.fhirType;
       addField(
-          'substanceDefinition${fhirType.capitalize()}', substanceDefinitionX,);
+          'substanceDefinition${fhirType.capitalize()}', substanceDefinitionX);
     }
 
     addField('type', type);
@@ -7410,6 +7412,7 @@ class SubstanceDefinitionRelationshipBuilder extends BackboneElementBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'substanceDefinition':
       case 'substanceDefinitionX':
         {
           if (child
@@ -7474,6 +7477,7 @@ class SubstanceDefinitionRelationshipBuilder extends BackboneElementBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'amount':
       case 'amountX':
         {
           if (child is AmountXSubstanceDefinitionRelationshipBuilder) {
@@ -7704,10 +7708,10 @@ class SubstanceDefinitionRelationshipBuilder extends BackboneElementBuilder {
     if (id) this.id = null;
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
-    if (substanceDefinition) substanceDefinitionX = null;
+    if (substanceDefinition) this.substanceDefinitionX = null;
     if (type) this.type = null;
     if (isDefining) this.isDefining = null;
-    if (amount) amountX = null;
+    if (amount) this.amountX = null;
     if (ratioHighLimitAmount) this.ratioHighLimitAmount = null;
     if (comparator) this.comparator = null;
     if (source) this.source = null;

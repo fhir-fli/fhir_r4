@@ -1332,6 +1332,7 @@ class MedicationIngredientBuilder extends BackboneElementBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'item':
       case 'itemX':
         {
           if (child is ItemXMedicationIngredientBuilder) {
@@ -1490,7 +1491,7 @@ class MedicationIngredientBuilder extends BackboneElementBuilder {
     if (id) this.id = null;
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
-    if (item) itemX = null;
+    if (item) this.itemX = null;
     if (isActive) this.isActive = null;
     if (strength) this.strength = null;
   }

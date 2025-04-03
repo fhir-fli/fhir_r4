@@ -1527,6 +1527,7 @@ class GroupCharacteristicBuilder extends BackboneElementBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'value':
       case 'valueX':
         {
           if (child is ValueXGroupCharacteristicBuilder) {
@@ -1757,7 +1758,7 @@ class GroupCharacteristicBuilder extends BackboneElementBuilder {
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
     if (code) this.code = null;
-    if (value) valueX = null;
+    if (value) this.valueX = null;
     if (exclude) this.exclude = null;
     if (period) this.period = null;
   }

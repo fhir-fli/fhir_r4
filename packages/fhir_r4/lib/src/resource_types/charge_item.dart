@@ -1098,6 +1098,7 @@ class ChargeItem extends DomainResource {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'occurrence':
       case 'occurrenceX':
         {
           if (child is OccurrenceXChargeItem) {
@@ -1279,6 +1280,7 @@ class ChargeItem extends DomainResource {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'product':
       case 'productX':
         {
           if (child is ProductXChargeItem) {

@@ -830,6 +830,7 @@ class GoalBuilder extends DomainResourceBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'start':
       case 'startX':
         {
           if (child is StartXGoalBuilder) {
@@ -1244,7 +1245,7 @@ class GoalBuilder extends DomainResourceBuilder {
     if (priority) this.priority = null;
     if (description) this.description = null;
     if (subject) this.subject = null;
-    if (start) startX = null;
+    if (start) this.startX = null;
     if (target) this.target = null;
     if (statusDate) this.statusDate = null;
     if (statusReason) this.statusReason = null;
@@ -1893,6 +1894,7 @@ class GoalTargetBuilder extends BackboneElementBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'detail':
       case 'detailX':
         {
           if (child is DetailXGoalTargetBuilder) {
@@ -1993,6 +1995,7 @@ class GoalTargetBuilder extends BackboneElementBuilder {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'due':
       case 'dueX':
         {
           if (child is DueXGoalTargetBuilder) {
@@ -2179,8 +2182,8 @@ class GoalTargetBuilder extends BackboneElementBuilder {
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
     if (measure) this.measure = null;
-    if (detail) detailX = null;
-    if (due) dueX = null;
+    if (detail) this.detailX = null;
+    if (due) this.dueX = null;
   }
 
   @override

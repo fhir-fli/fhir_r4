@@ -130,7 +130,7 @@ class EncounterLocationStatusBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   EncounterLocationStatusBuilder withElement(ElementBuilder? newElement) {
     return EncounterLocationStatusBuilder._(
-        valueString: valueString, element: newElement,);
+        valueString: valueString, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -160,7 +160,7 @@ class EncounterLocationStatusBuilder extends FhirCodeEnumBuilder {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for EncounterLocationStatus: $newValue',);
+          'Invalid input for EncounterLocationStatus: $newValue');
     }
     return EncounterLocationStatusBuilder._(
       valueString: newValue ?? valueString,

@@ -891,6 +891,7 @@ class PatientBuilder extends DomainResourceBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'deceased':
       case 'deceasedX':
         {
           if (child is DeceasedXPatientBuilder) {
@@ -950,6 +951,7 @@ class PatientBuilder extends DomainResourceBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'multipleBirth':
       case 'multipleBirthX':
         {
           if (child is MultipleBirthXPatientBuilder) {
@@ -1338,10 +1340,10 @@ class PatientBuilder extends DomainResourceBuilder {
     if (telecom) this.telecom = null;
     if (gender) this.gender = null;
     if (birthDate) this.birthDate = null;
-    if (deceased) deceasedX = null;
+    if (deceased) this.deceasedX = null;
     if (address) this.address = null;
     if (maritalStatus) this.maritalStatus = null;
-    if (multipleBirth) multipleBirthX = null;
+    if (multipleBirth) this.multipleBirthX = null;
     if (photo) this.photo = null;
     if (contact) this.contact = null;
     if (communication) this.communication = null;

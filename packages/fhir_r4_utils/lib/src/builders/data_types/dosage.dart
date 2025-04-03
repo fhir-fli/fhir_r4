@@ -619,6 +619,7 @@ class DosageBuilder extends BackboneTypeBuilder
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'asNeeded':
       case 'asNeededX':
         {
           if (child is AsNeededXDosageBuilder) {
@@ -898,7 +899,7 @@ class DosageBuilder extends BackboneTypeBuilder
     if (additionalInstruction) this.additionalInstruction = null;
     if (patientInstruction) this.patientInstruction = null;
     if (timing) this.timing = null;
-    if (asNeeded) asNeededX = null;
+    if (asNeeded) this.asNeededX = null;
     if (site) this.site = null;
     if (route) this.route = null;
     if (method) this.method = null;
@@ -1411,6 +1412,7 @@ class DosageDoseAndRateBuilder extends ElementBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'dose':
       case 'doseX':
         {
           if (child is DoseXDosageDoseAndRateBuilder) {
@@ -1446,6 +1448,7 @@ class DosageDoseAndRateBuilder extends ElementBuilder {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'rate':
       case 'rateX':
         {
           if (child is RateXDosageDoseAndRateBuilder) {
@@ -1604,8 +1607,8 @@ class DosageDoseAndRateBuilder extends ElementBuilder {
     if (id) this.id = null;
     if (extension_) this.extension_ = null;
     if (type) this.type = null;
-    if (dose) doseX = null;
-    if (rate) rateX = null;
+    if (dose) this.doseX = null;
+    if (rate) this.rateX = null;
   }
 
   @override

@@ -2853,6 +2853,7 @@ class ClinicalUseDefinitionIndication extends BackboneElement {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'duration':
       case 'durationX':
         {
           if (child is DurationXClinicalUseDefinitionIndication) {
@@ -4174,6 +4175,7 @@ class ClinicalUseDefinitionInteractant extends BackboneElement {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'item':
       case 'itemX':
         {
           if (child is ItemXClinicalUseDefinitionInteractant) {

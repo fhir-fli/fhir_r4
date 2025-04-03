@@ -1289,6 +1289,7 @@ class ResearchDefinitionBuilder extends DomainResourceBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'subject':
       case 'subjectX':
         {
           if (child is SubjectXResearchDefinitionBuilder) {
@@ -2157,7 +2158,7 @@ class ResearchDefinitionBuilder extends DomainResourceBuilder {
     if (subtitle) this.subtitle = null;
     if (status) this.status = null;
     if (experimental) this.experimental = null;
-    if (subject) subjectX = null;
+    if (subject) this.subjectX = null;
     if (date) this.date = null;
     if (publisher) this.publisher = null;
     if (contact) this.contact = null;

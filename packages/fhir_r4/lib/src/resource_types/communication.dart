@@ -2289,6 +2289,7 @@ class CommunicationPayload extends BackboneElement {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'content':
       case 'contentX':
         {
           if (child is ContentXCommunicationPayload) {

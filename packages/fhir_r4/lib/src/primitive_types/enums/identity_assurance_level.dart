@@ -153,7 +153,7 @@ class IdentityAssuranceLevel extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for IdentityAssuranceLevel: $newValue',);
+          'Invalid input for IdentityAssuranceLevel: $newValue');
     }
     return IdentityAssuranceLevel._(
       valueString: newValue ?? valueString,

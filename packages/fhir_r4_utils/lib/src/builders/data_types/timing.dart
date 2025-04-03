@@ -1107,6 +1107,7 @@ class TimingRepeatBuilder extends ElementBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'bounds':
       case 'boundsX':
         {
           if (child is BoundsXTimingRepeatBuilder) {
@@ -1766,7 +1767,7 @@ class TimingRepeatBuilder extends ElementBuilder {
   }) {
     if (id) this.id = null;
     if (extension_) this.extension_ = null;
-    if (bounds) boundsX = null;
+    if (bounds) this.boundsX = null;
     if (count) this.count = null;
     if (countMax) this.countMax = null;
     if (duration) this.duration = null;

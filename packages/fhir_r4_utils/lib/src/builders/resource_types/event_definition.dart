@@ -1093,6 +1093,7 @@ class EventDefinitionBuilder extends CanonicalResourceBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'subject':
       case 'subjectX':
         {
           if (child is SubjectXEventDefinitionBuilder) {
@@ -1804,7 +1805,7 @@ class EventDefinitionBuilder extends CanonicalResourceBuilder {
     if (subtitle) this.subtitle = null;
     if (status) this.status = null;
     if (experimental) this.experimental = null;
-    if (subject) subjectX = null;
+    if (subject) this.subjectX = null;
     if (date) this.date = null;
     if (publisher) this.publisher = null;
     if (contact) this.contact = null;

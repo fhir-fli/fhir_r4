@@ -104,7 +104,7 @@ class ConstraintSeverityBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   ConstraintSeverityBuilder withElement(ElementBuilder? newElement) {
     return ConstraintSeverityBuilder._(
-        valueString: valueString, element: newElement,);
+        valueString: valueString, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys

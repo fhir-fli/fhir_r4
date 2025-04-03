@@ -2239,6 +2239,7 @@ class InvoiceLineItemBuilder extends BackboneElementBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'chargeItem':
       case 'chargeItemX':
         {
           if (child is ChargeItemXInvoiceLineItemBuilder) {
@@ -2386,7 +2387,7 @@ class InvoiceLineItemBuilder extends BackboneElementBuilder {
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
     if (sequence) this.sequence = null;
-    if (chargeItem) chargeItemX = null;
+    if (chargeItem) this.chargeItemX = null;
     if (priceComponent) this.priceComponent = null;
   }
 

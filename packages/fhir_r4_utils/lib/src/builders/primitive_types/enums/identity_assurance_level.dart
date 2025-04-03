@@ -127,7 +127,7 @@ class IdentityAssuranceLevelBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   IdentityAssuranceLevelBuilder withElement(ElementBuilder? newElement) {
     return IdentityAssuranceLevelBuilder._(
-        valueString: valueString, element: newElement,);
+        valueString: valueString, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -157,7 +157,7 @@ class IdentityAssuranceLevelBuilder extends FhirCodeEnumBuilder {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for IdentityAssuranceLevel: $newValue',);
+          'Invalid input for IdentityAssuranceLevel: $newValue');
     }
     return IdentityAssuranceLevelBuilder._(
       valueString: newValue ?? valueString,

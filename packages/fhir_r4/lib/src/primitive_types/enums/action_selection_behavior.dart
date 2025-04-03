@@ -170,7 +170,7 @@ class ActionSelectionBehavior extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for ActionSelectionBehavior: $newValue',);
+          'Invalid input for ActionSelectionBehavior: $newValue');
     }
     return ActionSelectionBehavior._(
       valueString: newValue ?? valueString,

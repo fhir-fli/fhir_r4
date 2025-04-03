@@ -125,7 +125,7 @@ class DeviceMetricCategoryBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   DeviceMetricCategoryBuilder withElement(ElementBuilder? newElement) {
     return DeviceMetricCategoryBuilder._(
-        valueString: valueString, element: newElement,);
+        valueString: valueString, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys

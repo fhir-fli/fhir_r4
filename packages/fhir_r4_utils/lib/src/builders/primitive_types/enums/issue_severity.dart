@@ -122,7 +122,7 @@ class IssueSeverityBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   IssueSeverityBuilder withElement(ElementBuilder? newElement) {
     return IssueSeverityBuilder._(
-        valueString: valueString, element: newElement,);
+        valueString: valueString, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys

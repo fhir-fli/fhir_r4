@@ -502,6 +502,7 @@ class DataRequirementBuilder extends DataTypeBuilder
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'subject':
       case 'subjectX':
         {
           if (child is SubjectXDataRequirementBuilder) {
@@ -784,7 +785,7 @@ class DataRequirementBuilder extends DataTypeBuilder
     if (extension_) this.extension_ = null;
     if (type) this.type = null;
     if (profile) this.profile = null;
-    if (subject) subjectX = null;
+    if (subject) this.subjectX = null;
     if (mustSupport) this.mustSupport = null;
     if (codeFilter) this.codeFilter = null;
     if (dateFilter) this.dateFilter = null;
@@ -1836,6 +1837,7 @@ class DataRequirementDateFilterBuilder extends ElementBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'value':
       case 'valueX':
         {
           if (child is ValueXDataRequirementDateFilterBuilder) {
@@ -1980,7 +1982,7 @@ class DataRequirementDateFilterBuilder extends ElementBuilder {
     if (extension_) this.extension_ = null;
     if (path) this.path = null;
     if (searchParam) this.searchParam = null;
-    if (value) valueX = null;
+    if (value) this.valueX = null;
   }
 
   @override

@@ -4041,6 +4041,7 @@ class CitationRelatesToBuilder extends BackboneElementBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'target':
       case 'targetX':
         {
           if (child is TargetXCitationRelatesToBuilder) {
@@ -4215,7 +4216,7 @@ class CitationRelatesToBuilder extends BackboneElementBuilder {
     if (modifierExtension) this.modifierExtension = null;
     if (relationshipType) this.relationshipType = null;
     if (targetClassifier) this.targetClassifier = null;
-    if (target) targetX = null;
+    if (target) this.targetX = null;
   }
 
   @override
@@ -8415,6 +8416,7 @@ class CitationRelatesTo1Builder extends BackboneElementBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'target':
       case 'targetX':
         {
           if (child is TargetXCitationRelatesTo1Builder) {
@@ -8589,7 +8591,7 @@ class CitationRelatesTo1Builder extends BackboneElementBuilder {
     if (modifierExtension) this.modifierExtension = null;
     if (relationshipType) this.relationshipType = null;
     if (targetClassifier) this.targetClassifier = null;
-    if (target) targetX = null;
+    if (target) this.targetX = null;
   }
 
   @override

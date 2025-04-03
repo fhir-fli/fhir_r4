@@ -1160,6 +1160,7 @@ class PlanDefinition extends CanonicalResource {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'subject':
       case 'subjectX':
         {
           if (child is SubjectXPlanDefinition) {
@@ -3570,6 +3571,7 @@ class PlanDefinitionTarget extends BackboneElement {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'detail':
       case 'detailX':
         {
           if (child is DetailXPlanDefinitionTarget) {
@@ -4917,6 +4919,7 @@ class PlanDefinitionAction extends BackboneElement {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'subject':
       case 'subjectX':
         {
           if (child is SubjectXPlanDefinitionAction) {
@@ -5043,6 +5046,7 @@ class PlanDefinitionAction extends BackboneElement {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'timing':
       case 'timingX':
         {
           if (child is TimingXPlanDefinitionAction) {
@@ -5182,6 +5186,7 @@ class PlanDefinitionAction extends BackboneElement {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'definition':
       case 'definitionX':
         {
           if (child is DefinitionXPlanDefinitionAction) {
@@ -6915,6 +6920,7 @@ class PlanDefinitionRelatedAction extends BackboneElement {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'offset':
       case 'offsetX':
         {
           if (child is OffsetXPlanDefinitionRelatedAction) {

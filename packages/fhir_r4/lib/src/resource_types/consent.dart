@@ -799,6 +799,7 @@ class Consent extends DomainResource {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'source':
       case 'sourceX':
         {
           if (child is SourceXConsent) {

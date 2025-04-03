@@ -1,17 +1,30 @@
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:http/http.dart';
 
+/// A cache for FHIR resources.
 abstract class ResourceCache {
+  /// Creates a new [ResourceCache].
   const ResourceCache({this.client});
+
+  /// The HTTP client used to fetch resources.
   final Client? client;
 
+  /// Fetches a [CanonicalResource] from the cache.
   Future<CanonicalResource?> getCanonicalResource(String url);
+
+  /// Saves a [CanonicalResource] to the cache.
   Future<void> saveCanonicalResource(CanonicalResource resource);
+
+  /// Fetches a [CanonicalResource] from the cache with a specific version.
   Future<Map<String, dynamic>?> getResourceMap(String url);
+
+  /// Saves a [CanonicalResource] to the cache with a specific version.
   Future<StructureDefinition?> getStructureDefinition(String url);
 }
 
+/// A local resource cache that stores resources in memory.
 class LocalResourceCache extends ResourceCache {
+  /// Creates a new [LocalResourceCache].
   LocalResourceCache();
 
   final Map<String, CanonicalResource> _cache = {};

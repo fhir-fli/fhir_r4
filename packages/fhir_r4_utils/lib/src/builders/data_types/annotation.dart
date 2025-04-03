@@ -306,6 +306,7 @@ class AnnotationBuilder extends DataTypeBuilder
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'author':
       case 'authorX':
         {
           if (child is AuthorXAnnotationBuilder) {
@@ -467,7 +468,7 @@ class AnnotationBuilder extends DataTypeBuilder
   }) {
     if (id) this.id = null;
     if (extension_) this.extension_ = null;
-    if (author) authorX = null;
+    if (author) this.authorX = null;
     if (time) this.time = null;
     if (text) this.text = null;
   }

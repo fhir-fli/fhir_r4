@@ -170,7 +170,7 @@ class ClinicalUseDefinitionType extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for ClinicalUseDefinitionType: $newValue',);
+          'Invalid input for ClinicalUseDefinitionType: $newValue');
     }
     return ClinicalUseDefinitionType._(
       valueString: newValue ?? valueString,

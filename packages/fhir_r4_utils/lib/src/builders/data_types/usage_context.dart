@@ -318,6 +318,7 @@ class UsageContextBuilder extends DataTypeBuilder
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'value':
       case 'valueX':
         {
           if (child is ValueXUsageContextBuilder) {
@@ -474,7 +475,7 @@ class UsageContextBuilder extends DataTypeBuilder
     if (id) this.id = null;
     if (extension_) this.extension_ = null;
     if (code) this.code = null;
-    if (value) valueX = null;
+    if (value) this.valueX = null;
   }
 
   @override

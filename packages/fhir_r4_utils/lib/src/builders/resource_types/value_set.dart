@@ -5537,6 +5537,7 @@ class ValueSetParameterBuilder extends BackboneElementBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'value':
       case 'valueX':
         {
           if (child is ValueXValueSetParameterBuilder) {
@@ -5765,7 +5766,7 @@ class ValueSetParameterBuilder extends BackboneElementBuilder {
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
     if (name) this.name = null;
-    if (value) valueX = null;
+    if (value) this.valueX = null;
   }
 
   @override

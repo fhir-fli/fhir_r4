@@ -1263,6 +1263,7 @@ class ResearchDefinition extends DomainResource {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'subject':
       case 'subjectX':
         {
           if (child is SubjectXResearchDefinition) {

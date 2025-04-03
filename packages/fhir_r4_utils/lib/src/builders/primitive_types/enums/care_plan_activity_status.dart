@@ -186,7 +186,7 @@ class CarePlanActivityStatusBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   CarePlanActivityStatusBuilder withElement(ElementBuilder? newElement) {
     return CarePlanActivityStatusBuilder._(
-        valueString: valueString, element: newElement,);
+        valueString: valueString, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -216,7 +216,7 @@ class CarePlanActivityStatusBuilder extends FhirCodeEnumBuilder {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for CarePlanActivityStatus: $newValue',);
+          'Invalid input for CarePlanActivityStatus: $newValue');
     }
     return CarePlanActivityStatusBuilder._(
       valueString: newValue ?? valueString,

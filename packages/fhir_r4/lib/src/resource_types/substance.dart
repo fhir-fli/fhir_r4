@@ -1868,6 +1868,7 @@ class SubstanceIngredient extends BackboneElement {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'substance':
       case 'substanceX':
         {
           if (child is SubstanceXSubstanceIngredient) {

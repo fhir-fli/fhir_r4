@@ -199,7 +199,7 @@ class ActionRelationshipType extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for ActionRelationshipType: $newValue',);
+          'Invalid input for ActionRelationshipType: $newValue');
     }
     return ActionRelationshipType._(
       valueString: newValue ?? valueString,

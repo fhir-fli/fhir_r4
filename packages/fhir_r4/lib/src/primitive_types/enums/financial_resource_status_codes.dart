@@ -156,7 +156,7 @@ class FinancialResourceStatusCodes extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for FinancialResourceStatusCodes: $newValue',);
+          'Invalid input for FinancialResourceStatusCodes: $newValue');
     }
     return FinancialResourceStatusCodes._(
       valueString: newValue ?? valueString,

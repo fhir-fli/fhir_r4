@@ -122,7 +122,7 @@ class QuantityComparatorBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   QuantityComparatorBuilder withElement(ElementBuilder? newElement) {
     return QuantityComparatorBuilder._(
-        valueString: valueString, element: newElement,);
+        valueString: valueString, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys

@@ -13,12 +13,9 @@ class FHIRPathHostServices extends IEvaluationContext {
     bool explicitConstant,
   ) {
     final vars = appContext is MappingVariables ? appContext : null;
-    print('resolveConstant: $name');
-    print(vars?.summary());
     final list = <FhirBase>[];
     final res = vars?.get(MappingVariableMode.INPUT, name) ??
         vars?.get(MappingVariableMode.OUTPUT, name);
-    print('res: ${res?.toJson()}');
     if (res != null) {
       list.add(res.build());
     }

@@ -1084,6 +1084,7 @@ class DeviceRequest extends DomainResource {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'code':
       case 'codeX':
         {
           if (child is CodeXDeviceRequest) {
@@ -1147,6 +1148,7 @@ class DeviceRequest extends DomainResource {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'occurrence':
       case 'occurrenceX':
         {
           if (child is OccurrenceXDeviceRequest) {
@@ -2477,6 +2479,7 @@ class DeviceRequestParameter extends BackboneElement {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'value':
       case 'valueX':
         {
           if (child is ValueXDeviceRequestParameter) {

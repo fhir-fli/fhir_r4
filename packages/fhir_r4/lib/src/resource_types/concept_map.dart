@@ -917,6 +917,7 @@ class ConceptMap extends CanonicalResource {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'source':
       case 'sourceX':
         {
           if (child is SourceXConceptMap) {
@@ -947,6 +948,7 @@ class ConceptMap extends CanonicalResource {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'target':
       case 'targetX':
         {
           if (child is TargetXConceptMap) {
@@ -1679,7 +1681,7 @@ class ConceptMapGroup extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory ConceptMapGroup.empty() => const ConceptMapGroup(
+  factory ConceptMapGroup.empty() => ConceptMapGroup(
         element: <ConceptMapElement>[],
       );
 

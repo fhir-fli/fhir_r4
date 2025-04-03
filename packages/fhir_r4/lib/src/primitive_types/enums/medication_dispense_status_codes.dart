@@ -206,7 +206,7 @@ class MedicationDispenseStatusCodes extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for MedicationDispenseStatusCodes: $newValue',);
+          'Invalid input for MedicationDispenseStatusCodes: $newValue');
     }
     return MedicationDispenseStatusCodes._(
       valueString: newValue ?? valueString,

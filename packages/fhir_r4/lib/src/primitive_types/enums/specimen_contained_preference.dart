@@ -138,7 +138,7 @@ class SpecimenContainedPreference extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for SpecimenContainedPreference: $newValue',);
+          'Invalid input for SpecimenContainedPreference: $newValue');
     }
     return SpecimenContainedPreference._(
       valueString: newValue ?? valueString,

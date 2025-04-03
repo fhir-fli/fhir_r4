@@ -183,7 +183,7 @@ class ActionRelationshipTypeBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   ActionRelationshipTypeBuilder withElement(ElementBuilder? newElement) {
     return ActionRelationshipTypeBuilder._(
-        valueString: valueString, element: newElement,);
+        valueString: valueString, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -213,7 +213,7 @@ class ActionRelationshipTypeBuilder extends FhirCodeEnumBuilder {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for ActionRelationshipType: $newValue',);
+          'Invalid input for ActionRelationshipType: $newValue');
     }
     return ActionRelationshipTypeBuilder._(
       valueString: newValue ?? valueString,

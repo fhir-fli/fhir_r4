@@ -1595,6 +1595,7 @@ class BiologicallyDerivedProductCollection extends BackboneElement {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'collected':
       case 'collectedX':
         {
           if (child is CollectedXBiologicallyDerivedProductCollection) {
@@ -2210,6 +2211,7 @@ class BiologicallyDerivedProductProcessing extends BackboneElement {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'time':
       case 'timeX':
         {
           if (child is TimeXBiologicallyDerivedProductProcessing) {
@@ -2790,6 +2792,7 @@ class BiologicallyDerivedProductManipulation extends BackboneElement {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'time':
       case 'timeX':
         {
           if (child is TimeXBiologicallyDerivedProductManipulation) {

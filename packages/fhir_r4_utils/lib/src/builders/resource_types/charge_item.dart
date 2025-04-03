@@ -1058,7 +1058,7 @@ class ChargeItemBuilder extends DomainResourceBuilder {
               if (converted != null) {
                 definitionCanonical = [
                   ...(definitionCanonical ?? []),
-                  converted,
+                  converted
                 ];
                 return;
               }
@@ -1131,6 +1131,7 @@ class ChargeItemBuilder extends DomainResourceBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'occurrence':
       case 'occurrenceX':
         {
           if (child is OccurrenceXChargeItemBuilder) {
@@ -1356,6 +1357,7 @@ class ChargeItemBuilder extends DomainResourceBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'product':
       case 'productX':
         {
           if (child is ProductXChargeItemBuilder) {
@@ -1794,7 +1796,7 @@ class ChargeItemBuilder extends DomainResourceBuilder {
     if (code) this.code = null;
     if (subject) this.subject = null;
     if (context) this.context = null;
-    if (occurrence) occurrenceX = null;
+    if (occurrence) this.occurrenceX = null;
     if (performer) this.performer = null;
     if (performingOrganization) this.performingOrganization = null;
     if (requestingOrganization) this.requestingOrganization = null;
@@ -1808,7 +1810,7 @@ class ChargeItemBuilder extends DomainResourceBuilder {
     if (enteredDate) this.enteredDate = null;
     if (reason) this.reason = null;
     if (service) this.service = null;
-    if (product) productX = null;
+    if (product) this.productX = null;
     if (account) this.account = null;
     if (note) this.note = null;
     if (supportingInformation) this.supportingInformation = null;

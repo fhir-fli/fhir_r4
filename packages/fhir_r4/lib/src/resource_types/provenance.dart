@@ -652,6 +652,7 @@ class Provenance extends DomainResource {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'occurred':
       case 'occurredX':
         {
           if (child is OccurredXProvenance) {

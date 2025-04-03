@@ -3295,6 +3295,7 @@ class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'period':
       case 'periodX':
         {
           if (child is PeriodXPackagedProductDefinitionShelfLifeStorage) {
@@ -3900,6 +3901,7 @@ class PackagedProductDefinitionProperty extends BackboneElement {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'value':
       case 'valueX':
         {
           if (child is ValueXPackagedProductDefinitionProperty) {

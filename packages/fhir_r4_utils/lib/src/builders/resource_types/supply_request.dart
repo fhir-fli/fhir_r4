@@ -816,6 +816,7 @@ class SupplyRequestBuilder extends DomainResourceBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'item':
       case 'itemX':
         {
           if (child is ItemXSupplyRequestBuilder) {
@@ -875,6 +876,7 @@ class SupplyRequestBuilder extends DomainResourceBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'occurrence':
       case 'occurrenceX':
         {
           if (child is OccurrenceXSupplyRequestBuilder) {
@@ -1278,10 +1280,10 @@ class SupplyRequestBuilder extends DomainResourceBuilder {
     if (status) this.status = null;
     if (category) this.category = null;
     if (priority) this.priority = null;
-    if (item) itemX = null;
+    if (item) this.itemX = null;
     if (quantity) this.quantity = null;
     if (parameter) this.parameter = null;
-    if (occurrence) occurrenceX = null;
+    if (occurrence) this.occurrenceX = null;
     if (authoredOn) this.authoredOn = null;
     if (requester) this.requester = null;
     if (supplier) this.supplier = null;
@@ -1851,6 +1853,7 @@ class SupplyRequestParameterBuilder extends BackboneElementBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'value':
       case 'valueX':
         {
           if (child is ValueXSupplyRequestParameterBuilder) {
@@ -2016,7 +2019,7 @@ class SupplyRequestParameterBuilder extends BackboneElementBuilder {
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
     if (code) this.code = null;
-    if (value) valueX = null;
+    if (value) this.valueX = null;
   }
 
   @override

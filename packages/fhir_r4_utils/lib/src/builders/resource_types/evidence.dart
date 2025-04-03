@@ -1021,6 +1021,7 @@ class EvidenceBuilder extends DomainResourceBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'citeAs':
       case 'citeAsX':
         {
           if (child is CiteAsXEvidenceBuilder) {
@@ -1711,7 +1712,7 @@ class EvidenceBuilder extends DomainResourceBuilder {
     if (identifier) this.identifier = null;
     if (version) this.version = null;
     if (title) this.title = null;
-    if (citeAs) citeAsX = null;
+    if (citeAs) this.citeAsX = null;
     if (status) this.status = null;
     if (date) this.date = null;
     if (useContext) this.useContext = null;

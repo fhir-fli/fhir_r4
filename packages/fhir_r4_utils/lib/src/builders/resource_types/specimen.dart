@@ -1717,6 +1717,7 @@ class SpecimenCollectionBuilder extends BackboneElementBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'collected':
       case 'collectedX':
         {
           if (child is CollectedXSpecimenCollectionBuilder) {
@@ -1784,6 +1785,7 @@ class SpecimenCollectionBuilder extends BackboneElementBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'fastingStatus':
       case 'fastingStatusX':
         {
           if (child is FastingStatusXSpecimenCollectionBuilder) {
@@ -1962,12 +1964,12 @@ class SpecimenCollectionBuilder extends BackboneElementBuilder {
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
     if (collector) this.collector = null;
-    if (collected) collectedX = null;
+    if (collected) this.collectedX = null;
     if (duration) this.duration = null;
     if (quantity) this.quantity = null;
     if (method) this.method = null;
     if (bodySite) this.bodySite = null;
-    if (fastingStatus) fastingStatusX = null;
+    if (fastingStatus) this.fastingStatusX = null;
   }
 
   @override
@@ -2484,6 +2486,7 @@ class SpecimenProcessingBuilder extends BackboneElementBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'time':
       case 'timeX':
         {
           if (child is TimeXSpecimenProcessingBuilder) {
@@ -2625,7 +2628,7 @@ class SpecimenProcessingBuilder extends BackboneElementBuilder {
     if (description) this.description = null;
     if (procedure) this.procedure = null;
     if (additive) this.additive = null;
-    if (time) timeX = null;
+    if (time) this.timeX = null;
   }
 
   @override
@@ -3174,6 +3177,7 @@ class SpecimenContainerBuilder extends BackboneElementBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'additive':
       case 'additiveX':
         {
           if (child is AdditiveXSpecimenContainerBuilder) {
@@ -3333,7 +3337,7 @@ class SpecimenContainerBuilder extends BackboneElementBuilder {
     if (type) this.type = null;
     if (capacity) this.capacity = null;
     if (specimenQuantity) this.specimenQuantity = null;
-    if (additive) additiveX = null;
+    if (additive) this.additiveX = null;
   }
 
   @override

@@ -984,6 +984,7 @@ class FamilyMemberHistory extends DomainResource {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'born':
       case 'bornX':
         {
           if (child is BornXFamilyMemberHistory) {
@@ -1025,6 +1026,7 @@ class FamilyMemberHistory extends DomainResource {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'age':
       case 'ageX':
         {
           if (child is AgeXFamilyMemberHistory) {
@@ -1074,6 +1076,7 @@ class FamilyMemberHistory extends DomainResource {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'deceased':
       case 'deceasedX':
         {
           if (child is DeceasedXFamilyMemberHistory) {
@@ -2356,6 +2359,7 @@ class FamilyMemberHistoryCondition extends BackboneElement {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'onset':
       case 'onsetX':
         {
           if (child is OnsetXFamilyMemberHistoryCondition) {

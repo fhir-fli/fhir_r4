@@ -2831,6 +2831,7 @@ class ElementDefinitionBuilder extends BackboneTypeBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'defaultValue':
       case 'defaultValueX':
         {
           if (child is DefaultValueXElementDefinitionBuilder) {
@@ -3543,6 +3544,7 @@ class ElementDefinitionBuilder extends BackboneTypeBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'fixed':
       case 'fixedX':
         {
           if (child is FixedXElementDefinitionBuilder) {
@@ -4215,6 +4217,7 @@ class ElementDefinitionBuilder extends BackboneTypeBuilder {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'pattern':
       case 'patternX':
         {
           if (child is PatternXElementDefinitionBuilder) {
@@ -4903,6 +4906,7 @@ class ElementDefinitionBuilder extends BackboneTypeBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'minValue':
       case 'minValueX':
         {
           if (child is MinValueXElementDefinitionBuilder) {
@@ -5029,6 +5033,7 @@ class ElementDefinitionBuilder extends BackboneTypeBuilder {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'maxValue':
       case 'maxValueX':
         {
           if (child is MaxValueXElementDefinitionBuilder) {
@@ -7054,14 +7059,14 @@ class ElementDefinitionBuilder extends BackboneTypeBuilder {
     if (base) this.base = null;
     if (contentReference) this.contentReference = null;
     if (type) this.type = null;
-    if (defaultValue) defaultValueX = null;
+    if (defaultValue) this.defaultValueX = null;
     if (meaningWhenMissing) this.meaningWhenMissing = null;
     if (orderMeaning) this.orderMeaning = null;
-    if (fixed) fixedX = null;
-    if (pattern) patternX = null;
+    if (fixed) this.fixedX = null;
+    if (pattern) this.patternX = null;
     if (example) this.example = null;
-    if (minValue) minValueX = null;
-    if (maxValue) maxValueX = null;
+    if (minValue) this.minValueX = null;
+    if (maxValue) this.maxValueX = null;
     if (maxLength) this.maxLength = null;
     if (condition) this.condition = null;
     if (constraint) this.constraint = null;
@@ -10329,6 +10334,7 @@ class ElementDefinitionExampleBuilder extends ElementBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'value':
       case 'valueX':
         {
           if (child is ValueXElementDefinitionExampleBuilder) {
@@ -11472,7 +11478,7 @@ class ElementDefinitionExampleBuilder extends ElementBuilder {
     if (id) this.id = null;
     if (extension_) this.extension_ = null;
     if (label) this.label = null;
-    if (value) valueX = null;
+    if (value) this.valueX = null;
   }
 
   @override

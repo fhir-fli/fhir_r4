@@ -134,7 +134,7 @@ class StructureMapContextType extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for StructureMapContextType: $newValue',);
+          'Invalid input for StructureMapContextType: $newValue');
     }
     return StructureMapContextType._(
       valueString: newValue ?? valueString,

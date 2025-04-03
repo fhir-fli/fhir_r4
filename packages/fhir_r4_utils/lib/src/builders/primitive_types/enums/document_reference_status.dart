@@ -119,7 +119,7 @@ class DocumentReferenceStatusBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   DocumentReferenceStatusBuilder withElement(ElementBuilder? newElement) {
     return DocumentReferenceStatusBuilder._(
-        valueString: valueString, element: newElement,);
+        valueString: valueString, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -149,7 +149,7 @@ class DocumentReferenceStatusBuilder extends FhirCodeEnumBuilder {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for DocumentReferenceStatus: $newValue',);
+          'Invalid input for DocumentReferenceStatus: $newValue');
     }
     return DocumentReferenceStatusBuilder._(
       valueString: newValue ?? valueString,

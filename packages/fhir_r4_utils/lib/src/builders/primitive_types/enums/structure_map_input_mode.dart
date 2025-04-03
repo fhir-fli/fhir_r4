@@ -104,7 +104,7 @@ class StructureMapInputModeBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   StructureMapInputModeBuilder withElement(ElementBuilder? newElement) {
     return StructureMapInputModeBuilder._(
-        valueString: valueString, element: newElement,);
+        valueString: valueString, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys

@@ -1561,6 +1561,7 @@ class ActivityDefinition extends CanonicalResource {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'subject':
       case 'subjectX':
         {
           if (child is SubjectXActivityDefinition) {
@@ -1892,6 +1893,7 @@ class ActivityDefinition extends CanonicalResource {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'timing':
       case 'timingX':
         {
           if (child is TimingXActivityDefinition) {
@@ -1991,6 +1993,7 @@ class ActivityDefinition extends CanonicalResource {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'product':
       case 'productX':
         {
           if (child is ProductXActivityDefinition) {

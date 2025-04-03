@@ -832,6 +832,7 @@ class Goal extends DomainResource {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'start':
       case 'startX':
         {
           if (child is StartXGoal) {
@@ -1983,6 +1984,7 @@ class GoalTarget extends BackboneElement {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'detail':
       case 'detailX':
         {
           if (child is DetailXGoalTarget) {
@@ -2068,6 +2070,7 @@ class GoalTarget extends BackboneElement {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'due':
       case 'dueX':
         {
           if (child is DueXGoalTarget) {

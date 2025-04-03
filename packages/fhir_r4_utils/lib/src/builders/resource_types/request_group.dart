@@ -813,7 +813,7 @@ class RequestGroupBuilder extends DomainResourceBuilder {
               if (converted != null) {
                 instantiatesCanonical = [
                   ...(instantiatesCanonical ?? []),
-                  converted,
+                  converted
                 ];
                 return;
               }
@@ -2448,6 +2448,7 @@ class RequestGroupActionBuilder extends BackboneElementBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'timing':
       case 'timingX':
         {
           if (child is TimingXRequestGroupActionBuilder) {
@@ -2962,7 +2963,7 @@ class RequestGroupActionBuilder extends BackboneElementBuilder {
     if (documentation) this.documentation = null;
     if (condition) this.condition = null;
     if (relatedAction) this.relatedAction = null;
-    if (timing) timingX = null;
+    if (timing) this.timingX = null;
     if (participant) this.participant = null;
     if (type) this.type = null;
     if (groupingBehavior) this.groupingBehavior = null;
@@ -4042,6 +4043,7 @@ class RequestGroupRelatedActionBuilder extends BackboneElementBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'offset':
       case 'offsetX':
         {
           if (child is OffsetXRequestGroupRelatedActionBuilder) {
@@ -4174,7 +4176,7 @@ class RequestGroupRelatedActionBuilder extends BackboneElementBuilder {
     if (modifierExtension) this.modifierExtension = null;
     if (actionId) this.actionId = null;
     if (relationship) this.relationship = null;
-    if (offset) offsetX = null;
+    if (offset) this.offsetX = null;
   }
 
   @override

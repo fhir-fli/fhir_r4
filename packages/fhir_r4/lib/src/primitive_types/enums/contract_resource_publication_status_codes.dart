@@ -50,7 +50,7 @@ class ContractResourcePublicationStatusCodes extends FhirCodeEnum {
 
   /// Factory constructor to create [ContractResourcePublicationStatusCodes] from JSON.
   factory ContractResourcePublicationStatusCodes.fromJson(
-      Map<String, dynamic> json,) {
+      Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -269,7 +269,7 @@ class ContractResourcePublicationStatusCodes extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for ContractResourcePublicationStatusCodes: $newValue',);
+          'Invalid input for ContractResourcePublicationStatusCodes: $newValue');
     }
     return ContractResourcePublicationStatusCodes._(
       valueString: newValue ?? valueString,

@@ -3482,6 +3482,7 @@ class CarePlanDetail extends BackboneElement {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'scheduled':
       case 'scheduledX':
         {
           if (child is ScheduledXCarePlanDetail) {
@@ -3548,6 +3549,7 @@ class CarePlanDetail extends BackboneElement {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'product':
       case 'productX':
         {
           if (child is ProductXCarePlanDetail) {

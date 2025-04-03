@@ -2949,7 +2949,7 @@ class TestScriptMetadata extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory TestScriptMetadata.empty() => const TestScriptMetadata(
+  factory TestScriptMetadata.empty() => TestScriptMetadata(
         capability: <TestScriptCapability>[],
       );
 
@@ -5991,7 +5991,7 @@ class TestScriptSetup extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory TestScriptSetup.empty() => const TestScriptSetup(
+  factory TestScriptSetup.empty() => TestScriptSetup(
         action: <TestScriptAction>[],
       );
 
@@ -10098,7 +10098,7 @@ class TestScriptTest extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory TestScriptTest.empty() => const TestScriptTest(
+  factory TestScriptTest.empty() => TestScriptTest(
         action: <TestScriptAction>[],
       );
 
@@ -11117,7 +11117,7 @@ class TestScriptTeardown extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory TestScriptTeardown.empty() => const TestScriptTeardown(
+  factory TestScriptTeardown.empty() => TestScriptTeardown(
         action: <TestScriptAction>[],
       );
 

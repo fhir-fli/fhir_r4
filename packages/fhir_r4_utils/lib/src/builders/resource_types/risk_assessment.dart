@@ -837,6 +837,7 @@ class RiskAssessmentBuilder extends DomainResourceBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'occurrence':
       case 'occurrenceX':
         {
           if (child is OccurrenceXRiskAssessmentBuilder) {
@@ -1248,7 +1249,7 @@ class RiskAssessmentBuilder extends DomainResourceBuilder {
     if (code) this.code = null;
     if (subject) this.subject = null;
     if (encounter) this.encounter = null;
-    if (occurrence) occurrenceX = null;
+    if (occurrence) this.occurrenceX = null;
     if (condition) this.condition = null;
     if (performer) this.performer = null;
     if (reasonCode) this.reasonCode = null;
@@ -1918,6 +1919,7 @@ class RiskAssessmentPredictionBuilder extends BackboneElementBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'probability':
       case 'probabilityX':
         {
           if (child is ProbabilityXRiskAssessmentPredictionBuilder) {
@@ -1986,6 +1988,7 @@ class RiskAssessmentPredictionBuilder extends BackboneElementBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'when':
       case 'whenX':
         {
           if (child is WhenXRiskAssessmentPredictionBuilder) {
@@ -2176,10 +2179,10 @@ class RiskAssessmentPredictionBuilder extends BackboneElementBuilder {
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
     if (outcome) this.outcome = null;
-    if (probability) probabilityX = null;
+    if (probability) this.probabilityX = null;
     if (qualitativeRisk) this.qualitativeRisk = null;
     if (relativeRisk) this.relativeRisk = null;
-    if (when) whenX = null;
+    if (when) this.whenX = null;
     if (rationale) this.rationale = null;
   }
 

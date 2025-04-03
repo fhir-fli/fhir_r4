@@ -5086,6 +5086,7 @@ class StructureMapSource extends BackboneElement {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'defaultValue':
       case 'defaultValueX':
         {
           if (child is DefaultValueXStructureMapSource) {
@@ -7612,6 +7613,7 @@ class StructureMapParameter extends BackboneElement {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'value':
       case 'valueX':
         {
           if (child is ValueXStructureMapParameter) {

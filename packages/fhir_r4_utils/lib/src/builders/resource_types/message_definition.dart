@@ -1241,6 +1241,7 @@ class MessageDefinitionBuilder extends CanonicalResourceBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'event':
       case 'eventX':
         {
           if (child is EventXMessageDefinitionBuilder) {
@@ -1728,7 +1729,7 @@ class MessageDefinitionBuilder extends CanonicalResourceBuilder {
     if (copyright) this.copyright = null;
     if (base) this.base = null;
     if (parent) this.parent = null;
-    if (event) eventX = null;
+    if (event) this.eventX = null;
     if (category) this.category = null;
     if (focus) this.focus = null;
     if (responseRequired) this.responseRequired = null;

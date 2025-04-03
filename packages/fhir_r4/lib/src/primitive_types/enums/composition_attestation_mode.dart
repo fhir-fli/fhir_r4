@@ -159,7 +159,7 @@ class CompositionAttestationMode extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for CompositionAttestationMode: $newValue',);
+          'Invalid input for CompositionAttestationMode: $newValue');
     }
     return CompositionAttestationMode._(
       valueString: newValue ?? valueString,

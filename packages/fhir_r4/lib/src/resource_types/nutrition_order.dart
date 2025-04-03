@@ -5185,6 +5185,7 @@ class NutritionOrderAdministration extends BackboneElement {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'rate':
       case 'rateX':
         {
           if (child is RateXNutritionOrderAdministration) {

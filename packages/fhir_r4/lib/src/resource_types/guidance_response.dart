@@ -787,6 +787,7 @@ class GuidanceResponse extends DomainResource {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'module':
       case 'moduleX':
         {
           if (child is ModuleXGuidanceResponse) {

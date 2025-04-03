@@ -52,7 +52,7 @@ class SubscriptionSearchModifierBuilder extends FhirCodeEnumBuilder {
   /// Factory constructor to create [SubscriptionSearchModifierBuilder]
   /// from JSON.
   factory SubscriptionSearchModifierBuilder.fromJson(
-      Map<String, dynamic> json,) {
+      Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -243,7 +243,7 @@ class SubscriptionSearchModifierBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   SubscriptionSearchModifierBuilder withElement(ElementBuilder? newElement) {
     return SubscriptionSearchModifierBuilder._(
-        valueString: valueString, element: newElement,);
+        valueString: valueString, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -273,7 +273,7 @@ class SubscriptionSearchModifierBuilder extends FhirCodeEnumBuilder {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for SubscriptionSearchModifier: $newValue',);
+          'Invalid input for SubscriptionSearchModifier: $newValue');
     }
     return SubscriptionSearchModifierBuilder._(
       valueString: newValue ?? valueString,

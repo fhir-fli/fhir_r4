@@ -140,7 +140,7 @@ class PropertyRepresentationBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   PropertyRepresentationBuilder withElement(ElementBuilder? newElement) {
     return PropertyRepresentationBuilder._(
-        valueString: valueString, element: newElement,);
+        valueString: valueString, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -170,7 +170,7 @@ class PropertyRepresentationBuilder extends FhirCodeEnumBuilder {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for PropertyRepresentation: $newValue',);
+          'Invalid input for PropertyRepresentation: $newValue');
     }
     return PropertyRepresentationBuilder._(
       valueString: newValue ?? valueString,

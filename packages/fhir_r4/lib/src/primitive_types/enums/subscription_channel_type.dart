@@ -161,7 +161,7 @@ class SubscriptionChannelType extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for SubscriptionChannelType: $newValue',);
+          'Invalid input for SubscriptionChannelType: $newValue');
     }
     return SubscriptionChannelType._(
       valueString: newValue ?? valueString,

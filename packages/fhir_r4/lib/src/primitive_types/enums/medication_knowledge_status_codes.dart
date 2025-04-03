@@ -146,7 +146,7 @@ class MedicationKnowledgeStatusCodes extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for MedicationKnowledgeStatusCodes: $newValue',);
+          'Invalid input for MedicationKnowledgeStatusCodes: $newValue');
     }
     return MedicationKnowledgeStatusCodes._(
       valueString: newValue ?? valueString,

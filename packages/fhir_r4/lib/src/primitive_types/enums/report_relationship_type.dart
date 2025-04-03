@@ -189,7 +189,7 @@ class ReportRelationshipType extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for ReportRelationshipType: $newValue',);
+          'Invalid input for ReportRelationshipType: $newValue');
     }
     return ReportRelationshipType._(
       valueString: newValue ?? valueString,

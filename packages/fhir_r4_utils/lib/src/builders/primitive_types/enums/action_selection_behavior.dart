@@ -150,7 +150,7 @@ class ActionSelectionBehaviorBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   ActionSelectionBehaviorBuilder withElement(ElementBuilder? newElement) {
     return ActionSelectionBehaviorBuilder._(
-        valueString: valueString, element: newElement,);
+        valueString: valueString, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -180,7 +180,7 @@ class ActionSelectionBehaviorBuilder extends FhirCodeEnumBuilder {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for ActionSelectionBehavior: $newValue',);
+          'Invalid input for ActionSelectionBehavior: $newValue');
     }
     return ActionSelectionBehaviorBuilder._(
       valueString: newValue ?? valueString,

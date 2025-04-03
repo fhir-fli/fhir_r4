@@ -2502,6 +2502,7 @@ class IngredientStrength extends BackboneElement {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'presentation':
       case 'presentationX':
         {
           if (child is PresentationXIngredientStrength) {
@@ -2540,6 +2541,7 @@ class IngredientStrength extends BackboneElement {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'concentration':
       case 'concentrationX':
         {
           if (child is ConcentrationXIngredientStrength) {
@@ -3304,6 +3306,7 @@ class IngredientReferenceStrength extends BackboneElement {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'strength':
       case 'strengthX':
         {
           if (child is StrengthXIngredientReferenceStrength) {

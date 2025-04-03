@@ -599,6 +599,7 @@ class Dosage extends BackboneType
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'asNeeded':
       case 'asNeededX':
         {
           if (child is AsNeededXDosage) {
@@ -1449,6 +1450,7 @@ class DosageDoseAndRate extends Element {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'dose':
       case 'doseX':
         {
           if (child is DoseXDosageDoseAndRate) {
@@ -1479,6 +1481,7 @@ class DosageDoseAndRate extends Element {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'rate':
       case 'rateX':
         {
           if (child is RateXDosageDoseAndRate) {

@@ -863,6 +863,7 @@ class Patient extends DomainResource {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'deceased':
       case 'deceasedX':
         {
           if (child is DeceasedXPatient) {
@@ -918,6 +919,7 @@ class Patient extends DomainResource {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'multipleBirth':
       case 'multipleBirthX':
         {
           if (child is MultipleBirthXPatient) {

@@ -51,7 +51,7 @@ class QuestionnaireResponseStatusBuilder extends FhirCodeEnumBuilder {
   /// Factory constructor to create [QuestionnaireResponseStatusBuilder]
   /// from JSON.
   factory QuestionnaireResponseStatusBuilder.fromJson(
-      Map<String, dynamic> json,) {
+      Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -144,7 +144,7 @@ class QuestionnaireResponseStatusBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   QuestionnaireResponseStatusBuilder withElement(ElementBuilder? newElement) {
     return QuestionnaireResponseStatusBuilder._(
-        valueString: valueString, element: newElement,);
+        valueString: valueString, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -174,7 +174,7 @@ class QuestionnaireResponseStatusBuilder extends FhirCodeEnumBuilder {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for QuestionnaireResponseStatus: $newValue',);
+          'Invalid input for QuestionnaireResponseStatus: $newValue');
     }
     return QuestionnaireResponseStatusBuilder._(
       valueString: newValue ?? valueString,

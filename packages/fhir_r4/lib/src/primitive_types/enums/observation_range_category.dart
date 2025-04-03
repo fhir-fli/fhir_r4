@@ -143,7 +143,7 @@ class ObservationRangeCategory extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for ObservationRangeCategory: $newValue',);
+          'Invalid input for ObservationRangeCategory: $newValue');
     }
     return ObservationRangeCategory._(
       valueString: newValue ?? valueString,

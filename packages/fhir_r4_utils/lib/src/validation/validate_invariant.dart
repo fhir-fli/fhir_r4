@@ -16,7 +16,9 @@ ValidationResults validateInvariants({
     for (final constraint in element.constraint!) {
       if (constraint.expression != null) {
         if (!_constraintsIDontWantToDo(
-            node, constraint.expression!.valueString!,)) {
+          node,
+          constraint.expression!.valueString!,
+        )) {
           if (!_evaluateConstraint(
             node,
             context,

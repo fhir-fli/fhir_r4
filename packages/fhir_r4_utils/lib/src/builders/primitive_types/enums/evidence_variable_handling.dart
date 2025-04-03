@@ -127,7 +127,7 @@ class EvidenceVariableHandlingBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   EvidenceVariableHandlingBuilder withElement(ElementBuilder? newElement) {
     return EvidenceVariableHandlingBuilder._(
-        valueString: valueString, element: newElement,);
+        valueString: valueString, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -157,7 +157,7 @@ class EvidenceVariableHandlingBuilder extends FhirCodeEnumBuilder {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for EvidenceVariableHandling: $newValue',);
+          'Invalid input for EvidenceVariableHandling: $newValue');
     }
     return EvidenceVariableHandlingBuilder._(
       valueString: newValue ?? valueString,

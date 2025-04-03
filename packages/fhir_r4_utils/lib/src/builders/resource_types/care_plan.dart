@@ -928,7 +928,7 @@ class CarePlanBuilder extends DomainResourceBuilder {
               if (converted != null) {
                 instantiatesCanonical = [
                   ...(instantiatesCanonical ?? []),
-                  converted,
+                  converted
                 ];
                 return;
               }
@@ -3234,7 +3234,7 @@ class CarePlanDetailBuilder extends BackboneElementBuilder {
               if (converted != null) {
                 instantiatesCanonical = [
                   ...(instantiatesCanonical ?? []),
-                  converted,
+                  converted
                 ];
                 return;
               }
@@ -3397,6 +3397,7 @@ class CarePlanDetailBuilder extends BackboneElementBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'scheduled':
       case 'scheduledX':
         {
           if (child is ScheduledXCarePlanDetailBuilder) {
@@ -3469,6 +3470,7 @@ class CarePlanDetailBuilder extends BackboneElementBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'product':
       case 'productX':
         {
           if (child is ProductXCarePlanDetailBuilder) {
@@ -3780,10 +3782,10 @@ class CarePlanDetailBuilder extends BackboneElementBuilder {
     if (status) this.status = null;
     if (statusReason) this.statusReason = null;
     if (doNotPerform) this.doNotPerform = null;
-    if (scheduled) scheduledX = null;
+    if (scheduled) this.scheduledX = null;
     if (location) this.location = null;
     if (performer) this.performer = null;
-    if (product) productX = null;
+    if (product) this.productX = null;
     if (dailyAmount) this.dailyAmount = null;
     if (quantity) this.quantity = null;
     if (description) this.description = null;

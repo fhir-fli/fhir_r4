@@ -109,7 +109,7 @@ class AllergyIntoleranceTypeBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   AllergyIntoleranceTypeBuilder withElement(ElementBuilder? newElement) {
     return AllergyIntoleranceTypeBuilder._(
-        valueString: valueString, element: newElement,);
+        valueString: valueString, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -139,7 +139,7 @@ class AllergyIntoleranceTypeBuilder extends FhirCodeEnumBuilder {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for AllergyIntoleranceType: $newValue',);
+          'Invalid input for AllergyIntoleranceType: $newValue');
     }
     return AllergyIntoleranceTypeBuilder._(
       valueString: newValue ?? valueString,

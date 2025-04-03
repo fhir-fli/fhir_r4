@@ -134,7 +134,7 @@ class ActionPrecheckBehavior extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for ActionPrecheckBehavior: $newValue',);
+          'Invalid input for ActionPrecheckBehavior: $newValue');
     }
     return ActionPrecheckBehavior._(
       valueString: newValue ?? valueString,

@@ -113,7 +113,7 @@ class LocationStatusBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   LocationStatusBuilder withElement(ElementBuilder? newElement) {
     return LocationStatusBuilder._(
-        valueString: valueString, element: newElement,);
+        valueString: valueString, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys

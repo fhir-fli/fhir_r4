@@ -152,7 +152,7 @@ class EncounterLocationStatus extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for EncounterLocationStatus: $newValue',);
+          'Invalid input for EncounterLocationStatus: $newValue');
     }
     return EncounterLocationStatus._(
       valueString: newValue ?? valueString,

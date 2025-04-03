@@ -169,7 +169,9 @@ Future<void> main() async {
       expect(search.length, 1);
       expect(search[0].id?.toString(), 'obs3');
       expect(
-          (search[0] as Observation).code.text?.valueString, 'Observation #3',);
+        (search[0] as Observation).code.text?.valueString,
+        'Observation #3',
+      );
     });
 
     test('Find All Observations', () async {
@@ -377,7 +379,9 @@ Future<void> main() async {
       expect(search.length, 1);
       expect(search[0].id?.toString(), 'obs3');
       expect(
-          (search[0] as Observation).code.text?.valueString, 'Observation #3',);
+        (search[0] as Observation).code.text?.valueString,
+        'Observation #3',
+      );
     });
 
     test('Find All Observations', () async {

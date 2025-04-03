@@ -1188,6 +1188,7 @@ class PlanDefinitionBuilder extends CanonicalResourceBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'subject':
       case 'subjectX':
         {
           if (child is SubjectXPlanDefinitionBuilder) {
@@ -2007,7 +2008,7 @@ class PlanDefinitionBuilder extends CanonicalResourceBuilder {
     if (type) this.type = null;
     if (status) this.status = null;
     if (experimental) this.experimental = null;
-    if (subject) subjectX = null;
+    if (subject) this.subjectX = null;
     if (date) this.date = null;
     if (publisher) this.publisher = null;
     if (contact) this.contact = null;
@@ -3449,6 +3450,7 @@ class PlanDefinitionTargetBuilder extends BackboneElementBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'detail':
       case 'detailX':
         {
           if (child is DetailXPlanDefinitionTargetBuilder) {
@@ -3609,7 +3611,7 @@ class PlanDefinitionTargetBuilder extends BackboneElementBuilder {
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
     if (measure) this.measure = null;
-    if (detail) detailX = null;
+    if (detail) this.detailX = null;
     if (due) this.due = null;
   }
 
@@ -4816,6 +4818,7 @@ class PlanDefinitionActionBuilder extends BackboneElementBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'subject':
       case 'subjectX':
         {
           if (child is SubjectXPlanDefinitionActionBuilder) {
@@ -4944,6 +4947,7 @@ class PlanDefinitionActionBuilder extends BackboneElementBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'timing':
       case 'timingX':
         {
           if (child is TimingXPlanDefinitionActionBuilder) {
@@ -5170,6 +5174,7 @@ class PlanDefinitionActionBuilder extends BackboneElementBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'definition':
       case 'definitionX':
         {
           if (child is DefinitionXPlanDefinitionActionBuilder) {
@@ -5623,13 +5628,13 @@ class PlanDefinitionActionBuilder extends BackboneElementBuilder {
     if (reason) this.reason = null;
     if (documentation) this.documentation = null;
     if (goalId) this.goalId = null;
-    if (subject) subjectX = null;
+    if (subject) this.subjectX = null;
     if (trigger) this.trigger = null;
     if (condition) this.condition = null;
     if (input) this.input = null;
     if (output) this.output = null;
     if (relatedAction) this.relatedAction = null;
-    if (timing) timingX = null;
+    if (timing) this.timingX = null;
     if (participant) this.participant = null;
     if (type) this.type = null;
     if (groupingBehavior) this.groupingBehavior = null;
@@ -5637,7 +5642,7 @@ class PlanDefinitionActionBuilder extends BackboneElementBuilder {
     if (requiredBehavior) this.requiredBehavior = null;
     if (precheckBehavior) this.precheckBehavior = null;
     if (cardinalityBehavior) this.cardinalityBehavior = null;
-    if (definition) definitionX = null;
+    if (definition) this.definitionX = null;
     if (transform) this.transform = null;
     if (dynamicValue) this.dynamicValue = null;
     if (action) this.action = null;
@@ -6775,6 +6780,7 @@ class PlanDefinitionRelatedActionBuilder extends BackboneElementBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'offset':
       case 'offsetX':
         {
           if (child is OffsetXPlanDefinitionRelatedActionBuilder) {
@@ -6907,7 +6913,7 @@ class PlanDefinitionRelatedActionBuilder extends BackboneElementBuilder {
     if (modifierExtension) this.modifierExtension = null;
     if (actionId) this.actionId = null;
     if (relationship) this.relationship = null;
-    if (offset) offsetX = null;
+    if (offset) this.offsetX = null;
   }
 
   @override

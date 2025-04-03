@@ -139,7 +139,7 @@ class CriteriaNotExistsBehavior extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for CriteriaNotExistsBehavior: $newValue',);
+          'Invalid input for CriteriaNotExistsBehavior: $newValue');
     }
     return CriteriaNotExistsBehavior._(
       valueString: newValue ?? valueString,

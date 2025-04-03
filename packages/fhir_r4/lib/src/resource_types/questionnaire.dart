@@ -3484,6 +3484,7 @@ class QuestionnaireEnableWhen extends BackboneElement {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'answer':
       case 'answerX':
         {
           if (child is AnswerXQuestionnaireEnableWhen) {
@@ -4221,6 +4222,7 @@ class QuestionnaireAnswerOption extends BackboneElement {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'value':
       case 'valueX':
         {
           if (child is ValueXQuestionnaireAnswerOption) {
@@ -4895,6 +4897,7 @@ class QuestionnaireInitial extends BackboneElement {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'value':
       case 'valueX':
         {
           if (child is ValueXQuestionnaireInitial) {

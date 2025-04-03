@@ -118,7 +118,7 @@ class NutritionProductStatusBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   NutritionProductStatusBuilder withElement(ElementBuilder? newElement) {
     return NutritionProductStatusBuilder._(
-        valueString: valueString, element: newElement,);
+        valueString: valueString, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -148,7 +148,7 @@ class NutritionProductStatusBuilder extends FhirCodeEnumBuilder {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for NutritionProductStatus: $newValue',);
+          'Invalid input for NutritionProductStatus: $newValue');
     }
     return NutritionProductStatusBuilder._(
       valueString: newValue ?? valueString,

@@ -131,7 +131,7 @@ class EligibilityRequestPurposeBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   EligibilityRequestPurposeBuilder withElement(ElementBuilder? newElement) {
     return EligibilityRequestPurposeBuilder._(
-        valueString: valueString, element: newElement,);
+        valueString: valueString, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -161,7 +161,7 @@ class EligibilityRequestPurposeBuilder extends FhirCodeEnumBuilder {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for EligibilityRequestPurpose: $newValue',);
+          'Invalid input for EligibilityRequestPurpose: $newValue');
     }
     return EligibilityRequestPurposeBuilder._(
       valueString: newValue ?? valueString,

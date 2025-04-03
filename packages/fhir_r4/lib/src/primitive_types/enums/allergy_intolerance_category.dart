@@ -160,7 +160,7 @@ class AllergyIntoleranceCategory extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for AllergyIntoleranceCategory: $newValue',);
+          'Invalid input for AllergyIntoleranceCategory: $newValue');
     }
     return AllergyIntoleranceCategory._(
       valueString: newValue ?? valueString,

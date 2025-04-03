@@ -1529,6 +1529,7 @@ class ImmunizationRecommendationRecommendationBuilder
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'doseNumber':
       case 'doseNumberX':
         {
           if (child
@@ -1565,6 +1566,7 @@ class ImmunizationRecommendationRecommendationBuilder
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'seriesDoses':
       case 'seriesDosesX':
         {
           if (child
@@ -1823,8 +1825,8 @@ class ImmunizationRecommendationRecommendationBuilder
     if (dateCriterion) this.dateCriterion = null;
     if (description) this.description = null;
     if (series) this.series = null;
-    if (doseNumber) doseNumberX = null;
-    if (seriesDoses) seriesDosesX = null;
+    if (doseNumber) this.doseNumberX = null;
+    if (seriesDoses) this.seriesDosesX = null;
     if (supportingImmunization) this.supportingImmunization = null;
     if (supportingPatientInformation) this.supportingPatientInformation = null;
   }

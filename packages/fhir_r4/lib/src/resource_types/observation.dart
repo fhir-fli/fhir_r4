@@ -1190,6 +1190,7 @@ class Observation extends DomainResource {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'effective':
       case 'effectiveX':
         {
           if (child is EffectiveXObservation) {
@@ -1267,6 +1268,7 @@ class Observation extends DomainResource {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'value':
       case 'valueX':
         {
           if (child is ValueXObservation) {
@@ -3624,6 +3626,7 @@ class ObservationComponent extends BackboneElement {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'value':
       case 'valueX':
         {
           if (child is ValueXObservationComponent) {

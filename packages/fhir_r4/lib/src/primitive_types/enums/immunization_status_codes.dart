@@ -192,7 +192,7 @@ class ImmunizationStatusCodes extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for ImmunizationStatusCodes: $newValue',);
+          'Invalid input for ImmunizationStatusCodes: $newValue');
     }
     return ImmunizationStatusCodes._(
       valueString: newValue ?? valueString,

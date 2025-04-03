@@ -718,6 +718,7 @@ class DetectedIssue extends DomainResource {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'identified':
       case 'identifiedX':
         {
           if (child is IdentifiedXDetectedIssue) {

@@ -648,6 +648,7 @@ Future<void> main() async {
 
   group('Step 14', () {
     test('Step 14', () async {
+      await resourceCache.saveCanonicalResource(observationCategory);
       final result = await fhirMappingEngine(
         QuestionnaireResponse.fromJson(source14).toBuilder,
         structureMapStep14,

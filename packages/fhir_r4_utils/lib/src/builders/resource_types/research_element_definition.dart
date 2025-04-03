@@ -1281,6 +1281,7 @@ class ResearchElementDefinitionBuilder extends DomainResourceBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'subject':
       case 'subjectX':
         {
           if (child is SubjectXResearchElementDefinitionBuilder) {
@@ -2171,7 +2172,7 @@ class ResearchElementDefinitionBuilder extends DomainResourceBuilder {
     if (subtitle) this.subtitle = null;
     if (status) this.status = null;
     if (experimental) this.experimental = null;
-    if (subject) subjectX = null;
+    if (subject) this.subjectX = null;
     if (date) this.date = null;
     if (publisher) this.publisher = null;
     if (contact) this.contact = null;
@@ -2934,17 +2935,17 @@ class ResearchElementDefinitionCharacteristicBuilder
     addField('studyEffectiveTimeFromStart', studyEffectiveTimeFromStart);
     addField('studyEffectiveGroupMeasure', studyEffectiveGroupMeasure);
     addField(
-        'participantEffectiveDescription', participantEffectiveDescription,);
+        'participantEffectiveDescription', participantEffectiveDescription);
     if (participantEffectiveX != null) {
       final fhirType = participantEffectiveX!.fhirType;
       addField('participantEffective${fhirType.capitalize()}',
-          participantEffectiveX,);
+          participantEffectiveX);
     }
 
     addField(
-        'participantEffectiveTimeFromStart', participantEffectiveTimeFromStart,);
+        'participantEffectiveTimeFromStart', participantEffectiveTimeFromStart);
     addField(
-        'participantEffectiveGroupMeasure', participantEffectiveGroupMeasure,);
+        'participantEffectiveGroupMeasure', participantEffectiveGroupMeasure);
     return json;
   }
 
@@ -3180,6 +3181,7 @@ class ResearchElementDefinitionCharacteristicBuilder
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'definition':
       case 'definitionX':
         {
           if (child
@@ -3306,6 +3308,7 @@ class ResearchElementDefinitionCharacteristicBuilder
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'studyEffective':
       case 'studyEffectiveX':
         {
           if (child
@@ -3419,6 +3422,7 @@ class ResearchElementDefinitionCharacteristicBuilder
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'participantEffective':
       case 'participantEffectiveX':
         {
           if (child
@@ -3757,24 +3761,21 @@ class ResearchElementDefinitionCharacteristicBuilder
     if (id) this.id = null;
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
-    if (definition) definitionX = null;
+    if (definition) this.definitionX = null;
     if (usageContext) this.usageContext = null;
     if (exclude) this.exclude = null;
     if (unitOfMeasure) this.unitOfMeasure = null;
     if (studyEffectiveDescription) this.studyEffectiveDescription = null;
-    if (studyEffective) studyEffectiveX = null;
+    if (studyEffective) this.studyEffectiveX = null;
     if (studyEffectiveTimeFromStart) this.studyEffectiveTimeFromStart = null;
     if (studyEffectiveGroupMeasure) this.studyEffectiveGroupMeasure = null;
-    if (participantEffectiveDescription) {
+    if (participantEffectiveDescription)
       this.participantEffectiveDescription = null;
-    }
-    if (participantEffective) participantEffectiveX = null;
-    if (participantEffectiveTimeFromStart) {
+    if (participantEffective) this.participantEffectiveX = null;
+    if (participantEffectiveTimeFromStart)
       this.participantEffectiveTimeFromStart = null;
-    }
-    if (participantEffectiveGroupMeasure) {
+    if (participantEffectiveGroupMeasure)
       this.participantEffectiveGroupMeasure = null;
-    }
   }
 
   @override

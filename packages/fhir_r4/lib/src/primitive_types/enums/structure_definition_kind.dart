@@ -153,7 +153,7 @@ class StructureDefinitionKind extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for StructureDefinitionKind: $newValue',);
+          'Invalid input for StructureDefinitionKind: $newValue');
     }
     return StructureDefinitionKind._(
       valueString: newValue ?? valueString,

@@ -270,7 +270,7 @@ class TypeRestfulInteraction extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for TypeRestfulInteraction: $newValue',);
+          'Invalid input for TypeRestfulInteraction: $newValue');
     }
     return TypeRestfulInteraction._(
       valueString: newValue ?? valueString,

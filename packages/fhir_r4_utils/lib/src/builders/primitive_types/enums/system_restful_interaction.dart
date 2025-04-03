@@ -273,7 +273,7 @@ class SystemRestfulInteractionBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   SystemRestfulInteractionBuilder withElement(ElementBuilder? newElement) {
     return SystemRestfulInteractionBuilder._(
-        valueString: valueString, element: newElement,);
+        valueString: valueString, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -303,7 +303,7 @@ class SystemRestfulInteractionBuilder extends FhirCodeEnumBuilder {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for SystemRestfulInteraction: $newValue',);
+          'Invalid input for SystemRestfulInteraction: $newValue');
     }
     return SystemRestfulInteractionBuilder._(
       valueString: newValue ?? valueString,

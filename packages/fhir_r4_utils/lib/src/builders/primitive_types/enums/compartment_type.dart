@@ -131,7 +131,7 @@ class CompartmentTypeBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   CompartmentTypeBuilder withElement(ElementBuilder? newElement) {
     return CompartmentTypeBuilder._(
-        valueString: valueString, element: newElement,);
+        valueString: valueString, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys

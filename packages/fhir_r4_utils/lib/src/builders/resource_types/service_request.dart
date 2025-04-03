@@ -1222,7 +1222,7 @@ class ServiceRequestBuilder extends DomainResourceBuilder {
               if (converted != null) {
                 instantiatesCanonical = [
                   ...(instantiatesCanonical ?? []),
-                  converted,
+                  converted
                 ];
                 return;
               }
@@ -1447,6 +1447,7 @@ class ServiceRequestBuilder extends DomainResourceBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'quantity':
       case 'quantityX':
         {
           if (child is QuantityXServiceRequestBuilder) {
@@ -1511,6 +1512,7 @@ class ServiceRequestBuilder extends DomainResourceBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'occurrence':
       case 'occurrenceX':
         {
           if (child is OccurrenceXServiceRequestBuilder) {
@@ -1559,6 +1561,7 @@ class ServiceRequestBuilder extends DomainResourceBuilder {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'asNeeded':
       case 'asNeededX':
         {
           if (child is AsNeededXServiceRequestBuilder) {
@@ -2265,11 +2268,11 @@ class ServiceRequestBuilder extends DomainResourceBuilder {
     if (doNotPerform) this.doNotPerform = null;
     if (code) this.code = null;
     if (orderDetail) this.orderDetail = null;
-    if (quantity) quantityX = null;
+    if (quantity) this.quantityX = null;
     if (subject) this.subject = null;
     if (encounter) this.encounter = null;
-    if (occurrence) occurrenceX = null;
-    if (asNeeded) asNeededX = null;
+    if (occurrence) this.occurrenceX = null;
+    if (asNeeded) this.asNeededX = null;
     if (authoredOn) this.authoredOn = null;
     if (requester) this.requester = null;
     if (performerType) this.performerType = null;

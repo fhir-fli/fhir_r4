@@ -149,7 +149,7 @@ class MessageSignificanceCategory extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for MessageSignificanceCategory: $newValue',);
+          'Invalid input for MessageSignificanceCategory: $newValue');
     }
     return MessageSignificanceCategory._(
       valueString: newValue ?? valueString,

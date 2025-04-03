@@ -160,7 +160,7 @@ class EligibilityResponsePurpose extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for EligibilityResponsePurpose: $newValue',);
+          'Invalid input for EligibilityResponsePurpose: $newValue');
     }
     return EligibilityResponsePurpose._(
       valueString: newValue ?? valueString,

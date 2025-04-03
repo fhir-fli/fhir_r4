@@ -948,6 +948,7 @@ class Condition extends DomainResource {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'onset':
       case 'onsetX':
         {
           if (child is OnsetXCondition) {
@@ -1011,6 +1012,7 @@ class Condition extends DomainResource {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'abatement':
       case 'abatementX':
         {
           if (child is AbatementXCondition) {

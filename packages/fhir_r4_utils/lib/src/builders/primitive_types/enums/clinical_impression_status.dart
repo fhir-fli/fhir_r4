@@ -175,7 +175,7 @@ class ClinicalImpressionStatusBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   ClinicalImpressionStatusBuilder withElement(ElementBuilder? newElement) {
     return ClinicalImpressionStatusBuilder._(
-        valueString: valueString, element: newElement,);
+        valueString: valueString, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -205,7 +205,7 @@ class ClinicalImpressionStatusBuilder extends FhirCodeEnumBuilder {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for ClinicalImpressionStatus: $newValue',);
+          'Invalid input for ClinicalImpressionStatus: $newValue');
     }
     return ClinicalImpressionStatusBuilder._(
       valueString: newValue ?? valueString,

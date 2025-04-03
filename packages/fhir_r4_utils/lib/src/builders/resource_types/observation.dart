@@ -1168,6 +1168,7 @@ class ObservationBuilder extends DomainResourceBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'effective':
       case 'effectiveX':
         {
           if (child is EffectiveXObservationBuilder) {
@@ -1265,6 +1266,7 @@ class ObservationBuilder extends DomainResourceBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'value':
       case 'valueX':
         {
           if (child is ValueXObservationBuilder) {
@@ -1973,10 +1975,10 @@ class ObservationBuilder extends DomainResourceBuilder {
     if (subject) this.subject = null;
     if (focus) this.focus = null;
     if (encounter) this.encounter = null;
-    if (effective) effectiveX = null;
+    if (effective) this.effectiveX = null;
     if (issued) this.issued = null;
     if (performer) this.performer = null;
-    if (value) valueX = null;
+    if (value) this.valueX = null;
     if (dataAbsentReason) this.dataAbsentReason = null;
     if (interpretation) this.interpretation = null;
     if (note) this.note = null;
@@ -3416,6 +3418,7 @@ class ObservationComponentBuilder extends BackboneElementBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'value':
       case 'valueX':
         {
           if (child is ValueXObservationComponentBuilder) {
@@ -3792,7 +3795,7 @@ class ObservationComponentBuilder extends BackboneElementBuilder {
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
     if (code) this.code = null;
-    if (value) valueX = null;
+    if (value) this.valueX = null;
     if (dataAbsentReason) this.dataAbsentReason = null;
     if (interpretation) this.interpretation = null;
     if (referenceRange) this.referenceRange = null;

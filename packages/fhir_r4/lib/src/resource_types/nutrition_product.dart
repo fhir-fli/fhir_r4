@@ -2560,6 +2560,7 @@ class NutritionProductProductCharacteristic extends BackboneElement {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'value':
       case 'valueX':
         {
           if (child is ValueXNutritionProductProductCharacteristic) {

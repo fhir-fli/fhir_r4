@@ -158,7 +158,7 @@ class ExplanationOfBenefitStatus extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for ExplanationOfBenefitStatus: $newValue',);
+          'Invalid input for ExplanationOfBenefitStatus: $newValue');
     }
     return ExplanationOfBenefitStatus._(
       valueString: newValue ?? valueString,

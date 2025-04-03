@@ -144,7 +144,7 @@ class NutritionProductStatus extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for NutritionProductStatus: $newValue',);
+          'Invalid input for NutritionProductStatus: $newValue');
     }
     return NutritionProductStatus._(
       valueString: newValue ?? valueString,

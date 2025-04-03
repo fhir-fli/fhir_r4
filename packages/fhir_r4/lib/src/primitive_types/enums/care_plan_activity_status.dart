@@ -199,7 +199,7 @@ class CarePlanActivityStatus extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for CarePlanActivityStatus: $newValue',);
+          'Invalid input for CarePlanActivityStatus: $newValue');
     }
     return CarePlanActivityStatus._(
       valueString: newValue ?? valueString,

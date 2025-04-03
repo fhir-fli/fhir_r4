@@ -298,6 +298,7 @@ class Annotation extends DataType
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'author':
       case 'authorX':
         {
           if (child is AuthorXAnnotation) {

@@ -143,7 +143,7 @@ class ActionGroupingBehavior extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for ActionGroupingBehavior: $newValue',);
+          'Invalid input for ActionGroupingBehavior: $newValue');
     }
     return ActionGroupingBehavior._(
       valueString: newValue ?? valueString,

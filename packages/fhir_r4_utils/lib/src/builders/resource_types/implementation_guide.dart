@@ -4341,6 +4341,7 @@ class ImplementationGuideResourceBuilder extends BackboneElementBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'example':
       case 'exampleX':
         {
           if (child is ExampleXImplementationGuideResourceBuilder) {
@@ -4519,7 +4520,7 @@ class ImplementationGuideResourceBuilder extends BackboneElementBuilder {
     if (fhirVersion) this.fhirVersion = null;
     if (name) this.name = null;
     if (description) this.description = null;
-    if (example) exampleX = null;
+    if (example) this.exampleX = null;
     if (groupingId) this.groupingId = null;
   }
 
@@ -4986,6 +4987,7 @@ class ImplementationGuidePageBuilder extends BackboneElementBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'name':
       case 'nameX':
         {
           if (child is NameXImplementationGuidePageBuilder) {
@@ -5183,7 +5185,7 @@ class ImplementationGuidePageBuilder extends BackboneElementBuilder {
     if (id) this.id = null;
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
-    if (name) nameX = null;
+    if (name) this.nameX = null;
     if (title) this.title = null;
     if (generation) this.generation = null;
     if (page) this.page = null;
@@ -7362,6 +7364,7 @@ class ImplementationGuideResource1Builder extends BackboneElementBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'example':
       case 'exampleX':
         {
           if (child is ExampleXImplementationGuideResource1Builder) {
@@ -7513,7 +7516,7 @@ class ImplementationGuideResource1Builder extends BackboneElementBuilder {
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
     if (reference) this.reference = null;
-    if (example) exampleX = null;
+    if (example) this.exampleX = null;
     if (relativePath) this.relativePath = null;
   }
 

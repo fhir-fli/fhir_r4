@@ -130,7 +130,7 @@ class DocumentRelationshipTypeBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   DocumentRelationshipTypeBuilder withElement(ElementBuilder? newElement) {
     return DocumentRelationshipTypeBuilder._(
-        valueString: valueString, element: newElement,);
+        valueString: valueString, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -160,7 +160,7 @@ class DocumentRelationshipTypeBuilder extends FhirCodeEnumBuilder {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for DocumentRelationshipType: $newValue',);
+          'Invalid input for DocumentRelationshipType: $newValue');
     }
     return DocumentRelationshipTypeBuilder._(
       valueString: newValue ?? valueString,

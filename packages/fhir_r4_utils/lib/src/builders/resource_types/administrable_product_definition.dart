@@ -1530,6 +1530,7 @@ class AdministrableProductDefinitionPropertyBuilder
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'value':
       case 'valueX':
         {
           if (child is ValueXAdministrableProductDefinitionPropertyBuilder) {
@@ -1732,7 +1733,7 @@ class AdministrableProductDefinitionPropertyBuilder
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
     if (type) this.type = null;
-    if (value) valueX = null;
+    if (value) this.valueX = null;
     if (status) this.status = null;
   }
 
@@ -3121,7 +3122,7 @@ class AdministrableProductDefinitionWithdrawalPeriodBuilder
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
       return AdministrableProductDefinitionWithdrawalPeriodBuilder.fromJson(
-          json,);
+          json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');

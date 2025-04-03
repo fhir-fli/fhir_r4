@@ -765,6 +765,7 @@ class CoverageEligibilityRequest extends DomainResource {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'serviced':
       case 'servicedX':
         {
           if (child is ServicedXCoverageEligibilityRequest) {
@@ -3735,6 +3736,7 @@ class CoverageEligibilityRequestDiagnosis extends BackboneElement {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'diagnosis':
       case 'diagnosisX':
         {
           if (child is DiagnosisXCoverageEligibilityRequestDiagnosis) {

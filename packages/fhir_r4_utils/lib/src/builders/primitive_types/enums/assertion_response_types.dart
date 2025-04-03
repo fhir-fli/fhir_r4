@@ -215,7 +215,7 @@ class AssertionResponseTypesBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   AssertionResponseTypesBuilder withElement(ElementBuilder? newElement) {
     return AssertionResponseTypesBuilder._(
-        valueString: valueString, element: newElement,);
+        valueString: valueString, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -245,7 +245,7 @@ class AssertionResponseTypesBuilder extends FhirCodeEnumBuilder {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for AssertionResponseTypes: $newValue',);
+          'Invalid input for AssertionResponseTypes: $newValue');
     }
     return AssertionResponseTypesBuilder._(
       valueString: newValue ?? valueString,

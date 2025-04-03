@@ -1349,6 +1349,7 @@ class Measure extends CanonicalResource {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'subject':
       case 'subjectX':
         {
           if (child is SubjectXMeasure) {

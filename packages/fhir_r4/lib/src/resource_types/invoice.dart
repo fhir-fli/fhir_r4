@@ -2321,6 +2321,7 @@ class InvoiceLineItem extends BackboneElement {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'chargeItem':
       case 'chargeItemX':
         {
           if (child is ChargeItemXInvoiceLineItem) {

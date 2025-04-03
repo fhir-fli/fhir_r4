@@ -3552,6 +3552,7 @@ class TaskInput extends BackboneElement {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'value':
       case 'valueX':
         {
           if (child is ValueXTaskInput) {
@@ -5429,6 +5430,7 @@ class TaskOutput extends BackboneElement {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'value':
       case 'valueX':
         {
           if (child is ValueXTaskOutput) {

@@ -171,7 +171,7 @@ class SubscriptionNotificationType extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for SubscriptionNotificationType: $newValue',);
+          'Invalid input for SubscriptionNotificationType: $newValue');
     }
     return SubscriptionNotificationType._(
       valueString: newValue ?? valueString,

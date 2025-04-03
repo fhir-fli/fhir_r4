@@ -164,7 +164,7 @@ class StructureMapSourceListMode extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for StructureMapSourceListMode: $newValue',);
+          'Invalid input for StructureMapSourceListMode: $newValue');
     }
     return StructureMapSourceListMode._(
       valueString: newValue ?? valueString,

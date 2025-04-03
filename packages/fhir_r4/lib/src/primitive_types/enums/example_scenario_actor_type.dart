@@ -134,7 +134,7 @@ class ExampleScenarioActorType extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for ExampleScenarioActorType: $newValue',);
+          'Invalid input for ExampleScenarioActorType: $newValue');
     }
     return ExampleScenarioActorType._(
       valueString: newValue ?? valueString,

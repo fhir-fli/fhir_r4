@@ -5160,6 +5160,7 @@ class StructureMapSourceBuilder extends BackboneElementBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'defaultValue':
       case 'defaultValueX':
         {
           if (child is DefaultValueXStructureMapSourceBuilder) {
@@ -6490,7 +6491,7 @@ class StructureMapSourceBuilder extends BackboneElementBuilder {
     if (min) this.min = null;
     if (max) this.max = null;
     if (type) this.type = null;
-    if (defaultValue) defaultValueX = null;
+    if (defaultValue) this.defaultValueX = null;
     if (element) this.element = null;
     if (listMode) this.listMode = null;
     if (variable) this.variable = null;
@@ -7816,6 +7817,7 @@ class StructureMapParameterBuilder extends BackboneElementBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'value':
       case 'valueX':
         {
           if (child is ValueXStructureMapParameterBuilder) {
@@ -7993,7 +7995,7 @@ class StructureMapParameterBuilder extends BackboneElementBuilder {
     if (id) this.id = null;
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
-    if (value) valueX = null;
+    if (value) this.valueX = null;
   }
 
   @override

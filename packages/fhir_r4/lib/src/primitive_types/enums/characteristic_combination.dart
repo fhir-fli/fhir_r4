@@ -135,7 +135,7 @@ class CharacteristicCombination extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for CharacteristicCombination: $newValue',);
+          'Invalid input for CharacteristicCombination: $newValue');
     }
     return CharacteristicCombination._(
       valueString: newValue ?? valueString,

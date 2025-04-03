@@ -1080,7 +1080,7 @@ class ProcedureBuilder extends DomainResourceBuilder {
               if (converted != null) {
                 instantiatesCanonical = [
                   ...(instantiatesCanonical ?? []),
-                  converted,
+                  converted
                 ];
                 return;
               }
@@ -1231,6 +1231,7 @@ class ProcedureBuilder extends DomainResourceBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'performed':
       case 'performedX':
         {
           if (child is PerformedXProcedureBuilder) {
@@ -1904,7 +1905,7 @@ class ProcedureBuilder extends DomainResourceBuilder {
     if (code) this.code = null;
     if (subject) this.subject = null;
     if (encounter) this.encounter = null;
-    if (performed) performedX = null;
+    if (performed) this.performedX = null;
     if (recorder) this.recorder = null;
     if (asserter) this.asserter = null;
     if (performer) this.performer = null;

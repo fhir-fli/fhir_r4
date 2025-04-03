@@ -171,7 +171,7 @@ class QuestionnaireResponseStatus extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for QuestionnaireResponseStatus: $newValue',);
+          'Invalid input for QuestionnaireResponseStatus: $newValue');
     }
     return QuestionnaireResponseStatus._(
       valueString: newValue ?? valueString,

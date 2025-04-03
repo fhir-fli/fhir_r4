@@ -159,7 +159,7 @@ class CodeSystemHierarchyMeaning extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for CodeSystemHierarchyMeaning: $newValue',);
+          'Invalid input for CodeSystemHierarchyMeaning: $newValue');
     }
     return CodeSystemHierarchyMeaning._(
       valueString: newValue ?? valueString,

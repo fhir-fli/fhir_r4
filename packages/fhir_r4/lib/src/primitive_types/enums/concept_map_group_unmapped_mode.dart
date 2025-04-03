@@ -146,7 +146,7 @@ class ConceptMapGroupUnmappedMode extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for ConceptMapGroupUnmappedMode: $newValue',);
+          'Invalid input for ConceptMapGroupUnmappedMode: $newValue');
     }
     return ConceptMapGroupUnmappedMode._(
       valueString: newValue ?? valueString,

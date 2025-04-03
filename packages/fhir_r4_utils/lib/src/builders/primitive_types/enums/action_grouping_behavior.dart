@@ -119,7 +119,7 @@ class ActionGroupingBehaviorBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   ActionGroupingBehaviorBuilder withElement(ElementBuilder? newElement) {
     return ActionGroupingBehaviorBuilder._(
-        valueString: valueString, element: newElement,);
+        valueString: valueString, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -149,7 +149,7 @@ class ActionGroupingBehaviorBuilder extends FhirCodeEnumBuilder {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for ActionGroupingBehavior: $newValue',);
+          'Invalid input for ActionGroupingBehavior: $newValue');
     }
     return ActionGroupingBehaviorBuilder._(
       valueString: newValue ?? valueString,

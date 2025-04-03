@@ -1390,6 +1390,7 @@ class ServiceRequest extends DomainResource {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'quantity':
       case 'quantityX':
         {
           if (child is QuantityXServiceRequest) {
@@ -1447,6 +1448,7 @@ class ServiceRequest extends DomainResource {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'occurrence':
       case 'occurrenceX':
         {
           if (child is OccurrenceXServiceRequest) {
@@ -1488,6 +1490,7 @@ class ServiceRequest extends DomainResource {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'asNeeded':
       case 'asNeededX':
         {
           if (child is AsNeededXServiceRequest) {

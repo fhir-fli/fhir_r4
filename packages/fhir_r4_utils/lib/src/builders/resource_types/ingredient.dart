@@ -2437,6 +2437,7 @@ class IngredientStrengthBuilder extends BackboneElementBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'presentation':
       case 'presentationX':
         {
           if (child is PresentationXIngredientStrengthBuilder) {
@@ -2492,6 +2493,7 @@ class IngredientStrengthBuilder extends BackboneElementBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'concentration':
       case 'concentrationX':
         {
           if (child is ConcentrationXIngredientStrengthBuilder) {
@@ -2741,9 +2743,9 @@ class IngredientStrengthBuilder extends BackboneElementBuilder {
     if (id) this.id = null;
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
-    if (presentation) presentationX = null;
+    if (presentation) this.presentationX = null;
     if (textPresentation) this.textPresentation = null;
-    if (concentration) concentrationX = null;
+    if (concentration) this.concentrationX = null;
     if (textConcentration) this.textConcentration = null;
     if (measurementPoint) this.measurementPoint = null;
     if (country) this.country = null;
@@ -3236,6 +3238,7 @@ class IngredientReferenceStrengthBuilder extends BackboneElementBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'strength':
       case 'strengthX':
         {
           if (child is StrengthXIngredientReferenceStrengthBuilder) {
@@ -3411,7 +3414,7 @@ class IngredientReferenceStrengthBuilder extends BackboneElementBuilder {
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
     if (substance) this.substance = null;
-    if (strength) strengthX = null;
+    if (strength) this.strengthX = null;
     if (measurementPoint) this.measurementPoint = null;
     if (country) this.country = null;
   }

@@ -1071,6 +1071,7 @@ class Immunization extends DomainResource {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'occurrence':
       case 'occurrenceX':
         {
           if (child is OccurrenceXImmunization) {
@@ -4231,6 +4232,7 @@ class ImmunizationProtocolApplied extends BackboneElement {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'doseNumber':
       case 'doseNumberX':
         {
           if (child is DoseNumberXImmunizationProtocolApplied) {
@@ -4261,6 +4263,7 @@ class ImmunizationProtocolApplied extends BackboneElement {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'seriesDoses':
       case 'seriesDosesX':
         {
           if (child is SeriesDosesXImmunizationProtocolApplied) {

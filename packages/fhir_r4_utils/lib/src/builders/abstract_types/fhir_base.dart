@@ -30,6 +30,9 @@ abstract class FhirBaseBuilder {
   /// List of annotations for additional, non-core information
   List<dynamic>? annotations;
 
+  /// Only for use in builders and only for mapping
+  String? mappingId;
+
   /// Returns the FHIR type of the object.
   String get fhirType => 'FhirBase';
 

@@ -3404,6 +3404,7 @@ class TaskInputBuilder extends BackboneElementBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'value':
       case 'valueX':
         {
           if (child is ValueXTaskInputBuilder) {
@@ -4535,7 +4536,7 @@ class TaskInputBuilder extends BackboneElementBuilder {
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
     if (type) this.type = null;
-    if (value) valueX = null;
+    if (value) this.valueX = null;
   }
 
   @override
@@ -5335,6 +5336,7 @@ class TaskOutputBuilder extends BackboneElementBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'value':
       case 'valueX':
         {
           if (child is ValueXTaskOutputBuilder) {
@@ -6466,7 +6468,7 @@ class TaskOutputBuilder extends BackboneElementBuilder {
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
     if (type) this.type = null;
-    if (value) valueX = null;
+    if (value) this.valueX = null;
   }
 
   @override

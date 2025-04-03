@@ -2256,6 +2256,7 @@ class CompositionRelatesToBuilder extends BackboneElementBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'target':
       case 'targetX':
         {
           if (child is TargetXCompositionRelatesToBuilder) {
@@ -2379,7 +2380,7 @@ class CompositionRelatesToBuilder extends BackboneElementBuilder {
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
     if (code) this.code = null;
-    if (target) targetX = null;
+    if (target) this.targetX = null;
   }
 
   @override

@@ -106,7 +106,7 @@ class EventCapabilityModeBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   EventCapabilityModeBuilder withElement(ElementBuilder? newElement) {
     return EventCapabilityModeBuilder._(
-        valueString: valueString, element: newElement,);
+        valueString: valueString, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys

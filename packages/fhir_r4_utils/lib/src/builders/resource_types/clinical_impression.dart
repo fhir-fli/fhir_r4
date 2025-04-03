@@ -919,6 +919,7 @@ class ClinicalImpressionBuilder extends DomainResourceBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'effective':
       case 'effectiveX':
         {
           if (child is EffectiveXClinicalImpressionBuilder) {
@@ -1451,7 +1452,7 @@ class ClinicalImpressionBuilder extends DomainResourceBuilder {
     if (description) this.description = null;
     if (subject) this.subject = null;
     if (encounter) this.encounter = null;
-    if (effective) effectiveX = null;
+    if (effective) this.effectiveX = null;
     if (date) this.date = null;
     if (assessor) this.assessor = null;
     if (previous) this.previous = null;

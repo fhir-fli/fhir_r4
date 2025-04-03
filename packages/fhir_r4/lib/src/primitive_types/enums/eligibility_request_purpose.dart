@@ -155,7 +155,7 @@ class EligibilityRequestPurpose extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for EligibilityRequestPurpose: $newValue',);
+          'Invalid input for EligibilityRequestPurpose: $newValue');
     }
     return EligibilityRequestPurpose._(
       valueString: newValue ?? valueString,

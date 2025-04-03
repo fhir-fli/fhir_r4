@@ -173,7 +173,7 @@ class InvoicePriceComponentType extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for InvoicePriceComponentType: $newValue',);
+          'Invalid input for InvoicePriceComponentType: $newValue');
     }
     return InvoicePriceComponentType._(
       valueString: newValue ?? valueString,

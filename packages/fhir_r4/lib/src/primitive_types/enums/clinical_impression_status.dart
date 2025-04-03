@@ -192,7 +192,7 @@ class ClinicalImpressionStatus extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for ClinicalImpressionStatus: $newValue',);
+          'Invalid input for ClinicalImpressionStatus: $newValue');
     }
     return ClinicalImpressionStatus._(
       valueString: newValue ?? valueString,

@@ -2253,6 +2253,7 @@ class SubstanceDefinitionMoiety extends BackboneElement {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'amount':
       case 'amountX':
         {
           if (child is AmountXSubstanceDefinitionMoiety) {
@@ -2945,6 +2946,7 @@ class SubstanceDefinitionProperty extends BackboneElement {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'value':
       case 'valueX':
         {
           if (child is ValueXSubstanceDefinitionProperty) {
@@ -7836,6 +7838,7 @@ class SubstanceDefinitionRelationship extends BackboneElement {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'substanceDefinition':
       case 'substanceDefinitionX':
         {
           if (child is SubstanceDefinitionXSubstanceDefinitionRelationship) {
@@ -7882,6 +7885,7 @@ class SubstanceDefinitionRelationship extends BackboneElement {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'amount':
       case 'amountX':
         {
           if (child is AmountXSubstanceDefinitionRelationship) {

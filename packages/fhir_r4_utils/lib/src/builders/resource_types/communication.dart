@@ -924,7 +924,7 @@ class CommunicationBuilder extends DomainResourceBuilder {
               if (converted != null) {
                 instantiatesCanonical = [
                   ...(instantiatesCanonical ?? []),
-                  converted,
+                  converted
                 ];
                 return;
               }
@@ -2185,6 +2185,7 @@ class CommunicationPayloadBuilder extends BackboneElementBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'content':
       case 'contentX':
         {
           if (child is ContentXCommunicationPayloadBuilder) {
@@ -2320,7 +2321,7 @@ class CommunicationPayloadBuilder extends BackboneElementBuilder {
     if (id) this.id = null;
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
-    if (content) contentX = null;
+    if (content) this.contentX = null;
   }
 
   @override

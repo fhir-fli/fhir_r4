@@ -126,7 +126,7 @@ class GraphCompartmentRuleBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   GraphCompartmentRuleBuilder withElement(ElementBuilder? newElement) {
     return GraphCompartmentRuleBuilder._(
-        valueString: valueString, element: newElement,);
+        valueString: valueString, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys

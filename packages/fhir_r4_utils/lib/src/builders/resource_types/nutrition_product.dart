@@ -2442,6 +2442,7 @@ class NutritionProductProductCharacteristicBuilder
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'value':
       case 'valueX':
         {
           if (child is ValueXNutritionProductProductCharacteristicBuilder) {
@@ -2649,7 +2650,7 @@ class NutritionProductProductCharacteristicBuilder
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
     if (type) this.type = null;
-    if (value) valueX = null;
+    if (value) this.valueX = null;
   }
 
   @override

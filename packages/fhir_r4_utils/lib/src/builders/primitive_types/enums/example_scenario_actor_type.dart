@@ -108,7 +108,7 @@ class ExampleScenarioActorTypeBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   ExampleScenarioActorTypeBuilder withElement(ElementBuilder? newElement) {
     return ExampleScenarioActorTypeBuilder._(
-        valueString: valueString, element: newElement,);
+        valueString: valueString, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -138,7 +138,7 @@ class ExampleScenarioActorTypeBuilder extends FhirCodeEnumBuilder {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for ExampleScenarioActorType: $newValue',);
+          'Invalid input for ExampleScenarioActorType: $newValue');
     }
     return ExampleScenarioActorTypeBuilder._(
       valueString: newValue ?? valueString,

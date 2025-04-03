@@ -795,6 +795,7 @@ class SupplyRequest extends DomainResource {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'item':
       case 'itemX':
         {
           if (child is ItemXSupplyRequest) {
@@ -850,6 +851,7 @@ class SupplyRequest extends DomainResource {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'occurrence':
       case 'occurrenceX':
         {
           if (child is OccurrenceXSupplyRequest) {
@@ -1912,6 +1914,7 @@ class SupplyRequestParameter extends BackboneElement {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'value':
       case 'valueX':
         {
           if (child is ValueXSupplyRequestParameter) {

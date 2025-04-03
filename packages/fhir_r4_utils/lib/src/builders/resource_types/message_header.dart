@@ -644,6 +644,7 @@ class MessageHeaderBuilder extends DomainResourceBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'event':
       case 'eventX':
         {
           if (child is EventXMessageHeaderBuilder) {
@@ -991,7 +992,7 @@ class MessageHeaderBuilder extends DomainResourceBuilder {
     if (contained) this.contained = null;
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
-    if (event) eventX = null;
+    if (event) this.eventX = null;
     if (destination) this.destination = null;
     if (sender) this.sender = null;
     if (enterer) this.enterer = null;

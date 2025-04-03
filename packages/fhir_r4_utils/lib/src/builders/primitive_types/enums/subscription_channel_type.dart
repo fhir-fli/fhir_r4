@@ -140,7 +140,7 @@ class SubscriptionChannelTypeBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   SubscriptionChannelTypeBuilder withElement(ElementBuilder? newElement) {
     return SubscriptionChannelTypeBuilder._(
-        valueString: valueString, element: newElement,);
+        valueString: valueString, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -170,7 +170,7 @@ class SubscriptionChannelTypeBuilder extends FhirCodeEnumBuilder {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for SubscriptionChannelType: $newValue',);
+          'Invalid input for SubscriptionChannelType: $newValue');
     }
     return SubscriptionChannelTypeBuilder._(
       valueString: newValue ?? valueString,

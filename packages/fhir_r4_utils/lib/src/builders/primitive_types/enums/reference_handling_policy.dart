@@ -141,7 +141,7 @@ class ReferenceHandlingPolicyBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   ReferenceHandlingPolicyBuilder withElement(ElementBuilder? newElement) {
     return ReferenceHandlingPolicyBuilder._(
-        valueString: valueString, element: newElement,);
+        valueString: valueString, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -171,7 +171,7 @@ class ReferenceHandlingPolicyBuilder extends FhirCodeEnumBuilder {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for ReferenceHandlingPolicy: $newValue',);
+          'Invalid input for ReferenceHandlingPolicy: $newValue');
     }
     return ReferenceHandlingPolicyBuilder._(
       valueString: newValue ?? valueString,

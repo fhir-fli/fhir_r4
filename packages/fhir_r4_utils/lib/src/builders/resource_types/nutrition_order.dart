@@ -808,7 +808,7 @@ class NutritionOrderBuilder extends DomainResourceBuilder {
               if (converted != null) {
                 instantiatesCanonical = [
                   ...(instantiatesCanonical ?? []),
-                  converted,
+                  converted
                 ];
                 return;
               }
@@ -5024,6 +5024,7 @@ class NutritionOrderAdministrationBuilder extends BackboneElementBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'rate':
       case 'rateX':
         {
           if (child is RateXNutritionOrderAdministrationBuilder) {
@@ -5156,7 +5157,7 @@ class NutritionOrderAdministrationBuilder extends BackboneElementBuilder {
     if (modifierExtension) this.modifierExtension = null;
     if (schedule) this.schedule = null;
     if (quantity) this.quantity = null;
-    if (rate) rateX = null;
+    if (rate) this.rateX = null;
   }
 
   @override

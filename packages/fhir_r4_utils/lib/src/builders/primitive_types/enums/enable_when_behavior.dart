@@ -107,7 +107,7 @@ class EnableWhenBehaviorBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   EnableWhenBehaviorBuilder withElement(ElementBuilder? newElement) {
     return EnableWhenBehaviorBuilder._(
-        valueString: valueString, element: newElement,);
+        valueString: valueString, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys

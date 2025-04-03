@@ -1694,6 +1694,7 @@ class RegulatedAuthorizationCaseBuilder extends BackboneElementBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'date':
       case 'dateX':
         {
           if (child is DateXRegulatedAuthorizationCaseBuilder) {
@@ -1859,7 +1860,7 @@ class RegulatedAuthorizationCaseBuilder extends BackboneElementBuilder {
     if (identifier) this.identifier = null;
     if (type) this.type = null;
     if (status) this.status = null;
-    if (date) dateX = null;
+    if (date) this.dateX = null;
     if (application) this.application = null;
   }
 

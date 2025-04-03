@@ -144,7 +144,7 @@ class ConditionalDeleteStatus extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for ConditionalDeleteStatus: $newValue',);
+          'Invalid input for ConditionalDeleteStatus: $newValue');
     }
     return ConditionalDeleteStatus._(
       valueString: newValue ?? valueString,

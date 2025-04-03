@@ -140,7 +140,7 @@ class EndpointStatusBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   EndpointStatusBuilder withElement(ElementBuilder? newElement) {
     return EndpointStatusBuilder._(
-        valueString: valueString, element: newElement,);
+        valueString: valueString, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys

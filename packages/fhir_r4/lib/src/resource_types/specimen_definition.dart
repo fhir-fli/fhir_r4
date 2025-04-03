@@ -2240,6 +2240,7 @@ class SpecimenDefinitionContainer extends BackboneElement {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'minimumVolume':
       case 'minimumVolumeX':
         {
           if (child is MinimumVolumeXSpecimenDefinitionContainer) {
@@ -2905,6 +2906,7 @@ class SpecimenDefinitionAdditive extends BackboneElement {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'additive':
       case 'additiveX':
         {
           if (child is AdditiveXSpecimenDefinitionAdditive) {

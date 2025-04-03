@@ -5082,6 +5082,7 @@ class ExplanationOfBenefitSupportingInfo extends BackboneElement {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'timing':
       case 'timingX':
         {
           if (child is TimingXExplanationOfBenefitSupportingInfo) {
@@ -5112,6 +5113,7 @@ class ExplanationOfBenefitSupportingInfo extends BackboneElement {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'value':
       case 'valueX':
         {
           if (child is ValueXExplanationOfBenefitSupportingInfo) {
@@ -5882,6 +5884,7 @@ class ExplanationOfBenefitDiagnosis extends BackboneElement {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'diagnosis':
       case 'diagnosisX':
         {
           if (child is DiagnosisXExplanationOfBenefitDiagnosis) {
@@ -6611,6 +6614,7 @@ class ExplanationOfBenefitProcedure extends BackboneElement {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'procedure':
       case 'procedureX':
         {
           if (child is ProcedureXExplanationOfBenefitProcedure) {
@@ -7808,6 +7812,7 @@ class ExplanationOfBenefitAccident extends BackboneElement {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'location':
       case 'locationX':
         {
           if (child is LocationXExplanationOfBenefitAccident) {
@@ -8984,6 +8989,7 @@ class ExplanationOfBenefitItem extends BackboneElement {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'serviced':
       case 'servicedX':
         {
           if (child is ServicedXExplanationOfBenefitItem) {
@@ -9014,6 +9020,7 @@ class ExplanationOfBenefitItem extends BackboneElement {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'location':
       case 'locationX':
         {
           if (child is LocationXExplanationOfBenefitItem) {
@@ -13568,6 +13575,7 @@ class ExplanationOfBenefitAddItem extends BackboneElement {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'serviced':
       case 'servicedX':
         {
           if (child is ServicedXExplanationOfBenefitAddItem) {
@@ -13598,6 +13606,7 @@ class ExplanationOfBenefitAddItem extends BackboneElement {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'location':
       case 'locationX':
         {
           if (child is LocationXExplanationOfBenefitAddItem) {
@@ -18941,6 +18950,7 @@ class ExplanationOfBenefitFinancial extends BackboneElement {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'allowed':
       case 'allowedX':
         {
           if (child is AllowedXExplanationOfBenefitFinancial) {
@@ -18982,6 +18992,7 @@ class ExplanationOfBenefitFinancial extends BackboneElement {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'used':
       case 'usedX':
         {
           if (child is UsedXExplanationOfBenefitFinancial) {

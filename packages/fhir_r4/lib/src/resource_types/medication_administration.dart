@@ -952,6 +952,7 @@ class MedicationAdministration extends DomainResource {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'medication':
       case 'medicationX':
         {
           if (child is MedicationXMedicationAdministration) {
@@ -1015,6 +1016,7 @@ class MedicationAdministration extends DomainResource {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'effective':
       case 'effectiveX':
         {
           if (child is EffectiveXMedicationAdministration) {
@@ -2789,6 +2791,7 @@ class MedicationAdministrationDosage extends BackboneElement {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'rate':
       case 'rateX':
         {
           if (child is RateXMedicationAdministrationDosage) {

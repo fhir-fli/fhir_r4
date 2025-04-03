@@ -919,6 +919,7 @@ class ClinicalImpression extends DomainResource {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'effective':
       case 'effectiveX':
         {
           if (child is EffectiveXClinicalImpression) {

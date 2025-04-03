@@ -119,7 +119,7 @@ class ObservationRangeCategoryBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   ObservationRangeCategoryBuilder withElement(ElementBuilder? newElement) {
     return ObservationRangeCategoryBuilder._(
-        valueString: valueString, element: newElement,);
+        valueString: valueString, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -149,7 +149,7 @@ class ObservationRangeCategoryBuilder extends FhirCodeEnumBuilder {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for ObservationRangeCategory: $newValue',);
+          'Invalid input for ObservationRangeCategory: $newValue');
     }
     return ObservationRangeCategoryBuilder._(
       valueString: newValue ?? valueString,

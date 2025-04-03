@@ -161,7 +161,7 @@ class ReferenceHandlingPolicy extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for ReferenceHandlingPolicy: $newValue',);
+          'Invalid input for ReferenceHandlingPolicy: $newValue');
     }
     return ReferenceHandlingPolicy._(
       valueString: newValue ?? valueString,

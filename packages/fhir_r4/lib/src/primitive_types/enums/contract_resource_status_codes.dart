@@ -266,7 +266,7 @@ class ContractResourceStatusCodes extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for ContractResourceStatusCodes: $newValue',);
+          'Invalid input for ContractResourceStatusCodes: $newValue');
     }
     return ContractResourceStatusCodes._(
       valueString: newValue ?? valueString,

@@ -161,7 +161,7 @@ class PropertyRepresentation extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for PropertyRepresentation: $newValue',);
+          'Invalid input for PropertyRepresentation: $newValue');
     }
     return PropertyRepresentation._(
       valueString: newValue ?? valueString,

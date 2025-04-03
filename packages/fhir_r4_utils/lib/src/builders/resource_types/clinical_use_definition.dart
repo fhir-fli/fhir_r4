@@ -2707,6 +2707,7 @@ class ClinicalUseDefinitionIndicationBuilder extends BackboneElementBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'duration':
       case 'durationX':
         {
           if (child is DurationXClinicalUseDefinitionIndicationBuilder) {
@@ -2905,7 +2906,7 @@ class ClinicalUseDefinitionIndicationBuilder extends BackboneElementBuilder {
     if (diseaseStatus) this.diseaseStatus = null;
     if (comorbidity) this.comorbidity = null;
     if (intendedEffect) this.intendedEffect = null;
-    if (duration) durationX = null;
+    if (duration) this.durationX = null;
     if (undesirableEffect) this.undesirableEffect = null;
     if (otherTherapy) this.otherTherapy = null;
   }
@@ -3942,6 +3943,7 @@ class ClinicalUseDefinitionInteractantBuilder extends BackboneElementBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'item':
       case 'itemX':
         {
           if (child is ItemXClinicalUseDefinitionInteractantBuilder) {
@@ -4056,7 +4058,7 @@ class ClinicalUseDefinitionInteractantBuilder extends BackboneElementBuilder {
     if (id) this.id = null;
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
-    if (item) itemX = null;
+    if (item) this.itemX = null;
   }
 
   @override

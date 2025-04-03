@@ -1039,6 +1039,7 @@ class ImmunizationBuilder extends DomainResourceBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'occurrence':
       case 'occurrenceX':
         {
           if (child is OccurrenceXImmunizationBuilder) {
@@ -1720,7 +1721,7 @@ class ImmunizationBuilder extends DomainResourceBuilder {
     if (vaccineCode) this.vaccineCode = null;
     if (patient) this.patient = null;
     if (encounter) this.encounter = null;
-    if (occurrence) occurrenceX = null;
+    if (occurrence) this.occurrenceX = null;
     if (recorded) this.recorded = null;
     if (primarySource) this.primarySource = null;
     if (reportOrigin) this.reportOrigin = null;
@@ -4093,6 +4094,7 @@ class ImmunizationProtocolAppliedBuilder extends BackboneElementBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'doseNumber':
       case 'doseNumberX':
         {
           if (child is DoseNumberXImmunizationProtocolAppliedBuilder) {
@@ -4128,6 +4130,7 @@ class ImmunizationProtocolAppliedBuilder extends BackboneElementBuilder {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'seriesDoses':
       case 'seriesDosesX':
         {
           if (child is SeriesDosesXImmunizationProtocolAppliedBuilder) {
@@ -4292,8 +4295,8 @@ class ImmunizationProtocolAppliedBuilder extends BackboneElementBuilder {
     if (series) this.series = null;
     if (authority) this.authority = null;
     if (targetDisease) this.targetDisease = null;
-    if (doseNumber) doseNumberX = null;
-    if (seriesDoses) seriesDosesX = null;
+    if (doseNumber) this.doseNumberX = null;
+    if (seriesDoses) this.seriesDosesX = null;
   }
 
   @override

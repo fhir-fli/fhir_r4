@@ -5280,6 +5280,7 @@ class ClaimResponseAddItem extends BackboneElement {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'serviced':
       case 'servicedX':
         {
           if (child is ServicedXClaimResponseAddItem) {
@@ -5310,6 +5311,7 @@ class ClaimResponseAddItem extends BackboneElement {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'location':
       case 'locationX':
         {
           if (child is LocationXClaimResponseAddItem) {

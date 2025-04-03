@@ -137,7 +137,7 @@ class ActionCardinalityBehavior extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for ActionCardinalityBehavior: $newValue',);
+          'Invalid input for ActionCardinalityBehavior: $newValue');
     }
     return ActionCardinalityBehavior._(
       valueString: newValue ?? valueString,

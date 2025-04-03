@@ -852,6 +852,7 @@ class ImmunizationEvaluationBuilder extends DomainResourceBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'doseNumber':
       case 'doseNumberX':
         {
           if (child is DoseNumberXImmunizationEvaluationBuilder) {
@@ -887,6 +888,7 @@ class ImmunizationEvaluationBuilder extends DomainResourceBuilder {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'seriesDoses':
       case 'seriesDosesX':
         {
           if (child is SeriesDosesXImmunizationEvaluationBuilder) {
@@ -1168,8 +1170,8 @@ class ImmunizationEvaluationBuilder extends DomainResourceBuilder {
     if (doseStatusReason) this.doseStatusReason = null;
     if (description) this.description = null;
     if (series) this.series = null;
-    if (doseNumber) doseNumberX = null;
-    if (seriesDoses) seriesDosesX = null;
+    if (doseNumber) this.doseNumberX = null;
+    if (seriesDoses) this.seriesDosesX = null;
   }
 
   @override

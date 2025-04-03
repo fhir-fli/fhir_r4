@@ -97,8 +97,11 @@ class FhirXhtmlBuilder extends PrimitiveTypeBuilder {
     final parsedElement =
         elementJson == null ? null : ElementBuilder.fromJson(elementJson);
     final objectPath = json['objectPath'] as String? ?? 'Xhtml';
-    return FhirXhtmlBuilder(rawValue,
-        element: parsedElement, objectPath: objectPath,);
+    return FhirXhtmlBuilder(
+      rawValue,
+      element: parsedElement,
+      objectPath: objectPath,
+    );
   }
 
   /// Constructs a [FhirXhtmlBuilder] from a YAML [String] or [YamlMap].

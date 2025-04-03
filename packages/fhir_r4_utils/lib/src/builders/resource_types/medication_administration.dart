@@ -980,6 +980,7 @@ class MedicationAdministrationBuilder extends DomainResourceBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'medication':
       case 'medicationX':
         {
           if (child is MedicationXMedicationAdministrationBuilder) {
@@ -1047,6 +1048,7 @@ class MedicationAdministrationBuilder extends DomainResourceBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'effective':
       case 'effectiveX':
         {
           if (child is EffectiveXMedicationAdministrationBuilder) {
@@ -1483,11 +1485,11 @@ class MedicationAdministrationBuilder extends DomainResourceBuilder {
     if (status) this.status = null;
     if (statusReason) this.statusReason = null;
     if (category) this.category = null;
-    if (medication) medicationX = null;
+    if (medication) this.medicationX = null;
     if (subject) this.subject = null;
     if (context) this.context = null;
     if (supportingInformation) this.supportingInformation = null;
-    if (effective) effectiveX = null;
+    if (effective) this.effectiveX = null;
     if (performer) this.performer = null;
     if (reasonCode) this.reasonCode = null;
     if (reasonReference) this.reasonReference = null;
@@ -2666,6 +2668,7 @@ class MedicationAdministrationDosageBuilder extends BackboneElementBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'rate':
       case 'rateX':
         {
           if (child is RateXMedicationAdministrationDosageBuilder) {
@@ -2825,7 +2828,7 @@ class MedicationAdministrationDosageBuilder extends BackboneElementBuilder {
     if (route) this.route = null;
     if (method) this.method = null;
     if (dose) this.dose = null;
-    if (rate) rateX = null;
+    if (rate) this.rateX = null;
   }
 
   @override

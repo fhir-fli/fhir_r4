@@ -152,7 +152,7 @@ class DeviceUseStatementStatusBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   DeviceUseStatementStatusBuilder withElement(ElementBuilder? newElement) {
     return DeviceUseStatementStatusBuilder._(
-        valueString: valueString, element: newElement,);
+        valueString: valueString, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -182,7 +182,7 @@ class DeviceUseStatementStatusBuilder extends FhirCodeEnumBuilder {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for DeviceUseStatementStatus: $newValue',);
+          'Invalid input for DeviceUseStatementStatus: $newValue');
     }
     return DeviceUseStatementStatusBuilder._(
       valueString: newValue ?? valueString,

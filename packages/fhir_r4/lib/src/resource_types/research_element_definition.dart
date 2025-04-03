@@ -1247,6 +1247,7 @@ class ResearchElementDefinition extends DomainResource {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'subject':
       case 'subjectX':
         {
           if (child is SubjectXResearchElementDefinition) {
@@ -3180,6 +3181,7 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'definition':
       case 'definitionX':
         {
           if (child is DefinitionXResearchElementDefinitionCharacteristic) {
@@ -3273,6 +3275,7 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'studyEffective':
       case 'studyEffectiveX':
         {
           if (child is StudyEffectiveXResearchElementDefinitionCharacteristic) {
@@ -3349,6 +3352,7 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'participantEffective':
       case 'participantEffectiveX':
         {
           if (child

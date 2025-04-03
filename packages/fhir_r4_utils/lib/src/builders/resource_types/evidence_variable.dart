@@ -2411,6 +2411,7 @@ class EvidenceVariableCharacteristicBuilder extends BackboneElementBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'definition':
       case 'definitionX':
         {
           if (child is DefinitionXEvidenceVariableCharacteristicBuilder) {
@@ -2683,7 +2684,7 @@ class EvidenceVariableCharacteristicBuilder extends BackboneElementBuilder {
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
     if (description) this.description = null;
-    if (definition) definitionX = null;
+    if (definition) this.definitionX = null;
     if (method) this.method = null;
     if (device) this.device = null;
     if (exclude) this.exclude = null;
@@ -3725,6 +3726,7 @@ class EvidenceVariableCategoryBuilder extends BackboneElementBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'value':
       case 'valueX':
         {
           if (child is ValueXEvidenceVariableCategoryBuilder) {
@@ -3869,7 +3871,7 @@ class EvidenceVariableCategoryBuilder extends BackboneElementBuilder {
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
     if (name) this.name = null;
-    if (value) valueX = null;
+    if (value) this.valueX = null;
   }
 
   @override

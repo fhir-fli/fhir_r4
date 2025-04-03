@@ -1553,6 +1553,7 @@ class ImmunizationRecommendationRecommendation extends BackboneElement {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'doseNumber':
       case 'doseNumberX':
         {
           if (child is DoseNumberXImmunizationRecommendationRecommendation) {
@@ -1583,6 +1584,7 @@ class ImmunizationRecommendationRecommendation extends BackboneElement {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'seriesDoses':
       case 'seriesDosesX':
         {
           if (child is SeriesDosesXImmunizationRecommendationRecommendation) {

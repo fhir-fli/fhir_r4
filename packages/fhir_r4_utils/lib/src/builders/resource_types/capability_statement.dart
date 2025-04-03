@@ -1429,7 +1429,7 @@ class CapabilityStatementBuilder extends CanonicalResourceBuilder {
               if (converted != null) {
                 implementationGuide = [
                   ...(implementationGuide ?? []),
-                  converted,
+                  converted
                 ];
                 return;
               }

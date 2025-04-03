@@ -1549,6 +1549,7 @@ class ActivityDefinitionBuilder extends CanonicalResourceBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'subject':
       case 'subjectX':
         {
           if (child is SubjectXActivityDefinitionBuilder) {
@@ -2072,6 +2073,7 @@ class ActivityDefinitionBuilder extends CanonicalResourceBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'timing':
       case 'timingX':
         {
           if (child is TimingXActivityDefinitionBuilder) {
@@ -2183,6 +2185,7 @@ class ActivityDefinitionBuilder extends CanonicalResourceBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'product':
       case 'productX':
         {
           if (child is ProductXActivityDefinitionBuilder) {
@@ -2904,7 +2907,7 @@ class ActivityDefinitionBuilder extends CanonicalResourceBuilder {
     if (subtitle) this.subtitle = null;
     if (status) this.status = null;
     if (experimental) this.experimental = null;
-    if (subject) subjectX = null;
+    if (subject) this.subjectX = null;
     if (date) this.date = null;
     if (publisher) this.publisher = null;
     if (contact) this.contact = null;
@@ -2930,10 +2933,10 @@ class ActivityDefinitionBuilder extends CanonicalResourceBuilder {
     if (intent) this.intent = null;
     if (priority) this.priority = null;
     if (doNotPerform) this.doNotPerform = null;
-    if (timing) timingX = null;
+    if (timing) this.timingX = null;
     if (location) this.location = null;
     if (participant) this.participant = null;
-    if (product) productX = null;
+    if (product) this.productX = null;
     if (quantity) this.quantity = null;
     if (dosage) this.dosage = null;
     if (bodySite) this.bodySite = null;

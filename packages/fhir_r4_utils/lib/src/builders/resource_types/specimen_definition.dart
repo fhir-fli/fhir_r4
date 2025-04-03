@@ -2171,6 +2171,7 @@ class SpecimenDefinitionContainerBuilder extends BackboneElementBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'minimumVolume':
       case 'minimumVolumeX':
         {
           if (child is MinimumVolumeXSpecimenDefinitionContainerBuilder) {
@@ -2382,7 +2383,7 @@ class SpecimenDefinitionContainerBuilder extends BackboneElementBuilder {
     if (cap) this.cap = null;
     if (description) this.description = null;
     if (capacity) this.capacity = null;
-    if (minimumVolume) minimumVolumeX = null;
+    if (minimumVolume) this.minimumVolumeX = null;
     if (additive) this.additive = null;
     if (preparation) this.preparation = null;
   }
@@ -2815,6 +2816,7 @@ class SpecimenDefinitionAdditiveBuilder extends BackboneElementBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'additive':
       case 'additiveX':
         {
           if (child is AdditiveXSpecimenDefinitionAdditiveBuilder) {
@@ -2929,7 +2931,7 @@ class SpecimenDefinitionAdditiveBuilder extends BackboneElementBuilder {
     if (id) this.id = null;
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
-    if (additive) additiveX = null;
+    if (additive) this.additiveX = null;
   }
 
   @override

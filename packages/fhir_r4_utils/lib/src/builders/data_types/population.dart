@@ -347,6 +347,7 @@ class PopulationBuilder extends BackboneTypeBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'age':
       case 'ageX':
         {
           if (child is AgeXPopulationBuilder) {
@@ -509,7 +510,7 @@ class PopulationBuilder extends BackboneTypeBuilder {
     if (id) this.id = null;
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
-    if (age) ageX = null;
+    if (age) this.ageX = null;
     if (gender) this.gender = null;
     if (race) this.race = null;
     if (physiologicalCondition) this.physiologicalCondition = null;

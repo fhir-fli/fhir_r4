@@ -169,7 +169,7 @@ class ImmunizationStatusCodesBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   ImmunizationStatusCodesBuilder withElement(ElementBuilder? newElement) {
     return ImmunizationStatusCodesBuilder._(
-        valueString: valueString, element: newElement,);
+        valueString: valueString, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -199,7 +199,7 @@ class ImmunizationStatusCodesBuilder extends FhirCodeEnumBuilder {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for ImmunizationStatusCodes: $newValue',);
+          'Invalid input for ImmunizationStatusCodes: $newValue');
     }
     return ImmunizationStatusCodesBuilder._(
       valueString: newValue ?? valueString,

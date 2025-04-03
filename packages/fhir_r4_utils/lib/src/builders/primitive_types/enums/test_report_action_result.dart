@@ -137,7 +137,7 @@ class TestReportActionResultBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   TestReportActionResultBuilder withElement(ElementBuilder? newElement) {
     return TestReportActionResultBuilder._(
-        valueString: valueString, element: newElement,);
+        valueString: valueString, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -167,7 +167,7 @@ class TestReportActionResultBuilder extends FhirCodeEnumBuilder {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for TestReportActionResult: $newValue',);
+          'Invalid input for TestReportActionResult: $newValue');
     }
     return TestReportActionResultBuilder._(
       valueString: newValue ?? valueString,

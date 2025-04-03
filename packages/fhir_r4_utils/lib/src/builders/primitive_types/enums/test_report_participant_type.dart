@@ -120,7 +120,7 @@ class TestReportParticipantTypeBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   TestReportParticipantTypeBuilder withElement(ElementBuilder? newElement) {
     return TestReportParticipantTypeBuilder._(
-        valueString: valueString, element: newElement,);
+        valueString: valueString, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -150,7 +150,7 @@ class TestReportParticipantTypeBuilder extends FhirCodeEnumBuilder {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for TestReportParticipantType: $newValue',);
+          'Invalid input for TestReportParticipantType: $newValue');
     }
     return TestReportParticipantTypeBuilder._(
       valueString: newValue ?? valueString,

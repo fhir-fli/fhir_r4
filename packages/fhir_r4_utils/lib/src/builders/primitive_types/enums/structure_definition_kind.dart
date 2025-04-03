@@ -130,7 +130,7 @@ class StructureDefinitionKindBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   StructureDefinitionKindBuilder withElement(ElementBuilder? newElement) {
     return StructureDefinitionKindBuilder._(
-        valueString: valueString, element: newElement,);
+        valueString: valueString, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -160,7 +160,7 @@ class StructureDefinitionKindBuilder extends FhirCodeEnumBuilder {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for StructureDefinitionKind: $newValue',);
+          'Invalid input for StructureDefinitionKind: $newValue');
     }
     return StructureDefinitionKindBuilder._(
       valueString: newValue ?? valueString,

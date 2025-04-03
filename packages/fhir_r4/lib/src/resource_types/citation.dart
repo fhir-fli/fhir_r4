@@ -4169,6 +4169,7 @@ class CitationRelatesTo extends BackboneElement {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'target':
       case 'targetX':
         {
           if (child is TargetXCitationRelatesTo) {
@@ -8763,6 +8764,7 @@ class CitationRelatesTo1 extends BackboneElement {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'target':
       case 'targetX':
         {
           if (child is TargetXCitationRelatesTo1) {

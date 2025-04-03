@@ -2242,7 +2242,7 @@ class SubscriptionTopicResourceTriggerBuilder extends BackboneElementBuilder {
                 final converted = InteractionTriggerBuilder(stringValue);
                 supportedInteraction = [
                   ...(supportedInteraction ?? []),
-                  converted,
+                  converted
                 ];
                 return;
               } catch (e) {

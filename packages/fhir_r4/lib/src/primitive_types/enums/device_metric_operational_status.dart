@@ -156,7 +156,7 @@ class DeviceMetricOperationalStatus extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for DeviceMetricOperationalStatus: $newValue',);
+          'Invalid input for DeviceMetricOperationalStatus: $newValue');
     }
     return DeviceMetricOperationalStatus._(
       valueString: newValue ?? valueString,

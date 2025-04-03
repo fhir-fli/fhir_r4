@@ -921,7 +921,7 @@ class FamilyMemberHistoryBuilder extends DomainResourceBuilder {
               if (converted != null) {
                 instantiatesCanonical = [
                   ...(instantiatesCanonical ?? []),
-                  converted,
+                  converted
                 ];
                 return;
               }
@@ -1072,6 +1072,7 @@ class FamilyMemberHistoryBuilder extends DomainResourceBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'born':
       case 'bornX':
         {
           if (child is BornXFamilyMemberHistoryBuilder) {
@@ -1120,6 +1121,7 @@ class FamilyMemberHistoryBuilder extends DomainResourceBuilder {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'age':
       case 'ageX':
         {
           if (child is AgeXFamilyMemberHistoryBuilder) {
@@ -1188,6 +1190,7 @@ class FamilyMemberHistoryBuilder extends DomainResourceBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'deceased':
       case 'deceasedX':
         {
           if (child is DeceasedXFamilyMemberHistoryBuilder) {
@@ -1666,10 +1669,10 @@ class FamilyMemberHistoryBuilder extends DomainResourceBuilder {
     if (name) this.name = null;
     if (relationship) this.relationship = null;
     if (sex) this.sex = null;
-    if (born) bornX = null;
-    if (age) ageX = null;
+    if (born) this.bornX = null;
+    if (age) this.ageX = null;
     if (estimatedAge) this.estimatedAge = null;
-    if (deceased) deceasedX = null;
+    if (deceased) this.deceasedX = null;
     if (reasonCode) this.reasonCode = null;
     if (reasonReference) this.reasonReference = null;
     if (note) this.note = null;
@@ -2355,6 +2358,7 @@ class FamilyMemberHistoryConditionBuilder extends BackboneElementBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'onset':
       case 'onsetX':
         {
           if (child is OnsetXFamilyMemberHistoryConditionBuilder) {
@@ -2562,7 +2566,7 @@ class FamilyMemberHistoryConditionBuilder extends BackboneElementBuilder {
     if (code) this.code = null;
     if (outcome) this.outcome = null;
     if (contributedToDeath) this.contributedToDeath = null;
-    if (onset) onsetX = null;
+    if (onset) this.onsetX = null;
     if (note) this.note = null;
   }
 

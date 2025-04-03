@@ -813,6 +813,7 @@ class CoverageEligibilityRequestBuilder extends DomainResourceBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'serviced':
       case 'servicedX':
         {
           if (child is ServicedXCoverageEligibilityRequestBuilder) {
@@ -1181,7 +1182,7 @@ class CoverageEligibilityRequestBuilder extends DomainResourceBuilder {
     if (priority) this.priority = null;
     if (purpose) this.purpose = null;
     if (patient) this.patient = null;
-    if (serviced) servicedX = null;
+    if (serviced) this.servicedX = null;
     if (created) this.created = null;
     if (enterer) this.enterer = null;
     if (provider) this.provider = null;
@@ -2970,7 +2971,7 @@ class CoverageEligibilityRequestItemBuilder extends BackboneElementBuilder {
                 if (converted != null) {
                   supportingInfoSequence = [
                     ...(supportingInfoSequence ?? []),
-                    converted,
+                    converted
                   ];
                   return;
                 }
@@ -3670,6 +3671,7 @@ class CoverageEligibilityRequestDiagnosisBuilder
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'diagnosis':
       case 'diagnosisX':
         {
           if (child is DiagnosisXCoverageEligibilityRequestDiagnosisBuilder) {
@@ -3784,7 +3786,7 @@ class CoverageEligibilityRequestDiagnosisBuilder
     if (id) this.id = null;
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
-    if (diagnosis) diagnosisX = null;
+    if (diagnosis) this.diagnosisX = null;
   }
 
   @override

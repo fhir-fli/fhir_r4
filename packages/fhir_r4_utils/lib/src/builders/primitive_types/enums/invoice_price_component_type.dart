@@ -153,7 +153,7 @@ class InvoicePriceComponentTypeBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   InvoicePriceComponentTypeBuilder withElement(ElementBuilder? newElement) {
     return InvoicePriceComponentTypeBuilder._(
-        valueString: valueString, element: newElement,);
+        valueString: valueString, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -183,7 +183,7 @@ class InvoicePriceComponentTypeBuilder extends FhirCodeEnumBuilder {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for InvoicePriceComponentType: $newValue',);
+          'Invalid input for InvoicePriceComponentType: $newValue');
     }
     return InvoicePriceComponentTypeBuilder._(
       valueString: newValue ?? valueString,

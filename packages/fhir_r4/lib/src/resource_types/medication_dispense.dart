@@ -1015,6 +1015,7 @@ class MedicationDispense extends DomainResource {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'statusReason':
       case 'statusReasonX':
         {
           if (child is StatusReasonXMedicationDispense) {
@@ -1053,6 +1054,7 @@ class MedicationDispense extends DomainResource {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'medication':
       case 'medicationX':
         {
           if (child is MedicationXMedicationDispense) {

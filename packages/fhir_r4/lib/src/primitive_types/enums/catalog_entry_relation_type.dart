@@ -135,7 +135,7 @@ class CatalogEntryRelationType extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for CatalogEntryRelationType: $newValue',);
+          'Invalid input for CatalogEntryRelationType: $newValue');
     }
     return CatalogEntryRelationType._(
       valueString: newValue ?? valueString,

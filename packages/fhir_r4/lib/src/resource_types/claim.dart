@@ -4166,6 +4166,7 @@ class ClaimSupportingInfo extends BackboneElement {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'timing':
       case 'timingX':
         {
           if (child is TimingXClaimSupportingInfo) {
@@ -4196,6 +4197,7 @@ class ClaimSupportingInfo extends BackboneElement {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'value':
       case 'valueX':
         {
           if (child is ValueXClaimSupportingInfo) {
@@ -4964,6 +4966,7 @@ class ClaimDiagnosis extends BackboneElement {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'diagnosis':
       case 'diagnosisX':
         {
           if (child is DiagnosisXClaimDiagnosis) {
@@ -5691,6 +5694,7 @@ class ClaimProcedure extends BackboneElement {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'procedure':
       case 'procedureX':
         {
           if (child is ProcedureXClaimProcedure) {
@@ -7084,6 +7088,7 @@ class ClaimAccident extends BackboneElement {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'location':
       case 'locationX':
         {
           if (child is LocationXClaimAccident) {
@@ -8213,6 +8218,7 @@ class ClaimItem extends BackboneElement {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'serviced':
       case 'servicedX':
         {
           if (child is ServicedXClaimItem) {
@@ -8243,6 +8249,7 @@ class ClaimItem extends BackboneElement {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'location':
       case 'locationX':
         {
           if (child is LocationXClaimItem) {

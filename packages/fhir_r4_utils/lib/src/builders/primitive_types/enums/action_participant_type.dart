@@ -128,7 +128,7 @@ class ActionParticipantTypeBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   ActionParticipantTypeBuilder withElement(ElementBuilder? newElement) {
     return ActionParticipantTypeBuilder._(
-        valueString: valueString, element: newElement,);
+        valueString: valueString, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys

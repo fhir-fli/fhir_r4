@@ -749,7 +749,7 @@ class MeasureBuilder extends CanonicalResourceBuilder {
     addField('rateAggregation', rateAggregation);
     addField('rationale', rationale);
     addField(
-        'clinicalRecommendationStatement', clinicalRecommendationStatement,);
+        'clinicalRecommendationStatement', clinicalRecommendationStatement);
     addField('improvementNotation', improvementNotation);
     addField('definition', definition);
     addField('guidance', guidance);
@@ -1346,6 +1346,7 @@ class MeasureBuilder extends CanonicalResourceBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'subject':
       case 'subjectX':
         {
           if (child is SubjectXMeasureBuilder) {
@@ -2429,7 +2430,7 @@ class MeasureBuilder extends CanonicalResourceBuilder {
     if (subtitle) this.subtitle = null;
     if (status) this.status = null;
     if (experimental) this.experimental = null;
-    if (subject) subjectX = null;
+    if (subject) this.subjectX = null;
     if (date) this.date = null;
     if (publisher) this.publisher = null;
     if (contact) this.contact = null;
@@ -2456,9 +2457,8 @@ class MeasureBuilder extends CanonicalResourceBuilder {
     if (riskAdjustment) this.riskAdjustment = null;
     if (rateAggregation) this.rateAggregation = null;
     if (rationale) this.rationale = null;
-    if (clinicalRecommendationStatement) {
+    if (clinicalRecommendationStatement)
       this.clinicalRecommendationStatement = null;
-    }
     if (improvementNotation) this.improvementNotation = null;
     if (definition) this.definition = null;
     if (guidance) this.guidance = null;

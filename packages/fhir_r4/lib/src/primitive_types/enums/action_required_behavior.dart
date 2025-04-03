@@ -145,7 +145,7 @@ class ActionRequiredBehavior extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for ActionRequiredBehavior: $newValue',);
+          'Invalid input for ActionRequiredBehavior: $newValue');
     }
     return ActionRequiredBehavior._(
       valueString: newValue ?? valueString,

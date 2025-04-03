@@ -182,7 +182,7 @@ class TestScriptRequestMethodCode extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for TestScriptRequestMethodCode: $newValue',);
+          'Invalid input for TestScriptRequestMethodCode: $newValue');
     }
     return TestScriptRequestMethodCode._(
       valueString: newValue ?? valueString,

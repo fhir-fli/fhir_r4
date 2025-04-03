@@ -152,7 +152,7 @@ class DocumentRelationshipType extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for DocumentRelationshipType: $newValue',);
+          'Invalid input for DocumentRelationshipType: $newValue');
     }
     return DocumentRelationshipType._(
       valueString: newValue ?? valueString,

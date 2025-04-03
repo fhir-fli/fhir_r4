@@ -142,7 +142,7 @@ class ClinicalUseDefinitionTypeBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   ClinicalUseDefinitionTypeBuilder withElement(ElementBuilder? newElement) {
     return ClinicalUseDefinitionTypeBuilder._(
-        valueString: valueString, element: newElement,);
+        valueString: valueString, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -172,7 +172,7 @@ class ClinicalUseDefinitionTypeBuilder extends FhirCodeEnumBuilder {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for ClinicalUseDefinitionType: $newValue',);
+          'Invalid input for ClinicalUseDefinitionType: $newValue');
     }
     return ClinicalUseDefinitionTypeBuilder._(
       valueString: newValue ?? valueString,

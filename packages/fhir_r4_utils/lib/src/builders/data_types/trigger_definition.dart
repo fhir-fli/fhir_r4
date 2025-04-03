@@ -410,6 +410,7 @@ class TriggerDefinitionBuilder extends DataTypeBuilder
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'timing':
       case 'timingX':
         {
           if (child is TimingXTriggerDefinitionBuilder) {
@@ -615,7 +616,7 @@ class TriggerDefinitionBuilder extends DataTypeBuilder
     if (extension_) this.extension_ = null;
     if (type) this.type = null;
     if (name) this.name = null;
-    if (timing) timingX = null;
+    if (timing) this.timingX = null;
     if (data) this.data = null;
     if (condition) this.condition = null;
   }

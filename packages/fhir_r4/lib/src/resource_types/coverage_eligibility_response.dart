@@ -766,6 +766,7 @@ class CoverageEligibilityResponse extends DomainResource {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'serviced':
       case 'servicedX':
         {
           if (child is ServicedXCoverageEligibilityResponse) {
@@ -3569,6 +3570,7 @@ class CoverageEligibilityResponseBenefit extends BackboneElement {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'allowed':
       case 'allowedX':
         {
           if (child is AllowedXCoverageEligibilityResponseBenefit) {
@@ -3610,6 +3612,7 @@ class CoverageEligibilityResponseBenefit extends BackboneElement {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'used':
       case 'usedX':
         {
           if (child is UsedXCoverageEligibilityResponseBenefit) {

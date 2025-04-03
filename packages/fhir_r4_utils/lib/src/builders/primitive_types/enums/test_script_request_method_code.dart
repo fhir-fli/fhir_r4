@@ -51,7 +51,7 @@ class TestScriptRequestMethodCodeBuilder extends FhirCodeEnumBuilder {
   /// Factory constructor to create [TestScriptRequestMethodCodeBuilder]
   /// from JSON.
   factory TestScriptRequestMethodCodeBuilder.fromJson(
-      Map<String, dynamic> json,) {
+      Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element =
@@ -159,7 +159,7 @@ class TestScriptRequestMethodCodeBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   TestScriptRequestMethodCodeBuilder withElement(ElementBuilder? newElement) {
     return TestScriptRequestMethodCodeBuilder._(
-        valueString: valueString, element: newElement,);
+        valueString: valueString, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -189,7 +189,7 @@ class TestScriptRequestMethodCodeBuilder extends FhirCodeEnumBuilder {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for TestScriptRequestMethodCode: $newValue',);
+          'Invalid input for TestScriptRequestMethodCode: $newValue');
     }
     return TestScriptRequestMethodCodeBuilder._(
       valueString: newValue ?? valueString,

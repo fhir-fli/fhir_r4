@@ -174,7 +174,7 @@ class MedicationrequestStatusBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   MedicationrequestStatusBuilder withElement(ElementBuilder? newElement) {
     return MedicationrequestStatusBuilder._(
-        valueString: valueString, element: newElement,);
+        valueString: valueString, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -204,7 +204,7 @@ class MedicationrequestStatusBuilder extends FhirCodeEnumBuilder {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for MedicationrequestStatus: $newValue',);
+          'Invalid input for MedicationrequestStatus: $newValue');
     }
     return MedicationrequestStatusBuilder._(
       valueString: newValue ?? valueString,

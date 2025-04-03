@@ -1023,6 +1023,7 @@ class Evidence extends DomainResource {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'citeAs':
       case 'citeAsX':
         {
           if (child is CiteAsXEvidence) {

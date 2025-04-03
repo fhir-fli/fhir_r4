@@ -772,6 +772,7 @@ class DeviceUseStatementBuilder extends DomainResourceBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'timing':
       case 'timingX':
         {
           if (child is TimingXDeviceUseStatementBuilder) {
@@ -1145,7 +1146,7 @@ class DeviceUseStatementBuilder extends DomainResourceBuilder {
     if (status) this.status = null;
     if (subject) this.subject = null;
     if (derivedFrom) this.derivedFrom = null;
-    if (timing) timingX = null;
+    if (timing) this.timingX = null;
     if (recordedOn) this.recordedOn = null;
     if (source) this.source = null;
     if (device) this.device = null;

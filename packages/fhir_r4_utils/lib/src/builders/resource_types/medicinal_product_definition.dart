@@ -1759,15 +1759,13 @@ class MedicinalProductDefinitionBuilder extends DomainResourceBuilder {
     if (status) this.status = null;
     if (statusDate) this.statusDate = null;
     if (description) this.description = null;
-    if (combinedPharmaceuticalDoseForm) {
+    if (combinedPharmaceuticalDoseForm)
       this.combinedPharmaceuticalDoseForm = null;
-    }
     if (route) this.route = null;
     if (indication) this.indication = null;
     if (legalStatusOfSupply) this.legalStatusOfSupply = null;
-    if (additionalMonitoringIndicator) {
+    if (additionalMonitoringIndicator)
       this.additionalMonitoringIndicator = null;
-    }
     if (specialMeasures) this.specialMeasures = null;
     if (pediatricUseIndicator) this.pediatricUseIndicator = null;
     if (classification) this.classification = null;
@@ -5520,6 +5518,7 @@ class MedicinalProductDefinitionCharacteristicBuilder
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'value':
       case 'valueX':
         {
           if (child is ValueXMedicinalProductDefinitionCharacteristicBuilder) {
@@ -5706,7 +5705,7 @@ class MedicinalProductDefinitionCharacteristicBuilder
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
     if (type) this.type = null;
-    if (value) valueX = null;
+    if (value) this.valueX = null;
   }
 
   @override

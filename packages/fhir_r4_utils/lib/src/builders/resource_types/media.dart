@@ -951,6 +951,7 @@ class MediaBuilder extends DomainResourceBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'created':
       case 'createdX':
         {
           if (child is CreatedXMediaBuilder) {
@@ -1491,7 +1492,7 @@ class MediaBuilder extends DomainResourceBuilder {
     if (view) this.view = null;
     if (subject) this.subject = null;
     if (encounter) this.encounter = null;
-    if (created) createdX = null;
+    if (created) this.createdX = null;
     if (issued) this.issued = null;
     if (operator_) this.operator_ = null;
     if (reasonCode) this.reasonCode = null;

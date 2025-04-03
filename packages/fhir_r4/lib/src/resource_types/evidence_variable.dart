@@ -2462,6 +2462,7 @@ class EvidenceVariableCharacteristic extends BackboneElement {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'definition':
       case 'definitionX':
         {
           if (child is DefinitionXEvidenceVariableCharacteristic) {
@@ -3784,6 +3785,7 @@ class EvidenceVariableCategory extends BackboneElement {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'value':
       case 'valueX':
         {
           if (child is ValueXEvidenceVariableCategory) {

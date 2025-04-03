@@ -1207,6 +1207,7 @@ class Procedure extends DomainResource {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'performed':
       case 'performedX':
         {
           if (child is PerformedXProcedure) {

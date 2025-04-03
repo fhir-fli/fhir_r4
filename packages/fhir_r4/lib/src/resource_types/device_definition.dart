@@ -935,6 +935,7 @@ class DeviceDefinition extends DomainResource {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'manufacturer':
       case 'manufacturerX':
         {
           if (child is ManufacturerXDeviceDefinition) {

@@ -154,7 +154,7 @@ class IngredientManufacturerRole extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for IngredientManufacturerRole: $newValue',);
+          'Invalid input for IngredientManufacturerRole: $newValue');
     }
     return IngredientManufacturerRole._(
       valueString: newValue ?? valueString,

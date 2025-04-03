@@ -744,6 +744,7 @@ class SupplyDeliveryBuilder extends DomainResourceBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'occurrence':
       case 'occurrenceX':
         {
           if (child is OccurrenceXSupplyDeliveryBuilder) {
@@ -1043,7 +1044,7 @@ class SupplyDeliveryBuilder extends DomainResourceBuilder {
     if (patient) this.patient = null;
     if (type) this.type = null;
     if (suppliedItem) this.suppliedItem = null;
-    if (occurrence) occurrenceX = null;
+    if (occurrence) this.occurrenceX = null;
     if (supplier) this.supplier = null;
     if (destination) this.destination = null;
     if (receiver) this.receiver = null;
@@ -1564,6 +1565,7 @@ class SupplyDeliverySuppliedItemBuilder extends BackboneElementBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'item':
       case 'itemX':
         {
           if (child is ItemXSupplyDeliverySuppliedItemBuilder) {
@@ -1687,7 +1689,7 @@ class SupplyDeliverySuppliedItemBuilder extends BackboneElementBuilder {
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
     if (quantity) this.quantity = null;
-    if (item) itemX = null;
+    if (item) this.itemX = null;
   }
 
   @override

@@ -138,7 +138,7 @@ class RepositoryTypeBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   RepositoryTypeBuilder withElement(ElementBuilder? newElement) {
     return RepositoryTypeBuilder._(
-        valueString: valueString, element: newElement,);
+        valueString: valueString, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys

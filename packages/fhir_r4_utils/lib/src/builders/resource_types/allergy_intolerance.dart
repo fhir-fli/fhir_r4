@@ -925,6 +925,7 @@ class AllergyIntoleranceBuilder extends DomainResourceBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'onset':
       case 'onsetX':
         {
           if (child is OnsetXAllergyIntoleranceBuilder) {
@@ -1364,7 +1365,7 @@ class AllergyIntoleranceBuilder extends DomainResourceBuilder {
     if (code) this.code = null;
     if (patient) this.patient = null;
     if (encounter) this.encounter = null;
-    if (onset) onsetX = null;
+    if (onset) this.onsetX = null;
     if (recordedDate) this.recordedDate = null;
     if (recorder) this.recorder = null;
     if (asserter) this.asserter = null;

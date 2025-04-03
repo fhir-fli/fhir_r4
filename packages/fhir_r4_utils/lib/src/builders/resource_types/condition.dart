@@ -931,6 +931,7 @@ class ConditionBuilder extends DomainResourceBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'onset':
       case 'onsetX':
         {
           if (child is OnsetXConditionBuilder) {
@@ -1005,6 +1006,7 @@ class ConditionBuilder extends DomainResourceBuilder {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'abatement':
       case 'abatementX':
         {
           if (child is AbatementXConditionBuilder) {
@@ -1487,8 +1489,8 @@ class ConditionBuilder extends DomainResourceBuilder {
     if (bodySite) this.bodySite = null;
     if (subject) this.subject = null;
     if (encounter) this.encounter = null;
-    if (onset) onsetX = null;
-    if (abatement) abatementX = null;
+    if (onset) this.onsetX = null;
+    if (abatement) this.abatementX = null;
     if (recordedDate) this.recordedDate = null;
     if (recorder) this.recorder = null;
     if (asserter) this.asserter = null;

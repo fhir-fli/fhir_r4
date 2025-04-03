@@ -1820,6 +1820,7 @@ class SubstanceIngredientBuilder extends BackboneElementBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'substance':
       case 'substanceX':
         {
           if (child is SubstanceXSubstanceIngredientBuilder) {
@@ -1943,7 +1944,7 @@ class SubstanceIngredientBuilder extends BackboneElementBuilder {
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
     if (quantity) this.quantity = null;
-    if (substance) substanceX = null;
+    if (substance) this.substanceX = null;
   }
 
   @override

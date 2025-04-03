@@ -145,7 +145,7 @@ class StructureMapGroupTypeMode extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for StructureMapGroupTypeMode: $newValue',);
+          'Invalid input for StructureMapGroupTypeMode: $newValue');
     }
     return StructureMapGroupTypeMode._(
       valueString: newValue ?? valueString,

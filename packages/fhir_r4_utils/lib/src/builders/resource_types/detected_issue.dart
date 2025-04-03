@@ -743,6 +743,7 @@ class DetectedIssueBuilder extends DomainResourceBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'identified':
       case 'identifiedX':
         {
           if (child is IdentifiedXDetectedIssueBuilder) {
@@ -1091,7 +1092,7 @@ class DetectedIssueBuilder extends DomainResourceBuilder {
     if (code) this.code = null;
     if (severity) this.severity = null;
     if (patient) this.patient = null;
-    if (identified) identifiedX = null;
+    if (identified) this.identifiedX = null;
     if (author) this.author = null;
     if (implicated) this.implicated = null;
     if (evidence) this.evidence = null;

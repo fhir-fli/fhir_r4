@@ -155,7 +155,7 @@ class EvidenceVariableHandling extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for EvidenceVariableHandling: $newValue',);
+          'Invalid input for EvidenceVariableHandling: $newValue');
     }
     return EvidenceVariableHandling._(
       valueString: newValue ?? valueString,

@@ -1938,7 +1938,7 @@ class MedicationKnowledgeRelatedMedicationKnowledgeBuilder
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
       return MedicationKnowledgeRelatedMedicationKnowledgeBuilder.fromJson(
-          json,);
+          json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');
@@ -3100,6 +3100,7 @@ class MedicationKnowledgeIngredientBuilder extends BackboneElementBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'item':
       case 'itemX':
         {
           if (child is ItemXMedicationKnowledgeIngredientBuilder) {
@@ -3258,7 +3259,7 @@ class MedicationKnowledgeIngredientBuilder extends BackboneElementBuilder {
     if (id) this.id = null;
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
-    if (item) itemX = null;
+    if (item) this.itemX = null;
     if (isActive) this.isActive = null;
     if (strength) this.strength = null;
   }
@@ -4699,6 +4700,7 @@ class MedicationKnowledgeAdministrationGuidelinesBuilder
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'indication':
       case 'indicationX':
         {
           if (child
@@ -4849,7 +4851,7 @@ class MedicationKnowledgeAdministrationGuidelinesBuilder
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
     if (dosage) this.dosage = null;
-    if (indication) indicationX = null;
+    if (indication) this.indicationX = null;
     if (patientCharacteristics) this.patientCharacteristics = null;
   }
 
@@ -5738,6 +5740,7 @@ class MedicationKnowledgePatientCharacteristicsBuilder
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'characteristic':
       case 'characteristicX':
         {
           if (child
@@ -5907,7 +5910,7 @@ class MedicationKnowledgePatientCharacteristicsBuilder
     if (id) this.id = null;
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
-    if (characteristic) characteristicX = null;
+    if (characteristic) this.characteristicX = null;
     if (value) this.value = null;
   }
 
@@ -7273,6 +7276,7 @@ class MedicationKnowledgeDrugCharacteristicBuilder
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'value':
       case 'valueX':
         {
           if (child is ValueXMedicationKnowledgeDrugCharacteristicBuilder) {
@@ -7438,7 +7442,7 @@ class MedicationKnowledgeDrugCharacteristicBuilder
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
     if (type) this.type = null;
-    if (value) valueX = null;
+    if (value) this.valueX = null;
   }
 
   @override

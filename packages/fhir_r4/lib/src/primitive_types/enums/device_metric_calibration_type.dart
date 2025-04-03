@@ -155,7 +155,7 @@ class DeviceMetricCalibrationType extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for DeviceMetricCalibrationType: $newValue',);
+          'Invalid input for DeviceMetricCalibrationType: $newValue');
     }
     return DeviceMetricCalibrationType._(
       valueString: newValue ?? valueString,

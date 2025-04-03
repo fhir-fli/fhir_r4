@@ -380,6 +380,7 @@ class TriggerDefinition extends DataType
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'timing':
       case 'timingX':
         {
           if (child is TimingXTriggerDefinition) {

@@ -1551,6 +1551,7 @@ class BiologicallyDerivedProductCollectionBuilder
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'collected':
       case 'collectedX':
         {
           if (child is CollectedXBiologicallyDerivedProductCollectionBuilder) {
@@ -1683,7 +1684,7 @@ class BiologicallyDerivedProductCollectionBuilder
     if (modifierExtension) this.modifierExtension = null;
     if (collector) this.collector = null;
     if (source) this.source = null;
-    if (collected) collectedX = null;
+    if (collected) this.collectedX = null;
   }
 
   @override
@@ -2161,6 +2162,7 @@ class BiologicallyDerivedProductProcessingBuilder
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'time':
       case 'timeX':
         {
           if (child is TimeXBiologicallyDerivedProductProcessingBuilder) {
@@ -2302,7 +2304,7 @@ class BiologicallyDerivedProductProcessingBuilder
     if (description) this.description = null;
     if (procedure) this.procedure = null;
     if (additive) this.additive = null;
-    if (time) timeX = null;
+    if (time) this.timeX = null;
   }
 
   @override
@@ -2738,6 +2740,7 @@ class BiologicallyDerivedProductManipulationBuilder
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'time':
       case 'timeX':
         {
           if (child is TimeXBiologicallyDerivedProductManipulationBuilder) {
@@ -2861,7 +2864,7 @@ class BiologicallyDerivedProductManipulationBuilder
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
     if (description) this.description = null;
-    if (time) timeX = null;
+    if (time) this.timeX = null;
   }
 
   @override

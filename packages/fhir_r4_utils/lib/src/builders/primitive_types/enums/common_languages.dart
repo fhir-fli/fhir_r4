@@ -591,7 +591,7 @@ class CommonLanguagesBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   CommonLanguagesBuilder withElement(ElementBuilder? newElement) {
     return CommonLanguagesBuilder._(
-        valueString: valueString, element: newElement,);
+        valueString: valueString, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys

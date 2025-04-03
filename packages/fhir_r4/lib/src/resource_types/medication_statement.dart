@@ -924,6 +924,7 @@ class MedicationStatement extends DomainResource {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'medication':
       case 'medicationX':
         {
           if (child is MedicationXMedicationStatement) {
@@ -970,6 +971,7 @@ class MedicationStatement extends DomainResource {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'effective':
       case 'effectiveX':
         {
           if (child is EffectiveXMedicationStatement) {

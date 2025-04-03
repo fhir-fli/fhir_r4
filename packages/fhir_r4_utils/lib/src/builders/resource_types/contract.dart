@@ -1491,6 +1491,7 @@ class ContractBuilder extends DomainResourceBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'topic':
       case 'topicX':
         {
           if (child is TopicXContractBuilder) {
@@ -1670,6 +1671,7 @@ class ContractBuilder extends DomainResourceBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'legallyBinding':
       case 'legallyBindingX':
         {
           if (child is LegallyBindingXContractBuilder) {
@@ -2121,7 +2123,7 @@ class ContractBuilder extends DomainResourceBuilder {
     if (alias) this.alias = null;
     if (author) this.author = null;
     if (scope) this.scope = null;
-    if (topic) topicX = null;
+    if (topic) this.topicX = null;
     if (type) this.type = null;
     if (subType) this.subType = null;
     if (contentDefinition) this.contentDefinition = null;
@@ -2132,7 +2134,7 @@ class ContractBuilder extends DomainResourceBuilder {
     if (friendly) this.friendly = null;
     if (legal) this.legal = null;
     if (rule) this.rule = null;
-    if (legallyBinding) legallyBindingX = null;
+    if (legallyBinding) this.legallyBindingX = null;
   }
 
   @override
@@ -3726,6 +3728,7 @@ class ContractTermBuilder extends BackboneElementBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'topic':
       case 'topicX':
         {
           if (child is TopicXContractTermBuilder) {
@@ -4039,7 +4042,7 @@ class ContractTermBuilder extends BackboneElementBuilder {
     if (identifier) this.identifier = null;
     if (issued) this.issued = null;
     if (applies) this.applies = null;
-    if (topic) topicX = null;
+    if (topic) this.topicX = null;
     if (type) this.type = null;
     if (subType) this.subType = null;
     if (text) this.text = null;
@@ -5476,7 +5479,7 @@ class ContractOfferBuilder extends BackboneElementBuilder {
                 if (converted != null) {
                   securityLabelNumber = [
                     ...(securityLabelNumber ?? []),
-                    converted,
+                    converted
                   ];
                   return;
                 }
@@ -6625,6 +6628,7 @@ class ContractAnswerBuilder extends BackboneElementBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'value':
       case 'valueX':
         {
           if (child is ValueXContractAnswerBuilder) {
@@ -6949,7 +6953,7 @@ class ContractAnswerBuilder extends BackboneElementBuilder {
     if (id) this.id = null;
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
-    if (value) valueX = null;
+    if (value) this.valueX = null;
   }
 
   @override
@@ -7852,7 +7856,7 @@ class ContractAssetBuilder extends BackboneElementBuilder {
                 if (converted != null) {
                   securityLabelNumber = [
                     ...(securityLabelNumber ?? []),
-                    converted,
+                    converted
                   ];
                   return;
                 }
@@ -9314,6 +9318,7 @@ class ContractValuedItemBuilder extends BackboneElementBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'entity':
       case 'entityX':
         {
           if (child is EntityXContractValuedItemBuilder) {
@@ -9601,7 +9606,7 @@ class ContractValuedItemBuilder extends BackboneElementBuilder {
                 if (converted != null) {
                   securityLabelNumber = [
                     ...(securityLabelNumber ?? []),
-                    converted,
+                    converted
                   ];
                   return;
                 }
@@ -9795,7 +9800,7 @@ class ContractValuedItemBuilder extends BackboneElementBuilder {
     if (id) this.id = null;
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
-    if (entity) entityX = null;
+    if (entity) this.entityX = null;
     if (identifier) this.identifier = null;
     if (effectiveTime) this.effectiveTime = null;
     if (quantity) this.quantity = null;
@@ -10835,6 +10840,7 @@ class ContractActionBuilder extends BackboneElementBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'occurrence':
       case 'occurrenceX':
         {
           if (child is OccurrenceXContractActionBuilder) {
@@ -11211,7 +11217,7 @@ class ContractActionBuilder extends BackboneElementBuilder {
                 if (converted != null) {
                   securityLabelNumber = [
                     ...(securityLabelNumber ?? []),
-                    converted,
+                    converted
                   ];
                   return;
                 }
@@ -11477,7 +11483,7 @@ class ContractActionBuilder extends BackboneElementBuilder {
     if (status) this.status = null;
     if (context) this.context = null;
     if (contextLinkId) this.contextLinkId = null;
-    if (occurrence) occurrenceX = null;
+    if (occurrence) this.occurrenceX = null;
     if (requester) this.requester = null;
     if (requesterLinkId) this.requesterLinkId = null;
     if (performerType) this.performerType = null;
@@ -13011,6 +13017,7 @@ class ContractFriendlyBuilder extends BackboneElementBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'content':
       case 'contentX':
         {
           if (child is ContentXContractFriendlyBuilder) {
@@ -13125,7 +13132,7 @@ class ContractFriendlyBuilder extends BackboneElementBuilder {
     if (id) this.id = null;
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
-    if (content) contentX = null;
+    if (content) this.contentX = null;
   }
 
   @override
@@ -13494,6 +13501,7 @@ class ContractLegalBuilder extends BackboneElementBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'content':
       case 'contentX':
         {
           if (child is ContentXContractLegalBuilder) {
@@ -13608,7 +13616,7 @@ class ContractLegalBuilder extends BackboneElementBuilder {
     if (id) this.id = null;
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
-    if (content) contentX = null;
+    if (content) this.contentX = null;
   }
 
   @override
@@ -13979,6 +13987,7 @@ class ContractRuleBuilder extends BackboneElementBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'content':
       case 'contentX':
         {
           if (child is ContentXContractRuleBuilder) {
@@ -14093,7 +14102,7 @@ class ContractRuleBuilder extends BackboneElementBuilder {
     if (id) this.id = null;
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
-    if (content) contentX = null;
+    if (content) this.contentX = null;
   }
 
   @override

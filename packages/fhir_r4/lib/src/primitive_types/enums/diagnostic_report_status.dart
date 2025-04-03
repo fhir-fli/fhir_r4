@@ -207,7 +207,7 @@ class DiagnosticReportStatus extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for DiagnosticReportStatus: $newValue',);
+          'Invalid input for DiagnosticReportStatus: $newValue');
     }
     return DiagnosticReportStatus._(
       valueString: newValue ?? valueString,

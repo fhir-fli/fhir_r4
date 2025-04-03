@@ -906,6 +906,7 @@ class DeviceDefinitionBuilder extends DomainResourceBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'manufacturer':
       case 'manufacturerX':
         {
           if (child is ManufacturerXDeviceDefinitionBuilder) {
@@ -1541,7 +1542,7 @@ class DeviceDefinitionBuilder extends DomainResourceBuilder {
     if (modifierExtension) this.modifierExtension = null;
     if (identifier) this.identifier = null;
     if (udiDeviceIdentifier) this.udiDeviceIdentifier = null;
-    if (manufacturer) manufacturerX = null;
+    if (manufacturer) this.manufacturerX = null;
     if (deviceName) this.deviceName = null;
     if (modelNumber) this.modelNumber = null;
     if (type) this.type = null;

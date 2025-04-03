@@ -2305,6 +2305,7 @@ class CompositionRelatesTo extends BackboneElement {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'target':
       case 'targetX':
         {
           if (child is TargetXCompositionRelatesTo) {

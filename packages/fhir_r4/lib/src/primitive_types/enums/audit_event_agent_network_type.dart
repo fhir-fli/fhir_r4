@@ -161,7 +161,7 @@ class AuditEventAgentNetworkType extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for AuditEventAgentNetworkType: $newValue',);
+          'Invalid input for AuditEventAgentNetworkType: $newValue');
     }
     return AuditEventAgentNetworkType._(
       valueString: newValue ?? valueString,

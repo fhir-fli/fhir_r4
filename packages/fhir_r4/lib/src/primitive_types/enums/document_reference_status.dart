@@ -144,7 +144,7 @@ class DocumentReferenceStatus extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for DocumentReferenceStatus: $newValue',);
+          'Invalid input for DocumentReferenceStatus: $newValue');
     }
     return DocumentReferenceStatus._(
       valueString: newValue ?? valueString,

@@ -1033,6 +1033,7 @@ class ConceptMapBuilder extends CanonicalResourceBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'source':
       case 'sourceX':
         {
           if (child is SourceXConceptMapBuilder) {
@@ -1068,6 +1069,7 @@ class ConceptMapBuilder extends CanonicalResourceBuilder {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'target':
       case 'targetX':
         {
           if (child is TargetXConceptMapBuilder) {
@@ -1409,8 +1411,8 @@ class ConceptMapBuilder extends CanonicalResourceBuilder {
     if (jurisdiction) this.jurisdiction = null;
     if (purpose) this.purpose = null;
     if (copyright) this.copyright = null;
-    if (source) sourceX = null;
-    if (target) targetX = null;
+    if (source) this.sourceX = null;
+    if (target) this.targetX = null;
     if (group) this.group = null;
   }
 

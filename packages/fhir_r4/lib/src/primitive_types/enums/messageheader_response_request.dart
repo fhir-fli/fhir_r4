@@ -161,7 +161,7 @@ class MessageheaderResponseRequest extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for MessageheaderResponseRequest: $newValue',);
+          'Invalid input for MessageheaderResponseRequest: $newValue');
     }
     return MessageheaderResponseRequest._(
       valueString: newValue ?? valueString,

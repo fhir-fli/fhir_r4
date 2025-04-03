@@ -902,6 +902,7 @@ class DiagnosticReportBuilder extends DomainResourceBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'effective':
       case 'effectiveX':
         {
           if (child is EffectiveXDiagnosticReportBuilder) {
@@ -1372,7 +1373,7 @@ class DiagnosticReportBuilder extends DomainResourceBuilder {
     if (code) this.code = null;
     if (subject) this.subject = null;
     if (encounter) this.encounter = null;
-    if (effective) effectiveX = null;
+    if (effective) this.effectiveX = null;
     if (issued) this.issued = null;
     if (performer) this.performer = null;
     if (resultsInterpreter) this.resultsInterpreter = null;

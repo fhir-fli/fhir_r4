@@ -1082,6 +1082,7 @@ class MessageDefinition extends CanonicalResource {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'event':
       case 'eventX':
         {
           if (child is EventXMessageDefinition) {

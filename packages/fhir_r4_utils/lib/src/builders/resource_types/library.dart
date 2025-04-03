@@ -1167,6 +1167,7 @@ class LibraryBuilder extends CanonicalResourceBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'subject':
       case 'subjectX':
         {
           if (child is SubjectXLibraryBuilder) {
@@ -1935,7 +1936,7 @@ class LibraryBuilder extends CanonicalResourceBuilder {
     if (status) this.status = null;
     if (experimental) this.experimental = null;
     if (type) this.type = null;
-    if (subject) subjectX = null;
+    if (subject) this.subjectX = null;
     if (date) this.date = null;
     if (publisher) this.publisher = null;
     if (contact) this.contact = null;

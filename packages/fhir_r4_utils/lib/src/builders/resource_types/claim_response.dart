@@ -5266,6 +5266,7 @@ class ClaimResponseAddItemBuilder extends BackboneElementBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'serviced':
       case 'servicedX':
         {
           if (child is ServicedXClaimResponseAddItemBuilder) {
@@ -5301,6 +5302,7 @@ class ClaimResponseAddItemBuilder extends BackboneElementBuilder {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'location':
       case 'locationX':
         {
           if (child is LocationXClaimResponseAddItemBuilder) {
@@ -5755,8 +5757,8 @@ class ClaimResponseAddItemBuilder extends BackboneElementBuilder {
     if (productOrService) this.productOrService = null;
     if (modifier) this.modifier = null;
     if (programCode) this.programCode = null;
-    if (serviced) servicedX = null;
-    if (location) locationX = null;
+    if (serviced) this.servicedX = null;
+    if (location) this.locationX = null;
     if (quantity) this.quantity = null;
     if (unitPrice) this.unitPrice = null;
     if (factor) this.factor = null;

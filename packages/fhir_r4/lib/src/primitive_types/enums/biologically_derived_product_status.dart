@@ -137,7 +137,7 @@ class BiologicallyDerivedProductStatus extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for BiologicallyDerivedProductStatus: $newValue',);
+          'Invalid input for BiologicallyDerivedProductStatus: $newValue');
     }
     return BiologicallyDerivedProductStatus._(
       valueString: newValue ?? valueString,

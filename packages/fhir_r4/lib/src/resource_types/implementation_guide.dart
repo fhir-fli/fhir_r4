@@ -2695,7 +2695,7 @@ class ImplementationGuideDefinition extends BackboneElement {
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
   factory ImplementationGuideDefinition.empty() =>
-      const ImplementationGuideDefinition(
+      ImplementationGuideDefinition(
         resource: <ImplementationGuideResource>[],
       );
 
@@ -4279,6 +4279,7 @@ class ImplementationGuideResource extends BackboneElement {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'example':
       case 'exampleX':
         {
           if (child is ExampleXImplementationGuideResource) {
@@ -4944,6 +4945,7 @@ class ImplementationGuidePage extends BackboneElement {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'name':
       case 'nameX':
         {
           if (child is NameXImplementationGuidePage) {
@@ -6264,7 +6266,7 @@ class ImplementationGuideManifest extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory ImplementationGuideManifest.empty() => const ImplementationGuideManifest(
+  factory ImplementationGuideManifest.empty() => ImplementationGuideManifest(
         resource: <ImplementationGuideResource1>[],
       );
 
@@ -7266,6 +7268,7 @@ class ImplementationGuideResource1 extends BackboneElement {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'example':
       case 'exampleX':
         {
           if (child is ExampleXImplementationGuideResource1) {

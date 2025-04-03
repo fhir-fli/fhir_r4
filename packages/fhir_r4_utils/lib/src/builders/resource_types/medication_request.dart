@@ -1234,6 +1234,7 @@ class MedicationRequestBuilder extends DomainResourceBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'reported':
       case 'reportedX':
         {
           if (child is ReportedXMedicationRequestBuilder) {
@@ -1269,6 +1270,7 @@ class MedicationRequestBuilder extends DomainResourceBuilder {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'medication':
       case 'medicationX':
         {
           if (child is MedicationXMedicationRequestBuilder) {
@@ -1459,7 +1461,7 @@ class MedicationRequestBuilder extends DomainResourceBuilder {
               if (converted != null) {
                 instantiatesCanonical = [
                   ...(instantiatesCanonical ?? []),
-                  converted,
+                  converted
                 ];
                 return;
               }
@@ -2045,8 +2047,8 @@ class MedicationRequestBuilder extends DomainResourceBuilder {
     if (category) this.category = null;
     if (priority) this.priority = null;
     if (doNotPerform) this.doNotPerform = null;
-    if (reported) reportedX = null;
-    if (medication) medicationX = null;
+    if (reported) this.reportedX = null;
+    if (medication) this.medicationX = null;
     if (subject) this.subject = null;
     if (encounter) this.encounter = null;
     if (supportingInformation) this.supportingInformation = null;
@@ -3920,6 +3922,7 @@ class MedicationRequestSubstitutionBuilder extends BackboneElementBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'allowed':
       case 'allowedX':
         {
           if (child is AllowedXMedicationRequestSubstitutionBuilder) {
@@ -4050,7 +4053,7 @@ class MedicationRequestSubstitutionBuilder extends BackboneElementBuilder {
     if (id) this.id = null;
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
-    if (allowed) allowedX = null;
+    if (allowed) this.allowedX = null;
     if (reason) this.reason = null;
   }
 

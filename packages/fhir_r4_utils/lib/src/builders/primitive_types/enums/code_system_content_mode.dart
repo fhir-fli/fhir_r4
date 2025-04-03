@@ -139,7 +139,7 @@ class CodeSystemContentModeBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   CodeSystemContentModeBuilder withElement(ElementBuilder? newElement) {
     return CodeSystemContentModeBuilder._(
-        valueString: valueString, element: newElement,);
+        valueString: valueString, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys

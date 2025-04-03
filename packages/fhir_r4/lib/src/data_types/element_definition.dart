@@ -2628,6 +2628,7 @@ class ElementDefinition extends BackboneType {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'defaultValue':
       case 'defaultValueX':
         {
           if (child is DefaultValueXElementDefinition) {
@@ -3213,6 +3214,7 @@ class ElementDefinition extends BackboneType {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'fixed':
       case 'fixedX':
         {
           if (child is FixedXElementDefinition) {
@@ -3782,6 +3784,7 @@ class ElementDefinition extends BackboneType {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'pattern':
       case 'patternX':
         {
           if (child is PatternXElementDefinition) {
@@ -4368,6 +4371,7 @@ class ElementDefinition extends BackboneType {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'minValue':
       case 'minValueX':
         {
           if (child is MinValueXElementDefinition) {
@@ -4475,6 +4479,7 @@ class ElementDefinition extends BackboneType {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'maxValue':
       case 'maxValueX':
         {
           if (child is MaxValueXElementDefinition) {
@@ -9812,6 +9817,7 @@ class ElementDefinitionExample extends Element {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'value':
       case 'valueX':
         {
           if (child is ValueXElementDefinitionExample) {

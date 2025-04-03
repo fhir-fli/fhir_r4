@@ -458,6 +458,7 @@ class DataRequirement extends DataType
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'subject':
       case 'subjectX':
         {
           if (child is SubjectXDataRequirement) {
@@ -1755,6 +1756,7 @@ class DataRequirementDateFilter extends Element {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'value':
       case 'valueX':
         {
           if (child is ValueXDataRequirementDateFilter) {

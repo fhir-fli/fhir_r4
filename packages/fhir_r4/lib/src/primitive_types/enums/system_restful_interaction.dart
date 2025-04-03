@@ -276,7 +276,7 @@ class SystemRestfulInteraction extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for SystemRestfulInteraction: $newValue',);
+          'Invalid input for SystemRestfulInteraction: $newValue');
     }
     return SystemRestfulInteraction._(
       valueString: newValue ?? valueString,

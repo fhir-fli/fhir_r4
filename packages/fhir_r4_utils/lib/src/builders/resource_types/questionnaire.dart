@@ -3548,6 +3548,7 @@ class QuestionnaireEnableWhenBuilder extends BackboneElementBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'answer':
       case 'answerX':
         {
           if (child is AnswerXQuestionnaireEnableWhenBuilder) {
@@ -3848,7 +3849,7 @@ class QuestionnaireEnableWhenBuilder extends BackboneElementBuilder {
     if (modifierExtension) this.modifierExtension = null;
     if (question) this.question = null;
     if (operator_) this.operator_ = null;
-    if (answer) answerX = null;
+    if (answer) this.answerX = null;
   }
 
   @override
@@ -4285,6 +4286,7 @@ class QuestionnaireAnswerOptionBuilder extends BackboneElementBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'value':
       case 'valueX':
         {
           if (child is ValueXQuestionnaireAnswerOptionBuilder) {
@@ -4511,7 +4513,7 @@ class QuestionnaireAnswerOptionBuilder extends BackboneElementBuilder {
     if (id) this.id = null;
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
-    if (value) valueX = null;
+    if (value) this.valueX = null;
     if (initialSelected) this.initialSelected = null;
   }
 
@@ -4969,6 +4971,7 @@ class QuestionnaireInitialBuilder extends BackboneElementBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'value':
       case 'valueX':
         {
           if (child is ValueXQuestionnaireInitialBuilder) {
@@ -5293,7 +5296,7 @@ class QuestionnaireInitialBuilder extends BackboneElementBuilder {
     if (id) this.id = null;
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
-    if (value) valueX = null;
+    if (value) this.valueX = null;
   }
 
   @override

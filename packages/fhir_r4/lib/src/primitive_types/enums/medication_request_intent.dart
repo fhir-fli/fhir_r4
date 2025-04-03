@@ -190,7 +190,7 @@ class MedicationRequestIntent extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for MedicationRequestIntent: $newValue',);
+          'Invalid input for MedicationRequestIntent: $newValue');
     }
     return MedicationRequestIntent._(
       valueString: newValue ?? valueString,

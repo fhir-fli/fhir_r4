@@ -773,6 +773,7 @@ class GuidanceResponseBuilder extends DomainResourceBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'module':
       case 'moduleX':
         {
           if (child is ModuleXGuidanceResponseBuilder) {
@@ -1230,7 +1231,7 @@ class GuidanceResponseBuilder extends DomainResourceBuilder {
     if (modifierExtension) this.modifierExtension = null;
     if (requestIdentifier) this.requestIdentifier = null;
     if (identifier) this.identifier = null;
-    if (module) moduleX = null;
+    if (module) this.moduleX = null;
     if (status) this.status = null;
     if (subject) this.subject = null;
     if (encounter) this.encounter = null;

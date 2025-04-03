@@ -3968,6 +3968,7 @@ class ClaimSupportingInfoBuilder extends BackboneElementBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'timing':
       case 'timingX':
         {
           if (child is TimingXClaimSupportingInfoBuilder) {
@@ -4003,6 +4004,7 @@ class ClaimSupportingInfoBuilder extends BackboneElementBuilder {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'value':
       case 'valueX':
         {
           if (child is ValueXClaimSupportingInfoBuilder) {
@@ -4246,8 +4248,8 @@ class ClaimSupportingInfoBuilder extends BackboneElementBuilder {
     if (sequence) this.sequence = null;
     if (category) this.category = null;
     if (code) this.code = null;
-    if (timing) timingX = null;
-    if (value) valueX = null;
+    if (timing) this.timingX = null;
+    if (value) this.valueX = null;
     if (reason) this.reason = null;
   }
 
@@ -4759,6 +4761,7 @@ class ClaimDiagnosisBuilder extends BackboneElementBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'diagnosis':
       case 'diagnosisX':
         {
           if (child is DiagnosisXClaimDiagnosisBuilder) {
@@ -4938,7 +4941,7 @@ class ClaimDiagnosisBuilder extends BackboneElementBuilder {
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
     if (sequence) this.sequence = null;
-    if (diagnosis) diagnosisX = null;
+    if (diagnosis) this.diagnosisX = null;
     if (type) this.type = null;
     if (onAdmission) this.onAdmission = null;
     if (packageCode) this.packageCode = null;
@@ -5482,6 +5485,7 @@ class ClaimProcedureBuilder extends BackboneElementBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'procedure':
       case 'procedureX':
         {
           if (child is ProcedureXClaimProcedureBuilder) {
@@ -5647,7 +5651,7 @@ class ClaimProcedureBuilder extends BackboneElementBuilder {
     if (sequence) this.sequence = null;
     if (type) this.type = null;
     if (date) this.date = null;
-    if (procedure) procedureX = null;
+    if (procedure) this.procedureX = null;
     if (udi) this.udi = null;
   }
 
@@ -6873,6 +6877,7 @@ class ClaimAccidentBuilder extends BackboneElementBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'location':
       case 'locationX':
         {
           if (child is LocationXClaimAccidentBuilder) {
@@ -7005,7 +7010,7 @@ class ClaimAccidentBuilder extends BackboneElementBuilder {
     if (modifierExtension) this.modifierExtension = null;
     if (date) this.date = null;
     if (type) this.type = null;
-    if (location) locationX = null;
+    if (location) this.locationX = null;
   }
 
   @override
@@ -8046,7 +8051,7 @@ class ClaimItemBuilder extends BackboneElementBuilder {
                 if (converted != null) {
                   informationSequence = [
                     ...(informationSequence ?? []),
-                    converted,
+                    converted
                   ];
                   return;
                 }
@@ -8113,6 +8118,7 @@ class ClaimItemBuilder extends BackboneElementBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'serviced':
       case 'servicedX':
         {
           if (child is ServicedXClaimItemBuilder) {
@@ -8148,6 +8154,7 @@ class ClaimItemBuilder extends BackboneElementBuilder {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'location':
       case 'locationX':
         {
           if (child is LocationXClaimItemBuilder) {
@@ -8589,8 +8596,8 @@ class ClaimItemBuilder extends BackboneElementBuilder {
     if (productOrService) this.productOrService = null;
     if (modifier) this.modifier = null;
     if (programCode) this.programCode = null;
-    if (serviced) servicedX = null;
-    if (location) locationX = null;
+    if (serviced) this.servicedX = null;
+    if (location) this.locationX = null;
     if (quantity) this.quantity = null;
     if (unitPrice) this.unitPrice = null;
     if (factor) this.factor = null;

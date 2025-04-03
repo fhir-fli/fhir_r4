@@ -171,7 +171,7 @@ class GuidanceResponseStatus extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for GuidanceResponseStatus: $newValue',);
+          'Invalid input for GuidanceResponseStatus: $newValue');
     }
     return GuidanceResponseStatus._(
       valueString: newValue ?? valueString,

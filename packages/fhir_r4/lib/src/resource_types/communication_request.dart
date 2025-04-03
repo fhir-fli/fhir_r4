@@ -1078,6 +1078,7 @@ class CommunicationRequest extends DomainResource {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'occurrence':
       case 'occurrenceX':
         {
           if (child is OccurrenceXCommunicationRequest) {
@@ -2251,6 +2252,7 @@ class CommunicationRequestPayload extends BackboneElement {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'content':
       case 'contentX':
         {
           if (child is ContentXCommunicationRequestPayload) {

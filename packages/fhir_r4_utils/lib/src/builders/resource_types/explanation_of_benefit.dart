@@ -4826,6 +4826,7 @@ class ExplanationOfBenefitSupportingInfoBuilder extends BackboneElementBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'timing':
       case 'timingX':
         {
           if (child is TimingXExplanationOfBenefitSupportingInfoBuilder) {
@@ -4861,6 +4862,7 @@ class ExplanationOfBenefitSupportingInfoBuilder extends BackboneElementBuilder {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'value':
       case 'valueX':
         {
           if (child is ValueXExplanationOfBenefitSupportingInfoBuilder) {
@@ -5104,8 +5106,8 @@ class ExplanationOfBenefitSupportingInfoBuilder extends BackboneElementBuilder {
     if (sequence) this.sequence = null;
     if (category) this.category = null;
     if (code) this.code = null;
-    if (timing) timingX = null;
-    if (value) valueX = null;
+    if (timing) this.timingX = null;
+    if (value) this.valueX = null;
     if (reason) this.reason = null;
   }
 
@@ -5621,6 +5623,7 @@ class ExplanationOfBenefitDiagnosisBuilder extends BackboneElementBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'diagnosis':
       case 'diagnosisX':
         {
           if (child is DiagnosisXExplanationOfBenefitDiagnosisBuilder) {
@@ -5800,7 +5803,7 @@ class ExplanationOfBenefitDiagnosisBuilder extends BackboneElementBuilder {
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
     if (sequence) this.sequence = null;
-    if (diagnosis) diagnosisX = null;
+    if (diagnosis) this.diagnosisX = null;
     if (type) this.type = null;
     if (onAdmission) this.onAdmission = null;
     if (packageCode) this.packageCode = null;
@@ -6347,6 +6350,7 @@ class ExplanationOfBenefitProcedureBuilder extends BackboneElementBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'procedure':
       case 'procedureX':
         {
           if (child is ProcedureXExplanationOfBenefitProcedureBuilder) {
@@ -6512,7 +6516,7 @@ class ExplanationOfBenefitProcedureBuilder extends BackboneElementBuilder {
     if (sequence) this.sequence = null;
     if (type) this.type = null;
     if (date) this.date = null;
-    if (procedure) procedureX = null;
+    if (procedure) this.procedureX = null;
     if (udi) this.udi = null;
   }
 
@@ -7542,6 +7546,7 @@ class ExplanationOfBenefitAccidentBuilder extends BackboneElementBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'location':
       case 'locationX':
         {
           if (child is LocationXExplanationOfBenefitAccidentBuilder) {
@@ -7674,7 +7679,7 @@ class ExplanationOfBenefitAccidentBuilder extends BackboneElementBuilder {
     if (modifierExtension) this.modifierExtension = null;
     if (date) this.date = null;
     if (type) this.type = null;
-    if (location) locationX = null;
+    if (location) this.locationX = null;
   }
 
   @override
@@ -8759,7 +8764,7 @@ class ExplanationOfBenefitItemBuilder extends BackboneElementBuilder {
                 if (converted != null) {
                   informationSequence = [
                     ...(informationSequence ?? []),
-                    converted,
+                    converted
                   ];
                   return;
                 }
@@ -8826,6 +8831,7 @@ class ExplanationOfBenefitItemBuilder extends BackboneElementBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'serviced':
       case 'servicedX':
         {
           if (child is ServicedXExplanationOfBenefitItemBuilder) {
@@ -8861,6 +8867,7 @@ class ExplanationOfBenefitItemBuilder extends BackboneElementBuilder {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'location':
       case 'locationX':
         {
           if (child is LocationXExplanationOfBenefitItemBuilder) {
@@ -9390,8 +9397,8 @@ class ExplanationOfBenefitItemBuilder extends BackboneElementBuilder {
     if (productOrService) this.productOrService = null;
     if (modifier) this.modifier = null;
     if (programCode) this.programCode = null;
-    if (serviced) servicedX = null;
-    if (location) locationX = null;
+    if (serviced) this.servicedX = null;
+    if (location) this.locationX = null;
     if (quantity) this.quantity = null;
     if (unitPrice) this.unitPrice = null;
     if (factor) this.factor = null;
@@ -13290,6 +13297,7 @@ class ExplanationOfBenefitAddItemBuilder extends BackboneElementBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'serviced':
       case 'servicedX':
         {
           if (child is ServicedXExplanationOfBenefitAddItemBuilder) {
@@ -13325,6 +13333,7 @@ class ExplanationOfBenefitAddItemBuilder extends BackboneElementBuilder {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'location':
       case 'locationX':
         {
           if (child is LocationXExplanationOfBenefitAddItemBuilder) {
@@ -13779,8 +13788,8 @@ class ExplanationOfBenefitAddItemBuilder extends BackboneElementBuilder {
     if (productOrService) this.productOrService = null;
     if (modifier) this.modifier = null;
     if (programCode) this.programCode = null;
-    if (serviced) servicedX = null;
-    if (location) locationX = null;
+    if (serviced) this.servicedX = null;
+    if (location) this.locationX = null;
     if (quantity) this.quantity = null;
     if (unitPrice) this.unitPrice = null;
     if (factor) this.factor = null;
@@ -18511,6 +18520,7 @@ class ExplanationOfBenefitFinancialBuilder extends BackboneElementBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'allowed':
       case 'allowedX':
         {
           if (child is AllowedXExplanationOfBenefitFinancialBuilder) {
@@ -18559,6 +18569,7 @@ class ExplanationOfBenefitFinancialBuilder extends BackboneElementBuilder {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'used':
       case 'usedX':
         {
           if (child is UsedXExplanationOfBenefitFinancialBuilder) {
@@ -18713,8 +18724,8 @@ class ExplanationOfBenefitFinancialBuilder extends BackboneElementBuilder {
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
     if (type) this.type = null;
-    if (allowed) allowedX = null;
-    if (used) usedX = null;
+    if (allowed) this.allowedX = null;
+    if (used) this.usedX = null;
   }
 
   @override

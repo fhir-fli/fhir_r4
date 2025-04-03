@@ -3111,6 +3111,7 @@ class PackagedProductDefinitionShelfLifeStorageBuilder
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'period':
       case 'periodX':
         {
           if (child
@@ -3259,7 +3260,7 @@ class PackagedProductDefinitionShelfLifeStorageBuilder
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
     if (type) this.type = null;
-    if (period) periodX = null;
+    if (period) this.periodX = null;
     if (specialPrecautionsForStorage) this.specialPrecautionsForStorage = null;
   }
 
@@ -3699,6 +3700,7 @@ class PackagedProductDefinitionPropertyBuilder extends BackboneElementBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'value':
       case 'valueX':
         {
           if (child is ValueXPackagedProductDefinitionPropertyBuilder) {
@@ -3885,7 +3887,7 @@ class PackagedProductDefinitionPropertyBuilder extends BackboneElementBuilder {
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
     if (type) this.type = null;
-    if (value) valueX = null;
+    if (value) this.valueX = null;
   }
 
   @override

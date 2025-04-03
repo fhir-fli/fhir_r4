@@ -767,6 +767,7 @@ class DeviceUseStatement extends DomainResource {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'timing':
       case 'timingX':
         {
           if (child is TimingXDeviceUseStatement) {

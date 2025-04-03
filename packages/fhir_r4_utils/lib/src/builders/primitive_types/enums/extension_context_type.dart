@@ -117,7 +117,7 @@ class ExtensionContextTypeBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   ExtensionContextTypeBuilder withElement(ElementBuilder? newElement) {
     return ExtensionContextTypeBuilder._(
-        valueString: valueString, element: newElement,);
+        valueString: valueString, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys

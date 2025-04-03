@@ -104,7 +104,7 @@ class OrientationTypeBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   OrientationTypeBuilder withElement(ElementBuilder? newElement) {
     return OrientationTypeBuilder._(
-        valueString: valueString, element: newElement,);
+        valueString: valueString, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys

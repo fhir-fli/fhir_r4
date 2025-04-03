@@ -156,7 +156,7 @@ class NamingSystemIdentifierType extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for NamingSystemIdentifierType: $newValue',);
+          'Invalid input for NamingSystemIdentifierType: $newValue');
     }
     return NamingSystemIdentifierType._(
       valueString: newValue ?? valueString,

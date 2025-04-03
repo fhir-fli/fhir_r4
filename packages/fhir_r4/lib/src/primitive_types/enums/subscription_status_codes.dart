@@ -152,7 +152,7 @@ class SubscriptionStatusCodes extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for SubscriptionStatusCodes: $newValue',);
+          'Invalid input for SubscriptionStatusCodes: $newValue');
     }
     return SubscriptionStatusCodes._(
       valueString: newValue ?? valueString,

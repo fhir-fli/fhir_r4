@@ -345,6 +345,7 @@ class Population extends BackboneType {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'age':
       case 'ageX':
         {
           if (child is AgeXPopulation) {

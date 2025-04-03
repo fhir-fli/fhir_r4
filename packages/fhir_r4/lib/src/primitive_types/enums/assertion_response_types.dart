@@ -226,7 +226,7 @@ class AssertionResponseTypes extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for AssertionResponseTypes: $newValue',);
+          'Invalid input for AssertionResponseTypes: $newValue');
     }
     return AssertionResponseTypes._(
       valueString: newValue ?? valueString,

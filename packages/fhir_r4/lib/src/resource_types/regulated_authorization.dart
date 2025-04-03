@@ -1791,6 +1791,7 @@ class RegulatedAuthorizationCase extends BackboneElement {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'date':
       case 'dateX':
         {
           if (child is DateXRegulatedAuthorizationCase) {

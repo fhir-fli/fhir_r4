@@ -134,7 +134,7 @@ class AssertionDirectionType extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for AssertionDirectionType: $newValue',);
+          'Invalid input for AssertionDirectionType: $newValue');
     }
     return AssertionDirectionType._(
       valueString: newValue ?? valueString,

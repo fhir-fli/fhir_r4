@@ -126,7 +126,7 @@ class AdministrativeGenderBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   AdministrativeGenderBuilder withElement(ElementBuilder? newElement) {
     return AdministrativeGenderBuilder._(
-        valueString: valueString, element: newElement,);
+        valueString: valueString, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys

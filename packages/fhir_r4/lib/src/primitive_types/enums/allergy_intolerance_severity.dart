@@ -145,7 +145,7 @@ class AllergyIntoleranceSeverity extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for AllergyIntoleranceSeverity: $newValue',);
+          'Invalid input for AllergyIntoleranceSeverity: $newValue');
     }
     return AllergyIntoleranceSeverity._(
       valueString: newValue ?? valueString,

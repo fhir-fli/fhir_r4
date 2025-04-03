@@ -841,6 +841,7 @@ class RiskAssessment extends DomainResource {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'occurrence':
       case 'occurrenceX':
         {
           if (child is OccurrenceXRiskAssessment) {
@@ -2029,6 +2030,7 @@ class RiskAssessmentPrediction extends BackboneElement {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'probability':
       case 'probabilityX':
         {
           if (child is ProbabilityXRiskAssessmentPrediction) {
@@ -2075,6 +2077,7 @@ class RiskAssessmentPrediction extends BackboneElement {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'when':
       case 'whenX':
         {
           if (child is WhenXRiskAssessmentPrediction) {

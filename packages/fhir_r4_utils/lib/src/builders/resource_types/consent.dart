@@ -819,6 +819,7 @@ class ConsentBuilder extends DomainResourceBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'source':
       case 'sourceX':
         {
           if (child is SourceXConsentBuilder) {
@@ -1130,7 +1131,7 @@ class ConsentBuilder extends DomainResourceBuilder {
     if (dateTime) this.dateTime = null;
     if (performer) this.performer = null;
     if (organization) this.organization = null;
-    if (source) sourceX = null;
+    if (source) this.sourceX = null;
     if (policy) this.policy = null;
     if (policyRule) this.policyRule = null;
     if (verification) this.verification = null;

@@ -3275,6 +3275,7 @@ class MedicationKnowledgeIngredient extends BackboneElement {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'item':
       case 'itemX':
         {
           if (child is ItemXMedicationKnowledgeIngredient) {
@@ -4887,6 +4888,7 @@ class MedicationKnowledgeAdministrationGuidelines extends BackboneElement {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'indication':
       case 'indicationX':
         {
           if (child is IndicationXMedicationKnowledgeAdministrationGuidelines) {
@@ -5960,6 +5962,7 @@ class MedicationKnowledgePatientCharacteristics extends BackboneElement {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'characteristic':
       case 'characteristicX':
         {
           if (child
@@ -7511,6 +7514,7 @@ class MedicationKnowledgeDrugCharacteristic extends BackboneElement {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'value':
       case 'valueX':
         {
           if (child is ValueXMedicationKnowledgeDrugCharacteristic) {

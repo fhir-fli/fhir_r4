@@ -206,7 +206,7 @@ class SearchModifierCodeBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   SearchModifierCodeBuilder withElement(ElementBuilder? newElement) {
     return SearchModifierCodeBuilder._(
-        valueString: valueString, element: newElement,);
+        valueString: valueString, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys

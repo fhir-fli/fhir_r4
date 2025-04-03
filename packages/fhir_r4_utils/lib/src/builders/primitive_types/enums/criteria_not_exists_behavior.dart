@@ -110,7 +110,7 @@ class CriteriaNotExistsBehaviorBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   CriteriaNotExistsBehaviorBuilder withElement(ElementBuilder? newElement) {
     return CriteriaNotExistsBehaviorBuilder._(
-        valueString: valueString, element: newElement,);
+        valueString: valueString, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -140,7 +140,7 @@ class CriteriaNotExistsBehaviorBuilder extends FhirCodeEnumBuilder {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for CriteriaNotExistsBehavior: $newValue',);
+          'Invalid input for CriteriaNotExistsBehavior: $newValue');
     }
     return CriteriaNotExistsBehaviorBuilder._(
       valueString: newValue ?? valueString,

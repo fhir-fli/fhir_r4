@@ -146,9 +146,10 @@ class DefinitionResolver {
 
   /// Fetches a [CanonicalResource] of type [T] from [uri].
   Future<T?> fetchResource<T extends CanonicalResource>(String uri) async {
+    print('Fetching resource from $uri');
     final resource = await cache.getCanonicalResource(uri);
     if (resource is T) return resource;
-    print('Resource $uri is not of expected type ${T.runtimeType}');
+    print('Resource $uri is not of expected type $T');
     return null;
   }
 

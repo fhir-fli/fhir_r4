@@ -1079,6 +1079,7 @@ class CommunicationRequestBuilder extends DomainResourceBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'occurrence':
       case 'occurrenceX':
         {
           if (child is OccurrenceXCommunicationRequestBuilder) {
@@ -1520,7 +1521,7 @@ class CommunicationRequestBuilder extends DomainResourceBuilder {
     if (about) this.about = null;
     if (encounter) this.encounter = null;
     if (payload) this.payload = null;
-    if (occurrence) occurrenceX = null;
+    if (occurrence) this.occurrenceX = null;
     if (authoredOn) this.authoredOn = null;
     if (requester) this.requester = null;
     if (recipient) this.recipient = null;
@@ -2116,6 +2117,7 @@ class CommunicationRequestPayloadBuilder extends BackboneElementBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'content':
       case 'contentX':
         {
           if (child is ContentXCommunicationRequestPayloadBuilder) {
@@ -2251,7 +2253,7 @@ class CommunicationRequestPayloadBuilder extends BackboneElementBuilder {
     if (id) this.id = null;
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
-    if (content) contentX = null;
+    if (content) this.contentX = null;
   }
 
   @override

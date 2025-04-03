@@ -153,7 +153,7 @@ class StructureMapTargetListMode extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for StructureMapTargetListMode: $newValue',);
+          'Invalid input for StructureMapTargetListMode: $newValue');
     }
     return StructureMapTargetListMode._(
       valueString: newValue ?? valueString,

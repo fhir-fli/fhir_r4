@@ -1414,6 +1414,7 @@ class Contract extends DomainResource {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'topic':
       case 'topicX':
         {
           if (child is TopicXContract) {
@@ -1596,6 +1597,7 @@ class Contract extends DomainResource {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'legallyBinding':
       case 'legallyBindingX':
         {
           if (child is LegallyBindingXContract) {
@@ -3877,6 +3879,7 @@ class ContractTerm extends BackboneElement {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'topic':
       case 'topicX':
         {
           if (child is TopicXContractTerm) {
@@ -6874,6 +6877,7 @@ class ContractAnswer extends BackboneElement {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'value':
       case 'valueX':
         {
           if (child is ValueXContractAnswer) {
@@ -9678,6 +9682,7 @@ class ContractValuedItem extends BackboneElement {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'entity':
       case 'entityX':
         {
           if (child is EntityXContractValuedItem) {
@@ -11108,6 +11113,7 @@ class ContractAction extends BackboneElement {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'occurrence':
       case 'occurrenceX':
         {
           if (child is OccurrenceXContractAction) {
@@ -12006,7 +12012,7 @@ class ContractSubject extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory ContractSubject.empty() => const ContractSubject(
+  factory ContractSubject.empty() => ContractSubject(
         reference: <Reference>[],
       );
 
@@ -13309,6 +13315,7 @@ class ContractFriendly extends BackboneElement {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'content':
       case 'contentX':
         {
           if (child is ContentXContractFriendly) {
@@ -13793,6 +13800,7 @@ class ContractLegal extends BackboneElement {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'content':
       case 'contentX':
         {
           if (child is ContentXContractLegal) {
@@ -14279,6 +14287,7 @@ class ContractRule extends BackboneElement {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'content':
       case 'contentX':
         {
           if (child is ContentXContractRule) {

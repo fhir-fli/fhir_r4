@@ -106,7 +106,7 @@ class ActionPrecheckBehaviorBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   ActionPrecheckBehaviorBuilder withElement(ElementBuilder? newElement) {
     return ActionPrecheckBehaviorBuilder._(
-        valueString: valueString, element: newElement,);
+        valueString: valueString, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -136,7 +136,7 @@ class ActionPrecheckBehaviorBuilder extends FhirCodeEnumBuilder {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for ActionPrecheckBehavior: $newValue',);
+          'Invalid input for ActionPrecheckBehavior: $newValue');
     }
     return ActionPrecheckBehaviorBuilder._(
       valueString: newValue ?? valueString,

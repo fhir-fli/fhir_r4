@@ -127,7 +127,7 @@ class ConsentDataMeaningBuilder extends FhirCodeEnumBuilder {
   /// Returns the enum value with an element attached
   ConsentDataMeaningBuilder withElement(ElementBuilder? newElement) {
     return ConsentDataMeaningBuilder._(
-        valueString: valueString, element: newElement,);
+        valueString: valueString, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys

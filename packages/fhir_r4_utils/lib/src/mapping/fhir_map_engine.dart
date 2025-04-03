@@ -155,14 +155,14 @@ class FhirMapEngine {
       } else {
         return result.build();
       }
-    } catch (e) {
+    } catch (e, s) {
       return e is FHIRException
-          ? _createOutcome(e.message ?? e.toString())
-          : _createOutcome(e.toString());
+          ? _createOutcome(e.message ?? e.toString(), s.toString())
+          : _createOutcome(e.toString(), s.toString());
     }
   }
 
-  OperationOutcome _createOutcome(String message) {
+  OperationOutcome _createOutcome(String message, String stack) {
     return OperationOutcome(
       issue: [
         OperationOutcomeIssue(
@@ -218,7 +218,6 @@ class FhirMapEngine {
     StructureMapGroup? group,
     bool atRoot,
   ) async {
-    print('$indent Group: ${group?.name}');
     // Resolve and execute extended group first if it exists
     final resolvedGroup = group?.extends_?.toString().isNotEmpty ?? false
         ? _resolveGroupReference(map, group, group!.extends_!.toString())
@@ -265,7 +264,8 @@ class FhirMapEngine {
       indent,
     );
 
-    for (final MappingVariables v in source ?? <MappingVariables>[]) {
+    for (var i = 0; i < (source?.length ?? 0); i++) {
+      final MappingVariables v = source![i];
       for (final target in rule.target ?? <StructureMapTarget>[]) {
         await _processTarget(
           rule.name.toString(),
@@ -277,6 +277,7 @@ class FhirMapEngine {
           rule.source.first.variable?.toString(),
           atRoot,
           vars,
+          i,
         );
       }
       if (rule.rule?.isNotEmpty ?? false) {
@@ -785,10 +786,14 @@ class FhirMapEngine {
         for (final child in children ?? <String>[]) {
           final varBase = vars.get(MappingVariableMode.INPUT, child);
           if (varBase == null) {
-            final childItem = srcBase!.getChildByName(child);
+            final childItem = srcBase!.getChildrenByName(child);
 
-            if (childItem != null) {
-              varsForSource.add(MappingVariableMode.INPUT, child, childItem);
+            if (childItem.length == 1) {
+              varsForSource.add(
+                MappingVariableMode.INPUT,
+                child,
+                childItem.first,
+              );
             }
           }
         }
@@ -832,9 +837,14 @@ class FhirMapEngine {
         for (final child in children ?? <String>[]) {
           final varBase = vars.get(MappingVariableMode.INPUT, child);
           if (varBase == null) {
-            final childItem = srcBase!.getChildByName(child);
-            if (childItem != null) {
-              varsForSource.add(MappingVariableMode.INPUT, child, childItem);
+            final childItem = srcBase!.getChildrenByName(child);
+
+            if (childItem.length == 1) {
+              varsForSource.add(
+                MappingVariableMode.INPUT,
+                child,
+                childItem.first,
+              );
             }
           }
         }
@@ -952,6 +962,7 @@ class FhirMapEngine {
     String? srcVar,
     bool atRoot,
     MappingVariables sharedVars,
+    int index,
   ) async {
     FhirBaseBuilder? dest;
     if (tgt.context != null) {
@@ -960,6 +971,9 @@ class FhirMapEngine {
         throw FHIRException(
           message: 'Rule "$rulePath": target context not known: ${tgt.context}',
         );
+      }
+      if (tgt.element == null) {
+        throw FHIRException(message: 'Rule "$rulePath": Not supported yet');
       }
     }
     FhirBaseBuilder? v;
@@ -980,24 +994,10 @@ class FhirMapEngine {
 
       if (v != null && dest != null) {
         try {
-          if (tgt.element == null) {
-            throw FHIRException(message: 'Element is null');
-          }
-
-          print('dest: ${dest.toJson()}');
-          print('dest type: ${dest.fhirType}');
-          print('dest element: ${tgt.element!.valueString}');
-          print('dest v: ${v.toJson()}');
-          print('v: ${v.fhirType}');
-
-          // print('dest pr: ${dest.toJson()}');
+          v.mappingId =
+              '${group?.name}_${rulePath}_${tgt.element?.valueString}_$index';
+          print('v.mappingId: ${v.mappingId}');
           dest.setChildByName(tgt.element!.valueString!, v);
-
-          sharedVars.add(
-            MappingVariableMode.OUTPUT,
-            tgt.context!.valueString!,
-            dest,
-          );
         } catch (e) {
           throw FHIRException(
             message: 'Error setting ${tgt.element} on ${dest.fhirType} '
@@ -1006,16 +1006,25 @@ class FhirMapEngine {
         }
       }
     } else if (dest != null) {
+      final mappingId =
+          '${group?.name}_${rulePath}_${tgt.element?.valueString}_$index';
+      print('mappingId: $mappingId');
       if (tgt.listMode?.contains(StructureMapTargetListMode.share) ?? false) {
         v = sharedVars.get(
           MappingVariableMode.SHARED,
           tgt.listRuleId?.valueString,
         );
         if (v == null) {
-          final types = dest.typeByElementName(tgt.element!.valueString!);
-          if (types.isNotEmpty) {
-            v = _typeFactory(types.first);
-            dest.setChildByName(tgt.element!.valueString!, v);
+          final elements = dest.getChildrenByName(tgt.element!.valueString!);
+          if (elements.isNotEmpty) {
+            v = elements.firstWhereOrNull((e) => e.mappingId == mappingId);
+          }
+          if (v == null) {
+            final types = dest.typeByElementName(tgt.element!.valueString!);
+            if (types.isNotEmpty) {
+              v = _typeFactory(types.first)..mappingId = mappingId;
+              dest.setChildByName(tgt.element!.valueString!, v);
+            }
           }
           if (tgt.listRuleId != null && v != null) {
             sharedVars.add(
@@ -1025,20 +1034,25 @@ class FhirMapEngine {
             );
           }
         }
-      } else if (tgt.element != null) {
-        final types = dest.typeByElementName(tgt.element!.valueString!);
-        if (types.isNotEmpty) {
-          v = _typeFactory(types.first);
-          dest.setChildByName(tgt.element!.valueString!, v);
-        }
       } else {
-        v = dest;
+        final elements = dest.getChildrenByName(tgt.element!.valueString!);
+        if (elements.isNotEmpty) {
+          v = elements.firstWhereOrNull((e) => e.mappingId == mappingId);
+        }
+        if (v == null) {
+          final types = dest.typeByElementName(tgt.element!.valueString!);
+          if (types.isNotEmpty) {
+            v = _typeFactory(types.first)..mappingId = mappingId;
+            dest.setChildByName(tgt.element!.valueString!, v);
+          }
+        }
       }
     }
 
     if (tgt.variable != null && v != null) {
       vars.add(MappingVariableMode.OUTPUT, tgt.variable!.valueString!, v);
     }
+    print(vars.summary());
   }
 
   Future<FhirBaseBuilder?> _runTransform(
@@ -1512,7 +1526,7 @@ class FhirMapEngine {
 
         case 'cc':
           {
-            if (tgt.parameter?.length != 2) {
+            if ((tgt.parameter?.length ?? 0) < 2) {
               throw FHIRException(
                 message: 'cc transform requires two parameters',
               );
@@ -1530,7 +1544,7 @@ class FhirMapEngine {
 
         case 'c':
           {
-            if (tgt.parameter?.length != 2) {
+            if ((tgt.parameter?.length ?? 0) < 2) {
               throw FHIRException(
                 message: 'c transform requires two parameters',
               );
@@ -1599,36 +1613,40 @@ class FhirMapEngine {
       system = null;
     } else {
       final ValueSet? vs = await resolver.fetchResource<ValueSet>(uri);
-      final ValueSetExpansionOutcome vse = resolver.expandVS(vs);
-      if (vse.error != null) {
-        throw FHIRException(message: vse.error);
-      }
-      final List<ValueSetContains>? expanded =
-          vse.valueSet?.expansion?.contains;
-      bool found = false;
-      for (final ValueSetContains t in expanded ?? <ValueSetContains>[]) {
-        if (t.code?.valueString != null) {
-          if (t.code!.valueString == code) {
-            system = t.system?.toString();
-            version = t.version?.toString();
-            display = t.display?.toString();
-            found = true;
-            break;
-          } else if (code.toLowerCase() ==
-              (t.display?.valueString ?? '').toLowerCase()) {
-            system = t.system?.toString();
-            version = t.version?.toString();
-            display = t.display?.toString();
-            found = true;
-            break;
+      if (vs != null) {
+        final ValueSetExpansionOutcome vse = resolver.expandVS(vs);
+        if (vse.error != null) {
+          throw FHIRException(message: vse.error);
+        }
+        final List<ValueSetContains>? expanded =
+            vse.valueSet?.expansion?.contains;
+        bool found = false;
+        for (final ValueSetContains t in expanded ?? <ValueSetContains>[]) {
+          if (t.code?.valueString != null) {
+            if (t.code!.valueString == code) {
+              system = t.system?.toString();
+              version = t.version?.toString();
+              display = t.display?.toString();
+              found = true;
+              break;
+            } else if (code.toLowerCase() ==
+                (t.display?.valueString ?? '').toLowerCase()) {
+              system = t.system?.toString();
+              version = t.version?.toString();
+              display = t.display?.toString();
+              found = true;
+              break;
+            }
           }
         }
-      }
-      if (!found) {
-        throw FHIRException(
-          message: 'The code "$code" is not in the value set '
-              '"$uri" (also checked displays)',
-        );
+        if (!found) {
+          throw FHIRException(
+            message: 'The code "$code" is not in the value set '
+                '"$uri" (also checked displays)',
+          );
+        }
+      } else {
+        system ??= uri;
       }
     }
     final ValidationResult? vr = resolver.validateCode(

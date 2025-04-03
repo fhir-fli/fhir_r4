@@ -258,7 +258,7 @@ class SubscriptionSearchModifier extends FhirCodeEnum {
   }) {
     if (newValue is! String?) {
       throw ArgumentError(
-          'Invalid input for SubscriptionSearchModifier: $newValue',);
+          'Invalid input for SubscriptionSearchModifier: $newValue');
     }
     return SubscriptionSearchModifier._(
       valueString: newValue ?? valueString,

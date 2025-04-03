@@ -1129,6 +1129,7 @@ class TimingRepeat extends Element {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'bounds':
       case 'boundsX':
         {
           if (child is BoundsXTimingRepeat) {

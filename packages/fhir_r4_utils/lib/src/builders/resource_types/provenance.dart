@@ -655,6 +655,7 @@ class ProvenanceBuilder extends DomainResourceBuilder {
           }
           throw Exception('Invalid child type for $childName');
         }
+      case 'occurred':
       case 'occurredX':
         {
           if (child is OccurredXProvenanceBuilder) {
@@ -1033,7 +1034,7 @@ class ProvenanceBuilder extends DomainResourceBuilder {
     if (extension_) this.extension_ = null;
     if (modifierExtension) this.modifierExtension = null;
     if (target) this.target = null;
-    if (occurred) occurredX = null;
+    if (occurred) this.occurredX = null;
     if (recorded) this.recorded = null;
     if (policy) this.policy = null;
     if (location) this.location = null;
