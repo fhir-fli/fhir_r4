@@ -11,4 +11,5 @@ build/
 # melos does NOT want pubspec.lock files to be ignored
 *pubspec_overrides.yaml
 
-*.ndjson
+./packages/fhir_r4/*ndjson
+./packages/fhir_r4_db/*ndjson
