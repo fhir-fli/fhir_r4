@@ -80,15 +80,15 @@ class TLeft11 extends Element {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{'resourceType': 'TLeft'};
-    if (id != null) json['id'] = id!.value;
+    if (id != null) json['id'] = id!.valueString;
     if (extension_ != null) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
     if (e != null) {
-      json['e'] = e!.map((e) => e.value).toList();
+      json['e'] = e!.map((e) => e.valueString).toList();
     }
     if (f != null) {
-      json['f'] = f!.value;
+      json['f'] = f!.valueString;
     }
     return json;
   }

@@ -67,12 +67,12 @@ class TLeft2 extends Element {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) json['id'] = id!.value;
+    if (id != null) json['id'] = id!.valueString;
     if (extension_ != null) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
     if (a1 != null) {
-      json['a1'] = a1!.value;
+      json['a1'] = a1!.valueString;
     }
     return json;
   }

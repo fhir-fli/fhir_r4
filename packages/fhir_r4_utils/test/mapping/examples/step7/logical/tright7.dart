@@ -57,7 +57,7 @@ class TRight7 extends Element {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{'resourceType': 'TRight'};
-    if (id != null) json['id'] = id!.value;
+    if (id != null) json['id'] = id!.valueString;
     if (extension_ != null) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -227,11 +227,11 @@ class TRight7Aa extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) json['id'] = id!.value;
+    if (id != null) json['id'] = id!.valueString;
     if (extension_ != null) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
-    if (ab != null) json['ab'] = ab!.value;
+    if (ab != null) json['ab'] = ab!.valueString;
     return json;
   }
 
@@ -559,7 +559,7 @@ class TRight7Builder extends ElementBuilder {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{'resourceType': 'TRight'};
-    if (id != null) json['id'] = id!.value;
+    if (id != null) json['id'] = id!.valueString;
     if (extension_ != null) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -819,7 +819,7 @@ class TRight7AaBuilder extends BackboneElementBuilder {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) json['id'] = id!.value;
+    if (id != null) json['id'] = id!.valueString;
     if (extension_ != null) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -827,7 +827,7 @@ class TRight7AaBuilder extends BackboneElementBuilder {
       json['modifierExtension'] =
           modifierExtension!.map((e) => e.toJson()).toList();
     }
-    if (ab != null) json['ab'] = ab!.value;
+    if (ab != null) json['ab'] = ab!.valueString;
     return json;
   }
 

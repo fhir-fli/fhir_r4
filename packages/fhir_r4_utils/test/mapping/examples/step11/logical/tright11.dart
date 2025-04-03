@@ -80,7 +80,7 @@ class TRight11 extends Element {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{'resourceType': 'TRight'};
-    if (id != null) json['id'] = id!.value;
+    if (id != null) json['id'] = id!.valueString;
     if (extension_ != null) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -207,12 +207,12 @@ class TRight11e extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) json['id'] = id!.value;
+    if (id != null) json['id'] = id!.valueString;
     if (extension_ != null) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
-    if (f != null) json['f'] = f!.value;
-    if (g != null) json['g'] = g!.value;
+    if (f != null) json['f'] = f!.valueString;
+    if (g != null) json['g'] = g!.valueString;
     return json;
   }
 

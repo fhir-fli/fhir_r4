@@ -67,11 +67,11 @@ class TRight15 extends Element {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{'resourceType': 'TRight'};
-    if (id != null) json['id'] = id!.value;
+    if (id != null) json['id'] = id!.valueString;
     if (extension_ != null) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
-    if (c != null) json['c'] = c!.map((e) => e.value).toList();
+    if (c != null) json['c'] = c!.map((e) => e.valueString).toList();
     return json;
   }
 
