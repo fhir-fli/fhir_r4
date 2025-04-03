@@ -153,6 +153,7 @@ class FhirMapEngine {
       if (result == null) {
         throw FHIRException(message: 'No output found');
       } else {
+        print('result: ${result.toJson()}');
         return result.build();
       }
     } catch (e, s) {
@@ -163,6 +164,7 @@ class FhirMapEngine {
   }
 
   OperationOutcome _createOutcome(String message, String stack) {
+    print(stack);
     return OperationOutcome(
       issue: [
         OperationOutcomeIssue(
@@ -218,6 +220,7 @@ class FhirMapEngine {
     StructureMapGroup? group,
     bool atRoot,
   ) async {
+    print('$indent Group: ${group?.name}');
     // Resolve and execute extended group first if it exists
     final resolvedGroup = group?.extends_?.toString().isNotEmpty ?? false
         ? _resolveGroupReference(map, group, group!.extends_!.toString())
@@ -264,8 +267,7 @@ class FhirMapEngine {
       indent,
     );
 
-    for (var i = 0; i < (source?.length ?? 0); i++) {
-      final MappingVariables v = source![i];
+    for (final MappingVariables v in source ?? <MappingVariables>[]) {
       for (final target in rule.target ?? <StructureMapTarget>[]) {
         await _processTarget(
           rule.name.toString(),
@@ -277,7 +279,6 @@ class FhirMapEngine {
           rule.source.first.variable?.toString(),
           atRoot,
           vars,
-          i,
         );
       }
       if (rule.rule?.isNotEmpty ?? false) {
@@ -962,7 +963,6 @@ class FhirMapEngine {
     String? srcVar,
     bool atRoot,
     MappingVariables sharedVars,
-    int index,
   ) async {
     FhirBaseBuilder? dest;
     if (tgt.context != null) {
@@ -994,9 +994,6 @@ class FhirMapEngine {
 
       if (v != null && dest != null) {
         try {
-          v.mappingId =
-              '${group?.name}_${rulePath}_${tgt.element?.valueString}_$index';
-          print('v.mappingId: ${v.mappingId}');
           dest.setChildByName(tgt.element!.valueString!, v);
         } catch (e) {
           throw FHIRException(
@@ -1006,26 +1003,26 @@ class FhirMapEngine {
         }
       }
     } else if (dest != null) {
-      final mappingId =
-          '${group?.name}_${rulePath}_${tgt.element?.valueString}_$index';
-      print('mappingId: $mappingId');
+      print('sharedVars: ${sharedVars.summary()}');
+      print('vars: ${vars.summary()}');
+      print('dest: ${dest.toJson()}');
       if (tgt.listMode?.contains(StructureMapTargetListMode.share) ?? false) {
+        print('sharedVars1: ${sharedVars.summary()}');
+        print('vars1: ${vars.summary()}');
+        print('dest1: ${dest.toJson()}');
         v = sharedVars.get(
           MappingVariableMode.SHARED,
           tgt.listRuleId?.valueString,
         );
         if (v == null) {
-          final elements = dest.getChildrenByName(tgt.element!.valueString!);
-          if (elements.isNotEmpty) {
-            v = elements.firstWhereOrNull((e) => e.mappingId == mappingId);
+          final types = dest.typeByElementName(tgt.element!.valueString!);
+          if (types.isNotEmpty) {
+            v = _typeFactory(types.first);
+            dest.setChildByName(tgt.element!.valueString!, v);
           }
-          if (v == null) {
-            final types = dest.typeByElementName(tgt.element!.valueString!);
-            if (types.isNotEmpty) {
-              v = _typeFactory(types.first)..mappingId = mappingId;
-              dest.setChildByName(tgt.element!.valueString!, v);
-            }
-          }
+          print('sharedVars2: ${sharedVars.summary()}');
+          print('vars2: ${vars.summary()}');
+          print('dest2: ${dest.toJson()}');
           if (tgt.listRuleId != null && v != null) {
             sharedVars.add(
               MappingVariableMode.SHARED,
@@ -1033,26 +1030,28 @@ class FhirMapEngine {
               v,
             );
           }
+          print('sharedVars3: ${sharedVars.summary()}');
+          print('vars3: ${vars.summary()}');
+          print('dest3: ${dest.toJson()}');
         }
       } else {
-        final elements = dest.getChildrenByName(tgt.element!.valueString!);
-        if (elements.isNotEmpty) {
-          v = elements.firstWhereOrNull((e) => e.mappingId == mappingId);
+        final types = dest.typeByElementName(tgt.element!.valueString!);
+        if (types.isNotEmpty) {
+          v = _typeFactory(types.first);
+          dest.setChildByName(tgt.element!.valueString!, v);
         }
-        if (v == null) {
-          final types = dest.typeByElementName(tgt.element!.valueString!);
-          if (types.isNotEmpty) {
-            v = _typeFactory(types.first)..mappingId = mappingId;
-            dest.setChildByName(tgt.element!.valueString!, v);
-          }
-        }
+        print('sharedVars4: ${sharedVars.summary()}');
+        print('vars4: ${vars.summary()}');
+        print('dest4: ${dest.toJson()}');
       }
     }
 
     if (tgt.variable != null && v != null) {
       vars.add(MappingVariableMode.OUTPUT, tgt.variable!.valueString!, v);
     }
-    print(vars.summary());
+    print('sharedVars: ${sharedVars.summary()}');
+    print('vars: ${vars.summary()}');
+    print('dest: ${dest?.toJson()}');
   }
 
   Future<FhirBaseBuilder?> _runTransform(
@@ -1526,6 +1525,7 @@ class FhirMapEngine {
 
         case 'cc':
           {
+            print(tgt.parameter);
             if ((tgt.parameter?.length ?? 0) < 2) {
               throw FHIRException(
                 message: 'cc transform requires two parameters',
