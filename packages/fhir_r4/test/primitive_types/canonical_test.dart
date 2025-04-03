@@ -6,7 +6,7 @@ void canonicalTest() {
     test('Valid Canonical URI', () {
       const validCanonicalString = 'http://example.com/Patient/123';
       final canonical = FhirCanonical(validCanonicalString);
-      expect(canonical.value, equals(Uri.parse(validCanonicalString)));
+      expect(canonical.valueUri, equals(Uri.parse(validCanonicalString)));
       expect(canonical.toJson(), equals({'value': validCanonicalString}));
       expect(canonical.toYaml(), equals('value: "$validCanonicalString"'));
       expect(canonical.toString(), equals(validCanonicalString));
@@ -15,7 +15,7 @@ void canonicalTest() {
     test('Valid Relative Canonical URI', () {
       const relativeCanonicalString = 'Patient/123';
       final canonical = FhirCanonical(relativeCanonicalString);
-      expect(canonical.value, equals(Uri.parse(relativeCanonicalString)));
+      expect(canonical.valueUri, equals(Uri.parse(relativeCanonicalString)));
       expect(canonical.toJson(), equals({'value': relativeCanonicalString}));
       expect(canonical.toYaml(), equals('value: $relativeCanonicalString'));
       expect(canonical.toString(), equals(relativeCanonicalString));
@@ -25,7 +25,7 @@ void canonicalTest() {
       const validCanonicalString = 'http://example.com/Patient/123';
       final canonical = FhirCanonical.tryParse(validCanonicalString);
       expect(canonical, isNotNull);
-      expect(canonical!.value, equals(Uri.parse(validCanonicalString)));
+      expect(canonical!.valueUri, equals(Uri.parse(validCanonicalString)));
     });
 
     test('TryParse - Non-String Input', () {
@@ -37,7 +37,7 @@ void canonicalTest() {
       final canonical =
           FhirCanonical.fromJson({'value': 'http://example.com/Patient/123'});
       expect(
-        canonical.value,
+        canonical.valueUri,
         equals(Uri.parse('http://example.com/Patient/123')),
       );
     });
@@ -53,7 +53,7 @@ void canonicalTest() {
       const validYamlString = 'http://example.com/Patient/123';
       final canonical =
           FhirCanonical.fromYaml('value: "http://example.com/Patient/123"');
-      expect(canonical.value, equals(Uri.parse(validYamlString)));
+      expect(canonical.valueUri, equals(Uri.parse(validYamlString)));
     });
 
     test('Equality - FhirCanonical', () {
@@ -90,14 +90,14 @@ void canonicalTest() {
       final canonical = FhirCanonical(validCanonicalString);
       final clonedCanonical = canonical.clone();
       expect(clonedCanonical, equals(canonical));
-      expect(clonedCanonical.value, equals(Uri.parse(validCanonicalString)));
+      expect(clonedCanonical.valueUri, equals(Uri.parse(validCanonicalString)));
     });
 
     test('CopyWith - No New Value', () {
       const validCanonicalString = 'http://example.com/Patient/123';
       final canonical = FhirCanonical(validCanonicalString);
       final copiedCanonical = canonical.copyWith();
-      expect(copiedCanonical.value, equals(canonical.value));
+      expect(copiedCanonical.valueUri, equals(canonical.valueUri));
     });
 
     test('CopyWith - New Value', () {
@@ -107,7 +107,7 @@ void canonicalTest() {
       final copiedCanonical = canonical.copyWith(
         newValue: Uri.parse(newCanonicalString),
       );
-      expect(copiedCanonical.value, equals(Uri.parse(newCanonicalString)));
+      expect(copiedCanonical.valueUri, equals(Uri.parse(newCanonicalString)));
     });
 
     test('Path Segments', () {

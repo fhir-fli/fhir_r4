@@ -76,7 +76,7 @@ void xhtmlTest() {
     test('FhirXhtml with valid style attribute', () {
       final fhirXhtml = FhirXhtml(validStyleXhtml);
       expect(
-        normalizeWhitespace(fhirXhtml.value!),
+        normalizeWhitespace(fhirXhtml.valueString!),
         equals(normalizeWhitespace(validStyleXhtml)),
       );
     });
@@ -85,7 +85,7 @@ void xhtmlTest() {
     test('FhirXhtml fromJson with valid XHTML', () {
       final fhirXhtml = FhirXhtml.fromJson({'value': jsonXhtml});
       expect(
-        normalizeWhitespace(fhirXhtml.value!),
+        normalizeWhitespace(fhirXhtml.valueString!),
         equals(normalizeWhitespace(jsonXhtml)),
       );
       expect(
@@ -109,7 +109,7 @@ void xhtmlTest() {
         equals(normalizeWhitespace(expectedXhtml)),
       );
       expect(
-        normalizeWhitespace(fhirXhtml.value!),
+        normalizeWhitespace(fhirXhtml.valueString!),
         equals(normalizeWhitespace(expectedXhtml)),
       );
       expect(
@@ -122,7 +122,7 @@ void xhtmlTest() {
     test('FhirXhtml tryParse with valid XHTML', () {
       final fhirXhtml = FhirXhtml.tryParse(validXhtml);
       expect(
-        normalizeWhitespace(fhirXhtml?.value ?? ''),
+        normalizeWhitespace(fhirXhtml?.valueString ?? ''),
         equals(normalizeWhitespace(validXhtml)),
       );
     });
@@ -161,7 +161,7 @@ void xhtmlTest() {
     test('FhirXhtml clone', () {
       final originalXhtml = FhirXhtml(validXhtml);
       final clonedXhtml = originalXhtml.clone();
-      expect(clonedXhtml.value, equals(validXhtml));
+      expect(clonedXhtml.valueString, equals(validXhtml));
       expect(clonedXhtml == originalXhtml, isTrue);
       expect(clonedXhtml.hashCode, equals(originalXhtml.hashCode));
     });
@@ -169,14 +169,14 @@ void xhtmlTest() {
     test('FhirXhtml copyWith new value', () {
       final originalXhtml = FhirXhtml(validXhtml);
       final copiedXhtml = originalXhtml.copyWith(newValue: jsonXhtml);
-      expect(copiedXhtml.value, equals(jsonXhtml));
-      expect(originalXhtml.value, equals(validXhtml));
+      expect(copiedXhtml.valueString, equals(jsonXhtml));
+      expect(originalXhtml.valueString, equals(validXhtml));
     });
 
     test('FhirXhtml with valid style attribute', () {
       final fhirXhtml = FhirXhtml(validStyleXhtml);
       expect(
-        normalizeWhitespace(fhirXhtml.value!), // Normalize whitespace
+        normalizeWhitespace(fhirXhtml.valueString!), // Normalize whitespace
         equals(normalizeWhitespace(validStyleXhtml)),
       );
     });

@@ -10,14 +10,14 @@ void unsignedIntTest() {
     // Basic FhirUnsignedInt creation and validation
     test('FhirUnsignedInt from int value', () {
       final fhirInteger = FhirUnsignedInt(validInteger);
-      expect(fhirInteger.value, equals(validInteger));
+      expect(fhirInteger.valueInt, equals(validInteger));
       expect(fhirInteger.toString(), equals(validInteger.toString()));
       expect(fhirInteger.toJson()['value'], equals(validInteger));
     });
 
     test('FhirUnsignedInt fromJson with valid number', () {
       final fhirInteger = FhirUnsignedInt.fromJson({'value': 456});
-      expect(fhirInteger.value, equals(456));
+      expect(fhirInteger.valueInt, equals(456));
       expect(fhirInteger.toJson()['value'], equals(456));
     });
 
@@ -31,7 +31,7 @@ void unsignedIntTest() {
 
     test('FhirUnsignedInt fromYaml with valid YAML', () {
       final fhirInteger = FhirUnsignedInt.fromYaml('value: 789');
-      expect(fhirInteger.value, equals(789));
+      expect(fhirInteger.valueInt, equals(789));
       expect(fhirInteger.toJson()['value'], equals(789));
     });
 
@@ -40,42 +40,42 @@ void unsignedIntTest() {
       final fhirInteger1 = FhirUnsignedInt(validInteger);
       final fhirInteger2 = FhirUnsignedInt(otherInteger);
       final result = (fhirInteger1 + fhirInteger2)! as FhirInteger;
-      expect(result.value, equals(validInteger + otherInteger));
+      expect(result.valueInt, equals(validInteger + otherInteger));
     });
 
     test('FhirUnsignedInt subtraction', () {
       final fhirInteger1 = FhirUnsignedInt(validInteger);
       final fhirInteger2 = FhirUnsignedInt(otherInteger);
       final result = (fhirInteger1 - fhirInteger2)! as FhirInteger;
-      expect(result.value, equals(validInteger - otherInteger));
+      expect(result.valueInt, equals(validInteger - otherInteger));
     });
 
     test('FhirUnsignedInt multiplication', () {
       final fhirInteger1 = FhirUnsignedInt(validInteger);
       final fhirInteger2 = FhirUnsignedInt(otherInteger);
       final result = (fhirInteger1 * fhirInteger2)! as FhirInteger;
-      expect(result.value, equals(validInteger * otherInteger));
+      expect(result.valueInt, equals(validInteger * otherInteger));
     });
 
     test('FhirUnsignedInt division', () {
       final fhirInteger1 = FhirUnsignedInt(validInteger);
       final fhirInteger2 = FhirUnsignedInt(otherInteger);
       final result = (fhirInteger1 ~/ fhirInteger2)! as FhirInteger;
-      expect(result.value, equals(validInteger ~/ otherInteger));
+      expect(result.valueInt, equals(validInteger ~/ otherInteger));
     });
 
     test('FhirUnsignedInt modulus', () {
       final fhirInteger1 = FhirUnsignedInt(validInteger);
       final fhirInteger2 = FhirUnsignedInt(otherInteger);
       final result = (fhirInteger1 % fhirInteger2)! as FhirInteger;
-      expect(result.value, equals(validInteger % otherInteger));
+      expect(result.valueInt, equals(validInteger % otherInteger));
     });
 
     // Numeric methods inherited from FhirNumber
     test('FhirUnsignedInt absolute value', () {
       expect(
         () => FhirUnsignedInt(-validInteger),
-        throwsA(isA<FormatException>()),
+        throwsA(isA<ArgumentError>()),
       );
     });
 
@@ -108,7 +108,7 @@ void unsignedIntTest() {
     test('FhirUnsignedInt clone', () {
       final originalInteger = FhirUnsignedInt(validInteger);
       final clonedInteger = originalInteger.clone();
-      expect(clonedInteger.value, equals(validInteger));
+      expect(clonedInteger.valueInt, equals(validInteger));
       expect(clonedInteger == originalInteger, isTrue);
       expect(clonedInteger.hashCode, equals(originalInteger.hashCode));
     });
@@ -116,8 +116,8 @@ void unsignedIntTest() {
     test('FhirUnsignedInt copyWith new value', () {
       final originalInteger = FhirUnsignedInt(validInteger);
       final copiedInteger = originalInteger.copyWith(newValue: 678);
-      expect(copiedInteger.value, equals(678));
-      expect(originalInteger.value, equals(validInteger));
+      expect(copiedInteger.valueInt, equals(678));
+      expect(originalInteger.valueInt, equals(validInteger));
     });
 
     test('FhirUnsignedInt with Element', () {

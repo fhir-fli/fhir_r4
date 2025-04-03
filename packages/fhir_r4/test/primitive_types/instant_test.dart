@@ -25,7 +25,7 @@ void instantTest() {
   test('Valid FhirInstant String', () {
     final fhirInstant = FhirInstant.fromString('2023-12-22T12:34:56.789Z');
 
-    expect(fhirInstant.value, isA<String>());
+    expect(fhirInstant.valueString, isA<String>());
     expect(fhirInstant.year, 2023);
     expect(fhirInstant.month, 12);
     expect(fhirInstant.day, 22);

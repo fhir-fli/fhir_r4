@@ -11,14 +11,14 @@ void decimalTest() {
     // Basic FhirDecimal creation and validation
     test('FhirDecimal from double value', () {
       final fhirDecimal = FhirDecimal(validDecimal);
-      expect(fhirDecimal.value, equals(validDecimal));
+      expect(fhirDecimal.valueDouble, equals(validDecimal));
       expect(fhirDecimal.toString(), equals(validDecimal.toString()));
       expect(fhirDecimal.toJson()['value'], equals(validDecimal));
     });
 
     test('FhirDecimal from int value', () {
       final fhirDecimal = FhirDecimal(validInteger);
-      expect(fhirDecimal.value, equals(validInteger.toDouble()));
+      expect(fhirDecimal.valueDouble, equals(validInteger.toDouble()));
       expect(fhirDecimal.toString(), equals(validInteger.toString()));
       expect(fhirDecimal.toJson()['value'], equals(validInteger));
     });
@@ -26,14 +26,14 @@ void decimalTest() {
     test('FhirDecimal from FhirInteger', () {
       final fhirInteger = FhirInteger(validInteger);
       final fhirDecimal = FhirDecimal.fromFhirInteger(fhirInteger);
-      expect(fhirDecimal.value, equals(validInteger.toDouble()));
+      expect(fhirDecimal.valueDouble, equals(validInteger.toDouble()));
       expect(fhirDecimal.toString(), equals(validInteger.toString()));
       expect(fhirDecimal.toJson()['value'], equals(validInteger));
     });
 
     test('FhirDecimal fromJson with valid number', () {
       final fhirDecimal = FhirDecimal.fromJson({'value': 67.89});
-      expect(fhirDecimal.value, equals(67.89));
+      expect(fhirDecimal.valueDouble, equals(67.89));
       expect(fhirDecimal.toJson()['value'], equals(67.89));
     });
 
@@ -46,7 +46,7 @@ void decimalTest() {
 
     test('FhirDecimal fromYaml with valid YAML', () {
       final fhirDecimal = FhirDecimal.fromYaml('value: 200.50');
-      expect(fhirDecimal.value, equals(200.50));
+      expect(fhirDecimal.valueDouble, equals(200.50));
       expect(fhirDecimal.toJson()['value'], equals(200.50));
     });
 
@@ -55,35 +55,35 @@ void decimalTest() {
       final fhirDecimal1 = FhirDecimal(validDecimal);
       final fhirDecimal2 = FhirDecimal(otherDecimal);
       final result = fhirDecimal1 + fhirDecimal2 as FhirDecimal?;
-      expect(result?.value, equals(validDecimal + otherDecimal));
+      expect(result?.valueDouble, equals(validDecimal + otherDecimal));
     });
 
     test('FhirDecimal subtraction', () {
       final fhirDecimal1 = FhirDecimal(validDecimal);
       final fhirDecimal2 = FhirDecimal(otherDecimal);
       final result = fhirDecimal1 - fhirDecimal2 as FhirDecimal?;
-      expect(result?.value, equals(validDecimal - otherDecimal));
+      expect(result?.valueDouble, equals(validDecimal - otherDecimal));
     });
 
     test('FhirDecimal multiplication', () {
       final fhirDecimal1 = FhirDecimal(validDecimal);
       final fhirDecimal2 = FhirDecimal(otherDecimal);
       final result = (fhirDecimal1 * fhirDecimal2)! as FhirDecimal;
-      expect(result.value, equals(validDecimal * otherDecimal));
+      expect(result.valueDouble, equals(validDecimal * otherDecimal));
     });
 
     test('FhirDecimal division', () {
       final fhirDecimal1 = FhirDecimal(validDecimal);
       final fhirDecimal2 = FhirDecimal(otherDecimal);
       final result = (fhirDecimal1 / fhirDecimal2)! as FhirDecimal;
-      expect(result.value, equals(validDecimal / otherDecimal));
+      expect(result.valueDouble, equals(validDecimal / otherDecimal));
     });
 
     test('FhirDecimal modulus', () {
       final fhirDecimal1 = FhirDecimal(validDecimal);
       final fhirDecimal2 = FhirDecimal(otherDecimal);
       final result = (fhirDecimal1 % fhirDecimal2)! as FhirDecimal;
-      expect(result.value, equals(validDecimal % otherDecimal));
+      expect(result.valueDouble, equals(validDecimal % otherDecimal));
     });
 
     // Numeric methods inherited from FhirNumber
@@ -131,7 +131,7 @@ void decimalTest() {
     test('FhirDecimal clone', () {
       final originalDecimal = FhirDecimal(validDecimal);
       final clonedDecimal = originalDecimal.clone();
-      expect(clonedDecimal.value, equals(validDecimal));
+      expect(clonedDecimal.valueDouble, equals(validDecimal));
       expect(clonedDecimal == originalDecimal, isTrue);
       expect(clonedDecimal.hashCode, equals(originalDecimal.hashCode));
     });
@@ -139,8 +139,8 @@ void decimalTest() {
     test('FhirDecimal copyWith new value', () {
       final originalDecimal = FhirDecimal(validDecimal);
       final copiedDecimal = originalDecimal.copyWith(newValue: 678.90);
-      expect(copiedDecimal.value, equals(678.90));
-      expect(originalDecimal.value, equals(validDecimal));
+      expect(copiedDecimal.valueDouble, equals(678.90));
+      expect(originalDecimal.valueDouble, equals(validDecimal));
     });
 
     test('FhirDecimal with Element', () {

@@ -14,7 +14,7 @@ void oidTest() {
         FhirOid('urn:oid:1.2.3.4').toJson()['value'],
         'urn:oid:1.2.3.4',
       );
-      expect(FhirOid('urn:oid:1.2.3.4').value, 'urn:oid:1.2.3.4');
+      expect(FhirOid('urn:oid:1.2.3.4').valueString, 'urn:oid:1.2.3.4');
       expect(
         FhirOid('urn:oid:2.999.9999').toString(),
         'urn:oid:2.999.9999',
@@ -24,7 +24,7 @@ void oidTest() {
         'urn:oid:2.999.9999',
       );
       expect(
-        FhirOid('urn:oid:2.999.9999').value,
+        FhirOid('urn:oid:2.999.9999').valueString,
         'urn:oid:2.999.9999',
       );
       expect(FhirOid('urn:oid:0.1').toString(), 'urn:oid:0.1');
@@ -40,7 +40,7 @@ void oidTest() {
 
     test('Valid FhirOid from String', () {
       final fhirOid = FhirOid(validOid);
-      expect(fhirOid.value, equals(validOid));
+      expect(fhirOid.valueString, equals(validOid));
       expect(fhirOid.toString(), equals(validOid));
       expect(fhirOid.toJson()['value'], equals(validOid));
     });
@@ -51,7 +51,7 @@ void oidTest() {
 
     test('FhirOid tryParse with valid String', () {
       final fhirOid = FhirOid.tryParse(validOid);
-      expect(fhirOid?.value, equals(validOid));
+      expect(fhirOid?.valueString, equals(validOid));
       expect(fhirOid?.toString(), equals(validOid));
       expect(fhirOid?.toJson()['value'], equals(validOid));
     });
@@ -63,7 +63,7 @@ void oidTest() {
 
     test('FhirOid fromJson with valid String', () {
       final fhirOid = FhirOid.fromJson({'value': jsonOid});
-      expect(fhirOid.value, equals(jsonOid));
+      expect(fhirOid.valueString, equals(jsonOid));
       expect(fhirOid.toJson()['value'], equals(jsonOid));
     });
 
@@ -78,7 +78,7 @@ void oidTest() {
 
     test('FhirOid fromYaml with valid YAML', () {
       final fhirOid = FhirOid.fromYaml('value: $yamlOid');
-      expect(fhirOid.value, equals(yamlOid));
+      expect(fhirOid.valueString, equals(yamlOid));
       expect(fhirOid.toJson()['value'], equals(yamlOid));
     });
 
@@ -104,7 +104,7 @@ void oidTest() {
     test('FhirOid clone', () {
       final originalOid = FhirOid(validOid);
       final clonedOid = originalOid.clone();
-      expect(clonedOid.value, equals(validOid));
+      expect(clonedOid.valueString, equals(validOid));
       expect(clonedOid == originalOid, isTrue);
       expect(clonedOid.hashCode, equals(originalOid.hashCode));
     });

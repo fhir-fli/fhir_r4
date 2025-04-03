@@ -14,7 +14,7 @@ void markdownTest() {
         FhirMarkdown('Patient/123456').toJson()['value'],
         'Patient/123456',
       );
-      expect(FhirMarkdown('Patient/123456').value, 'Patient/123456');
+      expect(FhirMarkdown('Patient/123456').valueString, 'Patient/123456');
       expect(
         FhirMarkdown('http://Patient.com/123456').toString(),
         'http://Patient.com/123456',
@@ -24,7 +24,7 @@ void markdownTest() {
         'http://Patient.com/123456',
       );
       expect(
-        FhirMarkdown('http://Patient.com/123456').value,
+        FhirMarkdown('http://Patient.com/123456').valueString,
         'http://Patient.com/123456',
       );
       expect(FhirMarkdown('___').toString(), '___');
@@ -40,7 +40,7 @@ void markdownTest() {
 
     test('Valid FhirMarkdown from String', () {
       final fhirMarkdown = FhirMarkdown(validCode);
-      expect(fhirMarkdown.value, equals(validCode));
+      expect(fhirMarkdown.valueString, equals(validCode));
       expect(fhirMarkdown.toString(), equals(validCode));
       expect(fhirMarkdown.toJson()['value'], equals(validCode));
       expect(FhirMarkdown(validCode2).toJson()['value'], equals(validCode2));
@@ -48,19 +48,19 @@ void markdownTest() {
 
     test('FhirMarkdown tryParse with valid String', () {
       final fhirMarkdown = FhirMarkdown.tryParse(validCode);
-      expect(fhirMarkdown?.value, equals(validCode));
+      expect(fhirMarkdown?.valueString, equals(validCode));
       expect(fhirMarkdown?.toString(), equals(validCode));
       expect(fhirMarkdown?.toJson()['value'], equals(validCode));
 
       final fhirMarkdown2 = FhirMarkdown.tryParse(validCode2);
-      expect(fhirMarkdown2?.value, equals(validCode2));
+      expect(fhirMarkdown2?.valueString, equals(validCode2));
       expect(fhirMarkdown2?.toString(), equals(validCode2));
       expect(fhirMarkdown2?.toJson()['value'], equals(validCode2));
     });
 
     test('FhirMarkdown fromJson with valid String', () {
       final fhirMarkdown = FhirMarkdown.fromJson({'value': jsonCode});
-      expect(fhirMarkdown.value, equals(jsonCode));
+      expect(fhirMarkdown.valueString, equals(jsonCode));
       expect(fhirMarkdown.toJson()['value'], equals(jsonCode));
     });
 
@@ -73,7 +73,7 @@ void markdownTest() {
 
     test('FhirMarkdown fromYaml with valid YAML', () {
       final fhirMarkdown = FhirMarkdown.fromYaml('value: $yamlCode');
-      expect(fhirMarkdown.value, equals(yamlCode));
+      expect(fhirMarkdown.valueString, equals(yamlCode));
       expect(fhirMarkdown.toJson()['value'], equals(yamlCode));
     });
 
@@ -99,7 +99,7 @@ void markdownTest() {
     test('FhirMarkdown clone', () {
       final originalCode = FhirMarkdown(validCode);
       final clonedCode = originalCode.clone();
-      expect(clonedCode.value, equals(validCode));
+      expect(clonedCode.valueString, equals(validCode));
       expect(clonedCode == originalCode, isTrue);
       expect(clonedCode.hashCode, equals(originalCode.hashCode));
     });
@@ -107,9 +107,9 @@ void markdownTest() {
     test('FhirMarkdown copyWith new value', () {
       final originalCode = FhirMarkdown(validCode);
       final copiedCode = originalCode.copyWith(newValue: 'NEW_CODE');
-      expect(copiedCode.value, equals('NEW_CODE'));
+      expect(copiedCode.valueString, equals('NEW_CODE'));
       expect(
-        originalCode.value,
+        originalCode.valueString,
         equals(validCode),
       ); // Original should remain unchanged
     });
