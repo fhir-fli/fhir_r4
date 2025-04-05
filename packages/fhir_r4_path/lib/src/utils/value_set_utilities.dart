@@ -171,7 +171,7 @@ class ValueSetExpanderSimple implements ValueSetExpander {
 
       // Process includes
       for (final include in source.compose!.include) {
-        vsExpansion = processIncludeExclude(
+        vsExpansion = await processIncludeExclude(
           include,
           vsExpansion,
           true,
@@ -183,7 +183,7 @@ class ValueSetExpanderSimple implements ValueSetExpander {
       // Process excludes
       if (source.compose!.exclude != null) {
         for (final exclude in source.compose!.exclude!) {
-          vsExpansion = processIncludeExclude(
+          vsExpansion = await processIncludeExclude(
             exclude,
             vsExpansion,
             false,
@@ -206,13 +206,13 @@ class ValueSetExpanderSimple implements ValueSetExpander {
   }
 
   /// Process an include or exclude component
-  ValueSetExpansion processIncludeExclude(
+  Future<ValueSetExpansion> processIncludeExclude(
     ValueSetInclude component,
     ValueSetExpansion expansion,
     bool include,
     bool excludeNested,
     bool includeDefinition,
-  ) {
+  ) async {
     if (component.system == null) {
       _allErrors.add(
         'ValueSet compose ${include ? 'include' : 'exclude'} has no system',
@@ -245,7 +245,7 @@ class ValueSetExpanderSimple implements ValueSetExpander {
 
     // Handle filters (rules for including codes)
     if (component.filter != null && component.filter!.isNotEmpty) {
-      newExpansion = processFilters(
+      newExpansion = await processFilters(
         component,
         system,
         expansion,
@@ -259,7 +259,7 @@ class ValueSetExpanderSimple implements ValueSetExpander {
     // (includes all codes from the referenced ValueSet)
     if (component.valueSet != null && component.valueSet!.isNotEmpty) {
       for (final vsRef in component.valueSet!) {
-        newExpansion = processValueSetReference(
+        newExpansion = await processValueSetReference(
           vsRef.valueString!,
           expansion,
           include,
@@ -272,16 +272,16 @@ class ValueSetExpanderSimple implements ValueSetExpander {
   }
 
   /// Process filters in a component
-  ValueSetExpansion processFilters(
+  Future<ValueSetExpansion> processFilters(
     ValueSetInclude component,
     String system,
     ValueSetExpansion expansion,
     bool include,
     bool excludeNested,
     bool includeDefinition,
-  ) {
+  ) async {
     // Get the CodeSystem
-    final cs = context.fetchCodeSystem(system);
+    final cs = await context.fetchCodeSystem(system);
     if (cs == null) {
       _allErrors.add('Code system $system not found');
       return expansion;
@@ -337,7 +337,8 @@ class ValueSetExpanderSimple implements ValueSetExpander {
 
           // Remove child concepts too
           if (!excludeNested) {
-            newExpansion = removeChildConcepts(concept, system, newExpansion);
+            newExpansion =
+                await removeChildConcepts(concept, system, newExpansion);
           }
         }
       }
@@ -509,15 +510,15 @@ class ValueSetExpanderSimple implements ValueSetExpander {
   }
 
   /// Process a ValueSet reference in include/exclude
-  ValueSetExpansion processValueSetReference(
+  Future<ValueSetExpansion> processValueSetReference(
     String vsRef,
     ValueSetExpansion expansion,
     bool include,
     bool excludeNested,
     bool includeDefinition,
-  ) {
+  ) async {
     // Fetch the referenced ValueSet
-    final vs = context.fetchResource<ValueSet>(uri: vsRef);
+    final vs = await context.fetchResource<ValueSet>(uri: vsRef);
     if (vs == null) {
       _allErrors.add('Referenced ValueSet $vsRef not found');
       return expansion;
@@ -552,7 +553,7 @@ class ValueSetExpanderSimple implements ValueSetExpander {
     // we'll handle it directly for the referenced ValueSet
     if (vs.compose != null) {
       for (final inc in vs.compose!.include) {
-        newExpansion = processIncludeExclude(
+        newExpansion = await processIncludeExclude(
           inc,
           newExpansion,
           include,
@@ -563,7 +564,7 @@ class ValueSetExpanderSimple implements ValueSetExpander {
 
       if (vs.compose!.exclude != null) {
         for (final exc in vs.compose!.exclude!) {
-          newExpansion = processIncludeExclude(
+          newExpansion = await processIncludeExclude(
             exc,
             newExpansion,
             !include,
@@ -719,11 +720,11 @@ class ValueSetExpanderSimple implements ValueSetExpander {
   }
 
   /// Remove child concepts from the expansion
-  ValueSetExpansion removeChildConcepts(
+  Future<ValueSetExpansion> removeChildConcepts(
     CodeSystemConcept parent,
     String system,
     ValueSetExpansion expansion,
-  ) {
+  ) async {
     if (parent.concept == null) {
       return expansion;
     }
@@ -738,18 +739,18 @@ class ValueSetExpanderSimple implements ValueSetExpander {
       );
 
       // Recursively remove the child's children
-      newExpansion = removeChildConcepts(child, system, newExpansion);
+      newExpansion = await removeChildConcepts(child, system, newExpansion);
     }
     return newExpansion;
   }
 
   /// Check if code system needs to be handled on the server side
-  bool isServerSide(String? system) {
+  Future<bool> isServerSide(String? system) async {
     if (system == null) {
       return false;
     }
 
-    final cs = context.fetchCodeSystem(system);
+    final cs = await context.fetchCodeSystem(system);
     if (cs == null) {
       // If we don't have the code system locally,
       // it needs server-side processing
@@ -825,7 +826,7 @@ class ValueSetChecker {
   }
 
   /// Analyse a component of a value set
-  ValidationResult validateCode(CodeableConcept code) {
+  Future<ValidationResult> validateCode(CodeableConcept code) async {
     final errors = <String>[];
     final warnings = <String>[];
 
@@ -835,12 +836,12 @@ class ValueSetChecker {
           warnings.add('Coding has no system, cannot validate');
         }
 
-        final cs = resolveCodeSystem(coding.system?.primitiveValue);
+        final cs = await resolveCodeSystem(coding.system?.primitiveValue);
         ValidationResult? res;
 
         if (cs?.content != CodeSystemContentMode.complete) {
           // Adjusted to call the new method
-          res = context.validateCodeWithCoding(
+          res = await context.validateCodeWithCoding(
             options.withNoClient(),
             coding,
             null,
@@ -885,7 +886,7 @@ class ValueSetChecker {
   }
 
   /// Analyse a component of a value set
-  CodeSystem? resolveCodeSystem(String? system) {
+  Future<CodeSystem?> resolveCodeSystem(String? system) async {
     if (system == null) return null;
     for (final cs in localSystems) {
       if (cs.url?.primitiveValue == system) {
@@ -1283,11 +1284,11 @@ abstract class BaseWorkerContext implements WorkerContext {
 
   /// Validate a code in a code system
   @override
-  ValidationResult validateCodeWithCoding(
+  Future<ValidationResult> validateCodeWithCoding(
     ValidationOptions options,
     Coding coding,
     dynamic unused,
-  ) {
+  ) async {
     // Implementations will vary, but this provides the method signature
     // needed by the ValueSetChecker
     throw UnimplementedError('validateCodeWithCoding not implemented');

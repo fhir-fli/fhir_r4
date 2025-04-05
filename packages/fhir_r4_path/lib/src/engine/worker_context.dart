@@ -6,13 +6,11 @@ import 'package:fhir_r4_path/fhir_r4_path.dart';
 import 'package:ucum/ucum.dart';
 
 class WorkerContext {
-  WorkerContext({this.txClient});
+  WorkerContext({this.txClient, ResourceCache? resourceCache})
+      : resourceCache = resourceCache ?? LocalResourceCache();
   // Fields to store resources
-  final Map<String, StructureDefinition> _structures = {};
-  final Map<String, Resource> _resources = {};
-  final UcumService _ucumService = UcumService();
-  CanonicalResourceManager<CodeSystem> codeSystems =
-      CanonicalResourceManager<CodeSystem>();
+  final ResourceCache resourceCache;
+  final UcumService ucumService = UcumService();
   final ValidatorFetcher locator = ValidatorFetcher();
   final TerminologyCache txCache = TerminologyCache('lock', null);
   final Set<String> codeSystemsUsed = {};
@@ -26,16 +24,16 @@ class WorkerContext {
   final FhirToolingClient? txClient;
   Parameters? expParameters;
 
-  List<StructureDefinition> getStructures() {
-    return _structures.values.toList();
+  Future<List<StructureDefinition>> getStructures() async {
+    return resourceCache.getStructureDefinitions();
   }
 
-  List<StructureDefinition> allStructures() {
+  Future<List<StructureDefinition>> allStructures() async {
     return getStructures();
   }
 
-  List<String> getResourceNames() {
-    return _resources.keys.toList();
+  Future<List<String>> getResourceNames() async {
+    return resourceCache.getResourceNames();
   }
 
   String getVersion() {
@@ -43,26 +41,32 @@ class WorkerContext {
     return '4.0.1'; // Replace with dynamic version if applicable
   }
 
-  StructureDefinition? fetchTypeDefinition(String typeName) {
-    return _structures[typeName];
+  Future<StructureDefinition?> fetchTypeDefinition(String typeName) async {
+    final sd = await resourceCache.getStructureDefinition(typeName);
+    if (sd != null) {
+      return sd;
+    }
+    return resourceCache.getStructureDefinition(
+      'http://hl7.org/fhir/StructureDefinition/$typeName',
+    );
   }
 
-  T? fetchResource<T extends Resource>({
+  Future<T?> fetchResource<T extends CanonicalResource>({
     String? uri,
     String? version,
     CanonicalResource? canonicalForSource,
-  }) {
+  }) async {
     if (uri == null) {
       return null;
     }
-    final resource = _resources[uri];
+    final resource = await resourceCache.getCanonicalResource(uri, version);
     if (resource is T) {
       return resource;
     }
     return null;
   }
 
-  CodeSystem? fetchCodeSystem(String? system) {
+  Future<CodeSystem?> fetchCodeSystem(String? system) async {
     if (system == null) return null;
 
     if (system.contains('|')) {
@@ -72,21 +76,21 @@ class WorkerContext {
     }
 
     // Fetch from local cache
-    final codeSystem = codeSystems.get(system);
+    final codeSystem = await resourceCache.getCodeSystem(system);
     if (codeSystem != null) return codeSystem;
 
     // Fallback: Try to locate and load the resource
     locator.findResource(this, system);
-    return codeSystems.get(system); // Recheck after locator runs
+    return resourceCache.getCodeSystem(system); // Recheck after locator runs
   }
 
-  CodeSystem? fetchCodeSystemWithVersion(
+  Future<CodeSystem?> fetchCodeSystemWithVersion(
     String system,
     String version,
-  ) {
+  ) async {
     // Attempt to fetch the CodeSystem from the local cache with the specified
     // version
-    var codeSystem = codeSystems.getWithVersion(system, version);
+    var codeSystem = await resourceCache.getCodeSystem(system, version);
 
     // If the CodeSystem is not found and a locator exists, try to find the
     // resource
@@ -94,7 +98,7 @@ class WorkerContext {
       locator.findResource(this, system);
 
       // Recheck the cache after the locator runs
-      codeSystem = codeSystems.getWithVersion(system, version);
+      codeSystem = await resourceCache.getCodeSystem(system, version);
     }
 
     return codeSystem;
@@ -132,16 +136,14 @@ class WorkerContext {
     return '$message (plural count: $pl)';
   }
 
-  UcumService get ucumService => _ucumService;
-
   String getOverrideVersionNs() {
     return 'http://hl7.org/fhir';
   }
 
   // Utility methods for loading resources
   void loadStructureDefinition(StructureDefinition sd) {
-    if (sd.name.valueString != null) {
-      _structures[sd.name.valueString!] = sd;
+    if (sd.name.valueString != null && sd.url?.valueString != null) {
+      resourceCache.saveCanonicalResource(sd);
     }
   }
 
@@ -149,17 +151,12 @@ class WorkerContext {
     sds.forEach(loadStructureDefinition);
   }
 
-  void loadResource(Resource resource) {
+  Future<void> loadResource(CanonicalResource resource) async {
     final uri =
         resource.id?.valueString ?? resource.meta?.versionId?.valueString;
     if (uri != null) {
-      _resources[uri] = resource;
+      await resourceCache.saveCanonicalResource(resource);
     }
-  }
-
-  void clearResources() {
-    _structures.clear();
-    _resources.clear();
   }
 
   bool laterVersion(String newVersion, String oldVersion) {
@@ -208,13 +205,17 @@ class WorkerContext {
     return double.tryParse(s) != null;
   }
 
-  ValidationResult validateCode(
+  Future<ValidationResult> validateCode(
     ValidationOptions options,
     String? system,
     String? version,
     String code,
     String? display,
-  ) {
+  ) async {
+    print('Validating code: $code');
+    print('System: $system');
+    print('Version: $version');
+    print('Display: $display');
     final coding = Coding(
       system: system?.toFhirUri,
       version: version?.toFhirString,
@@ -224,11 +225,12 @@ class WorkerContext {
     return validateCodeWithCoding(options, coding, null);
   }
 
-  ValidationResult validateCodeWithCoding(
+  Future<ValidationResult> validateCodeWithCoding(
     ValidationOptions options,
     Coding coding,
     ValueSet? valueSet,
-  ) {
+  ) async {
+    print('useClient: ${options.useClient}');
     try {
       // Validate locally if client-side validation is enabled
       if (options.useClient) {
@@ -238,7 +240,10 @@ class WorkerContext {
           context: this,
         );
 
-        final codeSystem = fetchCodeSystem(coding.system?.primitiveValue);
+        print('${coding.system?.primitiveValue}');
+
+        final codeSystem = await fetchCodeSystem(coding.system?.primitiveValue);
+        print('Code system: ${codeSystem?.url}');
         if (codeSystem == null) {
           return ValidationResult.error(
             message: 'Code system not found: ${coding.system}',
@@ -264,11 +269,11 @@ class WorkerContext {
     }
   }
 
-  ValidationResult validateCodeWithCodeableConcept(
+  Future<ValidationResult> validateCodeWithCodeableConcept(
     ValidationOptions options,
     CodeableConcept code,
     ValueSet vs,
-  ) {
+  ) async {
     // Generate a cache token for validation
     final cacheToken =
         txCache.generateValidationTokenForCodeableConcept(options, code, vs);
@@ -296,7 +301,7 @@ class WorkerContext {
         );
 
         // Perform local validation
-        final result = checker.validateCode(code);
+        final result = await checker.validateCode(code);
 
         // Cache and return the result
         txCache.cacheValidation(cacheToken, result, TerminologyCache.transient);
@@ -480,31 +485,34 @@ class WorkerContext {
     // return processValidationResult(pOut);
   }
 
-  (bool, Parameters) addDependentResources(Parameters oldPin, ValueSet vs) {
+  Future<(bool, Parameters)> addDependentResources(
+    Parameters oldPin,
+    ValueSet vs,
+  ) async {
     var cache = false;
     var pin = oldPin;
     for (final inc in vs.compose?.include ?? <ValueSetInclude>[]) {
-      final tempCachePin = addDependentResourcesForComponent(pin, inc);
+      final tempCachePin = await addDependentResourcesForComponent(pin, inc);
       cache = tempCachePin.$1 || cache;
       pin = tempCachePin.$2;
     }
     for (final inc in vs.compose?.exclude ?? <ValueSetInclude>[]) {
-      final tempCachePin = addDependentResourcesForComponent(pin, inc);
+      final tempCachePin = await addDependentResourcesForComponent(pin, inc);
       cache = tempCachePin.$1 || cache;
       pin = tempCachePin.$2;
     }
     return (cache, pin);
   }
 
-  (bool, Parameters) addDependentResourcesForComponent(
+  Future<(bool, Parameters)> addDependentResourcesForComponent(
     Parameters oldPin,
     ValueSetInclude inc,
-  ) {
+  ) async {
     var cache = false;
     var pin = oldPin;
 
     for (final canonical in inc.valueSet ?? <FhirCanonical>[]) {
-      final vs = fetchResource<ValueSet>(uri: canonical.primitiveValue);
+      final vs = await fetchResource<ValueSet>(uri: canonical.primitiveValue);
       if (vs != null) {
         pin = pin.copyWith(
           parameter: [
@@ -520,11 +528,11 @@ class WorkerContext {
           cached.add(vs.url!.primitiveValue!);
           cache = true;
         }
-        addDependentResources(pin, vs);
+        await addDependentResources(pin, vs);
       }
     }
 
-    final cs = fetchResource<CodeSystem>(uri: inc.system?.primitiveValue);
+    final cs = await fetchResource<CodeSystem>(uri: inc.system?.primitiveValue);
     if (cs != null) {
       pin = pin.copyWith(
         parameter: [

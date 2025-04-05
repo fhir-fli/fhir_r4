@@ -3,12 +3,12 @@ import 'package:fhir_r4_path/fhir_r4_path.dart';
 
 import 'package:test/test.dart';
 
-void testParser() {
+Future<void> testParser() async {
   group('FHIRPathEngine Parsing Tests', () {
     final worker = WorkerContext();
     final testEngine = FHIRPathEngine(worker);
 
-    test('Parse valid simple path', () {
+    test('Parse valid simple path', () async {
       final node = testEngine.parse('Patient.name');
       // Top-level node is "Patient"
       expect(node.name, equals('Patient'));
@@ -16,7 +16,7 @@ void testParser() {
       expect(node.inner?.name, equals('name'));
     });
 
-    test('Parse path with constant', () {
+    test('Parse path with constant', () async {
       final node = testEngine.parse('Patient.age = 30');
 
       // Top-level node: "Patient"
@@ -29,7 +29,7 @@ void testParser() {
       expect(node.opNext?.constant?.toString(), equals('30'));
     });
 
-    test('Parse simple arithmetic expression (with precedence)', () {
+    test('Parse simple arithmetic expression (with precedence)', () async {
       // Expression: 5 + 3 * 2
       final node = testEngine.parse('5 + 3 * 2');
 
@@ -43,7 +43,7 @@ void testParser() {
       expect(rightOperand?.operation, isNull);
     });
 
-    test('Parse comparison expression', () {
+    test('Parse comparison expression', () async {
       // Expression: Patient.age >= 18
       final node = testEngine.parse('Patient.age >= 18');
 
@@ -60,7 +60,7 @@ void testParser() {
       expect(node.opNext?.constant, equals(18.toFhirInteger));
     });
 
-    test('Parse logical expression', () {
+    test('Parse logical expression', () async {
       // Expression: Patient.age >= 18 and Patient.gender = 'male'
       final node =
           testEngine.parse("Patient.age >= 18 and Patient.gender = 'male'");
@@ -84,7 +84,7 @@ void testParser() {
       expect(right.opNext?.constant, equals('male'.toFhirString));
     });
 
-    test('Parse function call expression', () {
+    test('Parse function call expression', () async {
       // Expression: Patient.name.first()
       final node = testEngine.parse('Patient.name.first()');
 
@@ -97,7 +97,7 @@ void testParser() {
       expect(node.inner?.inner?.function, equals(FpFunction.First));
     });
 
-    test('Parse nested expression', () {
+    test('Parse nested expression', () async {
       final node = testEngine.parse('(Patient.age + 2) * 3');
 
       // Top-level node has operation = "*"
@@ -120,7 +120,7 @@ void testParser() {
       expect(node.opNext?.constant?.toString(), equals('3'));
     });
 
-    test('Parse chained access expression', () {
+    test('Parse chained access expression', () async {
       // Expression: Patient.address.city
       final node = testEngine.parse('Patient.address.city');
 

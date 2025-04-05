@@ -13,7 +13,12 @@ class FHIRPathEngine {
   /// Constructor
   FHIRPathEngine(this.worker, [this.hostServices])
       : terminologyServiceOptions = ValidationOptions.defaults() {
-    for (final sd in worker.getStructures()) {
+    _initFlags();
+  }
+
+  /// Initialization helper
+  Future<void> _initFlags() async {
+    for (final sd in await worker.getStructures()) {
       if (sd.derivation == TypeDerivationRule.specialization &&
           sd.kind != StructureDefinitionKind.logical &&
           sd.name.valueString != null) {
@@ -25,19 +30,14 @@ class FHIRPathEngine {
         primitiveTypes.add(sd.name.valueString!);
       }
     }
-    _initFlags();
-  }
-
-  /// Initialization helper
-  void _initFlags() {
     if (!VersionUtilities.isR5VerOrLater(worker.getVersion())) {
       doNotEnforceAsCaseSensitive = true;
       doNotEnforceAsSingletonRule = true;
     }
   }
 
-  StructureDefinition? _fetchTypeDefinition(String? type) {
-    return type == null ? null : worker.fetchTypeDefinition(type);
+  Future<StructureDefinition?> _fetchTypeDefinition(String? type) async {
+    return type == null ? null : await worker.fetchTypeDefinition(type);
   }
 
   /// Constants
@@ -586,7 +586,7 @@ class FHIRPathEngine {
   /// ***************************************
   ///
   /// Evaluation with base and ExpressionNode
-  List<FhirBase> evaluate(FhirBase? base, ExpressionNode node) {
+  Future<List<FhirBase>> evaluate(FhirBase? base, ExpressionNode node) async {
     final list = <FhirBase>[];
     if (base != null) {
       list.add(base);
@@ -602,20 +602,20 @@ class FHIRPathEngine {
   }
 
   // Evaluation with base and FHIRPath expression (String)
-  List<FhirBase> evaluateFromPath(FhirBase? base, String path) {
+  Future<List<FhirBase>> evaluateFromPath(FhirBase? base, String path) async {
     final node = parse(path); // Assume `parse` is implemented
     return evaluate(base, node);
   }
 
-  String evaluateToString(
+  Future<String> evaluateToString(
     Object appInfo,
     FhirBase? focusResource,
     FhirBase? rootResource,
     FhirBase base,
     ExpressionNode node,
-  ) {
+  ) async {
     return convertListToString(
-      evaluateWithContext(
+      await evaluateWithContext(
         appInfo,
         focusResource,
         rootResource,
@@ -625,27 +625,33 @@ class FHIRPathEngine {
     );
   }
 
-  bool evaluateToBoolean(
+  Future<bool> evaluateToBoolean(
     Object appInfo,
     FhirBase? focusResource,
     FhirBase? rootResource,
     FhirBase base,
     ExpressionNode node,
-  ) {
+  ) async {
     return convertToBoolean(
-      evaluateWithContext(appInfo, focusResource, rootResource, base, node),
+      await evaluateWithContext(
+        appInfo,
+        focusResource,
+        rootResource,
+        base,
+        node,
+      ),
     );
   }
 
   // Evaluation with appContext and additional parameters
-  List<FhirBase> evaluateWithContext(
+  Future<List<FhirBase>> evaluateWithContext(
     Object? appContext,
     FhirBase? focusResource,
     FhirBase? rootResource,
     FhirBase? base,
     ExpressionNode node, {
     Map<String, dynamic>? environment,
-  }) {
+  }) async {
     final list = <FhirBase>[];
     if (base != null) {
       list.add(base);
@@ -663,13 +669,13 @@ class FHIRPathEngine {
   }
 
   // Evaluation with appContext and path (String)
-  List<FhirBase> evaluateWithPath(
+  Future<List<FhirBase>> evaluateWithPath(
     Object? appContext,
     Resource? focusResource,
     Resource? rootResource,
     FhirBase? base,
     String path,
-  ) {
+  ) async {
     final node = parse(path); // Assume `parse` is implemented
     return evaluateWithContext(
       appContext,
@@ -680,11 +686,11 @@ class FHIRPathEngine {
     );
   }
 
-  TypeDetails evaluateFunctionType(
+  Future<TypeDetails> evaluateFunctionType(
     ExecutionTypeContext context,
     TypeDetails focus,
     ExpressionNode exp,
-  ) {
+  ) async {
     final paramTypes = <TypeDetails>[];
     if (exp.function == FpFunction.Is ||
         exp.function == FpFunction.As ||
@@ -697,7 +703,7 @@ class FHIRPathEngine {
       for (final expr in exp.parameters) {
         if (isExpressionParameter(exp, i)) {
           paramTypes.add(
-            executeType(
+            await executeType(
               changeThisTypeContext(context, focus),
               focus,
               expr,
@@ -705,7 +711,8 @@ class FHIRPathEngine {
             ),
           );
         } else {
-          paramTypes.add(executeType(context, context.thisItem, expr, true));
+          paramTypes
+              .add(await executeType(context, context.thisItem, expr, true));
         }
         i++;
       }
@@ -721,7 +728,7 @@ class FHIRPathEngine {
       case FpFunction.Exists:
       case FpFunction.SubsetOf:
       case FpFunction.SupersetOf:
-        checkParamTypes(
+        await checkParamTypes(
           exp,
           exp.function.toString(),
           paramTypes,
@@ -755,7 +762,7 @@ class FHIRPathEngine {
         );
       case FpFunction.Item:
         checkOrdered(focus, 'item', exp);
-        checkParamTypes(
+        await checkParamTypes(
           exp,
           exp.function.toString(),
           paramTypes,
@@ -766,7 +773,7 @@ class FHIRPathEngine {
         return focus;
       case FpFunction.As:
       case FpFunction.OfType:
-        checkParamTypes(
+        await checkParamTypes(
           exp,
           exp.function.toString(),
           paramTypes,
@@ -804,7 +811,7 @@ class FHIRPathEngine {
           );
         }
       case FpFunction.Is:
-        checkParamTypes(
+        await checkParamTypes(
           exp,
           exp.function.toString(),
           paramTypes,
@@ -826,7 +833,7 @@ class FHIRPathEngine {
       case FpFunction.Skip:
       case FpFunction.Take:
         checkOrdered(focus, exp.function.toString(), exp);
-        checkParamTypes(
+        await checkParamTypes(
           exp,
           exp.function.toString(),
           paramTypes,
@@ -845,7 +852,7 @@ class FHIRPathEngine {
       case FpFunction.Iif:
         final types = TypeDetails(null);
         checkSingleton(focus, 'iif', exp);
-        checkParamTypes(
+        await checkParamTypes(
           exp,
           exp.function.toString(),
           paramTypes,
@@ -861,7 +868,7 @@ class FHIRPathEngine {
       case FpFunction.Lower:
       case FpFunction.Upper:
       case FpFunction.ToChars:
-        checkContextString(focus, exp.function.toString(), exp, true);
+        await checkContextString(focus, exp.function.toString(), exp, true);
         return TypeDetails(CollectionStatus.singleton, [TypeDetails.FP_String]);
       case FpFunction.IndexOf:
       case FpFunction.Substring:
@@ -872,8 +879,8 @@ class FHIRPathEngine {
       case FpFunction.ReplaceMatches:
       case FpFunction.Contains:
       case FpFunction.Replace:
-        checkContextString(focus, exp.function.toString(), exp, true);
-        checkParamTypes(
+        await checkContextString(focus, exp.function.toString(), exp, true);
+        await checkParamTypes(
           exp,
           exp.function.toString(),
           paramTypes,
@@ -895,8 +902,8 @@ class FHIRPathEngine {
       case FpFunction.Descendants:
         return childTypes(focus, exp.function.toString(), exp);
       case FpFunction.MemberOf:
-        checkContextCoded(focus, 'memberOf', exp);
-        checkParamTypes(
+        await checkContextCoded(focus, 'memberOf', exp);
+        await checkParamTypes(
           exp,
           exp.function.toString(),
           paramTypes,
@@ -911,7 +918,7 @@ class FHIRPathEngine {
       case FpFunction.Trace:
       case FpFunction.DefineVariable:
       case FpFunction.Check:
-        checkParamTypes(
+        await checkParamTypes(
           exp,
           exp.function.toString(),
           paramTypes,
@@ -928,10 +935,10 @@ class FHIRPathEngine {
           [TypeDetails.FP_DateTime],
         );
       case FpFunction.Resolve:
-        checkContextReference(focus, 'resolve', exp);
+        await checkContextReference(focus, 'resolve', exp);
         return TypeDetails(CollectionStatus.singleton, ['DomainResource']);
       case FpFunction.Extension:
-        checkParamTypes(
+        await checkParamTypes(
           exp,
           exp.function.toString(),
           paramTypes,
@@ -1028,12 +1035,12 @@ class FHIRPathEngine {
   /// ***************************************
   ///
   /// Core method to execute evaluation logic
-  List<FhirBase> execute(
+  Future<List<FhirBase>> execute(
     ExecutionContext inContext,
     List<FhirBase> focus,
     ExpressionNode exp,
     bool atEntry,
-  ) {
+  ) async {
     // Acquire context for special variables ($this, $total, $index, etc.)
     var context = contextForParameter(inContext);
 
@@ -1047,7 +1054,8 @@ class FHIRPathEngine {
         if (exp.opNext != null) {
           // Evaluate operand in non-proximal mode (the unary node is the
           // 'proximal' context)
-          final operandResult = execute(context, focus, exp.opNext!, false);
+          final operandResult =
+              await execute(context, focus, exp.opNext!, false);
 
           // Now apply the unary operation
           if (exp.operation == FpOperation.Minus) {
@@ -1067,7 +1075,7 @@ class FHIRPathEngine {
               } else {
                 // If you allow unary minus on other types (Quantity, etc.),
                 // handle here
-                throw Exception('Unary minus not supported on $val');
+                throw PathEngineException('Unary minus not supported on $val');
               }
             }
             work.addAll(negValues);
@@ -1075,7 +1083,9 @@ class FHIRPathEngine {
             // Unary plus: no-op
             work.addAll(operandResult);
           } else {
-            throw Exception('Unsupported unary operator: ${exp.operation}');
+            throw PathEngineException(
+              'Unsupported unary operator: ${exp.operation}',
+            );
           }
         } else {
           // If no operand, decide how to handle (e.g. 0, or throw an error)
@@ -1095,7 +1105,8 @@ class FHIRPathEngine {
           work.add(context.index);
         } else {
           for (final item in focus) {
-            final outcome = executeForItem(context, item, exp, atEntry: true);
+            final outcome =
+                await executeForItem(context, item, exp, atEntry: true);
 
             work.addAll(outcome);
           }
@@ -1103,7 +1114,7 @@ class FHIRPathEngine {
 
       case ExpressionNodeKind.function:
         // Evaluate a function call
-        work.addAll(evaluateFunction(context, focus, exp));
+        work.addAll(await evaluateFunction(context, focus, exp));
 
       case ExpressionNodeKind.constant:
         // Evaluate a literal constant
@@ -1114,7 +1125,7 @@ class FHIRPathEngine {
 
       case ExpressionNodeKind.group:
         // Evaluate the sub-expression inside the group
-        work.addAll(execute(context, focus, exp.group!, atEntry));
+        work.addAll(await execute(context, focus, exp.group!, atEntry));
 
       case null:
         // No node kind: do nothing or throw
@@ -1124,7 +1135,7 @@ class FHIRPathEngine {
     // If there's an inner expression (dot or bracket indexing), evaluate that
     // next
     if (exp.inner != null) {
-      work = execute(context, work, exp.inner!, false);
+      work = await execute(context, work, exp.inner!, false);
     }
 
     // If the node is proximal and has an operation, evaluate the chain of
@@ -1160,13 +1171,13 @@ class FHIRPathEngine {
         } else if (last.operation == FpOperation.Is ||
             last.operation == FpOperation.As) {
           // Evaluate a type check or cast
-          work2 = executeContextTypeName(context, focus, next, false);
-          work = operate(context, work, last.operation, work2, last);
+          work2 = await executeContextTypeName(context, focus, next, false);
+          work = await operate(context, work, last.operation, work2, last);
         } else {
           // Evaluate the 'next' node, then apply the operation
 
-          work2 = execute(context, focus, next, true);
-          work = operate(context, work, last.operation, work2, last);
+          work2 = await execute(context, focus, next, true);
+          work = await operate(context, work, last.operation, work2, last);
         }
 
         // Move on to the next operation
@@ -1178,12 +1189,12 @@ class FHIRPathEngine {
     return work;
   }
 
-  List<FhirBase> executeForItem(
+  Future<List<FhirBase>> executeForItem(
     ExecutionContext context,
     FhirBase item,
     ExpressionNode exp, {
     required bool atEntry,
-  }) {
+  }) async {
     final result = <FhirBase>[];
     // Step 1: Resolve constants if at entry
     if (atEntry && context.appInfo != null && hostServices != null) {
@@ -1212,7 +1223,7 @@ class FHIRPathEngine {
       }
 
       // Handle resources
-      final sd = _fetchTypeDefinition(item.fhirType);
+      final sd = await _fetchTypeDefinition(item.fhirType);
       if (sd == null) {
         // Logical model case
 
@@ -1227,7 +1238,7 @@ class FHIRPathEngine {
             result.add(item);
             break;
           }
-          current = worker.fetchResource<StructureDefinition>(
+          current = await worker.fetchResource<StructureDefinition>(
             uri: current.baseDefinition?.toString(),
           );
         }
@@ -1250,12 +1261,12 @@ class FHIRPathEngine {
     return result;
   }
 
-  TypeDetails executeType(
+  Future<TypeDetails> executeType(
     dynamic contextOrType, // Can be String or ExecutionTypeContext
     dynamic focusOrExp, // Can be TypeDetails or ExpressionNode
     ExpressionNode exp,
     bool atEntry,
-  ) {
+  ) async {
     // Determine whether the first parameter is a String or ExecutionTypeContext
     if (contextOrType is String && focusOrExp is ExpressionNode) {
       // Handle the first function's logic
@@ -1272,7 +1283,7 @@ class FHIRPathEngine {
       }
 
       final result = TypeDetails(null);
-      getChildTypesByName(type, expression.name!, result, expression);
+      await getChildTypesByName(type, expression.name!, result, expression);
       return result;
     } else if (contextOrType is ExecutionTypeContext &&
         focusOrExp is TypeDetails?) {
@@ -1296,7 +1307,7 @@ class FHIRPathEngine {
             result.update(executeContextType(context, exp.name!, exp, false));
           } else {
             for (final s in focus?.types ?? <String>[]) {
-              result.update(executeType(s, null, exp, atEntry));
+              result.update(await executeType(s, null, exp, atEntry));
             }
             if (result.hasNoTypes()) {
               throw makeException(exp, 'FHIRPATH_UNKNOWN_NAME', [
@@ -1310,7 +1321,7 @@ class FHIRPathEngine {
           if (focus == null) {
             throw makeException(exp, 'FHIRPATH_NO_FOCUS', ['']);
           }
-          result.update(evaluateFunctionType(context, focus, exp));
+          result.update(await evaluateFunctionType(context, focus, exp));
 
         case ExpressionNodeKind.unary:
           result.addType(TypeDetails.FP_Integer);
@@ -1321,7 +1332,7 @@ class FHIRPathEngine {
           result.update(resolveConstantType(context, exp.constant, exp, true));
 
         case ExpressionNodeKind.group:
-          result.update(executeType(context, focus, exp.group!, atEntry));
+          result.update(await executeType(context, focus, exp.group!, atEntry));
         case null:
           throw ArgumentError('Invalid arguments passed to executeType');
       }
@@ -1329,7 +1340,7 @@ class FHIRPathEngine {
       exp.types = result;
 
       if (exp.inner != null) {
-        result = executeType(context, result, exp.inner!, false);
+        result = await executeType(context, result, exp.inner!, false);
       }
 
       if (exp.proximal && exp.operation != null) {
@@ -1346,12 +1357,12 @@ class FHIRPathEngine {
             }
             work = executeTypeContextTypeName(context, focus, next, atEntry);
           } else {
-            work = executeType(context, focus, next, atEntry);
+            work = await executeType(context, focus, next, atEntry);
           }
           if (result == null) {
             throw ArgumentError('result is null');
           }
-          result = operateTypes(result, last.operation!, work, last);
+          result = await operateTypes(result, last.operation!, work, last);
           last = next;
           next = next.opNext;
         }
@@ -1383,12 +1394,12 @@ class FHIRPathEngine {
         .resolveConstantType(this, context.appInfo, name, explicitConstant);
   }
 
-  List<FhirBase> executeContextTypeName(
+  Future<List<FhirBase>> executeContextTypeName(
     ExecutionContext context,
     List<FhirBase> focus,
     ExpressionNode next,
     bool atEntry,
-  ) {
+  ) async {
     final result = <FhirBase>[];
 
     if (next.inner != null) {
@@ -1400,7 +1411,7 @@ class FHIRPathEngine {
     } else if (next.kind == ExpressionNodeKind.group) {
       // Process group nodes recursively
 
-      result.addAll(execute(context, focus, next.group!, atEntry));
+      result.addAll(await execute(context, focus, next.group!, atEntry));
     }
 
     return result;
@@ -1418,14 +1429,14 @@ class FHIRPathEngine {
     );
   }
 
-  TypeDetails check(
+  Future<TypeDetails> check(
     Object appContext, {
     String? resourceType,
     StructureDefinition? structureDefinition,
     String? context,
     ExpressionNode? expressionNode,
     String? expressionString,
-  }) {
+  }) async {
     if (expressionString != null && resourceType != null && context != null) {
       // Case 4: resourceType, context, and expressionString provided
       return check(
@@ -1444,7 +1455,7 @@ class FHIRPathEngine {
             [structureDefinition.url!.toString()],
           );
         } else {
-          final ed = getElementDefinition(
+          final ed = await getElementDefinition(
             structureDefinition,
             context,
             true,
@@ -1503,7 +1514,7 @@ class FHIRPathEngine {
       // Case 1: resourceType, context, and expressionNode provided
       TypeDetails? types;
       if (!context.contains('.')) {
-        final sd = _fetchTypeDefinition(context);
+        final sd = await _fetchTypeDefinition(context);
         if (sd == null) {
           throw PathEngineException('Unknown type definition: $context');
         }
@@ -1515,11 +1526,12 @@ class FHIRPathEngine {
               '${resourceType.substring(0, resourceType.lastIndexOf('/') + 1)}'
               '$ctxt';
         }
-        final sd = worker.fetchResource<StructureDefinition>(uri: ctxt);
+        final sd = await worker.fetchResource<StructureDefinition>(uri: ctxt);
         if (sd == null) {
           throw makeException(expressionNode, 'Unknown context: $context', []);
         }
-        final ed = getElementDefinition(sd, context, true, expressionNode);
+        final ed =
+            await getElementDefinition(sd, context, true, expressionNode);
         if (ed == null) {
           throw makeException(
             expressionNode,
@@ -1717,12 +1729,12 @@ class FHIRPathEngine {
     }
   }
 
-  void getChildTypesByName(
+  Future<void> getChildTypesByName(
     String? type,
     String name,
     TypeDetails result,
     ExpressionNode expr,
-  ) {
+  ) async {
     if (type == null || type.isEmpty) {
       throw makeException(expr, 'FHIRPATH_NO_TYPE', ['getChildTypesByName']);
     }
@@ -1745,7 +1757,7 @@ class FHIRPathEngine {
         url = type;
       }
       var tail = '';
-      final sd = worker.fetchResource<StructureDefinition>(uri: url);
+      final sd = await worker.fetchResource<StructureDefinition>(uri: url);
       if (sd == null) {
         throw makeException(
           expr,
@@ -1756,7 +1768,7 @@ class FHIRPathEngine {
       final sdl = <StructureDefinition>[];
       ElementDefinitionMatch? m;
       if (type.contains('#')) {
-        m = getElementDefinition(
+        m = await getElementDefinition(
           sd,
           type.substring(type.indexOf('#') + 1),
           false,
@@ -1765,7 +1777,7 @@ class FHIRPathEngine {
       }
       if (m?.definition != null && hasDataType(m!.definition!)) {
         if (m.fixedType != null) {
-          final dt = worker.fetchResource<StructureDefinition>(
+          final dt = await worker.fetchResource<StructureDefinition>(
             uri: m.fixedType!.sdNs(worker.getOverrideVersionNs()),
           );
           if (dt == null) {
@@ -1777,7 +1789,7 @@ class FHIRPathEngine {
           sdl.add(dt);
         } else {
           for (final t in m.definition!.type ?? <ElementDefinitionType>[]) {
-            final dt = worker.fetchResource<StructureDefinition>(
+            final dt = await worker.fetchResource<StructureDefinition>(
               uri: t.code.toString().sdNs(worker.getOverrideVersionNs()),
             );
             if (dt == null) {
@@ -1786,11 +1798,11 @@ class FHIRPathEngine {
                 'getChildTypesByName',
               ]);
             }
-            addTypeAndDescendents(sdl, dt, worker.allStructures());
+            addTypeAndDescendents(sdl, dt, await worker.allStructures());
           }
         }
       } else {
-        addTypeAndDescendents(sdl, sd, worker.allStructures());
+        addTypeAndDescendents(sdl, sd, await worker.allStructures());
         if (type.contains('#')) {
           tail = type.substring(type.indexOf('#') + 1);
           tail = tail.substring(tail.indexOf('.'));
@@ -1816,9 +1828,9 @@ class FHIRPathEngine {
                     tn = t.code.toString();
                   }
                   if (t.code.toString() == 'Resource') {
-                    for (final rn in worker.getResourceNames()) {
-                      if (!result.hasTypeFromWorker(worker, [rn])) {
-                        getChildTypesByName(
+                    for (final rn in await worker.getResourceNames()) {
+                      if (!(await result.hasTypeFromWorker(worker, [rn]))) {
+                        await getChildTypesByName(
                           result.addType(rn),
                           '**',
                           result,
@@ -1826,8 +1838,13 @@ class FHIRPathEngine {
                         );
                       }
                     }
-                  } else if (!result.hasTypeFromWorker(worker, [tn])) {
-                    getChildTypesByName(result.addType(tn), '**', result, expr);
+                  } else if (!(await result.hasTypeFromWorker(worker, [tn]))) {
+                    await getChildTypesByName(
+                      result.addType(tn),
+                      '**',
+                      result,
+                      expr,
+                    );
                   }
                 }
               }
@@ -1849,7 +1866,7 @@ class FHIRPathEngine {
                     t.code.toString() == 'BackboneElement') {
                   result.addType('${sdi.type}#${ed.path}');
                 } else if (t.code.toString() == 'Resource') {
-                  result.addTypes(worker.getResourceNames());
+                  result.addTypes(await worker.getResourceNames());
                 } else {
                   result.addType(t.code.toString());
                 }
@@ -1859,8 +1876,12 @@ class FHIRPathEngine {
         } else {
           path = '${sdi.snapshot?.element[0].path ?? ''}$tail.$name';
 
-          final ed =
-              getElementDefinition(sdi, path, allowPolymorphicNames, expr);
+          final ed = await getElementDefinition(
+            sdi,
+            path,
+            allowPolymorphicNames,
+            expr,
+          );
           if (ed != null) {
             if (ed.fixedType?.isNotEmpty ?? false) {
               result.addType(ed.fixedType!);
@@ -1889,7 +1910,7 @@ class FHIRPathEngine {
                     t.code.toString() == 'BackboneElement') {
                   pt = ProfiledType('${sdi.url}#$path');
                 } else if (t.code.toString() == 'Resource') {
-                  result.addTypes(worker.getResourceNames());
+                  result.addTypes(await worker.getResourceNames());
                 } else {
                   pt = ProfiledType(t.code.toString());
                 }
@@ -2002,12 +2023,12 @@ class FHIRPathEngine {
   /// ELEMENT AND CLASS INFO HANDLING
   /// ***************************************
   ///
-  ElementDefinitionMatch? getElementDefinition(
+  Future<ElementDefinitionMatch?> getElementDefinition(
     StructureDefinition sd,
     String path,
     bool allowTypedName,
     ExpressionNode expr,
-  ) {
+  ) async {
     for (final ed in sd.snapshot?.element ?? <ElementDefinition>[]) {
       if (ed.path.valueString == path) {
         if (ed.hasContentReference()) {
@@ -2053,7 +2074,7 @@ class FHIRPathEngine {
           throw StateError('Internal typing issue...');
         }
 
-        final nsd = worker.fetchResource<StructureDefinition>(
+        final nsd = await worker.fetchResource<StructureDefinition>(
           uri: ed.type![0].code.toString().sdNs(worker.getOverrideVersionNs()),
         );
 
@@ -2510,12 +2531,12 @@ class FHIRPathEngine {
     return true;
   }
 
-  void checkParamTypes(
+  Future<void> checkParamTypes(
     ExpressionNode expr,
     String funcName,
     List<TypeDetails> paramTypes,
     List<TypeDetails> typeSet,
-  ) {
+  ) async {
     var i = 0;
     for (final pt in typeSet) {
       if (i == paramTypes.length) {
@@ -2524,7 +2545,7 @@ class FHIRPathEngine {
       final actual = paramTypes[i];
       i++;
       for (final a in actual.getTypes()) {
-        if (!pt.hasTypeFromWorker(worker, [a])) {
+        if (!(await pt.hasTypeFromWorker(worker, [a]))) {
           throw makeException(
             expr,
             'FHIRPATH_WRONG_PARAM_TYPE',
@@ -2572,12 +2593,12 @@ class FHIRPathEngine {
         );
   }
 
-  TypeDetails? operateTypes(
+  Future<TypeDetails?> operateTypes(
     TypeDetails left,
     FpOperation operation,
     TypeDetails right,
     ExpressionNode expr,
-  ) {
+  ) async {
     switch (operation) {
       case FpOperation.Equals:
       case FpOperation.Equivalent:
@@ -2608,21 +2629,23 @@ class FHIRPathEngine {
         return left.union(right);
       case FpOperation.Times:
         final result = TypeDetails(CollectionStatus.singleton);
-        if (left.hasTypeFromWorker(worker, ['integer']) &&
-            right.hasTypeFromWorker(worker, ['integer'])) {
+        if ((await left.hasTypeFromWorker(worker, ['integer'])) &&
+            (await right.hasTypeFromWorker(worker, ['integer']))) {
           result.addType(TypeDetails.FP_Integer);
-        } else if (left.hasTypeFromWorker(worker, ['integer', 'decimal']) &&
-            right.hasTypeFromWorker(worker, ['integer', 'decimal'])) {
+        } else if ((await left
+                .hasTypeFromWorker(worker, ['integer', 'decimal'])) &&
+            (await right.hasTypeFromWorker(worker, ['integer', 'decimal']))) {
           result.addType(TypeDetails.FP_Decimal);
         }
         return result;
       case FpOperation.DivideBy:
         final result = TypeDetails(CollectionStatus.singleton);
-        if (left.hasTypeFromWorker(worker, ['integer']) &&
-            right.hasTypeFromWorker(worker, ['integer'])) {
+        if ((await left.hasTypeFromWorker(worker, ['integer'])) &&
+            (await right.hasTypeFromWorker(worker, ['integer']))) {
           result.addType(TypeDetails.FP_Decimal);
-        } else if (left.hasTypeFromWorker(worker, ['integer', 'decimal']) &&
-            right.hasTypeFromWorker(worker, ['integer', 'decimal'])) {
+        } else if ((await left
+                .hasTypeFromWorker(worker, ['integer', 'decimal'])) &&
+            (await right.hasTypeFromWorker(worker, ['integer', 'decimal']))) {
           result.addType(TypeDetails.FP_Decimal);
         }
         return result;
@@ -2630,21 +2653,23 @@ class FHIRPathEngine {
         return TypeDetails(CollectionStatus.singleton, [TypeDetails.FP_String]);
       case FpOperation.Plus:
         final result = TypeDetails(CollectionStatus.singleton);
-        if (left.hasTypeFromWorker(worker, ['integer']) &&
-            right.hasTypeFromWorker(worker, ['integer'])) {
+        if ((await left.hasTypeFromWorker(worker, ['integer'])) &&
+            (await right.hasTypeFromWorker(worker, ['integer']))) {
           result.addType(TypeDetails.FP_Integer);
-        } else if (left.hasTypeFromWorker(worker, ['integer', 'decimal']) &&
-            right.hasTypeFromWorker(worker, ['integer', 'decimal'])) {
+        } else if ((await left
+                .hasTypeFromWorker(worker, ['integer', 'decimal'])) &&
+            (await right.hasTypeFromWorker(worker, ['integer', 'decimal']))) {
           result.addType(TypeDetails.FP_Decimal);
-        } else if (left.hasTypeFromWorker(
+        } else if ((await left.hasTypeFromWorker(
               worker,
               ['string', 'id', 'code', 'uri'],
-            ) &&
-            right.hasTypeFromWorker(worker, ['string', 'id', 'code', 'uri'])) {
+            )) &&
+            (await right
+                .hasTypeFromWorker(worker, ['string', 'id', 'code', 'uri']))) {
           result.addType(TypeDetails.FP_String);
-        } else if (left
+        } else if (await left
             .hasTypeFromWorker(worker, ['date', 'dateTime', 'instant'])) {
-          if (right.hasTypeFromWorker(worker, ['Quantity'])) {
+          if (await right.hasTypeFromWorker(worker, ['Quantity'])) {
             result.addType(left.getType());
           } else {
             throw PathEngineException(
@@ -2656,18 +2681,19 @@ class FHIRPathEngine {
         return result;
       case FpOperation.Minus:
         final result = TypeDetails(CollectionStatus.singleton);
-        if (left.hasTypeFromWorker(worker, ['integer']) &&
-            right.hasTypeFromWorker(worker, ['integer'])) {
+        if ((await left.hasTypeFromWorker(worker, ['integer'])) &&
+            (await right.hasTypeFromWorker(worker, ['integer']))) {
           result.addType(TypeDetails.FP_Integer);
-        } else if (left.hasTypeFromWorker(worker, ['integer', 'decimal']) &&
-            right.hasTypeFromWorker(worker, ['integer', 'decimal'])) {
+        } else if ((await left
+                .hasTypeFromWorker(worker, ['integer', 'decimal'])) &&
+            (await right.hasTypeFromWorker(worker, ['integer', 'decimal']))) {
           result.addType(TypeDetails.FP_Decimal);
-        } else if (left.hasTypeFromWorker(worker, ['Quantity']) &&
-            right.hasTypeFromWorker(worker, ['Quantity'])) {
+        } else if ((await left.hasTypeFromWorker(worker, ['Quantity'])) &&
+            (await right.hasTypeFromWorker(worker, ['Quantity']))) {
           result.addType(TypeDetails.FP_Quantity);
-        } else if (left
+        } else if (await left
             .hasTypeFromWorker(worker, ['date', 'dateTime', 'instant'])) {
-          if (right.hasTypeFromWorker(worker, ['Quantity'])) {
+          if (await right.hasTypeFromWorker(worker, ['Quantity'])) {
             result.addType(left.getType());
           } else {
             throw PathEngineException(
@@ -2680,11 +2706,12 @@ class FHIRPathEngine {
       case FpOperation.Div:
       case FpOperation.Mod:
         final result = TypeDetails(CollectionStatus.singleton);
-        if (left.hasTypeFromWorker(worker, ['integer']) &&
-            right.hasTypeFromWorker(worker, ['integer'])) {
+        if ((await left.hasTypeFromWorker(worker, ['integer'])) &&
+            (await right.hasTypeFromWorker(worker, ['integer']))) {
           result.addType(TypeDetails.FP_Integer);
-        } else if (left.hasTypeFromWorker(worker, ['integer', 'decimal']) &&
-            right.hasTypeFromWorker(worker, ['integer', 'decimal'])) {
+        } else if ((await left
+                .hasTypeFromWorker(worker, ['integer', 'decimal'])) &&
+            (await right.hasTypeFromWorker(worker, ['integer', 'decimal']))) {
           result.addType(TypeDetails.FP_Decimal);
         }
         return result;
@@ -2697,18 +2724,18 @@ class FHIRPathEngine {
             ed.getType().first.code.toString() == 'BackboneElement');
   }
 
-  void checkContextString(
+  Future<void> checkContextString(
     TypeDetails focus,
     String name,
     ExpressionNode expr,
     bool sing,
-  ) {
+  ) async {
     if (!focus.hasNoTypes() &&
-        !focus.hasTypeFromWorker(worker, ['string']) &&
-        !focus.hasTypeFromWorker(worker, ['code']) &&
-        !focus.hasTypeFromWorker(worker, ['uri']) &&
-        !focus.hasTypeFromWorker(worker, ['canonical']) &&
-        !focus.hasTypeFromWorker(worker, ['id'])) {
+        !(await focus.hasTypeFromWorker(worker, ['string'])) &&
+        !(await focus.hasTypeFromWorker(worker, ['code'])) &&
+        !(await focus.hasTypeFromWorker(worker, ['uri'])) &&
+        !(await focus.hasTypeFromWorker(worker, ['canonical'])) &&
+        !(await focus.hasTypeFromWorker(worker, ['id']))) {
       throw makeException(
         expr,
         sing ? 'FHIRPATH_STRING_SING_ONLY' : 'FHIRPATH_STRING_ORD_ONLY',
@@ -2747,12 +2774,16 @@ class FHIRPathEngine {
     }
   }
 
-  void checkContextCoded(TypeDetails focus, String name, ExpressionNode expr) {
-    if (!focus.hasTypeFromWorker(worker, ['string']) &&
-        !focus.hasTypeFromWorker(worker, ['code']) &&
-        !focus.hasTypeFromWorker(worker, ['uri']) &&
-        !focus.hasTypeFromWorker(worker, ['Coding']) &&
-        !focus.hasTypeFromWorker(worker, ['CodeableConcept'])) {
+  Future<void> checkContextCoded(
+    TypeDetails focus,
+    String name,
+    ExpressionNode expr,
+  ) async {
+    if (!(await focus.hasTypeFromWorker(worker, ['string'])) &&
+        !(await focus.hasTypeFromWorker(worker, ['code'])) &&
+        !(await focus.hasTypeFromWorker(worker, ['uri'])) &&
+        !(await focus.hasTypeFromWorker(worker, ['Coding'])) &&
+        !(await focus.hasTypeFromWorker(worker, ['CodeableConcept']))) {
       throw makeException(
         expr,
         'FHIRPATH_CODED_ONLY',
@@ -2761,15 +2792,15 @@ class FHIRPathEngine {
     }
   }
 
-  void checkContextReference(
+  Future<void> checkContextReference(
     TypeDetails focus,
     String name,
     ExpressionNode expr,
-  ) {
-    if (!focus.hasTypeFromWorker(worker, ['string']) &&
-        !focus.hasTypeFromWorker(worker, ['uri']) &&
-        !focus.hasTypeFromWorker(worker, ['Reference']) &&
-        !focus.hasTypeFromWorker(worker, ['canonical'])) {
+  ) async {
+    if (!(await focus.hasTypeFromWorker(worker, ['string'])) &&
+        !(await focus.hasTypeFromWorker(worker, ['uri'])) &&
+        !(await focus.hasTypeFromWorker(worker, ['Reference'])) &&
+        !(await focus.hasTypeFromWorker(worker, ['canonical']))) {
       throw makeException(
         expr,
         'FHIRPATH_REFERENCE_ONLY',
@@ -2803,13 +2834,13 @@ class FHIRPathEngine {
     }
   }
 
-  List<FhirBase> operate(
+  Future<List<FhirBase>> operate(
     ExecutionContext context,
     List<FhirBase> left,
     FpOperation? operation,
     List<FhirBase> right,
     ExpressionNode holder,
-  ) {
+  ) async {
     switch (operation) {
       case FpOperation.Equals:
         return opEquals(left, right, holder);
@@ -3278,22 +3309,22 @@ class FHIRPathEngine {
     return makeBoolean(ans);
   }
 
-  List<FhirBase> opMemberOf(
+  Future<List<FhirBase>> opMemberOf(
     ExecutionContext context,
     List<FhirBase> left,
     List<FhirBase> right,
     ExpressionNode expr,
-  ) {
+  ) async {
     var ans = false;
     final url = right.first.primitiveValue.toString();
     final vs = hostServices != null
         ? hostServices!.resolveValueSet(this, context.appInfo, url)
-        : worker.fetchResource<ValueSet>(uri: url);
+        : await worker.fetchResource<ValueSet>(uri: url);
 
     if (vs != null) {
       for (final l in left) {
         if (['code', 'string', 'uri'].contains(l.fhirType)) {
-          final result = worker.validateCodeWithCoding(
+          final result = await worker.validateCodeWithCoding(
             terminologyServiceOptions.withGuessSystem(),
             TypeConvertor.castToCoding(l)!,
             vs,
@@ -3302,7 +3333,7 @@ class FHIRPathEngine {
             ans = true;
           }
         } else if (l.fhirType == 'Coding') {
-          final result = worker.validateCodeWithCoding(
+          final result = await worker.validateCodeWithCoding(
             terminologyServiceOptions,
             TypeConvertor.castToCoding(l)!,
             vs,
@@ -3312,7 +3343,7 @@ class FHIRPathEngine {
           }
         } else if (l.fhirType == 'CodeableConcept') {
           final cc = TypeConvertor.castToCodeableConcept(l);
-          final vr = worker.validateCodeWithCodeableConcept(
+          final vr = await worker.validateCodeWithCodeableConcept(
             terminologyServiceOptions,
             cc!,
             vs,
@@ -3938,11 +3969,11 @@ class FHIRPathEngine {
     return result;
   }
 
-  List<FhirBase> opAs(
+  Future<List<FhirBase>> opAs(
     List<FhirBase> left,
     List<FhirBase> right,
     ExpressionNode expr,
-  ) {
+  ) async {
     final result = <FhirBase>[];
     if (right.length != 1) {
       return result;
@@ -3950,7 +3981,7 @@ class FHIRPathEngine {
 
     final tn = convertListToString(right);
 
-    if (!isKnownType(tn)) {
+    if (!(await isKnownType(tn))) {
       throw PathEngineException('The type $tn is not valid');
     }
     if (!doNotEnforceAsSingletonRule && left.length > 1) {
@@ -3972,11 +4003,11 @@ class FHIRPathEngine {
   /// FUNCTIONS
   /// ***************************************
   ///
-  List<FhirBase> evaluateFunction(
+  Future<List<FhirBase>> evaluateFunction(
     ExecutionContext context,
     List<FhirBase> focus,
     ExpressionNode exp,
-  ) {
+  ) async {
     switch (exp.function) {
       case FpFunction.Empty:
         return funcEmpty(context, focus, exp);
@@ -4196,7 +4227,7 @@ class FHIRPathEngine {
         {
           final params = <List<FhirBase>>[];
           for (final p in exp.parameters) {
-            params.add(execute(context, focus, p, true));
+            params.add(await execute(context, focus, p, true));
           }
           return hostServices?.executeFunction(
                 this,
@@ -4236,11 +4267,11 @@ class FHIRPathEngine {
     return result;
   }
 
-  List<FhirBase> funcExists(
+  Future<List<FhirBase>> funcExists(
     ExecutionContext context,
     List<FhirBase> focus,
     ExpressionNode exp,
-  ) {
+  ) async {
     var empty = true;
     final pc = <FhirBase>[];
 
@@ -4250,7 +4281,7 @@ class FHIRPathEngine {
           ..clear()
           ..add(f);
         final v = asBoolList(
-          execute(
+          await execute(
             context.changeThis(f, worker),
             pc,
             exp.parameters[0],
@@ -4269,12 +4300,12 @@ class FHIRPathEngine {
     return [FhirBoolean(!empty).noExtensions()];
   }
 
-  List<FhirBase> funcSubsetOf(
+  Future<List<FhirBase>> funcSubsetOf(
     ExecutionContext context,
     List<FhirBase> focus,
     ExpressionNode exp,
-  ) {
-    final target = execute(
+  ) async {
+    final target = await execute(
       context,
       context.focusResource == null ? focus : [context.focusResource!],
       exp.parameters[0],
@@ -4363,11 +4394,11 @@ class FHIRPathEngine {
     return [FhirInteger(focus.length).noExtensions()];
   }
 
-  List<FhirBase> funcWhere(
+  Future<List<FhirBase>> funcWhere(
     ExecutionContext context,
     List<FhirBase> focus,
     ExpressionNode exp,
-  ) {
+  ) async {
     final result = <FhirBase>[];
     final pc = <FhirBase>[];
     for (final item in focus) {
@@ -4380,7 +4411,7 @@ class FHIRPathEngine {
         );
       }
       final v = asBoolList(
-        execute(
+        await execute(
           changeThisExecutionContext(context, item),
           pc,
           exp.parameters.first,
@@ -4395,11 +4426,11 @@ class FHIRPathEngine {
     return result;
   }
 
-  List<FhirBase> funcSelect(
+  Future<List<FhirBase>> funcSelect(
     ExecutionContext context,
     List<FhirBase> focus,
     ExpressionNode exp,
-  ) {
+  ) async {
     final result = <FhirBase>[];
     final pc = <FhirBase>[];
 
@@ -4409,7 +4440,7 @@ class FHIRPathEngine {
         ..clear()
         ..add(item);
       result.addAll(
-        execute(
+        await execute(
           context.changeThis(item, worker)..index = i.toFhirInteger,
           pc,
           exp.parameters[0],
@@ -4420,11 +4451,11 @@ class FHIRPathEngine {
     return result;
   }
 
-  List<FhirBase> funcAll(
+  Future<List<FhirBase>> funcAll(
     ExecutionContext context,
     List<FhirBase> focus,
     ExpressionNode exp,
-  ) {
+  ) async {
     final result = <FhirBase>[];
     if (exp.parameters.length == 1) {
       final pc = <FhirBase>[];
@@ -4434,7 +4465,7 @@ class FHIRPathEngine {
           ..clear()
           ..add(item);
         final eq = asBoolList(
-          execute(
+          await execute(
             context.changeThis(item, worker),
             pc,
             exp.parameters[0],
@@ -4462,11 +4493,11 @@ class FHIRPathEngine {
     return result;
   }
 
-  List<FhirBase> funcRepeat(
+  Future<List<FhirBase>> funcRepeat(
     ExecutionContext context,
     List<FhirBase> focus,
     ExpressionNode exp,
-  ) {
+  ) async {
     final result = <FhirBase>[];
     final current = <FhirBase>[...focus];
     final added = <FhirBase>[];
@@ -4482,7 +4513,7 @@ class FHIRPathEngine {
           ..add(item);
 
         try {
-          final ex = execute(
+          final ex = await execute(
             context.changeThis(item, worker),
             pc,
             exp.parameters.first,
@@ -4527,14 +4558,14 @@ class FHIRPathEngine {
     return result;
   }
 
-  List<FhirBase> funcAggregate(
+  Future<List<FhirBase>> funcAggregate(
     ExecutionContext context,
     List<FhirBase> focus,
     ExpressionNode exp,
-  ) {
+  ) async {
     var total = <FhirBase>[];
     if (exp.parameterCount > 1) {
-      total = execute(context, focus, exp.parameters[1], false);
+      total = await execute(context, focus, exp.parameters[1], false);
     }
 
     final pc = <FhirBase>[];
@@ -4542,19 +4573,19 @@ class FHIRPathEngine {
       final c = context.changeThis(item, worker)
         ..total = total
         ..next();
-      total = execute(c, pc, exp.parameters[0], true);
+      total = await execute(c, pc, exp.parameters[0], true);
     }
     return total;
   }
 
-  List<FhirBase> funcItem(
+  Future<List<FhirBase>> funcItem(
     ExecutionContext context,
     List<FhirBase> focus,
     ExpressionNode exp,
-  ) {
+  ) async {
     final result = <FhirBase>[];
     final s = convertListToString(
-      execute(context, focus, exp.parameters[0], true),
+      await execute(context, focus, exp.parameters[0], true),
     );
     if (Utilities.isInteger(s) && int.parse(s) < focus.length) {
       result.add(focus[int.parse(s)]);
@@ -4619,11 +4650,11 @@ class FHIRPathEngine {
     // return result;
   }
 
-  List<FhirBase> funcOfType(
+  Future<List<FhirBase>> funcOfType(
     ExecutionContext context,
     List<FhirBase> focus,
     ExpressionNode expr,
-  ) {
+  ) async {
     final result = <FhirBase>[];
     String? tn;
     if (expr.parameters.isNotEmpty && expr.parameters.first.inner != null) {
@@ -4632,7 +4663,7 @@ class FHIRPathEngine {
       tn = 'FHIR.${expr.parameters.first.name}';
     }
 
-    if (!isKnownType(tn)) {
+    if (!(await isKnownType(tn))) {
       throw PathEngineException('The type $tn is not valid');
     }
 
@@ -4648,7 +4679,7 @@ class FHIRPathEngine {
         if (b.fhirType == tnp) {
           result.add(b);
         } else {
-          var sd = worker.fetchTypeDefinition(b.fhirType);
+          var sd = await worker.fetchTypeDefinition(b.fhirType);
           while (sd != null) {
             if (tnp == sd.type.primitiveValue) {
               result.add(b);
@@ -4656,10 +4687,10 @@ class FHIRPathEngine {
             }
             sd = sd.kind == StructureDefinitionKind.primitive_type
                 ? null
-                : worker.fetchResource<StructureDefinition>(
+                : (await worker.fetchResource<StructureDefinition>(
                     uri: sd.baseDefinition?.primitiveValue,
                     canonicalForSource: sd,
-                  )!;
+                  ))!;
           }
         }
       }
@@ -4668,11 +4699,11 @@ class FHIRPathEngine {
     return result;
   }
 
-  List<FhirBase> funcIs(
+  Future<List<FhirBase>> funcIs(
     ExecutionContext context,
     List<FhirBase> focus,
     ExpressionNode expr,
-  ) {
+  ) async {
     if (focus.isEmpty || focus.length > 1) {
       return makeNull();
     }
@@ -4747,12 +4778,12 @@ class FHIRPathEngine {
       if (n == focus.first.fhirType) {
         return makeBoolean(true);
       } else {
-        var sd = _fetchTypeDefinition(focus.first.fhirType);
+        var sd = await _fetchTypeDefinition(focus.first.fhirType);
         while (sd != null) {
           if (n == sd.type.toString()) {
             return makeBoolean(true);
           }
-          sd = worker.fetchResource<StructureDefinition>(
+          sd = await worker.fetchResource<StructureDefinition>(
             uri: sd.baseDefinition?.toString(),
           );
         }
@@ -4804,12 +4835,12 @@ class FHIRPathEngine {
     return focus.length > 1 ? focus.sublist(1) : [];
   }
 
-  List<FhirBase> funcSkip(
+  Future<List<FhirBase>> funcSkip(
     ExecutionContext context,
     List<FhirBase> focus,
     ExpressionNode exp,
-  ) {
-    final n1 = execute(context, focus, exp.parameters[0], true);
+  ) async {
+    final n1 = await execute(context, focus, exp.parameters[0], true);
     final i1 = int.parse(n1.first.primitiveValue.toString());
 
     if (focus.length <= i1) {
@@ -4819,12 +4850,12 @@ class FHIRPathEngine {
     return focus.sublist(i1);
   }
 
-  List<FhirBase> funcTake(
+  Future<List<FhirBase>> funcTake(
     ExecutionContext context,
     List<FhirBase> focus,
     ExpressionNode exp,
-  ) {
-    final n1 = execute(context, focus, exp.parameters[0], true);
+  ) async {
+    final n1 = await execute(context, focus, exp.parameters[0], true);
     final i1 = int.parse(n1.first.primitiveValue ?? '0');
 
     final result = <FhirBase>[];
@@ -4834,11 +4865,11 @@ class FHIRPathEngine {
     return result;
   }
 
-  List<FhirBase> funcUnion(
+  Future<List<FhirBase>> funcUnion(
     ExecutionContext context,
     List<FhirBase> focus,
     ExpressionNode exp,
-  ) {
+  ) async {
     final result = <FhirBase>[];
     for (final item in focus) {
       if (!doContains(result, item)) {
@@ -4852,7 +4883,7 @@ class FHIRPathEngine {
 
     final other = exp.parameters.isEmpty
         ? <FhirBase>[]
-        : execute(
+        : await execute(
             context,
             baseToList(context.thisItem!),
             exp.parameters[0],
@@ -4867,11 +4898,11 @@ class FHIRPathEngine {
     return result;
   }
 
-  List<FhirBase> funcCombine(
+  Future<List<FhirBase>> funcCombine(
     ExecutionContext context,
     List<FhirBase> focus,
     ExpressionNode exp,
-  ) {
+  ) async {
     final result = List<FhirBase>.from(focus);
     if (context.thisItem == null) {
       throw PathEngineException('The context does not have a thisItem');
@@ -4879,7 +4910,7 @@ class FHIRPathEngine {
 
     final other = exp.parameters.isEmpty
         ? <FhirBase>[]
-        : execute(
+        : await execute(
             context,
             baseToList(context.thisItem!),
             exp.parameters[0],
@@ -4890,13 +4921,13 @@ class FHIRPathEngine {
     return result;
   }
 
-  List<FhirBase> funcIntersect(
+  Future<List<FhirBase>> funcIntersect(
     ExecutionContext context,
     List<FhirBase> focus,
     ExpressionNode exp,
-  ) {
+  ) async {
     final result = <FhirBase>[];
-    final other = execute(context, focus, exp.parameters[0], true);
+    final other = await execute(context, focus, exp.parameters[0], true);
 
     for (final item in focus) {
       if (!doContains(result, item) && doContains(other, item)) {
@@ -4906,13 +4937,13 @@ class FHIRPathEngine {
     return result;
   }
 
-  List<FhirBase> funcExclude(
+  Future<List<FhirBase>> funcExclude(
     ExecutionContext context,
     List<FhirBase> focus,
     ExpressionNode exp,
-  ) {
+  ) async {
     final result = <FhirBase>[];
-    final other = execute(
+    final other = await execute(
       context,
       context.focusResource == null ? focus : [context.focusResource!],
       exp.parameters[0],
@@ -4927,11 +4958,11 @@ class FHIRPathEngine {
     return result;
   }
 
-  List<FhirBase> funcIif(
+  Future<List<FhirBase>> funcIif(
     ExecutionContext context,
     List<FhirBase> focus,
     ExpressionNode exp,
-  ) {
+  ) async {
     if (focus.length > 1) {
       throw makeException(
         exp,
@@ -4940,7 +4971,7 @@ class FHIRPathEngine {
       );
     }
 
-    final n1 = execute(
+    final n1 = await execute(
       focus.isEmpty ? context : context.changeThis(focus.first, worker),
       focus,
       exp.parameters[0],
@@ -5008,13 +5039,13 @@ class FHIRPathEngine {
     return result;
   }
 
-  List<FhirBase> funcIndexOf(
+  Future<List<FhirBase>> funcIndexOf(
     ExecutionContext context,
     List<FhirBase> focus,
     ExpressionNode exp,
-  ) {
+  ) async {
     final result = <FhirBase>[];
-    final swb = execute(context, focus, exp.parameters[0], true);
+    final swb = await execute(context, focus, exp.parameters[0], true);
     final sw = convertListToString(swb);
 
     if (focus.isEmpty || swb.isEmpty || sw.isEmpty) {
@@ -5027,18 +5058,18 @@ class FHIRPathEngine {
     return result;
   }
 
-  List<FhirBase> funcSubstring(
+  Future<List<FhirBase>> funcSubstring(
     ExecutionContext context,
     List<FhirBase> focus,
     ExpressionNode exp,
-  ) {
+  ) async {
     final result = <FhirBase>[];
-    final n1 = execute(context, focus, exp.parameters[0], true);
+    final n1 = await execute(context, focus, exp.parameters[0], true);
     final i1 = int.parse(n1.first.primitiveValue ?? '0');
     var i2 = -1;
 
     if (exp.parameterCount == 2) {
-      final n2 = execute(context, focus, exp.parameters[1], true);
+      final n2 = await execute(context, focus, exp.parameters[1], true);
       if (n2.isEmpty ||
           !n2.first.isPrimitive ||
           !n2.first.primitiveValue!.isInteger) {
@@ -5066,13 +5097,13 @@ class FHIRPathEngine {
     return result;
   }
 
-  List<FhirBase> funcStartsWith(
+  Future<List<FhirBase>> funcStartsWith(
     ExecutionContext context,
     List<FhirBase> focus,
     ExpressionNode exp,
-  ) {
+  ) async {
     final result = <FhirBase>[];
-    final swb = execute(context, focus, exp.parameters[0], true);
+    final swb = await execute(context, focus, exp.parameters[0], true);
     final sw = convertListToString(swb);
 
     if (focus.isEmpty || swb.isEmpty) {
@@ -5089,13 +5120,13 @@ class FHIRPathEngine {
     return result;
   }
 
-  List<FhirBase> funcEndsWith(
+  Future<List<FhirBase>> funcEndsWith(
     ExecutionContext context,
     List<FhirBase> focus,
     ExpressionNode exp,
-  ) {
+  ) async {
     final result = <FhirBase>[];
-    final swb = execute(context, focus, exp.parameters[0], true);
+    final swb = await execute(context, focus, exp.parameters[0], true);
     final sw = convertListToString(swb);
 
     if (focus.isEmpty || swb.isEmpty) {
@@ -5112,13 +5143,13 @@ class FHIRPathEngine {
     return result;
   }
 
-  List<FhirBase> funcMatches(
+  Future<List<FhirBase>> funcMatches(
     ExecutionContext context,
     List<FhirBase> focus,
     ExpressionNode exp,
-  ) {
+  ) async {
     final result = <FhirBase>[];
-    final swb = execute(context, focus, exp.parameters[0], true);
+    final swb = await execute(context, focus, exp.parameters[0], true);
     final sw = convertListToString(swb);
 
     if (focus.isEmpty || swb.isEmpty) {
@@ -5138,14 +5169,14 @@ class FHIRPathEngine {
     return result;
   }
 
-  List<FhirBase> funcMatchesFull(
+  Future<List<FhirBase>> funcMatchesFull(
     ExecutionContext context,
     List<FhirBase> focus,
     ExpressionNode exp,
-  ) {
+  ) async {
     final result = <FhirBase>[];
     final sw = convertListToString(
-      execute(context, focus, exp.parameters[0], true),
+      await execute(context, focus, exp.parameters[0], true),
     );
 
     if (focus.length == 1 && sw.isNotEmpty) {
@@ -5163,15 +5194,15 @@ class FHIRPathEngine {
     return result;
   }
 
-  List<FhirBase> funcReplaceMatches(
+  Future<List<FhirBase>> funcReplaceMatches(
     ExecutionContext context,
     List<FhirBase> focus,
     ExpressionNode exp,
-  ) {
+  ) async {
     final result = <FhirBase>[];
-    final regexB = execute(context, focus, exp.parameters[0], true);
+    final regexB = await execute(context, focus, exp.parameters[0], true);
     final regex = convertListToString(regexB);
-    final replB = execute(context, focus, exp.parameters[1], true);
+    final replB = await execute(context, focus, exp.parameters[1], true);
     final repl = convertListToString(replB);
 
     if (focus.isEmpty || regexB.isEmpty || replB.isEmpty) {
@@ -5190,16 +5221,16 @@ class FHIRPathEngine {
     return result;
   }
 
-  List<FhirBase> funcContains(
+  Future<List<FhirBase>> funcContains(
     ExecutionContext context,
     List<FhirBase> focus,
     ExpressionNode exp,
-  ) {
+  ) async {
     final result = <FhirBase>[];
     if (context.thisItem == null) {
       throw PathEngineException('The context does not have a thisItem');
     }
-    final swb = execute(
+    final swb = await execute(
       context,
       baseToList(context.thisItem!),
       exp.parameters[0],
@@ -5218,15 +5249,15 @@ class FHIRPathEngine {
     return result;
   }
 
-  List<FhirBase> funcReplace(
+  Future<List<FhirBase>> funcReplace(
     ExecutionContext context,
     List<FhirBase> focus,
     ExpressionNode exp,
-  ) {
+  ) async {
     final result = <FhirBase>[];
-    final tB = execute(context, focus, exp.parameters[0], true);
+    final tB = await execute(context, focus, exp.parameters[0], true);
     final t = convertListToString(tB);
-    final rB = execute(context, focus, exp.parameters[1], true);
+    final rB = await execute(context, focus, exp.parameters[1], true);
     final r = convertListToString(rB);
 
     if (focus.isEmpty || tB.isEmpty || rB.isEmpty) {
@@ -5302,12 +5333,12 @@ class FHIRPathEngine {
     return result;
   }
 
-  List<FhirBase> funcMemberOf(
+  Future<List<FhirBase>> funcMemberOf(
     ExecutionContext context,
     List<FhirBase> focus,
     ExpressionNode exp,
-  ) {
-    final nl = execute(context, focus, exp.parameters[0], true);
+  ) async {
+    final nl = await execute(context, focus, exp.parameters[0], true);
 
     if (nl.length != 1 || focus.length != 1) {
       return [];
@@ -5319,7 +5350,7 @@ class FHIRPathEngine {
     }
     final vs = hostServices != null
         ? hostServices!.resolveValueSet(this, context.appInfo, url)
-        : worker.fetchResource<ValueSet>(uri: url);
+        : await worker.fetchResource<ValueSet>(uri: url);
 
     if (vs == null) {
       return [];
@@ -5327,7 +5358,7 @@ class FHIRPathEngine {
 
     final l = focus.first;
     if (['code', 'string', 'uri'].contains(l.fhirType)) {
-      final result = worker.validateCodeWithCoding(
+      final result = await worker.validateCodeWithCoding(
         terminologyServiceOptions,
         TypeConvertor.castToCoding(l)!,
         vs,
@@ -5336,7 +5367,7 @@ class FHIRPathEngine {
         result.isOk,
       );
     } else if (l.fhirType == 'Coding') {
-      final result = worker.validateCodeWithCoding(
+      final result = await worker.validateCodeWithCoding(
         terminologyServiceOptions,
         TypeConvertor.castToCoding(l)!,
         vs,
@@ -5345,7 +5376,7 @@ class FHIRPathEngine {
         result.isOk,
       );
     } else if (l.fhirType == 'CodeableConcept') {
-      final result = worker.validateCodeWithCodeableConcept(
+      final result = await worker.validateCodeWithCodeableConcept(
         terminologyServiceOptions,
         TypeConvertor.castToCodeableConcept(l)!,
         vs,
@@ -5355,16 +5386,16 @@ class FHIRPathEngine {
     return [];
   }
 
-  List<FhirBase> funcTrace(
+  Future<List<FhirBase>> funcTrace(
     ExecutionContext context,
     List<FhirBase> focus,
     ExpressionNode exp,
-  ) {
-    final nl = execute(context, focus, exp.parameters[0], true);
+  ) async {
+    final nl = await execute(context, focus, exp.parameters[0], true);
     final name = nl.first.primitiveValue.toString();
 
     if (exp.parameters.length == 2) {
-      final n2 = execute(context, focus, exp.parameters[1], true);
+      final n2 = await execute(context, focus, exp.parameters[1], true);
       writeToLog(name, n2);
     } else {
       writeToLog(name, focus);
@@ -5372,12 +5403,12 @@ class FHIRPathEngine {
     return focus;
   }
 
-  List<FhirBase> funcDefineVariable(
+  Future<List<FhirBase>> funcDefineVariable(
     ExecutionContext context,
     List<FhirBase> focus,
     ExpressionNode exp,
-  ) {
-    final nl = execute(context, focus, exp.parameters[0], true);
+  ) async {
+    final nl = await execute(context, focus, exp.parameters[0], true);
     final name = nl.first.primitiveValue.toString();
     final value = exp.parameters.length == 2
         ? execute(context, focus, exp.parameters[1], true)
@@ -5387,15 +5418,15 @@ class FHIRPathEngine {
     return focus;
   }
 
-  List<FhirBase> funcCheck(
+  Future<List<FhirBase>> funcCheck(
     ExecutionContext context,
     List<FhirBase> focus,
     ExpressionNode expr,
-  ) {
-    final n1 = execute(context, focus, expr.parameters[0], true);
+  ) async {
+    final n1 = await execute(context, focus, expr.parameters[0], true);
 
     if (!convertToBoolean(n1)) {
-      final n2 = execute(context, focus, expr.parameters[1], true);
+      final n2 = await execute(context, focus, expr.parameters[1], true);
       final name = n2.first.primitiveValue.toString();
       throw FhirPathException('Check failed for $name');
     }
@@ -5435,11 +5466,11 @@ class FHIRPathEngine {
     ];
   }
 
-  List<FhirBase> funcAllFalse(
+  Future<List<FhirBase>> funcAllFalse(
     ExecutionContext context,
     List<FhirBase> focus,
     ExpressionNode exp,
-  ) {
+  ) async {
     final result = <FhirBase>[];
     if (exp.parameters.length == 1) {
       var all = true;
@@ -5448,7 +5479,7 @@ class FHIRPathEngine {
         pc
           ..clear()
           ..add(item);
-        final res = execute(context, pc, exp.parameters.first, true);
+        final res = await execute(context, pc, exp.parameters.first, true);
         final v = asBoolList(res, exp);
         if (v != FpEquality.false_) {
           // Assuming FpEquality.falseValue corresponds to `FpEquality.False`
@@ -5478,11 +5509,11 @@ class FHIRPathEngine {
     return result;
   }
 
-  List<FhirBase> funcAnyFalse(
+  Future<List<FhirBase>> funcAnyFalse(
     ExecutionContext context,
     List<FhirBase> focus,
     ExpressionNode exp,
-  ) {
+  ) async {
     final result = <FhirBase>[];
     if (exp.parameters.length == 1) {
       var any = false;
@@ -5491,7 +5522,7 @@ class FHIRPathEngine {
         pc
           ..clear()
           ..add(item);
-        final res = execute(context, pc, exp.parameters.first, true);
+        final res = await execute(context, pc, exp.parameters.first, true);
         final v = asBoolList(res, exp);
         if (v == FpEquality.false_) {
           any = true;
@@ -5520,11 +5551,11 @@ class FHIRPathEngine {
     return result;
   }
 
-  List<FhirBase> funcAnyTrue(
+  Future<List<FhirBase>> funcAnyTrue(
     ExecutionContext context,
     List<FhirBase> focus,
     ExpressionNode exp,
-  ) {
+  ) async {
     final result = <FhirBase>[];
 
     if (exp.parameters.length == 1) {
@@ -5535,7 +5566,7 @@ class FHIRPathEngine {
         pc
           ..clear()
           ..add(item);
-        final res = execute(context, pc, exp.parameters[0], true);
+        final res = await execute(context, pc, exp.parameters[0], true);
         final v = asBoolList(res, exp);
         if (v == FpEquality.true_) {
           any = true;
@@ -5563,11 +5594,11 @@ class FHIRPathEngine {
     return result;
   }
 
-  List<FhirBase> funcAllTrue(
+  Future<List<FhirBase>> funcAllTrue(
     ExecutionContext context,
     List<FhirBase> focus,
     ExpressionNode exp,
-  ) {
+  ) async {
     final result = <FhirBase>[];
 
     if (exp.parameters.length == 1) {
@@ -5578,7 +5609,7 @@ class FHIRPathEngine {
         pc
           ..clear()
           ..add(item);
-        final res = execute(context, pc, exp.parameters[0], true);
+        final res = await execute(context, pc, exp.parameters[0], true);
         final v = asBoolList(res, exp);
         if (v == FpEquality.true_) {
           any = true;
@@ -5685,13 +5716,13 @@ class FHIRPathEngine {
     return retVal;
   }
 
-  List<FhirBase> funcExtension(
+  Future<List<FhirBase>> funcExtension(
     ExecutionContext context,
     List<FhirBase> focus,
     ExpressionNode exp,
-  ) {
+  ) async {
     final result = <FhirBase>[];
-    final nl = execute(context, focus, exp.parameters.first, true);
+    final nl = await execute(context, focus, exp.parameters.first, true);
     final url = nl.first.primitiveValue;
 
     for (final item in focus) {
@@ -5723,12 +5754,12 @@ class FHIRPathEngine {
     }
   }
 
-  List<FhirBase> funcEncode(
+  Future<List<FhirBase>> funcEncode(
     ExecutionContext context,
     List<FhirBase> focus,
     ExpressionNode exp,
-  ) {
-    final nl = execute(context, focus, exp.parameters.first, true);
+  ) async {
+    final nl = await execute(context, focus, exp.parameters.first, true);
     final param = nl.first.primitiveValue;
 
     if (focus.length == 1) {
@@ -5759,12 +5790,12 @@ class FHIRPathEngine {
     return hexChars.join();
   }
 
-  List<FhirBase> funcDecode(
+  Future<List<FhirBase>> funcDecode(
     ExecutionContext context,
     List<FhirBase> focus,
     ExpressionNode exp,
-  ) {
-    final nl = execute(context, focus, exp.parameters.first, true);
+  ) async {
+    final nl = await execute(context, focus, exp.parameters.first, true);
     final param = nl.first.primitiveValue;
 
     if (focus.length == 1) {
@@ -5797,12 +5828,12 @@ class FHIRPathEngine {
     return data;
   }
 
-  List<FhirBase> funcEscape(
+  Future<List<FhirBase>> funcEscape(
     ExecutionContext context,
     List<FhirBase> focus,
     ExpressionNode exp,
-  ) {
-    final nl = execute(context, focus, exp.parameters.first, true);
+  ) async {
+    final nl = await execute(context, focus, exp.parameters.first, true);
     final param = nl.first.primitiveValue;
 
     if (focus.length == 1) {
@@ -5818,12 +5849,12 @@ class FHIRPathEngine {
     return [];
   }
 
-  List<FhirBase> funcUnescape(
+  Future<List<FhirBase>> funcUnescape(
     ExecutionContext context,
     List<FhirBase> focus,
     ExpressionNode exp,
-  ) {
-    final nl = execute(context, focus, exp.parameters.first, true);
+  ) async {
+    final nl = await execute(context, focus, exp.parameters.first, true);
     final param = nl.first.primitiveValue;
 
     if (focus.length == 1) {
@@ -5851,12 +5882,12 @@ class FHIRPathEngine {
     return [];
   }
 
-  List<FhirBase> funcSplit(
+  Future<List<FhirBase>> funcSplit(
     ExecutionContext context,
     List<FhirBase> focus,
     ExpressionNode exp,
-  ) {
-    final nl = execute(context, focus, exp.parameters.first, true);
+  ) async {
+    final nl = await execute(context, focus, exp.parameters.first, true);
     final param = nl.first.primitiveValue;
 
     if (focus.length == 1) {
@@ -5869,12 +5900,12 @@ class FHIRPathEngine {
     return [];
   }
 
-  List<FhirBase> funcJoin(
+  Future<List<FhirBase>> funcJoin(
     ExecutionContext context,
     List<FhirBase> focus,
     ExpressionNode exp,
-  ) {
-    final nl = execute(context, focus, exp.parameters.first, true);
+  ) async {
+    final nl = await execute(context, focus, exp.parameters.first, true);
     final delimiter = nl.first.primitiveValue;
 
     final joined =
@@ -5914,16 +5945,16 @@ class FHIRPathEngine {
     // return [FhirBoolean(checkForContent(xhtml))];
   }
 
-  List<FhirBase> funcComparable(
+  Future<List<FhirBase>> funcComparable(
     ExecutionContext context,
     List<FhirBase> focus,
     ExpressionNode exp,
-  ) {
+  ) async {
     if (focus.length != 1 || focus.first.fhirType != 'Quantity') {
       return makeBoolean(false);
     }
 
-    final nl = execute(context, focus, exp.parameters[0], true);
+    final nl = await execute(context, focus, exp.parameters[0], true);
     if (nl.length != 1 || nl.first.fhirType != 'Quantity') {
       return makeBoolean(false);
     }
@@ -6323,11 +6354,11 @@ class FHIRPathEngine {
     }
   }
 
-  List<FhirBase> funcConformsTo(
+  Future<List<FhirBase>> funcConformsTo(
     ExecutionContext context,
     List<FhirBase> focus,
     ExpressionNode expr,
-  ) {
+  ) async {
     if (hostServices == null) {
       throw makeException(expr, 'FHIRPATH_HO_HOST_SERVICES', [
         'conformsTo',
@@ -6338,7 +6369,7 @@ class FHIRPathEngine {
       result.add(FhirBoolean(false).noExtensions());
     } else {
       final url = convertListToString(
-        execute(context, focus, expr.parameters.first, true),
+        await execute(context, focus, expr.parameters.first, true),
       );
       result.add(
         FhirBoolean(
@@ -6403,11 +6434,11 @@ class FHIRPathEngine {
     }
   }
 
-  List<FhirBase> funcRound(
+  Future<List<FhirBase>> funcRound(
     ExecutionContext context,
     List<FhirBase> focus,
     ExpressionNode expr,
-  ) {
+  ) async {
     if (focus.length != 1) {
       throw makeExceptionPlural(focus.length, expr, 'FHIRPATH_FOCUS', [
         'round',
@@ -6422,7 +6453,7 @@ class FHIRPathEngine {
       int? precision = 0;
 
       if (expr.parameters.isNotEmpty) {
-        final n1 = execute(context, focus, expr.parameters[0], true);
+        final n1 = await execute(context, focus, expr.parameters[0], true);
         if (n1.length != 1) {
           throw makeException(expr, 'FHIRPATH_WRONG_PARAM_TYPE', [
             'round',
@@ -6670,11 +6701,11 @@ class FHIRPathEngine {
     return result;
   }
 
-  List<FhirBase> funcPower(
+  Future<List<FhirBase>> funcPower(
     ExecutionContext context,
     List<FhirBase> focus,
     ExpressionNode expr,
-  ) {
+  ) async {
     if (focus.length != 1) {
       throw makeExceptionPlural(
         focus.length,
@@ -6688,7 +6719,7 @@ class FHIRPathEngine {
     final result = <FhirBase>[];
 
     if (base.hasType(['integer', 'decimal', 'unsignedInt', 'positiveInt'])) {
-      final n1 = execute(context, focus, expr.parameters.first, true);
+      final n1 = await execute(context, focus, expr.parameters.first, true);
       if (n1.length != 1) {
         throw makeException(expr, 'FHIRPATH_WRONG_PARAM_TYPE', [
           'power',
@@ -6792,11 +6823,11 @@ class FHIRPathEngine {
     return result;
   }
 
-  List<FhirBase> funcLog(
+  Future<List<FhirBase>> funcLog(
     ExecutionContext context,
     List<FhirBase> focus,
     ExpressionNode expr,
-  ) {
+  ) async {
     if (focus.length != 1) {
       throw makeExceptionPlural(
         focus.length,
@@ -6809,7 +6840,7 @@ class FHIRPathEngine {
     final base = focus.first;
     final result = <FhirBase>[];
     if (base.hasType(['integer', 'decimal', 'unsignedInt', 'positiveInt'])) {
-      final n1 = execute(context, focus, expr.parameters[0], true);
+      final n1 = await execute(context, focus, expr.parameters[0], true);
       if (n1.length != 1) {
         throw makeException(expr, 'FHIRPATH_WRONG_PARAM_TYPE', [
           'log',
@@ -6875,11 +6906,11 @@ class FHIRPathEngine {
     return result;
   }
 
-  List<FhirBase> funcLowBoundary(
+  Future<List<FhirBase>> funcLowBoundary(
     ExecutionContext context,
     List<FhirBase> focus,
     ExpressionNode expr,
-  ) {
+  ) async {
     if (focus.isEmpty) {
       return makeNull();
     }
@@ -6894,7 +6925,7 @@ class FHIRPathEngine {
 
     int? precision;
     if (expr.parameters.isNotEmpty) {
-      final n1 = execute(context, focus, expr.parameters[0], true);
+      final n1 = await execute(context, focus, expr.parameters[0], true);
       if (n1.length != 1) {
         throw makeException(
           expr,
@@ -6965,11 +6996,11 @@ class FHIRPathEngine {
     return result;
   }
 
-  List<FhirBase> funcHighBoundary(
+  Future<List<FhirBase>> funcHighBoundary(
     ExecutionContext context,
     List<FhirBase> focus,
     ExpressionNode expr,
-  ) {
+  ) async {
     if (focus.isEmpty) {
       return makeNull();
     }
@@ -6984,7 +7015,7 @@ class FHIRPathEngine {
 
     int? precision;
     if (expr.parameters.isNotEmpty) {
-      final n1 = execute(context, focus, expr.parameters[0], true);
+      final n1 = await execute(context, focus, expr.parameters[0], true);
       if (n1.length != 1) {
         throw makeException(
           expr,
@@ -7106,12 +7137,12 @@ class FHIRPathEngine {
     return null;
   }
 
-  List<FhirBase> funcSupersetOf(
+  Future<List<FhirBase>> funcSupersetOf(
     ExecutionContext context,
     List<FhirBase> focus,
     ExpressionNode exp,
-  ) {
-    final target = execute(
+  ) async {
+    final target = await execute(
       context,
       context.focusResource == null ? focus : [context.focusResource!],
       exp.parameters[0],
@@ -7897,7 +7928,7 @@ class FHIRPathEngine {
     return false;
   }
 
-  bool isKnownType(String? tn) {
+  Future<bool> isKnownType(String? tn) async {
     if (tn == null) {
       return false;
     } else if (!tn.contains('.')) {
@@ -7914,7 +7945,7 @@ class FHIRPathEngine {
         return true;
       }
       try {
-        return _fetchTypeDefinition(tn) != null;
+        return ((await _fetchTypeDefinition(tn)) != null);
       } catch (e) {
         return false;
       }
@@ -7953,7 +7984,7 @@ class FHIRPathEngine {
       }
 
       try {
-        return _fetchTypeDefinition(t[1]) != null;
+        return ((await _fetchTypeDefinition(t[1])) != null);
       } catch (e) {
         return false;
       }

@@ -6,12 +6,12 @@ import 'package:test/test.dart';
 
 import 'test_data.dart';
 
-void testQuestionnaire() {
+Future<void> testQuestionnaire() async {
   group('Questionnaire Logic', () {
     final response = questionnaireResponse3;
-    test('Partial Score', () {
+    test('Partial Score', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: response,
           pathExpression: "QuestionnaireResponse.item.where(linkId = '1.1')."
               'answer.valueCoding.extension.valueDecimal + '
@@ -24,7 +24,7 @@ void testQuestionnaire() {
         [13.toFhirDecimal],
       );
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: response,
           pathExpression: "(QuestionnaireResponse.item.where(linkId = '1.1')."
               'answer.valueCoding.extension.valueDecimal + '
@@ -37,7 +37,7 @@ void testQuestionnaire() {
         [false.toFhirBoolean],
       );
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: response,
           pathExpression: "QuestionnaireResponse.item.where(linkId = '1.1')."
               'answer.valueCoding.extension.value + '
@@ -50,7 +50,7 @@ void testQuestionnaire() {
         [13.toFhirDecimal],
       );
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: response,
           pathExpression: "(QuestionnaireResponse.item.where(linkId = '1.1')."
               'answer.valueCoding.extension.value + '
@@ -63,9 +63,9 @@ void testQuestionnaire() {
         [false.toFhirBoolean],
       );
     });
-    test('Total Score Aggregate', () {
+    test('Total Score Aggregate', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: response,
           pathExpression:
               'QuestionnaireResponse.item.answer.valueCoding.extension.'
@@ -75,7 +75,7 @@ void testQuestionnaire() {
         [13.toFhirDecimal],
       );
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: response,
           pathExpression:
               'QuestionnaireResponse.item.answer.valueCoding.extension.value'
@@ -87,9 +87,9 @@ void testQuestionnaire() {
     });
   });
   group('Faiadashu', () {
-    test('EnableWhen with specific polymorphic items', () {
+    test('EnableWhen with specific polymorphic items', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: questionnaireResponse2,
           pathExpression: "%resource.repeat(item).where(linkId='4.2.b.1')."
               'answer.valueCoding.code '
@@ -107,9 +107,9 @@ void testQuestionnaire() {
         [false.toFhirBoolean],
       );
     });
-    test('EnableWhen using generic value polymorphic type', () {
+    test('EnableWhen using generic value polymorphic type', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: questionnaireResponse2,
           pathExpression: "%resource.repeat(item).where(linkId='4.2.b.1')."
               'answer.value.code '
@@ -128,9 +128,9 @@ void testQuestionnaire() {
       );
     });
 
-    test('EnableWhen using a defined polymorphic type', () {
+    test('EnableWhen using a defined polymorphic type', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: questionnaireResponse2,
           pathExpression: "%resource.repeat(item).where(linkId='4.2.b.1')."
               'answer.(value as Coding).code '
@@ -151,22 +151,24 @@ void testQuestionnaire() {
   });
 
   group('More Complicated Responses', () {
-    test('Contains on more than one item', () {
+    test('Contains on more than one item', () async {
       expect(
-        walkFhirPath(
+        (await walkFhirPath(
           context: questionnaireResponse1,
           pathExpression:
               "item.where(linkId.contains('/psc/preschool/routines/inflexibility'))",
-        ).map((e) => e.toJson()).toList(),
+        ))
+            .map((e) => e.toJson())
+            .toList(),
         [
           {'linkId': '/psc/preschool/routines/inflexibility/fidgety'},
           {'linkId': '/psc/preschool/routines/inflexibility/angry'},
         ],
       );
     });
-    test('Fuckin a sums scores', () {
+    test('Fuckin a sums scores', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: questionnaireResponse1,
           pathExpression: 'item.answer.valueCoding.extension.valueDecimal.'
               r'aggregate($this + $total, 0)',
@@ -175,7 +177,7 @@ void testQuestionnaire() {
         [2.toFhirDecimal],
       );
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: questionnaireResponse1,
           pathExpression: 'item.answer.valueCoding.extension.value.'
               r'aggregate($this + $total, 0)',
@@ -185,9 +187,9 @@ void testQuestionnaire() {
       );
     });
 
-    test('Risk scoring', () {
+    test('Risk scoring', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: null,
           pathExpression: 'iif(%allQuestionsAnswered, '
               "iif(%gender = 'Male', "

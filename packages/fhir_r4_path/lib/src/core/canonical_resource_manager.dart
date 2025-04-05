@@ -48,17 +48,20 @@ abstract class CanonicalResourceProxy {
 }
 
 /// A canonical resource manager
-class CanonicalResourceManager<T extends CanonicalResource> {
+class CanonicalResourceManager {
   /// Create a new canonical resource manager
   CanonicalResourceManager({this.enforceUniqueId = false});
 
   /// Should the manager enforce unique IDs
   final bool enforceUniqueId;
-  final List<_CachedCanonicalResource<T>> _list = [];
-  final Map<String, _CachedCanonicalResource<T>> _map = HashMap();
+  final List<_CachedCanonicalResource> _list = [];
+  final Map<String, _CachedCanonicalResource> _map = HashMap();
 
   /// Register a resource
-  void register(CanonicalResourceProxy proxy, PackageVersion packageInfo) {
+  void register<T extends CanonicalResource>(
+    CanonicalResourceProxy proxy,
+    PackageVersion packageInfo,
+  ) {
     if (!proxy.hasId()) {
       throw Exception('An ID is required for a deferred load resource.');
     }
@@ -68,7 +71,10 @@ class CanonicalResourceManager<T extends CanonicalResource> {
   }
 
   /// See a resource
-  void see(T resource, PackageVersion packageInfo) {
+  void see<T extends CanonicalResource>(
+    T resource, [
+    PackageVersion? packageInfo,
+  ]) {
     final newResource =
         resource.copyWith(id: resource.id ?? _generateUuid().toFhirString);
     final cachedResource = _CachedCanonicalResource(newResource, packageInfo)
@@ -76,7 +82,9 @@ class CanonicalResourceManager<T extends CanonicalResource> {
     _see(cachedResource);
   }
 
-  void _see(_CachedCanonicalResource<T> cachedResource) {
+  void _see<T extends CanonicalResource>(
+    _CachedCanonicalResource<T> cachedResource,
+  ) {
     if (enforceUniqueId && _map.containsKey(cachedResource.id)) {
       drop(cachedResource.id!);
     }
@@ -126,20 +134,23 @@ class CanonicalResourceManager<T extends CanonicalResource> {
   }
 
   /// Get a resource
-  T? get(String url) {
-    return _map[url]?.getResource();
+  T? get<T extends CanonicalResource>(String url, [String? version]) {
+    if (version != null) {
+      return getWithVersion<T>(url, version);
+    }
+    return _map[url]?.getResource() as T?;
   }
 
   /// Get a resource with a version
-  T? getWithVersion(String url, String version) {
+  T? getWithVersion<T extends CanonicalResource>(String url, String version) {
     final fullKey = '$url|$version';
     if (_map.containsKey(fullKey)) {
-      return _map[fullKey]?.getResource();
+      return _map[fullKey]?.getResource() as T?;
     }
 
     final majMin = _getMajMin(version);
     if (majMin != null && _map.containsKey('$url|$majMin')) {
-      return _map['$url|$majMin']?.getResource();
+      return _map['$url|$majMin']?.getResource() as T?;
     }
 
     return null;
@@ -158,10 +169,11 @@ class CanonicalResourceManager<T extends CanonicalResource> {
   }
 
   /// Drop a resource
-  void drop(String id) {
+  void drop<T extends CanonicalResource>(String id) {
     _CachedCanonicalResource<T>? resource;
     do {
-      resource = _list.firstWhereOrNull((r) => r.id == id);
+      resource = _list.firstWhereOrNull((r) => r.id == id)
+          as _CachedCanonicalResource<T>?;
 
       if (resource != null) {
         _list.remove(resource);
@@ -182,18 +194,30 @@ class CanonicalResourceManager<T extends CanonicalResource> {
   }
 
   /// Get a list of resources
-  List<T> getList() {
-    return _list.map((e) => e.getResource()).toSet().toList();
+  List<T> getList<T extends CanonicalResource>() {
+    return _list.map((e) => e.getResource()).toSet().whereType<T>().toList();
   }
 
   /// Get a sorted list of resources
-  List<T> getSortedList() {
+  List<T> getSortedList<T extends CanonicalResource>() {
     final list = getList()
       ..sort(
         (a, b) => (a.url?.primitiveValue ?? '')
             .compareTo(b.url?.primitiveValue ?? ''),
       );
-    return list;
+    return list as List<T>;
+  }
+
+  /// Get a list of the names of the resources stored in the cache
+  List<String> getNames() {
+    final names = <String>{};
+    for (final resource in _list) {
+      final name = resource.getResource().getChildByName('name');
+      if (name is FhirString && name.valueString != null) {
+        names.add(name.valueString!);
+      }
+    }
+    return names.toList();
   }
 
   /// Get the size of the list
@@ -223,13 +247,13 @@ class CanonicalResourceManager<T extends CanonicalResource> {
 }
 
 class _CachedCanonicalResource<T extends CanonicalResource> {
-  _CachedCanonicalResource(this.resource, this.packageInfo) : proxy = null;
+  _CachedCanonicalResource(this.resource, [this.packageInfo]) : proxy = null;
 
-  _CachedCanonicalResource.fromProxy(this.proxy, this.packageInfo)
+  _CachedCanonicalResource.fromProxy(this.proxy, [this.packageInfo])
       : resource = null;
   final T? resource;
   final CanonicalResourceProxy? proxy;
-  final PackageVersion packageInfo;
+  final PackageVersion? packageInfo;
 
   T getResource() {
     if (resource != null) return resource!;

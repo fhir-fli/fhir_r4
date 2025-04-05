@@ -122,7 +122,7 @@ class TypeDetails {
     return false;
   }
 
-  bool hasTypeFromWorker(WorkerContext context, List<String> tn) {
+  Future<bool> hasTypeFromWorker(WorkerContext context, List<String> tn) async {
     for (final n in tn) {
       var t = ProfiledType.ns(n);
       if (typesContains(t)) {
@@ -153,7 +153,7 @@ class TypeDetails {
         tail = tail.substring(tail.indexOf('.'));
       }
       final t = ProfiledType.ns(n);
-      var sd = context.fetchResource<StructureDefinition>(uri: t);
+      var sd = await context.fetchResource<StructureDefinition>(uri: t);
       while (sd?.url != null) {
         if (tail == null && typesContains(sd!.url!.toString())) {
           return true;
@@ -168,11 +168,11 @@ class TypeDetails {
         }
         if (sd!.baseDefinition != null) {
           if (sd.type.toString() == 'uri') {
-            sd = context.fetchResource<StructureDefinition>(
+            sd = await context.fetchResource<StructureDefinition>(
               uri: 'http://hl7.org/fhir/StructureDefinition/string',
             );
           } else {
-            sd = context.fetchResource<StructureDefinition>(
+            sd = await context.fetchResource<StructureDefinition>(
               uri: sd.baseDefinition!.toString(),
             );
           }

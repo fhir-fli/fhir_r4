@@ -7,7 +7,7 @@ import 'package:test/test.dart';
 import 'test_data.dart';
 
 /// FHIRPath Test Suite - reference="http://hl7.org/fhirpath|2.0.0"
-void testFpTestSuite() {
+Future<void> testFpTestSuite() async {
   group('testMiscellaneousAccessorTests - Miscellaneous accessor tests', () {
     // <test name="testExtractBirthDate" description="Extract birthDate"
     // inputfile="patient-example.xml" predicate="false">
@@ -15,9 +15,9 @@ void testFpTestSuite() {
     // <output type="date">1974-12-25</output>
     // });
 
-    test('testExtractBirthDate', () {
+    test('testExtractBirthDate', () async {
       expect(
-        walkFhirPath(context: patient1, pathExpression: 'birthDate'),
+        await walkFhirPath(context: patient1, pathExpression: 'birthDate'),
         ['1974-12-25'.toFhirDate],
       );
     });
@@ -29,9 +29,9 @@ void testFpTestSuite() {
     // <output type="boolean">true</output>
     // });
 
-    test('testExtractBirthDate', () {
+    test('testExtractBirthDate', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: 'birthDate.exists()',
         ),
@@ -48,9 +48,9 @@ void testFpTestSuite() {
     // <output type="code">old</output>
     // });
 
-    test('testExtractBirthDate', () {
+    test('testExtractBirthDate', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: 'telecom.use',
         ),
@@ -74,9 +74,9 @@ void testFpTestSuite() {
     // <output type="string">James</output>
     // });
 
-    test('testSimple', () {
+    test('testSimple', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: 'name.given[3]',
         ),
@@ -89,12 +89,14 @@ void testFpTestSuite() {
     // <expression>name.suffix</expression>
     // });
 
-    test('testSimpleNone', () {
+    test('testSimpleNone', () async {
       expect(
-          walkFhirPath(
+          (await walkFhirPath(
             context: patient1,
             pathExpression: 'name.period',
-          ).map((e) => e.toJson()).toList(),
+          ))
+              .map((e) => e.toJson())
+              .toList(),
           [
             {'end': '2002'},
           ]);
@@ -108,9 +110,9 @@ void testFpTestSuite() {
     // <output type="string">James</output>
     // });
 
-    test('testEscapedIdentifier', () {
+    test('testEscapedIdentifier', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: 'name.`given`[3]',
         ),
@@ -125,9 +127,9 @@ void testFpTestSuite() {
     // <output type="string">James</output>
     // });
 
-    test('testSimpleBackTick1', () {
+    test('testSimpleBackTick1', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '`Patient`.name.`given`[3]',
         ),
@@ -140,9 +142,9 @@ void testFpTestSuite() {
     // <expression invalid="semantic">name.given1</expression>
     // });
 
-    test('testSimpleBackTick1', () {
+    test('testSimpleBackTick1', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: 'name.given1',
         ),
@@ -158,9 +160,9 @@ void testFpTestSuite() {
     // <output type="string">James</output>
     // });
 
-    test('testSimpleWithContext', () {
+    test('testSimpleWithContext', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: 'Patient.name.given[3]',
         ),
@@ -172,9 +174,9 @@ void testFpTestSuite() {
     // <test name="testSimpleWithWrongContext" inputfile="patient-example.xml"
     //  mode="strict">
     // <expression invalid="semantic">Encounter.name.given</expression>
-    test('testSimpleWithContext', () {
+    test('testSimpleWithContext', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: 'Encounter.name.given',
         ),
@@ -185,9 +187,9 @@ void testFpTestSuite() {
 
   group('testObservations', () {
     // test(observation(), "Observation.value.unit", 1, "string");
-    test('testPolymorphismA', () {
+    test('testPolymorphismA', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: observation1,
           pathExpression: 'Observation.value.unit',
         ),
@@ -201,9 +203,9 @@ void testFpTestSuite() {
     // <expression invalid="semantic">Observation.valueQuantity.unit</expression>
     // });
 
-    test('testPolymorphismIsA', () {
+    test('testPolymorphismIsA', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: observation1,
           pathExpression: 'Observation.value is Quantity',
         ),
@@ -212,17 +214,17 @@ void testFpTestSuite() {
     });
 
     // FIXED: Test makes wrong assumption about precedence
-    // test("testPolymorphismIsB", () {
+    // test("testPolymorphismIsB", () async {
     //   expect(
-    //       walkFhirPath(
+    //       await walkFhirPath(
     //           context: observation1,
     //           pathExpression: r"Observation.value is Period.not()"),
     //       [true]);
     // });
 
-    test('testPolymorphismIsB-fixed', () {
+    test('testPolymorphismIsB-fixed', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: observation1,
           pathExpression: '(Observation.value is Period).not()',
         ),
@@ -231,21 +233,23 @@ void testFpTestSuite() {
     });
 
     // testBoolean(observation(), "Observation.value.as(Quantity).unit", true);
-    test('testPolymorphismAsA', () {
+    test('testPolymorphismAsA', () async {
       expect(
-        () => walkFhirPath(
-          context: observation1,
-          pathExpression: 'Observation.value.as(Quantity).unit',
-        ),
+        () async {
+          await walkFhirPath(
+            context: observation1,
+            pathExpression: 'Observation.value.as(Quantity).unit',
+          );
+        },
         throwsA(isA<FhirPathDeprecatedExpressionException>()),
       );
     });
   });
 
   // testBoolean(observation(), "(Observation.value as Quantity).unit", true);
-  test('testPolymorphismAsAFunction', () {
+  test('testPolymorphismAsAFunction', () async {
     expect(
-      walkFhirPath(
+      await walkFhirPath(
         context: observation1,
         pathExpression: '(Observation.value as Quantity).unit',
       ),
@@ -258,9 +262,9 @@ void testFpTestSuite() {
   //  mode="strict">
   // <expression invalid="semantic">(Observation.value as Period).unit</expression>
   // });
-  test('testPolymorphismAsB', () {
+  test('testPolymorphismAsB', () async {
     expect(
-      walkFhirPath(
+      await walkFhirPath(
         context: observation1,
         pathExpression: '(Observation.value as Period).unit',
       ),
@@ -273,7 +277,7 @@ void testFpTestSuite() {
   // <expression>Observation.value.as(Period).start</expression>
   // });
   // });
-  test('testPolymorphismAsBFunction', () {
+  test('testPolymorphismAsBFunction', () async {
     expect(
       () => walkFhirPath(
         context: observation1,
@@ -285,9 +289,9 @@ void testFpTestSuite() {
 
   group('testDollar', () {
     // test(patient(), "Patient.name.given.where(substring($this.length()-3) = 'out')", 0);
-    test('testDollarThis1', () {
+    test('testDollarThis1', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression:
               r"Patient.name.given.where(substring($this.length()-3) = 'out')",
@@ -297,9 +301,9 @@ void testFpTestSuite() {
     });
 
     // test(patient(), "Patient.name.given.where(substring($this.length()-3) = 'ter')", 1, "string");
-    test('testDollarThis2', () {
+    test('testDollarThis2', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression:
               r"Patient.name.given.where(substring($this.length()-3) = 'ter')",
@@ -310,17 +314,17 @@ void testFpTestSuite() {
 
     // FIXED: this appears to only capture the first given name, but it should
     // capture three
-    // test("testDollarOrderAllowed", () {
+    // test("testDollarOrderAllowed", () async {
     //   expect(
-    //       walkFhirPath(
+    //       await walkFhirPath(
     //           context: patient1,
     //           pathExpression: r"Patient.name.skip(1).given"),
     //       ["Jim"]);
     // });
 
-    test('testDollarOrderAllowed-fixed', () {
+    test('testDollarOrderAllowed-fixed', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: 'Patient.name.skip(1).given[0]',
         ),
@@ -332,9 +336,9 @@ void testFpTestSuite() {
     // <expression>Patient.name.skip(3).given</expression>
     // });
 
-    test('testDollarOrderAllowedA', () {
+    test('testDollarOrderAllowedA', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: 'Patient.name.skip(3).given',
         ),
@@ -345,12 +349,13 @@ void testFpTestSuite() {
     // <test name="testDollarOrderNotAllowed" inputfile="patient-example.xml"
     // mode="strict" checkOrderedFunctions="true">
     // <expression invalid="semantic">Patient.children().skip(1)</expression>
-    test('testDollarOrderAllowedA', () {
+    test('testDollarOrderAllowedA', () async {
       expect(
-          walkFhirPath(
+          (await walkFhirPath(
             context: patient1,
             pathExpression: 'Patient.name.children().skip(1)',
-          ).map((e) => e is PrimitiveType ? e.primitiveValue : e.toJson()),
+          ))
+              .map((e) => e is PrimitiveType ? e.primitiveValue : e.toJson()),
           [
             'Chalmers',
             'Peter',
@@ -368,9 +373,9 @@ void testFpTestSuite() {
 
   group('testLiterals', () {
     // testBoolean(patient(), "Patient.name.exists() = true", true);
-    test('testLiteralTrue', () {
+    test('testLiteralTrue', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: 'Patient.name.exists() = true',
         ),
@@ -379,9 +384,9 @@ void testFpTestSuite() {
     });
 
     // testBoolean(patient(), "Patient.name.empty() = false", true);
-    test('testLiteralFalse', () {
+    test('testLiteralFalse', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: 'Patient.name.empty() = false',
         ),
@@ -390,9 +395,9 @@ void testFpTestSuite() {
     });
 
     // testBoolean(patient(), "Patient.name.given.first() = 'Peter'", true);
-    test('testLiteralString', () {
+    test('testLiteralString', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "Patient.name.given.first() = 'Peter'",
         ),
@@ -400,9 +405,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testLiteralInteger1', () {
+    test('testLiteralInteger1', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '1.convertsToInteger()',
         ),
@@ -410,9 +415,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testLiteralInteger0', () {
+    test('testLiteralInteger0', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '0.convertsToInteger()',
         ),
@@ -420,9 +425,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testLiteralIntegerNegative1', () {
+    test('testLiteralIntegerNegative1', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '(-1).convertsToInteger()',
         ),
@@ -430,7 +435,7 @@ void testFpTestSuite() {
       );
     });
 
-    test('testLiteralIntegerNegative1Invalid', () {
+    test('testLiteralIntegerNegative1Invalid', () async {
       expect(
         () => walkFhirPath(
           context: patient1,
@@ -440,9 +445,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testLiteralIntegerMax', () {
+    test('testLiteralIntegerMax', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '2147483647.convertsToInteger()',
         ),
@@ -450,9 +455,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testLiteralString', () {
+    test('testLiteralString', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "'test'.convertsToString()",
         ),
@@ -460,9 +465,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testLiteralStringEscapes', () {
+    test('testLiteralStringEscapes', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: r"""'\\\/\f\r\n\t\"\`\'\u002a'.convertsToString()""",
         ),
@@ -470,9 +475,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testLiteralBooleanTrue', () {
+    test('testLiteralBooleanTrue', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: 'true.convertsToBoolean()',
         ),
@@ -480,9 +485,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testLiteralBooleanFalse', () {
+    test('testLiteralBooleanFalse', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: 'false.convertsToBoolean()',
         ),
@@ -490,9 +495,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testLiteralDecimal10', () {
+    test('testLiteralDecimal10', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '1.0.convertsToDecimal()',
         ),
@@ -500,9 +505,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testLiteralDecimal01', () {
+    test('testLiteralDecimal01', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '0.1.convertsToDecimal()',
         ),
@@ -510,9 +515,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testLiteralDecimal00', () {
+    test('testLiteralDecimal00', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '0.0.convertsToDecimal()',
         ),
@@ -520,9 +525,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testLiteralDecimalNegative01', () {
+    test('testLiteralDecimalNegative01', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '(-0.1).convertsToDecimal()',
         ),
@@ -530,7 +535,7 @@ void testFpTestSuite() {
       );
     });
 
-    test('testLiteralDecimalNegative01Invalid', () {
+    test('testLiteralDecimalNegative01Invalid', () async {
       expect(
         () => walkFhirPath(
           context: patient1,
@@ -540,9 +545,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testLiteralDecimalMax', () {
+    test('testLiteralDecimalMax', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '1234567890987654321.0.convertsToDecimal()',
         ),
@@ -550,9 +555,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testLiteralDecimalStep', () {
+    test('testLiteralDecimalStep', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '0.00000001.convertsToDecimal()',
         ),
@@ -560,9 +565,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testLiteralDateYear', () {
+    test('testLiteralDateYear', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '@2015 is Date',
         ),
@@ -570,9 +575,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testLiteralDateMonth', () {
+    test('testLiteralDateMonth', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '@2015-02 is Date',
         ),
@@ -580,9 +585,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testLiteralDateDay', () {
+    test('testLiteralDateDay', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '@2015-02-04 is Date',
         ),
@@ -590,9 +595,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testLiteralDateTimeYear', () {
+    test('testLiteralDateTimeYear', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '@2015T is DateTime',
         ),
@@ -600,9 +605,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testLiteralDateTimeMonth', () {
+    test('testLiteralDateTimeMonth', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '@2015-02T is DateTime',
         ),
@@ -610,9 +615,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testLiteralDateTimeDay', () {
+    test('testLiteralDateTimeDay', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '@2015-02-04T is DateTime',
         ),
@@ -620,9 +625,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testLiteralDateTimeHour', () {
+    test('testLiteralDateTimeHour', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '@2015-02-04T14 is DateTime',
         ),
@@ -630,9 +635,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testLiteralDateTimeMinute', () {
+    test('testLiteralDateTimeMinute', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '@2015-02-04T14:34 is DateTime',
         ),
@@ -640,9 +645,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testLiteralDateTimeSecond', () {
+    test('testLiteralDateTimeSecond', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '@2015-02-04T14:34:28 is DateTime',
         ),
@@ -650,9 +655,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testLiteralDateTimeMillisecond', () {
+    test('testLiteralDateTimeMillisecond', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '@2015-02-04T14:34:28.123 is DateTime',
         ),
@@ -660,9 +665,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testLiteralDateTimeUTC', () {
+    test('testLiteralDateTimeUTC', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '@2015-02-04T14:34:28Z is DateTime',
         ),
@@ -670,9 +675,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testLiteralDateTimeTimezoneOffset', () {
+    test('testLiteralDateTimeTimezoneOffset', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '@2015-02-04T14:34:28+10:00 is DateTime',
         ),
@@ -680,9 +685,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testLiteralTimeHour', () {
+    test('testLiteralTimeHour', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '@T14 is Time',
         ),
@@ -690,9 +695,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testLiteralTimeMinute', () {
+    test('testLiteralTimeMinute', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '@T14:34 is Time',
         ),
@@ -700,9 +705,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testLiteralTimeSecond', () {
+    test('testLiteralTimeSecond', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '@T14:34:28 is Time',
         ),
@@ -710,9 +715,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testLiteralTimeMillisecond', () {
+    test('testLiteralTimeMillisecond', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '@T14:34:28.123 is Time',
         ),
@@ -723,7 +728,7 @@ void testFpTestSuite() {
     //   Current: "@T14:34:28Z" => TimeParser (@T14:34:28) + IdentifierParser (Z)
     //<test name="testLiteralTimeUTC" inputfile="patient-example.xml"
     // invalid="true"><expression>@T14:34:28Z is Time</expression>});
-    test('testLiteralTimeUtc', () {
+    test('testLiteralTimeUtc', () async {
       expect(
         () => walkFhirPath(
           context: patient1,
@@ -735,7 +740,7 @@ void testFpTestSuite() {
 
     // <test name="testLiteralTimeTimezoneOffset" inputfile="patient-example.xml"
     // invalid="true"><expression>@T14:34:28+10:00 is Time</expression>});
-    test('testLiteralTimeTimezoneOffset', () {
+    test('testLiteralTimeTimezoneOffset', () async {
       expect(
         () => walkFhirPath(
           context: patient1,
@@ -745,9 +750,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testLiteralQuantityDecimal', () {
+    test('testLiteralQuantityDecimal', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "10.1 'mg'.convertsToQuantity()",
         ),
@@ -755,9 +760,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testLiteralQuantityInteger', () {
+    test('testLiteralQuantityInteger', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "10 'mg'.convertsToQuantity()",
         ),
@@ -765,9 +770,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testLiteralQuantityDay', () {
+    test('testLiteralQuantityDay', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '4 days.convertsToQuantity()',
         ),
@@ -776,16 +781,16 @@ void testFpTestSuite() {
     });
 
     // TODO(Dokotela): Still doesn't like negative numbers to start
-    // test('testLiteralIntegerNotEqual', () {
+    // test('testLiteralIntegerNotEqual', () async {
     //   expect(
-    //     walkFhirPath(context: patient1, pathExpression: '-3 != 3'),
+    //     await walkFhirPath(context: patient1, pathExpression: '-3 != 3'),
     //     [true.toFhirBoolean],
     //   );
     // });
 
-    test('testLiteralIntegerEqual', () {
+    test('testLiteralIntegerEqual', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: 'Patient.name.given.count() = 5',
         ),
@@ -794,9 +799,9 @@ void testFpTestSuite() {
     });
 
     // TODO(Dokotela): Again, starting with negative numbers is a problem
-    // test('testPolarityPrecedence', () {
+    // test('testPolarityPrecedence', () async {
     //   expect(
-    //     walkFhirPath(
+    //     await walkFhirPath(
     //       context: patient1,
     //       pathExpression: '-Patient.name.given.count() = -5',
     //     ),
@@ -804,9 +809,9 @@ void testFpTestSuite() {
     //   );
     // });
 
-    test('testLiteralIntegerGreaterThan', () {
+    test('testLiteralIntegerGreaterThan', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: 'Patient.name.given.count() > -3',
         ),
@@ -814,9 +819,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testLiteralIntegerCountNotEqual', () {
+    test('testLiteralIntegerCountNotEqual', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: 'Patient.name.given.count() != 0',
         ),
@@ -824,38 +829,38 @@ void testFpTestSuite() {
       );
     });
 
-    test('testLiteralIntegerLessThanTrue', () {
+    test('testLiteralIntegerLessThanTrue', () async {
       expect(
-        walkFhirPath(context: patient1, pathExpression: '1 < 2'),
+        await walkFhirPath(context: patient1, pathExpression: '1 < 2'),
         [true.toFhirBoolean],
       );
     });
 
-    test('testLiteralIntegerLessThanFalse', () {
+    test('testLiteralIntegerLessThanFalse', () async {
       expect(
-        walkFhirPath(context: patient1, pathExpression: '1 < -2'),
+        await walkFhirPath(context: patient1, pathExpression: '1 < -2'),
         [false.toFhirBoolean],
       );
     });
 
-    test('testLiteralIntegerLessThanPolarityTrue', () {
+    test('testLiteralIntegerLessThanPolarityTrue', () async {
       expect(
-        walkFhirPath(context: patient1, pathExpression: '+1 < +2'),
+        await walkFhirPath(context: patient1, pathExpression: '+1 < +2'),
         [true.toFhirBoolean],
       );
     });
 
     // TODO(Dokotela): Still doesn't like negative numbers to start
-    // test('testLiteralIntegerLessThanPolarityFalse', () {
+    // test('testLiteralIntegerLessThanPolarityFalse', () async {
     //   expect(
-    //     walkFhirPath(context: patient1, pathExpression: '-1 < 2'),
+    //     await walkFhirPath(context: patient1, pathExpression: '-1 < 2'),
     //     [true.toFhirBoolean],
     //   );
     // });
 
-    test('testLiteralDecimalGreaterThanNonZeroTrue', () {
+    test('testLiteralDecimalGreaterThanNonZeroTrue', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: observation1,
           pathExpression: 'Observation.value.value > 180.0',
         ),
@@ -863,9 +868,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testLiteralDecimalGreaterThanZeroTrue', () {
+    test('testLiteralDecimalGreaterThanZeroTrue', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: observation1,
           pathExpression: 'Observation.value.value > 0.0',
         ),
@@ -873,9 +878,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testLiteralDecimalGreaterThanIntegerTrue', () {
+    test('testLiteralDecimalGreaterThanIntegerTrue', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: observation1,
           pathExpression: 'Observation.value.value > 0',
         ),
@@ -883,9 +888,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testLiteralDecimalLessThanInteger', () {
+    test('testLiteralDecimalLessThanInteger', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: observation1,
           pathExpression: 'Observation.value.value < 190',
         ),
@@ -900,7 +905,7 @@ void testFpTestSuite() {
     // inputfile="observation-example.xml">
     // <expression invalid="semantic">Observation.value.value
     // < 'test'</expression>// no output - empty set});*/
-    test('testLiteralDecimalLessThanInteger', () {
+    test('testLiteralDecimalLessThanInteger', () async {
       expect(
         () => walkFhirPath(
           context: observation1,
@@ -912,9 +917,9 @@ void testFpTestSuite() {
   });
 
   group('testDates', () {
-    test('testDateEqual', () {
+    test('testDateEqual', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: 'Patient.birthDate = @1974-12-25',
         ),
@@ -922,9 +927,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testDateNotEqual', () {
+    test('testDateNotEqual', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: 'Patient.birthDate != @1974-12-25T12:34:00',
         ),
@@ -933,9 +938,9 @@ void testFpTestSuite() {
     });
 
     // TODO(Dokotela): testDateNotEqualTimezoneOffsetBefore
-    // test('testDateNotEqualTimezoneOffsetBefore', () {
+    // test('testDateNotEqualTimezoneOffsetBefore', () async {
     //   expect(
-    //     walkFhirPath(
+    //     await walkFhirPath(
     //       context: patient1,
     //       pathExpression: 'Patient.birthDate != @1974-12-25T12:34:00-10:00',
     //     ),
@@ -944,9 +949,9 @@ void testFpTestSuite() {
     // });
 
     // TODO(Dokotela): testDateNotEqualTimezoneOffsetAfter
-    // test('testDateNotEqualTimezoneOffsetAfter', () {
+    // test('testDateNotEqualTimezoneOffsetAfter', () async {
     //   expect(
-    //     walkFhirPath(
+    //     await walkFhirPath(
     //       context: patient1,
     //       pathExpression: 'Patient.birthDate != @1974-12-25T12:34:00+10:00',
     //     ),
@@ -955,9 +960,9 @@ void testFpTestSuite() {
     // });
 
     // TODO(Dokotela): testDateNotEqualUTC
-    // test('testDateNotEqualUTC', () {
+    // test('testDateNotEqualUTC', () async {
     //   expect(
-    //     walkFhirPath(
+    //     await walkFhirPath(
     //       context: patient1,
     //       pathExpression: 'Patient.birthDate != @1974-12-25T12:34:00Z',
     //     ),
@@ -965,9 +970,9 @@ void testFpTestSuite() {
     //   );
     // });
 
-    test('testDateNotEqualTimeSecond', () {
+    test('testDateNotEqualTimeSecond', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: 'Patient.birthDate != @T12:14:15',
         ),
@@ -975,9 +980,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testDateNotEqualTimeMinute', () {
+    test('testDateNotEqualTimeMinute', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: 'Patient.birthDate != @T12:14',
         ),
@@ -985,9 +990,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testDateNotEqualToday', () {
+    test('testDateNotEqualToday', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: 'Patient.birthDate < today()',
         ),
@@ -995,9 +1000,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testDateTimeGreaterThanDate', () {
+    test('testDateTimeGreaterThanDate', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: 'now() > Patient.birthDate',
         ),
@@ -1005,9 +1010,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testLiteralDateTimeTZGreater', () {
+    test('testLiteralDateTimeTZGreater', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression:
               '@2017-11-05T01:30:00.0-04:00 > @2017-11-05T01:15:00.0-05:00',
@@ -1016,9 +1021,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testLiteralDateTimeTZLess', () {
+    test('testLiteralDateTimeTZLess', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression:
               '@2017-11-05T01:30:00.0-04:00 < @2017-11-05T01:15:00.0-05:00',
@@ -1027,9 +1032,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testLiteralDateTimeTZEqualFalse', () {
+    test('testLiteralDateTimeTZEqualFalse', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression:
               '@2017-11-05T01:30:00.0-04:00 = @2017-11-05T01:15:00.0-05:00',
@@ -1038,9 +1043,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testLiteralDateTimeTZEqualTrue', () {
+    test('testLiteralDateTimeTZEqualTrue', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression:
               '@2017-11-05T01:30:00.0-04:00 = @2017-11-05T00:30:00.0-05:00',
@@ -1051,9 +1056,9 @@ void testFpTestSuite() {
   });
 
   group('Random Tests', () {
-    test('testLiteralUnicode', () {
+    test('testLiteralUnicode', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: r"Patient.name.given.first() = 'P\u0065ter'",
         ),
@@ -1061,9 +1066,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testCollectionNotEmpty', () {
+    test('testCollectionNotEmpty', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: 'Patient.name.given.empty().not()',
         ),
@@ -1071,9 +1076,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testCollectionNotEqualEmpty', () {
+    test('testCollectionNotEqualEmpty', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: 'Patient.name.given != {}',
         ),
@@ -1081,9 +1086,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testExpressions', () {
+    test('testExpressions', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: 'Patient.name.select(given | family).distinct()',
         ),
@@ -1097,9 +1102,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testExpressionsEqual', () {
+    test('testExpressionsEqual', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: 'Patient.name.given.count() = 1 + 4',
         ),
@@ -1107,9 +1112,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testNotEmpty', () {
+    test('testNotEmpty', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: 'Patient.name.empty().not()',
         ),
@@ -1117,9 +1122,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testEmpty', () {
+    test('testEmpty', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: 'Patient.link.empty()',
         ),
@@ -1127,9 +1132,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testLiteralNotTrue', () {
+    test('testLiteralNotTrue', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: 'true.not() = false',
         ),
@@ -1137,9 +1142,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testLiteralNotFalse', () {
+    test('testLiteralNotFalse', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: 'false.not() = true',
         ),
@@ -1147,9 +1152,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testIntegerBooleanNotTrue', () {
+    test('testIntegerBooleanNotTrue', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '(0).not() = true',
         ),
@@ -1157,9 +1162,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testIntegerBooleanNotFalse', () {
+    test('testIntegerBooleanNotFalse', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '(1).not() = false',
         ),
@@ -1167,7 +1172,7 @@ void testFpTestSuite() {
       );
     });
 
-    test('testNotInvalid', () {
+    test('testNotInvalid', () async {
       expect(
         () => walkFhirPath(
           context: patient1,
@@ -1179,9 +1184,9 @@ void testFpTestSuite() {
   });
 
   group('testTypes', () {
-    test('testStringYearConvertsToDate', () {
+    test('testStringYearConvertsToDate', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "'2015'.convertsToDate()",
         ),
@@ -1189,9 +1194,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testStringMonthConvertsToDate', () {
+    test('testStringMonthConvertsToDate', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "'2015-02'.convertsToDate()",
         ),
@@ -1199,9 +1204,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testStringDayConvertsToDate', () {
+    test('testStringDayConvertsToDate', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "'2015-02-04'.convertsToDate()",
         ),
@@ -1209,9 +1214,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testStringYearConvertsToDateTime', () {
+    test('testStringYearConvertsToDateTime', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "'2015'.convertsToDateTime()",
         ),
@@ -1219,9 +1224,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testStringMonthConvertsToDateTime', () {
+    test('testStringMonthConvertsToDateTime', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "'2015-02'.convertsToDateTime()",
         ),
@@ -1229,9 +1234,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testStringDayConvertsToDateTime', () {
+    test('testStringDayConvertsToDateTime', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "'2015-02-04'.convertsToDateTime()",
         ),
@@ -1239,9 +1244,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testStringHourConvertsToDateTime', () {
+    test('testStringHourConvertsToDateTime', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "'2015-02-04T14'.convertsToDateTime()",
         ),
@@ -1249,9 +1254,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testStringMinuteConvertsToDateTime', () {
+    test('testStringMinuteConvertsToDateTime', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "'2015-02-04T14:34'.convertsToDateTime()",
         ),
@@ -1259,9 +1264,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testStringSecondConvertsToDateTime', () {
+    test('testStringSecondConvertsToDateTime', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "'2015-02-04T14:34:28'.convertsToDateTime()",
         ),
@@ -1269,9 +1274,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testStringMillisecondConvertsToDateTime', () {
+    test('testStringMillisecondConvertsToDateTime', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "'2015-02-04T14:34:28.123'.convertsToDateTime()",
         ),
@@ -1279,9 +1284,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testStringUTCConvertsToDateTime', () {
+    test('testStringUTCConvertsToDateTime', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "'2015-02-04T14:34:28Z'.convertsToDateTime()",
         ),
@@ -1289,9 +1294,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testStringTZConvertsToDateTime', () {
+    test('testStringTZConvertsToDateTime', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "'2015-02-04T14:34:28+10:00'.convertsToDateTime()",
         ),
@@ -1299,9 +1304,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testStringHourConvertsToTime', () {
+    test('testStringHourConvertsToTime', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "'14'.convertsToTime()",
         ),
@@ -1309,9 +1314,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testStringMinuteConvertsToTime', () {
+    test('testStringMinuteConvertsToTime', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "'14:34'.convertsToTime()",
         ),
@@ -1319,9 +1324,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testStringSecondConvertsToTime', () {
+    test('testStringSecondConvertsToTime', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "'14:34:28'.convertsToTime()",
         ),
@@ -1329,9 +1334,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testStringMillisecondConvertsToTime', () {
+    test('testStringMillisecondConvertsToTime', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "'14:34:28.123'.convertsToTime()",
         ),
@@ -1339,9 +1344,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testIntegerLiteralConvertsToInteger', () {
+    test('testIntegerLiteralConvertsToInteger', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '1.convertsToInteger()',
         ),
@@ -1349,9 +1354,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testIntegerLiteralIsInteger', () {
+    test('testIntegerLiteralIsInteger', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '1 is Integer',
         ),
@@ -1360,17 +1365,17 @@ void testFpTestSuite() {
     });
 
     // TODO(Dokotela): integrate: models https://hl7.org/fhirpath/#models
-    // test("testIntegerLiteralIsSystemInteger", () {
+    // test("testIntegerLiteralIsSystemInteger", () async {
     //   expect(
-    //       walkFhirPath(
+    //       await walkFhirPath(
     //           context: patient1,
     //           pathExpression: r"1 is System.Integer"),
     //       [true]);
     // });
 
-    test('testStringLiteralConvertsToInteger', () {
+    test('testStringLiteralConvertsToInteger', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "'1'.convertsToInteger()",
         ),
@@ -1378,9 +1383,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testStringLiteralConvertsToIntegerFalse', () {
+    test('testStringLiteralConvertsToIntegerFalse', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "'a'.convertsToInteger().not()",
         ),
@@ -1388,9 +1393,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testStringDecimalConvertsToIntegerFalse', () {
+    test('testStringDecimalConvertsToIntegerFalse', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "'1.0'.convertsToInteger().not()",
         ),
@@ -1401,13 +1406,13 @@ void testFpTestSuite() {
 
   group('Literals & Conversions', () {
     // FIXED: Incorrect test case. Wrong assumptions around precedence
-    // test("testStringLiteralIsNotInteger", () {
-    //   expect(walkFhirPath(context: patient1,
+    // test("testStringLiteralIsNotInteger", () async {
+    //   expect(await walkFhirPath(context: patient1,
     //  pathExpression: r"'1' is Integer.not()"), [true]);
     // });
-    test('testStringLiteralIsNotInteger-fixed', () {
+    test('testStringLiteralIsNotInteger-fixed', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "('1' is Integer).not()",
         ),
@@ -1415,9 +1420,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testBooleanLiteralConvertsToInteger', () {
+    test('testBooleanLiteralConvertsToInteger', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: 'true.convertsToInteger()',
         ),
@@ -1426,13 +1431,13 @@ void testFpTestSuite() {
     });
 
     // FIXED: Incorrect test case. Wrong assumptions around precedence
-    // test("testBooleanLiteralIsNotInteger", () {
-    //   expect(walkFhirPath(context: patient1,
+    // test("testBooleanLiteralIsNotInteger", () async {
+    //   expect(await walkFhirPath(context: patient1,
     //  pathExpression: r"true is Integer.not()"), [true]);
     // });
-    test('testBooleanLiteralIsNotInteger-fixed', () {
+    test('testBooleanLiteralIsNotInteger-fixed', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '(true is Integer).not()',
         ),
@@ -1441,14 +1446,14 @@ void testFpTestSuite() {
     });
 
     // FIXED: Incorrect test case. Wrong assumptions around precedence
-    // test("testDateIsNotInteger", () {
-    //   expect(walkFhirPath(context: patient1,
+    // test("testDateIsNotInteger", () async {
+    //   expect(await walkFhirPath(context: patient1,
     //  pathExpression: r"@2013-04-05 is Integer.not()"),
     //       [true]);
     // });
-    test('testDateIsNotInteger-fixed', () {
+    test('testDateIsNotInteger-fixed', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '(@2013-04-05 is Integer).not()',
         ),
@@ -1456,9 +1461,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testIntegerLiteralToInteger', () {
+    test('testIntegerLiteralToInteger', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '1.toInteger() = 1',
         ),
@@ -1466,9 +1471,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testStringIntegerLiteralToInteger', () {
+    test('testStringIntegerLiteralToInteger', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "'1'.toInteger() = 1",
         ),
@@ -1476,9 +1481,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testDecimalLiteralToInteger', () {
+    test('testDecimalLiteralToInteger', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "'1.1'.toInteger() = {}",
         ),
@@ -1486,9 +1491,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testDecimalLiteralToIntegerIsEmpty', () {
+    test('testDecimalLiteralToIntegerIsEmpty', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "'1.1'.toInteger().empty()",
         ),
@@ -1496,9 +1501,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testBooleanLiteralToInteger', () {
+    test('testBooleanLiteralToInteger', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: 'true.toInteger() = 1',
         ),
@@ -1506,9 +1511,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testIntegerLiteralConvertsToDecimal', () {
+    test('testIntegerLiteralConvertsToDecimal', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '1.convertsToDecimal()',
         ),
@@ -1517,15 +1522,15 @@ void testFpTestSuite() {
     });
 
     // FIXED: wrong grouping again
-    // test("testIntegerLiteralIsNotDecimal", () {
+    // test("testIntegerLiteralIsNotDecimal", () async {
     //   expect(
-    //       walkFhirPath(
+    //       await walkFhirPath(
     //           context: patient1, pathExpression: r"1 is Decimal.not()"),
     //       [true]);
     // });
-    test('testIntegerLiteralIsNotDecimal-fixed', () {
+    test('testIntegerLiteralIsNotDecimal-fixed', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '(1 is Decimal).not()',
         ),
@@ -1533,9 +1538,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testDecimalLiteralConvertsToDecimal', () {
+    test('testDecimalLiteralConvertsToDecimal', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '1.0.convertsToDecimal()',
         ),
@@ -1543,9 +1548,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testDecimalLiteralIsDecimal', () {
+    test('testDecimalLiteralIsDecimal', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '1.0 is Decimal',
         ),
@@ -1553,9 +1558,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testStringIntegerLiteralConvertsToDecimal', () {
+    test('testStringIntegerLiteralConvertsToDecimal', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "'1'.convertsToDecimal()",
         ),
@@ -1564,13 +1569,13 @@ void testFpTestSuite() {
     });
 
     // FIXED: Incorrect precedence
-    // test("testStringIntegerLiteralIsNotDecimal", () {
-    //   expect(walkFhirPath(context: patient1,
+    // test("testStringIntegerLiteralIsNotDecimal", () async {
+    //   expect(await walkFhirPath(context: patient1,
     //  pathExpression: r"'1' is Decimal.not()"), [true]);
     // });
-    test('testStringIntegerLiteralIsNotDecimal-fixed', () {
+    test('testStringIntegerLiteralIsNotDecimal-fixed', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "('1' is Decimal).not()",
         ),
@@ -1578,9 +1583,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testStringLiteralConvertsToDecimalFalse', () {
+    test('testStringLiteralConvertsToDecimalFalse', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "'1.a'.convertsToDecimal().not()",
         ),
@@ -1588,9 +1593,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testStringDecimalLiteralConvertsToDecimal', () {
+    test('testStringDecimalLiteralConvertsToDecimal', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "'1.0'.convertsToDecimal()",
         ),
@@ -1599,16 +1604,16 @@ void testFpTestSuite() {
     });
 
     // FIXED: Incorrect precedence
-    // test("testStringDecimalLiteralIsNotDecimal", () {
+    // test("testStringDecimalLiteralIsNotDecimal", () async {
     //   expect(
-    //       walkFhirPath(
+    //       await walkFhirPath(
     //           context: patient1,
     //           pathExpression: r"'1.0' is Decimal.not()"),
     //       [true]);
     // });
-    test('testStringDecimalLiteralIsNotDecimal-fixed', () {
+    test('testStringDecimalLiteralIsNotDecimal-fixed', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "('1.0' is Decimal).not()",
         ),
@@ -1616,9 +1621,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testBooleanLiteralConvertsToDecimal', () {
+    test('testBooleanLiteralConvertsToDecimal', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: 'true.convertsToDecimal()',
         ),
@@ -1627,16 +1632,16 @@ void testFpTestSuite() {
     });
 
     // FIXED: again, incorrect grouping in example
-    // test("testBooleanLiteralIsNotDecimal", () {
+    // test("testBooleanLiteralIsNotDecimal", () async {
     //   expect(
-    //       walkFhirPath(
+    //       await walkFhirPath(
     //           context: patient1,
     //           pathExpression: r"true is Decimal.not()"),
     //       [true]);
     // });
-    test('testBooleanLiteralIsNotDecimal-fixed', () {
+    test('testBooleanLiteralIsNotDecimal-fixed', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '(true is Decimal).not()',
         ),
@@ -1644,9 +1649,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testIntegerLiteralToDecimal', () {
+    test('testIntegerLiteralToDecimal', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '1.toDecimal() = 1.0',
         ),
@@ -1654,9 +1659,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testIntegerLiteralToDecimalEquivalent', () {
+    test('testIntegerLiteralToDecimalEquivalent', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '1.toDecimal() ~ 1.0',
         ),
@@ -1664,9 +1669,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testDecimalLiteralToDecimal', () {
+    test('testDecimalLiteralToDecimal', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '1.0.toDecimal() = 1.0',
         ),
@@ -1674,9 +1679,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testDecimalLiteralToDecimalEqual', () {
+    test('testDecimalLiteralToDecimalEqual', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "'1.1'.toDecimal() = 1.1",
         ),
@@ -1684,9 +1689,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testBooleanLiteralToDecimal', () {
+    test('testBooleanLiteralToDecimal', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: 'true.toDecimal() = 1',
         ),
@@ -1694,9 +1699,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testIntegerLiteralConvertsToQuantity', () {
+    test('testIntegerLiteralConvertsToQuantity', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '1.convertsToQuantity()',
         ),
@@ -1705,16 +1710,16 @@ void testFpTestSuite() {
     });
 
     // FIXED: Wrong assumption about precedence
-    // test("testIntegerLiteralIsNotQuantity", () {
+    // test("testIntegerLiteralIsNotQuantity", () async {
     //   expect(
-    //       walkFhirPath(
+    //       await walkFhirPath(
     //           context: patient1,
     //           pathExpression: r"1 is Quantity.not()"),
     //       [true]);
     // });
-    test('testDecimalLiteralConvertsToQuantity', () {
+    test('testDecimalLiteralConvertsToQuantity', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '1.0.convertsToQuantity()',
         ),
@@ -1723,17 +1728,17 @@ void testFpTestSuite() {
     });
 
     // TODO(Dokotela): testDecimalLiteralIsNotQuantity
-    // test("testDecimalLiteralIsNotQuantity", () {
+    // test("testDecimalLiteralIsNotQuantity", () async {
     //   expect(
-    //       walkFhirPath(
+    //       await walkFhirPath(
     //           context: patient1,
     //           pathExpression: r"1.0 is System.Quantity.not()"),
     //       [true]);
     // });
 
-    test('testStringIntegerLiteralConvertsToQuantity', () {
+    test('testStringIntegerLiteralConvertsToQuantity', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "'1'.convertsToQuantity()",
         ),
@@ -1742,17 +1747,17 @@ void testFpTestSuite() {
     });
 
     // TODO(Dokotela): testStringIntegerLiteralIsNotQuantity
-    // test("testStringIntegerLiteralIsNotQuantity", () {
+    // test("testStringIntegerLiteralIsNotQuantity", () async {
     //   expect(
-    //       walkFhirPath(
+    //       await walkFhirPath(
     //           context: patient1,
     //           pathExpression: r"'1' is System.Quantity.not()"),
     //       [true]);
     // });
 
-    test('testStringQuantityLiteralConvertsToQuantity', () {
+    test('testStringQuantityLiteralConvertsToQuantity', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "'1 day'.convertsToQuantity()",
         ),
@@ -1760,9 +1765,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testStringQuantityWeekConvertsToQuantity', () {
+    test('testStringQuantityWeekConvertsToQuantity', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: r"'1 \'wk\''.convertsToQuantity()",
         ),
@@ -1770,9 +1775,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testStringQuantityWeekConvertsToQuantityFalse', () {
+    test('testStringQuantityWeekConvertsToQuantityFalse', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "'1 wk'.convertsToQuantity().not()",
         ),
@@ -1780,9 +1785,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testStringDecimalLiteralConvertsToQuantityFalse', () {
+    test('testStringDecimalLiteralConvertsToQuantityFalse', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "'1.a'.convertsToQuantity().not()",
         ),
@@ -1790,9 +1795,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testStringDecimalLiteralConvertsToQuantity', () {
+    test('testStringDecimalLiteralConvertsToQuantity', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "'1.0'.convertsToQuantity()",
         ),
@@ -1801,17 +1806,17 @@ void testFpTestSuite() {
     });
 
     // TODO(Dokotela): testStringDecimalLiteralIsNotSystemQuantity
-    // test("testStringDecimalLiteralIsNotSystemQuantity", () {
+    // test("testStringDecimalLiteralIsNotSystemQuantity", () async {
     //   expect(
-    //       walkFhirPath(
+    //       await walkFhirPath(
     //           context: patient1,
     //           pathExpression: r"'1.0' is System.Quantity.not()"),
     //       [true]);
     // });
 
-    test('testBooleanLiteralConvertsToQuantity', () {
+    test('testBooleanLiteralConvertsToQuantity', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: 'true.convertsToQuantity()',
         ),
@@ -1820,17 +1825,17 @@ void testFpTestSuite() {
     });
 
     // TODO(Dokotela): testBooleanLiteralIsNotSystemQuantity
-    // test("testBooleanLiteralIsNotSystemQuantity", () {
+    // test("testBooleanLiteralIsNotSystemQuantity", () async {
     //   expect(
-    //       walkFhirPath(
+    //       await walkFhirPath(
     //           context: patient1,
     //           pathExpression: r"true is System.Quantity.not()"),
     //       [true]);
     // });
 
-    test('testIntegerLiteralToQuantity', () {
+    test('testIntegerLiteralToQuantity', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "1.toQuantity() = 1 '1'",
         ),
@@ -1838,9 +1843,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testDecimalLiteralToQuantity', () {
+    test('testDecimalLiteralToQuantity', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '1.0.toQuantity() = 1.0',
         ),
@@ -1852,9 +1857,9 @@ void testFpTestSuite() {
     // inputfile="patient-example.xml">
     // <expression>'1'.toQuantity()</expression>
     //  <output type="Quantity">1 '1'</output>});*/
-    test('testStringQuantityLiteralToQuantity', () {
+    test('testStringQuantityLiteralToQuantity', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "'1 day'.toQuantity() = 1 day",
         ),
@@ -1862,9 +1867,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testStringQuantityDayLiteralToQuantity', () {
+    test('testStringQuantityDayLiteralToQuantity', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "'1 day'.toQuantity() = 1 'day'",
         ),
@@ -1872,9 +1877,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testStringQuantityWeekLiteralToQuantity', () {
+    test('testStringQuantityWeekLiteralToQuantity', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: r"'1 \'wk\''.toQuantity() = 1 'wk'",
         ),
@@ -1882,9 +1887,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testStringDecimalLiteralToQuantity', () {
+    test('testStringDecimalLiteralToQuantity', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "'1.0'.toQuantity() ~ 1",
         ),
@@ -1892,9 +1897,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testIntegerLiteralConvertsToBoolean', () {
+    test('testIntegerLiteralConvertsToBoolean', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '1.convertsToBoolean()',
         ),
@@ -1902,9 +1907,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testIntegerLiteralConvertsToBooleanFalse', () {
+    test('testIntegerLiteralConvertsToBooleanFalse', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '2.convertsToBoolean()',
         ),
@@ -1912,9 +1917,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testNegativeIntegerLiteralConvertsToBooleanFalse', () {
+    test('testNegativeIntegerLiteralConvertsToBooleanFalse', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '(-1).convertsToBoolean()',
         ),
@@ -1922,9 +1927,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testIntegerLiteralFalseConvertsToBoolean', () {
+    test('testIntegerLiteralFalseConvertsToBoolean', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '0.convertsToBoolean()',
         ),
@@ -1932,9 +1937,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testDecimalLiteralConvertsToBoolean', () {
+    test('testDecimalLiteralConvertsToBoolean', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '1.0.convertsToBoolean()',
         ),
@@ -1942,9 +1947,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testStringTrueLiteralConvertsToBoolean', () {
+    test('testStringTrueLiteralConvertsToBoolean', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "'true'.convertsToBoolean()",
         ),
@@ -1952,9 +1957,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testStringFalseLiteralConvertsToBoolean', () {
+    test('testStringFalseLiteralConvertsToBoolean', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "'false'.convertsToBoolean()",
         ),
@@ -1962,9 +1967,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testStringFalseLiteralAlsoConvertsToBoolean', () {
+    test('testStringFalseLiteralAlsoConvertsToBoolean', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "'False'.convertsToBoolean()",
         ),
@@ -1972,9 +1977,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testTrueLiteralConvertsToBoolean', () {
+    test('testTrueLiteralConvertsToBoolean', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: 'true.convertsToBoolean()',
         ),
@@ -1982,9 +1987,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testFalseLiteralConvertsToBoolean', () {
+    test('testFalseLiteralConvertsToBoolean', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: 'false.convertsToBoolean()',
         ),
@@ -1992,9 +1997,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testIntegerLiteralToBoolean', () {
+    test('testIntegerLiteralToBoolean', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '1.toBoolean()',
         ),
@@ -2005,9 +2010,9 @@ void testFpTestSuite() {
     //<test name="testIntegerLiteralToBooleanEmpty"
     // inputfile="patient-example.xml"><expression>2.toBoolean()
     // </expression>// empty});*/
-    test('testIntegerLiteralToBooleanFalse', () {
+    test('testIntegerLiteralToBooleanFalse', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '0.toBoolean()',
         ),
@@ -2015,9 +2020,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testStringTrueToBoolean', () {
+    test('testStringTrueToBoolean', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "'true'.toBoolean()",
         ),
@@ -2025,9 +2030,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testStringFalseToBoolean', () {
+    test('testStringFalseToBoolean', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "'false'.toBoolean()",
         ),
@@ -2035,9 +2040,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testIntegerLiteralConvertsToString', () {
+    test('testIntegerLiteralConvertsToString', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '1.convertsToString()',
         ),
@@ -2046,15 +2051,15 @@ void testFpTestSuite() {
     });
 
     // FIXED: Incorrect assumptions about precedence
-    // test("testIntegerLiteralIsNotString", () {
+    // test("testIntegerLiteralIsNotString", () async {
     //   expect(
-    //       walkFhirPath(
+    //       await walkFhirPath(
     //           context: patient1, pathExpression: r"1 is String.not()"),
     //       [true]);
     // });
-    test('testIntegerLiteralIsNotString-fixed', () {
+    test('testIntegerLiteralIsNotString-fixed', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '(1 is String).not()',
         ),
@@ -2062,9 +2067,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testNegativeIntegerLiteralConvertsToString', () {
+    test('testNegativeIntegerLiteralConvertsToString', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '(-1).convertsToString()',
         ),
@@ -2072,9 +2077,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testDecimalLiteralConvertsToString', () {
+    test('testDecimalLiteralConvertsToString', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '1.0.convertsToString()',
         ),
@@ -2082,9 +2087,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testStringLiteralConvertsToString', () {
+    test('testStringLiteralConvertsToString', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "'true'.convertsToString()",
         ),
@@ -2092,9 +2097,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testBooleanLiteralConvertsToString', () {
+    test('testBooleanLiteralConvertsToString', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: 'true.convertsToString()',
         ),
@@ -2102,9 +2107,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testQuantityLiteralConvertsToString', () {
+    test('testQuantityLiteralConvertsToString', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "1 'wk'.convertsToString()",
         ),
@@ -2112,9 +2117,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testIntegerLiteralToString', () {
+    test('testIntegerLiteralToString', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '1.toString()',
         ),
@@ -2122,9 +2127,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testNegativeIntegerLiteralToString', () {
+    test('testNegativeIntegerLiteralToString', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '(-1).toString()',
         ),
@@ -2132,9 +2137,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testDecimalLiteralToString', () {
+    test('testDecimalLiteralToString', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '1.0.toString()',
         ),
@@ -2142,9 +2147,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testStringLiteralToString', () {
+    test('testStringLiteralToString', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "'true'.toString()",
         ),
@@ -2152,9 +2157,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testBooleanLiteralToString', () {
+    test('testBooleanLiteralToString', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: 'true.toString()',
         ),
@@ -2162,9 +2167,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testQuantityLiteralWkToString', () {
+    test('testQuantityLiteralWkToString', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "1 'wk'.toString()",
         ),
@@ -2172,9 +2177,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testQuantityLiteralWeekToString', () {
+    test('testQuantityLiteralWeekToString', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '1 week.toString()',
         ),
@@ -2184,9 +2189,9 @@ void testFpTestSuite() {
   });
 
   group('testAll', () {
-    test('testAllTrue1', () {
+    test('testAllTrue1', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: 'Patient.name.select(given.exists()).allTrue()',
         ),
@@ -2194,9 +2199,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testAllTrue2', () {
+    test('testAllTrue2', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: 'Patient.name.select(period.exists()).allTrue()',
         ),
@@ -2204,9 +2209,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testAllTrue3', () {
+    test('testAllTrue3', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: 'Patient.name.all(given.exists())',
         ),
@@ -2214,9 +2219,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testAllTrue4', () {
+    test('testAllTrue4', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: 'Patient.name.all(period.exists())',
         ),
@@ -2227,16 +2232,16 @@ void testFpTestSuite() {
 
   group('testSubSetOf', () {
     // FIXED: Unclear how $this would be populated?
-    // test("testSubSetOf1", () {
+    // test("testSubSetOf1", () async {
     //   expect(
-    //       walkFhirPath(
+    //       await walkFhirPath(
     //           context: patient1,
     //          pathExpression: r"Patient.name.first().subsetOf($this.name)"),
     //       [true]);
     // });
-    test('testSubSetOf1-fixed', () {
+    test('testSubSetOf1-fixed', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: 'Patient.name.first().subsetOf(%context.name)',
         ),
@@ -2245,15 +2250,15 @@ void testFpTestSuite() {
     });
 
     // FIXED
-    // test("testSubSetOf2", () {
+    // test("testSubSetOf2", () async {
     //     expect(
-    //         walkFhirPath(context: patient1,
+    //         await walkFhirPath(context: patient1,
     //      pathExpression: r"Patient.name.subsetOf($this.name.first()).not()"),
     //         [true]);
     //   });
-    test('testSubSetOf2-fixed', () {
+    test('testSubSetOf2-fixed', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: 'Patient.name.subsetOf(%context.name.first()).not()',
         ),
@@ -2264,15 +2269,15 @@ void testFpTestSuite() {
 
   group('testSuperSetOf', () {
     // FIXED
-    //test("testSuperSetOf1", () {
+    //test("testSuperSetOf1", () async {
     //   expect(
-    //       walkFhirPath(context: patient1,
+    //       await walkFhirPath(context: patient1,
     //    pathExpression: r"Patient.name.first().supersetOf($this.name).not()"),
     //       [true]);
     // });
-    test('testSuperSetOf1-fixed', () {
+    test('testSuperSetOf1-fixed', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression:
               'Patient.name.first().supersetOf(%context.name).not()',
@@ -2282,16 +2287,16 @@ void testFpTestSuite() {
     });
 
     // FIXED
-    // test("testSuperSetOf2", () {
+    // test("testSuperSetOf2", () async {
     //   expect(
-    //       walkFhirPath(
+    //       await walkFhirPath(
     //           context: patient1,
     //           pathExpression: r"Patient.name.supersetOf($this.name.first())"),
     //       [true]);
     // });
-    test('testSuperSetOf2-fixed', () {
+    test('testSuperSetOf2-fixed', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: 'Patient.name.supersetOf(%context.name.first())',
         ),
@@ -2301,9 +2306,9 @@ void testFpTestSuite() {
   });
 
   group('testQuantity', () {
-    test('testQuantity1', () {
+    test('testQuantity1', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "4.0000 'g' = 4000.0 'mg'",
         ),
@@ -2311,16 +2316,17 @@ void testFpTestSuite() {
       );
     });
 
-    test('testQuantity2', () {
+    test('testQuantity2', () async {
       expect(
-        walkFhirPath(context: patient1, pathExpression: "4 'g' ~ 4000 'mg'"),
+        await walkFhirPath(
+            context: patient1, pathExpression: "4 'g' ~ 4000 'mg'"),
         [true.toFhirBoolean],
       );
     });
 
-    test('testQuantity3', () {
+    test('testQuantity3', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "4 'g' != 4040 'mg'",
         ),
@@ -2328,9 +2334,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testQuantity4', () {
+    test('testQuantity4', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "4 'g' ~ 4040 'mg'",
         ),
@@ -2338,9 +2344,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testQuantity5', () {
+    test('testQuantity5', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '7 days = 1 week',
         ),
@@ -2360,9 +2366,9 @@ void testFpTestSuite() {
     /// I think it's therefore fair to assume that:
     ///
     /// 7 day = 1 'wk', but 7 day ~ 1 'wk'
-    test('testQuantity6', () {
+    test('testQuantity6', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "7 days = 1 'wk'",
         ),
@@ -2370,9 +2376,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testQuantity7', () {
+    test('testQuantity7', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '6 days < 1 week',
         ),
@@ -2380,9 +2386,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testQuantity8', () {
+    test('testQuantity8', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '8 days > 1 week',
         ),
@@ -2390,9 +2396,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testQuantity9', () {
+    test('testQuantity9', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "2.0 'cm' * 2.0 'm' = 0.040 'm2'",
         ),
@@ -2400,9 +2406,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testQuantity10', () {
+    test('testQuantity10', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "4.0 'g' / 2.0 'm' = 2 'g/m'",
         ),
@@ -2410,9 +2416,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testQuantity11', () {
+    test('testQuantity11', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "1.0 'm' / 1.0 'm' = 1 '1'",
         ),
@@ -2422,7 +2428,7 @@ void testFpTestSuite() {
   });
 
   group('testCollectionBoolean', () {
-    test('testCollectionBoolean1', () {
+    test('testCollectionBoolean1', () async {
       expect(
         () => walkFhirPath(
           context: patient1,
@@ -2432,9 +2438,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testCollectionBoolean2', () {
+    test('testCollectionBoolean2', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: 'iif({}, true, false)',
         ),
@@ -2442,9 +2448,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testCollectionBoolean3', () {
+    test('testCollectionBoolean3', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: 'iif(true, true, false)',
         ),
@@ -2452,9 +2458,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testCollectionBoolean4', () {
+    test('testCollectionBoolean4', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: 'iif({} | true, true, false)',
         ),
@@ -2462,9 +2468,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testCollectionBoolean5', () {
+    test('testCollectionBoolean5', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: 'iif(true, true, 1/0)',
         ),
@@ -2472,9 +2478,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testCollectionBoolean6', () {
+    test('testCollectionBoolean6', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: 'iif(false, 1/0, true)',
         ),
@@ -2484,9 +2490,9 @@ void testFpTestSuite() {
   });
 
   group('testDistinct', () {
-    test('testDistinct1', () {
+    test('testDistinct1', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '(1 | 2 | 3).isDistinct()',
         ),
@@ -2494,9 +2500,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testDistinct2', () {
+    test('testDistinct2', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: questionnaire1,
           pathExpression: 'Questionnaire.descendants().linkId.isDistinct()',
         ),
@@ -2504,9 +2510,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testDistinct3', () {
+    test('testDistinct3', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: questionnaire1,
           pathExpression:
               'Questionnaire.descendants().linkId.select(substring(0,1)).isDistinct().not()',
@@ -2521,9 +2527,9 @@ void testFpTestSuite() {
     // <output type="integer">2</output>
     // <output type="integer">3</output>
     // });
-    test('testDistinct4', () {
+    test('testDistinct4', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: questionnaire1,
           pathExpression: '(1 | 2 | 3).distinct()',
         ),
@@ -2539,9 +2545,9 @@ void testFpTestSuite() {
     // <expression>Questionnaire.descendants().linkId.distinct().count()</expression>
     // <output type="integer">10</output>
     // });
-    test('testDistinct5', () {
+    test('testDistinct5', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: questionnaire1,
           pathExpression:
               'Questionnaire.descendants().linkId.distinct().count()',
@@ -2555,9 +2561,9 @@ void testFpTestSuite() {
     // .distinct().count()</expression>
     // <output type="integer">2</output>
     // });
-    test('testDistinct6', () {
+    test('testDistinct6', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: questionnaire1,
           pathExpression:
               'Questionnaire.descendants().linkId.select(substring(0,1)).distinct().count()',
@@ -2568,9 +2574,9 @@ void testFpTestSuite() {
   });
 
   group('testCount', () {
-    test('testCount1', () {
+    test('testCount1', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: 'Patient.name.count()',
         ),
@@ -2578,9 +2584,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testCount2', () {
+    test('testCount2', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: 'Patient.name.count() = 3',
         ),
@@ -2588,9 +2594,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testCount3', () {
+    test('testCount3', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: 'Patient.name.first().count()',
         ),
@@ -2598,9 +2604,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testCount4', () {
+    test('testCount4', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: 'Patient.name.first().count() = 1',
         ),
@@ -2610,9 +2616,9 @@ void testFpTestSuite() {
   });
 
   group('testWhere', () {
-    test('testWhere1', () {
+    test('testWhere1', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: 'Patient.name.count() = 3',
         ),
@@ -2620,9 +2626,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testWhere2', () {
+    test('testWhere2', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "Patient.name.where(given = 'Jim').count() = 1",
         ),
@@ -2630,9 +2636,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testWhere3', () {
+    test('testWhere3', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "Patient.name.where(given = 'X').count() = 0",
         ),
@@ -2640,9 +2646,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testWhere4', () {
+    test('testWhere4', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression:
               r"Patient.name.where($this.given = 'Jim').count() = 1",
@@ -2653,9 +2659,9 @@ void testFpTestSuite() {
   });
 
   group('testSelect', () {
-    test('testSelect1', () {
+    test('testSelect1', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: 'Patient.name.select(given).count() = 5',
         ),
@@ -2663,9 +2669,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testSelect2', () {
+    test('testSelect2', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: 'Patient.name.select(given | family).count() = 7 ',
         ),
@@ -2678,9 +2684,9 @@ void testFpTestSuite() {
     //<test name="testRepeat1" inputfile="valueset-example-expansion.xml">
     //<expression>ValueSet.expansion.repeat(contains).count() = 10
     //</expression><output type="boolean">true</output>});*/
-    test('testRepeat2', () {
+    test('testRepeat2', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: questionnaire1,
           pathExpression: 'Questionnaire.repeat(item).code.count() = 11',
         ),
@@ -2688,9 +2694,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testRepeat3', () {
+    test('testRepeat3', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: questionnaire1,
           pathExpression: 'Questionnaire.descendants().code.count() = 23',
         ),
@@ -2698,9 +2704,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testRepeat4', () {
+    test('testRepeat4', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: questionnaire1,
           pathExpression: 'Questionnaire.children().code.count() = 2',
         ),
@@ -2710,9 +2716,9 @@ void testFpTestSuite() {
   });
 
   group('testAggregate', () {
-    test('testAggregate1', () {
+    test('testAggregate1', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression:
               r'(1|2|3|4|5|6|7|8|9).aggregate($this+$total, 0) = 45',
@@ -2721,9 +2727,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testAggregate2', () {
+    test('testAggregate2', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression:
               r'(1|2|3|4|5|6|7|8|9).aggregate($this+$total, 2) = 47',
@@ -2732,9 +2738,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testAggregate3', () {
+    test('testAggregate3', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression:
               r'(1|2|3|4|5|6|7|8|9).aggregate(iif($total.empty(), $this, iif($this < $total, $this, $total))) = 1',
@@ -2743,9 +2749,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testAggregate4', () {
+    test('testAggregate4', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression:
               r'(1|2|3|4|5|6|7|8|9).aggregate(iif($total.empty(), $this, iif($this > $total, $this, $total))) = 9',
@@ -2758,16 +2764,16 @@ void testFpTestSuite() {
   group('testIndexer', () {
     // FIXED: Incorrect test case. Union operator does specifically not
     // guarantee an order, whereas equal (=) is specifically expecting an order.
-    // test("testIndexer1", () {
+    // test("testIndexer1", () async {
     //   expect(
-    //       walkFhirPath(
+    //       await walkFhirPath(
     //           context: patient1,
     //          pathExpression: r"Patient.name[0].given = 'Peter' | 'James'"),
     //       [true]);
     // });
-    test('testIndexer1-fixed', () {
+    test('testIndexer1-fixed', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: 'Patient.name[0].given',
         ),
@@ -2775,9 +2781,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testIndexer2', () {
+    test('testIndexer2', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "Patient.name[1].given = 'Jim'",
         ),
@@ -2790,9 +2796,9 @@ void testFpTestSuite() {
     //<test name="testSingle2" inputfile="patient-example.xml">
     //<expression  invalid="semantic">
     //Patient.name.single().exists()</expression>});*/
-    test('testSingle1', () {
+    test('testSingle1', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: 'Patient.name.first().single().exists()',
         ),
@@ -2804,15 +2810,15 @@ void testFpTestSuite() {
   group('testFirstLast', () {
     // FIXED: Incorrect test case. Union operator does specifically not
     // guarantee an order
-    // test("testFirstLast1", () {
+    // test("testFirstLast1", () async {
     //   expect(
-    //       walkFhirPath(context: patient1,
+    //       await walkFhirPath(context: patient1,
     //      pathExpression: r"Patient.name.first().given = 'Peter' | 'James'"),
     //       [true]);
     // });
-    test('testFirstLast1-fixed', () {
+    test('testFirstLast1-fixed', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: 'Patient.name.first().given',
         ),
@@ -2822,14 +2828,14 @@ void testFpTestSuite() {
 
     // FIXED: Incorrect test case. Union operator does specifically not
     // guarantee an order
-    // test("testFirstLast2", () {
+    // test("testFirstLast2", () async {
     //   expect(
-    //       walkFhirPath(context: patient1, pathExpression: r"Patient.name.last().given = 'Peter' | 'James'"),
+    //       await walkFhirPath(context: patient1, pathExpression: r"Patient.name.last().given = 'Peter' | 'James'"),
     //       [true]);
     // });
-    test('testFirstLast2-fixed', () {
+    test('testFirstLast2-fixed', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: 'Patient.name.last().given',
         ),
@@ -2841,9 +2847,9 @@ void testFpTestSuite() {
   group('testTail', () {
     // Incorrect test case. Union operator does specifically not
     // guarantee an order
-    // test("testTail1", () {
+    // test("testTail1", () async {
     //   expect(
-    //       walkFhirPath(
+    //       await walkFhirPath(
     //           context: patient1,
     //           pathExpression: r"(0 | 1 | 2).tail() = 1 | 2"),
     //       [true]);
@@ -2851,17 +2857,17 @@ void testFpTestSuite() {
 
     // Incorrect test case. Union operator does specifically not
     // guarantee an order
-    // test("testTail2", () {
+    // test("testTail2", () async {
     //   expect(
-    //       walkFhirPath(
+    //       await walkFhirPath(
     //           context: patient1,
     //           pathExpression:
     //               r"Patient.name.tail().given = 'Jim' | 'Peter' | 'James'"),
     //       [true]);
     // });
-    test('testTail2-fixed', () {
+    test('testTail2-fixed', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: 'Patient.name.tail().given',
         ),
@@ -2872,9 +2878,9 @@ void testFpTestSuite() {
 
   group('testSkip', () {
     // FIXED: Incorrect test case. Assumes order of union
-    test('testSkip1', () {
+    test('testSkip1', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '(0 | 1 | 2).skip(1) = 1 | 2',
         ),
@@ -2883,9 +2889,9 @@ void testFpTestSuite() {
     });
 
     // Incorrect test case. Assumes order of union
-    test('testSkip2', () {
+    test('testSkip2', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '(0 | 1 | 2).skip(2) = 2',
         ),
@@ -2894,9 +2900,9 @@ void testFpTestSuite() {
     });
 
     // FIXED: Incorrect test case. Assumes order of union
-    test('testSkip3', () {
+    test('testSkip3', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression:
               "Patient.name.skip(1).given.trace('test') = 'Jim' | 'Peter' | 'James'",
@@ -2904,9 +2910,9 @@ void testFpTestSuite() {
         [true.toFhirBoolean],
       );
     });
-    test('testSkip3-fixed', () {
+    test('testSkip3-fixed', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "Patient.name.skip(1).given.trace('test')",
         ),
@@ -2914,9 +2920,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testSkip4', () {
+    test('testSkip4', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: 'Patient.name.skip(3).given.exists() = false',
         ),
@@ -2926,9 +2932,9 @@ void testFpTestSuite() {
   });
 
   group('testTake', () {
-    // Incorrect test case. Assumes order of union*      test('testTake1', () {
+    // Incorrect test case. Assumes order of union*      test('testTake1', () async {
     // expect(
-    //   walkFhirPath(
+    //   await walkFhirPath(
     //     context: patient1,
     //     pathExpression: '(0 | 1 | 2).take(1) = 0',
     //   ),
@@ -2936,9 +2942,9 @@ void testFpTestSuite() {
     // );
 
     // Incorrect test case. Assumes order of union
-    test('testTake2', () {
+    test('testTake2', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '(0 | 1 | 2).take(2) = 0 | 1',
         ),
@@ -2947,18 +2953,18 @@ void testFpTestSuite() {
     });
 
     // FIXED: Incorrect test case. Assumes order of union
-    test('testTake3', () {
+    test('testTake3', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "Patient.name.take(1).given = 'Peter' | 'James'",
         ),
         [true.toFhirBoolean],
       );
     });
-    test('testTake3-fixed', () {
+    test('testTake3-fixed', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: 'Patient.name.take(1).given',
         ),
@@ -2967,9 +2973,9 @@ void testFpTestSuite() {
     });
 
     // FIXED: Incorrect test case. Assumes order of union
-    test('testTake4', () {
+    test('testTake4', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression:
               "Patient.name.take(2).given = 'Peter' | 'James' | 'Jim'",
@@ -2977,9 +2983,9 @@ void testFpTestSuite() {
         [true.toFhirBoolean],
       );
     });
-    test('testTake4-fixed', () {
+    test('testTake4-fixed', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: 'Patient.name.take(2).given',
         ),
@@ -2987,9 +2993,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testTake5', () {
+    test('testTake5', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: 'Patient.name.take(3).given.count() = 5',
         ),
@@ -2997,9 +3003,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testTake6', () {
+    test('testTake6', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: 'Patient.name.take(4).given.count() = 5',
         ),
@@ -3007,9 +3013,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testTake7', () {
+    test('testTake7', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: 'Patient.name.take(0).given.exists() = false',
         ),
@@ -3019,9 +3025,9 @@ void testFpTestSuite() {
   });
 
   group('testIif', () {
-    test('testIif1', () {
+    test('testIif1', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression:
               "iif(Patient.name.exists(), 'named', 'unnamed') = 'named'",
@@ -3030,9 +3036,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testIif2', () {
+    test('testIif2', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression:
               "iif(Patient.name.empty(), 'unnamed', 'named') = 'named'",
@@ -3041,9 +3047,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testIif3', () {
+    test('testIif3', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: 'iif(true, true, (1 | 2).toString())',
         ),
@@ -3051,9 +3057,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testIif4', () {
+    test('testIif4', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: 'iif(false, (1 | 2).toString(), true)',
         ),
@@ -3063,9 +3069,9 @@ void testFpTestSuite() {
   });
 
   group('testToInteger', () {
-    test('testToInteger1', () {
+    test('testToInteger1', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "'1'.toInteger() = 1",
         ),
@@ -3073,9 +3079,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testToInteger2', () {
+    test('testToInteger2', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "'-1'.toInteger() = -1",
         ),
@@ -3083,9 +3089,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testToInteger3', () {
+    test('testToInteger3', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "'0'.toInteger() = 0",
         ),
@@ -3093,9 +3099,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testToInteger4', () {
+    test('testToInteger4', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "'0.0'.toInteger().empty()",
         ),
@@ -3103,9 +3109,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testToInteger5', () {
+    test('testToInteger5', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "'st'.toInteger().empty()",
         ),
@@ -3115,9 +3121,9 @@ void testFpTestSuite() {
   });
 
   group('testToDecimal', () {
-    test('testToDecimal1', () {
+    test('testToDecimal1', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "'1'.toDecimal() = 1",
         ),
@@ -3125,9 +3131,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testToDecimal2', () {
+    test('testToDecimal2', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "'-1'.toInteger() = -1",
         ),
@@ -3135,9 +3141,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testToDecimal3', () {
+    test('testToDecimal3', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "'0'.toDecimal() = 0",
         ),
@@ -3145,9 +3151,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testToDecimal4', () {
+    test('testToDecimal4', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "'0.0'.toDecimal() = 0.0",
         ),
@@ -3155,9 +3161,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testToDecimal5', () {
+    test('testToDecimal5', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "'st'.toDecimal().empty()",
         ),
@@ -3167,9 +3173,9 @@ void testFpTestSuite() {
   });
 
   group('testToString', () {
-    test('testToString1', () {
+    test('testToString1', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "1.toString() = '1'",
         ),
@@ -3177,9 +3183,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testToString2', () {
+    test('testToString2', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "'-1'.toInteger() = -1",
         ),
@@ -3187,9 +3193,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testToString3', () {
+    test('testToString3', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "0.toString() = '0'",
         ),
@@ -3197,9 +3203,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testToString4', () {
+    test('testToString4', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "0.0.toString() = '0.0'",
         ),
@@ -3207,9 +3213,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testToString5', () {
+    test('testToString5', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "@2014-12-14.toString() = '2014-12-14'",
         ),
@@ -3219,9 +3225,9 @@ void testFpTestSuite() {
   });
 
   group('testCase', () {
-    test('testCase1', () {
+    test('testCase1', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "'t'.upper() = 'T'",
         ),
@@ -3229,9 +3235,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testCase2', () {
+    test('testCase2', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "'t'.lower() = 't'",
         ),
@@ -3239,9 +3245,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testCase3', () {
+    test('testCase3', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "'T'.upper() = 'T'",
         ),
@@ -3249,9 +3255,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testCase4', () {
+    test('testCase4', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "'T'.lower() = 't'",
         ),
@@ -3262,16 +3268,16 @@ void testFpTestSuite() {
 
   group('testToChars', () {
     // FIXED: Incorrect test case. Union has no guaranteed order
-    // test("testToChars1", () {
+    // test("testToChars1", () async {
     //   expect(
-    //       walkFhirPath(
+    //       await walkFhirPath(
     //           context: patient1,
     //           pathExpression: r"'t2'.toChars() = 't' | '2'"),
     //       [true]);
     // });
-    test('testToChars1-fixed', () {
+    test('testToChars1-fixed', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "'t2'.toChars()",
         ),
@@ -3284,9 +3290,9 @@ void testFpTestSuite() {
   });
 
   group('testSubstring', () {
-    test('testSubstring1', () {
+    test('testSubstring1', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "'12345'.substring(2) = '345'",
         ),
@@ -3294,9 +3300,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testSubstring2', () {
+    test('testSubstring2', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "'12345'.substring(2,1) = '3'",
         ),
@@ -3304,9 +3310,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testSubstring3', () {
+    test('testSubstring3', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "'12345'.substring(2,5) = '345'",
         ),
@@ -3314,9 +3320,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testSubstring4', () {
+    test('testSubstring4', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "'12345'.substring(25).empty()",
         ),
@@ -3324,9 +3330,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testSubstring5', () {
+    test('testSubstring5', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "'12345'.substring(-1).empty()",
         ),
@@ -3336,9 +3342,9 @@ void testFpTestSuite() {
   });
 
   group('testStartsWith', () {
-    test('testStartsWith1', () {
+    test('testStartsWith1', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "'12345'.startsWith('2') = false",
         ),
@@ -3346,9 +3352,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testStartsWith2', () {
+    test('testStartsWith2', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "'12345'.startsWith('1') = true",
         ),
@@ -3356,9 +3362,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testStartsWith3', () {
+    test('testStartsWith3', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "'12345'.startsWith('12') = true",
         ),
@@ -3366,9 +3372,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testStartsWith4', () {
+    test('testStartsWith4', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "'12345'.startsWith('13') = false",
         ),
@@ -3376,9 +3382,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testStartsWith5', () {
+    test('testStartsWith5', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "'12345'.startsWith('12345') = true",
         ),
@@ -3386,9 +3392,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testStartsWith6', () {
+    test('testStartsWith6', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "'12345'.startsWith('123456') = false",
         ),
@@ -3396,9 +3402,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testStartsWith7', () {
+    test('testStartsWith7', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "'12345'.startsWith('') = true",
         ),
@@ -3408,9 +3414,9 @@ void testFpTestSuite() {
   });
 
   group('testEndsWith', () {
-    test('testEndsWith1', () {
+    test('testEndsWith1', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "'12345'.endsWith('2') = false",
         ),
@@ -3418,9 +3424,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testEndsWith2', () {
+    test('testEndsWith2', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "'12345'.endsWith('5') = true",
         ),
@@ -3428,9 +3434,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testEndsWith3', () {
+    test('testEndsWith3', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "'12345'.endsWith('45') = true",
         ),
@@ -3438,9 +3444,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testEndsWith4', () {
+    test('testEndsWith4', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "'12345'.endsWith('35') = false",
         ),
@@ -3448,9 +3454,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testEndsWith5', () {
+    test('testEndsWith5', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "'12345'.endsWith('12345') = true",
         ),
@@ -3458,9 +3464,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testEndsWith6', () {
+    test('testEndsWith6', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "'12345'.endsWith('012345') = false",
         ),
@@ -3468,9 +3474,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testEndsWith7', () {
+    test('testEndsWith7', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "'12345'.endsWith('') = true",
         ),
@@ -3480,9 +3486,9 @@ void testFpTestSuite() {
   });
 
   group('testContainsString', () {
-    test('testContainsString1', () {
+    test('testContainsString1', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "'12345'.contains('6') = false",
         ),
@@ -3490,9 +3496,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testContainsString2', () {
+    test('testContainsString2', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "'12345'.contains('5') = true",
         ),
@@ -3500,9 +3506,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testContainsString3', () {
+    test('testContainsString3', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "'12345'.contains('45') = true",
         ),
@@ -3510,9 +3516,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testContainsString4', () {
+    test('testContainsString4', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "'12345'.contains('35') = false",
         ),
@@ -3520,9 +3526,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testContainsString5', () {
+    test('testContainsString5', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "'12345'.contains('12345') = true",
         ),
@@ -3530,9 +3536,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testContainsString6', () {
+    test('testContainsString6', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "'12345'.contains('012345') = false",
         ),
@@ -3540,9 +3546,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testContainsString7', () {
+    test('testContainsString7', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "'12345'.contains('') = true",
         ),
@@ -3552,9 +3558,9 @@ void testFpTestSuite() {
   });
 
   group('testLength', () {
-    test('testLength1', () {
+    test('testLength1', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "'123456'.length() = 6",
         ),
@@ -3562,9 +3568,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testLength2', () {
+    test('testLength2', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "'12345'.length() = 5",
         ),
@@ -3572,9 +3578,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testLength3', () {
+    test('testLength3', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "'123'.length() = 3",
         ),
@@ -3582,9 +3588,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testLength4', () {
+    test('testLength4', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "'1'.length() = 1",
         ),
@@ -3592,9 +3598,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testLength5', () {
+    test('testLength5', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "''.length() = 0",
         ),
@@ -3604,9 +3610,9 @@ void testFpTestSuite() {
   });
 
   group('testTrace', () {
-    test('testTrace1', () {
+    test('testTrace1', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "name.given.trace('test').count() = 5",
         ),
@@ -3614,9 +3620,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testTrace2', () {
+    test('testTrace2', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "name.trace('test', given).count() = 3",
         ),
@@ -3626,9 +3632,9 @@ void testFpTestSuite() {
   });
 
   group('testToday', () {
-    test('testToday1', () {
+    test('testToday1', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: 'Patient.birthDate < today()',
         ),
@@ -3636,9 +3642,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testToday2', () {
+    test('testToday2', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: 'today().toString().length() = 10',
         ),
@@ -3648,9 +3654,9 @@ void testFpTestSuite() {
   });
 
   group('testNow', () {
-    test('testNow1', () {
+    test('testNow1', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: 'Patient.birthDate < now()',
         ),
@@ -3658,9 +3664,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testNow2', () {
+    test('testNow2', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: 'now().toString().length() > 10',
         ),
@@ -3670,45 +3676,45 @@ void testFpTestSuite() {
   });
 
   group('testEquality', () {
-    test('testEquality1', () {
+    test('testEquality1', () async {
       expect(
-        walkFhirPath(context: patient1, pathExpression: '1 = 1'),
+        await walkFhirPath(context: patient1, pathExpression: '1 = 1'),
         [true.toFhirBoolean],
       );
     });
 
-    test('testEquality2', () {
+    test('testEquality2', () async {
       expect(
-        walkFhirPath(context: patient1, pathExpression: '{} = {}'),
+        await walkFhirPath(context: patient1, pathExpression: '{} = {}'),
         <FhirBase>[],
       );
     });
 
-    test('testEquality3', () {
+    test('testEquality3', () async {
       expect(
-        walkFhirPath(context: patient1, pathExpression: 'true = {}'),
+        await walkFhirPath(context: patient1, pathExpression: 'true = {}'),
         <FhirBase>[],
       );
     });
 
-    test('testEquality4', () {
+    test('testEquality4', () async {
       expect(
-        walkFhirPath(context: patient1, pathExpression: '(1) = (1)'),
+        await walkFhirPath(context: patient1, pathExpression: '(1) = (1)'),
         [true.toFhirBoolean],
       );
     });
 
     // FIXED: This test is applying =, which are explicitly order-dependent,
     // on two unions, which are explicitly not order-dependent
-    // test("testEquality5", () {
+    // test("testEquality5", () async {
     //   expect(
-    //       walkFhirPath(
+    //       await walkFhirPath(
     //           context: patient1, pathExpression: r"(1 | 2) = (1 | 2)"),
     //       [true]);
     // });
-    test('testEquality5-fixed', () {
+    test('testEquality5-fixed', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '(1 | 2) ~ (1 | 2)',
         ),
@@ -3718,16 +3724,16 @@ void testFpTestSuite() {
 
     // FIXED: This test is applying =, which are explicitly order-dependent,
     // on two unions, which are explicitly not order-dependent
-    // test("testEquality6", () {
+    // test("testEquality6", () async {
     //   expect(
-    //       walkFhirPath(
+    //       await walkFhirPath(
     //           context: patient1,
     //           pathExpression: r"(1 | 2 | 3) = (1 | 2 | 3)"),
     //       [true]);
     // });
-    test('testEquality6-fixed', () {
+    test('testEquality6-fixed', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '(1 | 2 | 3) ~ (1 | 2 | 3)',
         ),
@@ -3737,13 +3743,13 @@ void testFpTestSuite() {
 
     // FIXED: This test is applying =, which are explicitly order-dependent,
     // on two unions, which are explicitly not order-dependent
-    // test("testEquality7", () {
-    //   expect(walkFhirPath(context: patient1, "(1 | 1) = (1 | 2 | {})"),
+    // test("testEquality7", () async {
+    //   expect(await walkFhirPath(context: patient1, "(1 | 1) = (1 | 2 | {})"),
     //       []);
     // });
-    test('testEquality7-fixed', () {
+    test('testEquality7-fixed', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '(1 | 1) ~ (1 | 2 | {})',
         ),
@@ -3751,51 +3757,51 @@ void testFpTestSuite() {
       );
     });
 
-    test('testEquality8', () {
+    test('testEquality8', () async {
       expect(
-        walkFhirPath(context: patient1, pathExpression: '1 = 2'),
+        await walkFhirPath(context: patient1, pathExpression: '1 = 2'),
         [false.toFhirBoolean],
       );
     });
 
-    test('testEquality9', () {
+    test('testEquality9', () async {
       expect(
-        walkFhirPath(context: patient1, pathExpression: "'a' = 'a'"),
+        await walkFhirPath(context: patient1, pathExpression: "'a' = 'a'"),
         [true.toFhirBoolean],
       );
     });
 
-    test('testEquality10', () {
+    test('testEquality10', () async {
       expect(
-        walkFhirPath(context: patient1, pathExpression: "'a' = 'A'"),
+        await walkFhirPath(context: patient1, pathExpression: "'a' = 'A'"),
         [false.toFhirBoolean],
       );
     });
 
-    test('testEquality11', () {
+    test('testEquality11', () async {
       expect(
-        walkFhirPath(context: patient1, pathExpression: "'a' = 'b'"),
+        await walkFhirPath(context: patient1, pathExpression: "'a' = 'b'"),
         [false.toFhirBoolean],
       );
     });
 
-    test('testEquality12', () {
+    test('testEquality12', () async {
       expect(
-        walkFhirPath(context: patient1, pathExpression: '1.1 = 1.1'),
+        await walkFhirPath(context: patient1, pathExpression: '1.1 = 1.1'),
         [true.toFhirBoolean],
       );
     });
 
-    test('testEquality13', () {
+    test('testEquality13', () async {
       expect(
-        walkFhirPath(context: patient1, pathExpression: '1.1 = 1.2'),
+        await walkFhirPath(context: patient1, pathExpression: '1.1 = 1.2'),
         [false.toFhirBoolean],
       );
     });
 
-    test('testEquality14', () {
+    test('testEquality14', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '1.10 = 1.1',
         ),
@@ -3803,23 +3809,23 @@ void testFpTestSuite() {
       );
     });
 
-    test('testEquality15', () {
+    test('testEquality15', () async {
       expect(
-        walkFhirPath(context: patient1, pathExpression: '0 = 0'),
+        await walkFhirPath(context: patient1, pathExpression: '0 = 0'),
         [true.toFhirBoolean],
       );
     });
 
-    test('testEquality16', () {
+    test('testEquality16', () async {
       expect(
-        walkFhirPath(context: patient1, pathExpression: '0.0 = 0'),
+        await walkFhirPath(context: patient1, pathExpression: '0.0 = 0'),
         [true.toFhirBoolean],
       );
     });
 
-    test('testEquality17', () {
+    test('testEquality17', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '@2012-04-15 = @2012-04-15',
         ),
@@ -3827,9 +3833,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testEquality18', () {
+    test('testEquality18', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '@2012-04-15 = @2012-04-16',
         ),
@@ -3837,9 +3843,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testEquality19', () {
+    test('testEquality19', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '@2012-04-15 = @2012-04-15T10:00:00',
         ),
@@ -3847,9 +3853,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testEquality20', () {
+    test('testEquality20', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '@2012-04-15T15:00:00 = @2012-04-15T10:00:00',
         ),
@@ -3857,9 +3863,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testEquality21', () {
+    test('testEquality21', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '@2012-04-15T15:30:31 = @2012-04-15T15:30:31.0',
         ),
@@ -3867,9 +3873,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testEquality22', () {
+    test('testEquality22', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '@2012-04-15T15:30:31 = @2012-04-15T15:30:31.1',
         ),
@@ -3877,9 +3883,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testEquality23', () {
+    test('testEquality23', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '@2012-04-15T15:00:00Z = @2012-04-15T10:00:00',
         ),
@@ -3887,9 +3893,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testEquality24', () {
+    test('testEquality24', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression:
               '@2012-04-15T15:00:00+02:00 = @2012-04-15T16:00:00+03:00',
@@ -3898,9 +3904,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testEquality25', () {
+    test('testEquality25', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: 'name = name',
         ),
@@ -3909,17 +3915,17 @@ void testFpTestSuite() {
     });
 
     // FIXED: union is not in defined order
-    // test("testEquality26", () {
+    // test("testEquality26", () async {
     //   expect(
-    //       walkFhirPath(
+    //       await walkFhirPath(
     //           context: patient1,
     //           pathExpression:
     //               r"name.take(2) = name.take(2).first() | name.take(2).last()"),
     //       [true]);
     // });
-    test('testEquality26-fixed', () {
+    test('testEquality26-fixed', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: r'name.take(2) = name.take(2).select($this)',
         ),
@@ -3928,18 +3934,18 @@ void testFpTestSuite() {
     });
 
     // Incorrect: union is not in defined order
-    // test("testEquality27", () {
+    // test("testEquality27", () async {
     //   expect(
-    //       walkFhirPath(
+    //       await walkFhirPath(
     //           context: patient1,
     //           pathExpression:
     //               r"name.take(2) = name.take(2).last() | name.take(2).first()"),
     //       [false]);
     // });
 
-    test('testEquality28', () {
+    test('testEquality28', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: observation1,
           pathExpression: "Observation.value = 185 '[lb_av]'",
         ),
@@ -3949,30 +3955,30 @@ void testFpTestSuite() {
   });
 
   group('testNEquality', () {
-    test('testNEquality1', () {
+    test('testNEquality1', () async {
       expect(
-        walkFhirPath(context: patient1, pathExpression: '1 != 1'),
+        await walkFhirPath(context: patient1, pathExpression: '1 != 1'),
         [false.toFhirBoolean],
       );
     });
 
-    test('testNEquality2', () {
+    test('testNEquality2', () async {
       expect(
-        walkFhirPath(context: patient1, pathExpression: '{} != {}'),
+        await walkFhirPath(context: patient1, pathExpression: '{} != {}'),
         <FhirBase>[],
       );
     });
 
-    test('testNEquality3', () {
+    test('testNEquality3', () async {
       expect(
-        walkFhirPath(context: patient1, pathExpression: '1 != 2'),
+        await walkFhirPath(context: patient1, pathExpression: '1 != 2'),
         [true.toFhirBoolean],
       );
     });
 
-    test('testNEquality4', () {
+    test('testNEquality4', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "'a' != 'a'",
         ),
@@ -3980,9 +3986,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testNEquality5', () {
+    test('testNEquality5', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "'a' != 'b'",
         ),
@@ -3990,9 +3996,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testNEquality6', () {
+    test('testNEquality6', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '1.1 != 1.1',
         ),
@@ -4000,9 +4006,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testNEquality7', () {
+    test('testNEquality7', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '1.1 != 1.2',
         ),
@@ -4010,9 +4016,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testNEquality8', () {
+    test('testNEquality8', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '1.10 != 1.1',
         ),
@@ -4020,23 +4026,23 @@ void testFpTestSuite() {
       );
     });
 
-    test('testNEquality9', () {
+    test('testNEquality9', () async {
       expect(
-        walkFhirPath(context: patient1, pathExpression: '0 != 0'),
+        await walkFhirPath(context: patient1, pathExpression: '0 != 0'),
         [false.toFhirBoolean],
       );
     });
 
-    test('testNEquality10', () {
+    test('testNEquality10', () async {
       expect(
-        walkFhirPath(context: patient1, pathExpression: '0.0 != 0'),
+        await walkFhirPath(context: patient1, pathExpression: '0.0 != 0'),
         [false.toFhirBoolean],
       );
     });
 
-    test('testNEquality11', () {
+    test('testNEquality11', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '@2012-04-15 != @2012-04-15',
         ),
@@ -4044,9 +4050,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testNEquality12', () {
+    test('testNEquality12', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '@2012-04-15 != @2012-04-16',
         ),
@@ -4054,9 +4060,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testNEquality13', () {
+    test('testNEquality13', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '@2012-04-15 != @2012-04-15T10:00:00',
         ),
@@ -4064,9 +4070,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testNEquality14', () {
+    test('testNEquality14', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '@2012-04-15T15:00:00 != @2012-04-15T10:00:00',
         ),
@@ -4074,9 +4080,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testNEquality15', () {
+    test('testNEquality15', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '@2012-04-15T15:30:31 != @2012-04-15T15:30:31.0',
         ),
@@ -4084,9 +4090,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testNEquality16', () {
+    test('testNEquality16', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '@2012-04-15T15:30:31 != @2012-04-15T15:30:31.1',
         ),
@@ -4094,9 +4100,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testNEquality17', () {
+    test('testNEquality17', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '@2012-04-15T15:00:00Z != @2012-04-15T10:00:00',
         ),
@@ -4104,9 +4110,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testNEquality17-fixed', () {
+    test('testNEquality17-fixed', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '@2012-04-15T15:00:00Z != @2012-04-15T10:00:00',
         ),
@@ -4114,9 +4120,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testNEquality18', () {
+    test('testNEquality18', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression:
               '@2012-04-15T15:00:00+02:00 != @2012-04-15T16:00:00+03:00',
@@ -4125,9 +4131,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testNEquality19', () {
+    test('testNEquality19', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: 'name != name',
         ),
@@ -4136,9 +4142,9 @@ void testFpTestSuite() {
     });
 
     // Incorrect: assumptions about order
-    // test("testNEquality20", () {
+    // test("testNEquality20", () async {
     //   expect(
-    //       walkFhirPath(
+    //       await walkFhirPath(
     //           context: patient1,
     //           pathExpression:
     //               r"name.take(2) != name.take(2).first() | name.take(2).last()"),
@@ -4146,18 +4152,18 @@ void testFpTestSuite() {
     // });
 
     // Incorrect: assumptions about order
-    // test("testNEquality21", () {
+    // test("testNEquality21", () async {
     //   expect(
-    //       walkFhirPath(
+    //       await walkFhirPath(
     //           context: patient1,
     //           pathExpression:
     //               r"name.take(2) != name.take(2).last() | name.take(2).first()"),
     //       [true]);
     // });
 
-    test('testNEquality22', () {
+    test('testNEquality22', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '1.2 / 1.8 != 0.6666667',
         ),
@@ -4165,9 +4171,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testNEquality23', () {
+    test('testNEquality23', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '1.2 / 1.8 != 0.67',
         ),
@@ -4175,9 +4181,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testNEquality24', () {
+    test('testNEquality24', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: observation1,
           pathExpression: "Observation.value != 185 'kg'",
         ),
@@ -4187,72 +4193,72 @@ void testFpTestSuite() {
   });
 
   group('testEquivalent', () {
-    test('testEquivalent1', () {
+    test('testEquivalent1', () async {
       expect(
-        walkFhirPath(context: patient1, pathExpression: '1 ~ 1'),
+        await walkFhirPath(context: patient1, pathExpression: '1 ~ 1'),
         [true.toFhirBoolean],
       );
     });
 
-    test('testEquivalent2', () {
+    test('testEquivalent2', () async {
       expect(
-        walkFhirPath(context: patient1, pathExpression: '{} ~ {}'),
+        await walkFhirPath(context: patient1, pathExpression: '{} ~ {}'),
         [true.toFhirBoolean],
       );
     });
 
-    test('testEquivalent3', () {
+    test('testEquivalent3', () async {
       expect(
-        walkFhirPath(context: patient1, pathExpression: '1 ~ {}'),
+        await walkFhirPath(context: patient1, pathExpression: '1 ~ {}'),
         [false.toFhirBoolean],
       );
     });
 
-    test('testEquivalent4', () {
+    test('testEquivalent4', () async {
       expect(
-        walkFhirPath(context: patient1, pathExpression: '1 ~ 2'),
+        await walkFhirPath(context: patient1, pathExpression: '1 ~ 2'),
         [false.toFhirBoolean],
       );
     });
 
-    test('testEquivalent5', () {
+    test('testEquivalent5', () async {
       expect(
-        walkFhirPath(context: patient1, pathExpression: "'a' ~ 'a'"),
+        await walkFhirPath(context: patient1, pathExpression: "'a' ~ 'a'"),
         [true.toFhirBoolean],
       );
     });
 
-    test('testEquivalent6', () {
+    test('testEquivalent6', () async {
       expect(
-        walkFhirPath(context: patient1, pathExpression: "'a' ~ 'A'"),
+        await walkFhirPath(context: patient1, pathExpression: "'a' ~ 'A'"),
         [true.toFhirBoolean],
       );
     });
 
-    test('testEquivalent7', () {
+    test('testEquivalent7', () async {
       expect(
-        walkFhirPath(context: patient1, pathExpression: "'a' ~ 'b'"),
+        await walkFhirPath(context: patient1, pathExpression: "'a' ~ 'b'"),
         [false.toFhirBoolean],
       );
     });
 
-    test('testEquivalent8', () {
+    test('testEquivalent8', () async {
       expect(
-        walkFhirPath(context: patient1, pathExpression: '1.1 ~ 1.1'),
+        await walkFhirPath(context: patient1, pathExpression: '1.1 ~ 1.1'),
         [true.toFhirBoolean],
       );
     });
 
-    test('testEquivalent9', () {
+    test('testEquivalent9', () async {
       expect(
-        walkFhirPath(context: patient1, pathExpression: '1.1 ~ 1.2'),
+        await walkFhirPath(context: patient1, pathExpression: '1.1 ~ 1.2'),
         [false.toFhirBoolean],
       );
     });
 
-    test('testEquivalent10', () {
+    test('testEquivalent10', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '1.10 ~ 1.1',
         ),
@@ -4260,9 +4266,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testEquivalent11', () {
+    test('testEquivalent11', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '1.2 / 1.8 ~ 0.67',
         ),
@@ -4270,23 +4276,23 @@ void testFpTestSuite() {
       );
     });
 
-    test('testEquivalent12', () {
+    test('testEquivalent12', () async {
       expect(
-        walkFhirPath(context: patient1, pathExpression: '0 ~ 0'),
+        await walkFhirPath(context: patient1, pathExpression: '0 ~ 0'),
         [true.toFhirBoolean],
       );
     });
 
-    test('testEquivalent13', () {
+    test('testEquivalent13', () async {
       expect(
-        walkFhirPath(context: patient1, pathExpression: '0.0 ~ 0'),
+        await walkFhirPath(context: patient1, pathExpression: '0.0 ~ 0'),
         [true.toFhirBoolean],
       );
     });
 
-    test('testEquivalent14', () {
+    test('testEquivalent14', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '@2012-04-15 ~ @2012-04-15',
         ),
@@ -4294,9 +4300,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testEquivalent15', () {
+    test('testEquivalent15', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '@2012-04-15 ~ @2012-04-16',
         ),
@@ -4304,9 +4310,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testEquivalent16', () {
+    test('testEquivalent16', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '@2012-04-15 ~ @2012-04-15T10:00:00',
         ),
@@ -4314,9 +4320,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testEquivalent17', () {
+    test('testEquivalent17', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '@2012-04-15T15:30:31 ~ @2012-04-15T15:30:31.0',
         ),
@@ -4324,9 +4330,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testEquivalent18', () {
+    test('testEquivalent18', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '@2012-04-15T15:30:31 ~ @2012-04-15T15:30:31.1',
         ),
@@ -4334,9 +4340,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testEquivalent19', () {
+    test('testEquivalent19', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: 'name ~ name',
         ),
@@ -4344,9 +4350,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testEquivalent20', () {
+    test('testEquivalent20', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression:
               'name.take(2).given ~ name.take(2).first().given | name.take(2).last().given',
@@ -4355,9 +4361,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testEquivalent21', () {
+    test('testEquivalent21', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression:
               'name.take(2).given ~ name.take(2).last().given | name.take(2).first().given',
@@ -4366,9 +4372,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testEquivalent22', () {
+    test('testEquivalent22', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: observation1,
           pathExpression: "Observation.value ~ 185 '[lb_av]'",
         ),
@@ -4378,37 +4384,37 @@ void testFpTestSuite() {
   });
 
   group('testNotEquivalent', () {
-    test('testNotEquivalent1', () {
+    test('testNotEquivalent1', () async {
       expect(
-        walkFhirPath(context: patient1, pathExpression: '1 !~ 1'),
+        await walkFhirPath(context: patient1, pathExpression: '1 !~ 1'),
         [false.toFhirBoolean],
       );
     });
 
-    test('testNotEquivalent2', () {
+    test('testNotEquivalent2', () async {
       expect(
-        walkFhirPath(context: patient1, pathExpression: '{} !~ {}'),
+        await walkFhirPath(context: patient1, pathExpression: '{} !~ {}'),
         [false.toFhirBoolean],
       );
     });
 
-    test('testNotEquivalent3', () {
+    test('testNotEquivalent3', () async {
       expect(
-        walkFhirPath(context: patient1, pathExpression: '{} !~ 1'),
+        await walkFhirPath(context: patient1, pathExpression: '{} !~ 1'),
         [true.toFhirBoolean],
       );
     });
 
-    test('testNotEquivalent4', () {
+    test('testNotEquivalent4', () async {
       expect(
-        walkFhirPath(context: patient1, pathExpression: '1 !~ 2'),
+        await walkFhirPath(context: patient1, pathExpression: '1 !~ 2'),
         [true.toFhirBoolean],
       );
     });
 
-    test('testNotEquivalent5', () {
+    test('testNotEquivalent5', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "'a' !~ 'a'",
         ),
@@ -4416,9 +4422,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testNotEquivalent6', () {
+    test('testNotEquivalent6', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "'a' !~ 'A'",
         ),
@@ -4426,9 +4432,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testNotEquivalent7', () {
+    test('testNotEquivalent7', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "'a' !~ 'b'",
         ),
@@ -4436,9 +4442,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testNotEquivalent8', () {
+    test('testNotEquivalent8', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '1.1 !~ 1.1',
         ),
@@ -4446,9 +4452,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testNotEquivalent9', () {
+    test('testNotEquivalent9', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '1.1 !~ 1.2',
         ),
@@ -4456,9 +4462,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testNotEquivalent10', () {
+    test('testNotEquivalent10', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '1.10 !~ 1.1',
         ),
@@ -4466,23 +4472,23 @@ void testFpTestSuite() {
       );
     });
 
-    test('testNotEquivalent11', () {
+    test('testNotEquivalent11', () async {
       expect(
-        walkFhirPath(context: patient1, pathExpression: '0 !~ 0'),
+        await walkFhirPath(context: patient1, pathExpression: '0 !~ 0'),
         [false.toFhirBoolean],
       );
     });
 
-    test('testNotEquivalent12', () {
+    test('testNotEquivalent12', () async {
       expect(
-        walkFhirPath(context: patient1, pathExpression: '0.0 !~ 0'),
+        await walkFhirPath(context: patient1, pathExpression: '0.0 !~ 0'),
         [false.toFhirBoolean],
       );
     });
 
-    test('testNotEquivalent13', () {
+    test('testNotEquivalent13', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '1.2 / 1.8 !~ 0.6',
         ),
@@ -4490,9 +4496,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testNotEquivalent14', () {
+    test('testNotEquivalent14', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '@2012-04-15 !~ @2012-04-15',
         ),
@@ -4500,9 +4506,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testNotEquivalent15', () {
+    test('testNotEquivalent15', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '@2012-04-15 !~ @2012-04-16',
         ),
@@ -4510,9 +4516,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testNotEquivalent16', () {
+    test('testNotEquivalent16', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '@2012-04-15 !~ @2012-04-15T10:00:00',
         ),
@@ -4520,9 +4526,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testNotEquivalent17', () {
+    test('testNotEquivalent17', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '@2012-04-15T15:30:31 !~ @2012-04-15T15:30:31.0',
         ),
@@ -4530,9 +4536,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testNotEquivalent18', () {
+    test('testNotEquivalent18', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '@2012-04-15T15:30:31 !~ @2012-04-15T15:30:31.1',
         ),
@@ -4540,9 +4546,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testNotEquivalent19', () {
+    test('testNotEquivalent19', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: 'name !~ name',
         ),
@@ -4551,9 +4557,9 @@ void testFpTestSuite() {
     });
 
     // Incorrect: Keep assuming order
-    // test("testNotEquivalent20", () {
+    // test("testNotEquivalent20", () async {
     //   expect(
-    //       walkFhirPath(
+    //       await walkFhirPath(
     //           context: patient1,
     //           pathExpression:
     //               r"name.take(2).given !~ name.take(2).first().given | name.take(2).last().given"),
@@ -4561,18 +4567,18 @@ void testFpTestSuite() {
     // });
 
     // Incorrect: Keep assuming order
-    // test("testNotEquivalent21", () {
+    // test("testNotEquivalent21", () async {
     //   expect(
-    //       walkFhirPath(
+    //       await walkFhirPath(
     //           context: patient1,
     //           pathExpression:
     //               r"name.take(2).given !~ name.take(2).last().given | name.take(2).first().given"),
     //       [false]);
     // });
 
-    test('testNotEquivalent22', () {
+    test('testNotEquivalent22', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: observation1,
           pathExpression: "Observation.value !~ 185 'kg'",
         ),
@@ -4582,37 +4588,37 @@ void testFpTestSuite() {
   });
 
   group('testLessThan', () {
-    test('testLessThan1', () {
+    test('testLessThan1', () async {
       expect(
-        walkFhirPath(context: patient1, pathExpression: '1 < 2'),
+        await walkFhirPath(context: patient1, pathExpression: '1 < 2'),
         [true.toFhirBoolean],
       );
     });
 
-    test('testLessThan2', () {
+    test('testLessThan2', () async {
       expect(
-        walkFhirPath(context: patient1, pathExpression: '1.0 < 1.2'),
+        await walkFhirPath(context: patient1, pathExpression: '1.0 < 1.2'),
         [true.toFhirBoolean],
       );
     });
 
-    test('testLessThan3', () {
+    test('testLessThan3', () async {
       expect(
-        walkFhirPath(context: patient1, pathExpression: "'a' < 'b'"),
+        await walkFhirPath(context: patient1, pathExpression: "'a' < 'b'"),
         [true.toFhirBoolean],
       );
     });
 
-    test('testLessThan4', () {
+    test('testLessThan4', () async {
       expect(
-        walkFhirPath(context: patient1, pathExpression: "'A' < 'a'"),
+        await walkFhirPath(context: patient1, pathExpression: "'A' < 'a'"),
         [true.toFhirBoolean],
       );
     });
 
-    test('testLessThan5', () {
+    test('testLessThan5', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '@2014-12-12 < @2014-12-13',
         ),
@@ -4620,9 +4626,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testLessThan6', () {
+    test('testLessThan6', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '@2014-12-13T12:00:00 < @2014-12-13T12:00:01',
         ),
@@ -4630,9 +4636,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testLessThan7', () {
+    test('testLessThan7', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '@T12:00:00 < @T14:00:00',
         ),
@@ -4640,37 +4646,37 @@ void testFpTestSuite() {
       );
     });
 
-    test('testLessThan8', () {
+    test('testLessThan8', () async {
       expect(
-        walkFhirPath(context: patient1, pathExpression: '1 < 1'),
+        await walkFhirPath(context: patient1, pathExpression: '1 < 1'),
         [false.toFhirBoolean],
       );
     });
 
-    test('testLessThan9', () {
+    test('testLessThan9', () async {
       expect(
-        walkFhirPath(context: patient1, pathExpression: '1.0 < 1.0'),
+        await walkFhirPath(context: patient1, pathExpression: '1.0 < 1.0'),
         [false.toFhirBoolean],
       );
     });
 
-    test('testLessThan10', () {
+    test('testLessThan10', () async {
       expect(
-        walkFhirPath(context: patient1, pathExpression: "'a' < 'a'"),
+        await walkFhirPath(context: patient1, pathExpression: "'a' < 'a'"),
         [false.toFhirBoolean],
       );
     });
 
-    test('testLessThan11', () {
+    test('testLessThan11', () async {
       expect(
-        walkFhirPath(context: patient1, pathExpression: "'A' < 'A'"),
+        await walkFhirPath(context: patient1, pathExpression: "'A' < 'A'"),
         [false.toFhirBoolean],
       );
     });
 
-    test('testLessThan12', () {
+    test('testLessThan12', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '@2014-12-12 < @2014-12-12',
         ),
@@ -4678,9 +4684,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testLessThan13', () {
+    test('testLessThan13', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '@2014-12-13T12:00:00 < @2014-12-13T12:00:00',
         ),
@@ -4688,9 +4694,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testLessThan14', () {
+    test('testLessThan14', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '@T12:00:00 < @T12:00:00',
         ),
@@ -4698,37 +4704,37 @@ void testFpTestSuite() {
       );
     });
 
-    test('testLessThan15', () {
+    test('testLessThan15', () async {
       expect(
-        walkFhirPath(context: patient1, pathExpression: '2 < 1'),
+        await walkFhirPath(context: patient1, pathExpression: '2 < 1'),
         [false.toFhirBoolean],
       );
     });
 
-    test('testLessThan16', () {
+    test('testLessThan16', () async {
       expect(
-        walkFhirPath(context: patient1, pathExpression: '1.1 < 1.0'),
+        await walkFhirPath(context: patient1, pathExpression: '1.1 < 1.0'),
         [false.toFhirBoolean],
       );
     });
 
-    test('testLessThan17', () {
+    test('testLessThan17', () async {
       expect(
-        walkFhirPath(context: patient1, pathExpression: "'b' < 'a'"),
+        await walkFhirPath(context: patient1, pathExpression: "'b' < 'a'"),
         [false.toFhirBoolean],
       );
     });
 
-    test('testLessThan18', () {
+    test('testLessThan18', () async {
       expect(
-        walkFhirPath(context: patient1, pathExpression: "'B' < 'A'"),
+        await walkFhirPath(context: patient1, pathExpression: "'B' < 'A'"),
         [false.toFhirBoolean],
       );
     });
 
-    test('testLessThan19', () {
+    test('testLessThan19', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '@2014-12-13 < @2014-12-12',
         ),
@@ -4736,9 +4742,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testLessThan20', () {
+    test('testLessThan20', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '@2014-12-13T12:00:01 < @2014-12-13T12:00:00',
         ),
@@ -4746,9 +4752,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testLessThan21', () {
+    test('testLessThan21', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '@T12:00:01 < @T12:00:00',
         ),
@@ -4756,9 +4762,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testLessThan22', () {
+    test('testLessThan22', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: observation1,
           pathExpression: "Observation.value < 200 '[lb_av]'",
         ),
@@ -4766,9 +4772,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testLessThan23', () {
+    test('testLessThan23', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '@2018-03 < @2018-03-01',
         ),
@@ -4776,9 +4782,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testLessThan24', () {
+    test('testLessThan24', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '@2018-03-01T10 < @2018-03-01T10:30',
         ),
@@ -4786,9 +4792,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testLessThan25', () {
+    test('testLessThan25', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '@T10 < @T10:30',
         ),
@@ -4796,9 +4802,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testLessThan26', () {
+    test('testLessThan26', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '@2018-03-01T10:30:00 < @2018-03-01T10:30:00.0',
         ),
@@ -4806,9 +4812,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testLessThan27', () {
+    test('testLessThan27', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '@T10:30:00 < @T10:30:00.0',
         ),
@@ -4818,16 +4824,16 @@ void testFpTestSuite() {
   });
 
   group('testLessOrEqual', () {
-    test('testLessOrEqual1', () {
+    test('testLessOrEqual1', () async {
       expect(
-        walkFhirPath(context: patient1, pathExpression: '1 <= 2'),
+        await walkFhirPath(context: patient1, pathExpression: '1 <= 2'),
         [true.toFhirBoolean],
       );
     });
 
-    test('testLessOrEqual2', () {
+    test('testLessOrEqual2', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '1.0 <= 1.2',
         ),
@@ -4835,9 +4841,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testLessOrEqual3', () {
+    test('testLessOrEqual3', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "'a' <= 'b'",
         ),
@@ -4845,9 +4851,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testLessOrEqual4', () {
+    test('testLessOrEqual4', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "'A' <= 'a'",
         ),
@@ -4855,9 +4861,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testLessOrEqual5', () {
+    test('testLessOrEqual5', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '@2014-12-12 <= @2014-12-13',
         ),
@@ -4865,9 +4871,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testLessOrEqual6', () {
+    test('testLessOrEqual6', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '@2014-12-13T12:00:00 <= @2014-12-13T12:00:01',
         ),
@@ -4875,9 +4881,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testLessOrEqual7', () {
+    test('testLessOrEqual7', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '@T12:00:00 <= @T14:00:00',
         ),
@@ -4885,16 +4891,16 @@ void testFpTestSuite() {
       );
     });
 
-    test('testLessOrEqual8', () {
+    test('testLessOrEqual8', () async {
       expect(
-        walkFhirPath(context: patient1, pathExpression: '1 <= 1'),
+        await walkFhirPath(context: patient1, pathExpression: '1 <= 1'),
         [true.toFhirBoolean],
       );
     });
 
-    test('testLessOrEqual9', () {
+    test('testLessOrEqual9', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '1.0 <= 1.0',
         ),
@@ -4902,9 +4908,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testLessOrEqual10', () {
+    test('testLessOrEqual10', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "'a' <= 'a'",
         ),
@@ -4912,9 +4918,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testLessOrEqual11', () {
+    test('testLessOrEqual11', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "'A' <= 'A'",
         ),
@@ -4922,9 +4928,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testLessOrEqual12', () {
+    test('testLessOrEqual12', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '@2014-12-12 <= @2014-12-12',
         ),
@@ -4932,9 +4938,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testLessOrEqual13', () {
+    test('testLessOrEqual13', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '@2014-12-13T12:00:00 <= @2014-12-13T12:00:00',
         ),
@@ -4942,9 +4948,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testLessOrEqual14', () {
+    test('testLessOrEqual14', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '@T12:00:00 <= @T12:00:00',
         ),
@@ -4952,16 +4958,16 @@ void testFpTestSuite() {
       );
     });
 
-    test('testLessOrEqual15', () {
+    test('testLessOrEqual15', () async {
       expect(
-        walkFhirPath(context: patient1, pathExpression: '2 <= 1'),
+        await walkFhirPath(context: patient1, pathExpression: '2 <= 1'),
         [false.toFhirBoolean],
       );
     });
 
-    test('testLessOrEqual16', () {
+    test('testLessOrEqual16', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '1.1 <= 1.0',
         ),
@@ -4969,9 +4975,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testLessOrEqual17', () {
+    test('testLessOrEqual17', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "'b' <= 'a'",
         ),
@@ -4979,9 +4985,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testLessOrEqual18', () {
+    test('testLessOrEqual18', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "'B' <= 'A'",
         ),
@@ -4989,9 +4995,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testLessOrEqual19', () {
+    test('testLessOrEqual19', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '@2014-12-13 <= @2014-12-12',
         ),
@@ -4999,9 +5005,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testLessOrEqual20', () {
+    test('testLessOrEqual20', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '@2014-12-13T12:00:01 <= @2014-12-13T12:00:00',
         ),
@@ -5009,9 +5015,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testLessOrEqual21', () {
+    test('testLessOrEqual21', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '@T12:00:01 <= @T12:00:00',
         ),
@@ -5019,9 +5025,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testLessOrEqual22', () {
+    test('testLessOrEqual22', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: observation1,
           pathExpression: "Observation.value <= 200 '[lb_av]'",
         ),
@@ -5029,9 +5035,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testLessOrEqual23', () {
+    test('testLessOrEqual23', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '@2018-03 <= @2018-03-01',
         ),
@@ -5039,9 +5045,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testLessOrEqual24', () {
+    test('testLessOrEqual24', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '@2018-03-01T10 <= @2018-03-01T10:30',
         ),
@@ -5049,9 +5055,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testLessOrEqual25', () {
+    test('testLessOrEqual25', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '@T10 <= @T10:30',
         ),
@@ -5059,9 +5065,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testLessOrEqual26', () {
+    test('testLessOrEqual26', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '@2018-03-01T10:30:00 <= @2018-03-01T10:30:00.0',
         ),
@@ -5069,9 +5075,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testLessOrEqual27', () {
+    test('testLessOrEqual27', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '@T10:30:00 <= @T10:30:00.0',
         ),
@@ -5081,16 +5087,16 @@ void testFpTestSuite() {
   });
 
   group('testGreatorOrEqual', () {
-    test('testGreatorOrEqual1', () {
+    test('testGreatorOrEqual1', () async {
       expect(
-        walkFhirPath(context: patient1, pathExpression: '1 >= 2'),
+        await walkFhirPath(context: patient1, pathExpression: '1 >= 2'),
         [false.toFhirBoolean],
       );
     });
 
-    test('testGreatorOrEqual2', () {
+    test('testGreatorOrEqual2', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '1.0 >= 1.2',
         ),
@@ -5098,9 +5104,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testGreatorOrEqual3', () {
+    test('testGreatorOrEqual3', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "'a' >= 'b'",
         ),
@@ -5108,9 +5114,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testGreatorOrEqual4', () {
+    test('testGreatorOrEqual4', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "'A' >= 'a'",
         ),
@@ -5118,9 +5124,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testGreatorOrEqual5', () {
+    test('testGreatorOrEqual5', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '@2014-12-12 >= @2014-12-13',
         ),
@@ -5128,9 +5134,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testGreatorOrEqual6', () {
+    test('testGreatorOrEqual6', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '@2014-12-13T12:00:00 >= @2014-12-13T12:00:01',
         ),
@@ -5138,9 +5144,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testGreatorOrEqual7', () {
+    test('testGreatorOrEqual7', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '@T12:00:00 >= @T14:00:00',
         ),
@@ -5148,16 +5154,16 @@ void testFpTestSuite() {
       );
     });
 
-    test('testGreatorOrEqual8', () {
+    test('testGreatorOrEqual8', () async {
       expect(
-        walkFhirPath(context: patient1, pathExpression: '1 >= 1'),
+        await walkFhirPath(context: patient1, pathExpression: '1 >= 1'),
         [true.toFhirBoolean],
       );
     });
 
-    test('testGreatorOrEqual9', () {
+    test('testGreatorOrEqual9', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '1.0 >= 1.0',
         ),
@@ -5165,9 +5171,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testGreatorOrEqual10', () {
+    test('testGreatorOrEqual10', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "'a' >= 'a'",
         ),
@@ -5175,9 +5181,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testGreatorOrEqual11', () {
+    test('testGreatorOrEqual11', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "'A' >= 'A'",
         ),
@@ -5185,9 +5191,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testGreatorOrEqual12', () {
+    test('testGreatorOrEqual12', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '@2014-12-12 >= @2014-12-12',
         ),
@@ -5195,9 +5201,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testGreatorOrEqual13', () {
+    test('testGreatorOrEqual13', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '@2014-12-13T12:00:00 >= @2014-12-13T12:00:00',
         ),
@@ -5205,9 +5211,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testGreatorOrEqual14', () {
+    test('testGreatorOrEqual14', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '@T12:00:00 >= @T12:00:00',
         ),
@@ -5215,16 +5221,16 @@ void testFpTestSuite() {
       );
     });
 
-    test('testGreatorOrEqual15', () {
+    test('testGreatorOrEqual15', () async {
       expect(
-        walkFhirPath(context: patient1, pathExpression: '2 >= 1'),
+        await walkFhirPath(context: patient1, pathExpression: '2 >= 1'),
         [true.toFhirBoolean],
       );
     });
 
-    test('testGreatorOrEqual16', () {
+    test('testGreatorOrEqual16', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '1.1 >= 1.0',
         ),
@@ -5232,9 +5238,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testGreatorOrEqual17', () {
+    test('testGreatorOrEqual17', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "'b' >= 'a'",
         ),
@@ -5242,9 +5248,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testGreatorOrEqual18', () {
+    test('testGreatorOrEqual18', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "'B' >= 'A'",
         ),
@@ -5252,9 +5258,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testGreatorOrEqual19', () {
+    test('testGreatorOrEqual19', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '@2014-12-13 >= @2014-12-12',
         ),
@@ -5262,9 +5268,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testGreatorOrEqual20', () {
+    test('testGreatorOrEqual20', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '@2014-12-13T12:00:01 >= @2014-12-13T12:00:00',
         ),
@@ -5272,9 +5278,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testGreatorOrEqual21', () {
+    test('testGreatorOrEqual21', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '@T12:00:01 >= @T12:00:00',
         ),
@@ -5282,9 +5288,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testGreatorOrEqual22', () {
+    test('testGreatorOrEqual22', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: observation1,
           pathExpression: "Observation.value >= 100 '[lb_av]'",
         ),
@@ -5292,9 +5298,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testGreatorOrEqual23', () {
+    test('testGreatorOrEqual23', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '@2018-03 >= @2018-03-01',
         ),
@@ -5302,9 +5308,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testGreatorOrEqual24', () {
+    test('testGreatorOrEqual24', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '@2018-03-01T10 >= @2018-03-01T10:30',
         ),
@@ -5312,9 +5318,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testGreatorOrEqual25', () {
+    test('testGreatorOrEqual25', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '@T10 >= @T10:30',
         ),
@@ -5322,9 +5328,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testGreatorOrEqual26', () {
+    test('testGreatorOrEqual26', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '@2018-03-01T10:30:00 >= @2018-03-01T10:30:00.0',
         ),
@@ -5332,9 +5338,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testGreatorOrEqual27', () {
+    test('testGreatorOrEqual27', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '@T10:30:00 >= @T10:30:00.0',
         ),
@@ -5344,37 +5350,37 @@ void testFpTestSuite() {
   });
 
   group('testGreaterThan', () {
-    test('testGreaterThan1', () {
+    test('testGreaterThan1', () async {
       expect(
-        walkFhirPath(context: patient1, pathExpression: '1 > 2'),
+        await walkFhirPath(context: patient1, pathExpression: '1 > 2'),
         [false.toFhirBoolean],
       );
     });
 
-    test('testGreaterThan2', () {
+    test('testGreaterThan2', () async {
       expect(
-        walkFhirPath(context: patient1, pathExpression: '1.0 > 1.2'),
+        await walkFhirPath(context: patient1, pathExpression: '1.0 > 1.2'),
         [false.toFhirBoolean],
       );
     });
 
-    test('testGreaterThan3', () {
+    test('testGreaterThan3', () async {
       expect(
-        walkFhirPath(context: patient1, pathExpression: "'a' > 'b'"),
+        await walkFhirPath(context: patient1, pathExpression: "'a' > 'b'"),
         [false.toFhirBoolean],
       );
     });
 
-    test('testGreaterThan4', () {
+    test('testGreaterThan4', () async {
       expect(
-        walkFhirPath(context: patient1, pathExpression: "'A' > 'a'"),
+        await walkFhirPath(context: patient1, pathExpression: "'A' > 'a'"),
         [false.toFhirBoolean],
       );
     });
 
-    test('testGreaterThan5', () {
+    test('testGreaterThan5', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '@2014-12-12 > @2014-12-13',
         ),
@@ -5382,9 +5388,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testGreaterThan6', () {
+    test('testGreaterThan6', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '@2014-12-13T12:00:00 > @2014-12-13T12:00:01',
         ),
@@ -5392,9 +5398,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testGreaterThan7', () {
+    test('testGreaterThan7', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '@T12:00:00 > @T14:00:00',
         ),
@@ -5402,37 +5408,37 @@ void testFpTestSuite() {
       );
     });
 
-    test('testGreaterThan8', () {
+    test('testGreaterThan8', () async {
       expect(
-        walkFhirPath(context: patient1, pathExpression: '1 > 1'),
+        await walkFhirPath(context: patient1, pathExpression: '1 > 1'),
         [false.toFhirBoolean],
       );
     });
 
-    test('testGreaterThan9', () {
+    test('testGreaterThan9', () async {
       expect(
-        walkFhirPath(context: patient1, pathExpression: '1.0 > 1.0'),
+        await walkFhirPath(context: patient1, pathExpression: '1.0 > 1.0'),
         [false.toFhirBoolean],
       );
     });
 
-    test('testGreaterThan10', () {
+    test('testGreaterThan10', () async {
       expect(
-        walkFhirPath(context: patient1, pathExpression: "'a' > 'a'"),
+        await walkFhirPath(context: patient1, pathExpression: "'a' > 'a'"),
         [false.toFhirBoolean],
       );
     });
 
-    test('testGreaterThan11', () {
+    test('testGreaterThan11', () async {
       expect(
-        walkFhirPath(context: patient1, pathExpression: "'A' > 'A'"),
+        await walkFhirPath(context: patient1, pathExpression: "'A' > 'A'"),
         [false.toFhirBoolean],
       );
     });
 
-    test('testGreaterThan12', () {
+    test('testGreaterThan12', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '@2014-12-12 > @2014-12-12',
         ),
@@ -5440,9 +5446,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testGreaterThan13', () {
+    test('testGreaterThan13', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '@2014-12-13T12:00:00 > @2014-12-13T12:00:00',
         ),
@@ -5450,9 +5456,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testGreaterThan14', () {
+    test('testGreaterThan14', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '@T12:00:00 > @T12:00:00',
         ),
@@ -5460,37 +5466,37 @@ void testFpTestSuite() {
       );
     });
 
-    test('testGreaterThan15', () {
+    test('testGreaterThan15', () async {
       expect(
-        walkFhirPath(context: patient1, pathExpression: '2 > 1'),
+        await walkFhirPath(context: patient1, pathExpression: '2 > 1'),
         [true.toFhirBoolean],
       );
     });
 
-    test('testGreaterThan16', () {
+    test('testGreaterThan16', () async {
       expect(
-        walkFhirPath(context: patient1, pathExpression: '1.1 > 1.0'),
+        await walkFhirPath(context: patient1, pathExpression: '1.1 > 1.0'),
         [true.toFhirBoolean],
       );
     });
 
-    test('testGreaterThan17', () {
+    test('testGreaterThan17', () async {
       expect(
-        walkFhirPath(context: patient1, pathExpression: "'b' > 'a'"),
+        await walkFhirPath(context: patient1, pathExpression: "'b' > 'a'"),
         [true.toFhirBoolean],
       );
     });
 
-    test('testGreaterThan18', () {
+    test('testGreaterThan18', () async {
       expect(
-        walkFhirPath(context: patient1, pathExpression: "'B' > 'A'"),
+        await walkFhirPath(context: patient1, pathExpression: "'B' > 'A'"),
         [true.toFhirBoolean],
       );
     });
 
-    test('testGreaterThan19', () {
+    test('testGreaterThan19', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '@2014-12-13 > @2014-12-12',
         ),
@@ -5498,9 +5504,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testGreaterThan20', () {
+    test('testGreaterThan20', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '@2014-12-13T12:00:01 > @2014-12-13T12:00:00',
         ),
@@ -5508,9 +5514,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testGreaterThan21', () {
+    test('testGreaterThan21', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '@T12:00:01 > @T12:00:00',
         ),
@@ -5519,9 +5525,9 @@ void testFpTestSuite() {
     });
 
     // Compare Quantity objects to ValidatedQuantity
-    test('testGreaterThan22', () {
+    test('testGreaterThan22', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: observation1,
           pathExpression: "Observation.value > 100 '[lb_av]'",
         ),
@@ -5529,9 +5535,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testGreaterThan23', () {
+    test('testGreaterThan23', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '@2018-03 > @2018-03-01',
         ),
@@ -5539,9 +5545,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testGreaterThan24', () {
+    test('testGreaterThan24', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '@2018-03-01T10 > @2018-03-01T10:30',
         ),
@@ -5549,9 +5555,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testGreaterThan25', () {
+    test('testGreaterThan25', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '@T10 > @T10:30',
         ),
@@ -5559,9 +5565,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testGreaterThan26', () {
+    test('testGreaterThan26', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '@2018-03-01T10:30:00 > @2018-03-01T10:30:00.0',
         ),
@@ -5569,9 +5575,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testGreaterThan27', () {
+    test('testGreaterThan27', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '@T10:30:00 > @T10:30:00.0',
         ),
@@ -5581,9 +5587,9 @@ void testFpTestSuite() {
   });
 
   group('testUnion', () {
-    test('testUnion1', () {
+    test('testUnion1', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '(1 | 2 | 3).count() = 3',
         ),
@@ -5591,9 +5597,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testUnion2', () {
+    test('testUnion2', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '(1 | 2 | 2).count() = 2',
         ),
@@ -5601,9 +5607,9 @@ void testFpTestSuite() {
       );
     }); // merge duplicates
 
-    test('testUnion3', () {
+    test('testUnion3', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '(1|1).count() = 1',
         ),
@@ -5611,9 +5617,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testUnion4', () {
+    test('testUnion4', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '1.union(2).union(3).count() = 3',
         ),
@@ -5621,9 +5627,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testUnion5', () {
+    test('testUnion5', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '1.union(2.union(3)).count() = 3',
         ),
@@ -5631,9 +5637,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testUnion6', () {
+    test('testUnion6', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '(1 | 2).combine(2).count() = 3',
         ),
@@ -5641,9 +5647,9 @@ void testFpTestSuite() {
       );
     }); // do not merge duplicates
 
-    test('testUnion7', () {
+    test('testUnion7', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '1.combine(1).count() = 2',
         ),
@@ -5651,9 +5657,9 @@ void testFpTestSuite() {
       );
     }); // do not merge duplicates
 
-    test('testUnion8', () {
+    test('testUnion8', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '1.combine(1).union(2).count() = 2',
         ),
@@ -5663,9 +5669,9 @@ void testFpTestSuite() {
   });
 
   group('testIntersect', () {
-    test('testIntersect1', () {
+    test('testIntersect1', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '(1 | 2 | 3).intersect(2 | 4) = 2',
         ),
@@ -5673,9 +5679,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testIntersect2', () {
+    test('testIntersect2', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '(1 | 2).intersect(4).empty()',
         ),
@@ -5683,9 +5689,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testIntersect3', () {
+    test('testIntersect3', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '(1 | 2).intersect({}).empty()',
         ),
@@ -5693,9 +5699,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testIntersect4', () {
+    test('testIntersect4', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '1.combine(1).intersect(1).count() = 1',
         ),
@@ -5705,9 +5711,9 @@ void testFpTestSuite() {
   });
 
   group('testExclude', () {
-    test('testExclude1', () {
+    test('testExclude1', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '(1 | 2 | 3).exclude(2 | 4) = 1 | 3',
         ),
@@ -5715,9 +5721,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testExclude2', () {
+    test('testExclude2', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '(1 | 2).exclude(4) = 1 | 2',
         ),
@@ -5725,9 +5731,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testExclude3', () {
+    test('testExclude3', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '(1 | 2).exclude({}) = 1 | 2',
         ),
@@ -5735,9 +5741,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testExclude4', () {
+    test('testExclude4', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '1.combine(1).exclude(2).count() = 2',
         ),
@@ -5747,9 +5753,9 @@ void testFpTestSuite() {
   });
 
   group('testIn', () {
-    test('testIn1', () {
+    test('testIn1', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '1 in (1 | 2 | 3)',
         ),
@@ -5757,9 +5763,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testIn2', () {
+    test('testIn2', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '1 in (2 | 3)',
         ),
@@ -5767,9 +5773,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testIn3', () {
+    test('testIn3', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "'a' in ('a' | 'c' | 'd')",
         ),
@@ -5777,9 +5783,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testIn4', () {
+    test('testIn4', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "'b' in ('a' | 'c' | 'd')",
         ),
@@ -5789,9 +5795,9 @@ void testFpTestSuite() {
   });
 
   group('testContainsCollection', () {
-    test('testContainsCollection1', () {
+    test('testContainsCollection1', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '(1 | 2 | 3) contains 1',
         ),
@@ -5799,9 +5805,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testContainsCollection2', () {
+    test('testContainsCollection2', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '(2 | 3) contains 1 ',
         ),
@@ -5809,9 +5815,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testContainsCollection3', () {
+    test('testContainsCollection3', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "('a' | 'c' | 'd') contains 'a'",
         ),
@@ -5819,9 +5825,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testContainsCollection4', () {
+    test('testContainsCollection4', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "('a' | 'c' | 'd') contains 'b'",
         ),
@@ -5831,9 +5837,9 @@ void testFpTestSuite() {
   });
 
   group('testBooleanLogicAnd', () {
-    test('testBooleanLogicAnd1', () {
+    test('testBooleanLogicAnd1', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '(true and true) = true',
         ),
@@ -5841,9 +5847,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testBooleanLogicAnd2', () {
+    test('testBooleanLogicAnd2', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '(true and false) = false',
         ),
@@ -5851,9 +5857,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testBooleanLogicAnd3', () {
+    test('testBooleanLogicAnd3', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '(true and {}).empty()',
         ),
@@ -5861,9 +5867,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testBooleanLogicAnd4', () {
+    test('testBooleanLogicAnd4', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '(false and true) = false',
         ),
@@ -5871,9 +5877,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testBooleanLogicAnd5', () {
+    test('testBooleanLogicAnd5', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '(false and false) = false',
         ),
@@ -5881,9 +5887,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testBooleanLogicAnd6', () {
+    test('testBooleanLogicAnd6', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '(false and {}) = false',
         ),
@@ -5891,9 +5897,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testBooleanLogicAnd7', () {
+    test('testBooleanLogicAnd7', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '({} and true).empty()',
         ),
@@ -5901,9 +5907,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testBooleanLogicAnd8', () {
+    test('testBooleanLogicAnd8', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '({} and false) = false',
         ),
@@ -5911,9 +5917,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testBooleanLogicAnd9', () {
+    test('testBooleanLogicAnd9', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '({} and {}).empty()',
         ),
@@ -5923,9 +5929,9 @@ void testFpTestSuite() {
   });
 
   group('testBooleanLogicOr', () {
-    test('testBooleanLogicOr1', () {
+    test('testBooleanLogicOr1', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '(true or true) = true',
         ),
@@ -5933,9 +5939,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testBooleanLogicOr2', () {
+    test('testBooleanLogicOr2', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '(true or false) = true',
         ),
@@ -5943,9 +5949,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testBooleanLogicOr3', () {
+    test('testBooleanLogicOr3', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '(true or {}) = true',
         ),
@@ -5953,9 +5959,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testBooleanLogicOr4', () {
+    test('testBooleanLogicOr4', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '(false or true) = true',
         ),
@@ -5963,9 +5969,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testBooleanLogicOr5', () {
+    test('testBooleanLogicOr5', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '(false or false) = false',
         ),
@@ -5973,9 +5979,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testBooleanLogicOr6', () {
+    test('testBooleanLogicOr6', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '(false or {}).empty()',
         ),
@@ -5983,9 +5989,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testBooleanLogicOr7', () {
+    test('testBooleanLogicOr7', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '({} or true) = true',
         ),
@@ -5993,9 +5999,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testBooleanLogicOr8', () {
+    test('testBooleanLogicOr8', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '({} or false).empty()',
         ),
@@ -6003,9 +6009,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testBooleanLogicOr9', () {
+    test('testBooleanLogicOr9', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '({} or {}).empty()',
         ),
@@ -6015,9 +6021,9 @@ void testFpTestSuite() {
   });
 
   group('testBooleanLogicXOr', () {
-    test('testBooleanLogicXOr1', () {
+    test('testBooleanLogicXOr1', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '(true xor true) = false',
         ),
@@ -6025,9 +6031,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testBooleanLogicXOr2', () {
+    test('testBooleanLogicXOr2', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '(true xor false) = true',
         ),
@@ -6035,9 +6041,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testBooleanLogicXOr3', () {
+    test('testBooleanLogicXOr3', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '(true xor {}).empty()',
         ),
@@ -6045,9 +6051,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testBooleanLogicXOr4', () {
+    test('testBooleanLogicXOr4', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '(false xor true) = true',
         ),
@@ -6055,9 +6061,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testBooleanLogicXOr5', () {
+    test('testBooleanLogicXOr5', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '(false xor false) = false',
         ),
@@ -6065,9 +6071,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testBooleanLogicXOr6', () {
+    test('testBooleanLogicXOr6', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '(false xor {}).empty()',
         ),
@@ -6075,9 +6081,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testBooleanLogicXOr7', () {
+    test('testBooleanLogicXOr7', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '({} xor true).empty()',
         ),
@@ -6085,9 +6091,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testBooleanLogicXOr8', () {
+    test('testBooleanLogicXOr8', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '({} xor false).empty()',
         ),
@@ -6095,9 +6101,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testBooleanLogicXOr9', () {
+    test('testBooleanLogicXOr9', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '({} xor {}).empty()',
         ),
@@ -6107,9 +6113,9 @@ void testFpTestSuite() {
   });
 
   group('testBooleanImplies', () {
-    test('testBooleanImplies1', () {
+    test('testBooleanImplies1', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '(true implies true) = true',
         ),
@@ -6117,9 +6123,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testBooleanImplies2', () {
+    test('testBooleanImplies2', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '(true implies false) = false',
         ),
@@ -6127,9 +6133,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testBooleanImplies3', () {
+    test('testBooleanImplies3', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '(true implies {}).empty()',
         ),
@@ -6137,9 +6143,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testBooleanImplies4', () {
+    test('testBooleanImplies4', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '(false implies true) = true',
         ),
@@ -6147,9 +6153,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testBooleanImplies5', () {
+    test('testBooleanImplies5', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '(false implies false) = true',
         ),
@@ -6157,9 +6163,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testBooleanImplies6', () {
+    test('testBooleanImplies6', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '(false implies {}) = true',
         ),
@@ -6167,9 +6173,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testBooleanImplies7', () {
+    test('testBooleanImplies7', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '({} implies true) = true',
         ),
@@ -6177,9 +6183,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testBooleanImplies8', () {
+    test('testBooleanImplies8', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '({} implies false).empty()',
         ),
@@ -6187,9 +6193,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testBooleanImplies9', () {
+    test('testBooleanImplies9', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '({} implies {}).empty()',
         ),
@@ -6199,23 +6205,23 @@ void testFpTestSuite() {
   });
 
   group('testPlus', () {
-    test('testPlus1', () {
+    test('testPlus1', () async {
       expect(
-        walkFhirPath(context: patient1, pathExpression: '1 + 1 = 2'),
+        await walkFhirPath(context: patient1, pathExpression: '1 + 1 = 2'),
         [true.toFhirBoolean],
       );
     });
 
-    test('testPlus2', () {
+    test('testPlus2', () async {
       expect(
-        walkFhirPath(context: patient1, pathExpression: '1 + 0 = 1'),
+        await walkFhirPath(context: patient1, pathExpression: '1 + 0 = 1'),
         [true.toFhirBoolean],
       );
     });
 
-    test('testPlus3', () {
+    test('testPlus3', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '1.2 + 1.8 = 3.0',
         ),
@@ -6223,9 +6229,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testPlus4', () {
+    test('testPlus4', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "'a'+'b' = 'ab'",
         ),
@@ -6235,9 +6241,9 @@ void testFpTestSuite() {
   });
 
   group('testConcatenate', () {
-    test('testConcatenate1', () {
+    test('testConcatenate1', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "'a' & 'b' = 'ab'",
         ),
@@ -6245,9 +6251,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testConcatenate2', () {
+    test('testConcatenate2', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "'1' & {} = '1'",
         ),
@@ -6255,9 +6261,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testConcatenate3', () {
+    test('testConcatenate3', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "{} & 'b' = 'b'",
         ),
@@ -6265,7 +6271,7 @@ void testFpTestSuite() {
       );
     });
 
-    test('testConcatenate4', () {
+    test('testConcatenate4', () async {
       expect(
         () => walkFhirPath(
           context: patient1,
@@ -6277,30 +6283,30 @@ void testFpTestSuite() {
   });
 
   group('testMinus', () {
-    test('testMinus1', () {
+    test('testMinus1', () async {
       expect(
-        walkFhirPath(context: patient1, pathExpression: '1 - 1 = 0'),
+        await walkFhirPath(context: patient1, pathExpression: '1 - 1 = 0'),
         [true.toFhirBoolean],
       );
     });
 
-    test('testMinus2', () {
+    test('testMinus2', () async {
       expect(
-        walkFhirPath(context: patient1, pathExpression: '1 - 0 = 1'),
+        await walkFhirPath(context: patient1, pathExpression: '1 - 0 = 1'),
         [true.toFhirBoolean],
       );
     });
 
     // FIXED: This fails, because Dart thinks 1.8-1.2 = 0.6000000000000001
-    // test("testMinus3", () {
+    // test("testMinus3", () async {
     //   expect(
-    //       walkFhirPath(
+    //       await walkFhirPath(
     //           context: patient1, pathExpression: r"1.8 - 1.2 = 0.6"),
     //       [true]);
     // });
-    test('testMinus3-fixed', () {
+    test('testMinus3-fixed', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '(1.8 - 1.2).round(8) = 0.6',
         ),
@@ -6308,7 +6314,7 @@ void testFpTestSuite() {
       );
     });
 
-    test('testMinus4', () {
+    test('testMinus4', () async {
       expect(
         () => walkFhirPath(
           context: patient1,
@@ -6320,9 +6326,9 @@ void testFpTestSuite() {
   });
 
   group('testMultiply', () {
-    test('testMultiply1', () {
+    test('testMultiply1', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '1.2 * 1.8 = 2.16',
         ),
@@ -6330,39 +6336,39 @@ void testFpTestSuite() {
       );
     });
 
-    test('testMultiply2', () {
+    test('testMultiply2', () async {
       expect(
-        walkFhirPath(context: patient1, pathExpression: '1 * 1 = 1'),
+        await walkFhirPath(context: patient1, pathExpression: '1 * 1 = 1'),
         [true.toFhirBoolean],
       );
     });
 
-    test('testMultiply3', () {
+    test('testMultiply3', () async {
       expect(
-        walkFhirPath(context: patient1, pathExpression: '1 * 0 = 0'),
+        await walkFhirPath(context: patient1, pathExpression: '1 * 0 = 0'),
         [true.toFhirBoolean],
       );
     });
   });
 
   group('testDivide', () {
-    test('testDivide1', () {
+    test('testDivide1', () async {
       expect(
-        walkFhirPath(context: patient1, pathExpression: '1 / 1 = 1'),
+        await walkFhirPath(context: patient1, pathExpression: '1 / 1 = 1'),
         [true.toFhirBoolean],
       );
     });
 
-    test('testDivide2', () {
+    test('testDivide2', () async {
       expect(
-        walkFhirPath(context: patient1, pathExpression: '4 / 2 = 2'),
+        await walkFhirPath(context: patient1, pathExpression: '4 / 2 = 2'),
         [true.toFhirBoolean],
       );
     });
 
-    test('testDivide3', () {
+    test('testDivide3', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '4.0 / 2.0 = 2.0',
         ),
@@ -6370,9 +6376,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testDivide4', () {
+    test('testDivide4', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '1 / 2 = 0.5',
         ),
@@ -6382,16 +6388,16 @@ void testFpTestSuite() {
 
     // FIXED: Already discussed on Zulip, this should round to 8 digits prior
     // to comparison
-    // test("testDivide5", () {
+    // test("testDivide5", () async {
     //   expect(
-    //       walkFhirPath(
+    //       await walkFhirPath(
     //           context: patient1,
     //           pathExpression: r"1.2 / 1.8 = 0.66666667"),
     //       [true]);
     // });
-    test('testDivide5-fixed', () {
+    test('testDivide5-fixed', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '(1.2 / 1.8).round(8) = 0.66666667',
         ),
@@ -6399,18 +6405,18 @@ void testFpTestSuite() {
       );
     });
 
-    test('testDivide6', () {
+    test('testDivide6', () async {
       expect(
-        walkFhirPath(context: patient1, pathExpression: '1 / 0'),
+        await walkFhirPath(context: patient1, pathExpression: '1 / 0'),
         <FhirBase>[],
       );
     });
   });
 
   group('testDiv', () {
-    test('testDiv1', () {
+    test('testDiv1', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '1 div 1 = 1',
         ),
@@ -6418,9 +6424,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testDiv2', () {
+    test('testDiv2', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '4 div 2 = 2',
         ),
@@ -6428,9 +6434,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testDiv3', () {
+    test('testDiv3', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '5 div 2 = 2',
         ),
@@ -6438,9 +6444,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testDiv4', () {
+    test('testDiv4', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '2.2 div 1.8 = 1',
         ),
@@ -6448,18 +6454,18 @@ void testFpTestSuite() {
       );
     });
 
-    test('testDiv5', () {
+    test('testDiv5', () async {
       expect(
-        walkFhirPath(context: patient1, pathExpression: '5 div 0'),
+        await walkFhirPath(context: patient1, pathExpression: '5 div 0'),
         <FhirBase>[],
       );
     });
   });
 
   group('testMod', () {
-    test('testMod1', () {
+    test('testMod1', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '1 mod 1 = 0',
         ),
@@ -6467,9 +6473,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testMod2', () {
+    test('testMod2', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '4 mod 2 = 0',
         ),
@@ -6477,9 +6483,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testMod3', () {
+    test('testMod3', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '5 mod 2 = 1',
         ),
@@ -6488,15 +6494,15 @@ void testFpTestSuite() {
     });
 
     // FIXED: Not passing because Dart thinks this is 0.40000000000000013
-    // test("testMod4", () {
+    // test("testMod4", () async {
     //   expect(
-    //       walkFhirPath(
+    //       await walkFhirPath(
     //           context: patient1, pathExpression: r"2.2 mod 1.8 = 0.4"),
     //       [true]);
     // });
-    test('testMod4-fixed', () {
+    test('testMod4-fixed', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '(2.2 mod 1.8).round(8) = 0.4',
         ),
@@ -6504,18 +6510,18 @@ void testFpTestSuite() {
       );
     });
 
-    test('testMod5', () {
+    test('testMod5', () async {
       expect(
-        walkFhirPath(context: patient1, pathExpression: '5 mod 0'),
+        await walkFhirPath(context: patient1, pathExpression: '5 mod 0'),
         <FhirBase>[],
       );
     });
   });
 
   group('testRound', () {
-    test('testRound1', () {
+    test('testRound1', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '1.round() = 1',
         ),
@@ -6524,16 +6530,16 @@ void testFpTestSuite() {
     });
 
     // FIXED: Incorrect test case: 3.14159.round(3) // 3.142
-    // test("testRound2", () {
+    // test("testRound2", () async {
     //   expect(
-    //       walkFhirPath(
+    //       await walkFhirPath(
     //           context: patient1,
     //           pathExpression: r"3.14159.round(3) = 2"),
     //       [true]);
     // });
-    test('testRound2-fixed', () {
+    test('testRound2-fixed', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '3.14159.round(3) = 3.142',
         ),
@@ -6543,9 +6549,9 @@ void testFpTestSuite() {
   });
 
   group('testSqrt', () {
-    test('testSqrt1', () {
+    test('testSqrt1', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '81.sqrt() = 9.0',
         ),
@@ -6553,9 +6559,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testSqrt2', () {
+    test('testSqrt2', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '(-1).sqrt()',
         ),
@@ -6565,9 +6571,9 @@ void testFpTestSuite() {
   });
 
   group('testAbs', () {
-    test('testAbs1', () {
+    test('testAbs1', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '(-5).abs() = 5',
         ),
@@ -6575,9 +6581,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testAbs2', () {
+    test('testAbs2', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '(-5.5).abs() = 5.5',
         ),
@@ -6585,9 +6591,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testAbs3', () {
+    test('testAbs3', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "(-5.5 'mg').abs() = 5.5 'mg'",
         ),
@@ -6597,9 +6603,9 @@ void testFpTestSuite() {
   });
 
   group('testCeiling', () {
-    test('testCeiling1', () {
+    test('testCeiling1', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '1.ceiling() = 1',
         ),
@@ -6607,9 +6613,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testCeiling2', () {
+    test('testCeiling2', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '(-1.1).ceiling() = -1',
         ),
@@ -6617,9 +6623,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testCeiling3', () {
+    test('testCeiling3', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '1.1.ceiling() = 2',
         ),
@@ -6629,9 +6635,9 @@ void testFpTestSuite() {
   });
 
   group('testExp', () {
-    test('testExp1', () {
+    test('testExp1', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '0.exp() = 1',
         ),
@@ -6639,9 +6645,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testExp2', () {
+    test('testExp2', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '(-0.0).exp() = 1',
         ),
@@ -6651,9 +6657,9 @@ void testFpTestSuite() {
   });
 
   group('testFloor', () {
-    test('testFloor1', () {
+    test('testFloor1', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '1.floor() = 1',
         ),
@@ -6661,9 +6667,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testFloor2', () {
+    test('testFloor2', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '2.1.floor() = 2',
         ),
@@ -6671,9 +6677,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testFloor3', () {
+    test('testFloor3', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '(-2.1).floor() = -3',
         ),
@@ -6683,9 +6689,9 @@ void testFpTestSuite() {
   });
 
   group('testLn', () {
-    test('testLn1', () {
+    test('testLn1', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '1.ln() = 0.0',
         ),
@@ -6693,9 +6699,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testLn2', () {
+    test('testLn2', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '1.0.ln() = 0.0',
         ),
@@ -6705,9 +6711,9 @@ void testFpTestSuite() {
   });
 
   group('testLog', () {
-    test('testLog1', () {
+    test('testLog1', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '16.log(2) = 4.0',
         ),
@@ -6715,9 +6721,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testLog2', () {
+    test('testLog2', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '100.0.log(10.0) = 2.0',
         ),
@@ -6727,9 +6733,9 @@ void testFpTestSuite() {
   });
 
   group('testPower', () {
-    test('testPower1', () {
+    test('testPower1', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '2.power(3) = 8',
         ),
@@ -6737,9 +6743,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testPower2', () {
+    test('testPower2', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '2.5.power(2) = 6.25',
         ),
@@ -6747,9 +6753,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testPower3', () {
+    test('testPower3', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '(-1).power(0.5)',
         ),
@@ -6759,9 +6765,9 @@ void testFpTestSuite() {
   });
 
   group('testTruncate', () {
-    test('testTruncate1', () {
+    test('testTruncate1', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '101.truncate() = 101',
         ),
@@ -6769,9 +6775,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testTruncate2', () {
+    test('testTruncate2', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '1.00000001.truncate() = 1',
         ),
@@ -6779,9 +6785,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testTruncate3', () {
+    test('testTruncate3', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '(-1.56).truncate() = -1',
         ),
@@ -6796,19 +6802,19 @@ void testFpTestSuite() {
     // <expression invalid="semantic">-1.convertsToInteger()</expression>
     // should error because unary does not work on boolean: -(1.convertsToInteger())
     // })
-    test('testPrecedence1-fixed', () {
-      expect(
-        () => walkFhirPath(
+    test('testPrecedence1-fixed', () async {
+      await expectLater(
+        walkFhirPath(
           context: patient1,
           pathExpression: '-1.convertsToInteger()',
         ),
-        throwsA(const TypeMatcher<PathEngineException>()),
+        throwsA(isA<PathEngineException>()),
       );
     });
 
-    test('testPrecedence2', () {
+    test('testPrecedence2', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '1+2*3+4 = 11',
         ),
@@ -6817,41 +6823,41 @@ void testFpTestSuite() {
     });
 
     // FIXED: Incorrect test case. 'is' has higher precedence than >
-    // test("testPrecedence3", () {
+    // test("testPrecedence3", () async {
     //   expect(
-    //       walkFhirPath(
+    //       await walkFhirPath(
     //           context: patient1, pathExpression: r"1 > 2 is Boolean"),
     //       [true]);
     // });
-    test('testPrecedence3-fixed', () {
-      expect(
-        () => walkFhirPath(
+    test('testPrecedence3-fixed', () async {
+      await expectLater(
+        walkFhirPath(
           context: patient1,
           pathExpression: '1 > 2 is Boolean',
         ),
-        throwsA(const TypeMatcher<PathEngineException>()),
+        throwsA(isA<PathEngineException>()),
       );
     });
 
     // FIXED: Incorrect test case. 'is' has higher precedence than |
-    // test("testPrecedence4", () {
+    // test("testPrecedence4", () async {
     //   expect(
-    //       walkFhirPath(
+    //       await walkFhirPath(
     //           context: patient1, pathExpression: r"1 | 1 is Integer"),
     //       [true]);
     // });
-    test('testPrecedence4-fixeda', () {
+    test('testPrecedence4-fixeda', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '1 | 1 is Integer',
         ),
         [1.toFhirInteger, true.toFhirBoolean],
       );
     });
-    test('testPrecedence4-fixedb', () {
+    test('testPrecedence4-fixedb', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '(1 | 1) is Integer',
         ),
@@ -6861,9 +6867,9 @@ void testFpTestSuite() {
   });
 
   group('testVariables', () {
-    test('testVariables1', () {
+    test('testVariables1', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "%sct = 'http://snomed.info/sct'",
         ),
@@ -6871,9 +6877,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testVariables2', () {
+    test('testVariables2', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "%loinc = 'http://loinc.org'",
         ),
@@ -6881,9 +6887,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testVariables3', () {
+    test('testVariables3', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "%ucum = 'http://unitsofmeasure.org'",
         ),
@@ -6891,9 +6897,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testVariables4', () {
+    test('testVariables4', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression:
               "%`vs-administrative-gender` = 'http://hl7.org/fhir/ValueSet/administrative-gender'",
@@ -6904,9 +6910,9 @@ void testFpTestSuite() {
   });
 
   group('testExtension', () {
-    test('testExtension1', () {
+    test('testExtension1', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression:
               "Patient.birthDate.extension('http://hl7.org/fhir/StructureDefinition/patient-birthTime').exists()",
@@ -6915,9 +6921,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testExtension2', () {
+    test('testExtension2', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression:
               'Patient.birthDate.extension(%`ext-patient-birthTime`).exists()',
@@ -6926,9 +6932,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testExtension3', () {
+    test('testExtension3', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression:
               "Patient.birthDate.extension('http://hl7.org/fhir/StructureDefinition/patient-birthTime1').empty()",
@@ -6939,9 +6945,9 @@ void testFpTestSuite() {
   });
 
   group('testType', () {
-    test('testType1', () {
+    test('testType1', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "1.type().namespace = 'System'",
         ),
@@ -6949,9 +6955,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testType2', () {
+    test('testType2', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "1.type().name = 'Integer'",
         ),
@@ -6959,9 +6965,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testType3', () {
+    test('testType3', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "true.type().namespace = 'System'",
         ),
@@ -6969,9 +6975,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testType4', () {
+    test('testType4', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "true.type().name = 'Boolean'",
         ),
@@ -6979,9 +6985,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testType5', () {
+    test('testType5', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: 'true is Boolean',
         ),
@@ -6989,9 +6995,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testType6', () {
+    test('testType6', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: 'true is System.Boolean',
         ),
@@ -6999,9 +7005,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testType7', () {
+    test('testType7', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: 'true is Boolean',
         ),
@@ -7009,9 +7015,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testType8', () {
+    test('testType8', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: 'true is System.Boolean',
         ),
@@ -7019,9 +7025,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testType9', () {
+    test('testType9', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "Patient.active.type().namespace = 'FHIR'",
         ),
@@ -7029,9 +7035,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testType10', () {
+    test('testType10', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "Patient.active.type().name = 'boolean'",
         ),
@@ -7039,9 +7045,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testType11', () {
+    test('testType11', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: 'Patient.active is boolean',
         ),
@@ -7049,18 +7055,18 @@ void testFpTestSuite() {
       );
     });
 
-    test('testType12', () {
+    test('testType12', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: 'Patient.active is Boolean.not()',
         ),
         [false.toFhirBoolean],
       );
     });
-    test('testType12-fixed', () {
+    test('testType12-fixed', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '(Patient.active is Boolean).not()',
         ),
@@ -7068,9 +7074,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testType13', () {
+    test('testType13', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: 'Patient.active is FHIR.boolean',
         ),
@@ -7079,16 +7085,16 @@ void testFpTestSuite() {
     });
 
     // FIXED: Incorrect assumption about precedence
-    // test("testType14", () {
+    // test("testType14", () async {
     //   expect(
-    //       walkFhirPath(
+    //       await walkFhirPath(
     //           context: patient1,
     //           pathExpression: r"Patient.active is System.Boolean.not()"),
     //       [true]);
     // });
-    test('testType14-fixed', () {
+    test('testType14-fixed', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: '(Patient.active is System.Boolean).not()',
         ),
@@ -7096,9 +7102,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testType15', () {
+    test('testType15', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "Patient.type().namespace = 'FHIR'",
         ),
@@ -7106,9 +7112,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testType16', () {
+    test('testType16', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: "Patient.type().name = 'Patient'",
         ),
@@ -7116,9 +7122,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testType17', () {
+    test('testType17', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: 'Patient is Patient',
         ),
@@ -7126,9 +7132,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testType18', () {
+    test('testType18', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: 'Patient is FHIR.Patient',
         ),
@@ -7136,9 +7142,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testType19', () {
+    test('testType19', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: 'Patient is FHIR.`Patient`',
         ),
@@ -7146,9 +7152,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testType20', () {
+    test('testType20', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: 'Patient.ofType(Patient).type().name',
         ),
@@ -7156,9 +7162,9 @@ void testFpTestSuite() {
       );
     });
 
-    test('testType21', () {
+    test('testType21', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: 'Patient.ofType(FHIR.Patient).type().name',
         ),
@@ -7167,9 +7173,9 @@ void testFpTestSuite() {
     });
 
     // TODO(Dokotela): eventually deal with System
-    // test('testType22', () {
+    // test('testType22', () async {
     //   expect(
-    //     walkFhirPath(
+    //     await walkFhirPath(
     //       context: patient1,
     //       pathExpression: 'Patient is System.Patient.not()',
     //     ),
@@ -7177,9 +7183,9 @@ void testFpTestSuite() {
     //   );
     // });
 
-    test('testType23', () {
+    test('testType23', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient1,
           pathExpression: 'Patient.ofType(FHIR.`Patient`).type().name',
         ),
@@ -7190,9 +7196,9 @@ void testFpTestSuite() {
 
   // TODO(Dokotela): conforms to
   group('testConformsTo', () {
-    // test('testConformsTo', () {
+    // test('testConformsTo', () async {
     //   expect(
-    //     walkFhirPath(
+    //     await walkFhirPath(
     //       context: patient1,
     //       pathExpression:
     //           "conformsTo('http://hl7.org/fhir/StructureDefinition/Patient')",
@@ -7200,9 +7206,9 @@ void testFpTestSuite() {
     //     [true.toFhirBoolean],
     //   );
     // });
-    // test('testConformsTo', () {
+    // test('testConformsTo', () async {
     //   expect(
-    //     walkFhirPath(
+    //     await walkFhirPath(
     //       context: patient1,
     //       pathExpression:
     //           "conformsTo('http://hl7.org/fhir/StructureDefinition/Person')",
@@ -7210,7 +7216,7 @@ void testFpTestSuite() {
     //     [false.toFhirBoolean],
     //   );
     // });
-    test('testConformsTo', () {
+    test('testConformsTo', () async {
       expect(
         () => walkFhirPath(
           context: patient1,

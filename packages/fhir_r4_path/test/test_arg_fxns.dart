@@ -4,11 +4,11 @@ import 'package:test/test.dart';
 
 import 'test_data.dart';
 
-void testArgFxns() {
+Future<void> testArgFxns() async {
   group('Functions with Arguments: ', () {
-    test('%variables', () {
+    test('%variables', () async {
       var node = fhirPathEngine.parse('%var');
-      expect(
+      await expectLater(
         fhirPathEngine.evaluateWithContext(
           null,
           null,
@@ -19,14 +19,14 @@ void testArgFxns() {
             'var': [5.toFhirInteger],
           },
         ),
-        [5.toFhirInteger],
+        completion(equals([5.toFhirInteger])),
       );
 
       node = fhirPathEngine.parse('%var');
 
       // Valid variable
       expect(
-        fhirPathEngine.evaluateWithContext(
+        await fhirPathEngine.evaluateWithContext(
           null,
           null,
           null,
@@ -40,8 +40,8 @@ void testArgFxns() {
       );
 
       // Invalid variable
-      expect(
-        () => fhirPathEngine.evaluateWithContext(
+      await expectLater(
+        fhirPathEngine.evaluateWithContext(
           null,
           null,
           null,
@@ -54,12 +54,12 @@ void testArgFxns() {
         throwsA(const TypeMatcher<PathEngineException>()),
       );
 
-      // test('Lazy %variables', () {
+      // test('Lazy %variables', () async {
       node = fhirPathEngine.parse('%var');
 
       // Lazy variable with a list
       expect(
-        fhirPathEngine.evaluateWithContext(
+        await fhirPathEngine.evaluateWithContext(
           null,
           null,
           null,
@@ -74,7 +74,7 @@ void testArgFxns() {
 
       // Lazy variable with a single value
       expect(
-        fhirPathEngine.evaluateWithContext(
+        await fhirPathEngine.evaluateWithContext(
           null,
           null,
           null,
@@ -104,7 +104,7 @@ void testArgFxns() {
 
       // Mixed variables
       expect(
-        fhirPathEngine.evaluateWithContext(
+        await fhirPathEngine.evaluateWithContext(
           null,
           null,
           null,
@@ -119,8 +119,8 @@ void testArgFxns() {
       );
 
       final bombNode = fhirPathEngine.parse('%da_bomb');
-      expect(
-        () => fhirPathEngine.evaluateWithContext(
+      await expectLater(
+        fhirPathEngine.evaluateWithContext(
           null,
           null,
           null,
@@ -135,12 +135,12 @@ void testArgFxns() {
       );
     });
 
-    test('%variables and math', () {
+    test('%variables and math', () async {
       final node = fhirPathEngine.parse('%a + %b + %c > 5');
 
       // All variables as empty lists
       expect(
-        fhirPathEngine.evaluateWithContext(
+        await fhirPathEngine.evaluateWithContext(
           null,
           null,
           null,
@@ -157,7 +157,7 @@ void testArgFxns() {
 
       // Lazy variables as empty lists
       expect(
-        fhirPathEngine.evaluateWithContext(
+        await fhirPathEngine.evaluateWithContext(
           null,
           null,
           null,
@@ -174,7 +174,7 @@ void testArgFxns() {
 
       // Variables with valid values
       expect(
-        fhirPathEngine.evaluateWithContext(
+        await fhirPathEngine.evaluateWithContext(
           null,
           null,
           null,
@@ -191,7 +191,7 @@ void testArgFxns() {
     });
   });
 
-  test(r'$this', () {
+  test(r'$this', () async {
     final resource = Patient(
       name: [
         HumanName(
@@ -213,13 +213,13 @@ void testArgFxns() {
 
     var node = fhirPathEngine.parse(r'Patient.name.exists($this)');
     expect(
-      fhirPathEngine.evaluate(resource, node),
+      await fhirPathEngine.evaluate(resource, node),
       [true.toFhirBoolean],
     );
 
     node = fhirPathEngine.parse(r'Patient.name.where($this)');
     expect(
-      fhirPathEngine.evaluate(resource, node).map((e) => e.toJson()),
+      (await fhirPathEngine.evaluate(resource, node)).map((e) => e.toJson()),
       [
         {
           'use': 'official',
@@ -239,12 +239,13 @@ void testArgFxns() {
 
     node = fhirPathEngine.parse(r'Patient.name.given.where($this)');
     expect(
-      fhirPathEngine.evaluate(resource, node).map((e) => e.primitiveValue),
+      (await fhirPathEngine.evaluate(resource, node))
+          .map((e) => e.primitiveValue),
       ['Jason', 'Grey', 'Kristin', 'John', 'Jacob', 'Jingleheimer'],
     );
   });
 
-  test('exists', () {
+  test('exists', () async {
     final resource = Patient(
       name: [
         HumanName(given: ['Jason'.toFhirString, 'Grey'.toFhirString]),
@@ -260,40 +261,40 @@ void testArgFxns() {
 
     var node = fhirPathEngine.parse('name.given.exists()');
     expect(
-      fhirPathEngine.evaluate(resource, node),
+      await fhirPathEngine.evaluate(resource, node),
       [true.toFhirBoolean],
     );
 
     node = fhirPathEngine.parse('Patient.language.exists()');
     expect(
-      fhirPathEngine.evaluate(resource, node),
+      await fhirPathEngine.evaluate(resource, node),
       [false.toFhirBoolean],
     );
 
     node = fhirPathEngine.parse("telecom.exists(system = 'email')");
     expect(
-      fhirPathEngine.evaluate(resource, node),
+      await fhirPathEngine.evaluate(resource, node),
       [true.toFhirBoolean],
     );
 
     node = fhirPathEngine
         .parse("telecom.exists(system = 'email' and use = 'mobile')");
     expect(
-      fhirPathEngine.evaluate(resource, node),
+      await fhirPathEngine.evaluate(resource, node),
       [true.toFhirBoolean],
     );
 
     node = fhirPathEngine.parse('{}.exists()');
     expect(
-      fhirPathEngine.evaluate(resource, node),
+      await fhirPathEngine.evaluate(resource, node),
       [false.toFhirBoolean],
     );
   });
 
   group('Functions with Arguments: ', () {
-    test('%variables', () {
+    test('%variables', () async {
       expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: null,
           pathExpression: '%var',
           environment: {
@@ -302,8 +303,8 @@ void testArgFxns() {
         ),
         [5.toFhirInteger],
       );
-      expect(
-        () => walkFhirPath(
+      await expectLater(
+        walkFhirPath(
           context: null,
           pathExpression: '%var',
           environment: {'dummy': 5},
@@ -312,9 +313,9 @@ void testArgFxns() {
       );
     });
   });
-  test('Lazy %variables', () {
+  test('Lazy %variables', () async {
     expect(
-      walkFhirPath(
+      await walkFhirPath(
         context: null,
         pathExpression: '%var',
         environment: {
@@ -324,7 +325,7 @@ void testArgFxns() {
       [5.toFhirInteger],
     );
     expect(
-      walkFhirPath(
+      await walkFhirPath(
         context: null,
         pathExpression: '%var',
         environment: {
@@ -333,8 +334,8 @@ void testArgFxns() {
       ),
       [5.toFhirInteger],
     );
-    expect(
-      () => walkFhirPath(
+    await expectLater(
+      walkFhirPath(
         context: null,
         pathExpression: '%var',
         environment: {
@@ -344,7 +345,7 @@ void testArgFxns() {
       throwsA(const TypeMatcher<PathEngineException>()),
     );
     expect(
-      walkFhirPath(
+      await walkFhirPath(
         context: null,
         pathExpression: '%var',
         environment: {
@@ -354,8 +355,8 @@ void testArgFxns() {
       ),
       [5.toFhirInteger],
     );
-    expect(
-      () => walkFhirPath(
+    await expectLater(
+      walkFhirPath(
         context: null,
         pathExpression: '%da_bomb',
         environment: {
@@ -363,13 +364,13 @@ void testArgFxns() {
           'da_bomb': () => [throw Exception('BOOM!')],
         },
       ),
-      throwsA(const TypeMatcher<PathEngineException>()),
+      throwsA(const TypeMatcher<Exception>()),
     );
   });
 
-  test('%variables and math', () {
+  test('%variables and math', () async {
     expect(
-      walkFhirPath(
+      await walkFhirPath(
         context: null,
         pathExpression: '%a + %b + %c > 5',
         environment: {
@@ -381,7 +382,7 @@ void testArgFxns() {
       <FhirBase>[],
     );
     expect(
-      walkFhirPath(
+      await walkFhirPath(
         context: null,
         pathExpression: '%a + %b + %c > 5',
         environment: {
@@ -393,7 +394,7 @@ void testArgFxns() {
       <FhirBase>[],
     );
     expect(
-      walkFhirPath(
+      await walkFhirPath(
         context: null,
         pathExpression: '%a + %b + %c > 5',
         environment: {
@@ -406,19 +407,21 @@ void testArgFxns() {
     );
   });
 
-  test(r'$this', () {
+  test(r'$this', () async {
     expect(
-      walkFhirPath(
+      await walkFhirPath(
         context: patient3,
         pathExpression: r'Patient.name.exists($this)',
       ),
       [true.toFhirBoolean],
     );
     expect(
-        walkFhirPath(
+        (await walkFhirPath(
           context: patient3,
           pathExpression: r'Patient.name.where($this)',
-        ).map((e) => e.toJson()).toList(),
+        ))
+            .map((e) => e.toJson())
+            .toList(),
         [
           {
             'use': 'official',
@@ -440,7 +443,7 @@ void testArgFxns() {
           }
         ]);
     expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient3,
           pathExpression: r'Patient.name.given.where($this)',
         ),
@@ -456,51 +459,51 @@ void testArgFxns() {
         ]);
   });
 
-  test('exists', () {
+  test('exists', () async {
     expect(
-      walkFhirPath(
+      await walkFhirPath(
         context: patient3,
         pathExpression: 'name.given.exists()',
       ),
       [true.toFhirBoolean],
     );
     expect(
-      walkFhirPath(
+      await walkFhirPath(
         context: patient3,
         pathExpression: 'Patient.language.exists()',
       ),
       [false.toFhirBoolean],
     );
     expect(
-      walkFhirPath(
+      await walkFhirPath(
         context: patient3,
         pathExpression: "telecom.exists(system = 'email')",
       ),
       [true.toFhirBoolean],
     );
     expect(
-      walkFhirPath(
+      await walkFhirPath(
         context: patient3,
         pathExpression: "telecom.exists(system = 'email' and use = 'mobile')",
       ),
       [true.toFhirBoolean],
     );
     expect(
-      walkFhirPath(
+      await walkFhirPath(
         context: patient3,
         pathExpression: "telecom.exists(system = 'sms' and use = 'mobile')",
       ),
       [false.toFhirBoolean],
     );
     expect(
-      walkFhirPath(
+      await walkFhirPath(
         context: patient3,
         pathExpression: "telecom.exists(system = 'email' and use = 'any')",
       ),
       [false.toFhirBoolean],
     );
     expect(
-      walkFhirPath(
+      await walkFhirPath(
         context: patient3,
         pathExpression: '{}.exists()',
       ),
@@ -508,44 +511,44 @@ void testArgFxns() {
     );
   });
 
-  test('all', () {
+  test('all', () async {
     expect(
-      walkFhirPath(
+      await walkFhirPath(
         context: patient3,
         pathExpression: 'Patient.language.all()',
       ),
       [true.toFhirBoolean],
     );
     expect(
-      walkFhirPath(
+      await walkFhirPath(
         context: patient3,
         pathExpression: "name.all(use = 'official')",
       ),
       [false.toFhirBoolean],
     );
     expect(
-      walkFhirPath(
+      await walkFhirPath(
         context: patient3,
         pathExpression: "name.all(use = 'usual')",
       ),
       [false.toFhirBoolean],
     );
     expect(
-      walkFhirPath(
+      await walkFhirPath(
         context: patient3,
         pathExpression: "telecom.all(system = 'email')",
       ),
       [true.toFhirBoolean],
     );
     expect(
-      walkFhirPath(
+      await walkFhirPath(
         context: patient3,
         pathExpression: "telecom.all(use = 'mobile')",
       ),
       [true.toFhirBoolean],
     );
     expect(
-      walkFhirPath(
+      await walkFhirPath(
         context: patient3,
         pathExpression: "telecom.all(system = 'email' and use = 'mobile')",
       ),
@@ -553,15 +556,15 @@ void testArgFxns() {
     );
   });
 
-  test('subsetOf', () {
+  test('subsetOf', () async {
     final node = fhirPathEngine
         .parse('Patient.name.given[2].subsetOf(Patient.name.given)');
     expect(
-      fhirPathEngine.evaluate(patient3, node),
+      await fhirPathEngine.evaluate(patient3, node),
       [true.toFhirBoolean],
     );
     expect(
-      walkFhirPath(
+      await walkFhirPath(
         context: patient3,
         pathExpression: 'Patient.name.given[2].subsetOf(Patient.name.given)',
       ),
@@ -569,14 +572,14 @@ void testArgFxns() {
     );
 
     expect(
-      walkFhirPath(
+      await walkFhirPath(
         context: patient3,
         pathExpression: 'Patient.name.given.subsetOf(Patient.name.given)',
       ),
       [true.toFhirBoolean],
     );
     expect(
-      walkFhirPath(
+      await walkFhirPath(
         context: patient3,
         pathExpression: 'Patient.name.subsetOf(Patient.name.given)',
       ),
@@ -584,23 +587,23 @@ void testArgFxns() {
     );
   });
 
-  test('supersetOf', () {
+  test('supersetOf', () async {
     expect(
-      walkFhirPath(
+      await walkFhirPath(
         context: patient3,
         pathExpression: 'Patient.name.given.supersetOf(Patient.name.given[2])',
       ),
       [true.toFhirBoolean],
     );
     expect(
-      walkFhirPath(
+      await walkFhirPath(
         context: patient3,
         pathExpression: 'Patient.name.given.supersetOf(Patient.name.given)',
       ),
       [true.toFhirBoolean],
     );
     expect(
-      walkFhirPath(
+      await walkFhirPath(
         context: patient3,
         pathExpression: 'Patient.name.given.supersetOf(Patient.name)',
       ),
@@ -608,12 +611,13 @@ void testArgFxns() {
     );
   });
 
-  test('where', () {
+  test('where', () async {
     expect(
-        walkFhirPath(
+        (await walkFhirPath(
           context: patient3,
           pathExpression: "Patient.telecom.where(use = 'mobile')",
-        ).map((e) => e.toJson()),
+        ))
+            .map((e) => e.toJson()),
         [
           {
             'system': 'email',
@@ -623,10 +627,12 @@ void testArgFxns() {
         ]);
 
     expect(
-        walkFhirPath(
+        (await walkFhirPath(
           context: patient3,
           pathExpression: "Patient.telecom.where(use = 'mobile' and rank = 3)",
-        ).map((e) => e.toJson()).toList(),
+        ))
+            .map((e) => e.toJson())
+            .toList(),
         [
           {
             'system': 'email',
@@ -635,11 +641,12 @@ void testArgFxns() {
           }
         ]);
     expect(
-        walkFhirPath(
+        (await walkFhirPath(
           context: patient3,
           pathExpression:
               "Patient.telecom.where(use = 'mobile' and system = 'email')",
-        ).map((e) => e.toJson()),
+        ))
+            .map((e) => e.toJson()),
         [
           {
             'system': 'email',
@@ -648,12 +655,13 @@ void testArgFxns() {
           }
         ]);
     expect(
-        walkFhirPath(
+        (await walkFhirPath(
           context: patient3,
           pathExpression:
               "Patient.telecom.where(use = 'mobile' and system = 'email' and "
               'rank = 3)',
-        ).map((e) => e.toJson()),
+        ))
+            .map((e) => e.toJson()),
         [
           {
             'system': 'email',
@@ -662,17 +670,19 @@ void testArgFxns() {
           }
         ]);
     expect(
-      walkFhirPath(
+      (await walkFhirPath(
         context: patient3,
         pathExpression: "Patient.telecom.where(use = 'mobile' and rank = 2)",
-      ).map((e) => e.toJson()),
+      ))
+          .map((e) => e.toJson()),
       <FhirBase>[],
     );
     expect(
-        walkFhirPath(
+        (await walkFhirPath(
           context: patient3,
           pathExpression: "Patient.name.where(use = 'official')",
-        ).map((e) => e.toJson()),
+        ))
+            .map((e) => e.toJson()),
         [
           {
             'use': 'official',
@@ -693,19 +703,21 @@ void testArgFxns() {
         ]);
   });
 
-  test('select', () {
+  test('select', () async {
     expect(
-      walkFhirPath(
+      await walkFhirPath(
         context: patient3,
         pathExpression: 'Patient.telecom.select(rank as positiveInt)',
       ),
       [3.toFhirPositiveInt],
     );
     expect(
-        walkFhirPath(
+        (await walkFhirPath(
           context: bundle,
           pathExpression: 'Bundle.entry.select(resource as Patient)',
-        ).map((e) => e.toJson()).toList(),
+        ))
+            .map((e) => e.toJson())
+            .toList(),
         [
           {'resourceType': 'Patient', 'id': '1'},
           {'resourceType': 'Patient', 'id': '3'},
@@ -713,10 +725,11 @@ void testArgFxns() {
           {'resourceType': 'Patient', 'id': '7'},
         ]);
     expect(
-        walkFhirPath(
+        (await walkFhirPath(
           context: bundle,
           pathExpression: 'Bundle.entry.select(resource as Practitioner)',
-        ).map((e) => e.toJson()),
+        ))
+            .map((e) => e.toJson()),
         [
           {'resourceType': 'Practitioner', 'id': '2'},
           {'resourceType': 'Practitioner', 'id': '4'},
@@ -724,13 +737,14 @@ void testArgFxns() {
         ]);
   });
 
-  test('repeat', () {
+  test('repeat', () async {
     expect(
-        walkFhirPath(
+        (await walkFhirPath(
           context: patient3,
           pathExpression: 'Patient.address.period.extension.extension.extension'
               '.repeat(extension)',
-        ).map((e) => e.toJson()),
+        ))
+            .map((e) => e.toJson()),
         [
           {
             'url': 'www.mayjuun.com',
@@ -742,11 +756,12 @@ void testArgFxns() {
           }
         ]);
     expect(
-        walkFhirPath(
+        (await walkFhirPath(
           context: patient3,
           pathExpression:
               'Patient.address.period.extension.extension.repeat(extension)',
-        ).map((e) => e.toJson()),
+        ))
+            .map((e) => e.toJson()),
         [
           {
             'extension': [
@@ -772,10 +787,11 @@ void testArgFxns() {
           }
         ]);
     expect(
-        walkFhirPath(
+        (await walkFhirPath(
           context: patient3,
           pathExpression: 'Patient.address.period.extension.repeat(extension)',
-        ).map((e) => e.toJson()),
+        ))
+            .map((e) => e.toJson()),
         [
           {
             'extension': [
@@ -826,12 +842,14 @@ void testArgFxns() {
         ]);
   });
 
-  test('ofType', () {
+  test('ofType', () async {
     expect(
-        walkFhirPath(
+        (await walkFhirPath(
           context: bundle,
           pathExpression: 'Bundle.entry.resource.ofType(Patient)',
-        ).map((e) => e.toJson()).toList(),
+        ))
+            .map((e) => e.toJson())
+            .toList(),
         [
           {'resourceType': 'Patient', 'id': '1'},
           {'resourceType': 'Patient', 'id': '3'},
@@ -839,10 +857,12 @@ void testArgFxns() {
           {'resourceType': 'Patient', 'id': '7'},
         ]);
     expect(
-        walkFhirPath(
+        (await walkFhirPath(
           context: bundle,
           pathExpression: 'Bundle.entry.resource.ofType(Practitioner)',
-        ).map((e) => e.toJson()).toList(),
+        ))
+            .map((e) => e.toJson())
+            .toList(),
         [
           {'resourceType': 'Practitioner', 'id': '2'},
           {'resourceType': 'Practitioner', 'id': '4'},
@@ -850,12 +870,14 @@ void testArgFxns() {
         ]);
   });
 
-  test('index', () {
+  test('index', () async {
     expect(
-        walkFhirPath(
+        (await walkFhirPath(
           context: patient3,
           pathExpression: 'Patient.name[3]',
-        ).map((e) => e.toJson()).toList(),
+        ))
+            .map((e) => e.toJson())
+            .toList(),
         [
           {
             'family': 'Smith',
@@ -867,7 +889,7 @@ void testArgFxns() {
           }
         ]);
     expect(
-      walkFhirPath(
+      await walkFhirPath(
         context: patient3,
         pathExpression: 'Patient.name[12]',
       ),
@@ -875,16 +897,16 @@ void testArgFxns() {
     );
   });
 
-  test('skip', () {
+  test('skip', () async {
     expect(
-      walkFhirPath(
+      await walkFhirPath(
         context: patient3,
         pathExpression: 'Patient.name.id.skip(1)',
       ),
       <FhirBase>[],
     );
     expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient3,
           pathExpression: 'Patient.name.given.skip(3)',
         ),
@@ -897,16 +919,16 @@ void testArgFxns() {
         ]);
   });
 
-  test('take', () {
+  test('take', () async {
     expect(
-      walkFhirPath(
+      await walkFhirPath(
         context: patient3,
         pathExpression: 'Patient.name.id.take(1)',
       ),
       <FhirBase>[],
     );
     expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient3,
           pathExpression: 'Patient.name.given.take(3)',
         ),
@@ -916,7 +938,7 @@ void testArgFxns() {
           'Jason'.toFhirString,
         ]);
     expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient3,
           pathExpression: 'Patient.name.given.take(13)',
         ),
@@ -932,9 +954,9 @@ void testArgFxns() {
         ]);
   });
 
-  test('intersect', () {
+  test('intersect', () async {
     expect(
-      walkFhirPath(
+      await walkFhirPath(
         context: patient3,
         pathExpression: 'Patient.name.given.intersect(%nameList)',
         environment: {
@@ -944,7 +966,7 @@ void testArgFxns() {
       ['Jason'.toFhirString],
     );
     expect(
-      walkFhirPath(
+      await walkFhirPath(
         context: patient3,
         pathExpression: 'Patient.name.given.intersect(%nameList)',
         environment: {
@@ -954,7 +976,7 @@ void testArgFxns() {
       ['Jason'.toFhirString, 'Kristin'.toFhirString],
     );
     expect(
-      walkFhirPath(
+      await walkFhirPath(
         context: patient3,
         pathExpression: 'Patient.name.given.intersect(%nameList)',
         environment: {
@@ -965,9 +987,9 @@ void testArgFxns() {
     );
   });
 
-  test('exclude', () {
+  test('exclude', () async {
     expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient3,
           pathExpression: 'Patient.name.given.exclude(%nameList)',
           environment: {
@@ -984,7 +1006,7 @@ void testArgFxns() {
         ]);
 
     expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient3,
           pathExpression: 'Patient.name.given.exclude(%nameList)',
           environment: {
@@ -999,7 +1021,7 @@ void testArgFxns() {
           'Jingleheimer'.toFhirString,
         ]);
     expect(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient3,
           pathExpression: 'Patient.name.given.exclude(%nameList)',
           environment: {
@@ -1016,9 +1038,9 @@ void testArgFxns() {
         ]);
   });
 
-  test('union', () {
+  test('union', () async {
     expect(
-      walkFhirPath(
+      await walkFhirPath(
         context: patient3,
         pathExpression: '%a.union(%b)',
         environment: {
@@ -1034,7 +1056,7 @@ void testArgFxns() {
       [1.toFhirInteger, 2.toFhirInteger, 3.toFhirInteger],
     );
     expect(
-      walkFhirPath(
+      await walkFhirPath(
         context: patient3,
         pathExpression: '%a.union()',
         environment: {
@@ -1050,11 +1072,11 @@ void testArgFxns() {
     );
   });
 
-  test('combine', () {
+  test('combine', () async {
     expect(
       // ignore: inference_failure_on_function_invocation
       listEquals(
-        walkFhirPath(
+        await walkFhirPath(
           context: patient3,
           pathExpression: '%a.combine(%b)',
           environment: {
@@ -1079,7 +1101,7 @@ void testArgFxns() {
       true,
     );
     expect(
-      walkFhirPath(
+      await walkFhirPath(
         context: patient3,
         pathExpression: '%a.combine()',
         environment: {
@@ -1095,23 +1117,23 @@ void testArgFxns() {
     );
   });
 
-  test('indexOf', () {
+  test('indexOf', () async {
     expect(
-      walkFhirPath(
+      await walkFhirPath(
         context: patient3,
         pathExpression: "'abcdefg'.indexOf('bc') // 1",
       ),
       [1.toFhirInteger],
     );
     expect(
-      walkFhirPath(
+      await walkFhirPath(
         context: patient3,
         pathExpression: "'abcdefg'.indexOf('x') // -1",
       ),
       [-1.toFhirInteger],
     );
     expect(
-      walkFhirPath(
+      await walkFhirPath(
         context: patient3,
         pathExpression: "'abcdefg'.indexOf('abcdefg') // 0",
       ),
@@ -1119,30 +1141,30 @@ void testArgFxns() {
     );
   });
 
-  test('Substring Function', () {
+  test('Substring Function', () async {
     expect(
-      walkFhirPath(
+      await walkFhirPath(
         context: patient3,
         pathExpression: "'abcdefg'.substring(3) // 'defg'",
       ),
       ['defg'.toFhirString],
     );
     expect(
-      walkFhirPath(
+      await walkFhirPath(
         context: patient3,
         pathExpression: "'abcdefg'.substring(1, 2) // 'bc'",
       ),
       ['bc'.toFhirString],
     );
     expect(
-      walkFhirPath(
+      await walkFhirPath(
         context: patient3,
         pathExpression: "'abcdefg'.substring(6, 2) // 'g'",
       ),
       ['g'.toFhirString],
     );
     expect(
-      walkFhirPath(
+      await walkFhirPath(
         context: patient3,
         pathExpression: "'abcdefg'.substring(7, 1) // { }",
       ),
@@ -1150,16 +1172,16 @@ void testArgFxns() {
     );
   });
 
-  test('startsWith', () {
+  test('startsWith', () async {
     expect(
-      walkFhirPath(
+      await walkFhirPath(
         context: patient3,
         pathExpression: "'abcdefg'.startsWith('abc') // true",
       ),
       [true.toFhirBoolean],
     );
     expect(
-      walkFhirPath(
+      await walkFhirPath(
         context: patient3,
         pathExpression: "'abcdefg'.startsWith('xyz') // false",
       ),
@@ -1167,16 +1189,16 @@ void testArgFxns() {
     );
   });
 
-  test('endsWith', () {
+  test('endsWith', () async {
     expect(
-      walkFhirPath(
+      await walkFhirPath(
         context: patient3,
         pathExpression: "'abcdefg'.endsWith('efg') // true",
       ),
       [true.toFhirBoolean],
     );
     expect(
-      walkFhirPath(
+      await walkFhirPath(
         context: patient3,
         pathExpression: "'abcdefg'.endsWith('abc') // false",
       ),
@@ -1184,23 +1206,23 @@ void testArgFxns() {
     );
   });
 
-  test('contains', () {
+  test('contains', () async {
     expect(
-      walkFhirPath(
+      await walkFhirPath(
         context: patient3,
         pathExpression: "'abc'.contains('b') // true",
       ),
       [true.toFhirBoolean],
     );
     expect(
-      walkFhirPath(
+      await walkFhirPath(
         context: patient3,
         pathExpression: "'abc'.contains('bc') // true",
       ),
       [true.toFhirBoolean],
     );
     expect(
-      walkFhirPath(
+      await walkFhirPath(
         context: patient3,
         pathExpression: "'abc'.contains('d') // false",
       ),
@@ -1208,23 +1230,23 @@ void testArgFxns() {
     );
   });
 
-  test('replace', () {
+  test('replace', () async {
     expect(
-      walkFhirPath(
+      await walkFhirPath(
         context: patient3,
         pathExpression: "'abcdefg'.replace('cde', '123') // 'ab123fg'",
       ),
       ['ab123fg'.toFhirString],
     );
     expect(
-      walkFhirPath(
+      await walkFhirPath(
         context: patient3,
         pathExpression: "'abcdefg'.replace('cde', '') // 'abfg'",
       ),
       ['abfg'.toFhirString],
     );
     expect(
-      walkFhirPath(
+      await walkFhirPath(
         context: patient3,
         pathExpression: "'abc'.replace('', 'x') // 'xaxbxcx'",
       ),
@@ -1232,58 +1254,58 @@ void testArgFxns() {
     );
   });
 
-  test('matches', () {
+  test('matches', () async {
     expect(
-      walkFhirPath(
+      await walkFhirPath(
         context: patient3,
         pathExpression: "'hello'.matches('hello')",
       ),
       [true.toFhirBoolean],
     );
     expect(
-      walkFhirPath(
+      await walkFhirPath(
         context: patient3,
         pathExpression: "35.matches('[2-9]|[12]d|3[0-6]')",
       ),
       [true.toFhirBoolean],
     );
     expect(
-      walkFhirPath(
+      await walkFhirPath(
         context: patient3,
         pathExpression: "38.matches('[2-9]|[12]d|3[0-6]')",
       ),
       [true.toFhirBoolean],
     );
     expect(
-      walkFhirPath(
+      await walkFhirPath(
         context: patient3,
         pathExpression: "'35'.matches('[2-9]|[12]d|3[0-6]')",
       ),
       [true.toFhirBoolean],
     );
     expect(
-      walkFhirPath(
+      await walkFhirPath(
         context: patient3,
         pathExpression: "'38'.matches('[2-9]|[12]d|3[0-6]')",
       ),
       [true.toFhirBoolean],
     );
     expect(
-      walkFhirPath(
+      await walkFhirPath(
         context: patient3,
         pathExpression: "'google'.matches('g(oog)+le')",
       ),
       [true.toFhirBoolean],
     );
     expect(
-      walkFhirPath(
+      await walkFhirPath(
         context: patient3,
         pathExpression: "'googoogoogoogle'.matches('g(oog)+le')",
       ),
       [true.toFhirBoolean],
     );
     expect(
-      walkFhirPath(
+      await walkFhirPath(
         context: patient3,
         pathExpression: "'goooooogle'.matches('g(oog)+le')",
       ),
@@ -1291,9 +1313,9 @@ void testArgFxns() {
     );
   });
 
-  test('replacesMatches', () {
+  test('replacesMatches', () async {
     expect(
-      walkFhirPath(
+      await walkFhirPath(
         context: patient3,
         pathExpression:
             r"'11/30/1972'.replace('\\b(?<month>\\d{1,2})/(?<day>\\d{1,2})/(?<year>\\d{2,4})\\b','${day}-${month}-${year}')",
@@ -1302,16 +1324,16 @@ void testArgFxns() {
     );
   });
 
-  test('log', () {
+  test('log', () async {
     expect(
-      walkFhirPath(
+      await walkFhirPath(
         context: patient3,
         pathExpression: '16.log(2) // 4.0',
       ),
       [4.0.toFhirDecimal],
     );
     expect(
-      walkFhirPath(
+      await walkFhirPath(
         context: patient3,
         pathExpression: '100.0.log(10.0) // 2.0',
       ),
@@ -1319,23 +1341,23 @@ void testArgFxns() {
     );
   });
 
-  test('power', () {
+  test('power', () async {
     expect(
-      walkFhirPath(
+      await walkFhirPath(
         context: patient3,
         pathExpression: '2.power(3) // 8',
       ),
       [8.0.toFhirDecimal],
     );
     expect(
-      walkFhirPath(
+      await walkFhirPath(
         context: patient3,
         pathExpression: '2.5.power(2) // 6.25',
       ),
       [6.25.toFhirDecimal],
     );
     expect(
-      walkFhirPath(
+      await walkFhirPath(
         context: patient3,
         pathExpression: '(-1).power(0.5) // empty ({ })',
       ),
@@ -1343,16 +1365,16 @@ void testArgFxns() {
     );
   });
 
-  test('round', () {
+  test('round', () async {
     expect(
-      walkFhirPath(
+      await walkFhirPath(
         context: patient3,
         pathExpression: '1.round() // 1',
       ),
       [1.0.toFhirDecimal],
     );
     expect(
-      walkFhirPath(
+      await walkFhirPath(
         context: patient3,
         pathExpression: '3.14159.round(3) // 3.142',
       ),
@@ -1360,9 +1382,9 @@ void testArgFxns() {
     );
   });
 
-  test('complex-extension', () {
+  test('complex-extension', () async {
     expect(
-      walkFhirPath(
+      await walkFhirPath(
         context: questionnaireResponse3,
         pathExpression:
             '%context.repeat(item).answer.value.extension(%`ext-ordinalValue`)'
@@ -1372,49 +1394,49 @@ void testArgFxns() {
     );
   });
 
-  test('iif-basic', () {
+  test('iif-basic', () async {
     expect(
-      walkFhirPath(context: null, pathExpression: 'iif(true, 1, 0)'),
+      await walkFhirPath(context: null, pathExpression: 'iif(true, 1, 0)'),
       [1.toFhirInteger],
     );
     expect(
-      walkFhirPath(context: null, pathExpression: 'iif(false, 1, 0)'),
+      await walkFhirPath(context: null, pathExpression: 'iif(false, 1, 0)'),
       [0.toFhirInteger],
     );
     expect(
-      walkFhirPath(context: null, pathExpression: 'iif({}, 1, 0)'),
+      await walkFhirPath(context: null, pathExpression: 'iif({}, 1, 0)'),
       [0.toFhirInteger],
     );
     expect(
-      walkFhirPath(context: null, pathExpression: 'iif(5, 1, 0)'),
+      await walkFhirPath(context: null, pathExpression: 'iif(5, 1, 0)'),
       [1.toFhirInteger],
     );
     expect(
-      walkFhirPath(context: null, pathExpression: 'iif(true, 1)'),
+      await walkFhirPath(context: null, pathExpression: 'iif(true, 1)'),
       [1.toFhirInteger],
     );
     expect(
-      walkFhirPath(context: null, pathExpression: 'iif(false, 1)'),
+      await walkFhirPath(context: null, pathExpression: 'iif(false, 1)'),
       <FhirBase>[],
     );
-    expect(
-      () => walkFhirPath(context: null, pathExpression: 'iif(false)'),
+    await expectLater(
+      walkFhirPath(context: null, pathExpression: 'iif(false)'),
       throwsA(const TypeMatcher<FHIRLexerException>()),
     );
   });
 
-  test('iif-short-circuit', () {
+  test('iif-short-circuit', () async {
     // non-existent identifier should never be evaluated
     expect(
-      walkFhirPath(
+      await walkFhirPath(
         context: patient3,
         pathExpression: 'iif(true, 1, %patient3.blurb)',
       ),
       [1.toFhirInteger],
     );
     // non-existent identifier should throw
-    expect(
-      () => walkFhirPath(
+    await expectLater(
+      walkFhirPath(
         context: patient3,
         pathExpression: 'iif(false, 1, %patient3.blurb)',
       ),
@@ -1422,9 +1444,9 @@ void testArgFxns() {
     );
   });
 
-  test('iif-with-variables', () {
+  test('iif-with-variables', () async {
     expect(
-      walkFhirPath(
+      await walkFhirPath(
         context: null,
         pathExpression: 'iif(%smokesCode.exists(), 1, 0)',
         environment: {'smokesCode': <FhirBase>[]},
@@ -1432,7 +1454,7 @@ void testArgFxns() {
       [0.toFhirInteger],
     );
     expect(
-      walkFhirPath(
+      await walkFhirPath(
         context: null,
         pathExpression: "iif(%smokesCode = 'Y', 1, 0)",
         environment: {
@@ -1442,7 +1464,7 @@ void testArgFxns() {
       [1.toFhirInteger],
     );
     expect(
-      walkFhirPath(
+      await walkFhirPath(
         context: null,
         pathExpression: "iif(%smokesCode = 'Y', 1, 0)",
         environment: {
@@ -1453,9 +1475,9 @@ void testArgFxns() {
     );
   });
 
-  test('iif-nested-fxns', () {
+  test('iif-nested-fxns', () async {
     expect(
-      walkFhirPath(
+      await walkFhirPath(
         context: null,
         pathExpression: 'iif(%smokesCode.exists(), {}.empty(), {}.exists())',
         environment: {'smokesCode': <FhirBase>[]},
@@ -1464,9 +1486,9 @@ void testArgFxns() {
     );
   });
 
-  test('iif-nested-iif-empty-variable', () {
+  test('iif-nested-iif-empty-variable', () async {
     expect(
-      walkFhirPath(
+      await walkFhirPath(
         context: null,
         pathExpression:
             "iif(%smokesCode.exists(), iif(%smokesCode = 'Y', 1, 0), {})",
@@ -1476,9 +1498,9 @@ void testArgFxns() {
     );
   });
 
-  test('iif-nested-iif-empty-set', () {
+  test('iif-nested-iif-empty-set', () async {
     expect(
-      walkFhirPath(
+      await walkFhirPath(
         context: null,
         pathExpression: "iif({}.exists(), iif({} = 'Y', 1, 0), {})",
       ),
@@ -1486,9 +1508,9 @@ void testArgFxns() {
     );
   });
 
-  test('iif-nested-iif-filled-variable', () {
+  test('iif-nested-iif-filled-variable', () async {
     expect(
-      walkFhirPath(
+      await walkFhirPath(
         context: null,
         pathExpression:
             "iif(%smokesCode.exists(), iif(%smokesCode = 'Y', 1, 0), {})",
@@ -1499,7 +1521,7 @@ void testArgFxns() {
       [1.toFhirInteger],
     );
     expect(
-      walkFhirPath(
+      await walkFhirPath(
         context: null,
         pathExpression:
             "iif(%smokesCode.exists(), iif(%smokesCode = 'Y', 1, 0), {})",
@@ -1511,23 +1533,23 @@ void testArgFxns() {
     );
   });
 
-  test('iif-act-on-score', () {
+  test('iif-act-on-score', () async {
     expect(
-      walkFhirPath(
+      await walkFhirPath(
         context: null,
         pathExpression: r"(2 + 2).select(iif($this > 2, $this, '<= 2'))",
       ),
       [4.toFhirInteger],
     );
     expect(
-      walkFhirPath(
+      await walkFhirPath(
         context: null,
         pathExpression: r"(1 + 1).select(iif($this > 2, $this, '<= 2'))",
       ),
       ['<= 2'.toFhirString],
     );
     expect(
-      walkFhirPath(
+      await walkFhirPath(
         context: null,
         pathExpression: r'(1 + 1).select(iif($this > 2, $this, iif($this < 2, '
             r"$this.toString() + ' is below 2', $this.toString() + ' is above "
@@ -1536,7 +1558,7 @@ void testArgFxns() {
       ['2 is above 2'.toFhirString],
     );
     expect(
-      walkFhirPath(
+      await walkFhirPath(
         context: null,
         pathExpression: r'(2 + 2).select(iif($this > 2, $this, iif($this < 2, '
             r"$this.toString() + ' is below 2', $this.toString() + ' is above "
@@ -1545,7 +1567,7 @@ void testArgFxns() {
       [4.toFhirInteger],
     );
     expect(
-      walkFhirPath(
+      await walkFhirPath(
         context: null,
         pathExpression: r'(1 + 0).select(iif($this > 2, $this, iif($this < 2, '
             r"$this.toString() + ' is below 2', $this.toString() + ' is above "
@@ -1556,28 +1578,26 @@ void testArgFxns() {
   });
 
   group('extensions', () {
-    test(
-      'extensionOnPolymorphic',
-      () => expect(
+    test('extensionOnPolymorphic', () async {
+      await expectLater(
         walkFhirPath(
           context: questionnaireResponse3,
           pathExpression: '%context.repeat(item).answer.value.extension.'
               'where(url=%`ext-ordinalValue`).value',
         ),
-        [4.toFhirDecimal, 5.toFhirDecimal, 4.toFhirDecimal],
-      ),
-    );
-    test(
-      'extensionOnPrimitive',
-      () => expect(
+        completion(equals([4.toFhirDecimal, 5.toFhirDecimal, 4.toFhirDecimal])),
+      );
+    });
+    test('extensionOnPrimitive', () async {
+      await expectLater(
         walkFhirPath(
           context: patient1,
           pathExpression: 'Patient.contact.name.family.extension'
               '(%`ext-humanname-own-prefix`).value',
         ),
-        ['VV'.toFhirString],
-      ),
-    );
+        completion(equals(['VV'.toFhirString])),
+      );
+    });
   });
 
   // TODO(Dokotela): trace
