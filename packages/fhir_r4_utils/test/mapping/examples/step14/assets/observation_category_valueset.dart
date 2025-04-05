@@ -2,7 +2,7 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-final observationCategory = ValueSet.fromJson({
+final observationCategoryValueSet = ValueSet.fromJson({
   "resourceType": "ValueSet",
   "id": "observation-category",
   "meta": {

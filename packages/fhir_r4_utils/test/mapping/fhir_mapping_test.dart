@@ -3,6 +3,7 @@
 
 import 'package:collection/collection.dart' show DeepCollectionEquality;
 import 'package:fhir_r4/fhir_r4.dart' show Bundle, QuestionnaireResponse;
+import 'package:fhir_r4_path/fhir_r4_path.dart';
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:test/test.dart';
 import 'examples/step1/export.dart';
@@ -11,6 +12,7 @@ import 'examples/step11/export.dart';
 import 'examples/step12/export.dart';
 import 'examples/step13/export.dart';
 import 'examples/step14/export.dart';
+import 'examples/step15/export.dart';
 import 'examples/step2/export.dart';
 import 'examples/step3/export.dart';
 import 'examples/step4/export.dart';
@@ -21,7 +23,7 @@ import 'examples/step8/export.dart';
 import 'examples/step9/export.dart';
 
 Future<void> main() async {
-  final resourceCache = LocalResourceCache();
+  final resourceCache = CanonicalResourceManager();
   group('1', () {
     resourceCache
       ..saveCanonicalResource(structureDefinitionTLeft1)
@@ -628,8 +630,6 @@ Future<void> main() async {
         TRight13.empty().toBuilder,
       );
 
-      print('result: ${prettyPrintJson(result?.toJson() ?? {})}');
-
       // Extract the generated ID from the actual result
       final f2 = result?.toJson()['f2'];
       final firstF2 = f2 is List && f2.isNotEmpty ? f2[0] : null;
@@ -648,15 +648,17 @@ Future<void> main() async {
 
   group('Step 14', () {
     test('Step 14', () async {
-      await resourceCache.saveCanonicalResource(observationCategory);
+      await resourceCache.saveCanonicalResource(conditionCategoryCodeSystem);
+      await resourceCache.saveCanonicalResource(conditionClinicalCodeSystem);
+      await resourceCache.saveCanonicalResource(conditionVerStatusCodeSystem);
+      await resourceCache.saveCanonicalResource(observationCategoryCodeSystem);
+      await resourceCache.saveCanonicalResource(observationCategoryValueSet);
       final result = await fhirMappingEngine(
         QuestionnaireResponse.fromJson(source14).toBuilder,
         structureMapStep14,
         resourceCache,
         Bundle.empty().toBuilder,
       );
-
-      print(prettyPrintJson(result?.toJson() ?? {}));
 
       expect(
         const DeepCollectionEquality().equals(
@@ -668,24 +670,19 @@ Future<void> main() async {
     });
   });
 
-  // group('Step 15', () {
-  //   resourceCache
-  //     ..saveCanonicalResource(
-  //       resource: structureDefinitionTLeft15,
-  //     )
-  //     ..saveCanonicalResource(
-  //       resource: structureDefinitionTRight15,
-  //     );
+  group('Step 15', () {
+    resourceCache
+      ..saveCanonicalResource(structureDefinitionTLeft15)
+      ..saveCanonicalResource(structureDefinitionTRight15);
 
-  //   test('Step 15', () async {
-  //     final result = await fhirMappingEngine(
-  //       TLeft15.fromJson(source15),
-  //       structureMapStep15,
-  //       resourceCache,
-  //       TLeft15.fromJson,
-  //       TRight15.fromJson,
-  //     );
-  //     expect(result?.toJson(), equals(resultStep15Source15));
-  //   });
-  // });
+    test('Step 15', () async {
+      final result = await fhirMappingEngine(
+        TLeft15Builder.fromJson(source15),
+        structureMapStep15,
+        resourceCache,
+        TRight15Builder.empty(),
+      );
+      expect(result?.toJson(), equals(resultStep15Source15));
+    });
+  });
 }
