@@ -1712,7 +1712,7 @@ class ConceptMapGroup extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory ConceptMapGroup.empty() => ConceptMapGroup(
+  factory ConceptMapGroup.empty() => const ConceptMapGroup(
         element: <ConceptMapElement>[],
       );
 

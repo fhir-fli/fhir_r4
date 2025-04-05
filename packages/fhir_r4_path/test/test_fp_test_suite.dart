@@ -2319,7 +2319,9 @@ Future<void> testFpTestSuite() async {
     test('testQuantity2', () async {
       expect(
         await walkFhirPath(
-            context: patient1, pathExpression: "4 'g' ~ 4000 'mg'"),
+          context: patient1,
+          pathExpression: "4 'g' ~ 4000 'mg'",
+        ),
         [true.toFhirBoolean],
       );
     });

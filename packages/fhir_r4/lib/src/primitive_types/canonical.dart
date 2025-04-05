@@ -209,6 +209,11 @@ class FhirCanonical extends FhirUri
       (other is Uri && other == valueUri) ||
       (other is String && other == valueString);
 
+  /// Operator `==` override.
+  @override
+  // ignore: avoid_equals_and_hash_code_on_mutable_classes
+  bool operator ==(Object other) => equals(other);
+
   @override
   // ignore: avoid_equals_and_hash_code_on_mutable_classes
   int get hashCode => Object.hash(valueString, element);

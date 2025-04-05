@@ -141,14 +141,14 @@ Future<void> processSourceDirectory(
 
 // Function to generate Dart code for StructureDefinition or StructureMap
 String _generateDartCode(
-  String className,
+  String oldClassName,
   Map<String, dynamic> jsonContent,
   String type,
 ) {
   final prettyJson = const JsonEncoder.withIndent('  ').convert(jsonContent);
   final fromJsonType =
       type == 'logical' ? 'StructureDefinition' : 'StructureMap';
-  className = className.replaceAll('step', 'Step');
+  final className = oldClassName.replaceAll('step', 'Step');
   return '''
 // ignore_for_file: prefer_single_quotes, always_specify_types, 
 // ignore_for_file: avoid_escaping_inner_quotes
@@ -163,11 +163,11 @@ final $className = $fromJsonType.fromJson(
 
 // Function to generate Dart source code without fromJson()
 String _generateDartSourceCode(
-  String className,
+  String oldClassName,
   Map<String, dynamic> jsonContent,
 ) {
   final prettyJson = const JsonEncoder.withIndent('  ').convert(jsonContent);
-  className = className.replaceAll('step', 'Step');
+  var className = oldClassName.replaceAll('step', 'Step');
   if (className.contains('source') && !className.startsWith('source')) {
     className = className.replaceAll('source', 'Source');
   }
@@ -181,10 +181,10 @@ final $className = $prettyJson;
 
 // Function to generate StructureDefinition class name
 String _generateStructureDefinitionClassName(
-  String filePath,
+  String oldFilePath,
   String? stepNumber,
 ) {
-  filePath = filePath.toLowerCase(); // Ensure case-insensitivity
+  final filePath = oldFilePath.toLowerCase(); // Ensure case-insensitivity
   if (filePath.contains('tleftinner')) {
     return 'structureDefinitionTLeftInner$stepNumber';
   } else if (filePath.contains('trightinner')) {
@@ -230,10 +230,9 @@ bool isNumeric(String s) {
 // Function to create an export file for each step
 Future<void> createExportFile(Directory stepDir) async {
   final exportFile = File('${stepDir.path}/export.dart');
-  final buffer = StringBuffer();
-
-  buffer.writeln('// ignore_for_file: unused_import, directives_ordering');
-  buffer.writeln();
+  final buffer = StringBuffer()
+    ..writeln('// ignore_for_file: unused_import, directives_ordering')
+    ..writeln();
 
   // Loop through all .dart files in the step directory and its subdirectories
   for (final entity in stepDir.listSync(recursive: true)) {

@@ -290,7 +290,6 @@ class TRight7Aa extends BackboneElement {
 
   @override
   TRight7Aa setChildByName(String childName, dynamic child) {
-    print('setChildByName: $childName');
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
@@ -328,7 +327,9 @@ class TRight7Aa extends BackboneElement {
             return copyWith(ab: child);
           } else {
             throw Exception(
-              'Invalid child type (${child is FhirBase ? child.fhirType : child.runtimeType}) for $childName',
+              'Invalid child type ('
+              '${child is FhirBase ? child.fhirType : child.runtimeType})'
+              ' for $childName',
             );
           }
         }

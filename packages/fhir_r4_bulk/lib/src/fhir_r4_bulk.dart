@@ -1,4 +1,4 @@
-// ignore_for_file: invalid_annotation_target
+// ignore_for_file: invalid_annotation_target, unintended_html_in_doc_comment
 
 import 'dart:convert';
 

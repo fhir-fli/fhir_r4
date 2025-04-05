@@ -4,7 +4,6 @@ import 'package:fhir_r4/fhir_r4.dart'
         DocumentManifest,
         DocumentManifestRelated,
         R4ResourceType,
-        StringExtensionForFHIR,
         yamlMapToJson,
         yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
