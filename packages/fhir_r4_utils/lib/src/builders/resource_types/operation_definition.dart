@@ -62,7 +62,15 @@ class OperationDefinitionBuilder extends CanonicalResourceBuilder {
 
   /// An empty constructor for partial usage.
   /// For Builder classes, no fields are required
-  factory OperationDefinitionBuilder.empty() => OperationDefinitionBuilder();
+  factory OperationDefinitionBuilder.empty() => OperationDefinitionBuilder(
+        name: FhirStringBuilder.empty(),
+        status: PublicationStatusBuilder.values.first,
+        kind: OperationKindBuilder.values.first,
+        code: FhirCodeBuilder.empty(),
+        system: FhirBooleanBuilder.empty(),
+        type: FhirBooleanBuilder.empty(),
+        instance: FhirBooleanBuilder.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory OperationDefinitionBuilder.fromJson(
@@ -441,202 +449,67 @@ class OperationDefinitionBuilder extends CanonicalResourceBuilder {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    bool isNonEmpty(dynamic val) {
-      if (val == null) return false;
-      if (val is List && val.isEmpty) return false;
-      if (val is Map && val.isEmpty) return false;
-      return true;
-    }
-
     void addField(String key, dynamic field) {
-      if (field == null) return;
       if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
         throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
+      if (field == null) return;
       if (field is PrimitiveTypeBuilder) {
-        final fieldMap = field.toJson();
-        final val = fieldMap['value'];
-        final ext = fieldMap['_value'];
-        // Skip if it has no actual value and no extension
-        final hasVal = isNonEmpty(val);
-        final hasExt = isNonEmpty(ext);
-        if (hasVal) json[key] = val;
-        if (hasExt) json['_$key'] = ext;
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
       } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        // We'll collect non-empty child items in a temp list
-        final tempList = <dynamic>[];
-        final tempExtensions = <dynamic>[];
-        final isPrimitive = field.first is PrimitiveTypeBuilder;
-        for (final e in field) {
-          final itemMap = e.toJson();
-          if (!isNonEmpty(itemMap)) {
-            continue; // skip empty child
-          }
-          if (isPrimitive) {
-            final v = itemMap['value'];
-            final x = itemMap['_value'];
-            tempList.add(v);
-            tempExtensions.add(x);
-          } else {
-            tempList.add(itemMap);
-          }
-        }
-        if (tempList.isEmpty) return; // no non-empty items
-        if (isPrimitive) {
-          json[key] = tempList;
-          final anyExt = tempExtensions.any(isNonEmpty);
-          if (anyExt) {
-            json['_$key'] = tempExtensions;
+        if (field.first is PrimitiveTypeBuilder) {
+          final fieldJson = field.map((e) => e.toJson()).toList();
+          json[key] = fieldJson.map((e) => e['value']).toList();
+          if (fieldJson.any((e) => e['_value'] != null)) {
+            json['_$key'] = fieldJson.map((e) => e['_value']).toList();
           }
         } else {
-          json[key] = tempList;
+          json[key] = field.map((e) => e.toJson()).toList();
         }
       } else if (field is FhirBaseBuilder) {
-        final subMap = field.toJson();
-        if (isNonEmpty(subMap)) {
-          json[key] = subMap;
-        }
+        json[key] = field.toJson();
       }
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'meta',
-      meta,
-    );
-    addField(
-      'implicitRules',
-      implicitRules,
-    );
-    addField(
-      'language',
-      language,
-    );
-    addField(
-      'text',
-      text,
-    );
-    addField(
-      'contained',
-      contained,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'url',
-      url,
-    );
-    addField(
-      'version',
-      version,
-    );
-    addField(
-      'name',
-      name,
-    );
-    addField(
-      'title',
-      title,
-    );
-    addField(
-      'status',
-      status,
-    );
-    addField(
-      'kind',
-      kind,
-    );
-    addField(
-      'experimental',
-      experimental,
-    );
-    addField(
-      'date',
-      date,
-    );
-    addField(
-      'publisher',
-      publisher,
-    );
-    addField(
-      'contact',
-      contact,
-    );
-    addField(
-      'description',
-      description,
-    );
-    addField(
-      'useContext',
-      useContext,
-    );
-    addField(
-      'jurisdiction',
-      jurisdiction,
-    );
-    addField(
-      'purpose',
-      purpose,
-    );
-    addField(
-      'affectsState',
-      affectsState,
-    );
-    addField(
-      'code',
-      code,
-    );
-    addField(
-      'comment',
-      comment,
-    );
-    addField(
-      'base',
-      base,
-    );
-    addField(
-      'resource',
-      resource,
-    );
-    addField(
-      'system',
-      system,
-    );
-    addField(
-      'type',
-      type,
-    );
-    addField(
-      'instance',
-      instance,
-    );
-    addField(
-      'inputProfile',
-      inputProfile,
-    );
-    addField(
-      'outputProfile',
-      outputProfile,
-    );
-    addField(
-      'parameter',
-      parameter,
-    );
-    addField(
-      'overload',
-      overload,
-    );
+    addField('id', id);
+    addField('meta', meta);
+    addField('implicitRules', implicitRules);
+    addField('language', language);
+    addField('text', text);
+    addField('contained', contained);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('url', url);
+    addField('version', version);
+    addField('name', name);
+    addField('title', title);
+    addField('status', status);
+    addField('kind', kind);
+    addField('experimental', experimental);
+    addField('date', date);
+    addField('publisher', publisher);
+    addField('contact', contact);
+    addField('description', description);
+    addField('useContext', useContext);
+    addField('jurisdiction', jurisdiction);
+    addField('purpose', purpose);
+    addField('affectsState', affectsState);
+    addField('code', code);
+    addField('comment', comment);
+    addField('base', base);
+    addField('resource', resource);
+    addField('system', system);
+    addField('type', type);
+    addField('instance', instance);
+    addField('inputProfile', inputProfile);
+    addField('outputProfile', outputProfile);
+    addField('parameter', parameter);
+    addField('overload', overload);
     return json;
   }
 
@@ -2196,7 +2069,12 @@ class OperationDefinitionParameterBuilder extends BackboneElementBuilder {
   /// An empty constructor for partial usage.
   /// For Builder classes, no fields are required
   factory OperationDefinitionParameterBuilder.empty() =>
-      OperationDefinitionParameterBuilder();
+      OperationDefinitionParameterBuilder(
+        name: FhirCodeBuilder.empty(),
+        use: OperationParameterUseBuilder.values.first,
+        min: FhirIntegerBuilder.empty(),
+        max: FhirStringBuilder.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory OperationDefinitionParameterBuilder.fromJson(
@@ -2416,121 +2294,46 @@ class OperationDefinitionParameterBuilder extends BackboneElementBuilder {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    bool isNonEmpty(dynamic val) {
-      if (val == null) return false;
-      if (val is List && val.isEmpty) return false;
-      if (val is Map && val.isEmpty) return false;
-      return true;
-    }
-
     void addField(String key, dynamic field) {
-      if (field == null) return;
       if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
         throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
+      if (field == null) return;
       if (field is PrimitiveTypeBuilder) {
-        final fieldMap = field.toJson();
-        final val = fieldMap['value'];
-        final ext = fieldMap['_value'];
-        // Skip if it has no actual value and no extension
-        final hasVal = isNonEmpty(val);
-        final hasExt = isNonEmpty(ext);
-        if (hasVal) json[key] = val;
-        if (hasExt) json['_$key'] = ext;
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
       } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        // We'll collect non-empty child items in a temp list
-        final tempList = <dynamic>[];
-        final tempExtensions = <dynamic>[];
-        final isPrimitive = field.first is PrimitiveTypeBuilder;
-        for (final e in field) {
-          final itemMap = e.toJson();
-          if (!isNonEmpty(itemMap)) {
-            continue; // skip empty child
-          }
-          if (isPrimitive) {
-            final v = itemMap['value'];
-            final x = itemMap['_value'];
-            tempList.add(v);
-            tempExtensions.add(x);
-          } else {
-            tempList.add(itemMap);
-          }
-        }
-        if (tempList.isEmpty) return; // no non-empty items
-        if (isPrimitive) {
-          json[key] = tempList;
-          final anyExt = tempExtensions.any(isNonEmpty);
-          if (anyExt) {
-            json['_$key'] = tempExtensions;
+        if (field.first is PrimitiveTypeBuilder) {
+          final fieldJson = field.map((e) => e.toJson()).toList();
+          json[key] = fieldJson.map((e) => e['value']).toList();
+          if (fieldJson.any((e) => e['_value'] != null)) {
+            json['_$key'] = fieldJson.map((e) => e['_value']).toList();
           }
         } else {
-          json[key] = tempList;
+          json[key] = field.map((e) => e.toJson()).toList();
         }
       } else if (field is FhirBaseBuilder) {
-        final subMap = field.toJson();
-        if (isNonEmpty(subMap)) {
-          json[key] = subMap;
-        }
+        json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'name',
-      name,
-    );
-    addField(
-      'use',
-      use,
-    );
-    addField(
-      'min',
-      min,
-    );
-    addField(
-      'max',
-      max,
-    );
-    addField(
-      'documentation',
-      documentation,
-    );
-    addField(
-      'type',
-      type,
-    );
-    addField(
-      'targetProfile',
-      targetProfile,
-    );
-    addField(
-      'searchType',
-      searchType,
-    );
-    addField(
-      'binding',
-      binding,
-    );
-    addField(
-      'referencedFrom',
-      referencedFrom,
-    );
-    addField(
-      'part',
-      part_,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('name', name);
+    addField('use', use);
+    addField('min', min);
+    addField('max', max);
+    addField('documentation', documentation);
+    addField('type', type);
+    addField('targetProfile', targetProfile);
+    addField('searchType', searchType);
+    addField('binding', binding);
+    addField('referencedFrom', referencedFrom);
+    addField('part', part_);
     return json;
   }
 
@@ -3276,7 +3079,10 @@ class OperationDefinitionBindingBuilder extends BackboneElementBuilder {
   /// An empty constructor for partial usage.
   /// For Builder classes, no fields are required
   factory OperationDefinitionBindingBuilder.empty() =>
-      OperationDefinitionBindingBuilder();
+      OperationDefinitionBindingBuilder(
+        strength: BindingStrengthBuilder.values.first,
+        valueSet: FhirCanonicalBuilder.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory OperationDefinitionBindingBuilder.fromJson(
@@ -3389,85 +3195,37 @@ class OperationDefinitionBindingBuilder extends BackboneElementBuilder {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    bool isNonEmpty(dynamic val) {
-      if (val == null) return false;
-      if (val is List && val.isEmpty) return false;
-      if (val is Map && val.isEmpty) return false;
-      return true;
-    }
-
     void addField(String key, dynamic field) {
-      if (field == null) return;
       if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
         throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
+      if (field == null) return;
       if (field is PrimitiveTypeBuilder) {
-        final fieldMap = field.toJson();
-        final val = fieldMap['value'];
-        final ext = fieldMap['_value'];
-        // Skip if it has no actual value and no extension
-        final hasVal = isNonEmpty(val);
-        final hasExt = isNonEmpty(ext);
-        if (hasVal) json[key] = val;
-        if (hasExt) json['_$key'] = ext;
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
       } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        // We'll collect non-empty child items in a temp list
-        final tempList = <dynamic>[];
-        final tempExtensions = <dynamic>[];
-        final isPrimitive = field.first is PrimitiveTypeBuilder;
-        for (final e in field) {
-          final itemMap = e.toJson();
-          if (!isNonEmpty(itemMap)) {
-            continue; // skip empty child
-          }
-          if (isPrimitive) {
-            final v = itemMap['value'];
-            final x = itemMap['_value'];
-            tempList.add(v);
-            tempExtensions.add(x);
-          } else {
-            tempList.add(itemMap);
-          }
-        }
-        if (tempList.isEmpty) return; // no non-empty items
-        if (isPrimitive) {
-          json[key] = tempList;
-          final anyExt = tempExtensions.any(isNonEmpty);
-          if (anyExt) {
-            json['_$key'] = tempExtensions;
+        if (field.first is PrimitiveTypeBuilder) {
+          final fieldJson = field.map((e) => e.toJson()).toList();
+          json[key] = fieldJson.map((e) => e['value']).toList();
+          if (fieldJson.any((e) => e['_value'] != null)) {
+            json['_$key'] = fieldJson.map((e) => e['_value']).toList();
           }
         } else {
-          json[key] = tempList;
+          json[key] = field.map((e) => e.toJson()).toList();
         }
       } else if (field is FhirBaseBuilder) {
-        final subMap = field.toJson();
-        if (isNonEmpty(subMap)) {
-          json[key] = subMap;
-        }
+        json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'strength',
-      strength,
-    );
-    addField(
-      'valueSet',
-      valueSet,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('strength', strength);
+    addField('valueSet', valueSet);
     return json;
   }
 
@@ -3815,7 +3573,9 @@ class OperationDefinitionReferencedFromBuilder extends BackboneElementBuilder {
   /// An empty constructor for partial usage.
   /// For Builder classes, no fields are required
   factory OperationDefinitionReferencedFromBuilder.empty() =>
-      OperationDefinitionReferencedFromBuilder();
+      OperationDefinitionReferencedFromBuilder(
+        source: FhirStringBuilder.empty(),
+      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory OperationDefinitionReferencedFromBuilder.fromJson(
@@ -3928,85 +3688,37 @@ class OperationDefinitionReferencedFromBuilder extends BackboneElementBuilder {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    bool isNonEmpty(dynamic val) {
-      if (val == null) return false;
-      if (val is List && val.isEmpty) return false;
-      if (val is Map && val.isEmpty) return false;
-      return true;
-    }
-
     void addField(String key, dynamic field) {
-      if (field == null) return;
       if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
         throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
+      if (field == null) return;
       if (field is PrimitiveTypeBuilder) {
-        final fieldMap = field.toJson();
-        final val = fieldMap['value'];
-        final ext = fieldMap['_value'];
-        // Skip if it has no actual value and no extension
-        final hasVal = isNonEmpty(val);
-        final hasExt = isNonEmpty(ext);
-        if (hasVal) json[key] = val;
-        if (hasExt) json['_$key'] = ext;
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
       } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        // We'll collect non-empty child items in a temp list
-        final tempList = <dynamic>[];
-        final tempExtensions = <dynamic>[];
-        final isPrimitive = field.first is PrimitiveTypeBuilder;
-        for (final e in field) {
-          final itemMap = e.toJson();
-          if (!isNonEmpty(itemMap)) {
-            continue; // skip empty child
-          }
-          if (isPrimitive) {
-            final v = itemMap['value'];
-            final x = itemMap['_value'];
-            tempList.add(v);
-            tempExtensions.add(x);
-          } else {
-            tempList.add(itemMap);
-          }
-        }
-        if (tempList.isEmpty) return; // no non-empty items
-        if (isPrimitive) {
-          json[key] = tempList;
-          final anyExt = tempExtensions.any(isNonEmpty);
-          if (anyExt) {
-            json['_$key'] = tempExtensions;
+        if (field.first is PrimitiveTypeBuilder) {
+          final fieldJson = field.map((e) => e.toJson()).toList();
+          json[key] = fieldJson.map((e) => e['value']).toList();
+          if (fieldJson.any((e) => e['_value'] != null)) {
+            json['_$key'] = fieldJson.map((e) => e['_value']).toList();
           }
         } else {
-          json[key] = tempList;
+          json[key] = field.map((e) => e.toJson()).toList();
         }
       } else if (field is FhirBaseBuilder) {
-        final subMap = field.toJson();
-        if (isNonEmpty(subMap)) {
-          json[key] = subMap;
-        }
+        json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'source',
-      source,
-    );
-    addField(
-      'sourceId',
-      sourceId,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('source', source);
+    addField('sourceId', sourceId);
     return json;
   }
 
@@ -4463,85 +4175,37 @@ class OperationDefinitionOverloadBuilder extends BackboneElementBuilder {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    bool isNonEmpty(dynamic val) {
-      if (val == null) return false;
-      if (val is List && val.isEmpty) return false;
-      if (val is Map && val.isEmpty) return false;
-      return true;
-    }
-
     void addField(String key, dynamic field) {
-      if (field == null) return;
       if (!(field is FhirBaseBuilder? || field is List<FhirBaseBuilder>?)) {
         throw ArgumentError('"field" must be a FhirBaseBuilder type');
       }
+      if (field == null) return;
       if (field is PrimitiveTypeBuilder) {
-        final fieldMap = field.toJson();
-        final val = fieldMap['value'];
-        final ext = fieldMap['_value'];
-        // Skip if it has no actual value and no extension
-        final hasVal = isNonEmpty(val);
-        final hasExt = isNonEmpty(ext);
-        if (hasVal) json[key] = val;
-        if (hasExt) json['_$key'] = ext;
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
       } else if (field is List<FhirBaseBuilder>) {
         if (field.isEmpty) return;
-        // We'll collect non-empty child items in a temp list
-        final tempList = <dynamic>[];
-        final tempExtensions = <dynamic>[];
-        final isPrimitive = field.first is PrimitiveTypeBuilder;
-        for (final e in field) {
-          final itemMap = e.toJson();
-          if (!isNonEmpty(itemMap)) {
-            continue; // skip empty child
-          }
-          if (isPrimitive) {
-            final v = itemMap['value'];
-            final x = itemMap['_value'];
-            tempList.add(v);
-            tempExtensions.add(x);
-          } else {
-            tempList.add(itemMap);
-          }
-        }
-        if (tempList.isEmpty) return; // no non-empty items
-        if (isPrimitive) {
-          json[key] = tempList;
-          final anyExt = tempExtensions.any(isNonEmpty);
-          if (anyExt) {
-            json['_$key'] = tempExtensions;
+        if (field.first is PrimitiveTypeBuilder) {
+          final fieldJson = field.map((e) => e.toJson()).toList();
+          json[key] = fieldJson.map((e) => e['value']).toList();
+          if (fieldJson.any((e) => e['_value'] != null)) {
+            json['_$key'] = fieldJson.map((e) => e['_value']).toList();
           }
         } else {
-          json[key] = tempList;
+          json[key] = field.map((e) => e.toJson()).toList();
         }
       } else if (field is FhirBaseBuilder) {
-        final subMap = field.toJson();
-        if (isNonEmpty(subMap)) {
-          json[key] = subMap;
-        }
+        json[key] = field.toJson();
       }
     }
 
-    addField(
-      'id',
-      id,
-    );
-    addField(
-      'extension',
-      extension_,
-    );
-    addField(
-      'modifierExtension',
-      modifierExtension,
-    );
-    addField(
-      'parameterName',
-      parameterName,
-    );
-    addField(
-      'comment',
-      comment,
-    );
+    addField('id', id);
+    addField('extension', extension_);
+    addField('modifierExtension', modifierExtension);
+    addField('parameterName', parameterName);
+    addField('comment', comment);
     return json;
   }
 
