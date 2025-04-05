@@ -1,4 +1,3 @@
-export 'mapping/fhir_lexer.dart';
 export 'mapping/fhir_map_engine.dart';
 export 'mapping/fhirpath_host_services.dart';
 export 'mapping/mapping_variables.dart';
