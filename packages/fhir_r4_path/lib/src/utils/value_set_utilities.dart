@@ -956,7 +956,7 @@ class ValueSetChecker {
     return ValidationResult.success(
       system: coding.system?.primitiveValue,
       definition: concept,
-    );
+    )..display = coding.display?.valueString ?? concept.display?.valueString;
   }
 
   /// Analyse a component of a value set

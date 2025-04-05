@@ -7,7 +7,7 @@ import 'package:ucum/ucum.dart';
 
 class WorkerContext {
   WorkerContext({this.txClient, ResourceCache? resourceCache})
-      : resourceCache = resourceCache ?? LocalResourceCache();
+      : resourceCache = resourceCache ?? CanonicalResourceManager();
   // Fields to store resources
   final ResourceCache resourceCache;
   final UcumService ucumService = UcumService();
@@ -42,12 +42,18 @@ class WorkerContext {
   }
 
   Future<StructureDefinition?> fetchTypeDefinition(String typeName) async {
-    final sd = await resourceCache.getStructureDefinition(typeName);
+    var sd = await resourceCache.getStructureDefinition(typeName);
+    if (sd != null) {
+      return sd;
+    }
+    sd = await resourceCache.getStructureDefinition(
+      'http://hl7.org/fhir/StructureDefinition/$typeName',
+    );
     if (sd != null) {
       return sd;
     }
     return resourceCache.getStructureDefinition(
-      'http://hl7.org/fhir/StructureDefinition/$typeName',
+      'http://terminology.hl7.org/StructureDefinition/$typeName',
     );
   }
 
@@ -212,10 +218,6 @@ class WorkerContext {
     String code,
     String? display,
   ) async {
-    print('Validating code: $code');
-    print('System: $system');
-    print('Version: $version');
-    print('Display: $display');
     final coding = Coding(
       system: system?.toFhirUri,
       version: version?.toFhirString,
@@ -230,7 +232,6 @@ class WorkerContext {
     Coding coding,
     ValueSet? valueSet,
   ) async {
-    print('useClient: ${options.useClient}');
     try {
       // Validate locally if client-side validation is enabled
       if (options.useClient) {
@@ -240,10 +241,8 @@ class WorkerContext {
           context: this,
         );
 
-        print('${coding.system?.primitiveValue}');
-
         final codeSystem = await fetchCodeSystem(coding.system?.primitiveValue);
-        print('Code system: ${codeSystem?.url}');
+
         if (codeSystem == null) {
           return ValidationResult.error(
             message: 'Code system not found: ${coding.system}',
