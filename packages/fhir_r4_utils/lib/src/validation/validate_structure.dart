@@ -1,5 +1,6 @@
 import 'package:collection/collection.dart';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4_path/fhir_r4_path.dart';
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 
 /// Validates the structure of a FHIR resource against a given
@@ -108,7 +109,7 @@ Future<ValidationResults> _objectNode(
   final element =
       _findElementDefinitionFromNode(originalPath, replacePath, node, elements);
   if (element != null) {
-    newResults = validateInvariants(
+    newResults = await validateInvariants(
       url: url,
       node: node,
       element: element,
@@ -213,7 +214,7 @@ Future<ValidationResults> _propertyNode(
     );
 
     // Validate invariants defined for the element.
-    newResults = validateInvariants(
+    newResults = await validateInvariants(
       url: url,
       node: node,
       element: element,

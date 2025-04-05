@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4_path/fhir_r4_path.dart';
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:http/http.dart';
 
@@ -42,7 +43,7 @@ abstract class FhirValidator {
   }) async {
     final type = structureToValidate['resourceType'] as String?;
     final results = ValidationResults();
-    final resourceCache = LocalResourceCache();
+    final resourceCache = CanonicalResourceManager();
 
     if (type == null) {
       return results
