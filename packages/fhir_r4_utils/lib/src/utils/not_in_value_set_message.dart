@@ -1,5 +1,5 @@
 import 'package:fhir_r4/fhir_r4.dart';
-import 'package:fhir_r4_utils/fhir_r4_utils.dart';
+import 'package:fhir_r4_path/fhir_r4_path.dart';
 
 /// Returns a message indicating that the value is not in the value set.
 Future<String> notInValueSetMessage(

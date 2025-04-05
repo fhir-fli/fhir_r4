@@ -1,6 +1,6 @@
 import 'package:collection/collection.dart';
 import 'package:fhir_r4/fhir_r4.dart';
-import 'package:fhir_r4_utils/fhir_r4_utils.dart';
+import 'package:fhir_r4_path/fhir_r4_path.dart';
 
 /// Determines the appropriate FHIR type code for an element.
 /// For polymorphic elements (ending in `[x]`), the code is derived

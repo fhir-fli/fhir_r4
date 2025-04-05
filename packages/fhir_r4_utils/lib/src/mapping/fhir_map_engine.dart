@@ -65,7 +65,6 @@ class FhirMapEngine {
   final StructureMap map;
   final DefinitionResolver resolver;
   late final TransformationContext context;
-  // late final Transformer transformer;
   late final IEvaluationContext? services;
   late final FHIRPathEngine fpe;
   int rules = 0;
@@ -153,7 +152,6 @@ class FhirMapEngine {
       if (result == null) {
         throw FHIRException(message: 'No output found');
       } else {
-        print('result: ${result.toJson()}');
         return result.build();
       }
     } catch (e, s) {
@@ -164,7 +162,6 @@ class FhirMapEngine {
   }
 
   OperationOutcome _createOutcome(String message, String stack) {
-    print(stack);
     return OperationOutcome(
       issue: [
         OperationOutcomeIssue(
@@ -798,7 +795,7 @@ class FhirMapEngine {
           }
         }
 
-        final bool passed = fpe.evaluateToBoolean(
+        final bool passed = await fpe.evaluateToBoolean(
           varsForSource,
           null,
           null,
@@ -848,7 +845,7 @@ class FhirMapEngine {
             }
           }
         }
-        final bool passed = fpe.evaluateToBoolean(
+        final bool passed = await fpe.evaluateToBoolean(
           varsForSource,
           null,
           null,
@@ -880,7 +877,7 @@ class FhirMapEngine {
           );
         }
         logs.add(
-          fpe.evaluateToString(
+          await fpe.evaluateToString(
             varsForSource,
             null,
             null,
@@ -1022,15 +1019,11 @@ class FhirMapEngine {
           }
         }
       } else {
-        print('vars1: ${vars.summary()}');
-        print('dest1: ${dest.toJson()}');
         final types = dest.typeByElementName(tgt.element!.valueString!);
         if (types.isNotEmpty) {
           v = _typeFactory(types.first);
           dest.setChildByName(tgt.element!.valueString!, v);
         }
-        print('vars2: ${vars.summary()}');
-        print('dest2: ${dest.toJson()}');
       }
     }
 
@@ -1167,7 +1160,13 @@ class FhirMapEngine {
                 : false.toFhirBooleanBuilder;
             final List<FhirBase> v = expr == null
                 ? <FhirBase>[]
-                : fpe.evaluateWithContext(vars, null, null, test.build(), expr);
+                : await fpe.evaluateWithContext(
+                    vars,
+                    null,
+                    null,
+                    test.build(),
+                    expr,
+                  );
             if (v.isEmpty) {
               return null;
             } else if (v.length != 1) {
@@ -1633,7 +1632,7 @@ class FhirMapEngine {
         system ??= uri;
       }
     }
-    final ValidationResult? vr = resolver.validateCode(
+    final ValidationResult? vr = await resolver.validateCode(
       ValidationOptions().withVersionFlexible(true),
       system,
       version,
