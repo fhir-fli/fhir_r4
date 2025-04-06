@@ -119,13 +119,13 @@ class ExpressionNode {
         if (constant == null) {
           b.write('{}');
         } else if (constant is FhirString) {
-          b.write("'${(constant! as FhirString).value?.escapeJson()}'");
+          b.write("'${(constant! as FhirString).valueString?.escapeJson()}'");
         } else if (constant is Quantity) {
           final q = constant! as Quantity;
           b
             ..write(q.value.toString().escapeJson())
             ..write(" '")
-            ..write(q.unit?.value?.escapeJson())
+            ..write(q.unit?.valueString?.escapeJson())
             ..write("'");
         } else if (constant is PrimitiveType &&
             constant?.primitiveValue != null) {

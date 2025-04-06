@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class MedicationAdministrationStatusCodes extends FhirCodeEnum {
   // Private underscore constructor for internal use.
   MedicationAdministrationStatusCodes._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class MedicationAdministrationStatusCodes extends FhirCodeEnum {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory MedicationAdministrationStatusCodes(
-    String? raw, {
+    String? rawValue, {
     FhirUri? system,
     FhirString? version,
     FhirString? display,
@@ -29,9 +29,10 @@ class MedicationAdministrationStatusCodes extends FhirCodeEnum {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCode._validateCode(rawValue) : null;
     return MedicationAdministrationStatusCodes._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -45,11 +46,13 @@ class MedicationAdministrationStatusCodes extends FhirCodeEnum {
 
   /// Create empty [MedicationAdministrationStatusCodes] with element only
   factory MedicationAdministrationStatusCodes.empty() =>
-      MedicationAdministrationStatusCodes._(validatedValue: '');
+      MedicationAdministrationStatusCodes._(valueString: '');
 
-  /// Factory constructor to create [MedicationAdministrationStatusCodes] from JSON.
+  /// Factory constructor to create [MedicationAdministrationStatusCodes]
+  /// from JSON.
   factory MedicationAdministrationStatusCodes.fromJson(
-      Map<String, dynamic> json,) {
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -62,7 +65,7 @@ class MedicationAdministrationStatusCodes extends FhirCodeEnum {
       );
     }
     return MedicationAdministrationStatusCodes._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
@@ -70,7 +73,7 @@ class MedicationAdministrationStatusCodes extends FhirCodeEnum {
   /// in_progress
   static final MedicationAdministrationStatusCodes in_progress =
       MedicationAdministrationStatusCodes._(
-    validatedValue: 'in-progress',
+    valueString: 'in-progress',
     system: 'http://hl7.org/fhir/ValueSet/medication-admin-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'In Progress'.toFhirString,
@@ -79,7 +82,7 @@ class MedicationAdministrationStatusCodes extends FhirCodeEnum {
   /// not_done
   static final MedicationAdministrationStatusCodes not_done =
       MedicationAdministrationStatusCodes._(
-    validatedValue: 'not-done',
+    valueString: 'not-done',
     system: 'http://hl7.org/fhir/ValueSet/medication-admin-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Not Done'.toFhirString,
@@ -88,7 +91,7 @@ class MedicationAdministrationStatusCodes extends FhirCodeEnum {
   /// on_hold
   static final MedicationAdministrationStatusCodes on_hold =
       MedicationAdministrationStatusCodes._(
-    validatedValue: 'on-hold',
+    valueString: 'on-hold',
     system: 'http://hl7.org/fhir/ValueSet/medication-admin-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'On Hold'.toFhirString,
@@ -97,7 +100,7 @@ class MedicationAdministrationStatusCodes extends FhirCodeEnum {
   /// completed
   static final MedicationAdministrationStatusCodes completed =
       MedicationAdministrationStatusCodes._(
-    validatedValue: 'completed',
+    valueString: 'completed',
     system: 'http://hl7.org/fhir/ValueSet/medication-admin-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Completed'.toFhirString,
@@ -106,7 +109,7 @@ class MedicationAdministrationStatusCodes extends FhirCodeEnum {
   /// entered_in_error
   static final MedicationAdministrationStatusCodes entered_in_error =
       MedicationAdministrationStatusCodes._(
-    validatedValue: 'entered-in-error',
+    valueString: 'entered-in-error',
     system: 'http://hl7.org/fhir/ValueSet/medication-admin-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Entered in Error'.toFhirString,
@@ -115,7 +118,7 @@ class MedicationAdministrationStatusCodes extends FhirCodeEnum {
   /// stopped
   static final MedicationAdministrationStatusCodes stopped =
       MedicationAdministrationStatusCodes._(
-    validatedValue: 'stopped',
+    valueString: 'stopped',
     system: 'http://hl7.org/fhir/ValueSet/medication-admin-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Stopped'.toFhirString,
@@ -124,7 +127,7 @@ class MedicationAdministrationStatusCodes extends FhirCodeEnum {
   /// unknown
   static final MedicationAdministrationStatusCodes unknown =
       MedicationAdministrationStatusCodes._(
-    validatedValue: 'unknown',
+    valueString: 'unknown',
     system: 'http://hl7.org/fhir/ValueSet/medication-admin-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Unknown'.toFhirString,
@@ -132,7 +135,7 @@ class MedicationAdministrationStatusCodes extends FhirCodeEnum {
 
   /// For instances where an Element is present but not value
   static final MedicationAdministrationStatusCodes elementOnly =
-      MedicationAdministrationStatusCodes._(validatedValue: '');
+      MedicationAdministrationStatusCodes._(valueString: '');
 
   /// List of all enum-like values
   static final List<MedicationAdministrationStatusCodes> values = [
@@ -149,31 +152,33 @@ class MedicationAdministrationStatusCodes extends FhirCodeEnum {
   @override
   MedicationAdministrationStatusCodes clone() =>
       MedicationAdministrationStatusCodes._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   MedicationAdministrationStatusCodes withElement(Element? newElement) {
     return MedicationAdministrationStatusCodes._(
-        validatedValue: value, element: newElement,);
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   MedicationAdministrationStatusCodes copyWith({
-    String? newValue,
+    dynamic newValue,
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
@@ -184,11 +189,13 @@ class MedicationAdministrationStatusCodes extends FhirCodeEnum {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError(
+        'Invalid input for MedicationAdministrationStatusCodes: $newValue',
+      );
     }
     return MedicationAdministrationStatusCodes._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

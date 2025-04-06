@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class TriggerType extends FhirCodeEnum {
   // Private underscore constructor for internal use.
   TriggerType._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class TriggerType extends FhirCodeEnum {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory TriggerType(
-    String? raw, {
+    String? rawValue, {
     FhirUri? system,
     FhirString? version,
     FhirString? display,
@@ -29,9 +29,10 @@ class TriggerType extends FhirCodeEnum {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCode._validateCode(rawValue) : null;
     return TriggerType._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -44,10 +45,13 @@ class TriggerType extends FhirCodeEnum {
   }
 
   /// Create empty [TriggerType] with element only
-  factory TriggerType.empty() => TriggerType._(validatedValue: '');
+  factory TriggerType.empty() => TriggerType._(valueString: '');
 
-  /// Factory constructor to create [TriggerType] from JSON.
-  factory TriggerType.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [TriggerType]
+  /// from JSON.
+  factory TriggerType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -59,14 +63,14 @@ class TriggerType extends FhirCodeEnum {
       );
     }
     return TriggerType._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// named_event
   static final TriggerType named_event = TriggerType._(
-    validatedValue: 'named-event',
+    valueString: 'named-event',
     system: 'http://hl7.org/fhir/ValueSet/trigger-type'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Named Event'.toFhirString,
@@ -74,7 +78,7 @@ class TriggerType extends FhirCodeEnum {
 
   /// periodic
   static final TriggerType periodic = TriggerType._(
-    validatedValue: 'periodic',
+    valueString: 'periodic',
     system: 'http://hl7.org/fhir/ValueSet/trigger-type'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Periodic'.toFhirString,
@@ -82,7 +86,7 @@ class TriggerType extends FhirCodeEnum {
 
   /// data_changed
   static final TriggerType data_changed = TriggerType._(
-    validatedValue: 'data-changed',
+    valueString: 'data-changed',
     system: 'http://hl7.org/fhir/ValueSet/trigger-type'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Data Changed'.toFhirString,
@@ -90,7 +94,7 @@ class TriggerType extends FhirCodeEnum {
 
   /// data_added
   static final TriggerType data_added = TriggerType._(
-    validatedValue: 'data-added',
+    valueString: 'data-added',
     system: 'http://hl7.org/fhir/ValueSet/trigger-type'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Data Added'.toFhirString,
@@ -98,7 +102,7 @@ class TriggerType extends FhirCodeEnum {
 
   /// data_modified
   static final TriggerType data_modified = TriggerType._(
-    validatedValue: 'data-modified',
+    valueString: 'data-modified',
     system: 'http://hl7.org/fhir/ValueSet/trigger-type'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Data Updated'.toFhirString,
@@ -106,7 +110,7 @@ class TriggerType extends FhirCodeEnum {
 
   /// data_removed
   static final TriggerType data_removed = TriggerType._(
-    validatedValue: 'data-removed',
+    valueString: 'data-removed',
     system: 'http://hl7.org/fhir/ValueSet/trigger-type'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Data Removed'.toFhirString,
@@ -114,7 +118,7 @@ class TriggerType extends FhirCodeEnum {
 
   /// data_accessed
   static final TriggerType data_accessed = TriggerType._(
-    validatedValue: 'data-accessed',
+    valueString: 'data-accessed',
     system: 'http://hl7.org/fhir/ValueSet/trigger-type'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Data Accessed'.toFhirString,
@@ -122,14 +126,14 @@ class TriggerType extends FhirCodeEnum {
 
   /// data_access_ended
   static final TriggerType data_access_ended = TriggerType._(
-    validatedValue: 'data-access-ended',
+    valueString: 'data-access-ended',
     system: 'http://hl7.org/fhir/ValueSet/trigger-type'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Data Access Ended'.toFhirString,
   );
 
   /// For instances where an Element is present but not value
-  static final TriggerType elementOnly = TriggerType._(validatedValue: '');
+  static final TriggerType elementOnly = TriggerType._(valueString: '');
 
   /// List of all enum-like values
   static final List<TriggerType> values = [
@@ -146,30 +150,33 @@ class TriggerType extends FhirCodeEnum {
   /// Clones the current instance
   @override
   TriggerType clone() => TriggerType._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   TriggerType withElement(Element? newElement) {
-    return TriggerType._(validatedValue: value, element: newElement);
+    return TriggerType._(
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   TriggerType copyWith({
-    String? newValue,
+    dynamic newValue,
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
@@ -180,11 +187,13 @@ class TriggerType extends FhirCodeEnum {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError(
+        'Invalid input for TriggerType: $newValue',
+      );
     }
     return TriggerType._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

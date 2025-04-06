@@ -6,7 +6,7 @@ part of '../primitive_types.dart';
 class EvidenceVariableHandling extends FhirCodeEnum {
   // Private underscore constructor for internal use.
   EvidenceVariableHandling._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -20,7 +20,7 @@ class EvidenceVariableHandling extends FhirCodeEnum {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory EvidenceVariableHandling(
-    String? raw, {
+    String? rawValue, {
     FhirUri? system,
     FhirString? version,
     FhirString? display,
@@ -30,9 +30,10 @@ class EvidenceVariableHandling extends FhirCodeEnum {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCode._validateCode(rawValue) : null;
     return EvidenceVariableHandling._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -46,10 +47,13 @@ class EvidenceVariableHandling extends FhirCodeEnum {
 
   /// Create empty [EvidenceVariableHandling] with element only
   factory EvidenceVariableHandling.empty() =>
-      EvidenceVariableHandling._(validatedValue: '');
+      EvidenceVariableHandling._(valueString: '');
 
-  /// Factory constructor to create [EvidenceVariableHandling] from JSON.
-  factory EvidenceVariableHandling.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [EvidenceVariableHandling]
+  /// from JSON.
+  factory EvidenceVariableHandling.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -61,14 +65,14 @@ class EvidenceVariableHandling extends FhirCodeEnum {
       );
     }
     return EvidenceVariableHandling._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// continuous
   static final EvidenceVariableHandling continuous = EvidenceVariableHandling._(
-    validatedValue: 'continuous',
+    valueString: 'continuous',
     system: 'http://hl7.org/fhir/ValueSet/variable-handling'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'continuous variable'.toFhirString,
@@ -77,7 +81,7 @@ class EvidenceVariableHandling extends FhirCodeEnum {
   /// dichotomous
   static final EvidenceVariableHandling dichotomous =
       EvidenceVariableHandling._(
-    validatedValue: 'dichotomous',
+    valueString: 'dichotomous',
     system: 'http://hl7.org/fhir/ValueSet/variable-handling'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'dichotomous variable'.toFhirString,
@@ -85,7 +89,7 @@ class EvidenceVariableHandling extends FhirCodeEnum {
 
   /// ordinal
   static final EvidenceVariableHandling ordinal = EvidenceVariableHandling._(
-    validatedValue: 'ordinal',
+    valueString: 'ordinal',
     system: 'http://hl7.org/fhir/ValueSet/variable-handling'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'ordinal variable'.toFhirString,
@@ -94,7 +98,7 @@ class EvidenceVariableHandling extends FhirCodeEnum {
   /// polychotomous
   static final EvidenceVariableHandling polychotomous =
       EvidenceVariableHandling._(
-    validatedValue: 'polychotomous',
+    valueString: 'polychotomous',
     system: 'http://hl7.org/fhir/ValueSet/variable-handling'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'polychotomous variable'.toFhirString,
@@ -102,7 +106,7 @@ class EvidenceVariableHandling extends FhirCodeEnum {
 
   /// For instances where an Element is present but not value
   static final EvidenceVariableHandling elementOnly =
-      EvidenceVariableHandling._(validatedValue: '');
+      EvidenceVariableHandling._(valueString: '');
 
   /// List of all enum-like values
   static final List<EvidenceVariableHandling> values = [
@@ -115,31 +119,33 @@ class EvidenceVariableHandling extends FhirCodeEnum {
   /// Clones the current instance
   @override
   EvidenceVariableHandling clone() => EvidenceVariableHandling._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   EvidenceVariableHandling withElement(Element? newElement) {
     return EvidenceVariableHandling._(
-        validatedValue: value, element: newElement,);
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   EvidenceVariableHandling copyWith({
-    String? newValue,
+    dynamic newValue,
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
@@ -150,11 +156,13 @@ class EvidenceVariableHandling extends FhirCodeEnum {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError(
+        'Invalid input for EvidenceVariableHandling: $newValue',
+      );
     }
     return EvidenceVariableHandling._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class ListMode extends FhirCodeEnum {
   // Private underscore constructor for internal use.
   ListMode._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class ListMode extends FhirCodeEnum {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory ListMode(
-    String? raw, {
+    String? rawValue, {
     FhirUri? system,
     FhirString? version,
     FhirString? display,
@@ -29,9 +29,10 @@ class ListMode extends FhirCodeEnum {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCode._validateCode(rawValue) : null;
     return ListMode._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -44,10 +45,13 @@ class ListMode extends FhirCodeEnum {
   }
 
   /// Create empty [ListMode] with element only
-  factory ListMode.empty() => ListMode._(validatedValue: '');
+  factory ListMode.empty() => ListMode._(valueString: '');
 
-  /// Factory constructor to create [ListMode] from JSON.
-  factory ListMode.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [ListMode]
+  /// from JSON.
+  factory ListMode.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -59,14 +63,14 @@ class ListMode extends FhirCodeEnum {
       );
     }
     return ListMode._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// working
   static final ListMode working = ListMode._(
-    validatedValue: 'working',
+    valueString: 'working',
     system: 'http://hl7.org/fhir/ValueSet/list-mode'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Working List'.toFhirString,
@@ -74,7 +78,7 @@ class ListMode extends FhirCodeEnum {
 
   /// snapshot
   static final ListMode snapshot = ListMode._(
-    validatedValue: 'snapshot',
+    valueString: 'snapshot',
     system: 'http://hl7.org/fhir/ValueSet/list-mode'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Snapshot List'.toFhirString,
@@ -82,14 +86,14 @@ class ListMode extends FhirCodeEnum {
 
   /// changes
   static final ListMode changes = ListMode._(
-    validatedValue: 'changes',
+    valueString: 'changes',
     system: 'http://hl7.org/fhir/ValueSet/list-mode'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Change List'.toFhirString,
   );
 
   /// For instances where an Element is present but not value
-  static final ListMode elementOnly = ListMode._(validatedValue: '');
+  static final ListMode elementOnly = ListMode._(valueString: '');
 
   /// List of all enum-like values
   static final List<ListMode> values = [
@@ -101,30 +105,33 @@ class ListMode extends FhirCodeEnum {
   /// Clones the current instance
   @override
   ListMode clone() => ListMode._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ListMode withElement(Element? newElement) {
-    return ListMode._(validatedValue: value, element: newElement);
+    return ListMode._(
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   ListMode copyWith({
-    String? newValue,
+    dynamic newValue,
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
@@ -135,11 +142,13 @@ class ListMode extends FhirCodeEnum {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError(
+        'Invalid input for ListMode: $newValue',
+      );
     }
     return ListMode._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

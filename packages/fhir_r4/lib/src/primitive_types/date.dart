@@ -12,7 +12,8 @@ extension FhirDateStringExtension on String {
   FhirDate get toFhirDate => FhirDate.fromString(this);
 }
 
-/// [FhirDate] represents FHIR-compliant dates, extending [FhirDateTimeBase].
+/// [FhirDate] represents a date-only type in FHIR
+/// (potentially partial, e.g. YYYY, YYYY-MM, or YYYY-MM-DD).
 class FhirDate extends FhirDateTimeBase
     implements
         ValueXAdministrableProductDefinitionProperty,
@@ -49,11 +50,13 @@ class FhirDate extends FhirDateTimeBase
         ValueXExtension,
         TimingXTriggerDefinition,
         StartXGoal {
-  /// Private underscore constructor.
-  /// Notice it calls `super._internal(...)` with the final fields.
-  /// We do NO extra runtime logic here—just assignment.
+  // --------------------------------------------------------------------------
+  // Private Internal Constructor
+  // --------------------------------------------------------------------------
+
+  /// Private underscore constructor delegating to [FhirDateTimeBase].
   FhirDate._({
-    required super.validatedValue,
+    required super.valueString,
     required super.year,
     required super.month,
     required super.day,
@@ -66,10 +69,13 @@ class FhirDate extends FhirDateTimeBase
     super.objectPath = 'Date',
   }) : super._();
 
-  /// Public **factory** that replaces your old `fromBase` constructor logic.
-  /// We parse or assign the provided fields, then call the private underscore.
+  // --------------------------------------------------------------------------
+  // Public Factories
+  // --------------------------------------------------------------------------
+
+  /// Creates a [FhirDate] from the base fields.
   factory FhirDate.fromBase({
-    required String? value,
+    required String? valueString,
     required int? year,
     required int? month,
     required int? day,
@@ -82,12 +88,12 @@ class FhirDate extends FhirDateTimeBase
     String objectPath = 'Date',
   }) {
     return FhirDate._(
-      validatedValue: value,
+      valueString: valueString,
       year: year,
       month: month,
       day: day,
-      timeZoneOffset: timeZoneOffset,
       isUtc: isUtc,
+      timeZoneOffset: timeZoneOffset,
       element: element,
       id: id,
       extension_: extension_,
@@ -96,9 +102,8 @@ class FhirDate extends FhirDateTimeBase
     );
   }
 
-  /// Factory constructor to create a [FhirDate] from individual units.
-  ///
-  /// Requires [year], while [month], [day], and [isUtc] are optional.
+  /// Creates a [FhirDate] from individual date components
+  /// (year, [month], [day]).
   factory FhirDate.fromUnits({
     required int year,
     int? month,
@@ -114,7 +119,7 @@ class FhirDate extends FhirDateTimeBase
         element: element,
       ) as FhirDate;
 
-  /// Factory constructor to create a [FhirDate] from a [String].
+  /// Creates a [FhirDate] from a raw string.
   factory FhirDate.fromString(
     String input, {
     Element? element,
@@ -138,7 +143,7 @@ class FhirDate extends FhirDateTimeBase
         objectPath: objectPath,
       ) as FhirDate;
 
-  /// Factory constructor to create a [FhirDate] from a [DateTime].
+  /// Creates a [FhirDate] from a [DateTime].
   factory FhirDate.fromDateTime(
     DateTime input, {
     Element? element,
@@ -160,9 +165,9 @@ class FhirDate extends FhirDateTimeBase
         annotations: annotations,
       ) as FhirDate;
 
-  /// Creates empty [FhirDate] object
+  /// Creates an empty [FhirDate].
   factory FhirDate.empty() => FhirDate.fromBase(
-        value: null,
+        valueString: null,
         year: null,
         month: null,
         day: null,
@@ -170,9 +175,7 @@ class FhirDate extends FhirDateTimeBase
         element: Element.empty(),
       );
 
-  /// Factory constructor to create a [FhirDate] from a JSON input.
-  ///
-  /// The input must be a [String], otherwise throws a [FormatException].
+  /// Creates a [FhirDate] from JSON.
   factory FhirDate.fromJson(Map<String, dynamic> json) {
     final value = json['value'];
     final element = json['_value'] is Map<String, dynamic>
@@ -189,12 +192,12 @@ class FhirDate extends FhirDateTimeBase
       ) as FhirDate;
     } else {
       throw const FormatException(
-        'Invalid input for FhirDate: Input must be a String?',
+        'Invalid input for FhirDate: must be a String or DateTime',
       );
     }
   }
 
-  /// Factory constructor to create [FhirDate] from YAML
+  /// Creates a [FhirDate] from YAML input.
   static FhirDate fromYaml(dynamic yaml) => yaml is String
       ? FhirDate.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, dynamic>,
@@ -204,10 +207,10 @@ class FhirDate extends FhirDateTimeBase
               jsonDecode(jsonEncode(yaml)) as Map<String, dynamic>,
             )
           : throw ArgumentError(
-              'FhirDate cannot be constructed from the provided input,'
-              ' it is neither a YAML string nor a YAML map.');
+              'FhirDate cannot be constructed from provided YAML input.',
+            );
 
-  /// Tries to parse a value as [FhirDate], returns `null` if parsing fails.
+  /// Tries to parse [value] into a [FhirDate].
   static FhirDate? tryParse(dynamic value) {
     try {
       if (value is DateTime) {
@@ -215,75 +218,90 @@ class FhirDate extends FhirDateTimeBase
       } else if (value is String) {
         return FhirDate.fromString(value);
       }
-    } catch (e) {
+    } catch (_) {
       return null;
     }
     return null;
   }
 
-  /// Returns the FHIR type as 'date'.
+  // --------------------------------------------------------------------------
+  // Overrides
+  // --------------------------------------------------------------------------
+
   @override
   String get fhirType => 'date';
 
-  /// Overrides the [hashCode] method to generate a hash code based on the value
   @override
   // ignore: avoid_equals_and_hash_code_on_mutable_classes
-  int get hashCode => value.hashCode;
+  int get hashCode => valueString.hashCode;
 
   @override
   bool equalsDeep(FhirBase? other) =>
-      other is FhirDate && other.value == value && other.element == element;
+      other is FhirDate &&
+      other.valueString == valueString &&
+      other.element == element;
 
-  /// Overrides the equality operator to compare two [FhirDate] objects.
   @override
   // ignore: avoid_equals_and_hash_code_on_mutable_classes
   bool operator ==(Object other) => equals(other);
 
-  /// Checks for equality between this object and another [FhirDate].
   @override
   bool equals(Object other) => isEqual(other) ?? false;
 
-  /// Adds a duration ([ExtendedDuration]) to the current [FhirDate].
+  /// Arithmetic
+  ///
+  /// Adds or subtracts an [ExtendedDuration] to/from this [FhirDate].
+  ///
+  /// [ExtendedDuration] is a custom class that represents a duration of time.
+  /// The `plus` and `minus` methods are used to add or subtract the duration
+  /// from the [FhirDate].
+  ///
+  /// The `operator +` and `operator -` methods are overridden to provide
+  /// shorthand syntax for adding or subtracting the duration.
+  ///
+
+  /// The `plus` method returns a new [FhirDate] with the duration added.
   FhirDate plus(ExtendedDuration other) =>
       FhirDateTimeBase.plus<FhirDate>(this, other) as FhirDate;
 
-  /// Subtracts a duration ([ExtendedDuration]) from the current [FhirDate].
-  FhirDate subtract(ExtendedDuration other) =>
-      FhirDateTimeBase.minus<FhirDate>(this, other) as FhirDate;
-
-  /// Subtracts a duration ([ExtendedDuration]) from the current [FhirDate].
+  /// The `minus` method returns a new [FhirDate] with the duration subtracted.
   FhirDate minus(ExtendedDuration other) =>
       FhirDateTimeBase.minus<FhirDate>(this, other) as FhirDate;
 
-  /// Adds an [ExtendedDuration] to the current [FhirDate] using the `+`
-  /// operator.
+  /// The `operator +` method returns a new [FhirDate] with the duration added.
   @override
   FhirDate operator +(ExtendedDuration other) =>
       FhirDateTimeBase.plus<FhirDate>(this, other) as FhirDate;
 
-  /// Subtracts an [ExtendedDuration] from the current [FhirDate] using the `-`
-  /// operator.
+  /// The `operator -` method returns a new [FhirDate] with the
+  /// duration subtracted.
   @override
   FhirDate operator -(ExtendedDuration other) =>
       FhirDateTimeBase.minus<FhirDate>(this, other) as FhirDate;
 
-  /// Clones the current [FhirDate] and returns a new instance.
+  /// The `subtract` method is an alias for the `minus` method.
+  FhirDate subtract(ExtendedDuration other) =>
+      FhirDateTimeBase.minus<FhirDate>(this, other) as FhirDate;
+
+  /// Clone
   @override
   FhirDate clone() => FhirDate.fromJson(toJson());
 
+  /// JSON
   @override
   Map<String, dynamic> toJson() => {
-        if (valueString.isNotEmpty) 'value': valueString,
-        if (element != null) '_value': element?.toJson(),
+        if (valueString?.isNotEmpty ?? false) 'value': valueString,
+        if (element != null) '_value': element!.toJson(),
       };
 
-  /// Copies the current [FhirDate], allowing for changes to its properties.
-  ///
-  /// Supports changing the [value] and associated [element], as well as other
-  /// metadata.
+  // --------------------------------------------------------------------------
+  // copyWith
+  // --------------------------------------------------------------------------
+
+  /// Creates a new [FhirDate] instance with updated properties.
   @override
   FhirDate copyWith({
-    String? newValue,
+    dynamic newValue,
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
@@ -295,7 +313,7 @@ class FhirDate extends FhirDateTimeBase
     String? objectPath,
   }) {
     return FhirDateTimeBase.constructor<FhirDate>(
-      input: value ?? value,
+      input: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
@@ -314,24 +332,33 @@ class FhirDate extends FhirDateTimeBase
     ) as FhirDate;
   }
 
-  /// Returns a new [FhirDate] with extensions disallowed.
+  /// Shorthand to set `disallowExtensions = true`.
   FhirDate noExtensions() => copyWith(disallowExtensions: true);
 
   /// Creates an empty property in the object
   @override
   FhirDate createProperty(String propertyName) => this;
 
-  /// Clears the specified fields in a [FhirDate] object
+  /// Clears specified fields in a [FhirDate].
   @override
   FhirDate clear({
+    bool value = false,
+    bool element = false,
     bool extension_ = false,
     bool id = false,
   }) {
-    return FhirDate.fromString(
-      valueString,
-      element: element,
+    return FhirDate.fromBase(
+      valueString: value ? null : valueString,
+      year: value ? null : year,
+      month: value ? null : month,
+      day: value ? null : day,
+      timeZoneOffset: value ? null : timeZoneOffset,
+      isUtc: value ? value : isUtc,
+      element: element ? null : this.element,
       extension_: extension_ ? <FhirExtension>[] : this.extension_,
       id: id ? null : this.id,
+      disallowExtensions: disallowExtensions,
+      objectPath: objectPath!,
     );
   }
 }

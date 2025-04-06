@@ -9,14 +9,14 @@ ExpressionNode parseExpression(String expression, [FhirBase? context]) {
   return node;
 }
 
-void testBasicTypes() {
+Future<void> testBasicTypes() async {
   group('FHIRPathEngine Basic Types Tests', () {
-    test('Boolean', () {
+    test('Boolean', () async {
       expect(parseExpression('true').constant, true.toFhirBoolean);
       expect(parseExpression('false').constant, false.toFhirBoolean);
     });
 
-    test('String', () {
+    test('String', () async {
       expect(
         parseExpression("'test string'").constant,
         'test string'.toFhirString,
@@ -27,7 +27,7 @@ void testBasicTypes() {
       );
     });
 
-    test('Delimited Identifier', () {
+    test('Delimited Identifier', () async {
       expect(parseExpression('`test string`').name, 'test string');
       expect(
         parseExpression('`urn:oid:3.4.5.6.7.8`').name,
@@ -35,7 +35,7 @@ void testBasicTypes() {
       );
     });
 
-    test('Integer', () {
+    test('Integer', () async {
       expect(parseExpression('0').constant, 0.toFhirInteger);
       expect(parseExpression('45').constant, 45.toFhirInteger);
       // Uncomment if negative integers are supported
@@ -44,12 +44,12 @@ void testBasicTypes() {
       expect(node.opNext?.constant, equals(5.toFhirInteger));
     });
 
-    test('Decimal', () {
+    test('Decimal', () async {
       expect(parseExpression('0.0').constant, 0.0.toFhirDecimal);
       expect(parseExpression('3.1415927').constant, 3.1415927.toFhirDecimal);
     });
 
-    test('Date', () {
+    test('Date', () async {
       final node1 = parseExpression('@2015-02-04');
       expect(
         (node1.constant as FHIRConstant?)?.value,
@@ -75,7 +75,7 @@ void testBasicTypes() {
       );
     });
 
-    test('DateTime', () {
+    test('DateTime', () async {
       const dateTime1 = '@2015-02-04T14:34:28+09:00';
       final node1 = parseExpression(dateTime1);
       expect(
@@ -98,7 +98,7 @@ void testBasicTypes() {
       );
     });
 
-    test('Time', () {
+    test('Time', () async {
       const time1 = '@14:34:28';
       final node1 = parseExpression(time1);
       expect(
@@ -121,7 +121,7 @@ void testBasicTypes() {
       );
     });
 
-    test('Quantity', () {
+    test('Quantity', () async {
       expect(
         parseExpression("4.5 'mg'").constant?.toJson(),
         Quantity(
@@ -140,14 +140,14 @@ void testBasicTypes() {
       );
     });
 
-    // test('Duration Quantities', () {
+    // test('Duration Quantities', () async {
     //   expect(parseExpression('1 seconds = 1 second'), [true.toFhirBoolean]);
     //   expect(parseExpression("1 seconds = 1 's'"), [true.toFhirBoolean]);
     //   expect(parseExpression("2 seconds = 2 's'"), [true.toFhirBoolean]);
     //   expect(parseExpression("1 week != 1 'wk'"), [false.toFhirBoolean]);
     // });
 
-    test('Non-Escape Sequences', () {
+    test('Non-Escape Sequences', () async {
       expect(
         parseExpression(r"'\p'").constant,
         'p'.toFhirString,

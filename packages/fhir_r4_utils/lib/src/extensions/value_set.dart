@@ -10,7 +10,7 @@ extension ValueSetExtension on ValueSet {
         // Look through included systems and their concepts
         if (include.concept != null) {
           for (final concept in include.concept!) {
-            if (concept.code.value == code) {
+            if (concept.code.valueString == code) {
               return true;
             }
           }

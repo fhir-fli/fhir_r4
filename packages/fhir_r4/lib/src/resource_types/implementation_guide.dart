@@ -366,29 +366,60 @@ class ImplementationGuide extends CanonicalResource {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
+    bool isNonEmpty(dynamic val) {
+      if (val == null) return false;
+      if (val is List && val.isEmpty) return false;
+      if (val is Map && val.isEmpty) return false;
+      return true;
+    }
+
     void addField(String key, dynamic field) {
+      if (field == null) return;
       if (!(field is FhirBase? || field is List<FhirBase>?)) {
         throw ArgumentError('"field" must be a FhirBase type');
       }
-      if (field == null) return;
       if (field is PrimitiveType) {
-        json[key] = field.toJson()['value'];
-        if (field.toJson()['_value'] != null) {
-          json['_$key'] = field.toJson()['_value'];
-        }
+        final fieldMap = field.toJson();
+        final val = fieldMap['value'];
+        final ext = fieldMap['_value'];
+        final hasVal = isNonEmpty(val);
+        final hasExt = isNonEmpty(ext);
+        if (hasVal) json[key] = val;
+        if (hasExt) json['_$key'] = ext;
       } else if (field is List<FhirBase>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
-          final fieldJson = field.map((e) => e.toJson()).toList();
-          json[key] = fieldJson.map((e) => e['value']).toList();
-          if (fieldJson.any((e) => e['_value'] != null)) {
-            json['_$key'] = fieldJson.map((e) => e['_value']).toList();
+        final isPrimitive = field.first is PrimitiveType;
+        final tempList = <dynamic>[];
+        final tempExtensions = <dynamic>[];
+        for (final e in field) {
+          final itemMap = e.toJson();
+          if (!isNonEmpty(itemMap)) {
+            continue;
+          }
+          if (isPrimitive) {
+            final v = itemMap['value'];
+            final x = itemMap['_value'];
+            tempList.add(v);
+            tempExtensions.add(x);
+          } else {
+            tempList.add(itemMap);
+          }
+        }
+        if (tempList.isEmpty) return;
+        if (isPrimitive) {
+          json[key] = tempList;
+          final anyExt = tempExtensions.any(isNonEmpty);
+          if (anyExt) {
+            json['_$key'] = tempExtensions;
           }
         } else {
-          json[key] = field.map((e) => e.toJson()).toList();
+          json[key] = tempList;
         }
       } else if (field is FhirBase) {
-        json[key] = field.toJson();
+        final subMap = field.toJson();
+        if (isNonEmpty(subMap)) {
+          json[key] = subMap;
+        }
       }
     }
 
@@ -736,7 +767,10 @@ class ImplementationGuide extends CanonicalResource {
             return copyWith(contained: newList);
           } else if (child is Resource) {
             // Add single element to existing list or create new list
-            final newList = [...?contained, child];
+            final newList = [
+              ...?contained,
+              child,
+            ];
             return copyWith(contained: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -750,7 +784,10 @@ class ImplementationGuide extends CanonicalResource {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -764,7 +801,10 @@ class ImplementationGuide extends CanonicalResource {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -842,7 +882,10 @@ class ImplementationGuide extends CanonicalResource {
             return copyWith(contact: newList);
           } else if (child is ContactDetail) {
             // Add single element to existing list or create new list
-            final newList = [...?contact, child];
+            final newList = [
+              ...?contact,
+              child,
+            ];
             return copyWith(contact: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -864,7 +907,10 @@ class ImplementationGuide extends CanonicalResource {
             return copyWith(useContext: newList);
           } else if (child is UsageContext) {
             // Add single element to existing list or create new list
-            final newList = [...?useContext, child];
+            final newList = [
+              ...?useContext,
+              child,
+            ];
             return copyWith(useContext: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -878,7 +924,10 @@ class ImplementationGuide extends CanonicalResource {
             return copyWith(jurisdiction: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...?jurisdiction, child];
+            final newList = [
+              ...?jurisdiction,
+              child,
+            ];
             return copyWith(jurisdiction: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -916,7 +965,10 @@ class ImplementationGuide extends CanonicalResource {
             return copyWith(fhirVersion: newList);
           } else if (child is FHIRVersion) {
             // Add single element to existing list or create new list
-            final newList = [...fhirVersion, child];
+            final newList = [
+              ...fhirVersion,
+              child,
+            ];
             return copyWith(fhirVersion: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -930,7 +982,10 @@ class ImplementationGuide extends CanonicalResource {
             return copyWith(dependsOn: newList);
           } else if (child is ImplementationGuideDependsOn) {
             // Add single element to existing list or create new list
-            final newList = [...?dependsOn, child];
+            final newList = [
+              ...?dependsOn,
+              child,
+            ];
             return copyWith(dependsOn: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -944,7 +999,10 @@ class ImplementationGuide extends CanonicalResource {
             return copyWith(global: newList);
           } else if (child is ImplementationGuideGlobal) {
             // Add single element to existing list or create new list
-            final newList = [...?global, child];
+            final newList = [
+              ...?global,
+              child,
+            ];
             return copyWith(global: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1779,29 +1837,60 @@ class ImplementationGuideDependsOn extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
+    bool isNonEmpty(dynamic val) {
+      if (val == null) return false;
+      if (val is List && val.isEmpty) return false;
+      if (val is Map && val.isEmpty) return false;
+      return true;
+    }
+
     void addField(String key, dynamic field) {
+      if (field == null) return;
       if (!(field is FhirBase? || field is List<FhirBase>?)) {
         throw ArgumentError('"field" must be a FhirBase type');
       }
-      if (field == null) return;
       if (field is PrimitiveType) {
-        json[key] = field.toJson()['value'];
-        if (field.toJson()['_value'] != null) {
-          json['_$key'] = field.toJson()['_value'];
-        }
+        final fieldMap = field.toJson();
+        final val = fieldMap['value'];
+        final ext = fieldMap['_value'];
+        final hasVal = isNonEmpty(val);
+        final hasExt = isNonEmpty(ext);
+        if (hasVal) json[key] = val;
+        if (hasExt) json['_$key'] = ext;
       } else if (field is List<FhirBase>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
-          final fieldJson = field.map((e) => e.toJson()).toList();
-          json[key] = fieldJson.map((e) => e['value']).toList();
-          if (fieldJson.any((e) => e['_value'] != null)) {
-            json['_$key'] = fieldJson.map((e) => e['_value']).toList();
+        final isPrimitive = field.first is PrimitiveType;
+        final tempList = <dynamic>[];
+        final tempExtensions = <dynamic>[];
+        for (final e in field) {
+          final itemMap = e.toJson();
+          if (!isNonEmpty(itemMap)) {
+            continue;
+          }
+          if (isPrimitive) {
+            final v = itemMap['value'];
+            final x = itemMap['_value'];
+            tempList.add(v);
+            tempExtensions.add(x);
+          } else {
+            tempList.add(itemMap);
+          }
+        }
+        if (tempList.isEmpty) return;
+        if (isPrimitive) {
+          json[key] = tempList;
+          final anyExt = tempExtensions.any(isNonEmpty);
+          if (anyExt) {
+            json['_$key'] = tempExtensions;
           }
         } else {
-          json[key] = field.map((e) => e.toJson()).toList();
+          json[key] = tempList;
         }
       } else if (field is FhirBase) {
-        json[key] = field.toJson();
+        final subMap = field.toJson();
+        if (isNonEmpty(subMap)) {
+          json[key] = subMap;
+        }
       }
     }
 
@@ -1922,7 +2011,10 @@ class ImplementationGuideDependsOn extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1936,7 +2028,10 @@ class ImplementationGuideDependsOn extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2288,29 +2383,60 @@ class ImplementationGuideGlobal extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
+    bool isNonEmpty(dynamic val) {
+      if (val == null) return false;
+      if (val is List && val.isEmpty) return false;
+      if (val is Map && val.isEmpty) return false;
+      return true;
+    }
+
     void addField(String key, dynamic field) {
+      if (field == null) return;
       if (!(field is FhirBase? || field is List<FhirBase>?)) {
         throw ArgumentError('"field" must be a FhirBase type');
       }
-      if (field == null) return;
       if (field is PrimitiveType) {
-        json[key] = field.toJson()['value'];
-        if (field.toJson()['_value'] != null) {
-          json['_$key'] = field.toJson()['_value'];
-        }
+        final fieldMap = field.toJson();
+        final val = fieldMap['value'];
+        final ext = fieldMap['_value'];
+        final hasVal = isNonEmpty(val);
+        final hasExt = isNonEmpty(ext);
+        if (hasVal) json[key] = val;
+        if (hasExt) json['_$key'] = ext;
       } else if (field is List<FhirBase>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
-          final fieldJson = field.map((e) => e.toJson()).toList();
-          json[key] = fieldJson.map((e) => e['value']).toList();
-          if (fieldJson.any((e) => e['_value'] != null)) {
-            json['_$key'] = fieldJson.map((e) => e['_value']).toList();
+        final isPrimitive = field.first is PrimitiveType;
+        final tempList = <dynamic>[];
+        final tempExtensions = <dynamic>[];
+        for (final e in field) {
+          final itemMap = e.toJson();
+          if (!isNonEmpty(itemMap)) {
+            continue;
+          }
+          if (isPrimitive) {
+            final v = itemMap['value'];
+            final x = itemMap['_value'];
+            tempList.add(v);
+            tempExtensions.add(x);
+          } else {
+            tempList.add(itemMap);
+          }
+        }
+        if (tempList.isEmpty) return;
+        if (isPrimitive) {
+          json[key] = tempList;
+          final anyExt = tempExtensions.any(isNonEmpty);
+          if (anyExt) {
+            json['_$key'] = tempExtensions;
           }
         } else {
-          json[key] = field.map((e) => e.toJson()).toList();
+          json[key] = tempList;
         }
       } else if (field is FhirBase) {
-        json[key] = field.toJson();
+        final subMap = field.toJson();
+        if (isNonEmpty(subMap)) {
+          json[key] = subMap;
+        }
       }
     }
 
@@ -2420,7 +2546,10 @@ class ImplementationGuideGlobal extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2434,7 +2563,10 @@ class ImplementationGuideGlobal extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2810,29 +2942,60 @@ class ImplementationGuideDefinition extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
+    bool isNonEmpty(dynamic val) {
+      if (val == null) return false;
+      if (val is List && val.isEmpty) return false;
+      if (val is Map && val.isEmpty) return false;
+      return true;
+    }
+
     void addField(String key, dynamic field) {
+      if (field == null) return;
       if (!(field is FhirBase? || field is List<FhirBase>?)) {
         throw ArgumentError('"field" must be a FhirBase type');
       }
-      if (field == null) return;
       if (field is PrimitiveType) {
-        json[key] = field.toJson()['value'];
-        if (field.toJson()['_value'] != null) {
-          json['_$key'] = field.toJson()['_value'];
-        }
+        final fieldMap = field.toJson();
+        final val = fieldMap['value'];
+        final ext = fieldMap['_value'];
+        final hasVal = isNonEmpty(val);
+        final hasExt = isNonEmpty(ext);
+        if (hasVal) json[key] = val;
+        if (hasExt) json['_$key'] = ext;
       } else if (field is List<FhirBase>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
-          final fieldJson = field.map((e) => e.toJson()).toList();
-          json[key] = fieldJson.map((e) => e['value']).toList();
-          if (fieldJson.any((e) => e['_value'] != null)) {
-            json['_$key'] = fieldJson.map((e) => e['_value']).toList();
+        final isPrimitive = field.first is PrimitiveType;
+        final tempList = <dynamic>[];
+        final tempExtensions = <dynamic>[];
+        for (final e in field) {
+          final itemMap = e.toJson();
+          if (!isNonEmpty(itemMap)) {
+            continue;
+          }
+          if (isPrimitive) {
+            final v = itemMap['value'];
+            final x = itemMap['_value'];
+            tempList.add(v);
+            tempExtensions.add(x);
+          } else {
+            tempList.add(itemMap);
+          }
+        }
+        if (tempList.isEmpty) return;
+        if (isPrimitive) {
+          json[key] = tempList;
+          final anyExt = tempExtensions.any(isNonEmpty);
+          if (anyExt) {
+            json['_$key'] = tempExtensions;
           }
         } else {
-          json[key] = field.map((e) => e.toJson()).toList();
+          json[key] = tempList;
         }
       } else if (field is FhirBase) {
-        json[key] = field.toJson();
+        final subMap = field.toJson();
+        if (isNonEmpty(subMap)) {
+          json[key] = subMap;
+        }
       }
     }
 
@@ -2971,7 +3134,10 @@ class ImplementationGuideDefinition extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2985,7 +3151,10 @@ class ImplementationGuideDefinition extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2999,7 +3168,10 @@ class ImplementationGuideDefinition extends BackboneElement {
             return copyWith(grouping: newList);
           } else if (child is ImplementationGuideGrouping) {
             // Add single element to existing list or create new list
-            final newList = [...?grouping, child];
+            final newList = [
+              ...?grouping,
+              child,
+            ];
             return copyWith(grouping: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -3013,7 +3185,10 @@ class ImplementationGuideDefinition extends BackboneElement {
             return copyWith(resource: newList);
           } else if (child is ImplementationGuideResource) {
             // Add single element to existing list or create new list
-            final newList = [...resource, child];
+            final newList = [
+              ...resource,
+              child,
+            ];
             return copyWith(resource: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -3035,7 +3210,10 @@ class ImplementationGuideDefinition extends BackboneElement {
             return copyWith(parameter: newList);
           } else if (child is ImplementationGuideParameter) {
             // Add single element to existing list or create new list
-            final newList = [...?parameter, child];
+            final newList = [
+              ...?parameter,
+              child,
+            ];
             return copyWith(parameter: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -3049,7 +3227,10 @@ class ImplementationGuideDefinition extends BackboneElement {
             return copyWith(template: newList);
           } else if (child is ImplementationGuideTemplate) {
             // Add single element to existing list or create new list
-            final newList = [...?template, child];
+            final newList = [
+              ...?template,
+              child,
+            ];
             return copyWith(template: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -3435,29 +3616,60 @@ class ImplementationGuideGrouping extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
+    bool isNonEmpty(dynamic val) {
+      if (val == null) return false;
+      if (val is List && val.isEmpty) return false;
+      if (val is Map && val.isEmpty) return false;
+      return true;
+    }
+
     void addField(String key, dynamic field) {
+      if (field == null) return;
       if (!(field is FhirBase? || field is List<FhirBase>?)) {
         throw ArgumentError('"field" must be a FhirBase type');
       }
-      if (field == null) return;
       if (field is PrimitiveType) {
-        json[key] = field.toJson()['value'];
-        if (field.toJson()['_value'] != null) {
-          json['_$key'] = field.toJson()['_value'];
-        }
+        final fieldMap = field.toJson();
+        final val = fieldMap['value'];
+        final ext = fieldMap['_value'];
+        final hasVal = isNonEmpty(val);
+        final hasExt = isNonEmpty(ext);
+        if (hasVal) json[key] = val;
+        if (hasExt) json['_$key'] = ext;
       } else if (field is List<FhirBase>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
-          final fieldJson = field.map((e) => e.toJson()).toList();
-          json[key] = fieldJson.map((e) => e['value']).toList();
-          if (fieldJson.any((e) => e['_value'] != null)) {
-            json['_$key'] = fieldJson.map((e) => e['_value']).toList();
+        final isPrimitive = field.first is PrimitiveType;
+        final tempList = <dynamic>[];
+        final tempExtensions = <dynamic>[];
+        for (final e in field) {
+          final itemMap = e.toJson();
+          if (!isNonEmpty(itemMap)) {
+            continue;
+          }
+          if (isPrimitive) {
+            final v = itemMap['value'];
+            final x = itemMap['_value'];
+            tempList.add(v);
+            tempExtensions.add(x);
+          } else {
+            tempList.add(itemMap);
+          }
+        }
+        if (tempList.isEmpty) return;
+        if (isPrimitive) {
+          json[key] = tempList;
+          final anyExt = tempExtensions.any(isNonEmpty);
+          if (anyExt) {
+            json['_$key'] = tempExtensions;
           }
         } else {
-          json[key] = field.map((e) => e.toJson()).toList();
+          json[key] = tempList;
         }
       } else if (field is FhirBase) {
-        json[key] = field.toJson();
+        final subMap = field.toJson();
+        if (isNonEmpty(subMap)) {
+          json[key] = subMap;
+        }
       }
     }
 
@@ -3569,7 +3781,10 @@ class ImplementationGuideGrouping extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -3583,7 +3798,10 @@ class ImplementationGuideGrouping extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -3967,29 +4185,60 @@ class ImplementationGuideResource extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
+    bool isNonEmpty(dynamic val) {
+      if (val == null) return false;
+      if (val is List && val.isEmpty) return false;
+      if (val is Map && val.isEmpty) return false;
+      return true;
+    }
+
     void addField(String key, dynamic field) {
+      if (field == null) return;
       if (!(field is FhirBase? || field is List<FhirBase>?)) {
         throw ArgumentError('"field" must be a FhirBase type');
       }
-      if (field == null) return;
       if (field is PrimitiveType) {
-        json[key] = field.toJson()['value'];
-        if (field.toJson()['_value'] != null) {
-          json['_$key'] = field.toJson()['_value'];
-        }
+        final fieldMap = field.toJson();
+        final val = fieldMap['value'];
+        final ext = fieldMap['_value'];
+        final hasVal = isNonEmpty(val);
+        final hasExt = isNonEmpty(ext);
+        if (hasVal) json[key] = val;
+        if (hasExt) json['_$key'] = ext;
       } else if (field is List<FhirBase>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
-          final fieldJson = field.map((e) => e.toJson()).toList();
-          json[key] = fieldJson.map((e) => e['value']).toList();
-          if (fieldJson.any((e) => e['_value'] != null)) {
-            json['_$key'] = fieldJson.map((e) => e['_value']).toList();
+        final isPrimitive = field.first is PrimitiveType;
+        final tempList = <dynamic>[];
+        final tempExtensions = <dynamic>[];
+        for (final e in field) {
+          final itemMap = e.toJson();
+          if (!isNonEmpty(itemMap)) {
+            continue;
+          }
+          if (isPrimitive) {
+            final v = itemMap['value'];
+            final x = itemMap['_value'];
+            tempList.add(v);
+            tempExtensions.add(x);
+          } else {
+            tempList.add(itemMap);
+          }
+        }
+        if (tempList.isEmpty) return;
+        if (isPrimitive) {
+          json[key] = tempList;
+          final anyExt = tempExtensions.any(isNonEmpty);
+          if (anyExt) {
+            json['_$key'] = tempExtensions;
           }
         } else {
-          json[key] = field.map((e) => e.toJson()).toList();
+          json[key] = tempList;
         }
       } else if (field is FhirBase) {
-        json[key] = field.toJson();
+        final subMap = field.toJson();
+        if (isNonEmpty(subMap)) {
+          json[key] = subMap;
+        }
       }
     }
 
@@ -4149,7 +4398,10 @@ class ImplementationGuideResource extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -4163,7 +4415,10 @@ class ImplementationGuideResource extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -4185,7 +4440,10 @@ class ImplementationGuideResource extends BackboneElement {
             return copyWith(fhirVersion: newList);
           } else if (child is FHIRVersion) {
             // Add single element to existing list or create new list
-            final newList = [...?fhirVersion, child];
+            final newList = [
+              ...?fhirVersion,
+              child,
+            ];
             return copyWith(fhirVersion: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -4207,6 +4465,7 @@ class ImplementationGuideResource extends BackboneElement {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'example':
       case 'exampleX':
         {
           if (child is ExampleXImplementationGuideResource) {
@@ -4271,7 +4530,10 @@ class ImplementationGuideResource extends BackboneElement {
         return ['FhirString'];
       case 'example':
       case 'exampleX':
-        return ['FhirBoolean', 'FhirCanonical'];
+        return [
+          'FhirBoolean',
+          'FhirCanonical',
+        ];
       case 'exampleBoolean':
         return ['FhirBoolean'];
       case 'exampleCanonical':
@@ -4683,29 +4945,60 @@ class ImplementationGuidePage extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
+    bool isNonEmpty(dynamic val) {
+      if (val == null) return false;
+      if (val is List && val.isEmpty) return false;
+      if (val is Map && val.isEmpty) return false;
+      return true;
+    }
+
     void addField(String key, dynamic field) {
+      if (field == null) return;
       if (!(field is FhirBase? || field is List<FhirBase>?)) {
         throw ArgumentError('"field" must be a FhirBase type');
       }
-      if (field == null) return;
       if (field is PrimitiveType) {
-        json[key] = field.toJson()['value'];
-        if (field.toJson()['_value'] != null) {
-          json['_$key'] = field.toJson()['_value'];
-        }
+        final fieldMap = field.toJson();
+        final val = fieldMap['value'];
+        final ext = fieldMap['_value'];
+        final hasVal = isNonEmpty(val);
+        final hasExt = isNonEmpty(ext);
+        if (hasVal) json[key] = val;
+        if (hasExt) json['_$key'] = ext;
       } else if (field is List<FhirBase>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
-          final fieldJson = field.map((e) => e.toJson()).toList();
-          json[key] = fieldJson.map((e) => e['value']).toList();
-          if (fieldJson.any((e) => e['_value'] != null)) {
-            json['_$key'] = fieldJson.map((e) => e['_value']).toList();
+        final isPrimitive = field.first is PrimitiveType;
+        final tempList = <dynamic>[];
+        final tempExtensions = <dynamic>[];
+        for (final e in field) {
+          final itemMap = e.toJson();
+          if (!isNonEmpty(itemMap)) {
+            continue;
+          }
+          if (isPrimitive) {
+            final v = itemMap['value'];
+            final x = itemMap['_value'];
+            tempList.add(v);
+            tempExtensions.add(x);
+          } else {
+            tempList.add(itemMap);
+          }
+        }
+        if (tempList.isEmpty) return;
+        if (isPrimitive) {
+          json[key] = tempList;
+          final anyExt = tempExtensions.any(isNonEmpty);
+          if (anyExt) {
+            json['_$key'] = tempExtensions;
           }
         } else {
-          json[key] = field.map((e) => e.toJson()).toList();
+          json[key] = tempList;
         }
       } else if (field is FhirBase) {
-        json[key] = field.toJson();
+        final subMap = field.toJson();
+        if (isNonEmpty(subMap)) {
+          json[key] = subMap;
+        }
       }
     }
 
@@ -4843,7 +5136,10 @@ class ImplementationGuidePage extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -4857,12 +5153,16 @@ class ImplementationGuidePage extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'name':
       case 'nameX':
         {
           if (child is NameXImplementationGuidePage) {
@@ -4917,7 +5217,10 @@ class ImplementationGuidePage extends BackboneElement {
             return copyWith(page: newList);
           } else if (child is ImplementationGuidePage) {
             // Add single element to existing list or create new list
-            final newList = [...?page, child];
+            final newList = [
+              ...?page,
+              child,
+            ];
             return copyWith(page: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -4941,7 +5244,10 @@ class ImplementationGuidePage extends BackboneElement {
         return ['FhirExtension'];
       case 'name':
       case 'nameX':
-        return ['FhirUrl', 'Reference'];
+        return [
+          'FhirUrl',
+          'Reference',
+        ];
       case 'nameUrl':
         return ['FhirUrl'];
       case 'nameReference':
@@ -5282,29 +5588,60 @@ class ImplementationGuideParameter extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
+    bool isNonEmpty(dynamic val) {
+      if (val == null) return false;
+      if (val is List && val.isEmpty) return false;
+      if (val is Map && val.isEmpty) return false;
+      return true;
+    }
+
     void addField(String key, dynamic field) {
+      if (field == null) return;
       if (!(field is FhirBase? || field is List<FhirBase>?)) {
         throw ArgumentError('"field" must be a FhirBase type');
       }
-      if (field == null) return;
       if (field is PrimitiveType) {
-        json[key] = field.toJson()['value'];
-        if (field.toJson()['_value'] != null) {
-          json['_$key'] = field.toJson()['_value'];
-        }
+        final fieldMap = field.toJson();
+        final val = fieldMap['value'];
+        final ext = fieldMap['_value'];
+        final hasVal = isNonEmpty(val);
+        final hasExt = isNonEmpty(ext);
+        if (hasVal) json[key] = val;
+        if (hasExt) json['_$key'] = ext;
       } else if (field is List<FhirBase>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
-          final fieldJson = field.map((e) => e.toJson()).toList();
-          json[key] = fieldJson.map((e) => e['value']).toList();
-          if (fieldJson.any((e) => e['_value'] != null)) {
-            json['_$key'] = fieldJson.map((e) => e['_value']).toList();
+        final isPrimitive = field.first is PrimitiveType;
+        final tempList = <dynamic>[];
+        final tempExtensions = <dynamic>[];
+        for (final e in field) {
+          final itemMap = e.toJson();
+          if (!isNonEmpty(itemMap)) {
+            continue;
+          }
+          if (isPrimitive) {
+            final v = itemMap['value'];
+            final x = itemMap['_value'];
+            tempList.add(v);
+            tempExtensions.add(x);
+          } else {
+            tempList.add(itemMap);
+          }
+        }
+        if (tempList.isEmpty) return;
+        if (isPrimitive) {
+          json[key] = tempList;
+          final anyExt = tempExtensions.any(isNonEmpty);
+          if (anyExt) {
+            json['_$key'] = tempExtensions;
           }
         } else {
-          json[key] = field.map((e) => e.toJson()).toList();
+          json[key] = tempList;
         }
       } else if (field is FhirBase) {
-        json[key] = field.toJson();
+        final subMap = field.toJson();
+        if (isNonEmpty(subMap)) {
+          json[key] = subMap;
+        }
       }
     }
 
@@ -5414,7 +5751,10 @@ class ImplementationGuideParameter extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -5428,7 +5768,10 @@ class ImplementationGuideParameter extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -5760,29 +6103,60 @@ class ImplementationGuideTemplate extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
+    bool isNonEmpty(dynamic val) {
+      if (val == null) return false;
+      if (val is List && val.isEmpty) return false;
+      if (val is Map && val.isEmpty) return false;
+      return true;
+    }
+
     void addField(String key, dynamic field) {
+      if (field == null) return;
       if (!(field is FhirBase? || field is List<FhirBase>?)) {
         throw ArgumentError('"field" must be a FhirBase type');
       }
-      if (field == null) return;
       if (field is PrimitiveType) {
-        json[key] = field.toJson()['value'];
-        if (field.toJson()['_value'] != null) {
-          json['_$key'] = field.toJson()['_value'];
-        }
+        final fieldMap = field.toJson();
+        final val = fieldMap['value'];
+        final ext = fieldMap['_value'];
+        final hasVal = isNonEmpty(val);
+        final hasExt = isNonEmpty(ext);
+        if (hasVal) json[key] = val;
+        if (hasExt) json['_$key'] = ext;
       } else if (field is List<FhirBase>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
-          final fieldJson = field.map((e) => e.toJson()).toList();
-          json[key] = fieldJson.map((e) => e['value']).toList();
-          if (fieldJson.any((e) => e['_value'] != null)) {
-            json['_$key'] = fieldJson.map((e) => e['_value']).toList();
+        final isPrimitive = field.first is PrimitiveType;
+        final tempList = <dynamic>[];
+        final tempExtensions = <dynamic>[];
+        for (final e in field) {
+          final itemMap = e.toJson();
+          if (!isNonEmpty(itemMap)) {
+            continue;
+          }
+          if (isPrimitive) {
+            final v = itemMap['value'];
+            final x = itemMap['_value'];
+            tempList.add(v);
+            tempExtensions.add(x);
+          } else {
+            tempList.add(itemMap);
+          }
+        }
+        if (tempList.isEmpty) return;
+        if (isPrimitive) {
+          json[key] = tempList;
+          final anyExt = tempExtensions.any(isNonEmpty);
+          if (anyExt) {
+            json['_$key'] = tempExtensions;
           }
         } else {
-          json[key] = field.map((e) => e.toJson()).toList();
+          json[key] = tempList;
         }
       } else if (field is FhirBase) {
-        json[key] = field.toJson();
+        final subMap = field.toJson();
+        if (isNonEmpty(subMap)) {
+          json[key] = subMap;
+        }
       }
     }
 
@@ -5901,7 +6275,10 @@ class ImplementationGuideTemplate extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -5915,7 +6292,10 @@ class ImplementationGuideTemplate extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -6165,7 +6545,8 @@ class ImplementationGuideManifest extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory ImplementationGuideManifest.empty() => const ImplementationGuideManifest(
+  factory ImplementationGuideManifest.empty() =>
+      const ImplementationGuideManifest(
         resource: <ImplementationGuideResource1>[],
       );
 
@@ -6312,29 +6693,60 @@ class ImplementationGuideManifest extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
+    bool isNonEmpty(dynamic val) {
+      if (val == null) return false;
+      if (val is List && val.isEmpty) return false;
+      if (val is Map && val.isEmpty) return false;
+      return true;
+    }
+
     void addField(String key, dynamic field) {
+      if (field == null) return;
       if (!(field is FhirBase? || field is List<FhirBase>?)) {
         throw ArgumentError('"field" must be a FhirBase type');
       }
-      if (field == null) return;
       if (field is PrimitiveType) {
-        json[key] = field.toJson()['value'];
-        if (field.toJson()['_value'] != null) {
-          json['_$key'] = field.toJson()['_value'];
-        }
+        final fieldMap = field.toJson();
+        final val = fieldMap['value'];
+        final ext = fieldMap['_value'];
+        final hasVal = isNonEmpty(val);
+        final hasExt = isNonEmpty(ext);
+        if (hasVal) json[key] = val;
+        if (hasExt) json['_$key'] = ext;
       } else if (field is List<FhirBase>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
-          final fieldJson = field.map((e) => e.toJson()).toList();
-          json[key] = fieldJson.map((e) => e['value']).toList();
-          if (fieldJson.any((e) => e['_value'] != null)) {
-            json['_$key'] = fieldJson.map((e) => e['_value']).toList();
+        final isPrimitive = field.first is PrimitiveType;
+        final tempList = <dynamic>[];
+        final tempExtensions = <dynamic>[];
+        for (final e in field) {
+          final itemMap = e.toJson();
+          if (!isNonEmpty(itemMap)) {
+            continue;
+          }
+          if (isPrimitive) {
+            final v = itemMap['value'];
+            final x = itemMap['_value'];
+            tempList.add(v);
+            tempExtensions.add(x);
+          } else {
+            tempList.add(itemMap);
+          }
+        }
+        if (tempList.isEmpty) return;
+        if (isPrimitive) {
+          json[key] = tempList;
+          final anyExt = tempExtensions.any(isNonEmpty);
+          if (anyExt) {
+            json['_$key'] = tempExtensions;
           }
         } else {
-          json[key] = field.map((e) => e.toJson()).toList();
+          json[key] = tempList;
         }
       } else if (field is FhirBase) {
-        json[key] = field.toJson();
+        final subMap = field.toJson();
+        if (isNonEmpty(subMap)) {
+          json[key] = subMap;
+        }
       }
     }
 
@@ -6473,7 +6885,10 @@ class ImplementationGuideManifest extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -6487,7 +6902,10 @@ class ImplementationGuideManifest extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -6509,7 +6927,10 @@ class ImplementationGuideManifest extends BackboneElement {
             return copyWith(resource: newList);
           } else if (child is ImplementationGuideResource1) {
             // Add single element to existing list or create new list
-            final newList = [...resource, child];
+            final newList = [
+              ...resource,
+              child,
+            ];
             return copyWith(resource: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -6523,7 +6944,10 @@ class ImplementationGuideManifest extends BackboneElement {
             return copyWith(page: newList);
           } else if (child is ImplementationGuidePage1) {
             // Add single element to existing list or create new list
-            final newList = [...?page, child];
+            final newList = [
+              ...?page,
+              child,
+            ];
             return copyWith(page: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -6537,7 +6961,10 @@ class ImplementationGuideManifest extends BackboneElement {
             return copyWith(image: newList);
           } else if (child is FhirString) {
             // Add single element to existing list or create new list
-            final newList = [...?image, child];
+            final newList = [
+              ...?image,
+              child,
+            ];
             return copyWith(image: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -6551,7 +6978,10 @@ class ImplementationGuideManifest extends BackboneElement {
             return copyWith(other: newList);
           } else if (child is FhirString) {
             // Add single element to existing list or create new list
-            final newList = [...?other, child];
+            final newList = [
+              ...?other,
+              child,
+            ];
             return copyWith(other: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -6960,29 +7390,60 @@ class ImplementationGuideResource1 extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
+    bool isNonEmpty(dynamic val) {
+      if (val == null) return false;
+      if (val is List && val.isEmpty) return false;
+      if (val is Map && val.isEmpty) return false;
+      return true;
+    }
+
     void addField(String key, dynamic field) {
+      if (field == null) return;
       if (!(field is FhirBase? || field is List<FhirBase>?)) {
         throw ArgumentError('"field" must be a FhirBase type');
       }
-      if (field == null) return;
       if (field is PrimitiveType) {
-        json[key] = field.toJson()['value'];
-        if (field.toJson()['_value'] != null) {
-          json['_$key'] = field.toJson()['_value'];
-        }
+        final fieldMap = field.toJson();
+        final val = fieldMap['value'];
+        final ext = fieldMap['_value'];
+        final hasVal = isNonEmpty(val);
+        final hasExt = isNonEmpty(ext);
+        if (hasVal) json[key] = val;
+        if (hasExt) json['_$key'] = ext;
       } else if (field is List<FhirBase>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
-          final fieldJson = field.map((e) => e.toJson()).toList();
-          json[key] = fieldJson.map((e) => e['value']).toList();
-          if (fieldJson.any((e) => e['_value'] != null)) {
-            json['_$key'] = fieldJson.map((e) => e['_value']).toList();
+        final isPrimitive = field.first is PrimitiveType;
+        final tempList = <dynamic>[];
+        final tempExtensions = <dynamic>[];
+        for (final e in field) {
+          final itemMap = e.toJson();
+          if (!isNonEmpty(itemMap)) {
+            continue;
+          }
+          if (isPrimitive) {
+            final v = itemMap['value'];
+            final x = itemMap['_value'];
+            tempList.add(v);
+            tempExtensions.add(x);
+          } else {
+            tempList.add(itemMap);
+          }
+        }
+        if (tempList.isEmpty) return;
+        if (isPrimitive) {
+          json[key] = tempList;
+          final anyExt = tempExtensions.any(isNonEmpty);
+          if (anyExt) {
+            json['_$key'] = tempExtensions;
           }
         } else {
-          json[key] = field.map((e) => e.toJson()).toList();
+          json[key] = tempList;
         }
       } else if (field is FhirBase) {
-        json[key] = field.toJson();
+        final subMap = field.toJson();
+        if (isNonEmpty(subMap)) {
+          json[key] = subMap;
+        }
       }
     }
 
@@ -7115,7 +7576,10 @@ class ImplementationGuideResource1 extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -7129,7 +7593,10 @@ class ImplementationGuideResource1 extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -7143,6 +7610,7 @@ class ImplementationGuideResource1 extends BackboneElement {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'example':
       case 'exampleX':
         {
           if (child is ExampleXImplementationGuideResource1) {
@@ -7201,7 +7669,10 @@ class ImplementationGuideResource1 extends BackboneElement {
         return ['Reference'];
       case 'example':
       case 'exampleX':
-        return ['FhirBoolean', 'FhirCanonical'];
+        return [
+          'FhirBoolean',
+          'FhirCanonical',
+        ];
       case 'exampleBoolean':
         return ['FhirBoolean'];
       case 'exampleCanonical':
@@ -7525,29 +7996,60 @@ class ImplementationGuidePage1 extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
+    bool isNonEmpty(dynamic val) {
+      if (val == null) return false;
+      if (val is List && val.isEmpty) return false;
+      if (val is Map && val.isEmpty) return false;
+      return true;
+    }
+
     void addField(String key, dynamic field) {
+      if (field == null) return;
       if (!(field is FhirBase? || field is List<FhirBase>?)) {
         throw ArgumentError('"field" must be a FhirBase type');
       }
-      if (field == null) return;
       if (field is PrimitiveType) {
-        json[key] = field.toJson()['value'];
-        if (field.toJson()['_value'] != null) {
-          json['_$key'] = field.toJson()['_value'];
-        }
+        final fieldMap = field.toJson();
+        final val = fieldMap['value'];
+        final ext = fieldMap['_value'];
+        final hasVal = isNonEmpty(val);
+        final hasExt = isNonEmpty(ext);
+        if (hasVal) json[key] = val;
+        if (hasExt) json['_$key'] = ext;
       } else if (field is List<FhirBase>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
-          final fieldJson = field.map((e) => e.toJson()).toList();
-          json[key] = fieldJson.map((e) => e['value']).toList();
-          if (fieldJson.any((e) => e['_value'] != null)) {
-            json['_$key'] = fieldJson.map((e) => e['_value']).toList();
+        final isPrimitive = field.first is PrimitiveType;
+        final tempList = <dynamic>[];
+        final tempExtensions = <dynamic>[];
+        for (final e in field) {
+          final itemMap = e.toJson();
+          if (!isNonEmpty(itemMap)) {
+            continue;
+          }
+          if (isPrimitive) {
+            final v = itemMap['value'];
+            final x = itemMap['_value'];
+            tempList.add(v);
+            tempExtensions.add(x);
+          } else {
+            tempList.add(itemMap);
+          }
+        }
+        if (tempList.isEmpty) return;
+        if (isPrimitive) {
+          json[key] = tempList;
+          final anyExt = tempExtensions.any(isNonEmpty);
+          if (anyExt) {
+            json['_$key'] = tempExtensions;
           }
         } else {
-          json[key] = field.map((e) => e.toJson()).toList();
+          json[key] = tempList;
         }
       } else if (field is FhirBase) {
-        json[key] = field.toJson();
+        final subMap = field.toJson();
+        if (isNonEmpty(subMap)) {
+          json[key] = subMap;
+        }
       }
     }
 
@@ -7668,7 +8170,10 @@ class ImplementationGuidePage1 extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -7682,7 +8187,10 @@ class ImplementationGuidePage1 extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -7712,7 +8220,10 @@ class ImplementationGuidePage1 extends BackboneElement {
             return copyWith(anchor: newList);
           } else if (child is FhirString) {
             // Add single element to existing list or create new list
-            final newList = [...?anchor, child];
+            final newList = [
+              ...?anchor,
+              child,
+            ];
             return copyWith(anchor: newList);
           } else {
             throw Exception('Invalid child type for $childName');

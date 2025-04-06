@@ -1,4 +1,5 @@
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4_path/fhir_r4_path.dart';
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 
 /// Validates the bindings of nodes against the value sets defined in their
@@ -19,7 +20,7 @@ Future<ValidationResults> validateBindings({
     if (element.binding != null && element.binding!.valueSet != null) {
       final valueSetUrl = element.binding!.valueSet.toString();
       final validCodes = await getValueSetCodes(valueSetUrl, resourceCache);
-      final elementPath = element.path.value;
+      final elementPath = element.path.valueString;
 
       if (elementPath != null) {
         // Find the node corresponding to the element path.

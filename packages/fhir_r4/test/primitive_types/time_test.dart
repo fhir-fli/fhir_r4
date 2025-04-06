@@ -8,7 +8,7 @@ void timeTest() {
     test('Valid FhirTime String', () {
       final fhirTime = FhirTime('08:30:00.123');
 
-      expect(fhirTime.value, '08:30:00.123');
+      expect(fhirTime.valueString, '08:30:00.123');
       expect(fhirTime.hour, 8);
       expect(fhirTime.minute, 30);
       expect(fhirTime.second, 0);

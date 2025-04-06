@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class BiologicallyDerivedProductStorageScale extends FhirCodeEnum {
   // Private underscore constructor for internal use.
   BiologicallyDerivedProductStorageScale._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class BiologicallyDerivedProductStorageScale extends FhirCodeEnum {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory BiologicallyDerivedProductStorageScale(
-    String? raw, {
+    String? rawValue, {
     FhirUri? system,
     FhirString? version,
     FhirString? display,
@@ -29,9 +29,10 @@ class BiologicallyDerivedProductStorageScale extends FhirCodeEnum {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCode._validateCode(rawValue) : null;
     return BiologicallyDerivedProductStorageScale._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -45,11 +46,13 @@ class BiologicallyDerivedProductStorageScale extends FhirCodeEnum {
 
   /// Create empty [BiologicallyDerivedProductStorageScale] with element only
   factory BiologicallyDerivedProductStorageScale.empty() =>
-      BiologicallyDerivedProductStorageScale._(validatedValue: '');
+      BiologicallyDerivedProductStorageScale._(valueString: '');
 
-  /// Factory constructor to create [BiologicallyDerivedProductStorageScale] from JSON.
+  /// Factory constructor to create [BiologicallyDerivedProductStorageScale]
+  /// from JSON.
   factory BiologicallyDerivedProductStorageScale.fromJson(
-      Map<String, dynamic> json,) {
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -62,7 +65,7 @@ class BiologicallyDerivedProductStorageScale extends FhirCodeEnum {
       );
     }
     return BiologicallyDerivedProductStorageScale._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
@@ -70,7 +73,7 @@ class BiologicallyDerivedProductStorageScale extends FhirCodeEnum {
   /// farenheit
   static final BiologicallyDerivedProductStorageScale farenheit =
       BiologicallyDerivedProductStorageScale._(
-    validatedValue: 'farenheit',
+    valueString: 'farenheit',
     system: 'http://hl7.org/fhir/ValueSet/product-storage-scale'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Fahrenheit'.toFhirString,
@@ -79,7 +82,7 @@ class BiologicallyDerivedProductStorageScale extends FhirCodeEnum {
   /// celsius
   static final BiologicallyDerivedProductStorageScale celsius =
       BiologicallyDerivedProductStorageScale._(
-    validatedValue: 'celsius',
+    valueString: 'celsius',
     system: 'http://hl7.org/fhir/ValueSet/product-storage-scale'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Celsius'.toFhirString,
@@ -88,7 +91,7 @@ class BiologicallyDerivedProductStorageScale extends FhirCodeEnum {
   /// kelvin
   static final BiologicallyDerivedProductStorageScale kelvin =
       BiologicallyDerivedProductStorageScale._(
-    validatedValue: 'kelvin',
+    valueString: 'kelvin',
     system: 'http://hl7.org/fhir/ValueSet/product-storage-scale'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Kelvin'.toFhirString,
@@ -96,7 +99,7 @@ class BiologicallyDerivedProductStorageScale extends FhirCodeEnum {
 
   /// For instances where an Element is present but not value
   static final BiologicallyDerivedProductStorageScale elementOnly =
-      BiologicallyDerivedProductStorageScale._(validatedValue: '');
+      BiologicallyDerivedProductStorageScale._(valueString: '');
 
   /// List of all enum-like values
   static final List<BiologicallyDerivedProductStorageScale> values = [
@@ -109,31 +112,33 @@ class BiologicallyDerivedProductStorageScale extends FhirCodeEnum {
   @override
   BiologicallyDerivedProductStorageScale clone() =>
       BiologicallyDerivedProductStorageScale._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   BiologicallyDerivedProductStorageScale withElement(Element? newElement) {
     return BiologicallyDerivedProductStorageScale._(
-        validatedValue: value, element: newElement,);
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   BiologicallyDerivedProductStorageScale copyWith({
-    String? newValue,
+    dynamic newValue,
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
@@ -144,11 +149,13 @@ class BiologicallyDerivedProductStorageScale extends FhirCodeEnum {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError(
+        'Invalid input for BiologicallyDerivedProductStorageScale: $newValue',
+      );
     }
     return BiologicallyDerivedProductStorageScale._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

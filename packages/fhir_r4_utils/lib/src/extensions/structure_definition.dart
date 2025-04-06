@@ -5,7 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 extension SdRoot on StructureDefinition {
   /// Returns the root element of the [StructureDefinition].
   ElementDefinition? get rootElement => snapshot?.element.firstWhereOrNull(
-        (e) => e.path.value?.toLowerCase() == type.toString().toLowerCase(),
+        (e) =>
+            e.path.valueString?.toLowerCase() == type.toString().toLowerCase(),
       );
 
   /// Returns if the [StructureDefinition] describes a primitive type.

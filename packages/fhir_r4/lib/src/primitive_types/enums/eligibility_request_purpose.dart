@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class EligibilityRequestPurpose extends FhirCodeEnum {
   // Private underscore constructor for internal use.
   EligibilityRequestPurpose._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class EligibilityRequestPurpose extends FhirCodeEnum {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory EligibilityRequestPurpose(
-    String? raw, {
+    String? rawValue, {
     FhirUri? system,
     FhirString? version,
     FhirString? display,
@@ -29,9 +29,10 @@ class EligibilityRequestPurpose extends FhirCodeEnum {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCode._validateCode(rawValue) : null;
     return EligibilityRequestPurpose._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -45,10 +46,13 @@ class EligibilityRequestPurpose extends FhirCodeEnum {
 
   /// Create empty [EligibilityRequestPurpose] with element only
   factory EligibilityRequestPurpose.empty() =>
-      EligibilityRequestPurpose._(validatedValue: '');
+      EligibilityRequestPurpose._(valueString: '');
 
-  /// Factory constructor to create [EligibilityRequestPurpose] from JSON.
-  factory EligibilityRequestPurpose.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [EligibilityRequestPurpose]
+  /// from JSON.
+  factory EligibilityRequestPurpose.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -60,7 +64,7 @@ class EligibilityRequestPurpose extends FhirCodeEnum {
       );
     }
     return EligibilityRequestPurpose._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
@@ -68,7 +72,7 @@ class EligibilityRequestPurpose extends FhirCodeEnum {
   /// auth_requirements
   static final EligibilityRequestPurpose auth_requirements =
       EligibilityRequestPurpose._(
-    validatedValue: 'auth-requirements',
+    valueString: 'auth-requirements',
     system: 'http://hl7.org/fhir/ValueSet/eligibilityrequest-purpose'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Coverage auth-requirements'.toFhirString,
@@ -76,7 +80,7 @@ class EligibilityRequestPurpose extends FhirCodeEnum {
 
   /// benefits
   static final EligibilityRequestPurpose benefits = EligibilityRequestPurpose._(
-    validatedValue: 'benefits',
+    valueString: 'benefits',
     system: 'http://hl7.org/fhir/ValueSet/eligibilityrequest-purpose'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Coverage benefits'.toFhirString,
@@ -85,7 +89,7 @@ class EligibilityRequestPurpose extends FhirCodeEnum {
   /// discovery
   static final EligibilityRequestPurpose discovery =
       EligibilityRequestPurpose._(
-    validatedValue: 'discovery',
+    valueString: 'discovery',
     system: 'http://hl7.org/fhir/ValueSet/eligibilityrequest-purpose'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Coverage Discovery'.toFhirString,
@@ -94,7 +98,7 @@ class EligibilityRequestPurpose extends FhirCodeEnum {
   /// validation
   static final EligibilityRequestPurpose validation =
       EligibilityRequestPurpose._(
-    validatedValue: 'validation',
+    valueString: 'validation',
     system: 'http://hl7.org/fhir/ValueSet/eligibilityrequest-purpose'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Coverage Validation'.toFhirString,
@@ -102,7 +106,7 @@ class EligibilityRequestPurpose extends FhirCodeEnum {
 
   /// For instances where an Element is present but not value
   static final EligibilityRequestPurpose elementOnly =
-      EligibilityRequestPurpose._(validatedValue: '');
+      EligibilityRequestPurpose._(valueString: '');
 
   /// List of all enum-like values
   static final List<EligibilityRequestPurpose> values = [
@@ -115,31 +119,33 @@ class EligibilityRequestPurpose extends FhirCodeEnum {
   /// Clones the current instance
   @override
   EligibilityRequestPurpose clone() => EligibilityRequestPurpose._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   EligibilityRequestPurpose withElement(Element? newElement) {
     return EligibilityRequestPurpose._(
-        validatedValue: value, element: newElement,);
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   EligibilityRequestPurpose copyWith({
-    String? newValue,
+    dynamic newValue,
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
@@ -150,11 +156,13 @@ class EligibilityRequestPurpose extends FhirCodeEnum {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError(
+        'Invalid input for EligibilityRequestPurpose: $newValue',
+      );
     }
     return EligibilityRequestPurpose._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

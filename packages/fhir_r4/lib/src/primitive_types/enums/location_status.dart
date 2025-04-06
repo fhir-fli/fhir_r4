@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class LocationStatus extends FhirCodeEnum {
   // Private underscore constructor for internal use.
   LocationStatus._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class LocationStatus extends FhirCodeEnum {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory LocationStatus(
-    String? raw, {
+    String? rawValue, {
     FhirUri? system,
     FhirString? version,
     FhirString? display,
@@ -29,9 +29,10 @@ class LocationStatus extends FhirCodeEnum {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCode._validateCode(rawValue) : null;
     return LocationStatus._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -44,10 +45,13 @@ class LocationStatus extends FhirCodeEnum {
   }
 
   /// Create empty [LocationStatus] with element only
-  factory LocationStatus.empty() => LocationStatus._(validatedValue: '');
+  factory LocationStatus.empty() => LocationStatus._(valueString: '');
 
-  /// Factory constructor to create [LocationStatus] from JSON.
-  factory LocationStatus.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [LocationStatus]
+  /// from JSON.
+  factory LocationStatus.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -59,14 +63,14 @@ class LocationStatus extends FhirCodeEnum {
       );
     }
     return LocationStatus._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// active
   static final LocationStatus active = LocationStatus._(
-    validatedValue: 'active',
+    valueString: 'active',
     system: 'http://hl7.org/fhir/ValueSet/location-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Active'.toFhirString,
@@ -74,7 +78,7 @@ class LocationStatus extends FhirCodeEnum {
 
   /// suspended
   static final LocationStatus suspended = LocationStatus._(
-    validatedValue: 'suspended',
+    valueString: 'suspended',
     system: 'http://hl7.org/fhir/ValueSet/location-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Suspended'.toFhirString,
@@ -82,15 +86,14 @@ class LocationStatus extends FhirCodeEnum {
 
   /// inactive
   static final LocationStatus inactive = LocationStatus._(
-    validatedValue: 'inactive',
+    valueString: 'inactive',
     system: 'http://hl7.org/fhir/ValueSet/location-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Inactive'.toFhirString,
   );
 
   /// For instances where an Element is present but not value
-  static final LocationStatus elementOnly =
-      LocationStatus._(validatedValue: '');
+  static final LocationStatus elementOnly = LocationStatus._(valueString: '');
 
   /// List of all enum-like values
   static final List<LocationStatus> values = [
@@ -102,30 +105,33 @@ class LocationStatus extends FhirCodeEnum {
   /// Clones the current instance
   @override
   LocationStatus clone() => LocationStatus._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   LocationStatus withElement(Element? newElement) {
-    return LocationStatus._(validatedValue: value, element: newElement);
+    return LocationStatus._(
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   LocationStatus copyWith({
-    String? newValue,
+    dynamic newValue,
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
@@ -136,11 +142,13 @@ class LocationStatus extends FhirCodeEnum {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError(
+        'Invalid input for LocationStatus: $newValue',
+      );
     }
     return LocationStatus._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

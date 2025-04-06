@@ -1,5 +1,6 @@
 import 'package:collection/collection.dart';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4_path/fhir_r4_path.dart';
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 
 /// Validates the cardinality of a [Node] against its corresponding
@@ -89,8 +90,8 @@ Future<ValidationResults> _validateElementCardinality({
     );
   } else if (foundNode != null) {
     // Check for too many occurrences of an element
-    if (element.max != null && element.max!.value != '*') {
-      final max = int.tryParse(element.max!.value!);
+    if (element.max != null && element.max!.valueString != '*') {
+      final max = int.tryParse(element.max!.valueString!);
       if (max != null &&
           foundNode is ArrayNode &&
           foundNode.children.length > max) {
@@ -240,4 +241,4 @@ Node? _checkForPolymorphism(
 
 /// Determines if an [ElementDefinition] is polymorphic (ends with `[x]`).
 bool _isAPolymorphicElement(ElementDefinition element) =>
-    element.path.value?.endsWith('[x]') ?? false;
+    element.path.valueString?.endsWith('[x]') ?? false;

@@ -1,4 +1,5 @@
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4_path/fhir_r4_path.dart';
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:test/test.dart';
 
@@ -16,7 +17,7 @@ void main() {
         type: [ElementDefinitionType(code: 'string'.toFhirUri)],
       );
       final elements = {'Patient.id': element};
-      final resourceCache = LocalResourceCache();
+      final resourceCache = CanonicalResourceManager();
 
       final results = await validateStructure(
         node: node,
@@ -35,7 +36,7 @@ void main() {
         type: [ElementDefinitionType(code: 'string'.toFhirUri)],
       );
       final elements = {'Patient.id': element};
-      final resourceCache = LocalResourceCache();
+      final resourceCache = CanonicalResourceManager();
 
       final results = await validateStructure(
         node: node,
@@ -82,7 +83,7 @@ void main() {
         'Patient.name': elementName,
         'Patient.name.given': elementGiven,
       };
-      final resourceCache = LocalResourceCache();
+      final resourceCache = CanonicalResourceManager();
 
       final results = await validateStructure(
         node: node,
@@ -114,7 +115,7 @@ void main() {
         ],
       );
       final elements = {'Patient.id': element};
-      final resourceCache = LocalResourceCache();
+      final resourceCache = CanonicalResourceManager();
 
       final results = await validateStructure(
         node: node,

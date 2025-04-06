@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class DeviceMetricColor extends FhirCodeEnum {
   // Private underscore constructor for internal use.
   DeviceMetricColor._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class DeviceMetricColor extends FhirCodeEnum {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory DeviceMetricColor(
-    String? raw, {
+    String? rawValue, {
     FhirUri? system,
     FhirString? version,
     FhirString? display,
@@ -29,9 +29,10 @@ class DeviceMetricColor extends FhirCodeEnum {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCode._validateCode(rawValue) : null;
     return DeviceMetricColor._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -44,10 +45,13 @@ class DeviceMetricColor extends FhirCodeEnum {
   }
 
   /// Create empty [DeviceMetricColor] with element only
-  factory DeviceMetricColor.empty() => DeviceMetricColor._(validatedValue: '');
+  factory DeviceMetricColor.empty() => DeviceMetricColor._(valueString: '');
 
-  /// Factory constructor to create [DeviceMetricColor] from JSON.
-  factory DeviceMetricColor.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [DeviceMetricColor]
+  /// from JSON.
+  factory DeviceMetricColor.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -59,14 +63,14 @@ class DeviceMetricColor extends FhirCodeEnum {
       );
     }
     return DeviceMetricColor._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// black
   static final DeviceMetricColor black = DeviceMetricColor._(
-    validatedValue: 'black',
+    valueString: 'black',
     system: 'http://hl7.org/fhir/ValueSet/metric-color'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Color Black'.toFhirString,
@@ -74,7 +78,7 @@ class DeviceMetricColor extends FhirCodeEnum {
 
   /// red
   static final DeviceMetricColor red = DeviceMetricColor._(
-    validatedValue: 'red',
+    valueString: 'red',
     system: 'http://hl7.org/fhir/ValueSet/metric-color'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Color Red'.toFhirString,
@@ -82,7 +86,7 @@ class DeviceMetricColor extends FhirCodeEnum {
 
   /// green
   static final DeviceMetricColor green = DeviceMetricColor._(
-    validatedValue: 'green',
+    valueString: 'green',
     system: 'http://hl7.org/fhir/ValueSet/metric-color'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Color Green'.toFhirString,
@@ -90,7 +94,7 @@ class DeviceMetricColor extends FhirCodeEnum {
 
   /// yellow
   static final DeviceMetricColor yellow = DeviceMetricColor._(
-    validatedValue: 'yellow',
+    valueString: 'yellow',
     system: 'http://hl7.org/fhir/ValueSet/metric-color'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Color Yellow'.toFhirString,
@@ -98,7 +102,7 @@ class DeviceMetricColor extends FhirCodeEnum {
 
   /// blue
   static final DeviceMetricColor blue = DeviceMetricColor._(
-    validatedValue: 'blue',
+    valueString: 'blue',
     system: 'http://hl7.org/fhir/ValueSet/metric-color'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Color Blue'.toFhirString,
@@ -106,7 +110,7 @@ class DeviceMetricColor extends FhirCodeEnum {
 
   /// magenta
   static final DeviceMetricColor magenta = DeviceMetricColor._(
-    validatedValue: 'magenta',
+    valueString: 'magenta',
     system: 'http://hl7.org/fhir/ValueSet/metric-color'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Color Magenta'.toFhirString,
@@ -114,7 +118,7 @@ class DeviceMetricColor extends FhirCodeEnum {
 
   /// cyan
   static final DeviceMetricColor cyan = DeviceMetricColor._(
-    validatedValue: 'cyan',
+    valueString: 'cyan',
     system: 'http://hl7.org/fhir/ValueSet/metric-color'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Color Cyan'.toFhirString,
@@ -122,7 +126,7 @@ class DeviceMetricColor extends FhirCodeEnum {
 
   /// white
   static final DeviceMetricColor white = DeviceMetricColor._(
-    validatedValue: 'white',
+    valueString: 'white',
     system: 'http://hl7.org/fhir/ValueSet/metric-color'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Color White'.toFhirString,
@@ -130,7 +134,7 @@ class DeviceMetricColor extends FhirCodeEnum {
 
   /// For instances where an Element is present but not value
   static final DeviceMetricColor elementOnly =
-      DeviceMetricColor._(validatedValue: '');
+      DeviceMetricColor._(valueString: '');
 
   /// List of all enum-like values
   static final List<DeviceMetricColor> values = [
@@ -147,30 +151,33 @@ class DeviceMetricColor extends FhirCodeEnum {
   /// Clones the current instance
   @override
   DeviceMetricColor clone() => DeviceMetricColor._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   DeviceMetricColor withElement(Element? newElement) {
-    return DeviceMetricColor._(validatedValue: value, element: newElement);
+    return DeviceMetricColor._(
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   DeviceMetricColor copyWith({
-    String? newValue,
+    dynamic newValue,
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
@@ -181,11 +188,13 @@ class DeviceMetricColor extends FhirCodeEnum {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError(
+        'Invalid input for DeviceMetricColor: $newValue',
+      );
     }
     return DeviceMetricColor._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

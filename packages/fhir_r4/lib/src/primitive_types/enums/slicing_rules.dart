@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class SlicingRules extends FhirCodeEnum {
   // Private underscore constructor for internal use.
   SlicingRules._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class SlicingRules extends FhirCodeEnum {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory SlicingRules(
-    String? raw, {
+    String? rawValue, {
     FhirUri? system,
     FhirString? version,
     FhirString? display,
@@ -29,9 +29,10 @@ class SlicingRules extends FhirCodeEnum {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCode._validateCode(rawValue) : null;
     return SlicingRules._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -44,10 +45,13 @@ class SlicingRules extends FhirCodeEnum {
   }
 
   /// Create empty [SlicingRules] with element only
-  factory SlicingRules.empty() => SlicingRules._(validatedValue: '');
+  factory SlicingRules.empty() => SlicingRules._(valueString: '');
 
-  /// Factory constructor to create [SlicingRules] from JSON.
-  factory SlicingRules.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [SlicingRules]
+  /// from JSON.
+  factory SlicingRules.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -59,14 +63,14 @@ class SlicingRules extends FhirCodeEnum {
       );
     }
     return SlicingRules._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// closed
   static final SlicingRules closed = SlicingRules._(
-    validatedValue: 'closed',
+    valueString: 'closed',
     system: 'http://hl7.org/fhir/ValueSet/resource-slicing-rules'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Closed'.toFhirString,
@@ -74,7 +78,7 @@ class SlicingRules extends FhirCodeEnum {
 
   /// open
   static final SlicingRules open = SlicingRules._(
-    validatedValue: 'open',
+    valueString: 'open',
     system: 'http://hl7.org/fhir/ValueSet/resource-slicing-rules'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Open'.toFhirString,
@@ -82,14 +86,14 @@ class SlicingRules extends FhirCodeEnum {
 
   /// openAtEnd
   static final SlicingRules openAtEnd = SlicingRules._(
-    validatedValue: 'openAtEnd',
+    valueString: 'openAtEnd',
     system: 'http://hl7.org/fhir/ValueSet/resource-slicing-rules'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Open at End'.toFhirString,
   );
 
   /// For instances where an Element is present but not value
-  static final SlicingRules elementOnly = SlicingRules._(validatedValue: '');
+  static final SlicingRules elementOnly = SlicingRules._(valueString: '');
 
   /// List of all enum-like values
   static final List<SlicingRules> values = [
@@ -101,30 +105,33 @@ class SlicingRules extends FhirCodeEnum {
   /// Clones the current instance
   @override
   SlicingRules clone() => SlicingRules._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   SlicingRules withElement(Element? newElement) {
-    return SlicingRules._(validatedValue: value, element: newElement);
+    return SlicingRules._(
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   SlicingRules copyWith({
-    String? newValue,
+    dynamic newValue,
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
@@ -135,11 +142,13 @@ class SlicingRules extends FhirCodeEnum {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError(
+        'Invalid input for SlicingRules: $newValue',
+      );
     }
     return SlicingRules._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

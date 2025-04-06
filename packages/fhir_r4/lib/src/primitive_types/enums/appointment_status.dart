@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class AppointmentStatus extends FhirCodeEnum {
   // Private underscore constructor for internal use.
   AppointmentStatus._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class AppointmentStatus extends FhirCodeEnum {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory AppointmentStatus(
-    String? raw, {
+    String? rawValue, {
     FhirUri? system,
     FhirString? version,
     FhirString? display,
@@ -29,9 +29,10 @@ class AppointmentStatus extends FhirCodeEnum {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCode._validateCode(rawValue) : null;
     return AppointmentStatus._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -44,10 +45,13 @@ class AppointmentStatus extends FhirCodeEnum {
   }
 
   /// Create empty [AppointmentStatus] with element only
-  factory AppointmentStatus.empty() => AppointmentStatus._(validatedValue: '');
+  factory AppointmentStatus.empty() => AppointmentStatus._(valueString: '');
 
-  /// Factory constructor to create [AppointmentStatus] from JSON.
-  factory AppointmentStatus.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [AppointmentStatus]
+  /// from JSON.
+  factory AppointmentStatus.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -59,14 +63,14 @@ class AppointmentStatus extends FhirCodeEnum {
       );
     }
     return AppointmentStatus._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// proposed
   static final AppointmentStatus proposed = AppointmentStatus._(
-    validatedValue: 'proposed',
+    valueString: 'proposed',
     system: 'http://hl7.org/fhir/ValueSet/appointmentstatus'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Proposed'.toFhirString,
@@ -74,7 +78,7 @@ class AppointmentStatus extends FhirCodeEnum {
 
   /// pending
   static final AppointmentStatus pending = AppointmentStatus._(
-    validatedValue: 'pending',
+    valueString: 'pending',
     system: 'http://hl7.org/fhir/ValueSet/appointmentstatus'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Pending'.toFhirString,
@@ -82,7 +86,7 @@ class AppointmentStatus extends FhirCodeEnum {
 
   /// booked
   static final AppointmentStatus booked = AppointmentStatus._(
-    validatedValue: 'booked',
+    valueString: 'booked',
     system: 'http://hl7.org/fhir/ValueSet/appointmentstatus'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Booked'.toFhirString,
@@ -90,7 +94,7 @@ class AppointmentStatus extends FhirCodeEnum {
 
   /// arrived
   static final AppointmentStatus arrived = AppointmentStatus._(
-    validatedValue: 'arrived',
+    valueString: 'arrived',
     system: 'http://hl7.org/fhir/ValueSet/appointmentstatus'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Arrived'.toFhirString,
@@ -98,7 +102,7 @@ class AppointmentStatus extends FhirCodeEnum {
 
   /// fulfilled
   static final AppointmentStatus fulfilled = AppointmentStatus._(
-    validatedValue: 'fulfilled',
+    valueString: 'fulfilled',
     system: 'http://hl7.org/fhir/ValueSet/appointmentstatus'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Fulfilled'.toFhirString,
@@ -106,7 +110,7 @@ class AppointmentStatus extends FhirCodeEnum {
 
   /// cancelled
   static final AppointmentStatus cancelled = AppointmentStatus._(
-    validatedValue: 'cancelled',
+    valueString: 'cancelled',
     system: 'http://hl7.org/fhir/ValueSet/appointmentstatus'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Cancelled'.toFhirString,
@@ -114,7 +118,7 @@ class AppointmentStatus extends FhirCodeEnum {
 
   /// noshow
   static final AppointmentStatus noshow = AppointmentStatus._(
-    validatedValue: 'noshow',
+    valueString: 'noshow',
     system: 'http://hl7.org/fhir/ValueSet/appointmentstatus'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'No Show'.toFhirString,
@@ -122,7 +126,7 @@ class AppointmentStatus extends FhirCodeEnum {
 
   /// entered_in_error
   static final AppointmentStatus entered_in_error = AppointmentStatus._(
-    validatedValue: 'entered-in-error',
+    valueString: 'entered-in-error',
     system: 'http://hl7.org/fhir/ValueSet/appointmentstatus'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Entered in error'.toFhirString,
@@ -130,7 +134,7 @@ class AppointmentStatus extends FhirCodeEnum {
 
   /// checked_in
   static final AppointmentStatus checked_in = AppointmentStatus._(
-    validatedValue: 'checked-in',
+    valueString: 'checked-in',
     system: 'http://hl7.org/fhir/ValueSet/appointmentstatus'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Checked In'.toFhirString,
@@ -138,7 +142,7 @@ class AppointmentStatus extends FhirCodeEnum {
 
   /// waitlist
   static final AppointmentStatus waitlist = AppointmentStatus._(
-    validatedValue: 'waitlist',
+    valueString: 'waitlist',
     system: 'http://hl7.org/fhir/ValueSet/appointmentstatus'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Waitlisted'.toFhirString,
@@ -146,7 +150,7 @@ class AppointmentStatus extends FhirCodeEnum {
 
   /// For instances where an Element is present but not value
   static final AppointmentStatus elementOnly =
-      AppointmentStatus._(validatedValue: '');
+      AppointmentStatus._(valueString: '');
 
   /// List of all enum-like values
   static final List<AppointmentStatus> values = [
@@ -165,30 +169,33 @@ class AppointmentStatus extends FhirCodeEnum {
   /// Clones the current instance
   @override
   AppointmentStatus clone() => AppointmentStatus._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   AppointmentStatus withElement(Element? newElement) {
-    return AppointmentStatus._(validatedValue: value, element: newElement);
+    return AppointmentStatus._(
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   AppointmentStatus copyWith({
-    String? newValue,
+    dynamic newValue,
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
@@ -199,11 +206,13 @@ class AppointmentStatus extends FhirCodeEnum {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError(
+        'Invalid input for AppointmentStatus: $newValue',
+      );
     }
     return AppointmentStatus._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

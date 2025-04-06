@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class NamingSystemIdentifierType extends FhirCodeEnum {
   // Private underscore constructor for internal use.
   NamingSystemIdentifierType._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class NamingSystemIdentifierType extends FhirCodeEnum {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory NamingSystemIdentifierType(
-    String? raw, {
+    String? rawValue, {
     FhirUri? system,
     FhirString? version,
     FhirString? display,
@@ -29,9 +29,10 @@ class NamingSystemIdentifierType extends FhirCodeEnum {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCode._validateCode(rawValue) : null;
     return NamingSystemIdentifierType._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -45,10 +46,13 @@ class NamingSystemIdentifierType extends FhirCodeEnum {
 
   /// Create empty [NamingSystemIdentifierType] with element only
   factory NamingSystemIdentifierType.empty() =>
-      NamingSystemIdentifierType._(validatedValue: '');
+      NamingSystemIdentifierType._(valueString: '');
 
-  /// Factory constructor to create [NamingSystemIdentifierType] from JSON.
-  factory NamingSystemIdentifierType.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [NamingSystemIdentifierType]
+  /// from JSON.
+  factory NamingSystemIdentifierType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -60,14 +64,14 @@ class NamingSystemIdentifierType extends FhirCodeEnum {
       );
     }
     return NamingSystemIdentifierType._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// oid
   static final NamingSystemIdentifierType oid = NamingSystemIdentifierType._(
-    validatedValue: 'oid',
+    valueString: 'oid',
     system:
         'http://hl7.org/fhir/ValueSet/namingsystem-identifier-type'.toFhirUri,
     version: '4.3.0'.toFhirString,
@@ -76,7 +80,7 @@ class NamingSystemIdentifierType extends FhirCodeEnum {
 
   /// uuid
   static final NamingSystemIdentifierType uuid = NamingSystemIdentifierType._(
-    validatedValue: 'uuid',
+    valueString: 'uuid',
     system:
         'http://hl7.org/fhir/ValueSet/namingsystem-identifier-type'.toFhirUri,
     version: '4.3.0'.toFhirString,
@@ -85,7 +89,7 @@ class NamingSystemIdentifierType extends FhirCodeEnum {
 
   /// uri
   static final NamingSystemIdentifierType uri = NamingSystemIdentifierType._(
-    validatedValue: 'uri',
+    valueString: 'uri',
     system:
         'http://hl7.org/fhir/ValueSet/namingsystem-identifier-type'.toFhirUri,
     version: '4.3.0'.toFhirString,
@@ -94,7 +98,7 @@ class NamingSystemIdentifierType extends FhirCodeEnum {
 
   /// other
   static final NamingSystemIdentifierType other = NamingSystemIdentifierType._(
-    validatedValue: 'other',
+    valueString: 'other',
     system:
         'http://hl7.org/fhir/ValueSet/namingsystem-identifier-type'.toFhirUri,
     version: '4.3.0'.toFhirString,
@@ -103,7 +107,7 @@ class NamingSystemIdentifierType extends FhirCodeEnum {
 
   /// For instances where an Element is present but not value
   static final NamingSystemIdentifierType elementOnly =
-      NamingSystemIdentifierType._(validatedValue: '');
+      NamingSystemIdentifierType._(valueString: '');
 
   /// List of all enum-like values
   static final List<NamingSystemIdentifierType> values = [
@@ -116,31 +120,33 @@ class NamingSystemIdentifierType extends FhirCodeEnum {
   /// Clones the current instance
   @override
   NamingSystemIdentifierType clone() => NamingSystemIdentifierType._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   NamingSystemIdentifierType withElement(Element? newElement) {
     return NamingSystemIdentifierType._(
-        validatedValue: value, element: newElement,);
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   NamingSystemIdentifierType copyWith({
-    String? newValue,
+    dynamic newValue,
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
@@ -151,11 +157,13 @@ class NamingSystemIdentifierType extends FhirCodeEnum {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError(
+        'Invalid input for NamingSystemIdentifierType: $newValue',
+      );
     }
     return NamingSystemIdentifierType._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

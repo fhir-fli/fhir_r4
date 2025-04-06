@@ -1,14 +1,16 @@
 part of 'primitive_types.dart';
 
-/// Extension on String to convert a String to [FhirTime].
+/// Extension on [String] to easily convert it to a [FhirTime].
 extension FhirTimeExtension on String {
-  /// Converts a String to a [FhirTime] object.
+  /// Creates a [FhirTime] from this [String].
   FhirTime get toFhirTime => FhirTime(this);
 }
 
-/// Class to handle FHIR time values.
-/// Inherits from [PrimitiveType] and implements [Comparable].
-class FhirTime extends PrimitiveType<String>
+/// A FHIR primitive type representing a time of day (`time`).
+///
+/// Stored as a string like `"HH:MM:SS.sss"` with optional fractional seconds.
+/// Not tied to a date or timezone; purely a clock time.
+class FhirTime extends PrimitiveType
     implements
         Comparable<FhirTime>,
         ValueXContractAnswer,
@@ -29,37 +31,38 @@ class FhirTime extends PrimitiveType<String>
         MaxValueXElementDefinition,
         ValueXElementDefinitionExample,
         ValueXExtension {
-  /// Private underscore constructor that assigns a validated time (or null) to
-  /// `super._(value: validatedValue)`. It also checks if both [value] and
-  /// [element] are null, throwing an [ArgumentError] if so.
+  // --------------------------------------------------------------------------
+  // Private Internal Constructor
+  // --------------------------------------------------------------------------
+
+  /// Private underscore constructor that calls [super._] with [valueString].
   FhirTime._({
-    required String? validatedValue,
+    required super.valueString,
     super.element,
     super.id,
     super.extension_,
     super.disallowExtensions,
     super.objectPath = 'Time',
-  }) : super._(value: validatedValue) {
-    if (value == null && element == null) {
-      throw ArgumentError('A value or element is required for FhirTime');
-    }
-  }
+  }) : super._();
 
-  /// **Single public factory constructor** that accepts a [String?] [input].
-  /// - Validates via `_validateTime(input)` if not null
-  /// - Calls the private underscore constructor.
+  // --------------------------------------------------------------------------
+  // Public Factories
+  // --------------------------------------------------------------------------
+
+  /// Creates a [FhirTime] from [rawValue], validating if it's a valid
+  /// HH:MM[:SS[.sss]] format.
   // ignore: sort_unnamed_constructors_first
   factory FhirTime(
-    String? input, {
+    dynamic rawValue, {
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
     String objectPath = 'Time',
   }) {
-    final validated = _validateTime(input);
+    final validatedString = _validateTime(rawValue);
     return FhirTime._(
-      validatedValue: validated,
+      valueString: validatedString,
       element: element,
       id: id,
       extension_: extension_,
@@ -68,54 +71,65 @@ class FhirTime extends PrimitiveType<String>
     );
   }
 
-  /// Factory method to construct [FhirTime] from time units (hour, minute,
-  /// second, millisecond).
+  /// Creates a [FhirTime] from specific [hour], [minute], [second],
+  /// [millisecond].
+  ///
+  /// - [hour] must be [0..23].
+  /// - [minute], [second] must be [0..59].
+  /// - [millisecond] is [0..999].
   factory FhirTime.fromUnits({
     int? hour,
     int? minute,
     int? second,
     int? millisecond,
   }) {
-    var timeString = hour?.toString().padLeft(2, '0') ?? '';
+    final h = hour?.toString().padLeft(2, '0') ?? '00';
+    var output = h;
+
     if (minute != null) {
-      timeString += ':${minute.toString().padLeft(2, '0')}';
+      final m = minute.toString().padLeft(2, '0');
+      output += ':$m';
       if (second != null) {
-        timeString += ':${second.toString().padLeft(2, '0')}';
+        final s = second.toString().padLeft(2, '0');
+        output += ':$s';
         if (millisecond != null) {
-          timeString += '.${millisecond.toString().padLeft(3, '0')}';
+          final ms = millisecond.toString().padLeft(3, '0');
+          output += '.$ms';
         }
       }
     }
-    return FhirTime(timeString);
+    return FhirTime(output);
   }
 
-  /// Creates empty [FhirTime] object
+  /// Creates an empty [FhirTime].
   factory FhirTime.empty() => FhirTime(null, element: Element.empty());
 
-  /// Factory constructor to create [FhirTime] from JSON.
+  /// Constructs a [FhirTime] from a JSON [Map].
   factory FhirTime.fromJson(Map<String, dynamic> json) {
-    final val = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    final rawValue = json['value'] as String?;
+    final elemJson = json['_value'] as Map<String, dynamic>?;
+    final parsedElement = elemJson == null ? null : Element.fromJson(elemJson);
     final objectPath = json['objectPath'] as String? ?? 'Time';
-    return FhirTime(val, element: element, objectPath: objectPath);
+    return FhirTime(rawValue, element: parsedElement, objectPath: objectPath);
   }
 
-  /// Factory constructor to create [FhirTime] from YAML.
-  factory FhirTime.fromYaml(dynamic yaml) {
-    return yaml is String
-        ? FhirTime.fromJson(
-            jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, dynamic>,
-          )
-        : yaml is YamlMap
-            ? FhirTime.fromJson(
-                jsonDecode(jsonEncode(yaml)) as Map<String, dynamic>,
-              )
-            : throw const FormatException('Invalid YAML format for FhirTime');
+  /// Constructs a [FhirTime] from YAML ([String] or [YamlMap]).
+  static FhirTime fromYaml(dynamic yaml) {
+    if (yaml is String) {
+      return FhirTime.fromJson(
+        jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, dynamic>,
+      );
+    } else if (yaml is YamlMap) {
+      return FhirTime.fromJson(
+        jsonDecode(jsonEncode(yaml)) as Map<String, dynamic>,
+      );
+    } else {
+      throw const FormatException('Invalid YAML format for FhirTime');
+    }
   }
 
-  /// Method to attempt parsing the input into a [FhirTime]. Returns [null] if
-  /// parsing fails.
+  /// Attempts to parse [input] into a [FhirTime]. Returns `null`
+  /// if parsing fails.
   static FhirTime? tryParse(dynamic input) {
     if (input is String) {
       try {
@@ -123,17 +137,23 @@ class FhirTime extends PrimitiveType<String>
       } catch (_) {
         return null;
       }
-    } else {
-      return null;
     }
+    return null;
   }
 
-  /// Validates the time input using a regular expression. Throws a
-  /// [FormatException] if the input is not valid.
-  static String? _validateTime(String? input) {
-    if (input == null) {
-      return null;
+  // --------------------------------------------------------------------------
+  // Validation
+  // --------------------------------------------------------------------------
+
+  /// Validates the [input] as a `time` format: `HH:MM[:SS[.sss]]`.
+  /// Throws [FormatException] if invalid.
+  static String? _validateTime(dynamic input) {
+    if (input == null) return null; // element-only
+    if (input is! String) {
+      throw FormatException('Invalid time format, must be a string: $input');
     }
+    if (input.isEmpty) return null;
+
     final timeRegex = RegExp(
       r'^([01][0-9]|2[0-3])(:([0-5][0-9])(:([0-5][0-9]|60)(\.[0-9]+)?)?)?$',
     );
@@ -144,248 +164,311 @@ class FhirTime extends PrimitiveType<String>
     }
   }
 
-  /// Returns the FHIR type, which is 'time' for this class.
+  // --------------------------------------------------------------------------
+  // FHIR Overrides
+  // --------------------------------------------------------------------------
+
+  /// Returns `"time"`.
   @override
   String get fhirType => 'time';
 
-  /// Getter for the hour component of the time.
-  int? get hour => value == null ? null : int.tryParse(value!.split(':')[0]);
+  /// Converts this [FhirTime] into a JSON [Map].
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      if (valueString != null) 'value': valueString,
+      if (element != null) '_value': element!.toJson(),
+    };
+  }
 
-  /// Getter for the minute component of the time.
-  int? get minute => value == null
-      ? null
-      : (value!.split(':').length > 1)
-          ? int.tryParse(value!.split(':')[1])
-          : null;
+  /// Returns the string form or `''`.
+  @override
+  String toString() => valueString ?? '';
 
-  /// Getter for the second component of the time.
-  int? get second => value == null
-      ? null
-      : (value!.split(':').length > 2)
-          ? int.tryParse(value!.split(':')[2].split('.')[0])
-          : null;
+  @override
+  String? get primitiveValue => valueString;
 
-  /// Getter for the millisecond component of the time.
-  int? get millisecond => value == null
-      ? null
-      : (value!.split('.').length > 1)
-          ? int.tryParse(value!.split('.')[1])
-          : null;
+  @override
+  bool equalsDeep(FhirBase? other) =>
+      other is FhirTime &&
+      other.valueString == valueString &&
+      other.element == element;
 
-  /// Adds the given time units (hours, minutes, seconds, milliseconds) to the
-  /// current [FhirTime] and returns a new [FhirTime] with the updated value.
+  /// Overridden equality operator checking if [other] is a [FhirTime]
+  /// with same string.
+  @override
+  // ignore: avoid_equals_and_hash_code_on_mutable_classes
+  bool operator ==(Object other) => _compare(Comparator.equal, other) ?? false;
+
+  @override
+  bool equals(Object other) => _compare(Comparator.equal, other) ?? false;
+
+  @override
+  // ignore: avoid_equals_and_hash_code_on_mutable_classes
+  int get hashCode => valueString.hashCode;
+
+  // --------------------------------------------------------------------------
+  // Comparable Implementation
+  // --------------------------------------------------------------------------
+
+  /// Compares this [FhirTime] to [other], returning -1 if less, 1 if greater,
+  /// or 0 otherwise.
+  @override
+  int compareTo(FhirTime other) {
+    final isGt = this > other;
+    if (isGt ?? false) return 1;
+    final isLt = this < other;
+    if (isLt ?? false) return -1;
+    return 0;
+  }
+
+  // --------------------------------------------------------------------------
+  // Time Components
+  // --------------------------------------------------------------------------
+
+  /// The hour component [0..23].
+  int? get hour =>
+      valueString == null ? null : int.tryParse(valueString!.split(':')[0]);
+
+  /// The minute component [0..59].
+  int? get minute {
+    if (valueString == null) return null;
+    final parts = valueString!.split(':');
+    return parts.length > 1 ? int.tryParse(parts[1]) : null;
+  }
+
+  /// The second component [0..59].
+  int? get second {
+    if (valueString == null) return null;
+    final parts = valueString!.split(':');
+    if (parts.length > 2) {
+      return int.tryParse(parts[2].split('.')[0]);
+    }
+    return null;
+  }
+
+  /// The millisecond component [0..999].
+  int? get millisecond {
+    if (valueString == null) return null;
+    final dotParts = valueString!.split('.');
+    if (dotParts.length > 1) {
+      return int.tryParse(dotParts[1]);
+    }
+    return null;
+  }
+
+  // --------------------------------------------------------------------------
+  // Arithmetic (Add / Subtract Time)
+  // --------------------------------------------------------------------------
+
+  /// Adds hours, minutes, seconds, and milliseconds to this time
+  /// (wrapping at 24h).
   FhirTime plus({
     int hours = 0,
     int minutes = 0,
     int seconds = 0,
     int milliseconds = 0,
   }) {
-    var newMilliseconds = (millisecond ?? 0) + milliseconds;
-    var newSeconds = (second ?? 0) + seconds + (newMilliseconds ~/ 1000);
-    newMilliseconds = newMilliseconds % 1000;
-    var newMinutes = (minute ?? 0) + minutes + (newSeconds ~/ 60);
-    newSeconds = newSeconds % 60;
-    var newHours = (hour ?? 0) + hours + (newMinutes ~/ 60);
-    newMinutes = newMinutes % 60;
-    newHours = newHours % 24;
+    var newMs = (millisecond ?? 0) + milliseconds;
+    var newSec = (second ?? 0) + seconds + (newMs ~/ 1000);
+    newMs %= 1000;
+    var newMin = (minute ?? 0) + minutes + (newSec ~/ 60);
+    newSec %= 60;
+    var newHr = (hour ?? 0) + hours + (newMin ~/ 60);
+    newMin %= 60;
+    newHr %= 24;
+
     return FhirTime.fromUnits(
-      hour: newHours,
-      minute: newMinutes,
-      second: newSeconds,
-      millisecond: newMilliseconds,
+      hour: newHr,
+      minute: newMin,
+      second: newSec,
+      millisecond: newMs,
     );
   }
 
-  /// Subtracts the given time units (hours, minutes, seconds, milliseconds)
-  /// from the current [FhirTime] and returns a new [FhirTime] with the updated
-  /// value.
+  /// Subtracts hours, minutes, seconds, milliseconds from this time
+  /// (wrapping at 24h).
   FhirTime subtract({
-    int? hours,
-    int? minutes,
-    int? seconds,
-    int? milliseconds,
+    int hours = 0,
+    int minutes = 0,
+    int seconds = 0,
+    int milliseconds = 0,
   }) {
-    int? newMilliseconds = (millisecond ?? 0) - (milliseconds ?? 0);
-    int? newSeconds = (second ?? 0) - (seconds ?? 0);
-    int? newMinutes = (minute ?? 0) - (minutes ?? 0);
-    int? newHours = (hour ?? 0) - (hours ?? 0);
+    var newMs = (millisecond ?? 0) - milliseconds;
+    var newSec = (second ?? 0) - seconds;
+    var newMin = (minute ?? 0) - minutes;
+    var newHr = (hour ?? 0) - hours;
 
-    while ((newMilliseconds ?? 0) < 0) {
-      newMilliseconds = (newMilliseconds ?? 0) + 1000;
-      newSeconds = (newSeconds ?? 0) - 1;
+    while (newMs < 0) {
+      newMs += 1000;
+      newSec -= 1;
     }
-
-    while ((newSeconds ?? 0) < 0) {
-      newSeconds = (newSeconds ?? 0) + 60;
-      newMinutes = (newMinutes ?? 0) - 1;
+    while (newSec < 0) {
+      newSec += 60;
+      newMin -= 1;
     }
-
-    while ((newMinutes ?? 0) < 0) {
-      newMinutes = (newMinutes ?? 0) + 60;
-      newHours = (newHours ?? 0) - 1;
+    while (newMin < 0) {
+      newMin += 60;
+      newHr -= 1;
     }
-
-    newHours = (newHours ?? 0) % 24;
+    newHr = (newHr % 24 + 24) % 24;
 
     return FhirTime.fromUnits(
-      hour: newHours,
-      minute: newMinutes,
-      second: newSeconds,
-      millisecond: newMilliseconds,
+      hour: newHr,
+      minute: newMin,
+      second: newSec,
+      millisecond: newMs,
     );
   }
 
-  /// Private method to compare this [FhirTime] with another [FhirTime] or
-  /// [String] using a specified [Comparator].
+  // --------------------------------------------------------------------------
+  // Precision
+  // --------------------------------------------------------------------------
+
+  /// Adjusts the time's precision (hour, minute, second, millisecond).
+  ///
+  /// If the time has a higher precision than requested, truncates.
+  /// If the time has a lower precision, zero-fills missing parts.
+  FhirTime adjustToPrecision(TemporalPrecisionEnum precision) {
+    if (!precision.isValidTimePrecision) {
+      throw ArgumentError(
+        'Precision must be one of: hour, minute, second, or millisecond.',
+      );
+    }
+
+    final h = hour ?? 0;
+    final m = minute ?? 0;
+    final s = second ?? 0;
+    final ms = millisecond ?? 0;
+
+    switch (precision) {
+      case TemporalPrecisionEnum.hour:
+        return FhirTime.fromUnits(hour: h);
+      case TemporalPrecisionEnum.minute:
+        return FhirTime.fromUnits(hour: h, minute: m);
+      case TemporalPrecisionEnum.second:
+        return FhirTime.fromUnits(hour: h, minute: m, second: s);
+      case TemporalPrecisionEnum.millisecond:
+        return FhirTime.fromUnits(
+          hour: h,
+          minute: m,
+          second: s,
+          millisecond: ms,
+        );
+      // year, month, day are not valid for `time`.
+      case TemporalPrecisionEnum.year:
+      case TemporalPrecisionEnum.month:
+      case TemporalPrecisionEnum.day:
+        throw ArgumentError('Unhandled precision: $precision');
+    }
+  }
+
+  // --------------------------------------------------------------------------
+  // Comparison Operators
+  // --------------------------------------------------------------------------
+
+  /// `>` operator for comparing times (returns `true/false` or `null` if invalid).
+  bool? operator >(Object other) => _compare(Comparator.greaterThan, other);
+
+  /// `>=` operator.
+  bool? operator >=(Object other) =>
+      _compare(Comparator.greaterThanEqual, other);
+
+  /// `<` operator.
+  bool? operator <(Object other) => _compare(Comparator.lessThan, other);
+
+  /// `<=` operator.
+  bool? operator <=(Object other) => _compare(Comparator.lessThanEqual, other);
+
+  /// Checks if this time is after [other].
+  bool? isAfter(Object other) => _compare(Comparator.greaterThan, other);
+
+  /// Checks if this time is before [other].
+  bool? isBefore(Object other) => _compare(Comparator.lessThan, other);
+
+  /// Checks if this time is the same or after [other].
+  bool? isSameOrAfter(Object other) =>
+      _compare(Comparator.greaterThanEqual, other);
+
+  /// Checks if this time is the same or before [other].
+  bool? isSameOrBefore(Object other) =>
+      _compare(Comparator.lessThanEqual, other);
+
+  /// Checks if this time is exactly equal to [other].
+  bool? isEqual(Object other) => _compare(Comparator.equal, other);
+
+  /// Checks if this time is "equivalent" to [other] (same HH:MM:SS.mmm).
+  bool? isEquivalent(Object other) => _compare(Comparator.equivalent, other);
+
+  // --------------------------------------------------------------------------
+  // Internal Comparison
+  // --------------------------------------------------------------------------
+
+  /// Compares [this] with [other] using [comparator], returns `bool?`.
   bool? _compare(Comparator comparator, Object other) {
     final rhs = other is FhirTime
         ? other
         : other is String
             ? FhirTime.tryParse(other)
             : null;
+    if (rhs == null) return false;
 
-    if (rhs == null) {
-      return false;
-    }
+    if (valueString == null || rhs.valueString == null) return null;
 
-    if (value == null || rhs.value == null) {
-      return null;
-    }
+    final lhsParts = valueString!.split(':');
+    final rhsParts = rhs.valueString!.split(':');
 
-    final lhsParts = value!.split(':');
-    final rhsParts = rhs.value!.split(':');
-    if (lhsParts.length != rhsParts.length) {
-      return null;
-    }
+    if (lhsParts.length != rhsParts.length) return null;
 
+    // Compare each numeric component
     for (var i = 0; i < lhsParts.length; i++) {
-      final lhsValue = double.parse(lhsParts[i]);
-      final rhsValue = double.parse(rhsParts[i]);
-
+      final lhsVal = double.parse(lhsParts[i]);
+      final rhsVal = double.parse(rhsParts[i]);
       switch (comparator) {
         case Comparator.equal:
-          if (lhsValue != rhsValue) {
-            return false;
-          }
-        // continue checking remaining parts
         case Comparator.equivalent:
-          if (lhsValue != rhsValue) {
-            return false;
-          }
-        // continue checking
+          if (lhsVal != rhsVal) return false;
+        // keep checking until mismatch or end
         case Comparator.greaterThan:
-          if (lhsValue < rhsValue) {
-            return false;
-          } else if (lhsValue > rhsValue) {
-            return true;
-          }
+          if (lhsVal < rhsVal) return false;
+          if (lhsVal > rhsVal) return true;
+        // next component
         case Comparator.lessThan:
-          if (lhsValue > rhsValue) {
-            return false;
-          } else if (lhsValue < rhsValue) {
-            return true;
-          }
+          if (lhsVal > rhsVal) return false;
+          if (lhsVal < rhsVal) return true;
+
         case Comparator.greaterThanEqual:
-          if (lhsValue < rhsValue) {
-            return false;
-          } else if (lhsValue > rhsValue) {
-            return true;
-          }
+          if (lhsVal < rhsVal) return false;
+          if (lhsVal > rhsVal) return true;
+
         case Comparator.lessThanEqual:
-          if (lhsValue > rhsValue) {
-            return false;
-          } else if (lhsValue < rhsValue) {
-            return true;
-          }
+          if (lhsVal > rhsVal) return false;
+          if (lhsVal < rhsVal) return true;
       }
     }
 
+    // If all components matched in >= / <= scenario => they are equal
     return comparator == Comparator.equal ||
         comparator == Comparator.equivalent ||
         comparator == Comparator.greaterThanEqual ||
         comparator == Comparator.lessThanEqual;
   }
 
-  /// Hash code for the [FhirTime] based on the value.
-  @override
-  // ignore: avoid_equals_and_hash_code_on_mutable_classes
-  int get hashCode => value.hashCode;
+  // --------------------------------------------------------------------------
+  // Clone / Copy
+  // --------------------------------------------------------------------------
 
   @override
-  bool equalsDeep(FhirBase? other) =>
-      other is FhirTime && other.value == value && other.element == element;
+  FhirTime clone() =>
+      FhirTime(valueString, element: element?.clone() as Element?);
 
-  /// Equality operator for comparing two [FhirTime] objects.
-  @override
-  // ignore: avoid_equals_and_hash_code_on_mutable_classes
-  bool operator ==(Object other) => _compare(Comparator.equal, other) ?? false;
+  /// Returns a copy with [disallowExtensions] set to `true`.
+  FhirTime noExtensions() => copyWith(disallowExtensions: true);
 
-  /// Checks equality between this [FhirTime] and another [FhirTime].
-  @override
-  bool equals(Object other) => _compare(Comparator.equal, other) ?? false;
-
-  /// Greater-than comparison operator for comparing two [FhirTime] objects.
-  bool? operator >(Object other) => _compare(Comparator.greaterThan, other);
-
-  /// Greater-than-or-equal comparison operator for two [FhirTime] objects.
-  bool? operator >=(Object other) =>
-      _compare(Comparator.greaterThanEqual, other);
-
-  /// Less-than comparison operator for comparing two [FhirTime] objects.
-  bool? operator <(Object other) => _compare(Comparator.lessThan, other);
-
-  /// Less-than-or-equal comparison operator for two [FhirTime] objects.
-  bool? operator <=(Object other) => _compare(Comparator.lessThanEqual, other);
-
-  /// Checks if this [FhirTime] is after another [FhirTime].
-  bool? isAfter(Object other) => _compare(Comparator.greaterThan, other);
-
-  /// Checks if this [FhirTime] is before another [FhirTime].
-  bool? isBefore(Object other) => _compare(Comparator.lessThan, other);
-
-  /// Checks if this [FhirTime] is the same or after another [FhirTime].
-  bool? isSameOrAfter(Object other) =>
-      _compare(Comparator.greaterThanEqual, other);
-
-  /// Checks if this [FhirTime] is the same or before another [FhirTime].
-  bool? isSameOrBefore(Object other) =>
-      _compare(Comparator.lessThanEqual, other);
-
-  /// Checks if this [FhirTime] is the same as another [FhirTime].
-  bool? isEqual(Object other) => _compare(Comparator.equal, other);
-
-  /// Checks if this [FhirTime] is equivalent to another [FhirTime].
-  bool? isEquivalent(Object other) => _compare(Comparator.equivalent, other);
-
-  /// Comparison method to compare this [FhirTime] with another [FhirTime].
-  @override
-  int compareTo(FhirTime other) => (this > other ?? false)
-      ? 1
-      : (this < other ?? false)
-          ? -1
-          : 0;
-
-  /// Converts [FhirTime] to a String.
-  @override
-  String toString() => value.toString();
-
-  /// Retrieves the primitive value of the object.
-  @override
-  String? get primitiveValue => value?.toString();
-
-  /// Converts [FhirTime] to a JSON map.
-  @override
-  Map<String, dynamic> toJson() {
-    return {
-      if (value != null) 'value': value,
-      if (element != null) '_value': element!.toJson(),
-    };
-  }
-
-  /// Creates a copy of the current [FhirTime] with optional new properties.
+  /// Creates a modified copy of this [FhirTime].
   @override
   FhirTime copyWith({
-    String? newValue,
+    dynamic newValue,
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
@@ -397,7 +480,7 @@ class FhirTime extends PrimitiveType<String>
     String? objectPath,
   }) {
     return FhirTime(
-      newValue ?? value,
+      newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
@@ -412,75 +495,21 @@ class FhirTime extends PrimitiveType<String>
     );
   }
 
-  /// Returns a new [FhirTime] with extensions disallowed.
-  FhirTime noExtensions() => copyWith(disallowExtensions: true);
+  // --------------------------------------------------------------------------
+  // Subclass Contract
+  // --------------------------------------------------------------------------
 
-  /// Creates a clone of the current [FhirTime].
-  @override
-  FhirTime clone() => FhirTime(value, element: element?.clone() as Element?);
-
-  /// Updates the precision of the [FhirTime] to the specified [precision].
-  ///
-  /// If the current [FhirTime] has a higher precision than requested,
-  /// the excess precision is truncated. If the current [FhirTime] has a lower
-  /// precision than requested, missing parts are filled with `0`.
-  ///
-  /// Throws an [ArgumentError] if the requested precision is not a valid
-  /// time precision.
-  FhirTime adjustToPrecision(TemporalPrecisionEnum precision) {
-    if (!precision.isValidTimePrecision) {
-      throw ArgumentError(
-        'Precision must be one of: hour, minute, second, millisecond.',
-      );
-    }
-
-    final currentHour = hour ?? 0;
-    final currentMinute = minute ?? 0;
-    final currentSecond = second ?? 0;
-    final currentMillisecond = millisecond ?? 0;
-
-    // Adjust the time based on the requested precision.
-    switch (precision) {
-      case TemporalPrecisionEnum.hour:
-        return FhirTime.fromUnits(hour: currentHour);
-      case TemporalPrecisionEnum.minute:
-        return FhirTime.fromUnits(
-          hour: currentHour,
-          minute: currentMinute,
-        );
-      case TemporalPrecisionEnum.second:
-        return FhirTime.fromUnits(
-          hour: currentHour,
-          minute: currentMinute,
-          second: currentSecond,
-        );
-      case TemporalPrecisionEnum.millisecond:
-        return FhirTime.fromUnits(
-          hour: currentHour,
-          minute: currentMinute,
-          second: currentSecond,
-          millisecond: currentMillisecond,
-        );
-      case TemporalPrecisionEnum.year:
-      case TemporalPrecisionEnum.month:
-      case TemporalPrecisionEnum.day:
-        throw ArgumentError('Unhandled precision: $precision');
-    }
-  }
-
-  /// Creates an empty property in the object
   @override
   FhirTime createProperty(String propertyName) => this;
 
-  /// Clears the specified fields in a [FhirTime] object
   @override
   FhirTime clear({
-    bool input = false,
+    bool value = false,
     bool extension_ = false,
     bool id = false,
   }) {
     return FhirTime(
-      input ? null : value,
+      value ? null : valueString,
       element: element,
       extension_: extension_ ? <FhirExtension>[] : this.extension_,
       id: id ? null : this.id,
@@ -488,10 +517,9 @@ class FhirTime extends PrimitiveType<String>
   }
 }
 
-/// Extension on [TemporalPrecisionEnum] to check if it is a valid time
-/// precision.
+/// An extension on [TemporalPrecisionEnum] to check if it is valid for `time`.
 extension TimePrecisionCheck on TemporalPrecisionEnum {
-  /// Checks if the [TemporalPrecisionEnum] is a valid time precision.
+  /// Valid time precisions: hour, minute, second, millisecond.
   bool get isValidTimePrecision =>
       this == TemporalPrecisionEnum.hour ||
       this == TemporalPrecisionEnum.minute ||

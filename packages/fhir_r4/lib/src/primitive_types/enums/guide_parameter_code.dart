@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class GuideParameterCode extends FhirCodeEnum {
   // Private underscore constructor for internal use.
   GuideParameterCode._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class GuideParameterCode extends FhirCodeEnum {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory GuideParameterCode(
-    String? raw, {
+    String? rawValue, {
     FhirUri? system,
     FhirString? version,
     FhirString? display,
@@ -29,9 +29,10 @@ class GuideParameterCode extends FhirCodeEnum {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCode._validateCode(rawValue) : null;
     return GuideParameterCode._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -44,11 +45,13 @@ class GuideParameterCode extends FhirCodeEnum {
   }
 
   /// Create empty [GuideParameterCode] with element only
-  factory GuideParameterCode.empty() =>
-      GuideParameterCode._(validatedValue: '');
+  factory GuideParameterCode.empty() => GuideParameterCode._(valueString: '');
 
-  /// Factory constructor to create [GuideParameterCode] from JSON.
-  factory GuideParameterCode.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [GuideParameterCode]
+  /// from JSON.
+  factory GuideParameterCode.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -60,14 +63,14 @@ class GuideParameterCode extends FhirCodeEnum {
       );
     }
     return GuideParameterCode._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// apply
   static final GuideParameterCode apply = GuideParameterCode._(
-    validatedValue: 'apply',
+    valueString: 'apply',
     system: 'http://hl7.org/fhir/ValueSet/guide-parameter-code'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Apply Metadata Value'.toFhirString,
@@ -75,7 +78,7 @@ class GuideParameterCode extends FhirCodeEnum {
 
   /// path_resource
   static final GuideParameterCode path_resource = GuideParameterCode._(
-    validatedValue: 'path-resource',
+    valueString: 'path-resource',
     system: 'http://hl7.org/fhir/ValueSet/guide-parameter-code'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Resource Path'.toFhirString,
@@ -83,7 +86,7 @@ class GuideParameterCode extends FhirCodeEnum {
 
   /// path_pages
   static final GuideParameterCode path_pages = GuideParameterCode._(
-    validatedValue: 'path-pages',
+    valueString: 'path-pages',
     system: 'http://hl7.org/fhir/ValueSet/guide-parameter-code'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Pages Path'.toFhirString,
@@ -91,7 +94,7 @@ class GuideParameterCode extends FhirCodeEnum {
 
   /// path_tx_cache
   static final GuideParameterCode path_tx_cache = GuideParameterCode._(
-    validatedValue: 'path-tx-cache',
+    valueString: 'path-tx-cache',
     system: 'http://hl7.org/fhir/ValueSet/guide-parameter-code'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Terminology Cache Path'.toFhirString,
@@ -99,7 +102,7 @@ class GuideParameterCode extends FhirCodeEnum {
 
   /// expansion_parameter
   static final GuideParameterCode expansion_parameter = GuideParameterCode._(
-    validatedValue: 'expansion-parameter',
+    valueString: 'expansion-parameter',
     system: 'http://hl7.org/fhir/ValueSet/guide-parameter-code'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Expansion Profile'.toFhirString,
@@ -107,7 +110,7 @@ class GuideParameterCode extends FhirCodeEnum {
 
   /// rule_broken_links
   static final GuideParameterCode rule_broken_links = GuideParameterCode._(
-    validatedValue: 'rule-broken-links',
+    valueString: 'rule-broken-links',
     system: 'http://hl7.org/fhir/ValueSet/guide-parameter-code'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Broken Links Rule'.toFhirString,
@@ -115,7 +118,7 @@ class GuideParameterCode extends FhirCodeEnum {
 
   /// generate_xml
   static final GuideParameterCode generate_xml = GuideParameterCode._(
-    validatedValue: 'generate-xml',
+    valueString: 'generate-xml',
     system: 'http://hl7.org/fhir/ValueSet/guide-parameter-code'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Generate XML'.toFhirString,
@@ -123,7 +126,7 @@ class GuideParameterCode extends FhirCodeEnum {
 
   /// generate_json
   static final GuideParameterCode generate_json = GuideParameterCode._(
-    validatedValue: 'generate-json',
+    valueString: 'generate-json',
     system: 'http://hl7.org/fhir/ValueSet/guide-parameter-code'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Generate JSON'.toFhirString,
@@ -131,7 +134,7 @@ class GuideParameterCode extends FhirCodeEnum {
 
   /// generate_turtle
   static final GuideParameterCode generate_turtle = GuideParameterCode._(
-    validatedValue: 'generate-turtle',
+    valueString: 'generate-turtle',
     system: 'http://hl7.org/fhir/ValueSet/guide-parameter-code'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Generate Turtle'.toFhirString,
@@ -139,7 +142,7 @@ class GuideParameterCode extends FhirCodeEnum {
 
   /// html_template
   static final GuideParameterCode html_template = GuideParameterCode._(
-    validatedValue: 'html-template',
+    valueString: 'html-template',
     system: 'http://hl7.org/fhir/ValueSet/guide-parameter-code'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'HTML Template'.toFhirString,
@@ -147,7 +150,7 @@ class GuideParameterCode extends FhirCodeEnum {
 
   /// For instances where an Element is present but not value
   static final GuideParameterCode elementOnly =
-      GuideParameterCode._(validatedValue: '');
+      GuideParameterCode._(valueString: '');
 
   /// List of all enum-like values
   static final List<GuideParameterCode> values = [
@@ -166,30 +169,33 @@ class GuideParameterCode extends FhirCodeEnum {
   /// Clones the current instance
   @override
   GuideParameterCode clone() => GuideParameterCode._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   GuideParameterCode withElement(Element? newElement) {
-    return GuideParameterCode._(validatedValue: value, element: newElement);
+    return GuideParameterCode._(
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   GuideParameterCode copyWith({
-    String? newValue,
+    dynamic newValue,
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
@@ -200,11 +206,13 @@ class GuideParameterCode extends FhirCodeEnum {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError(
+        'Invalid input for GuideParameterCode: $newValue',
+      );
     }
     return GuideParameterCode._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

@@ -6,7 +6,7 @@ part of '../primitive_types.dart';
 class CriteriaNotExistsBehavior extends FhirCodeEnum {
   // Private underscore constructor for internal use.
   CriteriaNotExistsBehavior._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -20,7 +20,7 @@ class CriteriaNotExistsBehavior extends FhirCodeEnum {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory CriteriaNotExistsBehavior(
-    String? raw, {
+    String? rawValue, {
     FhirUri? system,
     FhirString? version,
     FhirString? display,
@@ -30,9 +30,10 @@ class CriteriaNotExistsBehavior extends FhirCodeEnum {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCode._validateCode(rawValue) : null;
     return CriteriaNotExistsBehavior._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -46,10 +47,13 @@ class CriteriaNotExistsBehavior extends FhirCodeEnum {
 
   /// Create empty [CriteriaNotExistsBehavior] with element only
   factory CriteriaNotExistsBehavior.empty() =>
-      CriteriaNotExistsBehavior._(validatedValue: '');
+      CriteriaNotExistsBehavior._(valueString: '');
 
-  /// Factory constructor to create [CriteriaNotExistsBehavior] from JSON.
-  factory CriteriaNotExistsBehavior.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [CriteriaNotExistsBehavior]
+  /// from JSON.
+  factory CriteriaNotExistsBehavior.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -61,7 +65,7 @@ class CriteriaNotExistsBehavior extends FhirCodeEnum {
       );
     }
     return CriteriaNotExistsBehavior._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
@@ -69,7 +73,7 @@ class CriteriaNotExistsBehavior extends FhirCodeEnum {
   /// test_passes
   static final CriteriaNotExistsBehavior test_passes =
       CriteriaNotExistsBehavior._(
-    validatedValue: 'test-passes',
+    valueString: 'test-passes',
     system:
         'http://hl7.org/fhir/ValueSet/subscriptiontopic-cr-behavior'.toFhirUri,
     version: '4.3.0'.toFhirString,
@@ -79,7 +83,7 @@ class CriteriaNotExistsBehavior extends FhirCodeEnum {
   /// test_fails
   static final CriteriaNotExistsBehavior test_fails =
       CriteriaNotExistsBehavior._(
-    validatedValue: 'test-fails',
+    valueString: 'test-fails',
     system:
         'http://hl7.org/fhir/ValueSet/subscriptiontopic-cr-behavior'.toFhirUri,
     version: '4.3.0'.toFhirString,
@@ -88,7 +92,7 @@ class CriteriaNotExistsBehavior extends FhirCodeEnum {
 
   /// For instances where an Element is present but not value
   static final CriteriaNotExistsBehavior elementOnly =
-      CriteriaNotExistsBehavior._(validatedValue: '');
+      CriteriaNotExistsBehavior._(valueString: '');
 
   /// List of all enum-like values
   static final List<CriteriaNotExistsBehavior> values = [
@@ -99,31 +103,33 @@ class CriteriaNotExistsBehavior extends FhirCodeEnum {
   /// Clones the current instance
   @override
   CriteriaNotExistsBehavior clone() => CriteriaNotExistsBehavior._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   CriteriaNotExistsBehavior withElement(Element? newElement) {
     return CriteriaNotExistsBehavior._(
-        validatedValue: value, element: newElement,);
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   CriteriaNotExistsBehavior copyWith({
-    String? newValue,
+    dynamic newValue,
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
@@ -134,11 +140,13 @@ class CriteriaNotExistsBehavior extends FhirCodeEnum {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError(
+        'Invalid input for CriteriaNotExistsBehavior: $newValue',
+      );
     }
     return CriteriaNotExistsBehavior._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

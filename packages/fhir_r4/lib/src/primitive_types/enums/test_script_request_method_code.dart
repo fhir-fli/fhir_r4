@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class TestScriptRequestMethodCode extends FhirCodeEnum {
   // Private underscore constructor for internal use.
   TestScriptRequestMethodCode._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class TestScriptRequestMethodCode extends FhirCodeEnum {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory TestScriptRequestMethodCode(
-    String? raw, {
+    String? rawValue, {
     FhirUri? system,
     FhirString? version,
     FhirString? display,
@@ -29,9 +29,10 @@ class TestScriptRequestMethodCode extends FhirCodeEnum {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCode._validateCode(rawValue) : null;
     return TestScriptRequestMethodCode._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -45,10 +46,13 @@ class TestScriptRequestMethodCode extends FhirCodeEnum {
 
   /// Create empty [TestScriptRequestMethodCode] with element only
   factory TestScriptRequestMethodCode.empty() =>
-      TestScriptRequestMethodCode._(validatedValue: '');
+      TestScriptRequestMethodCode._(valueString: '');
 
-  /// Factory constructor to create [TestScriptRequestMethodCode] from JSON.
-  factory TestScriptRequestMethodCode.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [TestScriptRequestMethodCode]
+  /// from JSON.
+  factory TestScriptRequestMethodCode.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -60,7 +64,7 @@ class TestScriptRequestMethodCode extends FhirCodeEnum {
       );
     }
     return TestScriptRequestMethodCode._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
@@ -68,7 +72,7 @@ class TestScriptRequestMethodCode extends FhirCodeEnum {
   /// delete
   static final TestScriptRequestMethodCode delete =
       TestScriptRequestMethodCode._(
-    validatedValue: 'delete',
+    valueString: 'delete',
     system: 'http://hl7.org/fhir/ValueSet/http-operations'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'DELETE'.toFhirString,
@@ -76,7 +80,7 @@ class TestScriptRequestMethodCode extends FhirCodeEnum {
 
   /// get_
   static final TestScriptRequestMethodCode get_ = TestScriptRequestMethodCode._(
-    validatedValue: 'get',
+    valueString: 'get',
     system: 'http://hl7.org/fhir/ValueSet/http-operations'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'GET'.toFhirString,
@@ -85,7 +89,7 @@ class TestScriptRequestMethodCode extends FhirCodeEnum {
   /// options
   static final TestScriptRequestMethodCode options =
       TestScriptRequestMethodCode._(
-    validatedValue: 'options',
+    valueString: 'options',
     system: 'http://hl7.org/fhir/ValueSet/http-operations'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'OPTIONS'.toFhirString,
@@ -94,7 +98,7 @@ class TestScriptRequestMethodCode extends FhirCodeEnum {
   /// patch
   static final TestScriptRequestMethodCode patch =
       TestScriptRequestMethodCode._(
-    validatedValue: 'patch',
+    valueString: 'patch',
     system: 'http://hl7.org/fhir/ValueSet/http-operations'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'PATCH'.toFhirString,
@@ -102,7 +106,7 @@ class TestScriptRequestMethodCode extends FhirCodeEnum {
 
   /// post
   static final TestScriptRequestMethodCode post = TestScriptRequestMethodCode._(
-    validatedValue: 'post',
+    valueString: 'post',
     system: 'http://hl7.org/fhir/ValueSet/http-operations'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'POST'.toFhirString,
@@ -110,7 +114,7 @@ class TestScriptRequestMethodCode extends FhirCodeEnum {
 
   /// put
   static final TestScriptRequestMethodCode put = TestScriptRequestMethodCode._(
-    validatedValue: 'put',
+    valueString: 'put',
     system: 'http://hl7.org/fhir/ValueSet/http-operations'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'PUT'.toFhirString,
@@ -118,7 +122,7 @@ class TestScriptRequestMethodCode extends FhirCodeEnum {
 
   /// head
   static final TestScriptRequestMethodCode head = TestScriptRequestMethodCode._(
-    validatedValue: 'head',
+    valueString: 'head',
     system: 'http://hl7.org/fhir/ValueSet/http-operations'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'HEAD'.toFhirString,
@@ -126,7 +130,7 @@ class TestScriptRequestMethodCode extends FhirCodeEnum {
 
   /// For instances where an Element is present but not value
   static final TestScriptRequestMethodCode elementOnly =
-      TestScriptRequestMethodCode._(validatedValue: '');
+      TestScriptRequestMethodCode._(valueString: '');
 
   /// List of all enum-like values
   static final List<TestScriptRequestMethodCode> values = [
@@ -142,31 +146,33 @@ class TestScriptRequestMethodCode extends FhirCodeEnum {
   /// Clones the current instance
   @override
   TestScriptRequestMethodCode clone() => TestScriptRequestMethodCode._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   TestScriptRequestMethodCode withElement(Element? newElement) {
     return TestScriptRequestMethodCode._(
-        validatedValue: value, element: newElement,);
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   TestScriptRequestMethodCode copyWith({
-    String? newValue,
+    dynamic newValue,
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
@@ -177,11 +183,13 @@ class TestScriptRequestMethodCode extends FhirCodeEnum {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError(
+        'Invalid input for TestScriptRequestMethodCode: $newValue',
+      );
     }
     return TestScriptRequestMethodCode._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

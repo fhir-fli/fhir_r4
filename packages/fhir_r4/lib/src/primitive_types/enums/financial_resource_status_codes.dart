@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class FinancialResourceStatusCodes extends FhirCodeEnum {
   // Private underscore constructor for internal use.
   FinancialResourceStatusCodes._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class FinancialResourceStatusCodes extends FhirCodeEnum {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory FinancialResourceStatusCodes(
-    String? raw, {
+    String? rawValue, {
     FhirUri? system,
     FhirString? version,
     FhirString? display,
@@ -29,9 +29,10 @@ class FinancialResourceStatusCodes extends FhirCodeEnum {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCode._validateCode(rawValue) : null;
     return FinancialResourceStatusCodes._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -45,10 +46,13 @@ class FinancialResourceStatusCodes extends FhirCodeEnum {
 
   /// Create empty [FinancialResourceStatusCodes] with element only
   factory FinancialResourceStatusCodes.empty() =>
-      FinancialResourceStatusCodes._(validatedValue: '');
+      FinancialResourceStatusCodes._(valueString: '');
 
-  /// Factory constructor to create [FinancialResourceStatusCodes] from JSON.
-  factory FinancialResourceStatusCodes.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [FinancialResourceStatusCodes]
+  /// from JSON.
+  factory FinancialResourceStatusCodes.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -60,7 +64,7 @@ class FinancialResourceStatusCodes extends FhirCodeEnum {
       );
     }
     return FinancialResourceStatusCodes._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
@@ -68,7 +72,7 @@ class FinancialResourceStatusCodes extends FhirCodeEnum {
   /// active
   static final FinancialResourceStatusCodes active =
       FinancialResourceStatusCodes._(
-    validatedValue: 'active',
+    valueString: 'active',
     system: 'http://hl7.org/fhir/ValueSet/fm-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Active'.toFhirString,
@@ -77,7 +81,7 @@ class FinancialResourceStatusCodes extends FhirCodeEnum {
   /// cancelled
   static final FinancialResourceStatusCodes cancelled =
       FinancialResourceStatusCodes._(
-    validatedValue: 'cancelled',
+    valueString: 'cancelled',
     system: 'http://hl7.org/fhir/ValueSet/fm-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Cancelled'.toFhirString,
@@ -86,7 +90,7 @@ class FinancialResourceStatusCodes extends FhirCodeEnum {
   /// draft
   static final FinancialResourceStatusCodes draft =
       FinancialResourceStatusCodes._(
-    validatedValue: 'draft',
+    valueString: 'draft',
     system: 'http://hl7.org/fhir/ValueSet/fm-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Draft'.toFhirString,
@@ -95,7 +99,7 @@ class FinancialResourceStatusCodes extends FhirCodeEnum {
   /// entered_in_error
   static final FinancialResourceStatusCodes entered_in_error =
       FinancialResourceStatusCodes._(
-    validatedValue: 'entered-in-error',
+    valueString: 'entered-in-error',
     system: 'http://hl7.org/fhir/ValueSet/fm-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Entered in Error'.toFhirString,
@@ -103,7 +107,7 @@ class FinancialResourceStatusCodes extends FhirCodeEnum {
 
   /// For instances where an Element is present but not value
   static final FinancialResourceStatusCodes elementOnly =
-      FinancialResourceStatusCodes._(validatedValue: '');
+      FinancialResourceStatusCodes._(valueString: '');
 
   /// List of all enum-like values
   static final List<FinancialResourceStatusCodes> values = [
@@ -116,31 +120,33 @@ class FinancialResourceStatusCodes extends FhirCodeEnum {
   /// Clones the current instance
   @override
   FinancialResourceStatusCodes clone() => FinancialResourceStatusCodes._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   FinancialResourceStatusCodes withElement(Element? newElement) {
     return FinancialResourceStatusCodes._(
-        validatedValue: value, element: newElement,);
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   FinancialResourceStatusCodes copyWith({
-    String? newValue,
+    dynamic newValue,
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
@@ -151,11 +157,13 @@ class FinancialResourceStatusCodes extends FhirCodeEnum {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError(
+        'Invalid input for FinancialResourceStatusCodes: $newValue',
+      );
     }
     return FinancialResourceStatusCodes._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

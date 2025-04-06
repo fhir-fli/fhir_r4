@@ -6,7 +6,7 @@ part of '../primitive_types.dart';
 class AllergyIntoleranceCriticality extends FhirCodeEnum {
   // Private underscore constructor for internal use.
   AllergyIntoleranceCriticality._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -20,7 +20,7 @@ class AllergyIntoleranceCriticality extends FhirCodeEnum {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory AllergyIntoleranceCriticality(
-    String? raw, {
+    String? rawValue, {
     FhirUri? system,
     FhirString? version,
     FhirString? display,
@@ -30,9 +30,10 @@ class AllergyIntoleranceCriticality extends FhirCodeEnum {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCode._validateCode(rawValue) : null;
     return AllergyIntoleranceCriticality._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -46,10 +47,13 @@ class AllergyIntoleranceCriticality extends FhirCodeEnum {
 
   /// Create empty [AllergyIntoleranceCriticality] with element only
   factory AllergyIntoleranceCriticality.empty() =>
-      AllergyIntoleranceCriticality._(validatedValue: '');
+      AllergyIntoleranceCriticality._(valueString: '');
 
-  /// Factory constructor to create [AllergyIntoleranceCriticality] from JSON.
-  factory AllergyIntoleranceCriticality.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [AllergyIntoleranceCriticality]
+  /// from JSON.
+  factory AllergyIntoleranceCriticality.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -61,7 +65,7 @@ class AllergyIntoleranceCriticality extends FhirCodeEnum {
       );
     }
     return AllergyIntoleranceCriticality._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
@@ -69,7 +73,7 @@ class AllergyIntoleranceCriticality extends FhirCodeEnum {
   /// low
   static final AllergyIntoleranceCriticality low =
       AllergyIntoleranceCriticality._(
-    validatedValue: 'low',
+    valueString: 'low',
     system: 'http://hl7.org/fhir/ValueSet/allergy-intolerance-criticality'
         .toFhirUri,
     version: '4.3.0'.toFhirString,
@@ -79,7 +83,7 @@ class AllergyIntoleranceCriticality extends FhirCodeEnum {
   /// high
   static final AllergyIntoleranceCriticality high =
       AllergyIntoleranceCriticality._(
-    validatedValue: 'high',
+    valueString: 'high',
     system: 'http://hl7.org/fhir/ValueSet/allergy-intolerance-criticality'
         .toFhirUri,
     version: '4.3.0'.toFhirString,
@@ -89,7 +93,7 @@ class AllergyIntoleranceCriticality extends FhirCodeEnum {
   /// unable_to_assess
   static final AllergyIntoleranceCriticality unable_to_assess =
       AllergyIntoleranceCriticality._(
-    validatedValue: 'unable-to-assess',
+    valueString: 'unable-to-assess',
     system: 'http://hl7.org/fhir/ValueSet/allergy-intolerance-criticality'
         .toFhirUri,
     version: '4.3.0'.toFhirString,
@@ -98,7 +102,7 @@ class AllergyIntoleranceCriticality extends FhirCodeEnum {
 
   /// For instances where an Element is present but not value
   static final AllergyIntoleranceCriticality elementOnly =
-      AllergyIntoleranceCriticality._(validatedValue: '');
+      AllergyIntoleranceCriticality._(valueString: '');
 
   /// List of all enum-like values
   static final List<AllergyIntoleranceCriticality> values = [
@@ -110,31 +114,33 @@ class AllergyIntoleranceCriticality extends FhirCodeEnum {
   /// Clones the current instance
   @override
   AllergyIntoleranceCriticality clone() => AllergyIntoleranceCriticality._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   AllergyIntoleranceCriticality withElement(Element? newElement) {
     return AllergyIntoleranceCriticality._(
-        validatedValue: value, element: newElement,);
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   AllergyIntoleranceCriticality copyWith({
-    String? newValue,
+    dynamic newValue,
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
@@ -145,11 +151,13 @@ class AllergyIntoleranceCriticality extends FhirCodeEnum {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError(
+        'Invalid input for AllergyIntoleranceCriticality: $newValue',
+      );
     }
     return AllergyIntoleranceCriticality._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

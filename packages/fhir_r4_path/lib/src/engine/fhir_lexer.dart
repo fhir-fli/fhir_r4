@@ -9,7 +9,7 @@ class FHIRLexer {
     String? name,
     this.cursor = 0,
     this.metadataFormat = false,
-    this.allowDoubleQuotes = false,
+    this.allowDoubleQuotes = true,
   })  : source = source == null ? '' : source.stripBOM(),
         name = name ?? '??' {
     currentLocation = SourceLocation(1, 1);

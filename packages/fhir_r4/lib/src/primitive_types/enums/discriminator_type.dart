@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class DiscriminatorType extends FhirCodeEnum {
   // Private underscore constructor for internal use.
   DiscriminatorType._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class DiscriminatorType extends FhirCodeEnum {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory DiscriminatorType(
-    String? raw, {
+    String? rawValue, {
     FhirUri? system,
     FhirString? version,
     FhirString? display,
@@ -29,9 +29,10 @@ class DiscriminatorType extends FhirCodeEnum {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCode._validateCode(rawValue) : null;
     return DiscriminatorType._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -44,10 +45,13 @@ class DiscriminatorType extends FhirCodeEnum {
   }
 
   /// Create empty [DiscriminatorType] with element only
-  factory DiscriminatorType.empty() => DiscriminatorType._(validatedValue: '');
+  factory DiscriminatorType.empty() => DiscriminatorType._(valueString: '');
 
-  /// Factory constructor to create [DiscriminatorType] from JSON.
-  factory DiscriminatorType.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [DiscriminatorType]
+  /// from JSON.
+  factory DiscriminatorType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -59,14 +63,14 @@ class DiscriminatorType extends FhirCodeEnum {
       );
     }
     return DiscriminatorType._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// value
   static final DiscriminatorType value_ = DiscriminatorType._(
-    validatedValue: 'value',
+    valueString: 'value',
     system: 'http://hl7.org/fhir/ValueSet/discriminator-type'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Value'.toFhirString,
@@ -74,7 +78,7 @@ class DiscriminatorType extends FhirCodeEnum {
 
   /// exists
   static final DiscriminatorType exists = DiscriminatorType._(
-    validatedValue: 'exists',
+    valueString: 'exists',
     system: 'http://hl7.org/fhir/ValueSet/discriminator-type'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Exists'.toFhirString,
@@ -82,7 +86,7 @@ class DiscriminatorType extends FhirCodeEnum {
 
   /// pattern
   static final DiscriminatorType pattern = DiscriminatorType._(
-    validatedValue: 'pattern',
+    valueString: 'pattern',
     system: 'http://hl7.org/fhir/ValueSet/discriminator-type'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Pattern'.toFhirString,
@@ -90,7 +94,7 @@ class DiscriminatorType extends FhirCodeEnum {
 
   /// type
   static final DiscriminatorType type = DiscriminatorType._(
-    validatedValue: 'type',
+    valueString: 'type',
     system: 'http://hl7.org/fhir/ValueSet/discriminator-type'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Type'.toFhirString,
@@ -98,7 +102,7 @@ class DiscriminatorType extends FhirCodeEnum {
 
   /// profile
   static final DiscriminatorType profile = DiscriminatorType._(
-    validatedValue: 'profile',
+    valueString: 'profile',
     system: 'http://hl7.org/fhir/ValueSet/discriminator-type'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Profile'.toFhirString,
@@ -106,7 +110,7 @@ class DiscriminatorType extends FhirCodeEnum {
 
   /// For instances where an Element is present but not value
   static final DiscriminatorType elementOnly =
-      DiscriminatorType._(validatedValue: '');
+      DiscriminatorType._(valueString: '');
 
   /// List of all enum-like values
   static final List<DiscriminatorType> values = [
@@ -120,30 +124,33 @@ class DiscriminatorType extends FhirCodeEnum {
   /// Clones the current instance
   @override
   DiscriminatorType clone() => DiscriminatorType._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   DiscriminatorType withElement(Element? newElement) {
-    return DiscriminatorType._(validatedValue: value, element: newElement);
+    return DiscriminatorType._(
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   DiscriminatorType copyWith({
-    String? newValue,
+    dynamic newValue,
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
@@ -154,11 +161,13 @@ class DiscriminatorType extends FhirCodeEnum {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError(
+        'Invalid input for DiscriminatorType: $newValue',
+      );
     }
     return DiscriminatorType._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

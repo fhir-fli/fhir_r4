@@ -563,29 +563,60 @@ class Procedure extends DomainResource {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
+    bool isNonEmpty(dynamic val) {
+      if (val == null) return false;
+      if (val is List && val.isEmpty) return false;
+      if (val is Map && val.isEmpty) return false;
+      return true;
+    }
+
     void addField(String key, dynamic field) {
+      if (field == null) return;
       if (!(field is FhirBase? || field is List<FhirBase>?)) {
         throw ArgumentError('"field" must be a FhirBase type');
       }
-      if (field == null) return;
       if (field is PrimitiveType) {
-        json[key] = field.toJson()['value'];
-        if (field.toJson()['_value'] != null) {
-          json['_$key'] = field.toJson()['_value'];
-        }
+        final fieldMap = field.toJson();
+        final val = fieldMap['value'];
+        final ext = fieldMap['_value'];
+        final hasVal = isNonEmpty(val);
+        final hasExt = isNonEmpty(ext);
+        if (hasVal) json[key] = val;
+        if (hasExt) json['_$key'] = ext;
       } else if (field is List<FhirBase>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
-          final fieldJson = field.map((e) => e.toJson()).toList();
-          json[key] = fieldJson.map((e) => e['value']).toList();
-          if (fieldJson.any((e) => e['_value'] != null)) {
-            json['_$key'] = fieldJson.map((e) => e['_value']).toList();
+        final isPrimitive = field.first is PrimitiveType;
+        final tempList = <dynamic>[];
+        final tempExtensions = <dynamic>[];
+        for (final e in field) {
+          final itemMap = e.toJson();
+          if (!isNonEmpty(itemMap)) {
+            continue;
+          }
+          if (isPrimitive) {
+            final v = itemMap['value'];
+            final x = itemMap['_value'];
+            tempList.add(v);
+            tempExtensions.add(x);
+          } else {
+            tempList.add(itemMap);
+          }
+        }
+        if (tempList.isEmpty) return;
+        if (isPrimitive) {
+          json[key] = tempList;
+          final anyExt = tempExtensions.any(isNonEmpty);
+          if (anyExt) {
+            json['_$key'] = tempExtensions;
           }
         } else {
-          json[key] = field.map((e) => e.toJson()).toList();
+          json[key] = tempList;
         }
       } else if (field is FhirBase) {
-        json[key] = field.toJson();
+        final subMap = field.toJson();
+        if (isNonEmpty(subMap)) {
+          json[key] = subMap;
+        }
       }
     }
 
@@ -1031,7 +1062,10 @@ class Procedure extends DomainResource {
             return copyWith(contained: newList);
           } else if (child is Resource) {
             // Add single element to existing list or create new list
-            final newList = [...?contained, child];
+            final newList = [
+              ...?contained,
+              child,
+            ];
             return copyWith(contained: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1045,7 +1079,10 @@ class Procedure extends DomainResource {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1059,7 +1096,10 @@ class Procedure extends DomainResource {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1073,7 +1113,10 @@ class Procedure extends DomainResource {
             return copyWith(identifier: newList);
           } else if (child is Identifier) {
             // Add single element to existing list or create new list
-            final newList = [...?identifier, child];
+            final newList = [
+              ...?identifier,
+              child,
+            ];
             return copyWith(identifier: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1087,7 +1130,10 @@ class Procedure extends DomainResource {
             return copyWith(instantiatesCanonical: newList);
           } else if (child is FhirCanonical) {
             // Add single element to existing list or create new list
-            final newList = [...?instantiatesCanonical, child];
+            final newList = [
+              ...?instantiatesCanonical,
+              child,
+            ];
             return copyWith(instantiatesCanonical: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1101,7 +1147,10 @@ class Procedure extends DomainResource {
             return copyWith(instantiatesUri: newList);
           } else if (child is FhirUri) {
             // Add single element to existing list or create new list
-            final newList = [...?instantiatesUri, child];
+            final newList = [
+              ...?instantiatesUri,
+              child,
+            ];
             return copyWith(instantiatesUri: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1115,7 +1164,10 @@ class Procedure extends DomainResource {
             return copyWith(basedOn: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...?basedOn, child];
+            final newList = [
+              ...?basedOn,
+              child,
+            ];
             return copyWith(basedOn: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1129,7 +1181,10 @@ class Procedure extends DomainResource {
             return copyWith(partOf: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...?partOf, child];
+            final newList = [
+              ...?partOf,
+              child,
+            ];
             return copyWith(partOf: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1183,6 +1238,7 @@ class Procedure extends DomainResource {
             throw Exception('Invalid child type for $childName');
           }
         }
+      case 'performed':
       case 'performedX':
         {
           if (child is PerformedXProcedure) {
@@ -1270,7 +1326,10 @@ class Procedure extends DomainResource {
             return copyWith(performer: newList);
           } else if (child is ProcedurePerformer) {
             // Add single element to existing list or create new list
-            final newList = [...?performer, child];
+            final newList = [
+              ...?performer,
+              child,
+            ];
             return copyWith(performer: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1292,7 +1351,10 @@ class Procedure extends DomainResource {
             return copyWith(reasonCode: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...?reasonCode, child];
+            final newList = [
+              ...?reasonCode,
+              child,
+            ];
             return copyWith(reasonCode: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1306,7 +1368,10 @@ class Procedure extends DomainResource {
             return copyWith(reasonReference: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...?reasonReference, child];
+            final newList = [
+              ...?reasonReference,
+              child,
+            ];
             return copyWith(reasonReference: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1320,7 +1385,10 @@ class Procedure extends DomainResource {
             return copyWith(bodySite: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...?bodySite, child];
+            final newList = [
+              ...?bodySite,
+              child,
+            ];
             return copyWith(bodySite: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1342,7 +1410,10 @@ class Procedure extends DomainResource {
             return copyWith(report: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...?report, child];
+            final newList = [
+              ...?report,
+              child,
+            ];
             return copyWith(report: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1356,7 +1427,10 @@ class Procedure extends DomainResource {
             return copyWith(complication: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...?complication, child];
+            final newList = [
+              ...?complication,
+              child,
+            ];
             return copyWith(complication: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1370,7 +1444,10 @@ class Procedure extends DomainResource {
             return copyWith(complicationDetail: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...?complicationDetail, child];
+            final newList = [
+              ...?complicationDetail,
+              child,
+            ];
             return copyWith(complicationDetail: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1384,7 +1461,10 @@ class Procedure extends DomainResource {
             return copyWith(followUp: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...?followUp, child];
+            final newList = [
+              ...?followUp,
+              child,
+            ];
             return copyWith(followUp: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1398,7 +1478,10 @@ class Procedure extends DomainResource {
             return copyWith(note: newList);
           } else if (child is Annotation) {
             // Add single element to existing list or create new list
-            final newList = [...?note, child];
+            final newList = [
+              ...?note,
+              child,
+            ];
             return copyWith(note: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1412,7 +1495,10 @@ class Procedure extends DomainResource {
             return copyWith(focalDevice: newList);
           } else if (child is ProcedureFocalDevice) {
             // Add single element to existing list or create new list
-            final newList = [...?focalDevice, child];
+            final newList = [
+              ...?focalDevice,
+              child,
+            ];
             return copyWith(focalDevice: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1426,7 +1512,10 @@ class Procedure extends DomainResource {
             return copyWith(usedReference: newList);
           } else if (child is Reference) {
             // Add single element to existing list or create new list
-            final newList = [...?usedReference, child];
+            final newList = [
+              ...?usedReference,
+              child,
+            ];
             return copyWith(usedReference: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1440,7 +1529,10 @@ class Procedure extends DomainResource {
             return copyWith(usedCode: newList);
           } else if (child is CodeableConcept) {
             // Add single element to existing list or create new list
-            final newList = [...?usedCode, child];
+            final newList = [
+              ...?usedCode,
+              child,
+            ];
             return copyWith(usedCode: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -1496,7 +1588,13 @@ class Procedure extends DomainResource {
         return ['Reference'];
       case 'performed':
       case 'performedX':
-        return ['FhirDateTime', 'Period', 'FhirString', 'Age', 'Range'];
+        return [
+          'FhirDateTime',
+          'Period',
+          'FhirString',
+          'Age',
+          'Range',
+        ];
       case 'performedDateTime':
         return ['FhirDateTime'];
       case 'performedPeriod':
@@ -2509,29 +2607,60 @@ class ProcedurePerformer extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
+    bool isNonEmpty(dynamic val) {
+      if (val == null) return false;
+      if (val is List && val.isEmpty) return false;
+      if (val is Map && val.isEmpty) return false;
+      return true;
+    }
+
     void addField(String key, dynamic field) {
+      if (field == null) return;
       if (!(field is FhirBase? || field is List<FhirBase>?)) {
         throw ArgumentError('"field" must be a FhirBase type');
       }
-      if (field == null) return;
       if (field is PrimitiveType) {
-        json[key] = field.toJson()['value'];
-        if (field.toJson()['_value'] != null) {
-          json['_$key'] = field.toJson()['_value'];
-        }
+        final fieldMap = field.toJson();
+        final val = fieldMap['value'];
+        final ext = fieldMap['_value'];
+        final hasVal = isNonEmpty(val);
+        final hasExt = isNonEmpty(ext);
+        if (hasVal) json[key] = val;
+        if (hasExt) json['_$key'] = ext;
       } else if (field is List<FhirBase>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
-          final fieldJson = field.map((e) => e.toJson()).toList();
-          json[key] = fieldJson.map((e) => e['value']).toList();
-          if (fieldJson.any((e) => e['_value'] != null)) {
-            json['_$key'] = fieldJson.map((e) => e['_value']).toList();
+        final isPrimitive = field.first is PrimitiveType;
+        final tempList = <dynamic>[];
+        final tempExtensions = <dynamic>[];
+        for (final e in field) {
+          final itemMap = e.toJson();
+          if (!isNonEmpty(itemMap)) {
+            continue;
+          }
+          if (isPrimitive) {
+            final v = itemMap['value'];
+            final x = itemMap['_value'];
+            tempList.add(v);
+            tempExtensions.add(x);
+          } else {
+            tempList.add(itemMap);
+          }
+        }
+        if (tempList.isEmpty) return;
+        if (isPrimitive) {
+          json[key] = tempList;
+          final anyExt = tempExtensions.any(isNonEmpty);
+          if (anyExt) {
+            json['_$key'] = tempExtensions;
           }
         } else {
-          json[key] = field.map((e) => e.toJson()).toList();
+          json[key] = tempList;
         }
       } else if (field is FhirBase) {
-        json[key] = field.toJson();
+        final subMap = field.toJson();
+        if (isNonEmpty(subMap)) {
+          json[key] = subMap;
+        }
       }
     }
 
@@ -2652,7 +2781,10 @@ class ProcedurePerformer extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -2666,7 +2798,10 @@ class ProcedurePerformer extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -3018,29 +3153,60 @@ class ProcedureFocalDevice extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
+    bool isNonEmpty(dynamic val) {
+      if (val == null) return false;
+      if (val is List && val.isEmpty) return false;
+      if (val is Map && val.isEmpty) return false;
+      return true;
+    }
+
     void addField(String key, dynamic field) {
+      if (field == null) return;
       if (!(field is FhirBase? || field is List<FhirBase>?)) {
         throw ArgumentError('"field" must be a FhirBase type');
       }
-      if (field == null) return;
       if (field is PrimitiveType) {
-        json[key] = field.toJson()['value'];
-        if (field.toJson()['_value'] != null) {
-          json['_$key'] = field.toJson()['_value'];
-        }
+        final fieldMap = field.toJson();
+        final val = fieldMap['value'];
+        final ext = fieldMap['_value'];
+        final hasVal = isNonEmpty(val);
+        final hasExt = isNonEmpty(ext);
+        if (hasVal) json[key] = val;
+        if (hasExt) json['_$key'] = ext;
       } else if (field is List<FhirBase>) {
         if (field.isEmpty) return;
-        if (field.first is PrimitiveType) {
-          final fieldJson = field.map((e) => e.toJson()).toList();
-          json[key] = fieldJson.map((e) => e['value']).toList();
-          if (fieldJson.any((e) => e['_value'] != null)) {
-            json['_$key'] = fieldJson.map((e) => e['_value']).toList();
+        final isPrimitive = field.first is PrimitiveType;
+        final tempList = <dynamic>[];
+        final tempExtensions = <dynamic>[];
+        for (final e in field) {
+          final itemMap = e.toJson();
+          if (!isNonEmpty(itemMap)) {
+            continue;
+          }
+          if (isPrimitive) {
+            final v = itemMap['value'];
+            final x = itemMap['_value'];
+            tempList.add(v);
+            tempExtensions.add(x);
+          } else {
+            tempList.add(itemMap);
+          }
+        }
+        if (tempList.isEmpty) return;
+        if (isPrimitive) {
+          json[key] = tempList;
+          final anyExt = tempExtensions.any(isNonEmpty);
+          if (anyExt) {
+            json['_$key'] = tempExtensions;
           }
         } else {
-          json[key] = field.map((e) => e.toJson()).toList();
+          json[key] = tempList;
         }
       } else if (field is FhirBase) {
-        json[key] = field.toJson();
+        final subMap = field.toJson();
+        if (isNonEmpty(subMap)) {
+          json[key] = subMap;
+        }
       }
     }
 
@@ -3152,7 +3318,10 @@ class ProcedureFocalDevice extends BackboneElement {
             return copyWith(extension_: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
+            final newList = [
+              ...?extension_,
+              child,
+            ];
             return copyWith(extension_: newList);
           } else {
             throw Exception('Invalid child type for $childName');
@@ -3166,7 +3335,10 @@ class ProcedureFocalDevice extends BackboneElement {
             return copyWith(modifierExtension: newList);
           } else if (child is FhirExtension) {
             // Add single element to existing list or create new list
-            final newList = [...?modifierExtension, child];
+            final newList = [
+              ...?modifierExtension,
+              child,
+            ];
             return copyWith(modifierExtension: newList);
           } else {
             throw Exception('Invalid child type for $childName');

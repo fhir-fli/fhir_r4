@@ -1,93 +1,128 @@
 part of 'primitive_types.dart';
 
-/// Extension to convert a [String] to a [FhirXhtml].
+/// Extension methods on [String] to easily convert to [FhirXhtml].
 extension FhirXhtmlExtension on String {
-  /// Converts a [String] to a [FhirXhtml].
+  /// Returns a new [FhirXhtml] from this [String].
   FhirXhtml get toFhirXhtml => FhirXhtml(this);
 }
 
 /// Represents the FHIR primitive type `xhtml`.
-class FhirXhtml extends PrimitiveType<String?> {
-  /// Private underscore constructor that just assigns a validated XHTML
-  /// (or null) to `super._(value: validatedValue)`, then checks if both are
-  /// null => throw.
+///
+/// XHTML must meet certain constraints
+/// (e.g., valid XML, correct namespace, etc.).
+/// We provide a validation step in [_validateXhtml].
+class FhirXhtml extends PrimitiveType {
+  // --------------------------------------------------------------------------
+  // Private Internal Constructor
+  // --------------------------------------------------------------------------
+
+  /// Private underscore constructor calling `super._`.
   FhirXhtml._({
-    required String? validatedValue,
+    required super.valueString,
     super.element,
     super.id,
     super.extension_,
     super.disallowExtensions,
     super.objectPath = 'Xhtml',
-  }) : super._(value: validatedValue) {
-    if (value == null && element == null) {
-      throw ArgumentError('A value or element is required for FhirXhtml');
+  }) : super._();
+
+  // --------------------------------------------------------------------------
+  // Public Factories
+  // --------------------------------------------------------------------------
+
+  /// Constructs a [FhirXhtml] from [rawValue], which can be `null`
+  /// or a [String].
+  ///
+  /// If non-null, validates via [_validateXhtml]. Otherwise, if null and
+  /// [element] is also null, an error is thrown by the parent constructor.
+  // ignore: sort_unnamed_constructors_first
+  factory FhirXhtml(
+    dynamic rawValue, {
+    Element? element,
+    FhirString? id,
+    List<FhirExtension>? extension_,
+    bool? disallowExtensions,
+    String objectPath = 'Xhtml',
+  }) {
+    if (rawValue != null && rawValue is! String) {
+      throw ArgumentError(
+        'Invalid type for FhirXhtml. '
+        'Expected String, got ${rawValue.runtimeType}.',
+      );
+    }
+    final validated =
+        rawValue != null ? _validateXhtml(rawValue as String) : null;
+    return FhirXhtml._(
+      valueString: validated,
+      element: element,
+      id: id,
+      extension_: extension_,
+      disallowExtensions: disallowExtensions,
+      objectPath: objectPath,
+    );
+  }
+
+  /// Constructs a [FhirXhtml] from an already validated XHTML string.
+  /// Bypasses the final `_validateXhtml`.
+  factory FhirXhtml.fromValidatedXhtml(
+    String? xhtml, {
+    Element? element,
+    FhirString? id,
+    List<FhirExtension>? extension_,
+    bool? disallowExtensions,
+    String objectPath = 'Xhtml',
+  }) {
+    return FhirXhtml._(
+      valueString: xhtml,
+      element: element,
+      id: id,
+      extension_: extension_,
+      disallowExtensions: disallowExtensions,
+      objectPath: objectPath,
+    );
+  }
+
+  /// Creates an empty [FhirXhtml] object.
+  factory FhirXhtml.empty() => FhirXhtml(null, element: Element.empty());
+
+  // --------------------------------------------------------------------------
+  // JSON / YAML Constructors
+  // --------------------------------------------------------------------------
+
+  /// Constructs a [FhirXhtml] from a JSON [Map].
+  factory FhirXhtml.fromJson(Map<String, dynamic> json) {
+    final rawValue = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final parsedElement =
+        elementJson == null ? null : Element.fromJson(elementJson);
+    final objectPath = json['objectPath'] as String? ?? 'Xhtml';
+    return FhirXhtml(rawValue, element: parsedElement, objectPath: objectPath);
+  }
+
+  /// Constructs a [FhirXhtml] from a YAML [String] or [YamlMap].
+  factory FhirXhtml.fromYaml(dynamic yaml) {
+    if (yaml is String) {
+      return FhirXhtml.fromJson(
+        jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, dynamic>,
+      );
+    } else if (yaml is YamlMap) {
+      return FhirXhtml.fromJson(
+        jsonDecode(jsonEncode(yaml)) as Map<String, dynamic>,
+      );
+    } else {
+      throw ArgumentError(
+        'FhirXhtml cannot be constructed from the provided input. '
+        'It is neither a YAML string nor a YAML map.',
+      );
     }
   }
 
-  /// Public factory constructor that accepts and validates an XHTML string, or
-  /// allows `null`. If it's non-null, it calls `_validateXhtml`.
-  // ignore: sort_unnamed_constructors_first
-  factory FhirXhtml(
-    String? input, {
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    bool? disallowExtensions,
-    String objectPath = 'Xhtml',
-  }) {
-    final validated = input != null ? _validateXhtml(input) : null;
-    return FhirXhtml._(
-      validatedValue: validated,
-      element: element,
-      id: id,
-      extension_: extension_,
-      disallowExtensions: disallowExtensions,
-      objectPath: objectPath,
-    );
-  }
-
-  /// Constructor that accepts already validated XHTML string, or `null`.
-  factory FhirXhtml.fromValidatedXhtml(
-    String? validatedValue, {
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    bool? disallowExtensions,
-    String objectPath = 'Xhtml',
-  }) {
-    // We skip the final validation because we trust it's already validated
-    return FhirXhtml._(
-      validatedValue: validatedValue,
-      element: element,
-      id: id,
-      extension_: extension_,
-      disallowExtensions: disallowExtensions,
-      objectPath: objectPath,
-    );
-  }
-
-  /// Creates empty [FhirXhtml] object
-  factory FhirXhtml.empty() => FhirXhtml(null, element: Element.empty());
-
-  /// Factory constructor to create [FhirXhtml] from JSON.
-  factory FhirXhtml.fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    final objectPath = json['objectPath'] as String? ?? 'Xhtml';
-    return FhirXhtml(value, element: element, objectPath: objectPath);
-  }
-
-  /// Factory constructor to create [FhirXhtml] from YAML.
-  factory FhirXhtml.fromYaml(String yaml) => FhirXhtml.fromJson(
-        jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, dynamic>,
-      );
-
-  /// Attempts to parse the input as [FhirXhtml].
+  /// Attempts to parse [input] as [FhirXhtml]. Returns `null` if it fails.
   static FhirXhtml? tryParse(dynamic input) {
     if (input is String) {
       try {
-        return FhirXhtml(_validateXhtml(input));
+        final validated = _validateXhtml(input);
+        return FhirXhtml(validated);
       } catch (_) {
         return null;
       }
@@ -95,20 +130,24 @@ class FhirXhtml extends PrimitiveType<String?> {
     return null;
   }
 
-  /// Validates an XHTML string against FHIR rules.
+  // --------------------------------------------------------------------------
+  // Validation
+  // --------------------------------------------------------------------------
+
+  /// Ensures [xhtml] is valid XML, with the correct namespace,
+  /// using [xml] package.
   static String _validateXhtml(String xhtml) {
     try {
       final document = XmlDocument.parse(xhtml);
-      final rootElement = document.rootElement;
-
-      if (!_allowedElements.contains(rootElement.name.local)) {
+      final root = document.rootElement;
+      if (!_allowedElements.contains(root.name.local)) {
         throw FormatException(
-          'Invalid root element: ${rootElement.name.local}. '
-          'Allowed elements are: ${_allowedElements.join(', ')}.',
+          'Invalid root element: ${root.name.local}. '
+          'Allowed elements: ${_allowedElements.join(', ')}.',
         );
       }
 
-      final xmlns = rootElement.getAttribute('xmlns');
+      final xmlns = root.getAttribute('xmlns');
       if (xmlns != 'http://www.w3.org/1999/xhtml') {
         throw FormatException(
           'Invalid XHTML namespace. Expected "http://www.w3.org/1999/xhtml", '
@@ -116,42 +155,34 @@ class FhirXhtml extends PrimitiveType<String?> {
         );
       }
 
-      if (!_validateElement(rootElement)) {
-        throw const FormatException('Invalid structure in root element.');
-      }
-
-      return xhtml; // Return the valid XHTML string.
+      _validateElement(root);
+      return xhtml; // Successfully validated
     } catch (e) {
       throw FormatException('Invalid XHTML: $e');
     }
   }
 
-  /// Validates an element and its attributes recursively.
-  static bool _validateElement(XmlElement element, {bool isRoot = false}) {
+  /// Validates [element] and its children/attributes.
+  static void _validateElement(XmlElement element) {
     if (!_allowedElements.contains(element.name.local)) {
-      throw FormatException('Element ${element.name.local} is not allowed.');
+      throw FormatException('Element <${element.name.local}> is not allowed.');
     }
 
-    for (final attribute in element.attributes) {
-      if (!_allowedAttributes.contains(attribute.name.local) &&
-          !(isRoot && attribute.name.local == 'xmlns')) {
+    for (final attr in element.attributes) {
+      if (!_allowedAttributes.contains(attr.name.local) &&
+          !(attr.name.local == 'xmlns' && element.parent == null)) {
         throw FormatException(
-          'Invalid attribute "${attribute.name.local}" in element '
-          '"${element.name.local}".',
+          'Invalid attribute "${attr.name.local}" in <${element.name.local}>.',
         );
       }
     }
 
-    for (final child in element.children) {
-      if (child is XmlElement && !_validateElement(child)) {
-        throw FormatException('Invalid child element: ${child.name.local}');
-      }
+    for (final child in element.children.whereType<XmlElement>()) {
+      _validateElement(child);
     }
-
-    return true;
   }
 
-  /// Allowed elements for XHTML.
+  /// Set of allowed root/child element names.
   static final List<String> _allowedElements = [
     'div',
     'p',
@@ -202,7 +233,7 @@ class FhirXhtml extends PrimitiveType<String?> {
     'sup',
   ];
 
-  /// Allowed attributes for XHTML elements.
+  /// Set of allowed attributes on XHTML elements.
   static final List<String> _allowedAttributes = [
     'style',
     'class',
@@ -226,58 +257,43 @@ class FhirXhtml extends PrimitiveType<String?> {
     'span',
   ];
 
+  // --------------------------------------------------------------------------
+  // FHIR Overrides
+  // --------------------------------------------------------------------------
+
+  /// Returns `"xhtml"`.
   @override
   String get fhirType => 'xhtml';
 
-  /// Serializes the instance to JSON with standardized keys.
+  /// Returns the XHTML content or `''`.
   @override
-  Map<String, dynamic> toJson() => {
-        if (value != null) 'value': value,
-        if (element != null) '_value': element!.toJson(),
-      };
+  String toString() => valueString ?? '';
 
-  /// Returns the XHTML content as a string.
+  /// The primitive value as a string.
   @override
-  String toString() => value.toString();
+  String? get primitiveValue => valueString;
 
-  /// Retrieves the primitive value of the object.
+  /// Returns `true` if the Type is considered string-based, otherwise `false`
   @override
-  String? get primitiveValue => value?.toString();
+  bool get stringBased => true;
 
-  /// Converts the XHTML content to a JSON-encoded string.
-  @override
-  String toJsonString() => jsonEncode(toJson());
+  // --------------------------------------------------------------------------
+  // Clone / Copy
+  // --------------------------------------------------------------------------
 
-  @override
-  bool equalsDeep(FhirBase? other) =>
-      other is FhirXhtml && other.value == value && other.element == element;
-
-  /// Equality and hashCode overrides to account for nullable values.
-  @override
-  // ignore: avoid_equals_and_hash_code_on_mutable_classes
-  bool operator ==(Object other) => equals(other);
-
-  @override
-  bool equals(Object other) =>
-      identical(this, other) ||
-      (other is FhirXhtml && other.value == value) ||
-      (other is String && other == value);
-
-  @override
-  // ignore: avoid_equals_and_hash_code_on_mutable_classes
-  int get hashCode => Object.hash(value, element);
-
-  /// Clones the object, including its [Element] value.
   @override
   FhirXhtml clone() => FhirXhtml.fromValidatedXhtml(
-        value,
+        valueString,
         element: element?.clone() as Element?,
+        id: id,
+        extension_: extension_?.map((e) => e.clone()).toList(),
+        disallowExtensions: disallowExtensions,
+        objectPath: objectPath!,
       );
 
-  /// Creates a copy with optional modifications.
   @override
   FhirXhtml copyWith({
-    String? newValue,
+    dynamic newValue,
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
@@ -288,8 +304,8 @@ class FhirXhtml extends PrimitiveType<String?> {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    return FhirXhtml.fromValidatedXhtml(
-      newValue ?? value,
+    return FhirXhtml(
+      newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
@@ -304,22 +320,45 @@ class FhirXhtml extends PrimitiveType<String?> {
     );
   }
 
-  /// Returns a new [FhirXhtml] with extensions disallowed.
-  FhirXhtml noExtensions() => copyWith(disallowExtensions: true);
+  // --------------------------------------------------------------------------
+  // Equality
+  // --------------------------------------------------------------------------
 
-  /// Creates an empty property in the object
+  @override
+  bool equalsDeep(FhirBase? other) =>
+      other is FhirXhtml &&
+      other.valueString == valueString &&
+      other.element == element;
+
+  @override
+  bool equals(Object other) =>
+      identical(this, other) ||
+      (other is FhirXhtml && other.valueString == valueString) ||
+      (other is String && other == valueString);
+
+  @override
+  // ignore: avoid_equals_and_hash_code_on_mutable_classes
+  bool operator ==(Object other) => equals(other);
+
+  @override
+  // ignore: avoid_equals_and_hash_code_on_mutable_classes
+  int get hashCode => Object.hash(valueString, element);
+
+  // --------------------------------------------------------------------------
+  // Subclass Contract
+  // --------------------------------------------------------------------------
+
   @override
   FhirXhtml createProperty(String propertyName) => this;
 
-  /// Clears the specified fields in a [FhirXhtml] object
   @override
   FhirXhtml clear({
-    bool input = false,
+    bool value = false,
     bool extension_ = false,
     bool id = false,
   }) {
     return FhirXhtml(
-      input ? null : value,
+      value ? null : valueString,
       element: element,
       extension_: extension_ ? <FhirExtension>[] : this.extension_,
       id: id ? null : this.id,

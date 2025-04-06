@@ -1,4 +1,5 @@
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4_path/fhir_r4_path.dart';
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:test/test.dart';
 
@@ -12,11 +13,11 @@ void main() {
       );
       final results = ValidationResults();
 
-      final validationResults = validateInvariants(
+      final validationResults = await validateInvariants(
         node: node,
         element: element,
         results: results,
-        resourceCache: LocalResourceCache(),
+        resourceCache: CanonicalResourceManager(),
       );
 
       expect(validationResults.results, isEmpty); // No errors expected
@@ -44,11 +45,11 @@ void main() {
       );
       final results = ValidationResults();
 
-      final validationResults = validateInvariants(
+      final validationResults = await validateInvariants(
         node: node,
         element: element,
         results: results,
-        resourceCache: LocalResourceCache(),
+        resourceCache: CanonicalResourceManager(),
       );
 
       expect(validationResults.results, isNotEmpty);
@@ -93,11 +94,11 @@ void main() {
       );
       final results = ValidationResults();
 
-      final validationResults = validateInvariants(
+      final validationResults = await validateInvariants(
         node: node,
         element: element,
         results: results,
-        resourceCache: LocalResourceCache(),
+        resourceCache: CanonicalResourceManager(),
       );
 
       expect(validationResults.results, isEmpty); // No errors expected
@@ -119,11 +120,11 @@ void main() {
       );
       final results = ValidationResults();
 
-      final validationResults = validateInvariants(
+      final validationResults = await validateInvariants(
         node: node,
         element: element,
         results: results,
-        resourceCache: LocalResourceCache(),
+        resourceCache: CanonicalResourceManager(),
       );
 
       expect(validationResults.results, isEmpty); // Expect no errors
@@ -145,11 +146,11 @@ void main() {
       );
       final results = ValidationResults();
 
-      final validationResults = validateInvariants(
+      final validationResults = await validateInvariants(
         node: node,
         element: element,
         results: results,
-        resourceCache: LocalResourceCache(),
+        resourceCache: CanonicalResourceManager(),
       );
 
       expect(validationResults.results, isNotEmpty); // Expect errors
@@ -210,11 +211,11 @@ void main() {
 
       final results = ValidationResults();
 
-      final validationResults = validateInvariants(
+      final validationResults = await validateInvariants(
         node: node,
         element: element,
         results: results,
-        resourceCache: LocalResourceCache(),
+        resourceCache: CanonicalResourceManager(),
       );
 
       // Expect one error for the invalid entry

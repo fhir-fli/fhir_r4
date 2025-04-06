@@ -6,7 +6,7 @@ part of '../primitive_types.dart';
 class SubscriptionSearchModifier extends FhirCodeEnum {
   // Private underscore constructor for internal use.
   SubscriptionSearchModifier._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -20,7 +20,7 @@ class SubscriptionSearchModifier extends FhirCodeEnum {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory SubscriptionSearchModifier(
-    String? raw, {
+    String? rawValue, {
     FhirUri? system,
     FhirString? version,
     FhirString? display,
@@ -30,9 +30,10 @@ class SubscriptionSearchModifier extends FhirCodeEnum {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCode._validateCode(rawValue) : null;
     return SubscriptionSearchModifier._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -46,10 +47,13 @@ class SubscriptionSearchModifier extends FhirCodeEnum {
 
   /// Create empty [SubscriptionSearchModifier] with element only
   factory SubscriptionSearchModifier.empty() =>
-      SubscriptionSearchModifier._(validatedValue: '');
+      SubscriptionSearchModifier._(valueString: '');
 
-  /// Factory constructor to create [SubscriptionSearchModifier] from JSON.
-  factory SubscriptionSearchModifier.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [SubscriptionSearchModifier]
+  /// from JSON.
+  factory SubscriptionSearchModifier.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -61,14 +65,14 @@ class SubscriptionSearchModifier extends FhirCodeEnum {
       );
     }
     return SubscriptionSearchModifier._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// eq
   static final SubscriptionSearchModifier eq = SubscriptionSearchModifier._(
-    validatedValue: '=',
+    valueString: '=',
     system:
         'http://hl7.org/fhir/ValueSet/subscription-search-modifier'.toFhirUri,
     version: '4.3.0'.toFhirString,
@@ -77,7 +81,7 @@ class SubscriptionSearchModifier extends FhirCodeEnum {
 
   /// ne
   static final SubscriptionSearchModifier ne = SubscriptionSearchModifier._(
-    validatedValue: 'ne',
+    valueString: 'ne',
     system:
         'http://hl7.org/fhir/ValueSet/subscription-search-modifier'.toFhirUri,
     version: '4.3.0'.toFhirString,
@@ -86,7 +90,7 @@ class SubscriptionSearchModifier extends FhirCodeEnum {
 
   /// gt
   static final SubscriptionSearchModifier gt = SubscriptionSearchModifier._(
-    validatedValue: 'gt',
+    valueString: 'gt',
     system:
         'http://hl7.org/fhir/ValueSet/subscription-search-modifier'.toFhirUri,
     version: '4.3.0'.toFhirString,
@@ -95,7 +99,7 @@ class SubscriptionSearchModifier extends FhirCodeEnum {
 
   /// lt
   static final SubscriptionSearchModifier lt = SubscriptionSearchModifier._(
-    validatedValue: 'lt',
+    valueString: 'lt',
     system:
         'http://hl7.org/fhir/ValueSet/subscription-search-modifier'.toFhirUri,
     version: '4.3.0'.toFhirString,
@@ -104,7 +108,7 @@ class SubscriptionSearchModifier extends FhirCodeEnum {
 
   /// ge
   static final SubscriptionSearchModifier ge = SubscriptionSearchModifier._(
-    validatedValue: 'ge',
+    valueString: 'ge',
     system:
         'http://hl7.org/fhir/ValueSet/subscription-search-modifier'.toFhirUri,
     version: '4.3.0'.toFhirString,
@@ -113,7 +117,7 @@ class SubscriptionSearchModifier extends FhirCodeEnum {
 
   /// le
   static final SubscriptionSearchModifier le = SubscriptionSearchModifier._(
-    validatedValue: 'le',
+    valueString: 'le',
     system:
         'http://hl7.org/fhir/ValueSet/subscription-search-modifier'.toFhirUri,
     version: '4.3.0'.toFhirString,
@@ -122,7 +126,7 @@ class SubscriptionSearchModifier extends FhirCodeEnum {
 
   /// sa
   static final SubscriptionSearchModifier sa = SubscriptionSearchModifier._(
-    validatedValue: 'sa',
+    valueString: 'sa',
     system:
         'http://hl7.org/fhir/ValueSet/subscription-search-modifier'.toFhirUri,
     version: '4.3.0'.toFhirString,
@@ -131,7 +135,7 @@ class SubscriptionSearchModifier extends FhirCodeEnum {
 
   /// eb
   static final SubscriptionSearchModifier eb = SubscriptionSearchModifier._(
-    validatedValue: 'eb',
+    valueString: 'eb',
     system:
         'http://hl7.org/fhir/ValueSet/subscription-search-modifier'.toFhirUri,
     version: '4.3.0'.toFhirString,
@@ -140,7 +144,7 @@ class SubscriptionSearchModifier extends FhirCodeEnum {
 
   /// ap
   static final SubscriptionSearchModifier ap = SubscriptionSearchModifier._(
-    validatedValue: 'ap',
+    valueString: 'ap',
     system:
         'http://hl7.org/fhir/ValueSet/subscription-search-modifier'.toFhirUri,
     version: '4.3.0'.toFhirString,
@@ -149,7 +153,7 @@ class SubscriptionSearchModifier extends FhirCodeEnum {
 
   /// above
   static final SubscriptionSearchModifier above = SubscriptionSearchModifier._(
-    validatedValue: 'above',
+    valueString: 'above',
     system:
         'http://hl7.org/fhir/ValueSet/subscription-search-modifier'.toFhirUri,
     version: '4.3.0'.toFhirString,
@@ -158,7 +162,7 @@ class SubscriptionSearchModifier extends FhirCodeEnum {
 
   /// below
   static final SubscriptionSearchModifier below = SubscriptionSearchModifier._(
-    validatedValue: 'below',
+    valueString: 'below',
     system:
         'http://hl7.org/fhir/ValueSet/subscription-search-modifier'.toFhirUri,
     version: '4.3.0'.toFhirString,
@@ -167,7 +171,7 @@ class SubscriptionSearchModifier extends FhirCodeEnum {
 
   /// in_
   static final SubscriptionSearchModifier in_ = SubscriptionSearchModifier._(
-    validatedValue: 'in',
+    valueString: 'in',
     system:
         'http://hl7.org/fhir/ValueSet/subscription-search-modifier'.toFhirUri,
     version: '4.3.0'.toFhirString,
@@ -176,7 +180,7 @@ class SubscriptionSearchModifier extends FhirCodeEnum {
 
   /// not_in
   static final SubscriptionSearchModifier not_in = SubscriptionSearchModifier._(
-    validatedValue: 'not-in',
+    valueString: 'not-in',
     system:
         'http://hl7.org/fhir/ValueSet/subscription-search-modifier'.toFhirUri,
     version: '4.3.0'.toFhirString,
@@ -186,7 +190,7 @@ class SubscriptionSearchModifier extends FhirCodeEnum {
   /// of_type
   static final SubscriptionSearchModifier of_type =
       SubscriptionSearchModifier._(
-    validatedValue: 'of-type',
+    valueString: 'of-type',
     system:
         'http://hl7.org/fhir/ValueSet/subscription-search-modifier'.toFhirUri,
     version: '4.3.0'.toFhirString,
@@ -195,7 +199,7 @@ class SubscriptionSearchModifier extends FhirCodeEnum {
 
   /// For instances where an Element is present but not value
   static final SubscriptionSearchModifier elementOnly =
-      SubscriptionSearchModifier._(validatedValue: '');
+      SubscriptionSearchModifier._(valueString: '');
 
   /// List of all enum-like values
   static final List<SubscriptionSearchModifier> values = [
@@ -218,31 +222,33 @@ class SubscriptionSearchModifier extends FhirCodeEnum {
   /// Clones the current instance
   @override
   SubscriptionSearchModifier clone() => SubscriptionSearchModifier._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   SubscriptionSearchModifier withElement(Element? newElement) {
     return SubscriptionSearchModifier._(
-        validatedValue: value, element: newElement,);
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   SubscriptionSearchModifier copyWith({
-    String? newValue,
+    dynamic newValue,
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
@@ -253,11 +259,13 @@ class SubscriptionSearchModifier extends FhirCodeEnum {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError(
+        'Invalid input for SubscriptionSearchModifier: $newValue',
+      );
     }
     return SubscriptionSearchModifier._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

@@ -10,7 +10,7 @@ void codeTest() {
     test('Code', () {
       expect(FhirCode('Patient/123456').toString(), 'Patient/123456');
       expect(FhirCode('Patient/123456').toJson()['value'], 'Patient/123456');
-      expect(FhirCode('Patient/123456').value, 'Patient/123456');
+      expect(FhirCode('Patient/123456').valueString, 'Patient/123456');
       expect(
         FhirCode('http://Patient.com/123456').toString(),
         'http://Patient.com/123456',
@@ -20,7 +20,7 @@ void codeTest() {
         'http://Patient.com/123456',
       );
       expect(
-        FhirCode('http://Patient.com/123456').value,
+        FhirCode('http://Patient.com/123456').valueString,
         'http://Patient.com/123456',
       );
       expect(FhirCode('___').toString(), '___');
@@ -29,7 +29,7 @@ void codeTest() {
 
     test('Valid FhirCode from String', () {
       final fhirCode = FhirCode(validCode);
-      expect(fhirCode.value, equals(validCode));
+      expect(fhirCode.valueString, equals(validCode));
       expect(fhirCode.toString(), equals(validCode));
       expect(fhirCode.toJson()['value'], equals(validCode));
     });
@@ -40,14 +40,14 @@ void codeTest() {
 
     test('FhirCode tryParse with valid String', () {
       final fhirCode = FhirCode.tryParse(validCode);
-      expect(fhirCode?.value, equals(validCode));
+      expect(fhirCode?.valueString, equals(validCode));
       expect(fhirCode?.toString(), equals(validCode));
       expect(fhirCode?.toJson()['value'], equals(validCode));
     });
 
     test('FhirCode fromJson with valid String', () {
       final fhirCode = FhirCode.fromJson({'value': jsonCode});
-      expect(fhirCode.value, equals(jsonCode));
+      expect(fhirCode.valueString, equals(jsonCode));
       expect(fhirCode.toJson()['value'], equals(jsonCode));
     });
 
@@ -60,7 +60,7 @@ void codeTest() {
 
     test('FhirCode fromYaml with valid YAML', () {
       final fhirCode = FhirCode.fromYaml('value: $yamlCode');
-      expect(fhirCode.value, equals(yamlCode));
+      expect(fhirCode.valueString, equals(yamlCode));
       expect(fhirCode.toJson()['value'], equals(yamlCode));
     });
 
@@ -86,7 +86,7 @@ void codeTest() {
     test('FhirCode clone', () {
       final originalCode = FhirCode(validCode);
       final clonedCode = originalCode.clone();
-      expect(clonedCode.value, equals(validCode));
+      expect(clonedCode.valueString, equals(validCode));
       expect(clonedCode == originalCode, isTrue);
       expect(clonedCode.hashCode, equals(originalCode.hashCode));
     });
@@ -94,9 +94,9 @@ void codeTest() {
     test('FhirCode copyWith new value', () {
       final originalCode = FhirCode(validCode);
       final copiedCode = originalCode.copyWith(newValue: 'NEW_CODE');
-      expect(copiedCode.value, equals('NEW_CODE'));
+      expect(copiedCode.valueString, equals('NEW_CODE'));
       expect(
-        originalCode.value,
+        originalCode.valueString,
         equals(validCode),
       ); // Original should remain unchanged
     });

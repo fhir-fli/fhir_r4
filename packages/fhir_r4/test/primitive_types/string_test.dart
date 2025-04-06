@@ -13,14 +13,14 @@ void stringTest() {
     // Basic FhirString creation and validation
     test('FhirString from String value', () {
       final fhirString = FhirString(validString);
-      expect(fhirString.value, equals(validString));
+      expect(fhirString.valueString, equals(validString));
       expect(fhirString.toString(), equals(validString));
       expect(fhirString.toJson()['value'], equals(validString));
     });
 
     test('FhirString fromJson with valid String', () {
       final fhirString = FhirString.fromJson({'value': jsonString});
-      expect(fhirString.value, equals(jsonString));
+      expect(fhirString.valueString, equals(jsonString));
       expect(fhirString.toJson()['value'], equals(jsonString));
     });
 
@@ -33,13 +33,13 @@ void stringTest() {
 
     test('FhirString fromYaml with valid YAML', () {
       final fhirString = FhirString.fromYaml('value: $yamlString');
-      expect(fhirString.value, equals(yamlString));
+      expect(fhirString.valueString, equals(yamlString));
       expect(fhirString.toJson()['value'], equals(yamlString));
     });
 
     test('FhirString tryParse with valid String', () {
       final fhirString = FhirString.tryParse(validString);
-      expect(fhirString?.value, equals(validString));
+      expect(fhirString?.valueString, equals(validString));
     });
 
     test('FhirString tryParse with invalid input returns null', () {
@@ -50,7 +50,7 @@ void stringTest() {
 
     test('FhirString tryParse with empty string', () {
       final fhirString = FhirString.tryParse(emptyString);
-      expect(fhirString?.value, equals(emptyString));
+      expect(fhirString?.valueString, equals(emptyString));
     });
 
     test('FhirString equality with another FhirString', () {
@@ -113,7 +113,7 @@ void stringTest() {
     test('FhirString clone', () {
       final originalString = FhirString(validString);
       final clonedString = originalString.clone();
-      expect(clonedString.value, equals(validString));
+      expect(clonedString.valueString, equals(validString));
       expect(clonedString == originalString, isTrue);
       expect(clonedString.hashCode, equals(originalString.hashCode));
     });
@@ -121,8 +121,8 @@ void stringTest() {
     test('FhirString copyWith new value', () {
       final originalString = FhirString(validString);
       final copiedString = originalString.copyWith(newValue: 'New String');
-      expect(copiedString.value, equals('New String'));
-      expect(originalString.value, equals(validString));
+      expect(copiedString.valueString, equals('New String'));
+      expect(originalString.valueString, equals(validString));
     });
 
     test('FhirString with Element', () {

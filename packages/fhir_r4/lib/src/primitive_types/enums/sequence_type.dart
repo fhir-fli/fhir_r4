@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class SequenceType extends FhirCodeEnum {
   // Private underscore constructor for internal use.
   SequenceType._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class SequenceType extends FhirCodeEnum {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory SequenceType(
-    String? raw, {
+    String? rawValue, {
     FhirUri? system,
     FhirString? version,
     FhirString? display,
@@ -29,9 +29,10 @@ class SequenceType extends FhirCodeEnum {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCode._validateCode(rawValue) : null;
     return SequenceType._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -44,10 +45,13 @@ class SequenceType extends FhirCodeEnum {
   }
 
   /// Create empty [SequenceType] with element only
-  factory SequenceType.empty() => SequenceType._(validatedValue: '');
+  factory SequenceType.empty() => SequenceType._(valueString: '');
 
-  /// Factory constructor to create [SequenceType] from JSON.
-  factory SequenceType.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [SequenceType]
+  /// from JSON.
+  factory SequenceType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -59,14 +63,14 @@ class SequenceType extends FhirCodeEnum {
       );
     }
     return SequenceType._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// aa
   static final SequenceType aa = SequenceType._(
-    validatedValue: 'aa',
+    valueString: 'aa',
     system: 'http://hl7.org/fhir/ValueSet/sequence-type'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'AA Sequence'.toFhirString,
@@ -74,7 +78,7 @@ class SequenceType extends FhirCodeEnum {
 
   /// dna
   static final SequenceType dna = SequenceType._(
-    validatedValue: 'dna',
+    valueString: 'dna',
     system: 'http://hl7.org/fhir/ValueSet/sequence-type'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'DNA Sequence'.toFhirString,
@@ -82,14 +86,14 @@ class SequenceType extends FhirCodeEnum {
 
   /// rna
   static final SequenceType rna = SequenceType._(
-    validatedValue: 'rna',
+    valueString: 'rna',
     system: 'http://hl7.org/fhir/ValueSet/sequence-type'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'RNA Sequence'.toFhirString,
   );
 
   /// For instances where an Element is present but not value
-  static final SequenceType elementOnly = SequenceType._(validatedValue: '');
+  static final SequenceType elementOnly = SequenceType._(valueString: '');
 
   /// List of all enum-like values
   static final List<SequenceType> values = [
@@ -101,30 +105,33 @@ class SequenceType extends FhirCodeEnum {
   /// Clones the current instance
   @override
   SequenceType clone() => SequenceType._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   SequenceType withElement(Element? newElement) {
-    return SequenceType._(validatedValue: value, element: newElement);
+    return SequenceType._(
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   SequenceType copyWith({
-    String? newValue,
+    dynamic newValue,
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
@@ -135,11 +142,13 @@ class SequenceType extends FhirCodeEnum {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError(
+        'Invalid input for SequenceType: $newValue',
+      );
     }
     return SequenceType._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

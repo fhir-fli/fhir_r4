@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class Status extends FhirCodeEnum {
   // Private underscore constructor for internal use.
   Status._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class Status extends FhirCodeEnum {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory Status(
-    String? raw, {
+    String? rawValue, {
     FhirUri? system,
     FhirString? version,
     FhirString? display,
@@ -29,9 +29,10 @@ class Status extends FhirCodeEnum {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCode._validateCode(rawValue) : null;
     return Status._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -44,10 +45,13 @@ class Status extends FhirCodeEnum {
   }
 
   /// Create empty [Status] with element only
-  factory Status.empty() => Status._(validatedValue: '');
+  factory Status.empty() => Status._(valueString: '');
 
-  /// Factory constructor to create [Status] from JSON.
-  factory Status.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [Status]
+  /// from JSON.
+  factory Status.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -59,14 +63,14 @@ class Status extends FhirCodeEnum {
       );
     }
     return Status._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// attested
   static final Status attested = Status._(
-    validatedValue: 'attested',
+    valueString: 'attested',
     system: 'http://hl7.org/fhir/ValueSet/verificationresult-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Attested'.toFhirString,
@@ -74,7 +78,7 @@ class Status extends FhirCodeEnum {
 
   /// validated
   static final Status validated = Status._(
-    validatedValue: 'validated',
+    valueString: 'validated',
     system: 'http://hl7.org/fhir/ValueSet/verificationresult-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Validated'.toFhirString,
@@ -82,7 +86,7 @@ class Status extends FhirCodeEnum {
 
   /// in_process
   static final Status in_process = Status._(
-    validatedValue: 'in-process',
+    valueString: 'in-process',
     system: 'http://hl7.org/fhir/ValueSet/verificationresult-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'In process'.toFhirString,
@@ -90,7 +94,7 @@ class Status extends FhirCodeEnum {
 
   /// req_revalid
   static final Status req_revalid = Status._(
-    validatedValue: 'req-revalid',
+    valueString: 'req-revalid',
     system: 'http://hl7.org/fhir/ValueSet/verificationresult-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Requires revalidation'.toFhirString,
@@ -98,7 +102,7 @@ class Status extends FhirCodeEnum {
 
   /// val_fail
   static final Status val_fail = Status._(
-    validatedValue: 'val-fail',
+    valueString: 'val-fail',
     system: 'http://hl7.org/fhir/ValueSet/verificationresult-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Validation failed'.toFhirString,
@@ -106,14 +110,14 @@ class Status extends FhirCodeEnum {
 
   /// reval_fail
   static final Status reval_fail = Status._(
-    validatedValue: 'reval-fail',
+    valueString: 'reval-fail',
     system: 'http://hl7.org/fhir/ValueSet/verificationresult-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Re-Validation failed'.toFhirString,
   );
 
   /// For instances where an Element is present but not value
-  static final Status elementOnly = Status._(validatedValue: '');
+  static final Status elementOnly = Status._(valueString: '');
 
   /// List of all enum-like values
   static final List<Status> values = [
@@ -128,30 +132,33 @@ class Status extends FhirCodeEnum {
   /// Clones the current instance
   @override
   Status clone() => Status._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   Status withElement(Element? newElement) {
-    return Status._(validatedValue: value, element: newElement);
+    return Status._(
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   Status copyWith({
-    String? newValue,
+    dynamic newValue,
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
@@ -162,11 +169,13 @@ class Status extends FhirCodeEnum {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError(
+        'Invalid input for Status: $newValue',
+      );
     }
     return Status._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

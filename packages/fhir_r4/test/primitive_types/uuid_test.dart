@@ -13,21 +13,21 @@ void uuidTest() {
     // Basic FhirUuid creation and validation
     test('FhirUuid from String value', () {
       final fhirUuid = FhirUuid(validUuidString);
-      expect(fhirUuid.value, equals(validUuidValue));
+      expect(fhirUuid.valueUuid, equals(validUuidValue));
       expect(fhirUuid.toString(), equals(validUuidString));
       expect(fhirUuid.toJson()['value'], equals(validUuidString));
     });
 
     test('FhirUuid fromUuid with UuidValue', () {
       final fhirUuid = FhirUuid.fromUuid(validUuidValue);
-      expect(fhirUuid.value, equals(validUuidValue));
+      expect(fhirUuid.valueUuid, equals(validUuidValue));
       expect(fhirUuid.toString(), equals(validUuidString));
       expect(fhirUuid.toJson()['value'], equals(validUuidString));
     });
 
     test('FhirUuid tryParse with valid UUID', () {
       final fhirUuid = FhirUuid.tryParse(validUuidString);
-      expect(fhirUuid?.value, equals(validUuidValue));
+      expect(fhirUuid?.valueUuid, equals(validUuidValue));
       expect(fhirUuid?.toString(), equals(validUuidString));
       expect(fhirUuid?.toJson()['value'], equals(validUuidString));
     });
@@ -39,7 +39,7 @@ void uuidTest() {
 
     test('FhirUuid fromJson with valid String', () {
       final fhirUuid = FhirUuid.fromJson({'value': validUuidString});
-      expect(fhirUuid.value, equals(validUuidValue));
+      expect(fhirUuid.valueUuid, equals(validUuidValue));
       expect(fhirUuid.toJson()['value'], equals(validUuidString));
     });
 
@@ -52,7 +52,7 @@ void uuidTest() {
 
     test('FhirUuid fromYaml with valid YAML', () {
       final fhirUuid = FhirUuid.fromYaml('value: $validUuidString');
-      expect(fhirUuid.value, equals(validUuidValue));
+      expect(fhirUuid.valueUuid, equals(validUuidValue));
       expect(fhirUuid.toJson()['value'], equals(validUuidString));
     });
 
@@ -82,7 +82,7 @@ void uuidTest() {
 
     test('FhirUuid equality with a UuidValue', () {
       final fhirUuid = FhirUuid(validUuidString);
-      expect(fhirUuid.value == validUuidValue, isTrue);
+      expect(fhirUuid.valueUuid == validUuidValue, isTrue);
     });
 
     test('FhirUuid equality with a valid String UUID', () {
@@ -123,7 +123,7 @@ void uuidTest() {
     test('FhirUuid clone', () {
       final originalUuid = FhirUuid(validUuidString);
       final clonedUuid = originalUuid.clone();
-      expect(clonedUuid.value, equals(validUuidValue));
+      expect(clonedUuid.valueUuid, equals(validUuidValue));
       expect(clonedUuid == originalUuid, isTrue);
       expect(clonedUuid.hashCode, equals(originalUuid.hashCode));
     });
@@ -133,9 +133,12 @@ void uuidTest() {
       final copiedUuid = originalUuid.copyWith(
         newValue: UuidValue.fromString(anotherValidUuid),
       );
-      expect(copiedUuid.value, equals(UuidValue.fromString(anotherValidUuid)));
       expect(
-        originalUuid.value,
+        copiedUuid.valueUuid,
+        equals(UuidValue.fromString(anotherValidUuid)),
+      );
+      expect(
+        originalUuid.valueUuid,
         equals(validUuidValue),
       ); // Original should remain unchanged
     });

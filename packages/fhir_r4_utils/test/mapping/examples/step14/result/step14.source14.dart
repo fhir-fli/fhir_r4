@@ -1,162 +1,161 @@
 // ignore_for_file: prefer_single_quotes, always_specify_types,
+// ignore_for_file: require_trailing_commas
 // ignore_for_file: avoid_escaping_inner_quotes
 
 final resultStep14Source14 = {
-  'resourceType': 'Bundle',
-  'id': 'SDOHCC-BundleHungerVitalSignExample',
-  'type': 'transaction',
-  'entry': [
+  "resourceType": "Bundle",
+  "id": "SDOHCC-BundleHungerVitalSignExample",
+  "type": "transaction",
+  "entry": [
     {
-      'resource': {
-        'resourceType': 'Observation',
-        'id': 'SDOHCC-ObservationResponseHungerVitalSignQuestion3Example',
-        'meta': {
-          'profile': [
-            'http://hl7.org/fhir/us/sdoh-clinicalcare/StructureDefinition/SDOHCC-ObservationScreeningResponse',
-          ],
+      "fullUrl":
+          "http://hl7.org/fhir/us/sdoh-clinicalcare/Observation/SDOHCC-ObservationResponseHungerVitalSignQuestion3Example",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "SDOHCC-ObservationResponseHungerVitalSignQuestion3Example",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/us/sdoh-clinicalcare/StructureDefinition/SDOHCC-ObservationScreeningResponse"
+          ]
         },
-        'status': 'final',
-        'category': [
+        "status": "final",
+        "category": [
           {
-            'coding': [
+            "coding": [
               {
-                'system':
-                    'http://terminology.hl7.org/CodeSystem/observation-category',
-                'code': 'social-history',
-                'display': 'Social History',
+                "system":
+                    "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "social-history",
+                "display": "Social History"
               }
-            ],
+            ]
           },
           {
-            'coding': [
+            "coding": [
               {
-                'system':
-                    'http://terminology.hl7.org/CodeSystem/observation-category',
-                'code': 'survey',
-                'display': 'Survey',
+                "system":
+                    "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "survey",
+                "display": "Survey"
               }
-            ],
+            ]
           },
           {
-            'coding': [
+            "coding": [
               {
-                'system':
-                    'http://hl7.org/fhir/us/sdoh-clinicalcare/CodeSystem/SDOHCC-CodeSystemTemporaryCodes',
-                'code': 'food-insecurity',
-                'display': 'Food Insecurity',
+                "system":
+                    "http://hl7.org/fhir/us/sdoh-clinicalcare/CodeSystem/SDOHCC-CodeSystemTemporaryCodes",
+                "code": "food-insecurity"
               }
-            ],
+            ]
           }
         ],
-        'code': {
-          'coding': [
-            {'system': 'http://loinc.org', 'code': '88124-3'},
-          ],
+        "code": {
+          "coding": [
+            {"system": "http://loinc.org", "code": "88124-3"}
+          ]
         },
-        'subject': {'reference': 'Patient/pat-53234', 'display': 'COLIN ABBAS'},
-        'effectiveDateTime': '2020-09-10T21:56:54.671Z',
-        'issued': '2020-09-10T21:56:54.671Z',
-        'valueCodeableConcept': {
-          'coding': [
+        "subject": {"reference": "Patient/pat-53234", "display": "COLIN ABBAS"},
+        "effectiveDateTime": "2020-09-10T21:56:54.671Z",
+        "issued": "2020-09-10T21:56:54.671Z",
+        "valueCodeableConcept": {
+          "coding": [
             {
-              'system': 'http://loinc.org',
-              'code': 'LA19952-3',
-              'display': 'At risk',
+              "system": "http://loinc.org",
+              "code": "LA19952-3",
+              "display": "At risk"
             }
-          ],
+          ]
         },
-        'derivedFrom': [
+        "derivedFrom": [
           {
-            'reference':
-                'QuestionnaireResponse/SDOHCC-QuestionnaireResponseHungerVitalSignExample',
+            "reference":
+                "QuestionnaireResponse/SDOHCC-QuestionnaireResponseHungerVitalSignExample"
           }
-        ],
+        ]
       },
-      'request': {'method': 'POST', 'url': 'Observation'},
-      'fullUrl':
-          'http://hl7.org/fhir/us/sdoh-clinicalcare/Observation/SDOHCC-ObservationResponseHungerVitalSignQuestion3Example',
+      "request": {"method": "POST", "url": "Observation"}
     },
     {
-      'resource': {
-        'resourceType': 'Condition',
-        'id': 'SDOHCC-ConditionFoodInsecurityExample',
-        'meta': {
-          'profile': [
-            'http://hl7.org/fhir/us/sdoh-clinicalcare/StructureDefinition/SDOHCC-Condition',
-          ],
+      "fullUrl":
+          "http://hl7.org/fhir/us/sdoh-clinicalcare/Condition/SDOHCC-ConditionFoodInsecurityExample",
+      "resource": {
+        "resourceType": "Condition",
+        "id": "SDOHCC-ConditionFoodInsecurityExample",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/us/sdoh-clinicalcare/StructureDefinition/SDOHCC-Condition"
+          ]
         },
-        'clinicalStatus': {
-          'coding': [
+        "clinicalStatus": {
+          "coding": [
             {
-              'system':
-                  'http://terminology.hl7.org/CodeSystem/condition-clinical',
-              'code': 'active',
-              'display': 'Active',
+              "system":
+                  "http://terminology.hl7.org/CodeSystem/condition-clinical",
+              "code": "active",
+              "display": "Active"
             }
-          ],
+          ]
         },
-        'verificationStatus': {
-          'coding': [
+        "verificationStatus": {
+          "coding": [
             {
-              'system':
-                  'http://terminology.hl7.org/CodeSystem/condition-ver-status',
-              'code': 'unconfirmed',
-              'display': 'Unconfirmed',
+              "system":
+                  "http://terminology.hl7.org/CodeSystem/condition-ver-status",
+              "code": "unconfirmed",
+              "display": "Unconfirmed"
             }
-          ],
+          ]
         },
-        'category': [
+        "category": [
           {
-            'coding': [
+            "coding": [
               {
-                'system':
-                    'http://hl7.org/fhir/us/core/CodeSystem/condition-category',
-                'code': 'health-concern',
-                'display': 'Health Concern',
+                "system":
+                    "http://hl7.org/fhir/us/core/CodeSystem/condition-category",
+                "code": "health-concern",
+                "display": "Health Concern"
               }
-            ],
+            ]
           },
           {
-            'coding': [
+            "coding": [
               {
-                'system':
-                    'http://hl7.org/fhir/us/sdoh-clinicalcare/CodeSystem/SDOHCC-CodeSystemTemporaryCodes',
-                'code': 'food-insecurity',
-                'display': 'Food Insecurity',
+                "system":
+                    "http://hl7.org/fhir/us/sdoh-clinicalcare/CodeSystem/SDOHCC-CodeSystemTemporaryCodes",
+                "code": "food-insecurity"
               }
-            ],
+            ]
           }
         ],
-        'code': {
-          'coding': [
+        "code": {
+          "coding": [
             {
-              'system': 'http://snomed.info/sct',
-              'code': '733423003',
-              'display': 'Food insecurity',
+              "system": "http://snomed.info/sct",
+              "code": "733423003",
+              "display": "Food insecurity"
             },
             {
-              'system': 'http://hl7.org/fhir/sid/icd-10-cm',
-              'code': 'Z59.4',
-              'display': 'Lack of adequate food',
+              "system": "http://hl7.org/fhir/sid/icd-10-cm",
+              "code": "Z59.4",
+              "display": "Lack of adequate food"
             }
-          ],
+          ]
         },
-        'onsetPeriod': {'start': '2020-09-10T21:56:54.671Z'},
-        'evidence': [
+        "subject": {"reference": "Patient/pat-53234", "display": "COLIN ABBAS"},
+        "onsetPeriod": {"start": "2020-09-10T21:56:54.671Z"},
+        "evidence": [
           {
-            'detail': [
+            "detail": [
               {
-                'reference':
-                    'Observation/SDOHCC-ObservationResponseHungerVitalSignQuestion3Example',
+                "reference":
+                    "Observation/SDOHCC-ObservationResponseHungerVitalSignQuestion3Example"
               }
-            ],
+            ]
           }
-        ],
-        'subject': {'reference': 'Patient/pat-53234', 'display': 'COLIN ABBAS'},
+        ]
       },
-      'fullUrl':
-          'http://hl7.org/fhir/us/sdoh-clinicalcare/Condition/SDOHCC-ConditionFoodInsecurityExample',
-      'request': {'method': 'POST', 'url': 'Condition'},
+      "request": {"method": "POST", "url": "Condition"}
     }
-  ],
+  ]
 };

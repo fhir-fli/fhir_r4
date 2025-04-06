@@ -1,13 +1,17 @@
 part of 'primitive_types.dart';
 
-/// Extension to convert a [String] to [FhirString].
+/// Extension methods on [String] to easily convert to [FhirString].
 extension FhirStringExtension on String {
-  /// Returns a [FhirString] object from a [String].
+  /// Returns a [FhirString] constructed from this [String].
   FhirString get toFhirString => FhirString(this);
 }
 
-/// [FhirString] represents a string used in FHIR resources.
-class FhirString extends PrimitiveType<String>
+/// A FHIR primitive type representing `string`.
+///
+/// FHIR strings can carry extensions ([element]) even though they might be
+/// just raw text. Here, we provide a variety of string-manipulation helpers
+/// on top of the base primitive structure.
+class FhirString extends PrimitiveType
     implements
         OnsetXAllergyIntolerance,
         ValueXAuditEventDetail,
@@ -62,34 +66,41 @@ class FhirString extends PrimitiveType<String>
         PatternXElementDefinition,
         ValueXElementDefinitionExample,
         ValueXExtension {
-  /// Private underscore constructor that ensures if both [validatedValue] and
-  /// [element] are null, we throw an error.
+  // --------------------------------------------------------------------------
+  // Private Internal Constructor
+  // --------------------------------------------------------------------------
+
+  /// Private underscore constructor. Checks if both [valueString] and [element]
+  /// are null (in the parent [PrimitiveType] constructor).
   FhirString._({
-    required String? validatedValue,
+    required super.valueString,
     super.element,
     super.id,
     super.extension_,
     super.disallowExtensions,
     super.objectPath = 'String',
-  }) : super._(value: validatedValue) {
-    if (value == null && element == null) {
-      throw ArgumentError('A value or element is required for FhirString');
-    }
-  }
+  }) : super._();
 
-  /// Constructs a [FhirString] with validation.
+  // --------------------------------------------------------------------------
+  // Public Factories
+  // --------------------------------------------------------------------------
+
+  /// Creates a [FhirString]. If [rawValue] is non-null, `toString()` is
+  /// applied.
   // ignore: sort_unnamed_constructors_first
   factory FhirString(
-    String? input, {
+    dynamic rawValue, {
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
     String objectPath = 'String',
   }) {
-    // No extra validation beyond "value or element" check
+    // We allow `null` if [element] is provided (element-only usage).
+    // Otherwise, convert [rawValue] to string.
+    final stringVal = rawValue?.toString();
     return FhirString._(
-      validatedValue: input,
+      valueString: stringVal,
       element: element,
       id: id,
       extension_: extension_,
@@ -98,32 +109,43 @@ class FhirString extends PrimitiveType<String>
     );
   }
 
-  /// Creates empty [FhirString] object
+  /// Creates an empty [FhirString] object with [Element.empty] metadata.
   factory FhirString.empty() => FhirString(null, element: Element.empty());
 
-  /// Factory constructor to create [FhirString] from JSON.
+  // --------------------------------------------------------------------------
+  // JSON / YAML Constructors
+  // --------------------------------------------------------------------------
+
+  /// Constructs a [FhirString] from a JSON [Map].
   factory FhirString.fromJson(Map<String, dynamic> json) {
-    final val = json['value'] as String?;
-    final elemJson = json['_value'] as Map<String, dynamic>?;
-    final element = elemJson != null ? Element.fromJson(elemJson) : null;
+    final rawValue = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final parsedElement =
+        elementJson == null ? null : Element.fromJson(elementJson);
     final objectPath = json['objectPath'] as String? ?? 'String';
-    return FhirString(val, element: element, objectPath: objectPath);
+    return FhirString(
+      rawValue,
+      element: parsedElement,
+      objectPath: objectPath,
+    );
   }
 
-  /// Factory constructor to create [FhirString] from YAML.
+  /// Constructs a [FhirString] from a YAML input ([String] or [YamlMap]).
   factory FhirString.fromYaml(dynamic yaml) {
-    return yaml is String
-        ? FhirString.fromJson(
-            jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, dynamic>,
-          )
-        : yaml is YamlMap
-            ? FhirString.fromJson(
-                jsonDecode(jsonEncode(yaml)) as Map<String, dynamic>,
-              )
-            : throw const FormatException('Invalid YAML format for FhirString');
+    if (yaml is String) {
+      return FhirString.fromJson(
+        jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, dynamic>,
+      );
+    } else if (yaml is YamlMap) {
+      return FhirString.fromJson(
+        jsonDecode(jsonEncode(yaml)) as Map<String, dynamic>,
+      );
+    } else {
+      throw const FormatException('Invalid YAML format for FhirString');
+    }
   }
 
-  /// Attempts to parse the input and return a [FhirString].
+  /// Attempts to parse [input] into a [FhirString]. Returns `null` if it fails.
   static FhirString? tryParse(dynamic input) {
     if (input is String) {
       try {
@@ -135,56 +157,71 @@ class FhirString extends PrimitiveType<String>
     return null;
   }
 
-  /// Returns the FHIR type as 'string'.
+  // --------------------------------------------------------------------------
+  // FHIR Overrides
+  // --------------------------------------------------------------------------
+
+  /// Returns `"string"` as the FHIR type.
   @override
   String get fhirType => 'string';
 
-  /// Serializes the instance to JSON with standardized keys.
+  /// Returns the string or `'null'` if no value.
+  @override
+  String toString() => valueString ?? 'null';
+
+  /// The primitive value as a [String].
+  @override
+  String? get primitiveValue => valueString;
+
+  /// JSON serialization with `'value'` and `'_value'` for the [Element].
   @override
   Map<String, dynamic> toJson() => {
-        if (value != null) 'value': value,
+        if (valueString != null) 'value': valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Provides a string representation of the value.
-  @override
-  String toString() => value.toString();
-
-  /// Retrieves the primitive value of the object.
-  @override
-  String? get primitiveValue => value?.toString();
-
+  /// Deep equality check.
   @override
   bool equalsDeep(FhirBase? other) =>
-      other is FhirString && other.value == value && other.element == element;
+      other is FhirString &&
+      other.valueString == valueString &&
+      other.element == element;
 
-  /// Overrides equality operator.
+  /// Equality operator override.
   @override
   // ignore: avoid_equals_and_hash_code_on_mutable_classes
   bool operator ==(Object other) =>
       identical(this, other) ||
-      (other is FhirString && other.value == value) ||
-      (other is String && other == value);
+      (other is FhirString && other.valueString == valueString) ||
+      (other is String && other == valueString);
 
-  /// Overrides the `hashCode` for use in hash-based collections.
+  /// Hash code override.
   @override
   // ignore: avoid_equals_and_hash_code_on_mutable_classes
-  int get hashCode => Object.hash(value, element);
+  int get hashCode => Object.hash(valueString, element);
 
-  /// Clones the current [FhirString] instance.
+  /// Returns `true` if the Type is considered string-based, otherwise `false`
+  @override
+  bool get stringBased => true;
+
+  // --------------------------------------------------------------------------
+  // Clone / Copy
+  // --------------------------------------------------------------------------
+
+  /// Creates a deep clone of this [FhirString].
   @override
   FhirString clone() => FhirString(
-        value,
+        valueString,
         element: element?.clone() as Element?,
       );
 
-  /// Sets disallowExtensions to true
+  /// Returns a copy with [disallowExtensions] set to `true`.
   FhirString noExtensions() => copyWith(disallowExtensions: true);
 
   /// Creates a modified copy with updated properties.
   @override
   FhirString copyWith({
-    String? newValue,
+    dynamic newValue,
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
@@ -196,7 +233,7 @@ class FhirString extends PrimitiveType<String>
     String? objectPath,
   }) {
     return FhirString(
-      newValue ?? value,
+      newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
@@ -211,114 +248,125 @@ class FhirString extends PrimitiveType<String>
     );
   }
 
-  // ----------------- Overriding String Methods -----------------
-  // (All your existing doc comments & logic retained)
+  // --------------------------------------------------------------------------
+  // Additional String-Like Methods
+  // --------------------------------------------------------------------------
 
-  /// The length of the string.
-  int get length => value?.length ?? 0;
+  /// Checks if the string is empty.
+  bool get isEmptyString => valueString?.isEmpty ?? true;
 
   /// Checks if the string is not empty.
-  bool get isNotEmpty => value?.isNotEmpty ?? false;
+  bool get isNotEmpty => !isEmptyString;
 
-  /// Returns the character at the specified index.
-  String operator [](int index) => value![index];
+  /// The length of the string (or `0` if `null`).
+  int get length => valueString?.length ?? 0;
 
-  /// Returns the character at the specified index.
-  int codeUnitAt(int index) => value!.codeUnitAt(index);
+  /// Returns the character at the specified [index].
+  String operator [](int index) => valueString?[index] ?? '';
 
-  /// Returns the character (Unicode code point) at the specified index.
-  Runes get runes => value!.runes;
+  /// Returns the code unit at the specified [index].
+  int? codeUnitAt(int index) => valueString?.codeUnitAt(index);
 
-  /// Returns the Unicode code units of the string.
-  List<int> get codeUnits => value!.codeUnits;
+  /// Returns the runes (Unicode code points).
+  Runes? get runes => valueString?.runes;
 
-  /// Returns the first character of the string.
-  String substring(int start, [int? end]) => value!.substring(start, end);
+  /// Returns the code units as a list of ints.
+  List<int> get codeUnits => valueString?.codeUnits ?? [];
 
-  /// Returns the first character of the string.
-  String trim() => value!.trim();
+  /// Substring of [valueString] from [start] to optional [end].
+  String substring(int start, [int? end]) =>
+      valueString?.substring(start, end) ?? '';
 
-  /// Returns the first character of the string.
-  String trimLeft() => value!.trimLeft();
+  /// Returns the [valueString] trimmed of whitespace.
+  String trim() => valueString?.trim() ?? '';
 
-  /// Returns the first character of the string.
-  String trimRight() => value!.trimRight();
+  /// Trims left side whitespace.
+  String trimLeft() => valueString?.trimLeft() ?? '';
 
-  /// Returns the first character of the string.
-  bool contains(Pattern other, [int startIndex = 0]) =>
-      value!.contains(other, startIndex);
+  /// Trims right side whitespace.
+  String trimRight() => valueString?.trimRight() ?? '';
 
-  /// Returns the first character of the string.
+  /// Checks if [pattern] occurs in the string.
+  bool contains(Pattern pattern, [int startIndex = 0]) =>
+      valueString?.contains(pattern, startIndex) ?? false;
+
+  /// Pads left side to [width] with [padding].
   String padLeft(int width, [String padding = ' ']) =>
-      value!.padLeft(width, padding);
+      valueString?.padLeft(width, padding) ?? padding;
 
-  /// Returns the first character of the string.
+  /// Pads right side to [width] with [padding].
   String padRight(int width, [String padding = ' ']) =>
-      value!.padRight(width, padding);
+      valueString?.padRight(width, padding) ?? padding;
 
-  /// Returns the first character of the string.
-  String toUpperCase() => value!.toUpperCase();
+  /// Converts the string to upper case.
+  String toUpperCase() => valueString?.toUpperCase() ?? '';
 
-  /// Returns the first character of the string.
-  String toLowerCase() => value!.toLowerCase();
+  /// Converts the string to lower case.
+  String toLowerCase() => valueString?.toLowerCase() ?? '';
 
-  /// Returns the first character of the string.
+  /// Checks if the string starts with [pattern].
   bool startsWith(Pattern pattern, [int index = 0]) =>
-      value!.startsWith(pattern, index);
+      valueString?.startsWith(pattern, index) ?? false;
 
-  /// Returns the first character of the string.
-  bool endsWith(String other) => value!.endsWith(other);
+  /// Checks if the string ends with [other].
+  bool endsWith(String other) => valueString?.endsWith(other) ?? false;
 
-  /// Returns the first character of the string.
+  /// Finds the first occurrence of [pattern].
   int indexOf(Pattern pattern, [int start = 0]) =>
-      value!.indexOf(pattern, start);
+      valueString?.indexOf(pattern, start) ?? -1;
 
-  /// Returns the first character of the string.
+  /// Finds the last occurrence of [pattern].
   int lastIndexOf(Pattern pattern, [int? start]) =>
-      value!.lastIndexOf(pattern, start);
+      valueString?.lastIndexOf(pattern, start) ?? -1;
 
-  /// Returns the first character of the string.
-  String operator +(String other) => (value ?? '') + other;
+  /// Concatenates this with [other].
+  String operator +(String other) => (valueString ?? '') + other;
 
-  /// Returns the first character of the string.
-  List<String> split(Pattern pattern) => value!.split(pattern);
+  /// Splits this string on [pattern].
+  List<String> split(Pattern pattern) => valueString?.split(pattern) ?? [];
 
-  /// Returns the first character of the string.
+  /// Replaces the first occurrence of [from] with [to].
   String replaceFirst(Pattern from, String to, [int startIndex = 0]) =>
-      value!.replaceFirst(from, to, startIndex);
+      valueString?.replaceFirst(from, to, startIndex) ?? '';
 
-  /// Returns the first character of the string.
+  /// Replaces all occurrences of [from] with [replace].
   String replaceAll(Pattern from, String replace) =>
-      value!.replaceAll(from, replace);
+      valueString?.replaceAll(from, replace) ?? '';
 
-  /// Returns the first character of the string.
+  /// Replaces the first occurrence with a mapped function.
   String replaceFirstMapped(
     Pattern from,
     String Function(Match) replace, [
     int startIndex = 0,
   ]) =>
-      value!.replaceFirstMapped(from, replace, startIndex);
+      valueString?.replaceFirstMapped(from, replace, startIndex) ?? '';
 
-  /// Returns the first character of the string.
+  /// Replaces all occurrences with a mapped function.
   String replaceAllMapped(Pattern from, String Function(Match) replace) =>
-      value!.replaceAllMapped(from, replace);
+      valueString?.replaceAllMapped(from, replace) ?? '';
 
-  /// Returns the first character of the string.
+  /// Replaces a range [start..end] with [replacement].
   String replaceRange(int start, int? end, String replacement) =>
-      value!.replaceRange(start, end, replacement);
+      valueString?.replaceRange(start, end, replacement) ?? '';
 
-  /// Returns the first character of the string.
+  /// Splits the string on [pattern], calling [onMatch] / [onNonMatch].
   String splitMapJoin(
     Pattern pattern, {
     String Function(Match)? onMatch,
     String Function(String)? onNonMatch,
   }) =>
-      value!.splitMapJoin(pattern, onMatch: onMatch, onNonMatch: onNonMatch);
+      valueString?.splitMapJoin(
+        pattern,
+        onMatch: onMatch,
+        onNonMatch: onNonMatch,
+      ) ??
+      '';
 
-  /// Checks if the string is empty.
-  bool get isEmptyString => value?.isEmpty ?? true;
+  // --------------------------------------------------------------------------
+  // Static JSON Helpers
+  // --------------------------------------------------------------------------
 
-  /// Converts a list of JSON values to a list of [FhirString] instances.
+  /// Converts parallel lists of [values] and [elements] into [FhirString]s.
   static List<FhirString> fromJsonList(
     List<dynamic> values,
     List<dynamic>? elements,
@@ -328,7 +376,6 @@ class FhirString extends PrimitiveType<String>
         'Values and elements must have the same length.',
       );
     }
-
     return List.generate(values.length, (i) {
       final val = values[i] as String?;
       final elem = elements?[i] != null
@@ -338,27 +385,29 @@ class FhirString extends PrimitiveType<String>
     });
   }
 
-  /// Converts a list of [FhirString] instances to a JSON-compatible map.
-  static Map<String, dynamic> toJsonList(List<FhirString> strings) {
-    return {
-      'value': strings.map((string) => string.value).toList(),
-      '_value': strings.map((string) => string.element?.toJson()).toList(),
-    };
-  }
+  /// Converts a list of [FhirString]s to a JSON map with parallel arrays.
+  static Map<String, dynamic> toJsonList(List<FhirString> items) => {
+        'value': items.map((val) => val.valueString).toList(),
+        '_value': items.map((val) => val.element?.toJson()).toList(),
+      };
 
-  /// Creates an empty property in the object
+  // --------------------------------------------------------------------------
+  // Subclass Contract
+  // --------------------------------------------------------------------------
+
+  /// Creates an empty property in the object (no-op).
   @override
   FhirString createProperty(String propertyName) => this;
 
-  /// Clears the specified fields in a [FhirString] object
+  /// Clears specified fields from this [FhirString].
   @override
   FhirString clear({
-    bool input = false,
+    bool value = false,
     bool extension_ = false,
     bool id = false,
   }) {
     return FhirString(
-      input ? null : value,
+      value ? null : valueString,
       element: element,
       extension_: extension_ ? <FhirExtension>[] : this.extension_,
       id: id ? null : this.id,

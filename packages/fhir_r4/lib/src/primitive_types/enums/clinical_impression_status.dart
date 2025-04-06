@@ -6,7 +6,7 @@ part of '../primitive_types.dart';
 class ClinicalImpressionStatus extends FhirCodeEnum {
   // Private underscore constructor for internal use.
   ClinicalImpressionStatus._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -20,7 +20,7 @@ class ClinicalImpressionStatus extends FhirCodeEnum {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory ClinicalImpressionStatus(
-    String? raw, {
+    String? rawValue, {
     FhirUri? system,
     FhirString? version,
     FhirString? display,
@@ -30,9 +30,10 @@ class ClinicalImpressionStatus extends FhirCodeEnum {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCode._validateCode(rawValue) : null;
     return ClinicalImpressionStatus._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -46,10 +47,13 @@ class ClinicalImpressionStatus extends FhirCodeEnum {
 
   /// Create empty [ClinicalImpressionStatus] with element only
   factory ClinicalImpressionStatus.empty() =>
-      ClinicalImpressionStatus._(validatedValue: '');
+      ClinicalImpressionStatus._(valueString: '');
 
-  /// Factory constructor to create [ClinicalImpressionStatus] from JSON.
-  factory ClinicalImpressionStatus.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [ClinicalImpressionStatus]
+  /// from JSON.
+  factory ClinicalImpressionStatus.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -61,7 +65,7 @@ class ClinicalImpressionStatus extends FhirCodeEnum {
       );
     }
     return ClinicalImpressionStatus._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
@@ -69,7 +73,7 @@ class ClinicalImpressionStatus extends FhirCodeEnum {
   /// preparation
   static final ClinicalImpressionStatus preparation =
       ClinicalImpressionStatus._(
-    validatedValue: 'preparation',
+    valueString: 'preparation',
     system: 'http://hl7.org/fhir/ValueSet/clinicalimpression-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Preparation'.toFhirString,
@@ -78,7 +82,7 @@ class ClinicalImpressionStatus extends FhirCodeEnum {
   /// in_progress
   static final ClinicalImpressionStatus in_progress =
       ClinicalImpressionStatus._(
-    validatedValue: 'in-progress',
+    valueString: 'in-progress',
     system: 'http://hl7.org/fhir/ValueSet/clinicalimpression-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'In Progress'.toFhirString,
@@ -86,7 +90,7 @@ class ClinicalImpressionStatus extends FhirCodeEnum {
 
   /// not_done
   static final ClinicalImpressionStatus not_done = ClinicalImpressionStatus._(
-    validatedValue: 'not-done',
+    valueString: 'not-done',
     system: 'http://hl7.org/fhir/ValueSet/clinicalimpression-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Not Done'.toFhirString,
@@ -94,7 +98,7 @@ class ClinicalImpressionStatus extends FhirCodeEnum {
 
   /// on_hold
   static final ClinicalImpressionStatus on_hold = ClinicalImpressionStatus._(
-    validatedValue: 'on-hold',
+    valueString: 'on-hold',
     system: 'http://hl7.org/fhir/ValueSet/clinicalimpression-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'On Hold'.toFhirString,
@@ -102,7 +106,7 @@ class ClinicalImpressionStatus extends FhirCodeEnum {
 
   /// stopped
   static final ClinicalImpressionStatus stopped = ClinicalImpressionStatus._(
-    validatedValue: 'stopped',
+    valueString: 'stopped',
     system: 'http://hl7.org/fhir/ValueSet/clinicalimpression-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Stopped'.toFhirString,
@@ -110,7 +114,7 @@ class ClinicalImpressionStatus extends FhirCodeEnum {
 
   /// completed
   static final ClinicalImpressionStatus completed = ClinicalImpressionStatus._(
-    validatedValue: 'completed',
+    valueString: 'completed',
     system: 'http://hl7.org/fhir/ValueSet/clinicalimpression-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Completed'.toFhirString,
@@ -119,7 +123,7 @@ class ClinicalImpressionStatus extends FhirCodeEnum {
   /// entered_in_error
   static final ClinicalImpressionStatus entered_in_error =
       ClinicalImpressionStatus._(
-    validatedValue: 'entered-in-error',
+    valueString: 'entered-in-error',
     system: 'http://hl7.org/fhir/ValueSet/clinicalimpression-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Entered in Error'.toFhirString,
@@ -127,7 +131,7 @@ class ClinicalImpressionStatus extends FhirCodeEnum {
 
   /// unknown
   static final ClinicalImpressionStatus unknown = ClinicalImpressionStatus._(
-    validatedValue: 'unknown',
+    valueString: 'unknown',
     system: 'http://hl7.org/fhir/ValueSet/clinicalimpression-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Unknown'.toFhirString,
@@ -135,7 +139,7 @@ class ClinicalImpressionStatus extends FhirCodeEnum {
 
   /// For instances where an Element is present but not value
   static final ClinicalImpressionStatus elementOnly =
-      ClinicalImpressionStatus._(validatedValue: '');
+      ClinicalImpressionStatus._(valueString: '');
 
   /// List of all enum-like values
   static final List<ClinicalImpressionStatus> values = [
@@ -152,31 +156,33 @@ class ClinicalImpressionStatus extends FhirCodeEnum {
   /// Clones the current instance
   @override
   ClinicalImpressionStatus clone() => ClinicalImpressionStatus._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ClinicalImpressionStatus withElement(Element? newElement) {
     return ClinicalImpressionStatus._(
-        validatedValue: value, element: newElement,);
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   ClinicalImpressionStatus copyWith({
-    String? newValue,
+    dynamic newValue,
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
@@ -187,11 +193,13 @@ class ClinicalImpressionStatus extends FhirCodeEnum {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError(
+        'Invalid input for ClinicalImpressionStatus: $newValue',
+      );
     }
     return ClinicalImpressionStatus._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

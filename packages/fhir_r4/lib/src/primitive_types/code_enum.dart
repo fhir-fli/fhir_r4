@@ -2,12 +2,9 @@ part of 'primitive_types.dart';
 
 /// Extension of FhirCode for Specific FhirCode
 abstract class FhirCodeEnum extends FhirCode {
-  /// Private underscore constructor that just calls `super._(...)`,
-  /// passing the validated code. We can also store system, version, display.
-  /// This means we do no further logic: any validation is done in a
-  /// public factory.
-  FhirCodeEnum._({
-    required super.validatedValue,
+  // ignore: public_member_api_docs
+  FhirCodeEnum({
+    required super.valueString,
     this.system,
     this.version,
     this.display,
@@ -16,7 +13,23 @@ abstract class FhirCodeEnum extends FhirCode {
     super.extension_,
     super.disallowExtensions,
     super.objectPath,
-  }) : super._(input: validatedValue);
+  }) : super._();
+
+  /// Private underscore constructor that just calls `super._(...)`,
+  /// passing the validated code. We can also store system, version, display.
+  /// This means we do no further logic: any validation is done in a
+  /// public factory.
+  FhirCodeEnum._({
+    required super.valueString,
+    this.system,
+    this.version,
+    this.display,
+    super.element,
+    super.id,
+    super.extension_,
+    super.disallowExtensions,
+    super.objectPath,
+  }) : super._();
 
   /// [system]
   /// The identification of the code system that defines the meaning of the
@@ -39,11 +52,11 @@ abstract class FhirCodeEnum extends FhirCode {
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': value?.isEmpty ?? true ? null : value,
+        'value': valueString?.isEmpty ?? true ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 }

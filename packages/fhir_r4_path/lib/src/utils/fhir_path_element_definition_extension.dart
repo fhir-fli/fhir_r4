@@ -8,6 +8,6 @@ extension FhirPathElementDefinitionExtension on ElementDefinition {
   /// Returns if the element definition has a content reference
   bool hasContentReference() {
     return contentReference != null &&
-        (contentReference!.value?.toString().isNotEmpty ?? false);
+        (contentReference!.valueString?.isNotEmpty ?? false);
   }
 }

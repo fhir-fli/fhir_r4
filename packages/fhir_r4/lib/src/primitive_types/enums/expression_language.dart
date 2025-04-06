@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class ExpressionLanguage extends FhirCodeEnum {
   // Private underscore constructor for internal use.
   ExpressionLanguage._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class ExpressionLanguage extends FhirCodeEnum {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory ExpressionLanguage(
-    String? raw, {
+    String? rawValue, {
     FhirUri? system,
     FhirString? version,
     FhirString? display,
@@ -29,9 +29,10 @@ class ExpressionLanguage extends FhirCodeEnum {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCode._validateCode(rawValue) : null;
     return ExpressionLanguage._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -44,11 +45,13 @@ class ExpressionLanguage extends FhirCodeEnum {
   }
 
   /// Create empty [ExpressionLanguage] with element only
-  factory ExpressionLanguage.empty() =>
-      ExpressionLanguage._(validatedValue: '');
+  factory ExpressionLanguage.empty() => ExpressionLanguage._(valueString: '');
 
-  /// Factory constructor to create [ExpressionLanguage] from JSON.
-  factory ExpressionLanguage.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [ExpressionLanguage]
+  /// from JSON.
+  factory ExpressionLanguage.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -60,14 +63,14 @@ class ExpressionLanguage extends FhirCodeEnum {
       );
     }
     return ExpressionLanguage._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// text_cql
   static final ExpressionLanguage text_cql = ExpressionLanguage._(
-    validatedValue: 'text/cql',
+    valueString: 'text/cql',
     system: 'http://hl7.org/fhir/ValueSet/expression-language'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'CQL'.toFhirString,
@@ -75,7 +78,7 @@ class ExpressionLanguage extends FhirCodeEnum {
 
   /// text_fhirpath
   static final ExpressionLanguage text_fhirpath = ExpressionLanguage._(
-    validatedValue: 'text/fhirpath',
+    valueString: 'text/fhirpath',
     system: 'http://hl7.org/fhir/ValueSet/expression-language'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'FHIRPath'.toFhirString,
@@ -84,7 +87,7 @@ class ExpressionLanguage extends FhirCodeEnum {
   /// application_x_fhir_query
   static final ExpressionLanguage application_x_fhir_query =
       ExpressionLanguage._(
-    validatedValue: 'application/x-fhir-query',
+    valueString: 'application/x-fhir-query',
     system: 'http://hl7.org/fhir/ValueSet/expression-language'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'FHIR Query'.toFhirString,
@@ -92,7 +95,7 @@ class ExpressionLanguage extends FhirCodeEnum {
 
   /// text_cql_identifier
   static final ExpressionLanguage text_cql_identifier = ExpressionLanguage._(
-    validatedValue: 'text/cql-identifier',
+    valueString: 'text/cql-identifier',
     system: 'http://hl7.org/fhir/ValueSet/expression-language'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'CQL Identifier'.toFhirString,
@@ -100,7 +103,7 @@ class ExpressionLanguage extends FhirCodeEnum {
 
   /// text_cql_expression
   static final ExpressionLanguage text_cql_expression = ExpressionLanguage._(
-    validatedValue: 'text/cql-expression',
+    valueString: 'text/cql-expression',
     system: 'http://hl7.org/fhir/ValueSet/expression-language'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'CQL Expression'.toFhirString,
@@ -108,7 +111,7 @@ class ExpressionLanguage extends FhirCodeEnum {
 
   /// For instances where an Element is present but not value
   static final ExpressionLanguage elementOnly =
-      ExpressionLanguage._(validatedValue: '');
+      ExpressionLanguage._(valueString: '');
 
   /// List of all enum-like values
   static final List<ExpressionLanguage> values = [
@@ -122,30 +125,33 @@ class ExpressionLanguage extends FhirCodeEnum {
   /// Clones the current instance
   @override
   ExpressionLanguage clone() => ExpressionLanguage._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ExpressionLanguage withElement(Element? newElement) {
-    return ExpressionLanguage._(validatedValue: value, element: newElement);
+    return ExpressionLanguage._(
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   ExpressionLanguage copyWith({
-    String? newValue,
+    dynamic newValue,
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
@@ -156,11 +162,13 @@ class ExpressionLanguage extends FhirCodeEnum {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError(
+        'Invalid input for ExpressionLanguage: $newValue',
+      );
     }
     return ExpressionLanguage._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

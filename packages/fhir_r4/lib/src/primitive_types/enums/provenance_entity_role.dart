@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class ProvenanceEntityRole extends FhirCodeEnum {
   // Private underscore constructor for internal use.
   ProvenanceEntityRole._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class ProvenanceEntityRole extends FhirCodeEnum {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory ProvenanceEntityRole(
-    String? raw, {
+    String? rawValue, {
     FhirUri? system,
     FhirString? version,
     FhirString? display,
@@ -29,9 +29,10 @@ class ProvenanceEntityRole extends FhirCodeEnum {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCode._validateCode(rawValue) : null;
     return ProvenanceEntityRole._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -45,10 +46,13 @@ class ProvenanceEntityRole extends FhirCodeEnum {
 
   /// Create empty [ProvenanceEntityRole] with element only
   factory ProvenanceEntityRole.empty() =>
-      ProvenanceEntityRole._(validatedValue: '');
+      ProvenanceEntityRole._(valueString: '');
 
-  /// Factory constructor to create [ProvenanceEntityRole] from JSON.
-  factory ProvenanceEntityRole.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [ProvenanceEntityRole]
+  /// from JSON.
+  factory ProvenanceEntityRole.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -60,14 +64,14 @@ class ProvenanceEntityRole extends FhirCodeEnum {
       );
     }
     return ProvenanceEntityRole._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// derivation
   static final ProvenanceEntityRole derivation = ProvenanceEntityRole._(
-    validatedValue: 'derivation',
+    valueString: 'derivation',
     system: 'http://hl7.org/fhir/ValueSet/provenance-entity-role'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Derivation'.toFhirString,
@@ -75,7 +79,7 @@ class ProvenanceEntityRole extends FhirCodeEnum {
 
   /// revision
   static final ProvenanceEntityRole revision = ProvenanceEntityRole._(
-    validatedValue: 'revision',
+    valueString: 'revision',
     system: 'http://hl7.org/fhir/ValueSet/provenance-entity-role'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Revision'.toFhirString,
@@ -83,7 +87,7 @@ class ProvenanceEntityRole extends FhirCodeEnum {
 
   /// quotation
   static final ProvenanceEntityRole quotation = ProvenanceEntityRole._(
-    validatedValue: 'quotation',
+    valueString: 'quotation',
     system: 'http://hl7.org/fhir/ValueSet/provenance-entity-role'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Quotation'.toFhirString,
@@ -91,7 +95,7 @@ class ProvenanceEntityRole extends FhirCodeEnum {
 
   /// source
   static final ProvenanceEntityRole source = ProvenanceEntityRole._(
-    validatedValue: 'source',
+    valueString: 'source',
     system: 'http://hl7.org/fhir/ValueSet/provenance-entity-role'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Source'.toFhirString,
@@ -99,7 +103,7 @@ class ProvenanceEntityRole extends FhirCodeEnum {
 
   /// removal
   static final ProvenanceEntityRole removal = ProvenanceEntityRole._(
-    validatedValue: 'removal',
+    valueString: 'removal',
     system: 'http://hl7.org/fhir/ValueSet/provenance-entity-role'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Removal'.toFhirString,
@@ -107,7 +111,7 @@ class ProvenanceEntityRole extends FhirCodeEnum {
 
   /// For instances where an Element is present but not value
   static final ProvenanceEntityRole elementOnly =
-      ProvenanceEntityRole._(validatedValue: '');
+      ProvenanceEntityRole._(valueString: '');
 
   /// List of all enum-like values
   static final List<ProvenanceEntityRole> values = [
@@ -121,30 +125,33 @@ class ProvenanceEntityRole extends FhirCodeEnum {
   /// Clones the current instance
   @override
   ProvenanceEntityRole clone() => ProvenanceEntityRole._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ProvenanceEntityRole withElement(Element? newElement) {
-    return ProvenanceEntityRole._(validatedValue: value, element: newElement);
+    return ProvenanceEntityRole._(
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   ProvenanceEntityRole copyWith({
-    String? newValue,
+    dynamic newValue,
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
@@ -155,11 +162,13 @@ class ProvenanceEntityRole extends FhirCodeEnum {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError(
+        'Invalid input for ProvenanceEntityRole: $newValue',
+      );
     }
     return ProvenanceEntityRole._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

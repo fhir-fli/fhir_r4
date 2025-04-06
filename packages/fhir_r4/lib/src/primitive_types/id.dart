@@ -1,13 +1,20 @@
 part of 'primitive_types.dart';
 
-/// Extension to convert a [String] to [FhirId].
+/// Extension methods on [String] to easily convert to [FhirId].
 extension FhirIdExtension on String {
-  /// Converts a [String] to a [FhirId].
+  /// Returns a new [FhirId] constructed from this string.
   FhirId get toFhirId => FhirId(this);
 }
 
-/// Represents the FHIR primitive type `id`.
-class FhirId extends PrimitiveType<String>
+/// A subclass of [FhirUri] representing the FHIR primitive type `id`.
+///
+/// According to FHIR, an `id` is a string of length 1..64 matching
+/// the pattern:
+///
+///   `[A-Za-z0-9\-\.]{1}[A-Za-z0-9\-\.]{0,63}`
+///
+/// (with a slight variation for underscores).
+class FhirId extends FhirUri
     implements
         ValueXParametersParameter,
         DefaultValueXStructureMapSource,
@@ -19,37 +26,56 @@ class FhirId extends PrimitiveType<String>
         PatternXElementDefinition,
         ValueXElementDefinitionExample,
         ValueXExtension {
-  /// Private underscore constructor that performs no external validation,
-  /// but checks if both [validatedValue] and [element] are null afterward.
+  // --------------------------------------------------------------------------
+  // Private Internal Constructor
+  // --------------------------------------------------------------------------
+
+  /// Private underscore constructor delegating to [FhirUri]'s
+  /// internal constructor.
   FhirId._({
-    required String? validatedValue,
+    required super.valueString,
     super.element,
     super.id,
     super.extension_,
     super.disallowExtensions,
     super.objectPath = 'Id',
-  }) : super._(value: validatedValue) {
-    // Retain the original runtime check: if no value & no element => throw.
-    if (value == null && element == null) {
-      throw ArgumentError('A value or element is required for FhirId');
-    }
-  }
+  }) : super._();
 
-  /// Public factory constructor with input validation.
+  // --------------------------------------------------------------------------
+  // Public Factories
+  // --------------------------------------------------------------------------
+
+  /// Creates a [FhirId] by validating [rawValue] as a [String] or [Uri].
+  ///
+  /// - If [rawValue] is `null`, then [element] must be non-null (element-only).
+  /// - If [rawValue] is a [String], it must pass [_validateId].
+  /// - If [rawValue] is a [Uri], we convert it to a string and validate.
+  /// - Otherwise, an [ArgumentError] is thrown.
   // ignore: sort_unnamed_constructors_first
   factory FhirId(
-    String? input, {
+    dynamic rawValue, {
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
     String objectPath = 'Id',
   }) {
-    // If [input] is non-null, validate it; else remain null if also no element.
-    final validated = input != null ? _validateId(input) : null;
+    String? parsedValue;
+    if (rawValue == null && element == null) {
+      throw ArgumentError('A value or element is required for FhirId.');
+    } else if (rawValue is String) {
+      parsedValue = _validateId(rawValue);
+    } else if (rawValue is Uri) {
+      parsedValue = _validateId(rawValue.toString());
+    } else if (rawValue != null) {
+      throw ArgumentError(
+        'FhirId cannot be constructed from provided input. '
+        'It must be a String or Uri. Got: $rawValue',
+      );
+    }
 
     return FhirId._(
-      validatedValue: validated,
+      valueString: parsedValue,
       element: element,
       id: id,
       extension_: extension_,
@@ -58,76 +84,94 @@ class FhirId extends PrimitiveType<String>
     );
   }
 
-  /// Creates empty [FhirId] object
+  /// Creates an empty [FhirId] object (with a default [Element.empty]
+  /// for metadata).
   factory FhirId.empty() => FhirId(null, element: Element.empty());
 
-  /// Factory constructor to create [FhirId] from JSON input.
+  // --------------------------------------------------------------------------
+  // JSON / YAML Constructors
+  // --------------------------------------------------------------------------
+
+  /// Constructs a [FhirId] from a JSON [Map].
   factory FhirId.fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
+    final rawValue = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    final parsedElement =
+        elementJson == null ? null : Element.fromJson(elementJson);
     final objectPath = json['objectPath'] as String? ?? 'Id';
-    return FhirId(value, element: element, objectPath: objectPath);
+
+    return FhirId(rawValue, element: parsedElement, objectPath: objectPath);
   }
 
-  /// Factory constructor to create [FhirId] from YAML input.
+  /// Constructs a [FhirId] from a YAML input ([String] or [YamlMap]).
   static FhirId fromYaml(dynamic yaml) {
-    return yaml is String
-        ? FhirId.fromJson(
-            jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, dynamic>,
-          )
-        : yaml is YamlMap
-            ? FhirId.fromJson(
-                jsonDecode(jsonEncode(yaml)) as Map<String, dynamic>,
-              )
-            : throw ArgumentError(
-                'FhirId cannot be constructed from provided input. '
-                'It must be a YAML string or YAML map.',
-              );
-  }
-
-  /// Static method to try parsing the input as [FhirId].
-  static FhirId? tryParse(dynamic input) {
-    if (input is String) {
-      try {
-        return FhirId(input);
-      } catch (_) {
-        return null;
-      }
+    if (yaml is String) {
+      return FhirId.fromJson(
+        jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, dynamic>,
+      );
+    } else if (yaml is YamlMap) {
+      return FhirId.fromJson(
+        jsonDecode(jsonEncode(yaml)) as Map<String, dynamic>,
+      );
+    } else {
+      throw ArgumentError(
+        'FhirId cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
     }
-    return null;
   }
 
-  /// Ensures the input is a valid FHIR ID.
+  /// Attempts to parse [input] as a [FhirId].
+  /// Returns `null` if parsing fails.
+  static FhirId? tryParse(dynamic input) {
+    try {
+      return FhirId(input);
+    } catch (_) {
+      return null;
+    }
+  }
+
+  // --------------------------------------------------------------------------
+  // Validation
+  // --------------------------------------------------------------------------
+
+  /// Validates the string against the FHIR `id` pattern:
+  ///   `[A-Za-z0-9\-\.]{1}[A-Za-z0-9\-._]{0,63}`
+  ///
+  /// Throws a [FormatException] if it fails.
   static String _validateId(String input) {
-    final regex = RegExp(r'^[A-Za-z0-9\-\.][A-Za-z0-9\-._]{0,63}$');
-    if (regex.hasMatch(input)) return input;
-    throw FormatException('Invalid FhirId:$input');
+    final pattern = RegExp(r'^[A-Za-z0-9\-\.][A-Za-z0-9\-._]{0,63}$');
+    if (pattern.hasMatch(input)) {
+      return input;
+    }
+    throw FormatException('Invalid FhirId: $input');
   }
 
-  /// Boolean checks for the presence of a value only.
-  bool get valueOnly => value != null && element == null;
+  // --------------------------------------------------------------------------
+  // FHIR Overrides
+  // --------------------------------------------------------------------------
 
-  /// Boolean checks for the presence of an element only.
-  bool get hasElementOnly => value == null && element != null;
-
-  /// Boolean checks for the presence of both value and element.
-  bool get valueAndElement => value != null && element != null;
-
-  /// Returns the FHIR type as a [String].
+  /// Returns `"id"` as the FHIR type.
   @override
   String get fhirType => 'id';
 
-  /// Serializes the instance to JSON with standardized keys.
+  /// Returns `true` if the Type is considered string-based, otherwise `false`
   @override
-  Map<String, dynamic> toJson() {
-    return {
-      if (value != null) 'value': value,
-      if (element != null) '_value': element!.toJson(),
-    };
-  }
+  bool get stringBased => true;
 
-  /// Converts a list of JSON values to a list of [FhirId] instances.
+  // --------------------------------------------------------------------------
+  // JSON Serialization
+  // --------------------------------------------------------------------------
+
+  /// Converts this [FhirId] into a JSON [Map].
+  @override
+  Map<String, dynamic> toJson() => {
+        if (valueString != null) 'value': valueString,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  /// Converts parallel lists of [values] and [elements]
+  /// into a list of [FhirId].
   static List<FhirId> fromJsonList(
     List<dynamic> values,
     List<dynamic>? elements,
@@ -137,7 +181,6 @@ class FhirId extends PrimitiveType<String>
         'Values and elements must have the same length.',
       );
     }
-
     return List.generate(values.length, (i) {
       final val = values[i] as String?;
       final elem = elements?[i] != null
@@ -147,50 +190,62 @@ class FhirId extends PrimitiveType<String>
     });
   }
 
-  /// Converts a list of [FhirId] instances to a JSON-compatible map.
-  static Map<String, dynamic> toJsonList(List<FhirId> ids) {
-    return {
-      'value': ids.map((id) => id.value).toList(),
-      '_value': ids.map((id) => id.element?.toJson()).toList(),
-    };
-  }
+  /// Converts a list of [FhirId] to a JSON map with `'value'`
+  /// and `'_value'` arrays.
+  static Map<String, dynamic> toJsonList(List<FhirId> values) => {
+        'value': values.map((val) => val.valueString).toList(),
+        '_value': values.map((val) => val.element?.toJson()).toList(),
+      };
+
+  // --------------------------------------------------------------------------
+  // Overrides
+  // --------------------------------------------------------------------------
 
   /// Provides a string representation of the instance.
   @override
-  String toString() => value.toString();
+  String toString() => valueString ?? '';
 
-  /// Retrieves the primitive value of the object.
+  /// The primitive value as a string.
   @override
-  String? get primitiveValue => value?.toString();
+  String? get primitiveValue => valueString;
 
+  /// Deep equality check for [FhirId].
   @override
   bool equalsDeep(FhirBase? other) =>
-      other is FhirId && other.value == value && other.element == element;
+      other is FhirId &&
+      other.valueString == valueString &&
+      other.element == element;
 
-  /// Overrides equality operator.
+  /// Checks equality with [FhirId] or [String].
   @override
-  // ignore: avoid_equals_and_hash_code_on_mutable_classes
-  bool operator ==(Object other) =>
+  bool equals(Object other) =>
       identical(this, other) ||
-      (other is FhirId && other.value == value) ||
-      (other is String && other == value);
+      (other is FhirId && other.valueString == valueString) ||
+      (other is String && other == valueString);
 
-  /// Overrides `hashCode` for use in hash-based collections.
   @override
   // ignore: avoid_equals_and_hash_code_on_mutable_classes
-  int get hashCode => Object.hash(value, element);
+  bool operator ==(Object other) => equals(other);
 
-  /// Creates a deep copy of the instance.
+  @override
+  // ignore: avoid_equals_and_hash_code_on_mutable_classes
+  int get hashCode => Object.hash(valueString, element);
+
+  // --------------------------------------------------------------------------
+  // Clone / Copy
+  // --------------------------------------------------------------------------
+
+  /// Creates a deep copy of this [FhirId].
   @override
   FhirId clone() => FhirId(
-        value,
+        valueString,
         element: element?.clone() as Element?,
       );
 
-  /// Creates a modified copy of the instance with updated properties.
+  /// Creates a new [FhirId] with updated properties.
   @override
   FhirId copyWith({
-    String? newValue,
+    dynamic newValue,
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
@@ -202,7 +257,7 @@ class FhirId extends PrimitiveType<String>
     String? objectPath,
   }) {
     return FhirId(
-      newValue ?? value,
+      newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
@@ -217,22 +272,19 @@ class FhirId extends PrimitiveType<String>
     );
   }
 
-  /// Returns a new [FhirId] with extensions disallowed.
-  FhirId noExtensions() => copyWith(disallowExtensions: true);
-
-  /// Creates an empty property in the object
+  /// Creates a property. No-op for [FhirId].
   @override
   FhirId createProperty(String propertyName) => this;
 
-  /// Clears the specified fields in a [FhirId] object
+  /// Clears selected fields in this [FhirId].
   @override
   FhirId clear({
-    bool input = false,
+    bool value = false,
     bool extension_ = false,
     bool id = false,
   }) {
     return FhirId(
-      input ? null : value,
+      value ? null : valueString,
       element: element,
       extension_: extension_ ? <FhirExtension>[] : this.extension_,
       id: id ? null : this.id,

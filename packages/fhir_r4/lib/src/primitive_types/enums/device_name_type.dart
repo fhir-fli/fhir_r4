@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class DeviceNameType extends FhirCodeEnum {
   // Private underscore constructor for internal use.
   DeviceNameType._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class DeviceNameType extends FhirCodeEnum {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory DeviceNameType(
-    String? raw, {
+    String? rawValue, {
     FhirUri? system,
     FhirString? version,
     FhirString? display,
@@ -29,9 +29,10 @@ class DeviceNameType extends FhirCodeEnum {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCode._validateCode(rawValue) : null;
     return DeviceNameType._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -44,10 +45,13 @@ class DeviceNameType extends FhirCodeEnum {
   }
 
   /// Create empty [DeviceNameType] with element only
-  factory DeviceNameType.empty() => DeviceNameType._(validatedValue: '');
+  factory DeviceNameType.empty() => DeviceNameType._(valueString: '');
 
-  /// Factory constructor to create [DeviceNameType] from JSON.
-  factory DeviceNameType.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [DeviceNameType]
+  /// from JSON.
+  factory DeviceNameType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -59,14 +63,14 @@ class DeviceNameType extends FhirCodeEnum {
       );
     }
     return DeviceNameType._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// udi_label_name
   static final DeviceNameType udi_label_name = DeviceNameType._(
-    validatedValue: 'udi-label-name',
+    valueString: 'udi-label-name',
     system: 'http://hl7.org/fhir/ValueSet/device-nametype'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'UDI Label name'.toFhirString,
@@ -74,7 +78,7 @@ class DeviceNameType extends FhirCodeEnum {
 
   /// user_friendly_name
   static final DeviceNameType user_friendly_name = DeviceNameType._(
-    validatedValue: 'user-friendly-name',
+    valueString: 'user-friendly-name',
     system: 'http://hl7.org/fhir/ValueSet/device-nametype'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'User Friendly name'.toFhirString,
@@ -82,7 +86,7 @@ class DeviceNameType extends FhirCodeEnum {
 
   /// patient_reported_name
   static final DeviceNameType patient_reported_name = DeviceNameType._(
-    validatedValue: 'patient-reported-name',
+    valueString: 'patient-reported-name',
     system: 'http://hl7.org/fhir/ValueSet/device-nametype'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Patient Reported name'.toFhirString,
@@ -90,7 +94,7 @@ class DeviceNameType extends FhirCodeEnum {
 
   /// manufacturer_name
   static final DeviceNameType manufacturer_name = DeviceNameType._(
-    validatedValue: 'manufacturer-name',
+    valueString: 'manufacturer-name',
     system: 'http://hl7.org/fhir/ValueSet/device-nametype'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Manufacturer name'.toFhirString,
@@ -98,7 +102,7 @@ class DeviceNameType extends FhirCodeEnum {
 
   /// model_name
   static final DeviceNameType model_name = DeviceNameType._(
-    validatedValue: 'model-name',
+    valueString: 'model-name',
     system: 'http://hl7.org/fhir/ValueSet/device-nametype'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Model name'.toFhirString,
@@ -106,15 +110,14 @@ class DeviceNameType extends FhirCodeEnum {
 
   /// other
   static final DeviceNameType other = DeviceNameType._(
-    validatedValue: 'other',
+    valueString: 'other',
     system: 'http://hl7.org/fhir/ValueSet/device-nametype'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'other'.toFhirString,
   );
 
   /// For instances where an Element is present but not value
-  static final DeviceNameType elementOnly =
-      DeviceNameType._(validatedValue: '');
+  static final DeviceNameType elementOnly = DeviceNameType._(valueString: '');
 
   /// List of all enum-like values
   static final List<DeviceNameType> values = [
@@ -129,30 +132,33 @@ class DeviceNameType extends FhirCodeEnum {
   /// Clones the current instance
   @override
   DeviceNameType clone() => DeviceNameType._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   DeviceNameType withElement(Element? newElement) {
-    return DeviceNameType._(validatedValue: value, element: newElement);
+    return DeviceNameType._(
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   DeviceNameType copyWith({
-    String? newValue,
+    dynamic newValue,
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
@@ -163,11 +169,13 @@ class DeviceNameType extends FhirCodeEnum {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError(
+        'Invalid input for DeviceNameType: $newValue',
+      );
     }
     return DeviceNameType._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

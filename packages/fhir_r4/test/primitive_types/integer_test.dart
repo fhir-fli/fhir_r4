@@ -10,14 +10,14 @@ void integerTest() {
     // Basic FhirInteger creation and validation
     test('FhirInteger from int value', () {
       final fhirInteger = FhirInteger(validInteger);
-      expect(fhirInteger.value, equals(validInteger));
+      expect(fhirInteger.valueInt, equals(validInteger));
       expect(fhirInteger.toString(), equals(validInteger.toString()));
       expect(fhirInteger.toJson()['value'], equals(validInteger));
     });
 
     test('FhirInteger fromJson with valid number', () {
       final fhirInteger = FhirInteger.fromJson({'value': 456});
-      expect(fhirInteger.value, equals(456));
+      expect(fhirInteger.valueInt, equals(456));
       expect(fhirInteger.toJson()['value'], equals(456));
     });
 
@@ -30,7 +30,7 @@ void integerTest() {
 
     test('FhirInteger fromYaml with valid YAML', () {
       final fhirInteger = FhirInteger.fromYaml('value: 789');
-      expect(fhirInteger.value, equals(789));
+      expect(fhirInteger.valueInt, equals(789));
       expect(fhirInteger.toJson()['value'], equals(789));
     });
 
@@ -39,35 +39,35 @@ void integerTest() {
       final fhirInteger1 = FhirInteger(validInteger);
       final fhirInteger2 = FhirInteger(otherInteger);
       final result = (fhirInteger1 + fhirInteger2)! as FhirInteger;
-      expect(result.value, equals(validInteger + otherInteger));
+      expect(result.valueInt, equals(validInteger + otherInteger));
     });
 
     test('FhirInteger subtraction', () {
       final fhirInteger1 = FhirInteger(validInteger);
       final fhirInteger2 = FhirInteger(otherInteger);
       final result = (fhirInteger1 - fhirInteger2)! as FhirInteger;
-      expect(result.value, equals(validInteger - otherInteger));
+      expect(result.valueInt, equals(validInteger - otherInteger));
     });
 
     test('FhirInteger multiplication', () {
       final fhirInteger1 = FhirInteger(validInteger);
       final fhirInteger2 = FhirInteger(otherInteger);
       final result = (fhirInteger1 * fhirInteger2)! as FhirInteger;
-      expect(result.value, equals(validInteger * otherInteger));
+      expect(result.valueInt, equals(validInteger * otherInteger));
     });
 
     test('FhirInteger division', () {
       final fhirInteger1 = FhirInteger(validInteger);
       final fhirInteger2 = FhirInteger(otherInteger);
       final result = (fhirInteger1 ~/ fhirInteger2)! as FhirInteger;
-      expect(result.value, equals(validInteger ~/ otherInteger));
+      expect(result.valueInt, equals(validInteger ~/ otherInteger));
     });
 
     test('FhirInteger modulus', () {
       final fhirInteger1 = FhirInteger(validInteger);
       final fhirInteger2 = FhirInteger(otherInteger);
       final result = (fhirInteger1 % fhirInteger2)! as FhirInteger;
-      expect(result.value, equals(validInteger % otherInteger));
+      expect(result.valueInt, equals(validInteger % otherInteger));
     });
 
     // Numeric methods inherited from FhirNumber
@@ -105,7 +105,7 @@ void integerTest() {
     test('FhirInteger clone', () {
       final originalInteger = FhirInteger(validInteger);
       final clonedInteger = originalInteger.clone();
-      expect(clonedInteger.value, equals(validInteger));
+      expect(clonedInteger.valueInt, equals(validInteger));
       expect(clonedInteger == originalInteger, isTrue);
       expect(clonedInteger.hashCode, equals(originalInteger.hashCode));
     });
@@ -113,8 +113,8 @@ void integerTest() {
     test('FhirInteger copyWith new value', () {
       final originalInteger = FhirInteger(validInteger);
       final copiedInteger = originalInteger.copyWith(newValue: 678);
-      expect(copiedInteger.value, equals(678));
-      expect(originalInteger.value, equals(validInteger));
+      expect(copiedInteger.valueInt, equals(678));
+      expect(originalInteger.valueInt, equals(validInteger));
     });
 
     test('FhirInteger with Element', () {

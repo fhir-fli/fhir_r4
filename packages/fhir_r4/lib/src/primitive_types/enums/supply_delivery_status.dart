@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class SupplyDeliveryStatus extends FhirCodeEnum {
   // Private underscore constructor for internal use.
   SupplyDeliveryStatus._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class SupplyDeliveryStatus extends FhirCodeEnum {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory SupplyDeliveryStatus(
-    String? raw, {
+    String? rawValue, {
     FhirUri? system,
     FhirString? version,
     FhirString? display,
@@ -29,9 +29,10 @@ class SupplyDeliveryStatus extends FhirCodeEnum {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCode._validateCode(rawValue) : null;
     return SupplyDeliveryStatus._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -45,10 +46,13 @@ class SupplyDeliveryStatus extends FhirCodeEnum {
 
   /// Create empty [SupplyDeliveryStatus] with element only
   factory SupplyDeliveryStatus.empty() =>
-      SupplyDeliveryStatus._(validatedValue: '');
+      SupplyDeliveryStatus._(valueString: '');
 
-  /// Factory constructor to create [SupplyDeliveryStatus] from JSON.
-  factory SupplyDeliveryStatus.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [SupplyDeliveryStatus]
+  /// from JSON.
+  factory SupplyDeliveryStatus.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -60,14 +64,14 @@ class SupplyDeliveryStatus extends FhirCodeEnum {
       );
     }
     return SupplyDeliveryStatus._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// in_progress
   static final SupplyDeliveryStatus in_progress = SupplyDeliveryStatus._(
-    validatedValue: 'in-progress',
+    valueString: 'in-progress',
     system: 'http://hl7.org/fhir/ValueSet/supplydelivery-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'In Progress'.toFhirString,
@@ -75,7 +79,7 @@ class SupplyDeliveryStatus extends FhirCodeEnum {
 
   /// completed
   static final SupplyDeliveryStatus completed = SupplyDeliveryStatus._(
-    validatedValue: 'completed',
+    valueString: 'completed',
     system: 'http://hl7.org/fhir/ValueSet/supplydelivery-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Delivered'.toFhirString,
@@ -83,7 +87,7 @@ class SupplyDeliveryStatus extends FhirCodeEnum {
 
   /// abandoned
   static final SupplyDeliveryStatus abandoned = SupplyDeliveryStatus._(
-    validatedValue: 'abandoned',
+    valueString: 'abandoned',
     system: 'http://hl7.org/fhir/ValueSet/supplydelivery-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Abandoned'.toFhirString,
@@ -91,7 +95,7 @@ class SupplyDeliveryStatus extends FhirCodeEnum {
 
   /// entered_in_error
   static final SupplyDeliveryStatus entered_in_error = SupplyDeliveryStatus._(
-    validatedValue: 'entered-in-error',
+    valueString: 'entered-in-error',
     system: 'http://hl7.org/fhir/ValueSet/supplydelivery-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Entered In Error'.toFhirString,
@@ -99,7 +103,7 @@ class SupplyDeliveryStatus extends FhirCodeEnum {
 
   /// For instances where an Element is present but not value
   static final SupplyDeliveryStatus elementOnly =
-      SupplyDeliveryStatus._(validatedValue: '');
+      SupplyDeliveryStatus._(valueString: '');
 
   /// List of all enum-like values
   static final List<SupplyDeliveryStatus> values = [
@@ -112,30 +116,33 @@ class SupplyDeliveryStatus extends FhirCodeEnum {
   /// Clones the current instance
   @override
   SupplyDeliveryStatus clone() => SupplyDeliveryStatus._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   SupplyDeliveryStatus withElement(Element? newElement) {
-    return SupplyDeliveryStatus._(validatedValue: value, element: newElement);
+    return SupplyDeliveryStatus._(
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   SupplyDeliveryStatus copyWith({
-    String? newValue,
+    dynamic newValue,
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
@@ -146,11 +153,13 @@ class SupplyDeliveryStatus extends FhirCodeEnum {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError(
+        'Invalid input for SupplyDeliveryStatus: $newValue',
+      );
     }
     return SupplyDeliveryStatus._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

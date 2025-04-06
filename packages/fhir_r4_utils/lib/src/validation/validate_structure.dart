@@ -1,5 +1,6 @@
 import 'package:collection/collection.dart';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4_path/fhir_r4_path.dart';
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 
 /// Validates the structure of a FHIR resource against a given
@@ -108,7 +109,7 @@ Future<ValidationResults> _objectNode(
   final element =
       _findElementDefinitionFromNode(originalPath, replacePath, node, elements);
   if (element != null) {
-    newResults = validateInvariants(
+    newResults = await validateInvariants(
       url: url,
       node: node,
       element: element,
@@ -213,7 +214,7 @@ Future<ValidationResults> _propertyNode(
     );
 
     // Validate invariants defined for the element.
-    newResults = validateInvariants(
+    newResults = await validateInvariants(
       url: url,
       node: node,
       element: element,
@@ -522,7 +523,9 @@ Future<ValidationResults> _checkEnumerations(
       element.binding?.valueSet != null) {
     // Fetch the allowed codes from the specified ValueSet.
     final allowedCodes = await getValueSetCodes(
-        element.binding!.valueSet.toString(), resourceCache);
+      element.binding!.valueSet.toString(),
+      resourceCache,
+    );
     if (!allowedCodes.contains(value)) {
       results.addResult(
         node,
@@ -552,7 +555,7 @@ ValidationResults _checkStringPatterns(
   if (element.patternX != null &&
       element.patternX is FhirString &&
       value is String) {
-    final regex = RegExp((element.patternX! as FhirString).value!);
+    final regex = RegExp((element.patternX! as FhirString).valueString!);
     if (!regex.hasMatch(value)) {
       results.addResult(
         node,
@@ -690,8 +693,8 @@ ElementDefinition? _polymorphicElement(
 ) {
   return elements.values.firstWhereOrNull(
     (ElementDefinition element) =>
-        (element.path.value?.endsWith('[x]') ?? false) &&
-        path.startsWith(element.path.value!.replaceFirst('[x]', '')),
+        (element.path.valueString?.endsWith('[x]') ?? false) &&
+        path.startsWith(element.path.valueString!.replaceFirst('[x]', '')),
   );
 }
 

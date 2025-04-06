@@ -1,27 +1,30 @@
-import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4/fhir_r4.dart' as fhir;
 import 'package:fhir_r4_path/fhir_r4_path.dart';
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 
 /// Validates the invariants of a [Node] against the corresponding
-/// [ElementDefinition].
-ValidationResults validateInvariants({
+/// [fhir.ElementDefinition].
+Future<ValidationResults> validateInvariants({
   required Node node,
-  required ElementDefinition element,
+  required fhir.ElementDefinition element,
   required ValidationResults results,
   String? url,
   required ResourceCache resourceCache,
-}) {
+}) async {
   if (element.constraint != null) {
     final context = _getContext(node, element, results);
     for (final constraint in element.constraint!) {
       if (constraint.expression != null) {
-        if (!_constraintsIDontWantToDo(node, constraint.expression!.value!)) {
-          if (!_evaluateConstraint(
+        if (!_constraintsIDontWantToDo(
+          node,
+          constraint.expression!.valueString!,
+        )) {
+          if (!(await _evaluateConstraint(
             node,
             context,
-            constraint.expression!.value!,
+            constraint.expression!.valueString!,
             results,
-          )) {
+          ))) {
             results.addResult(
               node,
               withUrlIfExists('Invariant violation: ${constraint.human}', url),
@@ -41,14 +44,14 @@ ValidationResults validateInvariants({
   return results;
 }
 
-FhirBase? _getContext(
+fhir.FhirBase? _getContext(
   Node node,
-  ElementDefinition element,
+  fhir.ElementDefinition element,
   ValidationResults results,
 ) {
   final dynamic rawContext = _nodeToMap(node);
 
-  if (element.type == null || element.path.value == null) {
+  if (element.type == null || element.path.valueString == null) {
     results.addResult(
       node,
       'Element type or path is missing for node: ${node.path}',
@@ -57,14 +60,14 @@ FhirBase? _getContext(
     return null;
   }
 
-  final key = element.path.value!.split('.').last;
+  final key = element.path.valueString!.split('.').last;
   final extractedContext = rawContext is Map<String, dynamic>
       ? rawContext[key] ?? rawContext
       : rawContext;
 
   for (final type in element.type!) {
     try {
-      final context = fromType(extractedContext, type.code.toString());
+      final context = fhir.fromType(extractedContext, type.code.toString());
       if (context != null) {
         return context;
       }
@@ -91,12 +94,12 @@ FhirBase? _getContext(
 }
 
 /// Evaluates a FHIRPath expression against a [FhirBase] context.
-bool _evaluateConstraint(
+Future<bool> _evaluateConstraint(
   Node node,
-  FhirBase? context,
+  fhir.FhirBase? context,
   String expression,
   ValidationResults results,
-) {
+) async {
   if (context == null) {
     results.addResult(
       node,
@@ -107,7 +110,7 @@ bool _evaluateConstraint(
   }
 
   // Evaluate the FHIRPath expression using the context
-  final result = walkFhirPath(
+  final result = await walkFhirPath(
     context: context,
     pathExpression: expression,
   );
@@ -115,8 +118,8 @@ bool _evaluateConstraint(
   // Check if the result satisfies the constraint
   return result.length == 1 &&
       ((result.first is bool && result.first as bool) ||
-          (result.first is FhirBoolean &&
-              ((result.first as FhirBoolean).value ?? false)));
+          (result.first is fhir.FhirBoolean &&
+              ((result.first as fhir.FhirBoolean).valueBoolean ?? false)));
 }
 
 /// Converts a [Node] to a [Map] for use as a FHIRPath context.

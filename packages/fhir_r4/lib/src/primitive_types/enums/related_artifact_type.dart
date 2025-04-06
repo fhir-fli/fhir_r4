@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class RelatedArtifactType extends FhirCodeEnum {
   // Private underscore constructor for internal use.
   RelatedArtifactType._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class RelatedArtifactType extends FhirCodeEnum {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory RelatedArtifactType(
-    String? raw, {
+    String? rawValue, {
     FhirUri? system,
     FhirString? version,
     FhirString? display,
@@ -29,9 +29,10 @@ class RelatedArtifactType extends FhirCodeEnum {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCode._validateCode(rawValue) : null;
     return RelatedArtifactType._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -44,11 +45,13 @@ class RelatedArtifactType extends FhirCodeEnum {
   }
 
   /// Create empty [RelatedArtifactType] with element only
-  factory RelatedArtifactType.empty() =>
-      RelatedArtifactType._(validatedValue: '');
+  factory RelatedArtifactType.empty() => RelatedArtifactType._(valueString: '');
 
-  /// Factory constructor to create [RelatedArtifactType] from JSON.
-  factory RelatedArtifactType.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [RelatedArtifactType]
+  /// from JSON.
+  factory RelatedArtifactType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -60,14 +63,14 @@ class RelatedArtifactType extends FhirCodeEnum {
       );
     }
     return RelatedArtifactType._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// documentation
   static final RelatedArtifactType documentation = RelatedArtifactType._(
-    validatedValue: 'documentation',
+    valueString: 'documentation',
     system: 'http://hl7.org/fhir/ValueSet/related-artifact-type'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Documentation'.toFhirString,
@@ -75,7 +78,7 @@ class RelatedArtifactType extends FhirCodeEnum {
 
   /// justification
   static final RelatedArtifactType justification = RelatedArtifactType._(
-    validatedValue: 'justification',
+    valueString: 'justification',
     system: 'http://hl7.org/fhir/ValueSet/related-artifact-type'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Justification'.toFhirString,
@@ -83,7 +86,7 @@ class RelatedArtifactType extends FhirCodeEnum {
 
   /// citation
   static final RelatedArtifactType citation = RelatedArtifactType._(
-    validatedValue: 'citation',
+    valueString: 'citation',
     system: 'http://hl7.org/fhir/ValueSet/related-artifact-type'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Citation'.toFhirString,
@@ -91,7 +94,7 @@ class RelatedArtifactType extends FhirCodeEnum {
 
   /// predecessor
   static final RelatedArtifactType predecessor = RelatedArtifactType._(
-    validatedValue: 'predecessor',
+    valueString: 'predecessor',
     system: 'http://hl7.org/fhir/ValueSet/related-artifact-type'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Predecessor'.toFhirString,
@@ -99,7 +102,7 @@ class RelatedArtifactType extends FhirCodeEnum {
 
   /// successor
   static final RelatedArtifactType successor = RelatedArtifactType._(
-    validatedValue: 'successor',
+    valueString: 'successor',
     system: 'http://hl7.org/fhir/ValueSet/related-artifact-type'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Successor'.toFhirString,
@@ -107,7 +110,7 @@ class RelatedArtifactType extends FhirCodeEnum {
 
   /// derived_from
   static final RelatedArtifactType derived_from = RelatedArtifactType._(
-    validatedValue: 'derived-from',
+    valueString: 'derived-from',
     system: 'http://hl7.org/fhir/ValueSet/related-artifact-type'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Derived From'.toFhirString,
@@ -115,7 +118,7 @@ class RelatedArtifactType extends FhirCodeEnum {
 
   /// depends_on
   static final RelatedArtifactType depends_on = RelatedArtifactType._(
-    validatedValue: 'depends-on',
+    valueString: 'depends-on',
     system: 'http://hl7.org/fhir/ValueSet/related-artifact-type'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Depends On'.toFhirString,
@@ -123,7 +126,7 @@ class RelatedArtifactType extends FhirCodeEnum {
 
   /// composed_of
   static final RelatedArtifactType composed_of = RelatedArtifactType._(
-    validatedValue: 'composed-of',
+    valueString: 'composed-of',
     system: 'http://hl7.org/fhir/ValueSet/related-artifact-type'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Composed Of'.toFhirString,
@@ -131,7 +134,7 @@ class RelatedArtifactType extends FhirCodeEnum {
 
   /// For instances where an Element is present but not value
   static final RelatedArtifactType elementOnly =
-      RelatedArtifactType._(validatedValue: '');
+      RelatedArtifactType._(valueString: '');
 
   /// List of all enum-like values
   static final List<RelatedArtifactType> values = [
@@ -148,30 +151,33 @@ class RelatedArtifactType extends FhirCodeEnum {
   /// Clones the current instance
   @override
   RelatedArtifactType clone() => RelatedArtifactType._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   RelatedArtifactType withElement(Element? newElement) {
-    return RelatedArtifactType._(validatedValue: value, element: newElement);
+    return RelatedArtifactType._(
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   RelatedArtifactType copyWith({
-    String? newValue,
+    dynamic newValue,
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
@@ -182,11 +188,13 @@ class RelatedArtifactType extends FhirCodeEnum {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError(
+        'Invalid input for RelatedArtifactType: $newValue',
+      );
     }
     return RelatedArtifactType._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

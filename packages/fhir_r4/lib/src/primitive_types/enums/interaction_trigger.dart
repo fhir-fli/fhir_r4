@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class InteractionTrigger extends FhirCodeEnum {
   // Private underscore constructor for internal use.
   InteractionTrigger._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class InteractionTrigger extends FhirCodeEnum {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory InteractionTrigger(
-    String? raw, {
+    String? rawValue, {
     FhirUri? system,
     FhirString? version,
     FhirString? display,
@@ -29,9 +29,10 @@ class InteractionTrigger extends FhirCodeEnum {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCode._validateCode(rawValue) : null;
     return InteractionTrigger._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -44,11 +45,13 @@ class InteractionTrigger extends FhirCodeEnum {
   }
 
   /// Create empty [InteractionTrigger] with element only
-  factory InteractionTrigger.empty() =>
-      InteractionTrigger._(validatedValue: '');
+  factory InteractionTrigger.empty() => InteractionTrigger._(valueString: '');
 
-  /// Factory constructor to create [InteractionTrigger] from JSON.
-  factory InteractionTrigger.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [InteractionTrigger]
+  /// from JSON.
+  factory InteractionTrigger.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -60,14 +63,14 @@ class InteractionTrigger extends FhirCodeEnum {
       );
     }
     return InteractionTrigger._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// read
   static final InteractionTrigger read = InteractionTrigger._(
-    validatedValue: 'read',
+    valueString: 'read',
     system: 'http://hl7.org/fhir/ValueSet/interaction-trigger'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'read'.toFhirString,
@@ -75,7 +78,7 @@ class InteractionTrigger extends FhirCodeEnum {
 
   /// vread
   static final InteractionTrigger vread = InteractionTrigger._(
-    validatedValue: 'vread',
+    valueString: 'vread',
     system: 'http://hl7.org/fhir/ValueSet/interaction-trigger'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'vread'.toFhirString,
@@ -83,7 +86,7 @@ class InteractionTrigger extends FhirCodeEnum {
 
   /// update
   static final InteractionTrigger update = InteractionTrigger._(
-    validatedValue: 'update',
+    valueString: 'update',
     system: 'http://hl7.org/fhir/ValueSet/interaction-trigger'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'update'.toFhirString,
@@ -91,7 +94,7 @@ class InteractionTrigger extends FhirCodeEnum {
 
   /// patch
   static final InteractionTrigger patch = InteractionTrigger._(
-    validatedValue: 'patch',
+    valueString: 'patch',
     system: 'http://hl7.org/fhir/ValueSet/interaction-trigger'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'patch'.toFhirString,
@@ -99,7 +102,7 @@ class InteractionTrigger extends FhirCodeEnum {
 
   /// delete
   static final InteractionTrigger delete = InteractionTrigger._(
-    validatedValue: 'delete',
+    valueString: 'delete',
     system: 'http://hl7.org/fhir/ValueSet/interaction-trigger'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'delete'.toFhirString,
@@ -107,7 +110,7 @@ class InteractionTrigger extends FhirCodeEnum {
 
   /// history
   static final InteractionTrigger history = InteractionTrigger._(
-    validatedValue: 'history',
+    valueString: 'history',
     system: 'http://hl7.org/fhir/ValueSet/interaction-trigger'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'history'.toFhirString,
@@ -115,7 +118,7 @@ class InteractionTrigger extends FhirCodeEnum {
 
   /// history_instance
   static final InteractionTrigger history_instance = InteractionTrigger._(
-    validatedValue: 'history-instance',
+    valueString: 'history-instance',
     system: 'http://hl7.org/fhir/ValueSet/interaction-trigger'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'history-instance'.toFhirString,
@@ -123,7 +126,7 @@ class InteractionTrigger extends FhirCodeEnum {
 
   /// history_type
   static final InteractionTrigger history_type = InteractionTrigger._(
-    validatedValue: 'history-type',
+    valueString: 'history-type',
     system: 'http://hl7.org/fhir/ValueSet/interaction-trigger'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'history-type'.toFhirString,
@@ -131,7 +134,7 @@ class InteractionTrigger extends FhirCodeEnum {
 
   /// history_system
   static final InteractionTrigger history_system = InteractionTrigger._(
-    validatedValue: 'history-system',
+    valueString: 'history-system',
     system: 'http://hl7.org/fhir/ValueSet/interaction-trigger'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'history-system'.toFhirString,
@@ -139,7 +142,7 @@ class InteractionTrigger extends FhirCodeEnum {
 
   /// create
   static final InteractionTrigger create = InteractionTrigger._(
-    validatedValue: 'create',
+    valueString: 'create',
     system: 'http://hl7.org/fhir/ValueSet/interaction-trigger'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'create'.toFhirString,
@@ -147,7 +150,7 @@ class InteractionTrigger extends FhirCodeEnum {
 
   /// search
   static final InteractionTrigger search = InteractionTrigger._(
-    validatedValue: 'search',
+    valueString: 'search',
     system: 'http://hl7.org/fhir/ValueSet/interaction-trigger'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'search'.toFhirString,
@@ -155,7 +158,7 @@ class InteractionTrigger extends FhirCodeEnum {
 
   /// search_type
   static final InteractionTrigger search_type = InteractionTrigger._(
-    validatedValue: 'search-type',
+    valueString: 'search-type',
     system: 'http://hl7.org/fhir/ValueSet/interaction-trigger'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'search-type'.toFhirString,
@@ -163,7 +166,7 @@ class InteractionTrigger extends FhirCodeEnum {
 
   /// search_system
   static final InteractionTrigger search_system = InteractionTrigger._(
-    validatedValue: 'search-system',
+    valueString: 'search-system',
     system: 'http://hl7.org/fhir/ValueSet/interaction-trigger'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'search-system'.toFhirString,
@@ -171,7 +174,7 @@ class InteractionTrigger extends FhirCodeEnum {
 
   /// capabilities
   static final InteractionTrigger capabilities = InteractionTrigger._(
-    validatedValue: 'capabilities',
+    valueString: 'capabilities',
     system: 'http://hl7.org/fhir/ValueSet/interaction-trigger'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'capabilities'.toFhirString,
@@ -179,7 +182,7 @@ class InteractionTrigger extends FhirCodeEnum {
 
   /// transaction
   static final InteractionTrigger transaction = InteractionTrigger._(
-    validatedValue: 'transaction',
+    valueString: 'transaction',
     system: 'http://hl7.org/fhir/ValueSet/interaction-trigger'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'transaction'.toFhirString,
@@ -187,7 +190,7 @@ class InteractionTrigger extends FhirCodeEnum {
 
   /// batch
   static final InteractionTrigger batch = InteractionTrigger._(
-    validatedValue: 'batch',
+    valueString: 'batch',
     system: 'http://hl7.org/fhir/ValueSet/interaction-trigger'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'batch'.toFhirString,
@@ -195,7 +198,7 @@ class InteractionTrigger extends FhirCodeEnum {
 
   /// operation
   static final InteractionTrigger operation = InteractionTrigger._(
-    validatedValue: 'operation',
+    valueString: 'operation',
     system: 'http://hl7.org/fhir/ValueSet/interaction-trigger'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'operation'.toFhirString,
@@ -203,7 +206,7 @@ class InteractionTrigger extends FhirCodeEnum {
 
   /// For instances where an Element is present but not value
   static final InteractionTrigger elementOnly =
-      InteractionTrigger._(validatedValue: '');
+      InteractionTrigger._(valueString: '');
 
   /// List of all enum-like values
   static final List<InteractionTrigger> values = [
@@ -229,30 +232,33 @@ class InteractionTrigger extends FhirCodeEnum {
   /// Clones the current instance
   @override
   InteractionTrigger clone() => InteractionTrigger._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   InteractionTrigger withElement(Element? newElement) {
-    return InteractionTrigger._(validatedValue: value, element: newElement);
+    return InteractionTrigger._(
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   InteractionTrigger copyWith({
-    String? newValue,
+    dynamic newValue,
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
@@ -263,11 +269,13 @@ class InteractionTrigger extends FhirCodeEnum {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError(
+        'Invalid input for InteractionTrigger: $newValue',
+      );
     }
     return InteractionTrigger._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

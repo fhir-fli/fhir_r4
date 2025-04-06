@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class OperationParameterUse extends FhirCodeEnum {
   // Private underscore constructor for internal use.
   OperationParameterUse._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class OperationParameterUse extends FhirCodeEnum {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory OperationParameterUse(
-    String? raw, {
+    String? rawValue, {
     FhirUri? system,
     FhirString? version,
     FhirString? display,
@@ -29,9 +29,10 @@ class OperationParameterUse extends FhirCodeEnum {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCode._validateCode(rawValue) : null;
     return OperationParameterUse._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -45,10 +46,13 @@ class OperationParameterUse extends FhirCodeEnum {
 
   /// Create empty [OperationParameterUse] with element only
   factory OperationParameterUse.empty() =>
-      OperationParameterUse._(validatedValue: '');
+      OperationParameterUse._(valueString: '');
 
-  /// Factory constructor to create [OperationParameterUse] from JSON.
-  factory OperationParameterUse.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [OperationParameterUse]
+  /// from JSON.
+  factory OperationParameterUse.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -60,14 +64,14 @@ class OperationParameterUse extends FhirCodeEnum {
       );
     }
     return OperationParameterUse._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// in_
   static final OperationParameterUse in_ = OperationParameterUse._(
-    validatedValue: 'in',
+    valueString: 'in',
     system: 'http://hl7.org/fhir/ValueSet/operation-parameter-use'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'In'.toFhirString,
@@ -75,7 +79,7 @@ class OperationParameterUse extends FhirCodeEnum {
 
   /// out
   static final OperationParameterUse out = OperationParameterUse._(
-    validatedValue: 'out',
+    valueString: 'out',
     system: 'http://hl7.org/fhir/ValueSet/operation-parameter-use'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Out'.toFhirString,
@@ -83,7 +87,7 @@ class OperationParameterUse extends FhirCodeEnum {
 
   /// For instances where an Element is present but not value
   static final OperationParameterUse elementOnly =
-      OperationParameterUse._(validatedValue: '');
+      OperationParameterUse._(valueString: '');
 
   /// List of all enum-like values
   static final List<OperationParameterUse> values = [
@@ -94,30 +98,33 @@ class OperationParameterUse extends FhirCodeEnum {
   /// Clones the current instance
   @override
   OperationParameterUse clone() => OperationParameterUse._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   OperationParameterUse withElement(Element? newElement) {
-    return OperationParameterUse._(validatedValue: value, element: newElement);
+    return OperationParameterUse._(
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   OperationParameterUse copyWith({
-    String? newValue,
+    dynamic newValue,
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
@@ -128,11 +135,13 @@ class OperationParameterUse extends FhirCodeEnum {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError(
+        'Invalid input for OperationParameterUse: $newValue',
+      );
     }
     return OperationParameterUse._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class ActionParticipantType extends FhirCodeEnum {
   // Private underscore constructor for internal use.
   ActionParticipantType._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class ActionParticipantType extends FhirCodeEnum {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory ActionParticipantType(
-    String? raw, {
+    String? rawValue, {
     FhirUri? system,
     FhirString? version,
     FhirString? display,
@@ -29,9 +29,10 @@ class ActionParticipantType extends FhirCodeEnum {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCode._validateCode(rawValue) : null;
     return ActionParticipantType._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -45,10 +46,13 @@ class ActionParticipantType extends FhirCodeEnum {
 
   /// Create empty [ActionParticipantType] with element only
   factory ActionParticipantType.empty() =>
-      ActionParticipantType._(validatedValue: '');
+      ActionParticipantType._(valueString: '');
 
-  /// Factory constructor to create [ActionParticipantType] from JSON.
-  factory ActionParticipantType.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [ActionParticipantType]
+  /// from JSON.
+  factory ActionParticipantType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -60,14 +64,14 @@ class ActionParticipantType extends FhirCodeEnum {
       );
     }
     return ActionParticipantType._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// patient
   static final ActionParticipantType patient = ActionParticipantType._(
-    validatedValue: 'patient',
+    valueString: 'patient',
     system: 'http://hl7.org/fhir/ValueSet/action-participant-type'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Patient'.toFhirString,
@@ -75,7 +79,7 @@ class ActionParticipantType extends FhirCodeEnum {
 
   /// practitioner
   static final ActionParticipantType practitioner = ActionParticipantType._(
-    validatedValue: 'practitioner',
+    valueString: 'practitioner',
     system: 'http://hl7.org/fhir/ValueSet/action-participant-type'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Practitioner'.toFhirString,
@@ -83,7 +87,7 @@ class ActionParticipantType extends FhirCodeEnum {
 
   /// related_person
   static final ActionParticipantType related_person = ActionParticipantType._(
-    validatedValue: 'related-person',
+    valueString: 'related-person',
     system: 'http://hl7.org/fhir/ValueSet/action-participant-type'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Related Person'.toFhirString,
@@ -91,7 +95,7 @@ class ActionParticipantType extends FhirCodeEnum {
 
   /// device
   static final ActionParticipantType device = ActionParticipantType._(
-    validatedValue: 'device',
+    valueString: 'device',
     system: 'http://hl7.org/fhir/ValueSet/action-participant-type'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Device'.toFhirString,
@@ -99,7 +103,7 @@ class ActionParticipantType extends FhirCodeEnum {
 
   /// For instances where an Element is present but not value
   static final ActionParticipantType elementOnly =
-      ActionParticipantType._(validatedValue: '');
+      ActionParticipantType._(valueString: '');
 
   /// List of all enum-like values
   static final List<ActionParticipantType> values = [
@@ -112,30 +116,33 @@ class ActionParticipantType extends FhirCodeEnum {
   /// Clones the current instance
   @override
   ActionParticipantType clone() => ActionParticipantType._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ActionParticipantType withElement(Element? newElement) {
-    return ActionParticipantType._(validatedValue: value, element: newElement);
+    return ActionParticipantType._(
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   ActionParticipantType copyWith({
-    String? newValue,
+    dynamic newValue,
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
@@ -146,11 +153,13 @@ class ActionParticipantType extends FhirCodeEnum {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError(
+        'Invalid input for ActionParticipantType: $newValue',
+      );
     }
     return ActionParticipantType._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

@@ -56,13 +56,13 @@ import 'package:fhir_r4_path/fhir_r4_path.dart';
 ///
 /// The lazy-loading mechanism is currently only supported through the
 /// [environment] map, not for explicitly passed-in parameters.
-List<FhirBase> walkFhirPath({
+Future<List<FhirBase>> walkFhirPath({
   required FhirBase? context,
   required String pathExpression,
   FhirBase? resource,
   FhirBase? rootResource,
   Map<String, dynamic>? environment,
-}) {
+}) async {
   final ast = parseFhirPath(pathExpression);
   // print('*************************************');
   // ast.printExpressionTree();
@@ -91,14 +91,14 @@ ExpressionNode parseFhirPath(String pathExpression) {
 /// resulting in a performance gain over [walkFhirPath].
 ///
 /// All parameters have the same meaning as for [walkFhirPath].
-List<FhirBase> executeFhirPath({
+Future<List<FhirBase>> executeFhirPath({
   required FhirBase? context,
   required ExpressionNode parsedFhirPath,
   required String pathExpression,
   FhirBase? resource,
   FhirBase? rootResource,
   Map<String, dynamic>? environment,
-}) {
+}) async {
   if (environment != null) {
     // Prepare the environment map
     final passedEnvironment = <String, dynamic>{

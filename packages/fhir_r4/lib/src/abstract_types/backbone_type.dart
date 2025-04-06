@@ -82,8 +82,8 @@ abstract class BackboneType extends DataType {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, Object?>{};
-    if (id?.value != null) {
-      json['id'] = id?.value;
+    if (id?.valueString != null) {
+      json['id'] = id?.valueString;
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =

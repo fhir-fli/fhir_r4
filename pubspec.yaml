@@ -1,4 +1,4 @@
-name: fhirR4
+name: fhirr4
 
 environment:
   sdk: '>=3.0.0 <4.0.0'
@@ -13,3 +13,4 @@ dependency_overrides:
 
 dev_dependencies:
   melos: ^6.3.2
+  very_good_analysis: ^7.0.0

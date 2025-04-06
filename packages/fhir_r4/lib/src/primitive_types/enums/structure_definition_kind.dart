@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class StructureDefinitionKind extends FhirCodeEnum {
   // Private underscore constructor for internal use.
   StructureDefinitionKind._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class StructureDefinitionKind extends FhirCodeEnum {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory StructureDefinitionKind(
-    String? raw, {
+    String? rawValue, {
     FhirUri? system,
     FhirString? version,
     FhirString? display,
@@ -29,9 +29,10 @@ class StructureDefinitionKind extends FhirCodeEnum {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCode._validateCode(rawValue) : null;
     return StructureDefinitionKind._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -45,10 +46,13 @@ class StructureDefinitionKind extends FhirCodeEnum {
 
   /// Create empty [StructureDefinitionKind] with element only
   factory StructureDefinitionKind.empty() =>
-      StructureDefinitionKind._(validatedValue: '');
+      StructureDefinitionKind._(valueString: '');
 
-  /// Factory constructor to create [StructureDefinitionKind] from JSON.
-  factory StructureDefinitionKind.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [StructureDefinitionKind]
+  /// from JSON.
+  factory StructureDefinitionKind.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -60,7 +64,7 @@ class StructureDefinitionKind extends FhirCodeEnum {
       );
     }
     return StructureDefinitionKind._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
@@ -68,7 +72,7 @@ class StructureDefinitionKind extends FhirCodeEnum {
   /// primitive_type
   static final StructureDefinitionKind primitive_type =
       StructureDefinitionKind._(
-    validatedValue: 'primitive-type',
+    valueString: 'primitive-type',
     system: 'http://hl7.org/fhir/ValueSet/structure-definition-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Primitive Data Type'.toFhirString,
@@ -76,7 +80,7 @@ class StructureDefinitionKind extends FhirCodeEnum {
 
   /// complex_type
   static final StructureDefinitionKind complex_type = StructureDefinitionKind._(
-    validatedValue: 'complex-type',
+    valueString: 'complex-type',
     system: 'http://hl7.org/fhir/ValueSet/structure-definition-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Complex Data Type'.toFhirString,
@@ -84,7 +88,7 @@ class StructureDefinitionKind extends FhirCodeEnum {
 
   /// resource
   static final StructureDefinitionKind resource = StructureDefinitionKind._(
-    validatedValue: 'resource',
+    valueString: 'resource',
     system: 'http://hl7.org/fhir/ValueSet/structure-definition-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Resource'.toFhirString,
@@ -92,7 +96,7 @@ class StructureDefinitionKind extends FhirCodeEnum {
 
   /// logical
   static final StructureDefinitionKind logical = StructureDefinitionKind._(
-    validatedValue: 'logical',
+    valueString: 'logical',
     system: 'http://hl7.org/fhir/ValueSet/structure-definition-kind'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Logical'.toFhirString,
@@ -100,7 +104,7 @@ class StructureDefinitionKind extends FhirCodeEnum {
 
   /// For instances where an Element is present but not value
   static final StructureDefinitionKind elementOnly =
-      StructureDefinitionKind._(validatedValue: '');
+      StructureDefinitionKind._(valueString: '');
 
   /// List of all enum-like values
   static final List<StructureDefinitionKind> values = [
@@ -113,31 +117,33 @@ class StructureDefinitionKind extends FhirCodeEnum {
   /// Clones the current instance
   @override
   StructureDefinitionKind clone() => StructureDefinitionKind._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   StructureDefinitionKind withElement(Element? newElement) {
     return StructureDefinitionKind._(
-        validatedValue: value, element: newElement,);
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   StructureDefinitionKind copyWith({
-    String? newValue,
+    dynamic newValue,
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
@@ -148,11 +154,13 @@ class StructureDefinitionKind extends FhirCodeEnum {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError(
+        'Invalid input for StructureDefinitionKind: $newValue',
+      );
     }
     return StructureDefinitionKind._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

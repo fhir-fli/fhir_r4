@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class SubscriptionNotificationType extends FhirCodeEnum {
   // Private underscore constructor for internal use.
   SubscriptionNotificationType._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class SubscriptionNotificationType extends FhirCodeEnum {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory SubscriptionNotificationType(
-    String? raw, {
+    String? rawValue, {
     FhirUri? system,
     FhirString? version,
     FhirString? display,
@@ -29,9 +29,10 @@ class SubscriptionNotificationType extends FhirCodeEnum {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCode._validateCode(rawValue) : null;
     return SubscriptionNotificationType._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -45,10 +46,13 @@ class SubscriptionNotificationType extends FhirCodeEnum {
 
   /// Create empty [SubscriptionNotificationType] with element only
   factory SubscriptionNotificationType.empty() =>
-      SubscriptionNotificationType._(validatedValue: '');
+      SubscriptionNotificationType._(valueString: '');
 
-  /// Factory constructor to create [SubscriptionNotificationType] from JSON.
-  factory SubscriptionNotificationType.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [SubscriptionNotificationType]
+  /// from JSON.
+  factory SubscriptionNotificationType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -60,7 +64,7 @@ class SubscriptionNotificationType extends FhirCodeEnum {
       );
     }
     return SubscriptionNotificationType._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
@@ -68,7 +72,7 @@ class SubscriptionNotificationType extends FhirCodeEnum {
   /// handshake
   static final SubscriptionNotificationType handshake =
       SubscriptionNotificationType._(
-    validatedValue: 'handshake',
+    valueString: 'handshake',
     system:
         'http://hl7.org/fhir/ValueSet/subscription-notification-type'.toFhirUri,
     version: '4.3.0'.toFhirString,
@@ -78,7 +82,7 @@ class SubscriptionNotificationType extends FhirCodeEnum {
   /// heartbeat
   static final SubscriptionNotificationType heartbeat =
       SubscriptionNotificationType._(
-    validatedValue: 'heartbeat',
+    valueString: 'heartbeat',
     system:
         'http://hl7.org/fhir/ValueSet/subscription-notification-type'.toFhirUri,
     version: '4.3.0'.toFhirString,
@@ -88,7 +92,7 @@ class SubscriptionNotificationType extends FhirCodeEnum {
   /// event_notification
   static final SubscriptionNotificationType event_notification =
       SubscriptionNotificationType._(
-    validatedValue: 'event-notification',
+    valueString: 'event-notification',
     system:
         'http://hl7.org/fhir/ValueSet/subscription-notification-type'.toFhirUri,
     version: '4.3.0'.toFhirString,
@@ -98,7 +102,7 @@ class SubscriptionNotificationType extends FhirCodeEnum {
   /// query_status
   static final SubscriptionNotificationType query_status =
       SubscriptionNotificationType._(
-    validatedValue: 'query-status',
+    valueString: 'query-status',
     system:
         'http://hl7.org/fhir/ValueSet/subscription-notification-type'.toFhirUri,
     version: '4.3.0'.toFhirString,
@@ -108,7 +112,7 @@ class SubscriptionNotificationType extends FhirCodeEnum {
   /// query_event
   static final SubscriptionNotificationType query_event =
       SubscriptionNotificationType._(
-    validatedValue: 'query-event',
+    valueString: 'query-event',
     system:
         'http://hl7.org/fhir/ValueSet/subscription-notification-type'.toFhirUri,
     version: '4.3.0'.toFhirString,
@@ -117,7 +121,7 @@ class SubscriptionNotificationType extends FhirCodeEnum {
 
   /// For instances where an Element is present but not value
   static final SubscriptionNotificationType elementOnly =
-      SubscriptionNotificationType._(validatedValue: '');
+      SubscriptionNotificationType._(valueString: '');
 
   /// List of all enum-like values
   static final List<SubscriptionNotificationType> values = [
@@ -131,31 +135,33 @@ class SubscriptionNotificationType extends FhirCodeEnum {
   /// Clones the current instance
   @override
   SubscriptionNotificationType clone() => SubscriptionNotificationType._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   SubscriptionNotificationType withElement(Element? newElement) {
     return SubscriptionNotificationType._(
-        validatedValue: value, element: newElement,);
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   SubscriptionNotificationType copyWith({
-    String? newValue,
+    dynamic newValue,
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
@@ -166,11 +172,13 @@ class SubscriptionNotificationType extends FhirCodeEnum {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError(
+        'Invalid input for SubscriptionNotificationType: $newValue',
+      );
     }
     return SubscriptionNotificationType._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class ReferenceHandlingPolicy extends FhirCodeEnum {
   // Private underscore constructor for internal use.
   ReferenceHandlingPolicy._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class ReferenceHandlingPolicy extends FhirCodeEnum {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory ReferenceHandlingPolicy(
-    String? raw, {
+    String? rawValue, {
     FhirUri? system,
     FhirString? version,
     FhirString? display,
@@ -29,9 +29,10 @@ class ReferenceHandlingPolicy extends FhirCodeEnum {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCode._validateCode(rawValue) : null;
     return ReferenceHandlingPolicy._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -45,10 +46,13 @@ class ReferenceHandlingPolicy extends FhirCodeEnum {
 
   /// Create empty [ReferenceHandlingPolicy] with element only
   factory ReferenceHandlingPolicy.empty() =>
-      ReferenceHandlingPolicy._(validatedValue: '');
+      ReferenceHandlingPolicy._(valueString: '');
 
-  /// Factory constructor to create [ReferenceHandlingPolicy] from JSON.
-  factory ReferenceHandlingPolicy.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [ReferenceHandlingPolicy]
+  /// from JSON.
+  factory ReferenceHandlingPolicy.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -60,14 +64,14 @@ class ReferenceHandlingPolicy extends FhirCodeEnum {
       );
     }
     return ReferenceHandlingPolicy._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// literal
   static final ReferenceHandlingPolicy literal = ReferenceHandlingPolicy._(
-    validatedValue: 'literal',
+    valueString: 'literal',
     system: 'http://hl7.org/fhir/ValueSet/reference-handling-policy'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Literal References'.toFhirString,
@@ -75,7 +79,7 @@ class ReferenceHandlingPolicy extends FhirCodeEnum {
 
   /// logical
   static final ReferenceHandlingPolicy logical = ReferenceHandlingPolicy._(
-    validatedValue: 'logical',
+    valueString: 'logical',
     system: 'http://hl7.org/fhir/ValueSet/reference-handling-policy'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Logical References'.toFhirString,
@@ -83,7 +87,7 @@ class ReferenceHandlingPolicy extends FhirCodeEnum {
 
   /// resolves
   static final ReferenceHandlingPolicy resolves = ReferenceHandlingPolicy._(
-    validatedValue: 'resolves',
+    valueString: 'resolves',
     system: 'http://hl7.org/fhir/ValueSet/reference-handling-policy'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Resolves References'.toFhirString,
@@ -91,7 +95,7 @@ class ReferenceHandlingPolicy extends FhirCodeEnum {
 
   /// enforced
   static final ReferenceHandlingPolicy enforced = ReferenceHandlingPolicy._(
-    validatedValue: 'enforced',
+    valueString: 'enforced',
     system: 'http://hl7.org/fhir/ValueSet/reference-handling-policy'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Reference Integrity Enforced'.toFhirString,
@@ -99,7 +103,7 @@ class ReferenceHandlingPolicy extends FhirCodeEnum {
 
   /// local
   static final ReferenceHandlingPolicy local = ReferenceHandlingPolicy._(
-    validatedValue: 'local',
+    valueString: 'local',
     system: 'http://hl7.org/fhir/ValueSet/reference-handling-policy'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Local References Only'.toFhirString,
@@ -107,7 +111,7 @@ class ReferenceHandlingPolicy extends FhirCodeEnum {
 
   /// For instances where an Element is present but not value
   static final ReferenceHandlingPolicy elementOnly =
-      ReferenceHandlingPolicy._(validatedValue: '');
+      ReferenceHandlingPolicy._(valueString: '');
 
   /// List of all enum-like values
   static final List<ReferenceHandlingPolicy> values = [
@@ -121,31 +125,33 @@ class ReferenceHandlingPolicy extends FhirCodeEnum {
   /// Clones the current instance
   @override
   ReferenceHandlingPolicy clone() => ReferenceHandlingPolicy._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ReferenceHandlingPolicy withElement(Element? newElement) {
     return ReferenceHandlingPolicy._(
-        validatedValue: value, element: newElement,);
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   ReferenceHandlingPolicy copyWith({
-    String? newValue,
+    dynamic newValue,
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
@@ -156,11 +162,13 @@ class ReferenceHandlingPolicy extends FhirCodeEnum {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError(
+        'Invalid input for ReferenceHandlingPolicy: $newValue',
+      );
     }
     return ReferenceHandlingPolicy._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

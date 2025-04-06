@@ -1240,15 +1240,15 @@ extension FhirPathStringsExtension on List<String?> {
 /// Extensions on [String] to provide additional functionality.
 extension ExtensionsForFhirString on FhirString {
   /// Returns `true` if the [String] is a valid [R4ResourceType].
-  bool get isFhirPrimitive => value?.isFhirPrimitive ?? false;
+  bool get isFhirPrimitive => valueString?.isFhirPrimitive ?? false;
 
   /// Returns `true` if the [String] is a valid [R4ResourceType].
   bool get isFhirResourceType =>
-      value != null &&
-      (R4ResourceType.typesAsStrings.contains(value) ||
-          value!.toLowerCase().contains('tright') ||
-          value!.toLowerCase().contains('tleft'));
+      valueString != null &&
+      (R4ResourceType.typesAsStrings.contains(valueString) ||
+          valueString!.toLowerCase().contains('tright') ||
+          valueString!.toLowerCase().contains('tleft'));
 
   /// Returns `true` if the [String] is a valid [R4ResourceType].
-  bool get isBackboneElement => value == 'BackboneElement';
+  bool get isBackboneElement => valueString == 'BackboneElement';
 }

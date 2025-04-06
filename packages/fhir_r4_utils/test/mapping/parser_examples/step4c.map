@@ -1,3 +1,5 @@
+map "http://hl7.org/fhir/StructureMap/tutorial-step4c" = "tutorial-step4c"
+
 /// url = 'http://hl7.org/fhir/StructureMap/tutorial-step4c'
 /// name = 'tutorial-step4c'
 /// title = 'Tutorial Step 4c'

@@ -6,7 +6,7 @@ part of '../primitive_types.dart';
 class CodeSystemContentMode extends FhirCodeEnum {
   // Private underscore constructor for internal use.
   CodeSystemContentMode._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -20,7 +20,7 @@ class CodeSystemContentMode extends FhirCodeEnum {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory CodeSystemContentMode(
-    String? raw, {
+    String? rawValue, {
     FhirUri? system,
     FhirString? version,
     FhirString? display,
@@ -30,9 +30,10 @@ class CodeSystemContentMode extends FhirCodeEnum {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCode._validateCode(rawValue) : null;
     return CodeSystemContentMode._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -46,10 +47,13 @@ class CodeSystemContentMode extends FhirCodeEnum {
 
   /// Create empty [CodeSystemContentMode] with element only
   factory CodeSystemContentMode.empty() =>
-      CodeSystemContentMode._(validatedValue: '');
+      CodeSystemContentMode._(valueString: '');
 
-  /// Factory constructor to create [CodeSystemContentMode] from JSON.
-  factory CodeSystemContentMode.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [CodeSystemContentMode]
+  /// from JSON.
+  factory CodeSystemContentMode.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -61,14 +65,14 @@ class CodeSystemContentMode extends FhirCodeEnum {
       );
     }
     return CodeSystemContentMode._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// not_present
   static final CodeSystemContentMode not_present = CodeSystemContentMode._(
-    validatedValue: 'not-present',
+    valueString: 'not-present',
     system: 'http://hl7.org/fhir/ValueSet/codesystem-content-mode'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Not Present'.toFhirString,
@@ -76,7 +80,7 @@ class CodeSystemContentMode extends FhirCodeEnum {
 
   /// example
   static final CodeSystemContentMode example = CodeSystemContentMode._(
-    validatedValue: 'example',
+    valueString: 'example',
     system: 'http://hl7.org/fhir/ValueSet/codesystem-content-mode'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Example'.toFhirString,
@@ -84,7 +88,7 @@ class CodeSystemContentMode extends FhirCodeEnum {
 
   /// fragment
   static final CodeSystemContentMode fragment = CodeSystemContentMode._(
-    validatedValue: 'fragment',
+    valueString: 'fragment',
     system: 'http://hl7.org/fhir/ValueSet/codesystem-content-mode'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Fragment'.toFhirString,
@@ -92,7 +96,7 @@ class CodeSystemContentMode extends FhirCodeEnum {
 
   /// complete
   static final CodeSystemContentMode complete = CodeSystemContentMode._(
-    validatedValue: 'complete',
+    valueString: 'complete',
     system: 'http://hl7.org/fhir/ValueSet/codesystem-content-mode'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Complete'.toFhirString,
@@ -100,7 +104,7 @@ class CodeSystemContentMode extends FhirCodeEnum {
 
   /// supplement
   static final CodeSystemContentMode supplement = CodeSystemContentMode._(
-    validatedValue: 'supplement',
+    valueString: 'supplement',
     system: 'http://hl7.org/fhir/ValueSet/codesystem-content-mode'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Supplement'.toFhirString,
@@ -108,7 +112,7 @@ class CodeSystemContentMode extends FhirCodeEnum {
 
   /// For instances where an Element is present but not value
   static final CodeSystemContentMode elementOnly =
-      CodeSystemContentMode._(validatedValue: '');
+      CodeSystemContentMode._(valueString: '');
 
   /// List of all enum-like values
   static final List<CodeSystemContentMode> values = [
@@ -122,30 +126,33 @@ class CodeSystemContentMode extends FhirCodeEnum {
   /// Clones the current instance
   @override
   CodeSystemContentMode clone() => CodeSystemContentMode._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   CodeSystemContentMode withElement(Element? newElement) {
-    return CodeSystemContentMode._(validatedValue: value, element: newElement);
+    return CodeSystemContentMode._(
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   CodeSystemContentMode copyWith({
-    String? newValue,
+    dynamic newValue,
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
@@ -156,11 +163,13 @@ class CodeSystemContentMode extends FhirCodeEnum {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError(
+        'Invalid input for CodeSystemContentMode: $newValue',
+      );
     }
     return CodeSystemContentMode._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

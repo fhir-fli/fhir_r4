@@ -1,6 +1,6 @@
 import 'package:collection/collection.dart';
 import 'package:fhir_r4/fhir_r4.dart';
-import 'package:fhir_r4_utils/fhir_r4_utils.dart';
+import 'package:fhir_r4_path/fhir_r4_path.dart';
 
 /// Determines the appropriate FHIR type code for an element.
 /// For polymorphic elements (ending in `[x]`), the code is derived
@@ -11,12 +11,13 @@ String? findCode(ElementDefinition element, String path) {
     return element.type?.first.code.toString();
   } else if ((element.type?.length ?? 0) > 1) {
     // Handle polymorphic types
-    if (element.path.value?.endsWith('[x]') ?? false) {
+    if (element.path.valueString?.endsWith('[x]') ?? false) {
       final type = path
           .split('.')
           .last
           .replaceAll(
-            element.path.value?.split('.').last.replaceAll('[x]', '') ?? '',
+            element.path.valueString?.split('.').last.replaceAll('[x]', '') ??
+                '',
             '',
           )
           .toLowerCase();
@@ -56,11 +57,11 @@ Map<String, ElementDefinition> extractElements(
   final map = <String, ElementDefinition>{};
   for (final element
       in structureDefinition.snapshot?.element ?? <ElementDefinition>[]) {
-    map[element.path.value!] = element;
+    map[element.path.valueString!] = element;
   }
   for (final element
       in structureDefinition.differential?.element ?? <ElementDefinition>[]) {
-    map[element.path.value!] = element;
+    map[element.path.valueString!] = element;
   }
   return map;
 }
@@ -82,7 +83,9 @@ extension GetUrl on StructureDefinition {
 /// Handles recursive includes for ValueSets and hierarchical concepts
 /// within CodeSystems.
 Future<Set<String>> getValueSetCodes(
-    String valueSetUrl, ResourceCache resourceCache) async {
+  String valueSetUrl,
+  ResourceCache resourceCache,
+) async {
   final resource = await resourceCache.getCanonicalResource(valueSetUrl);
   if (resource == null) {
     throw Exception('Resource not found at $valueSetUrl');

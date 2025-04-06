@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class MedicationrequestStatus extends FhirCodeEnum {
   // Private underscore constructor for internal use.
   MedicationrequestStatus._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class MedicationrequestStatus extends FhirCodeEnum {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory MedicationrequestStatus(
-    String? raw, {
+    String? rawValue, {
     FhirUri? system,
     FhirString? version,
     FhirString? display,
@@ -29,9 +29,10 @@ class MedicationrequestStatus extends FhirCodeEnum {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCode._validateCode(rawValue) : null;
     return MedicationrequestStatus._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -45,10 +46,13 @@ class MedicationrequestStatus extends FhirCodeEnum {
 
   /// Create empty [MedicationrequestStatus] with element only
   factory MedicationrequestStatus.empty() =>
-      MedicationrequestStatus._(validatedValue: '');
+      MedicationrequestStatus._(valueString: '');
 
-  /// Factory constructor to create [MedicationrequestStatus] from JSON.
-  factory MedicationrequestStatus.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [MedicationrequestStatus]
+  /// from JSON.
+  factory MedicationrequestStatus.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -60,14 +64,14 @@ class MedicationrequestStatus extends FhirCodeEnum {
       );
     }
     return MedicationrequestStatus._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// active
   static final MedicationrequestStatus active = MedicationrequestStatus._(
-    validatedValue: 'active',
+    valueString: 'active',
     system: 'http://hl7.org/fhir/ValueSet/medicationrequest-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Active'.toFhirString,
@@ -75,7 +79,7 @@ class MedicationrequestStatus extends FhirCodeEnum {
 
   /// on_hold
   static final MedicationrequestStatus on_hold = MedicationrequestStatus._(
-    validatedValue: 'on-hold',
+    valueString: 'on-hold',
     system: 'http://hl7.org/fhir/ValueSet/medicationrequest-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'On Hold'.toFhirString,
@@ -83,7 +87,7 @@ class MedicationrequestStatus extends FhirCodeEnum {
 
   /// cancelled
   static final MedicationrequestStatus cancelled = MedicationrequestStatus._(
-    validatedValue: 'cancelled',
+    valueString: 'cancelled',
     system: 'http://hl7.org/fhir/ValueSet/medicationrequest-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Cancelled'.toFhirString,
@@ -91,7 +95,7 @@ class MedicationrequestStatus extends FhirCodeEnum {
 
   /// completed
   static final MedicationrequestStatus completed = MedicationrequestStatus._(
-    validatedValue: 'completed',
+    valueString: 'completed',
     system: 'http://hl7.org/fhir/ValueSet/medicationrequest-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Completed'.toFhirString,
@@ -100,7 +104,7 @@ class MedicationrequestStatus extends FhirCodeEnum {
   /// entered_in_error
   static final MedicationrequestStatus entered_in_error =
       MedicationrequestStatus._(
-    validatedValue: 'entered-in-error',
+    valueString: 'entered-in-error',
     system: 'http://hl7.org/fhir/ValueSet/medicationrequest-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Entered in Error'.toFhirString,
@@ -108,7 +112,7 @@ class MedicationrequestStatus extends FhirCodeEnum {
 
   /// stopped
   static final MedicationrequestStatus stopped = MedicationrequestStatus._(
-    validatedValue: 'stopped',
+    valueString: 'stopped',
     system: 'http://hl7.org/fhir/ValueSet/medicationrequest-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Stopped'.toFhirString,
@@ -116,7 +120,7 @@ class MedicationrequestStatus extends FhirCodeEnum {
 
   /// draft
   static final MedicationrequestStatus draft = MedicationrequestStatus._(
-    validatedValue: 'draft',
+    valueString: 'draft',
     system: 'http://hl7.org/fhir/ValueSet/medicationrequest-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Draft'.toFhirString,
@@ -124,7 +128,7 @@ class MedicationrequestStatus extends FhirCodeEnum {
 
   /// unknown
   static final MedicationrequestStatus unknown = MedicationrequestStatus._(
-    validatedValue: 'unknown',
+    valueString: 'unknown',
     system: 'http://hl7.org/fhir/ValueSet/medicationrequest-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Unknown'.toFhirString,
@@ -132,7 +136,7 @@ class MedicationrequestStatus extends FhirCodeEnum {
 
   /// For instances where an Element is present but not value
   static final MedicationrequestStatus elementOnly =
-      MedicationrequestStatus._(validatedValue: '');
+      MedicationrequestStatus._(valueString: '');
 
   /// List of all enum-like values
   static final List<MedicationrequestStatus> values = [
@@ -149,31 +153,33 @@ class MedicationrequestStatus extends FhirCodeEnum {
   /// Clones the current instance
   @override
   MedicationrequestStatus clone() => MedicationrequestStatus._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   MedicationrequestStatus withElement(Element? newElement) {
     return MedicationrequestStatus._(
-        validatedValue: value, element: newElement,);
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   MedicationrequestStatus copyWith({
-    String? newValue,
+    dynamic newValue,
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
@@ -184,11 +190,13 @@ class MedicationrequestStatus extends FhirCodeEnum {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError(
+        'Invalid input for MedicationrequestStatus: $newValue',
+      );
     }
     return MedicationrequestStatus._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

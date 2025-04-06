@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class AssertionOperatorType extends FhirCodeEnum {
   // Private underscore constructor for internal use.
   AssertionOperatorType._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class AssertionOperatorType extends FhirCodeEnum {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory AssertionOperatorType(
-    String? raw, {
+    String? rawValue, {
     FhirUri? system,
     FhirString? version,
     FhirString? display,
@@ -29,9 +29,10 @@ class AssertionOperatorType extends FhirCodeEnum {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCode._validateCode(rawValue) : null;
     return AssertionOperatorType._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -45,10 +46,13 @@ class AssertionOperatorType extends FhirCodeEnum {
 
   /// Create empty [AssertionOperatorType] with element only
   factory AssertionOperatorType.empty() =>
-      AssertionOperatorType._(validatedValue: '');
+      AssertionOperatorType._(valueString: '');
 
-  /// Factory constructor to create [AssertionOperatorType] from JSON.
-  factory AssertionOperatorType.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [AssertionOperatorType]
+  /// from JSON.
+  factory AssertionOperatorType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -60,14 +64,14 @@ class AssertionOperatorType extends FhirCodeEnum {
       );
     }
     return AssertionOperatorType._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// equals
   static final AssertionOperatorType equals_ = AssertionOperatorType._(
-    validatedValue: 'equals',
+    valueString: 'equals',
     system: 'http://hl7.org/fhir/ValueSet/assert-operator-codes'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'equals'.toFhirString,
@@ -75,7 +79,7 @@ class AssertionOperatorType extends FhirCodeEnum {
 
   /// notEquals
   static final AssertionOperatorType notEquals = AssertionOperatorType._(
-    validatedValue: 'notEquals',
+    valueString: 'notEquals',
     system: 'http://hl7.org/fhir/ValueSet/assert-operator-codes'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'notEquals'.toFhirString,
@@ -83,7 +87,7 @@ class AssertionOperatorType extends FhirCodeEnum {
 
   /// in_
   static final AssertionOperatorType in_ = AssertionOperatorType._(
-    validatedValue: 'in',
+    valueString: 'in',
     system: 'http://hl7.org/fhir/ValueSet/assert-operator-codes'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'in'.toFhirString,
@@ -91,7 +95,7 @@ class AssertionOperatorType extends FhirCodeEnum {
 
   /// notIn
   static final AssertionOperatorType notIn = AssertionOperatorType._(
-    validatedValue: 'notIn',
+    valueString: 'notIn',
     system: 'http://hl7.org/fhir/ValueSet/assert-operator-codes'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'notIn'.toFhirString,
@@ -99,7 +103,7 @@ class AssertionOperatorType extends FhirCodeEnum {
 
   /// greaterThan
   static final AssertionOperatorType greaterThan = AssertionOperatorType._(
-    validatedValue: 'greaterThan',
+    valueString: 'greaterThan',
     system: 'http://hl7.org/fhir/ValueSet/assert-operator-codes'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'greaterThan'.toFhirString,
@@ -107,7 +111,7 @@ class AssertionOperatorType extends FhirCodeEnum {
 
   /// lessThan
   static final AssertionOperatorType lessThan = AssertionOperatorType._(
-    validatedValue: 'lessThan',
+    valueString: 'lessThan',
     system: 'http://hl7.org/fhir/ValueSet/assert-operator-codes'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'lessThan'.toFhirString,
@@ -115,7 +119,7 @@ class AssertionOperatorType extends FhirCodeEnum {
 
   /// empty_
   static final AssertionOperatorType empty_ = AssertionOperatorType._(
-    validatedValue: 'empty',
+    valueString: 'empty',
     system: 'http://hl7.org/fhir/ValueSet/assert-operator-codes'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'empty'.toFhirString,
@@ -123,15 +127,15 @@ class AssertionOperatorType extends FhirCodeEnum {
 
   /// notEmpty
   static final AssertionOperatorType notEmpty = AssertionOperatorType._(
-    validatedValue: 'notEmpty',
+    valueString: 'notEmpty',
     system: 'http://hl7.org/fhir/ValueSet/assert-operator-codes'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'notEmpty'.toFhirString,
   );
 
-  /// contains
-  static final AssertionOperatorType contains = AssertionOperatorType._(
-    validatedValue: 'contains',
+  /// contains_
+  static final AssertionOperatorType contains_ = AssertionOperatorType._(
+    valueString: 'contains',
     system: 'http://hl7.org/fhir/ValueSet/assert-operator-codes'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'contains'.toFhirString,
@@ -139,7 +143,7 @@ class AssertionOperatorType extends FhirCodeEnum {
 
   /// notContains
   static final AssertionOperatorType notContains = AssertionOperatorType._(
-    validatedValue: 'notContains',
+    valueString: 'notContains',
     system: 'http://hl7.org/fhir/ValueSet/assert-operator-codes'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'notContains'.toFhirString,
@@ -147,7 +151,7 @@ class AssertionOperatorType extends FhirCodeEnum {
 
   /// eval
   static final AssertionOperatorType eval = AssertionOperatorType._(
-    validatedValue: 'eval',
+    valueString: 'eval',
     system: 'http://hl7.org/fhir/ValueSet/assert-operator-codes'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'evaluate'.toFhirString,
@@ -155,7 +159,7 @@ class AssertionOperatorType extends FhirCodeEnum {
 
   /// For instances where an Element is present but not value
   static final AssertionOperatorType elementOnly =
-      AssertionOperatorType._(validatedValue: '');
+      AssertionOperatorType._(valueString: '');
 
   /// List of all enum-like values
   static final List<AssertionOperatorType> values = [
@@ -167,7 +171,7 @@ class AssertionOperatorType extends FhirCodeEnum {
     lessThan,
     empty_,
     notEmpty,
-    contains,
+    contains_,
     notContains,
     eval,
   ];
@@ -175,30 +179,33 @@ class AssertionOperatorType extends FhirCodeEnum {
   /// Clones the current instance
   @override
   AssertionOperatorType clone() => AssertionOperatorType._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   AssertionOperatorType withElement(Element? newElement) {
-    return AssertionOperatorType._(validatedValue: value, element: newElement);
+    return AssertionOperatorType._(
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   AssertionOperatorType copyWith({
-    String? newValue,
+    dynamic newValue,
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
@@ -209,11 +216,13 @@ class AssertionOperatorType extends FhirCodeEnum {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError(
+        'Invalid input for AssertionOperatorType: $newValue',
+      );
     }
     return AssertionOperatorType._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

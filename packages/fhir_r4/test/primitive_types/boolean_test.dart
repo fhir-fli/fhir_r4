@@ -5,14 +5,14 @@ void booleanTest() {
   group('FhirBoolean Tests', () {
     test('True Boolean Value', () {
       final fhirBool = FhirBoolean(true);
-      expect(fhirBool.value, isTrue);
+      expect(fhirBool.valueBoolean, isTrue);
       expect(fhirBool.toJson(), equals({'value': true}));
       expect(fhirBool.toString(), equals('true'));
     });
 
     test('False Boolean Value', () {
       final fhirBool = FhirBoolean(false);
-      expect(fhirBool.value, isFalse);
+      expect(fhirBool.valueBoolean, isFalse);
       expect(fhirBool.toJson(), equals({'value': false}));
       expect(fhirBool.toString(), equals('false'));
     });
@@ -20,13 +20,13 @@ void booleanTest() {
     test('TryParse - Valid "true" String', () {
       final parsedBool = FhirBoolean.tryParse('true');
       expect(parsedBool, isNotNull);
-      expect(parsedBool!.value, isTrue);
+      expect(parsedBool!.valueBoolean, isTrue);
     });
 
     test('TryParse - Valid "false" String', () {
       final parsedBool = FhirBoolean.tryParse('false');
       expect(parsedBool, isNotNull);
-      expect(parsedBool!.value, isFalse);
+      expect(parsedBool!.valueBoolean, isFalse);
     });
 
     test('TryParse - Invalid String', () {
@@ -37,7 +37,7 @@ void booleanTest() {
     test('TryParse - Boolean Input', () {
       final parsedBool = FhirBoolean.tryParse(true);
       expect(parsedBool, isNotNull);
-      expect(parsedBool!.value, isTrue);
+      expect(parsedBool!.valueBoolean, isTrue);
     });
 
     test('TryParse - Non-Boolean Input', () {
@@ -47,7 +47,7 @@ void booleanTest() {
 
     test('FromJson - Boolean Input', () {
       final fhirBool = FhirBoolean.fromJson({'value': true});
-      expect(fhirBool.value, isTrue);
+      expect(fhirBool.valueBoolean, isTrue);
     });
 
     test('FromJson - Invalid Input', () {
@@ -60,7 +60,7 @@ void booleanTest() {
 
     test('FromYaml - Valid Yaml', () {
       final yamlBool = FhirBoolean.fromYaml('value: true');
-      expect(yamlBool.value, isTrue);
+      expect(yamlBool.valueBoolean, isTrue);
     });
 
     test('FromYaml - Invalid Yaml', () {
@@ -84,19 +84,19 @@ void booleanTest() {
       final fhirBool = FhirBoolean(true);
       final clonedBool = fhirBool.clone();
       expect(clonedBool, equals(fhirBool));
-      expect(clonedBool.value, equals(true));
+      expect(clonedBool.valueBoolean, equals(true));
     });
 
     test('CopyWith - No New Value', () {
       final fhirBool = FhirBoolean(true);
       final copiedBool = fhirBool.copyWith();
-      expect(copiedBool.value, equals(fhirBool.value));
+      expect(copiedBool.valueBoolean, equals(fhirBool.valueBoolean));
     });
 
     test('CopyWith - New Value', () {
       final fhirBool = FhirBoolean(true);
       final copiedBool = fhirBool.copyWith(newValue: false);
-      expect(copiedBool.value, isFalse);
+      expect(copiedBool.valueBoolean, isFalse);
     });
   });
 }

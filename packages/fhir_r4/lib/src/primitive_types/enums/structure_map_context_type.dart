@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class StructureMapContextType extends FhirCodeEnum {
   // Private underscore constructor for internal use.
   StructureMapContextType._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class StructureMapContextType extends FhirCodeEnum {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory StructureMapContextType(
-    String? raw, {
+    String? rawValue, {
     FhirUri? system,
     FhirString? version,
     FhirString? display,
@@ -29,9 +29,10 @@ class StructureMapContextType extends FhirCodeEnum {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCode._validateCode(rawValue) : null;
     return StructureMapContextType._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -45,10 +46,13 @@ class StructureMapContextType extends FhirCodeEnum {
 
   /// Create empty [StructureMapContextType] with element only
   factory StructureMapContextType.empty() =>
-      StructureMapContextType._(validatedValue: '');
+      StructureMapContextType._(valueString: '');
 
-  /// Factory constructor to create [StructureMapContextType] from JSON.
-  factory StructureMapContextType.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [StructureMapContextType]
+  /// from JSON.
+  factory StructureMapContextType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -60,14 +64,14 @@ class StructureMapContextType extends FhirCodeEnum {
       );
     }
     return StructureMapContextType._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// type
   static final StructureMapContextType type = StructureMapContextType._(
-    validatedValue: 'type',
+    valueString: 'type',
     system: 'http://hl7.org/fhir/ValueSet/map-context-type'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Type'.toFhirString,
@@ -75,7 +79,7 @@ class StructureMapContextType extends FhirCodeEnum {
 
   /// variable
   static final StructureMapContextType variable = StructureMapContextType._(
-    validatedValue: 'variable',
+    valueString: 'variable',
     system: 'http://hl7.org/fhir/ValueSet/map-context-type'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Variable'.toFhirString,
@@ -83,7 +87,7 @@ class StructureMapContextType extends FhirCodeEnum {
 
   /// For instances where an Element is present but not value
   static final StructureMapContextType elementOnly =
-      StructureMapContextType._(validatedValue: '');
+      StructureMapContextType._(valueString: '');
 
   /// List of all enum-like values
   static final List<StructureMapContextType> values = [
@@ -94,31 +98,33 @@ class StructureMapContextType extends FhirCodeEnum {
   /// Clones the current instance
   @override
   StructureMapContextType clone() => StructureMapContextType._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   StructureMapContextType withElement(Element? newElement) {
     return StructureMapContextType._(
-        validatedValue: value, element: newElement,);
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   StructureMapContextType copyWith({
-    String? newValue,
+    dynamic newValue,
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
@@ -129,11 +135,13 @@ class StructureMapContextType extends FhirCodeEnum {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError(
+        'Invalid input for StructureMapContextType: $newValue',
+      );
     }
     return StructureMapContextType._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

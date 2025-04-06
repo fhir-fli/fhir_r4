@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class AssertionResponseTypes extends FhirCodeEnum {
   // Private underscore constructor for internal use.
   AssertionResponseTypes._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class AssertionResponseTypes extends FhirCodeEnum {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory AssertionResponseTypes(
-    String? raw, {
+    String? rawValue, {
     FhirUri? system,
     FhirString? version,
     FhirString? display,
@@ -29,9 +29,10 @@ class AssertionResponseTypes extends FhirCodeEnum {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCode._validateCode(rawValue) : null;
     return AssertionResponseTypes._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -45,10 +46,13 @@ class AssertionResponseTypes extends FhirCodeEnum {
 
   /// Create empty [AssertionResponseTypes] with element only
   factory AssertionResponseTypes.empty() =>
-      AssertionResponseTypes._(validatedValue: '');
+      AssertionResponseTypes._(valueString: '');
 
-  /// Factory constructor to create [AssertionResponseTypes] from JSON.
-  factory AssertionResponseTypes.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [AssertionResponseTypes]
+  /// from JSON.
+  factory AssertionResponseTypes.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -60,14 +64,14 @@ class AssertionResponseTypes extends FhirCodeEnum {
       );
     }
     return AssertionResponseTypes._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// okay
   static final AssertionResponseTypes okay = AssertionResponseTypes._(
-    validatedValue: 'okay',
+    valueString: 'okay',
     system: 'http://hl7.org/fhir/ValueSet/assert-response-code-types'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'okay'.toFhirString,
@@ -75,7 +79,7 @@ class AssertionResponseTypes extends FhirCodeEnum {
 
   /// created
   static final AssertionResponseTypes created = AssertionResponseTypes._(
-    validatedValue: 'created',
+    valueString: 'created',
     system: 'http://hl7.org/fhir/ValueSet/assert-response-code-types'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'created'.toFhirString,
@@ -83,7 +87,7 @@ class AssertionResponseTypes extends FhirCodeEnum {
 
   /// noContent
   static final AssertionResponseTypes noContent = AssertionResponseTypes._(
-    validatedValue: 'noContent',
+    valueString: 'noContent',
     system: 'http://hl7.org/fhir/ValueSet/assert-response-code-types'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'noContent'.toFhirString,
@@ -91,7 +95,7 @@ class AssertionResponseTypes extends FhirCodeEnum {
 
   /// notModified
   static final AssertionResponseTypes notModified = AssertionResponseTypes._(
-    validatedValue: 'notModified',
+    valueString: 'notModified',
     system: 'http://hl7.org/fhir/ValueSet/assert-response-code-types'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'notModified'.toFhirString,
@@ -99,7 +103,7 @@ class AssertionResponseTypes extends FhirCodeEnum {
 
   /// bad
   static final AssertionResponseTypes bad = AssertionResponseTypes._(
-    validatedValue: 'bad',
+    valueString: 'bad',
     system: 'http://hl7.org/fhir/ValueSet/assert-response-code-types'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'bad'.toFhirString,
@@ -107,7 +111,7 @@ class AssertionResponseTypes extends FhirCodeEnum {
 
   /// forbidden
   static final AssertionResponseTypes forbidden = AssertionResponseTypes._(
-    validatedValue: 'forbidden',
+    valueString: 'forbidden',
     system: 'http://hl7.org/fhir/ValueSet/assert-response-code-types'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'forbidden'.toFhirString,
@@ -115,7 +119,7 @@ class AssertionResponseTypes extends FhirCodeEnum {
 
   /// notFound
   static final AssertionResponseTypes notFound = AssertionResponseTypes._(
-    validatedValue: 'notFound',
+    valueString: 'notFound',
     system: 'http://hl7.org/fhir/ValueSet/assert-response-code-types'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'notFound'.toFhirString,
@@ -124,7 +128,7 @@ class AssertionResponseTypes extends FhirCodeEnum {
   /// methodNotAllowed
   static final AssertionResponseTypes methodNotAllowed =
       AssertionResponseTypes._(
-    validatedValue: 'methodNotAllowed',
+    valueString: 'methodNotAllowed',
     system: 'http://hl7.org/fhir/ValueSet/assert-response-code-types'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'methodNotAllowed'.toFhirString,
@@ -132,7 +136,7 @@ class AssertionResponseTypes extends FhirCodeEnum {
 
   /// conflict
   static final AssertionResponseTypes conflict = AssertionResponseTypes._(
-    validatedValue: 'conflict',
+    valueString: 'conflict',
     system: 'http://hl7.org/fhir/ValueSet/assert-response-code-types'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'conflict'.toFhirString,
@@ -140,7 +144,7 @@ class AssertionResponseTypes extends FhirCodeEnum {
 
   /// gone
   static final AssertionResponseTypes gone = AssertionResponseTypes._(
-    validatedValue: 'gone',
+    valueString: 'gone',
     system: 'http://hl7.org/fhir/ValueSet/assert-response-code-types'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'gone'.toFhirString,
@@ -149,7 +153,7 @@ class AssertionResponseTypes extends FhirCodeEnum {
   /// preconditionFailed
   static final AssertionResponseTypes preconditionFailed =
       AssertionResponseTypes._(
-    validatedValue: 'preconditionFailed',
+    valueString: 'preconditionFailed',
     system: 'http://hl7.org/fhir/ValueSet/assert-response-code-types'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'preconditionFailed'.toFhirString,
@@ -157,7 +161,7 @@ class AssertionResponseTypes extends FhirCodeEnum {
 
   /// unprocessable
   static final AssertionResponseTypes unprocessable = AssertionResponseTypes._(
-    validatedValue: 'unprocessable',
+    valueString: 'unprocessable',
     system: 'http://hl7.org/fhir/ValueSet/assert-response-code-types'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'unprocessable'.toFhirString,
@@ -165,7 +169,7 @@ class AssertionResponseTypes extends FhirCodeEnum {
 
   /// For instances where an Element is present but not value
   static final AssertionResponseTypes elementOnly =
-      AssertionResponseTypes._(validatedValue: '');
+      AssertionResponseTypes._(valueString: '');
 
   /// List of all enum-like values
   static final List<AssertionResponseTypes> values = [
@@ -186,30 +190,33 @@ class AssertionResponseTypes extends FhirCodeEnum {
   /// Clones the current instance
   @override
   AssertionResponseTypes clone() => AssertionResponseTypes._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   AssertionResponseTypes withElement(Element? newElement) {
-    return AssertionResponseTypes._(validatedValue: value, element: newElement);
+    return AssertionResponseTypes._(
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   AssertionResponseTypes copyWith({
-    String? newValue,
+    dynamic newValue,
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
@@ -220,11 +227,13 @@ class AssertionResponseTypes extends FhirCodeEnum {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError(
+        'Invalid input for AssertionResponseTypes: $newValue',
+      );
     }
     return AssertionResponseTypes._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

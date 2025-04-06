@@ -32,40 +32,34 @@ class TransformationContext {
 /// Resolves structure definitions for FHIR mapping.
 class DefinitionResolver {
   /// Creates a [DefinitionResolver] with a [cache] and optional [map].
-  DefinitionResolver(this.cache, this.map);
-
-  /// The database for fetching canonical FHIR resources.
-  final ResourceCache cache;
+  DefinitionResolver(ResourceCache cache, this.map)
+      : _worker = WorkerContext(resourceCache: cache);
 
   /// The optional structure map for resolving definitions.
   final StructureMap? map;
 
-  /// Cache of resolved structure definitions.
-  final Map<String, StructureDefinition?> _cachedDefinitions = {};
-
-  final WorkerContext _worker = WorkerContext();
+  final WorkerContext _worker;
 
   /// Resolves a [StructureDefinition] from [structureUrl].
   Future<StructureDefinition?> resolve(String structureUrl) async {
-    return (await cache.getCanonicalResource(structureUrl))
-        as StructureDefinition?;
+    return _worker.fetchResource<StructureDefinition>(uri: structureUrl);
   }
 
   /// Resolves a [StructureDefinition] by [type].
   Future<StructureDefinition?> resolveByType(String? type) async {
     if (type == null) {
-      print('Cannot resolve StructureDefinition for null type.');
       return null;
     }
 
-    if (_cachedDefinitions.containsKey(type)) {
-      return _cachedDefinitions[type];
+    final sd = await _worker.fetchTypeDefinition(type);
+    if (sd != null) {
+      return sd;
     }
 
     final structure = map?.structure?.firstWhereOrNull(
           (s) =>
               s.url.toString() == type ||
-              s.alias?.value?.toLowerCase() == type.toLowerCase(),
+              s.alias?.valueString?.toLowerCase() == type.toLowerCase(),
         ) ??
         map?.structure?.firstWhereOrNull(
           (s) =>
@@ -73,7 +67,9 @@ class DefinitionResolver {
         );
 
     final resolved = await resolve(structure?.url.toString() ?? type);
-    _cachedDefinitions[type] = resolved;
+    if (resolved != null) {
+      await _worker.resourceCache.saveCanonicalResource(resolved);
+    }
     return resolved;
   }
 
@@ -82,7 +78,6 @@ class DefinitionResolver {
     String? objectLocation,
   ) async {
     if (objectLocation == null) {
-      print('Cannot resolve ElementDefinition for null location.');
       return null;
     }
 
@@ -90,7 +85,6 @@ class DefinitionResolver {
     final baseType = pathParts.first;
     final sd = await resolveByType(baseType);
     if (sd == null) {
-      print('Cannot resolve ElementDefinition for $objectLocation.');
       return null;
     }
 
@@ -122,7 +116,6 @@ class DefinitionResolver {
             [nextType!, ...pathParts.sublist(i - 1)],
           );
         } else {
-          print('Cannot resolve ElementDefinition for $path.');
           return null;
         }
       }
@@ -146,9 +139,8 @@ class DefinitionResolver {
 
   /// Fetches a [CanonicalResource] of type [T] from [uri].
   Future<T?> fetchResource<T extends CanonicalResource>(String uri) async {
-    final resource = await cache.getCanonicalResource(uri);
+    final resource = await _worker.fetchResource<T>(uri: uri);
     if (resource is T) return resource;
-    print('Resource $uri is not of expected type ${T.runtimeType}');
     return null;
   }
 
@@ -162,12 +154,12 @@ class DefinitionResolver {
       ...?structureDef.snapshot?.element,
       ...?structureDef.differential?.element,
     ]) {
-      if (el.path.value == path) {
+      if (el.path.valueString == path) {
         return el;
       }
       // Handle polymorphic elements containing '[x]'
-      if (el.path.value?.contains('[x]') ?? false) {
-        final polymorphicBase = el.path.value!.split('[x]').first;
+      if (el.path.valueString?.contains('[x]') ?? false) {
+        final polymorphicBase = el.path.valueString!.split('[x]').first;
         if (path.startsWith(polymorphicBase)) {
           return el;
         }
@@ -205,13 +197,13 @@ class DefinitionResolver {
     final resolvedSrcType = await _resolveType(map, srcType);
     final resolvedTgtType = await _resolveType(map, tgtType);
 
-    return resolvedSrcType == inputs['source']?.value &&
-        resolvedTgtType == inputs['target']?.value;
+    return resolvedSrcType == inputs['source']?.valueString &&
+        resolvedTgtType == inputs['target']?.valueString;
   }
 
   Future<String?> _resolveType(StructureMap map, String? type) async {
     for (final structure in map.structure ?? <StructureMapStructure>[]) {
-      if (structure.alias != null && structure.alias?.value == type) {
+      if (structure.alias != null && structure.alias?.valueString == type) {
         return (await resolve(structure.url.toString()))?.type.toString() ??
             type;
       }
@@ -229,13 +221,13 @@ class DefinitionResolver {
   }
 
   /// Validates a code using the specified options.
-  ValidationResult? validateCode(
+  Future<ValidationResult?> validateCode(
     ValidationOptions options,
     String? system,
     String? version,
     String code,
     String? display,
-  ) {
+  ) async {
     return _worker.validateCode(options, system, version, code, display);
   }
 }
@@ -251,7 +243,7 @@ class DefinitionResolver {
 ///
 /// Returns the resolved type as a string, or `null` if no match is found.
 String? resolvePolymorphicType(ElementDefinition elementDef, String path) {
-  final edPath = elementDef.path.value;
+  final edPath = elementDef.path.valueString;
   if (edPath == null || !edPath.endsWith('[x]')) return null;
   final polyMorphicBase =
       edPath.substring(0, edPath.length - 3).split('.').last;

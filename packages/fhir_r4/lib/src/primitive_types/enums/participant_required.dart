@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class ParticipantRequired extends FhirCodeEnum {
   // Private underscore constructor for internal use.
   ParticipantRequired._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class ParticipantRequired extends FhirCodeEnum {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory ParticipantRequired(
-    String? raw, {
+    String? rawValue, {
     FhirUri? system,
     FhirString? version,
     FhirString? display,
@@ -29,9 +29,10 @@ class ParticipantRequired extends FhirCodeEnum {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCode._validateCode(rawValue) : null;
     return ParticipantRequired._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -44,11 +45,13 @@ class ParticipantRequired extends FhirCodeEnum {
   }
 
   /// Create empty [ParticipantRequired] with element only
-  factory ParticipantRequired.empty() =>
-      ParticipantRequired._(validatedValue: '');
+  factory ParticipantRequired.empty() => ParticipantRequired._(valueString: '');
 
-  /// Factory constructor to create [ParticipantRequired] from JSON.
-  factory ParticipantRequired.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [ParticipantRequired]
+  /// from JSON.
+  factory ParticipantRequired.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -60,14 +63,14 @@ class ParticipantRequired extends FhirCodeEnum {
       );
     }
     return ParticipantRequired._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// required_
   static final ParticipantRequired required_ = ParticipantRequired._(
-    validatedValue: 'required',
+    valueString: 'required',
     system: 'http://hl7.org/fhir/ValueSet/participantrequired'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Required'.toFhirString,
@@ -75,7 +78,7 @@ class ParticipantRequired extends FhirCodeEnum {
 
   /// optional
   static final ParticipantRequired optional = ParticipantRequired._(
-    validatedValue: 'optional',
+    valueString: 'optional',
     system: 'http://hl7.org/fhir/ValueSet/participantrequired'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Optional'.toFhirString,
@@ -83,7 +86,7 @@ class ParticipantRequired extends FhirCodeEnum {
 
   /// information_only
   static final ParticipantRequired information_only = ParticipantRequired._(
-    validatedValue: 'information-only',
+    valueString: 'information-only',
     system: 'http://hl7.org/fhir/ValueSet/participantrequired'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Information Only'.toFhirString,
@@ -91,7 +94,7 @@ class ParticipantRequired extends FhirCodeEnum {
 
   /// For instances where an Element is present but not value
   static final ParticipantRequired elementOnly =
-      ParticipantRequired._(validatedValue: '');
+      ParticipantRequired._(valueString: '');
 
   /// List of all enum-like values
   static final List<ParticipantRequired> values = [
@@ -103,30 +106,33 @@ class ParticipantRequired extends FhirCodeEnum {
   /// Clones the current instance
   @override
   ParticipantRequired clone() => ParticipantRequired._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ParticipantRequired withElement(Element? newElement) {
-    return ParticipantRequired._(validatedValue: value, element: newElement);
+    return ParticipantRequired._(
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   ParticipantRequired copyWith({
-    String? newValue,
+    dynamic newValue,
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
@@ -137,11 +143,13 @@ class ParticipantRequired extends FhirCodeEnum {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError(
+        'Invalid input for ParticipantRequired: $newValue',
+      );
     }
     return ParticipantRequired._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

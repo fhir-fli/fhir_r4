@@ -1,13 +1,13 @@
 part of 'primitive_types.dart';
 
-/// Extension to convert a [String] to [FhirMarkdown].
+/// Extension methods on [String] to easily convert to [FhirMarkdown].
 extension FhirMarkdownExtension on String {
-  /// Converts a [String] to a [FhirMarkdown].
+  /// Returns a new [FhirMarkdown] from this [String].
   FhirMarkdown get toFhirMarkdown => FhirMarkdown(this);
 }
 
-/// This class represents the FHIR primitive type `markdown`.
-class FhirMarkdown extends PrimitiveType<String>
+/// A FHIR primitive type `markdown` (a string that might contain Markdown).
+class FhirMarkdown extends FhirString
     implements
         CiteAsXEvidence,
         CiteAsXEvidenceReport,
@@ -20,34 +20,46 @@ class FhirMarkdown extends PrimitiveType<String>
         PatternXElementDefinition,
         ValueXElementDefinitionExample,
         ValueXExtension {
-  /// Private underscore constructor that enforces if both [validatedValue] and
-  /// [element] are null => throw.
+  // --------------------------------------------------------------------------
+  // Private Internal Constructor
+  // --------------------------------------------------------------------------
+
+  /// Private underscore constructor verifying
+  /// `(valueString == null && element == null)`
+  /// doesn't happen in [FhirString]'s constructor.
   FhirMarkdown._({
-    required String? validatedValue,
+    required super.valueString,
     super.element,
     super.id,
     super.extension_,
     super.disallowExtensions,
     super.objectPath = 'Markdown',
-  }) : super._(value: validatedValue) {
-    if (value == null && element == null) {
-      throw ArgumentError('A value or element is required for FhirMarkdown');
-    }
-  }
+  }) : super._();
 
-  /// Single public constructor enforcing input validation.
+  // --------------------------------------------------------------------------
+  // Public Factories
+  // --------------------------------------------------------------------------
+
+  /// Creates a [FhirMarkdown], validating [rawValue] is either `null` or a
+  /// [String].
   // ignore: sort_unnamed_constructors_first
   factory FhirMarkdown(
-    String? input, {
+    dynamic rawValue, {
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
     String objectPath = 'Markdown',
   }) {
-    final validated = _validateMarkdown(input);
+    if (rawValue != null && rawValue is! String) {
+      throw ArgumentError(
+        'Invalid type for FhirMarkdown. '
+        'Expected String, got ${rawValue.runtimeType}.',
+      );
+    }
+    final validated = _validateMarkdown(rawValue as String?);
     return FhirMarkdown._(
-      validatedValue: validated,
+      valueString: validated,
       element: element,
       id: id,
       extension_: extension_,
@@ -56,35 +68,44 @@ class FhirMarkdown extends PrimitiveType<String>
     );
   }
 
-  /// Creates empty [FhirMarkdown] object
+  /// Creates an empty [FhirMarkdown] with [Element.empty].
   factory FhirMarkdown.empty() => FhirMarkdown(null, element: Element.empty());
 
-  /// Factory constructor to create a [FhirMarkdown] from JSON input.
+  // --------------------------------------------------------------------------
+  // JSON / YAML Constructors
+  // --------------------------------------------------------------------------
+
+  /// Constructs a [FhirMarkdown] from a JSON [Map].
   factory FhirMarkdown.fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
+    final rawValue = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    final parsedElement =
+        elementJson == null ? null : Element.fromJson(elementJson);
     final objectPath = json['objectPath'] as String? ?? 'Markdown';
-    return FhirMarkdown(value, element: element, objectPath: objectPath);
+    return FhirMarkdown(
+      rawValue,
+      element: parsedElement,
+      objectPath: objectPath,
+    );
   }
 
-  /// Factory constructor to create a [FhirMarkdown] from YAML input.
-  factory FhirMarkdown.fromYaml(dynamic yaml) {
-    return yaml is String
-        ? FhirMarkdown.fromJson(
-            jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, dynamic>,
-          )
-        : yaml is YamlMap
-            ? FhirMarkdown.fromJson(
-                jsonDecode(jsonEncode(yaml)) as Map<String, dynamic>,
-              )
-            : throw const FormatException(
-                'Invalid YAML format for FhirMarkdown.',
-              );
+  /// Constructs a [FhirMarkdown] from a YAML input.
+  static FhirMarkdown fromYaml(dynamic yaml) {
+    if (yaml is String) {
+      return FhirMarkdown.fromJson(
+        jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, dynamic>,
+      );
+    } else if (yaml is YamlMap) {
+      return FhirMarkdown.fromJson(
+        jsonDecode(jsonEncode(yaml)) as Map<String, dynamic>,
+      );
+    } else {
+      throw const FormatException('Invalid YAML format for FhirMarkdown.');
+    }
   }
 
-  /// Tries to parse the input into a [FhirMarkdown], returning `null` if it
-  /// fails.
+  /// Attempts to parse [input] into a [FhirMarkdown], returning `null` if
+  /// it fails.
   static FhirMarkdown? tryParse(dynamic input) {
     try {
       return input is String ? FhirMarkdown(input) : null;
@@ -93,70 +114,52 @@ class FhirMarkdown extends PrimitiveType<String>
     }
   }
 
-  /// Validates the input and ensures it conforms to markdown rules.
+  // --------------------------------------------------------------------------
+  // Validation
+  // --------------------------------------------------------------------------
+
+  /// Minimal validation for Markdown: checks if there's at least some content,
+  /// or allows an empty string. Adjust logic as needed for your constraints.
   static String? _validateMarkdown(String? input) {
-    if (input == null) {
-      return null;
-    }
-    // This is a basic check that there's at least some non-whitespace
-    // character. You can refine it if you have stricter markdown requirements.
-    if (RegExp(r'[ \r\n\t\S]+').hasMatch(input)) {
+    if (input == null) return null;
+    // If you want to allow empty or any text, you can skip or relax checks
+    // here. For now, let's say we require at least one non-whitespace
+    // character.
+    if (input.trim().isNotEmpty) {
       return input;
     }
     throw FormatException('Invalid FhirMarkdown: $input');
   }
 
-  /// Returns the FHIR type as 'markdown'.
+  // --------------------------------------------------------------------------
+  // FHIR Overrides
+  // --------------------------------------------------------------------------
+
+  /// Returns `"markdown"`.
   @override
   String get fhirType => 'markdown';
 
-  /// Serializes the instance to JSON with standardized keys.
+  /// Returns this Markdown or `''`.
   @override
-  Map<String, dynamic> toJson() => {
-        if (value != null) 'value': value,
-        if (element != null) '_value': element!.toJson(),
-      };
+  String toString() => valueString ?? '';
 
-  /// Converts the instance to a JSON string.
+  /// Returns `true` if the Type is considered string-based, otherwise `false`
   @override
-  String toJsonString() => jsonEncode(toJson());
+  bool get stringBased => true;
 
-  /// Provides a string representation of the markdown value.
-  @override
-  String toString() => value.toString();
+  // --------------------------------------------------------------------------
+  // Clone / Copy
+  // --------------------------------------------------------------------------
 
-  /// Retrieves the primitive value of the object.
-  @override
-  String? get primitiveValue => value?.toString();
-
-  @override
-  bool equalsDeep(FhirBase? other) =>
-      other is FhirMarkdown && other.value == value && other.element == element;
-
-  /// Compares this instance for equality with another object.
-  @override
-  // ignore: avoid_equals_and_hash_code_on_mutable_classes
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      (other is FhirMarkdown && other.value == value) ||
-      (other is String && other == value);
-
-  /// Overrides the `hashCode` for use in hash-based collections.
-  @override
-  // ignore: avoid_equals_and_hash_code_on_mutable_classes
-  int get hashCode => Object.hash(value, element);
-
-  /// Clones the current [FhirMarkdown] instance.
   @override
   FhirMarkdown clone() => FhirMarkdown(
-        value,
+        valueString,
         element: element?.clone() as Element?,
       );
 
-  /// Creates a modified copy with updated properties.
   @override
   FhirMarkdown copyWith({
-    String? newValue,
+    dynamic newValue,
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
@@ -168,7 +171,7 @@ class FhirMarkdown extends PrimitiveType<String>
     String? objectPath,
   }) {
     return FhirMarkdown(
-      newValue ?? value,
+      newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
@@ -183,51 +186,21 @@ class FhirMarkdown extends PrimitiveType<String>
     );
   }
 
-  /// Returns a new [FhirMarkdown] with extensions disallowed.
-  FhirMarkdown noExtensions() => copyWith(disallowExtensions: true);
+  // --------------------------------------------------------------------------
+  // Subclass Contract
+  // --------------------------------------------------------------------------
 
-  /// Converts a list of JSON values to a list of [FhirMarkdown] instances.
-  static List<FhirMarkdown> fromJsonList(
-    List<dynamic> values,
-    List<dynamic>? elements,
-  ) {
-    if (elements != null && elements.length != values.length) {
-      throw const FormatException(
-        'Values and elements must have the same length.',
-      );
-    }
-
-    return List.generate(values.length, (i) {
-      final val = values[i] as String;
-      final elem = elements?[i] != null
-          ? Element.fromJson(elements![i] as Map<String, dynamic>)
-          : null;
-      return FhirMarkdown(val, element: elem);
-    });
-  }
-
-  /// Converts a list of [FhirMarkdown] instances to a JSON-compatible map.
-  static Map<String, dynamic> toJsonList(List<FhirMarkdown> markdowns) {
-    return {
-      'value': markdowns.map((markdown) => markdown.value).toList(),
-      '_value':
-          markdowns.map((markdown) => markdown.element?.toJson()).toList(),
-    };
-  }
-
-  /// Creates an empty property in the object
   @override
   FhirMarkdown createProperty(String propertyName) => this;
 
-  /// Clears the specified fields in a [FhirMarkdown] object
   @override
   FhirMarkdown clear({
-    bool input = false,
+    bool value = false,
     bool extension_ = false,
     bool id = false,
   }) {
     return FhirMarkdown(
-      input ? null : value,
+      value ? null : valueString,
       element: element,
       extension_: extension_ ? <FhirExtension>[] : this.extension_,
       id: id ? null : this.id,

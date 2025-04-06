@@ -58,7 +58,7 @@ abstract class FhirBase {
 
   /// Checks if the object is empty.
   bool isEmpty() =>
-      this is PrimitiveType && (this as PrimitiveType).value == null;
+      this is PrimitiveType && (this as PrimitiveType).valueString == null;
 
   /// Checks if the object has user data for a given key.
   bool hasUserData(String name) => userData?.containsKey(name) ?? false;

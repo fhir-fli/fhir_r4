@@ -6,7 +6,7 @@ part of '../primitive_types.dart';
 class CarePlanIntent extends FhirCodeEnum {
   // Private underscore constructor for internal use.
   CarePlanIntent._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -20,7 +20,7 @@ class CarePlanIntent extends FhirCodeEnum {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory CarePlanIntent(
-    String? raw, {
+    String? rawValue, {
     FhirUri? system,
     FhirString? version,
     FhirString? display,
@@ -30,9 +30,10 @@ class CarePlanIntent extends FhirCodeEnum {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCode._validateCode(rawValue) : null;
     return CarePlanIntent._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -45,10 +46,13 @@ class CarePlanIntent extends FhirCodeEnum {
   }
 
   /// Create empty [CarePlanIntent] with element only
-  factory CarePlanIntent.empty() => CarePlanIntent._(validatedValue: '');
+  factory CarePlanIntent.empty() => CarePlanIntent._(valueString: '');
 
-  /// Factory constructor to create [CarePlanIntent] from JSON.
-  factory CarePlanIntent.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [CarePlanIntent]
+  /// from JSON.
+  factory CarePlanIntent.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -60,14 +64,14 @@ class CarePlanIntent extends FhirCodeEnum {
       );
     }
     return CarePlanIntent._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// proposal
   static final CarePlanIntent proposal = CarePlanIntent._(
-    validatedValue: 'proposal',
+    valueString: 'proposal',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-intent'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Proposal'.toFhirString,
@@ -75,7 +79,7 @@ class CarePlanIntent extends FhirCodeEnum {
 
   /// plan
   static final CarePlanIntent plan = CarePlanIntent._(
-    validatedValue: 'plan',
+    valueString: 'plan',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-intent'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Plan'.toFhirString,
@@ -83,7 +87,7 @@ class CarePlanIntent extends FhirCodeEnum {
 
   /// directive
   static final CarePlanIntent directive = CarePlanIntent._(
-    validatedValue: 'directive',
+    valueString: 'directive',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-intent'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Directive'.toFhirString,
@@ -91,7 +95,7 @@ class CarePlanIntent extends FhirCodeEnum {
 
   /// order
   static final CarePlanIntent order = CarePlanIntent._(
-    validatedValue: 'order',
+    valueString: 'order',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-intent'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Order'.toFhirString,
@@ -99,7 +103,7 @@ class CarePlanIntent extends FhirCodeEnum {
 
   /// original_order
   static final CarePlanIntent original_order = CarePlanIntent._(
-    validatedValue: 'original-order',
+    valueString: 'original-order',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-intent'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Original Order'.toFhirString,
@@ -107,7 +111,7 @@ class CarePlanIntent extends FhirCodeEnum {
 
   /// reflex_order
   static final CarePlanIntent reflex_order = CarePlanIntent._(
-    validatedValue: 'reflex-order',
+    valueString: 'reflex-order',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-intent'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Reflex Order'.toFhirString,
@@ -115,7 +119,7 @@ class CarePlanIntent extends FhirCodeEnum {
 
   /// filler_order
   static final CarePlanIntent filler_order = CarePlanIntent._(
-    validatedValue: 'filler-order',
+    valueString: 'filler-order',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-intent'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Filler Order'.toFhirString,
@@ -123,7 +127,7 @@ class CarePlanIntent extends FhirCodeEnum {
 
   /// instance_order
   static final CarePlanIntent instance_order = CarePlanIntent._(
-    validatedValue: 'instance-order',
+    valueString: 'instance-order',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-intent'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Instance Order'.toFhirString,
@@ -131,15 +135,14 @@ class CarePlanIntent extends FhirCodeEnum {
 
   /// option
   static final CarePlanIntent option = CarePlanIntent._(
-    validatedValue: 'option',
+    valueString: 'option',
     system: 'http://hl7.org/fhir/ValueSet/care-plan-intent'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Option'.toFhirString,
   );
 
   /// For instances where an Element is present but not value
-  static final CarePlanIntent elementOnly =
-      CarePlanIntent._(validatedValue: '');
+  static final CarePlanIntent elementOnly = CarePlanIntent._(valueString: '');
 
   /// List of all enum-like values
   static final List<CarePlanIntent> values = [
@@ -157,30 +160,33 @@ class CarePlanIntent extends FhirCodeEnum {
   /// Clones the current instance
   @override
   CarePlanIntent clone() => CarePlanIntent._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   CarePlanIntent withElement(Element? newElement) {
-    return CarePlanIntent._(validatedValue: value, element: newElement);
+    return CarePlanIntent._(
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   CarePlanIntent copyWith({
-    String? newValue,
+    dynamic newValue,
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
@@ -191,11 +197,13 @@ class CarePlanIntent extends FhirCodeEnum {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError(
+        'Invalid input for CarePlanIntent: $newValue',
+      );
     }
     return CarePlanIntent._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

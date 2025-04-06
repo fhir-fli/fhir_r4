@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class AccountStatus extends FhirCodeEnum {
   // Private underscore constructor for internal use.
   AccountStatus._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class AccountStatus extends FhirCodeEnum {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory AccountStatus(
-    String? raw, {
+    String? rawValue, {
     FhirUri? system,
     FhirString? version,
     FhirString? display,
@@ -29,9 +29,10 @@ class AccountStatus extends FhirCodeEnum {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCode._validateCode(rawValue) : null;
     return AccountStatus._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -44,10 +45,13 @@ class AccountStatus extends FhirCodeEnum {
   }
 
   /// Create empty [AccountStatus] with element only
-  factory AccountStatus.empty() => AccountStatus._(validatedValue: '');
+  factory AccountStatus.empty() => AccountStatus._(valueString: '');
 
-  /// Factory constructor to create [AccountStatus] from JSON.
-  factory AccountStatus.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [AccountStatus]
+  /// from JSON.
+  factory AccountStatus.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -59,14 +63,14 @@ class AccountStatus extends FhirCodeEnum {
       );
     }
     return AccountStatus._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// active
   static final AccountStatus active = AccountStatus._(
-    validatedValue: 'active',
+    valueString: 'active',
     system: 'http://hl7.org/fhir/ValueSet/account-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Active'.toFhirString,
@@ -74,7 +78,7 @@ class AccountStatus extends FhirCodeEnum {
 
   /// inactive
   static final AccountStatus inactive = AccountStatus._(
-    validatedValue: 'inactive',
+    valueString: 'inactive',
     system: 'http://hl7.org/fhir/ValueSet/account-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Inactive'.toFhirString,
@@ -82,7 +86,7 @@ class AccountStatus extends FhirCodeEnum {
 
   /// entered_in_error
   static final AccountStatus entered_in_error = AccountStatus._(
-    validatedValue: 'entered-in-error',
+    valueString: 'entered-in-error',
     system: 'http://hl7.org/fhir/ValueSet/account-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Entered in error'.toFhirString,
@@ -90,7 +94,7 @@ class AccountStatus extends FhirCodeEnum {
 
   /// on_hold
   static final AccountStatus on_hold = AccountStatus._(
-    validatedValue: 'on-hold',
+    valueString: 'on-hold',
     system: 'http://hl7.org/fhir/ValueSet/account-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'On Hold'.toFhirString,
@@ -98,14 +102,14 @@ class AccountStatus extends FhirCodeEnum {
 
   /// unknown
   static final AccountStatus unknown = AccountStatus._(
-    validatedValue: 'unknown',
+    valueString: 'unknown',
     system: 'http://hl7.org/fhir/ValueSet/account-status'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Unknown'.toFhirString,
   );
 
   /// For instances where an Element is present but not value
-  static final AccountStatus elementOnly = AccountStatus._(validatedValue: '');
+  static final AccountStatus elementOnly = AccountStatus._(valueString: '');
 
   /// List of all enum-like values
   static final List<AccountStatus> values = [
@@ -119,30 +123,33 @@ class AccountStatus extends FhirCodeEnum {
   /// Clones the current instance
   @override
   AccountStatus clone() => AccountStatus._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   AccountStatus withElement(Element? newElement) {
-    return AccountStatus._(validatedValue: value, element: newElement);
+    return AccountStatus._(
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   AccountStatus copyWith({
-    String? newValue,
+    dynamic newValue,
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
@@ -153,11 +160,13 @@ class AccountStatus extends FhirCodeEnum {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError(
+        'Invalid input for AccountStatus: $newValue',
+      );
     }
     return AccountStatus._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class DaysOfWeek extends FhirCodeEnum {
   // Private underscore constructor for internal use.
   DaysOfWeek._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class DaysOfWeek extends FhirCodeEnum {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory DaysOfWeek(
-    String? raw, {
+    String? rawValue, {
     FhirUri? system,
     FhirString? version,
     FhirString? display,
@@ -29,9 +29,10 @@ class DaysOfWeek extends FhirCodeEnum {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCode._validateCode(rawValue) : null;
     return DaysOfWeek._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -44,10 +45,13 @@ class DaysOfWeek extends FhirCodeEnum {
   }
 
   /// Create empty [DaysOfWeek] with element only
-  factory DaysOfWeek.empty() => DaysOfWeek._(validatedValue: '');
+  factory DaysOfWeek.empty() => DaysOfWeek._(valueString: '');
 
-  /// Factory constructor to create [DaysOfWeek] from JSON.
-  factory DaysOfWeek.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [DaysOfWeek]
+  /// from JSON.
+  factory DaysOfWeek.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -59,14 +63,14 @@ class DaysOfWeek extends FhirCodeEnum {
       );
     }
     return DaysOfWeek._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// mon
   static final DaysOfWeek mon = DaysOfWeek._(
-    validatedValue: 'mon',
+    valueString: 'mon',
     system: 'http://hl7.org/fhir/ValueSet/days-of-week'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Monday'.toFhirString,
@@ -74,7 +78,7 @@ class DaysOfWeek extends FhirCodeEnum {
 
   /// tue
   static final DaysOfWeek tue = DaysOfWeek._(
-    validatedValue: 'tue',
+    valueString: 'tue',
     system: 'http://hl7.org/fhir/ValueSet/days-of-week'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Tuesday'.toFhirString,
@@ -82,7 +86,7 @@ class DaysOfWeek extends FhirCodeEnum {
 
   /// wed
   static final DaysOfWeek wed = DaysOfWeek._(
-    validatedValue: 'wed',
+    valueString: 'wed',
     system: 'http://hl7.org/fhir/ValueSet/days-of-week'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Wednesday'.toFhirString,
@@ -90,7 +94,7 @@ class DaysOfWeek extends FhirCodeEnum {
 
   /// thu
   static final DaysOfWeek thu = DaysOfWeek._(
-    validatedValue: 'thu',
+    valueString: 'thu',
     system: 'http://hl7.org/fhir/ValueSet/days-of-week'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Thursday'.toFhirString,
@@ -98,7 +102,7 @@ class DaysOfWeek extends FhirCodeEnum {
 
   /// fri
   static final DaysOfWeek fri = DaysOfWeek._(
-    validatedValue: 'fri',
+    valueString: 'fri',
     system: 'http://hl7.org/fhir/ValueSet/days-of-week'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Friday'.toFhirString,
@@ -106,7 +110,7 @@ class DaysOfWeek extends FhirCodeEnum {
 
   /// sat
   static final DaysOfWeek sat = DaysOfWeek._(
-    validatedValue: 'sat',
+    valueString: 'sat',
     system: 'http://hl7.org/fhir/ValueSet/days-of-week'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Saturday'.toFhirString,
@@ -114,14 +118,14 @@ class DaysOfWeek extends FhirCodeEnum {
 
   /// sun
   static final DaysOfWeek sun = DaysOfWeek._(
-    validatedValue: 'sun',
+    valueString: 'sun',
     system: 'http://hl7.org/fhir/ValueSet/days-of-week'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Sunday'.toFhirString,
   );
 
   /// For instances where an Element is present but not value
-  static final DaysOfWeek elementOnly = DaysOfWeek._(validatedValue: '');
+  static final DaysOfWeek elementOnly = DaysOfWeek._(valueString: '');
 
   /// List of all enum-like values
   static final List<DaysOfWeek> values = [
@@ -137,30 +141,33 @@ class DaysOfWeek extends FhirCodeEnum {
   /// Clones the current instance
   @override
   DaysOfWeek clone() => DaysOfWeek._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   DaysOfWeek withElement(Element? newElement) {
-    return DaysOfWeek._(validatedValue: value, element: newElement);
+    return DaysOfWeek._(
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   DaysOfWeek copyWith({
-    String? newValue,
+    dynamic newValue,
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
@@ -171,11 +178,13 @@ class DaysOfWeek extends FhirCodeEnum {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError(
+        'Invalid input for DaysOfWeek: $newValue',
+      );
     }
     return DaysOfWeek._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

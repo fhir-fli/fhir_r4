@@ -5,7 +5,7 @@ part of '../primitive_types.dart';
 class TestReportStatus extends FhirCodeEnum {
   // Private underscore constructor for internal use.
   TestReportStatus._({
-    required super.validatedValue,
+    required super.valueString,
     super.system,
     super.version,
     super.display,
@@ -19,7 +19,7 @@ class TestReportStatus extends FhirCodeEnum {
   /// Public factory if you want a fallback approach or custom creation.
   // ignore: sort_unnamed_constructors_first
   factory TestReportStatus(
-    String? raw, {
+    String? rawValue, {
     FhirUri? system,
     FhirString? version,
     FhirString? display,
@@ -29,9 +29,10 @@ class TestReportStatus extends FhirCodeEnum {
     bool? disallowExtensions,
     String objectPath = 'Code',
   }) {
-    final validated = raw != null ? FhirCode._validateCode(raw) : null;
+    final valueString =
+        rawValue != null ? FhirCode._validateCode(rawValue) : null;
     return TestReportStatus._(
-      validatedValue: validated,
+      valueString: valueString,
       system: system,
       version: version,
       display: display,
@@ -44,10 +45,13 @@ class TestReportStatus extends FhirCodeEnum {
   }
 
   /// Create empty [TestReportStatus] with element only
-  factory TestReportStatus.empty() => TestReportStatus._(validatedValue: '');
+  factory TestReportStatus.empty() => TestReportStatus._(valueString: '');
 
-  /// Factory constructor to create [TestReportStatus] from JSON.
-  factory TestReportStatus.fromJson(Map<String, dynamic> json) {
+  /// Factory constructor to create [TestReportStatus]
+  /// from JSON.
+  factory TestReportStatus.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -59,14 +63,14 @@ class TestReportStatus extends FhirCodeEnum {
       );
     }
     return TestReportStatus._(
-      validatedValue: value,
+      valueString: value,
       element: element,
     );
   }
 
   /// completed
   static final TestReportStatus completed = TestReportStatus._(
-    validatedValue: 'completed',
+    valueString: 'completed',
     system: 'http://hl7.org/fhir/ValueSet/report-status-codes'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Completed'.toFhirString,
@@ -74,7 +78,7 @@ class TestReportStatus extends FhirCodeEnum {
 
   /// in_progress
   static final TestReportStatus in_progress = TestReportStatus._(
-    validatedValue: 'in-progress',
+    valueString: 'in-progress',
     system: 'http://hl7.org/fhir/ValueSet/report-status-codes'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'In Progress'.toFhirString,
@@ -82,7 +86,7 @@ class TestReportStatus extends FhirCodeEnum {
 
   /// waiting
   static final TestReportStatus waiting = TestReportStatus._(
-    validatedValue: 'waiting',
+    valueString: 'waiting',
     system: 'http://hl7.org/fhir/ValueSet/report-status-codes'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Waiting'.toFhirString,
@@ -90,7 +94,7 @@ class TestReportStatus extends FhirCodeEnum {
 
   /// stopped
   static final TestReportStatus stopped = TestReportStatus._(
-    validatedValue: 'stopped',
+    valueString: 'stopped',
     system: 'http://hl7.org/fhir/ValueSet/report-status-codes'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Stopped'.toFhirString,
@@ -98,7 +102,7 @@ class TestReportStatus extends FhirCodeEnum {
 
   /// entered_in_error
   static final TestReportStatus entered_in_error = TestReportStatus._(
-    validatedValue: 'entered-in-error',
+    valueString: 'entered-in-error',
     system: 'http://hl7.org/fhir/ValueSet/report-status-codes'.toFhirUri,
     version: '4.3.0'.toFhirString,
     display: 'Entered In Error'.toFhirString,
@@ -106,7 +110,7 @@ class TestReportStatus extends FhirCodeEnum {
 
   /// For instances where an Element is present but not value
   static final TestReportStatus elementOnly =
-      TestReportStatus._(validatedValue: '');
+      TestReportStatus._(valueString: '');
 
   /// List of all enum-like values
   static final List<TestReportStatus> values = [
@@ -120,30 +124,33 @@ class TestReportStatus extends FhirCodeEnum {
   /// Clones the current instance
   @override
   TestReportStatus clone() => TestReportStatus._(
-        validatedValue: value,
+        valueString: valueString,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   TestReportStatus withElement(Element? newElement) {
-    return TestReportStatus._(validatedValue: value, element: newElement);
+    return TestReportStatus._(
+      valueString: valueString,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': (value?.isEmpty ?? false) ? null : value,
+        'value': (valueString?.isEmpty ?? false) ? null : valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => value ?? '';
+  String toString() => valueString ?? '';
 
   /// Creates a modified copy with updated properties.
   @override
   TestReportStatus copyWith({
-    String? newValue,
+    dynamic newValue,
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
@@ -154,11 +161,13 @@ class TestReportStatus extends FhirCodeEnum {
     bool? disallowExtensions,
     String? objectPath,
   }) {
-    if ((newValue ?? value) is! int) {
-      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    if (newValue is! String?) {
+      throw ArgumentError(
+        'Invalid input for TestReportStatus: $newValue',
+      );
     }
     return TestReportStatus._(
-      validatedValue: newValue ?? value,
+      valueString: newValue ?? valueString,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

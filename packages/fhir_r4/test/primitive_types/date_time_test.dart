@@ -342,18 +342,18 @@ void dateTimeTest() {
 
     test('fdtyearstring', () {
       expect(FhirDateTime.fromString('2020').toString(), '2020');
-      expect(FhirDateTime.fromString('2020').value, '2020');
+      expect(FhirDateTime.fromString('2020').valueString, '2020');
       expect(FhirDateTime.fromString('2020').valueDateTime, DateTime(2020));
     });
     test('fdtyearmonthstring', () {
       expect(FhirDateTime.fromString('2020-12').toString(), '2020-12');
-      expect(FhirDateTime.fromString('2020-12').value, '2020-12');
+      expect(FhirDateTime.fromString('2020-12').valueString, '2020-12');
       expect(
         FhirDateTime.fromString('2020-12').valueDateTime,
         DateTime(2020, 12),
       );
       expect(() => FhirDateTime.fromString('2020-Bla'), returnsNormally);
-      expect(FhirDateTime.fromString('2020-Bla').value, '2020');
+      expect(FhirDateTime.fromString('2020-Bla').valueString, '2020');
       expect(FhirDateTime.fromString('2020-Bla').valueDateTime, DateTime(2020));
     });
     test('fdtdatetime', () {
@@ -479,7 +479,7 @@ void dateTimeTest() {
         final fhirDateTime =
             FhirDateTime.fromString('2023-12-22T12:34:56.789Z');
 
-        expect(fhirDateTime.value, isA<String>());
+        expect(fhirDateTime.valueString, isA<String>());
         expect(fhirDateTime.valueDateTime, isA<DateTime>());
         expect(fhirDateTime.year, 2023);
         expect(fhirDateTime.month, 12);
@@ -513,7 +513,7 @@ void dateTimeTest() {
       test('Valid FhirDate String', () {
         final fhirDate = FhirDate.fromString('2023-12-22');
 
-        expect(fhirDate.value, isA<String>());
+        expect(fhirDate.valueString, isA<String>());
         expect(fhirDate.valueDateTime, isA<DateTime>());
         expect(fhirDate.year, 2023);
         expect(fhirDate.month, 12);
