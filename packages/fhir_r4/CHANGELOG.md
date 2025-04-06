@@ -1,5 +1,9 @@
 # fhir_r4
 
+## [0.3.1]
+
+* forgot to add example
+
 ## [0.3.0]
 
 * Ready for actual release
