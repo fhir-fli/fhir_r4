@@ -1,5 +1,9 @@
 # fhir_r4
 
+## [0.3.0]
+
+* Most of the details are here https://fhir-fli.github.io/fhir_fli_documentation/docs
+
 ## [0.3.0-2]
 
 * split back up into smaller packages, that seems to be how most people use it

@@ -12,4 +12,4 @@ build/
 *pubspec_overrides.yaml
 
 ./packages/fhir_r4/*ndjson
-./packages/fhir_r4_db/*ndjson
+*ndjson

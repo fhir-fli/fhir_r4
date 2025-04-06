@@ -22,7 +22,8 @@ abstract class FhirBulk {
     return '';
   }
 
-  /// Accepts an NDJSON-formatted string and converts it into a list of resources.
+  /// Accepts an NDJSON-formatted string and converts it into a list of
+  /// resources.
   static List<Resource> fromNdJson(String content) {
     final lines = content.split('\n');
     final resources = <Resource>[];
@@ -37,7 +38,8 @@ abstract class FhirBulk {
     return resources;
   }
 
-  /// Reads a file from [path] (which must be NDJSON) and decodes it into resources.
+  /// Reads a file from [path] (which must be NDJSON) and decodes it into
+  /// resources.
   static Future<List<Resource>> fromFile(String path) async {
     final file = await File(path).readAsString();
     return fromNdJson(file);

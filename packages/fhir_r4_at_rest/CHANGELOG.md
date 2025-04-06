@@ -1,4 +1,4 @@
-# fhir_r4
+# fhir_r4_at_rest
 
 ## [0.3.0]
 

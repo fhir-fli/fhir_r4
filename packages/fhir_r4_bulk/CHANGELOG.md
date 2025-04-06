@@ -1,4 +1,9 @@
-# fhir_r4
+# fhir_r4_bulk
+
+## [0.3.0]
+
+* More robust now, includes import and export, continues to allow compression
+* More information here: https://fhir-fli.github.io/fhir_fli_documentation/docs/fhir_r4_bulk
 
 ## [0.3.0-2]
 
