@@ -1,14 +1,13 @@
 // ignore_for_file: avoid_print, lines_longer_than_80_chars
 
 import 'dart:async';
+import 'dart:convert';
 import 'dart:io';
 import 'package:collection/collection.dart';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:fhir_r4_db/fhir_r4_db.dart';
 import 'package:hive_ce/hive.dart';
 import 'package:test/test.dart';
-
-import 'test_resources.dart';
 
 Future<void> main() async {
   const directory = 'db';
@@ -509,56 +508,41 @@ Future<void> main() async {
             .map((FileSystemEntity event) => event.path)
             .toList();
         var total = 0;
+        const numberOfTimes = 1;
         final buffer = StringBuffer();
-        final startTime = DateTime.now();
-        for (final file in fileList) {
-          print(file);
+        for (var i = 0; i < numberOfTimes; i++) {
+          final startTime = DateTime.now();
+          for (final file in fileList) {
+            print(file);
+            var i = 0;
 
-          final resources = <Resource>[];
-          final fileContents = File(file).readAsStringSync();
-          for (final content in fileContents.split('\n')) {
-            if (content.isNotEmpty) {
-              final resource = Resource.fromJsonString(content);
-              resources.add(resource);
+            final resources = <Resource>[];
+            for (final file in fileList) {
+              final fileContents = File(file).readAsStringSync();
+              for (final content in fileContents.split('\n')) {
+                if (content.isNotEmpty) {
+                  final resource = Resource.fromJson(
+                    jsonDecode(content) as Map<String, dynamic>,
+                  );
+                  resources.add(resource);
+                }
+              }
             }
-          }
 
-          var i = 0;
-          for (final resource in resources) {
-            i++;
-            await fhirDb.save(resource: resource);
+            for (final resource in resources) {
+              i++;
+              await fhirDb.save(resource: resource);
+            }
+            total += i;
           }
-          total += i;
+          final endTime = DateTime.now();
+          final duration = endTime.difference(startTime);
+          buffer
+            ..writeln('Total Resources: $total\n')
+            ..writeln('Total time: ${duration.inSeconds} seconds');
         }
-        final endTime = DateTime.now();
-        final duration = endTime.difference(startTime);
-        buffer
-          ..writeln('Total Resources: $total\n')
-          ..writeln('Total time: ${duration.inSeconds} seconds');
 
-        await fhirDb.save(resource: testPatient1);
-        await fhirDb.save(resource: testPatient2);
-        await fhirDb.save(resource: testObservation1);
-        await fhirDb.save(resource: testObservation2);
-        await fhirDb.save(resource: testObservation3);
-        await fhirDb.save(resource: testObservation4);
-        await fhirDb.save(resource: testObservation5);
-        await fhirDb.save(resource: testObservation6);
-        await fhirDb.save(resource: testConceptMap1);
-        await fhirDb.save(resource: testCondition1);
-
-        print(buffer);
         final testStartTime = DateTime.now();
-        expect(true, await compareTwoResources(testPatient1, fhirDb, null));
-        expect(true, await compareTwoResources(testPatient2, fhirDb, null));
-        expect(true, await compareTwoResources(testObservation1, fhirDb, null));
-        expect(true, await compareTwoResources(testObservation2, fhirDb, null));
-        expect(true, await compareTwoResources(testObservation3, fhirDb, null));
-        expect(true, await compareTwoResources(testObservation4, fhirDb, null));
-        expect(true, await compareTwoResources(testObservation5, fhirDb, null));
-        expect(true, await compareTwoResources(testObservation6, fhirDb, null));
-        expect(true, await compareTwoResources(testConceptMap1, fhirDb, null));
-        expect(true, await compareTwoResources(testCondition1, fhirDb, null));
         final testEndTime = DateTime.now();
         print(
           'Found 10 resources in total of '

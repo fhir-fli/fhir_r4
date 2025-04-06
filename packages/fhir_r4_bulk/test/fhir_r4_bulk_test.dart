@@ -1,14 +1,57 @@
-// ignore_for_file: invalid_annotation_target
-
 import 'dart:convert';
-
 import 'package:fhir_r4/fhir_r4.dart';
-import 'package:fhir_r4_bulk/bulk.dart';
+import 'package:fhir_r4_bulk/fhir_r4_bulk.dart';
 import 'package:test/test.dart';
 
 import 'ndjson/ndjson.dart';
 
 void main() {
+  group('FhirBulk unit tests', () {
+    test('toNdJson and fromNdJson should round-trip a list of Resources', () {
+      final resources = <Resource>[
+        Patient(id: '123'.toFhirString),
+        Observation(
+          id: 'obs1'.toFhirString,
+          status: ObservationStatus.final_,
+          code: CodeableConcept(
+            coding: [
+              Coding(
+                system: FhirUri('http://loinc.org'),
+                code: '12345-6'.toFhirCode,
+                display: 'Blood Pressure'.toFhirString,
+              ),
+            ],
+          ),
+        ),
+      ];
+
+      final ndjson = FhirBulk.toNdJson(resources);
+      expect(ndjson.split('\n').length, 2); // 2 lines
+
+      final decoded = FhirBulk.fromNdJson(ndjson);
+      expect(decoded.length, 2);
+      expect(decoded.first, isA<Patient>());
+      expect(decoded.last, isA<Observation>());
+      expect((decoded.first as Patient).id, '123'.toFhirString);
+      expect((decoded.last as Observation).id, 'obs1'.toFhirString);
+    });
+
+    test('toNdJson should handle empty list', () {
+      final ndjson = FhirBulk.toNdJson([]);
+      expect(ndjson, '');
+    });
+
+    test('fromNdJson should ignore empty lines', () {
+      const ndjson = '''
+{"resourceType":"Patient","id":"123"}
+
+{"resourceType":"Patient","id":"456"}
+''';
+      final decoded = FhirBulk.fromNdJson(ndjson);
+      expect(decoded.length, 2);
+    });
+  });
+
   group('FHIR Bulk From File/s:', () {
     test('From Accounts ndjson file', () async {
       final resources = await FhirBulk.fromFile('./test/ndjson/Account.ndjson');
