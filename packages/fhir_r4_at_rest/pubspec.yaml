@@ -1,6 +1,6 @@
 name: fhir_r4_at_rest
 description: Dart library simplifying FHIR RESTFul requests.
-version: 0.3.0-2
+version: 0.3.0
 homepage: https://www.fhirfli.dev/
 repository: https://github.com/fhir-fli/fhir_r4
 
