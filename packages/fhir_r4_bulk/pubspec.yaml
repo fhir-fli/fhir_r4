@@ -1,5 +1,5 @@
 name: fhir_r4_bulk
-description: for supporing the R5 Version of FHIR for Dart & Flutter.
+description: Library to support the FHIR Bulk Data Access API (https://www.hl7.org/fhir/uv/bulkdata/index.html) for FHIR R4 resources.
 version: 0.3.0
 homepage: https://www.fhirfli.dev/
 repository: https://github.com/fhir-fli/fhir_r4
