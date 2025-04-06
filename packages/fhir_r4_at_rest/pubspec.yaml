@@ -17,8 +17,7 @@ environment:
   sdk: ^3.5.0
 
 dependencies:
-  fhir_r4: 
-    path: ../fhir_r4
+  fhir_r4: ^0.3.0
   http: ^1.3.0
 
 dev_dependencies:

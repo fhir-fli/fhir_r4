@@ -1,5 +1,10 @@
 # fhir_r4
 
+## [0.3.0]
+
+* Hopefully ready for the real world.
+* Extensive documentation at https://fhir-fli.github.io/fhir_fli_documentation/docs/at_rest/fhir_r4_at_rest
+
 ## [0.3.0-2]
 
 * split back up into smaller packages, that seems to be how most people use it
