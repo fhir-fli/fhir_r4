@@ -49,24 +49,33 @@ Future<FhirBase?> fhirMappingEngine(
   FhirBaseBuilder? target, [
   FhirBaseBuilder? Function(String)? extendedEmptyFromType,
 ]) async {
-  final mapEngine = FhirMapEngine(cache, map)
+  final mapEngine = await FhirMapEngine.create(cache, map)
     ..extendedEmptyFromType = extendedEmptyFromType;
   final transform = await mapEngine.transformBuilder('', source, map, target);
   return transform;
 }
 
 class FhirMapEngine {
-  FhirMapEngine(ResourceCache cache, this.map)
+  FhirMapEngine._(ResourceCache cache, this.map)
       : resolver = DefinitionResolver(cache, map) {
     context = TransformationContext(resolver);
     services = FHIRPathHostServices();
-    fpe = FHIRPathEngine(WorkerContext(), services);
   }
+
+  static Future<FhirMapEngine> create(
+    ResourceCache cache,
+    StructureMap map,
+  ) async {
+    final engine = FhirMapEngine._(cache, map);
+    engine.fpe = await FHIRPathEngine.create(WorkerContext(), engine.services);
+    return engine;
+  }
+
   final StructureMap map;
   final DefinitionResolver resolver;
   late final TransformationContext context;
   late final IEvaluationContext? services;
-  late final FHIRPathEngine fpe;
+  FHIRPathEngine? fpe;
   int rules = 0;
   FhirBaseBuilder? Function(String)? extendedEmptyFromType;
 
@@ -724,7 +733,7 @@ class FhirMapEngine {
       ExpressionNode? expr =
           src.getUserData(MAP_SEARCH_EXPRESSION) as ExpressionNode?;
       if (expr == null) {
-        expr = fpe.parse(src.element?.valueString ?? '');
+        expr = fpe?.parse(src.element?.valueString ?? '');
         src.setUserData(MAP_SEARCH_EXPRESSION, expr);
       }
       // TODO(Dokotela): implement services
@@ -763,7 +772,7 @@ class FhirMapEngine {
       ExpressionNode? expr =
           src.getUserData(MAP_WHERE_EXPRESSION) as ExpressionNode?;
       if (expr == null) {
-        expr = fpe.parse(src.condition?.valueString ?? '');
+        expr = fpe?.parse(src.condition?.valueString ?? '');
         src.setUserData(MAP_WHERE_EXPRESSION, expr);
       }
 
@@ -795,13 +804,14 @@ class FhirMapEngine {
           }
         }
 
-        final bool passed = await fpe.evaluateToBoolean(
-          varsForSource,
-          null,
-          null,
-          item.build(),
-          expr,
-        );
+        final bool passed = await fpe?.evaluateToBoolean(
+              varsForSource,
+              null,
+              null,
+              item.build(),
+              expr!,
+            ) ??
+            false;
 
         if (!passed) {
           remove.add(item);
@@ -816,7 +826,7 @@ class FhirMapEngine {
       ExpressionNode? expr =
           src.getUserData(MAP_WHERE_CHECK) as ExpressionNode?;
       if (expr == null) {
-        expr = fpe.parse(src.check?.valueString ?? '');
+        expr = fpe?.parse(src.check?.valueString ?? '');
         src.setUserData(MAP_WHERE_CHECK, expr);
       }
       for (final item in items) {
@@ -845,13 +855,14 @@ class FhirMapEngine {
             }
           }
         }
-        final bool passed = await fpe.evaluateToBoolean(
-          varsForSource,
-          null,
-          null,
-          item.build(),
-          expr,
-        );
+        final bool passed = await fpe?.evaluateToBoolean(
+              varsForSource,
+              null,
+              null,
+              item.build(),
+              expr!,
+            ) ??
+            false;
         if (!passed) {
           throw FHIRException(
             message: "Rule '$ruleId', Check condition failed, $expr",
@@ -863,7 +874,7 @@ class FhirMapEngine {
     if (src.logMessage != null) {
       ExpressionNode? expr = src.getUserData(MAP_WHERE_LOG) as ExpressionNode?;
       if (expr == null) {
-        expr = fpe.parse(src.logMessage!.valueString!);
+        expr = fpe?.parse(src.logMessage!.valueString!);
         src.setUserData(MAP_WHERE_LOG, expr);
       }
       final List<String> logs = <String>[];
@@ -877,13 +888,14 @@ class FhirMapEngine {
           );
         }
         logs.add(
-          await fpe.evaluateToString(
-            varsForSource,
-            null,
-            null,
-            item.build(),
-            expr,
-          ),
+          (await fpe?.evaluateToString(
+                varsForSource,
+                null,
+                null,
+                item.build(),
+                expr!,
+              )) ??
+              '',
         );
       }
       // TODO(Dokotela): implement services
@@ -1145,7 +1157,7 @@ class FhirMapEngine {
             ExpressionNode? expr =
                 tgt.getUserData(MAP_EXPRESSION) as ExpressionNode?;
             if (expr == null && (tgt.parameter?.isNotEmpty ?? false)) {
-              expr = fpe.parse(
+              expr = fpe?.parse(
                 _getParamStringNoNull(
                   vars,
                   tgt.parameter!.last,
@@ -1160,13 +1172,14 @@ class FhirMapEngine {
                 : false.toFhirBooleanBuilder;
             final List<FhirBase> v = expr == null
                 ? <FhirBase>[]
-                : await fpe.evaluateWithContext(
-                    vars,
-                    null,
-                    null,
-                    test.build(),
-                    expr,
-                  );
+                : (await fpe?.evaluateWithContext(
+                      vars,
+                      null,
+                      null,
+                      test.build(),
+                      expr,
+                    )) ??
+                    <FhirBase>[];
             if (v.isEmpty) {
               return null;
             } else if (v.length != 1) {

@@ -63,7 +63,7 @@ Future<List<FhirBase>> walkFhirPath({
   FhirBase? rootResource,
   Map<String, dynamic>? environment,
 }) async {
-  final ast = parseFhirPath(pathExpression);
+  final ast = await parseFhirPath(pathExpression);
   // print('*************************************');
   // ast.printExpressionTree();
   // print('*************************************');
@@ -77,11 +77,9 @@ Future<List<FhirBase>> walkFhirPath({
   );
 }
 
-/// The FHIRPath engine.
-final fhirPathEngine = FHIRPathEngine(WorkerContext());
-
 /// Parse a FHIRPath for repeated use with different inputs later.
-ExpressionNode parseFhirPath(String pathExpression) {
+Future<ExpressionNode> parseFhirPath(String pathExpression) async {
+  final fhirPathEngine = await FHIRPathEngine.create(WorkerContext());
   return fhirPathEngine.parse(pathExpression);
 }
 
@@ -99,6 +97,7 @@ Future<List<FhirBase>> executeFhirPath({
   FhirBase? rootResource,
   Map<String, dynamic>? environment,
 }) async {
+  final fhirPathEngine = await FHIRPathEngine.create(WorkerContext());
   if (environment != null) {
     // Prepare the environment map
     final passedEnvironment = <String, dynamic>{

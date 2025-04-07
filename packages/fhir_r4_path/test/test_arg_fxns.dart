@@ -5,6 +5,7 @@ import 'package:test/test.dart';
 import 'test_data.dart';
 
 Future<void> testArgFxns() async {
+  final fhirPathEngine = await FHIRPathEngine.create(WorkerContext());
   group('Functions with Arguments: ', () {
     test('%variables', () async {
       var node = fhirPathEngine.parse('%var');

@@ -4,6 +4,7 @@ import 'package:test/test.dart';
 import 'test_data.dart';
 
 Future<void> testNoArgFxns() async {
+  final testEngine = await FHIRPathEngine.create(WorkerContext());
   group('Functions w/o Arguments: ', () {
     test('empty', () async {
       var node = testEngine.parse('name.family.empty()');
