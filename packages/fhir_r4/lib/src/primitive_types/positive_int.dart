@@ -39,7 +39,7 @@ class FhirPositiveInt extends FhirNumber
   // --------------------------------------------------------------------------
 
   /// Private underscore constructor, calls [super._].
-  FhirPositiveInt._({
+  const FhirPositiveInt._({
     required super.valueString,
     super.element,
     super.id,

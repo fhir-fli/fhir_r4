@@ -36,7 +36,7 @@ class FhirTime extends PrimitiveType
   // --------------------------------------------------------------------------
 
   /// Private underscore constructor that calls [super._] with [valueString].
-  FhirTime._({
+  const FhirTime._({
     required super.valueString,
     super.element,
     super.id,

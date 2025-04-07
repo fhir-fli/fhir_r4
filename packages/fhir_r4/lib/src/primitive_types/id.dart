@@ -32,7 +32,7 @@ class FhirId extends FhirUri
 
   /// Private underscore constructor delegating to [FhirUri]'s
   /// internal constructor.
-  FhirId._({
+  const FhirId._({
     required super.valueString,
     super.element,
     super.id,

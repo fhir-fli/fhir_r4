@@ -17,7 +17,7 @@ class FhirXhtml extends PrimitiveType {
   // --------------------------------------------------------------------------
 
   /// Private underscore constructor calling `super._`.
-  FhirXhtml._({
+  const FhirXhtml._({
     required super.valueString,
     super.element,
     super.id,

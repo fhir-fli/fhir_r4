@@ -18,7 +18,7 @@ abstract class FhirNumber extends PrimitiveType
 
   /// Internal constructor for child classes. Does no validation—just calls
   /// [super._].
-  FhirNumber._({
+  const FhirNumber._({
     required super.valueString,
     super.element,
     super.id,

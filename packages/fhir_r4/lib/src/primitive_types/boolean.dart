@@ -57,7 +57,7 @@ class FhirBoolean extends PrimitiveType
   // --------------------------------------------------------------------------
 
   /// Private underscore constructor that calls [super._].
-  FhirBoolean._({
+  const FhirBoolean._({
     required super.valueString,
     super.element,
     super.id,

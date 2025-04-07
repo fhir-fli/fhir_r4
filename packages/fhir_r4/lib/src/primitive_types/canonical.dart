@@ -43,7 +43,7 @@ class FhirCanonical extends FhirUri
   // --------------------------------------------------------------------------
 
   /// Private underscore constructor delegating to [FhirUri].
-  FhirCanonical._({
+  const FhirCanonical._({
     required super.valueString,
     super.element,
     super.id,

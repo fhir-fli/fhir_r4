@@ -36,7 +36,7 @@ class FhirDecimal extends FhirNumber
 
   /// Private underscore constructor that simply assigns [valueString] and
   /// [isInt].
-  FhirDecimal._({
+  const FhirDecimal._({
     required super.valueString,
     required this.isInt,
     super.element,

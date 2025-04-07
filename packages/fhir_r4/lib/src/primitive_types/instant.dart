@@ -32,7 +32,7 @@ class FhirInstant extends FhirDateTimeBase
   // --------------------------------------------------------------------------
 
   /// Private underscore constructor delegating to [FhirDateTimeBase].
-  FhirInstant._({
+  const FhirInstant._({
     required super.valueString,
     required super.year,
     required super.month,

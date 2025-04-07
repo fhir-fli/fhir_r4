@@ -43,7 +43,7 @@ class FhirInteger extends FhirNumber
   // --------------------------------------------------------------------------
 
   /// Private underscore constructor that just sets [valueString] on [super].
-  FhirInteger._({
+  const FhirInteger._({
     required super.valueString,
     super.element,
     super.id,

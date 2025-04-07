@@ -27,7 +27,7 @@ class FhirCode extends FhirString
   // --------------------------------------------------------------------------
 
   /// Private underscore constructor passing validated code to [super._].
-  FhirCode._({
+  const FhirCode._({
     required super.valueString,
     super.element,
     super.id,

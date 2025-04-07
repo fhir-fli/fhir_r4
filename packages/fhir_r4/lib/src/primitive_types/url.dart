@@ -35,7 +35,7 @@ class FhirUrl extends FhirUri
 
   /// Private underscore constructor delegating to [FhirUri]'s
   /// internal constructor.
-  FhirUrl._({
+  const FhirUrl._({
     required super.valueString,
     super.element,
     super.id,

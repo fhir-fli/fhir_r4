@@ -19,7 +19,7 @@ abstract class FhirCodeEnum extends FhirCode {
   /// passing the validated code. We can also store system, version, display.
   /// This means we do no further logic: any validation is done in a
   /// public factory.
-  FhirCodeEnum._({
+  const FhirCodeEnum._({
     required super.valueString,
     this.system,
     this.version,

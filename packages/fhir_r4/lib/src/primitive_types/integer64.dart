@@ -30,7 +30,7 @@ class FhirInteger64 extends PrimitiveType implements Comparable<FhirInteger64> {
   // --------------------------------------------------------------------------
 
   /// Private underscore constructor. Calls [super._] with [valueString].
-  FhirInteger64._({
+  const FhirInteger64._({
     required super.valueString,
     super.element,
     super.id,

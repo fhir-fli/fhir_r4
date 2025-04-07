@@ -27,7 +27,7 @@ class FhirMarkdown extends FhirString
   /// Private underscore constructor verifying
   /// `(valueString == null && element == null)`
   /// doesn't happen in [FhirString]'s constructor.
-  FhirMarkdown._({
+  const FhirMarkdown._({
     required super.valueString,
     super.element,
     super.id,

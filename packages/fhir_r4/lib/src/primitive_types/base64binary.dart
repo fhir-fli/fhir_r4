@@ -29,7 +29,7 @@ class FhirBase64Binary extends PrimitiveType
 
   /// Private underscore constructor that directly sets [valueString] and
   /// calls [super._].
-  FhirBase64Binary._({
+  const FhirBase64Binary._({
     required super.valueString,
     super.element,
     super.id,

@@ -55,7 +55,7 @@ class FhirDate extends FhirDateTimeBase
   // --------------------------------------------------------------------------
 
   /// Private underscore constructor delegating to [FhirDateTimeBase].
-  FhirDate._({
+  const FhirDate._({
     required super.valueString,
     required super.year,
     required super.month,

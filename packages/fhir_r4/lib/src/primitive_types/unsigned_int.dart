@@ -37,7 +37,7 @@ class FhirUnsignedInt extends FhirNumber
   // --------------------------------------------------------------------------
 
   /// Private underscore constructor, delegates to [super._].
-  FhirUnsignedInt._({
+  const FhirUnsignedInt._({
     required super.valueString,
     super.element,
     super.id,

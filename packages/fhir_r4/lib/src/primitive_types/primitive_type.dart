@@ -20,21 +20,18 @@ abstract class PrimitiveType extends DataType {
   /// - Merges [extension_] with [element?.extension_] so that all extensions
   ///   live in [DataType.extension_].
   /// - Throws if both [valueString] and [element] are `null`.
-  PrimitiveType._({
+  const PrimitiveType._({
     required this.valueString,
     this.element,
     super.id,
-    List<FhirExtension>? extension_,
+    super.extension_,
     super.disallowExtensions,
-    String objectPath = 'PrimitiveType',
-  }) : super(
-          extension_: _mergeExtensions(extension_, element),
-          objectPath: objectPath,
-        ) {
-    if (valueString == null && element == null) {
-      throw ArgumentError('A value or element is required for $objectPath');
-    }
-  }
+    super.objectPath = 'PrimitiveType',
+  })  : assert(
+          valueString != null || element != null,
+          'Either valueString or element must be provided for $objectPath',
+        ),
+        super();
 
   // --------------------------------------------------------------------------
   // Fields
@@ -171,26 +168,18 @@ abstract class PrimitiveType extends DataType {
   @override
   PrimitiveType createProperty(String propertyName);
 
-  // --------------------------------------------------------------------------
-  // Internal Utilities
-  // --------------------------------------------------------------------------
-
-  /// Merges the child constructor's [extension_] with [element?.extension_].
-  /// If both are non-null, concatenates them.
-  static List<FhirExtension>? _mergeExtensions(
-    List<FhirExtension>? baseExtensions,
-    Element? element,
-  ) {
+  /// Returns a list of all extensions, including those in [element].
+  List<FhirExtension>? get allExtensions {
     final elementExtensions = element?.extension_;
-    if (baseExtensions == null && elementExtensions == null) {
+    if (extension_ == null && elementExtensions == null) {
       return null;
     }
-    if (baseExtensions == null) {
+    if (extension_ == null) {
       return elementExtensions;
     }
     if (elementExtensions == null) {
-      return baseExtensions;
+      return extension_;
     }
-    return [...baseExtensions, ...elementExtensions];
+    return [...extension_!, ...elementExtensions];
   }
 }

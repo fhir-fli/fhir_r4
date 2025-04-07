@@ -45,7 +45,7 @@ class FhirUri extends PrimitiveType
 
   /// Private underscore constructor that sets [valueString] and calls
   /// [super._].
-  FhirUri._({
+  const FhirUri._({
     required super.valueString,
     super.element,
     super.id,

@@ -36,7 +36,7 @@ class FhirUuid extends FhirUri
 
   /// Internal constructor that simply calls [FhirUri]'s private constructor
   /// with [valueString].
-  FhirUuid._({
+  const FhirUuid._({
     required super.valueString,
     super.element,
     super.id,

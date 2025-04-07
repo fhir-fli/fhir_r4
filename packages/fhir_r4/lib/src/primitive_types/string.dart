@@ -72,7 +72,7 @@ class FhirString extends PrimitiveType
 
   /// Private underscore constructor. Checks if both [valueString] and [element]
   /// are null (in the parent [PrimitiveType] constructor).
-  FhirString._({
+  const FhirString._({
     required super.valueString,
     super.element,
     super.id,
