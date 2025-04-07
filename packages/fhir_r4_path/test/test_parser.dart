@@ -4,10 +4,8 @@ import 'package:fhir_r4_path/fhir_r4_path.dart';
 import 'package:test/test.dart';
 
 Future<void> testParser() async {
+  final testEngine = await FHIRPathEngine.create(WorkerContext());
   group('FHIRPathEngine Parsing Tests', () {
-    final worker = WorkerContext();
-    final testEngine = FHIRPathEngine(worker);
-
     test('Parse valid simple path', () async {
       final node = testEngine.parse('Patient.name');
       // Top-level node is "Patient"

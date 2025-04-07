@@ -7,7 +7,13 @@ import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 /// Class to parse and render StructureMap resources
 class StructureMapParser {
   /// Constructor for StructureMapParser
-  StructureMapParser() : fpe = FHIRPathEngine(WorkerContext());
+  StructureMapParser._(this.fpe);
+
+  /// Factory method to create an instance of StructureMapParser
+  static Future<StructureMapParser> create() async {
+    final fpe = await FHIRPathEngine.create(WorkerContext());
+    return StructureMapParser._(fpe);
+  }
 
   /// Constants for various tokens and keywords used in the parser
 
@@ -33,7 +39,7 @@ class StructureMapParser {
   static const String AUTO_VAR_NAME = 'vvv';
 
   /// FhirPathEngine instance for evaluating expressions
-  final FHIRPathEngine fpe;
+  FHIRPathEngine? fpe;
 
   /// Renders the StructureMap resource to a string format
   static String render(StructureMap map) {
@@ -521,7 +527,7 @@ class StructureMapParser {
       context = '@search';
       lexer.take();
       final expression = _extractExpressionFromLexer(lexer);
-      if (fpe.isValid(expression)) {
+      if (fpe?.isValid(expression) ?? false) {
         element = expression;
       }
       lexer.token(')');
@@ -641,7 +647,7 @@ class StructureMapParser {
     if (name == '(') {
       transform = StructureMapTransformBuilder.evaluate;
       final expression = _extractExpressionFromLexer(lexer);
-      if (fpe.isValid(expression)) {
+      if (fpe?.isValid(expression) ?? false) {
         parameters.add(
           StructureMapParameterBuilder(
             valueX: expression.toFhirStringBuilder,
@@ -660,7 +666,7 @@ class StructureMapParser {
         );
         lexer.token(',');
         final expression = _extractExpressionFromLexer(lexer);
-        if (fpe.isValid(expression)) {
+        if (fpe?.isValid(expression) ?? false) {
           parameters.add(
             StructureMapParameterBuilder(
               valueX: expression.toFhirStringBuilder,
@@ -678,10 +684,13 @@ class StructureMapParser {
     } else if (name != null) {
       transform = StructureMapTransformBuilder.copy_;
       if (!isConstant) {
-        var id = name;
+        final buffer = StringBuffer(name);
         while (lexer.hasToken('.')) {
-          id += lexer.take() + lexer.take();
+          buffer
+            ..write(lexer.take())
+            ..write(lexer.take());
         }
+        final id = buffer.toString();
         parameters
             .add(StructureMapParameterBuilder(valueX: id.toFhirIdBuilder));
       } else if (int.tryParse(name) != null) {

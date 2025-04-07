@@ -1,6 +1,7 @@
 // ignore_for_file: no_adjacent_strings_in_list
 
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4_path/fhir_r4_path.dart';
 import 'package:test/test.dart';
 
 import 'test_data.dart';
@@ -9,6 +10,7 @@ Future<List<dynamic>> parseAndEvaluate(
   String expression, [
   FhirBase? context,
 ]) async {
+  final testEngine = await FHIRPathEngine.create(WorkerContext());
   final node = testEngine.parse(expression);
   if (context != null) {
     final result = await testEngine.evaluate(context, node);
@@ -18,6 +20,7 @@ Future<List<dynamic>> parseAndEvaluate(
 }
 
 Future<void> testPaths() async {
+  final testEngine = await FHIRPathEngine.create(WorkerContext());
   group('Path Test', () {
     test('Patient Name', () async {
       final node = testEngine.parse('Patient.name');

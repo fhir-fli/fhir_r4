@@ -11,9 +11,16 @@ import 'package:ucum/ucum.dart';
 
 class FHIRPathEngine {
   /// Constructor
-  FHIRPathEngine(this.worker, [this.hostServices])
-      : terminologyServiceOptions = ValidationOptions.defaults() {
-    _initFlags();
+  FHIRPathEngine._(this.worker, [this.hostServices])
+      : terminologyServiceOptions = ValidationOptions.defaults();
+
+  static Future<FHIRPathEngine> create(
+    WorkerContext worker, [
+    IEvaluationContext? hostServices,
+  ]) async {
+    final engine = FHIRPathEngine._(worker, hostServices);
+    await engine._initFlags();
+    return engine;
   }
 
   /// Initialization helper

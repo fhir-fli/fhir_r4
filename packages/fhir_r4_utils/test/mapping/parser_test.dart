@@ -7,16 +7,17 @@ import 'package:collection/collection.dart';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 
-void main() {
+Future<void> main() async {
   final dir = Directory('test/mapping/parser_examples');
+  final parser = await StructureMapParser.create();
   for (final file in dir.listSync()) {
     if (file is File && file.path.endsWith('.json')) {
-      testFile(file.path);
+      testFile(file.path, parser);
     }
   }
 }
 
-void testFile(String key) {
+void testFile(String key, StructureMapParser parser) {
   print('Testing $key');
   final structureMapString = File(key).readAsStringSync();
   final realStructureMap =
@@ -26,7 +27,7 @@ void testFile(String key) {
 
   final fhirMap = File(key.replaceAll('.json', '.map')).readAsStringSync();
   try {
-    final structureMap = StructureMapParser().parse(fhirMap, 'fhirmap');
+    final structureMap = parser.parse(fhirMap, 'fhirmap');
 
     final structureMapJson = structureMap.toJson()
       ..remove('text')

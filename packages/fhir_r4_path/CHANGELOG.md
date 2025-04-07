@@ -1,4 +1,4 @@
-# fhir_r4_db
+# fhir_r4_path
 
 ## [0.3.0]
 
