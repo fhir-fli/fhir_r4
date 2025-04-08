@@ -19,9 +19,6 @@ abstract class Resource extends FhirBase {
     super.objectPath = 'Resource',
   });
 
-  /// Creates an empty [Resource] object
-  factory Resource.empty() => throw UnimplementedError();
-
   /// Acts like a constructor, returns a [Resource], accepts a
   /// [Map<String, dynamic>] as an argument
   factory Resource.fromJson(Map<String, dynamic> json) =>
@@ -128,6 +125,10 @@ abstract class Resource extends FhirBase {
   static String resourceTypeToString(R4ResourceType type) => type.toString();
 
   @override
+  Resource clone();
+
+  /// CopyWith method for [Resource].
+  @override
   Resource copyWith({
     FhirString? id,
     FhirMeta? meta,
@@ -137,6 +138,7 @@ abstract class Resource extends FhirBase {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   });
 
   /// Retrieves the type of the object by element name.
@@ -144,11 +146,4 @@ abstract class Resource extends FhirBase {
   List<String> typeByElementName(String elementName) {
     return <String>[];
   }
-
-  /// Creates an empty property in the object
-  @override
-  Resource createProperty(String propertyName);
-
-  @override
-  Resource clear();
 }

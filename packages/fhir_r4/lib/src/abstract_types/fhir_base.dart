@@ -1,7 +1,12 @@
+// ignore_for_file: one_member_abstracts
+
 import 'dart:convert';
 
 import 'package:collection/collection.dart';
 import 'package:fhir_r4/fhir_r4.dart';
+
+/// A unique sentinel value which is not null.
+const fhirSentinel = Object();
 
 /// Base class for all FHIR elements.
 abstract class FhirBase {
@@ -13,9 +18,6 @@ abstract class FhirBase {
     this.annotations,
     this.objectPath,
   });
-
-  /// Creates an empty [FhirBase] object.
-  factory FhirBase.empty() => throw UnimplementedError();
 
   /// User data map for storing additional information.
   final Map<String, dynamic>? userData;
@@ -163,12 +165,6 @@ abstract class FhirBase {
     return updated;
   }
 
-  /// Creates an empty property in the object
-  FhirBase createProperty(String propertyName);
-
-  /// Clears specific fields in this object
-  FhirBase clear();
-
   /// Deep equality check.
   bool equalsDeep(FhirBase? o) {
     return o != null;
@@ -298,7 +294,7 @@ abstract class FhirBase {
   });
 
   /// Subclasses must implement the clone method.
-  FhirBase clone();
+  FhirBase clone() => copyWith();
 
   /// Returns an Object cast as a Type if it is that type.
   T? isAs<T extends FhirBase>() => this is T ? this as T : null;

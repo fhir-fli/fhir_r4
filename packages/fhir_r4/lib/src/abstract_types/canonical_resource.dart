@@ -33,9 +33,6 @@ abstract class CanonicalResource extends DomainResource {
     super.objectPath = 'CanonicalResource',
   });
 
-  /// Creates an empty [CanonicalResource] object
-  factory CanonicalResource.empty() => throw UnimplementedError();
-
   /// Factory constructor for [CanonicalResource] that takes in a
   /// [Map<String, dynamic>] and returns a [CanonicalResource]
   factory CanonicalResource.fromJson(Map<String, dynamic> json) =>
@@ -131,6 +128,10 @@ abstract class CanonicalResource extends DomainResource {
   static String resourceTypeToString(R4ResourceType type) => type.toString();
 
   @override
+  CanonicalResource clone();
+
+  /// CopyWith method for [CanonicalResource].
+  @override
   CanonicalResource copyWith({
     FhirString? id,
     FhirMeta? meta,
@@ -154,6 +155,7 @@ abstract class CanonicalResource extends DomainResource {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   });
 
   /// Retrieves the type of the object by element name.
@@ -161,11 +163,4 @@ abstract class CanonicalResource extends DomainResource {
   List<String> typeByElementName(String elementName) {
     return <String>[];
   }
-
-  /// Creates an empty property in the object
-  @override
-  CanonicalResource createProperty(String propertyName);
-
-  @override
-  CanonicalResource clear();
 }

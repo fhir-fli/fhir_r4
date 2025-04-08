@@ -1,3 +1,5 @@
+// ignore_for_file: one_member_abstracts
+
 import 'dart:convert';
 
 import 'package:fhir_r4/fhir_r4.dart';
@@ -5,7 +7,7 @@ import 'package:yaml/yaml.dart';
 
 /// [Element] Base definition for all FHIR elements.
 class Element extends FhirBase {
-  /// Constructor for Element with optional id and extensions
+  /// Constructor for Element with optional id and extensions.
   const Element({
     this.id,
     this.extension_,
@@ -17,11 +19,8 @@ class Element extends FhirBase {
     super.objectPath = 'Element',
   });
 
-  /// Creates an empty [Element] object
-  factory Element.empty() => const Element();
-
-  /// Factory constructor for [Element] that takes in a [YamlMap] and returns
-  /// a [Element]
+  /// Factory constructor for [Element] that takes in a [YamlMap]
+  /// and returns a [Element].
   factory Element.fromYaml(dynamic yaml) => yaml is String
       ? Element.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, dynamic>,
@@ -34,14 +33,14 @@ class Element extends FhirBase {
               'Element cannot be constructed from input provided,'
               ' it is neither a yaml string nor a yaml map.');
 
-  /// FromJson Factory Constructor for [Element]
+  /// FromJson Factory Constructor for [Element].
   factory Element.fromJson(Map<String, dynamic> json) {
     return Element(
       id: (json['id'] as String?)?.toFhirString,
       extension_: json['extension'] == null
           ? <FhirExtension>[]
           : List<FhirExtension>.from(
-              (json['extension']! as List<dynamic>).map(
+              (json['extension'] as List<dynamic>).map(
                 (dynamic e) =>
                     FhirExtension.fromJson(e as Map<String, dynamic>),
               ),
@@ -49,9 +48,9 @@ class Element extends FhirBase {
     );
   }
 
-  /// Factory constructor for [Element] that takes in a [String]
-  /// Convenience method to avoid the json Encoding/Decoding normally required
-  /// to get data from a [String]
+  /// Factory constructor for [Element] that takes in a [String].
+  /// Convenience method to avoid the json encoding/decoding normally required
+  /// to get data from a [String].
   factory Element.fromJsonString(String source) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
@@ -65,10 +64,10 @@ class Element extends FhirBase {
   @override
   String get fhirType => 'Element';
 
-  /// Unique id for the element within a resource
+  /// Unique id for the element within a resource.
   final FhirString? id;
 
-  /// List of extensions for additional information
+  /// List of extensions for additional information.
   final List<FhirExtension>? extension_;
 
   /// This is used in the FHIRPath engine to record that no extensions are
@@ -76,44 +75,91 @@ class Element extends FhirBase {
   /// to do: enforce this....
   final bool? disallowExtensions;
 
-  /// Method to copy the current Element with modifications
+  // The following fields come from FhirBase:
+  // userData, formatCommentsPre, formatCommentsPost, annotations, objectPath
+
+  Element _copyWith({
+    required Element Function(Element) then,
+    Object? id = fhirSentinel,
+    Object? extension_ = fhirSentinel,
+    Object? disallowExtensions = fhirSentinel,
+    Object? userData = fhirSentinel,
+    Object? formatCommentsPre = fhirSentinel,
+    Object? formatCommentsPost = fhirSentinel,
+    Object? annotations = fhirSentinel,
+    Object? objectPath = fhirSentinel,
+  }) {
+    return then(
+      Element(
+        id: identical(id, fhirSentinel) ? this.id : id as FhirString?,
+        extension_: identical(extension_, fhirSentinel)
+            ? this.extension_
+            : extension_ as List<FhirExtension>?,
+        disallowExtensions: identical(disallowExtensions, fhirSentinel)
+            ? this.disallowExtensions
+            : disallowExtensions as bool?,
+        userData: identical(userData, fhirSentinel)
+            ? this.userData
+            : userData as Map<String, dynamic>?,
+        formatCommentsPre: identical(formatCommentsPre, fhirSentinel)
+            ? this.formatCommentsPre
+            : formatCommentsPre as List<String>?,
+        formatCommentsPost: identical(formatCommentsPost, fhirSentinel)
+            ? this.formatCommentsPost
+            : formatCommentsPost as List<String>?,
+        annotations: identical(annotations, fhirSentinel)
+            ? this.annotations
+            : annotations as List<dynamic>?,
+        objectPath: identical(objectPath, fhirSentinel)
+            ? this.objectPath
+            : objectPath as String?,
+      ),
+    );
+  }
+
+  /// CopyWith method for [Element].
   @override
   Element copyWith({
     FhirString? id,
     List<FhirExtension>? extension_,
+    bool? disallowExtensions,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   }) {
-    return Element(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
+    return _copyWith(
+      then: (value) => value,
+      id: id,
+      extension_: extension_,
+      disallowExtensions: disallowExtensions,
+      userData: userData,
+      formatCommentsPre: formatCommentsPre,
+      formatCommentsPost: formatCommentsPost,
+      annotations: annotations,
+      objectPath: objectPath,
     );
   }
 
-  /// Getter for checking if the element has an id
+  /// Getter for checking if the element has an id.
   bool get hasId => id?.valueString != null && (id!.valueString!.isNotEmpty);
 
-  /// All [Element]s are metadata based
+  /// All [Element]s are metadata based.
   @override
   bool get isMetadataBased => true;
 
-  /// Extension handling methods
+  /// Extension handling methods.
   bool hasExtension() => extension_?.isNotEmpty ?? false;
 
-  /// Getter for the first extension
+  /// Getter for the first extension.
   FhirExtension getExtensionFirstRep() {
     return (extension_?.isEmpty ?? false)
         ? FhirExtension(url: FhirString('fhirfli.dev'))
         : extension_!.first;
   }
 
-  /// Getter for the first extension by url
+  /// Getter for the first extension by url.
   List<FhirExtension> getExtensionsByUrl(String url) {
     return extension_
             ?.where((FhirExtension ext) => ext.url.equals(url))
@@ -121,22 +167,22 @@ class Element extends FhirBase {
         <FhirExtension>[];
   }
 
-  /// Method to check if an extension exists by url
+  /// Method to check if an extension exists by url.
   bool hasExtensionByUrl(String url) {
     return extension_?.any((FhirExtension ext) => ext.url.equals(url)) ?? false;
   }
 
-  /// Method to add an extension
+  /// Method to add an extension.
   void addExtension(FhirExtension ext) {
     extension_?.add(ext);
   }
 
-  /// Method to remove an extension by url
+  /// Method to remove an extension by url.
   void removeExtension(String url) {
     extension_?.removeWhere((FhirExtension ext) => ext.url.equals(url));
   }
 
-  /// Implementing the getProperty method
+  /// Implementing the getProperty method.
   dynamic getProperty(String name) {
     switch (name) {
       case 'id':
@@ -148,7 +194,7 @@ class Element extends FhirBase {
     }
   }
 
-  /// Implementing the setProperty method
+  /// Implementing the setProperty method.
   Element setProperty(String name, dynamic value) {
     switch (name) {
       case 'id':
@@ -175,12 +221,11 @@ class Element extends FhirBase {
     if (o == null || o is! Element) {
       return false;
     }
-
     return id == o.id &&
         FhirBase.compareDeepLists(extension_, o.extension_, true);
   }
 
-  /// Method to compare shallow equality of two elements
+  /// Method to compare shallow equality of two elements.
   bool equalsShallow(Element other) {
     return id == other.id;
   }
@@ -188,19 +233,6 @@ class Element extends FhirBase {
   @override
   bool isEmpty() {
     return super.isEmpty() && (extension_?.isEmpty ?? true);
-  }
-
-  /// Method to copy the current element
-  Element copy() {
-    final copiedElement = Element(
-      id: id,
-      extension_: extension_ == null
-          ? null
-          : List<FhirExtension>.from(
-              extension_!.map((FhirExtension ext) => ext.copy()),
-            ),
-    );
-    return copiedElement;
   }
 
   @override
@@ -217,19 +249,19 @@ class Element extends FhirBase {
   }
 
   @override
-  FhirBase clone() => copy();
+  FhirBase clone() => copyWith();
 
   @override
   FhirBase? getChildByName(String name) {
     if (name == 'id') {
       return id;
     } else if (name == 'extension') {
-      if (extension_ == null && extension_!.isEmpty) {
+      if (extension_ == null || extension_!.isEmpty) {
         return null;
       } else if (extension_!.length == 1) {
         return extension_!.first;
       } else {
-        throw FHIRException(message: 'Too manye values for $name found');
+        throw FHIRException(message: 'Too many values for $name found');
       }
     }
     return null;
@@ -278,27 +310,5 @@ class Element extends FhirBase {
       default:
         return <String>[];
     }
-  }
-
-  /// Creates an empty property in the object
-  @override
-  Element createProperty(String propertyName) {
-    switch (propertyName) {
-      case 'id':
-        return copyWith(id: FhirString.empty());
-      case 'extension':
-        return copyWith(extension_: <FhirExtension>[]);
-      default:
-        throw Exception('Cannot make property for $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  Element clear({bool id = false, bool extension_ = false}) {
-    return Element(
-      id: id == true ? FhirString.empty() : this.id,
-      extension_: extension_ == true ? <FhirExtension>[] : this.extension_,
-    );
   }
 }

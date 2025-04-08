@@ -23,9 +23,6 @@ abstract class DomainResource extends Resource {
     super.objectPath = 'DomainResource',
   });
 
-  /// Creates an empty [DomainResource] object
-  factory DomainResource.empty() => throw UnimplementedError();
-
   /// Factory constructor for [DomainResource] that takes in a
   /// [Map<String, dynamic>] and returns a [DomainResource]
   factory DomainResource.fromJson(Map<String, dynamic> json) =>
@@ -131,6 +128,10 @@ abstract class DomainResource extends Resource {
   static String resourceTypeToString(R4ResourceType type) => type.toString();
 
   @override
+  DomainResource clone();
+
+  /// CopyWith method for [DomainResource].
+  @override
   DomainResource copyWith({
     FhirString? id,
     FhirMeta? meta,
@@ -144,6 +145,7 @@ abstract class DomainResource extends Resource {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    String? objectPath,
   });
 
   /// Retrieves the type of the object by element name.
@@ -151,11 +153,4 @@ abstract class DomainResource extends Resource {
   List<String> typeByElementName(String elementName) {
     return <String>[];
   }
-
-  /// Creates an empty property in the object
-  @override
-  DomainResource createProperty(String propertyName);
-
-  @override
-  DomainResource clear();
 }

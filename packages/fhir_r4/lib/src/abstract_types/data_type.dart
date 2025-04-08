@@ -56,9 +56,14 @@ abstract class DataType extends Element {
               ' it is neither a yaml string nor a yaml map.');
 
   @override
+  DataType clone();
+
+  /// CopyWith method for [DataType].
+  @override
   DataType copyWith({
     FhirString? id,
     List<FhirExtension>? extension_,
+    bool? disallowExtensions,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -71,11 +76,4 @@ abstract class DataType extends Element {
   List<String> typeByElementName(String elementName) {
     return <String>[];
   }
-
-  /// Creates an empty property in the object
-  @override
-  DataType createProperty(String propertyName);
-
-  @override
-  DataType clear({bool extension_ = false, bool id = false});
 }

@@ -18,9 +18,6 @@ abstract class BackboneElement extends DataType {
     super.objectPath = 'BackboneElement',
   });
 
-  /// Creates an empty [BackboneElement] object
-  factory BackboneElement.empty() => throw UnimplementedError();
-
   /// FromJson Factory Constructor for [BackboneElement]
   factory BackboneElement.fromJson(Map<String, dynamic> json) {
     throw UnimplementedError('BackboneElement.fromJson $json');
@@ -122,10 +119,15 @@ abstract class BackboneElement extends DataType {
   }
 
   @override
+  BackboneElement clone();
+
+  /// CopyWith method for [BackboneElement].
+  @override
   BackboneElement copyWith({
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
+    bool? disallowExtensions,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -138,11 +140,4 @@ abstract class BackboneElement extends DataType {
   List<String> typeByElementName(String elementName) {
     return <String>[];
   }
-
-  /// Creates an empty property in the object
-  @override
-  BackboneElement createProperty(String propertyName);
-
-  @override
-  BackboneElement clear({bool extension_ = false, bool id = false});
 }
