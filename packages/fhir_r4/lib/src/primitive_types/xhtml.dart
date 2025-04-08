@@ -23,6 +23,10 @@ class FhirXhtml extends PrimitiveType {
     super.id,
     super.extension_,
     super.disallowExtensions,
+    super.userData,
+    super.formatCommentsPre,
+    super.formatCommentsPost,
+    super.annotations,
     super.objectPath = 'Xhtml',
   }) : super._();
 
@@ -42,6 +46,10 @@ class FhirXhtml extends PrimitiveType {
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
+    Map<String, dynamic>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List<dynamic>? annotations,
     String objectPath = 'Xhtml',
   }) {
     if (rawValue != null && rawValue is! String) {
@@ -58,6 +66,10 @@ class FhirXhtml extends PrimitiveType {
       id: id,
       extension_: extension_,
       disallowExtensions: disallowExtensions,
+      userData: userData,
+      formatCommentsPre: formatCommentsPre,
+      formatCommentsPost: formatCommentsPost,
+      annotations: annotations,
       objectPath: objectPath,
     );
   }
@@ -81,9 +93,6 @@ class FhirXhtml extends PrimitiveType {
       objectPath: objectPath,
     );
   }
-
-  /// Creates an empty [FhirXhtml] object.
-  factory FhirXhtml.empty() => FhirXhtml(null, element: Element.empty());
 
   // --------------------------------------------------------------------------
   // JSON / YAML Constructors
@@ -282,41 +291,79 @@ class FhirXhtml extends PrimitiveType {
   // --------------------------------------------------------------------------
 
   @override
-  FhirXhtml clone() => FhirXhtml.fromValidatedXhtml(
-        valueString,
-        element: element?.clone() as Element?,
-        id: id,
-        extension_: extension_?.map((e) => e.clone()).toList(),
-        disallowExtensions: disallowExtensions,
-        objectPath: objectPath!,
-      );
+  FhirXhtml clone() => copyWith();
 
+  FhirXhtml _copyWith({
+    required FhirXhtml Function(FhirXhtml) then,
+    Object? newValue = fhirSentinel,
+    Object? element = fhirSentinel,
+    Object? id = fhirSentinel,
+    Object? extension_ = fhirSentinel,
+    Object? disallowExtensions = fhirSentinel,
+    Object? userData = fhirSentinel,
+    Object? formatCommentsPre = fhirSentinel,
+    Object? formatCommentsPost = fhirSentinel,
+    Object? annotations = fhirSentinel,
+    Object? objectPath = fhirSentinel,
+  }) {
+    return then(
+      FhirXhtml(
+        identical(newValue, fhirSentinel) ? valueString : newValue,
+        element: identical(element, fhirSentinel)
+            ? this.element
+            : element as Element?,
+        id: identical(id, fhirSentinel) ? this.id : id as FhirString?,
+        extension_: identical(extension_, fhirSentinel)
+            ? this.extension_
+            : extension_ as List<FhirExtension>?,
+        disallowExtensions: identical(disallowExtensions, fhirSentinel)
+            ? this.disallowExtensions
+            : disallowExtensions as bool?,
+        userData: identical(userData, fhirSentinel)
+            ? this.userData
+            : userData as Map<String, dynamic>?,
+        formatCommentsPre: identical(formatCommentsPre, fhirSentinel)
+            ? this.formatCommentsPre
+            : formatCommentsPre as List<String>?,
+        formatCommentsPost: identical(formatCommentsPost, fhirSentinel)
+            ? this.formatCommentsPost
+            : formatCommentsPost as List<String>?,
+        annotations: identical(annotations, fhirSentinel)
+            ? this.annotations
+            : annotations as List<dynamic>?,
+        objectPath: identical(objectPath, fhirSentinel)
+            ? this.objectPath ?? 'Xhtml'
+            : objectPath as String? ?? 'Xhtml',
+      ),
+    );
+  }
+
+  /// Creates a new instance with the specified fields replaced.
   @override
   FhirXhtml copyWith({
     dynamic newValue,
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
+    bool? disallowExtensions,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    bool? disallowExtensions,
     String? objectPath,
   }) {
-    return FhirXhtml(
-      newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
-      ),
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
+    return _copyWith(
+      then: (value) => value,
+      newValue: newValue,
+      element: element,
+      id: id,
+      extension_: extension_,
+      disallowExtensions: disallowExtensions,
+      userData: userData,
+      formatCommentsPre: formatCommentsPre,
+      formatCommentsPost: formatCommentsPost,
+      annotations: annotations,
+      objectPath: objectPath,
     );
   }
 
@@ -343,25 +390,4 @@ class FhirXhtml extends PrimitiveType {
   @override
   // ignore: avoid_equals_and_hash_code_on_mutable_classes
   int get hashCode => Object.hash(valueString, element);
-
-  // --------------------------------------------------------------------------
-  // Subclass Contract
-  // --------------------------------------------------------------------------
-
-  @override
-  FhirXhtml createProperty(String propertyName) => this;
-
-  @override
-  FhirXhtml clear({
-    bool value = false,
-    bool extension_ = false,
-    bool id = false,
-  }) {
-    return FhirXhtml(
-      value ? null : valueString,
-      element: element,
-      extension_: extension_ ? <FhirExtension>[] : this.extension_,
-      id: id ? null : this.id,
-    );
-  }
 }

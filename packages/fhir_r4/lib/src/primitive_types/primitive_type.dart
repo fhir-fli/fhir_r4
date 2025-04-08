@@ -26,6 +26,10 @@ abstract class PrimitiveType extends DataType {
     super.id,
     super.extension_,
     super.disallowExtensions,
+    super.userData,
+    super.formatCommentsPre,
+    super.formatCommentsPost,
+    super.annotations,
     super.objectPath = 'PrimitiveType',
   })  : assert(
           valueString != null || element != null,
@@ -156,17 +160,13 @@ abstract class PrimitiveType extends DataType {
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
+    bool? disallowExtensions,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
     String? objectPath,
   });
-
-  /// Subclasses must implement [createProperty]; if they have no specialized
-  /// logic, they can just return `this`.
-  @override
-  PrimitiveType createProperty(String propertyName);
 
   /// Returns a list of all extensions, including those in [element].
   List<FhirExtension>? get allExtensions {

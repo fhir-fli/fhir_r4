@@ -3,7 +3,7 @@ part of 'primitive_types.dart';
 /// Extension of FhirCode for Specific FhirCode
 abstract class FhirCodeEnum extends FhirCode {
   // ignore: public_member_api_docs
-  FhirCodeEnum({
+  const FhirCodeEnum({
     required super.valueString,
     this.system,
     this.version,

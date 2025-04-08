@@ -51,6 +51,10 @@ class FhirUri extends PrimitiveType
     super.id,
     super.extension_,
     super.disallowExtensions,
+    super.userData,
+    super.formatCommentsPre,
+    super.formatCommentsPost,
+    super.annotations,
     super.objectPath = 'Uri',
   }) : super._();
 
@@ -71,6 +75,10 @@ class FhirUri extends PrimitiveType
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
+    Map<String, dynamic>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List<dynamic>? annotations,
     String objectPath = 'Uri',
   }) {
     String? parsedValue;
@@ -92,12 +100,13 @@ class FhirUri extends PrimitiveType
       id: id,
       extension_: extension_,
       disallowExtensions: disallowExtensions,
+      userData: userData,
+      formatCommentsPre: formatCommentsPre,
+      formatCommentsPost: formatCommentsPost,
+      annotations: annotations,
       objectPath: objectPath,
     );
   }
-
-  /// Creates an empty [FhirUri] with [Element.empty] metadata.
-  factory FhirUri.empty() => FhirUri(null, element: Element.empty());
 
   /// Creates a [FhirUri] from a [Uri] instance.
   factory FhirUri.fromUri(
@@ -199,7 +208,8 @@ class FhirUri extends PrimitiveType
   /// Converts this [FhirUri] into a JSON [Map].
   @override
   Map<String, dynamic> toJson() => {
-        if (valueString != null) 'value': valueString,
+        if (valueString != null && valueString!.isNotEmpty)
+          'value': valueString,
         if (element != null) '_value': element!.toJson(),
       };
 
@@ -281,62 +291,84 @@ class FhirUri extends PrimitiveType
 
   /// Clones this [FhirUri].
   @override
-  FhirUri clone() => FhirUri(
-        valueString,
-        element: element?.clone() as Element?,
-      );
+  FhirUri clone() => copyWith();
 
-  /// Creates a new [FhirUri] with updated properties.
+  FhirUri _copyWith<T>({
+    required T Function(T) then,
+    Object? newValue = fhirSentinel,
+    Object? element = fhirSentinel,
+    Object? id = fhirSentinel,
+    Object? extension_ = fhirSentinel,
+    Object? disallowExtensions = fhirSentinel,
+    Object? userData = fhirSentinel,
+    Object? formatCommentsPre = fhirSentinel,
+    Object? formatCommentsPost = fhirSentinel,
+    Object? annotations = fhirSentinel,
+    Object? objectPath = fhirSentinel,
+  }) {
+    return then(
+      FhirUri(
+        identical(newValue, fhirSentinel) ? valueString : newValue,
+        element: identical(element, fhirSentinel)
+            ? this.element
+            : element as Element?,
+        id: identical(id, fhirSentinel) ? this.id : id as FhirString?,
+        extension_: identical(extension_, fhirSentinel)
+            ? this.extension_
+            : extension_ as List<FhirExtension>?,
+        disallowExtensions: identical(disallowExtensions, fhirSentinel)
+            ? this.disallowExtensions
+            : disallowExtensions as bool?,
+        userData: identical(userData, fhirSentinel)
+            ? this.userData
+            : userData as Map<String, dynamic>?,
+        formatCommentsPre: identical(formatCommentsPre, fhirSentinel)
+            ? this.formatCommentsPre
+            : formatCommentsPre as List<String>?,
+        formatCommentsPost: identical(formatCommentsPost, fhirSentinel)
+            ? this.formatCommentsPost
+            : formatCommentsPost as List<String>?,
+        annotations: identical(annotations, fhirSentinel)
+            ? this.annotations
+            : annotations as List<dynamic>?,
+        objectPath: identical(objectPath, fhirSentinel)
+            ? this.objectPath ?? 'Uri'
+            : objectPath as String? ?? 'Uri',
+      ) as T,
+    ) as FhirUri;
+  }
+
+  /// Creates a new instance with the specified fields replaced.
   @override
   FhirUri copyWith({
     dynamic newValue,
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
+    bool? disallowExtensions,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    bool? disallowExtensions,
     String? objectPath,
   }) {
-    return FhirUri(
-      newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
-      ),
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
+    return _copyWith<FhirUri>(
+      then: (value) => value,
+      newValue: newValue,
+      element: element,
+      id: id,
+      extension_: extension_,
+      disallowExtensions: disallowExtensions,
+      userData: userData,
+      formatCommentsPre: formatCommentsPre,
+      formatCommentsPost: formatCommentsPost,
+      annotations: annotations,
+      objectPath: objectPath,
     );
   }
 
   /// Returns a copy that disallows further extensions.
   FhirUri noExtensions() => copyWith(disallowExtensions: true);
-
-  /// Creates a property. No-op for [FhirUri].
-  @override
-  FhirUri createProperty(String propertyName) => this;
-
-  /// Clears selected fields in this [FhirUri].
-  @override
-  FhirUri clear({
-    bool value = false,
-    bool extension_ = false,
-    bool id = false,
-  }) {
-    return FhirUri(
-      value ? null : valueString,
-      element: element,
-      extension_: extension_ ? <FhirExtension>[] : this.extension_,
-      id: id ? null : this.id,
-    );
-  }
 
   // --------------------------------------------------------------------------
   // Additional Convenience Getters

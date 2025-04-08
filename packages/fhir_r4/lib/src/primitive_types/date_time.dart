@@ -92,6 +92,10 @@ class FhirDateTime extends FhirDateTimeBase
     super.id,
     super.extension_,
     super.disallowExtensions,
+    super.userData,
+    super.formatCommentsPre,
+    super.formatCommentsPost,
+    super.annotations,
     super.objectPath = 'DateTime',
   }) : super._();
 
@@ -116,6 +120,10 @@ class FhirDateTime extends FhirDateTimeBase
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
+    Map<String, dynamic>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List<dynamic>? annotations,
     String objectPath = 'DateTime',
   }) {
     return FhirDateTime._(
@@ -134,6 +142,10 @@ class FhirDateTime extends FhirDateTimeBase
       id: id,
       extension_: extension_,
       disallowExtensions: disallowExtensions,
+      userData: userData,
+      formatCommentsPre: formatCommentsPre,
+      formatCommentsPost: formatCommentsPost,
+      annotations: annotations,
       objectPath: objectPath,
     );
   }
@@ -211,22 +223,6 @@ class FhirDateTime extends FhirDateTimeBase
         formatCommentsPost: formatCommentsPost,
         annotations: annotations,
       ) as FhirDateTime;
-
-  /// Creates an empty [FhirDateTime].
-  factory FhirDateTime.empty() => FhirDateTime.fromBase(
-        valueString: null,
-        year: null,
-        month: null,
-        day: null,
-        hour: null,
-        minute: null,
-        second: null,
-        millisecond: null,
-        microsecond: null,
-        timeZoneOffset: null,
-        isUtc: false,
-        element: Element.empty(),
-      );
 
   /// Constructs a [FhirDateTime] from JSON.
   factory FhirDateTime.fromJson(Map<String, dynamic> json) {
@@ -345,7 +341,7 @@ class FhirDateTime extends FhirDateTimeBase
 
   /// Clone
   @override
-  FhirDateTime clone() => FhirDateTime.fromJson(toJson());
+  FhirDateTime clone() => copyWith();
 
   /// JSON
   @override
@@ -358,72 +354,80 @@ class FhirDateTime extends FhirDateTimeBase
   // copyWith
   // --------------------------------------------------------------------------
 
-  /// Creates a new [FhirDateTime] instance with updated properties.
+  FhirDateTime _copyWith({
+    required FhirDateTime Function(FhirDateTime) then,
+    Object? newValue = fhirSentinel,
+    Object? element = fhirSentinel,
+    Object? id = fhirSentinel,
+    Object? extension_ = fhirSentinel,
+    Object? disallowExtensions = fhirSentinel,
+    Object? userData = fhirSentinel,
+    Object? formatCommentsPre = fhirSentinel,
+    Object? formatCommentsPost = fhirSentinel,
+    Object? annotations = fhirSentinel,
+    Object? objectPath = fhirSentinel,
+  }) {
+    return then(
+      FhirDateTimeBase.constructor<FhirDateTime>(
+        input: identical(newValue, fhirSentinel) ? valueString : newValue,
+        element: identical(element, fhirSentinel)
+            ? this.element
+            : element as Element?,
+        id: identical(id, fhirSentinel) ? this.id : id as FhirString?,
+        extension_: identical(extension_, fhirSentinel)
+            ? this.extension_
+            : extension_ as List<FhirExtension>?,
+        disallowExtensions: identical(disallowExtensions, fhirSentinel)
+            ? this.disallowExtensions
+            : disallowExtensions as bool?,
+        userData: identical(userData, fhirSentinel)
+            ? this.userData
+            : userData as Map<String, dynamic>?,
+        formatCommentsPre: identical(formatCommentsPre, fhirSentinel)
+            ? this.formatCommentsPre
+            : formatCommentsPre as List<String>?,
+        formatCommentsPost: identical(formatCommentsPost, fhirSentinel)
+            ? this.formatCommentsPost
+            : formatCommentsPost as List<String>?,
+        annotations: identical(annotations, fhirSentinel)
+            ? this.annotations
+            : annotations as List<dynamic>?,
+        objectPath: identical(objectPath, fhirSentinel)
+            ? this.objectPath ?? 'DateTime'
+            : objectPath as String? ?? 'DateTime',
+      ) as FhirDateTime,
+    );
+  }
+
+  /// Creates a new instance with the specified fields replaced.
   @override
   FhirDateTime copyWith({
     dynamic newValue,
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
+    bool? disallowExtensions,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    bool? disallowExtensions,
     String? objectPath,
   }) {
-    return FhirDateTimeBase.constructor<FhirDateTime>(
-      input: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
-      ),
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath,
-    ) as FhirDateTime;
+    return _copyWith(
+      then: (value) => value,
+      newValue: newValue,
+      element: element,
+      id: id,
+      extension_: extension_,
+      disallowExtensions: disallowExtensions,
+      userData: userData,
+      formatCommentsPre: formatCommentsPre,
+      formatCommentsPost: formatCommentsPost,
+      annotations: annotations,
+      objectPath: objectPath,
+    );
   }
 
   /// Shorthand to set `disallowExtensions = true`.
   FhirDateTime noExtensions() => copyWith(disallowExtensions: true);
-
-  /// Creates an empty property in the object
-  @override
-  FhirDateTime createProperty(String propertyName) => this;
-
-  /// Clears specified fields in a [FhirDateTime].
-  @override
-  FhirDateTime clear({
-    bool value = false,
-    bool element = false,
-    bool extension_ = false,
-    bool id = false,
-  }) {
-    return FhirDateTime.fromBase(
-      valueString: value ? null : valueString,
-      year: value ? null : year,
-      month: value ? null : month,
-      day: value ? null : day,
-      hour: value ? null : hour,
-      minute: value ? null : minute,
-      second: value ? null : second,
-      millisecond: value ? null : millisecond,
-      microsecond: value ? null : microsecond,
-      timeZoneOffset: value ? null : timeZoneOffset,
-      isUtc: value ? value : isUtc,
-      element: element ? null : this.element,
-      extension_: extension_ ? <FhirExtension>[] : this.extension_,
-      id: id ? null : this.id,
-      disallowExtensions: disallowExtensions,
-      objectPath: objectPath!,
-    );
-  }
 }

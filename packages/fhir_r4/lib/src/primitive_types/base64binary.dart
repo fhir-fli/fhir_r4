@@ -35,6 +35,10 @@ class FhirBase64Binary extends PrimitiveType
     super.id,
     super.extension_,
     super.disallowExtensions,
+    super.userData,
+    super.formatCommentsPre,
+    super.formatCommentsPost,
+    super.annotations,
     super.objectPath = 'Base64Binary',
   }) : super._();
 
@@ -56,6 +60,10 @@ class FhirBase64Binary extends PrimitiveType
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
+    Map<String, dynamic>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List<dynamic>? annotations,
     String objectPath = 'Base64Binary',
   }) {
     String? validatedValue;
@@ -78,13 +86,13 @@ class FhirBase64Binary extends PrimitiveType
       id: id,
       extension_: extension_,
       disallowExtensions: disallowExtensions,
+      userData: userData,
+      formatCommentsPre: formatCommentsPre,
+      formatCommentsPost: formatCommentsPost,
+      annotations: annotations,
       objectPath: objectPath,
     );
   }
-
-  /// Creates an empty [FhirBase64Binary] with an [Element.empty] for metadata.
-  factory FhirBase64Binary.empty() =>
-      FhirBase64Binary(null, element: Element.empty());
 
   // --------------------------------------------------------------------------
   // JSON / YAML Constructors
@@ -215,7 +223,7 @@ class FhirBase64Binary extends PrimitiveType
   @override
   Map<String, dynamic> toJson() {
     return {
-      if (valueString != null) 'value': valueString,
+      if (valueString != null && valueString!.isNotEmpty) 'value': valueString,
       if (element != null) '_value': element!.toJson(),
     };
   }
@@ -291,10 +299,52 @@ class FhirBase64Binary extends PrimitiveType
 
   /// Creates a full clone of this object.
   @override
-  FhirBase64Binary clone() => FhirBase64Binary(
-        valueString,
-        element: element?.clone() as Element?,
-      );
+  FhirBase64Binary clone() => copyWith();
+
+  FhirBase64Binary _copyWith({
+    required FhirBase64Binary Function(FhirBase64Binary) then,
+    Object? newValue = fhirSentinel,
+    Object? element = fhirSentinel,
+    Object? id = fhirSentinel,
+    Object? extension_ = fhirSentinel,
+    Object? disallowExtensions = fhirSentinel,
+    Object? userData = fhirSentinel,
+    Object? formatCommentsPre = fhirSentinel,
+    Object? formatCommentsPost = fhirSentinel,
+    Object? annotations = fhirSentinel,
+    Object? objectPath = fhirSentinel,
+  }) {
+    return then(
+      FhirBase64Binary(
+        identical(newValue, fhirSentinel) ? valueString : newValue,
+        element: identical(element, fhirSentinel)
+            ? this.element
+            : element as Element?,
+        id: identical(id, fhirSentinel) ? this.id : id as FhirString?,
+        extension_: identical(extension_, fhirSentinel)
+            ? this.extension_
+            : extension_ as List<FhirExtension>?,
+        disallowExtensions: identical(disallowExtensions, fhirSentinel)
+            ? this.disallowExtensions
+            : disallowExtensions as bool?,
+        userData: identical(userData, fhirSentinel)
+            ? this.userData
+            : userData as Map<String, dynamic>?,
+        formatCommentsPre: identical(formatCommentsPre, fhirSentinel)
+            ? this.formatCommentsPre
+            : formatCommentsPre as List<String>?,
+        formatCommentsPost: identical(formatCommentsPost, fhirSentinel)
+            ? this.formatCommentsPost
+            : formatCommentsPost as List<String>?,
+        annotations: identical(annotations, fhirSentinel)
+            ? this.annotations
+            : annotations as List<dynamic>?,
+        objectPath: identical(objectPath, fhirSentinel)
+            ? this.objectPath ?? 'Base64Binary'
+            : objectPath as String? ?? 'Base64Binary',
+      ),
+    );
+  }
 
   /// Creates a new instance with the specified fields replaced.
   @override
@@ -303,50 +353,30 @@ class FhirBase64Binary extends PrimitiveType
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
+    bool? disallowExtensions,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    bool? disallowExtensions,
     String? objectPath,
   }) {
-    return FhirBase64Binary(
-      newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
-      ),
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
+    return _copyWith(
+      then: (value) => value,
+      newValue: newValue,
+      element: element,
+      id: id,
+      extension_: extension_,
+      disallowExtensions: disallowExtensions,
+      userData: userData,
+      formatCommentsPre: formatCommentsPre,
+      formatCommentsPost: formatCommentsPost,
+      annotations: annotations,
+      objectPath: objectPath,
     );
   }
 
   /// Returns a copy that disallows further extensions.
   FhirBase64Binary noExtensions() => copyWith(disallowExtensions: true);
-
-  /// Creates a new property in this object. No-op here; returns `this`.
-  @override
-  FhirBase64Binary createProperty(String propertyName) => this;
-
-  /// Clears selected fields from this object.
-  @override
-  FhirBase64Binary clear({
-    bool value = false,
-    bool extension_ = false,
-    bool id = false,
-  }) {
-    return FhirBase64Binary(
-      value ? null : valueString,
-      element: element,
-      extension_: extension_ ? <FhirExtension>[] : this.extension_,
-      id: id ? null : this.id,
-    );
-  }
 }
 
 /// Enum to indicate a detected file type from the decoded bytes.

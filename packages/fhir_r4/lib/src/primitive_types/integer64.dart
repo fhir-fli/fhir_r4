@@ -36,6 +36,10 @@ class FhirInteger64 extends PrimitiveType implements Comparable<FhirInteger64> {
     super.id,
     super.extension_,
     super.disallowExtensions,
+    super.userData,
+    super.formatCommentsPre,
+    super.formatCommentsPost,
+    super.annotations,
     super.objectPath = 'Integer64',
   }) : super._();
 
@@ -56,6 +60,10 @@ class FhirInteger64 extends PrimitiveType implements Comparable<FhirInteger64> {
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
+    Map<String, dynamic>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List<dynamic>? annotations,
     String objectPath = 'Integer64',
   }) {
     String? validated;
@@ -74,6 +82,10 @@ class FhirInteger64 extends PrimitiveType implements Comparable<FhirInteger64> {
       id: id,
       extension_: extension_,
       disallowExtensions: disallowExtensions,
+      userData: userData,
+      formatCommentsPre: formatCommentsPre,
+      formatCommentsPost: formatCommentsPost,
+      annotations: annotations,
       objectPath: objectPath,
     );
   }
@@ -132,10 +144,6 @@ class FhirInteger64 extends PrimitiveType implements Comparable<FhirInteger64> {
       objectPath: objectPath,
     );
   }
-
-  /// Creates an empty [FhirInteger64] (with [Element.empty] metadata).
-  factory FhirInteger64.empty() =>
-      FhirInteger64(null, element: Element.empty());
 
   // --------------------------------------------------------------------------
   // JSON / YAML Constructors
@@ -266,42 +274,79 @@ class FhirInteger64 extends PrimitiveType implements Comparable<FhirInteger64> {
 
   /// Creates a deep clone of this [FhirInteger64].
   @override
-  FhirInteger64 clone() => FhirInteger64(
-        valueString,
-        element: element?.clone() as Element?,
-        id: id,
-        extension_: extension_?.map((e) => e.clone()).toList(),
-        disallowExtensions: disallowExtensions,
-        objectPath: objectPath!,
-      );
+  FhirInteger64 clone() => copyWith();
 
-  /// Creates a modified copy with updated properties.
+  FhirInteger64 _copyWith({
+    required FhirInteger64 Function(FhirInteger64) then,
+    Object? newValue = fhirSentinel,
+    Object? element = fhirSentinel,
+    Object? id = fhirSentinel,
+    Object? extension_ = fhirSentinel,
+    Object? disallowExtensions = fhirSentinel,
+    Object? userData = fhirSentinel,
+    Object? formatCommentsPre = fhirSentinel,
+    Object? formatCommentsPost = fhirSentinel,
+    Object? annotations = fhirSentinel,
+    Object? objectPath = fhirSentinel,
+  }) {
+    return then(
+      FhirInteger64(
+        identical(newValue, fhirSentinel) ? valueString : newValue,
+        element: identical(element, fhirSentinel)
+            ? this.element
+            : element as Element?,
+        id: identical(id, fhirSentinel) ? this.id : id as FhirString?,
+        extension_: identical(extension_, fhirSentinel)
+            ? this.extension_
+            : extension_ as List<FhirExtension>?,
+        disallowExtensions: identical(disallowExtensions, fhirSentinel)
+            ? this.disallowExtensions
+            : disallowExtensions as bool?,
+        userData: identical(userData, fhirSentinel)
+            ? this.userData
+            : userData as Map<String, dynamic>?,
+        formatCommentsPre: identical(formatCommentsPre, fhirSentinel)
+            ? this.formatCommentsPre
+            : formatCommentsPre as List<String>?,
+        formatCommentsPost: identical(formatCommentsPost, fhirSentinel)
+            ? this.formatCommentsPost
+            : formatCommentsPost as List<String>?,
+        annotations: identical(annotations, fhirSentinel)
+            ? this.annotations
+            : annotations as List<dynamic>?,
+        objectPath: identical(objectPath, fhirSentinel)
+            ? this.objectPath ?? 'Integer64'
+            : objectPath as String? ?? 'Integer64',
+      ),
+    );
+  }
+
+  /// Creates a new instance with the specified fields replaced.
   @override
   FhirInteger64 copyWith({
     dynamic newValue,
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
+    bool? disallowExtensions,
     Map<String, dynamic>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    bool? disallowExtensions,
     String? objectPath,
   }) {
-    return FhirInteger64(
-      newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
-      ),
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
+    return _copyWith(
+      then: (value) => value,
+      newValue: newValue,
+      element: element,
+      id: id,
+      extension_: extension_,
+      disallowExtensions: disallowExtensions,
+      userData: userData,
+      formatCommentsPre: formatCommentsPre,
+      formatCommentsPost: formatCommentsPost,
+      annotations: annotations,
+      objectPath: objectPath,
     );
   }
 
@@ -445,26 +490,5 @@ class FhirInteger64 extends PrimitiveType implements Comparable<FhirInteger64> {
     if (other is BigInt) return other;
     if (other is int) return BigInt.from(other);
     return BigInt.tryParse(other.toString());
-  }
-
-  // --------------------------------------------------------------------------
-  // Subclass Contract
-  // --------------------------------------------------------------------------
-
-  @override
-  FhirInteger64 createProperty(String propertyName) => this;
-
-  @override
-  FhirInteger64 clear({
-    bool value = false,
-    bool extension_ = false,
-    bool id = false,
-  }) {
-    return FhirInteger64(
-      value ? null : valueString,
-      element: element,
-      extension_: extension_ ? <FhirExtension>[] : this.extension_,
-      id: id ? null : this.id,
-    );
   }
 }

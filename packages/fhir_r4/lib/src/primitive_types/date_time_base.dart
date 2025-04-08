@@ -23,6 +23,10 @@ abstract class FhirDateTimeBase extends PrimitiveType
     super.id,
     super.extension_,
     super.disallowExtensions,
+    super.userData,
+    super.formatCommentsPre,
+    super.formatCommentsPost,
+    super.annotations,
     super.objectPath = 'DateTimeBase',
   })  : assert(
           (year != null && year >= 1 && year <= 9999) || element != null,
