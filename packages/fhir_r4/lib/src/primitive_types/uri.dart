@@ -51,11 +51,6 @@ class FhirUri extends PrimitiveType
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
-    super.objectPath = 'Uri',
   }) : super._();
 
   // --------------------------------------------------------------------------
@@ -75,11 +70,6 @@ class FhirUri extends PrimitiveType
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String objectPath = 'Uri',
   }) {
     String? parsedValue;
     if (rawValue == null && element == null) {
@@ -100,11 +90,6 @@ class FhirUri extends PrimitiveType
       id: id,
       extension_: extension_,
       disallowExtensions: disallowExtensions,
-      userData: userData,
-      formatCommentsPre: formatCommentsPre,
-      formatCommentsPost: formatCommentsPost,
-      annotations: annotations,
-      objectPath: objectPath,
     );
   }
 
@@ -129,12 +114,10 @@ class FhirUri extends PrimitiveType
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final parsedElement =
         elementJson == null ? null : Element.fromJson(elementJson);
-    final objectPath = json['objectPath'] as String? ?? 'Uri';
 
     return FhirUri(
       rawValue,
       element: parsedElement,
-      objectPath: objectPath,
     );
   }
 
@@ -293,79 +276,10 @@ class FhirUri extends PrimitiveType
   @override
   FhirUri clone() => copyWith();
 
-  FhirUri _copyWith<T>({
-    required T Function(T) then,
-    Object? newValue = fhirSentinel,
-    Object? element = fhirSentinel,
-    Object? id = fhirSentinel,
-    Object? extension_ = fhirSentinel,
-    Object? disallowExtensions = fhirSentinel,
-    Object? userData = fhirSentinel,
-    Object? formatCommentsPre = fhirSentinel,
-    Object? formatCommentsPost = fhirSentinel,
-    Object? annotations = fhirSentinel,
-    Object? objectPath = fhirSentinel,
-  }) {
-    return then(
-      FhirUri(
-        identical(newValue, fhirSentinel) ? valueString : newValue,
-        element: identical(element, fhirSentinel)
-            ? this.element
-            : element as Element?,
-        id: identical(id, fhirSentinel) ? this.id : id as FhirString?,
-        extension_: identical(extension_, fhirSentinel)
-            ? this.extension_
-            : extension_ as List<FhirExtension>?,
-        disallowExtensions: identical(disallowExtensions, fhirSentinel)
-            ? this.disallowExtensions
-            : disallowExtensions as bool?,
-        userData: identical(userData, fhirSentinel)
-            ? this.userData
-            : userData as Map<String, dynamic>?,
-        formatCommentsPre: identical(formatCommentsPre, fhirSentinel)
-            ? this.formatCommentsPre
-            : formatCommentsPre as List<String>?,
-        formatCommentsPost: identical(formatCommentsPost, fhirSentinel)
-            ? this.formatCommentsPost
-            : formatCommentsPost as List<String>?,
-        annotations: identical(annotations, fhirSentinel)
-            ? this.annotations
-            : annotations as List<dynamic>?,
-        objectPath: identical(objectPath, fhirSentinel)
-            ? this.objectPath ?? 'Uri'
-            : objectPath as String? ?? 'Uri',
-      ) as T,
-    ) as FhirUri;
-  }
-
   /// Creates a new instance with the specified fields replaced.
   @override
-  FhirUri copyWith({
-    dynamic newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    bool? disallowExtensions,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    return _copyWith<FhirUri>(
-      then: (value) => value,
-      newValue: newValue,
-      element: element,
-      id: id,
-      extension_: extension_,
-      disallowExtensions: disallowExtensions,
-      userData: userData,
-      formatCommentsPre: formatCommentsPre,
-      formatCommentsPost: formatCommentsPost,
-      annotations: annotations,
-      objectPath: objectPath,
-    );
-  }
+  $FhirUriCopyWithImpl<FhirUri> get copyWith =>
+      $FhirUriCopyWithImpl<FhirUri>(this, (value) => value);
 
   /// Returns a copy that disallows further extensions.
   FhirUri noExtensions() => copyWith(disallowExtensions: true);
@@ -417,5 +331,42 @@ class FhirUri extends PrimitiveType
   /// Decodes a query component [text] from its percent-encoded form.
   static String decodeQueryComponent(String text, {Encoding encoding = utf8}) {
     return Uri.decodeQueryComponent(text, encoding: encoding);
+  }
+}
+
+/// The generated implementation of the copyWith helper for Element.
+/// The call method uses parameters of type Object? with a default value of
+/// [fhirSentinel] so that omitted parameters retain the sentinel value while
+/// explicit nulls do not.
+class $FhirUriCopyWithImpl<T> implements $PrimitiveTypeCopyWith<T> {
+  /// Constructor for the copyWith implementation.
+  $FhirUriCopyWithImpl(this._value, this._then);
+
+  final FhirUri _value;
+  final T Function(FhirUri) _then;
+
+  @override
+  T call({
+    Object? newValue = fhirSentinel,
+    Object? element = fhirSentinel,
+    Object? id = fhirSentinel,
+    Object? extension_ = fhirSentinel,
+    Object? disallowExtensions = fhirSentinel,
+  }) {
+    return _then(
+      FhirUri(
+        identical(newValue, fhirSentinel) ? _value.valueString : newValue,
+        element: identical(element, fhirSentinel)
+            ? _value.element
+            : element as Element?,
+        id: identical(id, fhirSentinel) ? _value.id : id as FhirString?,
+        extension_: identical(extension_, fhirSentinel)
+            ? _value.extension_
+            : extension_ as List<FhirExtension>?,
+        disallowExtensions: identical(disallowExtensions, fhirSentinel)
+            ? _value.disallowExtensions
+            : disallowExtensions as bool?,
+      ),
+    );
   }
 }

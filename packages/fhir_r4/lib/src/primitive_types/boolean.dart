@@ -63,11 +63,6 @@ class FhirBoolean extends PrimitiveType
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
-    super.objectPath = 'Boolean',
   }) : super._();
 
   // --------------------------------------------------------------------------
@@ -87,11 +82,6 @@ class FhirBoolean extends PrimitiveType
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String objectPath = 'Boolean',
   }) {
     String? stringValue;
     if (rawValue == null && element == null) {
@@ -118,11 +108,6 @@ class FhirBoolean extends PrimitiveType
       id: id,
       extension_: extension_,
       disallowExtensions: disallowExtensions,
-      userData: userData,
-      formatCommentsPre: formatCommentsPre,
-      formatCommentsPost: formatCommentsPost,
-      annotations: annotations,
-      objectPath: objectPath,
     );
   }
 
@@ -136,12 +121,10 @@ class FhirBoolean extends PrimitiveType
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final parsedElement =
         elementJson == null ? null : Element.fromJson(elementJson);
-    final objectPath = json['objectPath'] as String? ?? 'Boolean';
 
     return FhirBoolean(
       rawValue,
       element: parsedElement,
-      objectPath: objectPath,
     );
   }
 
@@ -291,80 +274,48 @@ class FhirBoolean extends PrimitiveType
   @override
   FhirBoolean clone() => copyWith();
 
-  FhirBoolean _copyWith({
-    required FhirBoolean Function(FhirBoolean) then,
+  /// Creates a new instance with the specified fields replaced.
+  @override
+  $FhirBooleanCopyWithImpl<FhirBoolean> get copyWith =>
+      $FhirBooleanCopyWithImpl<FhirBoolean>(this, (value) => value);
+
+  /// Returns a copy that disallows further extensions.
+  FhirBoolean noExtensions() => copyWith(disallowExtensions: true);
+}
+
+/// The generated implementation of the copyWith helper for Element.
+/// The call method uses parameters of type Object? with a default value of
+/// [fhirSentinel] so that omitted parameters retain the sentinel value while
+/// explicit nulls do not.
+class $FhirBooleanCopyWithImpl<T> implements $PrimitiveTypeCopyWith<T> {
+  /// Constructor for the copyWith implementation.
+  $FhirBooleanCopyWithImpl(this._value, this._then);
+
+  final FhirBoolean _value;
+  final T Function(FhirBoolean) _then;
+
+  @override
+  T call({
     Object? newValue = fhirSentinel,
     Object? element = fhirSentinel,
     Object? id = fhirSentinel,
     Object? extension_ = fhirSentinel,
     Object? disallowExtensions = fhirSentinel,
-    Object? userData = fhirSentinel,
-    Object? formatCommentsPre = fhirSentinel,
-    Object? formatCommentsPost = fhirSentinel,
-    Object? annotations = fhirSentinel,
-    Object? objectPath = fhirSentinel,
   }) {
-    return then(
+    return _then(
       FhirBoolean(
-        identical(newValue, fhirSentinel) ? valueString : newValue,
+        identical(newValue, fhirSentinel) ? _value.valueString : newValue,
         element: identical(element, fhirSentinel)
-            ? this.element
+            ? _value.element
             : element as Element?,
-        id: identical(id, fhirSentinel) ? this.id : id as FhirString?,
+        id: identical(id, fhirSentinel) ? _value.id : id as FhirString?,
         extension_: identical(extension_, fhirSentinel)
-            ? this.extension_
+            ? _value.extension_
             : extension_ as List<FhirExtension>?,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
-            ? this.disallowExtensions
+            ? _value.disallowExtensions
             : disallowExtensions as bool?,
-        userData: identical(userData, fhirSentinel)
-            ? this.userData
-            : userData as Map<String, dynamic>?,
-        formatCommentsPre: identical(formatCommentsPre, fhirSentinel)
-            ? this.formatCommentsPre
-            : formatCommentsPre as List<String>?,
-        formatCommentsPost: identical(formatCommentsPost, fhirSentinel)
-            ? this.formatCommentsPost
-            : formatCommentsPost as List<String>?,
-        annotations: identical(annotations, fhirSentinel)
-            ? this.annotations
-            : annotations as List<dynamic>?,
-        objectPath: identical(objectPath, fhirSentinel)
-            ? this.objectPath ?? 'Boolean'
-            : objectPath as String? ?? 'Boolean',
       ),
     );
   }
-
-  /// Creates a new instance with the specified fields replaced.
-  @override
-  FhirBoolean copyWith({
-    dynamic newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    bool? disallowExtensions,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    return _copyWith(
-      then: (value) => value,
-      newValue: newValue,
-      element: element,
-      id: id,
-      extension_: extension_,
-      disallowExtensions: disallowExtensions,
-      userData: userData,
-      formatCommentsPre: formatCommentsPre,
-      formatCommentsPost: formatCommentsPost,
-      annotations: annotations,
-      objectPath: objectPath,
-    );
-  }
-
-  /// Returns a copy that disallows further extensions.
-  FhirBoolean noExtensions() => copyWith(disallowExtensions: true);
 }

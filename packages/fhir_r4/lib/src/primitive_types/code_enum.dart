@@ -12,7 +12,6 @@ abstract class FhirCodeEnum extends FhirCode {
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.objectPath,
   }) : super._();
 
   /// Private underscore constructor that just calls `super._(...)`,
@@ -28,7 +27,6 @@ abstract class FhirCodeEnum extends FhirCode {
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.objectPath,
   }) : super._();
 
   /// [system]

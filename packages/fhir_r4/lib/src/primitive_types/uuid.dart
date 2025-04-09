@@ -42,11 +42,6 @@ class FhirUuid extends FhirUri
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
-    super.objectPath = 'Uuid',
   }) : super._();
 
   // --------------------------------------------------------------------------
@@ -66,11 +61,6 @@ class FhirUuid extends FhirUri
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String objectPath = 'Uuid',
   }) {
     // 1) Parse / validate
     String? parsedValue;
@@ -94,11 +84,6 @@ class FhirUuid extends FhirUri
       id: id,
       extension_: extension_,
       disallowExtensions: disallowExtensions,
-      userData: userData,
-      formatCommentsPre: formatCommentsPre,
-      formatCommentsPost: formatCommentsPost,
-      annotations: annotations,
-      objectPath: objectPath,
     );
   }
 
@@ -110,7 +95,6 @@ class FhirUuid extends FhirUri
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
-    String objectPath = 'Uuid',
   }) {
     return FhirUuid._(
       valueString: uuidValue?.toString(),
@@ -118,7 +102,6 @@ class FhirUuid extends FhirUri
       id: id,
       extension_: extension_,
       disallowExtensions: disallowExtensions,
-      objectPath: objectPath,
     );
   }
 
@@ -132,12 +115,10 @@ class FhirUuid extends FhirUri
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final parsedElement =
         elementJson == null ? null : Element.fromJson(elementJson);
-    final objectPath = json['objectPath'] as String? ?? 'Uuid';
 
     return FhirUuid(
       rawValue,
       element: parsedElement,
-      objectPath: objectPath,
     );
   }
 
@@ -347,81 +328,46 @@ class FhirUuid extends FhirUri
   @override
   FhirUuid clone() => copyWith();
 
-  FhirUuid _copyWith<T>({
-    required T Function(T) then,
+  /// Creates a new instance with the specified fields replaced.
+  @override
+  $FhirUuidCopyWithImpl<FhirUuid> get copyWith =>
+      $FhirUuidCopyWithImpl<FhirUuid>(this, (value) => value as FhirUuid);
+
+  /// Creates a copy with [disallowExtensions] set to `true`.
+  @override
+  FhirUuid noExtensions() => copyWith(disallowExtensions: true);
+}
+
+/// The generated implementation of the copyWith helper for Element.
+/// The call method uses parameters of type Object? with a default value of
+/// [fhirSentinel] so that omitted parameters retain the sentinel value while
+/// explicit nulls do not.
+class $FhirUuidCopyWithImpl<T> extends $FhirUriCopyWithImpl<T> {
+  /// Constructor for the copyWith implementation.
+  $FhirUuidCopyWithImpl(super._value, super._then);
+
+  @override
+  T call({
     Object? newValue = fhirSentinel,
     Object? element = fhirSentinel,
     Object? id = fhirSentinel,
     Object? extension_ = fhirSentinel,
     Object? disallowExtensions = fhirSentinel,
-    Object? userData = fhirSentinel,
-    Object? formatCommentsPre = fhirSentinel,
-    Object? formatCommentsPost = fhirSentinel,
-    Object? annotations = fhirSentinel,
-    Object? objectPath = fhirSentinel,
   }) {
-    return then(
+    return _then(
       FhirUuid(
-        identical(newValue, fhirSentinel) ? valueString : newValue,
+        identical(newValue, fhirSentinel) ? _value.valueString : newValue,
         element: identical(element, fhirSentinel)
-            ? this.element
+            ? _value.element
             : element as Element?,
-        id: identical(id, fhirSentinel) ? this.id : id as FhirString?,
+        id: identical(id, fhirSentinel) ? _value.id : id as FhirString?,
         extension_: identical(extension_, fhirSentinel)
-            ? this.extension_
+            ? _value.extension_
             : extension_ as List<FhirExtension>?,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
-            ? this.disallowExtensions
+            ? _value.disallowExtensions
             : disallowExtensions as bool?,
-        userData: identical(userData, fhirSentinel)
-            ? this.userData
-            : userData as Map<String, dynamic>?,
-        formatCommentsPre: identical(formatCommentsPre, fhirSentinel)
-            ? this.formatCommentsPre
-            : formatCommentsPre as List<String>?,
-        formatCommentsPost: identical(formatCommentsPost, fhirSentinel)
-            ? this.formatCommentsPost
-            : formatCommentsPost as List<String>?,
-        annotations: identical(annotations, fhirSentinel)
-            ? this.annotations
-            : annotations as List<dynamic>?,
-        objectPath: identical(objectPath, fhirSentinel)
-            ? this.objectPath ?? 'Uuid'
-            : objectPath as String? ?? 'Uuid',
-      ) as T,
-    ) as FhirUuid;
-  }
-
-  /// Creates a new instance with the specified fields replaced.
-  @override
-  FhirUuid copyWith({
-    dynamic newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    bool? disallowExtensions,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    return _copyWith<FhirUuid>(
-      then: (value) => value,
-      newValue: newValue,
-      element: element,
-      id: id,
-      extension_: extension_,
-      disallowExtensions: disallowExtensions,
-      userData: userData,
-      formatCommentsPre: formatCommentsPre,
-      formatCommentsPost: formatCommentsPost,
-      annotations: annotations,
-      objectPath: objectPath,
+      ),
     );
   }
-
-  /// Creates a copy with [disallowExtensions] set to `true`.
-  @override
-  FhirUuid noExtensions() => copyWith(disallowExtensions: true);
 }

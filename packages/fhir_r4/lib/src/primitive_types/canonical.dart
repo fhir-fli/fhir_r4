@@ -49,11 +49,6 @@ class FhirCanonical extends FhirUri
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
-    super.objectPath = 'Canonical',
   }) : super._();
 
   // --------------------------------------------------------------------------
@@ -71,11 +66,6 @@ class FhirCanonical extends FhirUri
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String objectPath = 'Canonical',
   }) {
     String? parsedValue;
     if (rawValue == null && element == null) {
@@ -96,11 +86,6 @@ class FhirCanonical extends FhirUri
       id: id,
       extension_: extension_,
       disallowExtensions: disallowExtensions,
-      userData: userData,
-      formatCommentsPre: formatCommentsPre,
-      formatCommentsPost: formatCommentsPost,
-      annotations: annotations,
-      objectPath: objectPath,
     );
   }
 
@@ -125,12 +110,10 @@ class FhirCanonical extends FhirUri
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final parsedElement =
         elementJson == null ? null : Element.fromJson(elementJson);
-    final objectPath = json['objectPath'] as String? ?? 'Canonical';
 
     return FhirCanonical(
       rawValue,
       element: parsedElement,
-      objectPath: objectPath,
     );
   }
 
@@ -238,79 +221,13 @@ class FhirCanonical extends FhirUri
   @override
   FhirCanonical clone() => copyWith();
 
-  FhirCanonical _copyWith<T>({
-    required T Function(T) then,
-    Object? newValue = fhirSentinel,
-    Object? element = fhirSentinel,
-    Object? id = fhirSentinel,
-    Object? extension_ = fhirSentinel,
-    Object? disallowExtensions = fhirSentinel,
-    Object? userData = fhirSentinel,
-    Object? formatCommentsPre = fhirSentinel,
-    Object? formatCommentsPost = fhirSentinel,
-    Object? annotations = fhirSentinel,
-    Object? objectPath = fhirSentinel,
-  }) {
-    return then(
-      FhirCanonical(
-        identical(newValue, fhirSentinel) ? valueString : newValue,
-        element: identical(element, fhirSentinel)
-            ? this.element
-            : element as Element?,
-        id: identical(id, fhirSentinel) ? this.id : id as FhirString?,
-        extension_: identical(extension_, fhirSentinel)
-            ? this.extension_
-            : extension_ as List<FhirExtension>?,
-        disallowExtensions: identical(disallowExtensions, fhirSentinel)
-            ? this.disallowExtensions
-            : disallowExtensions as bool?,
-        userData: identical(userData, fhirSentinel)
-            ? this.userData
-            : userData as Map<String, dynamic>?,
-        formatCommentsPre: identical(formatCommentsPre, fhirSentinel)
-            ? this.formatCommentsPre
-            : formatCommentsPre as List<String>?,
-        formatCommentsPost: identical(formatCommentsPost, fhirSentinel)
-            ? this.formatCommentsPost
-            : formatCommentsPost as List<String>?,
-        annotations: identical(annotations, fhirSentinel)
-            ? this.annotations
-            : annotations as List<dynamic>?,
-        objectPath: identical(objectPath, fhirSentinel)
-            ? this.objectPath ?? 'Canonical'
-            : objectPath as String? ?? 'Canonical',
-      ) as T,
-    ) as FhirCanonical;
-  }
-
   /// Creates a new instance with the specified fields replaced.
   @override
-  FhirCanonical copyWith({
-    dynamic newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    bool? disallowExtensions,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    return _copyWith<FhirCanonical>(
-      then: (value) => value,
-      newValue: newValue,
-      element: element,
-      id: id,
-      extension_: extension_,
-      disallowExtensions: disallowExtensions,
-      userData: userData,
-      formatCommentsPre: formatCommentsPre,
-      formatCommentsPost: formatCommentsPost,
-      annotations: annotations,
-      objectPath: objectPath,
-    );
-  }
+  $FhirCanonicalCopyWithImpl<FhirCanonical> get copyWith =>
+      $FhirCanonicalCopyWithImpl<FhirCanonical>(
+        this,
+        (value) => value as FhirCanonical,
+      );
 
   // --------------------------------------------------------------------------
   // Additional Convenience (Unchanged from your code)
@@ -335,6 +252,40 @@ class FhirCanonical extends FhirUri
       (key, value) => MapEntry<String, List<String>>(
         key,
         value.isEmpty ? <String>[] : <String>[value],
+      ),
+    );
+  }
+}
+
+/// The generated implementation of the copyWith helper for Element.
+/// The call method uses parameters of type Object? with a default value of
+/// [fhirSentinel] so that omitted parameters retain the sentinel value while
+/// explicit nulls do not.
+class $FhirCanonicalCopyWithImpl<T> extends $FhirUriCopyWithImpl<T> {
+  /// Constructor for the copyWith implementation.
+  $FhirCanonicalCopyWithImpl(super._value, super._then);
+
+  @override
+  T call({
+    Object? newValue = fhirSentinel,
+    Object? element = fhirSentinel,
+    Object? id = fhirSentinel,
+    Object? extension_ = fhirSentinel,
+    Object? disallowExtensions = fhirSentinel,
+  }) {
+    return _then(
+      FhirCanonical(
+        identical(newValue, fhirSentinel) ? _value.valueString : newValue,
+        element: identical(element, fhirSentinel)
+            ? _value.element
+            : element as Element?,
+        id: identical(id, fhirSentinel) ? _value.id : id as FhirString?,
+        extension_: identical(extension_, fhirSentinel)
+            ? _value.extension_
+            : extension_ as List<FhirExtension>?,
+        disallowExtensions: identical(disallowExtensions, fhirSentinel)
+            ? _value.disallowExtensions
+            : disallowExtensions as bool?,
       ),
     );
   }

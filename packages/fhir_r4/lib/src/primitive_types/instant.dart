@@ -48,11 +48,6 @@ class FhirInstant extends FhirDateTimeBase
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
-    super.objectPath = 'Instant',
   }) : super._();
 
   // --------------------------------------------------------------------------
@@ -76,11 +71,6 @@ class FhirInstant extends FhirDateTimeBase
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String objectPath = 'DateTime',
   }) {
     return FhirInstant._(
       valueString: valueString,
@@ -98,11 +88,6 @@ class FhirInstant extends FhirDateTimeBase
       id: id,
       extension_: extension_,
       disallowExtensions: disallowExtensions,
-      userData: userData,
-      formatCommentsPre: formatCommentsPre,
-      formatCommentsPost: formatCommentsPost,
-      annotations: annotations,
-      objectPath: objectPath,
     );
   }
 
@@ -140,22 +125,12 @@ class FhirInstant extends FhirDateTimeBase
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
   }) =>
       FhirDateTimeBase.constructor<FhirInstant>(
         input: valueString,
         element: element,
         id: id,
         extension_: extension_,
-        userData: userData,
-        formatCommentsPre: formatCommentsPre,
-        formatCommentsPost: formatCommentsPost,
-        annotations: annotations,
-        objectPath: objectPath,
       ) as FhirInstant;
 
   /// Constructs a [FhirInstant] from a Dart [DateTime].
@@ -164,20 +139,12 @@ class FhirInstant extends FhirDateTimeBase
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
   }) =>
       FhirDateTimeBase.constructor<FhirInstant>(
         input: input,
         element: element,
         id: id,
         extension_: extension_,
-        userData: userData,
-        formatCommentsPre: formatCommentsPre,
-        formatCommentsPost: formatCommentsPost,
-        annotations: annotations,
       ) as FhirInstant;
 
   /// Creates a [FhirInstant] from JSON.
@@ -305,80 +272,49 @@ class FhirInstant extends FhirDateTimeBase
   // copyWith
   // --------------------------------------------------------------------------
 
-  FhirInstant _copyWith({
-    required FhirInstant Function(FhirInstant) then,
+  /// Creates a new instance with the specified fields replaced.
+  @override
+  $FhirInstantCopyWithImpl<FhirInstant> get copyWith =>
+      $FhirInstantCopyWithImpl<FhirInstant>(this, (value) => value);
+
+  /// Shorthand to set `disallowExtensions = true`.
+  FhirInstant noExtensions() => copyWith(disallowExtensions: true);
+}
+
+/// The generated implementation of the copyWith helper for Element.
+/// The call method uses parameters of type Object? with a default value of
+/// [fhirSentinel] so that omitted parameters retain the sentinel value while
+/// explicit nulls do not.
+class $FhirInstantCopyWithImpl<T> implements $PrimitiveTypeCopyWith<T> {
+  /// Constructor for the copyWith implementation.
+  $FhirInstantCopyWithImpl(this._value, this._then);
+
+  final FhirInstant _value;
+  final T Function(FhirInstant) _then;
+
+  @override
+  T call({
     Object? newValue = fhirSentinel,
     Object? element = fhirSentinel,
     Object? id = fhirSentinel,
     Object? extension_ = fhirSentinel,
     Object? disallowExtensions = fhirSentinel,
-    Object? userData = fhirSentinel,
-    Object? formatCommentsPre = fhirSentinel,
-    Object? formatCommentsPost = fhirSentinel,
-    Object? annotations = fhirSentinel,
-    Object? objectPath = fhirSentinel,
   }) {
-    return then(
+    return _then(
       FhirDateTimeBase.constructor<FhirInstant>(
-        input: identical(newValue, fhirSentinel) ? valueString : newValue,
+        input:
+            identical(newValue, fhirSentinel) ? _value.valueString : newValue,
         element: identical(element, fhirSentinel)
-            ? this.element
+            ? _value.element
             : element as Element?,
-        id: identical(id, fhirSentinel) ? this.id : id as FhirString?,
+        id: identical(id, fhirSentinel) ? _value.id : id as FhirString?,
         extension_: identical(extension_, fhirSentinel)
-            ? this.extension_
+            ? _value.extension_
             : extension_ as List<FhirExtension>?,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
-            ? this.disallowExtensions
+            ? _value.disallowExtensions
             : disallowExtensions as bool?,
-        userData: identical(userData, fhirSentinel)
-            ? this.userData
-            : userData as Map<String, dynamic>?,
-        formatCommentsPre: identical(formatCommentsPre, fhirSentinel)
-            ? this.formatCommentsPre
-            : formatCommentsPre as List<String>?,
-        formatCommentsPost: identical(formatCommentsPost, fhirSentinel)
-            ? this.formatCommentsPost
-            : formatCommentsPost as List<String>?,
-        annotations: identical(annotations, fhirSentinel)
-            ? this.annotations
-            : annotations as List<dynamic>?,
-        objectPath: identical(objectPath, fhirSentinel)
-            ? this.objectPath ?? 'Instant'
-            : objectPath as String? ?? 'Instant',
       ) as FhirInstant,
     );
   }
-
-  /// Creates a new instance with the specified fields replaced.
-  @override
-  FhirInstant copyWith({
-    dynamic newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    bool? disallowExtensions,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    return _copyWith(
-      then: (value) => value,
-      newValue: newValue,
-      element: element,
-      id: id,
-      extension_: extension_,
-      disallowExtensions: disallowExtensions,
-      userData: userData,
-      formatCommentsPre: formatCommentsPre,
-      formatCommentsPost: formatCommentsPost,
-      annotations: annotations,
-      objectPath: objectPath,
-    );
-  }
-
-  /// Shorthand to set `disallowExtensions = true`.
-  FhirInstant noExtensions() => copyWith(disallowExtensions: true);
 }

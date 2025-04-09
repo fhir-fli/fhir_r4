@@ -26,14 +26,9 @@ abstract class PrimitiveType extends DataType {
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
-    super.objectPath = 'PrimitiveType',
   })  : assert(
           valueString != null || element != null,
-          'Either valueString or element must be provided for $objectPath',
+          'Either valueString or element must be provided for a PrimitiveType.',
         ),
         super();
 
@@ -110,8 +105,7 @@ abstract class PrimitiveType extends DataType {
   bool equalsDeep(FhirBase? other) {
     return other is PrimitiveType &&
         valueString == other.valueString &&
-        element == other.element &&
-        userData == other.userData;
+        element == other.element;
   }
 
   /// By default, shallow equality checks only [valueString].
@@ -155,18 +149,7 @@ abstract class PrimitiveType extends DataType {
 
   /// Returns a copy of `this` with specific fields replaced.
   @override
-  PrimitiveType copyWith({
-    dynamic newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    bool? disallowExtensions,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  });
+  $PrimitiveTypeCopyWith<PrimitiveType> get copyWith;
 
   /// Returns a list of all extensions, including those in [element].
   List<FhirExtension>? get allExtensions {
@@ -182,4 +165,17 @@ abstract class PrimitiveType extends DataType {
     }
     return [...extension_!, ...elementExtensions];
   }
+}
+
+/// The public interface for copyWith for Element.
+/// Notice that each parameter is declared with its proper type.
+abstract class $PrimitiveTypeCopyWith<T> extends $DataTypeCopyWith<T> {
+  @override
+  T call({
+    dynamic newValue,
+    Element? element,
+    FhirString? id,
+    List<FhirExtension>? extension_,
+    bool? disallowExtensions,
+  });
 }

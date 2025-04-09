@@ -33,11 +33,6 @@ class FhirCode extends FhirString
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
-    super.objectPath = 'Code',
   }) : super._();
 
   // --------------------------------------------------------------------------
@@ -53,11 +48,6 @@ class FhirCode extends FhirString
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String objectPath = 'Code',
   }) {
     final validated =
         rawValue != null ? _validateCode(rawValue.toString()) : null;
@@ -67,11 +57,6 @@ class FhirCode extends FhirString
       id: id,
       extension_: extension_,
       disallowExtensions: disallowExtensions,
-      userData: userData,
-      formatCommentsPre: formatCommentsPre,
-      formatCommentsPost: formatCommentsPost,
-      annotations: annotations,
-      objectPath: objectPath,
     );
   }
 
@@ -85,11 +70,9 @@ class FhirCode extends FhirString
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final parsedElement =
         elementJson == null ? null : Element.fromJson(elementJson);
-    final objectPath = json['objectPath'] as String? ?? 'Code';
     return FhirCode(
       rawValue,
       element: parsedElement,
-      objectPath: objectPath,
     );
   }
 
@@ -161,77 +144,45 @@ class FhirCode extends FhirString
   @override
   FhirCode clone() => copyWith();
 
-  FhirCode _copyWith<T>({
-    required T Function(T) then,
+  /// Creates a new instance with the specified fields replaced.
+  @override
+  $FhirCodeCopyWithImpl<FhirCode> get copyWith =>
+      $FhirCodeCopyWithImpl<FhirCode>(
+        this,
+        (value) => value as FhirCode,
+      );
+}
+
+/// The generated implementation of the copyWith helper for Element.
+/// The call method uses parameters of type Object? with a default value of
+/// [fhirSentinel] so that omitted parameters retain the sentinel value while
+/// explicit nulls do not.
+class $FhirCodeCopyWithImpl<T> extends $FhirStringCopyWithImpl<T> {
+  /// Constructor for the copyWith implementation.
+  $FhirCodeCopyWithImpl(super._value, super._then);
+
+  @override
+  T call({
     Object? newValue = fhirSentinel,
     Object? element = fhirSentinel,
     Object? id = fhirSentinel,
     Object? extension_ = fhirSentinel,
     Object? disallowExtensions = fhirSentinel,
-    Object? userData = fhirSentinel,
-    Object? formatCommentsPre = fhirSentinel,
-    Object? formatCommentsPost = fhirSentinel,
-    Object? annotations = fhirSentinel,
-    Object? objectPath = fhirSentinel,
   }) {
-    return then(
+    return _then(
       FhirCode(
-        identical(newValue, fhirSentinel) ? valueString : newValue,
+        identical(newValue, fhirSentinel) ? _value.valueString : newValue,
         element: identical(element, fhirSentinel)
-            ? this.element
+            ? _value.element
             : element as Element?,
-        id: identical(id, fhirSentinel) ? this.id : id as FhirString?,
+        id: identical(id, fhirSentinel) ? _value.id : id as FhirString?,
         extension_: identical(extension_, fhirSentinel)
-            ? this.extension_
+            ? _value.extension_
             : extension_ as List<FhirExtension>?,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
-            ? this.disallowExtensions
+            ? _value.disallowExtensions
             : disallowExtensions as bool?,
-        userData: identical(userData, fhirSentinel)
-            ? this.userData
-            : userData as Map<String, dynamic>?,
-        formatCommentsPre: identical(formatCommentsPre, fhirSentinel)
-            ? this.formatCommentsPre
-            : formatCommentsPre as List<String>?,
-        formatCommentsPost: identical(formatCommentsPost, fhirSentinel)
-            ? this.formatCommentsPost
-            : formatCommentsPost as List<String>?,
-        annotations: identical(annotations, fhirSentinel)
-            ? this.annotations
-            : annotations as List<dynamic>?,
-        objectPath: identical(objectPath, fhirSentinel)
-            ? this.objectPath ?? 'Code'
-            : objectPath as String? ?? 'Code',
-      ) as T,
-    ) as FhirCode;
-  }
-
-  /// Creates a new instance with the specified fields replaced.
-  @override
-  FhirCode copyWith({
-    dynamic newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    bool? disallowExtensions,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    return _copyWith<FhirCode>(
-      then: (value) => value,
-      newValue: newValue,
-      element: element,
-      id: id,
-      extension_: extension_,
-      disallowExtensions: disallowExtensions,
-      userData: userData,
-      formatCommentsPre: formatCommentsPre,
-      formatCommentsPost: formatCommentsPost,
-      annotations: annotations,
-      objectPath: objectPath,
+      ),
     );
   }
 }

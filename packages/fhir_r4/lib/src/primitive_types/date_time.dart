@@ -92,11 +92,6 @@ class FhirDateTime extends FhirDateTimeBase
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
-    super.objectPath = 'DateTime',
   }) : super._();
 
   // --------------------------------------------------------------------------
@@ -120,11 +115,6 @@ class FhirDateTime extends FhirDateTimeBase
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String objectPath = 'DateTime',
   }) {
     return FhirDateTime._(
       valueString: valueString,
@@ -142,11 +132,6 @@ class FhirDateTime extends FhirDateTimeBase
       id: id,
       extension_: extension_,
       disallowExtensions: disallowExtensions,
-      userData: userData,
-      formatCommentsPre: formatCommentsPre,
-      formatCommentsPost: formatCommentsPost,
-      annotations: annotations,
-      objectPath: objectPath,
     );
   }
 
@@ -184,22 +169,12 @@ class FhirDateTime extends FhirDateTimeBase
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
   }) =>
       FhirDateTimeBase.constructor<FhirDateTime>(
         input: input,
         element: element,
         id: id,
         extension_: extension_,
-        userData: userData,
-        formatCommentsPre: formatCommentsPre,
-        formatCommentsPost: formatCommentsPost,
-        annotations: annotations,
-        objectPath: objectPath,
       ) as FhirDateTime;
 
   /// Constructs a [FhirDateTime] from a Dart [DateTime].
@@ -208,20 +183,12 @@ class FhirDateTime extends FhirDateTimeBase
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
   }) =>
       FhirDateTimeBase.constructor<FhirDateTime>(
         input: input,
         element: element,
         id: id,
         extension_: extension_,
-        userData: userData,
-        formatCommentsPre: formatCommentsPre,
-        formatCommentsPost: formatCommentsPost,
-        annotations: annotations,
       ) as FhirDateTime;
 
   /// Constructs a [FhirDateTime] from JSON.
@@ -230,13 +197,11 @@ class FhirDateTime extends FhirDateTimeBase
     final element = json['_value'] is Map<String, dynamic>
         ? Element.fromJson(json['_value'] as Map<String, dynamic>)
         : null;
-    final objectPath = json['objectPath'] as String?;
 
     if (value is String) {
       return FhirDateTime.fromString(
         value,
         element: element,
-        objectPath: objectPath,
       );
     } else if (value is DateTime) {
       return FhirDateTime.fromDateTime(value, element: element);
@@ -354,80 +319,49 @@ class FhirDateTime extends FhirDateTimeBase
   // copyWith
   // --------------------------------------------------------------------------
 
-  FhirDateTime _copyWith({
-    required FhirDateTime Function(FhirDateTime) then,
+  /// Creates a new instance with the specified fields replaced.
+  @override
+  $FhirDateTimeCopyWithImpl<FhirDateTime> get copyWith =>
+      $FhirDateTimeCopyWithImpl<FhirDateTime>(this, (value) => value);
+
+  /// Shorthand to set `disallowExtensions = true`.
+  FhirDateTime noExtensions() => copyWith(disallowExtensions: true);
+}
+
+/// The generated implementation of the copyWith helper for Element.
+/// The call method uses parameters of type Object? with a default value of
+/// [fhirSentinel] so that omitted parameters retain the sentinel value while
+/// explicit nulls do not.
+class $FhirDateTimeCopyWithImpl<T> implements $PrimitiveTypeCopyWith<T> {
+  /// Constructor for the copyWith implementation.
+  $FhirDateTimeCopyWithImpl(this._value, this._then);
+
+  final FhirDateTime _value;
+  final T Function(FhirDateTime) _then;
+
+  @override
+  T call({
     Object? newValue = fhirSentinel,
     Object? element = fhirSentinel,
     Object? id = fhirSentinel,
     Object? extension_ = fhirSentinel,
     Object? disallowExtensions = fhirSentinel,
-    Object? userData = fhirSentinel,
-    Object? formatCommentsPre = fhirSentinel,
-    Object? formatCommentsPost = fhirSentinel,
-    Object? annotations = fhirSentinel,
-    Object? objectPath = fhirSentinel,
   }) {
-    return then(
+    return _then(
       FhirDateTimeBase.constructor<FhirDateTime>(
-        input: identical(newValue, fhirSentinel) ? valueString : newValue,
+        input:
+            identical(newValue, fhirSentinel) ? _value.valueString : newValue,
         element: identical(element, fhirSentinel)
-            ? this.element
+            ? _value.element
             : element as Element?,
-        id: identical(id, fhirSentinel) ? this.id : id as FhirString?,
+        id: identical(id, fhirSentinel) ? _value.id : id as FhirString?,
         extension_: identical(extension_, fhirSentinel)
-            ? this.extension_
+            ? _value.extension_
             : extension_ as List<FhirExtension>?,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
-            ? this.disallowExtensions
+            ? _value.disallowExtensions
             : disallowExtensions as bool?,
-        userData: identical(userData, fhirSentinel)
-            ? this.userData
-            : userData as Map<String, dynamic>?,
-        formatCommentsPre: identical(formatCommentsPre, fhirSentinel)
-            ? this.formatCommentsPre
-            : formatCommentsPre as List<String>?,
-        formatCommentsPost: identical(formatCommentsPost, fhirSentinel)
-            ? this.formatCommentsPost
-            : formatCommentsPost as List<String>?,
-        annotations: identical(annotations, fhirSentinel)
-            ? this.annotations
-            : annotations as List<dynamic>?,
-        objectPath: identical(objectPath, fhirSentinel)
-            ? this.objectPath ?? 'DateTime'
-            : objectPath as String? ?? 'DateTime',
       ) as FhirDateTime,
     );
   }
-
-  /// Creates a new instance with the specified fields replaced.
-  @override
-  FhirDateTime copyWith({
-    dynamic newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    bool? disallowExtensions,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    return _copyWith(
-      then: (value) => value,
-      newValue: newValue,
-      element: element,
-      id: id,
-      extension_: extension_,
-      disallowExtensions: disallowExtensions,
-      userData: userData,
-      formatCommentsPre: formatCommentsPre,
-      formatCommentsPost: formatCommentsPost,
-      annotations: annotations,
-      objectPath: objectPath,
-    );
-  }
-
-  /// Shorthand to set `disallowExtensions = true`.
-  FhirDateTime noExtensions() => copyWith(disallowExtensions: true);
 }
