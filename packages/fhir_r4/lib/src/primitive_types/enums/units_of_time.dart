@@ -1,11 +1,93 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for UnitsOfTime
+enum UnitsOfTimeEnum {
+  /// s
+  s,
+
+  /// min
+  min,
+
+  /// h
+  h,
+
+  /// d
+  d,
+
+  /// wk
+  wk,
+
+  /// mo
+  mo,
+
+  /// a
+  a,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case UnitsOfTimeEnum.s:
+        return 's';
+      case UnitsOfTimeEnum.min:
+        return 'min';
+      case UnitsOfTimeEnum.h:
+        return 'h';
+      case UnitsOfTimeEnum.d:
+        return 'd';
+      case UnitsOfTimeEnum.wk:
+        return 'wk';
+      case UnitsOfTimeEnum.mo:
+        return 'mo';
+      case UnitsOfTimeEnum.a:
+        return 'a';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static UnitsOfTimeEnum? fromJson(dynamic json) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return UnitsOfTimeEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static UnitsOfTimeEnum? fromString(String? value) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 's':
+        return UnitsOfTimeEnum.s;
+      case 'min':
+        return UnitsOfTimeEnum.min;
+      case 'h':
+        return UnitsOfTimeEnum.h;
+      case 'd':
+        return UnitsOfTimeEnum.d;
+      case 'wk':
+        return UnitsOfTimeEnum.wk;
+      case 'mo':
+        return UnitsOfTimeEnum.mo;
+      case 'a':
+        return UnitsOfTimeEnum.a;
+    }
+    return null;
+  }
+}
+
 /// A unit of time (units from UCUM).
 class UnitsOfTime extends FhirCodeEnum {
   // Private underscore constructor for internal use.
-  UnitsOfTime._({
+  const UnitsOfTime._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -13,7 +95,6 @@ class UnitsOfTime extends FhirCodeEnum {
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.objectPath = 'Code',
   }) : super._();
 
   /// Public factory if you want a fallback approach or custom creation.
@@ -27,12 +108,13 @@ class UnitsOfTime extends FhirCodeEnum {
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
-    String objectPath = 'Code',
   }) {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
+    final valueEnum = UnitsOfTimeEnum.fromString(valueString);
     return UnitsOfTime._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -40,12 +122,8 @@ class UnitsOfTime extends FhirCodeEnum {
       id: id,
       extension_: extension_,
       disallowExtensions: disallowExtensions,
-      objectPath: objectPath,
     );
   }
-
-  /// Create empty [UnitsOfTime] with element only
-  factory UnitsOfTime.empty() => UnitsOfTime._(valueString: '');
 
   /// Factory constructor to create [UnitsOfTime]
   /// from JSON.
@@ -53,10 +131,11 @@ class UnitsOfTime extends FhirCodeEnum {
     Map<String, dynamic> json,
   ) {
     final value = json['value'] as String?;
+    final valueEnum = UnitsOfTimeEnum.fromString(value);
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return UnitsOfTime.elementOnly.withElement(element);
+      return UnitsOfTime._(valueString: null, element: element);
     } else if (value == null && element == null) {
       throw ArgumentError(
         'UnitsOfTime cannot be constructed from JSON.',
@@ -64,68 +143,104 @@ class UnitsOfTime extends FhirCodeEnum {
     }
     return UnitsOfTime._(
       valueString: value,
+      valueEnum: valueEnum,
       element: element,
     );
   }
 
+  /// An actual enum that can be used for UnitsOfTime
+  final UnitsOfTimeEnum? valueEnum;
+
   /// s
-  static final UnitsOfTime s = UnitsOfTime._(
+  static const UnitsOfTime s = UnitsOfTime._(
     valueString: 's',
-    system: 'http://hl7.org/fhir/ValueSet/units-of-time'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'second'.toFhirString,
+    valueEnum: UnitsOfTimeEnum.s,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/units-of-time',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'second',
+    ),
   );
 
   /// min
-  static final UnitsOfTime min = UnitsOfTime._(
+  static const UnitsOfTime min = UnitsOfTime._(
     valueString: 'min',
-    system: 'http://hl7.org/fhir/ValueSet/units-of-time'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'minute'.toFhirString,
+    valueEnum: UnitsOfTimeEnum.min,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/units-of-time',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'minute',
+    ),
   );
 
   /// h
-  static final UnitsOfTime h = UnitsOfTime._(
+  static const UnitsOfTime h = UnitsOfTime._(
     valueString: 'h',
-    system: 'http://hl7.org/fhir/ValueSet/units-of-time'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'hour'.toFhirString,
+    valueEnum: UnitsOfTimeEnum.h,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/units-of-time',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'hour',
+    ),
   );
 
   /// d
-  static final UnitsOfTime d = UnitsOfTime._(
+  static const UnitsOfTime d = UnitsOfTime._(
     valueString: 'd',
-    system: 'http://hl7.org/fhir/ValueSet/units-of-time'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'day'.toFhirString,
+    valueEnum: UnitsOfTimeEnum.d,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/units-of-time',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'day',
+    ),
   );
 
   /// wk
-  static final UnitsOfTime wk = UnitsOfTime._(
+  static const UnitsOfTime wk = UnitsOfTime._(
     valueString: 'wk',
-    system: 'http://hl7.org/fhir/ValueSet/units-of-time'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'week'.toFhirString,
+    valueEnum: UnitsOfTimeEnum.wk,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/units-of-time',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'week',
+    ),
   );
 
   /// mo
-  static final UnitsOfTime mo = UnitsOfTime._(
+  static const UnitsOfTime mo = UnitsOfTime._(
     valueString: 'mo',
-    system: 'http://hl7.org/fhir/ValueSet/units-of-time'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'month'.toFhirString,
+    valueEnum: UnitsOfTimeEnum.mo,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/units-of-time',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'month',
+    ),
   );
 
   /// a
-  static final UnitsOfTime a = UnitsOfTime._(
+  static const UnitsOfTime a = UnitsOfTime._(
     valueString: 'a',
-    system: 'http://hl7.org/fhir/ValueSet/units-of-time'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'year'.toFhirString,
+    valueEnum: UnitsOfTimeEnum.a,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/units-of-time',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'year',
+    ),
   );
-
-  /// For instances where an Element is present but not value
-  static final UnitsOfTime elementOnly = UnitsOfTime._(valueString: '');
 
   /// List of all enum-like values
   static final List<UnitsOfTime> values = [
@@ -137,13 +252,6 @@ class UnitsOfTime extends FhirCodeEnum {
     mo,
     a,
   ];
-
-  /// Clones the current instance
-  @override
-  UnitsOfTime clone() => UnitsOfTime._(
-        valueString: valueString,
-        element: element?.clone() as Element?,
-      );
 
   /// Returns the enum value with an element attached
   UnitsOfTime withElement(Element? newElement) {
@@ -164,36 +272,56 @@ class UnitsOfTime extends FhirCodeEnum {
   @override
   String toString() => valueString ?? '';
 
-  /// Creates a modified copy with updated properties.
   @override
-  UnitsOfTime copyWith({
-    dynamic newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
+  UnitsOfTime clone() => copyWith();
+
+  /// Creates a new instance with the specified fields replaced.
+  @override
+  UnitsOfTimeCopyWithImpl<UnitsOfTime> get copyWith =>
+      UnitsOfTimeCopyWithImpl<UnitsOfTime>(
+        this,
+        (v) => v as UnitsOfTime,
+      );
+}
+
+/// The generated implementation of the copyWith helper for Element.
+/// The call method uses parameters of type Object? with a default value of
+/// [fhirSentinel] so that omitted parameters retain the sentinel value while
+/// explicit nulls do not.
+class UnitsOfTimeCopyWithImpl<T> extends $FhirCodeCopyWithImpl<T> {
+  /// Constructor for the copyWith implementation.
+  UnitsOfTimeCopyWithImpl(super._value, super._then);
+
+  @override
+  T call({
+    Object? newValue = fhirSentinel,
+    Object? element = fhirSentinel,
+    Object? id = fhirSentinel,
+    Object? extension_ = fhirSentinel,
+    Object? disallowExtensions = fhirSentinel,
   }) {
-    if (newValue is! String?) {
+    if (!identical(newValue, fhirSentinel) && newValue is! String?) {
       throw ArgumentError(
-        'Invalid input for UnitsOfTime: $newValue',
+        'newValue must be a String or null, but found ${newValue.runtimeType}',
+        'newValue',
       );
     }
-    return UnitsOfTime._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
+    return _then(
+      UnitsOfTime(
+        identical(newValue, fhirSentinel)
+            ? _value.valueString
+            : newValue as String?,
+        element: identical(element, fhirSentinel)
+            ? _value.element
+            : element as Element?,
+        id: identical(id, fhirSentinel) ? _value.id : id as FhirString?,
+        extension_: identical(extension_, fhirSentinel)
+            ? _value.extension_
+            : extension_ as List<FhirExtension>?,
+        disallowExtensions: identical(disallowExtensions, fhirSentinel)
+            ? _value.disallowExtensions
+            : disallowExtensions as bool?,
       ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

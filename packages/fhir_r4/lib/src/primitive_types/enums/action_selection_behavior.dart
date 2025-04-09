@@ -1,11 +1,86 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for ActionSelectionBehavior
+enum ActionSelectionBehaviorEnum {
+  /// any
+  any,
+
+  /// all
+  all,
+
+  /// all-or-none
+  allOrNone,
+
+  /// exactly-one
+  exactlyOne,
+
+  /// at-most-one
+  atMostOne,
+
+  /// one-or-more
+  oneOrMore,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case ActionSelectionBehaviorEnum.any:
+        return 'any';
+      case ActionSelectionBehaviorEnum.all:
+        return 'all';
+      case ActionSelectionBehaviorEnum.allOrNone:
+        return 'all-or-none';
+      case ActionSelectionBehaviorEnum.exactlyOne:
+        return 'exactly-one';
+      case ActionSelectionBehaviorEnum.atMostOne:
+        return 'at-most-one';
+      case ActionSelectionBehaviorEnum.oneOrMore:
+        return 'one-or-more';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static ActionSelectionBehaviorEnum? fromJson(dynamic json) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return ActionSelectionBehaviorEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static ActionSelectionBehaviorEnum? fromString(String? value) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'any':
+        return ActionSelectionBehaviorEnum.any;
+      case 'all':
+        return ActionSelectionBehaviorEnum.all;
+      case 'all-or-none':
+        return ActionSelectionBehaviorEnum.allOrNone;
+      case 'exactly-one':
+        return ActionSelectionBehaviorEnum.exactlyOne;
+      case 'at-most-one':
+        return ActionSelectionBehaviorEnum.atMostOne;
+      case 'one-or-more':
+        return ActionSelectionBehaviorEnum.oneOrMore;
+    }
+    return null;
+  }
+}
+
 /// Defines selection behavior of a group.
 class ActionSelectionBehavior extends FhirCodeEnum {
   // Private underscore constructor for internal use.
-  ActionSelectionBehavior._({
+  const ActionSelectionBehavior._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -13,7 +88,6 @@ class ActionSelectionBehavior extends FhirCodeEnum {
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.objectPath = 'Code',
   }) : super._();
 
   /// Public factory if you want a fallback approach or custom creation.
@@ -27,12 +101,13 @@ class ActionSelectionBehavior extends FhirCodeEnum {
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
-    String objectPath = 'Code',
   }) {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
+    final valueEnum = ActionSelectionBehaviorEnum.fromString(valueString);
     return ActionSelectionBehavior._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -40,13 +115,8 @@ class ActionSelectionBehavior extends FhirCodeEnum {
       id: id,
       extension_: extension_,
       disallowExtensions: disallowExtensions,
-      objectPath: objectPath,
     );
   }
-
-  /// Create empty [ActionSelectionBehavior] with element only
-  factory ActionSelectionBehavior.empty() =>
-      ActionSelectionBehavior._(valueString: '');
 
   /// Factory constructor to create [ActionSelectionBehavior]
   /// from JSON.
@@ -54,10 +124,11 @@ class ActionSelectionBehavior extends FhirCodeEnum {
     Map<String, dynamic> json,
   ) {
     final value = json['value'] as String?;
+    final valueEnum = ActionSelectionBehaviorEnum.fromString(value);
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ActionSelectionBehavior.elementOnly.withElement(element);
+      return ActionSelectionBehavior._(valueString: null, element: element);
     } else if (value == null && element == null) {
       throw ArgumentError(
         'ActionSelectionBehavior cannot be constructed from JSON.',
@@ -65,78 +136,101 @@ class ActionSelectionBehavior extends FhirCodeEnum {
     }
     return ActionSelectionBehavior._(
       valueString: value,
+      valueEnum: valueEnum,
       element: element,
     );
   }
 
+  /// An actual enum that can be used for ActionSelectionBehavior
+  final ActionSelectionBehaviorEnum? valueEnum;
+
   /// any
-  static final ActionSelectionBehavior any = ActionSelectionBehavior._(
+  static const ActionSelectionBehavior any = ActionSelectionBehavior._(
     valueString: 'any',
-    system: 'http://hl7.org/fhir/ValueSet/action-selection-behavior'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Any'.toFhirString,
+    valueEnum: ActionSelectionBehaviorEnum.any,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/action-selection-behavior',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Any',
+    ),
   );
 
   /// all
-  static final ActionSelectionBehavior all = ActionSelectionBehavior._(
+  static const ActionSelectionBehavior all = ActionSelectionBehavior._(
     valueString: 'all',
-    system: 'http://hl7.org/fhir/ValueSet/action-selection-behavior'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'All'.toFhirString,
+    valueEnum: ActionSelectionBehaviorEnum.all,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/action-selection-behavior',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'All',
+    ),
   );
 
   /// all_or_none
-  static final ActionSelectionBehavior all_or_none = ActionSelectionBehavior._(
+  static const ActionSelectionBehavior allOrNone = ActionSelectionBehavior._(
     valueString: 'all-or-none',
-    system: 'http://hl7.org/fhir/ValueSet/action-selection-behavior'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'All Or None'.toFhirString,
+    valueEnum: ActionSelectionBehaviorEnum.allOrNone,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/action-selection-behavior',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'All Or None',
+    ),
   );
 
   /// exactly_one
-  static final ActionSelectionBehavior exactly_one = ActionSelectionBehavior._(
+  static const ActionSelectionBehavior exactlyOne = ActionSelectionBehavior._(
     valueString: 'exactly-one',
-    system: 'http://hl7.org/fhir/ValueSet/action-selection-behavior'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Exactly One'.toFhirString,
+    valueEnum: ActionSelectionBehaviorEnum.exactlyOne,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/action-selection-behavior',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Exactly One',
+    ),
   );
 
   /// at_most_one
-  static final ActionSelectionBehavior at_most_one = ActionSelectionBehavior._(
+  static const ActionSelectionBehavior atMostOne = ActionSelectionBehavior._(
     valueString: 'at-most-one',
-    system: 'http://hl7.org/fhir/ValueSet/action-selection-behavior'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'At Most One'.toFhirString,
+    valueEnum: ActionSelectionBehaviorEnum.atMostOne,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/action-selection-behavior',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'At Most One',
+    ),
   );
 
   /// one_or_more
-  static final ActionSelectionBehavior one_or_more = ActionSelectionBehavior._(
+  static const ActionSelectionBehavior oneOrMore = ActionSelectionBehavior._(
     valueString: 'one-or-more',
-    system: 'http://hl7.org/fhir/ValueSet/action-selection-behavior'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'One Or More'.toFhirString,
+    valueEnum: ActionSelectionBehaviorEnum.oneOrMore,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/action-selection-behavior',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'One Or More',
+    ),
   );
-
-  /// For instances where an Element is present but not value
-  static final ActionSelectionBehavior elementOnly =
-      ActionSelectionBehavior._(valueString: '');
 
   /// List of all enum-like values
   static final List<ActionSelectionBehavior> values = [
     any,
     all,
-    all_or_none,
-    exactly_one,
-    at_most_one,
-    one_or_more,
+    allOrNone,
+    exactlyOne,
+    atMostOne,
+    oneOrMore,
   ];
-
-  /// Clones the current instance
-  @override
-  ActionSelectionBehavior clone() => ActionSelectionBehavior._(
-        valueString: valueString,
-        element: element?.clone() as Element?,
-      );
 
   /// Returns the enum value with an element attached
   ActionSelectionBehavior withElement(Element? newElement) {
@@ -157,36 +251,56 @@ class ActionSelectionBehavior extends FhirCodeEnum {
   @override
   String toString() => valueString ?? '';
 
-  /// Creates a modified copy with updated properties.
   @override
-  ActionSelectionBehavior copyWith({
-    dynamic newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
+  ActionSelectionBehavior clone() => copyWith();
+
+  /// Creates a new instance with the specified fields replaced.
+  @override
+  ActionSelectionBehaviorCopyWithImpl<ActionSelectionBehavior> get copyWith =>
+      ActionSelectionBehaviorCopyWithImpl<ActionSelectionBehavior>(
+        this,
+        (v) => v as ActionSelectionBehavior,
+      );
+}
+
+/// The generated implementation of the copyWith helper for Element.
+/// The call method uses parameters of type Object? with a default value of
+/// [fhirSentinel] so that omitted parameters retain the sentinel value while
+/// explicit nulls do not.
+class ActionSelectionBehaviorCopyWithImpl<T> extends $FhirCodeCopyWithImpl<T> {
+  /// Constructor for the copyWith implementation.
+  ActionSelectionBehaviorCopyWithImpl(super._value, super._then);
+
+  @override
+  T call({
+    Object? newValue = fhirSentinel,
+    Object? element = fhirSentinel,
+    Object? id = fhirSentinel,
+    Object? extension_ = fhirSentinel,
+    Object? disallowExtensions = fhirSentinel,
   }) {
-    if (newValue is! String?) {
+    if (!identical(newValue, fhirSentinel) && newValue is! String?) {
       throw ArgumentError(
-        'Invalid input for ActionSelectionBehavior: $newValue',
+        'newValue must be a String or null, but found ${newValue.runtimeType}',
+        'newValue',
       );
     }
-    return ActionSelectionBehavior._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
+    return _then(
+      ActionSelectionBehavior(
+        identical(newValue, fhirSentinel)
+            ? _value.valueString
+            : newValue as String?,
+        element: identical(element, fhirSentinel)
+            ? _value.element
+            : element as Element?,
+        id: identical(id, fhirSentinel) ? _value.id : id as FhirString?,
+        extension_: identical(extension_, fhirSentinel)
+            ? _value.extension_
+            : extension_ as List<FhirExtension>?,
+        disallowExtensions: identical(disallowExtensions, fhirSentinel)
+            ? _value.disallowExtensions
+            : disallowExtensions as bool?,
       ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

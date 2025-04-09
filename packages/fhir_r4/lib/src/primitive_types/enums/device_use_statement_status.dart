@@ -1,11 +1,86 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for DeviceUseStatementStatus
+enum DeviceUseStatementStatusEnum {
+  /// active
+  active,
+
+  /// completed
+  completed,
+
+  /// entered-in-error
+  enteredInError,
+
+  /// intended
+  intended,
+
+  /// stopped
+  stopped,
+
+  /// on-hold
+  onHold,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case DeviceUseStatementStatusEnum.active:
+        return 'active';
+      case DeviceUseStatementStatusEnum.completed:
+        return 'completed';
+      case DeviceUseStatementStatusEnum.enteredInError:
+        return 'entered-in-error';
+      case DeviceUseStatementStatusEnum.intended:
+        return 'intended';
+      case DeviceUseStatementStatusEnum.stopped:
+        return 'stopped';
+      case DeviceUseStatementStatusEnum.onHold:
+        return 'on-hold';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static DeviceUseStatementStatusEnum? fromJson(dynamic json) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return DeviceUseStatementStatusEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static DeviceUseStatementStatusEnum? fromString(String? value) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'active':
+        return DeviceUseStatementStatusEnum.active;
+      case 'completed':
+        return DeviceUseStatementStatusEnum.completed;
+      case 'entered-in-error':
+        return DeviceUseStatementStatusEnum.enteredInError;
+      case 'intended':
+        return DeviceUseStatementStatusEnum.intended;
+      case 'stopped':
+        return DeviceUseStatementStatusEnum.stopped;
+      case 'on-hold':
+        return DeviceUseStatementStatusEnum.onHold;
+    }
+    return null;
+  }
+}
+
 /// A coded concept indicating the current status of the Device Usage.
 class DeviceUseStatementStatus extends FhirCodeEnum {
   // Private underscore constructor for internal use.
-  DeviceUseStatementStatus._({
+  const DeviceUseStatementStatus._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -13,7 +88,6 @@ class DeviceUseStatementStatus extends FhirCodeEnum {
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.objectPath = 'Code',
   }) : super._();
 
   /// Public factory if you want a fallback approach or custom creation.
@@ -27,12 +101,13 @@ class DeviceUseStatementStatus extends FhirCodeEnum {
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
-    String objectPath = 'Code',
   }) {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
+    final valueEnum = DeviceUseStatementStatusEnum.fromString(valueString);
     return DeviceUseStatementStatus._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -40,13 +115,8 @@ class DeviceUseStatementStatus extends FhirCodeEnum {
       id: id,
       extension_: extension_,
       disallowExtensions: disallowExtensions,
-      objectPath: objectPath,
     );
   }
-
-  /// Create empty [DeviceUseStatementStatus] with element only
-  factory DeviceUseStatementStatus.empty() =>
-      DeviceUseStatementStatus._(valueString: '');
 
   /// Factory constructor to create [DeviceUseStatementStatus]
   /// from JSON.
@@ -54,10 +124,11 @@ class DeviceUseStatementStatus extends FhirCodeEnum {
     Map<String, dynamic> json,
   ) {
     final value = json['value'] as String?;
+    final valueEnum = DeviceUseStatementStatusEnum.fromString(value);
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return DeviceUseStatementStatus.elementOnly.withElement(element);
+      return DeviceUseStatementStatus._(valueString: null, element: element);
     } else if (value == null && element == null) {
       throw ArgumentError(
         'DeviceUseStatementStatus cannot be constructed from JSON.',
@@ -65,79 +136,102 @@ class DeviceUseStatementStatus extends FhirCodeEnum {
     }
     return DeviceUseStatementStatus._(
       valueString: value,
+      valueEnum: valueEnum,
       element: element,
     );
   }
 
+  /// An actual enum that can be used for DeviceUseStatementStatus
+  final DeviceUseStatementStatusEnum? valueEnum;
+
   /// active
-  static final DeviceUseStatementStatus active = DeviceUseStatementStatus._(
+  static const DeviceUseStatementStatus active = DeviceUseStatementStatus._(
     valueString: 'active',
-    system: 'http://hl7.org/fhir/ValueSet/device-statement-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Active'.toFhirString,
+    valueEnum: DeviceUseStatementStatusEnum.active,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/device-statement-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Active',
+    ),
   );
 
   /// completed
-  static final DeviceUseStatementStatus completed = DeviceUseStatementStatus._(
+  static const DeviceUseStatementStatus completed = DeviceUseStatementStatus._(
     valueString: 'completed',
-    system: 'http://hl7.org/fhir/ValueSet/device-statement-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Completed'.toFhirString,
+    valueEnum: DeviceUseStatementStatusEnum.completed,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/device-statement-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Completed',
+    ),
   );
 
   /// entered_in_error
-  static final DeviceUseStatementStatus entered_in_error =
+  static const DeviceUseStatementStatus enteredInError =
       DeviceUseStatementStatus._(
     valueString: 'entered-in-error',
-    system: 'http://hl7.org/fhir/ValueSet/device-statement-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Entered in Error'.toFhirString,
+    valueEnum: DeviceUseStatementStatusEnum.enteredInError,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/device-statement-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Entered in Error',
+    ),
   );
 
   /// intended
-  static final DeviceUseStatementStatus intended = DeviceUseStatementStatus._(
+  static const DeviceUseStatementStatus intended = DeviceUseStatementStatus._(
     valueString: 'intended',
-    system: 'http://hl7.org/fhir/ValueSet/device-statement-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Intended'.toFhirString,
+    valueEnum: DeviceUseStatementStatusEnum.intended,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/device-statement-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Intended',
+    ),
   );
 
   /// stopped
-  static final DeviceUseStatementStatus stopped = DeviceUseStatementStatus._(
+  static const DeviceUseStatementStatus stopped = DeviceUseStatementStatus._(
     valueString: 'stopped',
-    system: 'http://hl7.org/fhir/ValueSet/device-statement-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Stopped'.toFhirString,
+    valueEnum: DeviceUseStatementStatusEnum.stopped,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/device-statement-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Stopped',
+    ),
   );
 
   /// on_hold
-  static final DeviceUseStatementStatus on_hold = DeviceUseStatementStatus._(
+  static const DeviceUseStatementStatus onHold = DeviceUseStatementStatus._(
     valueString: 'on-hold',
-    system: 'http://hl7.org/fhir/ValueSet/device-statement-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'On Hold'.toFhirString,
+    valueEnum: DeviceUseStatementStatusEnum.onHold,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/device-statement-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'On Hold',
+    ),
   );
-
-  /// For instances where an Element is present but not value
-  static final DeviceUseStatementStatus elementOnly =
-      DeviceUseStatementStatus._(valueString: '');
 
   /// List of all enum-like values
   static final List<DeviceUseStatementStatus> values = [
     active,
     completed,
-    entered_in_error,
+    enteredInError,
     intended,
     stopped,
-    on_hold,
+    onHold,
   ];
-
-  /// Clones the current instance
-  @override
-  DeviceUseStatementStatus clone() => DeviceUseStatementStatus._(
-        valueString: valueString,
-        element: element?.clone() as Element?,
-      );
 
   /// Returns the enum value with an element attached
   DeviceUseStatementStatus withElement(Element? newElement) {
@@ -158,36 +252,56 @@ class DeviceUseStatementStatus extends FhirCodeEnum {
   @override
   String toString() => valueString ?? '';
 
-  /// Creates a modified copy with updated properties.
   @override
-  DeviceUseStatementStatus copyWith({
-    dynamic newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
+  DeviceUseStatementStatus clone() => copyWith();
+
+  /// Creates a new instance with the specified fields replaced.
+  @override
+  DeviceUseStatementStatusCopyWithImpl<DeviceUseStatementStatus> get copyWith =>
+      DeviceUseStatementStatusCopyWithImpl<DeviceUseStatementStatus>(
+        this,
+        (v) => v as DeviceUseStatementStatus,
+      );
+}
+
+/// The generated implementation of the copyWith helper for Element.
+/// The call method uses parameters of type Object? with a default value of
+/// [fhirSentinel] so that omitted parameters retain the sentinel value while
+/// explicit nulls do not.
+class DeviceUseStatementStatusCopyWithImpl<T> extends $FhirCodeCopyWithImpl<T> {
+  /// Constructor for the copyWith implementation.
+  DeviceUseStatementStatusCopyWithImpl(super._value, super._then);
+
+  @override
+  T call({
+    Object? newValue = fhirSentinel,
+    Object? element = fhirSentinel,
+    Object? id = fhirSentinel,
+    Object? extension_ = fhirSentinel,
+    Object? disallowExtensions = fhirSentinel,
   }) {
-    if (newValue is! String?) {
+    if (!identical(newValue, fhirSentinel) && newValue is! String?) {
       throw ArgumentError(
-        'Invalid input for DeviceUseStatementStatus: $newValue',
+        'newValue must be a String or null, but found ${newValue.runtimeType}',
+        'newValue',
       );
     }
-    return DeviceUseStatementStatus._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
+    return _then(
+      DeviceUseStatementStatus(
+        identical(newValue, fhirSentinel)
+            ? _value.valueString
+            : newValue as String?,
+        element: identical(element, fhirSentinel)
+            ? _value.element
+            : element as Element?,
+        id: identical(id, fhirSentinel) ? _value.id : id as FhirString?,
+        extension_: identical(extension_, fhirSentinel)
+            ? _value.extension_
+            : extension_ as List<FhirExtension>?,
+        disallowExtensions: identical(disallowExtensions, fhirSentinel)
+            ? _value.disallowExtensions
+            : disallowExtensions as bool?,
       ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

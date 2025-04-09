@@ -1,11 +1,58 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for EventCapabilityMode
+enum EventCapabilityModeEnum {
+  /// sender
+  sender,
+
+  /// receiver
+  receiver,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case EventCapabilityModeEnum.sender:
+        return 'sender';
+      case EventCapabilityModeEnum.receiver:
+        return 'receiver';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static EventCapabilityModeEnum? fromJson(dynamic json) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return EventCapabilityModeEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static EventCapabilityModeEnum? fromString(String? value) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'sender':
+        return EventCapabilityModeEnum.sender;
+      case 'receiver':
+        return EventCapabilityModeEnum.receiver;
+    }
+    return null;
+  }
+}
+
 /// The mode of a message capability statement.
 class EventCapabilityMode extends FhirCodeEnum {
   // Private underscore constructor for internal use.
-  EventCapabilityMode._({
+  const EventCapabilityMode._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -13,7 +60,6 @@ class EventCapabilityMode extends FhirCodeEnum {
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.objectPath = 'Code',
   }) : super._();
 
   /// Public factory if you want a fallback approach or custom creation.
@@ -27,12 +73,13 @@ class EventCapabilityMode extends FhirCodeEnum {
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
-    String objectPath = 'Code',
   }) {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
+    final valueEnum = EventCapabilityModeEnum.fromString(valueString);
     return EventCapabilityMode._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -40,12 +87,8 @@ class EventCapabilityMode extends FhirCodeEnum {
       id: id,
       extension_: extension_,
       disallowExtensions: disallowExtensions,
-      objectPath: objectPath,
     );
   }
-
-  /// Create empty [EventCapabilityMode] with element only
-  factory EventCapabilityMode.empty() => EventCapabilityMode._(valueString: '');
 
   /// Factory constructor to create [EventCapabilityMode]
   /// from JSON.
@@ -53,10 +96,11 @@ class EventCapabilityMode extends FhirCodeEnum {
     Map<String, dynamic> json,
   ) {
     final value = json['value'] as String?;
+    final valueEnum = EventCapabilityModeEnum.fromString(value);
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return EventCapabilityMode.elementOnly.withElement(element);
+      return EventCapabilityMode._(valueString: null, element: element);
     } else if (value == null && element == null) {
       throw ArgumentError(
         'EventCapabilityMode cannot be constructed from JSON.',
@@ -64,42 +108,45 @@ class EventCapabilityMode extends FhirCodeEnum {
     }
     return EventCapabilityMode._(
       valueString: value,
+      valueEnum: valueEnum,
       element: element,
     );
   }
 
+  /// An actual enum that can be used for EventCapabilityMode
+  final EventCapabilityModeEnum? valueEnum;
+
   /// sender
-  static final EventCapabilityMode sender = EventCapabilityMode._(
+  static const EventCapabilityMode sender = EventCapabilityMode._(
     valueString: 'sender',
-    system: 'http://hl7.org/fhir/ValueSet/event-capability-mode'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Sender'.toFhirString,
+    valueEnum: EventCapabilityModeEnum.sender,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/event-capability-mode',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Sender',
+    ),
   );
 
   /// receiver
-  static final EventCapabilityMode receiver = EventCapabilityMode._(
+  static const EventCapabilityMode receiver = EventCapabilityMode._(
     valueString: 'receiver',
-    system: 'http://hl7.org/fhir/ValueSet/event-capability-mode'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Receiver'.toFhirString,
+    valueEnum: EventCapabilityModeEnum.receiver,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/event-capability-mode',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Receiver',
+    ),
   );
-
-  /// For instances where an Element is present but not value
-  static final EventCapabilityMode elementOnly =
-      EventCapabilityMode._(valueString: '');
 
   /// List of all enum-like values
   static final List<EventCapabilityMode> values = [
     sender,
     receiver,
   ];
-
-  /// Clones the current instance
-  @override
-  EventCapabilityMode clone() => EventCapabilityMode._(
-        valueString: valueString,
-        element: element?.clone() as Element?,
-      );
 
   /// Returns the enum value with an element attached
   EventCapabilityMode withElement(Element? newElement) {
@@ -120,36 +167,56 @@ class EventCapabilityMode extends FhirCodeEnum {
   @override
   String toString() => valueString ?? '';
 
-  /// Creates a modified copy with updated properties.
   @override
-  EventCapabilityMode copyWith({
-    dynamic newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
+  EventCapabilityMode clone() => copyWith();
+
+  /// Creates a new instance with the specified fields replaced.
+  @override
+  EventCapabilityModeCopyWithImpl<EventCapabilityMode> get copyWith =>
+      EventCapabilityModeCopyWithImpl<EventCapabilityMode>(
+        this,
+        (v) => v as EventCapabilityMode,
+      );
+}
+
+/// The generated implementation of the copyWith helper for Element.
+/// The call method uses parameters of type Object? with a default value of
+/// [fhirSentinel] so that omitted parameters retain the sentinel value while
+/// explicit nulls do not.
+class EventCapabilityModeCopyWithImpl<T> extends $FhirCodeCopyWithImpl<T> {
+  /// Constructor for the copyWith implementation.
+  EventCapabilityModeCopyWithImpl(super._value, super._then);
+
+  @override
+  T call({
+    Object? newValue = fhirSentinel,
+    Object? element = fhirSentinel,
+    Object? id = fhirSentinel,
+    Object? extension_ = fhirSentinel,
+    Object? disallowExtensions = fhirSentinel,
   }) {
-    if (newValue is! String?) {
+    if (!identical(newValue, fhirSentinel) && newValue is! String?) {
       throw ArgumentError(
-        'Invalid input for EventCapabilityMode: $newValue',
+        'newValue must be a String or null, but found ${newValue.runtimeType}',
+        'newValue',
       );
     }
-    return EventCapabilityMode._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
+    return _then(
+      EventCapabilityMode(
+        identical(newValue, fhirSentinel)
+            ? _value.valueString
+            : newValue as String?,
+        element: identical(element, fhirSentinel)
+            ? _value.element
+            : element as Element?,
+        id: identical(id, fhirSentinel) ? _value.id : id as FhirString?,
+        extension_: identical(extension_, fhirSentinel)
+            ? _value.extension_
+            : extension_ as List<FhirExtension>?,
+        disallowExtensions: identical(disallowExtensions, fhirSentinel)
+            ? _value.disallowExtensions
+            : disallowExtensions as bool?,
       ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

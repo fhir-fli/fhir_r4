@@ -1,11 +1,72 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for SpecimenStatus
+enum SpecimenStatusEnum {
+  /// available
+  available,
+
+  /// unavailable
+  unavailable,
+
+  /// unsatisfactory
+  unsatisfactory,
+
+  /// entered-in-error
+  enteredInError,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case SpecimenStatusEnum.available:
+        return 'available';
+      case SpecimenStatusEnum.unavailable:
+        return 'unavailable';
+      case SpecimenStatusEnum.unsatisfactory:
+        return 'unsatisfactory';
+      case SpecimenStatusEnum.enteredInError:
+        return 'entered-in-error';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static SpecimenStatusEnum? fromJson(dynamic json) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return SpecimenStatusEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static SpecimenStatusEnum? fromString(String? value) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'available':
+        return SpecimenStatusEnum.available;
+      case 'unavailable':
+        return SpecimenStatusEnum.unavailable;
+      case 'unsatisfactory':
+        return SpecimenStatusEnum.unsatisfactory;
+      case 'entered-in-error':
+        return SpecimenStatusEnum.enteredInError;
+    }
+    return null;
+  }
+}
+
 /// Codes providing the status/availability of a specimen.
 class SpecimenStatus extends FhirCodeEnum {
   // Private underscore constructor for internal use.
-  SpecimenStatus._({
+  const SpecimenStatus._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -13,7 +74,6 @@ class SpecimenStatus extends FhirCodeEnum {
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.objectPath = 'Code',
   }) : super._();
 
   /// Public factory if you want a fallback approach or custom creation.
@@ -27,12 +87,13 @@ class SpecimenStatus extends FhirCodeEnum {
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
-    String objectPath = 'Code',
   }) {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
+    final valueEnum = SpecimenStatusEnum.fromString(valueString);
     return SpecimenStatus._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -40,12 +101,8 @@ class SpecimenStatus extends FhirCodeEnum {
       id: id,
       extension_: extension_,
       disallowExtensions: disallowExtensions,
-      objectPath: objectPath,
     );
   }
-
-  /// Create empty [SpecimenStatus] with element only
-  factory SpecimenStatus.empty() => SpecimenStatus._(valueString: '');
 
   /// Factory constructor to create [SpecimenStatus]
   /// from JSON.
@@ -53,10 +110,11 @@ class SpecimenStatus extends FhirCodeEnum {
     Map<String, dynamic> json,
   ) {
     final value = json['value'] as String?;
+    final valueEnum = SpecimenStatusEnum.fromString(value);
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return SpecimenStatus.elementOnly.withElement(element);
+      return SpecimenStatus._(valueString: null, element: element);
     } else if (value == null && element == null) {
       throw ArgumentError(
         'SpecimenStatus cannot be constructed from JSON.',
@@ -64,59 +122,73 @@ class SpecimenStatus extends FhirCodeEnum {
     }
     return SpecimenStatus._(
       valueString: value,
+      valueEnum: valueEnum,
       element: element,
     );
   }
 
+  /// An actual enum that can be used for SpecimenStatus
+  final SpecimenStatusEnum? valueEnum;
+
   /// available
-  static final SpecimenStatus available = SpecimenStatus._(
+  static const SpecimenStatus available = SpecimenStatus._(
     valueString: 'available',
-    system: 'http://hl7.org/fhir/ValueSet/specimen-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Available'.toFhirString,
+    valueEnum: SpecimenStatusEnum.available,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/specimen-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Available',
+    ),
   );
 
   /// unavailable
-  static final SpecimenStatus unavailable = SpecimenStatus._(
+  static const SpecimenStatus unavailable = SpecimenStatus._(
     valueString: 'unavailable',
-    system: 'http://hl7.org/fhir/ValueSet/specimen-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Unavailable'.toFhirString,
+    valueEnum: SpecimenStatusEnum.unavailable,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/specimen-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Unavailable',
+    ),
   );
 
   /// unsatisfactory
-  static final SpecimenStatus unsatisfactory = SpecimenStatus._(
+  static const SpecimenStatus unsatisfactory = SpecimenStatus._(
     valueString: 'unsatisfactory',
-    system: 'http://hl7.org/fhir/ValueSet/specimen-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Unsatisfactory'.toFhirString,
+    valueEnum: SpecimenStatusEnum.unsatisfactory,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/specimen-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Unsatisfactory',
+    ),
   );
 
   /// entered_in_error
-  static final SpecimenStatus entered_in_error = SpecimenStatus._(
+  static const SpecimenStatus enteredInError = SpecimenStatus._(
     valueString: 'entered-in-error',
-    system: 'http://hl7.org/fhir/ValueSet/specimen-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Entered in Error'.toFhirString,
+    valueEnum: SpecimenStatusEnum.enteredInError,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/specimen-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Entered in Error',
+    ),
   );
-
-  /// For instances where an Element is present but not value
-  static final SpecimenStatus elementOnly = SpecimenStatus._(valueString: '');
 
   /// List of all enum-like values
   static final List<SpecimenStatus> values = [
     available,
     unavailable,
     unsatisfactory,
-    entered_in_error,
+    enteredInError,
   ];
-
-  /// Clones the current instance
-  @override
-  SpecimenStatus clone() => SpecimenStatus._(
-        valueString: valueString,
-        element: element?.clone() as Element?,
-      );
 
   /// Returns the enum value with an element attached
   SpecimenStatus withElement(Element? newElement) {
@@ -137,36 +209,56 @@ class SpecimenStatus extends FhirCodeEnum {
   @override
   String toString() => valueString ?? '';
 
-  /// Creates a modified copy with updated properties.
   @override
-  SpecimenStatus copyWith({
-    dynamic newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
+  SpecimenStatus clone() => copyWith();
+
+  /// Creates a new instance with the specified fields replaced.
+  @override
+  SpecimenStatusCopyWithImpl<SpecimenStatus> get copyWith =>
+      SpecimenStatusCopyWithImpl<SpecimenStatus>(
+        this,
+        (v) => v as SpecimenStatus,
+      );
+}
+
+/// The generated implementation of the copyWith helper for Element.
+/// The call method uses parameters of type Object? with a default value of
+/// [fhirSentinel] so that omitted parameters retain the sentinel value while
+/// explicit nulls do not.
+class SpecimenStatusCopyWithImpl<T> extends $FhirCodeCopyWithImpl<T> {
+  /// Constructor for the copyWith implementation.
+  SpecimenStatusCopyWithImpl(super._value, super._then);
+
+  @override
+  T call({
+    Object? newValue = fhirSentinel,
+    Object? element = fhirSentinel,
+    Object? id = fhirSentinel,
+    Object? extension_ = fhirSentinel,
+    Object? disallowExtensions = fhirSentinel,
   }) {
-    if (newValue is! String?) {
+    if (!identical(newValue, fhirSentinel) && newValue is! String?) {
       throw ArgumentError(
-        'Invalid input for SpecimenStatus: $newValue',
+        'newValue must be a String or null, but found ${newValue.runtimeType}',
+        'newValue',
       );
     }
-    return SpecimenStatus._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
+    return _then(
+      SpecimenStatus(
+        identical(newValue, fhirSentinel)
+            ? _value.valueString
+            : newValue as String?,
+        element: identical(element, fhirSentinel)
+            ? _value.element
+            : element as Element?,
+        id: identical(id, fhirSentinel) ? _value.id : id as FhirString?,
+        extension_: identical(extension_, fhirSentinel)
+            ? _value.extension_
+            : extension_ as List<FhirExtension>?,
+        disallowExtensions: identical(disallowExtensions, fhirSentinel)
+            ? _value.disallowExtensions
+            : disallowExtensions as bool?,
       ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

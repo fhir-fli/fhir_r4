@@ -135,4 +135,67 @@ void stringTest() {
       expect(fhirString.toJsonString(), equals('{"value":"$validString"}'));
     });
   });
+  group('FhirString copyWith Tests:', () {
+    test('should copy with new string values', () {
+      final original = FhirString('Original text');
+      expect(original.valueString, equals('Original text'));
+
+      final copied = original.copyWith(newValue: 'New text');
+      expect(copied.valueString, equals('New text'));
+      expect(
+        original.valueString,
+        equals('Original text'),
+      ); // Original unchanged
+    });
+
+    test('should clear value when explicitly passed null', () {
+      final original = FhirString('Original text');
+      expect(original.valueString, isNotNull);
+
+      // ignore: avoid_redundant_argument_values
+      final cleared = original.copyWith(newValue: null);
+      expect(cleared.valueString, isNull);
+      expect(original.valueString, isNotNull); // Original unchanged
+    });
+
+    test('should preserve string operations on copied values', () {
+      final original = FhirString('Hello World');
+      final copied = original.copyWith(newValue: 'New World');
+
+      expect(copied.contains('World'), isTrue);
+      expect(copied.length, equals(9));
+      expect(copied.toLowerCase(), equals('new world'));
+    });
+
+    test('should handle extensions properly', () {
+      final original = FhirString('Original text');
+      final extensions = [
+        FhirExtension(
+          url: 'http://example.org/fhir/StructureDefinition/test-extension'
+              .toFhirString,
+          id: FhirString('extension-value'),
+        ),
+      ];
+
+      final copied = original.copyWith(
+        newValue: 'New text',
+        extension_: extensions,
+      );
+
+      expect(copied.valueString, equals('New text'));
+      expect(copied.extension_?.length, equals(1));
+      expect(
+        copied.extension_?[0].url,
+        equals('http://example.org/fhir/StructureDefinition/test-extension'.toFhirString),
+      );
+    });
+
+    test('should support noExtensions method', () {
+      final original = FhirString('Original text');
+      final noExtensionsVersion = original.noExtensions();
+
+      expect(noExtensionsVersion.disallowExtensions, isTrue);
+      expect(noExtensionsVersion.valueString, equals('Original text'));
+    });
+  });
 }

@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
+part 'packaged_product_definition.g.dart';
+
 /// [PackagedProductDefinition]
 /// A medically related item or items, in a container or package.
 class PackagedProductDefinition extends DomainResource {
@@ -32,89 +34,64 @@ class PackagedProductDefinition extends DomainResource {
     this.manufacturer,
     this.package,
   }) : super(
-          objectPath: 'PackagedProductDefinition',
           resourceType: R4ResourceType.PackagedProductDefinition,
         );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory PackagedProductDefinition.empty() =>
-      const PackagedProductDefinition();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory PackagedProductDefinition.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'PackagedProductDefinition';
     return PackagedProductDefinition(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
         FhirMeta.fromJson,
-        '$objectPath.meta',
       ),
       implicitRules: JsonParser.parsePrimitive<FhirUri>(
         json,
         'implicitRules',
         FhirUri.fromJson,
-        '$objectPath.implicitRules',
       ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-        '$objectPath.language',
       ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
         Narrative.fromJson,
-        '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
           ?.map<Resource>(
             (v) => Resource.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.contained',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       identifier: (json['identifier'] as List<dynamic>?)
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.identifier',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -122,21 +99,16 @@ class PackagedProductDefinition extends DomainResource {
         json,
         'name',
         FhirString.fromJson,
-        '$objectPath.name',
       ),
       type: JsonParser.parseObject<CodeableConcept>(
         json,
         'type',
         CodeableConcept.fromJson,
-        '$objectPath.type',
       ),
       packageFor: (json['packageFor'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.packageFor',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -144,21 +116,16 @@ class PackagedProductDefinition extends DomainResource {
         json,
         'status',
         CodeableConcept.fromJson,
-        '$objectPath.status',
       ),
       statusDate: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'statusDate',
         FhirDateTime.fromJson,
-        '$objectPath.statusDate',
       ),
       containedItemQuantity: (json['containedItemQuantity'] as List<dynamic>?)
           ?.map<Quantity>(
             (v) => Quantity.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.containedItemQuantity',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -166,35 +133,25 @@ class PackagedProductDefinition extends DomainResource {
         json,
         'description',
         FhirMarkdown.fromJson,
-        '$objectPath.description',
       ),
       legalStatusOfSupply: (json['legalStatusOfSupply'] as List<dynamic>?)
           ?.map<PackagedProductDefinitionLegalStatusOfSupply>(
             (v) => PackagedProductDefinitionLegalStatusOfSupply.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.legalStatusOfSupply',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       marketingStatus: (json['marketingStatus'] as List<dynamic>?)
           ?.map<MarketingStatus>(
             (v) => MarketingStatus.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.marketingStatus',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       characteristic: (json['characteristic'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.characteristic',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -202,15 +159,11 @@ class PackagedProductDefinition extends DomainResource {
         json,
         'copackagedIndicator',
         FhirBoolean.fromJson,
-        '$objectPath.copackagedIndicator',
       ),
       manufacturer: (json['manufacturer'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.manufacturer',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -218,7 +171,6 @@ class PackagedProductDefinition extends DomainResource {
         json,
         'package',
         PackagedProductDefinitionPackage.fromJson,
-        '$objectPath.package',
       ),
     );
   }
@@ -499,844 +451,20 @@ class PackagedProductDefinition extends DomainResource {
     return json;
   }
 
-  /// Lists the JSON keys for the object.
   @override
-  List<String> listChildrenNames() {
-    return [
-      'id',
-      'meta',
-      'implicitRules',
-      'language',
-      'text',
-      'contained',
-      'extension',
-      'modifierExtension',
-      'identifier',
-      'name',
-      'type',
-      'packageFor',
-      'status',
-      'statusDate',
-      'containedItemQuantity',
-      'description',
-      'legalStatusOfSupply',
-      'marketingStatus',
-      'characteristic',
-      'copackagedIndicator',
-      'manufacturer',
-      'package',
-    ];
-  }
+  PackagedProductDefinition clone() => copyWith();
 
-  /// Retrieves all matching child fields by name.
-  ///Optionally validates the name.
+  /// Copy function for [PackagedProductDefinition]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<FhirBase> getChildrenByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    final fields = <FhirBase>[];
-    switch (fieldName) {
-      case 'id':
-        if (id != null) {
-          fields.add(id!);
-        }
-      case 'meta':
-        if (meta != null) {
-          fields.add(meta!);
-        }
-      case 'implicitRules':
-        if (implicitRules != null) {
-          fields.add(implicitRules!);
-        }
-      case 'language':
-        if (language != null) {
-          fields.add(language!);
-        }
-      case 'text':
-        if (text != null) {
-          fields.add(text!);
-        }
-      case 'contained':
-        if (contained != null) {
-          fields.addAll(contained!);
-        }
-      case 'extension':
-        if (extension_ != null) {
-          fields.addAll(extension_!);
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          fields.addAll(modifierExtension!);
-        }
-      case 'identifier':
-        if (identifier != null) {
-          fields.addAll(identifier!);
-        }
-      case 'name':
-        if (name != null) {
-          fields.add(name!);
-        }
-      case 'type':
-        if (type != null) {
-          fields.add(type!);
-        }
-      case 'packageFor':
-        if (packageFor != null) {
-          fields.addAll(packageFor!);
-        }
-      case 'status':
-        if (status != null) {
-          fields.add(status!);
-        }
-      case 'statusDate':
-        if (statusDate != null) {
-          fields.add(statusDate!);
-        }
-      case 'containedItemQuantity':
-        if (containedItemQuantity != null) {
-          fields.addAll(containedItemQuantity!);
-        }
-      case 'description':
-        if (description != null) {
-          fields.add(description!);
-        }
-      case 'legalStatusOfSupply':
-        if (legalStatusOfSupply != null) {
-          fields.addAll(legalStatusOfSupply!);
-        }
-      case 'marketingStatus':
-        if (marketingStatus != null) {
-          fields.addAll(marketingStatus!);
-        }
-      case 'characteristic':
-        if (characteristic != null) {
-          fields.addAll(characteristic!);
-        }
-      case 'copackagedIndicator':
-        if (copackagedIndicator != null) {
-          fields.add(copackagedIndicator!);
-        }
-      case 'manufacturer':
-        if (manufacturer != null) {
-          fields.addAll(manufacturer!);
-        }
-      case 'package':
-        if (package != null) {
-          fields.add(package!);
-        }
-      default:
-        if (checkValid) {
-          throw ArgumentError('Invalid name: $fieldName');
-        }
-    }
-    return fields;
-  }
-
-  /// Retrieves a single field value by its name.
-  @override
-  FhirBase? getChildByName(String name) {
-    final values = getChildrenByName(name);
-    if (values.length > 1) {
-      throw StateError('Too many values for $name found');
-    }
-    return values.isNotEmpty ? values.first : null;
-  }
-
-  @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
-
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'meta':
-        {
-          if (child is FhirMeta) {
-            return copyWith(meta: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'implicitRules':
-        {
-          if (child is FhirUri) {
-            return copyWith(implicitRules: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'language':
-        {
-          if (child is CommonLanguages) {
-            return copyWith(language: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'text':
-        {
-          if (child is Narrative) {
-            return copyWith(text: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'contained':
-        {
-          if (child is List<Resource>) {
-            // Add all elements from passed list
-            final newList = [...?contained, ...child];
-            return copyWith(contained: newList);
-          } else if (child is Resource) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?contained,
-              child,
-            ];
-            return copyWith(contained: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'identifier':
-        {
-          if (child is List<Identifier>) {
-            // Add all elements from passed list
-            final newList = [...?identifier, ...child];
-            return copyWith(identifier: newList);
-          } else if (child is Identifier) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?identifier,
-              child,
-            ];
-            return copyWith(identifier: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'name':
-        {
-          if (child is FhirString) {
-            return copyWith(name: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'type':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(type: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'packageFor':
-        {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?packageFor, ...child];
-            return copyWith(packageFor: newList);
-          } else if (child is Reference) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?packageFor,
-              child,
-            ];
-            return copyWith(packageFor: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'status':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(status: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'statusDate':
-        {
-          if (child is FhirDateTime) {
-            return copyWith(statusDate: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'containedItemQuantity':
-        {
-          if (child is List<Quantity>) {
-            // Add all elements from passed list
-            final newList = [...?containedItemQuantity, ...child];
-            return copyWith(containedItemQuantity: newList);
-          } else if (child is Quantity) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?containedItemQuantity,
-              child,
-            ];
-            return copyWith(containedItemQuantity: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'description':
-        {
-          if (child is FhirMarkdown) {
-            return copyWith(description: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'legalStatusOfSupply':
-        {
-          if (child is List<PackagedProductDefinitionLegalStatusOfSupply>) {
-            // Add all elements from passed list
-            final newList = [...?legalStatusOfSupply, ...child];
-            return copyWith(legalStatusOfSupply: newList);
-          } else if (child is PackagedProductDefinitionLegalStatusOfSupply) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?legalStatusOfSupply,
-              child,
-            ];
-            return copyWith(legalStatusOfSupply: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'marketingStatus':
-        {
-          if (child is List<MarketingStatus>) {
-            // Add all elements from passed list
-            final newList = [...?marketingStatus, ...child];
-            return copyWith(marketingStatus: newList);
-          } else if (child is MarketingStatus) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?marketingStatus,
-              child,
-            ];
-            return copyWith(marketingStatus: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'characteristic':
-        {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?characteristic, ...child];
-            return copyWith(characteristic: newList);
-          } else if (child is CodeableConcept) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?characteristic,
-              child,
-            ];
-            return copyWith(characteristic: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'copackagedIndicator':
-        {
-          if (child is FhirBoolean) {
-            return copyWith(copackagedIndicator: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'manufacturer':
-        {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?manufacturer, ...child];
-            return copyWith(manufacturer: newList);
-          } else if (child is Reference) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?manufacturer,
-              child,
-            ];
-            return copyWith(manufacturer: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'package':
-        {
-          if (child is PackagedProductDefinitionPackage) {
-            return copyWith(package: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
-  @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'meta':
-        return ['FhirMeta'];
-      case 'implicitRules':
-        return ['FhirUri'];
-      case 'language':
-        return ['FhirCode'];
-      case 'text':
-        return ['Narrative'];
-      case 'contained':
-        return ['Resource'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'identifier':
-        return ['Identifier'];
-      case 'name':
-        return ['FhirString'];
-      case 'type':
-        return ['CodeableConcept'];
-      case 'packageFor':
-        return ['Reference'];
-      case 'status':
-        return ['CodeableConcept'];
-      case 'statusDate':
-        return ['FhirDateTime'];
-      case 'containedItemQuantity':
-        return ['Quantity'];
-      case 'description':
-        return ['FhirMarkdown'];
-      case 'legalStatusOfSupply':
-        return ['PackagedProductDefinitionLegalStatusOfSupply'];
-      case 'marketingStatus':
-        return ['MarketingStatus'];
-      case 'characteristic':
-        return ['CodeableConcept'];
-      case 'copackagedIndicator':
-        return ['FhirBoolean'];
-      case 'manufacturer':
-        return ['Reference'];
-      case 'package':
-        return ['PackagedProductDefinitionPackage'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [PackagedProductDefinition]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  PackagedProductDefinition createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
-          );
-        }
-      case 'meta':
-        {
-          return copyWith(
-            meta: FhirMeta.empty(),
-          );
-        }
-      case 'implicitRules':
-        {
-          return copyWith(
-            implicitRules: FhirUri.empty(),
-          );
-        }
-      case 'language':
-        {
-          return copyWith(
-            language: CommonLanguages.empty(),
-          );
-        }
-      case 'text':
-        {
-          return copyWith(
-            text: Narrative.empty(),
-          );
-        }
-      case 'contained':
-        {
-          return copyWith(
-            contained: <Resource>[],
-          );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'identifier':
-        {
-          return copyWith(
-            identifier: <Identifier>[],
-          );
-        }
-      case 'name':
-        {
-          return copyWith(
-            name: FhirString.empty(),
-          );
-        }
-      case 'type':
-        {
-          return copyWith(
-            type: CodeableConcept.empty(),
-          );
-        }
-      case 'packageFor':
-        {
-          return copyWith(
-            packageFor: <Reference>[],
-          );
-        }
-      case 'status':
-        {
-          return copyWith(
-            status: CodeableConcept.empty(),
-          );
-        }
-      case 'statusDate':
-        {
-          return copyWith(
-            statusDate: FhirDateTime.empty(),
-          );
-        }
-      case 'containedItemQuantity':
-        {
-          return copyWith(
-            containedItemQuantity: <Quantity>[],
-          );
-        }
-      case 'description':
-        {
-          return copyWith(
-            description: FhirMarkdown.empty(),
-          );
-        }
-      case 'legalStatusOfSupply':
-        {
-          return copyWith(
-            legalStatusOfSupply: <PackagedProductDefinitionLegalStatusOfSupply>[],
-          );
-        }
-      case 'marketingStatus':
-        {
-          return copyWith(
-            marketingStatus: <MarketingStatus>[],
-          );
-        }
-      case 'characteristic':
-        {
-          return copyWith(
-            characteristic: <CodeableConcept>[],
-          );
-        }
-      case 'copackagedIndicator':
-        {
-          return copyWith(
-            copackagedIndicator: FhirBoolean.empty(),
-          );
-        }
-      case 'manufacturer':
-        {
-          return copyWith(
-            manufacturer: <Reference>[],
-          );
-        }
-      case 'package':
-        {
-          return copyWith(
-            package: PackagedProductDefinitionPackage.empty(),
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  PackagedProductDefinition clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool identifier = false,
-    bool name = false,
-    bool type = false,
-    bool packageFor = false,
-    bool status = false,
-    bool statusDate = false,
-    bool containedItemQuantity = false,
-    bool description = false,
-    bool legalStatusOfSupply = false,
-    bool marketingStatus = false,
-    bool characteristic = false,
-    bool copackagedIndicator = false,
-    bool manufacturer = false,
-    bool package = false,
-  }) {
-    return PackagedProductDefinition(
-      id: id ? null : this.id,
-      meta: meta ? null : this.meta,
-      implicitRules: implicitRules ? null : this.implicitRules,
-      language: language ? null : this.language,
-      text: text ? null : this.text,
-      contained: contained ? null : this.contained,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      identifier: identifier ? null : this.identifier,
-      name: name ? null : this.name,
-      type: type ? null : this.type,
-      packageFor: packageFor ? null : this.packageFor,
-      status: status ? null : this.status,
-      statusDate: statusDate ? null : this.statusDate,
-      containedItemQuantity:
-          containedItemQuantity ? null : this.containedItemQuantity,
-      description: description ? null : this.description,
-      legalStatusOfSupply:
-          legalStatusOfSupply ? null : this.legalStatusOfSupply,
-      marketingStatus: marketingStatus ? null : this.marketingStatus,
-      characteristic: characteristic ? null : this.characteristic,
-      copackagedIndicator:
-          copackagedIndicator ? null : this.copackagedIndicator,
-      manufacturer: manufacturer ? null : this.manufacturer,
-      package: package ? null : this.package,
-    );
-  }
-
-  @override
-  PackagedProductDefinition clone() => throw UnimplementedError();
-  @override
-  PackagedProductDefinition copyWith({
-    FhirString? id,
-    FhirMeta? meta,
-    FhirUri? implicitRules,
-    CommonLanguages? language,
-    Narrative? text,
-    List<Resource>? contained,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    List<Identifier>? identifier,
-    FhirString? name,
-    CodeableConcept? type,
-    List<Reference>? packageFor,
-    CodeableConcept? status,
-    FhirDateTime? statusDate,
-    List<Quantity>? containedItemQuantity,
-    FhirMarkdown? description,
-    List<PackagedProductDefinitionLegalStatusOfSupply>? legalStatusOfSupply,
-    List<MarketingStatus>? marketingStatus,
-    List<CodeableConcept>? characteristic,
-    FhirBoolean? copackagedIndicator,
-    List<Reference>? manufacturer,
-    PackagedProductDefinitionPackage? package,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-  }) {
-    final newObjectPath = objectPath;
-    return PackagedProductDefinition(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      meta: meta?.copyWith(
-            objectPath: '$newObjectPath.meta',
-          ) ??
-          this.meta,
-      implicitRules: implicitRules?.copyWith(
-            objectPath: '$newObjectPath.implicitRules',
-          ) ??
-          this.implicitRules,
-      language: language?.copyWith(
-            objectPath: '$newObjectPath.language',
-          ) ??
-          this.language,
-      text: text?.copyWith(
-            objectPath: '$newObjectPath.text',
-          ) ??
-          this.text,
-      contained: contained ?? this.contained,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      identifier: identifier
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.identifier',
-                ),
-              )
-              .toList() ??
-          this.identifier,
-      name: name?.copyWith(
-            objectPath: '$newObjectPath.name',
-          ) ??
-          this.name,
-      type: type?.copyWith(
-            objectPath: '$newObjectPath.type',
-          ) ??
-          this.type,
-      packageFor: packageFor
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.packageFor',
-                ),
-              )
-              .toList() ??
-          this.packageFor,
-      status: status?.copyWith(
-            objectPath: '$newObjectPath.status',
-          ) ??
-          this.status,
-      statusDate: statusDate?.copyWith(
-            objectPath: '$newObjectPath.statusDate',
-          ) ??
-          this.statusDate,
-      containedItemQuantity: containedItemQuantity
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.containedItemQuantity',
-                ),
-              )
-              .toList() ??
-          this.containedItemQuantity,
-      description: description?.copyWith(
-            objectPath: '$newObjectPath.description',
-          ) ??
-          this.description,
-      legalStatusOfSupply: legalStatusOfSupply
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.legalStatusOfSupply',
-                ),
-              )
-              .toList() ??
-          this.legalStatusOfSupply,
-      marketingStatus: marketingStatus
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.marketingStatus',
-                ),
-              )
-              .toList() ??
-          this.marketingStatus,
-      characteristic: characteristic
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.characteristic',
-                ),
-              )
-              .toList() ??
-          this.characteristic,
-      copackagedIndicator: copackagedIndicator?.copyWith(
-            objectPath: '$newObjectPath.copackagedIndicator',
-          ) ??
-          this.copackagedIndicator,
-      manufacturer: manufacturer
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.manufacturer',
-                ),
-              )
-              .toList() ??
-          this.manufacturer,
-      package: package?.copyWith(
-            objectPath: '$newObjectPath.package',
-          ) ??
-          this.package,
-    );
-  }
+  $PackagedProductDefinitionCopyWith<PackagedProductDefinition> get copyWith =>
+      _$PackagedProductDefinitionCopyWithImpl<PackagedProductDefinition>(
+        this,
+        (value) => value,
+      );
 
   /// Performs a deep comparison between two instances.
   @override
@@ -1496,45 +624,29 @@ class PackagedProductDefinitionLegalStatusOfSupply extends BackboneElement {
     this.code,
     this.jurisdiction,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'PackagedProductDefinition.legalStatusOfSupply',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory PackagedProductDefinitionLegalStatusOfSupply.empty() =>
-      const PackagedProductDefinitionLegalStatusOfSupply();
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory PackagedProductDefinitionLegalStatusOfSupply.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'PackagedProductDefinition.legalStatusOfSupply';
     return PackagedProductDefinitionLegalStatusOfSupply(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -1542,13 +654,11 @@ class PackagedProductDefinitionLegalStatusOfSupply extends BackboneElement {
         json,
         'code',
         CodeableConcept.fromJson,
-        '$objectPath.code',
       ),
       jurisdiction: JsonParser.parseObject<CodeableConcept>(
         json,
         'jurisdiction',
         CodeableConcept.fromJson,
-        '$objectPath.jurisdiction',
       ),
     );
   }
@@ -1687,270 +797,23 @@ class PackagedProductDefinitionLegalStatusOfSupply extends BackboneElement {
     return json;
   }
 
-  /// Lists the JSON keys for the object.
   @override
-  List<String> listChildrenNames() {
-    return [
-      'id',
-      'extension',
-      'modifierExtension',
-      'code',
-      'jurisdiction',
-    ];
-  }
+  PackagedProductDefinitionLegalStatusOfSupply clone() => copyWith();
 
-  /// Retrieves all matching child fields by name.
-  ///Optionally validates the name.
+  /// Copy function for [PackagedProductDefinitionLegalStatusOfSupply]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<FhirBase> getChildrenByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    final fields = <FhirBase>[];
-    switch (fieldName) {
-      case 'id':
-        if (id != null) {
-          fields.add(id!);
-        }
-      case 'extension':
-        if (extension_ != null) {
-          fields.addAll(extension_!);
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          fields.addAll(modifierExtension!);
-        }
-      case 'code':
-        if (code != null) {
-          fields.add(code!);
-        }
-      case 'jurisdiction':
-        if (jurisdiction != null) {
-          fields.add(jurisdiction!);
-        }
-      default:
-        if (checkValid) {
-          throw ArgumentError('Invalid name: $fieldName');
-        }
-    }
-    return fields;
-  }
-
-  /// Retrieves a single field value by its name.
-  @override
-  FhirBase? getChildByName(String name) {
-    final values = getChildrenByName(name);
-    if (values.length > 1) {
-      throw StateError('Too many values for $name found');
-    }
-    return values.isNotEmpty ? values.first : null;
-  }
-
-  @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
-
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'code':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(code: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'jurisdiction':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(jurisdiction: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
-  @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'code':
-        return ['CodeableConcept'];
-      case 'jurisdiction':
-        return ['CodeableConcept'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [PackagedProductDefinitionLegalStatusOfSupply]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  PackagedProductDefinitionLegalStatusOfSupply createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
+  $PackagedProductDefinitionLegalStatusOfSupplyCopyWith<
+          PackagedProductDefinitionLegalStatusOfSupply>
+      get copyWith =>
+          _$PackagedProductDefinitionLegalStatusOfSupplyCopyWithImpl<
+              PackagedProductDefinitionLegalStatusOfSupply>(
+            this,
+            (value) => value,
           );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'code':
-        {
-          return copyWith(
-            code: CodeableConcept.empty(),
-          );
-        }
-      case 'jurisdiction':
-        {
-          return copyWith(
-            jurisdiction: CodeableConcept.empty(),
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  PackagedProductDefinitionLegalStatusOfSupply clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool code = false,
-    bool jurisdiction = false,
-  }) {
-    return PackagedProductDefinitionLegalStatusOfSupply(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      code: code ? null : this.code,
-      jurisdiction: jurisdiction ? null : this.jurisdiction,
-    );
-  }
-
-  @override
-  PackagedProductDefinitionLegalStatusOfSupply clone() =>
-      throw UnimplementedError();
-  @override
-  PackagedProductDefinitionLegalStatusOfSupply copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    CodeableConcept? code,
-    CodeableConcept? jurisdiction,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return PackagedProductDefinitionLegalStatusOfSupply(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      code: code?.copyWith(
-            objectPath: '$newObjectPath.code',
-          ) ??
-          this.code,
-      jurisdiction: jurisdiction?.copyWith(
-            objectPath: '$newObjectPath.jurisdiction',
-          ) ??
-          this.jurisdiction,
-    );
-  }
 
   /// Performs a deep comparison between two instances.
   @override
@@ -2017,55 +880,36 @@ class PackagedProductDefinitionPackage extends BackboneElement {
     this.containedItem,
     this.package,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'PackagedProductDefinition.package',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory PackagedProductDefinitionPackage.empty() =>
-      const PackagedProductDefinitionPackage();
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory PackagedProductDefinitionPackage.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'PackagedProductDefinition.package';
     return PackagedProductDefinitionPackage(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       identifier: (json['identifier'] as List<dynamic>?)
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.identifier',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -2073,81 +917,58 @@ class PackagedProductDefinitionPackage extends BackboneElement {
         json,
         'type',
         CodeableConcept.fromJson,
-        '$objectPath.type',
       ),
       quantity: JsonParser.parsePrimitive<FhirInteger>(
         json,
         'quantity',
         FhirInteger.fromJson,
-        '$objectPath.quantity',
       ),
       material: (json['material'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.material',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       alternateMaterial: (json['alternateMaterial'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.alternateMaterial',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       shelfLifeStorage: (json['shelfLifeStorage'] as List<dynamic>?)
           ?.map<PackagedProductDefinitionShelfLifeStorage>(
             (v) => PackagedProductDefinitionShelfLifeStorage.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.shelfLifeStorage',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       manufacturer: (json['manufacturer'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.manufacturer',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       property: (json['property'] as List<dynamic>?)
           ?.map<PackagedProductDefinitionProperty>(
             (v) => PackagedProductDefinitionProperty.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.property',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       containedItem: (json['containedItem'] as List<dynamic>?)
           ?.map<PackagedProductDefinitionContainedItem>(
             (v) => PackagedProductDefinitionContainedItem.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.containedItem',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       package: (json['package'] as List<dynamic>?)
           ?.map<PackagedProductDefinitionPackage>(
             (v) => PackagedProductDefinitionPackage.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.package',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -2357,597 +1178,21 @@ class PackagedProductDefinitionPackage extends BackboneElement {
     return json;
   }
 
-  /// Lists the JSON keys for the object.
   @override
-  List<String> listChildrenNames() {
-    return [
-      'id',
-      'extension',
-      'modifierExtension',
-      'identifier',
-      'type',
-      'quantity',
-      'material',
-      'alternateMaterial',
-      'shelfLifeStorage',
-      'manufacturer',
-      'property',
-      'containedItem',
-      'package',
-    ];
-  }
+  PackagedProductDefinitionPackage clone() => copyWith();
 
-  /// Retrieves all matching child fields by name.
-  ///Optionally validates the name.
+  /// Copy function for [PackagedProductDefinitionPackage]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<FhirBase> getChildrenByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    final fields = <FhirBase>[];
-    switch (fieldName) {
-      case 'id':
-        if (id != null) {
-          fields.add(id!);
-        }
-      case 'extension':
-        if (extension_ != null) {
-          fields.addAll(extension_!);
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          fields.addAll(modifierExtension!);
-        }
-      case 'identifier':
-        if (identifier != null) {
-          fields.addAll(identifier!);
-        }
-      case 'type':
-        if (type != null) {
-          fields.add(type!);
-        }
-      case 'quantity':
-        if (quantity != null) {
-          fields.add(quantity!);
-        }
-      case 'material':
-        if (material != null) {
-          fields.addAll(material!);
-        }
-      case 'alternateMaterial':
-        if (alternateMaterial != null) {
-          fields.addAll(alternateMaterial!);
-        }
-      case 'shelfLifeStorage':
-        if (shelfLifeStorage != null) {
-          fields.addAll(shelfLifeStorage!);
-        }
-      case 'manufacturer':
-        if (manufacturer != null) {
-          fields.addAll(manufacturer!);
-        }
-      case 'property':
-        if (property != null) {
-          fields.addAll(property!);
-        }
-      case 'containedItem':
-        if (containedItem != null) {
-          fields.addAll(containedItem!);
-        }
-      case 'package':
-        if (package != null) {
-          fields.addAll(package!);
-        }
-      default:
-        if (checkValid) {
-          throw ArgumentError('Invalid name: $fieldName');
-        }
-    }
-    return fields;
-  }
-
-  /// Retrieves a single field value by its name.
-  @override
-  FhirBase? getChildByName(String name) {
-    final values = getChildrenByName(name);
-    if (values.length > 1) {
-      throw StateError('Too many values for $name found');
-    }
-    return values.isNotEmpty ? values.first : null;
-  }
-
-  @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
-
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'identifier':
-        {
-          if (child is List<Identifier>) {
-            // Add all elements from passed list
-            final newList = [...?identifier, ...child];
-            return copyWith(identifier: newList);
-          } else if (child is Identifier) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?identifier,
-              child,
-            ];
-            return copyWith(identifier: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'type':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(type: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'quantity':
-        {
-          if (child is FhirInteger) {
-            return copyWith(quantity: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'material':
-        {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?material, ...child];
-            return copyWith(material: newList);
-          } else if (child is CodeableConcept) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?material,
-              child,
-            ];
-            return copyWith(material: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'alternateMaterial':
-        {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?alternateMaterial, ...child];
-            return copyWith(alternateMaterial: newList);
-          } else if (child is CodeableConcept) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?alternateMaterial,
-              child,
-            ];
-            return copyWith(alternateMaterial: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'shelfLifeStorage':
-        {
-          if (child is List<PackagedProductDefinitionShelfLifeStorage>) {
-            // Add all elements from passed list
-            final newList = [...?shelfLifeStorage, ...child];
-            return copyWith(shelfLifeStorage: newList);
-          } else if (child is PackagedProductDefinitionShelfLifeStorage) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?shelfLifeStorage,
-              child,
-            ];
-            return copyWith(shelfLifeStorage: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'manufacturer':
-        {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?manufacturer, ...child];
-            return copyWith(manufacturer: newList);
-          } else if (child is Reference) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?manufacturer,
-              child,
-            ];
-            return copyWith(manufacturer: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'property':
-        {
-          if (child is List<PackagedProductDefinitionProperty>) {
-            // Add all elements from passed list
-            final newList = [...?property, ...child];
-            return copyWith(property: newList);
-          } else if (child is PackagedProductDefinitionProperty) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?property,
-              child,
-            ];
-            return copyWith(property: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'containedItem':
-        {
-          if (child is List<PackagedProductDefinitionContainedItem>) {
-            // Add all elements from passed list
-            final newList = [...?containedItem, ...child];
-            return copyWith(containedItem: newList);
-          } else if (child is PackagedProductDefinitionContainedItem) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?containedItem,
-              child,
-            ];
-            return copyWith(containedItem: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'package':
-        {
-          if (child is List<PackagedProductDefinitionPackage>) {
-            // Add all elements from passed list
-            final newList = [...?package, ...child];
-            return copyWith(package: newList);
-          } else if (child is PackagedProductDefinitionPackage) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?package,
-              child,
-            ];
-            return copyWith(package: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
-  @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'identifier':
-        return ['Identifier'];
-      case 'type':
-        return ['CodeableConcept'];
-      case 'quantity':
-        return ['FhirInteger'];
-      case 'material':
-        return ['CodeableConcept'];
-      case 'alternateMaterial':
-        return ['CodeableConcept'];
-      case 'shelfLifeStorage':
-        return ['PackagedProductDefinitionShelfLifeStorage'];
-      case 'manufacturer':
-        return ['Reference'];
-      case 'property':
-        return ['PackagedProductDefinitionProperty'];
-      case 'containedItem':
-        return ['PackagedProductDefinitionContainedItem'];
-      case 'package':
-        return ['PackagedProductDefinitionPackage'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [PackagedProductDefinitionPackage]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  PackagedProductDefinitionPackage createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
+  $PackagedProductDefinitionPackageCopyWith<PackagedProductDefinitionPackage>
+      get copyWith => _$PackagedProductDefinitionPackageCopyWithImpl<
+              PackagedProductDefinitionPackage>(
+            this,
+            (value) => value,
           );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'identifier':
-        {
-          return copyWith(
-            identifier: <Identifier>[],
-          );
-        }
-      case 'type':
-        {
-          return copyWith(
-            type: CodeableConcept.empty(),
-          );
-        }
-      case 'quantity':
-        {
-          return copyWith(
-            quantity: FhirInteger.empty(),
-          );
-        }
-      case 'material':
-        {
-          return copyWith(
-            material: <CodeableConcept>[],
-          );
-        }
-      case 'alternateMaterial':
-        {
-          return copyWith(
-            alternateMaterial: <CodeableConcept>[],
-          );
-        }
-      case 'shelfLifeStorage':
-        {
-          return copyWith(
-            shelfLifeStorage: <PackagedProductDefinitionShelfLifeStorage>[],
-          );
-        }
-      case 'manufacturer':
-        {
-          return copyWith(
-            manufacturer: <Reference>[],
-          );
-        }
-      case 'property':
-        {
-          return copyWith(
-            property: <PackagedProductDefinitionProperty>[],
-          );
-        }
-      case 'containedItem':
-        {
-          return copyWith(
-            containedItem: <PackagedProductDefinitionContainedItem>[],
-          );
-        }
-      case 'package':
-        {
-          return copyWith(
-            package: <PackagedProductDefinitionPackage>[],
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  PackagedProductDefinitionPackage clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool identifier = false,
-    bool type = false,
-    bool quantity = false,
-    bool material = false,
-    bool alternateMaterial = false,
-    bool shelfLifeStorage = false,
-    bool manufacturer = false,
-    bool property = false,
-    bool containedItem = false,
-    bool package = false,
-  }) {
-    return PackagedProductDefinitionPackage(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      identifier: identifier ? null : this.identifier,
-      type: type ? null : this.type,
-      quantity: quantity ? null : this.quantity,
-      material: material ? null : this.material,
-      alternateMaterial: alternateMaterial ? null : this.alternateMaterial,
-      shelfLifeStorage: shelfLifeStorage ? null : this.shelfLifeStorage,
-      manufacturer: manufacturer ? null : this.manufacturer,
-      property: property ? null : this.property,
-      containedItem: containedItem ? null : this.containedItem,
-      package: package ? null : this.package,
-    );
-  }
-
-  @override
-  PackagedProductDefinitionPackage clone() => throw UnimplementedError();
-  @override
-  PackagedProductDefinitionPackage copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    List<Identifier>? identifier,
-    CodeableConcept? type,
-    FhirInteger? quantity,
-    List<CodeableConcept>? material,
-    List<CodeableConcept>? alternateMaterial,
-    List<PackagedProductDefinitionShelfLifeStorage>? shelfLifeStorage,
-    List<Reference>? manufacturer,
-    List<PackagedProductDefinitionProperty>? property,
-    List<PackagedProductDefinitionContainedItem>? containedItem,
-    List<PackagedProductDefinitionPackage>? package,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return PackagedProductDefinitionPackage(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      identifier: identifier
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.identifier',
-                ),
-              )
-              .toList() ??
-          this.identifier,
-      type: type?.copyWith(
-            objectPath: '$newObjectPath.type',
-          ) ??
-          this.type,
-      quantity: quantity?.copyWith(
-            objectPath: '$newObjectPath.quantity',
-          ) ??
-          this.quantity,
-      material: material
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.material',
-                ),
-              )
-              .toList() ??
-          this.material,
-      alternateMaterial: alternateMaterial
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.alternateMaterial',
-                ),
-              )
-              .toList() ??
-          this.alternateMaterial,
-      shelfLifeStorage: shelfLifeStorage
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.shelfLifeStorage',
-                ),
-              )
-              .toList() ??
-          this.shelfLifeStorage,
-      manufacturer: manufacturer
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.manufacturer',
-                ),
-              )
-              .toList() ??
-          this.manufacturer,
-      property: property
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.property',
-                ),
-              )
-              .toList() ??
-          this.property,
-      containedItem: containedItem
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.containedItem',
-                ),
-              )
-              .toList() ??
-          this.containedItem,
-      package: package
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.package',
-                ),
-              )
-              .toList() ??
-          this.package,
-    );
-  }
 
   /// Performs a deep comparison between two instances.
   @override
@@ -3053,45 +1298,29 @@ class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
     this.periodX,
     this.specialPrecautionsForStorage,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'PackagedProductDefinition.package.shelfLifeStorage',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory PackagedProductDefinitionShelfLifeStorage.empty() =>
-      const PackagedProductDefinitionShelfLifeStorage();
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory PackagedProductDefinitionShelfLifeStorage.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'PackagedProductDefinition.package.shelfLifeStorage';
     return PackagedProductDefinitionShelfLifeStorage(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -3099,7 +1328,6 @@ class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
         json,
         'type',
         CodeableConcept.fromJson,
-        '$objectPath.type',
       ),
       periodX: JsonParser.parsePolymorphic<
           PeriodXPackagedProductDefinitionShelfLifeStorage>(
@@ -3108,16 +1336,12 @@ class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
           'periodDuration': FhirDuration.fromJson,
           'periodString': FhirString.fromJson,
         },
-        objectPath,
       ),
       specialPrecautionsForStorage:
           (json['specialPrecautionsForStorage'] as List<dynamic>?)
               ?.map<CodeableConcept>(
                 (v) => CodeableConcept.fromJson(
-                  {
-                    ...v as Map<String, dynamic>,
-                    'objectPath': '$objectPath.specialPrecautionsForStorage',
-                  },
+                  {...v as Map<String, dynamic>},
                 ),
               )
               .toList(),
@@ -3285,360 +1509,22 @@ class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
     return json;
   }
 
-  /// Lists the JSON keys for the object.
   @override
-  List<String> listChildrenNames() {
-    return [
-      'id',
-      'extension',
-      'modifierExtension',
-      'type',
-      'periodX',
-      'specialPrecautionsForStorage',
-    ];
-  }
+  PackagedProductDefinitionShelfLifeStorage clone() => copyWith();
 
-  /// Retrieves all matching child fields by name.
-  ///Optionally validates the name.
+  /// Copy function for [PackagedProductDefinitionShelfLifeStorage]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<FhirBase> getChildrenByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    final fields = <FhirBase>[];
-    switch (fieldName) {
-      case 'id':
-        if (id != null) {
-          fields.add(id!);
-        }
-      case 'extension':
-        if (extension_ != null) {
-          fields.addAll(extension_!);
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          fields.addAll(modifierExtension!);
-        }
-      case 'type':
-        if (type != null) {
-          fields.add(type!);
-        }
-      case 'period':
-        fields.add(periodX!);
-      case 'periodX':
-        fields.add(periodX!);
-      case 'periodDuration':
-        if (periodX is FhirDuration) {
-          fields.add(periodX!);
-        }
-      case 'periodString':
-        if (periodX is FhirString) {
-          fields.add(periodX!);
-        }
-      case 'specialPrecautionsForStorage':
-        if (specialPrecautionsForStorage != null) {
-          fields.addAll(specialPrecautionsForStorage!);
-        }
-      default:
-        if (checkValid) {
-          throw ArgumentError('Invalid name: $fieldName');
-        }
-    }
-    return fields;
-  }
-
-  /// Retrieves a single field value by its name.
-  @override
-  FhirBase? getChildByName(String name) {
-    final values = getChildrenByName(name);
-    if (values.length > 1) {
-      throw StateError('Too many values for $name found');
-    }
-    return values.isNotEmpty ? values.first : null;
-  }
-
-  @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
-
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'type':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(type: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'period':
-      case 'periodX':
-        {
-          if (child is PeriodXPackagedProductDefinitionShelfLifeStorage) {
-            return copyWith(periodX: child);
-          } else {
-            if (child is FhirDuration) {
-              return copyWith(periodX: child);
-            }
-            if (child is FhirString) {
-              return copyWith(periodX: child);
-            }
-          }
-          throw Exception('Invalid child type for $childName');
-        }
-      case 'periodFhirDuration':
-        {
-          if (child is FhirDuration) {
-            return copyWith(periodX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'periodFhirString':
-        {
-          if (child is FhirString) {
-            return copyWith(periodX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'specialPrecautionsForStorage':
-        {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?specialPrecautionsForStorage, ...child];
-            return copyWith(specialPrecautionsForStorage: newList);
-          } else if (child is CodeableConcept) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?specialPrecautionsForStorage,
-              child,
-            ];
-            return copyWith(specialPrecautionsForStorage: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
-  @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'type':
-        return ['CodeableConcept'];
-      case 'period':
-      case 'periodX':
-        return [
-          'FhirDuration',
-          'FhirString',
-        ];
-      case 'periodDuration':
-        return ['FhirDuration'];
-      case 'periodString':
-        return ['FhirString'];
-      case 'specialPrecautionsForStorage':
-        return ['CodeableConcept'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [PackagedProductDefinitionShelfLifeStorage]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  PackagedProductDefinitionShelfLifeStorage createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
+  $PackagedProductDefinitionShelfLifeStorageCopyWith<
+          PackagedProductDefinitionShelfLifeStorage>
+      get copyWith => _$PackagedProductDefinitionShelfLifeStorageCopyWithImpl<
+              PackagedProductDefinitionShelfLifeStorage>(
+            this,
+            (value) => value,
           );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'type':
-        {
-          return copyWith(
-            type: CodeableConcept.empty(),
-          );
-        }
-      case 'period':
-      case 'periodX':
-      case 'periodDuration':
-        {
-          return copyWith(
-            periodX: FhirDuration.empty(),
-          );
-        }
-      case 'periodString':
-        {
-          return copyWith(
-            periodX: FhirString.empty(),
-          );
-        }
-      case 'specialPrecautionsForStorage':
-        {
-          return copyWith(
-            specialPrecautionsForStorage: <CodeableConcept>[],
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  PackagedProductDefinitionShelfLifeStorage clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool type = false,
-    bool period = false,
-    bool specialPrecautionsForStorage = false,
-  }) {
-    return PackagedProductDefinitionShelfLifeStorage(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      type: type ? null : this.type,
-      periodX: period ? null : periodX,
-      specialPrecautionsForStorage: specialPrecautionsForStorage
-          ? null
-          : this.specialPrecautionsForStorage,
-    );
-  }
-
-  @override
-  PackagedProductDefinitionShelfLifeStorage clone() =>
-      throw UnimplementedError();
-  @override
-  PackagedProductDefinitionShelfLifeStorage copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    CodeableConcept? type,
-    PeriodXPackagedProductDefinitionShelfLifeStorage? periodX,
-    List<CodeableConcept>? specialPrecautionsForStorage,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return PackagedProductDefinitionShelfLifeStorage(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      type: type?.copyWith(
-            objectPath: '$newObjectPath.type',
-          ) ??
-          this.type,
-      periodX: periodX?.copyWith(
-            objectPath: '$newObjectPath.periodX',
-          ) as PeriodXPackagedProductDefinitionShelfLifeStorage? ??
-          this.periodX,
-      specialPrecautionsForStorage: specialPrecautionsForStorage
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.specialPrecautionsForStorage',
-                ),
-              )
-              .toList() ??
-          this.specialPrecautionsForStorage,
-    );
-  }
 
   /// Performs a deep comparison between two instances.
   @override
@@ -3701,47 +1587,29 @@ class PackagedProductDefinitionProperty extends BackboneElement {
     required this.type,
     this.valueX,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'PackagedProductDefinition.package.property',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory PackagedProductDefinitionProperty.empty() =>
-      PackagedProductDefinitionProperty(
-        type: CodeableConcept.empty(),
-      );
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory PackagedProductDefinitionProperty.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'PackagedProductDefinition.package.property';
     return PackagedProductDefinitionProperty(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -3749,7 +1617,6 @@ class PackagedProductDefinitionProperty extends BackboneElement {
         json,
         'type',
         CodeableConcept.fromJson,
-        '$objectPath.type',
       )!,
       valueX:
           JsonParser.parsePolymorphic<ValueXPackagedProductDefinitionProperty>(
@@ -3761,7 +1628,6 @@ class PackagedProductDefinitionProperty extends BackboneElement {
           'valueBoolean': FhirBoolean.fromJson,
           'valueAttachment': Attachment.fromJson,
         },
-        objectPath,
       ),
     );
   }
@@ -3917,385 +1783,21 @@ class PackagedProductDefinitionProperty extends BackboneElement {
     return json;
   }
 
-  /// Lists the JSON keys for the object.
   @override
-  List<String> listChildrenNames() {
-    return [
-      'id',
-      'extension',
-      'modifierExtension',
-      'type',
-      'valueX',
-    ];
-  }
+  PackagedProductDefinitionProperty clone() => copyWith();
 
-  /// Retrieves all matching child fields by name.
-  ///Optionally validates the name.
+  /// Copy function for [PackagedProductDefinitionProperty]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<FhirBase> getChildrenByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    final fields = <FhirBase>[];
-    switch (fieldName) {
-      case 'id':
-        if (id != null) {
-          fields.add(id!);
-        }
-      case 'extension':
-        if (extension_ != null) {
-          fields.addAll(extension_!);
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          fields.addAll(modifierExtension!);
-        }
-      case 'type':
-        fields.add(type);
-      case 'value':
-        fields.add(valueX!);
-      case 'valueX':
-        fields.add(valueX!);
-      case 'valueCodeableConcept':
-        if (valueX is CodeableConcept) {
-          fields.add(valueX!);
-        }
-      case 'valueQuantity':
-        if (valueX is Quantity) {
-          fields.add(valueX!);
-        }
-      case 'valueDate':
-        if (valueX is FhirDate) {
-          fields.add(valueX!);
-        }
-      case 'valueBoolean':
-        if (valueX is FhirBoolean) {
-          fields.add(valueX!);
-        }
-      case 'valueAttachment':
-        if (valueX is Attachment) {
-          fields.add(valueX!);
-        }
-      default:
-        if (checkValid) {
-          throw ArgumentError('Invalid name: $fieldName');
-        }
-    }
-    return fields;
-  }
-
-  /// Retrieves a single field value by its name.
-  @override
-  FhirBase? getChildByName(String name) {
-    final values = getChildrenByName(name);
-    if (values.length > 1) {
-      throw StateError('Too many values for $name found');
-    }
-    return values.isNotEmpty ? values.first : null;
-  }
-
-  @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
-
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'type':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(type: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'value':
-      case 'valueX':
-        {
-          if (child is ValueXPackagedProductDefinitionProperty) {
-            return copyWith(valueX: child);
-          } else {
-            if (child is CodeableConcept) {
-              return copyWith(valueX: child);
-            }
-            if (child is Quantity) {
-              return copyWith(valueX: child);
-            }
-            if (child is FhirDate) {
-              return copyWith(valueX: child);
-            }
-            if (child is FhirBoolean) {
-              return copyWith(valueX: child);
-            }
-            if (child is Attachment) {
-              return copyWith(valueX: child);
-            }
-          }
-          throw Exception('Invalid child type for $childName');
-        }
-      case 'valueCodeableConcept':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueQuantity':
-        {
-          if (child is Quantity) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueFhirDate':
-        {
-          if (child is FhirDate) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueFhirBoolean':
-        {
-          if (child is FhirBoolean) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'valueAttachment':
-        {
-          if (child is Attachment) {
-            return copyWith(valueX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
-  @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'type':
-        return ['CodeableConcept'];
-      case 'value':
-      case 'valueX':
-        return [
-          'CodeableConcept',
-          'Quantity',
-          'FhirDate',
-          'FhirBoolean',
-          'Attachment',
-        ];
-      case 'valueCodeableConcept':
-        return ['CodeableConcept'];
-      case 'valueQuantity':
-        return ['Quantity'];
-      case 'valueDate':
-        return ['FhirDate'];
-      case 'valueBoolean':
-        return ['FhirBoolean'];
-      case 'valueAttachment':
-        return ['Attachment'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [PackagedProductDefinitionProperty]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  PackagedProductDefinitionProperty createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
+  $PackagedProductDefinitionPropertyCopyWith<PackagedProductDefinitionProperty>
+      get copyWith => _$PackagedProductDefinitionPropertyCopyWithImpl<
+              PackagedProductDefinitionProperty>(
+            this,
+            (value) => value,
           );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'type':
-        {
-          return copyWith(
-            type: CodeableConcept.empty(),
-          );
-        }
-      case 'value':
-      case 'valueX':
-      case 'valueCodeableConcept':
-        {
-          return copyWith(
-            valueX: CodeableConcept.empty(),
-          );
-        }
-      case 'valueQuantity':
-        {
-          return copyWith(
-            valueX: Quantity.empty(),
-          );
-        }
-      case 'valueDate':
-        {
-          return copyWith(
-            valueX: FhirDate.empty(),
-          );
-        }
-      case 'valueBoolean':
-        {
-          return copyWith(
-            valueX: FhirBoolean.empty(),
-          );
-        }
-      case 'valueAttachment':
-        {
-          return copyWith(
-            valueX: Attachment.empty(),
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  PackagedProductDefinitionProperty clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool value = false,
-  }) {
-    return PackagedProductDefinitionProperty(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      type: type,
-      valueX: value ? null : valueX,
-    );
-  }
-
-  @override
-  PackagedProductDefinitionProperty clone() => throw UnimplementedError();
-  @override
-  PackagedProductDefinitionProperty copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    CodeableConcept? type,
-    ValueXPackagedProductDefinitionProperty? valueX,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return PackagedProductDefinitionProperty(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      type: type?.copyWith(
-            objectPath: '$newObjectPath.type',
-          ) ??
-          this.type,
-      valueX: valueX?.copyWith(
-            objectPath: '$newObjectPath.valueX',
-          ) as ValueXPackagedProductDefinitionProperty? ??
-          this.valueX,
-    );
-  }
 
   /// Performs a deep comparison between two instances.
   @override
@@ -4352,47 +1854,29 @@ class PackagedProductDefinitionContainedItem extends BackboneElement {
     required this.item,
     this.amount,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'PackagedProductDefinition.package.containedItem',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory PackagedProductDefinitionContainedItem.empty() =>
-      PackagedProductDefinitionContainedItem(
-        item: CodeableReference.empty(),
-      );
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory PackagedProductDefinitionContainedItem.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'PackagedProductDefinition.package.containedItem';
     return PackagedProductDefinitionContainedItem(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -4400,13 +1884,11 @@ class PackagedProductDefinitionContainedItem extends BackboneElement {
         json,
         'item',
         CodeableReference.fromJson,
-        '$objectPath.item',
       )!,
       amount: JsonParser.parseObject<Quantity>(
         json,
         'amount',
         Quantity.fromJson,
-        '$objectPath.amount',
       ),
     );
   }
@@ -4550,266 +2032,22 @@ class PackagedProductDefinitionContainedItem extends BackboneElement {
     return json;
   }
 
-  /// Lists the JSON keys for the object.
   @override
-  List<String> listChildrenNames() {
-    return [
-      'id',
-      'extension',
-      'modifierExtension',
-      'item',
-      'amount',
-    ];
-  }
+  PackagedProductDefinitionContainedItem clone() => copyWith();
 
-  /// Retrieves all matching child fields by name.
-  ///Optionally validates the name.
+  /// Copy function for [PackagedProductDefinitionContainedItem]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<FhirBase> getChildrenByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    final fields = <FhirBase>[];
-    switch (fieldName) {
-      case 'id':
-        if (id != null) {
-          fields.add(id!);
-        }
-      case 'extension':
-        if (extension_ != null) {
-          fields.addAll(extension_!);
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          fields.addAll(modifierExtension!);
-        }
-      case 'item':
-        fields.add(item);
-      case 'amount':
-        if (amount != null) {
-          fields.add(amount!);
-        }
-      default:
-        if (checkValid) {
-          throw ArgumentError('Invalid name: $fieldName');
-        }
-    }
-    return fields;
-  }
-
-  /// Retrieves a single field value by its name.
-  @override
-  FhirBase? getChildByName(String name) {
-    final values = getChildrenByName(name);
-    if (values.length > 1) {
-      throw StateError('Too many values for $name found');
-    }
-    return values.isNotEmpty ? values.first : null;
-  }
-
-  @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
-
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'item':
-        {
-          if (child is CodeableReference) {
-            return copyWith(item: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'amount':
-        {
-          if (child is Quantity) {
-            return copyWith(amount: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
-  @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'item':
-        return ['CodeableReference'];
-      case 'amount':
-        return ['Quantity'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [PackagedProductDefinitionContainedItem]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  PackagedProductDefinitionContainedItem createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
+  $PackagedProductDefinitionContainedItemCopyWith<
+          PackagedProductDefinitionContainedItem>
+      get copyWith => _$PackagedProductDefinitionContainedItemCopyWithImpl<
+              PackagedProductDefinitionContainedItem>(
+            this,
+            (value) => value,
           );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'item':
-        {
-          return copyWith(
-            item: CodeableReference.empty(),
-          );
-        }
-      case 'amount':
-        {
-          return copyWith(
-            amount: Quantity.empty(),
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  PackagedProductDefinitionContainedItem clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool amount = false,
-  }) {
-    return PackagedProductDefinitionContainedItem(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      item: item,
-      amount: amount ? null : this.amount,
-    );
-  }
-
-  @override
-  PackagedProductDefinitionContainedItem clone() => throw UnimplementedError();
-  @override
-  PackagedProductDefinitionContainedItem copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    CodeableReference? item,
-    Quantity? amount,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return PackagedProductDefinitionContainedItem(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      item: item?.copyWith(
-            objectPath: '$newObjectPath.item',
-          ) ??
-          this.item,
-      amount: amount?.copyWith(
-            objectPath: '$newObjectPath.amount',
-          ) ??
-          this.amount,
-    );
-  }
 
   /// Performs a deep comparison between two instances.
   @override

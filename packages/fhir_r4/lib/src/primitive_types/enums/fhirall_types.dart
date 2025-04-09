@@ -1,12 +1,1508 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for FHIRAllTypes
+enum FHIRAllTypesEnum {
+  /// Address
+  address,
+
+  /// Age
+  age,
+
+  /// Annotation
+  annotation,
+
+  /// Attachment
+  attachment,
+
+  /// BackboneElement
+  backboneElement,
+
+  /// CodeableConcept
+  codeableConcept,
+
+  /// CodeableReference
+  codeableReference,
+
+  /// Coding
+  coding,
+
+  /// ContactDetail
+  contactDetail,
+
+  /// ContactPoint
+  contactPoint,
+
+  /// Contributor
+  contributor,
+
+  /// Count
+  count,
+
+  /// DataRequirement
+  dataRequirement,
+
+  /// Distance
+  distance,
+
+  /// Dosage
+  dosage,
+
+  /// Duration
+  duration,
+
+  /// Element
+  element_,
+
+  /// ElementDefinition
+  elementDefinition,
+
+  /// Expression
+  expression,
+
+  /// Extension
+  extension,
+
+  /// HumanName
+  humanName,
+
+  /// Identifier
+  identifier,
+
+  /// MarketingStatus
+  marketingStatus,
+
+  /// Meta
+  meta,
+
+  /// Money
+  money,
+
+  /// MoneyQuantity
+  moneyQuantity,
+
+  /// Narrative
+  narrative,
+
+  /// ParameterDefinition
+  parameterDefinition,
+
+  /// Period
+  period,
+
+  /// Population
+  population,
+
+  /// ProdCharacteristic
+  prodCharacteristic,
+
+  /// ProductShelfLife
+  productShelfLife,
+
+  /// Quantity
+  quantity,
+
+  /// Range
+  range,
+
+  /// Ratio
+  ratio,
+
+  /// RatioRange
+  ratioRange,
+
+  /// Reference
+  reference,
+
+  /// RelatedArtifact
+  relatedArtifact,
+
+  /// SampledData
+  sampledData,
+
+  /// Signature
+  signature,
+
+  /// SimpleQuantity
+  simpleQuantity,
+
+  /// Timing
+  timing,
+
+  /// TriggerDefinition
+  triggerDefinition,
+
+  /// UsageContext
+  usageContext,
+
+  /// base64Binary
+  base64Binary,
+
+  /// boolean
+  boolean,
+
+  /// canonical
+  canonical,
+
+  /// code
+  code,
+
+  /// date
+  date,
+
+  /// dateTime
+  dateTime,
+
+  /// decimal
+  decimal,
+
+  /// id
+  id_,
+
+  /// instant
+  instant,
+
+  /// integer
+  integer,
+
+  /// markdown
+  markdown,
+
+  /// oid
+  oid,
+
+  /// positiveInt
+  positiveInt,
+
+  /// string
+  string,
+
+  /// time
+  time,
+
+  /// unsignedInt
+  unsignedInt,
+
+  /// uri
+  uri,
+
+  /// url
+  url,
+
+  /// uuid
+  uuid,
+
+  /// xhtml
+  xhtml,
+
+  /// Resource
+  resource,
+
+  /// Binary
+  binary,
+
+  /// Bundle
+  bundle,
+
+  /// DomainResource
+  domainResource,
+
+  /// Account
+  account,
+
+  /// ActivityDefinition
+  activityDefinition,
+
+  /// AdministrableProductDefinition
+  administrableProductDefinition,
+
+  /// AdverseEvent
+  adverseEvent,
+
+  /// AllergyIntolerance
+  allergyIntolerance,
+
+  /// Appointment
+  appointment,
+
+  /// AppointmentResponse
+  appointmentResponse,
+
+  /// AuditEvent
+  auditEvent,
+
+  /// Basic
+  basic,
+
+  /// BiologicallyDerivedProduct
+  biologicallyDerivedProduct,
+
+  /// BodyStructure
+  bodyStructure,
+
+  /// CapabilityStatement
+  capabilityStatement,
+
+  /// CarePlan
+  carePlan,
+
+  /// CareTeam
+  careTeam,
+
+  /// CatalogEntry
+  catalogEntry,
+
+  /// ChargeItem
+  chargeItem,
+
+  /// ChargeItemDefinition
+  chargeItemDefinition,
+
+  /// Citation
+  citation,
+
+  /// Claim
+  claim,
+
+  /// ClaimResponse
+  claimResponse,
+
+  /// ClinicalImpression
+  clinicalImpression,
+
+  /// ClinicalUseDefinition
+  clinicalUseDefinition,
+
+  /// CodeSystem
+  codeSystem,
+
+  /// Communication
+  communication,
+
+  /// CommunicationRequest
+  communicationRequest,
+
+  /// CompartmentDefinition
+  compartmentDefinition,
+
+  /// Composition
+  composition,
+
+  /// ConceptMap
+  conceptMap,
+
+  /// Condition
+  condition,
+
+  /// Consent
+  consent,
+
+  /// Contract
+  contract,
+
+  /// Coverage
+  coverage,
+
+  /// CoverageEligibilityRequest
+  coverageEligibilityRequest,
+
+  /// CoverageEligibilityResponse
+  coverageEligibilityResponse,
+
+  /// DetectedIssue
+  detectedIssue,
+
+  /// Device
+  device,
+
+  /// DeviceDefinition
+  deviceDefinition,
+
+  /// DeviceMetric
+  deviceMetric,
+
+  /// DeviceRequest
+  deviceRequest,
+
+  /// DeviceUseStatement
+  deviceUseStatement,
+
+  /// DiagnosticReport
+  diagnosticReport,
+
+  /// DocumentManifest
+  documentManifest,
+
+  /// DocumentReference
+  documentReference,
+
+  /// Encounter
+  encounter,
+
+  /// Endpoint
+  endpoint,
+
+  /// EnrollmentRequest
+  enrollmentRequest,
+
+  /// EnrollmentResponse
+  enrollmentResponse,
+
+  /// EpisodeOfCare
+  episodeOfCare,
+
+  /// EventDefinition
+  eventDefinition,
+
+  /// Evidence
+  evidence,
+
+  /// EvidenceReport
+  evidenceReport,
+
+  /// EvidenceVariable
+  evidenceVariable,
+
+  /// ExampleScenario
+  exampleScenario,
+
+  /// ExplanationOfBenefit
+  explanationOfBenefit,
+
+  /// FamilyMemberHistory
+  familyMemberHistory,
+
+  /// Flag
+  flag,
+
+  /// Goal
+  goal,
+
+  /// GraphDefinition
+  graphDefinition,
+
+  /// Group
+  group,
+
+  /// GuidanceResponse
+  guidanceResponse,
+
+  /// HealthcareService
+  healthcareService,
+
+  /// ImagingStudy
+  imagingStudy,
+
+  /// Immunization
+  immunization,
+
+  /// ImmunizationEvaluation
+  immunizationEvaluation,
+
+  /// ImmunizationRecommendation
+  immunizationRecommendation,
+
+  /// ImplementationGuide
+  implementationGuide,
+
+  /// Ingredient
+  ingredient,
+
+  /// InsurancePlan
+  insurancePlan,
+
+  /// Invoice
+  invoice,
+
+  /// Library
+  library,
+
+  /// Linkage
+  linkage,
+
+  /// List
+  list_,
+
+  /// Location
+  location,
+
+  /// ManufacturedItemDefinition
+  manufacturedItemDefinition,
+
+  /// Measure
+  measure,
+
+  /// MeasureReport
+  measureReport,
+
+  /// Media
+  media,
+
+  /// Medication
+  medication,
+
+  /// MedicationAdministration
+  medicationAdministration,
+
+  /// MedicationDispense
+  medicationDispense,
+
+  /// MedicationKnowledge
+  medicationKnowledge,
+
+  /// MedicationRequest
+  medicationRequest,
+
+  /// MedicationStatement
+  medicationStatement,
+
+  /// MedicinalProductDefinition
+  medicinalProductDefinition,
+
+  /// MessageDefinition
+  messageDefinition,
+
+  /// MessageHeader
+  messageHeader,
+
+  /// MolecularSequence
+  molecularSequence,
+
+  /// NamingSystem
+  namingSystem,
+
+  /// NutritionOrder
+  nutritionOrder,
+
+  /// NutritionProduct
+  nutritionProduct,
+
+  /// Observation
+  observation,
+
+  /// ObservationDefinition
+  observationDefinition,
+
+  /// OperationDefinition
+  operationDefinition,
+
+  /// OperationOutcome
+  operationOutcome,
+
+  /// Organization
+  organization,
+
+  /// OrganizationAffiliation
+  organizationAffiliation,
+
+  /// PackagedProductDefinition
+  packagedProductDefinition,
+
+  /// Patient
+  patient,
+
+  /// PaymentNotice
+  paymentNotice,
+
+  /// PaymentReconciliation
+  paymentReconciliation,
+
+  /// Person
+  person,
+
+  /// PlanDefinition
+  planDefinition,
+
+  /// Practitioner
+  practitioner,
+
+  /// PractitionerRole
+  practitionerRole,
+
+  /// Procedure
+  procedure,
+
+  /// Provenance
+  provenance,
+
+  /// Questionnaire
+  questionnaire,
+
+  /// QuestionnaireResponse
+  questionnaireResponse,
+
+  /// RegulatedAuthorization
+  regulatedAuthorization,
+
+  /// RelatedPerson
+  relatedPerson,
+
+  /// RequestGroup
+  requestGroup,
+
+  /// ResearchDefinition
+  researchDefinition,
+
+  /// ResearchElementDefinition
+  researchElementDefinition,
+
+  /// ResearchStudy
+  researchStudy,
+
+  /// ResearchSubject
+  researchSubject,
+
+  /// RiskAssessment
+  riskAssessment,
+
+  /// Schedule
+  schedule,
+
+  /// SearchParameter
+  searchParameter,
+
+  /// ServiceRequest
+  serviceRequest,
+
+  /// Slot
+  slot,
+
+  /// Specimen
+  specimen,
+
+  /// SpecimenDefinition
+  specimenDefinition,
+
+  /// StructureDefinition
+  structureDefinition,
+
+  /// StructureMap
+  structureMap,
+
+  /// Subscription
+  subscription,
+
+  /// SubscriptionStatus
+  subscriptionStatus,
+
+  /// SubscriptionTopic
+  subscriptionTopic,
+
+  /// Substance
+  substance,
+
+  /// SubstanceDefinition
+  substanceDefinition,
+
+  /// SupplyDelivery
+  supplyDelivery,
+
+  /// SupplyRequest
+  supplyRequest,
+
+  /// Task
+  task,
+
+  /// TerminologyCapabilities
+  terminologyCapabilities,
+
+  /// TestReport
+  testReport,
+
+  /// TestScript
+  testScript,
+
+  /// ValueSet
+  valueSet,
+
+  /// VerificationResult
+  verificationResult,
+
+  /// VisionPrescription
+  visionPrescription,
+
+  /// Parameters
+  parameters,
+
+  /// Type
+  type,
+
+  /// Any
+  any,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case FHIRAllTypesEnum.address:
+        return 'Address';
+      case FHIRAllTypesEnum.age:
+        return 'Age';
+      case FHIRAllTypesEnum.annotation:
+        return 'Annotation';
+      case FHIRAllTypesEnum.attachment:
+        return 'Attachment';
+      case FHIRAllTypesEnum.backboneElement:
+        return 'BackboneElement';
+      case FHIRAllTypesEnum.codeableConcept:
+        return 'CodeableConcept';
+      case FHIRAllTypesEnum.codeableReference:
+        return 'CodeableReference';
+      case FHIRAllTypesEnum.coding:
+        return 'Coding';
+      case FHIRAllTypesEnum.contactDetail:
+        return 'ContactDetail';
+      case FHIRAllTypesEnum.contactPoint:
+        return 'ContactPoint';
+      case FHIRAllTypesEnum.contributor:
+        return 'Contributor';
+      case FHIRAllTypesEnum.count:
+        return 'Count';
+      case FHIRAllTypesEnum.dataRequirement:
+        return 'DataRequirement';
+      case FHIRAllTypesEnum.distance:
+        return 'Distance';
+      case FHIRAllTypesEnum.dosage:
+        return 'Dosage';
+      case FHIRAllTypesEnum.duration:
+        return 'Duration';
+      case FHIRAllTypesEnum.element_:
+        return 'Element';
+      case FHIRAllTypesEnum.elementDefinition:
+        return 'ElementDefinition';
+      case FHIRAllTypesEnum.expression:
+        return 'Expression';
+      case FHIRAllTypesEnum.extension:
+        return 'Extension';
+      case FHIRAllTypesEnum.humanName:
+        return 'HumanName';
+      case FHIRAllTypesEnum.identifier:
+        return 'Identifier';
+      case FHIRAllTypesEnum.marketingStatus:
+        return 'MarketingStatus';
+      case FHIRAllTypesEnum.meta:
+        return 'Meta';
+      case FHIRAllTypesEnum.money:
+        return 'Money';
+      case FHIRAllTypesEnum.moneyQuantity:
+        return 'MoneyQuantity';
+      case FHIRAllTypesEnum.narrative:
+        return 'Narrative';
+      case FHIRAllTypesEnum.parameterDefinition:
+        return 'ParameterDefinition';
+      case FHIRAllTypesEnum.period:
+        return 'Period';
+      case FHIRAllTypesEnum.population:
+        return 'Population';
+      case FHIRAllTypesEnum.prodCharacteristic:
+        return 'ProdCharacteristic';
+      case FHIRAllTypesEnum.productShelfLife:
+        return 'ProductShelfLife';
+      case FHIRAllTypesEnum.quantity:
+        return 'Quantity';
+      case FHIRAllTypesEnum.range:
+        return 'Range';
+      case FHIRAllTypesEnum.ratio:
+        return 'Ratio';
+      case FHIRAllTypesEnum.ratioRange:
+        return 'RatioRange';
+      case FHIRAllTypesEnum.reference:
+        return 'Reference';
+      case FHIRAllTypesEnum.relatedArtifact:
+        return 'RelatedArtifact';
+      case FHIRAllTypesEnum.sampledData:
+        return 'SampledData';
+      case FHIRAllTypesEnum.signature:
+        return 'Signature';
+      case FHIRAllTypesEnum.simpleQuantity:
+        return 'SimpleQuantity';
+      case FHIRAllTypesEnum.timing:
+        return 'Timing';
+      case FHIRAllTypesEnum.triggerDefinition:
+        return 'TriggerDefinition';
+      case FHIRAllTypesEnum.usageContext:
+        return 'UsageContext';
+      case FHIRAllTypesEnum.base64Binary:
+        return 'base64Binary';
+      case FHIRAllTypesEnum.boolean:
+        return 'boolean';
+      case FHIRAllTypesEnum.canonical:
+        return 'canonical';
+      case FHIRAllTypesEnum.code:
+        return 'code';
+      case FHIRAllTypesEnum.date:
+        return 'date';
+      case FHIRAllTypesEnum.dateTime:
+        return 'dateTime';
+      case FHIRAllTypesEnum.decimal:
+        return 'decimal';
+      case FHIRAllTypesEnum.id_:
+        return 'id';
+      case FHIRAllTypesEnum.instant:
+        return 'instant';
+      case FHIRAllTypesEnum.integer:
+        return 'integer';
+      case FHIRAllTypesEnum.markdown:
+        return 'markdown';
+      case FHIRAllTypesEnum.oid:
+        return 'oid';
+      case FHIRAllTypesEnum.positiveInt:
+        return 'positiveInt';
+      case FHIRAllTypesEnum.string:
+        return 'string';
+      case FHIRAllTypesEnum.time:
+        return 'time';
+      case FHIRAllTypesEnum.unsignedInt:
+        return 'unsignedInt';
+      case FHIRAllTypesEnum.uri:
+        return 'uri';
+      case FHIRAllTypesEnum.url:
+        return 'url';
+      case FHIRAllTypesEnum.uuid:
+        return 'uuid';
+      case FHIRAllTypesEnum.xhtml:
+        return 'xhtml';
+      case FHIRAllTypesEnum.resource:
+        return 'Resource';
+      case FHIRAllTypesEnum.binary:
+        return 'Binary';
+      case FHIRAllTypesEnum.bundle:
+        return 'Bundle';
+      case FHIRAllTypesEnum.domainResource:
+        return 'DomainResource';
+      case FHIRAllTypesEnum.account:
+        return 'Account';
+      case FHIRAllTypesEnum.activityDefinition:
+        return 'ActivityDefinition';
+      case FHIRAllTypesEnum.administrableProductDefinition:
+        return 'AdministrableProductDefinition';
+      case FHIRAllTypesEnum.adverseEvent:
+        return 'AdverseEvent';
+      case FHIRAllTypesEnum.allergyIntolerance:
+        return 'AllergyIntolerance';
+      case FHIRAllTypesEnum.appointment:
+        return 'Appointment';
+      case FHIRAllTypesEnum.appointmentResponse:
+        return 'AppointmentResponse';
+      case FHIRAllTypesEnum.auditEvent:
+        return 'AuditEvent';
+      case FHIRAllTypesEnum.basic:
+        return 'Basic';
+      case FHIRAllTypesEnum.biologicallyDerivedProduct:
+        return 'BiologicallyDerivedProduct';
+      case FHIRAllTypesEnum.bodyStructure:
+        return 'BodyStructure';
+      case FHIRAllTypesEnum.capabilityStatement:
+        return 'CapabilityStatement';
+      case FHIRAllTypesEnum.carePlan:
+        return 'CarePlan';
+      case FHIRAllTypesEnum.careTeam:
+        return 'CareTeam';
+      case FHIRAllTypesEnum.catalogEntry:
+        return 'CatalogEntry';
+      case FHIRAllTypesEnum.chargeItem:
+        return 'ChargeItem';
+      case FHIRAllTypesEnum.chargeItemDefinition:
+        return 'ChargeItemDefinition';
+      case FHIRAllTypesEnum.citation:
+        return 'Citation';
+      case FHIRAllTypesEnum.claim:
+        return 'Claim';
+      case FHIRAllTypesEnum.claimResponse:
+        return 'ClaimResponse';
+      case FHIRAllTypesEnum.clinicalImpression:
+        return 'ClinicalImpression';
+      case FHIRAllTypesEnum.clinicalUseDefinition:
+        return 'ClinicalUseDefinition';
+      case FHIRAllTypesEnum.codeSystem:
+        return 'CodeSystem';
+      case FHIRAllTypesEnum.communication:
+        return 'Communication';
+      case FHIRAllTypesEnum.communicationRequest:
+        return 'CommunicationRequest';
+      case FHIRAllTypesEnum.compartmentDefinition:
+        return 'CompartmentDefinition';
+      case FHIRAllTypesEnum.composition:
+        return 'Composition';
+      case FHIRAllTypesEnum.conceptMap:
+        return 'ConceptMap';
+      case FHIRAllTypesEnum.condition:
+        return 'Condition';
+      case FHIRAllTypesEnum.consent:
+        return 'Consent';
+      case FHIRAllTypesEnum.contract:
+        return 'Contract';
+      case FHIRAllTypesEnum.coverage:
+        return 'Coverage';
+      case FHIRAllTypesEnum.coverageEligibilityRequest:
+        return 'CoverageEligibilityRequest';
+      case FHIRAllTypesEnum.coverageEligibilityResponse:
+        return 'CoverageEligibilityResponse';
+      case FHIRAllTypesEnum.detectedIssue:
+        return 'DetectedIssue';
+      case FHIRAllTypesEnum.device:
+        return 'Device';
+      case FHIRAllTypesEnum.deviceDefinition:
+        return 'DeviceDefinition';
+      case FHIRAllTypesEnum.deviceMetric:
+        return 'DeviceMetric';
+      case FHIRAllTypesEnum.deviceRequest:
+        return 'DeviceRequest';
+      case FHIRAllTypesEnum.deviceUseStatement:
+        return 'DeviceUseStatement';
+      case FHIRAllTypesEnum.diagnosticReport:
+        return 'DiagnosticReport';
+      case FHIRAllTypesEnum.documentManifest:
+        return 'DocumentManifest';
+      case FHIRAllTypesEnum.documentReference:
+        return 'DocumentReference';
+      case FHIRAllTypesEnum.encounter:
+        return 'Encounter';
+      case FHIRAllTypesEnum.endpoint:
+        return 'Endpoint';
+      case FHIRAllTypesEnum.enrollmentRequest:
+        return 'EnrollmentRequest';
+      case FHIRAllTypesEnum.enrollmentResponse:
+        return 'EnrollmentResponse';
+      case FHIRAllTypesEnum.episodeOfCare:
+        return 'EpisodeOfCare';
+      case FHIRAllTypesEnum.eventDefinition:
+        return 'EventDefinition';
+      case FHIRAllTypesEnum.evidence:
+        return 'Evidence';
+      case FHIRAllTypesEnum.evidenceReport:
+        return 'EvidenceReport';
+      case FHIRAllTypesEnum.evidenceVariable:
+        return 'EvidenceVariable';
+      case FHIRAllTypesEnum.exampleScenario:
+        return 'ExampleScenario';
+      case FHIRAllTypesEnum.explanationOfBenefit:
+        return 'ExplanationOfBenefit';
+      case FHIRAllTypesEnum.familyMemberHistory:
+        return 'FamilyMemberHistory';
+      case FHIRAllTypesEnum.flag:
+        return 'Flag';
+      case FHIRAllTypesEnum.goal:
+        return 'Goal';
+      case FHIRAllTypesEnum.graphDefinition:
+        return 'GraphDefinition';
+      case FHIRAllTypesEnum.group:
+        return 'Group';
+      case FHIRAllTypesEnum.guidanceResponse:
+        return 'GuidanceResponse';
+      case FHIRAllTypesEnum.healthcareService:
+        return 'HealthcareService';
+      case FHIRAllTypesEnum.imagingStudy:
+        return 'ImagingStudy';
+      case FHIRAllTypesEnum.immunization:
+        return 'Immunization';
+      case FHIRAllTypesEnum.immunizationEvaluation:
+        return 'ImmunizationEvaluation';
+      case FHIRAllTypesEnum.immunizationRecommendation:
+        return 'ImmunizationRecommendation';
+      case FHIRAllTypesEnum.implementationGuide:
+        return 'ImplementationGuide';
+      case FHIRAllTypesEnum.ingredient:
+        return 'Ingredient';
+      case FHIRAllTypesEnum.insurancePlan:
+        return 'InsurancePlan';
+      case FHIRAllTypesEnum.invoice:
+        return 'Invoice';
+      case FHIRAllTypesEnum.library:
+        return 'Library';
+      case FHIRAllTypesEnum.linkage:
+        return 'Linkage';
+      case FHIRAllTypesEnum.list_:
+        return 'List';
+      case FHIRAllTypesEnum.location:
+        return 'Location';
+      case FHIRAllTypesEnum.manufacturedItemDefinition:
+        return 'ManufacturedItemDefinition';
+      case FHIRAllTypesEnum.measure:
+        return 'Measure';
+      case FHIRAllTypesEnum.measureReport:
+        return 'MeasureReport';
+      case FHIRAllTypesEnum.media:
+        return 'Media';
+      case FHIRAllTypesEnum.medication:
+        return 'Medication';
+      case FHIRAllTypesEnum.medicationAdministration:
+        return 'MedicationAdministration';
+      case FHIRAllTypesEnum.medicationDispense:
+        return 'MedicationDispense';
+      case FHIRAllTypesEnum.medicationKnowledge:
+        return 'MedicationKnowledge';
+      case FHIRAllTypesEnum.medicationRequest:
+        return 'MedicationRequest';
+      case FHIRAllTypesEnum.medicationStatement:
+        return 'MedicationStatement';
+      case FHIRAllTypesEnum.medicinalProductDefinition:
+        return 'MedicinalProductDefinition';
+      case FHIRAllTypesEnum.messageDefinition:
+        return 'MessageDefinition';
+      case FHIRAllTypesEnum.messageHeader:
+        return 'MessageHeader';
+      case FHIRAllTypesEnum.molecularSequence:
+        return 'MolecularSequence';
+      case FHIRAllTypesEnum.namingSystem:
+        return 'NamingSystem';
+      case FHIRAllTypesEnum.nutritionOrder:
+        return 'NutritionOrder';
+      case FHIRAllTypesEnum.nutritionProduct:
+        return 'NutritionProduct';
+      case FHIRAllTypesEnum.observation:
+        return 'Observation';
+      case FHIRAllTypesEnum.observationDefinition:
+        return 'ObservationDefinition';
+      case FHIRAllTypesEnum.operationDefinition:
+        return 'OperationDefinition';
+      case FHIRAllTypesEnum.operationOutcome:
+        return 'OperationOutcome';
+      case FHIRAllTypesEnum.organization:
+        return 'Organization';
+      case FHIRAllTypesEnum.organizationAffiliation:
+        return 'OrganizationAffiliation';
+      case FHIRAllTypesEnum.packagedProductDefinition:
+        return 'PackagedProductDefinition';
+      case FHIRAllTypesEnum.patient:
+        return 'Patient';
+      case FHIRAllTypesEnum.paymentNotice:
+        return 'PaymentNotice';
+      case FHIRAllTypesEnum.paymentReconciliation:
+        return 'PaymentReconciliation';
+      case FHIRAllTypesEnum.person:
+        return 'Person';
+      case FHIRAllTypesEnum.planDefinition:
+        return 'PlanDefinition';
+      case FHIRAllTypesEnum.practitioner:
+        return 'Practitioner';
+      case FHIRAllTypesEnum.practitionerRole:
+        return 'PractitionerRole';
+      case FHIRAllTypesEnum.procedure:
+        return 'Procedure';
+      case FHIRAllTypesEnum.provenance:
+        return 'Provenance';
+      case FHIRAllTypesEnum.questionnaire:
+        return 'Questionnaire';
+      case FHIRAllTypesEnum.questionnaireResponse:
+        return 'QuestionnaireResponse';
+      case FHIRAllTypesEnum.regulatedAuthorization:
+        return 'RegulatedAuthorization';
+      case FHIRAllTypesEnum.relatedPerson:
+        return 'RelatedPerson';
+      case FHIRAllTypesEnum.requestGroup:
+        return 'RequestGroup';
+      case FHIRAllTypesEnum.researchDefinition:
+        return 'ResearchDefinition';
+      case FHIRAllTypesEnum.researchElementDefinition:
+        return 'ResearchElementDefinition';
+      case FHIRAllTypesEnum.researchStudy:
+        return 'ResearchStudy';
+      case FHIRAllTypesEnum.researchSubject:
+        return 'ResearchSubject';
+      case FHIRAllTypesEnum.riskAssessment:
+        return 'RiskAssessment';
+      case FHIRAllTypesEnum.schedule:
+        return 'Schedule';
+      case FHIRAllTypesEnum.searchParameter:
+        return 'SearchParameter';
+      case FHIRAllTypesEnum.serviceRequest:
+        return 'ServiceRequest';
+      case FHIRAllTypesEnum.slot:
+        return 'Slot';
+      case FHIRAllTypesEnum.specimen:
+        return 'Specimen';
+      case FHIRAllTypesEnum.specimenDefinition:
+        return 'SpecimenDefinition';
+      case FHIRAllTypesEnum.structureDefinition:
+        return 'StructureDefinition';
+      case FHIRAllTypesEnum.structureMap:
+        return 'StructureMap';
+      case FHIRAllTypesEnum.subscription:
+        return 'Subscription';
+      case FHIRAllTypesEnum.subscriptionStatus:
+        return 'SubscriptionStatus';
+      case FHIRAllTypesEnum.subscriptionTopic:
+        return 'SubscriptionTopic';
+      case FHIRAllTypesEnum.substance:
+        return 'Substance';
+      case FHIRAllTypesEnum.substanceDefinition:
+        return 'SubstanceDefinition';
+      case FHIRAllTypesEnum.supplyDelivery:
+        return 'SupplyDelivery';
+      case FHIRAllTypesEnum.supplyRequest:
+        return 'SupplyRequest';
+      case FHIRAllTypesEnum.task:
+        return 'Task';
+      case FHIRAllTypesEnum.terminologyCapabilities:
+        return 'TerminologyCapabilities';
+      case FHIRAllTypesEnum.testReport:
+        return 'TestReport';
+      case FHIRAllTypesEnum.testScript:
+        return 'TestScript';
+      case FHIRAllTypesEnum.valueSet:
+        return 'ValueSet';
+      case FHIRAllTypesEnum.verificationResult:
+        return 'VerificationResult';
+      case FHIRAllTypesEnum.visionPrescription:
+        return 'VisionPrescription';
+      case FHIRAllTypesEnum.parameters:
+        return 'Parameters';
+      case FHIRAllTypesEnum.type:
+        return 'Type';
+      case FHIRAllTypesEnum.any:
+        return 'Any';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static FHIRAllTypesEnum? fromJson(dynamic json) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return FHIRAllTypesEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static FHIRAllTypesEnum? fromString(String? value) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'Address':
+        return FHIRAllTypesEnum.address;
+      case 'Age':
+        return FHIRAllTypesEnum.age;
+      case 'Annotation':
+        return FHIRAllTypesEnum.annotation;
+      case 'Attachment':
+        return FHIRAllTypesEnum.attachment;
+      case 'BackboneElement':
+        return FHIRAllTypesEnum.backboneElement;
+      case 'CodeableConcept':
+        return FHIRAllTypesEnum.codeableConcept;
+      case 'CodeableReference':
+        return FHIRAllTypesEnum.codeableReference;
+      case 'Coding':
+        return FHIRAllTypesEnum.coding;
+      case 'ContactDetail':
+        return FHIRAllTypesEnum.contactDetail;
+      case 'ContactPoint':
+        return FHIRAllTypesEnum.contactPoint;
+      case 'Contributor':
+        return FHIRAllTypesEnum.contributor;
+      case 'Count':
+        return FHIRAllTypesEnum.count;
+      case 'DataRequirement':
+        return FHIRAllTypesEnum.dataRequirement;
+      case 'Distance':
+        return FHIRAllTypesEnum.distance;
+      case 'Dosage':
+        return FHIRAllTypesEnum.dosage;
+      case 'Duration':
+        return FHIRAllTypesEnum.duration;
+      case 'Element':
+        return FHIRAllTypesEnum.element_;
+      case 'ElementDefinition':
+        return FHIRAllTypesEnum.elementDefinition;
+      case 'Expression':
+        return FHIRAllTypesEnum.expression;
+      case 'Extension':
+        return FHIRAllTypesEnum.extension;
+      case 'HumanName':
+        return FHIRAllTypesEnum.humanName;
+      case 'Identifier':
+        return FHIRAllTypesEnum.identifier;
+      case 'MarketingStatus':
+        return FHIRAllTypesEnum.marketingStatus;
+      case 'Meta':
+        return FHIRAllTypesEnum.meta;
+      case 'Money':
+        return FHIRAllTypesEnum.money;
+      case 'MoneyQuantity':
+        return FHIRAllTypesEnum.moneyQuantity;
+      case 'Narrative':
+        return FHIRAllTypesEnum.narrative;
+      case 'ParameterDefinition':
+        return FHIRAllTypesEnum.parameterDefinition;
+      case 'Period':
+        return FHIRAllTypesEnum.period;
+      case 'Population':
+        return FHIRAllTypesEnum.population;
+      case 'ProdCharacteristic':
+        return FHIRAllTypesEnum.prodCharacteristic;
+      case 'ProductShelfLife':
+        return FHIRAllTypesEnum.productShelfLife;
+      case 'Quantity':
+        return FHIRAllTypesEnum.quantity;
+      case 'Range':
+        return FHIRAllTypesEnum.range;
+      case 'Ratio':
+        return FHIRAllTypesEnum.ratio;
+      case 'RatioRange':
+        return FHIRAllTypesEnum.ratioRange;
+      case 'Reference':
+        return FHIRAllTypesEnum.reference;
+      case 'RelatedArtifact':
+        return FHIRAllTypesEnum.relatedArtifact;
+      case 'SampledData':
+        return FHIRAllTypesEnum.sampledData;
+      case 'Signature':
+        return FHIRAllTypesEnum.signature;
+      case 'SimpleQuantity':
+        return FHIRAllTypesEnum.simpleQuantity;
+      case 'Timing':
+        return FHIRAllTypesEnum.timing;
+      case 'TriggerDefinition':
+        return FHIRAllTypesEnum.triggerDefinition;
+      case 'UsageContext':
+        return FHIRAllTypesEnum.usageContext;
+      case 'base64Binary':
+        return FHIRAllTypesEnum.base64Binary;
+      case 'boolean':
+        return FHIRAllTypesEnum.boolean;
+      case 'canonical':
+        return FHIRAllTypesEnum.canonical;
+      case 'code':
+        return FHIRAllTypesEnum.code;
+      case 'date':
+        return FHIRAllTypesEnum.date;
+      case 'dateTime':
+        return FHIRAllTypesEnum.dateTime;
+      case 'decimal':
+        return FHIRAllTypesEnum.decimal;
+      case 'id':
+        return FHIRAllTypesEnum.id_;
+      case 'instant':
+        return FHIRAllTypesEnum.instant;
+      case 'integer':
+        return FHIRAllTypesEnum.integer;
+      case 'markdown':
+        return FHIRAllTypesEnum.markdown;
+      case 'oid':
+        return FHIRAllTypesEnum.oid;
+      case 'positiveInt':
+        return FHIRAllTypesEnum.positiveInt;
+      case 'string':
+        return FHIRAllTypesEnum.string;
+      case 'time':
+        return FHIRAllTypesEnum.time;
+      case 'unsignedInt':
+        return FHIRAllTypesEnum.unsignedInt;
+      case 'uri':
+        return FHIRAllTypesEnum.uri;
+      case 'url':
+        return FHIRAllTypesEnum.url;
+      case 'uuid':
+        return FHIRAllTypesEnum.uuid;
+      case 'xhtml':
+        return FHIRAllTypesEnum.xhtml;
+      case 'Resource':
+        return FHIRAllTypesEnum.resource;
+      case 'Binary':
+        return FHIRAllTypesEnum.binary;
+      case 'Bundle':
+        return FHIRAllTypesEnum.bundle;
+      case 'DomainResource':
+        return FHIRAllTypesEnum.domainResource;
+      case 'Account':
+        return FHIRAllTypesEnum.account;
+      case 'ActivityDefinition':
+        return FHIRAllTypesEnum.activityDefinition;
+      case 'AdministrableProductDefinition':
+        return FHIRAllTypesEnum.administrableProductDefinition;
+      case 'AdverseEvent':
+        return FHIRAllTypesEnum.adverseEvent;
+      case 'AllergyIntolerance':
+        return FHIRAllTypesEnum.allergyIntolerance;
+      case 'Appointment':
+        return FHIRAllTypesEnum.appointment;
+      case 'AppointmentResponse':
+        return FHIRAllTypesEnum.appointmentResponse;
+      case 'AuditEvent':
+        return FHIRAllTypesEnum.auditEvent;
+      case 'Basic':
+        return FHIRAllTypesEnum.basic;
+      case 'BiologicallyDerivedProduct':
+        return FHIRAllTypesEnum.biologicallyDerivedProduct;
+      case 'BodyStructure':
+        return FHIRAllTypesEnum.bodyStructure;
+      case 'CapabilityStatement':
+        return FHIRAllTypesEnum.capabilityStatement;
+      case 'CarePlan':
+        return FHIRAllTypesEnum.carePlan;
+      case 'CareTeam':
+        return FHIRAllTypesEnum.careTeam;
+      case 'CatalogEntry':
+        return FHIRAllTypesEnum.catalogEntry;
+      case 'ChargeItem':
+        return FHIRAllTypesEnum.chargeItem;
+      case 'ChargeItemDefinition':
+        return FHIRAllTypesEnum.chargeItemDefinition;
+      case 'Citation':
+        return FHIRAllTypesEnum.citation;
+      case 'Claim':
+        return FHIRAllTypesEnum.claim;
+      case 'ClaimResponse':
+        return FHIRAllTypesEnum.claimResponse;
+      case 'ClinicalImpression':
+        return FHIRAllTypesEnum.clinicalImpression;
+      case 'ClinicalUseDefinition':
+        return FHIRAllTypesEnum.clinicalUseDefinition;
+      case 'CodeSystem':
+        return FHIRAllTypesEnum.codeSystem;
+      case 'Communication':
+        return FHIRAllTypesEnum.communication;
+      case 'CommunicationRequest':
+        return FHIRAllTypesEnum.communicationRequest;
+      case 'CompartmentDefinition':
+        return FHIRAllTypesEnum.compartmentDefinition;
+      case 'Composition':
+        return FHIRAllTypesEnum.composition;
+      case 'ConceptMap':
+        return FHIRAllTypesEnum.conceptMap;
+      case 'Condition':
+        return FHIRAllTypesEnum.condition;
+      case 'Consent':
+        return FHIRAllTypesEnum.consent;
+      case 'Contract':
+        return FHIRAllTypesEnum.contract;
+      case 'Coverage':
+        return FHIRAllTypesEnum.coverage;
+      case 'CoverageEligibilityRequest':
+        return FHIRAllTypesEnum.coverageEligibilityRequest;
+      case 'CoverageEligibilityResponse':
+        return FHIRAllTypesEnum.coverageEligibilityResponse;
+      case 'DetectedIssue':
+        return FHIRAllTypesEnum.detectedIssue;
+      case 'Device':
+        return FHIRAllTypesEnum.device;
+      case 'DeviceDefinition':
+        return FHIRAllTypesEnum.deviceDefinition;
+      case 'DeviceMetric':
+        return FHIRAllTypesEnum.deviceMetric;
+      case 'DeviceRequest':
+        return FHIRAllTypesEnum.deviceRequest;
+      case 'DeviceUseStatement':
+        return FHIRAllTypesEnum.deviceUseStatement;
+      case 'DiagnosticReport':
+        return FHIRAllTypesEnum.diagnosticReport;
+      case 'DocumentManifest':
+        return FHIRAllTypesEnum.documentManifest;
+      case 'DocumentReference':
+        return FHIRAllTypesEnum.documentReference;
+      case 'Encounter':
+        return FHIRAllTypesEnum.encounter;
+      case 'Endpoint':
+        return FHIRAllTypesEnum.endpoint;
+      case 'EnrollmentRequest':
+        return FHIRAllTypesEnum.enrollmentRequest;
+      case 'EnrollmentResponse':
+        return FHIRAllTypesEnum.enrollmentResponse;
+      case 'EpisodeOfCare':
+        return FHIRAllTypesEnum.episodeOfCare;
+      case 'EventDefinition':
+        return FHIRAllTypesEnum.eventDefinition;
+      case 'Evidence':
+        return FHIRAllTypesEnum.evidence;
+      case 'EvidenceReport':
+        return FHIRAllTypesEnum.evidenceReport;
+      case 'EvidenceVariable':
+        return FHIRAllTypesEnum.evidenceVariable;
+      case 'ExampleScenario':
+        return FHIRAllTypesEnum.exampleScenario;
+      case 'ExplanationOfBenefit':
+        return FHIRAllTypesEnum.explanationOfBenefit;
+      case 'FamilyMemberHistory':
+        return FHIRAllTypesEnum.familyMemberHistory;
+      case 'Flag':
+        return FHIRAllTypesEnum.flag;
+      case 'Goal':
+        return FHIRAllTypesEnum.goal;
+      case 'GraphDefinition':
+        return FHIRAllTypesEnum.graphDefinition;
+      case 'Group':
+        return FHIRAllTypesEnum.group;
+      case 'GuidanceResponse':
+        return FHIRAllTypesEnum.guidanceResponse;
+      case 'HealthcareService':
+        return FHIRAllTypesEnum.healthcareService;
+      case 'ImagingStudy':
+        return FHIRAllTypesEnum.imagingStudy;
+      case 'Immunization':
+        return FHIRAllTypesEnum.immunization;
+      case 'ImmunizationEvaluation':
+        return FHIRAllTypesEnum.immunizationEvaluation;
+      case 'ImmunizationRecommendation':
+        return FHIRAllTypesEnum.immunizationRecommendation;
+      case 'ImplementationGuide':
+        return FHIRAllTypesEnum.implementationGuide;
+      case 'Ingredient':
+        return FHIRAllTypesEnum.ingredient;
+      case 'InsurancePlan':
+        return FHIRAllTypesEnum.insurancePlan;
+      case 'Invoice':
+        return FHIRAllTypesEnum.invoice;
+      case 'Library':
+        return FHIRAllTypesEnum.library;
+      case 'Linkage':
+        return FHIRAllTypesEnum.linkage;
+      case 'List':
+        return FHIRAllTypesEnum.list_;
+      case 'Location':
+        return FHIRAllTypesEnum.location;
+      case 'ManufacturedItemDefinition':
+        return FHIRAllTypesEnum.manufacturedItemDefinition;
+      case 'Measure':
+        return FHIRAllTypesEnum.measure;
+      case 'MeasureReport':
+        return FHIRAllTypesEnum.measureReport;
+      case 'Media':
+        return FHIRAllTypesEnum.media;
+      case 'Medication':
+        return FHIRAllTypesEnum.medication;
+      case 'MedicationAdministration':
+        return FHIRAllTypesEnum.medicationAdministration;
+      case 'MedicationDispense':
+        return FHIRAllTypesEnum.medicationDispense;
+      case 'MedicationKnowledge':
+        return FHIRAllTypesEnum.medicationKnowledge;
+      case 'MedicationRequest':
+        return FHIRAllTypesEnum.medicationRequest;
+      case 'MedicationStatement':
+        return FHIRAllTypesEnum.medicationStatement;
+      case 'MedicinalProductDefinition':
+        return FHIRAllTypesEnum.medicinalProductDefinition;
+      case 'MessageDefinition':
+        return FHIRAllTypesEnum.messageDefinition;
+      case 'MessageHeader':
+        return FHIRAllTypesEnum.messageHeader;
+      case 'MolecularSequence':
+        return FHIRAllTypesEnum.molecularSequence;
+      case 'NamingSystem':
+        return FHIRAllTypesEnum.namingSystem;
+      case 'NutritionOrder':
+        return FHIRAllTypesEnum.nutritionOrder;
+      case 'NutritionProduct':
+        return FHIRAllTypesEnum.nutritionProduct;
+      case 'Observation':
+        return FHIRAllTypesEnum.observation;
+      case 'ObservationDefinition':
+        return FHIRAllTypesEnum.observationDefinition;
+      case 'OperationDefinition':
+        return FHIRAllTypesEnum.operationDefinition;
+      case 'OperationOutcome':
+        return FHIRAllTypesEnum.operationOutcome;
+      case 'Organization':
+        return FHIRAllTypesEnum.organization;
+      case 'OrganizationAffiliation':
+        return FHIRAllTypesEnum.organizationAffiliation;
+      case 'PackagedProductDefinition':
+        return FHIRAllTypesEnum.packagedProductDefinition;
+      case 'Patient':
+        return FHIRAllTypesEnum.patient;
+      case 'PaymentNotice':
+        return FHIRAllTypesEnum.paymentNotice;
+      case 'PaymentReconciliation':
+        return FHIRAllTypesEnum.paymentReconciliation;
+      case 'Person':
+        return FHIRAllTypesEnum.person;
+      case 'PlanDefinition':
+        return FHIRAllTypesEnum.planDefinition;
+      case 'Practitioner':
+        return FHIRAllTypesEnum.practitioner;
+      case 'PractitionerRole':
+        return FHIRAllTypesEnum.practitionerRole;
+      case 'Procedure':
+        return FHIRAllTypesEnum.procedure;
+      case 'Provenance':
+        return FHIRAllTypesEnum.provenance;
+      case 'Questionnaire':
+        return FHIRAllTypesEnum.questionnaire;
+      case 'QuestionnaireResponse':
+        return FHIRAllTypesEnum.questionnaireResponse;
+      case 'RegulatedAuthorization':
+        return FHIRAllTypesEnum.regulatedAuthorization;
+      case 'RelatedPerson':
+        return FHIRAllTypesEnum.relatedPerson;
+      case 'RequestGroup':
+        return FHIRAllTypesEnum.requestGroup;
+      case 'ResearchDefinition':
+        return FHIRAllTypesEnum.researchDefinition;
+      case 'ResearchElementDefinition':
+        return FHIRAllTypesEnum.researchElementDefinition;
+      case 'ResearchStudy':
+        return FHIRAllTypesEnum.researchStudy;
+      case 'ResearchSubject':
+        return FHIRAllTypesEnum.researchSubject;
+      case 'RiskAssessment':
+        return FHIRAllTypesEnum.riskAssessment;
+      case 'Schedule':
+        return FHIRAllTypesEnum.schedule;
+      case 'SearchParameter':
+        return FHIRAllTypesEnum.searchParameter;
+      case 'ServiceRequest':
+        return FHIRAllTypesEnum.serviceRequest;
+      case 'Slot':
+        return FHIRAllTypesEnum.slot;
+      case 'Specimen':
+        return FHIRAllTypesEnum.specimen;
+      case 'SpecimenDefinition':
+        return FHIRAllTypesEnum.specimenDefinition;
+      case 'StructureDefinition':
+        return FHIRAllTypesEnum.structureDefinition;
+      case 'StructureMap':
+        return FHIRAllTypesEnum.structureMap;
+      case 'Subscription':
+        return FHIRAllTypesEnum.subscription;
+      case 'SubscriptionStatus':
+        return FHIRAllTypesEnum.subscriptionStatus;
+      case 'SubscriptionTopic':
+        return FHIRAllTypesEnum.subscriptionTopic;
+      case 'Substance':
+        return FHIRAllTypesEnum.substance;
+      case 'SubstanceDefinition':
+        return FHIRAllTypesEnum.substanceDefinition;
+      case 'SupplyDelivery':
+        return FHIRAllTypesEnum.supplyDelivery;
+      case 'SupplyRequest':
+        return FHIRAllTypesEnum.supplyRequest;
+      case 'Task':
+        return FHIRAllTypesEnum.task;
+      case 'TerminologyCapabilities':
+        return FHIRAllTypesEnum.terminologyCapabilities;
+      case 'TestReport':
+        return FHIRAllTypesEnum.testReport;
+      case 'TestScript':
+        return FHIRAllTypesEnum.testScript;
+      case 'ValueSet':
+        return FHIRAllTypesEnum.valueSet;
+      case 'VerificationResult':
+        return FHIRAllTypesEnum.verificationResult;
+      case 'VisionPrescription':
+        return FHIRAllTypesEnum.visionPrescription;
+      case 'Parameters':
+        return FHIRAllTypesEnum.parameters;
+      case 'Type':
+        return FHIRAllTypesEnum.type;
+      case 'Any':
+        return FHIRAllTypesEnum.any;
+    }
+    return null;
+  }
+}
+
 /// A list of all the concrete types defined in this version of the FHIR
 /// specification - Abstract Types, Data Types and Resource Types.
 class FHIRAllTypes extends FhirCodeEnum {
   // Private underscore constructor for internal use.
-  FHIRAllTypes._({
+  const FHIRAllTypes._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -14,7 +1510,6 @@ class FHIRAllTypes extends FhirCodeEnum {
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.objectPath = 'Code',
   }) : super._();
 
   /// Public factory if you want a fallback approach or custom creation.
@@ -28,12 +1523,13 @@ class FHIRAllTypes extends FhirCodeEnum {
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
-    String objectPath = 'Code',
   }) {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
+    final valueEnum = FHIRAllTypesEnum.fromString(valueString);
     return FHIRAllTypes._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -41,12 +1537,8 @@ class FHIRAllTypes extends FhirCodeEnum {
       id: id,
       extension_: extension_,
       disallowExtensions: disallowExtensions,
-      objectPath: objectPath,
     );
   }
-
-  /// Create empty [FHIRAllTypes] with element only
-  factory FHIRAllTypes.empty() => FHIRAllTypes._(valueString: '');
 
   /// Factory constructor to create [FHIRAllTypes]
   /// from JSON.
@@ -54,10 +1546,11 @@ class FHIRAllTypes extends FhirCodeEnum {
     Map<String, dynamic> json,
   ) {
     final value = json['value'] as String?;
+    final valueEnum = FHIRAllTypesEnum.fromString(value);
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return FHIRAllTypes.elementOnly.withElement(element);
+      return FHIRAllTypes._(valueString: null, element: element);
     } else if (value == null && element == null) {
       throw ArgumentError(
         'FHIRAllTypes cannot be constructed from JSON.',
@@ -65,1731 +1558,2777 @@ class FHIRAllTypes extends FhirCodeEnum {
     }
     return FHIRAllTypes._(
       valueString: value,
+      valueEnum: valueEnum,
       element: element,
     );
   }
 
+  /// An actual enum that can be used for FHIRAllTypes
+  final FHIRAllTypesEnum? valueEnum;
+
   /// Address
-  static final FHIRAllTypes Address = FHIRAllTypes._(
+  static const FHIRAllTypes address = FHIRAllTypes._(
     valueString: 'Address',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Address'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.address,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Address',
+    ),
   );
 
   /// Age
-  static final FHIRAllTypes Age = FHIRAllTypes._(
+  static const FHIRAllTypes age = FHIRAllTypes._(
     valueString: 'Age',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Age'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.age,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Age',
+    ),
   );
 
   /// Annotation
-  static final FHIRAllTypes Annotation = FHIRAllTypes._(
+  static const FHIRAllTypes annotation = FHIRAllTypes._(
     valueString: 'Annotation',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Annotation'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.annotation,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Annotation',
+    ),
   );
 
   /// Attachment
-  static final FHIRAllTypes Attachment = FHIRAllTypes._(
+  static const FHIRAllTypes attachment = FHIRAllTypes._(
     valueString: 'Attachment',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Attachment'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.attachment,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Attachment',
+    ),
   );
 
   /// BackboneElement
-  static final FHIRAllTypes BackboneElement = FHIRAllTypes._(
+  static const FHIRAllTypes backboneElement = FHIRAllTypes._(
     valueString: 'BackboneElement',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'BackboneElement'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.backboneElement,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'BackboneElement',
+    ),
   );
 
   /// CodeableConcept
-  static final FHIRAllTypes CodeableConcept = FHIRAllTypes._(
+  static const FHIRAllTypes codeableConcept = FHIRAllTypes._(
     valueString: 'CodeableConcept',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'CodeableConcept'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.codeableConcept,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'CodeableConcept',
+    ),
   );
 
   /// CodeableReference
-  static final FHIRAllTypes CodeableReference = FHIRAllTypes._(
+  static const FHIRAllTypes codeableReference = FHIRAllTypes._(
     valueString: 'CodeableReference',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'CodeableReference'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.codeableReference,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'CodeableReference',
+    ),
   );
 
   /// Coding
-  static final FHIRAllTypes Coding = FHIRAllTypes._(
+  static const FHIRAllTypes coding = FHIRAllTypes._(
     valueString: 'Coding',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Coding'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.coding,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Coding',
+    ),
   );
 
   /// ContactDetail
-  static final FHIRAllTypes ContactDetail = FHIRAllTypes._(
+  static const FHIRAllTypes contactDetail = FHIRAllTypes._(
     valueString: 'ContactDetail',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'ContactDetail'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.contactDetail,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'ContactDetail',
+    ),
   );
 
   /// ContactPoint
-  static final FHIRAllTypes ContactPoint = FHIRAllTypes._(
+  static const FHIRAllTypes contactPoint = FHIRAllTypes._(
     valueString: 'ContactPoint',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'ContactPoint'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.contactPoint,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'ContactPoint',
+    ),
   );
 
   /// Contributor
-  static final FHIRAllTypes Contributor = FHIRAllTypes._(
+  static const FHIRAllTypes contributor = FHIRAllTypes._(
     valueString: 'Contributor',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Contributor'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.contributor,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Contributor',
+    ),
   );
 
   /// Count
-  static final FHIRAllTypes Count = FHIRAllTypes._(
+  static const FHIRAllTypes count = FHIRAllTypes._(
     valueString: 'Count',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Count'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.count,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Count',
+    ),
   );
 
   /// DataRequirement
-  static final FHIRAllTypes DataRequirement = FHIRAllTypes._(
+  static const FHIRAllTypes dataRequirement = FHIRAllTypes._(
     valueString: 'DataRequirement',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'DataRequirement'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.dataRequirement,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'DataRequirement',
+    ),
   );
 
   /// Distance
-  static final FHIRAllTypes Distance = FHIRAllTypes._(
+  static const FHIRAllTypes distance = FHIRAllTypes._(
     valueString: 'Distance',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Distance'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.distance,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Distance',
+    ),
   );
 
   /// Dosage
-  static final FHIRAllTypes Dosage = FHIRAllTypes._(
+  static const FHIRAllTypes dosage = FHIRAllTypes._(
     valueString: 'Dosage',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Dosage'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.dosage,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Dosage',
+    ),
   );
 
   /// Duration
-  static final FHIRAllTypes Duration = FHIRAllTypes._(
+  static const FHIRAllTypes duration = FHIRAllTypes._(
     valueString: 'Duration',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Duration'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.duration,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Duration',
+    ),
   );
 
   /// Element_
-  static final FHIRAllTypes Element_ = FHIRAllTypes._(
+  static const FHIRAllTypes element_ = FHIRAllTypes._(
     valueString: 'Element',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Element'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.element_,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Element',
+    ),
   );
 
   /// ElementDefinition
-  static final FHIRAllTypes ElementDefinition = FHIRAllTypes._(
+  static const FHIRAllTypes elementDefinition = FHIRAllTypes._(
     valueString: 'ElementDefinition',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'ElementDefinition'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.elementDefinition,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'ElementDefinition',
+    ),
   );
 
   /// Expression
-  static final FHIRAllTypes Expression = FHIRAllTypes._(
+  static const FHIRAllTypes expression = FHIRAllTypes._(
     valueString: 'Expression',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Expression'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.expression,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Expression',
+    ),
   );
 
   /// Extension
-  static final FHIRAllTypes Extension = FHIRAllTypes._(
+  static const FHIRAllTypes extension = FHIRAllTypes._(
     valueString: 'Extension',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Extension'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.extension,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Extension',
+    ),
   );
 
   /// HumanName
-  static final FHIRAllTypes HumanName = FHIRAllTypes._(
+  static const FHIRAllTypes humanName = FHIRAllTypes._(
     valueString: 'HumanName',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'HumanName'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.humanName,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'HumanName',
+    ),
   );
 
   /// Identifier
-  static final FHIRAllTypes Identifier = FHIRAllTypes._(
+  static const FHIRAllTypes identifier = FHIRAllTypes._(
     valueString: 'Identifier',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Identifier'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.identifier,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Identifier',
+    ),
   );
 
   /// MarketingStatus
-  static final FHIRAllTypes MarketingStatus = FHIRAllTypes._(
+  static const FHIRAllTypes marketingStatus = FHIRAllTypes._(
     valueString: 'MarketingStatus',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'MarketingStatus'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.marketingStatus,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'MarketingStatus',
+    ),
   );
 
   /// Meta
-  static final FHIRAllTypes Meta = FHIRAllTypes._(
+  static const FHIRAllTypes meta = FHIRAllTypes._(
     valueString: 'Meta',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Meta'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.meta,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Meta',
+    ),
   );
 
   /// Money
-  static final FHIRAllTypes Money = FHIRAllTypes._(
+  static const FHIRAllTypes money = FHIRAllTypes._(
     valueString: 'Money',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Money'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.money,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Money',
+    ),
   );
 
   /// MoneyQuantity
-  static final FHIRAllTypes MoneyQuantity = FHIRAllTypes._(
+  static const FHIRAllTypes moneyQuantity = FHIRAllTypes._(
     valueString: 'MoneyQuantity',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'MoneyQuantity'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.moneyQuantity,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'MoneyQuantity',
+    ),
   );
 
   /// Narrative
-  static final FHIRAllTypes Narrative = FHIRAllTypes._(
+  static const FHIRAllTypes narrative = FHIRAllTypes._(
     valueString: 'Narrative',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Narrative'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.narrative,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Narrative',
+    ),
   );
 
   /// ParameterDefinition
-  static final FHIRAllTypes ParameterDefinition = FHIRAllTypes._(
+  static const FHIRAllTypes parameterDefinition = FHIRAllTypes._(
     valueString: 'ParameterDefinition',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'ParameterDefinition'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.parameterDefinition,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'ParameterDefinition',
+    ),
   );
 
   /// Period
-  static final FHIRAllTypes Period = FHIRAllTypes._(
+  static const FHIRAllTypes period = FHIRAllTypes._(
     valueString: 'Period',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Period'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.period,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Period',
+    ),
   );
 
   /// Population
-  static final FHIRAllTypes Population = FHIRAllTypes._(
+  static const FHIRAllTypes population = FHIRAllTypes._(
     valueString: 'Population',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Population'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.population,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Population',
+    ),
   );
 
   /// ProdCharacteristic
-  static final FHIRAllTypes ProdCharacteristic = FHIRAllTypes._(
+  static const FHIRAllTypes prodCharacteristic = FHIRAllTypes._(
     valueString: 'ProdCharacteristic',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'ProdCharacteristic'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.prodCharacteristic,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'ProdCharacteristic',
+    ),
   );
 
   /// ProductShelfLife
-  static final FHIRAllTypes ProductShelfLife = FHIRAllTypes._(
+  static const FHIRAllTypes productShelfLife = FHIRAllTypes._(
     valueString: 'ProductShelfLife',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'ProductShelfLife'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.productShelfLife,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'ProductShelfLife',
+    ),
   );
 
   /// Quantity
-  static final FHIRAllTypes Quantity = FHIRAllTypes._(
+  static const FHIRAllTypes quantity = FHIRAllTypes._(
     valueString: 'Quantity',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Quantity'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.quantity,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Quantity',
+    ),
   );
 
   /// Range
-  static final FHIRAllTypes Range = FHIRAllTypes._(
+  static const FHIRAllTypes range = FHIRAllTypes._(
     valueString: 'Range',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Range'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.range,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Range',
+    ),
   );
 
   /// Ratio
-  static final FHIRAllTypes Ratio = FHIRAllTypes._(
+  static const FHIRAllTypes ratio = FHIRAllTypes._(
     valueString: 'Ratio',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Ratio'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.ratio,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Ratio',
+    ),
   );
 
   /// RatioRange
-  static final FHIRAllTypes RatioRange = FHIRAllTypes._(
+  static const FHIRAllTypes ratioRange = FHIRAllTypes._(
     valueString: 'RatioRange',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'RatioRange'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.ratioRange,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'RatioRange',
+    ),
   );
 
   /// Reference
-  static final FHIRAllTypes Reference = FHIRAllTypes._(
+  static const FHIRAllTypes reference = FHIRAllTypes._(
     valueString: 'Reference',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Reference'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.reference,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Reference',
+    ),
   );
 
   /// RelatedArtifact
-  static final FHIRAllTypes RelatedArtifact = FHIRAllTypes._(
+  static const FHIRAllTypes relatedArtifact = FHIRAllTypes._(
     valueString: 'RelatedArtifact',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'RelatedArtifact'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.relatedArtifact,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'RelatedArtifact',
+    ),
   );
 
   /// SampledData
-  static final FHIRAllTypes SampledData = FHIRAllTypes._(
+  static const FHIRAllTypes sampledData = FHIRAllTypes._(
     valueString: 'SampledData',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'SampledData'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.sampledData,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'SampledData',
+    ),
   );
 
   /// Signature
-  static final FHIRAllTypes Signature = FHIRAllTypes._(
+  static const FHIRAllTypes signature = FHIRAllTypes._(
     valueString: 'Signature',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Signature'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.signature,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Signature',
+    ),
   );
 
   /// SimpleQuantity
-  static final FHIRAllTypes SimpleQuantity = FHIRAllTypes._(
+  static const FHIRAllTypes simpleQuantity = FHIRAllTypes._(
     valueString: 'SimpleQuantity',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'SimpleQuantity'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.simpleQuantity,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'SimpleQuantity',
+    ),
   );
 
   /// Timing
-  static final FHIRAllTypes Timing = FHIRAllTypes._(
+  static const FHIRAllTypes timing = FHIRAllTypes._(
     valueString: 'Timing',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Timing'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.timing,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Timing',
+    ),
   );
 
   /// TriggerDefinition
-  static final FHIRAllTypes TriggerDefinition = FHIRAllTypes._(
+  static const FHIRAllTypes triggerDefinition = FHIRAllTypes._(
     valueString: 'TriggerDefinition',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'TriggerDefinition'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.triggerDefinition,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'TriggerDefinition',
+    ),
   );
 
   /// UsageContext
-  static final FHIRAllTypes UsageContext = FHIRAllTypes._(
+  static const FHIRAllTypes usageContext = FHIRAllTypes._(
     valueString: 'UsageContext',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'UsageContext'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.usageContext,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'UsageContext',
+    ),
   );
 
   /// base64Binary
-  static final FHIRAllTypes base64Binary = FHIRAllTypes._(
+  static const FHIRAllTypes base64Binary = FHIRAllTypes._(
     valueString: 'base64Binary',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'base64Binary'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.base64Binary,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'base64Binary',
+    ),
   );
 
   /// boolean
-  static final FHIRAllTypes boolean = FHIRAllTypes._(
+  static const FHIRAllTypes boolean = FHIRAllTypes._(
     valueString: 'boolean',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'boolean'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.boolean,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'boolean',
+    ),
   );
 
   /// canonical
-  static final FHIRAllTypes canonical = FHIRAllTypes._(
+  static const FHIRAllTypes canonical = FHIRAllTypes._(
     valueString: 'canonical',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'canonical'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.canonical,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'canonical',
+    ),
   );
 
   /// code
-  static final FHIRAllTypes code = FHIRAllTypes._(
+  static const FHIRAllTypes code = FHIRAllTypes._(
     valueString: 'code',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'code'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.code,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'code',
+    ),
   );
 
   /// date
-  static final FHIRAllTypes date = FHIRAllTypes._(
+  static const FHIRAllTypes date = FHIRAllTypes._(
     valueString: 'date',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'date'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.date,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'date',
+    ),
   );
 
   /// dateTime
-  static final FHIRAllTypes dateTime = FHIRAllTypes._(
+  static const FHIRAllTypes dateTime = FHIRAllTypes._(
     valueString: 'dateTime',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'dateTime'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.dateTime,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'dateTime',
+    ),
   );
 
   /// decimal
-  static final FHIRAllTypes decimal = FHIRAllTypes._(
+  static const FHIRAllTypes decimal = FHIRAllTypes._(
     valueString: 'decimal',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'decimal'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.decimal,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'decimal',
+    ),
   );
 
   /// id
-  static final FHIRAllTypes id_ = FHIRAllTypes._(
+  static const FHIRAllTypes id_ = FHIRAllTypes._(
     valueString: 'id',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'id'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.id_,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'id',
+    ),
   );
 
   /// instant
-  static final FHIRAllTypes instant = FHIRAllTypes._(
+  static const FHIRAllTypes instant = FHIRAllTypes._(
     valueString: 'instant',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'instant'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.instant,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'instant',
+    ),
   );
 
   /// integer
-  static final FHIRAllTypes integer = FHIRAllTypes._(
+  static const FHIRAllTypes integer = FHIRAllTypes._(
     valueString: 'integer',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'integer'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.integer,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'integer',
+    ),
   );
 
   /// markdown
-  static final FHIRAllTypes markdown = FHIRAllTypes._(
+  static const FHIRAllTypes markdown = FHIRAllTypes._(
     valueString: 'markdown',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'markdown'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.markdown,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'markdown',
+    ),
   );
 
   /// oid
-  static final FHIRAllTypes oid = FHIRAllTypes._(
+  static const FHIRAllTypes oid = FHIRAllTypes._(
     valueString: 'oid',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'oid'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.oid,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'oid',
+    ),
   );
 
   /// positiveInt
-  static final FHIRAllTypes positiveInt = FHIRAllTypes._(
+  static const FHIRAllTypes positiveInt = FHIRAllTypes._(
     valueString: 'positiveInt',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'positiveInt'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.positiveInt,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'positiveInt',
+    ),
   );
 
   /// string
-  static final FHIRAllTypes string = FHIRAllTypes._(
+  static const FHIRAllTypes string = FHIRAllTypes._(
     valueString: 'string',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'string'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.string,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'string',
+    ),
   );
 
   /// time
-  static final FHIRAllTypes time = FHIRAllTypes._(
+  static const FHIRAllTypes time = FHIRAllTypes._(
     valueString: 'time',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'time'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.time,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'time',
+    ),
   );
 
   /// unsignedInt
-  static final FHIRAllTypes unsignedInt = FHIRAllTypes._(
+  static const FHIRAllTypes unsignedInt = FHIRAllTypes._(
     valueString: 'unsignedInt',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'unsignedInt'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.unsignedInt,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'unsignedInt',
+    ),
   );
 
   /// uri
-  static final FHIRAllTypes uri = FHIRAllTypes._(
+  static const FHIRAllTypes uri = FHIRAllTypes._(
     valueString: 'uri',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'uri'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.uri,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'uri',
+    ),
   );
 
   /// url
-  static final FHIRAllTypes url = FHIRAllTypes._(
+  static const FHIRAllTypes url = FHIRAllTypes._(
     valueString: 'url',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'url'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.url,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'url',
+    ),
   );
 
   /// uuid
-  static final FHIRAllTypes uuid = FHIRAllTypes._(
+  static const FHIRAllTypes uuid = FHIRAllTypes._(
     valueString: 'uuid',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'uuid'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.uuid,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'uuid',
+    ),
   );
 
   /// xhtml
-  static final FHIRAllTypes xhtml = FHIRAllTypes._(
+  static const FHIRAllTypes xhtml = FHIRAllTypes._(
     valueString: 'xhtml',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'XHTML'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.xhtml,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'XHTML',
+    ),
   );
 
   /// Resource
-  static final FHIRAllTypes Resource = FHIRAllTypes._(
+  static const FHIRAllTypes resource = FHIRAllTypes._(
     valueString: 'Resource',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Resource'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.resource,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Resource',
+    ),
   );
 
   /// Binary
-  static final FHIRAllTypes Binary = FHIRAllTypes._(
+  static const FHIRAllTypes binary = FHIRAllTypes._(
     valueString: 'Binary',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Binary'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.binary,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Binary',
+    ),
   );
 
   /// Bundle
-  static final FHIRAllTypes Bundle = FHIRAllTypes._(
+  static const FHIRAllTypes bundle = FHIRAllTypes._(
     valueString: 'Bundle',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Bundle'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.bundle,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Bundle',
+    ),
   );
 
   /// DomainResource
-  static final FHIRAllTypes DomainResource = FHIRAllTypes._(
+  static const FHIRAllTypes domainResource = FHIRAllTypes._(
     valueString: 'DomainResource',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'DomainResource'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.domainResource,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'DomainResource',
+    ),
   );
 
   /// Account
-  static final FHIRAllTypes Account = FHIRAllTypes._(
+  static const FHIRAllTypes account = FHIRAllTypes._(
     valueString: 'Account',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Account'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.account,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Account',
+    ),
   );
 
   /// ActivityDefinition
-  static final FHIRAllTypes ActivityDefinition = FHIRAllTypes._(
+  static const FHIRAllTypes activityDefinition = FHIRAllTypes._(
     valueString: 'ActivityDefinition',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'ActivityDefinition'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.activityDefinition,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'ActivityDefinition',
+    ),
   );
 
   /// AdministrableProductDefinition
-  static final FHIRAllTypes AdministrableProductDefinition = FHIRAllTypes._(
+  static const FHIRAllTypes administrableProductDefinition = FHIRAllTypes._(
     valueString: 'AdministrableProductDefinition',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'AdministrableProductDefinition'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.administrableProductDefinition,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'AdministrableProductDefinition',
+    ),
   );
 
   /// AdverseEvent
-  static final FHIRAllTypes AdverseEvent = FHIRAllTypes._(
+  static const FHIRAllTypes adverseEvent = FHIRAllTypes._(
     valueString: 'AdverseEvent',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'AdverseEvent'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.adverseEvent,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'AdverseEvent',
+    ),
   );
 
   /// AllergyIntolerance
-  static final FHIRAllTypes AllergyIntolerance = FHIRAllTypes._(
+  static const FHIRAllTypes allergyIntolerance = FHIRAllTypes._(
     valueString: 'AllergyIntolerance',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'AllergyIntolerance'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.allergyIntolerance,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'AllergyIntolerance',
+    ),
   );
 
   /// Appointment
-  static final FHIRAllTypes Appointment = FHIRAllTypes._(
+  static const FHIRAllTypes appointment = FHIRAllTypes._(
     valueString: 'Appointment',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Appointment'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.appointment,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Appointment',
+    ),
   );
 
   /// AppointmentResponse
-  static final FHIRAllTypes AppointmentResponse = FHIRAllTypes._(
+  static const FHIRAllTypes appointmentResponse = FHIRAllTypes._(
     valueString: 'AppointmentResponse',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'AppointmentResponse'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.appointmentResponse,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'AppointmentResponse',
+    ),
   );
 
   /// AuditEvent
-  static final FHIRAllTypes AuditEvent = FHIRAllTypes._(
+  static const FHIRAllTypes auditEvent = FHIRAllTypes._(
     valueString: 'AuditEvent',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'AuditEvent'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.auditEvent,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'AuditEvent',
+    ),
   );
 
   /// Basic
-  static final FHIRAllTypes Basic = FHIRAllTypes._(
+  static const FHIRAllTypes basic = FHIRAllTypes._(
     valueString: 'Basic',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Basic'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.basic,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Basic',
+    ),
   );
 
   /// BiologicallyDerivedProduct
-  static final FHIRAllTypes BiologicallyDerivedProduct = FHIRAllTypes._(
+  static const FHIRAllTypes biologicallyDerivedProduct = FHIRAllTypes._(
     valueString: 'BiologicallyDerivedProduct',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'BiologicallyDerivedProduct'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.biologicallyDerivedProduct,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'BiologicallyDerivedProduct',
+    ),
   );
 
   /// BodyStructure
-  static final FHIRAllTypes BodyStructure = FHIRAllTypes._(
+  static const FHIRAllTypes bodyStructure = FHIRAllTypes._(
     valueString: 'BodyStructure',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'BodyStructure'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.bodyStructure,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'BodyStructure',
+    ),
   );
 
   /// CapabilityStatement
-  static final FHIRAllTypes CapabilityStatement = FHIRAllTypes._(
+  static const FHIRAllTypes capabilityStatement = FHIRAllTypes._(
     valueString: 'CapabilityStatement',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'CapabilityStatement'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.capabilityStatement,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'CapabilityStatement',
+    ),
   );
 
   /// CarePlan
-  static final FHIRAllTypes CarePlan = FHIRAllTypes._(
+  static const FHIRAllTypes carePlan = FHIRAllTypes._(
     valueString: 'CarePlan',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'CarePlan'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.carePlan,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'CarePlan',
+    ),
   );
 
   /// CareTeam
-  static final FHIRAllTypes CareTeam = FHIRAllTypes._(
+  static const FHIRAllTypes careTeam = FHIRAllTypes._(
     valueString: 'CareTeam',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'CareTeam'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.careTeam,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'CareTeam',
+    ),
   );
 
   /// CatalogEntry
-  static final FHIRAllTypes CatalogEntry = FHIRAllTypes._(
+  static const FHIRAllTypes catalogEntry = FHIRAllTypes._(
     valueString: 'CatalogEntry',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'CatalogEntry'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.catalogEntry,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'CatalogEntry',
+    ),
   );
 
   /// ChargeItem
-  static final FHIRAllTypes ChargeItem = FHIRAllTypes._(
+  static const FHIRAllTypes chargeItem = FHIRAllTypes._(
     valueString: 'ChargeItem',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'ChargeItem'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.chargeItem,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'ChargeItem',
+    ),
   );
 
   /// ChargeItemDefinition
-  static final FHIRAllTypes ChargeItemDefinition = FHIRAllTypes._(
+  static const FHIRAllTypes chargeItemDefinition = FHIRAllTypes._(
     valueString: 'ChargeItemDefinition',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'ChargeItemDefinition'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.chargeItemDefinition,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'ChargeItemDefinition',
+    ),
   );
 
   /// Citation
-  static final FHIRAllTypes Citation = FHIRAllTypes._(
+  static const FHIRAllTypes citation = FHIRAllTypes._(
     valueString: 'Citation',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Citation'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.citation,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Citation',
+    ),
   );
 
   /// Claim
-  static final FHIRAllTypes Claim = FHIRAllTypes._(
+  static const FHIRAllTypes claim = FHIRAllTypes._(
     valueString: 'Claim',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Claim'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.claim,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Claim',
+    ),
   );
 
   /// ClaimResponse
-  static final FHIRAllTypes ClaimResponse = FHIRAllTypes._(
+  static const FHIRAllTypes claimResponse = FHIRAllTypes._(
     valueString: 'ClaimResponse',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'ClaimResponse'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.claimResponse,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'ClaimResponse',
+    ),
   );
 
   /// ClinicalImpression
-  static final FHIRAllTypes ClinicalImpression = FHIRAllTypes._(
+  static const FHIRAllTypes clinicalImpression = FHIRAllTypes._(
     valueString: 'ClinicalImpression',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'ClinicalImpression'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.clinicalImpression,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'ClinicalImpression',
+    ),
   );
 
   /// ClinicalUseDefinition
-  static final FHIRAllTypes ClinicalUseDefinition = FHIRAllTypes._(
+  static const FHIRAllTypes clinicalUseDefinition = FHIRAllTypes._(
     valueString: 'ClinicalUseDefinition',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'ClinicalUseDefinition'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.clinicalUseDefinition,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'ClinicalUseDefinition',
+    ),
   );
 
   /// CodeSystem
-  static final FHIRAllTypes CodeSystem = FHIRAllTypes._(
+  static const FHIRAllTypes codeSystem = FHIRAllTypes._(
     valueString: 'CodeSystem',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'CodeSystem'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.codeSystem,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'CodeSystem',
+    ),
   );
 
   /// Communication
-  static final FHIRAllTypes Communication = FHIRAllTypes._(
+  static const FHIRAllTypes communication = FHIRAllTypes._(
     valueString: 'Communication',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Communication'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.communication,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Communication',
+    ),
   );
 
   /// CommunicationRequest
-  static final FHIRAllTypes CommunicationRequest = FHIRAllTypes._(
+  static const FHIRAllTypes communicationRequest = FHIRAllTypes._(
     valueString: 'CommunicationRequest',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'CommunicationRequest'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.communicationRequest,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'CommunicationRequest',
+    ),
   );
 
   /// CompartmentDefinition
-  static final FHIRAllTypes CompartmentDefinition = FHIRAllTypes._(
+  static const FHIRAllTypes compartmentDefinition = FHIRAllTypes._(
     valueString: 'CompartmentDefinition',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'CompartmentDefinition'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.compartmentDefinition,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'CompartmentDefinition',
+    ),
   );
 
   /// Composition
-  static final FHIRAllTypes Composition = FHIRAllTypes._(
+  static const FHIRAllTypes composition = FHIRAllTypes._(
     valueString: 'Composition',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Composition'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.composition,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Composition',
+    ),
   );
 
   /// ConceptMap
-  static final FHIRAllTypes ConceptMap = FHIRAllTypes._(
+  static const FHIRAllTypes conceptMap = FHIRAllTypes._(
     valueString: 'ConceptMap',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'ConceptMap'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.conceptMap,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'ConceptMap',
+    ),
   );
 
   /// Condition
-  static final FHIRAllTypes Condition = FHIRAllTypes._(
+  static const FHIRAllTypes condition = FHIRAllTypes._(
     valueString: 'Condition',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Condition'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.condition,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Condition',
+    ),
   );
 
   /// Consent
-  static final FHIRAllTypes Consent = FHIRAllTypes._(
+  static const FHIRAllTypes consent = FHIRAllTypes._(
     valueString: 'Consent',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Consent'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.consent,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Consent',
+    ),
   );
 
   /// Contract
-  static final FHIRAllTypes Contract = FHIRAllTypes._(
+  static const FHIRAllTypes contract = FHIRAllTypes._(
     valueString: 'Contract',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Contract'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.contract,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Contract',
+    ),
   );
 
   /// Coverage
-  static final FHIRAllTypes Coverage = FHIRAllTypes._(
+  static const FHIRAllTypes coverage = FHIRAllTypes._(
     valueString: 'Coverage',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Coverage'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.coverage,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Coverage',
+    ),
   );
 
   /// CoverageEligibilityRequest
-  static final FHIRAllTypes CoverageEligibilityRequest = FHIRAllTypes._(
+  static const FHIRAllTypes coverageEligibilityRequest = FHIRAllTypes._(
     valueString: 'CoverageEligibilityRequest',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'CoverageEligibilityRequest'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.coverageEligibilityRequest,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'CoverageEligibilityRequest',
+    ),
   );
 
   /// CoverageEligibilityResponse
-  static final FHIRAllTypes CoverageEligibilityResponse = FHIRAllTypes._(
+  static const FHIRAllTypes coverageEligibilityResponse = FHIRAllTypes._(
     valueString: 'CoverageEligibilityResponse',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'CoverageEligibilityResponse'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.coverageEligibilityResponse,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'CoverageEligibilityResponse',
+    ),
   );
 
   /// DetectedIssue
-  static final FHIRAllTypes DetectedIssue = FHIRAllTypes._(
+  static const FHIRAllTypes detectedIssue = FHIRAllTypes._(
     valueString: 'DetectedIssue',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'DetectedIssue'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.detectedIssue,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'DetectedIssue',
+    ),
   );
 
   /// Device
-  static final FHIRAllTypes Device = FHIRAllTypes._(
+  static const FHIRAllTypes device = FHIRAllTypes._(
     valueString: 'Device',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Device'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.device,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Device',
+    ),
   );
 
   /// DeviceDefinition
-  static final FHIRAllTypes DeviceDefinition = FHIRAllTypes._(
+  static const FHIRAllTypes deviceDefinition = FHIRAllTypes._(
     valueString: 'DeviceDefinition',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'DeviceDefinition'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.deviceDefinition,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'DeviceDefinition',
+    ),
   );
 
   /// DeviceMetric
-  static final FHIRAllTypes DeviceMetric = FHIRAllTypes._(
+  static const FHIRAllTypes deviceMetric = FHIRAllTypes._(
     valueString: 'DeviceMetric',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'DeviceMetric'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.deviceMetric,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'DeviceMetric',
+    ),
   );
 
   /// DeviceRequest
-  static final FHIRAllTypes DeviceRequest = FHIRAllTypes._(
+  static const FHIRAllTypes deviceRequest = FHIRAllTypes._(
     valueString: 'DeviceRequest',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'DeviceRequest'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.deviceRequest,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'DeviceRequest',
+    ),
   );
 
   /// DeviceUseStatement
-  static final FHIRAllTypes DeviceUseStatement = FHIRAllTypes._(
+  static const FHIRAllTypes deviceUseStatement = FHIRAllTypes._(
     valueString: 'DeviceUseStatement',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'DeviceUseStatement'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.deviceUseStatement,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'DeviceUseStatement',
+    ),
   );
 
   /// DiagnosticReport
-  static final FHIRAllTypes DiagnosticReport = FHIRAllTypes._(
+  static const FHIRAllTypes diagnosticReport = FHIRAllTypes._(
     valueString: 'DiagnosticReport',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'DiagnosticReport'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.diagnosticReport,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'DiagnosticReport',
+    ),
   );
 
   /// DocumentManifest
-  static final FHIRAllTypes DocumentManifest = FHIRAllTypes._(
+  static const FHIRAllTypes documentManifest = FHIRAllTypes._(
     valueString: 'DocumentManifest',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'DocumentManifest'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.documentManifest,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'DocumentManifest',
+    ),
   );
 
   /// DocumentReference
-  static final FHIRAllTypes DocumentReference = FHIRAllTypes._(
+  static const FHIRAllTypes documentReference = FHIRAllTypes._(
     valueString: 'DocumentReference',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'DocumentReference'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.documentReference,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'DocumentReference',
+    ),
   );
 
   /// Encounter
-  static final FHIRAllTypes Encounter = FHIRAllTypes._(
+  static const FHIRAllTypes encounter = FHIRAllTypes._(
     valueString: 'Encounter',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Encounter'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.encounter,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Encounter',
+    ),
   );
 
   /// Endpoint
-  static final FHIRAllTypes Endpoint = FHIRAllTypes._(
+  static const FHIRAllTypes endpoint = FHIRAllTypes._(
     valueString: 'Endpoint',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Endpoint'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.endpoint,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Endpoint',
+    ),
   );
 
   /// EnrollmentRequest
-  static final FHIRAllTypes EnrollmentRequest = FHIRAllTypes._(
+  static const FHIRAllTypes enrollmentRequest = FHIRAllTypes._(
     valueString: 'EnrollmentRequest',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'EnrollmentRequest'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.enrollmentRequest,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'EnrollmentRequest',
+    ),
   );
 
   /// EnrollmentResponse
-  static final FHIRAllTypes EnrollmentResponse = FHIRAllTypes._(
+  static const FHIRAllTypes enrollmentResponse = FHIRAllTypes._(
     valueString: 'EnrollmentResponse',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'EnrollmentResponse'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.enrollmentResponse,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'EnrollmentResponse',
+    ),
   );
 
   /// EpisodeOfCare
-  static final FHIRAllTypes EpisodeOfCare = FHIRAllTypes._(
+  static const FHIRAllTypes episodeOfCare = FHIRAllTypes._(
     valueString: 'EpisodeOfCare',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'EpisodeOfCare'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.episodeOfCare,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'EpisodeOfCare',
+    ),
   );
 
   /// EventDefinition
-  static final FHIRAllTypes EventDefinition = FHIRAllTypes._(
+  static const FHIRAllTypes eventDefinition = FHIRAllTypes._(
     valueString: 'EventDefinition',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'EventDefinition'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.eventDefinition,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'EventDefinition',
+    ),
   );
 
   /// Evidence
-  static final FHIRAllTypes Evidence = FHIRAllTypes._(
+  static const FHIRAllTypes evidence = FHIRAllTypes._(
     valueString: 'Evidence',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Evidence'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.evidence,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Evidence',
+    ),
   );
 
   /// EvidenceReport
-  static final FHIRAllTypes EvidenceReport = FHIRAllTypes._(
+  static const FHIRAllTypes evidenceReport = FHIRAllTypes._(
     valueString: 'EvidenceReport',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'EvidenceReport'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.evidenceReport,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'EvidenceReport',
+    ),
   );
 
   /// EvidenceVariable
-  static final FHIRAllTypes EvidenceVariable = FHIRAllTypes._(
+  static const FHIRAllTypes evidenceVariable = FHIRAllTypes._(
     valueString: 'EvidenceVariable',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'EvidenceVariable'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.evidenceVariable,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'EvidenceVariable',
+    ),
   );
 
   /// ExampleScenario
-  static final FHIRAllTypes ExampleScenario = FHIRAllTypes._(
+  static const FHIRAllTypes exampleScenario = FHIRAllTypes._(
     valueString: 'ExampleScenario',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'ExampleScenario'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.exampleScenario,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'ExampleScenario',
+    ),
   );
 
   /// ExplanationOfBenefit
-  static final FHIRAllTypes ExplanationOfBenefit = FHIRAllTypes._(
+  static const FHIRAllTypes explanationOfBenefit = FHIRAllTypes._(
     valueString: 'ExplanationOfBenefit',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'ExplanationOfBenefit'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.explanationOfBenefit,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'ExplanationOfBenefit',
+    ),
   );
 
   /// FamilyMemberHistory
-  static final FHIRAllTypes FamilyMemberHistory = FHIRAllTypes._(
+  static const FHIRAllTypes familyMemberHistory = FHIRAllTypes._(
     valueString: 'FamilyMemberHistory',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'FamilyMemberHistory'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.familyMemberHistory,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'FamilyMemberHistory',
+    ),
   );
 
   /// Flag
-  static final FHIRAllTypes Flag = FHIRAllTypes._(
+  static const FHIRAllTypes flag = FHIRAllTypes._(
     valueString: 'Flag',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Flag'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.flag,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Flag',
+    ),
   );
 
   /// Goal
-  static final FHIRAllTypes Goal = FHIRAllTypes._(
+  static const FHIRAllTypes goal = FHIRAllTypes._(
     valueString: 'Goal',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Goal'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.goal,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Goal',
+    ),
   );
 
   /// GraphDefinition
-  static final FHIRAllTypes GraphDefinition = FHIRAllTypes._(
+  static const FHIRAllTypes graphDefinition = FHIRAllTypes._(
     valueString: 'GraphDefinition',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'GraphDefinition'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.graphDefinition,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'GraphDefinition',
+    ),
   );
 
   /// Group
-  static final FHIRAllTypes Group = FHIRAllTypes._(
+  static const FHIRAllTypes group = FHIRAllTypes._(
     valueString: 'Group',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Group'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.group,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Group',
+    ),
   );
 
   /// GuidanceResponse
-  static final FHIRAllTypes GuidanceResponse = FHIRAllTypes._(
+  static const FHIRAllTypes guidanceResponse = FHIRAllTypes._(
     valueString: 'GuidanceResponse',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'GuidanceResponse'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.guidanceResponse,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'GuidanceResponse',
+    ),
   );
 
   /// HealthcareService
-  static final FHIRAllTypes HealthcareService = FHIRAllTypes._(
+  static const FHIRAllTypes healthcareService = FHIRAllTypes._(
     valueString: 'HealthcareService',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'HealthcareService'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.healthcareService,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'HealthcareService',
+    ),
   );
 
   /// ImagingStudy
-  static final FHIRAllTypes ImagingStudy = FHIRAllTypes._(
+  static const FHIRAllTypes imagingStudy = FHIRAllTypes._(
     valueString: 'ImagingStudy',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'ImagingStudy'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.imagingStudy,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'ImagingStudy',
+    ),
   );
 
   /// Immunization
-  static final FHIRAllTypes Immunization = FHIRAllTypes._(
+  static const FHIRAllTypes immunization = FHIRAllTypes._(
     valueString: 'Immunization',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Immunization'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.immunization,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Immunization',
+    ),
   );
 
   /// ImmunizationEvaluation
-  static final FHIRAllTypes ImmunizationEvaluation = FHIRAllTypes._(
+  static const FHIRAllTypes immunizationEvaluation = FHIRAllTypes._(
     valueString: 'ImmunizationEvaluation',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'ImmunizationEvaluation'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.immunizationEvaluation,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'ImmunizationEvaluation',
+    ),
   );
 
   /// ImmunizationRecommendation
-  static final FHIRAllTypes ImmunizationRecommendation = FHIRAllTypes._(
+  static const FHIRAllTypes immunizationRecommendation = FHIRAllTypes._(
     valueString: 'ImmunizationRecommendation',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'ImmunizationRecommendation'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.immunizationRecommendation,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'ImmunizationRecommendation',
+    ),
   );
 
   /// ImplementationGuide
-  static final FHIRAllTypes ImplementationGuide = FHIRAllTypes._(
+  static const FHIRAllTypes implementationGuide = FHIRAllTypes._(
     valueString: 'ImplementationGuide',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'ImplementationGuide'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.implementationGuide,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'ImplementationGuide',
+    ),
   );
 
   /// Ingredient
-  static final FHIRAllTypes Ingredient = FHIRAllTypes._(
+  static const FHIRAllTypes ingredient = FHIRAllTypes._(
     valueString: 'Ingredient',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Ingredient'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.ingredient,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Ingredient',
+    ),
   );
 
   /// InsurancePlan
-  static final FHIRAllTypes InsurancePlan = FHIRAllTypes._(
+  static const FHIRAllTypes insurancePlan = FHIRAllTypes._(
     valueString: 'InsurancePlan',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'InsurancePlan'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.insurancePlan,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'InsurancePlan',
+    ),
   );
 
   /// Invoice
-  static final FHIRAllTypes Invoice = FHIRAllTypes._(
+  static const FHIRAllTypes invoice = FHIRAllTypes._(
     valueString: 'Invoice',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Invoice'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.invoice,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Invoice',
+    ),
   );
 
   /// Library
-  static final FHIRAllTypes Library = FHIRAllTypes._(
+  static const FHIRAllTypes library = FHIRAllTypes._(
     valueString: 'Library',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Library'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.library,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Library',
+    ),
   );
 
   /// Linkage
-  static final FHIRAllTypes Linkage = FHIRAllTypes._(
+  static const FHIRAllTypes linkage = FHIRAllTypes._(
     valueString: 'Linkage',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Linkage'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.linkage,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Linkage',
+    ),
   );
 
   /// List_
-  static final FHIRAllTypes List_ = FHIRAllTypes._(
+  static const FHIRAllTypes list_ = FHIRAllTypes._(
     valueString: 'List',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'List'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.list_,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'List',
+    ),
   );
 
   /// Location
-  static final FHIRAllTypes Location = FHIRAllTypes._(
+  static const FHIRAllTypes location = FHIRAllTypes._(
     valueString: 'Location',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Location'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.location,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Location',
+    ),
   );
 
   /// ManufacturedItemDefinition
-  static final FHIRAllTypes ManufacturedItemDefinition = FHIRAllTypes._(
+  static const FHIRAllTypes manufacturedItemDefinition = FHIRAllTypes._(
     valueString: 'ManufacturedItemDefinition',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'ManufacturedItemDefinition'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.manufacturedItemDefinition,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'ManufacturedItemDefinition',
+    ),
   );
 
   /// Measure
-  static final FHIRAllTypes Measure = FHIRAllTypes._(
+  static const FHIRAllTypes measure = FHIRAllTypes._(
     valueString: 'Measure',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Measure'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.measure,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Measure',
+    ),
   );
 
   /// MeasureReport
-  static final FHIRAllTypes MeasureReport = FHIRAllTypes._(
+  static const FHIRAllTypes measureReport = FHIRAllTypes._(
     valueString: 'MeasureReport',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'MeasureReport'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.measureReport,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'MeasureReport',
+    ),
   );
 
   /// Media
-  static final FHIRAllTypes Media = FHIRAllTypes._(
+  static const FHIRAllTypes media = FHIRAllTypes._(
     valueString: 'Media',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Media'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.media,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Media',
+    ),
   );
 
   /// Medication
-  static final FHIRAllTypes Medication = FHIRAllTypes._(
+  static const FHIRAllTypes medication = FHIRAllTypes._(
     valueString: 'Medication',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Medication'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.medication,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Medication',
+    ),
   );
 
   /// MedicationAdministration
-  static final FHIRAllTypes MedicationAdministration = FHIRAllTypes._(
+  static const FHIRAllTypes medicationAdministration = FHIRAllTypes._(
     valueString: 'MedicationAdministration',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'MedicationAdministration'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.medicationAdministration,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'MedicationAdministration',
+    ),
   );
 
   /// MedicationDispense
-  static final FHIRAllTypes MedicationDispense = FHIRAllTypes._(
+  static const FHIRAllTypes medicationDispense = FHIRAllTypes._(
     valueString: 'MedicationDispense',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'MedicationDispense'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.medicationDispense,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'MedicationDispense',
+    ),
   );
 
   /// MedicationKnowledge
-  static final FHIRAllTypes MedicationKnowledge = FHIRAllTypes._(
+  static const FHIRAllTypes medicationKnowledge = FHIRAllTypes._(
     valueString: 'MedicationKnowledge',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'MedicationKnowledge'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.medicationKnowledge,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'MedicationKnowledge',
+    ),
   );
 
   /// MedicationRequest
-  static final FHIRAllTypes MedicationRequest = FHIRAllTypes._(
+  static const FHIRAllTypes medicationRequest = FHIRAllTypes._(
     valueString: 'MedicationRequest',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'MedicationRequest'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.medicationRequest,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'MedicationRequest',
+    ),
   );
 
   /// MedicationStatement
-  static final FHIRAllTypes MedicationStatement = FHIRAllTypes._(
+  static const FHIRAllTypes medicationStatement = FHIRAllTypes._(
     valueString: 'MedicationStatement',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'MedicationStatement'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.medicationStatement,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'MedicationStatement',
+    ),
   );
 
   /// MedicinalProductDefinition
-  static final FHIRAllTypes MedicinalProductDefinition = FHIRAllTypes._(
+  static const FHIRAllTypes medicinalProductDefinition = FHIRAllTypes._(
     valueString: 'MedicinalProductDefinition',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'MedicinalProductDefinition'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.medicinalProductDefinition,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'MedicinalProductDefinition',
+    ),
   );
 
   /// MessageDefinition
-  static final FHIRAllTypes MessageDefinition = FHIRAllTypes._(
+  static const FHIRAllTypes messageDefinition = FHIRAllTypes._(
     valueString: 'MessageDefinition',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'MessageDefinition'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.messageDefinition,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'MessageDefinition',
+    ),
   );
 
   /// MessageHeader
-  static final FHIRAllTypes MessageHeader = FHIRAllTypes._(
+  static const FHIRAllTypes messageHeader = FHIRAllTypes._(
     valueString: 'MessageHeader',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'MessageHeader'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.messageHeader,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'MessageHeader',
+    ),
   );
 
   /// MolecularSequence
-  static final FHIRAllTypes MolecularSequence = FHIRAllTypes._(
+  static const FHIRAllTypes molecularSequence = FHIRAllTypes._(
     valueString: 'MolecularSequence',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'MolecularSequence'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.molecularSequence,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'MolecularSequence',
+    ),
   );
 
   /// NamingSystem
-  static final FHIRAllTypes NamingSystem = FHIRAllTypes._(
+  static const FHIRAllTypes namingSystem = FHIRAllTypes._(
     valueString: 'NamingSystem',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'NamingSystem'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.namingSystem,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'NamingSystem',
+    ),
   );
 
   /// NutritionOrder
-  static final FHIRAllTypes NutritionOrder = FHIRAllTypes._(
+  static const FHIRAllTypes nutritionOrder = FHIRAllTypes._(
     valueString: 'NutritionOrder',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'NutritionOrder'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.nutritionOrder,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'NutritionOrder',
+    ),
   );
 
   /// NutritionProduct
-  static final FHIRAllTypes NutritionProduct = FHIRAllTypes._(
+  static const FHIRAllTypes nutritionProduct = FHIRAllTypes._(
     valueString: 'NutritionProduct',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'NutritionProduct'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.nutritionProduct,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'NutritionProduct',
+    ),
   );
 
   /// Observation
-  static final FHIRAllTypes Observation = FHIRAllTypes._(
+  static const FHIRAllTypes observation = FHIRAllTypes._(
     valueString: 'Observation',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Observation'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.observation,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Observation',
+    ),
   );
 
   /// ObservationDefinition
-  static final FHIRAllTypes ObservationDefinition = FHIRAllTypes._(
+  static const FHIRAllTypes observationDefinition = FHIRAllTypes._(
     valueString: 'ObservationDefinition',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'ObservationDefinition'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.observationDefinition,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'ObservationDefinition',
+    ),
   );
 
   /// OperationDefinition
-  static final FHIRAllTypes OperationDefinition = FHIRAllTypes._(
+  static const FHIRAllTypes operationDefinition = FHIRAllTypes._(
     valueString: 'OperationDefinition',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'OperationDefinition'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.operationDefinition,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'OperationDefinition',
+    ),
   );
 
   /// OperationOutcome
-  static final FHIRAllTypes OperationOutcome = FHIRAllTypes._(
+  static const FHIRAllTypes operationOutcome = FHIRAllTypes._(
     valueString: 'OperationOutcome',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'OperationOutcome'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.operationOutcome,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'OperationOutcome',
+    ),
   );
 
   /// Organization
-  static final FHIRAllTypes Organization = FHIRAllTypes._(
+  static const FHIRAllTypes organization = FHIRAllTypes._(
     valueString: 'Organization',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Organization'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.organization,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Organization',
+    ),
   );
 
   /// OrganizationAffiliation
-  static final FHIRAllTypes OrganizationAffiliation = FHIRAllTypes._(
+  static const FHIRAllTypes organizationAffiliation = FHIRAllTypes._(
     valueString: 'OrganizationAffiliation',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'OrganizationAffiliation'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.organizationAffiliation,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'OrganizationAffiliation',
+    ),
   );
 
   /// PackagedProductDefinition
-  static final FHIRAllTypes PackagedProductDefinition = FHIRAllTypes._(
+  static const FHIRAllTypes packagedProductDefinition = FHIRAllTypes._(
     valueString: 'PackagedProductDefinition',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'PackagedProductDefinition'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.packagedProductDefinition,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'PackagedProductDefinition',
+    ),
   );
 
   /// Patient
-  static final FHIRAllTypes Patient = FHIRAllTypes._(
+  static const FHIRAllTypes patient = FHIRAllTypes._(
     valueString: 'Patient',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Patient'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.patient,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Patient',
+    ),
   );
 
   /// PaymentNotice
-  static final FHIRAllTypes PaymentNotice = FHIRAllTypes._(
+  static const FHIRAllTypes paymentNotice = FHIRAllTypes._(
     valueString: 'PaymentNotice',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'PaymentNotice'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.paymentNotice,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'PaymentNotice',
+    ),
   );
 
   /// PaymentReconciliation
-  static final FHIRAllTypes PaymentReconciliation = FHIRAllTypes._(
+  static const FHIRAllTypes paymentReconciliation = FHIRAllTypes._(
     valueString: 'PaymentReconciliation',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'PaymentReconciliation'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.paymentReconciliation,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'PaymentReconciliation',
+    ),
   );
 
   /// Person
-  static final FHIRAllTypes Person = FHIRAllTypes._(
+  static const FHIRAllTypes person = FHIRAllTypes._(
     valueString: 'Person',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Person'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.person,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Person',
+    ),
   );
 
   /// PlanDefinition
-  static final FHIRAllTypes PlanDefinition = FHIRAllTypes._(
+  static const FHIRAllTypes planDefinition = FHIRAllTypes._(
     valueString: 'PlanDefinition',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'PlanDefinition'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.planDefinition,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'PlanDefinition',
+    ),
   );
 
   /// Practitioner
-  static final FHIRAllTypes Practitioner = FHIRAllTypes._(
+  static const FHIRAllTypes practitioner = FHIRAllTypes._(
     valueString: 'Practitioner',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Practitioner'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.practitioner,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Practitioner',
+    ),
   );
 
   /// PractitionerRole
-  static final FHIRAllTypes PractitionerRole = FHIRAllTypes._(
+  static const FHIRAllTypes practitionerRole = FHIRAllTypes._(
     valueString: 'PractitionerRole',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'PractitionerRole'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.practitionerRole,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'PractitionerRole',
+    ),
   );
 
   /// Procedure
-  static final FHIRAllTypes Procedure = FHIRAllTypes._(
+  static const FHIRAllTypes procedure = FHIRAllTypes._(
     valueString: 'Procedure',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Procedure'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.procedure,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Procedure',
+    ),
   );
 
   /// Provenance
-  static final FHIRAllTypes Provenance = FHIRAllTypes._(
+  static const FHIRAllTypes provenance = FHIRAllTypes._(
     valueString: 'Provenance',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Provenance'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.provenance,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Provenance',
+    ),
   );
 
   /// Questionnaire
-  static final FHIRAllTypes Questionnaire = FHIRAllTypes._(
+  static const FHIRAllTypes questionnaire = FHIRAllTypes._(
     valueString: 'Questionnaire',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Questionnaire'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.questionnaire,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Questionnaire',
+    ),
   );
 
   /// QuestionnaireResponse
-  static final FHIRAllTypes QuestionnaireResponse = FHIRAllTypes._(
+  static const FHIRAllTypes questionnaireResponse = FHIRAllTypes._(
     valueString: 'QuestionnaireResponse',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'QuestionnaireResponse'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.questionnaireResponse,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'QuestionnaireResponse',
+    ),
   );
 
   /// RegulatedAuthorization
-  static final FHIRAllTypes RegulatedAuthorization = FHIRAllTypes._(
+  static const FHIRAllTypes regulatedAuthorization = FHIRAllTypes._(
     valueString: 'RegulatedAuthorization',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'RegulatedAuthorization'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.regulatedAuthorization,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'RegulatedAuthorization',
+    ),
   );
 
   /// RelatedPerson
-  static final FHIRAllTypes RelatedPerson = FHIRAllTypes._(
+  static const FHIRAllTypes relatedPerson = FHIRAllTypes._(
     valueString: 'RelatedPerson',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'RelatedPerson'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.relatedPerson,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'RelatedPerson',
+    ),
   );
 
   /// RequestGroup
-  static final FHIRAllTypes RequestGroup = FHIRAllTypes._(
+  static const FHIRAllTypes requestGroup = FHIRAllTypes._(
     valueString: 'RequestGroup',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'RequestGroup'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.requestGroup,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'RequestGroup',
+    ),
   );
 
   /// ResearchDefinition
-  static final FHIRAllTypes ResearchDefinition = FHIRAllTypes._(
+  static const FHIRAllTypes researchDefinition = FHIRAllTypes._(
     valueString: 'ResearchDefinition',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'ResearchDefinition'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.researchDefinition,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'ResearchDefinition',
+    ),
   );
 
   /// ResearchElementDefinition
-  static final FHIRAllTypes ResearchElementDefinition = FHIRAllTypes._(
+  static const FHIRAllTypes researchElementDefinition = FHIRAllTypes._(
     valueString: 'ResearchElementDefinition',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'ResearchElementDefinition'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.researchElementDefinition,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'ResearchElementDefinition',
+    ),
   );
 
   /// ResearchStudy
-  static final FHIRAllTypes ResearchStudy = FHIRAllTypes._(
+  static const FHIRAllTypes researchStudy = FHIRAllTypes._(
     valueString: 'ResearchStudy',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'ResearchStudy'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.researchStudy,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'ResearchStudy',
+    ),
   );
 
   /// ResearchSubject
-  static final FHIRAllTypes ResearchSubject = FHIRAllTypes._(
+  static const FHIRAllTypes researchSubject = FHIRAllTypes._(
     valueString: 'ResearchSubject',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'ResearchSubject'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.researchSubject,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'ResearchSubject',
+    ),
   );
 
   /// RiskAssessment
-  static final FHIRAllTypes RiskAssessment = FHIRAllTypes._(
+  static const FHIRAllTypes riskAssessment = FHIRAllTypes._(
     valueString: 'RiskAssessment',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'RiskAssessment'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.riskAssessment,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'RiskAssessment',
+    ),
   );
 
   /// Schedule
-  static final FHIRAllTypes Schedule = FHIRAllTypes._(
+  static const FHIRAllTypes schedule = FHIRAllTypes._(
     valueString: 'Schedule',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Schedule'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.schedule,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Schedule',
+    ),
   );
 
   /// SearchParameter
-  static final FHIRAllTypes SearchParameter = FHIRAllTypes._(
+  static const FHIRAllTypes searchParameter = FHIRAllTypes._(
     valueString: 'SearchParameter',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'SearchParameter'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.searchParameter,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'SearchParameter',
+    ),
   );
 
   /// ServiceRequest
-  static final FHIRAllTypes ServiceRequest = FHIRAllTypes._(
+  static const FHIRAllTypes serviceRequest = FHIRAllTypes._(
     valueString: 'ServiceRequest',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'ServiceRequest'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.serviceRequest,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'ServiceRequest',
+    ),
   );
 
   /// Slot
-  static final FHIRAllTypes Slot = FHIRAllTypes._(
+  static const FHIRAllTypes slot = FHIRAllTypes._(
     valueString: 'Slot',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Slot'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.slot,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Slot',
+    ),
   );
 
   /// Specimen
-  static final FHIRAllTypes Specimen = FHIRAllTypes._(
+  static const FHIRAllTypes specimen = FHIRAllTypes._(
     valueString: 'Specimen',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Specimen'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.specimen,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Specimen',
+    ),
   );
 
   /// SpecimenDefinition
-  static final FHIRAllTypes SpecimenDefinition = FHIRAllTypes._(
+  static const FHIRAllTypes specimenDefinition = FHIRAllTypes._(
     valueString: 'SpecimenDefinition',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'SpecimenDefinition'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.specimenDefinition,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'SpecimenDefinition',
+    ),
   );
 
   /// StructureDefinition
-  static final FHIRAllTypes StructureDefinition = FHIRAllTypes._(
+  static const FHIRAllTypes structureDefinition = FHIRAllTypes._(
     valueString: 'StructureDefinition',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'StructureDefinition'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.structureDefinition,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'StructureDefinition',
+    ),
   );
 
   /// StructureMap
-  static final FHIRAllTypes StructureMap = FHIRAllTypes._(
+  static const FHIRAllTypes structureMap = FHIRAllTypes._(
     valueString: 'StructureMap',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'StructureMap'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.structureMap,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'StructureMap',
+    ),
   );
 
   /// Subscription
-  static final FHIRAllTypes Subscription = FHIRAllTypes._(
+  static const FHIRAllTypes subscription = FHIRAllTypes._(
     valueString: 'Subscription',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Subscription'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.subscription,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Subscription',
+    ),
   );
 
   /// SubscriptionStatus
-  static final FHIRAllTypes SubscriptionStatus = FHIRAllTypes._(
+  static const FHIRAllTypes subscriptionStatus = FHIRAllTypes._(
     valueString: 'SubscriptionStatus',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'SubscriptionStatus'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.subscriptionStatus,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'SubscriptionStatus',
+    ),
   );
 
   /// SubscriptionTopic
-  static final FHIRAllTypes SubscriptionTopic = FHIRAllTypes._(
+  static const FHIRAllTypes subscriptionTopic = FHIRAllTypes._(
     valueString: 'SubscriptionTopic',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'SubscriptionTopic'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.subscriptionTopic,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'SubscriptionTopic',
+    ),
   );
 
   /// Substance
-  static final FHIRAllTypes Substance = FHIRAllTypes._(
+  static const FHIRAllTypes substance = FHIRAllTypes._(
     valueString: 'Substance',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Substance'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.substance,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Substance',
+    ),
   );
 
   /// SubstanceDefinition
-  static final FHIRAllTypes SubstanceDefinition = FHIRAllTypes._(
+  static const FHIRAllTypes substanceDefinition = FHIRAllTypes._(
     valueString: 'SubstanceDefinition',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'SubstanceDefinition'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.substanceDefinition,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'SubstanceDefinition',
+    ),
   );
 
   /// SupplyDelivery
-  static final FHIRAllTypes SupplyDelivery = FHIRAllTypes._(
+  static const FHIRAllTypes supplyDelivery = FHIRAllTypes._(
     valueString: 'SupplyDelivery',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'SupplyDelivery'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.supplyDelivery,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'SupplyDelivery',
+    ),
   );
 
   /// SupplyRequest
-  static final FHIRAllTypes SupplyRequest = FHIRAllTypes._(
+  static const FHIRAllTypes supplyRequest = FHIRAllTypes._(
     valueString: 'SupplyRequest',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'SupplyRequest'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.supplyRequest,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'SupplyRequest',
+    ),
   );
 
   /// Task
-  static final FHIRAllTypes Task = FHIRAllTypes._(
+  static const FHIRAllTypes task = FHIRAllTypes._(
     valueString: 'Task',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Task'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.task,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Task',
+    ),
   );
 
   /// TerminologyCapabilities
-  static final FHIRAllTypes TerminologyCapabilities = FHIRAllTypes._(
+  static const FHIRAllTypes terminologyCapabilities = FHIRAllTypes._(
     valueString: 'TerminologyCapabilities',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'TerminologyCapabilities'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.terminologyCapabilities,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'TerminologyCapabilities',
+    ),
   );
 
   /// TestReport
-  static final FHIRAllTypes TestReport = FHIRAllTypes._(
+  static const FHIRAllTypes testReport = FHIRAllTypes._(
     valueString: 'TestReport',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'TestReport'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.testReport,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'TestReport',
+    ),
   );
 
   /// TestScript
-  static final FHIRAllTypes TestScript = FHIRAllTypes._(
+  static const FHIRAllTypes testScript = FHIRAllTypes._(
     valueString: 'TestScript',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'TestScript'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.testScript,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'TestScript',
+    ),
   );
 
   /// ValueSet
-  static final FHIRAllTypes ValueSet = FHIRAllTypes._(
+  static const FHIRAllTypes valueSet = FHIRAllTypes._(
     valueString: 'ValueSet',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'ValueSet'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.valueSet,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'ValueSet',
+    ),
   );
 
   /// VerificationResult
-  static final FHIRAllTypes VerificationResult = FHIRAllTypes._(
+  static const FHIRAllTypes verificationResult = FHIRAllTypes._(
     valueString: 'VerificationResult',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'VerificationResult'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.verificationResult,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'VerificationResult',
+    ),
   );
 
   /// VisionPrescription
-  static final FHIRAllTypes VisionPrescription = FHIRAllTypes._(
+  static const FHIRAllTypes visionPrescription = FHIRAllTypes._(
     valueString: 'VisionPrescription',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'VisionPrescription'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.visionPrescription,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'VisionPrescription',
+    ),
   );
 
   /// Parameters
-  static final FHIRAllTypes Parameters = FHIRAllTypes._(
+  static const FHIRAllTypes parameters = FHIRAllTypes._(
     valueString: 'Parameters',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Parameters'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.parameters,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Parameters',
+    ),
   );
 
   /// Type
-  static final FHIRAllTypes Type = FHIRAllTypes._(
+  static const FHIRAllTypes type = FHIRAllTypes._(
     valueString: 'Type',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Type'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.type,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Type',
+    ),
   );
 
   /// Any
-  static final FHIRAllTypes Any = FHIRAllTypes._(
+  static const FHIRAllTypes any = FHIRAllTypes._(
     valueString: 'Any',
-    system: 'http://hl7.org/fhir/ValueSet/all-types'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Any'.toFhirString,
+    valueEnum: FHIRAllTypesEnum.any,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/all-types',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Any',
+    ),
   );
-
-  /// For instances where an Element is present but not value
-  static final FHIRAllTypes elementOnly = FHIRAllTypes._(valueString: '');
 
   /// List of all enum-like values
   static final List<FHIRAllTypes> values = [
-    Address,
-    Age,
-    Annotation,
-    Attachment,
-    BackboneElement,
-    CodeableConcept,
-    CodeableReference,
-    Coding,
-    ContactDetail,
-    ContactPoint,
-    Contributor,
-    Count,
-    DataRequirement,
-    Distance,
-    Dosage,
-    Duration,
-    Element_,
-    ElementDefinition,
-    Expression,
-    Extension,
-    HumanName,
-    Identifier,
-    MarketingStatus,
-    Meta,
-    Money,
-    MoneyQuantity,
-    Narrative,
-    ParameterDefinition,
-    Period,
-    Population,
-    ProdCharacteristic,
-    ProductShelfLife,
-    Quantity,
-    Range,
-    Ratio,
-    RatioRange,
-    Reference,
-    RelatedArtifact,
-    SampledData,
-    Signature,
-    SimpleQuantity,
-    Timing,
-    TriggerDefinition,
-    UsageContext,
+    address,
+    age,
+    annotation,
+    attachment,
+    backboneElement,
+    codeableConcept,
+    codeableReference,
+    coding,
+    contactDetail,
+    contactPoint,
+    contributor,
+    count,
+    dataRequirement,
+    distance,
+    dosage,
+    duration,
+    element_,
+    elementDefinition,
+    expression,
+    extension,
+    humanName,
+    identifier,
+    marketingStatus,
+    meta,
+    money,
+    moneyQuantity,
+    narrative,
+    parameterDefinition,
+    period,
+    population,
+    prodCharacteristic,
+    productShelfLife,
+    quantity,
+    range,
+    ratio,
+    ratioRange,
+    reference,
+    relatedArtifact,
+    sampledData,
+    signature,
+    simpleQuantity,
+    timing,
+    triggerDefinition,
+    usageContext,
     base64Binary,
     boolean,
     canonical,
@@ -1810,159 +4349,152 @@ class FHIRAllTypes extends FhirCodeEnum {
     url,
     uuid,
     xhtml,
-    Resource,
-    Binary,
-    Bundle,
-    DomainResource,
-    Account,
-    ActivityDefinition,
-    AdministrableProductDefinition,
-    AdverseEvent,
-    AllergyIntolerance,
-    Appointment,
-    AppointmentResponse,
-    AuditEvent,
-    Basic,
-    BiologicallyDerivedProduct,
-    BodyStructure,
-    CapabilityStatement,
-    CarePlan,
-    CareTeam,
-    CatalogEntry,
-    ChargeItem,
-    ChargeItemDefinition,
-    Citation,
-    Claim,
-    ClaimResponse,
-    ClinicalImpression,
-    ClinicalUseDefinition,
-    CodeSystem,
-    Communication,
-    CommunicationRequest,
-    CompartmentDefinition,
-    Composition,
-    ConceptMap,
-    Condition,
-    Consent,
-    Contract,
-    Coverage,
-    CoverageEligibilityRequest,
-    CoverageEligibilityResponse,
-    DetectedIssue,
-    Device,
-    DeviceDefinition,
-    DeviceMetric,
-    DeviceRequest,
-    DeviceUseStatement,
-    DiagnosticReport,
-    DocumentManifest,
-    DocumentReference,
-    Encounter,
-    Endpoint,
-    EnrollmentRequest,
-    EnrollmentResponse,
-    EpisodeOfCare,
-    EventDefinition,
-    Evidence,
-    EvidenceReport,
-    EvidenceVariable,
-    ExampleScenario,
-    ExplanationOfBenefit,
-    FamilyMemberHistory,
-    Flag,
-    Goal,
-    GraphDefinition,
-    Group,
-    GuidanceResponse,
-    HealthcareService,
-    ImagingStudy,
-    Immunization,
-    ImmunizationEvaluation,
-    ImmunizationRecommendation,
-    ImplementationGuide,
-    Ingredient,
-    InsurancePlan,
-    Invoice,
-    Library,
-    Linkage,
-    List_,
-    Location,
-    ManufacturedItemDefinition,
-    Measure,
-    MeasureReport,
-    Media,
-    Medication,
-    MedicationAdministration,
-    MedicationDispense,
-    MedicationKnowledge,
-    MedicationRequest,
-    MedicationStatement,
-    MedicinalProductDefinition,
-    MessageDefinition,
-    MessageHeader,
-    MolecularSequence,
-    NamingSystem,
-    NutritionOrder,
-    NutritionProduct,
-    Observation,
-    ObservationDefinition,
-    OperationDefinition,
-    OperationOutcome,
-    Organization,
-    OrganizationAffiliation,
-    PackagedProductDefinition,
-    Patient,
-    PaymentNotice,
-    PaymentReconciliation,
-    Person,
-    PlanDefinition,
-    Practitioner,
-    PractitionerRole,
-    Procedure,
-    Provenance,
-    Questionnaire,
-    QuestionnaireResponse,
-    RegulatedAuthorization,
-    RelatedPerson,
-    RequestGroup,
-    ResearchDefinition,
-    ResearchElementDefinition,
-    ResearchStudy,
-    ResearchSubject,
-    RiskAssessment,
-    Schedule,
-    SearchParameter,
-    ServiceRequest,
-    Slot,
-    Specimen,
-    SpecimenDefinition,
-    StructureDefinition,
-    StructureMap,
-    Subscription,
-    SubscriptionStatus,
-    SubscriptionTopic,
-    Substance,
-    SubstanceDefinition,
-    SupplyDelivery,
-    SupplyRequest,
-    Task,
-    TerminologyCapabilities,
-    TestReport,
-    TestScript,
-    ValueSet,
-    VerificationResult,
-    VisionPrescription,
-    Parameters,
-    Type,
-    Any,
+    resource,
+    binary,
+    bundle,
+    domainResource,
+    account,
+    activityDefinition,
+    administrableProductDefinition,
+    adverseEvent,
+    allergyIntolerance,
+    appointment,
+    appointmentResponse,
+    auditEvent,
+    basic,
+    biologicallyDerivedProduct,
+    bodyStructure,
+    capabilityStatement,
+    carePlan,
+    careTeam,
+    catalogEntry,
+    chargeItem,
+    chargeItemDefinition,
+    citation,
+    claim,
+    claimResponse,
+    clinicalImpression,
+    clinicalUseDefinition,
+    codeSystem,
+    communication,
+    communicationRequest,
+    compartmentDefinition,
+    composition,
+    conceptMap,
+    condition,
+    consent,
+    contract,
+    coverage,
+    coverageEligibilityRequest,
+    coverageEligibilityResponse,
+    detectedIssue,
+    device,
+    deviceDefinition,
+    deviceMetric,
+    deviceRequest,
+    deviceUseStatement,
+    diagnosticReport,
+    documentManifest,
+    documentReference,
+    encounter,
+    endpoint,
+    enrollmentRequest,
+    enrollmentResponse,
+    episodeOfCare,
+    eventDefinition,
+    evidence,
+    evidenceReport,
+    evidenceVariable,
+    exampleScenario,
+    explanationOfBenefit,
+    familyMemberHistory,
+    flag,
+    goal,
+    graphDefinition,
+    group,
+    guidanceResponse,
+    healthcareService,
+    imagingStudy,
+    immunization,
+    immunizationEvaluation,
+    immunizationRecommendation,
+    implementationGuide,
+    ingredient,
+    insurancePlan,
+    invoice,
+    library,
+    linkage,
+    list_,
+    location,
+    manufacturedItemDefinition,
+    measure,
+    measureReport,
+    media,
+    medication,
+    medicationAdministration,
+    medicationDispense,
+    medicationKnowledge,
+    medicationRequest,
+    medicationStatement,
+    medicinalProductDefinition,
+    messageDefinition,
+    messageHeader,
+    molecularSequence,
+    namingSystem,
+    nutritionOrder,
+    nutritionProduct,
+    observation,
+    observationDefinition,
+    operationDefinition,
+    operationOutcome,
+    organization,
+    organizationAffiliation,
+    packagedProductDefinition,
+    patient,
+    paymentNotice,
+    paymentReconciliation,
+    person,
+    planDefinition,
+    practitioner,
+    practitionerRole,
+    procedure,
+    provenance,
+    questionnaire,
+    questionnaireResponse,
+    regulatedAuthorization,
+    relatedPerson,
+    requestGroup,
+    researchDefinition,
+    researchElementDefinition,
+    researchStudy,
+    researchSubject,
+    riskAssessment,
+    schedule,
+    searchParameter,
+    serviceRequest,
+    slot,
+    specimen,
+    specimenDefinition,
+    structureDefinition,
+    structureMap,
+    subscription,
+    subscriptionStatus,
+    subscriptionTopic,
+    substance,
+    substanceDefinition,
+    supplyDelivery,
+    supplyRequest,
+    task,
+    terminologyCapabilities,
+    testReport,
+    testScript,
+    valueSet,
+    verificationResult,
+    visionPrescription,
+    parameters,
+    type,
+    any,
   ];
-
-  /// Clones the current instance
-  @override
-  FHIRAllTypes clone() => FHIRAllTypes._(
-        valueString: valueString,
-        element: element?.clone() as Element?,
-      );
 
   /// Returns the enum value with an element attached
   FHIRAllTypes withElement(Element? newElement) {
@@ -1983,36 +4515,56 @@ class FHIRAllTypes extends FhirCodeEnum {
   @override
   String toString() => valueString ?? '';
 
-  /// Creates a modified copy with updated properties.
   @override
-  FHIRAllTypes copyWith({
-    dynamic newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
+  FHIRAllTypes clone() => copyWith();
+
+  /// Creates a new instance with the specified fields replaced.
+  @override
+  FHIRAllTypesCopyWithImpl<FHIRAllTypes> get copyWith =>
+      FHIRAllTypesCopyWithImpl<FHIRAllTypes>(
+        this,
+        (v) => v as FHIRAllTypes,
+      );
+}
+
+/// The generated implementation of the copyWith helper for Element.
+/// The call method uses parameters of type Object? with a default value of
+/// [fhirSentinel] so that omitted parameters retain the sentinel value while
+/// explicit nulls do not.
+class FHIRAllTypesCopyWithImpl<T> extends $FhirCodeCopyWithImpl<T> {
+  /// Constructor for the copyWith implementation.
+  FHIRAllTypesCopyWithImpl(super._value, super._then);
+
+  @override
+  T call({
+    Object? newValue = fhirSentinel,
+    Object? element = fhirSentinel,
+    Object? id = fhirSentinel,
+    Object? extension_ = fhirSentinel,
+    Object? disallowExtensions = fhirSentinel,
   }) {
-    if (newValue is! String?) {
+    if (!identical(newValue, fhirSentinel) && newValue is! String?) {
       throw ArgumentError(
-        'Invalid input for FHIRAllTypes: $newValue',
+        'newValue must be a String or null, but found ${newValue.runtimeType}',
+        'newValue',
       );
     }
-    return FHIRAllTypes._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
+    return _then(
+      FHIRAllTypes(
+        identical(newValue, fhirSentinel)
+            ? _value.valueString
+            : newValue as String?,
+        element: identical(element, fhirSentinel)
+            ? _value.element
+            : element as Element?,
+        id: identical(id, fhirSentinel) ? _value.id : id as FhirString?,
+        extension_: identical(extension_, fhirSentinel)
+            ? _value.extension_
+            : extension_ as List<FhirExtension>?,
+        disallowExtensions: identical(disallowExtensions, fhirSentinel)
+            ? _value.disallowExtensions
+            : disallowExtensions as bool?,
       ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

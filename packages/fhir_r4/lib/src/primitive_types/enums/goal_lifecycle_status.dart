@@ -1,12 +1,108 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for GoalLifecycleStatus
+enum GoalLifecycleStatusEnum {
+  /// proposed
+  proposed,
+
+  /// planned
+  planned,
+
+  /// accepted
+  accepted,
+
+  /// active
+  active,
+
+  /// on-hold
+  onHold,
+
+  /// completed
+  completed,
+
+  /// cancelled
+  cancelled,
+
+  /// entered-in-error
+  enteredInError,
+
+  /// rejected
+  rejected,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case GoalLifecycleStatusEnum.proposed:
+        return 'proposed';
+      case GoalLifecycleStatusEnum.planned:
+        return 'planned';
+      case GoalLifecycleStatusEnum.accepted:
+        return 'accepted';
+      case GoalLifecycleStatusEnum.active:
+        return 'active';
+      case GoalLifecycleStatusEnum.onHold:
+        return 'on-hold';
+      case GoalLifecycleStatusEnum.completed:
+        return 'completed';
+      case GoalLifecycleStatusEnum.cancelled:
+        return 'cancelled';
+      case GoalLifecycleStatusEnum.enteredInError:
+        return 'entered-in-error';
+      case GoalLifecycleStatusEnum.rejected:
+        return 'rejected';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static GoalLifecycleStatusEnum? fromJson(dynamic json) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return GoalLifecycleStatusEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static GoalLifecycleStatusEnum? fromString(String? value) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'proposed':
+        return GoalLifecycleStatusEnum.proposed;
+      case 'planned':
+        return GoalLifecycleStatusEnum.planned;
+      case 'accepted':
+        return GoalLifecycleStatusEnum.accepted;
+      case 'active':
+        return GoalLifecycleStatusEnum.active;
+      case 'on-hold':
+        return GoalLifecycleStatusEnum.onHold;
+      case 'completed':
+        return GoalLifecycleStatusEnum.completed;
+      case 'cancelled':
+        return GoalLifecycleStatusEnum.cancelled;
+      case 'entered-in-error':
+        return GoalLifecycleStatusEnum.enteredInError;
+      case 'rejected':
+        return GoalLifecycleStatusEnum.rejected;
+    }
+    return null;
+  }
+}
+
 /// Codes that reflect the current state of a goal and whether the goal is
 /// still being targeted.
 class GoalLifecycleStatus extends FhirCodeEnum {
   // Private underscore constructor for internal use.
-  GoalLifecycleStatus._({
+  const GoalLifecycleStatus._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -14,7 +110,6 @@ class GoalLifecycleStatus extends FhirCodeEnum {
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.objectPath = 'Code',
   }) : super._();
 
   /// Public factory if you want a fallback approach or custom creation.
@@ -28,12 +123,13 @@ class GoalLifecycleStatus extends FhirCodeEnum {
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
-    String objectPath = 'Code',
   }) {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
+    final valueEnum = GoalLifecycleStatusEnum.fromString(valueString);
     return GoalLifecycleStatus._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -41,12 +137,8 @@ class GoalLifecycleStatus extends FhirCodeEnum {
       id: id,
       extension_: extension_,
       disallowExtensions: disallowExtensions,
-      objectPath: objectPath,
     );
   }
-
-  /// Create empty [GoalLifecycleStatus] with element only
-  factory GoalLifecycleStatus.empty() => GoalLifecycleStatus._(valueString: '');
 
   /// Factory constructor to create [GoalLifecycleStatus]
   /// from JSON.
@@ -54,10 +146,11 @@ class GoalLifecycleStatus extends FhirCodeEnum {
     Map<String, dynamic> json,
   ) {
     final value = json['value'] as String?;
+    final valueEnum = GoalLifecycleStatusEnum.fromString(value);
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return GoalLifecycleStatus.elementOnly.withElement(element);
+      return GoalLifecycleStatus._(valueString: null, element: element);
     } else if (value == null && element == null) {
       throw ArgumentError(
         'GoalLifecycleStatus cannot be constructed from JSON.',
@@ -65,85 +158,130 @@ class GoalLifecycleStatus extends FhirCodeEnum {
     }
     return GoalLifecycleStatus._(
       valueString: value,
+      valueEnum: valueEnum,
       element: element,
     );
   }
 
+  /// An actual enum that can be used for GoalLifecycleStatus
+  final GoalLifecycleStatusEnum? valueEnum;
+
   /// proposed
-  static final GoalLifecycleStatus proposed = GoalLifecycleStatus._(
+  static const GoalLifecycleStatus proposed = GoalLifecycleStatus._(
     valueString: 'proposed',
-    system: 'http://hl7.org/fhir/ValueSet/goal-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Proposed'.toFhirString,
+    valueEnum: GoalLifecycleStatusEnum.proposed,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/goal-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Proposed',
+    ),
   );
 
   /// planned
-  static final GoalLifecycleStatus planned = GoalLifecycleStatus._(
+  static const GoalLifecycleStatus planned = GoalLifecycleStatus._(
     valueString: 'planned',
-    system: 'http://hl7.org/fhir/ValueSet/goal-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Planned'.toFhirString,
+    valueEnum: GoalLifecycleStatusEnum.planned,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/goal-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Planned',
+    ),
   );
 
   /// accepted
-  static final GoalLifecycleStatus accepted = GoalLifecycleStatus._(
+  static const GoalLifecycleStatus accepted = GoalLifecycleStatus._(
     valueString: 'accepted',
-    system: 'http://hl7.org/fhir/ValueSet/goal-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Accepted'.toFhirString,
+    valueEnum: GoalLifecycleStatusEnum.accepted,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/goal-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Accepted',
+    ),
   );
 
   /// active
-  static final GoalLifecycleStatus active = GoalLifecycleStatus._(
+  static const GoalLifecycleStatus active = GoalLifecycleStatus._(
     valueString: 'active',
-    system: 'http://hl7.org/fhir/ValueSet/goal-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Active'.toFhirString,
+    valueEnum: GoalLifecycleStatusEnum.active,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/goal-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Active',
+    ),
   );
 
   /// on_hold
-  static final GoalLifecycleStatus on_hold = GoalLifecycleStatus._(
+  static const GoalLifecycleStatus onHold = GoalLifecycleStatus._(
     valueString: 'on-hold',
-    system: 'http://hl7.org/fhir/ValueSet/goal-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'On Hold'.toFhirString,
+    valueEnum: GoalLifecycleStatusEnum.onHold,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/goal-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'On Hold',
+    ),
   );
 
   /// completed
-  static final GoalLifecycleStatus completed = GoalLifecycleStatus._(
+  static const GoalLifecycleStatus completed = GoalLifecycleStatus._(
     valueString: 'completed',
-    system: 'http://hl7.org/fhir/ValueSet/goal-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Completed'.toFhirString,
+    valueEnum: GoalLifecycleStatusEnum.completed,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/goal-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Completed',
+    ),
   );
 
   /// cancelled
-  static final GoalLifecycleStatus cancelled = GoalLifecycleStatus._(
+  static const GoalLifecycleStatus cancelled = GoalLifecycleStatus._(
     valueString: 'cancelled',
-    system: 'http://hl7.org/fhir/ValueSet/goal-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Cancelled'.toFhirString,
+    valueEnum: GoalLifecycleStatusEnum.cancelled,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/goal-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Cancelled',
+    ),
   );
 
   /// entered_in_error
-  static final GoalLifecycleStatus entered_in_error = GoalLifecycleStatus._(
+  static const GoalLifecycleStatus enteredInError = GoalLifecycleStatus._(
     valueString: 'entered-in-error',
-    system: 'http://hl7.org/fhir/ValueSet/goal-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Entered in Error'.toFhirString,
+    valueEnum: GoalLifecycleStatusEnum.enteredInError,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/goal-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Entered in Error',
+    ),
   );
 
   /// rejected
-  static final GoalLifecycleStatus rejected = GoalLifecycleStatus._(
+  static const GoalLifecycleStatus rejected = GoalLifecycleStatus._(
     valueString: 'rejected',
-    system: 'http://hl7.org/fhir/ValueSet/goal-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Rejected'.toFhirString,
+    valueEnum: GoalLifecycleStatusEnum.rejected,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/goal-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Rejected',
+    ),
   );
-
-  /// For instances where an Element is present but not value
-  static final GoalLifecycleStatus elementOnly =
-      GoalLifecycleStatus._(valueString: '');
 
   /// List of all enum-like values
   static final List<GoalLifecycleStatus> values = [
@@ -151,19 +289,12 @@ class GoalLifecycleStatus extends FhirCodeEnum {
     planned,
     accepted,
     active,
-    on_hold,
+    onHold,
     completed,
     cancelled,
-    entered_in_error,
+    enteredInError,
     rejected,
   ];
-
-  /// Clones the current instance
-  @override
-  GoalLifecycleStatus clone() => GoalLifecycleStatus._(
-        valueString: valueString,
-        element: element?.clone() as Element?,
-      );
 
   /// Returns the enum value with an element attached
   GoalLifecycleStatus withElement(Element? newElement) {
@@ -184,36 +315,56 @@ class GoalLifecycleStatus extends FhirCodeEnum {
   @override
   String toString() => valueString ?? '';
 
-  /// Creates a modified copy with updated properties.
   @override
-  GoalLifecycleStatus copyWith({
-    dynamic newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
+  GoalLifecycleStatus clone() => copyWith();
+
+  /// Creates a new instance with the specified fields replaced.
+  @override
+  GoalLifecycleStatusCopyWithImpl<GoalLifecycleStatus> get copyWith =>
+      GoalLifecycleStatusCopyWithImpl<GoalLifecycleStatus>(
+        this,
+        (v) => v as GoalLifecycleStatus,
+      );
+}
+
+/// The generated implementation of the copyWith helper for Element.
+/// The call method uses parameters of type Object? with a default value of
+/// [fhirSentinel] so that omitted parameters retain the sentinel value while
+/// explicit nulls do not.
+class GoalLifecycleStatusCopyWithImpl<T> extends $FhirCodeCopyWithImpl<T> {
+  /// Constructor for the copyWith implementation.
+  GoalLifecycleStatusCopyWithImpl(super._value, super._then);
+
+  @override
+  T call({
+    Object? newValue = fhirSentinel,
+    Object? element = fhirSentinel,
+    Object? id = fhirSentinel,
+    Object? extension_ = fhirSentinel,
+    Object? disallowExtensions = fhirSentinel,
   }) {
-    if (newValue is! String?) {
+    if (!identical(newValue, fhirSentinel) && newValue is! String?) {
       throw ArgumentError(
-        'Invalid input for GoalLifecycleStatus: $newValue',
+        'newValue must be a String or null, but found ${newValue.runtimeType}',
+        'newValue',
       );
     }
-    return GoalLifecycleStatus._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
+    return _then(
+      GoalLifecycleStatus(
+        identical(newValue, fhirSentinel)
+            ? _value.valueString
+            : newValue as String?,
+        element: identical(element, fhirSentinel)
+            ? _value.element
+            : element as Element?,
+        id: identical(id, fhirSentinel) ? _value.id : id as FhirString?,
+        extension_: identical(extension_, fhirSentinel)
+            ? _value.extension_
+            : extension_ as List<FhirExtension>?,
+        disallowExtensions: identical(disallowExtensions, fhirSentinel)
+            ? _value.disallowExtensions
+            : disallowExtensions as bool?,
       ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

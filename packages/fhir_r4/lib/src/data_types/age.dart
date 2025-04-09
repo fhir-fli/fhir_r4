@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
+part 'age.g.dart';
+
 /// [Age]
 /// A duration of time during which an organism (or a process) has existed.
 class Age extends Quantity
@@ -37,33 +39,22 @@ class Age extends Quantity
     super.system,
     super.code,
     super.disallowExtensions,
-    super.objectPath = 'Age',
   });
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory Age.empty() => const Age();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Age.fromJson(
     Map<String, dynamic> json,
   ) {
-    final objectPath = json['resourceType'] as String? ?? 'Age';
     return Age(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -71,31 +62,26 @@ class Age extends Quantity
         json,
         'value',
         FhirDecimal.fromJson,
-        '$objectPath.value',
       ),
       comparator: JsonParser.parsePrimitive<QuantityComparator>(
         json,
         'comparator',
         QuantityComparator.fromJson,
-        '$objectPath.comparator',
       ),
       unit: JsonParser.parsePrimitive<FhirString>(
         json,
         'unit',
         FhirString.fromJson,
-        '$objectPath.unit',
       ),
       system: JsonParser.parsePrimitive<FhirUri>(
         json,
         'system',
         FhirUri.fromJson,
-        '$objectPath.system',
       ),
       code: JsonParser.parsePrimitive<FhirCode>(
         json,
         'code',
         FhirCode.fromJson,
-        '$objectPath.code',
       ),
     );
   }
@@ -233,312 +219,19 @@ class Age extends Quantity
     return json;
   }
 
-  /// Lists the JSON keys for the object.
   @override
-  List<String> listChildrenNames() {
-    return [
-      'id',
-      'extension',
-      'value',
-      'comparator',
-      'unit',
-      'system',
-      'code',
-    ];
-  }
+  Age clone() => copyWith();
 
-  /// Retrieves all matching child fields by name.
-  ///Optionally validates the name.
+  /// Copy function for [Age]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<FhirBase> getChildrenByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    final fields = <FhirBase>[];
-    switch (fieldName) {
-      case 'id':
-        if (id != null) {
-          fields.add(id!);
-        }
-      case 'extension':
-        if (extension_ != null) {
-          fields.addAll(extension_!);
-        }
-      case 'value':
-        if (value != null) {
-          fields.add(value!);
-        }
-      case 'comparator':
-        if (comparator != null) {
-          fields.add(comparator!);
-        }
-      case 'unit':
-        if (unit != null) {
-          fields.add(unit!);
-        }
-      case 'system':
-        if (system != null) {
-          fields.add(system!);
-        }
-      case 'code':
-        if (code != null) {
-          fields.add(code!);
-        }
-      default:
-        if (checkValid) {
-          throw ArgumentError('Invalid name: $fieldName');
-        }
-    }
-    return fields;
-  }
-
-  /// Retrieves a single field value by its name.
-  @override
-  FhirBase? getChildByName(String name) {
-    final values = getChildrenByName(name);
-    if (values.length > 1) {
-      throw StateError('Too many values for $name found');
-    }
-    return values.isNotEmpty ? values.first : null;
-  }
-
-  @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
-
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'value':
-        {
-          if (child is FhirDecimal) {
-            return copyWith(value: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'comparator':
-        {
-          if (child is QuantityComparator) {
-            return copyWith(comparator: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'unit':
-        {
-          if (child is FhirString) {
-            return copyWith(unit: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'system':
-        {
-          if (child is FhirUri) {
-            return copyWith(system: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'code':
-        {
-          if (child is FhirCode) {
-            return copyWith(code: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
-  @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'value':
-        return ['FhirDecimal'];
-      case 'comparator':
-        return ['FhirCode'];
-      case 'unit':
-        return ['FhirString'];
-      case 'system':
-        return ['FhirUri'];
-      case 'code':
-        return ['FhirCode'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [Age]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  Age createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
-          );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'value':
-        {
-          return copyWith(
-            value: FhirDecimal.empty(),
-          );
-        }
-      case 'comparator':
-        {
-          return copyWith(
-            comparator: QuantityComparator.empty(),
-          );
-        }
-      case 'unit':
-        {
-          return copyWith(
-            unit: FhirString.empty(),
-          );
-        }
-      case 'system':
-        {
-          return copyWith(
-            system: FhirUri.empty(),
-          );
-        }
-      case 'code':
-        {
-          return copyWith(
-            code: FhirCode.empty(),
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  Age clear({
-    bool id = false,
-    bool extension_ = false,
-    bool value = false,
-    bool comparator = false,
-    bool unit = false,
-    bool system = false,
-    bool code = false,
-  }) {
-    return Age(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      value: value ? null : this.value,
-      comparator: comparator ? null : this.comparator,
-      unit: unit ? null : this.unit,
-      system: system ? null : this.system,
-      code: code ? null : this.code,
-    );
-  }
-
-  @override
-  Age clone() => throw UnimplementedError();
-  @override
-  Age copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    FhirDecimal? value,
-    QuantityComparator? comparator,
-    FhirString? unit,
-    FhirUri? system,
-    FhirCode? code,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = objectPath ?? this.objectPath;
-    return Age(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      value: value?.copyWith(
-            objectPath: '$newObjectPath.value',
-          ) ??
-          this.value,
-      comparator: comparator?.copyWith(
-            objectPath: '$newObjectPath.comparator',
-          ) ??
-          this.comparator,
-      unit: unit?.copyWith(
-            objectPath: '$newObjectPath.unit',
-          ) ??
-          this.unit,
-      system: system?.copyWith(
-            objectPath: '$newObjectPath.system',
-          ) ??
-          this.system,
-      code: code?.copyWith(
-            objectPath: '$newObjectPath.code',
-          ) ??
-          this.code,
-    );
-  }
+  $AgeCopyWith<Age> get copyWith => _$AgeCopyWithImpl<Age>(
+        this,
+        (value) => value,
+      );
 
   /// Performs a deep comparison between two instances.
   @override

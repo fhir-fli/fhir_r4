@@ -1,11 +1,79 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for InvoiceStatus
+enum InvoiceStatusEnum {
+  /// draft
+  draft,
+
+  /// issued
+  issued,
+
+  /// balanced
+  balanced,
+
+  /// cancelled
+  cancelled,
+
+  /// entered-in-error
+  enteredInError,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case InvoiceStatusEnum.draft:
+        return 'draft';
+      case InvoiceStatusEnum.issued:
+        return 'issued';
+      case InvoiceStatusEnum.balanced:
+        return 'balanced';
+      case InvoiceStatusEnum.cancelled:
+        return 'cancelled';
+      case InvoiceStatusEnum.enteredInError:
+        return 'entered-in-error';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static InvoiceStatusEnum? fromJson(dynamic json) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return InvoiceStatusEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static InvoiceStatusEnum? fromString(String? value) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'draft':
+        return InvoiceStatusEnum.draft;
+      case 'issued':
+        return InvoiceStatusEnum.issued;
+      case 'balanced':
+        return InvoiceStatusEnum.balanced;
+      case 'cancelled':
+        return InvoiceStatusEnum.cancelled;
+      case 'entered-in-error':
+        return InvoiceStatusEnum.enteredInError;
+    }
+    return null;
+  }
+}
+
 /// Codes identifying the lifecycle stage of an Invoice.
 class InvoiceStatus extends FhirCodeEnum {
   // Private underscore constructor for internal use.
-  InvoiceStatus._({
+  const InvoiceStatus._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -13,7 +81,6 @@ class InvoiceStatus extends FhirCodeEnum {
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.objectPath = 'Code',
   }) : super._();
 
   /// Public factory if you want a fallback approach or custom creation.
@@ -27,12 +94,13 @@ class InvoiceStatus extends FhirCodeEnum {
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
-    String objectPath = 'Code',
   }) {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
+    final valueEnum = InvoiceStatusEnum.fromString(valueString);
     return InvoiceStatus._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -40,12 +108,8 @@ class InvoiceStatus extends FhirCodeEnum {
       id: id,
       extension_: extension_,
       disallowExtensions: disallowExtensions,
-      objectPath: objectPath,
     );
   }
-
-  /// Create empty [InvoiceStatus] with element only
-  factory InvoiceStatus.empty() => InvoiceStatus._(valueString: '');
 
   /// Factory constructor to create [InvoiceStatus]
   /// from JSON.
@@ -53,10 +117,11 @@ class InvoiceStatus extends FhirCodeEnum {
     Map<String, dynamic> json,
   ) {
     final value = json['value'] as String?;
+    final valueEnum = InvoiceStatusEnum.fromString(value);
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return InvoiceStatus.elementOnly.withElement(element);
+      return InvoiceStatus._(valueString: null, element: element);
     } else if (value == null && element == null) {
       throw ArgumentError(
         'InvoiceStatus cannot be constructed from JSON.',
@@ -64,52 +129,78 @@ class InvoiceStatus extends FhirCodeEnum {
     }
     return InvoiceStatus._(
       valueString: value,
+      valueEnum: valueEnum,
       element: element,
     );
   }
 
+  /// An actual enum that can be used for InvoiceStatus
+  final InvoiceStatusEnum? valueEnum;
+
   /// draft
-  static final InvoiceStatus draft = InvoiceStatus._(
+  static const InvoiceStatus draft = InvoiceStatus._(
     valueString: 'draft',
-    system: 'http://hl7.org/fhir/ValueSet/invoice-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'draft'.toFhirString,
+    valueEnum: InvoiceStatusEnum.draft,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/invoice-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'draft',
+    ),
   );
 
   /// issued
-  static final InvoiceStatus issued = InvoiceStatus._(
+  static const InvoiceStatus issued = InvoiceStatus._(
     valueString: 'issued',
-    system: 'http://hl7.org/fhir/ValueSet/invoice-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'issued'.toFhirString,
+    valueEnum: InvoiceStatusEnum.issued,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/invoice-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'issued',
+    ),
   );
 
   /// balanced
-  static final InvoiceStatus balanced = InvoiceStatus._(
+  static const InvoiceStatus balanced = InvoiceStatus._(
     valueString: 'balanced',
-    system: 'http://hl7.org/fhir/ValueSet/invoice-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'balanced'.toFhirString,
+    valueEnum: InvoiceStatusEnum.balanced,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/invoice-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'balanced',
+    ),
   );
 
   /// cancelled
-  static final InvoiceStatus cancelled = InvoiceStatus._(
+  static const InvoiceStatus cancelled = InvoiceStatus._(
     valueString: 'cancelled',
-    system: 'http://hl7.org/fhir/ValueSet/invoice-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'cancelled'.toFhirString,
+    valueEnum: InvoiceStatusEnum.cancelled,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/invoice-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'cancelled',
+    ),
   );
 
   /// entered_in_error
-  static final InvoiceStatus entered_in_error = InvoiceStatus._(
+  static const InvoiceStatus enteredInError = InvoiceStatus._(
     valueString: 'entered-in-error',
-    system: 'http://hl7.org/fhir/ValueSet/invoice-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'entered in error'.toFhirString,
+    valueEnum: InvoiceStatusEnum.enteredInError,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/invoice-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'entered in error',
+    ),
   );
-
-  /// For instances where an Element is present but not value
-  static final InvoiceStatus elementOnly = InvoiceStatus._(valueString: '');
 
   /// List of all enum-like values
   static final List<InvoiceStatus> values = [
@@ -117,15 +208,8 @@ class InvoiceStatus extends FhirCodeEnum {
     issued,
     balanced,
     cancelled,
-    entered_in_error,
+    enteredInError,
   ];
-
-  /// Clones the current instance
-  @override
-  InvoiceStatus clone() => InvoiceStatus._(
-        valueString: valueString,
-        element: element?.clone() as Element?,
-      );
 
   /// Returns the enum value with an element attached
   InvoiceStatus withElement(Element? newElement) {
@@ -146,36 +230,56 @@ class InvoiceStatus extends FhirCodeEnum {
   @override
   String toString() => valueString ?? '';
 
-  /// Creates a modified copy with updated properties.
   @override
-  InvoiceStatus copyWith({
-    dynamic newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
+  InvoiceStatus clone() => copyWith();
+
+  /// Creates a new instance with the specified fields replaced.
+  @override
+  InvoiceStatusCopyWithImpl<InvoiceStatus> get copyWith =>
+      InvoiceStatusCopyWithImpl<InvoiceStatus>(
+        this,
+        (v) => v as InvoiceStatus,
+      );
+}
+
+/// The generated implementation of the copyWith helper for Element.
+/// The call method uses parameters of type Object? with a default value of
+/// [fhirSentinel] so that omitted parameters retain the sentinel value while
+/// explicit nulls do not.
+class InvoiceStatusCopyWithImpl<T> extends $FhirCodeCopyWithImpl<T> {
+  /// Constructor for the copyWith implementation.
+  InvoiceStatusCopyWithImpl(super._value, super._then);
+
+  @override
+  T call({
+    Object? newValue = fhirSentinel,
+    Object? element = fhirSentinel,
+    Object? id = fhirSentinel,
+    Object? extension_ = fhirSentinel,
+    Object? disallowExtensions = fhirSentinel,
   }) {
-    if (newValue is! String?) {
+    if (!identical(newValue, fhirSentinel) && newValue is! String?) {
       throw ArgumentError(
-        'Invalid input for InvoiceStatus: $newValue',
+        'newValue must be a String or null, but found ${newValue.runtimeType}',
+        'newValue',
       );
     }
-    return InvoiceStatus._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
+    return _then(
+      InvoiceStatus(
+        identical(newValue, fhirSentinel)
+            ? _value.valueString
+            : newValue as String?,
+        element: identical(element, fhirSentinel)
+            ? _value.element
+            : element as Element?,
+        id: identical(id, fhirSentinel) ? _value.id : id as FhirString?,
+        extension_: identical(extension_, fhirSentinel)
+            ? _value.extension_
+            : extension_ as List<FhirExtension>?,
+        disallowExtensions: identical(disallowExtensions, fhirSentinel)
+            ? _value.disallowExtensions
+            : disallowExtensions as bool?,
       ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart'
     show
         R4ResourceType,
+        StringExtensionForFHIR,
         TerminologyCapabilities,
         TerminologyCapabilitiesClosure,
         TerminologyCapabilitiesCodeSystem,

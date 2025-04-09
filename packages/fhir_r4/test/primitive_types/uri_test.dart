@@ -203,4 +203,50 @@ void uriTest() {
       );
     });
   });
+
+  group('FhirUri copyWith Tests:', () {
+    test('should copy with new uri values', () {
+      final original = FhirUri('http://example.org/fhir');
+      expect(original.valueString, equals('http://example.org/fhir'));
+
+      final copied = original.copyWith(newValue: 'http://hl7.org/fhir');
+      expect(copied.valueString, equals('http://hl7.org/fhir'));
+      expect(
+        original.valueString,
+        equals('http://example.org/fhir'),
+      ); // Original unchanged
+    });
+
+    test('should accept Uri objects as new values', () {
+      final original = FhirUri('http://example.org/fhir');
+      final newUri = Uri.parse('http://hl7.org/fhir');
+
+      final copied = original.copyWith(newValue: newUri);
+      expect(copied.valueString, equals('http://hl7.org/fhir'));
+    });
+
+    test('should clear value when explicitly passed null', () {
+      final original = FhirUri('http://example.org/fhir');
+      expect(original.valueString, isNotNull);
+
+      // ignore: avoid_redundant_argument_values
+      final cleared = original.copyWith(
+        newValue: null,
+        element: const Element(),
+      );
+      expect(cleared.valueString, isNull);
+      expect(original.valueString, isNotNull); // Original unchanged
+    });
+
+    test('should maintain URI properties on copied values', () {
+      final original = FhirUri('http://example.org/fhir/Patient/123');
+      final copied = original.copyWith(
+        newValue: 'https://hl7.org/fhir/ValueSet/patient-gender',
+      );
+
+      expect(copied.valueUri?.scheme, equals('https'));
+      expect(copied.valueUri?.host, equals('hl7.org'));
+      expect(copied.valueUri?.pathSegments, contains('ValueSet'));
+    });
+  });
 }

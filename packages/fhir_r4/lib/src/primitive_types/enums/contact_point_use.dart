@@ -1,11 +1,79 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for ContactPointUse
+enum ContactPointUseEnum {
+  /// home
+  home,
+
+  /// work
+  work,
+
+  /// temp
+  temp,
+
+  /// old
+  old,
+
+  /// mobile
+  mobile,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case ContactPointUseEnum.home:
+        return 'home';
+      case ContactPointUseEnum.work:
+        return 'work';
+      case ContactPointUseEnum.temp:
+        return 'temp';
+      case ContactPointUseEnum.old:
+        return 'old';
+      case ContactPointUseEnum.mobile:
+        return 'mobile';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static ContactPointUseEnum? fromJson(dynamic json) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return ContactPointUseEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static ContactPointUseEnum? fromString(String? value) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'home':
+        return ContactPointUseEnum.home;
+      case 'work':
+        return ContactPointUseEnum.work;
+      case 'temp':
+        return ContactPointUseEnum.temp;
+      case 'old':
+        return ContactPointUseEnum.old;
+      case 'mobile':
+        return ContactPointUseEnum.mobile;
+    }
+    return null;
+  }
+}
+
 /// Use of contact point.
 class ContactPointUse extends FhirCodeEnum {
   // Private underscore constructor for internal use.
-  ContactPointUse._({
+  const ContactPointUse._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -13,7 +81,6 @@ class ContactPointUse extends FhirCodeEnum {
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.objectPath = 'Code',
   }) : super._();
 
   /// Public factory if you want a fallback approach or custom creation.
@@ -27,12 +94,13 @@ class ContactPointUse extends FhirCodeEnum {
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
-    String objectPath = 'Code',
   }) {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
+    final valueEnum = ContactPointUseEnum.fromString(valueString);
     return ContactPointUse._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -40,12 +108,8 @@ class ContactPointUse extends FhirCodeEnum {
       id: id,
       extension_: extension_,
       disallowExtensions: disallowExtensions,
-      objectPath: objectPath,
     );
   }
-
-  /// Create empty [ContactPointUse] with element only
-  factory ContactPointUse.empty() => ContactPointUse._(valueString: '');
 
   /// Factory constructor to create [ContactPointUse]
   /// from JSON.
@@ -53,10 +117,11 @@ class ContactPointUse extends FhirCodeEnum {
     Map<String, dynamic> json,
   ) {
     final value = json['value'] as String?;
+    final valueEnum = ContactPointUseEnum.fromString(value);
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ContactPointUse.elementOnly.withElement(element);
+      return ContactPointUse._(valueString: null, element: element);
     } else if (value == null && element == null) {
       throw ArgumentError(
         'ContactPointUse cannot be constructed from JSON.',
@@ -64,52 +129,78 @@ class ContactPointUse extends FhirCodeEnum {
     }
     return ContactPointUse._(
       valueString: value,
+      valueEnum: valueEnum,
       element: element,
     );
   }
 
+  /// An actual enum that can be used for ContactPointUse
+  final ContactPointUseEnum? valueEnum;
+
   /// home
-  static final ContactPointUse home = ContactPointUse._(
+  static const ContactPointUse home = ContactPointUse._(
     valueString: 'home',
-    system: 'http://hl7.org/fhir/ValueSet/contact-point-use'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Home'.toFhirString,
+    valueEnum: ContactPointUseEnum.home,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/contact-point-use',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Home',
+    ),
   );
 
   /// work
-  static final ContactPointUse work = ContactPointUse._(
+  static const ContactPointUse work = ContactPointUse._(
     valueString: 'work',
-    system: 'http://hl7.org/fhir/ValueSet/contact-point-use'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Work'.toFhirString,
+    valueEnum: ContactPointUseEnum.work,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/contact-point-use',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Work',
+    ),
   );
 
   /// temp
-  static final ContactPointUse temp = ContactPointUse._(
+  static const ContactPointUse temp = ContactPointUse._(
     valueString: 'temp',
-    system: 'http://hl7.org/fhir/ValueSet/contact-point-use'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Temp'.toFhirString,
+    valueEnum: ContactPointUseEnum.temp,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/contact-point-use',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Temp',
+    ),
   );
 
   /// old
-  static final ContactPointUse old = ContactPointUse._(
+  static const ContactPointUse old = ContactPointUse._(
     valueString: 'old',
-    system: 'http://hl7.org/fhir/ValueSet/contact-point-use'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Old'.toFhirString,
+    valueEnum: ContactPointUseEnum.old,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/contact-point-use',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Old',
+    ),
   );
 
   /// mobile
-  static final ContactPointUse mobile = ContactPointUse._(
+  static const ContactPointUse mobile = ContactPointUse._(
     valueString: 'mobile',
-    system: 'http://hl7.org/fhir/ValueSet/contact-point-use'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Mobile'.toFhirString,
+    valueEnum: ContactPointUseEnum.mobile,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/contact-point-use',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Mobile',
+    ),
   );
-
-  /// For instances where an Element is present but not value
-  static final ContactPointUse elementOnly = ContactPointUse._(valueString: '');
 
   /// List of all enum-like values
   static final List<ContactPointUse> values = [
@@ -119,13 +210,6 @@ class ContactPointUse extends FhirCodeEnum {
     old,
     mobile,
   ];
-
-  /// Clones the current instance
-  @override
-  ContactPointUse clone() => ContactPointUse._(
-        valueString: valueString,
-        element: element?.clone() as Element?,
-      );
 
   /// Returns the enum value with an element attached
   ContactPointUse withElement(Element? newElement) {
@@ -146,36 +230,56 @@ class ContactPointUse extends FhirCodeEnum {
   @override
   String toString() => valueString ?? '';
 
-  /// Creates a modified copy with updated properties.
   @override
-  ContactPointUse copyWith({
-    dynamic newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
+  ContactPointUse clone() => copyWith();
+
+  /// Creates a new instance with the specified fields replaced.
+  @override
+  ContactPointUseCopyWithImpl<ContactPointUse> get copyWith =>
+      ContactPointUseCopyWithImpl<ContactPointUse>(
+        this,
+        (v) => v as ContactPointUse,
+      );
+}
+
+/// The generated implementation of the copyWith helper for Element.
+/// The call method uses parameters of type Object? with a default value of
+/// [fhirSentinel] so that omitted parameters retain the sentinel value while
+/// explicit nulls do not.
+class ContactPointUseCopyWithImpl<T> extends $FhirCodeCopyWithImpl<T> {
+  /// Constructor for the copyWith implementation.
+  ContactPointUseCopyWithImpl(super._value, super._then);
+
+  @override
+  T call({
+    Object? newValue = fhirSentinel,
+    Object? element = fhirSentinel,
+    Object? id = fhirSentinel,
+    Object? extension_ = fhirSentinel,
+    Object? disallowExtensions = fhirSentinel,
   }) {
-    if (newValue is! String?) {
+    if (!identical(newValue, fhirSentinel) && newValue is! String?) {
       throw ArgumentError(
-        'Invalid input for ContactPointUse: $newValue',
+        'newValue must be a String or null, but found ${newValue.runtimeType}',
+        'newValue',
       );
     }
-    return ContactPointUse._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
+    return _then(
+      ContactPointUse(
+        identical(newValue, fhirSentinel)
+            ? _value.valueString
+            : newValue as String?,
+        element: identical(element, fhirSentinel)
+            ? _value.element
+            : element as Element?,
+        id: identical(id, fhirSentinel) ? _value.id : id as FhirString?,
+        extension_: identical(extension_, fhirSentinel)
+            ? _value.extension_
+            : extension_ as List<FhirExtension>?,
+        disallowExtensions: identical(disallowExtensions, fhirSentinel)
+            ? _value.disallowExtensions
+            : disallowExtensions as bool?,
       ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

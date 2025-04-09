@@ -1,13 +1,67 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for SearchEntryMode
+enum SearchEntryModeEnum {
+  /// match
+  match,
+
+  /// include
+  include,
+
+  /// outcome
+  outcome,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case SearchEntryModeEnum.match:
+        return 'match';
+      case SearchEntryModeEnum.include:
+        return 'include';
+      case SearchEntryModeEnum.outcome:
+        return 'outcome';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static SearchEntryModeEnum? fromJson(dynamic json) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return SearchEntryModeEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static SearchEntryModeEnum? fromString(String? value) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'match':
+        return SearchEntryModeEnum.match;
+      case 'include':
+        return SearchEntryModeEnum.include;
+      case 'outcome':
+        return SearchEntryModeEnum.outcome;
+    }
+    return null;
+  }
+}
+
 /// Why an entry is in the result set - whether it's included as a match or
 /// because of an _include requirement, or to convey information or warning
 /// information about the search process.
 class SearchEntryMode extends FhirCodeEnum {
   // Private underscore constructor for internal use.
-  SearchEntryMode._({
+  const SearchEntryMode._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -15,7 +69,6 @@ class SearchEntryMode extends FhirCodeEnum {
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.objectPath = 'Code',
   }) : super._();
 
   /// Public factory if you want a fallback approach or custom creation.
@@ -29,12 +82,13 @@ class SearchEntryMode extends FhirCodeEnum {
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
-    String objectPath = 'Code',
   }) {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
+    final valueEnum = SearchEntryModeEnum.fromString(valueString);
     return SearchEntryMode._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -42,12 +96,8 @@ class SearchEntryMode extends FhirCodeEnum {
       id: id,
       extension_: extension_,
       disallowExtensions: disallowExtensions,
-      objectPath: objectPath,
     );
   }
-
-  /// Create empty [SearchEntryMode] with element only
-  factory SearchEntryMode.empty() => SearchEntryMode._(valueString: '');
 
   /// Factory constructor to create [SearchEntryMode]
   /// from JSON.
@@ -55,10 +105,11 @@ class SearchEntryMode extends FhirCodeEnum {
     Map<String, dynamic> json,
   ) {
     final value = json['value'] as String?;
+    final valueEnum = SearchEntryModeEnum.fromString(value);
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return SearchEntryMode.elementOnly.withElement(element);
+      return SearchEntryMode._(valueString: null, element: element);
     } else if (value == null && element == null) {
       throw ArgumentError(
         'SearchEntryMode cannot be constructed from JSON.',
@@ -66,36 +117,52 @@ class SearchEntryMode extends FhirCodeEnum {
     }
     return SearchEntryMode._(
       valueString: value,
+      valueEnum: valueEnum,
       element: element,
     );
   }
 
+  /// An actual enum that can be used for SearchEntryMode
+  final SearchEntryModeEnum? valueEnum;
+
   /// match
-  static final SearchEntryMode match = SearchEntryMode._(
+  static const SearchEntryMode match = SearchEntryMode._(
     valueString: 'match',
-    system: 'http://hl7.org/fhir/ValueSet/search-entry-mode'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Match'.toFhirString,
+    valueEnum: SearchEntryModeEnum.match,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/search-entry-mode',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Match',
+    ),
   );
 
   /// include
-  static final SearchEntryMode include = SearchEntryMode._(
+  static const SearchEntryMode include = SearchEntryMode._(
     valueString: 'include',
-    system: 'http://hl7.org/fhir/ValueSet/search-entry-mode'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Include'.toFhirString,
+    valueEnum: SearchEntryModeEnum.include,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/search-entry-mode',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Include',
+    ),
   );
 
   /// outcome
-  static final SearchEntryMode outcome = SearchEntryMode._(
+  static const SearchEntryMode outcome = SearchEntryMode._(
     valueString: 'outcome',
-    system: 'http://hl7.org/fhir/ValueSet/search-entry-mode'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Outcome'.toFhirString,
+    valueEnum: SearchEntryModeEnum.outcome,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/search-entry-mode',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Outcome',
+    ),
   );
-
-  /// For instances where an Element is present but not value
-  static final SearchEntryMode elementOnly = SearchEntryMode._(valueString: '');
 
   /// List of all enum-like values
   static final List<SearchEntryMode> values = [
@@ -103,13 +170,6 @@ class SearchEntryMode extends FhirCodeEnum {
     include,
     outcome,
   ];
-
-  /// Clones the current instance
-  @override
-  SearchEntryMode clone() => SearchEntryMode._(
-        valueString: valueString,
-        element: element?.clone() as Element?,
-      );
 
   /// Returns the enum value with an element attached
   SearchEntryMode withElement(Element? newElement) {
@@ -130,36 +190,56 @@ class SearchEntryMode extends FhirCodeEnum {
   @override
   String toString() => valueString ?? '';
 
-  /// Creates a modified copy with updated properties.
   @override
-  SearchEntryMode copyWith({
-    dynamic newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
+  SearchEntryMode clone() => copyWith();
+
+  /// Creates a new instance with the specified fields replaced.
+  @override
+  SearchEntryModeCopyWithImpl<SearchEntryMode> get copyWith =>
+      SearchEntryModeCopyWithImpl<SearchEntryMode>(
+        this,
+        (v) => v as SearchEntryMode,
+      );
+}
+
+/// The generated implementation of the copyWith helper for Element.
+/// The call method uses parameters of type Object? with a default value of
+/// [fhirSentinel] so that omitted parameters retain the sentinel value while
+/// explicit nulls do not.
+class SearchEntryModeCopyWithImpl<T> extends $FhirCodeCopyWithImpl<T> {
+  /// Constructor for the copyWith implementation.
+  SearchEntryModeCopyWithImpl(super._value, super._then);
+
+  @override
+  T call({
+    Object? newValue = fhirSentinel,
+    Object? element = fhirSentinel,
+    Object? id = fhirSentinel,
+    Object? extension_ = fhirSentinel,
+    Object? disallowExtensions = fhirSentinel,
   }) {
-    if (newValue is! String?) {
+    if (!identical(newValue, fhirSentinel) && newValue is! String?) {
       throw ArgumentError(
-        'Invalid input for SearchEntryMode: $newValue',
+        'newValue must be a String or null, but found ${newValue.runtimeType}',
+        'newValue',
       );
     }
-    return SearchEntryMode._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
+    return _then(
+      SearchEntryMode(
+        identical(newValue, fhirSentinel)
+            ? _value.valueString
+            : newValue as String?,
+        element: identical(element, fhirSentinel)
+            ? _value.element
+            : element as Element?,
+        id: identical(id, fhirSentinel) ? _value.id : id as FhirString?,
+        extension_: identical(extension_, fhirSentinel)
+            ? _value.extension_
+            : extension_ as List<FhirExtension>?,
+        disallowExtensions: identical(disallowExtensions, fhirSentinel)
+            ? _value.disallowExtensions
+            : disallowExtensions as bool?,
       ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

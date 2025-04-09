@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
+part 'person.g.dart';
+
 /// [Person]
 /// Demographics and administrative information about a person independent
 /// of a specific health-related context.
@@ -29,108 +31,78 @@ class Person extends DomainResource {
     this.active,
     this.link,
   }) : super(
-          objectPath: 'Person',
           resourceType: R4ResourceType.Person,
         );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory Person.empty() => const Person();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Person.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'Person';
     return Person(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
         FhirMeta.fromJson,
-        '$objectPath.meta',
       ),
       implicitRules: JsonParser.parsePrimitive<FhirUri>(
         json,
         'implicitRules',
         FhirUri.fromJson,
-        '$objectPath.implicitRules',
       ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-        '$objectPath.language',
       ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
         Narrative.fromJson,
-        '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
           ?.map<Resource>(
             (v) => Resource.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.contained',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       identifier: (json['identifier'] as List<dynamic>?)
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.identifier',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       name: (json['name'] as List<dynamic>?)
           ?.map<HumanName>(
             (v) => HumanName.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.name',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       telecom: (json['telecom'] as List<dynamic>?)
           ?.map<ContactPoint>(
             (v) => ContactPoint.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.telecom',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -138,21 +110,16 @@ class Person extends DomainResource {
         json,
         'gender',
         AdministrativeGender.fromJson,
-        '$objectPath.gender',
       ),
       birthDate: JsonParser.parsePrimitive<FhirDate>(
         json,
         'birthDate',
         FhirDate.fromJson,
-        '$objectPath.birthDate',
       ),
       address: (json['address'] as List<dynamic>?)
           ?.map<Address>(
             (v) => Address.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.address',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -160,27 +127,21 @@ class Person extends DomainResource {
         json,
         'photo',
         Attachment.fromJson,
-        '$objectPath.photo',
       ),
       managingOrganization: JsonParser.parseObject<Reference>(
         json,
         'managingOrganization',
         Reference.fromJson,
-        '$objectPath.managingOrganization',
       ),
       active: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'active',
         FhirBoolean.fromJson,
-        '$objectPath.active',
       ),
       link: (json['link'] as List<dynamic>?)
           ?.map<PersonLink>(
             (v) => PersonLink.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.link',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -406,704 +367,19 @@ class Person extends DomainResource {
     return json;
   }
 
-  /// Lists the JSON keys for the object.
   @override
-  List<String> listChildrenNames() {
-    return [
-      'id',
-      'meta',
-      'implicitRules',
-      'language',
-      'text',
-      'contained',
-      'extension',
-      'modifierExtension',
-      'identifier',
-      'name',
-      'telecom',
-      'gender',
-      'birthDate',
-      'address',
-      'photo',
-      'managingOrganization',
-      'active',
-      'link',
-    ];
-  }
+  Person clone() => copyWith();
 
-  /// Retrieves all matching child fields by name.
-  ///Optionally validates the name.
+  /// Copy function for [Person]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<FhirBase> getChildrenByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    final fields = <FhirBase>[];
-    switch (fieldName) {
-      case 'id':
-        if (id != null) {
-          fields.add(id!);
-        }
-      case 'meta':
-        if (meta != null) {
-          fields.add(meta!);
-        }
-      case 'implicitRules':
-        if (implicitRules != null) {
-          fields.add(implicitRules!);
-        }
-      case 'language':
-        if (language != null) {
-          fields.add(language!);
-        }
-      case 'text':
-        if (text != null) {
-          fields.add(text!);
-        }
-      case 'contained':
-        if (contained != null) {
-          fields.addAll(contained!);
-        }
-      case 'extension':
-        if (extension_ != null) {
-          fields.addAll(extension_!);
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          fields.addAll(modifierExtension!);
-        }
-      case 'identifier':
-        if (identifier != null) {
-          fields.addAll(identifier!);
-        }
-      case 'name':
-        if (name != null) {
-          fields.addAll(name!);
-        }
-      case 'telecom':
-        if (telecom != null) {
-          fields.addAll(telecom!);
-        }
-      case 'gender':
-        if (gender != null) {
-          fields.add(gender!);
-        }
-      case 'birthDate':
-        if (birthDate != null) {
-          fields.add(birthDate!);
-        }
-      case 'address':
-        if (address != null) {
-          fields.addAll(address!);
-        }
-      case 'photo':
-        if (photo != null) {
-          fields.add(photo!);
-        }
-      case 'managingOrganization':
-        if (managingOrganization != null) {
-          fields.add(managingOrganization!);
-        }
-      case 'active':
-        if (active != null) {
-          fields.add(active!);
-        }
-      case 'link':
-        if (link != null) {
-          fields.addAll(link!);
-        }
-      default:
-        if (checkValid) {
-          throw ArgumentError('Invalid name: $fieldName');
-        }
-    }
-    return fields;
-  }
-
-  /// Retrieves a single field value by its name.
-  @override
-  FhirBase? getChildByName(String name) {
-    final values = getChildrenByName(name);
-    if (values.length > 1) {
-      throw StateError('Too many values for $name found');
-    }
-    return values.isNotEmpty ? values.first : null;
-  }
-
-  @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
-
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'meta':
-        {
-          if (child is FhirMeta) {
-            return copyWith(meta: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'implicitRules':
-        {
-          if (child is FhirUri) {
-            return copyWith(implicitRules: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'language':
-        {
-          if (child is CommonLanguages) {
-            return copyWith(language: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'text':
-        {
-          if (child is Narrative) {
-            return copyWith(text: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'contained':
-        {
-          if (child is List<Resource>) {
-            // Add all elements from passed list
-            final newList = [...?contained, ...child];
-            return copyWith(contained: newList);
-          } else if (child is Resource) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?contained,
-              child,
-            ];
-            return copyWith(contained: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'identifier':
-        {
-          if (child is List<Identifier>) {
-            // Add all elements from passed list
-            final newList = [...?identifier, ...child];
-            return copyWith(identifier: newList);
-          } else if (child is Identifier) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?identifier,
-              child,
-            ];
-            return copyWith(identifier: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'name':
-        {
-          if (child is List<HumanName>) {
-            // Add all elements from passed list
-            final newList = [...?name, ...child];
-            return copyWith(name: newList);
-          } else if (child is HumanName) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?name,
-              child,
-            ];
-            return copyWith(name: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'telecom':
-        {
-          if (child is List<ContactPoint>) {
-            // Add all elements from passed list
-            final newList = [...?telecom, ...child];
-            return copyWith(telecom: newList);
-          } else if (child is ContactPoint) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?telecom,
-              child,
-            ];
-            return copyWith(telecom: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'gender':
-        {
-          if (child is AdministrativeGender) {
-            return copyWith(gender: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'birthDate':
-        {
-          if (child is FhirDate) {
-            return copyWith(birthDate: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'address':
-        {
-          if (child is List<Address>) {
-            // Add all elements from passed list
-            final newList = [...?address, ...child];
-            return copyWith(address: newList);
-          } else if (child is Address) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?address,
-              child,
-            ];
-            return copyWith(address: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'photo':
-        {
-          if (child is Attachment) {
-            return copyWith(photo: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'managingOrganization':
-        {
-          if (child is Reference) {
-            return copyWith(managingOrganization: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'active':
-        {
-          if (child is FhirBoolean) {
-            return copyWith(active: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'link':
-        {
-          if (child is List<PersonLink>) {
-            // Add all elements from passed list
-            final newList = [...?link, ...child];
-            return copyWith(link: newList);
-          } else if (child is PersonLink) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?link,
-              child,
-            ];
-            return copyWith(link: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
-  @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'meta':
-        return ['FhirMeta'];
-      case 'implicitRules':
-        return ['FhirUri'];
-      case 'language':
-        return ['FhirCode'];
-      case 'text':
-        return ['Narrative'];
-      case 'contained':
-        return ['Resource'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'identifier':
-        return ['Identifier'];
-      case 'name':
-        return ['HumanName'];
-      case 'telecom':
-        return ['ContactPoint'];
-      case 'gender':
-        return ['FhirCode'];
-      case 'birthDate':
-        return ['FhirDate'];
-      case 'address':
-        return ['Address'];
-      case 'photo':
-        return ['Attachment'];
-      case 'managingOrganization':
-        return ['Reference'];
-      case 'active':
-        return ['FhirBoolean'];
-      case 'link':
-        return ['PersonLink'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [Person]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  Person createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
-          );
-        }
-      case 'meta':
-        {
-          return copyWith(
-            meta: FhirMeta.empty(),
-          );
-        }
-      case 'implicitRules':
-        {
-          return copyWith(
-            implicitRules: FhirUri.empty(),
-          );
-        }
-      case 'language':
-        {
-          return copyWith(
-            language: CommonLanguages.empty(),
-          );
-        }
-      case 'text':
-        {
-          return copyWith(
-            text: Narrative.empty(),
-          );
-        }
-      case 'contained':
-        {
-          return copyWith(
-            contained: <Resource>[],
-          );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'identifier':
-        {
-          return copyWith(
-            identifier: <Identifier>[],
-          );
-        }
-      case 'name':
-        {
-          return copyWith(
-            name: <HumanName>[],
-          );
-        }
-      case 'telecom':
-        {
-          return copyWith(
-            telecom: <ContactPoint>[],
-          );
-        }
-      case 'gender':
-        {
-          return copyWith(
-            gender: AdministrativeGender.empty(),
-          );
-        }
-      case 'birthDate':
-        {
-          return copyWith(
-            birthDate: FhirDate.empty(),
-          );
-        }
-      case 'address':
-        {
-          return copyWith(
-            address: <Address>[],
-          );
-        }
-      case 'photo':
-        {
-          return copyWith(
-            photo: Attachment.empty(),
-          );
-        }
-      case 'managingOrganization':
-        {
-          return copyWith(
-            managingOrganization: Reference.empty(),
-          );
-        }
-      case 'active':
-        {
-          return copyWith(
-            active: FhirBoolean.empty(),
-          );
-        }
-      case 'link':
-        {
-          return copyWith(
-            link: <PersonLink>[],
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  Person clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool identifier = false,
-    bool name = false,
-    bool telecom = false,
-    bool gender = false,
-    bool birthDate = false,
-    bool address = false,
-    bool photo = false,
-    bool managingOrganization = false,
-    bool active = false,
-    bool link = false,
-  }) {
-    return Person(
-      id: id ? null : this.id,
-      meta: meta ? null : this.meta,
-      implicitRules: implicitRules ? null : this.implicitRules,
-      language: language ? null : this.language,
-      text: text ? null : this.text,
-      contained: contained ? null : this.contained,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      identifier: identifier ? null : this.identifier,
-      name: name ? null : this.name,
-      telecom: telecom ? null : this.telecom,
-      gender: gender ? null : this.gender,
-      birthDate: birthDate ? null : this.birthDate,
-      address: address ? null : this.address,
-      photo: photo ? null : this.photo,
-      managingOrganization:
-          managingOrganization ? null : this.managingOrganization,
-      active: active ? null : this.active,
-      link: link ? null : this.link,
-    );
-  }
-
-  @override
-  Person clone() => throw UnimplementedError();
-  @override
-  Person copyWith({
-    FhirString? id,
-    FhirMeta? meta,
-    FhirUri? implicitRules,
-    CommonLanguages? language,
-    Narrative? text,
-    List<Resource>? contained,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    List<Identifier>? identifier,
-    List<HumanName>? name,
-    List<ContactPoint>? telecom,
-    AdministrativeGender? gender,
-    FhirDate? birthDate,
-    List<Address>? address,
-    Attachment? photo,
-    Reference? managingOrganization,
-    FhirBoolean? active,
-    List<PersonLink>? link,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-  }) {
-    final newObjectPath = objectPath;
-    return Person(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      meta: meta?.copyWith(
-            objectPath: '$newObjectPath.meta',
-          ) ??
-          this.meta,
-      implicitRules: implicitRules?.copyWith(
-            objectPath: '$newObjectPath.implicitRules',
-          ) ??
-          this.implicitRules,
-      language: language?.copyWith(
-            objectPath: '$newObjectPath.language',
-          ) ??
-          this.language,
-      text: text?.copyWith(
-            objectPath: '$newObjectPath.text',
-          ) ??
-          this.text,
-      contained: contained ?? this.contained,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      identifier: identifier
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.identifier',
-                ),
-              )
-              .toList() ??
-          this.identifier,
-      name: name
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.name',
-                ),
-              )
-              .toList() ??
-          this.name,
-      telecom: telecom
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.telecom',
-                ),
-              )
-              .toList() ??
-          this.telecom,
-      gender: gender?.copyWith(
-            objectPath: '$newObjectPath.gender',
-          ) ??
-          this.gender,
-      birthDate: birthDate?.copyWith(
-            objectPath: '$newObjectPath.birthDate',
-          ) ??
-          this.birthDate,
-      address: address
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.address',
-                ),
-              )
-              .toList() ??
-          this.address,
-      photo: photo?.copyWith(
-            objectPath: '$newObjectPath.photo',
-          ) ??
-          this.photo,
-      managingOrganization: managingOrganization?.copyWith(
-            objectPath: '$newObjectPath.managingOrganization',
-          ) ??
-          this.managingOrganization,
-      active: active?.copyWith(
-            objectPath: '$newObjectPath.active',
-          ) ??
-          this.active,
-      link: link
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.link',
-                ),
-              )
-              .toList() ??
-          this.link,
-    );
-  }
+  $PersonCopyWith<Person> get copyWith => _$PersonCopyWithImpl<Person>(
+        this,
+        (value) => value,
+      );
 
   /// Performs a deep comparison between two instances.
   @override
@@ -1238,46 +514,29 @@ class PersonLink extends BackboneElement {
     required this.target,
     this.assurance,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'Person.link',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory PersonLink.empty() => PersonLink(
-        target: Reference.empty(),
-      );
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory PersonLink.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'Person.link';
     return PersonLink(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -1285,13 +544,11 @@ class PersonLink extends BackboneElement {
         json,
         'target',
         Reference.fromJson,
-        '$objectPath.target',
       )!,
       assurance: JsonParser.parsePrimitive<IdentityAssuranceLevel>(
         json,
         'assurance',
         IdentityAssuranceLevel.fromJson,
-        '$objectPath.assurance',
       ),
     );
   }
@@ -1429,266 +686,20 @@ class PersonLink extends BackboneElement {
     return json;
   }
 
-  /// Lists the JSON keys for the object.
   @override
-  List<String> listChildrenNames() {
-    return [
-      'id',
-      'extension',
-      'modifierExtension',
-      'target',
-      'assurance',
-    ];
-  }
+  PersonLink clone() => copyWith();
 
-  /// Retrieves all matching child fields by name.
-  ///Optionally validates the name.
+  /// Copy function for [PersonLink]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<FhirBase> getChildrenByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    final fields = <FhirBase>[];
-    switch (fieldName) {
-      case 'id':
-        if (id != null) {
-          fields.add(id!);
-        }
-      case 'extension':
-        if (extension_ != null) {
-          fields.addAll(extension_!);
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          fields.addAll(modifierExtension!);
-        }
-      case 'target':
-        fields.add(target);
-      case 'assurance':
-        if (assurance != null) {
-          fields.add(assurance!);
-        }
-      default:
-        if (checkValid) {
-          throw ArgumentError('Invalid name: $fieldName');
-        }
-    }
-    return fields;
-  }
-
-  /// Retrieves a single field value by its name.
-  @override
-  FhirBase? getChildByName(String name) {
-    final values = getChildrenByName(name);
-    if (values.length > 1) {
-      throw StateError('Too many values for $name found');
-    }
-    return values.isNotEmpty ? values.first : null;
-  }
-
-  @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
-
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'target':
-        {
-          if (child is Reference) {
-            return copyWith(target: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'assurance':
-        {
-          if (child is IdentityAssuranceLevel) {
-            return copyWith(assurance: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
-  @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'target':
-        return ['Reference'];
-      case 'assurance':
-        return ['FhirCode'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [PersonLink]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  PersonLink createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
-          );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'target':
-        {
-          return copyWith(
-            target: Reference.empty(),
-          );
-        }
-      case 'assurance':
-        {
-          return copyWith(
-            assurance: IdentityAssuranceLevel.empty(),
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  PersonLink clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool assurance = false,
-  }) {
-    return PersonLink(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      target: target,
-      assurance: assurance ? null : this.assurance,
-    );
-  }
-
-  @override
-  PersonLink clone() => throw UnimplementedError();
-  @override
-  PersonLink copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    Reference? target,
-    IdentityAssuranceLevel? assurance,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return PersonLink(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      target: target?.copyWith(
-            objectPath: '$newObjectPath.target',
-          ) ??
-          this.target,
-      assurance: assurance?.copyWith(
-            objectPath: '$newObjectPath.assurance',
-          ) ??
-          this.assurance,
-    );
-  }
+  $PersonLinkCopyWith<PersonLink> get copyWith =>
+      _$PersonLinkCopyWithImpl<PersonLink>(
+        this,
+        (value) => value,
+      );
 
   /// Performs a deep comparison between two instances.
   @override

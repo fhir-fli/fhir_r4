@@ -1,11 +1,86 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for GroupType
+enum GroupTypeEnum {
+  /// person
+  person,
+
+  /// animal
+  animal,
+
+  /// practitioner
+  practitioner,
+
+  /// device
+  device,
+
+  /// medication
+  medication,
+
+  /// substance
+  substance,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case GroupTypeEnum.person:
+        return 'person';
+      case GroupTypeEnum.animal:
+        return 'animal';
+      case GroupTypeEnum.practitioner:
+        return 'practitioner';
+      case GroupTypeEnum.device:
+        return 'device';
+      case GroupTypeEnum.medication:
+        return 'medication';
+      case GroupTypeEnum.substance:
+        return 'substance';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static GroupTypeEnum? fromJson(dynamic json) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return GroupTypeEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static GroupTypeEnum? fromString(String? value) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'person':
+        return GroupTypeEnum.person;
+      case 'animal':
+        return GroupTypeEnum.animal;
+      case 'practitioner':
+        return GroupTypeEnum.practitioner;
+      case 'device':
+        return GroupTypeEnum.device;
+      case 'medication':
+        return GroupTypeEnum.medication;
+      case 'substance':
+        return GroupTypeEnum.substance;
+    }
+    return null;
+  }
+}
+
 /// Types of resources that are part of group.
 class GroupType extends FhirCodeEnum {
   // Private underscore constructor for internal use.
-  GroupType._({
+  const GroupType._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -13,7 +88,6 @@ class GroupType extends FhirCodeEnum {
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.objectPath = 'Code',
   }) : super._();
 
   /// Public factory if you want a fallback approach or custom creation.
@@ -27,12 +101,13 @@ class GroupType extends FhirCodeEnum {
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
-    String objectPath = 'Code',
   }) {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
+    final valueEnum = GroupTypeEnum.fromString(valueString);
     return GroupType._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -40,12 +115,8 @@ class GroupType extends FhirCodeEnum {
       id: id,
       extension_: extension_,
       disallowExtensions: disallowExtensions,
-      objectPath: objectPath,
     );
   }
-
-  /// Create empty [GroupType] with element only
-  factory GroupType.empty() => GroupType._(valueString: '');
 
   /// Factory constructor to create [GroupType]
   /// from JSON.
@@ -53,10 +124,11 @@ class GroupType extends FhirCodeEnum {
     Map<String, dynamic> json,
   ) {
     final value = json['value'] as String?;
+    final valueEnum = GroupTypeEnum.fromString(value);
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return GroupType.elementOnly.withElement(element);
+      return GroupType._(valueString: null, element: element);
     } else if (value == null && element == null) {
       throw ArgumentError(
         'GroupType cannot be constructed from JSON.',
@@ -64,60 +136,91 @@ class GroupType extends FhirCodeEnum {
     }
     return GroupType._(
       valueString: value,
+      valueEnum: valueEnum,
       element: element,
     );
   }
 
+  /// An actual enum that can be used for GroupType
+  final GroupTypeEnum? valueEnum;
+
   /// person
-  static final GroupType person = GroupType._(
+  static const GroupType person = GroupType._(
     valueString: 'person',
-    system: 'http://hl7.org/fhir/ValueSet/group-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Person'.toFhirString,
+    valueEnum: GroupTypeEnum.person,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/group-type',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Person',
+    ),
   );
 
   /// animal
-  static final GroupType animal = GroupType._(
+  static const GroupType animal = GroupType._(
     valueString: 'animal',
-    system: 'http://hl7.org/fhir/ValueSet/group-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Animal'.toFhirString,
+    valueEnum: GroupTypeEnum.animal,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/group-type',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Animal',
+    ),
   );
 
   /// practitioner
-  static final GroupType practitioner = GroupType._(
+  static const GroupType practitioner = GroupType._(
     valueString: 'practitioner',
-    system: 'http://hl7.org/fhir/ValueSet/group-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Practitioner'.toFhirString,
+    valueEnum: GroupTypeEnum.practitioner,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/group-type',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Practitioner',
+    ),
   );
 
   /// device
-  static final GroupType device = GroupType._(
+  static const GroupType device = GroupType._(
     valueString: 'device',
-    system: 'http://hl7.org/fhir/ValueSet/group-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Device'.toFhirString,
+    valueEnum: GroupTypeEnum.device,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/group-type',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Device',
+    ),
   );
 
   /// medication
-  static final GroupType medication = GroupType._(
+  static const GroupType medication = GroupType._(
     valueString: 'medication',
-    system: 'http://hl7.org/fhir/ValueSet/group-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Medication'.toFhirString,
+    valueEnum: GroupTypeEnum.medication,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/group-type',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Medication',
+    ),
   );
 
   /// substance
-  static final GroupType substance = GroupType._(
+  static const GroupType substance = GroupType._(
     valueString: 'substance',
-    system: 'http://hl7.org/fhir/ValueSet/group-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Substance'.toFhirString,
+    valueEnum: GroupTypeEnum.substance,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/group-type',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Substance',
+    ),
   );
-
-  /// For instances where an Element is present but not value
-  static final GroupType elementOnly = GroupType._(valueString: '');
 
   /// List of all enum-like values
   static final List<GroupType> values = [
@@ -128,13 +231,6 @@ class GroupType extends FhirCodeEnum {
     medication,
     substance,
   ];
-
-  /// Clones the current instance
-  @override
-  GroupType clone() => GroupType._(
-        valueString: valueString,
-        element: element?.clone() as Element?,
-      );
 
   /// Returns the enum value with an element attached
   GroupType withElement(Element? newElement) {
@@ -155,36 +251,56 @@ class GroupType extends FhirCodeEnum {
   @override
   String toString() => valueString ?? '';
 
-  /// Creates a modified copy with updated properties.
   @override
-  GroupType copyWith({
-    dynamic newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
+  GroupType clone() => copyWith();
+
+  /// Creates a new instance with the specified fields replaced.
+  @override
+  GroupTypeCopyWithImpl<GroupType> get copyWith =>
+      GroupTypeCopyWithImpl<GroupType>(
+        this,
+        (v) => v as GroupType,
+      );
+}
+
+/// The generated implementation of the copyWith helper for Element.
+/// The call method uses parameters of type Object? with a default value of
+/// [fhirSentinel] so that omitted parameters retain the sentinel value while
+/// explicit nulls do not.
+class GroupTypeCopyWithImpl<T> extends $FhirCodeCopyWithImpl<T> {
+  /// Constructor for the copyWith implementation.
+  GroupTypeCopyWithImpl(super._value, super._then);
+
+  @override
+  T call({
+    Object? newValue = fhirSentinel,
+    Object? element = fhirSentinel,
+    Object? id = fhirSentinel,
+    Object? extension_ = fhirSentinel,
+    Object? disallowExtensions = fhirSentinel,
   }) {
-    if (newValue is! String?) {
+    if (!identical(newValue, fhirSentinel) && newValue is! String?) {
       throw ArgumentError(
-        'Invalid input for GroupType: $newValue',
+        'newValue must be a String or null, but found ${newValue.runtimeType}',
+        'newValue',
       );
     }
-    return GroupType._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
+    return _then(
+      GroupType(
+        identical(newValue, fhirSentinel)
+            ? _value.valueString
+            : newValue as String?,
+        element: identical(element, fhirSentinel)
+            ? _value.element
+            : element as Element?,
+        id: identical(id, fhirSentinel) ? _value.id : id as FhirString?,
+        extension_: identical(extension_, fhirSentinel)
+            ? _value.extension_
+            : extension_ as List<FhirExtension>?,
+        disallowExtensions: identical(disallowExtensions, fhirSentinel)
+            ? _value.disallowExtensions
+            : disallowExtensions as bool?,
       ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

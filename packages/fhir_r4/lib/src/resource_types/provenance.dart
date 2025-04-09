@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
+part 'provenance.g.dart';
+
 /// [Provenance]
 /// Provenance of a resource is a record that describes entities and
 /// processes involved in producing and delivering or otherwise influencing
@@ -38,92 +40,64 @@ class Provenance extends DomainResource {
     this.entity,
     this.signature,
   }) : super(
-          objectPath: 'Provenance',
           resourceType: R4ResourceType.Provenance,
         );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory Provenance.empty() => Provenance(
-        target: <Reference>[],
-        recorded: FhirInstant.empty(),
-        agent: <ProvenanceAgent>[],
-      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Provenance.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'Provenance';
     return Provenance(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
         FhirMeta.fromJson,
-        '$objectPath.meta',
       ),
       implicitRules: JsonParser.parsePrimitive<FhirUri>(
         json,
         'implicitRules',
         FhirUri.fromJson,
-        '$objectPath.implicitRules',
       ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-        '$objectPath.language',
       ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
         Narrative.fromJson,
-        '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
           ?.map<Resource>(
             (v) => Resource.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.contained',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       target: (json['target'] as List<dynamic>)
           .map<Reference>(
             (v) => Reference.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.target',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -133,33 +107,26 @@ class Provenance extends DomainResource {
           'occurredPeriod': Period.fromJson,
           'occurredDateTime': FhirDateTime.fromJson,
         },
-        objectPath,
       ),
       recorded: JsonParser.parsePrimitive<FhirInstant>(
         json,
         'recorded',
         FhirInstant.fromJson,
-        '$objectPath.recorded',
       )!,
       policy: JsonParser.parsePrimitiveList<FhirUri>(
         json,
         'policy',
         FhirUri.fromJson,
-        '$objectPath.policy',
       ),
       location: JsonParser.parseObject<Reference>(
         json,
         'location',
         Reference.fromJson,
-        '$objectPath.location',
       ),
       reason: (json['reason'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.reason',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -167,35 +134,25 @@ class Provenance extends DomainResource {
         json,
         'activity',
         CodeableConcept.fromJson,
-        '$objectPath.activity',
       ),
       agent: (json['agent'] as List<dynamic>)
           .map<ProvenanceAgent>(
             (v) => ProvenanceAgent.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.agent',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       entity: (json['entity'] as List<dynamic>?)
           ?.map<ProvenanceEntity>(
             (v) => ProvenanceEntity.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.entity',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       signature: (json['signature'] as List<dynamic>?)
           ?.map<Signature>(
             (v) => Signature.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.signature',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -437,754 +394,20 @@ class Provenance extends DomainResource {
     return json;
   }
 
-  /// Lists the JSON keys for the object.
   @override
-  List<String> listChildrenNames() {
-    return [
-      'id',
-      'meta',
-      'implicitRules',
-      'language',
-      'text',
-      'contained',
-      'extension',
-      'modifierExtension',
-      'target',
-      'occurredX',
-      'recorded',
-      'policy',
-      'location',
-      'reason',
-      'activity',
-      'agent',
-      'entity',
-      'signature',
-    ];
-  }
+  Provenance clone() => copyWith();
 
-  /// Retrieves all matching child fields by name.
-  ///Optionally validates the name.
+  /// Copy function for [Provenance]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<FhirBase> getChildrenByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    final fields = <FhirBase>[];
-    switch (fieldName) {
-      case 'id':
-        if (id != null) {
-          fields.add(id!);
-        }
-      case 'meta':
-        if (meta != null) {
-          fields.add(meta!);
-        }
-      case 'implicitRules':
-        if (implicitRules != null) {
-          fields.add(implicitRules!);
-        }
-      case 'language':
-        if (language != null) {
-          fields.add(language!);
-        }
-      case 'text':
-        if (text != null) {
-          fields.add(text!);
-        }
-      case 'contained':
-        if (contained != null) {
-          fields.addAll(contained!);
-        }
-      case 'extension':
-        if (extension_ != null) {
-          fields.addAll(extension_!);
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          fields.addAll(modifierExtension!);
-        }
-      case 'target':
-        fields.addAll(target);
-      case 'occurred':
-        fields.add(occurredX!);
-      case 'occurredX':
-        fields.add(occurredX!);
-      case 'occurredPeriod':
-        if (occurredX is Period) {
-          fields.add(occurredX!);
-        }
-      case 'occurredDateTime':
-        if (occurredX is FhirDateTime) {
-          fields.add(occurredX!);
-        }
-      case 'recorded':
-        fields.add(recorded);
-      case 'policy':
-        if (policy != null) {
-          fields.addAll(policy!);
-        }
-      case 'location':
-        if (location != null) {
-          fields.add(location!);
-        }
-      case 'reason':
-        if (reason != null) {
-          fields.addAll(reason!);
-        }
-      case 'activity':
-        if (activity != null) {
-          fields.add(activity!);
-        }
-      case 'agent':
-        fields.addAll(agent);
-      case 'entity':
-        if (entity != null) {
-          fields.addAll(entity!);
-        }
-      case 'signature':
-        if (signature != null) {
-          fields.addAll(signature!);
-        }
-      default:
-        if (checkValid) {
-          throw ArgumentError('Invalid name: $fieldName');
-        }
-    }
-    return fields;
-  }
-
-  /// Retrieves a single field value by its name.
-  @override
-  FhirBase? getChildByName(String name) {
-    final values = getChildrenByName(name);
-    if (values.length > 1) {
-      throw StateError('Too many values for $name found');
-    }
-    return values.isNotEmpty ? values.first : null;
-  }
-
-  @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
-
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'meta':
-        {
-          if (child is FhirMeta) {
-            return copyWith(meta: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'implicitRules':
-        {
-          if (child is FhirUri) {
-            return copyWith(implicitRules: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'language':
-        {
-          if (child is CommonLanguages) {
-            return copyWith(language: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'text':
-        {
-          if (child is Narrative) {
-            return copyWith(text: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'contained':
-        {
-          if (child is List<Resource>) {
-            // Add all elements from passed list
-            final newList = [...?contained, ...child];
-            return copyWith(contained: newList);
-          } else if (child is Resource) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?contained,
-              child,
-            ];
-            return copyWith(contained: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'target':
-        {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...target, ...child];
-            return copyWith(target: newList);
-          } else if (child is Reference) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...target,
-              child,
-            ];
-            return copyWith(target: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'occurred':
-      case 'occurredX':
-        {
-          if (child is OccurredXProvenance) {
-            return copyWith(occurredX: child);
-          } else {
-            if (child is Period) {
-              return copyWith(occurredX: child);
-            }
-            if (child is FhirDateTime) {
-              return copyWith(occurredX: child);
-            }
-          }
-          throw Exception('Invalid child type for $childName');
-        }
-      case 'occurredPeriod':
-        {
-          if (child is Period) {
-            return copyWith(occurredX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'occurredFhirDateTime':
-        {
-          if (child is FhirDateTime) {
-            return copyWith(occurredX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'recorded':
-        {
-          if (child is FhirInstant) {
-            return copyWith(recorded: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'policy':
-        {
-          if (child is List<FhirUri>) {
-            // Add all elements from passed list
-            final newList = [...?policy, ...child];
-            return copyWith(policy: newList);
-          } else if (child is FhirUri) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?policy,
-              child,
-            ];
-            return copyWith(policy: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'location':
-        {
-          if (child is Reference) {
-            return copyWith(location: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'reason':
-        {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?reason, ...child];
-            return copyWith(reason: newList);
-          } else if (child is CodeableConcept) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?reason,
-              child,
-            ];
-            return copyWith(reason: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'activity':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(activity: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'agent':
-        {
-          if (child is List<ProvenanceAgent>) {
-            // Add all elements from passed list
-            final newList = [...agent, ...child];
-            return copyWith(agent: newList);
-          } else if (child is ProvenanceAgent) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...agent,
-              child,
-            ];
-            return copyWith(agent: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'entity':
-        {
-          if (child is List<ProvenanceEntity>) {
-            // Add all elements from passed list
-            final newList = [...?entity, ...child];
-            return copyWith(entity: newList);
-          } else if (child is ProvenanceEntity) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?entity,
-              child,
-            ];
-            return copyWith(entity: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'signature':
-        {
-          if (child is List<Signature>) {
-            // Add all elements from passed list
-            final newList = [...?signature, ...child];
-            return copyWith(signature: newList);
-          } else if (child is Signature) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?signature,
-              child,
-            ];
-            return copyWith(signature: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
-  @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'meta':
-        return ['FhirMeta'];
-      case 'implicitRules':
-        return ['FhirUri'];
-      case 'language':
-        return ['FhirCode'];
-      case 'text':
-        return ['Narrative'];
-      case 'contained':
-        return ['Resource'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'target':
-        return ['Reference'];
-      case 'occurred':
-      case 'occurredX':
-        return [
-          'Period',
-          'FhirDateTime',
-        ];
-      case 'occurredPeriod':
-        return ['Period'];
-      case 'occurredDateTime':
-        return ['FhirDateTime'];
-      case 'recorded':
-        return ['FhirInstant'];
-      case 'policy':
-        return ['FhirUri'];
-      case 'location':
-        return ['Reference'];
-      case 'reason':
-        return ['CodeableConcept'];
-      case 'activity':
-        return ['CodeableConcept'];
-      case 'agent':
-        return ['ProvenanceAgent'];
-      case 'entity':
-        return ['ProvenanceEntity'];
-      case 'signature':
-        return ['Signature'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [Provenance]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  Provenance createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
-          );
-        }
-      case 'meta':
-        {
-          return copyWith(
-            meta: FhirMeta.empty(),
-          );
-        }
-      case 'implicitRules':
-        {
-          return copyWith(
-            implicitRules: FhirUri.empty(),
-          );
-        }
-      case 'language':
-        {
-          return copyWith(
-            language: CommonLanguages.empty(),
-          );
-        }
-      case 'text':
-        {
-          return copyWith(
-            text: Narrative.empty(),
-          );
-        }
-      case 'contained':
-        {
-          return copyWith(
-            contained: <Resource>[],
-          );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'target':
-        {
-          return copyWith(
-            target: <Reference>[],
-          );
-        }
-      case 'occurred':
-      case 'occurredX':
-      case 'occurredPeriod':
-        {
-          return copyWith(
-            occurredX: Period.empty(),
-          );
-        }
-      case 'occurredDateTime':
-        {
-          return copyWith(
-            occurredX: FhirDateTime.empty(),
-          );
-        }
-      case 'recorded':
-        {
-          return copyWith(
-            recorded: FhirInstant.empty(),
-          );
-        }
-      case 'policy':
-        {
-          return copyWith(
-            policy: <FhirUri>[],
-          );
-        }
-      case 'location':
-        {
-          return copyWith(
-            location: Reference.empty(),
-          );
-        }
-      case 'reason':
-        {
-          return copyWith(
-            reason: <CodeableConcept>[],
-          );
-        }
-      case 'activity':
-        {
-          return copyWith(
-            activity: CodeableConcept.empty(),
-          );
-        }
-      case 'agent':
-        {
-          return copyWith(
-            agent: <ProvenanceAgent>[],
-          );
-        }
-      case 'entity':
-        {
-          return copyWith(
-            entity: <ProvenanceEntity>[],
-          );
-        }
-      case 'signature':
-        {
-          return copyWith(
-            signature: <Signature>[],
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  Provenance clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool occurred = false,
-    bool policy = false,
-    bool location = false,
-    bool reason = false,
-    bool activity = false,
-    bool entity = false,
-    bool signature = false,
-  }) {
-    return Provenance(
-      id: id ? null : this.id,
-      meta: meta ? null : this.meta,
-      implicitRules: implicitRules ? null : this.implicitRules,
-      language: language ? null : this.language,
-      text: text ? null : this.text,
-      contained: contained ? null : this.contained,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      target: target,
-      occurredX: occurred ? null : occurredX,
-      recorded: recorded,
-      policy: policy ? null : this.policy,
-      location: location ? null : this.location,
-      reason: reason ? null : this.reason,
-      activity: activity ? null : this.activity,
-      agent: agent,
-      entity: entity ? null : this.entity,
-      signature: signature ? null : this.signature,
-    );
-  }
-
-  @override
-  Provenance clone() => throw UnimplementedError();
-  @override
-  Provenance copyWith({
-    FhirString? id,
-    FhirMeta? meta,
-    FhirUri? implicitRules,
-    CommonLanguages? language,
-    Narrative? text,
-    List<Resource>? contained,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    List<Reference>? target,
-    OccurredXProvenance? occurredX,
-    FhirInstant? recorded,
-    List<FhirUri>? policy,
-    Reference? location,
-    List<CodeableConcept>? reason,
-    CodeableConcept? activity,
-    List<ProvenanceAgent>? agent,
-    List<ProvenanceEntity>? entity,
-    List<Signature>? signature,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-  }) {
-    final newObjectPath = objectPath;
-    return Provenance(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      meta: meta?.copyWith(
-            objectPath: '$newObjectPath.meta',
-          ) ??
-          this.meta,
-      implicitRules: implicitRules?.copyWith(
-            objectPath: '$newObjectPath.implicitRules',
-          ) ??
-          this.implicitRules,
-      language: language?.copyWith(
-            objectPath: '$newObjectPath.language',
-          ) ??
-          this.language,
-      text: text?.copyWith(
-            objectPath: '$newObjectPath.text',
-          ) ??
-          this.text,
-      contained: contained ?? this.contained,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      target: target
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.target',
-                ),
-              )
-              .toList() ??
-          this.target,
-      occurredX: occurredX?.copyWith(
-            objectPath: '$newObjectPath.occurredX',
-          ) as OccurredXProvenance? ??
-          this.occurredX,
-      recorded: recorded?.copyWith(
-            objectPath: '$newObjectPath.recorded',
-          ) ??
-          this.recorded,
-      policy: policy
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.policy',
-                ),
-              )
-              .toList() ??
-          this.policy,
-      location: location?.copyWith(
-            objectPath: '$newObjectPath.location',
-          ) ??
-          this.location,
-      reason: reason
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.reason',
-                ),
-              )
-              .toList() ??
-          this.reason,
-      activity: activity?.copyWith(
-            objectPath: '$newObjectPath.activity',
-          ) ??
-          this.activity,
-      agent: agent
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.agent',
-                ),
-              )
-              .toList() ??
-          this.agent,
-      entity: entity
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.entity',
-                ),
-              )
-              .toList() ??
-          this.entity,
-      signature: signature
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.signature',
-                ),
-              )
-              .toList() ??
-          this.signature,
-    );
-  }
+  $ProvenanceCopyWith<Provenance> get copyWith =>
+      _$ProvenanceCopyWithImpl<Provenance>(
+        this,
+        (value) => value,
+      );
 
   /// Performs a deep comparison between two instances.
   @override
@@ -1322,46 +545,29 @@ class ProvenanceAgent extends BackboneElement {
     required this.who,
     this.onBehalfOf,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'Provenance.agent',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ProvenanceAgent.empty() => ProvenanceAgent(
-        who: Reference.empty(),
-      );
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ProvenanceAgent.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'Provenance.agent';
     return ProvenanceAgent(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -1369,15 +575,11 @@ class ProvenanceAgent extends BackboneElement {
         json,
         'type',
         CodeableConcept.fromJson,
-        '$objectPath.type',
       ),
       role: (json['role'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.role',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -1385,13 +587,11 @@ class ProvenanceAgent extends BackboneElement {
         json,
         'who',
         Reference.fromJson,
-        '$objectPath.who',
       )!,
       onBehalfOf: JsonParser.parseObject<Reference>(
         json,
         'onBehalfOf',
         Reference.fromJson,
-        '$objectPath.onBehalfOf',
       ),
     );
   }
@@ -1545,335 +745,20 @@ class ProvenanceAgent extends BackboneElement {
     return json;
   }
 
-  /// Lists the JSON keys for the object.
   @override
-  List<String> listChildrenNames() {
-    return [
-      'id',
-      'extension',
-      'modifierExtension',
-      'type',
-      'role',
-      'who',
-      'onBehalfOf',
-    ];
-  }
+  ProvenanceAgent clone() => copyWith();
 
-  /// Retrieves all matching child fields by name.
-  ///Optionally validates the name.
+  /// Copy function for [ProvenanceAgent]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<FhirBase> getChildrenByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    final fields = <FhirBase>[];
-    switch (fieldName) {
-      case 'id':
-        if (id != null) {
-          fields.add(id!);
-        }
-      case 'extension':
-        if (extension_ != null) {
-          fields.addAll(extension_!);
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          fields.addAll(modifierExtension!);
-        }
-      case 'type':
-        if (type != null) {
-          fields.add(type!);
-        }
-      case 'role':
-        if (role != null) {
-          fields.addAll(role!);
-        }
-      case 'who':
-        fields.add(who);
-      case 'onBehalfOf':
-        if (onBehalfOf != null) {
-          fields.add(onBehalfOf!);
-        }
-      default:
-        if (checkValid) {
-          throw ArgumentError('Invalid name: $fieldName');
-        }
-    }
-    return fields;
-  }
-
-  /// Retrieves a single field value by its name.
-  @override
-  FhirBase? getChildByName(String name) {
-    final values = getChildrenByName(name);
-    if (values.length > 1) {
-      throw StateError('Too many values for $name found');
-    }
-    return values.isNotEmpty ? values.first : null;
-  }
-
-  @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
-
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'type':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(type: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'role':
-        {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?role, ...child];
-            return copyWith(role: newList);
-          } else if (child is CodeableConcept) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?role,
-              child,
-            ];
-            return copyWith(role: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'who':
-        {
-          if (child is Reference) {
-            return copyWith(who: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'onBehalfOf':
-        {
-          if (child is Reference) {
-            return copyWith(onBehalfOf: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
-  @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'type':
-        return ['CodeableConcept'];
-      case 'role':
-        return ['CodeableConcept'];
-      case 'who':
-        return ['Reference'];
-      case 'onBehalfOf':
-        return ['Reference'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [ProvenanceAgent]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  ProvenanceAgent createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
-          );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'type':
-        {
-          return copyWith(
-            type: CodeableConcept.empty(),
-          );
-        }
-      case 'role':
-        {
-          return copyWith(
-            role: <CodeableConcept>[],
-          );
-        }
-      case 'who':
-        {
-          return copyWith(
-            who: Reference.empty(),
-          );
-        }
-      case 'onBehalfOf':
-        {
-          return copyWith(
-            onBehalfOf: Reference.empty(),
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  ProvenanceAgent clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool type = false,
-    bool role = false,
-    bool onBehalfOf = false,
-  }) {
-    return ProvenanceAgent(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      type: type ? null : this.type,
-      role: role ? null : this.role,
-      who: who,
-      onBehalfOf: onBehalfOf ? null : this.onBehalfOf,
-    );
-  }
-
-  @override
-  ProvenanceAgent clone() => throw UnimplementedError();
-  @override
-  ProvenanceAgent copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    CodeableConcept? type,
-    List<CodeableConcept>? role,
-    Reference? who,
-    Reference? onBehalfOf,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return ProvenanceAgent(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      type: type?.copyWith(
-            objectPath: '$newObjectPath.type',
-          ) ??
-          this.type,
-      role: role
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.role',
-                ),
-              )
-              .toList() ??
-          this.role,
-      who: who?.copyWith(
-            objectPath: '$newObjectPath.who',
-          ) ??
-          this.who,
-      onBehalfOf: onBehalfOf?.copyWith(
-            objectPath: '$newObjectPath.onBehalfOf',
-          ) ??
-          this.onBehalfOf,
-    );
-  }
+  $ProvenanceAgentCopyWith<ProvenanceAgent> get copyWith =>
+      _$ProvenanceAgentCopyWithImpl<ProvenanceAgent>(
+        this,
+        (value) => value,
+      );
 
   /// Performs a deep comparison between two instances.
   @override
@@ -1943,47 +828,29 @@ class ProvenanceEntity extends BackboneElement {
     required this.what,
     this.agent,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'Provenance.entity',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ProvenanceEntity.empty() => ProvenanceEntity(
-        role: ProvenanceEntityRole.values.first,
-        what: Reference.empty(),
-      );
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ProvenanceEntity.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'Provenance.entity';
     return ProvenanceEntity(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -1991,21 +858,16 @@ class ProvenanceEntity extends BackboneElement {
         json,
         'role',
         ProvenanceEntityRole.fromJson,
-        '$objectPath.role',
       )!,
       what: JsonParser.parseObject<Reference>(
         json,
         'what',
         Reference.fromJson,
-        '$objectPath.what',
       )!,
       agent: (json['agent'] as List<dynamic>?)
           ?.map<ProvenanceAgent>(
             (v) => ProvenanceAgent.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.agent',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -2156,304 +1018,20 @@ class ProvenanceEntity extends BackboneElement {
     return json;
   }
 
-  /// Lists the JSON keys for the object.
   @override
-  List<String> listChildrenNames() {
-    return [
-      'id',
-      'extension',
-      'modifierExtension',
-      'role',
-      'what',
-      'agent',
-    ];
-  }
+  ProvenanceEntity clone() => copyWith();
 
-  /// Retrieves all matching child fields by name.
-  ///Optionally validates the name.
+  /// Copy function for [ProvenanceEntity]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<FhirBase> getChildrenByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    final fields = <FhirBase>[];
-    switch (fieldName) {
-      case 'id':
-        if (id != null) {
-          fields.add(id!);
-        }
-      case 'extension':
-        if (extension_ != null) {
-          fields.addAll(extension_!);
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          fields.addAll(modifierExtension!);
-        }
-      case 'role':
-        fields.add(role);
-      case 'what':
-        fields.add(what);
-      case 'agent':
-        if (agent != null) {
-          fields.addAll(agent!);
-        }
-      default:
-        if (checkValid) {
-          throw ArgumentError('Invalid name: $fieldName');
-        }
-    }
-    return fields;
-  }
-
-  /// Retrieves a single field value by its name.
-  @override
-  FhirBase? getChildByName(String name) {
-    final values = getChildrenByName(name);
-    if (values.length > 1) {
-      throw StateError('Too many values for $name found');
-    }
-    return values.isNotEmpty ? values.first : null;
-  }
-
-  @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
-
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'role':
-        {
-          if (child is ProvenanceEntityRole) {
-            return copyWith(role: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'what':
-        {
-          if (child is Reference) {
-            return copyWith(what: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'agent':
-        {
-          if (child is List<ProvenanceAgent>) {
-            // Add all elements from passed list
-            final newList = [...?agent, ...child];
-            return copyWith(agent: newList);
-          } else if (child is ProvenanceAgent) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?agent,
-              child,
-            ];
-            return copyWith(agent: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
-  @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'role':
-        return ['FhirCode'];
-      case 'what':
-        return ['Reference'];
-      case 'agent':
-        return ['ProvenanceAgent'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [ProvenanceEntity]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  ProvenanceEntity createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
-          );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'role':
-        {
-          return copyWith(
-            role: ProvenanceEntityRole.empty(),
-          );
-        }
-      case 'what':
-        {
-          return copyWith(
-            what: Reference.empty(),
-          );
-        }
-      case 'agent':
-        {
-          return copyWith(
-            agent: <ProvenanceAgent>[],
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  ProvenanceEntity clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool agent = false,
-  }) {
-    return ProvenanceEntity(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      role: role,
-      what: what,
-      agent: agent ? null : this.agent,
-    );
-  }
-
-  @override
-  ProvenanceEntity clone() => throw UnimplementedError();
-  @override
-  ProvenanceEntity copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    ProvenanceEntityRole? role,
-    Reference? what,
-    List<ProvenanceAgent>? agent,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return ProvenanceEntity(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      role: role?.copyWith(
-            objectPath: '$newObjectPath.role',
-          ) ??
-          this.role,
-      what: what?.copyWith(
-            objectPath: '$newObjectPath.what',
-          ) ??
-          this.what,
-      agent: agent
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.agent',
-                ),
-              )
-              .toList() ??
-          this.agent,
-    );
-  }
+  $ProvenanceEntityCopyWith<ProvenanceEntity> get copyWith =>
+      _$ProvenanceEntityCopyWithImpl<ProvenanceEntity>(
+        this,
+        (value) => value,
+      );
 
   /// Performs a deep comparison between two instances.
   @override

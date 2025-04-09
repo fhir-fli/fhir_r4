@@ -1,11 +1,72 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for PublicationStatus
+enum PublicationStatusEnum {
+  /// draft
+  draft,
+
+  /// active
+  active,
+
+  /// retired
+  retired,
+
+  /// unknown
+  unknown,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case PublicationStatusEnum.draft:
+        return 'draft';
+      case PublicationStatusEnum.active:
+        return 'active';
+      case PublicationStatusEnum.retired:
+        return 'retired';
+      case PublicationStatusEnum.unknown:
+        return 'unknown';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static PublicationStatusEnum? fromJson(dynamic json) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return PublicationStatusEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static PublicationStatusEnum? fromString(String? value) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'draft':
+        return PublicationStatusEnum.draft;
+      case 'active':
+        return PublicationStatusEnum.active;
+      case 'retired':
+        return PublicationStatusEnum.retired;
+      case 'unknown':
+        return PublicationStatusEnum.unknown;
+    }
+    return null;
+  }
+}
+
 /// The lifecycle status of an artifact.
 class PublicationStatus extends FhirCodeEnum {
   // Private underscore constructor for internal use.
-  PublicationStatus._({
+  const PublicationStatus._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -13,7 +74,6 @@ class PublicationStatus extends FhirCodeEnum {
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.objectPath = 'Code',
   }) : super._();
 
   /// Public factory if you want a fallback approach or custom creation.
@@ -27,12 +87,13 @@ class PublicationStatus extends FhirCodeEnum {
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
-    String objectPath = 'Code',
   }) {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
+    final valueEnum = PublicationStatusEnum.fromString(valueString);
     return PublicationStatus._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -40,12 +101,8 @@ class PublicationStatus extends FhirCodeEnum {
       id: id,
       extension_: extension_,
       disallowExtensions: disallowExtensions,
-      objectPath: objectPath,
     );
   }
-
-  /// Create empty [PublicationStatus] with element only
-  factory PublicationStatus.empty() => PublicationStatus._(valueString: '');
 
   /// Factory constructor to create [PublicationStatus]
   /// from JSON.
@@ -53,10 +110,11 @@ class PublicationStatus extends FhirCodeEnum {
     Map<String, dynamic> json,
   ) {
     final value = json['value'] as String?;
+    final valueEnum = PublicationStatusEnum.fromString(value);
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return PublicationStatus.elementOnly.withElement(element);
+      return PublicationStatus._(valueString: null, element: element);
     } else if (value == null && element == null) {
       throw ArgumentError(
         'PublicationStatus cannot be constructed from JSON.',
@@ -64,45 +122,65 @@ class PublicationStatus extends FhirCodeEnum {
     }
     return PublicationStatus._(
       valueString: value,
+      valueEnum: valueEnum,
       element: element,
     );
   }
 
+  /// An actual enum that can be used for PublicationStatus
+  final PublicationStatusEnum? valueEnum;
+
   /// draft
-  static final PublicationStatus draft = PublicationStatus._(
+  static const PublicationStatus draft = PublicationStatus._(
     valueString: 'draft',
-    system: 'http://hl7.org/fhir/ValueSet/publication-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Draft'.toFhirString,
+    valueEnum: PublicationStatusEnum.draft,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/publication-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Draft',
+    ),
   );
 
   /// active
-  static final PublicationStatus active = PublicationStatus._(
+  static const PublicationStatus active = PublicationStatus._(
     valueString: 'active',
-    system: 'http://hl7.org/fhir/ValueSet/publication-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Active'.toFhirString,
+    valueEnum: PublicationStatusEnum.active,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/publication-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Active',
+    ),
   );
 
   /// retired
-  static final PublicationStatus retired = PublicationStatus._(
+  static const PublicationStatus retired = PublicationStatus._(
     valueString: 'retired',
-    system: 'http://hl7.org/fhir/ValueSet/publication-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Retired'.toFhirString,
+    valueEnum: PublicationStatusEnum.retired,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/publication-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Retired',
+    ),
   );
 
   /// unknown
-  static final PublicationStatus unknown = PublicationStatus._(
+  static const PublicationStatus unknown = PublicationStatus._(
     valueString: 'unknown',
-    system: 'http://hl7.org/fhir/ValueSet/publication-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Unknown'.toFhirString,
+    valueEnum: PublicationStatusEnum.unknown,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/publication-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Unknown',
+    ),
   );
-
-  /// For instances where an Element is present but not value
-  static final PublicationStatus elementOnly =
-      PublicationStatus._(valueString: '');
 
   /// List of all enum-like values
   static final List<PublicationStatus> values = [
@@ -111,13 +189,6 @@ class PublicationStatus extends FhirCodeEnum {
     retired,
     unknown,
   ];
-
-  /// Clones the current instance
-  @override
-  PublicationStatus clone() => PublicationStatus._(
-        valueString: valueString,
-        element: element?.clone() as Element?,
-      );
 
   /// Returns the enum value with an element attached
   PublicationStatus withElement(Element? newElement) {
@@ -138,36 +209,56 @@ class PublicationStatus extends FhirCodeEnum {
   @override
   String toString() => valueString ?? '';
 
-  /// Creates a modified copy with updated properties.
   @override
-  PublicationStatus copyWith({
-    dynamic newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
+  PublicationStatus clone() => copyWith();
+
+  /// Creates a new instance with the specified fields replaced.
+  @override
+  PublicationStatusCopyWithImpl<PublicationStatus> get copyWith =>
+      PublicationStatusCopyWithImpl<PublicationStatus>(
+        this,
+        (v) => v as PublicationStatus,
+      );
+}
+
+/// The generated implementation of the copyWith helper for Element.
+/// The call method uses parameters of type Object? with a default value of
+/// [fhirSentinel] so that omitted parameters retain the sentinel value while
+/// explicit nulls do not.
+class PublicationStatusCopyWithImpl<T> extends $FhirCodeCopyWithImpl<T> {
+  /// Constructor for the copyWith implementation.
+  PublicationStatusCopyWithImpl(super._value, super._then);
+
+  @override
+  T call({
+    Object? newValue = fhirSentinel,
+    Object? element = fhirSentinel,
+    Object? id = fhirSentinel,
+    Object? extension_ = fhirSentinel,
+    Object? disallowExtensions = fhirSentinel,
   }) {
-    if (newValue is! String?) {
+    if (!identical(newValue, fhirSentinel) && newValue is! String?) {
       throw ArgumentError(
-        'Invalid input for PublicationStatus: $newValue',
+        'newValue must be a String or null, but found ${newValue.runtimeType}',
+        'newValue',
       );
     }
-    return PublicationStatus._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
+    return _then(
+      PublicationStatus(
+        identical(newValue, fhirSentinel)
+            ? _value.valueString
+            : newValue as String?,
+        element: identical(element, fhirSentinel)
+            ? _value.element
+            : element as Element?,
+        id: identical(id, fhirSentinel) ? _value.id : id as FhirString?,
+        extension_: identical(extension_, fhirSentinel)
+            ? _value.extension_
+            : extension_ as List<FhirExtension>?,
+        disallowExtensions: identical(disallowExtensions, fhirSentinel)
+            ? _value.disallowExtensions
+            : disallowExtensions as bool?,
       ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

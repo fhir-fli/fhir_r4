@@ -1,11 +1,86 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for GroupMeasure
+enum GroupMeasureEnum {
+  /// mean
+  mean,
+
+  /// median
+  median,
+
+  /// mean-of-mean
+  meanOfMean,
+
+  /// mean-of-median
+  meanOfMedian,
+
+  /// median-of-mean
+  medianOfMean,
+
+  /// median-of-median
+  medianOfMedian,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case GroupMeasureEnum.mean:
+        return 'mean';
+      case GroupMeasureEnum.median:
+        return 'median';
+      case GroupMeasureEnum.meanOfMean:
+        return 'mean-of-mean';
+      case GroupMeasureEnum.meanOfMedian:
+        return 'mean-of-median';
+      case GroupMeasureEnum.medianOfMean:
+        return 'median-of-mean';
+      case GroupMeasureEnum.medianOfMedian:
+        return 'median-of-median';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static GroupMeasureEnum? fromJson(dynamic json) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return GroupMeasureEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static GroupMeasureEnum? fromString(String? value) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'mean':
+        return GroupMeasureEnum.mean;
+      case 'median':
+        return GroupMeasureEnum.median;
+      case 'mean-of-mean':
+        return GroupMeasureEnum.meanOfMean;
+      case 'mean-of-median':
+        return GroupMeasureEnum.meanOfMedian;
+      case 'median-of-mean':
+        return GroupMeasureEnum.medianOfMean;
+      case 'median-of-median':
+        return GroupMeasureEnum.medianOfMedian;
+    }
+    return null;
+  }
+}
+
 /// Possible group measure aggregates (E.g. Mean, Median).
 class GroupMeasure extends FhirCodeEnum {
   // Private underscore constructor for internal use.
-  GroupMeasure._({
+  const GroupMeasure._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -13,7 +88,6 @@ class GroupMeasure extends FhirCodeEnum {
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.objectPath = 'Code',
   }) : super._();
 
   /// Public factory if you want a fallback approach or custom creation.
@@ -27,12 +101,13 @@ class GroupMeasure extends FhirCodeEnum {
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
-    String objectPath = 'Code',
   }) {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
+    final valueEnum = GroupMeasureEnum.fromString(valueString);
     return GroupMeasure._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -40,12 +115,8 @@ class GroupMeasure extends FhirCodeEnum {
       id: id,
       extension_: extension_,
       disallowExtensions: disallowExtensions,
-      objectPath: objectPath,
     );
   }
-
-  /// Create empty [GroupMeasure] with element only
-  factory GroupMeasure.empty() => GroupMeasure._(valueString: '');
 
   /// Factory constructor to create [GroupMeasure]
   /// from JSON.
@@ -53,10 +124,11 @@ class GroupMeasure extends FhirCodeEnum {
     Map<String, dynamic> json,
   ) {
     final value = json['value'] as String?;
+    final valueEnum = GroupMeasureEnum.fromString(value);
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return GroupMeasure.elementOnly.withElement(element);
+      return GroupMeasure._(valueString: null, element: element);
     } else if (value == null && element == null) {
       throw ArgumentError(
         'GroupMeasure cannot be constructed from JSON.',
@@ -64,77 +136,101 @@ class GroupMeasure extends FhirCodeEnum {
     }
     return GroupMeasure._(
       valueString: value,
+      valueEnum: valueEnum,
       element: element,
     );
   }
 
+  /// An actual enum that can be used for GroupMeasure
+  final GroupMeasureEnum? valueEnum;
+
   /// mean
-  static final GroupMeasure mean = GroupMeasure._(
+  static const GroupMeasure mean = GroupMeasure._(
     valueString: 'mean',
-    system: 'http://hl7.org/fhir/ValueSet/group-measure'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Mean'.toFhirString,
+    valueEnum: GroupMeasureEnum.mean,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/group-measure',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Mean',
+    ),
   );
 
   /// median
-  static final GroupMeasure median = GroupMeasure._(
+  static const GroupMeasure median = GroupMeasure._(
     valueString: 'median',
-    system: 'http://hl7.org/fhir/ValueSet/group-measure'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Median'.toFhirString,
+    valueEnum: GroupMeasureEnum.median,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/group-measure',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Median',
+    ),
   );
 
   /// mean_of_mean
-  static final GroupMeasure mean_of_mean = GroupMeasure._(
+  static const GroupMeasure meanOfMean = GroupMeasure._(
     valueString: 'mean-of-mean',
-    system: 'http://hl7.org/fhir/ValueSet/group-measure'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Mean of Study Means'.toFhirString,
+    valueEnum: GroupMeasureEnum.meanOfMean,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/group-measure',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Mean of Study Means',
+    ),
   );
 
   /// mean_of_median
-  static final GroupMeasure mean_of_median = GroupMeasure._(
+  static const GroupMeasure meanOfMedian = GroupMeasure._(
     valueString: 'mean-of-median',
-    system: 'http://hl7.org/fhir/ValueSet/group-measure'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Mean of Study Medins'.toFhirString,
+    valueEnum: GroupMeasureEnum.meanOfMedian,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/group-measure',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Mean of Study Medins',
+    ),
   );
 
   /// median_of_mean
-  static final GroupMeasure median_of_mean = GroupMeasure._(
+  static const GroupMeasure medianOfMean = GroupMeasure._(
     valueString: 'median-of-mean',
-    system: 'http://hl7.org/fhir/ValueSet/group-measure'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Median of Study Means'.toFhirString,
+    valueEnum: GroupMeasureEnum.medianOfMean,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/group-measure',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Median of Study Means',
+    ),
   );
 
   /// median_of_median
-  static final GroupMeasure median_of_median = GroupMeasure._(
+  static const GroupMeasure medianOfMedian = GroupMeasure._(
     valueString: 'median-of-median',
-    system: 'http://hl7.org/fhir/ValueSet/group-measure'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Median of Study Medians'.toFhirString,
+    valueEnum: GroupMeasureEnum.medianOfMedian,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/group-measure',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Median of Study Medians',
+    ),
   );
-
-  /// For instances where an Element is present but not value
-  static final GroupMeasure elementOnly = GroupMeasure._(valueString: '');
 
   /// List of all enum-like values
   static final List<GroupMeasure> values = [
     mean,
     median,
-    mean_of_mean,
-    mean_of_median,
-    median_of_mean,
-    median_of_median,
+    meanOfMean,
+    meanOfMedian,
+    medianOfMean,
+    medianOfMedian,
   ];
-
-  /// Clones the current instance
-  @override
-  GroupMeasure clone() => GroupMeasure._(
-        valueString: valueString,
-        element: element?.clone() as Element?,
-      );
 
   /// Returns the enum value with an element attached
   GroupMeasure withElement(Element? newElement) {
@@ -155,36 +251,56 @@ class GroupMeasure extends FhirCodeEnum {
   @override
   String toString() => valueString ?? '';
 
-  /// Creates a modified copy with updated properties.
   @override
-  GroupMeasure copyWith({
-    dynamic newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
+  GroupMeasure clone() => copyWith();
+
+  /// Creates a new instance with the specified fields replaced.
+  @override
+  GroupMeasureCopyWithImpl<GroupMeasure> get copyWith =>
+      GroupMeasureCopyWithImpl<GroupMeasure>(
+        this,
+        (v) => v as GroupMeasure,
+      );
+}
+
+/// The generated implementation of the copyWith helper for Element.
+/// The call method uses parameters of type Object? with a default value of
+/// [fhirSentinel] so that omitted parameters retain the sentinel value while
+/// explicit nulls do not.
+class GroupMeasureCopyWithImpl<T> extends $FhirCodeCopyWithImpl<T> {
+  /// Constructor for the copyWith implementation.
+  GroupMeasureCopyWithImpl(super._value, super._then);
+
+  @override
+  T call({
+    Object? newValue = fhirSentinel,
+    Object? element = fhirSentinel,
+    Object? id = fhirSentinel,
+    Object? extension_ = fhirSentinel,
+    Object? disallowExtensions = fhirSentinel,
   }) {
-    if (newValue is! String?) {
+    if (!identical(newValue, fhirSentinel) && newValue is! String?) {
       throw ArgumentError(
-        'Invalid input for GroupMeasure: $newValue',
+        'newValue must be a String or null, but found ${newValue.runtimeType}',
+        'newValue',
       );
     }
-    return GroupMeasure._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
+    return _then(
+      GroupMeasure(
+        identical(newValue, fhirSentinel)
+            ? _value.valueString
+            : newValue as String?,
+        element: identical(element, fhirSentinel)
+            ? _value.element
+            : element as Element?,
+        id: identical(id, fhirSentinel) ? _value.id : id as FhirString?,
+        extension_: identical(extension_, fhirSentinel)
+            ? _value.extension_
+            : extension_ as List<FhirExtension>?,
+        disallowExtensions: identical(disallowExtensions, fhirSentinel)
+            ? _value.disallowExtensions
+            : disallowExtensions as bool?,
       ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

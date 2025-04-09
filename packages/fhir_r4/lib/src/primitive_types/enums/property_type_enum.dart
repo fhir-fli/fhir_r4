@@ -1,11 +1,93 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for PropertyTypeEnum
+enum PropertyTypeEnumEnum {
+  /// code
+  code,
+
+  /// Coding
+  coding,
+
+  /// string
+  string,
+
+  /// integer
+  integer,
+
+  /// boolean
+  boolean,
+
+  /// dateTime
+  dateTime,
+
+  /// decimal
+  decimal,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case PropertyTypeEnumEnum.code:
+        return 'code';
+      case PropertyTypeEnumEnum.coding:
+        return 'Coding';
+      case PropertyTypeEnumEnum.string:
+        return 'string';
+      case PropertyTypeEnumEnum.integer:
+        return 'integer';
+      case PropertyTypeEnumEnum.boolean:
+        return 'boolean';
+      case PropertyTypeEnumEnum.dateTime:
+        return 'dateTime';
+      case PropertyTypeEnumEnum.decimal:
+        return 'decimal';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static PropertyTypeEnumEnum? fromJson(dynamic json) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return PropertyTypeEnumEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static PropertyTypeEnumEnum? fromString(String? value) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'code':
+        return PropertyTypeEnumEnum.code;
+      case 'Coding':
+        return PropertyTypeEnumEnum.coding;
+      case 'string':
+        return PropertyTypeEnumEnum.string;
+      case 'integer':
+        return PropertyTypeEnumEnum.integer;
+      case 'boolean':
+        return PropertyTypeEnumEnum.boolean;
+      case 'dateTime':
+        return PropertyTypeEnumEnum.dateTime;
+      case 'decimal':
+        return PropertyTypeEnumEnum.decimal;
+    }
+    return null;
+  }
+}
+
 /// The type of a property value.
 class PropertyTypeEnum extends FhirCodeEnum {
   // Private underscore constructor for internal use.
-  PropertyTypeEnum._({
+  const PropertyTypeEnum._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -13,7 +95,6 @@ class PropertyTypeEnum extends FhirCodeEnum {
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.objectPath = 'Code',
   }) : super._();
 
   /// Public factory if you want a fallback approach or custom creation.
@@ -27,12 +108,13 @@ class PropertyTypeEnum extends FhirCodeEnum {
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
-    String objectPath = 'Code',
   }) {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
+    final valueEnum = PropertyTypeEnumEnum.fromString(valueString);
     return PropertyTypeEnum._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -40,12 +122,8 @@ class PropertyTypeEnum extends FhirCodeEnum {
       id: id,
       extension_: extension_,
       disallowExtensions: disallowExtensions,
-      objectPath: objectPath,
     );
   }
-
-  /// Create empty [PropertyTypeEnum] with element only
-  factory PropertyTypeEnum.empty() => PropertyTypeEnum._(valueString: '');
 
   /// Factory constructor to create [PropertyTypeEnum]
   /// from JSON.
@@ -53,10 +131,11 @@ class PropertyTypeEnum extends FhirCodeEnum {
     Map<String, dynamic> json,
   ) {
     final value = json['value'] as String?;
+    final valueEnum = PropertyTypeEnumEnum.fromString(value);
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return PropertyTypeEnum.elementOnly.withElement(element);
+      return PropertyTypeEnum._(valueString: null, element: element);
     } else if (value == null && element == null) {
       throw ArgumentError(
         'PropertyTypeEnum cannot be constructed from JSON.',
@@ -64,87 +143,115 @@ class PropertyTypeEnum extends FhirCodeEnum {
     }
     return PropertyTypeEnum._(
       valueString: value,
+      valueEnum: valueEnum,
       element: element,
     );
   }
 
+  /// An actual enum that can be used for PropertyTypeEnum
+  final PropertyTypeEnumEnum? valueEnum;
+
   /// code
-  static final PropertyTypeEnum code = PropertyTypeEnum._(
+  static const PropertyTypeEnum code = PropertyTypeEnum._(
     valueString: 'code',
-    system: 'http://hl7.org/fhir/ValueSet/concept-property-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'code (internal reference)'.toFhirString,
+    valueEnum: PropertyTypeEnumEnum.code,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/concept-property-type',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'code (internal reference)',
+    ),
   );
 
   /// Coding
-  static final PropertyTypeEnum Coding = PropertyTypeEnum._(
+  static const PropertyTypeEnum coding = PropertyTypeEnum._(
     valueString: 'Coding',
-    system: 'http://hl7.org/fhir/ValueSet/concept-property-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Coding (external reference)'.toFhirString,
+    valueEnum: PropertyTypeEnumEnum.coding,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/concept-property-type',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Coding (external reference)',
+    ),
   );
 
   /// string
-  static final PropertyTypeEnum string = PropertyTypeEnum._(
+  static const PropertyTypeEnum string = PropertyTypeEnum._(
     valueString: 'string',
-    system: 'http://hl7.org/fhir/ValueSet/concept-property-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'string'.toFhirString,
+    valueEnum: PropertyTypeEnumEnum.string,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/concept-property-type',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'string',
+    ),
   );
 
   /// integer
-  static final PropertyTypeEnum integer = PropertyTypeEnum._(
+  static const PropertyTypeEnum integer = PropertyTypeEnum._(
     valueString: 'integer',
-    system: 'http://hl7.org/fhir/ValueSet/concept-property-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'integer'.toFhirString,
+    valueEnum: PropertyTypeEnumEnum.integer,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/concept-property-type',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'integer',
+    ),
   );
 
   /// boolean
-  static final PropertyTypeEnum boolean = PropertyTypeEnum._(
+  static const PropertyTypeEnum boolean = PropertyTypeEnum._(
     valueString: 'boolean',
-    system: 'http://hl7.org/fhir/ValueSet/concept-property-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'boolean'.toFhirString,
+    valueEnum: PropertyTypeEnumEnum.boolean,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/concept-property-type',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'boolean',
+    ),
   );
 
   /// dateTime
-  static final PropertyTypeEnum dateTime = PropertyTypeEnum._(
+  static const PropertyTypeEnum dateTime = PropertyTypeEnum._(
     valueString: 'dateTime',
-    system: 'http://hl7.org/fhir/ValueSet/concept-property-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'dateTime'.toFhirString,
+    valueEnum: PropertyTypeEnumEnum.dateTime,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/concept-property-type',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'dateTime',
+    ),
   );
 
   /// decimal
-  static final PropertyTypeEnum decimal = PropertyTypeEnum._(
+  static const PropertyTypeEnum decimal = PropertyTypeEnum._(
     valueString: 'decimal',
-    system: 'http://hl7.org/fhir/ValueSet/concept-property-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'decimal'.toFhirString,
+    valueEnum: PropertyTypeEnumEnum.decimal,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/concept-property-type',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'decimal',
+    ),
   );
-
-  /// For instances where an Element is present but not value
-  static final PropertyTypeEnum elementOnly =
-      PropertyTypeEnum._(valueString: '');
 
   /// List of all enum-like values
   static final List<PropertyTypeEnum> values = [
     code,
-    Coding,
+    coding,
     string,
     integer,
     boolean,
     dateTime,
     decimal,
   ];
-
-  /// Clones the current instance
-  @override
-  PropertyTypeEnum clone() => PropertyTypeEnum._(
-        valueString: valueString,
-        element: element?.clone() as Element?,
-      );
 
   /// Returns the enum value with an element attached
   PropertyTypeEnum withElement(Element? newElement) {
@@ -165,36 +272,56 @@ class PropertyTypeEnum extends FhirCodeEnum {
   @override
   String toString() => valueString ?? '';
 
-  /// Creates a modified copy with updated properties.
   @override
-  PropertyTypeEnum copyWith({
-    dynamic newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
+  PropertyTypeEnum clone() => copyWith();
+
+  /// Creates a new instance with the specified fields replaced.
+  @override
+  PropertyTypeEnumCopyWithImpl<PropertyTypeEnum> get copyWith =>
+      PropertyTypeEnumCopyWithImpl<PropertyTypeEnum>(
+        this,
+        (v) => v as PropertyTypeEnum,
+      );
+}
+
+/// The generated implementation of the copyWith helper for Element.
+/// The call method uses parameters of type Object? with a default value of
+/// [fhirSentinel] so that omitted parameters retain the sentinel value while
+/// explicit nulls do not.
+class PropertyTypeEnumCopyWithImpl<T> extends $FhirCodeCopyWithImpl<T> {
+  /// Constructor for the copyWith implementation.
+  PropertyTypeEnumCopyWithImpl(super._value, super._then);
+
+  @override
+  T call({
+    Object? newValue = fhirSentinel,
+    Object? element = fhirSentinel,
+    Object? id = fhirSentinel,
+    Object? extension_ = fhirSentinel,
+    Object? disallowExtensions = fhirSentinel,
   }) {
-    if (newValue is! String?) {
+    if (!identical(newValue, fhirSentinel) && newValue is! String?) {
       throw ArgumentError(
-        'Invalid input for PropertyTypeEnum: $newValue',
+        'newValue must be a String or null, but found ${newValue.runtimeType}',
+        'newValue',
       );
     }
-    return PropertyTypeEnum._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
+    return _then(
+      PropertyTypeEnum(
+        identical(newValue, fhirSentinel)
+            ? _value.valueString
+            : newValue as String?,
+        element: identical(element, fhirSentinel)
+            ? _value.element
+            : element as Element?,
+        id: identical(id, fhirSentinel) ? _value.id : id as FhirString?,
+        extension_: identical(extension_, fhirSentinel)
+            ? _value.extension_
+            : extension_ as List<FhirExtension>?,
+        disallowExtensions: identical(disallowExtensions, fhirSentinel)
+            ? _value.disallowExtensions
+            : disallowExtensions as bool?,
       ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

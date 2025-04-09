@@ -1,11 +1,65 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for Use
+enum UseEnum {
+  /// claim
+  claim,
+
+  /// preauthorization
+  preauthorization,
+
+  /// predetermination
+  predetermination,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case UseEnum.claim:
+        return 'claim';
+      case UseEnum.preauthorization:
+        return 'preauthorization';
+      case UseEnum.predetermination:
+        return 'predetermination';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static UseEnum? fromJson(dynamic json) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return UseEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static UseEnum? fromString(String? value) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'claim':
+        return UseEnum.claim;
+      case 'preauthorization':
+        return UseEnum.preauthorization;
+      case 'predetermination':
+        return UseEnum.predetermination;
+    }
+    return null;
+  }
+}
+
 /// The purpose of the Claim: predetermination, preauthorization, claim.
 class Use extends FhirCodeEnum {
   // Private underscore constructor for internal use.
-  Use._({
+  const Use._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -13,7 +67,6 @@ class Use extends FhirCodeEnum {
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.objectPath = 'Code',
   }) : super._();
 
   /// Public factory if you want a fallback approach or custom creation.
@@ -27,12 +80,13 @@ class Use extends FhirCodeEnum {
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
-    String objectPath = 'Code',
   }) {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
+    final valueEnum = UseEnum.fromString(valueString);
     return Use._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -40,12 +94,8 @@ class Use extends FhirCodeEnum {
       id: id,
       extension_: extension_,
       disallowExtensions: disallowExtensions,
-      objectPath: objectPath,
     );
   }
-
-  /// Create empty [Use] with element only
-  factory Use.empty() => Use._(valueString: '');
 
   /// Factory constructor to create [Use]
   /// from JSON.
@@ -53,10 +103,11 @@ class Use extends FhirCodeEnum {
     Map<String, dynamic> json,
   ) {
     final value = json['value'] as String?;
+    final valueEnum = UseEnum.fromString(value);
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return Use.elementOnly.withElement(element);
+      return Use._(valueString: null, element: element);
     } else if (value == null && element == null) {
       throw ArgumentError(
         'Use cannot be constructed from JSON.',
@@ -64,36 +115,52 @@ class Use extends FhirCodeEnum {
     }
     return Use._(
       valueString: value,
+      valueEnum: valueEnum,
       element: element,
     );
   }
 
+  /// An actual enum that can be used for Use
+  final UseEnum? valueEnum;
+
   /// claim
-  static final Use claim = Use._(
+  static const Use claim = Use._(
     valueString: 'claim',
-    system: 'http://hl7.org/fhir/ValueSet/claim-use'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Claim'.toFhirString,
+    valueEnum: UseEnum.claim,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/claim-use',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Claim',
+    ),
   );
 
   /// preauthorization
-  static final Use preauthorization = Use._(
+  static const Use preauthorization = Use._(
     valueString: 'preauthorization',
-    system: 'http://hl7.org/fhir/ValueSet/claim-use'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Preauthorization'.toFhirString,
+    valueEnum: UseEnum.preauthorization,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/claim-use',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Preauthorization',
+    ),
   );
 
   /// predetermination
-  static final Use predetermination = Use._(
+  static const Use predetermination = Use._(
     valueString: 'predetermination',
-    system: 'http://hl7.org/fhir/ValueSet/claim-use'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Predetermination'.toFhirString,
+    valueEnum: UseEnum.predetermination,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/claim-use',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Predetermination',
+    ),
   );
-
-  /// For instances where an Element is present but not value
-  static final Use elementOnly = Use._(valueString: '');
 
   /// List of all enum-like values
   static final List<Use> values = [
@@ -101,13 +168,6 @@ class Use extends FhirCodeEnum {
     preauthorization,
     predetermination,
   ];
-
-  /// Clones the current instance
-  @override
-  Use clone() => Use._(
-        valueString: valueString,
-        element: element?.clone() as Element?,
-      );
 
   /// Returns the enum value with an element attached
   Use withElement(Element? newElement) {
@@ -128,36 +188,55 @@ class Use extends FhirCodeEnum {
   @override
   String toString() => valueString ?? '';
 
-  /// Creates a modified copy with updated properties.
   @override
-  Use copyWith({
-    dynamic newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
+  Use clone() => copyWith();
+
+  /// Creates a new instance with the specified fields replaced.
+  @override
+  UseCopyWithImpl<Use> get copyWith => UseCopyWithImpl<Use>(
+        this,
+        (v) => v as Use,
+      );
+}
+
+/// The generated implementation of the copyWith helper for Element.
+/// The call method uses parameters of type Object? with a default value of
+/// [fhirSentinel] so that omitted parameters retain the sentinel value while
+/// explicit nulls do not.
+class UseCopyWithImpl<T> extends $FhirCodeCopyWithImpl<T> {
+  /// Constructor for the copyWith implementation.
+  UseCopyWithImpl(super._value, super._then);
+
+  @override
+  T call({
+    Object? newValue = fhirSentinel,
+    Object? element = fhirSentinel,
+    Object? id = fhirSentinel,
+    Object? extension_ = fhirSentinel,
+    Object? disallowExtensions = fhirSentinel,
   }) {
-    if (newValue is! String?) {
+    if (!identical(newValue, fhirSentinel) && newValue is! String?) {
       throw ArgumentError(
-        'Invalid input for Use: $newValue',
+        'newValue must be a String or null, but found ${newValue.runtimeType}',
+        'newValue',
       );
     }
-    return Use._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
+    return _then(
+      Use(
+        identical(newValue, fhirSentinel)
+            ? _value.valueString
+            : newValue as String?,
+        element: identical(element, fhirSentinel)
+            ? _value.element
+            : element as Element?,
+        id: identical(id, fhirSentinel) ? _value.id : id as FhirString?,
+        extension_: identical(extension_, fhirSentinel)
+            ? _value.extension_
+            : extension_ as List<FhirExtension>?,
+        disallowExtensions: identical(disallowExtensions, fhirSentinel)
+            ? _value.disallowExtensions
+            : disallowExtensions as bool?,
       ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

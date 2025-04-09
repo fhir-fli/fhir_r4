@@ -1,11 +1,72 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for GuidePageGeneration
+enum GuidePageGenerationEnum {
+  /// html
+  html,
+
+  /// markdown
+  markdown,
+
+  /// xml
+  xml,
+
+  /// generated
+  generated,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case GuidePageGenerationEnum.html:
+        return 'html';
+      case GuidePageGenerationEnum.markdown:
+        return 'markdown';
+      case GuidePageGenerationEnum.xml:
+        return 'xml';
+      case GuidePageGenerationEnum.generated:
+        return 'generated';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static GuidePageGenerationEnum? fromJson(dynamic json) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return GuidePageGenerationEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static GuidePageGenerationEnum? fromString(String? value) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'html':
+        return GuidePageGenerationEnum.html;
+      case 'markdown':
+        return GuidePageGenerationEnum.markdown;
+      case 'xml':
+        return GuidePageGenerationEnum.xml;
+      case 'generated':
+        return GuidePageGenerationEnum.generated;
+    }
+    return null;
+  }
+}
+
 /// A code that indicates how the page is generated.
 class GuidePageGeneration extends FhirCodeEnum {
   // Private underscore constructor for internal use.
-  GuidePageGeneration._({
+  const GuidePageGeneration._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -13,7 +74,6 @@ class GuidePageGeneration extends FhirCodeEnum {
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.objectPath = 'Code',
   }) : super._();
 
   /// Public factory if you want a fallback approach or custom creation.
@@ -27,12 +87,13 @@ class GuidePageGeneration extends FhirCodeEnum {
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
-    String objectPath = 'Code',
   }) {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
+    final valueEnum = GuidePageGenerationEnum.fromString(valueString);
     return GuidePageGeneration._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -40,12 +101,8 @@ class GuidePageGeneration extends FhirCodeEnum {
       id: id,
       extension_: extension_,
       disallowExtensions: disallowExtensions,
-      objectPath: objectPath,
     );
   }
-
-  /// Create empty [GuidePageGeneration] with element only
-  factory GuidePageGeneration.empty() => GuidePageGeneration._(valueString: '');
 
   /// Factory constructor to create [GuidePageGeneration]
   /// from JSON.
@@ -53,10 +110,11 @@ class GuidePageGeneration extends FhirCodeEnum {
     Map<String, dynamic> json,
   ) {
     final value = json['value'] as String?;
+    final valueEnum = GuidePageGenerationEnum.fromString(value);
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return GuidePageGeneration.elementOnly.withElement(element);
+      return GuidePageGeneration._(valueString: null, element: element);
     } else if (value == null && element == null) {
       throw ArgumentError(
         'GuidePageGeneration cannot be constructed from JSON.',
@@ -64,45 +122,65 @@ class GuidePageGeneration extends FhirCodeEnum {
     }
     return GuidePageGeneration._(
       valueString: value,
+      valueEnum: valueEnum,
       element: element,
     );
   }
 
+  /// An actual enum that can be used for GuidePageGeneration
+  final GuidePageGenerationEnum? valueEnum;
+
   /// html
-  static final GuidePageGeneration html = GuidePageGeneration._(
+  static const GuidePageGeneration html = GuidePageGeneration._(
     valueString: 'html',
-    system: 'http://hl7.org/fhir/ValueSet/guide-page-generation'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'HTML'.toFhirString,
+    valueEnum: GuidePageGenerationEnum.html,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/guide-page-generation',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'HTML',
+    ),
   );
 
   /// markdown
-  static final GuidePageGeneration markdown = GuidePageGeneration._(
+  static const GuidePageGeneration markdown = GuidePageGeneration._(
     valueString: 'markdown',
-    system: 'http://hl7.org/fhir/ValueSet/guide-page-generation'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Markdown'.toFhirString,
+    valueEnum: GuidePageGenerationEnum.markdown,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/guide-page-generation',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Markdown',
+    ),
   );
 
   /// xml
-  static final GuidePageGeneration xml = GuidePageGeneration._(
+  static const GuidePageGeneration xml = GuidePageGeneration._(
     valueString: 'xml',
-    system: 'http://hl7.org/fhir/ValueSet/guide-page-generation'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'XML'.toFhirString,
+    valueEnum: GuidePageGenerationEnum.xml,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/guide-page-generation',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'XML',
+    ),
   );
 
   /// generated
-  static final GuidePageGeneration generated = GuidePageGeneration._(
+  static const GuidePageGeneration generated = GuidePageGeneration._(
     valueString: 'generated',
-    system: 'http://hl7.org/fhir/ValueSet/guide-page-generation'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Generated'.toFhirString,
+    valueEnum: GuidePageGenerationEnum.generated,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/guide-page-generation',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Generated',
+    ),
   );
-
-  /// For instances where an Element is present but not value
-  static final GuidePageGeneration elementOnly =
-      GuidePageGeneration._(valueString: '');
 
   /// List of all enum-like values
   static final List<GuidePageGeneration> values = [
@@ -111,13 +189,6 @@ class GuidePageGeneration extends FhirCodeEnum {
     xml,
     generated,
   ];
-
-  /// Clones the current instance
-  @override
-  GuidePageGeneration clone() => GuidePageGeneration._(
-        valueString: valueString,
-        element: element?.clone() as Element?,
-      );
 
   /// Returns the enum value with an element attached
   GuidePageGeneration withElement(Element? newElement) {
@@ -138,36 +209,56 @@ class GuidePageGeneration extends FhirCodeEnum {
   @override
   String toString() => valueString ?? '';
 
-  /// Creates a modified copy with updated properties.
   @override
-  GuidePageGeneration copyWith({
-    dynamic newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
+  GuidePageGeneration clone() => copyWith();
+
+  /// Creates a new instance with the specified fields replaced.
+  @override
+  GuidePageGenerationCopyWithImpl<GuidePageGeneration> get copyWith =>
+      GuidePageGenerationCopyWithImpl<GuidePageGeneration>(
+        this,
+        (v) => v as GuidePageGeneration,
+      );
+}
+
+/// The generated implementation of the copyWith helper for Element.
+/// The call method uses parameters of type Object? with a default value of
+/// [fhirSentinel] so that omitted parameters retain the sentinel value while
+/// explicit nulls do not.
+class GuidePageGenerationCopyWithImpl<T> extends $FhirCodeCopyWithImpl<T> {
+  /// Constructor for the copyWith implementation.
+  GuidePageGenerationCopyWithImpl(super._value, super._then);
+
+  @override
+  T call({
+    Object? newValue = fhirSentinel,
+    Object? element = fhirSentinel,
+    Object? id = fhirSentinel,
+    Object? extension_ = fhirSentinel,
+    Object? disallowExtensions = fhirSentinel,
   }) {
-    if (newValue is! String?) {
+    if (!identical(newValue, fhirSentinel) && newValue is! String?) {
       throw ArgumentError(
-        'Invalid input for GuidePageGeneration: $newValue',
+        'newValue must be a String or null, but found ${newValue.runtimeType}',
+        'newValue',
       );
     }
-    return GuidePageGeneration._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
+    return _then(
+      GuidePageGeneration(
+        identical(newValue, fhirSentinel)
+            ? _value.valueString
+            : newValue as String?,
+        element: identical(element, fhirSentinel)
+            ? _value.element
+            : element as Element?,
+        id: identical(id, fhirSentinel) ? _value.id : id as FhirString?,
+        extension_: identical(extension_, fhirSentinel)
+            ? _value.extension_
+            : extension_ as List<FhirExtension>?,
+        disallowExtensions: identical(disallowExtensions, fhirSentinel)
+            ? _value.disallowExtensions
+            : disallowExtensions as bool?,
       ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

@@ -1,11 +1,93 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for ChargeItemStatus
+enum ChargeItemStatusEnum {
+  /// planned
+  planned,
+
+  /// billable
+  billable,
+
+  /// not-billable
+  notBillable,
+
+  /// aborted
+  aborted,
+
+  /// billed
+  billed,
+
+  /// entered-in-error
+  enteredInError,
+
+  /// unknown
+  unknown,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case ChargeItemStatusEnum.planned:
+        return 'planned';
+      case ChargeItemStatusEnum.billable:
+        return 'billable';
+      case ChargeItemStatusEnum.notBillable:
+        return 'not-billable';
+      case ChargeItemStatusEnum.aborted:
+        return 'aborted';
+      case ChargeItemStatusEnum.billed:
+        return 'billed';
+      case ChargeItemStatusEnum.enteredInError:
+        return 'entered-in-error';
+      case ChargeItemStatusEnum.unknown:
+        return 'unknown';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static ChargeItemStatusEnum? fromJson(dynamic json) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return ChargeItemStatusEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static ChargeItemStatusEnum? fromString(String? value) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'planned':
+        return ChargeItemStatusEnum.planned;
+      case 'billable':
+        return ChargeItemStatusEnum.billable;
+      case 'not-billable':
+        return ChargeItemStatusEnum.notBillable;
+      case 'aborted':
+        return ChargeItemStatusEnum.aborted;
+      case 'billed':
+        return ChargeItemStatusEnum.billed;
+      case 'entered-in-error':
+        return ChargeItemStatusEnum.enteredInError;
+      case 'unknown':
+        return ChargeItemStatusEnum.unknown;
+    }
+    return null;
+  }
+}
+
 /// Codes identifying the lifecycle stage of a ChargeItem.
 class ChargeItemStatus extends FhirCodeEnum {
   // Private underscore constructor for internal use.
-  ChargeItemStatus._({
+  const ChargeItemStatus._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -13,7 +95,6 @@ class ChargeItemStatus extends FhirCodeEnum {
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.objectPath = 'Code',
   }) : super._();
 
   /// Public factory if you want a fallback approach or custom creation.
@@ -27,12 +108,13 @@ class ChargeItemStatus extends FhirCodeEnum {
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
-    String objectPath = 'Code',
   }) {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
+    final valueEnum = ChargeItemStatusEnum.fromString(valueString);
     return ChargeItemStatus._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -40,12 +122,8 @@ class ChargeItemStatus extends FhirCodeEnum {
       id: id,
       extension_: extension_,
       disallowExtensions: disallowExtensions,
-      objectPath: objectPath,
     );
   }
-
-  /// Create empty [ChargeItemStatus] with element only
-  factory ChargeItemStatus.empty() => ChargeItemStatus._(valueString: '');
 
   /// Factory constructor to create [ChargeItemStatus]
   /// from JSON.
@@ -53,10 +131,11 @@ class ChargeItemStatus extends FhirCodeEnum {
     Map<String, dynamic> json,
   ) {
     final value = json['value'] as String?;
+    final valueEnum = ChargeItemStatusEnum.fromString(value);
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ChargeItemStatus.elementOnly.withElement(element);
+      return ChargeItemStatus._(valueString: null, element: element);
     } else if (value == null && element == null) {
       throw ArgumentError(
         'ChargeItemStatus cannot be constructed from JSON.',
@@ -64,87 +143,115 @@ class ChargeItemStatus extends FhirCodeEnum {
     }
     return ChargeItemStatus._(
       valueString: value,
+      valueEnum: valueEnum,
       element: element,
     );
   }
 
+  /// An actual enum that can be used for ChargeItemStatus
+  final ChargeItemStatusEnum? valueEnum;
+
   /// planned
-  static final ChargeItemStatus planned = ChargeItemStatus._(
+  static const ChargeItemStatus planned = ChargeItemStatus._(
     valueString: 'planned',
-    system: 'http://hl7.org/fhir/ValueSet/chargeitem-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Planned'.toFhirString,
+    valueEnum: ChargeItemStatusEnum.planned,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/chargeitem-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Planned',
+    ),
   );
 
   /// billable
-  static final ChargeItemStatus billable = ChargeItemStatus._(
+  static const ChargeItemStatus billable = ChargeItemStatus._(
     valueString: 'billable',
-    system: 'http://hl7.org/fhir/ValueSet/chargeitem-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Billable'.toFhirString,
+    valueEnum: ChargeItemStatusEnum.billable,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/chargeitem-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Billable',
+    ),
   );
 
   /// not_billable
-  static final ChargeItemStatus not_billable = ChargeItemStatus._(
+  static const ChargeItemStatus notBillable = ChargeItemStatus._(
     valueString: 'not-billable',
-    system: 'http://hl7.org/fhir/ValueSet/chargeitem-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Not billable'.toFhirString,
+    valueEnum: ChargeItemStatusEnum.notBillable,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/chargeitem-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Not billable',
+    ),
   );
 
   /// aborted
-  static final ChargeItemStatus aborted = ChargeItemStatus._(
+  static const ChargeItemStatus aborted = ChargeItemStatus._(
     valueString: 'aborted',
-    system: 'http://hl7.org/fhir/ValueSet/chargeitem-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Aborted'.toFhirString,
+    valueEnum: ChargeItemStatusEnum.aborted,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/chargeitem-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Aborted',
+    ),
   );
 
   /// billed
-  static final ChargeItemStatus billed = ChargeItemStatus._(
+  static const ChargeItemStatus billed = ChargeItemStatus._(
     valueString: 'billed',
-    system: 'http://hl7.org/fhir/ValueSet/chargeitem-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Billed'.toFhirString,
+    valueEnum: ChargeItemStatusEnum.billed,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/chargeitem-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Billed',
+    ),
   );
 
   /// entered_in_error
-  static final ChargeItemStatus entered_in_error = ChargeItemStatus._(
+  static const ChargeItemStatus enteredInError = ChargeItemStatus._(
     valueString: 'entered-in-error',
-    system: 'http://hl7.org/fhir/ValueSet/chargeitem-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Entered in Error'.toFhirString,
+    valueEnum: ChargeItemStatusEnum.enteredInError,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/chargeitem-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Entered in Error',
+    ),
   );
 
   /// unknown
-  static final ChargeItemStatus unknown = ChargeItemStatus._(
+  static const ChargeItemStatus unknown = ChargeItemStatus._(
     valueString: 'unknown',
-    system: 'http://hl7.org/fhir/ValueSet/chargeitem-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Unknown'.toFhirString,
+    valueEnum: ChargeItemStatusEnum.unknown,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/chargeitem-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Unknown',
+    ),
   );
-
-  /// For instances where an Element is present but not value
-  static final ChargeItemStatus elementOnly =
-      ChargeItemStatus._(valueString: '');
 
   /// List of all enum-like values
   static final List<ChargeItemStatus> values = [
     planned,
     billable,
-    not_billable,
+    notBillable,
     aborted,
     billed,
-    entered_in_error,
+    enteredInError,
     unknown,
   ];
-
-  /// Clones the current instance
-  @override
-  ChargeItemStatus clone() => ChargeItemStatus._(
-        valueString: valueString,
-        element: element?.clone() as Element?,
-      );
 
   /// Returns the enum value with an element attached
   ChargeItemStatus withElement(Element? newElement) {
@@ -165,36 +272,56 @@ class ChargeItemStatus extends FhirCodeEnum {
   @override
   String toString() => valueString ?? '';
 
-  /// Creates a modified copy with updated properties.
   @override
-  ChargeItemStatus copyWith({
-    dynamic newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
+  ChargeItemStatus clone() => copyWith();
+
+  /// Creates a new instance with the specified fields replaced.
+  @override
+  ChargeItemStatusCopyWithImpl<ChargeItemStatus> get copyWith =>
+      ChargeItemStatusCopyWithImpl<ChargeItemStatus>(
+        this,
+        (v) => v as ChargeItemStatus,
+      );
+}
+
+/// The generated implementation of the copyWith helper for Element.
+/// The call method uses parameters of type Object? with a default value of
+/// [fhirSentinel] so that omitted parameters retain the sentinel value while
+/// explicit nulls do not.
+class ChargeItemStatusCopyWithImpl<T> extends $FhirCodeCopyWithImpl<T> {
+  /// Constructor for the copyWith implementation.
+  ChargeItemStatusCopyWithImpl(super._value, super._then);
+
+  @override
+  T call({
+    Object? newValue = fhirSentinel,
+    Object? element = fhirSentinel,
+    Object? id = fhirSentinel,
+    Object? extension_ = fhirSentinel,
+    Object? disallowExtensions = fhirSentinel,
   }) {
-    if (newValue is! String?) {
+    if (!identical(newValue, fhirSentinel) && newValue is! String?) {
       throw ArgumentError(
-        'Invalid input for ChargeItemStatus: $newValue',
+        'newValue must be a String or null, but found ${newValue.runtimeType}',
+        'newValue',
       );
     }
-    return ChargeItemStatus._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
+    return _then(
+      ChargeItemStatus(
+        identical(newValue, fhirSentinel)
+            ? _value.valueString
+            : newValue as String?,
+        element: identical(element, fhirSentinel)
+            ? _value.element
+            : element as Element?,
+        id: identical(id, fhirSentinel) ? _value.id : id as FhirString?,
+        extension_: identical(extension_, fhirSentinel)
+            ? _value.extension_
+            : extension_ as List<FhirExtension>?,
+        disallowExtensions: identical(disallowExtensions, fhirSentinel)
+            ? _value.disallowExtensions
+            : disallowExtensions as bool?,
       ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

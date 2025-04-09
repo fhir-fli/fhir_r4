@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
+part 'prod_characteristic.g.dart';
+
 /// [ProdCharacteristic]
 /// The marketing status describes the date when a medicinal product is
 /// actually put on the market or the date as of which it is no longer
@@ -26,43 +28,29 @@ class ProdCharacteristic extends BackboneType {
     this.image,
     this.scoring,
     super.disallowExtensions,
-    super.objectPath = 'ProdCharacteristic',
   });
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ProdCharacteristic.empty() => const ProdCharacteristic();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ProdCharacteristic.fromJson(
     Map<String, dynamic> json,
   ) {
-    final objectPath = json['resourceType'] as String? ?? 'ProdCharacteristic';
     return ProdCharacteristic(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -70,63 +58,51 @@ class ProdCharacteristic extends BackboneType {
         json,
         'height',
         Quantity.fromJson,
-        '$objectPath.height',
       ),
       width: JsonParser.parseObject<Quantity>(
         json,
         'width',
         Quantity.fromJson,
-        '$objectPath.width',
       ),
       depth: JsonParser.parseObject<Quantity>(
         json,
         'depth',
         Quantity.fromJson,
-        '$objectPath.depth',
       ),
       weight: JsonParser.parseObject<Quantity>(
         json,
         'weight',
         Quantity.fromJson,
-        '$objectPath.weight',
       ),
       nominalVolume: JsonParser.parseObject<Quantity>(
         json,
         'nominalVolume',
         Quantity.fromJson,
-        '$objectPath.nominalVolume',
       ),
       externalDiameter: JsonParser.parseObject<Quantity>(
         json,
         'externalDiameter',
         Quantity.fromJson,
-        '$objectPath.externalDiameter',
       ),
       shape: JsonParser.parsePrimitive<FhirString>(
         json,
         'shape',
         FhirString.fromJson,
-        '$objectPath.shape',
       ),
       color: JsonParser.parsePrimitiveList<FhirString>(
         json,
         'color',
         FhirString.fromJson,
-        '$objectPath.color',
       ),
       imprint: JsonParser.parsePrimitiveList<FhirString>(
         json,
         'imprint',
         FhirString.fromJson,
-        '$objectPath.imprint',
       ),
       image: (json['image'] as List<dynamic>?)
           ?.map<Attachment>(
             (v) => Attachment.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.image',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -134,7 +110,6 @@ class ProdCharacteristic extends BackboneType {
         json,
         'scoring',
         CodeableConcept.fromJson,
-        '$objectPath.scoring',
       ),
     );
   }
@@ -368,560 +343,20 @@ class ProdCharacteristic extends BackboneType {
     return json;
   }
 
-  /// Lists the JSON keys for the object.
   @override
-  List<String> listChildrenNames() {
-    return [
-      'id',
-      'extension',
-      'modifierExtension',
-      'height',
-      'width',
-      'depth',
-      'weight',
-      'nominalVolume',
-      'externalDiameter',
-      'shape',
-      'color',
-      'imprint',
-      'image',
-      'scoring',
-    ];
-  }
+  ProdCharacteristic clone() => copyWith();
 
-  /// Retrieves all matching child fields by name.
-  ///Optionally validates the name.
+  /// Copy function for [ProdCharacteristic]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<FhirBase> getChildrenByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    final fields = <FhirBase>[];
-    switch (fieldName) {
-      case 'id':
-        if (id != null) {
-          fields.add(id!);
-        }
-      case 'extension':
-        if (extension_ != null) {
-          fields.addAll(extension_!);
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          fields.addAll(modifierExtension!);
-        }
-      case 'height':
-        if (height != null) {
-          fields.add(height!);
-        }
-      case 'width':
-        if (width != null) {
-          fields.add(width!);
-        }
-      case 'depth':
-        if (depth != null) {
-          fields.add(depth!);
-        }
-      case 'weight':
-        if (weight != null) {
-          fields.add(weight!);
-        }
-      case 'nominalVolume':
-        if (nominalVolume != null) {
-          fields.add(nominalVolume!);
-        }
-      case 'externalDiameter':
-        if (externalDiameter != null) {
-          fields.add(externalDiameter!);
-        }
-      case 'shape':
-        if (shape != null) {
-          fields.add(shape!);
-        }
-      case 'color':
-        if (color != null) {
-          fields.addAll(color!);
-        }
-      case 'imprint':
-        if (imprint != null) {
-          fields.addAll(imprint!);
-        }
-      case 'image':
-        if (image != null) {
-          fields.addAll(image!);
-        }
-      case 'scoring':
-        if (scoring != null) {
-          fields.add(scoring!);
-        }
-      default:
-        if (checkValid) {
-          throw ArgumentError('Invalid name: $fieldName');
-        }
-    }
-    return fields;
-  }
-
-  /// Retrieves a single field value by its name.
-  @override
-  FhirBase? getChildByName(String name) {
-    final values = getChildrenByName(name);
-    if (values.length > 1) {
-      throw StateError('Too many values for $name found');
-    }
-    return values.isNotEmpty ? values.first : null;
-  }
-
-  @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
-
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'height':
-        {
-          if (child is Quantity) {
-            return copyWith(height: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'width':
-        {
-          if (child is Quantity) {
-            return copyWith(width: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'depth':
-        {
-          if (child is Quantity) {
-            return copyWith(depth: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'weight':
-        {
-          if (child is Quantity) {
-            return copyWith(weight: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'nominalVolume':
-        {
-          if (child is Quantity) {
-            return copyWith(nominalVolume: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'externalDiameter':
-        {
-          if (child is Quantity) {
-            return copyWith(externalDiameter: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'shape':
-        {
-          if (child is FhirString) {
-            return copyWith(shape: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'color':
-        {
-          if (child is List<FhirString>) {
-            // Add all elements from passed list
-            final newList = [...?color, ...child];
-            return copyWith(color: newList);
-          } else if (child is FhirString) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?color,
-              child,
-            ];
-            return copyWith(color: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'imprint':
-        {
-          if (child is List<FhirString>) {
-            // Add all elements from passed list
-            final newList = [...?imprint, ...child];
-            return copyWith(imprint: newList);
-          } else if (child is FhirString) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?imprint,
-              child,
-            ];
-            return copyWith(imprint: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'image':
-        {
-          if (child is List<Attachment>) {
-            // Add all elements from passed list
-            final newList = [...?image, ...child];
-            return copyWith(image: newList);
-          } else if (child is Attachment) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?image,
-              child,
-            ];
-            return copyWith(image: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'scoring':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(scoring: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
-  @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'height':
-        return ['Quantity'];
-      case 'width':
-        return ['Quantity'];
-      case 'depth':
-        return ['Quantity'];
-      case 'weight':
-        return ['Quantity'];
-      case 'nominalVolume':
-        return ['Quantity'];
-      case 'externalDiameter':
-        return ['Quantity'];
-      case 'shape':
-        return ['FhirString'];
-      case 'color':
-        return ['FhirString'];
-      case 'imprint':
-        return ['FhirString'];
-      case 'image':
-        return ['Attachment'];
-      case 'scoring':
-        return ['CodeableConcept'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [ProdCharacteristic]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  ProdCharacteristic createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
-          );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'height':
-        {
-          return copyWith(
-            height: Quantity.empty(),
-          );
-        }
-      case 'width':
-        {
-          return copyWith(
-            width: Quantity.empty(),
-          );
-        }
-      case 'depth':
-        {
-          return copyWith(
-            depth: Quantity.empty(),
-          );
-        }
-      case 'weight':
-        {
-          return copyWith(
-            weight: Quantity.empty(),
-          );
-        }
-      case 'nominalVolume':
-        {
-          return copyWith(
-            nominalVolume: Quantity.empty(),
-          );
-        }
-      case 'externalDiameter':
-        {
-          return copyWith(
-            externalDiameter: Quantity.empty(),
-          );
-        }
-      case 'shape':
-        {
-          return copyWith(
-            shape: FhirString.empty(),
-          );
-        }
-      case 'color':
-        {
-          return copyWith(
-            color: <FhirString>[],
-          );
-        }
-      case 'imprint':
-        {
-          return copyWith(
-            imprint: <FhirString>[],
-          );
-        }
-      case 'image':
-        {
-          return copyWith(
-            image: <Attachment>[],
-          );
-        }
-      case 'scoring':
-        {
-          return copyWith(
-            scoring: CodeableConcept.empty(),
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  ProdCharacteristic clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool height = false,
-    bool width = false,
-    bool depth = false,
-    bool weight = false,
-    bool nominalVolume = false,
-    bool externalDiameter = false,
-    bool shape = false,
-    bool color = false,
-    bool imprint = false,
-    bool image = false,
-    bool scoring = false,
-  }) {
-    return ProdCharacteristic(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      height: height ? null : this.height,
-      width: width ? null : this.width,
-      depth: depth ? null : this.depth,
-      weight: weight ? null : this.weight,
-      nominalVolume: nominalVolume ? null : this.nominalVolume,
-      externalDiameter: externalDiameter ? null : this.externalDiameter,
-      shape: shape ? null : this.shape,
-      color: color ? null : this.color,
-      imprint: imprint ? null : this.imprint,
-      image: image ? null : this.image,
-      scoring: scoring ? null : this.scoring,
-    );
-  }
-
-  @override
-  ProdCharacteristic clone() => throw UnimplementedError();
-  @override
-  ProdCharacteristic copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    Quantity? height,
-    Quantity? width,
-    Quantity? depth,
-    Quantity? weight,
-    Quantity? nominalVolume,
-    Quantity? externalDiameter,
-    FhirString? shape,
-    List<FhirString>? color,
-    List<FhirString>? imprint,
-    List<Attachment>? image,
-    CodeableConcept? scoring,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = objectPath ?? this.objectPath;
-    return ProdCharacteristic(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      height: height?.copyWith(
-            objectPath: '$newObjectPath.height',
-          ) ??
-          this.height,
-      width: width?.copyWith(
-            objectPath: '$newObjectPath.width',
-          ) ??
-          this.width,
-      depth: depth?.copyWith(
-            objectPath: '$newObjectPath.depth',
-          ) ??
-          this.depth,
-      weight: weight?.copyWith(
-            objectPath: '$newObjectPath.weight',
-          ) ??
-          this.weight,
-      nominalVolume: nominalVolume?.copyWith(
-            objectPath: '$newObjectPath.nominalVolume',
-          ) ??
-          this.nominalVolume,
-      externalDiameter: externalDiameter?.copyWith(
-            objectPath: '$newObjectPath.externalDiameter',
-          ) ??
-          this.externalDiameter,
-      shape: shape?.copyWith(
-            objectPath: '$newObjectPath.shape',
-          ) ??
-          this.shape,
-      color: color
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.color',
-                ),
-              )
-              .toList() ??
-          this.color,
-      imprint: imprint
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.imprint',
-                ),
-              )
-              .toList() ??
-          this.imprint,
-      image: image
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.image',
-                ),
-              )
-              .toList() ??
-          this.image,
-      scoring: scoring?.copyWith(
-            objectPath: '$newObjectPath.scoring',
-          ) ??
-          this.scoring,
-    );
-  }
+  $ProdCharacteristicCopyWith<ProdCharacteristic> get copyWith =>
+      _$ProdCharacteristicCopyWithImpl<ProdCharacteristic>(
+        this,
+        (value) => value,
+      );
 
   /// Performs a deep comparison between two instances.
   @override

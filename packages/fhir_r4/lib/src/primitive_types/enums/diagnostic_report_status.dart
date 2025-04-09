@@ -1,11 +1,114 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for DiagnosticReportStatus
+enum DiagnosticReportStatusEnum {
+  /// registered
+  registered,
+
+  /// partial
+  partial,
+
+  /// preliminary
+  preliminary,
+
+  /// final
+  final_,
+
+  /// amended
+  amended,
+
+  /// corrected
+  corrected,
+
+  /// appended
+  appended,
+
+  /// cancelled
+  cancelled,
+
+  /// entered-in-error
+  enteredInError,
+
+  /// unknown
+  unknown,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case DiagnosticReportStatusEnum.registered:
+        return 'registered';
+      case DiagnosticReportStatusEnum.partial:
+        return 'partial';
+      case DiagnosticReportStatusEnum.preliminary:
+        return 'preliminary';
+      case DiagnosticReportStatusEnum.final_:
+        return 'final';
+      case DiagnosticReportStatusEnum.amended:
+        return 'amended';
+      case DiagnosticReportStatusEnum.corrected:
+        return 'corrected';
+      case DiagnosticReportStatusEnum.appended:
+        return 'appended';
+      case DiagnosticReportStatusEnum.cancelled:
+        return 'cancelled';
+      case DiagnosticReportStatusEnum.enteredInError:
+        return 'entered-in-error';
+      case DiagnosticReportStatusEnum.unknown:
+        return 'unknown';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static DiagnosticReportStatusEnum? fromJson(dynamic json) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return DiagnosticReportStatusEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static DiagnosticReportStatusEnum? fromString(String? value) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'registered':
+        return DiagnosticReportStatusEnum.registered;
+      case 'partial':
+        return DiagnosticReportStatusEnum.partial;
+      case 'preliminary':
+        return DiagnosticReportStatusEnum.preliminary;
+      case 'final':
+        return DiagnosticReportStatusEnum.final_;
+      case 'amended':
+        return DiagnosticReportStatusEnum.amended;
+      case 'corrected':
+        return DiagnosticReportStatusEnum.corrected;
+      case 'appended':
+        return DiagnosticReportStatusEnum.appended;
+      case 'cancelled':
+        return DiagnosticReportStatusEnum.cancelled;
+      case 'entered-in-error':
+        return DiagnosticReportStatusEnum.enteredInError;
+      case 'unknown':
+        return DiagnosticReportStatusEnum.unknown;
+    }
+    return null;
+  }
+}
+
 /// The status of the diagnostic report.
 class DiagnosticReportStatus extends FhirCodeEnum {
   // Private underscore constructor for internal use.
-  DiagnosticReportStatus._({
+  const DiagnosticReportStatus._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -13,7 +116,6 @@ class DiagnosticReportStatus extends FhirCodeEnum {
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.objectPath = 'Code',
   }) : super._();
 
   /// Public factory if you want a fallback approach or custom creation.
@@ -27,12 +129,13 @@ class DiagnosticReportStatus extends FhirCodeEnum {
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
-    String objectPath = 'Code',
   }) {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
+    final valueEnum = DiagnosticReportStatusEnum.fromString(valueString);
     return DiagnosticReportStatus._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -40,13 +143,8 @@ class DiagnosticReportStatus extends FhirCodeEnum {
       id: id,
       extension_: extension_,
       disallowExtensions: disallowExtensions,
-      objectPath: objectPath,
     );
   }
-
-  /// Create empty [DiagnosticReportStatus] with element only
-  factory DiagnosticReportStatus.empty() =>
-      DiagnosticReportStatus._(valueString: '');
 
   /// Factory constructor to create [DiagnosticReportStatus]
   /// from JSON.
@@ -54,10 +152,11 @@ class DiagnosticReportStatus extends FhirCodeEnum {
     Map<String, dynamic> json,
   ) {
     final value = json['value'] as String?;
+    final valueEnum = DiagnosticReportStatusEnum.fromString(value);
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return DiagnosticReportStatus.elementOnly.withElement(element);
+      return DiagnosticReportStatus._(valueString: null, element: element);
     } else if (value == null && element == null) {
       throw ArgumentError(
         'DiagnosticReportStatus cannot be constructed from JSON.',
@@ -65,94 +164,143 @@ class DiagnosticReportStatus extends FhirCodeEnum {
     }
     return DiagnosticReportStatus._(
       valueString: value,
+      valueEnum: valueEnum,
       element: element,
     );
   }
 
+  /// An actual enum that can be used for DiagnosticReportStatus
+  final DiagnosticReportStatusEnum? valueEnum;
+
   /// registered
-  static final DiagnosticReportStatus registered = DiagnosticReportStatus._(
+  static const DiagnosticReportStatus registered = DiagnosticReportStatus._(
     valueString: 'registered',
-    system: 'http://hl7.org/fhir/ValueSet/diagnostic-report-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Registered'.toFhirString,
+    valueEnum: DiagnosticReportStatusEnum.registered,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/diagnostic-report-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Registered',
+    ),
   );
 
   /// partial
-  static final DiagnosticReportStatus partial = DiagnosticReportStatus._(
+  static const DiagnosticReportStatus partial = DiagnosticReportStatus._(
     valueString: 'partial',
-    system: 'http://hl7.org/fhir/ValueSet/diagnostic-report-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Partial'.toFhirString,
+    valueEnum: DiagnosticReportStatusEnum.partial,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/diagnostic-report-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Partial',
+    ),
   );
 
   /// preliminary
-  static final DiagnosticReportStatus preliminary = DiagnosticReportStatus._(
+  static const DiagnosticReportStatus preliminary = DiagnosticReportStatus._(
     valueString: 'preliminary',
-    system: 'http://hl7.org/fhir/ValueSet/diagnostic-report-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Preliminary'.toFhirString,
+    valueEnum: DiagnosticReportStatusEnum.preliminary,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/diagnostic-report-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Preliminary',
+    ),
   );
 
   /// final_
-  static final DiagnosticReportStatus final_ = DiagnosticReportStatus._(
+  static const DiagnosticReportStatus final_ = DiagnosticReportStatus._(
     valueString: 'final',
-    system: 'http://hl7.org/fhir/ValueSet/diagnostic-report-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Final'.toFhirString,
+    valueEnum: DiagnosticReportStatusEnum.final_,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/diagnostic-report-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Final',
+    ),
   );
 
   /// amended
-  static final DiagnosticReportStatus amended = DiagnosticReportStatus._(
+  static const DiagnosticReportStatus amended = DiagnosticReportStatus._(
     valueString: 'amended',
-    system: 'http://hl7.org/fhir/ValueSet/diagnostic-report-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Amended'.toFhirString,
+    valueEnum: DiagnosticReportStatusEnum.amended,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/diagnostic-report-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Amended',
+    ),
   );
 
   /// corrected
-  static final DiagnosticReportStatus corrected = DiagnosticReportStatus._(
+  static const DiagnosticReportStatus corrected = DiagnosticReportStatus._(
     valueString: 'corrected',
-    system: 'http://hl7.org/fhir/ValueSet/diagnostic-report-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Corrected'.toFhirString,
+    valueEnum: DiagnosticReportStatusEnum.corrected,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/diagnostic-report-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Corrected',
+    ),
   );
 
   /// appended
-  static final DiagnosticReportStatus appended = DiagnosticReportStatus._(
+  static const DiagnosticReportStatus appended = DiagnosticReportStatus._(
     valueString: 'appended',
-    system: 'http://hl7.org/fhir/ValueSet/diagnostic-report-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Appended'.toFhirString,
+    valueEnum: DiagnosticReportStatusEnum.appended,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/diagnostic-report-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Appended',
+    ),
   );
 
   /// cancelled
-  static final DiagnosticReportStatus cancelled = DiagnosticReportStatus._(
+  static const DiagnosticReportStatus cancelled = DiagnosticReportStatus._(
     valueString: 'cancelled',
-    system: 'http://hl7.org/fhir/ValueSet/diagnostic-report-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Cancelled'.toFhirString,
+    valueEnum: DiagnosticReportStatusEnum.cancelled,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/diagnostic-report-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Cancelled',
+    ),
   );
 
   /// entered_in_error
-  static final DiagnosticReportStatus entered_in_error =
-      DiagnosticReportStatus._(
+  static const DiagnosticReportStatus enteredInError = DiagnosticReportStatus._(
     valueString: 'entered-in-error',
-    system: 'http://hl7.org/fhir/ValueSet/diagnostic-report-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Entered in Error'.toFhirString,
+    valueEnum: DiagnosticReportStatusEnum.enteredInError,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/diagnostic-report-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Entered in Error',
+    ),
   );
 
   /// unknown
-  static final DiagnosticReportStatus unknown = DiagnosticReportStatus._(
+  static const DiagnosticReportStatus unknown = DiagnosticReportStatus._(
     valueString: 'unknown',
-    system: 'http://hl7.org/fhir/ValueSet/diagnostic-report-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Unknown'.toFhirString,
+    valueEnum: DiagnosticReportStatusEnum.unknown,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/diagnostic-report-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Unknown',
+    ),
   );
-
-  /// For instances where an Element is present but not value
-  static final DiagnosticReportStatus elementOnly =
-      DiagnosticReportStatus._(valueString: '');
 
   /// List of all enum-like values
   static final List<DiagnosticReportStatus> values = [
@@ -164,16 +312,9 @@ class DiagnosticReportStatus extends FhirCodeEnum {
     corrected,
     appended,
     cancelled,
-    entered_in_error,
+    enteredInError,
     unknown,
   ];
-
-  /// Clones the current instance
-  @override
-  DiagnosticReportStatus clone() => DiagnosticReportStatus._(
-        valueString: valueString,
-        element: element?.clone() as Element?,
-      );
 
   /// Returns the enum value with an element attached
   DiagnosticReportStatus withElement(Element? newElement) {
@@ -194,36 +335,56 @@ class DiagnosticReportStatus extends FhirCodeEnum {
   @override
   String toString() => valueString ?? '';
 
-  /// Creates a modified copy with updated properties.
   @override
-  DiagnosticReportStatus copyWith({
-    dynamic newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
+  DiagnosticReportStatus clone() => copyWith();
+
+  /// Creates a new instance with the specified fields replaced.
+  @override
+  DiagnosticReportStatusCopyWithImpl<DiagnosticReportStatus> get copyWith =>
+      DiagnosticReportStatusCopyWithImpl<DiagnosticReportStatus>(
+        this,
+        (v) => v as DiagnosticReportStatus,
+      );
+}
+
+/// The generated implementation of the copyWith helper for Element.
+/// The call method uses parameters of type Object? with a default value of
+/// [fhirSentinel] so that omitted parameters retain the sentinel value while
+/// explicit nulls do not.
+class DiagnosticReportStatusCopyWithImpl<T> extends $FhirCodeCopyWithImpl<T> {
+  /// Constructor for the copyWith implementation.
+  DiagnosticReportStatusCopyWithImpl(super._value, super._then);
+
+  @override
+  T call({
+    Object? newValue = fhirSentinel,
+    Object? element = fhirSentinel,
+    Object? id = fhirSentinel,
+    Object? extension_ = fhirSentinel,
+    Object? disallowExtensions = fhirSentinel,
   }) {
-    if (newValue is! String?) {
+    if (!identical(newValue, fhirSentinel) && newValue is! String?) {
       throw ArgumentError(
-        'Invalid input for DiagnosticReportStatus: $newValue',
+        'newValue must be a String or null, but found ${newValue.runtimeType}',
+        'newValue',
       );
     }
-    return DiagnosticReportStatus._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
+    return _then(
+      DiagnosticReportStatus(
+        identical(newValue, fhirSentinel)
+            ? _value.valueString
+            : newValue as String?,
+        element: identical(element, fhirSentinel)
+            ? _value.element
+            : element as Element?,
+        id: identical(id, fhirSentinel) ? _value.id : id as FhirString?,
+        extension_: identical(extension_, fhirSentinel)
+            ? _value.extension_
+            : extension_ as List<FhirExtension>?,
+        disallowExtensions: identical(disallowExtensions, fhirSentinel)
+            ? _value.disallowExtensions
+            : disallowExtensions as bool?,
       ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

@@ -1,11 +1,107 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for EncounterStatus
+enum EncounterStatusEnum {
+  /// planned
+  planned,
+
+  /// arrived
+  arrived,
+
+  /// triaged
+  triaged,
+
+  /// in-progress
+  inProgress,
+
+  /// onleave
+  onleave,
+
+  /// finished
+  finished,
+
+  /// cancelled
+  cancelled,
+
+  /// entered-in-error
+  enteredInError,
+
+  /// unknown
+  unknown,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case EncounterStatusEnum.planned:
+        return 'planned';
+      case EncounterStatusEnum.arrived:
+        return 'arrived';
+      case EncounterStatusEnum.triaged:
+        return 'triaged';
+      case EncounterStatusEnum.inProgress:
+        return 'in-progress';
+      case EncounterStatusEnum.onleave:
+        return 'onleave';
+      case EncounterStatusEnum.finished:
+        return 'finished';
+      case EncounterStatusEnum.cancelled:
+        return 'cancelled';
+      case EncounterStatusEnum.enteredInError:
+        return 'entered-in-error';
+      case EncounterStatusEnum.unknown:
+        return 'unknown';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static EncounterStatusEnum? fromJson(dynamic json) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return EncounterStatusEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static EncounterStatusEnum? fromString(String? value) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'planned':
+        return EncounterStatusEnum.planned;
+      case 'arrived':
+        return EncounterStatusEnum.arrived;
+      case 'triaged':
+        return EncounterStatusEnum.triaged;
+      case 'in-progress':
+        return EncounterStatusEnum.inProgress;
+      case 'onleave':
+        return EncounterStatusEnum.onleave;
+      case 'finished':
+        return EncounterStatusEnum.finished;
+      case 'cancelled':
+        return EncounterStatusEnum.cancelled;
+      case 'entered-in-error':
+        return EncounterStatusEnum.enteredInError;
+      case 'unknown':
+        return EncounterStatusEnum.unknown;
+    }
+    return null;
+  }
+}
+
 /// Current state of the encounter.
 class EncounterStatus extends FhirCodeEnum {
   // Private underscore constructor for internal use.
-  EncounterStatus._({
+  const EncounterStatus._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -13,7 +109,6 @@ class EncounterStatus extends FhirCodeEnum {
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.objectPath = 'Code',
   }) : super._();
 
   /// Public factory if you want a fallback approach or custom creation.
@@ -27,12 +122,13 @@ class EncounterStatus extends FhirCodeEnum {
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
-    String objectPath = 'Code',
   }) {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
+    final valueEnum = EncounterStatusEnum.fromString(valueString);
     return EncounterStatus._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -40,12 +136,8 @@ class EncounterStatus extends FhirCodeEnum {
       id: id,
       extension_: extension_,
       disallowExtensions: disallowExtensions,
-      objectPath: objectPath,
     );
   }
-
-  /// Create empty [EncounterStatus] with element only
-  factory EncounterStatus.empty() => EncounterStatus._(valueString: '');
 
   /// Factory constructor to create [EncounterStatus]
   /// from JSON.
@@ -53,10 +145,11 @@ class EncounterStatus extends FhirCodeEnum {
     Map<String, dynamic> json,
   ) {
     final value = json['value'] as String?;
+    final valueEnum = EncounterStatusEnum.fromString(value);
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return EncounterStatus.elementOnly.withElement(element);
+      return EncounterStatus._(valueString: null, element: element);
     } else if (value == null && element == null) {
       throw ArgumentError(
         'EncounterStatus cannot be constructed from JSON.',
@@ -64,104 +157,143 @@ class EncounterStatus extends FhirCodeEnum {
     }
     return EncounterStatus._(
       valueString: value,
+      valueEnum: valueEnum,
       element: element,
     );
   }
 
+  /// An actual enum that can be used for EncounterStatus
+  final EncounterStatusEnum? valueEnum;
+
   /// planned
-  static final EncounterStatus planned = EncounterStatus._(
+  static const EncounterStatus planned = EncounterStatus._(
     valueString: 'planned',
-    system: 'http://hl7.org/fhir/ValueSet/encounter-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Planned'.toFhirString,
+    valueEnum: EncounterStatusEnum.planned,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/encounter-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Planned',
+    ),
   );
 
   /// arrived
-  static final EncounterStatus arrived = EncounterStatus._(
+  static const EncounterStatus arrived = EncounterStatus._(
     valueString: 'arrived',
-    system: 'http://hl7.org/fhir/ValueSet/encounter-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Arrived'.toFhirString,
+    valueEnum: EncounterStatusEnum.arrived,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/encounter-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Arrived',
+    ),
   );
 
   /// triaged
-  static final EncounterStatus triaged = EncounterStatus._(
+  static const EncounterStatus triaged = EncounterStatus._(
     valueString: 'triaged',
-    system: 'http://hl7.org/fhir/ValueSet/encounter-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Triaged'.toFhirString,
+    valueEnum: EncounterStatusEnum.triaged,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/encounter-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Triaged',
+    ),
   );
 
   /// in_progress
-  static final EncounterStatus in_progress = EncounterStatus._(
+  static const EncounterStatus inProgress = EncounterStatus._(
     valueString: 'in-progress',
-    system: 'http://hl7.org/fhir/ValueSet/encounter-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'In Progress'.toFhirString,
+    valueEnum: EncounterStatusEnum.inProgress,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/encounter-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'In Progress',
+    ),
   );
 
   /// onleave
-  static final EncounterStatus onleave = EncounterStatus._(
+  static const EncounterStatus onleave = EncounterStatus._(
     valueString: 'onleave',
-    system: 'http://hl7.org/fhir/ValueSet/encounter-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'On Leave'.toFhirString,
+    valueEnum: EncounterStatusEnum.onleave,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/encounter-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'On Leave',
+    ),
   );
 
   /// finished
-  static final EncounterStatus finished = EncounterStatus._(
+  static const EncounterStatus finished = EncounterStatus._(
     valueString: 'finished',
-    system: 'http://hl7.org/fhir/ValueSet/encounter-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Finished'.toFhirString,
+    valueEnum: EncounterStatusEnum.finished,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/encounter-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Finished',
+    ),
   );
 
   /// cancelled
-  static final EncounterStatus cancelled = EncounterStatus._(
+  static const EncounterStatus cancelled = EncounterStatus._(
     valueString: 'cancelled',
-    system: 'http://hl7.org/fhir/ValueSet/encounter-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Cancelled'.toFhirString,
+    valueEnum: EncounterStatusEnum.cancelled,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/encounter-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Cancelled',
+    ),
   );
 
   /// entered_in_error
-  static final EncounterStatus entered_in_error = EncounterStatus._(
+  static const EncounterStatus enteredInError = EncounterStatus._(
     valueString: 'entered-in-error',
-    system: 'http://hl7.org/fhir/ValueSet/encounter-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Entered in Error'.toFhirString,
+    valueEnum: EncounterStatusEnum.enteredInError,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/encounter-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Entered in Error',
+    ),
   );
 
   /// unknown
-  static final EncounterStatus unknown = EncounterStatus._(
+  static const EncounterStatus unknown = EncounterStatus._(
     valueString: 'unknown',
-    system: 'http://hl7.org/fhir/ValueSet/encounter-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Unknown'.toFhirString,
+    valueEnum: EncounterStatusEnum.unknown,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/encounter-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Unknown',
+    ),
   );
-
-  /// For instances where an Element is present but not value
-  static final EncounterStatus elementOnly = EncounterStatus._(valueString: '');
 
   /// List of all enum-like values
   static final List<EncounterStatus> values = [
     planned,
     arrived,
     triaged,
-    in_progress,
+    inProgress,
     onleave,
     finished,
     cancelled,
-    entered_in_error,
+    enteredInError,
     unknown,
   ];
-
-  /// Clones the current instance
-  @override
-  EncounterStatus clone() => EncounterStatus._(
-        valueString: valueString,
-        element: element?.clone() as Element?,
-      );
 
   /// Returns the enum value with an element attached
   EncounterStatus withElement(Element? newElement) {
@@ -182,36 +314,56 @@ class EncounterStatus extends FhirCodeEnum {
   @override
   String toString() => valueString ?? '';
 
-  /// Creates a modified copy with updated properties.
   @override
-  EncounterStatus copyWith({
-    dynamic newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
+  EncounterStatus clone() => copyWith();
+
+  /// Creates a new instance with the specified fields replaced.
+  @override
+  EncounterStatusCopyWithImpl<EncounterStatus> get copyWith =>
+      EncounterStatusCopyWithImpl<EncounterStatus>(
+        this,
+        (v) => v as EncounterStatus,
+      );
+}
+
+/// The generated implementation of the copyWith helper for Element.
+/// The call method uses parameters of type Object? with a default value of
+/// [fhirSentinel] so that omitted parameters retain the sentinel value while
+/// explicit nulls do not.
+class EncounterStatusCopyWithImpl<T> extends $FhirCodeCopyWithImpl<T> {
+  /// Constructor for the copyWith implementation.
+  EncounterStatusCopyWithImpl(super._value, super._then);
+
+  @override
+  T call({
+    Object? newValue = fhirSentinel,
+    Object? element = fhirSentinel,
+    Object? id = fhirSentinel,
+    Object? extension_ = fhirSentinel,
+    Object? disallowExtensions = fhirSentinel,
   }) {
-    if (newValue is! String?) {
+    if (!identical(newValue, fhirSentinel) && newValue is! String?) {
       throw ArgumentError(
-        'Invalid input for EncounterStatus: $newValue',
+        'newValue must be a String or null, but found ${newValue.runtimeType}',
+        'newValue',
       );
     }
-    return EncounterStatus._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
+    return _then(
+      EncounterStatus(
+        identical(newValue, fhirSentinel)
+            ? _value.valueString
+            : newValue as String?,
+        element: identical(element, fhirSentinel)
+            ? _value.element
+            : element as Element?,
+        id: identical(id, fhirSentinel) ? _value.id : id as FhirString?,
+        extension_: identical(extension_, fhirSentinel)
+            ? _value.extension_
+            : extension_ as List<FhirExtension>?,
+        disallowExtensions: identical(disallowExtensions, fhirSentinel)
+            ? _value.disallowExtensions
+            : disallowExtensions as bool?,
       ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

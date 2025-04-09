@@ -1,11 +1,100 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for MedicationStatementStatusCodes
+enum MedicationStatementStatusCodesEnum {
+  /// active
+  active,
+
+  /// completed
+  completed,
+
+  /// entered-in-error
+  enteredInError,
+
+  /// intended
+  intended,
+
+  /// stopped
+  stopped,
+
+  /// on-hold
+  onHold,
+
+  /// unknown
+  unknown,
+
+  /// not-taken
+  notTaken,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case MedicationStatementStatusCodesEnum.active:
+        return 'active';
+      case MedicationStatementStatusCodesEnum.completed:
+        return 'completed';
+      case MedicationStatementStatusCodesEnum.enteredInError:
+        return 'entered-in-error';
+      case MedicationStatementStatusCodesEnum.intended:
+        return 'intended';
+      case MedicationStatementStatusCodesEnum.stopped:
+        return 'stopped';
+      case MedicationStatementStatusCodesEnum.onHold:
+        return 'on-hold';
+      case MedicationStatementStatusCodesEnum.unknown:
+        return 'unknown';
+      case MedicationStatementStatusCodesEnum.notTaken:
+        return 'not-taken';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static MedicationStatementStatusCodesEnum? fromJson(dynamic json) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return MedicationStatementStatusCodesEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static MedicationStatementStatusCodesEnum? fromString(String? value) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'active':
+        return MedicationStatementStatusCodesEnum.active;
+      case 'completed':
+        return MedicationStatementStatusCodesEnum.completed;
+      case 'entered-in-error':
+        return MedicationStatementStatusCodesEnum.enteredInError;
+      case 'intended':
+        return MedicationStatementStatusCodesEnum.intended;
+      case 'stopped':
+        return MedicationStatementStatusCodesEnum.stopped;
+      case 'on-hold':
+        return MedicationStatementStatusCodesEnum.onHold;
+      case 'unknown':
+        return MedicationStatementStatusCodesEnum.unknown;
+      case 'not-taken':
+        return MedicationStatementStatusCodesEnum.notTaken;
+    }
+    return null;
+  }
+}
+
 /// MedicationStatement Status Codes
 class MedicationStatementStatusCodes extends FhirCodeEnum {
   // Private underscore constructor for internal use.
-  MedicationStatementStatusCodes._({
+  const MedicationStatementStatusCodes._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -13,7 +102,6 @@ class MedicationStatementStatusCodes extends FhirCodeEnum {
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.objectPath = 'Code',
   }) : super._();
 
   /// Public factory if you want a fallback approach or custom creation.
@@ -27,12 +115,14 @@ class MedicationStatementStatusCodes extends FhirCodeEnum {
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
-    String objectPath = 'Code',
   }) {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
+    final valueEnum =
+        MedicationStatementStatusCodesEnum.fromString(valueString);
     return MedicationStatementStatusCodes._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -40,13 +130,8 @@ class MedicationStatementStatusCodes extends FhirCodeEnum {
       id: id,
       extension_: extension_,
       disallowExtensions: disallowExtensions,
-      objectPath: objectPath,
     );
   }
-
-  /// Create empty [MedicationStatementStatusCodes] with element only
-  factory MedicationStatementStatusCodes.empty() =>
-      MedicationStatementStatusCodes._(valueString: '');
 
   /// Factory constructor to create [MedicationStatementStatusCodes]
   /// from JSON.
@@ -54,10 +139,12 @@ class MedicationStatementStatusCodes extends FhirCodeEnum {
     Map<String, dynamic> json,
   ) {
     final value = json['value'] as String?;
+    final valueEnum = MedicationStatementStatusCodesEnum.fromString(value);
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return MedicationStatementStatusCodes.elementOnly.withElement(element);
+      return MedicationStatementStatusCodes._(
+          valueString: null, element: element);
     } else if (value == null && element == null) {
       throw ArgumentError(
         'MedicationStatementStatusCodes cannot be constructed from JSON.',
@@ -65,112 +152,137 @@ class MedicationStatementStatusCodes extends FhirCodeEnum {
     }
     return MedicationStatementStatusCodes._(
       valueString: value,
+      valueEnum: valueEnum,
       element: element,
     );
   }
 
+  /// An actual enum that can be used for MedicationStatementStatusCodes
+  final MedicationStatementStatusCodesEnum? valueEnum;
+
   /// active
-  static final MedicationStatementStatusCodes active =
+  static const MedicationStatementStatusCodes active =
       MedicationStatementStatusCodes._(
     valueString: 'active',
-    system:
-        'http://hl7.org/fhir/ValueSet/medication-statement-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Active'.toFhirString,
+    valueEnum: MedicationStatementStatusCodesEnum.active,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/medication-statement-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Active',
+    ),
   );
 
   /// completed
-  static final MedicationStatementStatusCodes completed =
+  static const MedicationStatementStatusCodes completed =
       MedicationStatementStatusCodes._(
     valueString: 'completed',
-    system:
-        'http://hl7.org/fhir/ValueSet/medication-statement-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Completed'.toFhirString,
+    valueEnum: MedicationStatementStatusCodesEnum.completed,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/medication-statement-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Completed',
+    ),
   );
 
   /// entered_in_error
-  static final MedicationStatementStatusCodes entered_in_error =
+  static const MedicationStatementStatusCodes enteredInError =
       MedicationStatementStatusCodes._(
     valueString: 'entered-in-error',
-    system:
-        'http://hl7.org/fhir/ValueSet/medication-statement-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Entered in Error'.toFhirString,
+    valueEnum: MedicationStatementStatusCodesEnum.enteredInError,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/medication-statement-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Entered in Error',
+    ),
   );
 
   /// intended
-  static final MedicationStatementStatusCodes intended =
+  static const MedicationStatementStatusCodes intended =
       MedicationStatementStatusCodes._(
     valueString: 'intended',
-    system:
-        'http://hl7.org/fhir/ValueSet/medication-statement-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Intended'.toFhirString,
+    valueEnum: MedicationStatementStatusCodesEnum.intended,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/medication-statement-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Intended',
+    ),
   );
 
   /// stopped
-  static final MedicationStatementStatusCodes stopped =
+  static const MedicationStatementStatusCodes stopped =
       MedicationStatementStatusCodes._(
     valueString: 'stopped',
-    system:
-        'http://hl7.org/fhir/ValueSet/medication-statement-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Stopped'.toFhirString,
+    valueEnum: MedicationStatementStatusCodesEnum.stopped,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/medication-statement-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Stopped',
+    ),
   );
 
   /// on_hold
-  static final MedicationStatementStatusCodes on_hold =
+  static const MedicationStatementStatusCodes onHold =
       MedicationStatementStatusCodes._(
     valueString: 'on-hold',
-    system:
-        'http://hl7.org/fhir/ValueSet/medication-statement-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'On Hold'.toFhirString,
+    valueEnum: MedicationStatementStatusCodesEnum.onHold,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/medication-statement-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'On Hold',
+    ),
   );
 
   /// unknown
-  static final MedicationStatementStatusCodes unknown =
+  static const MedicationStatementStatusCodes unknown =
       MedicationStatementStatusCodes._(
     valueString: 'unknown',
-    system:
-        'http://hl7.org/fhir/ValueSet/medication-statement-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Unknown'.toFhirString,
+    valueEnum: MedicationStatementStatusCodesEnum.unknown,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/medication-statement-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Unknown',
+    ),
   );
 
   /// not_taken
-  static final MedicationStatementStatusCodes not_taken =
+  static const MedicationStatementStatusCodes notTaken =
       MedicationStatementStatusCodes._(
     valueString: 'not-taken',
-    system:
-        'http://hl7.org/fhir/ValueSet/medication-statement-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Not Taken'.toFhirString,
+    valueEnum: MedicationStatementStatusCodesEnum.notTaken,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/medication-statement-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Not Taken',
+    ),
   );
-
-  /// For instances where an Element is present but not value
-  static final MedicationStatementStatusCodes elementOnly =
-      MedicationStatementStatusCodes._(valueString: '');
 
   /// List of all enum-like values
   static final List<MedicationStatementStatusCodes> values = [
     active,
     completed,
-    entered_in_error,
+    enteredInError,
     intended,
     stopped,
-    on_hold,
+    onHold,
     unknown,
-    not_taken,
+    notTaken,
   ];
-
-  /// Clones the current instance
-  @override
-  MedicationStatementStatusCodes clone() => MedicationStatementStatusCodes._(
-        valueString: valueString,
-        element: element?.clone() as Element?,
-      );
 
   /// Returns the enum value with an element attached
   MedicationStatementStatusCodes withElement(Element? newElement) {
@@ -191,36 +303,58 @@ class MedicationStatementStatusCodes extends FhirCodeEnum {
   @override
   String toString() => valueString ?? '';
 
-  /// Creates a modified copy with updated properties.
   @override
-  MedicationStatementStatusCodes copyWith({
-    dynamic newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
+  MedicationStatementStatusCodes clone() => copyWith();
+
+  /// Creates a new instance with the specified fields replaced.
+  @override
+  MedicationStatementStatusCodesCopyWithImpl<MedicationStatementStatusCodes>
+      get copyWith => MedicationStatementStatusCodesCopyWithImpl<
+              MedicationStatementStatusCodes>(
+            this,
+            (v) => v as MedicationStatementStatusCodes,
+          );
+}
+
+/// The generated implementation of the copyWith helper for Element.
+/// The call method uses parameters of type Object? with a default value of
+/// [fhirSentinel] so that omitted parameters retain the sentinel value while
+/// explicit nulls do not.
+class MedicationStatementStatusCodesCopyWithImpl<T>
+    extends $FhirCodeCopyWithImpl<T> {
+  /// Constructor for the copyWith implementation.
+  MedicationStatementStatusCodesCopyWithImpl(super._value, super._then);
+
+  @override
+  T call({
+    Object? newValue = fhirSentinel,
+    Object? element = fhirSentinel,
+    Object? id = fhirSentinel,
+    Object? extension_ = fhirSentinel,
+    Object? disallowExtensions = fhirSentinel,
   }) {
-    if (newValue is! String?) {
+    if (!identical(newValue, fhirSentinel) && newValue is! String?) {
       throw ArgumentError(
-        'Invalid input for MedicationStatementStatusCodes: $newValue',
+        'newValue must be a String or null, but found ${newValue.runtimeType}',
+        'newValue',
       );
     }
-    return MedicationStatementStatusCodes._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
+    return _then(
+      MedicationStatementStatusCodes(
+        identical(newValue, fhirSentinel)
+            ? _value.valueString
+            : newValue as String?,
+        element: identical(element, fhirSentinel)
+            ? _value.element
+            : element as Element?,
+        id: identical(id, fhirSentinel) ? _value.id : id as FhirString?,
+        extension_: identical(extension_, fhirSentinel)
+            ? _value.extension_
+            : extension_ as List<FhirExtension>?,
+        disallowExtensions: identical(disallowExtensions, fhirSentinel)
+            ? _value.disallowExtensions
+            : disallowExtensions as bool?,
       ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

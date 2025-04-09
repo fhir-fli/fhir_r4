@@ -1,11 +1,72 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for GraphCompartmentRule
+enum GraphCompartmentRuleEnum {
+  /// identical
+  identical_,
+
+  /// matching
+  matching,
+
+  /// different
+  different,
+
+  /// custom
+  custom,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case GraphCompartmentRuleEnum.identical_:
+        return 'identical';
+      case GraphCompartmentRuleEnum.matching:
+        return 'matching';
+      case GraphCompartmentRuleEnum.different:
+        return 'different';
+      case GraphCompartmentRuleEnum.custom:
+        return 'custom';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static GraphCompartmentRuleEnum? fromJson(dynamic json) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return GraphCompartmentRuleEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static GraphCompartmentRuleEnum? fromString(String? value) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'identical':
+        return GraphCompartmentRuleEnum.identical_;
+      case 'matching':
+        return GraphCompartmentRuleEnum.matching;
+      case 'different':
+        return GraphCompartmentRuleEnum.different;
+      case 'custom':
+        return GraphCompartmentRuleEnum.custom;
+    }
+    return null;
+  }
+}
+
 /// How a compartment must be linked.
 class GraphCompartmentRule extends FhirCodeEnum {
   // Private underscore constructor for internal use.
-  GraphCompartmentRule._({
+  const GraphCompartmentRule._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -13,7 +74,6 @@ class GraphCompartmentRule extends FhirCodeEnum {
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.objectPath = 'Code',
   }) : super._();
 
   /// Public factory if you want a fallback approach or custom creation.
@@ -27,12 +87,13 @@ class GraphCompartmentRule extends FhirCodeEnum {
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
-    String objectPath = 'Code',
   }) {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
+    final valueEnum = GraphCompartmentRuleEnum.fromString(valueString);
     return GraphCompartmentRule._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -40,13 +101,8 @@ class GraphCompartmentRule extends FhirCodeEnum {
       id: id,
       extension_: extension_,
       disallowExtensions: disallowExtensions,
-      objectPath: objectPath,
     );
   }
-
-  /// Create empty [GraphCompartmentRule] with element only
-  factory GraphCompartmentRule.empty() =>
-      GraphCompartmentRule._(valueString: '');
 
   /// Factory constructor to create [GraphCompartmentRule]
   /// from JSON.
@@ -54,10 +110,11 @@ class GraphCompartmentRule extends FhirCodeEnum {
     Map<String, dynamic> json,
   ) {
     final value = json['value'] as String?;
+    final valueEnum = GraphCompartmentRuleEnum.fromString(value);
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return GraphCompartmentRule.elementOnly.withElement(element);
+      return GraphCompartmentRule._(valueString: null, element: element);
     } else if (value == null && element == null) {
       throw ArgumentError(
         'GraphCompartmentRule cannot be constructed from JSON.',
@@ -65,60 +122,73 @@ class GraphCompartmentRule extends FhirCodeEnum {
     }
     return GraphCompartmentRule._(
       valueString: value,
+      valueEnum: valueEnum,
       element: element,
     );
   }
 
-  /// identical
-  static final GraphCompartmentRule identical = GraphCompartmentRule._(
+  /// An actual enum that can be used for GraphCompartmentRule
+  final GraphCompartmentRuleEnum? valueEnum;
+
+  /// identical_
+  static const GraphCompartmentRule identical_ = GraphCompartmentRule._(
     valueString: 'identical',
-    system: 'http://hl7.org/fhir/ValueSet/graph-compartment-rule'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Identical'.toFhirString,
+    valueEnum: GraphCompartmentRuleEnum.identical_,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/graph-compartment-rule',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Identical',
+    ),
   );
 
   /// matching
-  static final GraphCompartmentRule matching = GraphCompartmentRule._(
+  static const GraphCompartmentRule matching = GraphCompartmentRule._(
     valueString: 'matching',
-    system: 'http://hl7.org/fhir/ValueSet/graph-compartment-rule'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Matching'.toFhirString,
+    valueEnum: GraphCompartmentRuleEnum.matching,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/graph-compartment-rule',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Matching',
+    ),
   );
 
   /// different
-  static final GraphCompartmentRule different = GraphCompartmentRule._(
+  static const GraphCompartmentRule different = GraphCompartmentRule._(
     valueString: 'different',
-    system: 'http://hl7.org/fhir/ValueSet/graph-compartment-rule'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Different'.toFhirString,
+    valueEnum: GraphCompartmentRuleEnum.different,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/graph-compartment-rule',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Different',
+    ),
   );
 
   /// custom
-  static final GraphCompartmentRule custom = GraphCompartmentRule._(
+  static const GraphCompartmentRule custom = GraphCompartmentRule._(
     valueString: 'custom',
-    system: 'http://hl7.org/fhir/ValueSet/graph-compartment-rule'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Custom'.toFhirString,
+    valueEnum: GraphCompartmentRuleEnum.custom,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/graph-compartment-rule',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Custom',
+    ),
   );
-
-  /// For instances where an Element is present but not value
-  static final GraphCompartmentRule elementOnly =
-      GraphCompartmentRule._(valueString: '');
 
   /// List of all enum-like values
   static final List<GraphCompartmentRule> values = [
-    identical,
+    identical_,
     matching,
     different,
     custom,
   ];
-
-  /// Clones the current instance
-  @override
-  GraphCompartmentRule clone() => GraphCompartmentRule._(
-        valueString: valueString,
-        element: element?.clone() as Element?,
-      );
 
   /// Returns the enum value with an element attached
   GraphCompartmentRule withElement(Element? newElement) {
@@ -139,36 +209,56 @@ class GraphCompartmentRule extends FhirCodeEnum {
   @override
   String toString() => valueString ?? '';
 
-  /// Creates a modified copy with updated properties.
   @override
-  GraphCompartmentRule copyWith({
-    dynamic newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
+  GraphCompartmentRule clone() => copyWith();
+
+  /// Creates a new instance with the specified fields replaced.
+  @override
+  GraphCompartmentRuleCopyWithImpl<GraphCompartmentRule> get copyWith =>
+      GraphCompartmentRuleCopyWithImpl<GraphCompartmentRule>(
+        this,
+        (v) => v as GraphCompartmentRule,
+      );
+}
+
+/// The generated implementation of the copyWith helper for Element.
+/// The call method uses parameters of type Object? with a default value of
+/// [fhirSentinel] so that omitted parameters retain the sentinel value while
+/// explicit nulls do not.
+class GraphCompartmentRuleCopyWithImpl<T> extends $FhirCodeCopyWithImpl<T> {
+  /// Constructor for the copyWith implementation.
+  GraphCompartmentRuleCopyWithImpl(super._value, super._then);
+
+  @override
+  T call({
+    Object? newValue = fhirSentinel,
+    Object? element = fhirSentinel,
+    Object? id = fhirSentinel,
+    Object? extension_ = fhirSentinel,
+    Object? disallowExtensions = fhirSentinel,
   }) {
-    if (newValue is! String?) {
+    if (!identical(newValue, fhirSentinel) && newValue is! String?) {
       throw ArgumentError(
-        'Invalid input for GraphCompartmentRule: $newValue',
+        'newValue must be a String or null, but found ${newValue.runtimeType}',
+        'newValue',
       );
     }
-    return GraphCompartmentRule._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
+    return _then(
+      GraphCompartmentRule(
+        identical(newValue, fhirSentinel)
+            ? _value.valueString
+            : newValue as String?,
+        element: identical(element, fhirSentinel)
+            ? _value.element
+            : element as Element?,
+        id: identical(id, fhirSentinel) ? _value.id : id as FhirString?,
+        extension_: identical(extension_, fhirSentinel)
+            ? _value.extension_
+            : extension_ as List<FhirExtension>?,
+        disallowExtensions: identical(disallowExtensions, fhirSentinel)
+            ? _value.disallowExtensions
+            : disallowExtensions as bool?,
       ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

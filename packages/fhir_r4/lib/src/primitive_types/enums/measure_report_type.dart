@@ -1,11 +1,72 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for MeasureReportType
+enum MeasureReportTypeEnum {
+  /// individual
+  individual,
+
+  /// subject-list
+  subjectList,
+
+  /// summary
+  summary,
+
+  /// data-collection
+  dataCollection,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case MeasureReportTypeEnum.individual:
+        return 'individual';
+      case MeasureReportTypeEnum.subjectList:
+        return 'subject-list';
+      case MeasureReportTypeEnum.summary:
+        return 'summary';
+      case MeasureReportTypeEnum.dataCollection:
+        return 'data-collection';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static MeasureReportTypeEnum? fromJson(dynamic json) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return MeasureReportTypeEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static MeasureReportTypeEnum? fromString(String? value) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'individual':
+        return MeasureReportTypeEnum.individual;
+      case 'subject-list':
+        return MeasureReportTypeEnum.subjectList;
+      case 'summary':
+        return MeasureReportTypeEnum.summary;
+      case 'data-collection':
+        return MeasureReportTypeEnum.dataCollection;
+    }
+    return null;
+  }
+}
+
 /// The type of the measure report.
 class MeasureReportType extends FhirCodeEnum {
   // Private underscore constructor for internal use.
-  MeasureReportType._({
+  const MeasureReportType._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -13,7 +74,6 @@ class MeasureReportType extends FhirCodeEnum {
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.objectPath = 'Code',
   }) : super._();
 
   /// Public factory if you want a fallback approach or custom creation.
@@ -27,12 +87,13 @@ class MeasureReportType extends FhirCodeEnum {
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
-    String objectPath = 'Code',
   }) {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
+    final valueEnum = MeasureReportTypeEnum.fromString(valueString);
     return MeasureReportType._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -40,12 +101,8 @@ class MeasureReportType extends FhirCodeEnum {
       id: id,
       extension_: extension_,
       disallowExtensions: disallowExtensions,
-      objectPath: objectPath,
     );
   }
-
-  /// Create empty [MeasureReportType] with element only
-  factory MeasureReportType.empty() => MeasureReportType._(valueString: '');
 
   /// Factory constructor to create [MeasureReportType]
   /// from JSON.
@@ -53,10 +110,11 @@ class MeasureReportType extends FhirCodeEnum {
     Map<String, dynamic> json,
   ) {
     final value = json['value'] as String?;
+    final valueEnum = MeasureReportTypeEnum.fromString(value);
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return MeasureReportType.elementOnly.withElement(element);
+      return MeasureReportType._(valueString: null, element: element);
     } else if (value == null && element == null) {
       throw ArgumentError(
         'MeasureReportType cannot be constructed from JSON.',
@@ -64,60 +122,73 @@ class MeasureReportType extends FhirCodeEnum {
     }
     return MeasureReportType._(
       valueString: value,
+      valueEnum: valueEnum,
       element: element,
     );
   }
 
+  /// An actual enum that can be used for MeasureReportType
+  final MeasureReportTypeEnum? valueEnum;
+
   /// individual
-  static final MeasureReportType individual = MeasureReportType._(
+  static const MeasureReportType individual = MeasureReportType._(
     valueString: 'individual',
-    system: 'http://hl7.org/fhir/ValueSet/measure-report-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Individual'.toFhirString,
+    valueEnum: MeasureReportTypeEnum.individual,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/measure-report-type',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Individual',
+    ),
   );
 
   /// subject_list
-  static final MeasureReportType subject_list = MeasureReportType._(
+  static const MeasureReportType subjectList = MeasureReportType._(
     valueString: 'subject-list',
-    system: 'http://hl7.org/fhir/ValueSet/measure-report-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Subject List'.toFhirString,
+    valueEnum: MeasureReportTypeEnum.subjectList,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/measure-report-type',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Subject List',
+    ),
   );
 
   /// summary
-  static final MeasureReportType summary = MeasureReportType._(
+  static const MeasureReportType summary = MeasureReportType._(
     valueString: 'summary',
-    system: 'http://hl7.org/fhir/ValueSet/measure-report-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Summary'.toFhirString,
+    valueEnum: MeasureReportTypeEnum.summary,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/measure-report-type',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Summary',
+    ),
   );
 
   /// data_collection
-  static final MeasureReportType data_collection = MeasureReportType._(
+  static const MeasureReportType dataCollection = MeasureReportType._(
     valueString: 'data-collection',
-    system: 'http://hl7.org/fhir/ValueSet/measure-report-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Data Collection'.toFhirString,
+    valueEnum: MeasureReportTypeEnum.dataCollection,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/measure-report-type',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Data Collection',
+    ),
   );
-
-  /// For instances where an Element is present but not value
-  static final MeasureReportType elementOnly =
-      MeasureReportType._(valueString: '');
 
   /// List of all enum-like values
   static final List<MeasureReportType> values = [
     individual,
-    subject_list,
+    subjectList,
     summary,
-    data_collection,
+    dataCollection,
   ];
-
-  /// Clones the current instance
-  @override
-  MeasureReportType clone() => MeasureReportType._(
-        valueString: valueString,
-        element: element?.clone() as Element?,
-      );
 
   /// Returns the enum value with an element attached
   MeasureReportType withElement(Element? newElement) {
@@ -138,36 +209,56 @@ class MeasureReportType extends FhirCodeEnum {
   @override
   String toString() => valueString ?? '';
 
-  /// Creates a modified copy with updated properties.
   @override
-  MeasureReportType copyWith({
-    dynamic newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
+  MeasureReportType clone() => copyWith();
+
+  /// Creates a new instance with the specified fields replaced.
+  @override
+  MeasureReportTypeCopyWithImpl<MeasureReportType> get copyWith =>
+      MeasureReportTypeCopyWithImpl<MeasureReportType>(
+        this,
+        (v) => v as MeasureReportType,
+      );
+}
+
+/// The generated implementation of the copyWith helper for Element.
+/// The call method uses parameters of type Object? with a default value of
+/// [fhirSentinel] so that omitted parameters retain the sentinel value while
+/// explicit nulls do not.
+class MeasureReportTypeCopyWithImpl<T> extends $FhirCodeCopyWithImpl<T> {
+  /// Constructor for the copyWith implementation.
+  MeasureReportTypeCopyWithImpl(super._value, super._then);
+
+  @override
+  T call({
+    Object? newValue = fhirSentinel,
+    Object? element = fhirSentinel,
+    Object? id = fhirSentinel,
+    Object? extension_ = fhirSentinel,
+    Object? disallowExtensions = fhirSentinel,
   }) {
-    if (newValue is! String?) {
+    if (!identical(newValue, fhirSentinel) && newValue is! String?) {
       throw ArgumentError(
-        'Invalid input for MeasureReportType: $newValue',
+        'newValue must be a String or null, but found ${newValue.runtimeType}',
+        'newValue',
       );
     }
-    return MeasureReportType._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
+    return _then(
+      MeasureReportType(
+        identical(newValue, fhirSentinel)
+            ? _value.valueString
+            : newValue as String?,
+        element: identical(element, fhirSentinel)
+            ? _value.element
+            : element as Element?,
+        id: identical(id, fhirSentinel) ? _value.id : id as FhirString?,
+        extension_: identical(extension_, fhirSentinel)
+            ? _value.extension_
+            : extension_ as List<FhirExtension>?,
+        disallowExtensions: identical(disallowExtensions, fhirSentinel)
+            ? _value.disallowExtensions
+            : disallowExtensions as bool?,
       ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

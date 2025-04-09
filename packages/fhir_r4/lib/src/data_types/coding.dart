@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
+part 'coding.g.dart';
+
 /// [Coding]
 /// A reference to a code defined by a terminology system.
 class Coding extends DataType
@@ -35,33 +37,22 @@ class Coding extends DataType
     this.display,
     this.userSelected,
     super.disallowExtensions,
-    super.objectPath = 'Coding',
   });
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory Coding.empty() => const Coding();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Coding.fromJson(
     Map<String, dynamic> json,
   ) {
-    final objectPath = json['resourceType'] as String? ?? 'Coding';
     return Coding(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -69,31 +60,26 @@ class Coding extends DataType
         json,
         'system',
         FhirUri.fromJson,
-        '$objectPath.system',
       ),
       version: JsonParser.parsePrimitive<FhirString>(
         json,
         'version',
         FhirString.fromJson,
-        '$objectPath.version',
       ),
       code: JsonParser.parsePrimitive<FhirCode>(
         json,
         'code',
         FhirCode.fromJson,
-        '$objectPath.code',
       ),
       display: JsonParser.parsePrimitive<FhirString>(
         json,
         'display',
         FhirString.fromJson,
-        '$objectPath.display',
       ),
       userSelected: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'userSelected',
         FhirBoolean.fromJson,
-        '$objectPath.userSelected',
       ),
     );
   }
@@ -259,312 +245,19 @@ class Coding extends DataType
     return json;
   }
 
-  /// Lists the JSON keys for the object.
   @override
-  List<String> listChildrenNames() {
-    return [
-      'id',
-      'extension',
-      'system',
-      'version',
-      'code',
-      'display',
-      'userSelected',
-    ];
-  }
+  Coding clone() => copyWith();
 
-  /// Retrieves all matching child fields by name.
-  ///Optionally validates the name.
+  /// Copy function for [Coding]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<FhirBase> getChildrenByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    final fields = <FhirBase>[];
-    switch (fieldName) {
-      case 'id':
-        if (id != null) {
-          fields.add(id!);
-        }
-      case 'extension':
-        if (extension_ != null) {
-          fields.addAll(extension_!);
-        }
-      case 'system':
-        if (system != null) {
-          fields.add(system!);
-        }
-      case 'version':
-        if (version != null) {
-          fields.add(version!);
-        }
-      case 'code':
-        if (code != null) {
-          fields.add(code!);
-        }
-      case 'display':
-        if (display != null) {
-          fields.add(display!);
-        }
-      case 'userSelected':
-        if (userSelected != null) {
-          fields.add(userSelected!);
-        }
-      default:
-        if (checkValid) {
-          throw ArgumentError('Invalid name: $fieldName');
-        }
-    }
-    return fields;
-  }
-
-  /// Retrieves a single field value by its name.
-  @override
-  FhirBase? getChildByName(String name) {
-    final values = getChildrenByName(name);
-    if (values.length > 1) {
-      throw StateError('Too many values for $name found');
-    }
-    return values.isNotEmpty ? values.first : null;
-  }
-
-  @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
-
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'system':
-        {
-          if (child is FhirUri) {
-            return copyWith(system: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'version':
-        {
-          if (child is FhirString) {
-            return copyWith(version: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'code':
-        {
-          if (child is FhirCode) {
-            return copyWith(code: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'display':
-        {
-          if (child is FhirString) {
-            return copyWith(display: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'userSelected':
-        {
-          if (child is FhirBoolean) {
-            return copyWith(userSelected: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
-  @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'system':
-        return ['FhirUri'];
-      case 'version':
-        return ['FhirString'];
-      case 'code':
-        return ['FhirCode'];
-      case 'display':
-        return ['FhirString'];
-      case 'userSelected':
-        return ['FhirBoolean'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [Coding]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  Coding createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
-          );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'system':
-        {
-          return copyWith(
-            system: FhirUri.empty(),
-          );
-        }
-      case 'version':
-        {
-          return copyWith(
-            version: FhirString.empty(),
-          );
-        }
-      case 'code':
-        {
-          return copyWith(
-            code: FhirCode.empty(),
-          );
-        }
-      case 'display':
-        {
-          return copyWith(
-            display: FhirString.empty(),
-          );
-        }
-      case 'userSelected':
-        {
-          return copyWith(
-            userSelected: FhirBoolean.empty(),
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  Coding clear({
-    bool id = false,
-    bool extension_ = false,
-    bool system = false,
-    bool version = false,
-    bool code = false,
-    bool display = false,
-    bool userSelected = false,
-  }) {
-    return Coding(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      system: system ? null : this.system,
-      version: version ? null : this.version,
-      code: code ? null : this.code,
-      display: display ? null : this.display,
-      userSelected: userSelected ? null : this.userSelected,
-    );
-  }
-
-  @override
-  Coding clone() => throw UnimplementedError();
-  @override
-  Coding copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    FhirUri? system,
-    FhirString? version,
-    FhirCode? code,
-    FhirString? display,
-    FhirBoolean? userSelected,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = objectPath ?? this.objectPath;
-    return Coding(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      system: system?.copyWith(
-            objectPath: '$newObjectPath.system',
-          ) ??
-          this.system,
-      version: version?.copyWith(
-            objectPath: '$newObjectPath.version',
-          ) ??
-          this.version,
-      code: code?.copyWith(
-            objectPath: '$newObjectPath.code',
-          ) ??
-          this.code,
-      display: display?.copyWith(
-            objectPath: '$newObjectPath.display',
-          ) ??
-          this.display,
-      userSelected: userSelected?.copyWith(
-            objectPath: '$newObjectPath.userSelected',
-          ) ??
-          this.userSelected,
-    );
-  }
+  $CodingCopyWith<Coding> get copyWith => _$CodingCopyWithImpl<Coding>(
+        this,
+        (value) => value,
+      );
 
   /// Performs a deep comparison between two instances.
   @override

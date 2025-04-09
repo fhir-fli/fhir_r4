@@ -1,12 +1,108 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for CarePlanActivityStatus
+enum CarePlanActivityStatusEnum {
+  /// not-started
+  notStarted,
+
+  /// scheduled
+  scheduled,
+
+  /// in-progress
+  inProgress,
+
+  /// on-hold
+  onHold,
+
+  /// completed
+  completed,
+
+  /// cancelled
+  cancelled,
+
+  /// stopped
+  stopped,
+
+  /// unknown
+  unknown,
+
+  /// entered-in-error
+  enteredInError,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case CarePlanActivityStatusEnum.notStarted:
+        return 'not-started';
+      case CarePlanActivityStatusEnum.scheduled:
+        return 'scheduled';
+      case CarePlanActivityStatusEnum.inProgress:
+        return 'in-progress';
+      case CarePlanActivityStatusEnum.onHold:
+        return 'on-hold';
+      case CarePlanActivityStatusEnum.completed:
+        return 'completed';
+      case CarePlanActivityStatusEnum.cancelled:
+        return 'cancelled';
+      case CarePlanActivityStatusEnum.stopped:
+        return 'stopped';
+      case CarePlanActivityStatusEnum.unknown:
+        return 'unknown';
+      case CarePlanActivityStatusEnum.enteredInError:
+        return 'entered-in-error';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static CarePlanActivityStatusEnum? fromJson(dynamic json) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return CarePlanActivityStatusEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static CarePlanActivityStatusEnum? fromString(String? value) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'not-started':
+        return CarePlanActivityStatusEnum.notStarted;
+      case 'scheduled':
+        return CarePlanActivityStatusEnum.scheduled;
+      case 'in-progress':
+        return CarePlanActivityStatusEnum.inProgress;
+      case 'on-hold':
+        return CarePlanActivityStatusEnum.onHold;
+      case 'completed':
+        return CarePlanActivityStatusEnum.completed;
+      case 'cancelled':
+        return CarePlanActivityStatusEnum.cancelled;
+      case 'stopped':
+        return CarePlanActivityStatusEnum.stopped;
+      case 'unknown':
+        return CarePlanActivityStatusEnum.unknown;
+      case 'entered-in-error':
+        return CarePlanActivityStatusEnum.enteredInError;
+    }
+    return null;
+  }
+}
+
 /// Codes that reflect the current state of a care plan activity within its
 /// overall life cycle.
 class CarePlanActivityStatus extends FhirCodeEnum {
   // Private underscore constructor for internal use.
-  CarePlanActivityStatus._({
+  const CarePlanActivityStatus._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -14,7 +110,6 @@ class CarePlanActivityStatus extends FhirCodeEnum {
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.objectPath = 'Code',
   }) : super._();
 
   /// Public factory if you want a fallback approach or custom creation.
@@ -28,12 +123,13 @@ class CarePlanActivityStatus extends FhirCodeEnum {
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
-    String objectPath = 'Code',
   }) {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
+    final valueEnum = CarePlanActivityStatusEnum.fromString(valueString);
     return CarePlanActivityStatus._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -41,13 +137,8 @@ class CarePlanActivityStatus extends FhirCodeEnum {
       id: id,
       extension_: extension_,
       disallowExtensions: disallowExtensions,
-      objectPath: objectPath,
     );
   }
-
-  /// Create empty [CarePlanActivityStatus] with element only
-  factory CarePlanActivityStatus.empty() =>
-      CarePlanActivityStatus._(valueString: '');
 
   /// Factory constructor to create [CarePlanActivityStatus]
   /// from JSON.
@@ -55,10 +146,11 @@ class CarePlanActivityStatus extends FhirCodeEnum {
     Map<String, dynamic> json,
   ) {
     final value = json['value'] as String?;
+    final valueEnum = CarePlanActivityStatusEnum.fromString(value);
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return CarePlanActivityStatus.elementOnly.withElement(element);
+      return CarePlanActivityStatus._(valueString: null, element: element);
     } else if (value == null && element == null) {
       throw ArgumentError(
         'CarePlanActivityStatus cannot be constructed from JSON.',
@@ -66,106 +158,143 @@ class CarePlanActivityStatus extends FhirCodeEnum {
     }
     return CarePlanActivityStatus._(
       valueString: value,
+      valueEnum: valueEnum,
       element: element,
     );
   }
 
+  /// An actual enum that can be used for CarePlanActivityStatus
+  final CarePlanActivityStatusEnum? valueEnum;
+
   /// not_started
-  static final CarePlanActivityStatus not_started = CarePlanActivityStatus._(
+  static const CarePlanActivityStatus notStarted = CarePlanActivityStatus._(
     valueString: 'not-started',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Not Started'.toFhirString,
+    valueEnum: CarePlanActivityStatusEnum.notStarted,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Not Started',
+    ),
   );
 
   /// scheduled
-  static final CarePlanActivityStatus scheduled = CarePlanActivityStatus._(
+  static const CarePlanActivityStatus scheduled = CarePlanActivityStatus._(
     valueString: 'scheduled',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Scheduled'.toFhirString,
+    valueEnum: CarePlanActivityStatusEnum.scheduled,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Scheduled',
+    ),
   );
 
   /// in_progress
-  static final CarePlanActivityStatus in_progress = CarePlanActivityStatus._(
+  static const CarePlanActivityStatus inProgress = CarePlanActivityStatus._(
     valueString: 'in-progress',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'In Progress'.toFhirString,
+    valueEnum: CarePlanActivityStatusEnum.inProgress,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'In Progress',
+    ),
   );
 
   /// on_hold
-  static final CarePlanActivityStatus on_hold = CarePlanActivityStatus._(
+  static const CarePlanActivityStatus onHold = CarePlanActivityStatus._(
     valueString: 'on-hold',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'On Hold'.toFhirString,
+    valueEnum: CarePlanActivityStatusEnum.onHold,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'On Hold',
+    ),
   );
 
   /// completed
-  static final CarePlanActivityStatus completed = CarePlanActivityStatus._(
+  static const CarePlanActivityStatus completed = CarePlanActivityStatus._(
     valueString: 'completed',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Completed'.toFhirString,
+    valueEnum: CarePlanActivityStatusEnum.completed,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Completed',
+    ),
   );
 
   /// cancelled
-  static final CarePlanActivityStatus cancelled = CarePlanActivityStatus._(
+  static const CarePlanActivityStatus cancelled = CarePlanActivityStatus._(
     valueString: 'cancelled',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Cancelled'.toFhirString,
+    valueEnum: CarePlanActivityStatusEnum.cancelled,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Cancelled',
+    ),
   );
 
   /// stopped
-  static final CarePlanActivityStatus stopped = CarePlanActivityStatus._(
+  static const CarePlanActivityStatus stopped = CarePlanActivityStatus._(
     valueString: 'stopped',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Stopped'.toFhirString,
+    valueEnum: CarePlanActivityStatusEnum.stopped,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Stopped',
+    ),
   );
 
   /// unknown
-  static final CarePlanActivityStatus unknown = CarePlanActivityStatus._(
+  static const CarePlanActivityStatus unknown = CarePlanActivityStatus._(
     valueString: 'unknown',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Unknown'.toFhirString,
+    valueEnum: CarePlanActivityStatusEnum.unknown,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Unknown',
+    ),
   );
 
   /// entered_in_error
-  static final CarePlanActivityStatus entered_in_error =
-      CarePlanActivityStatus._(
+  static const CarePlanActivityStatus enteredInError = CarePlanActivityStatus._(
     valueString: 'entered-in-error',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Entered in Error'.toFhirString,
+    valueEnum: CarePlanActivityStatusEnum.enteredInError,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Entered in Error',
+    ),
   );
-
-  /// For instances where an Element is present but not value
-  static final CarePlanActivityStatus elementOnly =
-      CarePlanActivityStatus._(valueString: '');
 
   /// List of all enum-like values
   static final List<CarePlanActivityStatus> values = [
-    not_started,
+    notStarted,
     scheduled,
-    in_progress,
-    on_hold,
+    inProgress,
+    onHold,
     completed,
     cancelled,
     stopped,
     unknown,
-    entered_in_error,
+    enteredInError,
   ];
-
-  /// Clones the current instance
-  @override
-  CarePlanActivityStatus clone() => CarePlanActivityStatus._(
-        valueString: valueString,
-        element: element?.clone() as Element?,
-      );
 
   /// Returns the enum value with an element attached
   CarePlanActivityStatus withElement(Element? newElement) {
@@ -186,36 +315,56 @@ class CarePlanActivityStatus extends FhirCodeEnum {
   @override
   String toString() => valueString ?? '';
 
-  /// Creates a modified copy with updated properties.
   @override
-  CarePlanActivityStatus copyWith({
-    dynamic newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
+  CarePlanActivityStatus clone() => copyWith();
+
+  /// Creates a new instance with the specified fields replaced.
+  @override
+  CarePlanActivityStatusCopyWithImpl<CarePlanActivityStatus> get copyWith =>
+      CarePlanActivityStatusCopyWithImpl<CarePlanActivityStatus>(
+        this,
+        (v) => v as CarePlanActivityStatus,
+      );
+}
+
+/// The generated implementation of the copyWith helper for Element.
+/// The call method uses parameters of type Object? with a default value of
+/// [fhirSentinel] so that omitted parameters retain the sentinel value while
+/// explicit nulls do not.
+class CarePlanActivityStatusCopyWithImpl<T> extends $FhirCodeCopyWithImpl<T> {
+  /// Constructor for the copyWith implementation.
+  CarePlanActivityStatusCopyWithImpl(super._value, super._then);
+
+  @override
+  T call({
+    Object? newValue = fhirSentinel,
+    Object? element = fhirSentinel,
+    Object? id = fhirSentinel,
+    Object? extension_ = fhirSentinel,
+    Object? disallowExtensions = fhirSentinel,
   }) {
-    if (newValue is! String?) {
+    if (!identical(newValue, fhirSentinel) && newValue is! String?) {
       throw ArgumentError(
-        'Invalid input for CarePlanActivityStatus: $newValue',
+        'newValue must be a String or null, but found ${newValue.runtimeType}',
+        'newValue',
       );
     }
-    return CarePlanActivityStatus._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
+    return _then(
+      CarePlanActivityStatus(
+        identical(newValue, fhirSentinel)
+            ? _value.valueString
+            : newValue as String?,
+        element: identical(element, fhirSentinel)
+            ? _value.element
+            : element as Element?,
+        id: identical(id, fhirSentinel) ? _value.id : id as FhirString?,
+        extension_: identical(extension_, fhirSentinel)
+            ? _value.extension_
+            : extension_ as List<FhirExtension>?,
+        disallowExtensions: identical(disallowExtensions, fhirSentinel)
+            ? _value.disallowExtensions
+            : disallowExtensions as bool?,
       ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

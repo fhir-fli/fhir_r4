@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
+part 'marketing_status.g.dart';
+
 /// [MarketingStatus]
 /// The marketing status describes the date when a medicinal product is
 /// actually put on the market or the date as of which it is no longer
@@ -20,45 +22,29 @@ class MarketingStatus extends BackboneType {
     this.dateRange,
     this.restoreDate,
     super.disallowExtensions,
-    super.objectPath = 'MarketingStatus',
   });
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory MarketingStatus.empty() => MarketingStatus(
-        status: CodeableConcept.empty(),
-      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MarketingStatus.fromJson(
     Map<String, dynamic> json,
   ) {
-    final objectPath = json['resourceType'] as String? ?? 'MarketingStatus';
     return MarketingStatus(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -66,31 +52,26 @@ class MarketingStatus extends BackboneType {
         json,
         'country',
         CodeableConcept.fromJson,
-        '$objectPath.country',
       ),
       jurisdiction: JsonParser.parseObject<CodeableConcept>(
         json,
         'jurisdiction',
         CodeableConcept.fromJson,
-        '$objectPath.jurisdiction',
       ),
       status: JsonParser.parseObject<CodeableConcept>(
         json,
         'status',
         CodeableConcept.fromJson,
-        '$objectPath.status',
       )!,
       dateRange: JsonParser.parseObject<Period>(
         json,
         'dateRange',
         Period.fromJson,
-        '$objectPath.dateRange',
       ),
       restoreDate: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'restoreDate',
         FhirDateTime.fromJson,
-        '$objectPath.restoreDate',
       ),
     );
   }
@@ -271,350 +252,20 @@ class MarketingStatus extends BackboneType {
     return json;
   }
 
-  /// Lists the JSON keys for the object.
   @override
-  List<String> listChildrenNames() {
-    return [
-      'id',
-      'extension',
-      'modifierExtension',
-      'country',
-      'jurisdiction',
-      'status',
-      'dateRange',
-      'restoreDate',
-    ];
-  }
+  MarketingStatus clone() => copyWith();
 
-  /// Retrieves all matching child fields by name.
-  ///Optionally validates the name.
+  /// Copy function for [MarketingStatus]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<FhirBase> getChildrenByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    final fields = <FhirBase>[];
-    switch (fieldName) {
-      case 'id':
-        if (id != null) {
-          fields.add(id!);
-        }
-      case 'extension':
-        if (extension_ != null) {
-          fields.addAll(extension_!);
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          fields.addAll(modifierExtension!);
-        }
-      case 'country':
-        if (country != null) {
-          fields.add(country!);
-        }
-      case 'jurisdiction':
-        if (jurisdiction != null) {
-          fields.add(jurisdiction!);
-        }
-      case 'status':
-        fields.add(status);
-      case 'dateRange':
-        if (dateRange != null) {
-          fields.add(dateRange!);
-        }
-      case 'restoreDate':
-        if (restoreDate != null) {
-          fields.add(restoreDate!);
-        }
-      default:
-        if (checkValid) {
-          throw ArgumentError('Invalid name: $fieldName');
-        }
-    }
-    return fields;
-  }
-
-  /// Retrieves a single field value by its name.
-  @override
-  FhirBase? getChildByName(String name) {
-    final values = getChildrenByName(name);
-    if (values.length > 1) {
-      throw StateError('Too many values for $name found');
-    }
-    return values.isNotEmpty ? values.first : null;
-  }
-
-  @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
-
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'country':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(country: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'jurisdiction':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(jurisdiction: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'status':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(status: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'dateRange':
-        {
-          if (child is Period) {
-            return copyWith(dateRange: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'restoreDate':
-        {
-          if (child is FhirDateTime) {
-            return copyWith(restoreDate: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
-  @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'country':
-        return ['CodeableConcept'];
-      case 'jurisdiction':
-        return ['CodeableConcept'];
-      case 'status':
-        return ['CodeableConcept'];
-      case 'dateRange':
-        return ['Period'];
-      case 'restoreDate':
-        return ['FhirDateTime'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [MarketingStatus]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  MarketingStatus createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
-          );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'country':
-        {
-          return copyWith(
-            country: CodeableConcept.empty(),
-          );
-        }
-      case 'jurisdiction':
-        {
-          return copyWith(
-            jurisdiction: CodeableConcept.empty(),
-          );
-        }
-      case 'status':
-        {
-          return copyWith(
-            status: CodeableConcept.empty(),
-          );
-        }
-      case 'dateRange':
-        {
-          return copyWith(
-            dateRange: Period.empty(),
-          );
-        }
-      case 'restoreDate':
-        {
-          return copyWith(
-            restoreDate: FhirDateTime.empty(),
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  MarketingStatus clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool country = false,
-    bool jurisdiction = false,
-    bool dateRange = false,
-    bool restoreDate = false,
-  }) {
-    return MarketingStatus(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      country: country ? null : this.country,
-      jurisdiction: jurisdiction ? null : this.jurisdiction,
-      status: status,
-      dateRange: dateRange ? null : this.dateRange,
-      restoreDate: restoreDate ? null : this.restoreDate,
-    );
-  }
-
-  @override
-  MarketingStatus clone() => throw UnimplementedError();
-  @override
-  MarketingStatus copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    CodeableConcept? country,
-    CodeableConcept? jurisdiction,
-    CodeableConcept? status,
-    Period? dateRange,
-    FhirDateTime? restoreDate,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = objectPath ?? this.objectPath;
-    return MarketingStatus(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      country: country?.copyWith(
-            objectPath: '$newObjectPath.country',
-          ) ??
-          this.country,
-      jurisdiction: jurisdiction?.copyWith(
-            objectPath: '$newObjectPath.jurisdiction',
-          ) ??
-          this.jurisdiction,
-      status: status?.copyWith(
-            objectPath: '$newObjectPath.status',
-          ) ??
-          this.status,
-      dateRange: dateRange?.copyWith(
-            objectPath: '$newObjectPath.dateRange',
-          ) ??
-          this.dateRange,
-      restoreDate: restoreDate?.copyWith(
-            objectPath: '$newObjectPath.restoreDate',
-          ) ??
-          this.restoreDate,
-    );
-  }
+  $MarketingStatusCopyWith<MarketingStatus> get copyWith =>
+      _$MarketingStatusCopyWithImpl<MarketingStatus>(
+        this,
+        (value) => value,
+      );
 
   /// Performs a deep comparison between two instances.
   @override

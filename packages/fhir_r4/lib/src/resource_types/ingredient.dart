@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
+part 'ingredient.g.dart';
+
 /// [Ingredient]
 /// An ingredient of a manufactured item or pharmaceutical product.
 class Ingredient extends DomainResource {
@@ -26,82 +28,57 @@ class Ingredient extends DomainResource {
     this.manufacturer,
     required this.substance,
   }) : super(
-          objectPath: 'Ingredient',
           resourceType: R4ResourceType.Ingredient,
         );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory Ingredient.empty() => Ingredient(
-        status: PublicationStatus.values.first,
-        role: CodeableConcept.empty(),
-        substance: IngredientSubstance.empty(),
-      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Ingredient.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'Ingredient';
     return Ingredient(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
         FhirMeta.fromJson,
-        '$objectPath.meta',
       ),
       implicitRules: JsonParser.parsePrimitive<FhirUri>(
         json,
         'implicitRules',
         FhirUri.fromJson,
-        '$objectPath.implicitRules',
       ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-        '$objectPath.language',
       ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
         Narrative.fromJson,
-        '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
           ?.map<Resource>(
             (v) => Resource.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.contained',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -109,21 +86,16 @@ class Ingredient extends DomainResource {
         json,
         'identifier',
         Identifier.fromJson,
-        '$objectPath.identifier',
       ),
       status: JsonParser.parsePrimitive<PublicationStatus>(
         json,
         'status',
         PublicationStatus.fromJson,
-        '$objectPath.status',
       )!,
       for_: (json['for'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.for',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -131,15 +103,11 @@ class Ingredient extends DomainResource {
         json,
         'role',
         CodeableConcept.fromJson,
-        '$objectPath.role',
       )!,
       function_: (json['function'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.function',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -147,15 +115,11 @@ class Ingredient extends DomainResource {
         json,
         'allergenicIndicator',
         FhirBoolean.fromJson,
-        '$objectPath.allergenicIndicator',
       ),
       manufacturer: (json['manufacturer'] as List<dynamic>?)
           ?.map<IngredientManufacturer>(
             (v) => IngredientManufacturer.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.manufacturer',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -163,7 +127,6 @@ class Ingredient extends DomainResource {
         json,
         'substance',
         IngredientSubstance.fromJson,
-        '$objectPath.substance',
       )!,
     );
   }
@@ -383,613 +346,20 @@ class Ingredient extends DomainResource {
     return json;
   }
 
-  /// Lists the JSON keys for the object.
   @override
-  List<String> listChildrenNames() {
-    return [
-      'id',
-      'meta',
-      'implicitRules',
-      'language',
-      'text',
-      'contained',
-      'extension',
-      'modifierExtension',
-      'identifier',
-      'status',
-      'for',
-      'role',
-      'function',
-      'allergenicIndicator',
-      'manufacturer',
-      'substance',
-    ];
-  }
+  Ingredient clone() => copyWith();
 
-  /// Retrieves all matching child fields by name.
-  ///Optionally validates the name.
+  /// Copy function for [Ingredient]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<FhirBase> getChildrenByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    final fields = <FhirBase>[];
-    switch (fieldName) {
-      case 'id':
-        if (id != null) {
-          fields.add(id!);
-        }
-      case 'meta':
-        if (meta != null) {
-          fields.add(meta!);
-        }
-      case 'implicitRules':
-        if (implicitRules != null) {
-          fields.add(implicitRules!);
-        }
-      case 'language':
-        if (language != null) {
-          fields.add(language!);
-        }
-      case 'text':
-        if (text != null) {
-          fields.add(text!);
-        }
-      case 'contained':
-        if (contained != null) {
-          fields.addAll(contained!);
-        }
-      case 'extension':
-        if (extension_ != null) {
-          fields.addAll(extension_!);
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          fields.addAll(modifierExtension!);
-        }
-      case 'identifier':
-        if (identifier != null) {
-          fields.add(identifier!);
-        }
-      case 'status':
-        fields.add(status);
-      case 'for':
-        if (for_ != null) {
-          fields.addAll(for_!);
-        }
-      case 'role':
-        fields.add(role);
-      case 'function':
-        if (function_ != null) {
-          fields.addAll(function_!);
-        }
-      case 'allergenicIndicator':
-        if (allergenicIndicator != null) {
-          fields.add(allergenicIndicator!);
-        }
-      case 'manufacturer':
-        if (manufacturer != null) {
-          fields.addAll(manufacturer!);
-        }
-      case 'substance':
-        fields.add(substance);
-      default:
-        if (checkValid) {
-          throw ArgumentError('Invalid name: $fieldName');
-        }
-    }
-    return fields;
-  }
-
-  /// Retrieves a single field value by its name.
-  @override
-  FhirBase? getChildByName(String name) {
-    final values = getChildrenByName(name);
-    if (values.length > 1) {
-      throw StateError('Too many values for $name found');
-    }
-    return values.isNotEmpty ? values.first : null;
-  }
-
-  @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
-
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'meta':
-        {
-          if (child is FhirMeta) {
-            return copyWith(meta: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'implicitRules':
-        {
-          if (child is FhirUri) {
-            return copyWith(implicitRules: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'language':
-        {
-          if (child is CommonLanguages) {
-            return copyWith(language: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'text':
-        {
-          if (child is Narrative) {
-            return copyWith(text: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'contained':
-        {
-          if (child is List<Resource>) {
-            // Add all elements from passed list
-            final newList = [...?contained, ...child];
-            return copyWith(contained: newList);
-          } else if (child is Resource) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?contained,
-              child,
-            ];
-            return copyWith(contained: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'identifier':
-        {
-          if (child is Identifier) {
-            return copyWith(identifier: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'status':
-        {
-          if (child is PublicationStatus) {
-            return copyWith(status: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'for':
-        {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?for_, ...child];
-            return copyWith(for_: newList);
-          } else if (child is Reference) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?for_,
-              child,
-            ];
-            return copyWith(for_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'role':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(role: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'function':
-        {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?function_, ...child];
-            return copyWith(function_: newList);
-          } else if (child is CodeableConcept) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?function_,
-              child,
-            ];
-            return copyWith(function_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'allergenicIndicator':
-        {
-          if (child is FhirBoolean) {
-            return copyWith(allergenicIndicator: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'manufacturer':
-        {
-          if (child is List<IngredientManufacturer>) {
-            // Add all elements from passed list
-            final newList = [...?manufacturer, ...child];
-            return copyWith(manufacturer: newList);
-          } else if (child is IngredientManufacturer) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?manufacturer,
-              child,
-            ];
-            return copyWith(manufacturer: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'substance':
-        {
-          if (child is IngredientSubstance) {
-            return copyWith(substance: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
-  @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'meta':
-        return ['FhirMeta'];
-      case 'implicitRules':
-        return ['FhirUri'];
-      case 'language':
-        return ['FhirCode'];
-      case 'text':
-        return ['Narrative'];
-      case 'contained':
-        return ['Resource'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'identifier':
-        return ['Identifier'];
-      case 'status':
-        return ['FhirCode'];
-      case 'for':
-        return ['Reference'];
-      case 'role':
-        return ['CodeableConcept'];
-      case 'function':
-        return ['CodeableConcept'];
-      case 'allergenicIndicator':
-        return ['FhirBoolean'];
-      case 'manufacturer':
-        return ['IngredientManufacturer'];
-      case 'substance':
-        return ['IngredientSubstance'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [Ingredient]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  Ingredient createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
-          );
-        }
-      case 'meta':
-        {
-          return copyWith(
-            meta: FhirMeta.empty(),
-          );
-        }
-      case 'implicitRules':
-        {
-          return copyWith(
-            implicitRules: FhirUri.empty(),
-          );
-        }
-      case 'language':
-        {
-          return copyWith(
-            language: CommonLanguages.empty(),
-          );
-        }
-      case 'text':
-        {
-          return copyWith(
-            text: Narrative.empty(),
-          );
-        }
-      case 'contained':
-        {
-          return copyWith(
-            contained: <Resource>[],
-          );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'identifier':
-        {
-          return copyWith(
-            identifier: Identifier.empty(),
-          );
-        }
-      case 'status':
-        {
-          return copyWith(
-            status: PublicationStatus.empty(),
-          );
-        }
-      case 'for':
-        {
-          return copyWith(
-            for_: <Reference>[],
-          );
-        }
-      case 'role':
-        {
-          return copyWith(
-            role: CodeableConcept.empty(),
-          );
-        }
-      case 'function':
-        {
-          return copyWith(
-            function_: <CodeableConcept>[],
-          );
-        }
-      case 'allergenicIndicator':
-        {
-          return copyWith(
-            allergenicIndicator: FhirBoolean.empty(),
-          );
-        }
-      case 'manufacturer':
-        {
-          return copyWith(
-            manufacturer: <IngredientManufacturer>[],
-          );
-        }
-      case 'substance':
-        {
-          return copyWith(
-            substance: IngredientSubstance.empty(),
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  Ingredient clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool identifier = false,
-    bool for_ = false,
-    bool function_ = false,
-    bool allergenicIndicator = false,
-    bool manufacturer = false,
-  }) {
-    return Ingredient(
-      id: id ? null : this.id,
-      meta: meta ? null : this.meta,
-      implicitRules: implicitRules ? null : this.implicitRules,
-      language: language ? null : this.language,
-      text: text ? null : this.text,
-      contained: contained ? null : this.contained,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      identifier: identifier ? null : this.identifier,
-      status: status,
-      for_: for_ ? null : this.for_,
-      role: role,
-      function_: function_ ? null : this.function_,
-      allergenicIndicator:
-          allergenicIndicator ? null : this.allergenicIndicator,
-      manufacturer: manufacturer ? null : this.manufacturer,
-      substance: substance,
-    );
-  }
-
-  @override
-  Ingredient clone() => throw UnimplementedError();
-  @override
-  Ingredient copyWith({
-    FhirString? id,
-    FhirMeta? meta,
-    FhirUri? implicitRules,
-    CommonLanguages? language,
-    Narrative? text,
-    List<Resource>? contained,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    Identifier? identifier,
-    PublicationStatus? status,
-    List<Reference>? for_,
-    CodeableConcept? role,
-    List<CodeableConcept>? function_,
-    FhirBoolean? allergenicIndicator,
-    List<IngredientManufacturer>? manufacturer,
-    IngredientSubstance? substance,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-  }) {
-    final newObjectPath = objectPath;
-    return Ingredient(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      meta: meta?.copyWith(
-            objectPath: '$newObjectPath.meta',
-          ) ??
-          this.meta,
-      implicitRules: implicitRules?.copyWith(
-            objectPath: '$newObjectPath.implicitRules',
-          ) ??
-          this.implicitRules,
-      language: language?.copyWith(
-            objectPath: '$newObjectPath.language',
-          ) ??
-          this.language,
-      text: text?.copyWith(
-            objectPath: '$newObjectPath.text',
-          ) ??
-          this.text,
-      contained: contained ?? this.contained,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      identifier: identifier?.copyWith(
-            objectPath: '$newObjectPath.identifier',
-          ) ??
-          this.identifier,
-      status: status?.copyWith(
-            objectPath: '$newObjectPath.status',
-          ) ??
-          this.status,
-      for_: for_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.for',
-                ),
-              )
-              .toList() ??
-          this.for_,
-      role: role?.copyWith(
-            objectPath: '$newObjectPath.role',
-          ) ??
-          this.role,
-      function_: function_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.function',
-                ),
-              )
-              .toList() ??
-          this.function_,
-      allergenicIndicator: allergenicIndicator?.copyWith(
-            objectPath: '$newObjectPath.allergenicIndicator',
-          ) ??
-          this.allergenicIndicator,
-      manufacturer: manufacturer
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.manufacturer',
-                ),
-              )
-              .toList() ??
-          this.manufacturer,
-      substance: substance?.copyWith(
-            objectPath: '$newObjectPath.substance',
-          ) ??
-          this.substance,
-    );
-  }
+  $IngredientCopyWith<Ingredient> get copyWith =>
+      _$IngredientCopyWithImpl<Ingredient>(
+        this,
+        (value) => value,
+      );
 
   /// Performs a deep comparison between two instances.
   @override
@@ -1117,46 +487,29 @@ class IngredientManufacturer extends BackboneElement {
     this.role,
     required this.manufacturer,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'Ingredient.manufacturer',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory IngredientManufacturer.empty() => IngredientManufacturer(
-        manufacturer: Reference.empty(),
-      );
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory IngredientManufacturer.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'Ingredient.manufacturer';
     return IngredientManufacturer(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -1164,13 +517,11 @@ class IngredientManufacturer extends BackboneElement {
         json,
         'role',
         IngredientManufacturerRole.fromJson,
-        '$objectPath.role',
       ),
       manufacturer: JsonParser.parseObject<Reference>(
         json,
         'manufacturer',
         Reference.fromJson,
-        '$objectPath.manufacturer',
       )!,
     );
   }
@@ -1310,266 +661,20 @@ class IngredientManufacturer extends BackboneElement {
     return json;
   }
 
-  /// Lists the JSON keys for the object.
   @override
-  List<String> listChildrenNames() {
-    return [
-      'id',
-      'extension',
-      'modifierExtension',
-      'role',
-      'manufacturer',
-    ];
-  }
+  IngredientManufacturer clone() => copyWith();
 
-  /// Retrieves all matching child fields by name.
-  ///Optionally validates the name.
+  /// Copy function for [IngredientManufacturer]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<FhirBase> getChildrenByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    final fields = <FhirBase>[];
-    switch (fieldName) {
-      case 'id':
-        if (id != null) {
-          fields.add(id!);
-        }
-      case 'extension':
-        if (extension_ != null) {
-          fields.addAll(extension_!);
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          fields.addAll(modifierExtension!);
-        }
-      case 'role':
-        if (role != null) {
-          fields.add(role!);
-        }
-      case 'manufacturer':
-        fields.add(manufacturer);
-      default:
-        if (checkValid) {
-          throw ArgumentError('Invalid name: $fieldName');
-        }
-    }
-    return fields;
-  }
-
-  /// Retrieves a single field value by its name.
-  @override
-  FhirBase? getChildByName(String name) {
-    final values = getChildrenByName(name);
-    if (values.length > 1) {
-      throw StateError('Too many values for $name found');
-    }
-    return values.isNotEmpty ? values.first : null;
-  }
-
-  @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
-
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'role':
-        {
-          if (child is IngredientManufacturerRole) {
-            return copyWith(role: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'manufacturer':
-        {
-          if (child is Reference) {
-            return copyWith(manufacturer: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
-  @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'role':
-        return ['FhirCode'];
-      case 'manufacturer':
-        return ['Reference'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [IngredientManufacturer]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  IngredientManufacturer createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
-          );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'role':
-        {
-          return copyWith(
-            role: IngredientManufacturerRole.empty(),
-          );
-        }
-      case 'manufacturer':
-        {
-          return copyWith(
-            manufacturer: Reference.empty(),
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  IngredientManufacturer clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool role = false,
-  }) {
-    return IngredientManufacturer(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      role: role ? null : this.role,
-      manufacturer: manufacturer,
-    );
-  }
-
-  @override
-  IngredientManufacturer clone() => throw UnimplementedError();
-  @override
-  IngredientManufacturer copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    IngredientManufacturerRole? role,
-    Reference? manufacturer,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return IngredientManufacturer(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      role: role?.copyWith(
-            objectPath: '$newObjectPath.role',
-          ) ??
-          this.role,
-      manufacturer: manufacturer?.copyWith(
-            objectPath: '$newObjectPath.manufacturer',
-          ) ??
-          this.manufacturer,
-    );
-  }
+  $IngredientManufacturerCopyWith<IngredientManufacturer> get copyWith =>
+      _$IngredientManufacturerCopyWithImpl<IngredientManufacturer>(
+        this,
+        (value) => value,
+      );
 
   /// Performs a deep comparison between two instances.
   @override
@@ -1626,46 +731,29 @@ class IngredientSubstance extends BackboneElement {
     required this.code,
     this.strength,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'Ingredient.substance',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory IngredientSubstance.empty() => IngredientSubstance(
-        code: CodeableReference.empty(),
-      );
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory IngredientSubstance.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'Ingredient.substance';
     return IngredientSubstance(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -1673,15 +761,11 @@ class IngredientSubstance extends BackboneElement {
         json,
         'code',
         CodeableReference.fromJson,
-        '$objectPath.code',
       )!,
       strength: (json['strength'] as List<dynamic>?)
           ?.map<IngredientStrength>(
             (v) => IngredientStrength.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.strength',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -1824,279 +908,20 @@ class IngredientSubstance extends BackboneElement {
     return json;
   }
 
-  /// Lists the JSON keys for the object.
   @override
-  List<String> listChildrenNames() {
-    return [
-      'id',
-      'extension',
-      'modifierExtension',
-      'code',
-      'strength',
-    ];
-  }
+  IngredientSubstance clone() => copyWith();
 
-  /// Retrieves all matching child fields by name.
-  ///Optionally validates the name.
+  /// Copy function for [IngredientSubstance]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<FhirBase> getChildrenByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    final fields = <FhirBase>[];
-    switch (fieldName) {
-      case 'id':
-        if (id != null) {
-          fields.add(id!);
-        }
-      case 'extension':
-        if (extension_ != null) {
-          fields.addAll(extension_!);
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          fields.addAll(modifierExtension!);
-        }
-      case 'code':
-        fields.add(code);
-      case 'strength':
-        if (strength != null) {
-          fields.addAll(strength!);
-        }
-      default:
-        if (checkValid) {
-          throw ArgumentError('Invalid name: $fieldName');
-        }
-    }
-    return fields;
-  }
-
-  /// Retrieves a single field value by its name.
-  @override
-  FhirBase? getChildByName(String name) {
-    final values = getChildrenByName(name);
-    if (values.length > 1) {
-      throw StateError('Too many values for $name found');
-    }
-    return values.isNotEmpty ? values.first : null;
-  }
-
-  @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
-
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'code':
-        {
-          if (child is CodeableReference) {
-            return copyWith(code: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'strength':
-        {
-          if (child is List<IngredientStrength>) {
-            // Add all elements from passed list
-            final newList = [...?strength, ...child];
-            return copyWith(strength: newList);
-          } else if (child is IngredientStrength) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?strength,
-              child,
-            ];
-            return copyWith(strength: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
-  @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'code':
-        return ['CodeableReference'];
-      case 'strength':
-        return ['IngredientStrength'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [IngredientSubstance]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  IngredientSubstance createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
-          );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'code':
-        {
-          return copyWith(
-            code: CodeableReference.empty(),
-          );
-        }
-      case 'strength':
-        {
-          return copyWith(
-            strength: <IngredientStrength>[],
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  IngredientSubstance clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool strength = false,
-  }) {
-    return IngredientSubstance(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      code: code,
-      strength: strength ? null : this.strength,
-    );
-  }
-
-  @override
-  IngredientSubstance clone() => throw UnimplementedError();
-  @override
-  IngredientSubstance copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    CodeableReference? code,
-    List<IngredientStrength>? strength,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return IngredientSubstance(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      code: code?.copyWith(
-            objectPath: '$newObjectPath.code',
-          ) ??
-          this.code,
-      strength: strength
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.strength',
-                ),
-              )
-              .toList() ??
-          this.strength,
-    );
-  }
+  $IngredientSubstanceCopyWith<IngredientSubstance> get copyWith =>
+      _$IngredientSubstanceCopyWithImpl<IngredientSubstance>(
+        this,
+        (value) => value,
+      );
 
   /// Performs a deep comparison between two instances.
   @override
@@ -2162,44 +987,29 @@ class IngredientStrength extends BackboneElement {
     this.country,
     this.referenceStrength,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'Ingredient.substance.strength',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory IngredientStrength.empty() => const IngredientStrength();
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory IngredientStrength.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'Ingredient.substance.strength';
     return IngredientStrength(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -2210,13 +1020,11 @@ class IngredientStrength extends BackboneElement {
           'presentationRatio': Ratio.fromJson,
           'presentationRatioRange': RatioRange.fromJson,
         },
-        objectPath,
       ),
       textPresentation: JsonParser.parsePrimitive<FhirString>(
         json,
         'textPresentation',
         FhirString.fromJson,
-        '$objectPath.textPresentation',
       ),
       concentrationX:
           JsonParser.parsePolymorphic<ConcentrationXIngredientStrength>(
@@ -2225,37 +1033,28 @@ class IngredientStrength extends BackboneElement {
           'concentrationRatio': Ratio.fromJson,
           'concentrationRatioRange': RatioRange.fromJson,
         },
-        objectPath,
       ),
       textConcentration: JsonParser.parsePrimitive<FhirString>(
         json,
         'textConcentration',
         FhirString.fromJson,
-        '$objectPath.textConcentration',
       ),
       measurementPoint: JsonParser.parsePrimitive<FhirString>(
         json,
         'measurementPoint',
         FhirString.fromJson,
-        '$objectPath.measurementPoint',
       ),
       country: (json['country'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.country',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       referenceStrength: (json['referenceStrength'] as List<dynamic>?)
           ?.map<IngredientReferenceStrength>(
             (v) => IngredientReferenceStrength.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.referenceStrength',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -2472,529 +1271,20 @@ class IngredientStrength extends BackboneElement {
     return json;
   }
 
-  /// Lists the JSON keys for the object.
   @override
-  List<String> listChildrenNames() {
-    return [
-      'id',
-      'extension',
-      'modifierExtension',
-      'presentationX',
-      'textPresentation',
-      'concentrationX',
-      'textConcentration',
-      'measurementPoint',
-      'country',
-      'referenceStrength',
-    ];
-  }
+  IngredientStrength clone() => copyWith();
 
-  /// Retrieves all matching child fields by name.
-  ///Optionally validates the name.
+  /// Copy function for [IngredientStrength]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<FhirBase> getChildrenByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    final fields = <FhirBase>[];
-    switch (fieldName) {
-      case 'id':
-        if (id != null) {
-          fields.add(id!);
-        }
-      case 'extension':
-        if (extension_ != null) {
-          fields.addAll(extension_!);
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          fields.addAll(modifierExtension!);
-        }
-      case 'presentation':
-        fields.add(presentationX!);
-      case 'presentationX':
-        fields.add(presentationX!);
-      case 'presentationRatio':
-        if (presentationX is Ratio) {
-          fields.add(presentationX!);
-        }
-      case 'presentationRatioRange':
-        if (presentationX is RatioRange) {
-          fields.add(presentationX!);
-        }
-      case 'textPresentation':
-        if (textPresentation != null) {
-          fields.add(textPresentation!);
-        }
-      case 'concentration':
-        fields.add(concentrationX!);
-      case 'concentrationX':
-        fields.add(concentrationX!);
-      case 'concentrationRatio':
-        if (concentrationX is Ratio) {
-          fields.add(concentrationX!);
-        }
-      case 'concentrationRatioRange':
-        if (concentrationX is RatioRange) {
-          fields.add(concentrationX!);
-        }
-      case 'textConcentration':
-        if (textConcentration != null) {
-          fields.add(textConcentration!);
-        }
-      case 'measurementPoint':
-        if (measurementPoint != null) {
-          fields.add(measurementPoint!);
-        }
-      case 'country':
-        if (country != null) {
-          fields.addAll(country!);
-        }
-      case 'referenceStrength':
-        if (referenceStrength != null) {
-          fields.addAll(referenceStrength!);
-        }
-      default:
-        if (checkValid) {
-          throw ArgumentError('Invalid name: $fieldName');
-        }
-    }
-    return fields;
-  }
-
-  /// Retrieves a single field value by its name.
-  @override
-  FhirBase? getChildByName(String name) {
-    final values = getChildrenByName(name);
-    if (values.length > 1) {
-      throw StateError('Too many values for $name found');
-    }
-    return values.isNotEmpty ? values.first : null;
-  }
-
-  @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
-
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'presentation':
-      case 'presentationX':
-        {
-          if (child is PresentationXIngredientStrength) {
-            return copyWith(presentationX: child);
-          } else {
-            if (child is Ratio) {
-              return copyWith(presentationX: child);
-            }
-            if (child is RatioRange) {
-              return copyWith(presentationX: child);
-            }
-          }
-          throw Exception('Invalid child type for $childName');
-        }
-      case 'presentationRatio':
-        {
-          if (child is Ratio) {
-            return copyWith(presentationX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'presentationRatioRange':
-        {
-          if (child is RatioRange) {
-            return copyWith(presentationX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'textPresentation':
-        {
-          if (child is FhirString) {
-            return copyWith(textPresentation: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'concentration':
-      case 'concentrationX':
-        {
-          if (child is ConcentrationXIngredientStrength) {
-            return copyWith(concentrationX: child);
-          } else {
-            if (child is Ratio) {
-              return copyWith(concentrationX: child);
-            }
-            if (child is RatioRange) {
-              return copyWith(concentrationX: child);
-            }
-          }
-          throw Exception('Invalid child type for $childName');
-        }
-      case 'concentrationRatio':
-        {
-          if (child is Ratio) {
-            return copyWith(concentrationX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'concentrationRatioRange':
-        {
-          if (child is RatioRange) {
-            return copyWith(concentrationX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'textConcentration':
-        {
-          if (child is FhirString) {
-            return copyWith(textConcentration: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'measurementPoint':
-        {
-          if (child is FhirString) {
-            return copyWith(measurementPoint: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'country':
-        {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?country, ...child];
-            return copyWith(country: newList);
-          } else if (child is CodeableConcept) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?country,
-              child,
-            ];
-            return copyWith(country: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'referenceStrength':
-        {
-          if (child is List<IngredientReferenceStrength>) {
-            // Add all elements from passed list
-            final newList = [...?referenceStrength, ...child];
-            return copyWith(referenceStrength: newList);
-          } else if (child is IngredientReferenceStrength) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?referenceStrength,
-              child,
-            ];
-            return copyWith(referenceStrength: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
-  @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'presentation':
-      case 'presentationX':
-        return [
-          'Ratio',
-          'RatioRange',
-        ];
-      case 'presentationRatio':
-        return ['Ratio'];
-      case 'presentationRatioRange':
-        return ['RatioRange'];
-      case 'textPresentation':
-        return ['FhirString'];
-      case 'concentration':
-      case 'concentrationX':
-        return [
-          'Ratio',
-          'RatioRange',
-        ];
-      case 'concentrationRatio':
-        return ['Ratio'];
-      case 'concentrationRatioRange':
-        return ['RatioRange'];
-      case 'textConcentration':
-        return ['FhirString'];
-      case 'measurementPoint':
-        return ['FhirString'];
-      case 'country':
-        return ['CodeableConcept'];
-      case 'referenceStrength':
-        return ['IngredientReferenceStrength'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [IngredientStrength]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  IngredientStrength createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
-          );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'presentation':
-      case 'presentationX':
-      case 'presentationRatio':
-        {
-          return copyWith(
-            presentationX: Ratio.empty(),
-          );
-        }
-      case 'presentationRatioRange':
-        {
-          return copyWith(
-            presentationX: RatioRange.empty(),
-          );
-        }
-      case 'textPresentation':
-        {
-          return copyWith(
-            textPresentation: FhirString.empty(),
-          );
-        }
-      case 'concentration':
-      case 'concentrationX':
-      case 'concentrationRatio':
-        {
-          return copyWith(
-            concentrationX: Ratio.empty(),
-          );
-        }
-      case 'concentrationRatioRange':
-        {
-          return copyWith(
-            concentrationX: RatioRange.empty(),
-          );
-        }
-      case 'textConcentration':
-        {
-          return copyWith(
-            textConcentration: FhirString.empty(),
-          );
-        }
-      case 'measurementPoint':
-        {
-          return copyWith(
-            measurementPoint: FhirString.empty(),
-          );
-        }
-      case 'country':
-        {
-          return copyWith(
-            country: <CodeableConcept>[],
-          );
-        }
-      case 'referenceStrength':
-        {
-          return copyWith(
-            referenceStrength: <IngredientReferenceStrength>[],
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  IngredientStrength clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool presentation = false,
-    bool textPresentation = false,
-    bool concentration = false,
-    bool textConcentration = false,
-    bool measurementPoint = false,
-    bool country = false,
-    bool referenceStrength = false,
-  }) {
-    return IngredientStrength(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      presentationX: presentation ? null : presentationX,
-      textPresentation: textPresentation ? null : this.textPresentation,
-      concentrationX: concentration ? null : concentrationX,
-      textConcentration: textConcentration ? null : this.textConcentration,
-      measurementPoint: measurementPoint ? null : this.measurementPoint,
-      country: country ? null : this.country,
-      referenceStrength: referenceStrength ? null : this.referenceStrength,
-    );
-  }
-
-  @override
-  IngredientStrength clone() => throw UnimplementedError();
-  @override
-  IngredientStrength copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    PresentationXIngredientStrength? presentationX,
-    FhirString? textPresentation,
-    ConcentrationXIngredientStrength? concentrationX,
-    FhirString? textConcentration,
-    FhirString? measurementPoint,
-    List<CodeableConcept>? country,
-    List<IngredientReferenceStrength>? referenceStrength,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return IngredientStrength(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      presentationX: presentationX?.copyWith(
-            objectPath: '$newObjectPath.presentationX',
-          ) as PresentationXIngredientStrength? ??
-          this.presentationX,
-      textPresentation: textPresentation?.copyWith(
-            objectPath: '$newObjectPath.textPresentation',
-          ) ??
-          this.textPresentation,
-      concentrationX: concentrationX?.copyWith(
-            objectPath: '$newObjectPath.concentrationX',
-          ) as ConcentrationXIngredientStrength? ??
-          this.concentrationX,
-      textConcentration: textConcentration?.copyWith(
-            objectPath: '$newObjectPath.textConcentration',
-          ) ??
-          this.textConcentration,
-      measurementPoint: measurementPoint?.copyWith(
-            objectPath: '$newObjectPath.measurementPoint',
-          ) ??
-          this.measurementPoint,
-      country: country
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.country',
-                ),
-              )
-              .toList() ??
-          this.country,
-      referenceStrength: referenceStrength
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.referenceStrength',
-                ),
-              )
-              .toList() ??
-          this.referenceStrength,
-    );
-  }
+  $IngredientStrengthCopyWith<IngredientStrength> get copyWith =>
+      _$IngredientStrengthCopyWithImpl<IngredientStrength>(
+        this,
+        (value) => value,
+      );
 
   /// Performs a deep comparison between two instances.
   @override
@@ -3089,46 +1379,29 @@ class IngredientReferenceStrength extends BackboneElement {
     this.measurementPoint,
     this.country,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'Ingredient.substance.strength.referenceStrength',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory IngredientReferenceStrength.empty() => IngredientReferenceStrength(
-        strengthX: Ratio.empty(),
-      );
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory IngredientReferenceStrength.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'Ingredient.substance.strength.referenceStrength';
     return IngredientReferenceStrength(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -3136,7 +1409,6 @@ class IngredientReferenceStrength extends BackboneElement {
         json,
         'substance',
         CodeableReference.fromJson,
-        '$objectPath.substance',
       ),
       strengthX:
           JsonParser.parsePolymorphic<StrengthXIngredientReferenceStrength>(
@@ -3145,21 +1417,16 @@ class IngredientReferenceStrength extends BackboneElement {
           'strengthRatio': Ratio.fromJson,
           'strengthRatioRange': RatioRange.fromJson,
         },
-        objectPath,
       )!,
       measurementPoint: JsonParser.parsePrimitive<FhirString>(
         json,
         'measurementPoint',
         FhirString.fromJson,
-        '$objectPath.measurementPoint',
       ),
       country: (json['country'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.country',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -3322,384 +1589,21 @@ class IngredientReferenceStrength extends BackboneElement {
     return json;
   }
 
-  /// Lists the JSON keys for the object.
   @override
-  List<String> listChildrenNames() {
-    return [
-      'id',
-      'extension',
-      'modifierExtension',
-      'substance',
-      'strengthX',
-      'measurementPoint',
-      'country',
-    ];
-  }
+  IngredientReferenceStrength clone() => copyWith();
 
-  /// Retrieves all matching child fields by name.
-  ///Optionally validates the name.
+  /// Copy function for [IngredientReferenceStrength]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<FhirBase> getChildrenByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    final fields = <FhirBase>[];
-    switch (fieldName) {
-      case 'id':
-        if (id != null) {
-          fields.add(id!);
-        }
-      case 'extension':
-        if (extension_ != null) {
-          fields.addAll(extension_!);
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          fields.addAll(modifierExtension!);
-        }
-      case 'substance':
-        if (substance != null) {
-          fields.add(substance!);
-        }
-      case 'strength':
-        fields.add(strengthX);
-      case 'strengthX':
-        fields.add(strengthX);
-      case 'strengthRatio':
-        if (strengthX is Ratio) {
-          fields.add(strengthX);
-        }
-      case 'strengthRatioRange':
-        if (strengthX is RatioRange) {
-          fields.add(strengthX);
-        }
-      case 'measurementPoint':
-        if (measurementPoint != null) {
-          fields.add(measurementPoint!);
-        }
-      case 'country':
-        if (country != null) {
-          fields.addAll(country!);
-        }
-      default:
-        if (checkValid) {
-          throw ArgumentError('Invalid name: $fieldName');
-        }
-    }
-    return fields;
-  }
-
-  /// Retrieves a single field value by its name.
-  @override
-  FhirBase? getChildByName(String name) {
-    final values = getChildrenByName(name);
-    if (values.length > 1) {
-      throw StateError('Too many values for $name found');
-    }
-    return values.isNotEmpty ? values.first : null;
-  }
-
-  @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
-
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'substance':
-        {
-          if (child is CodeableReference) {
-            return copyWith(substance: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'strength':
-      case 'strengthX':
-        {
-          if (child is StrengthXIngredientReferenceStrength) {
-            return copyWith(strengthX: child);
-          } else {
-            if (child is Ratio) {
-              return copyWith(strengthX: child);
-            }
-            if (child is RatioRange) {
-              return copyWith(strengthX: child);
-            }
-          }
-          throw Exception('Invalid child type for $childName');
-        }
-      case 'strengthRatio':
-        {
-          if (child is Ratio) {
-            return copyWith(strengthX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'strengthRatioRange':
-        {
-          if (child is RatioRange) {
-            return copyWith(strengthX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'measurementPoint':
-        {
-          if (child is FhirString) {
-            return copyWith(measurementPoint: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'country':
-        {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?country, ...child];
-            return copyWith(country: newList);
-          } else if (child is CodeableConcept) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?country,
-              child,
-            ];
-            return copyWith(country: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
-  @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'substance':
-        return ['CodeableReference'];
-      case 'strength':
-      case 'strengthX':
-        return [
-          'Ratio',
-          'RatioRange',
-        ];
-      case 'strengthRatio':
-        return ['Ratio'];
-      case 'strengthRatioRange':
-        return ['RatioRange'];
-      case 'measurementPoint':
-        return ['FhirString'];
-      case 'country':
-        return ['CodeableConcept'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [IngredientReferenceStrength]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  IngredientReferenceStrength createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
+  $IngredientReferenceStrengthCopyWith<IngredientReferenceStrength>
+      get copyWith => _$IngredientReferenceStrengthCopyWithImpl<
+              IngredientReferenceStrength>(
+            this,
+            (value) => value,
           );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'substance':
-        {
-          return copyWith(
-            substance: CodeableReference.empty(),
-          );
-        }
-      case 'strength':
-      case 'strengthX':
-      case 'strengthRatio':
-        {
-          return copyWith(
-            strengthX: Ratio.empty(),
-          );
-        }
-      case 'strengthRatioRange':
-        {
-          return copyWith(
-            strengthX: RatioRange.empty(),
-          );
-        }
-      case 'measurementPoint':
-        {
-          return copyWith(
-            measurementPoint: FhirString.empty(),
-          );
-        }
-      case 'country':
-        {
-          return copyWith(
-            country: <CodeableConcept>[],
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  IngredientReferenceStrength clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool substance = false,
-    bool measurementPoint = false,
-    bool country = false,
-  }) {
-    return IngredientReferenceStrength(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      substance: substance ? null : this.substance,
-      strengthX: strengthX,
-      measurementPoint: measurementPoint ? null : this.measurementPoint,
-      country: country ? null : this.country,
-    );
-  }
-
-  @override
-  IngredientReferenceStrength clone() => throw UnimplementedError();
-  @override
-  IngredientReferenceStrength copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    CodeableReference? substance,
-    StrengthXIngredientReferenceStrength? strengthX,
-    FhirString? measurementPoint,
-    List<CodeableConcept>? country,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return IngredientReferenceStrength(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      substance: substance?.copyWith(
-            objectPath: '$newObjectPath.substance',
-          ) ??
-          this.substance,
-      strengthX: strengthX?.copyWith(
-            objectPath: '$newObjectPath.strengthX',
-          ) as StrengthXIngredientReferenceStrength? ??
-          this.strengthX,
-      measurementPoint: measurementPoint?.copyWith(
-            objectPath: '$newObjectPath.measurementPoint',
-          ) ??
-          this.measurementPoint,
-      country: country
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.country',
-                ),
-              )
-              .toList() ??
-          this.country,
-    );
-  }
 
   /// Performs a deep comparison between two instances.
   @override

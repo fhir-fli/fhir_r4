@@ -1,11 +1,58 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for SortDirection
+enum SortDirectionEnum {
+  /// ascending
+  ascending,
+
+  /// descending
+  descending,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case SortDirectionEnum.ascending:
+        return 'ascending';
+      case SortDirectionEnum.descending:
+        return 'descending';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static SortDirectionEnum? fromJson(dynamic json) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return SortDirectionEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static SortDirectionEnum? fromString(String? value) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'ascending':
+        return SortDirectionEnum.ascending;
+      case 'descending':
+        return SortDirectionEnum.descending;
+    }
+    return null;
+  }
+}
+
 /// The possible sort directions, ascending or descending.
 class SortDirection extends FhirCodeEnum {
   // Private underscore constructor for internal use.
-  SortDirection._({
+  const SortDirection._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -13,7 +60,6 @@ class SortDirection extends FhirCodeEnum {
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.objectPath = 'Code',
   }) : super._();
 
   /// Public factory if you want a fallback approach or custom creation.
@@ -27,12 +73,13 @@ class SortDirection extends FhirCodeEnum {
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
-    String objectPath = 'Code',
   }) {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
+    final valueEnum = SortDirectionEnum.fromString(valueString);
     return SortDirection._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -40,12 +87,8 @@ class SortDirection extends FhirCodeEnum {
       id: id,
       extension_: extension_,
       disallowExtensions: disallowExtensions,
-      objectPath: objectPath,
     );
   }
-
-  /// Create empty [SortDirection] with element only
-  factory SortDirection.empty() => SortDirection._(valueString: '');
 
   /// Factory constructor to create [SortDirection]
   /// from JSON.
@@ -53,10 +96,11 @@ class SortDirection extends FhirCodeEnum {
     Map<String, dynamic> json,
   ) {
     final value = json['value'] as String?;
+    final valueEnum = SortDirectionEnum.fromString(value);
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return SortDirection.elementOnly.withElement(element);
+      return SortDirection._(valueString: null, element: element);
     } else if (value == null && element == null) {
       throw ArgumentError(
         'SortDirection cannot be constructed from JSON.',
@@ -64,41 +108,45 @@ class SortDirection extends FhirCodeEnum {
     }
     return SortDirection._(
       valueString: value,
+      valueEnum: valueEnum,
       element: element,
     );
   }
 
+  /// An actual enum that can be used for SortDirection
+  final SortDirectionEnum? valueEnum;
+
   /// ascending
-  static final SortDirection ascending = SortDirection._(
+  static const SortDirection ascending = SortDirection._(
     valueString: 'ascending',
-    system: 'http://hl7.org/fhir/ValueSet/sort-direction'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Ascending'.toFhirString,
+    valueEnum: SortDirectionEnum.ascending,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/sort-direction',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Ascending',
+    ),
   );
 
   /// descending
-  static final SortDirection descending = SortDirection._(
+  static const SortDirection descending = SortDirection._(
     valueString: 'descending',
-    system: 'http://hl7.org/fhir/ValueSet/sort-direction'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Descending'.toFhirString,
+    valueEnum: SortDirectionEnum.descending,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/sort-direction',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Descending',
+    ),
   );
-
-  /// For instances where an Element is present but not value
-  static final SortDirection elementOnly = SortDirection._(valueString: '');
 
   /// List of all enum-like values
   static final List<SortDirection> values = [
     ascending,
     descending,
   ];
-
-  /// Clones the current instance
-  @override
-  SortDirection clone() => SortDirection._(
-        valueString: valueString,
-        element: element?.clone() as Element?,
-      );
 
   /// Returns the enum value with an element attached
   SortDirection withElement(Element? newElement) {
@@ -119,36 +167,56 @@ class SortDirection extends FhirCodeEnum {
   @override
   String toString() => valueString ?? '';
 
-  /// Creates a modified copy with updated properties.
   @override
-  SortDirection copyWith({
-    dynamic newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
+  SortDirection clone() => copyWith();
+
+  /// Creates a new instance with the specified fields replaced.
+  @override
+  SortDirectionCopyWithImpl<SortDirection> get copyWith =>
+      SortDirectionCopyWithImpl<SortDirection>(
+        this,
+        (v) => v as SortDirection,
+      );
+}
+
+/// The generated implementation of the copyWith helper for Element.
+/// The call method uses parameters of type Object? with a default value of
+/// [fhirSentinel] so that omitted parameters retain the sentinel value while
+/// explicit nulls do not.
+class SortDirectionCopyWithImpl<T> extends $FhirCodeCopyWithImpl<T> {
+  /// Constructor for the copyWith implementation.
+  SortDirectionCopyWithImpl(super._value, super._then);
+
+  @override
+  T call({
+    Object? newValue = fhirSentinel,
+    Object? element = fhirSentinel,
+    Object? id = fhirSentinel,
+    Object? extension_ = fhirSentinel,
+    Object? disallowExtensions = fhirSentinel,
   }) {
-    if (newValue is! String?) {
+    if (!identical(newValue, fhirSentinel) && newValue is! String?) {
       throw ArgumentError(
-        'Invalid input for SortDirection: $newValue',
+        'newValue must be a String or null, but found ${newValue.runtimeType}',
+        'newValue',
       );
     }
-    return SortDirection._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
+    return _then(
+      SortDirection(
+        identical(newValue, fhirSentinel)
+            ? _value.valueString
+            : newValue as String?,
+        element: identical(element, fhirSentinel)
+            ? _value.element
+            : element as Element?,
+        id: identical(id, fhirSentinel) ? _value.id : id as FhirString?,
+        extension_: identical(extension_, fhirSentinel)
+            ? _value.extension_
+            : extension_ as List<FhirExtension>?,
+        disallowExtensions: identical(disallowExtensions, fhirSentinel)
+            ? _value.disallowExtensions
+            : disallowExtensions as bool?,
       ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

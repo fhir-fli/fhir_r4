@@ -1,11 +1,58 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for CatalogEntryRelationType
+enum CatalogEntryRelationTypeEnum {
+  /// triggers
+  triggers,
+
+  /// is-replaced-by
+  isReplacedBy,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case CatalogEntryRelationTypeEnum.triggers:
+        return 'triggers';
+      case CatalogEntryRelationTypeEnum.isReplacedBy:
+        return 'is-replaced-by';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static CatalogEntryRelationTypeEnum? fromJson(dynamic json) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return CatalogEntryRelationTypeEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static CatalogEntryRelationTypeEnum? fromString(String? value) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'triggers':
+        return CatalogEntryRelationTypeEnum.triggers;
+      case 'is-replaced-by':
+        return CatalogEntryRelationTypeEnum.isReplacedBy;
+    }
+    return null;
+  }
+}
+
 /// The type of relations between entries.
 class CatalogEntryRelationType extends FhirCodeEnum {
   // Private underscore constructor for internal use.
-  CatalogEntryRelationType._({
+  const CatalogEntryRelationType._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -13,7 +60,6 @@ class CatalogEntryRelationType extends FhirCodeEnum {
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.objectPath = 'Code',
   }) : super._();
 
   /// Public factory if you want a fallback approach or custom creation.
@@ -27,12 +73,13 @@ class CatalogEntryRelationType extends FhirCodeEnum {
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
-    String objectPath = 'Code',
   }) {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
+    final valueEnum = CatalogEntryRelationTypeEnum.fromString(valueString);
     return CatalogEntryRelationType._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -40,13 +87,8 @@ class CatalogEntryRelationType extends FhirCodeEnum {
       id: id,
       extension_: extension_,
       disallowExtensions: disallowExtensions,
-      objectPath: objectPath,
     );
   }
-
-  /// Create empty [CatalogEntryRelationType] with element only
-  factory CatalogEntryRelationType.empty() =>
-      CatalogEntryRelationType._(valueString: '');
 
   /// Factory constructor to create [CatalogEntryRelationType]
   /// from JSON.
@@ -54,10 +96,11 @@ class CatalogEntryRelationType extends FhirCodeEnum {
     Map<String, dynamic> json,
   ) {
     final value = json['value'] as String?;
+    final valueEnum = CatalogEntryRelationTypeEnum.fromString(value);
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return CatalogEntryRelationType.elementOnly.withElement(element);
+      return CatalogEntryRelationType._(valueString: null, element: element);
     } else if (value == null && element == null) {
       throw ArgumentError(
         'CatalogEntryRelationType cannot be constructed from JSON.',
@@ -65,43 +108,46 @@ class CatalogEntryRelationType extends FhirCodeEnum {
     }
     return CatalogEntryRelationType._(
       valueString: value,
+      valueEnum: valueEnum,
       element: element,
     );
   }
 
+  /// An actual enum that can be used for CatalogEntryRelationType
+  final CatalogEntryRelationTypeEnum? valueEnum;
+
   /// triggers
-  static final CatalogEntryRelationType triggers = CatalogEntryRelationType._(
+  static const CatalogEntryRelationType triggers = CatalogEntryRelationType._(
     valueString: 'triggers',
-    system: 'http://hl7.org/fhir/ValueSet/relation-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Triggers'.toFhirString,
+    valueEnum: CatalogEntryRelationTypeEnum.triggers,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/relation-type',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Triggers',
+    ),
   );
 
   /// is_replaced_by
-  static final CatalogEntryRelationType is_replaced_by =
+  static const CatalogEntryRelationType isReplacedBy =
       CatalogEntryRelationType._(
     valueString: 'is-replaced-by',
-    system: 'http://hl7.org/fhir/ValueSet/relation-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Replaced By'.toFhirString,
+    valueEnum: CatalogEntryRelationTypeEnum.isReplacedBy,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/relation-type',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Replaced By',
+    ),
   );
-
-  /// For instances where an Element is present but not value
-  static final CatalogEntryRelationType elementOnly =
-      CatalogEntryRelationType._(valueString: '');
 
   /// List of all enum-like values
   static final List<CatalogEntryRelationType> values = [
     triggers,
-    is_replaced_by,
+    isReplacedBy,
   ];
-
-  /// Clones the current instance
-  @override
-  CatalogEntryRelationType clone() => CatalogEntryRelationType._(
-        valueString: valueString,
-        element: element?.clone() as Element?,
-      );
 
   /// Returns the enum value with an element attached
   CatalogEntryRelationType withElement(Element? newElement) {
@@ -122,36 +168,56 @@ class CatalogEntryRelationType extends FhirCodeEnum {
   @override
   String toString() => valueString ?? '';
 
-  /// Creates a modified copy with updated properties.
   @override
-  CatalogEntryRelationType copyWith({
-    dynamic newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
+  CatalogEntryRelationType clone() => copyWith();
+
+  /// Creates a new instance with the specified fields replaced.
+  @override
+  CatalogEntryRelationTypeCopyWithImpl<CatalogEntryRelationType> get copyWith =>
+      CatalogEntryRelationTypeCopyWithImpl<CatalogEntryRelationType>(
+        this,
+        (v) => v as CatalogEntryRelationType,
+      );
+}
+
+/// The generated implementation of the copyWith helper for Element.
+/// The call method uses parameters of type Object? with a default value of
+/// [fhirSentinel] so that omitted parameters retain the sentinel value while
+/// explicit nulls do not.
+class CatalogEntryRelationTypeCopyWithImpl<T> extends $FhirCodeCopyWithImpl<T> {
+  /// Constructor for the copyWith implementation.
+  CatalogEntryRelationTypeCopyWithImpl(super._value, super._then);
+
+  @override
+  T call({
+    Object? newValue = fhirSentinel,
+    Object? element = fhirSentinel,
+    Object? id = fhirSentinel,
+    Object? extension_ = fhirSentinel,
+    Object? disallowExtensions = fhirSentinel,
   }) {
-    if (newValue is! String?) {
+    if (!identical(newValue, fhirSentinel) && newValue is! String?) {
       throw ArgumentError(
-        'Invalid input for CatalogEntryRelationType: $newValue',
+        'newValue must be a String or null, but found ${newValue.runtimeType}',
+        'newValue',
       );
     }
-    return CatalogEntryRelationType._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
+    return _then(
+      CatalogEntryRelationType(
+        identical(newValue, fhirSentinel)
+            ? _value.valueString
+            : newValue as String?,
+        element: identical(element, fhirSentinel)
+            ? _value.element
+            : element as Element?,
+        id: identical(id, fhirSentinel) ? _value.id : id as FhirString?,
+        extension_: identical(extension_, fhirSentinel)
+            ? _value.extension_
+            : extension_ as List<FhirExtension>?,
+        disallowExtensions: identical(disallowExtensions, fhirSentinel)
+            ? _value.disallowExtensions
+            : disallowExtensions as bool?,
       ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

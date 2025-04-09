@@ -1,12 +1,73 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for BindingStrength
+enum BindingStrengthEnum {
+  /// required
+  required_,
+
+  /// extensible
+  extensible,
+
+  /// preferred
+  preferred,
+
+  /// example
+  example,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case BindingStrengthEnum.required_:
+        return 'required';
+      case BindingStrengthEnum.extensible:
+        return 'extensible';
+      case BindingStrengthEnum.preferred:
+        return 'preferred';
+      case BindingStrengthEnum.example:
+        return 'example';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static BindingStrengthEnum? fromJson(dynamic json) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return BindingStrengthEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static BindingStrengthEnum? fromString(String? value) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'required':
+        return BindingStrengthEnum.required_;
+      case 'extensible':
+        return BindingStrengthEnum.extensible;
+      case 'preferred':
+        return BindingStrengthEnum.preferred;
+      case 'example':
+        return BindingStrengthEnum.example;
+    }
+    return null;
+  }
+}
+
 /// Indication of the degree of conformance expectations associated with a
 /// binding.
 class BindingStrength extends FhirCodeEnum {
   // Private underscore constructor for internal use.
-  BindingStrength._({
+  const BindingStrength._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -14,7 +75,6 @@ class BindingStrength extends FhirCodeEnum {
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.objectPath = 'Code',
   }) : super._();
 
   /// Public factory if you want a fallback approach or custom creation.
@@ -28,12 +88,13 @@ class BindingStrength extends FhirCodeEnum {
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
-    String objectPath = 'Code',
   }) {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
+    final valueEnum = BindingStrengthEnum.fromString(valueString);
     return BindingStrength._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -41,12 +102,8 @@ class BindingStrength extends FhirCodeEnum {
       id: id,
       extension_: extension_,
       disallowExtensions: disallowExtensions,
-      objectPath: objectPath,
     );
   }
-
-  /// Create empty [BindingStrength] with element only
-  factory BindingStrength.empty() => BindingStrength._(valueString: '');
 
   /// Factory constructor to create [BindingStrength]
   /// from JSON.
@@ -54,10 +111,11 @@ class BindingStrength extends FhirCodeEnum {
     Map<String, dynamic> json,
   ) {
     final value = json['value'] as String?;
+    final valueEnum = BindingStrengthEnum.fromString(value);
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return BindingStrength.elementOnly.withElement(element);
+      return BindingStrength._(valueString: null, element: element);
     } else if (value == null && element == null) {
       throw ArgumentError(
         'BindingStrength cannot be constructed from JSON.',
@@ -65,44 +123,65 @@ class BindingStrength extends FhirCodeEnum {
     }
     return BindingStrength._(
       valueString: value,
+      valueEnum: valueEnum,
       element: element,
     );
   }
 
+  /// An actual enum that can be used for BindingStrength
+  final BindingStrengthEnum? valueEnum;
+
   /// required_
-  static final BindingStrength required_ = BindingStrength._(
+  static const BindingStrength required_ = BindingStrength._(
     valueString: 'required',
-    system: 'http://hl7.org/fhir/ValueSet/binding-strength'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Required'.toFhirString,
+    valueEnum: BindingStrengthEnum.required_,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/binding-strength',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Required',
+    ),
   );
 
   /// extensible
-  static final BindingStrength extensible = BindingStrength._(
+  static const BindingStrength extensible = BindingStrength._(
     valueString: 'extensible',
-    system: 'http://hl7.org/fhir/ValueSet/binding-strength'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Extensible'.toFhirString,
+    valueEnum: BindingStrengthEnum.extensible,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/binding-strength',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Extensible',
+    ),
   );
 
   /// preferred
-  static final BindingStrength preferred = BindingStrength._(
+  static const BindingStrength preferred = BindingStrength._(
     valueString: 'preferred',
-    system: 'http://hl7.org/fhir/ValueSet/binding-strength'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Preferred'.toFhirString,
+    valueEnum: BindingStrengthEnum.preferred,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/binding-strength',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Preferred',
+    ),
   );
 
   /// example
-  static final BindingStrength example = BindingStrength._(
+  static const BindingStrength example = BindingStrength._(
     valueString: 'example',
-    system: 'http://hl7.org/fhir/ValueSet/binding-strength'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Example'.toFhirString,
+    valueEnum: BindingStrengthEnum.example,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/binding-strength',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Example',
+    ),
   );
-
-  /// For instances where an Element is present but not value
-  static final BindingStrength elementOnly = BindingStrength._(valueString: '');
 
   /// List of all enum-like values
   static final List<BindingStrength> values = [
@@ -111,13 +190,6 @@ class BindingStrength extends FhirCodeEnum {
     preferred,
     example,
   ];
-
-  /// Clones the current instance
-  @override
-  BindingStrength clone() => BindingStrength._(
-        valueString: valueString,
-        element: element?.clone() as Element?,
-      );
 
   /// Returns the enum value with an element attached
   BindingStrength withElement(Element? newElement) {
@@ -138,36 +210,56 @@ class BindingStrength extends FhirCodeEnum {
   @override
   String toString() => valueString ?? '';
 
-  /// Creates a modified copy with updated properties.
   @override
-  BindingStrength copyWith({
-    dynamic newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
+  BindingStrength clone() => copyWith();
+
+  /// Creates a new instance with the specified fields replaced.
+  @override
+  BindingStrengthCopyWithImpl<BindingStrength> get copyWith =>
+      BindingStrengthCopyWithImpl<BindingStrength>(
+        this,
+        (v) => v as BindingStrength,
+      );
+}
+
+/// The generated implementation of the copyWith helper for Element.
+/// The call method uses parameters of type Object? with a default value of
+/// [fhirSentinel] so that omitted parameters retain the sentinel value while
+/// explicit nulls do not.
+class BindingStrengthCopyWithImpl<T> extends $FhirCodeCopyWithImpl<T> {
+  /// Constructor for the copyWith implementation.
+  BindingStrengthCopyWithImpl(super._value, super._then);
+
+  @override
+  T call({
+    Object? newValue = fhirSentinel,
+    Object? element = fhirSentinel,
+    Object? id = fhirSentinel,
+    Object? extension_ = fhirSentinel,
+    Object? disallowExtensions = fhirSentinel,
   }) {
-    if (newValue is! String?) {
+    if (!identical(newValue, fhirSentinel) && newValue is! String?) {
       throw ArgumentError(
-        'Invalid input for BindingStrength: $newValue',
+        'newValue must be a String or null, but found ${newValue.runtimeType}',
+        'newValue',
       );
     }
-    return BindingStrength._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
+    return _then(
+      BindingStrength(
+        identical(newValue, fhirSentinel)
+            ? _value.valueString
+            : newValue as String?,
+        element: identical(element, fhirSentinel)
+            ? _value.element
+            : element as Element?,
+        id: identical(id, fhirSentinel) ? _value.id : id as FhirString?,
+        extension_: identical(extension_, fhirSentinel)
+            ? _value.extension_
+            : extension_ as List<FhirExtension>?,
+        disallowExtensions: identical(disallowExtensions, fhirSentinel)
+            ? _value.disallowExtensions
+            : disallowExtensions as bool?,
       ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

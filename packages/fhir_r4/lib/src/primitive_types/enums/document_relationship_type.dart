@@ -1,11 +1,72 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for DocumentRelationshipType
+enum DocumentRelationshipTypeEnum {
+  /// replaces
+  replaces,
+
+  /// transforms
+  transforms,
+
+  /// signs
+  signs,
+
+  /// appends
+  appends,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case DocumentRelationshipTypeEnum.replaces:
+        return 'replaces';
+      case DocumentRelationshipTypeEnum.transforms:
+        return 'transforms';
+      case DocumentRelationshipTypeEnum.signs:
+        return 'signs';
+      case DocumentRelationshipTypeEnum.appends:
+        return 'appends';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static DocumentRelationshipTypeEnum? fromJson(dynamic json) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return DocumentRelationshipTypeEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static DocumentRelationshipTypeEnum? fromString(String? value) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'replaces':
+        return DocumentRelationshipTypeEnum.replaces;
+      case 'transforms':
+        return DocumentRelationshipTypeEnum.transforms;
+      case 'signs':
+        return DocumentRelationshipTypeEnum.signs;
+      case 'appends':
+        return DocumentRelationshipTypeEnum.appends;
+    }
+    return null;
+  }
+}
+
 /// The type of relationship between documents.
 class DocumentRelationshipType extends FhirCodeEnum {
   // Private underscore constructor for internal use.
-  DocumentRelationshipType._({
+  const DocumentRelationshipType._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -13,7 +74,6 @@ class DocumentRelationshipType extends FhirCodeEnum {
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.objectPath = 'Code',
   }) : super._();
 
   /// Public factory if you want a fallback approach or custom creation.
@@ -27,12 +87,13 @@ class DocumentRelationshipType extends FhirCodeEnum {
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
-    String objectPath = 'Code',
   }) {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
+    final valueEnum = DocumentRelationshipTypeEnum.fromString(valueString);
     return DocumentRelationshipType._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -40,13 +101,8 @@ class DocumentRelationshipType extends FhirCodeEnum {
       id: id,
       extension_: extension_,
       disallowExtensions: disallowExtensions,
-      objectPath: objectPath,
     );
   }
-
-  /// Create empty [DocumentRelationshipType] with element only
-  factory DocumentRelationshipType.empty() =>
-      DocumentRelationshipType._(valueString: '');
 
   /// Factory constructor to create [DocumentRelationshipType]
   /// from JSON.
@@ -54,10 +110,11 @@ class DocumentRelationshipType extends FhirCodeEnum {
     Map<String, dynamic> json,
   ) {
     final value = json['value'] as String?;
+    final valueEnum = DocumentRelationshipTypeEnum.fromString(value);
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return DocumentRelationshipType.elementOnly.withElement(element);
+      return DocumentRelationshipType._(valueString: null, element: element);
     } else if (value == null && element == null) {
       throw ArgumentError(
         'DocumentRelationshipType cannot be constructed from JSON.',
@@ -65,45 +122,65 @@ class DocumentRelationshipType extends FhirCodeEnum {
     }
     return DocumentRelationshipType._(
       valueString: value,
+      valueEnum: valueEnum,
       element: element,
     );
   }
 
+  /// An actual enum that can be used for DocumentRelationshipType
+  final DocumentRelationshipTypeEnum? valueEnum;
+
   /// replaces
-  static final DocumentRelationshipType replaces = DocumentRelationshipType._(
+  static const DocumentRelationshipType replaces = DocumentRelationshipType._(
     valueString: 'replaces',
-    system: 'http://hl7.org/fhir/ValueSet/document-relationship-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Replaces'.toFhirString,
+    valueEnum: DocumentRelationshipTypeEnum.replaces,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/document-relationship-type',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Replaces',
+    ),
   );
 
   /// transforms
-  static final DocumentRelationshipType transforms = DocumentRelationshipType._(
+  static const DocumentRelationshipType transforms = DocumentRelationshipType._(
     valueString: 'transforms',
-    system: 'http://hl7.org/fhir/ValueSet/document-relationship-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Transforms'.toFhirString,
+    valueEnum: DocumentRelationshipTypeEnum.transforms,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/document-relationship-type',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Transforms',
+    ),
   );
 
   /// signs
-  static final DocumentRelationshipType signs = DocumentRelationshipType._(
+  static const DocumentRelationshipType signs = DocumentRelationshipType._(
     valueString: 'signs',
-    system: 'http://hl7.org/fhir/ValueSet/document-relationship-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Signs'.toFhirString,
+    valueEnum: DocumentRelationshipTypeEnum.signs,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/document-relationship-type',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Signs',
+    ),
   );
 
   /// appends
-  static final DocumentRelationshipType appends = DocumentRelationshipType._(
+  static const DocumentRelationshipType appends = DocumentRelationshipType._(
     valueString: 'appends',
-    system: 'http://hl7.org/fhir/ValueSet/document-relationship-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Appends'.toFhirString,
+    valueEnum: DocumentRelationshipTypeEnum.appends,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/document-relationship-type',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Appends',
+    ),
   );
-
-  /// For instances where an Element is present but not value
-  static final DocumentRelationshipType elementOnly =
-      DocumentRelationshipType._(valueString: '');
 
   /// List of all enum-like values
   static final List<DocumentRelationshipType> values = [
@@ -112,13 +189,6 @@ class DocumentRelationshipType extends FhirCodeEnum {
     signs,
     appends,
   ];
-
-  /// Clones the current instance
-  @override
-  DocumentRelationshipType clone() => DocumentRelationshipType._(
-        valueString: valueString,
-        element: element?.clone() as Element?,
-      );
 
   /// Returns the enum value with an element attached
   DocumentRelationshipType withElement(Element? newElement) {
@@ -139,36 +209,56 @@ class DocumentRelationshipType extends FhirCodeEnum {
   @override
   String toString() => valueString ?? '';
 
-  /// Creates a modified copy with updated properties.
   @override
-  DocumentRelationshipType copyWith({
-    dynamic newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
+  DocumentRelationshipType clone() => copyWith();
+
+  /// Creates a new instance with the specified fields replaced.
+  @override
+  DocumentRelationshipTypeCopyWithImpl<DocumentRelationshipType> get copyWith =>
+      DocumentRelationshipTypeCopyWithImpl<DocumentRelationshipType>(
+        this,
+        (v) => v as DocumentRelationshipType,
+      );
+}
+
+/// The generated implementation of the copyWith helper for Element.
+/// The call method uses parameters of type Object? with a default value of
+/// [fhirSentinel] so that omitted parameters retain the sentinel value while
+/// explicit nulls do not.
+class DocumentRelationshipTypeCopyWithImpl<T> extends $FhirCodeCopyWithImpl<T> {
+  /// Constructor for the copyWith implementation.
+  DocumentRelationshipTypeCopyWithImpl(super._value, super._then);
+
+  @override
+  T call({
+    Object? newValue = fhirSentinel,
+    Object? element = fhirSentinel,
+    Object? id = fhirSentinel,
+    Object? extension_ = fhirSentinel,
+    Object? disallowExtensions = fhirSentinel,
   }) {
-    if (newValue is! String?) {
+    if (!identical(newValue, fhirSentinel) && newValue is! String?) {
       throw ArgumentError(
-        'Invalid input for DocumentRelationshipType: $newValue',
+        'newValue must be a String or null, but found ${newValue.runtimeType}',
+        'newValue',
       );
     }
-    return DocumentRelationshipType._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
+    return _then(
+      DocumentRelationshipType(
+        identical(newValue, fhirSentinel)
+            ? _value.valueString
+            : newValue as String?,
+        element: identical(element, fhirSentinel)
+            ? _value.element
+            : element as Element?,
+        id: identical(id, fhirSentinel) ? _value.id : id as FhirString?,
+        extension_: identical(extension_, fhirSentinel)
+            ? _value.extension_
+            : extension_ as List<FhirExtension>?,
+        disallowExtensions: identical(disallowExtensions, fhirSentinel)
+            ? _value.disallowExtensions
+            : disallowExtensions as bool?,
       ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

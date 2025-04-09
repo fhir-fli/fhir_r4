@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
+part 'trigger_definition.g.dart';
+
 /// [TriggerDefinition]
 /// A description of a triggering event. Triggering events can be named
 /// events, data events, or periodic, as determined by the type element.
@@ -28,35 +30,22 @@ class TriggerDefinition extends DataType
     this.data,
     this.condition,
     super.disallowExtensions,
-    super.objectPath = 'TriggerDefinition',
   });
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory TriggerDefinition.empty() => TriggerDefinition(
-        type: TriggerType.values.first,
-      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TriggerDefinition.fromJson(
     Map<String, dynamic> json,
   ) {
-    final objectPath = json['resourceType'] as String? ?? 'TriggerDefinition';
     return TriggerDefinition(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -64,13 +53,11 @@ class TriggerDefinition extends DataType
         json,
         'type',
         TriggerType.fromJson,
-        '$objectPath.type',
       )!,
       name: JsonParser.parsePrimitive<FhirString>(
         json,
         'name',
         FhirString.fromJson,
-        '$objectPath.name',
       ),
       timingX: JsonParser.parsePolymorphic<TimingXTriggerDefinition>(
         json,
@@ -80,15 +67,11 @@ class TriggerDefinition extends DataType
           'timingDate': FhirDate.fromJson,
           'timingDateTime': FhirDateTime.fromJson,
         },
-        objectPath,
       ),
       data: (json['data'] as List<dynamic>?)
           ?.map<DataRequirement>(
             (v) => DataRequirement.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.data',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -96,7 +79,6 @@ class TriggerDefinition extends DataType
         json,
         'condition',
         FhirExpression.fromJson,
-        '$objectPath.condition',
       ),
     );
   }
@@ -275,417 +257,20 @@ class TriggerDefinition extends DataType
     return json;
   }
 
-  /// Lists the JSON keys for the object.
   @override
-  List<String> listChildrenNames() {
-    return [
-      'id',
-      'extension',
-      'type',
-      'name',
-      'timingX',
-      'data',
-      'condition',
-    ];
-  }
+  TriggerDefinition clone() => copyWith();
 
-  /// Retrieves all matching child fields by name.
-  ///Optionally validates the name.
+  /// Copy function for [TriggerDefinition]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<FhirBase> getChildrenByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    final fields = <FhirBase>[];
-    switch (fieldName) {
-      case 'id':
-        if (id != null) {
-          fields.add(id!);
-        }
-      case 'extension':
-        if (extension_ != null) {
-          fields.addAll(extension_!);
-        }
-      case 'type':
-        fields.add(type);
-      case 'name':
-        if (name != null) {
-          fields.add(name!);
-        }
-      case 'timing':
-        fields.add(timingX!);
-      case 'timingX':
-        fields.add(timingX!);
-      case 'timingTiming':
-        if (timingX is Timing) {
-          fields.add(timingX!);
-        }
-      case 'timingReference':
-        if (timingX is Reference) {
-          fields.add(timingX!);
-        }
-      case 'timingDate':
-        if (timingX is FhirDate) {
-          fields.add(timingX!);
-        }
-      case 'timingDateTime':
-        if (timingX is FhirDateTime) {
-          fields.add(timingX!);
-        }
-      case 'data':
-        if (data != null) {
-          fields.addAll(data!);
-        }
-      case 'condition':
-        if (condition != null) {
-          fields.add(condition!);
-        }
-      default:
-        if (checkValid) {
-          throw ArgumentError('Invalid name: $fieldName');
-        }
-    }
-    return fields;
-  }
-
-  /// Retrieves a single field value by its name.
-  @override
-  FhirBase? getChildByName(String name) {
-    final values = getChildrenByName(name);
-    if (values.length > 1) {
-      throw StateError('Too many values for $name found');
-    }
-    return values.isNotEmpty ? values.first : null;
-  }
-
-  @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
-
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'type':
-        {
-          if (child is TriggerType) {
-            return copyWith(type: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'name':
-        {
-          if (child is FhirString) {
-            return copyWith(name: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'timing':
-      case 'timingX':
-        {
-          if (child is TimingXTriggerDefinition) {
-            return copyWith(timingX: child);
-          } else {
-            if (child is Timing) {
-              return copyWith(timingX: child);
-            }
-            if (child is Reference) {
-              return copyWith(timingX: child);
-            }
-            if (child is FhirDate) {
-              return copyWith(timingX: child);
-            }
-            if (child is FhirDateTime) {
-              return copyWith(timingX: child);
-            }
-          }
-          throw Exception('Invalid child type for $childName');
-        }
-      case 'timingTiming':
-        {
-          if (child is Timing) {
-            return copyWith(timingX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'timingReference':
-        {
-          if (child is Reference) {
-            return copyWith(timingX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'timingFhirDate':
-        {
-          if (child is FhirDate) {
-            return copyWith(timingX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'timingFhirDateTime':
-        {
-          if (child is FhirDateTime) {
-            return copyWith(timingX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'data':
-        {
-          if (child is List<DataRequirement>) {
-            // Add all elements from passed list
-            final newList = [...?data, ...child];
-            return copyWith(data: newList);
-          } else if (child is DataRequirement) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?data,
-              child,
-            ];
-            return copyWith(data: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'condition':
-        {
-          if (child is FhirExpression) {
-            return copyWith(condition: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
-  @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'type':
-        return ['FhirCode'];
-      case 'name':
-        return ['FhirString'];
-      case 'timing':
-      case 'timingX':
-        return [
-          'Timing',
-          'Reference',
-          'FhirDate',
-          'FhirDateTime',
-        ];
-      case 'timingTiming':
-        return ['Timing'];
-      case 'timingReference':
-        return ['Reference'];
-      case 'timingDate':
-        return ['FhirDate'];
-      case 'timingDateTime':
-        return ['FhirDateTime'];
-      case 'data':
-        return ['DataRequirement'];
-      case 'condition':
-        return ['FhirExpression'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [TriggerDefinition]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  TriggerDefinition createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
-          );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'type':
-        {
-          return copyWith(
-            type: TriggerType.empty(),
-          );
-        }
-      case 'name':
-        {
-          return copyWith(
-            name: FhirString.empty(),
-          );
-        }
-      case 'timing':
-      case 'timingX':
-      case 'timingTiming':
-        {
-          return copyWith(
-            timingX: Timing.empty(),
-          );
-        }
-      case 'timingReference':
-        {
-          return copyWith(
-            timingX: Reference.empty(),
-          );
-        }
-      case 'timingDate':
-        {
-          return copyWith(
-            timingX: FhirDate.empty(),
-          );
-        }
-      case 'timingDateTime':
-        {
-          return copyWith(
-            timingX: FhirDateTime.empty(),
-          );
-        }
-      case 'data':
-        {
-          return copyWith(
-            data: <DataRequirement>[],
-          );
-        }
-      case 'condition':
-        {
-          return copyWith(
-            condition: FhirExpression.empty(),
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  TriggerDefinition clear({
-    bool id = false,
-    bool extension_ = false,
-    bool name = false,
-    bool timing = false,
-    bool data = false,
-    bool condition = false,
-  }) {
-    return TriggerDefinition(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      type: type,
-      name: name ? null : this.name,
-      timingX: timing ? null : timingX,
-      data: data ? null : this.data,
-      condition: condition ? null : this.condition,
-    );
-  }
-
-  @override
-  TriggerDefinition clone() => throw UnimplementedError();
-  @override
-  TriggerDefinition copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    TriggerType? type,
-    FhirString? name,
-    TimingXTriggerDefinition? timingX,
-    List<DataRequirement>? data,
-    FhirExpression? condition,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = objectPath ?? this.objectPath;
-    return TriggerDefinition(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      type: type?.copyWith(
-            objectPath: '$newObjectPath.type',
-          ) ??
-          this.type,
-      name: name?.copyWith(
-            objectPath: '$newObjectPath.name',
-          ) ??
-          this.name,
-      timingX: timingX?.copyWith(
-            objectPath: '$newObjectPath.timingX',
-          ) as TimingXTriggerDefinition? ??
-          this.timingX,
-      data: data
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.data',
-                ),
-              )
-              .toList() ??
-          this.data,
-      condition: condition?.copyWith(
-            objectPath: '$newObjectPath.condition',
-          ) ??
-          this.condition,
-    );
-  }
+  $TriggerDefinitionCopyWith<TriggerDefinition> get copyWith =>
+      _$TriggerDefinitionCopyWithImpl<TriggerDefinition>(
+        this,
+        (value) => value,
+      );
 
   /// Performs a deep comparison between two instances.
   @override

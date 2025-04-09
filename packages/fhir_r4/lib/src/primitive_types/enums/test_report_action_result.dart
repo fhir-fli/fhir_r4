@@ -1,11 +1,79 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for TestReportActionResult
+enum TestReportActionResultEnum {
+  /// pass
+  pass,
+
+  /// skip
+  skip,
+
+  /// fail
+  fail,
+
+  /// warning
+  warning,
+
+  /// error
+  error,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case TestReportActionResultEnum.pass:
+        return 'pass';
+      case TestReportActionResultEnum.skip:
+        return 'skip';
+      case TestReportActionResultEnum.fail:
+        return 'fail';
+      case TestReportActionResultEnum.warning:
+        return 'warning';
+      case TestReportActionResultEnum.error:
+        return 'error';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static TestReportActionResultEnum? fromJson(dynamic json) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return TestReportActionResultEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static TestReportActionResultEnum? fromString(String? value) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'pass':
+        return TestReportActionResultEnum.pass;
+      case 'skip':
+        return TestReportActionResultEnum.skip;
+      case 'fail':
+        return TestReportActionResultEnum.fail;
+      case 'warning':
+        return TestReportActionResultEnum.warning;
+      case 'error':
+        return TestReportActionResultEnum.error;
+    }
+    return null;
+  }
+}
+
 /// The results of executing an action.
 class TestReportActionResult extends FhirCodeEnum {
   // Private underscore constructor for internal use.
-  TestReportActionResult._({
+  const TestReportActionResult._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -13,7 +81,6 @@ class TestReportActionResult extends FhirCodeEnum {
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.objectPath = 'Code',
   }) : super._();
 
   /// Public factory if you want a fallback approach or custom creation.
@@ -27,12 +94,13 @@ class TestReportActionResult extends FhirCodeEnum {
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
-    String objectPath = 'Code',
   }) {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
+    final valueEnum = TestReportActionResultEnum.fromString(valueString);
     return TestReportActionResult._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -40,13 +108,8 @@ class TestReportActionResult extends FhirCodeEnum {
       id: id,
       extension_: extension_,
       disallowExtensions: disallowExtensions,
-      objectPath: objectPath,
     );
   }
-
-  /// Create empty [TestReportActionResult] with element only
-  factory TestReportActionResult.empty() =>
-      TestReportActionResult._(valueString: '');
 
   /// Factory constructor to create [TestReportActionResult]
   /// from JSON.
@@ -54,10 +117,11 @@ class TestReportActionResult extends FhirCodeEnum {
     Map<String, dynamic> json,
   ) {
     final value = json['value'] as String?;
+    final valueEnum = TestReportActionResultEnum.fromString(value);
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return TestReportActionResult.elementOnly.withElement(element);
+      return TestReportActionResult._(valueString: null, element: element);
     } else if (value == null && element == null) {
       throw ArgumentError(
         'TestReportActionResult cannot be constructed from JSON.',
@@ -65,53 +129,78 @@ class TestReportActionResult extends FhirCodeEnum {
     }
     return TestReportActionResult._(
       valueString: value,
+      valueEnum: valueEnum,
       element: element,
     );
   }
 
+  /// An actual enum that can be used for TestReportActionResult
+  final TestReportActionResultEnum? valueEnum;
+
   /// pass
-  static final TestReportActionResult pass = TestReportActionResult._(
+  static const TestReportActionResult pass = TestReportActionResult._(
     valueString: 'pass',
-    system: 'http://hl7.org/fhir/ValueSet/report-action-result-codes'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Pass'.toFhirString,
+    valueEnum: TestReportActionResultEnum.pass,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/report-action-result-codes',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Pass',
+    ),
   );
 
   /// skip
-  static final TestReportActionResult skip = TestReportActionResult._(
+  static const TestReportActionResult skip = TestReportActionResult._(
     valueString: 'skip',
-    system: 'http://hl7.org/fhir/ValueSet/report-action-result-codes'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Skip'.toFhirString,
+    valueEnum: TestReportActionResultEnum.skip,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/report-action-result-codes',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Skip',
+    ),
   );
 
   /// fail
-  static final TestReportActionResult fail = TestReportActionResult._(
+  static const TestReportActionResult fail = TestReportActionResult._(
     valueString: 'fail',
-    system: 'http://hl7.org/fhir/ValueSet/report-action-result-codes'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Fail'.toFhirString,
+    valueEnum: TestReportActionResultEnum.fail,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/report-action-result-codes',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Fail',
+    ),
   );
 
   /// warning
-  static final TestReportActionResult warning = TestReportActionResult._(
+  static const TestReportActionResult warning = TestReportActionResult._(
     valueString: 'warning',
-    system: 'http://hl7.org/fhir/ValueSet/report-action-result-codes'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Warning'.toFhirString,
+    valueEnum: TestReportActionResultEnum.warning,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/report-action-result-codes',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Warning',
+    ),
   );
 
   /// error
-  static final TestReportActionResult error = TestReportActionResult._(
+  static const TestReportActionResult error = TestReportActionResult._(
     valueString: 'error',
-    system: 'http://hl7.org/fhir/ValueSet/report-action-result-codes'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Error'.toFhirString,
+    valueEnum: TestReportActionResultEnum.error,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/report-action-result-codes',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Error',
+    ),
   );
-
-  /// For instances where an Element is present but not value
-  static final TestReportActionResult elementOnly =
-      TestReportActionResult._(valueString: '');
 
   /// List of all enum-like values
   static final List<TestReportActionResult> values = [
@@ -121,13 +210,6 @@ class TestReportActionResult extends FhirCodeEnum {
     warning,
     error,
   ];
-
-  /// Clones the current instance
-  @override
-  TestReportActionResult clone() => TestReportActionResult._(
-        valueString: valueString,
-        element: element?.clone() as Element?,
-      );
 
   /// Returns the enum value with an element attached
   TestReportActionResult withElement(Element? newElement) {
@@ -148,36 +230,56 @@ class TestReportActionResult extends FhirCodeEnum {
   @override
   String toString() => valueString ?? '';
 
-  /// Creates a modified copy with updated properties.
   @override
-  TestReportActionResult copyWith({
-    dynamic newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
+  TestReportActionResult clone() => copyWith();
+
+  /// Creates a new instance with the specified fields replaced.
+  @override
+  TestReportActionResultCopyWithImpl<TestReportActionResult> get copyWith =>
+      TestReportActionResultCopyWithImpl<TestReportActionResult>(
+        this,
+        (v) => v as TestReportActionResult,
+      );
+}
+
+/// The generated implementation of the copyWith helper for Element.
+/// The call method uses parameters of type Object? with a default value of
+/// [fhirSentinel] so that omitted parameters retain the sentinel value while
+/// explicit nulls do not.
+class TestReportActionResultCopyWithImpl<T> extends $FhirCodeCopyWithImpl<T> {
+  /// Constructor for the copyWith implementation.
+  TestReportActionResultCopyWithImpl(super._value, super._then);
+
+  @override
+  T call({
+    Object? newValue = fhirSentinel,
+    Object? element = fhirSentinel,
+    Object? id = fhirSentinel,
+    Object? extension_ = fhirSentinel,
+    Object? disallowExtensions = fhirSentinel,
   }) {
-    if (newValue is! String?) {
+    if (!identical(newValue, fhirSentinel) && newValue is! String?) {
       throw ArgumentError(
-        'Invalid input for TestReportActionResult: $newValue',
+        'newValue must be a String or null, but found ${newValue.runtimeType}',
+        'newValue',
       );
     }
-    return TestReportActionResult._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
+    return _then(
+      TestReportActionResult(
+        identical(newValue, fhirSentinel)
+            ? _value.valueString
+            : newValue as String?,
+        element: identical(element, fhirSentinel)
+            ? _value.element
+            : element as Element?,
+        id: identical(id, fhirSentinel) ? _value.id : id as FhirString?,
+        extension_: identical(extension_, fhirSentinel)
+            ? _value.extension_
+            : extension_ as List<FhirExtension>?,
+        disallowExtensions: identical(disallowExtensions, fhirSentinel)
+            ? _value.disallowExtensions
+            : disallowExtensions as bool?,
       ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

@@ -1,14 +1,68 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for IngredientManufacturerRole
+enum IngredientManufacturerRoleEnum {
+  /// allowed
+  allowed,
+
+  /// possible
+  possible,
+
+  /// actual
+  actual,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case IngredientManufacturerRoleEnum.allowed:
+        return 'allowed';
+      case IngredientManufacturerRoleEnum.possible:
+        return 'possible';
+      case IngredientManufacturerRoleEnum.actual:
+        return 'actual';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static IngredientManufacturerRoleEnum? fromJson(dynamic json) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return IngredientManufacturerRoleEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static IngredientManufacturerRoleEnum? fromString(String? value) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'allowed':
+        return IngredientManufacturerRoleEnum.allowed;
+      case 'possible':
+        return IngredientManufacturerRoleEnum.possible;
+      case 'actual':
+        return IngredientManufacturerRoleEnum.actual;
+    }
+    return null;
+  }
+}
+
 /// The way in which this manufacturer is associated with the ingredient.
 /// For example whether it is a possible one (others allowed), or an
 /// exclusive authorized one for this ingredient. Note that this is not the
 /// manufacturing process role.
 class IngredientManufacturerRole extends FhirCodeEnum {
   // Private underscore constructor for internal use.
-  IngredientManufacturerRole._({
+  const IngredientManufacturerRole._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -16,7 +70,6 @@ class IngredientManufacturerRole extends FhirCodeEnum {
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.objectPath = 'Code',
   }) : super._();
 
   /// Public factory if you want a fallback approach or custom creation.
@@ -30,12 +83,13 @@ class IngredientManufacturerRole extends FhirCodeEnum {
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
-    String objectPath = 'Code',
   }) {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
+    final valueEnum = IngredientManufacturerRoleEnum.fromString(valueString);
     return IngredientManufacturerRole._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -43,13 +97,8 @@ class IngredientManufacturerRole extends FhirCodeEnum {
       id: id,
       extension_: extension_,
       disallowExtensions: disallowExtensions,
-      objectPath: objectPath,
     );
   }
-
-  /// Create empty [IngredientManufacturerRole] with element only
-  factory IngredientManufacturerRole.empty() =>
-      IngredientManufacturerRole._(valueString: '');
 
   /// Factory constructor to create [IngredientManufacturerRole]
   /// from JSON.
@@ -57,10 +106,11 @@ class IngredientManufacturerRole extends FhirCodeEnum {
     Map<String, dynamic> json,
   ) {
     final value = json['value'] as String?;
+    final valueEnum = IngredientManufacturerRoleEnum.fromString(value);
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return IngredientManufacturerRole.elementOnly.withElement(element);
+      return IngredientManufacturerRole._(valueString: null, element: element);
     } else if (value == null && element == null) {
       throw ArgumentError(
         'IngredientManufacturerRole cannot be constructed from JSON.',
@@ -68,45 +118,54 @@ class IngredientManufacturerRole extends FhirCodeEnum {
     }
     return IngredientManufacturerRole._(
       valueString: value,
+      valueEnum: valueEnum,
       element: element,
     );
   }
 
+  /// An actual enum that can be used for IngredientManufacturerRole
+  final IngredientManufacturerRoleEnum? valueEnum;
+
   /// allowed
-  static final IngredientManufacturerRole allowed =
+  static const IngredientManufacturerRole allowed =
       IngredientManufacturerRole._(
     valueString: 'allowed',
-    system:
-        'http://hl7.org/fhir/ValueSet/ingredient-manufacturer-role'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display:
-        'Manufacturer is specifically allowed for this ingredient'.toFhirString,
+    valueEnum: IngredientManufacturerRoleEnum.allowed,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/ingredient-manufacturer-role',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Manufacturer is specifically allowed for this ingredient',
+    ),
   );
 
   /// possible
-  static final IngredientManufacturerRole possible =
+  static const IngredientManufacturerRole possible =
       IngredientManufacturerRole._(
     valueString: 'possible',
-    system:
-        'http://hl7.org/fhir/ValueSet/ingredient-manufacturer-role'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display:
-        'Manufacturer is known to make this ingredient in general'.toFhirString,
+    valueEnum: IngredientManufacturerRoleEnum.possible,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/ingredient-manufacturer-role',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Manufacturer is known to make this ingredient in general',
+    ),
   );
 
   /// actual
-  static final IngredientManufacturerRole actual = IngredientManufacturerRole._(
+  static const IngredientManufacturerRole actual = IngredientManufacturerRole._(
     valueString: 'actual',
-    system:
-        'http://hl7.org/fhir/ValueSet/ingredient-manufacturer-role'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display:
-        'Manufacturer actually makes this particular ingredient'.toFhirString,
+    valueEnum: IngredientManufacturerRoleEnum.actual,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/ingredient-manufacturer-role',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Manufacturer actually makes this particular ingredient',
+    ),
   );
-
-  /// For instances where an Element is present but not value
-  static final IngredientManufacturerRole elementOnly =
-      IngredientManufacturerRole._(valueString: '');
 
   /// List of all enum-like values
   static final List<IngredientManufacturerRole> values = [
@@ -114,13 +173,6 @@ class IngredientManufacturerRole extends FhirCodeEnum {
     possible,
     actual,
   ];
-
-  /// Clones the current instance
-  @override
-  IngredientManufacturerRole clone() => IngredientManufacturerRole._(
-        valueString: valueString,
-        element: element?.clone() as Element?,
-      );
 
   /// Returns the enum value with an element attached
   IngredientManufacturerRole withElement(Element? newElement) {
@@ -141,36 +193,58 @@ class IngredientManufacturerRole extends FhirCodeEnum {
   @override
   String toString() => valueString ?? '';
 
-  /// Creates a modified copy with updated properties.
   @override
-  IngredientManufacturerRole copyWith({
-    dynamic newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
+  IngredientManufacturerRole clone() => copyWith();
+
+  /// Creates a new instance with the specified fields replaced.
+  @override
+  IngredientManufacturerRoleCopyWithImpl<IngredientManufacturerRole>
+      get copyWith =>
+          IngredientManufacturerRoleCopyWithImpl<IngredientManufacturerRole>(
+            this,
+            (v) => v as IngredientManufacturerRole,
+          );
+}
+
+/// The generated implementation of the copyWith helper for Element.
+/// The call method uses parameters of type Object? with a default value of
+/// [fhirSentinel] so that omitted parameters retain the sentinel value while
+/// explicit nulls do not.
+class IngredientManufacturerRoleCopyWithImpl<T>
+    extends $FhirCodeCopyWithImpl<T> {
+  /// Constructor for the copyWith implementation.
+  IngredientManufacturerRoleCopyWithImpl(super._value, super._then);
+
+  @override
+  T call({
+    Object? newValue = fhirSentinel,
+    Object? element = fhirSentinel,
+    Object? id = fhirSentinel,
+    Object? extension_ = fhirSentinel,
+    Object? disallowExtensions = fhirSentinel,
   }) {
-    if (newValue is! String?) {
+    if (!identical(newValue, fhirSentinel) && newValue is! String?) {
       throw ArgumentError(
-        'Invalid input for IngredientManufacturerRole: $newValue',
+        'newValue must be a String or null, but found ${newValue.runtimeType}',
+        'newValue',
       );
     }
-    return IngredientManufacturerRole._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
+    return _then(
+      IngredientManufacturerRole(
+        identical(newValue, fhirSentinel)
+            ? _value.valueString
+            : newValue as String?,
+        element: identical(element, fhirSentinel)
+            ? _value.element
+            : element as Element?,
+        id: identical(id, fhirSentinel) ? _value.id : id as FhirString?,
+        extension_: identical(extension_, fhirSentinel)
+            ? _value.extension_
+            : extension_ as List<FhirExtension>?,
+        disallowExtensions: identical(disallowExtensions, fhirSentinel)
+            ? _value.disallowExtensions
+            : disallowExtensions as bool?,
       ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

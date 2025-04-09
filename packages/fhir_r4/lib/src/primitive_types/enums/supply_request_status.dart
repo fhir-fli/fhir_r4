@@ -1,11 +1,93 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for SupplyRequestStatus
+enum SupplyRequestStatusEnum {
+  /// draft
+  draft,
+
+  /// active
+  active,
+
+  /// suspended
+  suspended,
+
+  /// cancelled
+  cancelled,
+
+  /// completed
+  completed,
+
+  /// entered-in-error
+  enteredInError,
+
+  /// unknown
+  unknown,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case SupplyRequestStatusEnum.draft:
+        return 'draft';
+      case SupplyRequestStatusEnum.active:
+        return 'active';
+      case SupplyRequestStatusEnum.suspended:
+        return 'suspended';
+      case SupplyRequestStatusEnum.cancelled:
+        return 'cancelled';
+      case SupplyRequestStatusEnum.completed:
+        return 'completed';
+      case SupplyRequestStatusEnum.enteredInError:
+        return 'entered-in-error';
+      case SupplyRequestStatusEnum.unknown:
+        return 'unknown';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static SupplyRequestStatusEnum? fromJson(dynamic json) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return SupplyRequestStatusEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static SupplyRequestStatusEnum? fromString(String? value) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'draft':
+        return SupplyRequestStatusEnum.draft;
+      case 'active':
+        return SupplyRequestStatusEnum.active;
+      case 'suspended':
+        return SupplyRequestStatusEnum.suspended;
+      case 'cancelled':
+        return SupplyRequestStatusEnum.cancelled;
+      case 'completed':
+        return SupplyRequestStatusEnum.completed;
+      case 'entered-in-error':
+        return SupplyRequestStatusEnum.enteredInError;
+      case 'unknown':
+        return SupplyRequestStatusEnum.unknown;
+    }
+    return null;
+  }
+}
+
 /// Status of the supply request.
 class SupplyRequestStatus extends FhirCodeEnum {
   // Private underscore constructor for internal use.
-  SupplyRequestStatus._({
+  const SupplyRequestStatus._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -13,7 +95,6 @@ class SupplyRequestStatus extends FhirCodeEnum {
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.objectPath = 'Code',
   }) : super._();
 
   /// Public factory if you want a fallback approach or custom creation.
@@ -27,12 +108,13 @@ class SupplyRequestStatus extends FhirCodeEnum {
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
-    String objectPath = 'Code',
   }) {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
+    final valueEnum = SupplyRequestStatusEnum.fromString(valueString);
     return SupplyRequestStatus._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -40,12 +122,8 @@ class SupplyRequestStatus extends FhirCodeEnum {
       id: id,
       extension_: extension_,
       disallowExtensions: disallowExtensions,
-      objectPath: objectPath,
     );
   }
-
-  /// Create empty [SupplyRequestStatus] with element only
-  factory SupplyRequestStatus.empty() => SupplyRequestStatus._(valueString: '');
 
   /// Factory constructor to create [SupplyRequestStatus]
   /// from JSON.
@@ -53,10 +131,11 @@ class SupplyRequestStatus extends FhirCodeEnum {
     Map<String, dynamic> json,
   ) {
     final value = json['value'] as String?;
+    final valueEnum = SupplyRequestStatusEnum.fromString(value);
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return SupplyRequestStatus.elementOnly.withElement(element);
+      return SupplyRequestStatus._(valueString: null, element: element);
     } else if (value == null && element == null) {
       throw ArgumentError(
         'SupplyRequestStatus cannot be constructed from JSON.',
@@ -64,69 +143,104 @@ class SupplyRequestStatus extends FhirCodeEnum {
     }
     return SupplyRequestStatus._(
       valueString: value,
+      valueEnum: valueEnum,
       element: element,
     );
   }
 
+  /// An actual enum that can be used for SupplyRequestStatus
+  final SupplyRequestStatusEnum? valueEnum;
+
   /// draft
-  static final SupplyRequestStatus draft = SupplyRequestStatus._(
+  static const SupplyRequestStatus draft = SupplyRequestStatus._(
     valueString: 'draft',
-    system: 'http://hl7.org/fhir/ValueSet/supplyrequest-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Draft'.toFhirString,
+    valueEnum: SupplyRequestStatusEnum.draft,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/supplyrequest-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Draft',
+    ),
   );
 
   /// active
-  static final SupplyRequestStatus active = SupplyRequestStatus._(
+  static const SupplyRequestStatus active = SupplyRequestStatus._(
     valueString: 'active',
-    system: 'http://hl7.org/fhir/ValueSet/supplyrequest-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Active'.toFhirString,
+    valueEnum: SupplyRequestStatusEnum.active,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/supplyrequest-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Active',
+    ),
   );
 
   /// suspended
-  static final SupplyRequestStatus suspended = SupplyRequestStatus._(
+  static const SupplyRequestStatus suspended = SupplyRequestStatus._(
     valueString: 'suspended',
-    system: 'http://hl7.org/fhir/ValueSet/supplyrequest-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Suspended'.toFhirString,
+    valueEnum: SupplyRequestStatusEnum.suspended,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/supplyrequest-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Suspended',
+    ),
   );
 
   /// cancelled
-  static final SupplyRequestStatus cancelled = SupplyRequestStatus._(
+  static const SupplyRequestStatus cancelled = SupplyRequestStatus._(
     valueString: 'cancelled',
-    system: 'http://hl7.org/fhir/ValueSet/supplyrequest-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Cancelled'.toFhirString,
+    valueEnum: SupplyRequestStatusEnum.cancelled,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/supplyrequest-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Cancelled',
+    ),
   );
 
   /// completed
-  static final SupplyRequestStatus completed = SupplyRequestStatus._(
+  static const SupplyRequestStatus completed = SupplyRequestStatus._(
     valueString: 'completed',
-    system: 'http://hl7.org/fhir/ValueSet/supplyrequest-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Completed'.toFhirString,
+    valueEnum: SupplyRequestStatusEnum.completed,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/supplyrequest-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Completed',
+    ),
   );
 
   /// entered_in_error
-  static final SupplyRequestStatus entered_in_error = SupplyRequestStatus._(
+  static const SupplyRequestStatus enteredInError = SupplyRequestStatus._(
     valueString: 'entered-in-error',
-    system: 'http://hl7.org/fhir/ValueSet/supplyrequest-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Entered in Error'.toFhirString,
+    valueEnum: SupplyRequestStatusEnum.enteredInError,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/supplyrequest-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Entered in Error',
+    ),
   );
 
   /// unknown
-  static final SupplyRequestStatus unknown = SupplyRequestStatus._(
+  static const SupplyRequestStatus unknown = SupplyRequestStatus._(
     valueString: 'unknown',
-    system: 'http://hl7.org/fhir/ValueSet/supplyrequest-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Unknown'.toFhirString,
+    valueEnum: SupplyRequestStatusEnum.unknown,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/supplyrequest-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Unknown',
+    ),
   );
-
-  /// For instances where an Element is present but not value
-  static final SupplyRequestStatus elementOnly =
-      SupplyRequestStatus._(valueString: '');
 
   /// List of all enum-like values
   static final List<SupplyRequestStatus> values = [
@@ -135,16 +249,9 @@ class SupplyRequestStatus extends FhirCodeEnum {
     suspended,
     cancelled,
     completed,
-    entered_in_error,
+    enteredInError,
     unknown,
   ];
-
-  /// Clones the current instance
-  @override
-  SupplyRequestStatus clone() => SupplyRequestStatus._(
-        valueString: valueString,
-        element: element?.clone() as Element?,
-      );
 
   /// Returns the enum value with an element attached
   SupplyRequestStatus withElement(Element? newElement) {
@@ -165,36 +272,56 @@ class SupplyRequestStatus extends FhirCodeEnum {
   @override
   String toString() => valueString ?? '';
 
-  /// Creates a modified copy with updated properties.
   @override
-  SupplyRequestStatus copyWith({
-    dynamic newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
+  SupplyRequestStatus clone() => copyWith();
+
+  /// Creates a new instance with the specified fields replaced.
+  @override
+  SupplyRequestStatusCopyWithImpl<SupplyRequestStatus> get copyWith =>
+      SupplyRequestStatusCopyWithImpl<SupplyRequestStatus>(
+        this,
+        (v) => v as SupplyRequestStatus,
+      );
+}
+
+/// The generated implementation of the copyWith helper for Element.
+/// The call method uses parameters of type Object? with a default value of
+/// [fhirSentinel] so that omitted parameters retain the sentinel value while
+/// explicit nulls do not.
+class SupplyRequestStatusCopyWithImpl<T> extends $FhirCodeCopyWithImpl<T> {
+  /// Constructor for the copyWith implementation.
+  SupplyRequestStatusCopyWithImpl(super._value, super._then);
+
+  @override
+  T call({
+    Object? newValue = fhirSentinel,
+    Object? element = fhirSentinel,
+    Object? id = fhirSentinel,
+    Object? extension_ = fhirSentinel,
+    Object? disallowExtensions = fhirSentinel,
   }) {
-    if (newValue is! String?) {
+    if (!identical(newValue, fhirSentinel) && newValue is! String?) {
       throw ArgumentError(
-        'Invalid input for SupplyRequestStatus: $newValue',
+        'newValue must be a String or null, but found ${newValue.runtimeType}',
+        'newValue',
       );
     }
-    return SupplyRequestStatus._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
+    return _then(
+      SupplyRequestStatus(
+        identical(newValue, fhirSentinel)
+            ? _value.valueString
+            : newValue as String?,
+        element: identical(element, fhirSentinel)
+            ? _value.element
+            : element as Element?,
+        id: identical(id, fhirSentinel) ? _value.id : id as FhirString?,
+        extension_: identical(extension_, fhirSentinel)
+            ? _value.extension_
+            : extension_ as List<FhirExtension>?,
+        disallowExtensions: identical(disallowExtensions, fhirSentinel)
+            ? _value.disallowExtensions
+            : disallowExtensions as bool?,
       ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

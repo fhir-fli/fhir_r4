@@ -1,11 +1,163 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for StructureMapTransform
+enum StructureMapTransformEnum {
+  /// create
+  create,
+
+  /// copy
+  copy_,
+
+  /// truncate
+  truncate,
+
+  /// escape
+  escape,
+
+  /// cast
+  cast,
+
+  /// append
+  append,
+
+  /// translate
+  translate,
+
+  /// reference
+  reference,
+
+  /// dateOp
+  dateOp,
+
+  /// uuid
+  uuid,
+
+  /// pointer
+  pointer,
+
+  /// evaluate
+  evaluate,
+
+  /// cc
+  cc,
+
+  /// c
+  c,
+
+  /// qty
+  qty,
+
+  /// id
+  id_,
+
+  /// cp
+  cp,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case StructureMapTransformEnum.create:
+        return 'create';
+      case StructureMapTransformEnum.copy_:
+        return 'copy';
+      case StructureMapTransformEnum.truncate:
+        return 'truncate';
+      case StructureMapTransformEnum.escape:
+        return 'escape';
+      case StructureMapTransformEnum.cast:
+        return 'cast';
+      case StructureMapTransformEnum.append:
+        return 'append';
+      case StructureMapTransformEnum.translate:
+        return 'translate';
+      case StructureMapTransformEnum.reference:
+        return 'reference';
+      case StructureMapTransformEnum.dateOp:
+        return 'dateOp';
+      case StructureMapTransformEnum.uuid:
+        return 'uuid';
+      case StructureMapTransformEnum.pointer:
+        return 'pointer';
+      case StructureMapTransformEnum.evaluate:
+        return 'evaluate';
+      case StructureMapTransformEnum.cc:
+        return 'cc';
+      case StructureMapTransformEnum.c:
+        return 'c';
+      case StructureMapTransformEnum.qty:
+        return 'qty';
+      case StructureMapTransformEnum.id_:
+        return 'id';
+      case StructureMapTransformEnum.cp:
+        return 'cp';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static StructureMapTransformEnum? fromJson(dynamic json) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return StructureMapTransformEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static StructureMapTransformEnum? fromString(String? value) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'create':
+        return StructureMapTransformEnum.create;
+      case 'copy':
+        return StructureMapTransformEnum.copy_;
+      case 'truncate':
+        return StructureMapTransformEnum.truncate;
+      case 'escape':
+        return StructureMapTransformEnum.escape;
+      case 'cast':
+        return StructureMapTransformEnum.cast;
+      case 'append':
+        return StructureMapTransformEnum.append;
+      case 'translate':
+        return StructureMapTransformEnum.translate;
+      case 'reference':
+        return StructureMapTransformEnum.reference;
+      case 'dateOp':
+        return StructureMapTransformEnum.dateOp;
+      case 'uuid':
+        return StructureMapTransformEnum.uuid;
+      case 'pointer':
+        return StructureMapTransformEnum.pointer;
+      case 'evaluate':
+        return StructureMapTransformEnum.evaluate;
+      case 'cc':
+        return StructureMapTransformEnum.cc;
+      case 'c':
+        return StructureMapTransformEnum.c;
+      case 'qty':
+        return StructureMapTransformEnum.qty;
+      case 'id':
+        return StructureMapTransformEnum.id_;
+      case 'cp':
+        return StructureMapTransformEnum.cp;
+    }
+    return null;
+  }
+}
+
 /// How data is copied/created.
 class StructureMapTransform extends FhirCodeEnum {
   // Private underscore constructor for internal use.
-  StructureMapTransform._({
+  const StructureMapTransform._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -13,7 +165,6 @@ class StructureMapTransform extends FhirCodeEnum {
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.objectPath = 'Code',
   }) : super._();
 
   /// Public factory if you want a fallback approach or custom creation.
@@ -27,12 +178,13 @@ class StructureMapTransform extends FhirCodeEnum {
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
-    String objectPath = 'Code',
   }) {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
+    final valueEnum = StructureMapTransformEnum.fromString(valueString);
     return StructureMapTransform._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -40,13 +192,8 @@ class StructureMapTransform extends FhirCodeEnum {
       id: id,
       extension_: extension_,
       disallowExtensions: disallowExtensions,
-      objectPath: objectPath,
     );
   }
-
-  /// Create empty [StructureMapTransform] with element only
-  factory StructureMapTransform.empty() =>
-      StructureMapTransform._(valueString: '');
 
   /// Factory constructor to create [StructureMapTransform]
   /// from JSON.
@@ -54,10 +201,11 @@ class StructureMapTransform extends FhirCodeEnum {
     Map<String, dynamic> json,
   ) {
     final value = json['value'] as String?;
+    final valueEnum = StructureMapTransformEnum.fromString(value);
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return StructureMapTransform.elementOnly.withElement(element);
+      return StructureMapTransform._(valueString: null, element: element);
     } else if (value == null && element == null) {
       throw ArgumentError(
         'StructureMapTransform cannot be constructed from JSON.',
@@ -65,149 +213,234 @@ class StructureMapTransform extends FhirCodeEnum {
     }
     return StructureMapTransform._(
       valueString: value,
+      valueEnum: valueEnum,
       element: element,
     );
   }
 
+  /// An actual enum that can be used for StructureMapTransform
+  final StructureMapTransformEnum? valueEnum;
+
   /// create
-  static final StructureMapTransform create = StructureMapTransform._(
+  static const StructureMapTransform create = StructureMapTransform._(
     valueString: 'create',
-    system: 'http://hl7.org/fhir/ValueSet/map-transform'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'create'.toFhirString,
+    valueEnum: StructureMapTransformEnum.create,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/map-transform',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'create',
+    ),
   );
 
   /// copy
-  static final StructureMapTransform copy_ = StructureMapTransform._(
+  static const StructureMapTransform copy_ = StructureMapTransform._(
     valueString: 'copy',
-    system: 'http://hl7.org/fhir/ValueSet/map-transform'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'copy'.toFhirString,
+    valueEnum: StructureMapTransformEnum.copy_,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/map-transform',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'copy',
+    ),
   );
 
   /// truncate
-  static final StructureMapTransform truncate = StructureMapTransform._(
+  static const StructureMapTransform truncate = StructureMapTransform._(
     valueString: 'truncate',
-    system: 'http://hl7.org/fhir/ValueSet/map-transform'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'truncate'.toFhirString,
+    valueEnum: StructureMapTransformEnum.truncate,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/map-transform',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'truncate',
+    ),
   );
 
   /// escape
-  static final StructureMapTransform escape = StructureMapTransform._(
+  static const StructureMapTransform escape = StructureMapTransform._(
     valueString: 'escape',
-    system: 'http://hl7.org/fhir/ValueSet/map-transform'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'escape'.toFhirString,
+    valueEnum: StructureMapTransformEnum.escape,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/map-transform',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'escape',
+    ),
   );
 
   /// cast
-  static final StructureMapTransform cast = StructureMapTransform._(
+  static const StructureMapTransform cast = StructureMapTransform._(
     valueString: 'cast',
-    system: 'http://hl7.org/fhir/ValueSet/map-transform'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'cast'.toFhirString,
+    valueEnum: StructureMapTransformEnum.cast,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/map-transform',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'cast',
+    ),
   );
 
   /// append
-  static final StructureMapTransform append = StructureMapTransform._(
+  static const StructureMapTransform append = StructureMapTransform._(
     valueString: 'append',
-    system: 'http://hl7.org/fhir/ValueSet/map-transform'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'append'.toFhirString,
+    valueEnum: StructureMapTransformEnum.append,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/map-transform',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'append',
+    ),
   );
 
   /// translate
-  static final StructureMapTransform translate = StructureMapTransform._(
+  static const StructureMapTransform translate = StructureMapTransform._(
     valueString: 'translate',
-    system: 'http://hl7.org/fhir/ValueSet/map-transform'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'translate'.toFhirString,
+    valueEnum: StructureMapTransformEnum.translate,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/map-transform',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'translate',
+    ),
   );
 
   /// reference
-  static final StructureMapTransform reference = StructureMapTransform._(
+  static const StructureMapTransform reference = StructureMapTransform._(
     valueString: 'reference',
-    system: 'http://hl7.org/fhir/ValueSet/map-transform'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'reference'.toFhirString,
+    valueEnum: StructureMapTransformEnum.reference,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/map-transform',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'reference',
+    ),
   );
 
   /// dateOp
-  static final StructureMapTransform dateOp = StructureMapTransform._(
+  static const StructureMapTransform dateOp = StructureMapTransform._(
     valueString: 'dateOp',
-    system: 'http://hl7.org/fhir/ValueSet/map-transform'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'dateOp'.toFhirString,
+    valueEnum: StructureMapTransformEnum.dateOp,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/map-transform',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'dateOp',
+    ),
   );
 
   /// uuid
-  static final StructureMapTransform uuid = StructureMapTransform._(
+  static const StructureMapTransform uuid = StructureMapTransform._(
     valueString: 'uuid',
-    system: 'http://hl7.org/fhir/ValueSet/map-transform'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'uuid'.toFhirString,
+    valueEnum: StructureMapTransformEnum.uuid,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/map-transform',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'uuid',
+    ),
   );
 
   /// pointer
-  static final StructureMapTransform pointer = StructureMapTransform._(
+  static const StructureMapTransform pointer = StructureMapTransform._(
     valueString: 'pointer',
-    system: 'http://hl7.org/fhir/ValueSet/map-transform'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'pointer'.toFhirString,
+    valueEnum: StructureMapTransformEnum.pointer,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/map-transform',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'pointer',
+    ),
   );
 
   /// evaluate
-  static final StructureMapTransform evaluate = StructureMapTransform._(
+  static const StructureMapTransform evaluate = StructureMapTransform._(
     valueString: 'evaluate',
-    system: 'http://hl7.org/fhir/ValueSet/map-transform'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'evaluate'.toFhirString,
+    valueEnum: StructureMapTransformEnum.evaluate,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/map-transform',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'evaluate',
+    ),
   );
 
   /// cc
-  static final StructureMapTransform cc = StructureMapTransform._(
+  static const StructureMapTransform cc = StructureMapTransform._(
     valueString: 'cc',
-    system: 'http://hl7.org/fhir/ValueSet/map-transform'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'cc'.toFhirString,
+    valueEnum: StructureMapTransformEnum.cc,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/map-transform',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'cc',
+    ),
   );
 
   /// c
-  static final StructureMapTransform c = StructureMapTransform._(
+  static const StructureMapTransform c = StructureMapTransform._(
     valueString: 'c',
-    system: 'http://hl7.org/fhir/ValueSet/map-transform'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'c'.toFhirString,
+    valueEnum: StructureMapTransformEnum.c,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/map-transform',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'c',
+    ),
   );
 
   /// qty
-  static final StructureMapTransform qty = StructureMapTransform._(
+  static const StructureMapTransform qty = StructureMapTransform._(
     valueString: 'qty',
-    system: 'http://hl7.org/fhir/ValueSet/map-transform'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'qty'.toFhirString,
+    valueEnum: StructureMapTransformEnum.qty,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/map-transform',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'qty',
+    ),
   );
 
   /// id
-  static final StructureMapTransform id_ = StructureMapTransform._(
+  static const StructureMapTransform id_ = StructureMapTransform._(
     valueString: 'id',
-    system: 'http://hl7.org/fhir/ValueSet/map-transform'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'id'.toFhirString,
+    valueEnum: StructureMapTransformEnum.id_,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/map-transform',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'id',
+    ),
   );
 
   /// cp
-  static final StructureMapTransform cp = StructureMapTransform._(
+  static const StructureMapTransform cp = StructureMapTransform._(
     valueString: 'cp',
-    system: 'http://hl7.org/fhir/ValueSet/map-transform'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'cp'.toFhirString,
+    valueEnum: StructureMapTransformEnum.cp,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/map-transform',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'cp',
+    ),
   );
-
-  /// For instances where an Element is present but not value
-  static final StructureMapTransform elementOnly =
-      StructureMapTransform._(valueString: '');
 
   /// List of all enum-like values
   static final List<StructureMapTransform> values = [
@@ -230,13 +463,6 @@ class StructureMapTransform extends FhirCodeEnum {
     cp,
   ];
 
-  /// Clones the current instance
-  @override
-  StructureMapTransform clone() => StructureMapTransform._(
-        valueString: valueString,
-        element: element?.clone() as Element?,
-      );
-
   /// Returns the enum value with an element attached
   StructureMapTransform withElement(Element? newElement) {
     return StructureMapTransform._(
@@ -256,36 +482,56 @@ class StructureMapTransform extends FhirCodeEnum {
   @override
   String toString() => valueString ?? '';
 
-  /// Creates a modified copy with updated properties.
   @override
-  StructureMapTransform copyWith({
-    dynamic newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
+  StructureMapTransform clone() => copyWith();
+
+  /// Creates a new instance with the specified fields replaced.
+  @override
+  StructureMapTransformCopyWithImpl<StructureMapTransform> get copyWith =>
+      StructureMapTransformCopyWithImpl<StructureMapTransform>(
+        this,
+        (v) => v as StructureMapTransform,
+      );
+}
+
+/// The generated implementation of the copyWith helper for Element.
+/// The call method uses parameters of type Object? with a default value of
+/// [fhirSentinel] so that omitted parameters retain the sentinel value while
+/// explicit nulls do not.
+class StructureMapTransformCopyWithImpl<T> extends $FhirCodeCopyWithImpl<T> {
+  /// Constructor for the copyWith implementation.
+  StructureMapTransformCopyWithImpl(super._value, super._then);
+
+  @override
+  T call({
+    Object? newValue = fhirSentinel,
+    Object? element = fhirSentinel,
+    Object? id = fhirSentinel,
+    Object? extension_ = fhirSentinel,
+    Object? disallowExtensions = fhirSentinel,
   }) {
-    if (newValue is! String?) {
+    if (!identical(newValue, fhirSentinel) && newValue is! String?) {
       throw ArgumentError(
-        'Invalid input for StructureMapTransform: $newValue',
+        'newValue must be a String or null, but found ${newValue.runtimeType}',
+        'newValue',
       );
     }
-    return StructureMapTransform._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
+    return _then(
+      StructureMapTransform(
+        identical(newValue, fhirSentinel)
+            ? _value.valueString
+            : newValue as String?,
+        element: identical(element, fhirSentinel)
+            ? _value.element
+            : element as Element?,
+        id: identical(id, fhirSentinel) ? _value.id : id as FhirString?,
+        extension_: identical(extension_, fhirSentinel)
+            ? _value.extension_
+            : extension_ as List<FhirExtension>?,
+        disallowExtensions: identical(disallowExtensions, fhirSentinel)
+            ? _value.disallowExtensions
+            : disallowExtensions as bool?,
       ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

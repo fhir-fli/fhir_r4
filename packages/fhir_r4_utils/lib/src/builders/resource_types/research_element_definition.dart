@@ -2947,25 +2947,17 @@ class ResearchElementDefinitionCharacteristicBuilder
     addField('studyEffectiveTimeFromStart', studyEffectiveTimeFromStart);
     addField('studyEffectiveGroupMeasure', studyEffectiveGroupMeasure);
     addField(
-      'participantEffectiveDescription',
-      participantEffectiveDescription,
-    );
+        'participantEffectiveDescription', participantEffectiveDescription);
     if (participantEffectiveX != null) {
       final fhirType = participantEffectiveX!.fhirType;
-      addField(
-        'participantEffective${fhirType.capitalize()}',
-        participantEffectiveX,
-      );
+      addField('participantEffective${fhirType.capitalize()}',
+          participantEffectiveX);
     }
 
     addField(
-      'participantEffectiveTimeFromStart',
-      participantEffectiveTimeFromStart,
-    );
+        'participantEffectiveTimeFromStart', participantEffectiveTimeFromStart);
     addField(
-      'participantEffectiveGroupMeasure',
-      participantEffectiveGroupMeasure,
-    );
+        'participantEffectiveGroupMeasure', participantEffectiveGroupMeasure);
     return json;
   }
 
@@ -3789,16 +3781,13 @@ class ResearchElementDefinitionCharacteristicBuilder
     if (studyEffective) studyEffectiveX = null;
     if (studyEffectiveTimeFromStart) this.studyEffectiveTimeFromStart = null;
     if (studyEffectiveGroupMeasure) this.studyEffectiveGroupMeasure = null;
-    if (participantEffectiveDescription) {
+    if (participantEffectiveDescription)
       this.participantEffectiveDescription = null;
-    }
     if (participantEffective) participantEffectiveX = null;
-    if (participantEffectiveTimeFromStart) {
+    if (participantEffectiveTimeFromStart)
       this.participantEffectiveTimeFromStart = null;
-    }
-    if (participantEffectiveGroupMeasure) {
+    if (participantEffectiveGroupMeasure)
       this.participantEffectiveGroupMeasure = null;
-    }
   }
 
   @override

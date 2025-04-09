@@ -1,12 +1,1046 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for CarePlanActivityKind
+enum CarePlanActivityKindEnum {
+  /// Resource
+  resource,
+
+  /// Binary
+  binary,
+
+  /// Bundle
+  bundle,
+
+  /// DomainResource
+  domainResource,
+
+  /// Account
+  account,
+
+  /// ActivityDefinition
+  activityDefinition,
+
+  /// AdministrableProductDefinition
+  administrableProductDefinition,
+
+  /// AdverseEvent
+  adverseEvent,
+
+  /// AllergyIntolerance
+  allergyIntolerance,
+
+  /// Appointment
+  appointment,
+
+  /// AppointmentResponse
+  appointmentResponse,
+
+  /// AuditEvent
+  auditEvent,
+
+  /// Basic
+  basic,
+
+  /// BiologicallyDerivedProduct
+  biologicallyDerivedProduct,
+
+  /// BodyStructure
+  bodyStructure,
+
+  /// CapabilityStatement
+  capabilityStatement,
+
+  /// CarePlan
+  carePlan,
+
+  /// CareTeam
+  careTeam,
+
+  /// CatalogEntry
+  catalogEntry,
+
+  /// ChargeItem
+  chargeItem,
+
+  /// ChargeItemDefinition
+  chargeItemDefinition,
+
+  /// Citation
+  citation,
+
+  /// Claim
+  claim,
+
+  /// ClaimResponse
+  claimResponse,
+
+  /// ClinicalImpression
+  clinicalImpression,
+
+  /// ClinicalUseDefinition
+  clinicalUseDefinition,
+
+  /// CodeSystem
+  codeSystem,
+
+  /// Communication
+  communication,
+
+  /// CommunicationRequest
+  communicationRequest,
+
+  /// CompartmentDefinition
+  compartmentDefinition,
+
+  /// Composition
+  composition,
+
+  /// ConceptMap
+  conceptMap,
+
+  /// Condition
+  condition,
+
+  /// Consent
+  consent,
+
+  /// Contract
+  contract,
+
+  /// Coverage
+  coverage,
+
+  /// CoverageEligibilityRequest
+  coverageEligibilityRequest,
+
+  /// CoverageEligibilityResponse
+  coverageEligibilityResponse,
+
+  /// DetectedIssue
+  detectedIssue,
+
+  /// Device
+  device,
+
+  /// DeviceDefinition
+  deviceDefinition,
+
+  /// DeviceMetric
+  deviceMetric,
+
+  /// DeviceRequest
+  deviceRequest,
+
+  /// DeviceUseStatement
+  deviceUseStatement,
+
+  /// DiagnosticReport
+  diagnosticReport,
+
+  /// DocumentManifest
+  documentManifest,
+
+  /// DocumentReference
+  documentReference,
+
+  /// Encounter
+  encounter,
+
+  /// Endpoint
+  endpoint,
+
+  /// EnrollmentRequest
+  enrollmentRequest,
+
+  /// EnrollmentResponse
+  enrollmentResponse,
+
+  /// EpisodeOfCare
+  episodeOfCare,
+
+  /// EventDefinition
+  eventDefinition,
+
+  /// Evidence
+  evidence,
+
+  /// EvidenceReport
+  evidenceReport,
+
+  /// EvidenceVariable
+  evidenceVariable,
+
+  /// ExampleScenario
+  exampleScenario,
+
+  /// ExplanationOfBenefit
+  explanationOfBenefit,
+
+  /// FamilyMemberHistory
+  familyMemberHistory,
+
+  /// Flag
+  flag,
+
+  /// Goal
+  goal,
+
+  /// GraphDefinition
+  graphDefinition,
+
+  /// Group
+  group,
+
+  /// GuidanceResponse
+  guidanceResponse,
+
+  /// HealthcareService
+  healthcareService,
+
+  /// ImagingStudy
+  imagingStudy,
+
+  /// Immunization
+  immunization,
+
+  /// ImmunizationEvaluation
+  immunizationEvaluation,
+
+  /// ImmunizationRecommendation
+  immunizationRecommendation,
+
+  /// ImplementationGuide
+  implementationGuide,
+
+  /// Ingredient
+  ingredient,
+
+  /// InsurancePlan
+  insurancePlan,
+
+  /// Invoice
+  invoice,
+
+  /// Library
+  library,
+
+  /// Linkage
+  linkage,
+
+  /// List
+  list_,
+
+  /// Location
+  location,
+
+  /// ManufacturedItemDefinition
+  manufacturedItemDefinition,
+
+  /// Measure
+  measure,
+
+  /// MeasureReport
+  measureReport,
+
+  /// Media
+  media,
+
+  /// Medication
+  medication,
+
+  /// MedicationAdministration
+  medicationAdministration,
+
+  /// MedicationDispense
+  medicationDispense,
+
+  /// MedicationKnowledge
+  medicationKnowledge,
+
+  /// MedicationRequest
+  medicationRequest,
+
+  /// MedicationStatement
+  medicationStatement,
+
+  /// MedicinalProductDefinition
+  medicinalProductDefinition,
+
+  /// MessageDefinition
+  messageDefinition,
+
+  /// MessageHeader
+  messageHeader,
+
+  /// MolecularSequence
+  molecularSequence,
+
+  /// NamingSystem
+  namingSystem,
+
+  /// NutritionOrder
+  nutritionOrder,
+
+  /// NutritionProduct
+  nutritionProduct,
+
+  /// Observation
+  observation,
+
+  /// ObservationDefinition
+  observationDefinition,
+
+  /// OperationDefinition
+  operationDefinition,
+
+  /// OperationOutcome
+  operationOutcome,
+
+  /// Organization
+  organization,
+
+  /// OrganizationAffiliation
+  organizationAffiliation,
+
+  /// PackagedProductDefinition
+  packagedProductDefinition,
+
+  /// Patient
+  patient,
+
+  /// PaymentNotice
+  paymentNotice,
+
+  /// PaymentReconciliation
+  paymentReconciliation,
+
+  /// Person
+  person,
+
+  /// PlanDefinition
+  planDefinition,
+
+  /// Practitioner
+  practitioner,
+
+  /// PractitionerRole
+  practitionerRole,
+
+  /// Procedure
+  procedure,
+
+  /// Provenance
+  provenance,
+
+  /// Questionnaire
+  questionnaire,
+
+  /// QuestionnaireResponse
+  questionnaireResponse,
+
+  /// RegulatedAuthorization
+  regulatedAuthorization,
+
+  /// RelatedPerson
+  relatedPerson,
+
+  /// RequestGroup
+  requestGroup,
+
+  /// ResearchDefinition
+  researchDefinition,
+
+  /// ResearchElementDefinition
+  researchElementDefinition,
+
+  /// ResearchStudy
+  researchStudy,
+
+  /// ResearchSubject
+  researchSubject,
+
+  /// RiskAssessment
+  riskAssessment,
+
+  /// Schedule
+  schedule,
+
+  /// SearchParameter
+  searchParameter,
+
+  /// ServiceRequest
+  serviceRequest,
+
+  /// Slot
+  slot,
+
+  /// Specimen
+  specimen,
+
+  /// SpecimenDefinition
+  specimenDefinition,
+
+  /// StructureDefinition
+  structureDefinition,
+
+  /// StructureMap
+  structureMap,
+
+  /// Subscription
+  subscription,
+
+  /// SubscriptionStatus
+  subscriptionStatus,
+
+  /// SubscriptionTopic
+  subscriptionTopic,
+
+  /// Substance
+  substance,
+
+  /// SubstanceDefinition
+  substanceDefinition,
+
+  /// SupplyDelivery
+  supplyDelivery,
+
+  /// SupplyRequest
+  supplyRequest,
+
+  /// Task
+  task,
+
+  /// TerminologyCapabilities
+  terminologyCapabilities,
+
+  /// TestReport
+  testReport,
+
+  /// TestScript
+  testScript,
+
+  /// ValueSet
+  valueSet,
+
+  /// VerificationResult
+  verificationResult,
+
+  /// VisionPrescription
+  visionPrescription,
+
+  /// Parameters
+  parameters,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case CarePlanActivityKindEnum.resource:
+        return 'Resource';
+      case CarePlanActivityKindEnum.binary:
+        return 'Binary';
+      case CarePlanActivityKindEnum.bundle:
+        return 'Bundle';
+      case CarePlanActivityKindEnum.domainResource:
+        return 'DomainResource';
+      case CarePlanActivityKindEnum.account:
+        return 'Account';
+      case CarePlanActivityKindEnum.activityDefinition:
+        return 'ActivityDefinition';
+      case CarePlanActivityKindEnum.administrableProductDefinition:
+        return 'AdministrableProductDefinition';
+      case CarePlanActivityKindEnum.adverseEvent:
+        return 'AdverseEvent';
+      case CarePlanActivityKindEnum.allergyIntolerance:
+        return 'AllergyIntolerance';
+      case CarePlanActivityKindEnum.appointment:
+        return 'Appointment';
+      case CarePlanActivityKindEnum.appointmentResponse:
+        return 'AppointmentResponse';
+      case CarePlanActivityKindEnum.auditEvent:
+        return 'AuditEvent';
+      case CarePlanActivityKindEnum.basic:
+        return 'Basic';
+      case CarePlanActivityKindEnum.biologicallyDerivedProduct:
+        return 'BiologicallyDerivedProduct';
+      case CarePlanActivityKindEnum.bodyStructure:
+        return 'BodyStructure';
+      case CarePlanActivityKindEnum.capabilityStatement:
+        return 'CapabilityStatement';
+      case CarePlanActivityKindEnum.carePlan:
+        return 'CarePlan';
+      case CarePlanActivityKindEnum.careTeam:
+        return 'CareTeam';
+      case CarePlanActivityKindEnum.catalogEntry:
+        return 'CatalogEntry';
+      case CarePlanActivityKindEnum.chargeItem:
+        return 'ChargeItem';
+      case CarePlanActivityKindEnum.chargeItemDefinition:
+        return 'ChargeItemDefinition';
+      case CarePlanActivityKindEnum.citation:
+        return 'Citation';
+      case CarePlanActivityKindEnum.claim:
+        return 'Claim';
+      case CarePlanActivityKindEnum.claimResponse:
+        return 'ClaimResponse';
+      case CarePlanActivityKindEnum.clinicalImpression:
+        return 'ClinicalImpression';
+      case CarePlanActivityKindEnum.clinicalUseDefinition:
+        return 'ClinicalUseDefinition';
+      case CarePlanActivityKindEnum.codeSystem:
+        return 'CodeSystem';
+      case CarePlanActivityKindEnum.communication:
+        return 'Communication';
+      case CarePlanActivityKindEnum.communicationRequest:
+        return 'CommunicationRequest';
+      case CarePlanActivityKindEnum.compartmentDefinition:
+        return 'CompartmentDefinition';
+      case CarePlanActivityKindEnum.composition:
+        return 'Composition';
+      case CarePlanActivityKindEnum.conceptMap:
+        return 'ConceptMap';
+      case CarePlanActivityKindEnum.condition:
+        return 'Condition';
+      case CarePlanActivityKindEnum.consent:
+        return 'Consent';
+      case CarePlanActivityKindEnum.contract:
+        return 'Contract';
+      case CarePlanActivityKindEnum.coverage:
+        return 'Coverage';
+      case CarePlanActivityKindEnum.coverageEligibilityRequest:
+        return 'CoverageEligibilityRequest';
+      case CarePlanActivityKindEnum.coverageEligibilityResponse:
+        return 'CoverageEligibilityResponse';
+      case CarePlanActivityKindEnum.detectedIssue:
+        return 'DetectedIssue';
+      case CarePlanActivityKindEnum.device:
+        return 'Device';
+      case CarePlanActivityKindEnum.deviceDefinition:
+        return 'DeviceDefinition';
+      case CarePlanActivityKindEnum.deviceMetric:
+        return 'DeviceMetric';
+      case CarePlanActivityKindEnum.deviceRequest:
+        return 'DeviceRequest';
+      case CarePlanActivityKindEnum.deviceUseStatement:
+        return 'DeviceUseStatement';
+      case CarePlanActivityKindEnum.diagnosticReport:
+        return 'DiagnosticReport';
+      case CarePlanActivityKindEnum.documentManifest:
+        return 'DocumentManifest';
+      case CarePlanActivityKindEnum.documentReference:
+        return 'DocumentReference';
+      case CarePlanActivityKindEnum.encounter:
+        return 'Encounter';
+      case CarePlanActivityKindEnum.endpoint:
+        return 'Endpoint';
+      case CarePlanActivityKindEnum.enrollmentRequest:
+        return 'EnrollmentRequest';
+      case CarePlanActivityKindEnum.enrollmentResponse:
+        return 'EnrollmentResponse';
+      case CarePlanActivityKindEnum.episodeOfCare:
+        return 'EpisodeOfCare';
+      case CarePlanActivityKindEnum.eventDefinition:
+        return 'EventDefinition';
+      case CarePlanActivityKindEnum.evidence:
+        return 'Evidence';
+      case CarePlanActivityKindEnum.evidenceReport:
+        return 'EvidenceReport';
+      case CarePlanActivityKindEnum.evidenceVariable:
+        return 'EvidenceVariable';
+      case CarePlanActivityKindEnum.exampleScenario:
+        return 'ExampleScenario';
+      case CarePlanActivityKindEnum.explanationOfBenefit:
+        return 'ExplanationOfBenefit';
+      case CarePlanActivityKindEnum.familyMemberHistory:
+        return 'FamilyMemberHistory';
+      case CarePlanActivityKindEnum.flag:
+        return 'Flag';
+      case CarePlanActivityKindEnum.goal:
+        return 'Goal';
+      case CarePlanActivityKindEnum.graphDefinition:
+        return 'GraphDefinition';
+      case CarePlanActivityKindEnum.group:
+        return 'Group';
+      case CarePlanActivityKindEnum.guidanceResponse:
+        return 'GuidanceResponse';
+      case CarePlanActivityKindEnum.healthcareService:
+        return 'HealthcareService';
+      case CarePlanActivityKindEnum.imagingStudy:
+        return 'ImagingStudy';
+      case CarePlanActivityKindEnum.immunization:
+        return 'Immunization';
+      case CarePlanActivityKindEnum.immunizationEvaluation:
+        return 'ImmunizationEvaluation';
+      case CarePlanActivityKindEnum.immunizationRecommendation:
+        return 'ImmunizationRecommendation';
+      case CarePlanActivityKindEnum.implementationGuide:
+        return 'ImplementationGuide';
+      case CarePlanActivityKindEnum.ingredient:
+        return 'Ingredient';
+      case CarePlanActivityKindEnum.insurancePlan:
+        return 'InsurancePlan';
+      case CarePlanActivityKindEnum.invoice:
+        return 'Invoice';
+      case CarePlanActivityKindEnum.library:
+        return 'Library';
+      case CarePlanActivityKindEnum.linkage:
+        return 'Linkage';
+      case CarePlanActivityKindEnum.list_:
+        return 'List';
+      case CarePlanActivityKindEnum.location:
+        return 'Location';
+      case CarePlanActivityKindEnum.manufacturedItemDefinition:
+        return 'ManufacturedItemDefinition';
+      case CarePlanActivityKindEnum.measure:
+        return 'Measure';
+      case CarePlanActivityKindEnum.measureReport:
+        return 'MeasureReport';
+      case CarePlanActivityKindEnum.media:
+        return 'Media';
+      case CarePlanActivityKindEnum.medication:
+        return 'Medication';
+      case CarePlanActivityKindEnum.medicationAdministration:
+        return 'MedicationAdministration';
+      case CarePlanActivityKindEnum.medicationDispense:
+        return 'MedicationDispense';
+      case CarePlanActivityKindEnum.medicationKnowledge:
+        return 'MedicationKnowledge';
+      case CarePlanActivityKindEnum.medicationRequest:
+        return 'MedicationRequest';
+      case CarePlanActivityKindEnum.medicationStatement:
+        return 'MedicationStatement';
+      case CarePlanActivityKindEnum.medicinalProductDefinition:
+        return 'MedicinalProductDefinition';
+      case CarePlanActivityKindEnum.messageDefinition:
+        return 'MessageDefinition';
+      case CarePlanActivityKindEnum.messageHeader:
+        return 'MessageHeader';
+      case CarePlanActivityKindEnum.molecularSequence:
+        return 'MolecularSequence';
+      case CarePlanActivityKindEnum.namingSystem:
+        return 'NamingSystem';
+      case CarePlanActivityKindEnum.nutritionOrder:
+        return 'NutritionOrder';
+      case CarePlanActivityKindEnum.nutritionProduct:
+        return 'NutritionProduct';
+      case CarePlanActivityKindEnum.observation:
+        return 'Observation';
+      case CarePlanActivityKindEnum.observationDefinition:
+        return 'ObservationDefinition';
+      case CarePlanActivityKindEnum.operationDefinition:
+        return 'OperationDefinition';
+      case CarePlanActivityKindEnum.operationOutcome:
+        return 'OperationOutcome';
+      case CarePlanActivityKindEnum.organization:
+        return 'Organization';
+      case CarePlanActivityKindEnum.organizationAffiliation:
+        return 'OrganizationAffiliation';
+      case CarePlanActivityKindEnum.packagedProductDefinition:
+        return 'PackagedProductDefinition';
+      case CarePlanActivityKindEnum.patient:
+        return 'Patient';
+      case CarePlanActivityKindEnum.paymentNotice:
+        return 'PaymentNotice';
+      case CarePlanActivityKindEnum.paymentReconciliation:
+        return 'PaymentReconciliation';
+      case CarePlanActivityKindEnum.person:
+        return 'Person';
+      case CarePlanActivityKindEnum.planDefinition:
+        return 'PlanDefinition';
+      case CarePlanActivityKindEnum.practitioner:
+        return 'Practitioner';
+      case CarePlanActivityKindEnum.practitionerRole:
+        return 'PractitionerRole';
+      case CarePlanActivityKindEnum.procedure:
+        return 'Procedure';
+      case CarePlanActivityKindEnum.provenance:
+        return 'Provenance';
+      case CarePlanActivityKindEnum.questionnaire:
+        return 'Questionnaire';
+      case CarePlanActivityKindEnum.questionnaireResponse:
+        return 'QuestionnaireResponse';
+      case CarePlanActivityKindEnum.regulatedAuthorization:
+        return 'RegulatedAuthorization';
+      case CarePlanActivityKindEnum.relatedPerson:
+        return 'RelatedPerson';
+      case CarePlanActivityKindEnum.requestGroup:
+        return 'RequestGroup';
+      case CarePlanActivityKindEnum.researchDefinition:
+        return 'ResearchDefinition';
+      case CarePlanActivityKindEnum.researchElementDefinition:
+        return 'ResearchElementDefinition';
+      case CarePlanActivityKindEnum.researchStudy:
+        return 'ResearchStudy';
+      case CarePlanActivityKindEnum.researchSubject:
+        return 'ResearchSubject';
+      case CarePlanActivityKindEnum.riskAssessment:
+        return 'RiskAssessment';
+      case CarePlanActivityKindEnum.schedule:
+        return 'Schedule';
+      case CarePlanActivityKindEnum.searchParameter:
+        return 'SearchParameter';
+      case CarePlanActivityKindEnum.serviceRequest:
+        return 'ServiceRequest';
+      case CarePlanActivityKindEnum.slot:
+        return 'Slot';
+      case CarePlanActivityKindEnum.specimen:
+        return 'Specimen';
+      case CarePlanActivityKindEnum.specimenDefinition:
+        return 'SpecimenDefinition';
+      case CarePlanActivityKindEnum.structureDefinition:
+        return 'StructureDefinition';
+      case CarePlanActivityKindEnum.structureMap:
+        return 'StructureMap';
+      case CarePlanActivityKindEnum.subscription:
+        return 'Subscription';
+      case CarePlanActivityKindEnum.subscriptionStatus:
+        return 'SubscriptionStatus';
+      case CarePlanActivityKindEnum.subscriptionTopic:
+        return 'SubscriptionTopic';
+      case CarePlanActivityKindEnum.substance:
+        return 'Substance';
+      case CarePlanActivityKindEnum.substanceDefinition:
+        return 'SubstanceDefinition';
+      case CarePlanActivityKindEnum.supplyDelivery:
+        return 'SupplyDelivery';
+      case CarePlanActivityKindEnum.supplyRequest:
+        return 'SupplyRequest';
+      case CarePlanActivityKindEnum.task:
+        return 'Task';
+      case CarePlanActivityKindEnum.terminologyCapabilities:
+        return 'TerminologyCapabilities';
+      case CarePlanActivityKindEnum.testReport:
+        return 'TestReport';
+      case CarePlanActivityKindEnum.testScript:
+        return 'TestScript';
+      case CarePlanActivityKindEnum.valueSet:
+        return 'ValueSet';
+      case CarePlanActivityKindEnum.verificationResult:
+        return 'VerificationResult';
+      case CarePlanActivityKindEnum.visionPrescription:
+        return 'VisionPrescription';
+      case CarePlanActivityKindEnum.parameters:
+        return 'Parameters';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static CarePlanActivityKindEnum? fromJson(dynamic json) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return CarePlanActivityKindEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static CarePlanActivityKindEnum? fromString(String? value) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'Resource':
+        return CarePlanActivityKindEnum.resource;
+      case 'Binary':
+        return CarePlanActivityKindEnum.binary;
+      case 'Bundle':
+        return CarePlanActivityKindEnum.bundle;
+      case 'DomainResource':
+        return CarePlanActivityKindEnum.domainResource;
+      case 'Account':
+        return CarePlanActivityKindEnum.account;
+      case 'ActivityDefinition':
+        return CarePlanActivityKindEnum.activityDefinition;
+      case 'AdministrableProductDefinition':
+        return CarePlanActivityKindEnum.administrableProductDefinition;
+      case 'AdverseEvent':
+        return CarePlanActivityKindEnum.adverseEvent;
+      case 'AllergyIntolerance':
+        return CarePlanActivityKindEnum.allergyIntolerance;
+      case 'Appointment':
+        return CarePlanActivityKindEnum.appointment;
+      case 'AppointmentResponse':
+        return CarePlanActivityKindEnum.appointmentResponse;
+      case 'AuditEvent':
+        return CarePlanActivityKindEnum.auditEvent;
+      case 'Basic':
+        return CarePlanActivityKindEnum.basic;
+      case 'BiologicallyDerivedProduct':
+        return CarePlanActivityKindEnum.biologicallyDerivedProduct;
+      case 'BodyStructure':
+        return CarePlanActivityKindEnum.bodyStructure;
+      case 'CapabilityStatement':
+        return CarePlanActivityKindEnum.capabilityStatement;
+      case 'CarePlan':
+        return CarePlanActivityKindEnum.carePlan;
+      case 'CareTeam':
+        return CarePlanActivityKindEnum.careTeam;
+      case 'CatalogEntry':
+        return CarePlanActivityKindEnum.catalogEntry;
+      case 'ChargeItem':
+        return CarePlanActivityKindEnum.chargeItem;
+      case 'ChargeItemDefinition':
+        return CarePlanActivityKindEnum.chargeItemDefinition;
+      case 'Citation':
+        return CarePlanActivityKindEnum.citation;
+      case 'Claim':
+        return CarePlanActivityKindEnum.claim;
+      case 'ClaimResponse':
+        return CarePlanActivityKindEnum.claimResponse;
+      case 'ClinicalImpression':
+        return CarePlanActivityKindEnum.clinicalImpression;
+      case 'ClinicalUseDefinition':
+        return CarePlanActivityKindEnum.clinicalUseDefinition;
+      case 'CodeSystem':
+        return CarePlanActivityKindEnum.codeSystem;
+      case 'Communication':
+        return CarePlanActivityKindEnum.communication;
+      case 'CommunicationRequest':
+        return CarePlanActivityKindEnum.communicationRequest;
+      case 'CompartmentDefinition':
+        return CarePlanActivityKindEnum.compartmentDefinition;
+      case 'Composition':
+        return CarePlanActivityKindEnum.composition;
+      case 'ConceptMap':
+        return CarePlanActivityKindEnum.conceptMap;
+      case 'Condition':
+        return CarePlanActivityKindEnum.condition;
+      case 'Consent':
+        return CarePlanActivityKindEnum.consent;
+      case 'Contract':
+        return CarePlanActivityKindEnum.contract;
+      case 'Coverage':
+        return CarePlanActivityKindEnum.coverage;
+      case 'CoverageEligibilityRequest':
+        return CarePlanActivityKindEnum.coverageEligibilityRequest;
+      case 'CoverageEligibilityResponse':
+        return CarePlanActivityKindEnum.coverageEligibilityResponse;
+      case 'DetectedIssue':
+        return CarePlanActivityKindEnum.detectedIssue;
+      case 'Device':
+        return CarePlanActivityKindEnum.device;
+      case 'DeviceDefinition':
+        return CarePlanActivityKindEnum.deviceDefinition;
+      case 'DeviceMetric':
+        return CarePlanActivityKindEnum.deviceMetric;
+      case 'DeviceRequest':
+        return CarePlanActivityKindEnum.deviceRequest;
+      case 'DeviceUseStatement':
+        return CarePlanActivityKindEnum.deviceUseStatement;
+      case 'DiagnosticReport':
+        return CarePlanActivityKindEnum.diagnosticReport;
+      case 'DocumentManifest':
+        return CarePlanActivityKindEnum.documentManifest;
+      case 'DocumentReference':
+        return CarePlanActivityKindEnum.documentReference;
+      case 'Encounter':
+        return CarePlanActivityKindEnum.encounter;
+      case 'Endpoint':
+        return CarePlanActivityKindEnum.endpoint;
+      case 'EnrollmentRequest':
+        return CarePlanActivityKindEnum.enrollmentRequest;
+      case 'EnrollmentResponse':
+        return CarePlanActivityKindEnum.enrollmentResponse;
+      case 'EpisodeOfCare':
+        return CarePlanActivityKindEnum.episodeOfCare;
+      case 'EventDefinition':
+        return CarePlanActivityKindEnum.eventDefinition;
+      case 'Evidence':
+        return CarePlanActivityKindEnum.evidence;
+      case 'EvidenceReport':
+        return CarePlanActivityKindEnum.evidenceReport;
+      case 'EvidenceVariable':
+        return CarePlanActivityKindEnum.evidenceVariable;
+      case 'ExampleScenario':
+        return CarePlanActivityKindEnum.exampleScenario;
+      case 'ExplanationOfBenefit':
+        return CarePlanActivityKindEnum.explanationOfBenefit;
+      case 'FamilyMemberHistory':
+        return CarePlanActivityKindEnum.familyMemberHistory;
+      case 'Flag':
+        return CarePlanActivityKindEnum.flag;
+      case 'Goal':
+        return CarePlanActivityKindEnum.goal;
+      case 'GraphDefinition':
+        return CarePlanActivityKindEnum.graphDefinition;
+      case 'Group':
+        return CarePlanActivityKindEnum.group;
+      case 'GuidanceResponse':
+        return CarePlanActivityKindEnum.guidanceResponse;
+      case 'HealthcareService':
+        return CarePlanActivityKindEnum.healthcareService;
+      case 'ImagingStudy':
+        return CarePlanActivityKindEnum.imagingStudy;
+      case 'Immunization':
+        return CarePlanActivityKindEnum.immunization;
+      case 'ImmunizationEvaluation':
+        return CarePlanActivityKindEnum.immunizationEvaluation;
+      case 'ImmunizationRecommendation':
+        return CarePlanActivityKindEnum.immunizationRecommendation;
+      case 'ImplementationGuide':
+        return CarePlanActivityKindEnum.implementationGuide;
+      case 'Ingredient':
+        return CarePlanActivityKindEnum.ingredient;
+      case 'InsurancePlan':
+        return CarePlanActivityKindEnum.insurancePlan;
+      case 'Invoice':
+        return CarePlanActivityKindEnum.invoice;
+      case 'Library':
+        return CarePlanActivityKindEnum.library;
+      case 'Linkage':
+        return CarePlanActivityKindEnum.linkage;
+      case 'List':
+        return CarePlanActivityKindEnum.list_;
+      case 'Location':
+        return CarePlanActivityKindEnum.location;
+      case 'ManufacturedItemDefinition':
+        return CarePlanActivityKindEnum.manufacturedItemDefinition;
+      case 'Measure':
+        return CarePlanActivityKindEnum.measure;
+      case 'MeasureReport':
+        return CarePlanActivityKindEnum.measureReport;
+      case 'Media':
+        return CarePlanActivityKindEnum.media;
+      case 'Medication':
+        return CarePlanActivityKindEnum.medication;
+      case 'MedicationAdministration':
+        return CarePlanActivityKindEnum.medicationAdministration;
+      case 'MedicationDispense':
+        return CarePlanActivityKindEnum.medicationDispense;
+      case 'MedicationKnowledge':
+        return CarePlanActivityKindEnum.medicationKnowledge;
+      case 'MedicationRequest':
+        return CarePlanActivityKindEnum.medicationRequest;
+      case 'MedicationStatement':
+        return CarePlanActivityKindEnum.medicationStatement;
+      case 'MedicinalProductDefinition':
+        return CarePlanActivityKindEnum.medicinalProductDefinition;
+      case 'MessageDefinition':
+        return CarePlanActivityKindEnum.messageDefinition;
+      case 'MessageHeader':
+        return CarePlanActivityKindEnum.messageHeader;
+      case 'MolecularSequence':
+        return CarePlanActivityKindEnum.molecularSequence;
+      case 'NamingSystem':
+        return CarePlanActivityKindEnum.namingSystem;
+      case 'NutritionOrder':
+        return CarePlanActivityKindEnum.nutritionOrder;
+      case 'NutritionProduct':
+        return CarePlanActivityKindEnum.nutritionProduct;
+      case 'Observation':
+        return CarePlanActivityKindEnum.observation;
+      case 'ObservationDefinition':
+        return CarePlanActivityKindEnum.observationDefinition;
+      case 'OperationDefinition':
+        return CarePlanActivityKindEnum.operationDefinition;
+      case 'OperationOutcome':
+        return CarePlanActivityKindEnum.operationOutcome;
+      case 'Organization':
+        return CarePlanActivityKindEnum.organization;
+      case 'OrganizationAffiliation':
+        return CarePlanActivityKindEnum.organizationAffiliation;
+      case 'PackagedProductDefinition':
+        return CarePlanActivityKindEnum.packagedProductDefinition;
+      case 'Patient':
+        return CarePlanActivityKindEnum.patient;
+      case 'PaymentNotice':
+        return CarePlanActivityKindEnum.paymentNotice;
+      case 'PaymentReconciliation':
+        return CarePlanActivityKindEnum.paymentReconciliation;
+      case 'Person':
+        return CarePlanActivityKindEnum.person;
+      case 'PlanDefinition':
+        return CarePlanActivityKindEnum.planDefinition;
+      case 'Practitioner':
+        return CarePlanActivityKindEnum.practitioner;
+      case 'PractitionerRole':
+        return CarePlanActivityKindEnum.practitionerRole;
+      case 'Procedure':
+        return CarePlanActivityKindEnum.procedure;
+      case 'Provenance':
+        return CarePlanActivityKindEnum.provenance;
+      case 'Questionnaire':
+        return CarePlanActivityKindEnum.questionnaire;
+      case 'QuestionnaireResponse':
+        return CarePlanActivityKindEnum.questionnaireResponse;
+      case 'RegulatedAuthorization':
+        return CarePlanActivityKindEnum.regulatedAuthorization;
+      case 'RelatedPerson':
+        return CarePlanActivityKindEnum.relatedPerson;
+      case 'RequestGroup':
+        return CarePlanActivityKindEnum.requestGroup;
+      case 'ResearchDefinition':
+        return CarePlanActivityKindEnum.researchDefinition;
+      case 'ResearchElementDefinition':
+        return CarePlanActivityKindEnum.researchElementDefinition;
+      case 'ResearchStudy':
+        return CarePlanActivityKindEnum.researchStudy;
+      case 'ResearchSubject':
+        return CarePlanActivityKindEnum.researchSubject;
+      case 'RiskAssessment':
+        return CarePlanActivityKindEnum.riskAssessment;
+      case 'Schedule':
+        return CarePlanActivityKindEnum.schedule;
+      case 'SearchParameter':
+        return CarePlanActivityKindEnum.searchParameter;
+      case 'ServiceRequest':
+        return CarePlanActivityKindEnum.serviceRequest;
+      case 'Slot':
+        return CarePlanActivityKindEnum.slot;
+      case 'Specimen':
+        return CarePlanActivityKindEnum.specimen;
+      case 'SpecimenDefinition':
+        return CarePlanActivityKindEnum.specimenDefinition;
+      case 'StructureDefinition':
+        return CarePlanActivityKindEnum.structureDefinition;
+      case 'StructureMap':
+        return CarePlanActivityKindEnum.structureMap;
+      case 'Subscription':
+        return CarePlanActivityKindEnum.subscription;
+      case 'SubscriptionStatus':
+        return CarePlanActivityKindEnum.subscriptionStatus;
+      case 'SubscriptionTopic':
+        return CarePlanActivityKindEnum.subscriptionTopic;
+      case 'Substance':
+        return CarePlanActivityKindEnum.substance;
+      case 'SubstanceDefinition':
+        return CarePlanActivityKindEnum.substanceDefinition;
+      case 'SupplyDelivery':
+        return CarePlanActivityKindEnum.supplyDelivery;
+      case 'SupplyRequest':
+        return CarePlanActivityKindEnum.supplyRequest;
+      case 'Task':
+        return CarePlanActivityKindEnum.task;
+      case 'TerminologyCapabilities':
+        return CarePlanActivityKindEnum.terminologyCapabilities;
+      case 'TestReport':
+        return CarePlanActivityKindEnum.testReport;
+      case 'TestScript':
+        return CarePlanActivityKindEnum.testScript;
+      case 'ValueSet':
+        return CarePlanActivityKindEnum.valueSet;
+      case 'VerificationResult':
+        return CarePlanActivityKindEnum.verificationResult;
+      case 'VisionPrescription':
+        return CarePlanActivityKindEnum.visionPrescription;
+      case 'Parameters':
+        return CarePlanActivityKindEnum.parameters;
+    }
+    return null;
+  }
+}
+
 /// Resource types defined as part of FHIR that can be represented as
 /// in-line definitions of a care plan activity.
 class CarePlanActivityKind extends FhirCodeEnum {
   // Private underscore constructor for internal use.
-  CarePlanActivityKind._({
+  const CarePlanActivityKind._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -14,7 +1048,6 @@ class CarePlanActivityKind extends FhirCodeEnum {
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.objectPath = 'Code',
   }) : super._();
 
   /// Public factory if you want a fallback approach or custom creation.
@@ -28,12 +1061,13 @@ class CarePlanActivityKind extends FhirCodeEnum {
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
-    String objectPath = 'Code',
   }) {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
+    final valueEnum = CarePlanActivityKindEnum.fromString(valueString);
     return CarePlanActivityKind._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -41,13 +1075,8 @@ class CarePlanActivityKind extends FhirCodeEnum {
       id: id,
       extension_: extension_,
       disallowExtensions: disallowExtensions,
-      objectPath: objectPath,
     );
   }
-
-  /// Create empty [CarePlanActivityKind] with element only
-  factory CarePlanActivityKind.empty() =>
-      CarePlanActivityKind._(valueString: '');
 
   /// Factory constructor to create [CarePlanActivityKind]
   /// from JSON.
@@ -55,10 +1084,11 @@ class CarePlanActivityKind extends FhirCodeEnum {
     Map<String, dynamic> json,
   ) {
     final value = json['value'] as String?;
+    final valueEnum = CarePlanActivityKindEnum.fromString(value);
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return CarePlanActivityKind.elementOnly.withElement(element);
+      return CarePlanActivityKind._(valueString: null, element: element);
     } else if (value == null && element == null) {
       throw ArgumentError(
         'CarePlanActivityKind cannot be constructed from JSON.',
@@ -66,1342 +1096,2050 @@ class CarePlanActivityKind extends FhirCodeEnum {
     }
     return CarePlanActivityKind._(
       valueString: value,
+      valueEnum: valueEnum,
       element: element,
     );
   }
 
+  /// An actual enum that can be used for CarePlanActivityKind
+  final CarePlanActivityKindEnum? valueEnum;
+
   /// Resource
-  static final CarePlanActivityKind Resource = CarePlanActivityKind._(
+  static const CarePlanActivityKind resource = CarePlanActivityKind._(
     valueString: 'Resource',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Resource'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.resource,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Resource',
+    ),
   );
 
   /// Binary
-  static final CarePlanActivityKind Binary = CarePlanActivityKind._(
+  static const CarePlanActivityKind binary = CarePlanActivityKind._(
     valueString: 'Binary',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Binary'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.binary,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Binary',
+    ),
   );
 
   /// Bundle
-  static final CarePlanActivityKind Bundle = CarePlanActivityKind._(
+  static const CarePlanActivityKind bundle = CarePlanActivityKind._(
     valueString: 'Bundle',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Bundle'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.bundle,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Bundle',
+    ),
   );
 
   /// DomainResource
-  static final CarePlanActivityKind DomainResource = CarePlanActivityKind._(
+  static const CarePlanActivityKind domainResource = CarePlanActivityKind._(
     valueString: 'DomainResource',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'DomainResource'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.domainResource,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'DomainResource',
+    ),
   );
 
   /// Account
-  static final CarePlanActivityKind Account = CarePlanActivityKind._(
+  static const CarePlanActivityKind account = CarePlanActivityKind._(
     valueString: 'Account',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Account'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.account,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Account',
+    ),
   );
 
   /// ActivityDefinition
-  static final CarePlanActivityKind ActivityDefinition = CarePlanActivityKind._(
+  static const CarePlanActivityKind activityDefinition = CarePlanActivityKind._(
     valueString: 'ActivityDefinition',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'ActivityDefinition'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.activityDefinition,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'ActivityDefinition',
+    ),
   );
 
   /// AdministrableProductDefinition
-  static final CarePlanActivityKind AdministrableProductDefinition =
+  static const CarePlanActivityKind administrableProductDefinition =
       CarePlanActivityKind._(
     valueString: 'AdministrableProductDefinition',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'AdministrableProductDefinition'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.administrableProductDefinition,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'AdministrableProductDefinition',
+    ),
   );
 
   /// AdverseEvent
-  static final CarePlanActivityKind AdverseEvent = CarePlanActivityKind._(
+  static const CarePlanActivityKind adverseEvent = CarePlanActivityKind._(
     valueString: 'AdverseEvent',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'AdverseEvent'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.adverseEvent,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'AdverseEvent',
+    ),
   );
 
   /// AllergyIntolerance
-  static final CarePlanActivityKind AllergyIntolerance = CarePlanActivityKind._(
+  static const CarePlanActivityKind allergyIntolerance = CarePlanActivityKind._(
     valueString: 'AllergyIntolerance',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'AllergyIntolerance'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.allergyIntolerance,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'AllergyIntolerance',
+    ),
   );
 
   /// Appointment
-  static final CarePlanActivityKind Appointment = CarePlanActivityKind._(
+  static const CarePlanActivityKind appointment = CarePlanActivityKind._(
     valueString: 'Appointment',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Appointment'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.appointment,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Appointment',
+    ),
   );
 
   /// AppointmentResponse
-  static final CarePlanActivityKind AppointmentResponse =
+  static const CarePlanActivityKind appointmentResponse =
       CarePlanActivityKind._(
     valueString: 'AppointmentResponse',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'AppointmentResponse'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.appointmentResponse,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'AppointmentResponse',
+    ),
   );
 
   /// AuditEvent
-  static final CarePlanActivityKind AuditEvent = CarePlanActivityKind._(
+  static const CarePlanActivityKind auditEvent = CarePlanActivityKind._(
     valueString: 'AuditEvent',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'AuditEvent'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.auditEvent,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'AuditEvent',
+    ),
   );
 
   /// Basic
-  static final CarePlanActivityKind Basic = CarePlanActivityKind._(
+  static const CarePlanActivityKind basic = CarePlanActivityKind._(
     valueString: 'Basic',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Basic'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.basic,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Basic',
+    ),
   );
 
   /// BiologicallyDerivedProduct
-  static final CarePlanActivityKind BiologicallyDerivedProduct =
+  static const CarePlanActivityKind biologicallyDerivedProduct =
       CarePlanActivityKind._(
     valueString: 'BiologicallyDerivedProduct',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'BiologicallyDerivedProduct'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.biologicallyDerivedProduct,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'BiologicallyDerivedProduct',
+    ),
   );
 
   /// BodyStructure
-  static final CarePlanActivityKind BodyStructure = CarePlanActivityKind._(
+  static const CarePlanActivityKind bodyStructure = CarePlanActivityKind._(
     valueString: 'BodyStructure',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'BodyStructure'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.bodyStructure,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'BodyStructure',
+    ),
   );
 
   /// CapabilityStatement
-  static final CarePlanActivityKind CapabilityStatement =
+  static const CarePlanActivityKind capabilityStatement =
       CarePlanActivityKind._(
     valueString: 'CapabilityStatement',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'CapabilityStatement'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.capabilityStatement,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'CapabilityStatement',
+    ),
   );
 
   /// CarePlan
-  static final CarePlanActivityKind CarePlan = CarePlanActivityKind._(
+  static const CarePlanActivityKind carePlan = CarePlanActivityKind._(
     valueString: 'CarePlan',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'CarePlan'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.carePlan,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'CarePlan',
+    ),
   );
 
   /// CareTeam
-  static final CarePlanActivityKind CareTeam = CarePlanActivityKind._(
+  static const CarePlanActivityKind careTeam = CarePlanActivityKind._(
     valueString: 'CareTeam',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'CareTeam'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.careTeam,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'CareTeam',
+    ),
   );
 
   /// CatalogEntry
-  static final CarePlanActivityKind CatalogEntry = CarePlanActivityKind._(
+  static const CarePlanActivityKind catalogEntry = CarePlanActivityKind._(
     valueString: 'CatalogEntry',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'CatalogEntry'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.catalogEntry,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'CatalogEntry',
+    ),
   );
 
   /// ChargeItem
-  static final CarePlanActivityKind ChargeItem = CarePlanActivityKind._(
+  static const CarePlanActivityKind chargeItem = CarePlanActivityKind._(
     valueString: 'ChargeItem',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'ChargeItem'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.chargeItem,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'ChargeItem',
+    ),
   );
 
   /// ChargeItemDefinition
-  static final CarePlanActivityKind ChargeItemDefinition =
+  static const CarePlanActivityKind chargeItemDefinition =
       CarePlanActivityKind._(
     valueString: 'ChargeItemDefinition',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'ChargeItemDefinition'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.chargeItemDefinition,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'ChargeItemDefinition',
+    ),
   );
 
   /// Citation
-  static final CarePlanActivityKind Citation = CarePlanActivityKind._(
+  static const CarePlanActivityKind citation = CarePlanActivityKind._(
     valueString: 'Citation',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Citation'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.citation,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Citation',
+    ),
   );
 
   /// Claim
-  static final CarePlanActivityKind Claim = CarePlanActivityKind._(
+  static const CarePlanActivityKind claim = CarePlanActivityKind._(
     valueString: 'Claim',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Claim'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.claim,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Claim',
+    ),
   );
 
   /// ClaimResponse
-  static final CarePlanActivityKind ClaimResponse = CarePlanActivityKind._(
+  static const CarePlanActivityKind claimResponse = CarePlanActivityKind._(
     valueString: 'ClaimResponse',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'ClaimResponse'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.claimResponse,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'ClaimResponse',
+    ),
   );
 
   /// ClinicalImpression
-  static final CarePlanActivityKind ClinicalImpression = CarePlanActivityKind._(
+  static const CarePlanActivityKind clinicalImpression = CarePlanActivityKind._(
     valueString: 'ClinicalImpression',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'ClinicalImpression'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.clinicalImpression,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'ClinicalImpression',
+    ),
   );
 
   /// ClinicalUseDefinition
-  static final CarePlanActivityKind ClinicalUseDefinition =
+  static const CarePlanActivityKind clinicalUseDefinition =
       CarePlanActivityKind._(
     valueString: 'ClinicalUseDefinition',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'ClinicalUseDefinition'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.clinicalUseDefinition,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'ClinicalUseDefinition',
+    ),
   );
 
   /// CodeSystem
-  static final CarePlanActivityKind CodeSystem = CarePlanActivityKind._(
+  static const CarePlanActivityKind codeSystem = CarePlanActivityKind._(
     valueString: 'CodeSystem',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'CodeSystem'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.codeSystem,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'CodeSystem',
+    ),
   );
 
   /// Communication
-  static final CarePlanActivityKind Communication = CarePlanActivityKind._(
+  static const CarePlanActivityKind communication = CarePlanActivityKind._(
     valueString: 'Communication',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Communication'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.communication,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Communication',
+    ),
   );
 
   /// CommunicationRequest
-  static final CarePlanActivityKind CommunicationRequest =
+  static const CarePlanActivityKind communicationRequest =
       CarePlanActivityKind._(
     valueString: 'CommunicationRequest',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'CommunicationRequest'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.communicationRequest,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'CommunicationRequest',
+    ),
   );
 
   /// CompartmentDefinition
-  static final CarePlanActivityKind CompartmentDefinition =
+  static const CarePlanActivityKind compartmentDefinition =
       CarePlanActivityKind._(
     valueString: 'CompartmentDefinition',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'CompartmentDefinition'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.compartmentDefinition,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'CompartmentDefinition',
+    ),
   );
 
   /// Composition
-  static final CarePlanActivityKind Composition = CarePlanActivityKind._(
+  static const CarePlanActivityKind composition = CarePlanActivityKind._(
     valueString: 'Composition',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Composition'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.composition,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Composition',
+    ),
   );
 
   /// ConceptMap
-  static final CarePlanActivityKind ConceptMap = CarePlanActivityKind._(
+  static const CarePlanActivityKind conceptMap = CarePlanActivityKind._(
     valueString: 'ConceptMap',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'ConceptMap'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.conceptMap,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'ConceptMap',
+    ),
   );
 
   /// Condition
-  static final CarePlanActivityKind Condition = CarePlanActivityKind._(
+  static const CarePlanActivityKind condition = CarePlanActivityKind._(
     valueString: 'Condition',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Condition'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.condition,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Condition',
+    ),
   );
 
   /// Consent
-  static final CarePlanActivityKind Consent = CarePlanActivityKind._(
+  static const CarePlanActivityKind consent = CarePlanActivityKind._(
     valueString: 'Consent',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Consent'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.consent,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Consent',
+    ),
   );
 
   /// Contract
-  static final CarePlanActivityKind Contract = CarePlanActivityKind._(
+  static const CarePlanActivityKind contract = CarePlanActivityKind._(
     valueString: 'Contract',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Contract'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.contract,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Contract',
+    ),
   );
 
   /// Coverage
-  static final CarePlanActivityKind Coverage = CarePlanActivityKind._(
+  static const CarePlanActivityKind coverage = CarePlanActivityKind._(
     valueString: 'Coverage',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Coverage'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.coverage,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Coverage',
+    ),
   );
 
   /// CoverageEligibilityRequest
-  static final CarePlanActivityKind CoverageEligibilityRequest =
+  static const CarePlanActivityKind coverageEligibilityRequest =
       CarePlanActivityKind._(
     valueString: 'CoverageEligibilityRequest',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'CoverageEligibilityRequest'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.coverageEligibilityRequest,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'CoverageEligibilityRequest',
+    ),
   );
 
   /// CoverageEligibilityResponse
-  static final CarePlanActivityKind CoverageEligibilityResponse =
+  static const CarePlanActivityKind coverageEligibilityResponse =
       CarePlanActivityKind._(
     valueString: 'CoverageEligibilityResponse',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'CoverageEligibilityResponse'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.coverageEligibilityResponse,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'CoverageEligibilityResponse',
+    ),
   );
 
   /// DetectedIssue
-  static final CarePlanActivityKind DetectedIssue = CarePlanActivityKind._(
+  static const CarePlanActivityKind detectedIssue = CarePlanActivityKind._(
     valueString: 'DetectedIssue',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'DetectedIssue'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.detectedIssue,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'DetectedIssue',
+    ),
   );
 
   /// Device
-  static final CarePlanActivityKind Device = CarePlanActivityKind._(
+  static const CarePlanActivityKind device = CarePlanActivityKind._(
     valueString: 'Device',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Device'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.device,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Device',
+    ),
   );
 
   /// DeviceDefinition
-  static final CarePlanActivityKind DeviceDefinition = CarePlanActivityKind._(
+  static const CarePlanActivityKind deviceDefinition = CarePlanActivityKind._(
     valueString: 'DeviceDefinition',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'DeviceDefinition'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.deviceDefinition,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'DeviceDefinition',
+    ),
   );
 
   /// DeviceMetric
-  static final CarePlanActivityKind DeviceMetric = CarePlanActivityKind._(
+  static const CarePlanActivityKind deviceMetric = CarePlanActivityKind._(
     valueString: 'DeviceMetric',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'DeviceMetric'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.deviceMetric,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'DeviceMetric',
+    ),
   );
 
   /// DeviceRequest
-  static final CarePlanActivityKind DeviceRequest = CarePlanActivityKind._(
+  static const CarePlanActivityKind deviceRequest = CarePlanActivityKind._(
     valueString: 'DeviceRequest',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'DeviceRequest'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.deviceRequest,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'DeviceRequest',
+    ),
   );
 
   /// DeviceUseStatement
-  static final CarePlanActivityKind DeviceUseStatement = CarePlanActivityKind._(
+  static const CarePlanActivityKind deviceUseStatement = CarePlanActivityKind._(
     valueString: 'DeviceUseStatement',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'DeviceUseStatement'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.deviceUseStatement,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'DeviceUseStatement',
+    ),
   );
 
   /// DiagnosticReport
-  static final CarePlanActivityKind DiagnosticReport = CarePlanActivityKind._(
+  static const CarePlanActivityKind diagnosticReport = CarePlanActivityKind._(
     valueString: 'DiagnosticReport',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'DiagnosticReport'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.diagnosticReport,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'DiagnosticReport',
+    ),
   );
 
   /// DocumentManifest
-  static final CarePlanActivityKind DocumentManifest = CarePlanActivityKind._(
+  static const CarePlanActivityKind documentManifest = CarePlanActivityKind._(
     valueString: 'DocumentManifest',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'DocumentManifest'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.documentManifest,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'DocumentManifest',
+    ),
   );
 
   /// DocumentReference
-  static final CarePlanActivityKind DocumentReference = CarePlanActivityKind._(
+  static const CarePlanActivityKind documentReference = CarePlanActivityKind._(
     valueString: 'DocumentReference',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'DocumentReference'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.documentReference,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'DocumentReference',
+    ),
   );
 
   /// Encounter
-  static final CarePlanActivityKind Encounter = CarePlanActivityKind._(
+  static const CarePlanActivityKind encounter = CarePlanActivityKind._(
     valueString: 'Encounter',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Encounter'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.encounter,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Encounter',
+    ),
   );
 
   /// Endpoint
-  static final CarePlanActivityKind Endpoint = CarePlanActivityKind._(
+  static const CarePlanActivityKind endpoint = CarePlanActivityKind._(
     valueString: 'Endpoint',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Endpoint'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.endpoint,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Endpoint',
+    ),
   );
 
   /// EnrollmentRequest
-  static final CarePlanActivityKind EnrollmentRequest = CarePlanActivityKind._(
+  static const CarePlanActivityKind enrollmentRequest = CarePlanActivityKind._(
     valueString: 'EnrollmentRequest',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'EnrollmentRequest'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.enrollmentRequest,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'EnrollmentRequest',
+    ),
   );
 
   /// EnrollmentResponse
-  static final CarePlanActivityKind EnrollmentResponse = CarePlanActivityKind._(
+  static const CarePlanActivityKind enrollmentResponse = CarePlanActivityKind._(
     valueString: 'EnrollmentResponse',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'EnrollmentResponse'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.enrollmentResponse,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'EnrollmentResponse',
+    ),
   );
 
   /// EpisodeOfCare
-  static final CarePlanActivityKind EpisodeOfCare = CarePlanActivityKind._(
+  static const CarePlanActivityKind episodeOfCare = CarePlanActivityKind._(
     valueString: 'EpisodeOfCare',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'EpisodeOfCare'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.episodeOfCare,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'EpisodeOfCare',
+    ),
   );
 
   /// EventDefinition
-  static final CarePlanActivityKind EventDefinition = CarePlanActivityKind._(
+  static const CarePlanActivityKind eventDefinition = CarePlanActivityKind._(
     valueString: 'EventDefinition',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'EventDefinition'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.eventDefinition,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'EventDefinition',
+    ),
   );
 
   /// Evidence
-  static final CarePlanActivityKind Evidence = CarePlanActivityKind._(
+  static const CarePlanActivityKind evidence = CarePlanActivityKind._(
     valueString: 'Evidence',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Evidence'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.evidence,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Evidence',
+    ),
   );
 
   /// EvidenceReport
-  static final CarePlanActivityKind EvidenceReport = CarePlanActivityKind._(
+  static const CarePlanActivityKind evidenceReport = CarePlanActivityKind._(
     valueString: 'EvidenceReport',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'EvidenceReport'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.evidenceReport,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'EvidenceReport',
+    ),
   );
 
   /// EvidenceVariable
-  static final CarePlanActivityKind EvidenceVariable = CarePlanActivityKind._(
+  static const CarePlanActivityKind evidenceVariable = CarePlanActivityKind._(
     valueString: 'EvidenceVariable',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'EvidenceVariable'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.evidenceVariable,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'EvidenceVariable',
+    ),
   );
 
   /// ExampleScenario
-  static final CarePlanActivityKind ExampleScenario = CarePlanActivityKind._(
+  static const CarePlanActivityKind exampleScenario = CarePlanActivityKind._(
     valueString: 'ExampleScenario',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'ExampleScenario'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.exampleScenario,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'ExampleScenario',
+    ),
   );
 
   /// ExplanationOfBenefit
-  static final CarePlanActivityKind ExplanationOfBenefit =
+  static const CarePlanActivityKind explanationOfBenefit =
       CarePlanActivityKind._(
     valueString: 'ExplanationOfBenefit',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'ExplanationOfBenefit'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.explanationOfBenefit,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'ExplanationOfBenefit',
+    ),
   );
 
   /// FamilyMemberHistory
-  static final CarePlanActivityKind FamilyMemberHistory =
+  static const CarePlanActivityKind familyMemberHistory =
       CarePlanActivityKind._(
     valueString: 'FamilyMemberHistory',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'FamilyMemberHistory'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.familyMemberHistory,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'FamilyMemberHistory',
+    ),
   );
 
   /// Flag
-  static final CarePlanActivityKind Flag = CarePlanActivityKind._(
+  static const CarePlanActivityKind flag = CarePlanActivityKind._(
     valueString: 'Flag',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Flag'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.flag,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Flag',
+    ),
   );
 
   /// Goal
-  static final CarePlanActivityKind Goal = CarePlanActivityKind._(
+  static const CarePlanActivityKind goal = CarePlanActivityKind._(
     valueString: 'Goal',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Goal'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.goal,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Goal',
+    ),
   );
 
   /// GraphDefinition
-  static final CarePlanActivityKind GraphDefinition = CarePlanActivityKind._(
+  static const CarePlanActivityKind graphDefinition = CarePlanActivityKind._(
     valueString: 'GraphDefinition',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'GraphDefinition'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.graphDefinition,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'GraphDefinition',
+    ),
   );
 
   /// Group
-  static final CarePlanActivityKind Group = CarePlanActivityKind._(
+  static const CarePlanActivityKind group = CarePlanActivityKind._(
     valueString: 'Group',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Group'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.group,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Group',
+    ),
   );
 
   /// GuidanceResponse
-  static final CarePlanActivityKind GuidanceResponse = CarePlanActivityKind._(
+  static const CarePlanActivityKind guidanceResponse = CarePlanActivityKind._(
     valueString: 'GuidanceResponse',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'GuidanceResponse'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.guidanceResponse,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'GuidanceResponse',
+    ),
   );
 
   /// HealthcareService
-  static final CarePlanActivityKind HealthcareService = CarePlanActivityKind._(
+  static const CarePlanActivityKind healthcareService = CarePlanActivityKind._(
     valueString: 'HealthcareService',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'HealthcareService'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.healthcareService,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'HealthcareService',
+    ),
   );
 
   /// ImagingStudy
-  static final CarePlanActivityKind ImagingStudy = CarePlanActivityKind._(
+  static const CarePlanActivityKind imagingStudy = CarePlanActivityKind._(
     valueString: 'ImagingStudy',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'ImagingStudy'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.imagingStudy,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'ImagingStudy',
+    ),
   );
 
   /// Immunization
-  static final CarePlanActivityKind Immunization = CarePlanActivityKind._(
+  static const CarePlanActivityKind immunization = CarePlanActivityKind._(
     valueString: 'Immunization',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Immunization'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.immunization,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Immunization',
+    ),
   );
 
   /// ImmunizationEvaluation
-  static final CarePlanActivityKind ImmunizationEvaluation =
+  static const CarePlanActivityKind immunizationEvaluation =
       CarePlanActivityKind._(
     valueString: 'ImmunizationEvaluation',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'ImmunizationEvaluation'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.immunizationEvaluation,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'ImmunizationEvaluation',
+    ),
   );
 
   /// ImmunizationRecommendation
-  static final CarePlanActivityKind ImmunizationRecommendation =
+  static const CarePlanActivityKind immunizationRecommendation =
       CarePlanActivityKind._(
     valueString: 'ImmunizationRecommendation',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'ImmunizationRecommendation'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.immunizationRecommendation,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'ImmunizationRecommendation',
+    ),
   );
 
   /// ImplementationGuide
-  static final CarePlanActivityKind ImplementationGuide =
+  static const CarePlanActivityKind implementationGuide =
       CarePlanActivityKind._(
     valueString: 'ImplementationGuide',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'ImplementationGuide'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.implementationGuide,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'ImplementationGuide',
+    ),
   );
 
   /// Ingredient
-  static final CarePlanActivityKind Ingredient = CarePlanActivityKind._(
+  static const CarePlanActivityKind ingredient = CarePlanActivityKind._(
     valueString: 'Ingredient',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Ingredient'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.ingredient,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Ingredient',
+    ),
   );
 
   /// InsurancePlan
-  static final CarePlanActivityKind InsurancePlan = CarePlanActivityKind._(
+  static const CarePlanActivityKind insurancePlan = CarePlanActivityKind._(
     valueString: 'InsurancePlan',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'InsurancePlan'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.insurancePlan,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'InsurancePlan',
+    ),
   );
 
   /// Invoice
-  static final CarePlanActivityKind Invoice = CarePlanActivityKind._(
+  static const CarePlanActivityKind invoice = CarePlanActivityKind._(
     valueString: 'Invoice',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Invoice'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.invoice,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Invoice',
+    ),
   );
 
   /// Library
-  static final CarePlanActivityKind Library = CarePlanActivityKind._(
+  static const CarePlanActivityKind library = CarePlanActivityKind._(
     valueString: 'Library',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Library'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.library,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Library',
+    ),
   );
 
   /// Linkage
-  static final CarePlanActivityKind Linkage = CarePlanActivityKind._(
+  static const CarePlanActivityKind linkage = CarePlanActivityKind._(
     valueString: 'Linkage',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Linkage'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.linkage,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Linkage',
+    ),
   );
 
   /// List_
-  static final CarePlanActivityKind List_ = CarePlanActivityKind._(
+  static const CarePlanActivityKind list_ = CarePlanActivityKind._(
     valueString: 'List',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'List'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.list_,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'List',
+    ),
   );
 
   /// Location
-  static final CarePlanActivityKind Location = CarePlanActivityKind._(
+  static const CarePlanActivityKind location = CarePlanActivityKind._(
     valueString: 'Location',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Location'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.location,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Location',
+    ),
   );
 
   /// ManufacturedItemDefinition
-  static final CarePlanActivityKind ManufacturedItemDefinition =
+  static const CarePlanActivityKind manufacturedItemDefinition =
       CarePlanActivityKind._(
     valueString: 'ManufacturedItemDefinition',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'ManufacturedItemDefinition'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.manufacturedItemDefinition,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'ManufacturedItemDefinition',
+    ),
   );
 
   /// Measure
-  static final CarePlanActivityKind Measure = CarePlanActivityKind._(
+  static const CarePlanActivityKind measure = CarePlanActivityKind._(
     valueString: 'Measure',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Measure'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.measure,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Measure',
+    ),
   );
 
   /// MeasureReport
-  static final CarePlanActivityKind MeasureReport = CarePlanActivityKind._(
+  static const CarePlanActivityKind measureReport = CarePlanActivityKind._(
     valueString: 'MeasureReport',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'MeasureReport'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.measureReport,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'MeasureReport',
+    ),
   );
 
   /// Media
-  static final CarePlanActivityKind Media = CarePlanActivityKind._(
+  static const CarePlanActivityKind media = CarePlanActivityKind._(
     valueString: 'Media',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Media'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.media,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Media',
+    ),
   );
 
   /// Medication
-  static final CarePlanActivityKind Medication = CarePlanActivityKind._(
+  static const CarePlanActivityKind medication = CarePlanActivityKind._(
     valueString: 'Medication',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Medication'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.medication,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Medication',
+    ),
   );
 
   /// MedicationAdministration
-  static final CarePlanActivityKind MedicationAdministration =
+  static const CarePlanActivityKind medicationAdministration =
       CarePlanActivityKind._(
     valueString: 'MedicationAdministration',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'MedicationAdministration'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.medicationAdministration,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'MedicationAdministration',
+    ),
   );
 
   /// MedicationDispense
-  static final CarePlanActivityKind MedicationDispense = CarePlanActivityKind._(
+  static const CarePlanActivityKind medicationDispense = CarePlanActivityKind._(
     valueString: 'MedicationDispense',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'MedicationDispense'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.medicationDispense,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'MedicationDispense',
+    ),
   );
 
   /// MedicationKnowledge
-  static final CarePlanActivityKind MedicationKnowledge =
+  static const CarePlanActivityKind medicationKnowledge =
       CarePlanActivityKind._(
     valueString: 'MedicationKnowledge',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'MedicationKnowledge'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.medicationKnowledge,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'MedicationKnowledge',
+    ),
   );
 
   /// MedicationRequest
-  static final CarePlanActivityKind MedicationRequest = CarePlanActivityKind._(
+  static const CarePlanActivityKind medicationRequest = CarePlanActivityKind._(
     valueString: 'MedicationRequest',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'MedicationRequest'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.medicationRequest,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'MedicationRequest',
+    ),
   );
 
   /// MedicationStatement
-  static final CarePlanActivityKind MedicationStatement =
+  static const CarePlanActivityKind medicationStatement =
       CarePlanActivityKind._(
     valueString: 'MedicationStatement',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'MedicationStatement'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.medicationStatement,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'MedicationStatement',
+    ),
   );
 
   /// MedicinalProductDefinition
-  static final CarePlanActivityKind MedicinalProductDefinition =
+  static const CarePlanActivityKind medicinalProductDefinition =
       CarePlanActivityKind._(
     valueString: 'MedicinalProductDefinition',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'MedicinalProductDefinition'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.medicinalProductDefinition,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'MedicinalProductDefinition',
+    ),
   );
 
   /// MessageDefinition
-  static final CarePlanActivityKind MessageDefinition = CarePlanActivityKind._(
+  static const CarePlanActivityKind messageDefinition = CarePlanActivityKind._(
     valueString: 'MessageDefinition',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'MessageDefinition'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.messageDefinition,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'MessageDefinition',
+    ),
   );
 
   /// MessageHeader
-  static final CarePlanActivityKind MessageHeader = CarePlanActivityKind._(
+  static const CarePlanActivityKind messageHeader = CarePlanActivityKind._(
     valueString: 'MessageHeader',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'MessageHeader'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.messageHeader,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'MessageHeader',
+    ),
   );
 
   /// MolecularSequence
-  static final CarePlanActivityKind MolecularSequence = CarePlanActivityKind._(
+  static const CarePlanActivityKind molecularSequence = CarePlanActivityKind._(
     valueString: 'MolecularSequence',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'MolecularSequence'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.molecularSequence,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'MolecularSequence',
+    ),
   );
 
   /// NamingSystem
-  static final CarePlanActivityKind NamingSystem = CarePlanActivityKind._(
+  static const CarePlanActivityKind namingSystem = CarePlanActivityKind._(
     valueString: 'NamingSystem',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'NamingSystem'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.namingSystem,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'NamingSystem',
+    ),
   );
 
   /// NutritionOrder
-  static final CarePlanActivityKind NutritionOrder = CarePlanActivityKind._(
+  static const CarePlanActivityKind nutritionOrder = CarePlanActivityKind._(
     valueString: 'NutritionOrder',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'NutritionOrder'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.nutritionOrder,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'NutritionOrder',
+    ),
   );
 
   /// NutritionProduct
-  static final CarePlanActivityKind NutritionProduct = CarePlanActivityKind._(
+  static const CarePlanActivityKind nutritionProduct = CarePlanActivityKind._(
     valueString: 'NutritionProduct',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'NutritionProduct'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.nutritionProduct,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'NutritionProduct',
+    ),
   );
 
   /// Observation
-  static final CarePlanActivityKind Observation = CarePlanActivityKind._(
+  static const CarePlanActivityKind observation = CarePlanActivityKind._(
     valueString: 'Observation',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Observation'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.observation,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Observation',
+    ),
   );
 
   /// ObservationDefinition
-  static final CarePlanActivityKind ObservationDefinition =
+  static const CarePlanActivityKind observationDefinition =
       CarePlanActivityKind._(
     valueString: 'ObservationDefinition',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'ObservationDefinition'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.observationDefinition,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'ObservationDefinition',
+    ),
   );
 
   /// OperationDefinition
-  static final CarePlanActivityKind OperationDefinition =
+  static const CarePlanActivityKind operationDefinition =
       CarePlanActivityKind._(
     valueString: 'OperationDefinition',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'OperationDefinition'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.operationDefinition,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'OperationDefinition',
+    ),
   );
 
   /// OperationOutcome
-  static final CarePlanActivityKind OperationOutcome = CarePlanActivityKind._(
+  static const CarePlanActivityKind operationOutcome = CarePlanActivityKind._(
     valueString: 'OperationOutcome',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'OperationOutcome'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.operationOutcome,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'OperationOutcome',
+    ),
   );
 
   /// Organization
-  static final CarePlanActivityKind Organization = CarePlanActivityKind._(
+  static const CarePlanActivityKind organization = CarePlanActivityKind._(
     valueString: 'Organization',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Organization'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.organization,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Organization',
+    ),
   );
 
   /// OrganizationAffiliation
-  static final CarePlanActivityKind OrganizationAffiliation =
+  static const CarePlanActivityKind organizationAffiliation =
       CarePlanActivityKind._(
     valueString: 'OrganizationAffiliation',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'OrganizationAffiliation'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.organizationAffiliation,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'OrganizationAffiliation',
+    ),
   );
 
   /// PackagedProductDefinition
-  static final CarePlanActivityKind PackagedProductDefinition =
+  static const CarePlanActivityKind packagedProductDefinition =
       CarePlanActivityKind._(
     valueString: 'PackagedProductDefinition',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'PackagedProductDefinition'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.packagedProductDefinition,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'PackagedProductDefinition',
+    ),
   );
 
   /// Patient
-  static final CarePlanActivityKind Patient = CarePlanActivityKind._(
+  static const CarePlanActivityKind patient = CarePlanActivityKind._(
     valueString: 'Patient',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Patient'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.patient,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Patient',
+    ),
   );
 
   /// PaymentNotice
-  static final CarePlanActivityKind PaymentNotice = CarePlanActivityKind._(
+  static const CarePlanActivityKind paymentNotice = CarePlanActivityKind._(
     valueString: 'PaymentNotice',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'PaymentNotice'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.paymentNotice,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'PaymentNotice',
+    ),
   );
 
   /// PaymentReconciliation
-  static final CarePlanActivityKind PaymentReconciliation =
+  static const CarePlanActivityKind paymentReconciliation =
       CarePlanActivityKind._(
     valueString: 'PaymentReconciliation',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'PaymentReconciliation'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.paymentReconciliation,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'PaymentReconciliation',
+    ),
   );
 
   /// Person
-  static final CarePlanActivityKind Person = CarePlanActivityKind._(
+  static const CarePlanActivityKind person = CarePlanActivityKind._(
     valueString: 'Person',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Person'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.person,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Person',
+    ),
   );
 
   /// PlanDefinition
-  static final CarePlanActivityKind PlanDefinition = CarePlanActivityKind._(
+  static const CarePlanActivityKind planDefinition = CarePlanActivityKind._(
     valueString: 'PlanDefinition',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'PlanDefinition'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.planDefinition,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'PlanDefinition',
+    ),
   );
 
   /// Practitioner
-  static final CarePlanActivityKind Practitioner = CarePlanActivityKind._(
+  static const CarePlanActivityKind practitioner = CarePlanActivityKind._(
     valueString: 'Practitioner',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Practitioner'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.practitioner,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Practitioner',
+    ),
   );
 
   /// PractitionerRole
-  static final CarePlanActivityKind PractitionerRole = CarePlanActivityKind._(
+  static const CarePlanActivityKind practitionerRole = CarePlanActivityKind._(
     valueString: 'PractitionerRole',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'PractitionerRole'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.practitionerRole,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'PractitionerRole',
+    ),
   );
 
   /// Procedure
-  static final CarePlanActivityKind Procedure = CarePlanActivityKind._(
+  static const CarePlanActivityKind procedure = CarePlanActivityKind._(
     valueString: 'Procedure',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Procedure'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.procedure,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Procedure',
+    ),
   );
 
   /// Provenance
-  static final CarePlanActivityKind Provenance = CarePlanActivityKind._(
+  static const CarePlanActivityKind provenance = CarePlanActivityKind._(
     valueString: 'Provenance',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Provenance'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.provenance,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Provenance',
+    ),
   );
 
   /// Questionnaire
-  static final CarePlanActivityKind Questionnaire = CarePlanActivityKind._(
+  static const CarePlanActivityKind questionnaire = CarePlanActivityKind._(
     valueString: 'Questionnaire',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Questionnaire'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.questionnaire,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Questionnaire',
+    ),
   );
 
   /// QuestionnaireResponse
-  static final CarePlanActivityKind QuestionnaireResponse =
+  static const CarePlanActivityKind questionnaireResponse =
       CarePlanActivityKind._(
     valueString: 'QuestionnaireResponse',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'QuestionnaireResponse'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.questionnaireResponse,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'QuestionnaireResponse',
+    ),
   );
 
   /// RegulatedAuthorization
-  static final CarePlanActivityKind RegulatedAuthorization =
+  static const CarePlanActivityKind regulatedAuthorization =
       CarePlanActivityKind._(
     valueString: 'RegulatedAuthorization',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'RegulatedAuthorization'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.regulatedAuthorization,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'RegulatedAuthorization',
+    ),
   );
 
   /// RelatedPerson
-  static final CarePlanActivityKind RelatedPerson = CarePlanActivityKind._(
+  static const CarePlanActivityKind relatedPerson = CarePlanActivityKind._(
     valueString: 'RelatedPerson',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'RelatedPerson'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.relatedPerson,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'RelatedPerson',
+    ),
   );
 
   /// RequestGroup
-  static final CarePlanActivityKind RequestGroup = CarePlanActivityKind._(
+  static const CarePlanActivityKind requestGroup = CarePlanActivityKind._(
     valueString: 'RequestGroup',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'RequestGroup'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.requestGroup,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'RequestGroup',
+    ),
   );
 
   /// ResearchDefinition
-  static final CarePlanActivityKind ResearchDefinition = CarePlanActivityKind._(
+  static const CarePlanActivityKind researchDefinition = CarePlanActivityKind._(
     valueString: 'ResearchDefinition',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'ResearchDefinition'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.researchDefinition,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'ResearchDefinition',
+    ),
   );
 
   /// ResearchElementDefinition
-  static final CarePlanActivityKind ResearchElementDefinition =
+  static const CarePlanActivityKind researchElementDefinition =
       CarePlanActivityKind._(
     valueString: 'ResearchElementDefinition',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'ResearchElementDefinition'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.researchElementDefinition,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'ResearchElementDefinition',
+    ),
   );
 
   /// ResearchStudy
-  static final CarePlanActivityKind ResearchStudy = CarePlanActivityKind._(
+  static const CarePlanActivityKind researchStudy = CarePlanActivityKind._(
     valueString: 'ResearchStudy',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'ResearchStudy'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.researchStudy,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'ResearchStudy',
+    ),
   );
 
   /// ResearchSubject
-  static final CarePlanActivityKind ResearchSubject = CarePlanActivityKind._(
+  static const CarePlanActivityKind researchSubject = CarePlanActivityKind._(
     valueString: 'ResearchSubject',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'ResearchSubject'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.researchSubject,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'ResearchSubject',
+    ),
   );
 
   /// RiskAssessment
-  static final CarePlanActivityKind RiskAssessment = CarePlanActivityKind._(
+  static const CarePlanActivityKind riskAssessment = CarePlanActivityKind._(
     valueString: 'RiskAssessment',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'RiskAssessment'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.riskAssessment,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'RiskAssessment',
+    ),
   );
 
   /// Schedule
-  static final CarePlanActivityKind Schedule = CarePlanActivityKind._(
+  static const CarePlanActivityKind schedule = CarePlanActivityKind._(
     valueString: 'Schedule',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Schedule'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.schedule,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Schedule',
+    ),
   );
 
   /// SearchParameter
-  static final CarePlanActivityKind SearchParameter = CarePlanActivityKind._(
+  static const CarePlanActivityKind searchParameter = CarePlanActivityKind._(
     valueString: 'SearchParameter',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'SearchParameter'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.searchParameter,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'SearchParameter',
+    ),
   );
 
   /// ServiceRequest
-  static final CarePlanActivityKind ServiceRequest = CarePlanActivityKind._(
+  static const CarePlanActivityKind serviceRequest = CarePlanActivityKind._(
     valueString: 'ServiceRequest',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'ServiceRequest'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.serviceRequest,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'ServiceRequest',
+    ),
   );
 
   /// Slot
-  static final CarePlanActivityKind Slot = CarePlanActivityKind._(
+  static const CarePlanActivityKind slot = CarePlanActivityKind._(
     valueString: 'Slot',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Slot'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.slot,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Slot',
+    ),
   );
 
   /// Specimen
-  static final CarePlanActivityKind Specimen = CarePlanActivityKind._(
+  static const CarePlanActivityKind specimen = CarePlanActivityKind._(
     valueString: 'Specimen',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Specimen'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.specimen,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Specimen',
+    ),
   );
 
   /// SpecimenDefinition
-  static final CarePlanActivityKind SpecimenDefinition = CarePlanActivityKind._(
+  static const CarePlanActivityKind specimenDefinition = CarePlanActivityKind._(
     valueString: 'SpecimenDefinition',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'SpecimenDefinition'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.specimenDefinition,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'SpecimenDefinition',
+    ),
   );
 
   /// StructureDefinition
-  static final CarePlanActivityKind StructureDefinition =
+  static const CarePlanActivityKind structureDefinition =
       CarePlanActivityKind._(
     valueString: 'StructureDefinition',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'StructureDefinition'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.structureDefinition,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'StructureDefinition',
+    ),
   );
 
   /// StructureMap
-  static final CarePlanActivityKind StructureMap = CarePlanActivityKind._(
+  static const CarePlanActivityKind structureMap = CarePlanActivityKind._(
     valueString: 'StructureMap',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'StructureMap'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.structureMap,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'StructureMap',
+    ),
   );
 
   /// Subscription
-  static final CarePlanActivityKind Subscription = CarePlanActivityKind._(
+  static const CarePlanActivityKind subscription = CarePlanActivityKind._(
     valueString: 'Subscription',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Subscription'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.subscription,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Subscription',
+    ),
   );
 
   /// SubscriptionStatus
-  static final CarePlanActivityKind SubscriptionStatus = CarePlanActivityKind._(
+  static const CarePlanActivityKind subscriptionStatus = CarePlanActivityKind._(
     valueString: 'SubscriptionStatus',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'SubscriptionStatus'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.subscriptionStatus,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'SubscriptionStatus',
+    ),
   );
 
   /// SubscriptionTopic
-  static final CarePlanActivityKind SubscriptionTopic = CarePlanActivityKind._(
+  static const CarePlanActivityKind subscriptionTopic = CarePlanActivityKind._(
     valueString: 'SubscriptionTopic',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'SubscriptionTopic'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.subscriptionTopic,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'SubscriptionTopic',
+    ),
   );
 
   /// Substance
-  static final CarePlanActivityKind Substance = CarePlanActivityKind._(
+  static const CarePlanActivityKind substance = CarePlanActivityKind._(
     valueString: 'Substance',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Substance'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.substance,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Substance',
+    ),
   );
 
   /// SubstanceDefinition
-  static final CarePlanActivityKind SubstanceDefinition =
+  static const CarePlanActivityKind substanceDefinition =
       CarePlanActivityKind._(
     valueString: 'SubstanceDefinition',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'SubstanceDefinition'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.substanceDefinition,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'SubstanceDefinition',
+    ),
   );
 
   /// SupplyDelivery
-  static final CarePlanActivityKind SupplyDelivery = CarePlanActivityKind._(
+  static const CarePlanActivityKind supplyDelivery = CarePlanActivityKind._(
     valueString: 'SupplyDelivery',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'SupplyDelivery'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.supplyDelivery,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'SupplyDelivery',
+    ),
   );
 
   /// SupplyRequest
-  static final CarePlanActivityKind SupplyRequest = CarePlanActivityKind._(
+  static const CarePlanActivityKind supplyRequest = CarePlanActivityKind._(
     valueString: 'SupplyRequest',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'SupplyRequest'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.supplyRequest,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'SupplyRequest',
+    ),
   );
 
   /// Task
-  static final CarePlanActivityKind Task = CarePlanActivityKind._(
+  static const CarePlanActivityKind task = CarePlanActivityKind._(
     valueString: 'Task',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Task'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.task,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Task',
+    ),
   );
 
   /// TerminologyCapabilities
-  static final CarePlanActivityKind TerminologyCapabilities =
+  static const CarePlanActivityKind terminologyCapabilities =
       CarePlanActivityKind._(
     valueString: 'TerminologyCapabilities',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'TerminologyCapabilities'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.terminologyCapabilities,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'TerminologyCapabilities',
+    ),
   );
 
   /// TestReport
-  static final CarePlanActivityKind TestReport = CarePlanActivityKind._(
+  static const CarePlanActivityKind testReport = CarePlanActivityKind._(
     valueString: 'TestReport',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'TestReport'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.testReport,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'TestReport',
+    ),
   );
 
   /// TestScript
-  static final CarePlanActivityKind TestScript = CarePlanActivityKind._(
+  static const CarePlanActivityKind testScript = CarePlanActivityKind._(
     valueString: 'TestScript',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'TestScript'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.testScript,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'TestScript',
+    ),
   );
 
   /// ValueSet
-  static final CarePlanActivityKind ValueSet = CarePlanActivityKind._(
+  static const CarePlanActivityKind valueSet = CarePlanActivityKind._(
     valueString: 'ValueSet',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'ValueSet'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.valueSet,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'ValueSet',
+    ),
   );
 
   /// VerificationResult
-  static final CarePlanActivityKind VerificationResult = CarePlanActivityKind._(
+  static const CarePlanActivityKind verificationResult = CarePlanActivityKind._(
     valueString: 'VerificationResult',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'VerificationResult'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.verificationResult,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'VerificationResult',
+    ),
   );
 
   /// VisionPrescription
-  static final CarePlanActivityKind VisionPrescription = CarePlanActivityKind._(
+  static const CarePlanActivityKind visionPrescription = CarePlanActivityKind._(
     valueString: 'VisionPrescription',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'VisionPrescription'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.visionPrescription,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'VisionPrescription',
+    ),
   );
 
   /// Parameters
-  static final CarePlanActivityKind Parameters = CarePlanActivityKind._(
+  static const CarePlanActivityKind parameters = CarePlanActivityKind._(
     valueString: 'Parameters',
-    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Parameters'.toFhirString,
+    valueEnum: CarePlanActivityKindEnum.parameters,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/care-plan-activity-kind',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Parameters',
+    ),
   );
-
-  /// For instances where an Element is present but not value
-  static final CarePlanActivityKind elementOnly =
-      CarePlanActivityKind._(valueString: '');
 
   /// List of all enum-like values
   static final List<CarePlanActivityKind> values = [
-    Resource,
-    Binary,
-    Bundle,
-    DomainResource,
-    Account,
-    ActivityDefinition,
-    AdministrableProductDefinition,
-    AdverseEvent,
-    AllergyIntolerance,
-    Appointment,
-    AppointmentResponse,
-    AuditEvent,
-    Basic,
-    BiologicallyDerivedProduct,
-    BodyStructure,
-    CapabilityStatement,
-    CarePlan,
-    CareTeam,
-    CatalogEntry,
-    ChargeItem,
-    ChargeItemDefinition,
-    Citation,
-    Claim,
-    ClaimResponse,
-    ClinicalImpression,
-    ClinicalUseDefinition,
-    CodeSystem,
-    Communication,
-    CommunicationRequest,
-    CompartmentDefinition,
-    Composition,
-    ConceptMap,
-    Condition,
-    Consent,
-    Contract,
-    Coverage,
-    CoverageEligibilityRequest,
-    CoverageEligibilityResponse,
-    DetectedIssue,
-    Device,
-    DeviceDefinition,
-    DeviceMetric,
-    DeviceRequest,
-    DeviceUseStatement,
-    DiagnosticReport,
-    DocumentManifest,
-    DocumentReference,
-    Encounter,
-    Endpoint,
-    EnrollmentRequest,
-    EnrollmentResponse,
-    EpisodeOfCare,
-    EventDefinition,
-    Evidence,
-    EvidenceReport,
-    EvidenceVariable,
-    ExampleScenario,
-    ExplanationOfBenefit,
-    FamilyMemberHistory,
-    Flag,
-    Goal,
-    GraphDefinition,
-    Group,
-    GuidanceResponse,
-    HealthcareService,
-    ImagingStudy,
-    Immunization,
-    ImmunizationEvaluation,
-    ImmunizationRecommendation,
-    ImplementationGuide,
-    Ingredient,
-    InsurancePlan,
-    Invoice,
-    Library,
-    Linkage,
-    List_,
-    Location,
-    ManufacturedItemDefinition,
-    Measure,
-    MeasureReport,
-    Media,
-    Medication,
-    MedicationAdministration,
-    MedicationDispense,
-    MedicationKnowledge,
-    MedicationRequest,
-    MedicationStatement,
-    MedicinalProductDefinition,
-    MessageDefinition,
-    MessageHeader,
-    MolecularSequence,
-    NamingSystem,
-    NutritionOrder,
-    NutritionProduct,
-    Observation,
-    ObservationDefinition,
-    OperationDefinition,
-    OperationOutcome,
-    Organization,
-    OrganizationAffiliation,
-    PackagedProductDefinition,
-    Patient,
-    PaymentNotice,
-    PaymentReconciliation,
-    Person,
-    PlanDefinition,
-    Practitioner,
-    PractitionerRole,
-    Procedure,
-    Provenance,
-    Questionnaire,
-    QuestionnaireResponse,
-    RegulatedAuthorization,
-    RelatedPerson,
-    RequestGroup,
-    ResearchDefinition,
-    ResearchElementDefinition,
-    ResearchStudy,
-    ResearchSubject,
-    RiskAssessment,
-    Schedule,
-    SearchParameter,
-    ServiceRequest,
-    Slot,
-    Specimen,
-    SpecimenDefinition,
-    StructureDefinition,
-    StructureMap,
-    Subscription,
-    SubscriptionStatus,
-    SubscriptionTopic,
-    Substance,
-    SubstanceDefinition,
-    SupplyDelivery,
-    SupplyRequest,
-    Task,
-    TerminologyCapabilities,
-    TestReport,
-    TestScript,
-    ValueSet,
-    VerificationResult,
-    VisionPrescription,
-    Parameters,
+    resource,
+    binary,
+    bundle,
+    domainResource,
+    account,
+    activityDefinition,
+    administrableProductDefinition,
+    adverseEvent,
+    allergyIntolerance,
+    appointment,
+    appointmentResponse,
+    auditEvent,
+    basic,
+    biologicallyDerivedProduct,
+    bodyStructure,
+    capabilityStatement,
+    carePlan,
+    careTeam,
+    catalogEntry,
+    chargeItem,
+    chargeItemDefinition,
+    citation,
+    claim,
+    claimResponse,
+    clinicalImpression,
+    clinicalUseDefinition,
+    codeSystem,
+    communication,
+    communicationRequest,
+    compartmentDefinition,
+    composition,
+    conceptMap,
+    condition,
+    consent,
+    contract,
+    coverage,
+    coverageEligibilityRequest,
+    coverageEligibilityResponse,
+    detectedIssue,
+    device,
+    deviceDefinition,
+    deviceMetric,
+    deviceRequest,
+    deviceUseStatement,
+    diagnosticReport,
+    documentManifest,
+    documentReference,
+    encounter,
+    endpoint,
+    enrollmentRequest,
+    enrollmentResponse,
+    episodeOfCare,
+    eventDefinition,
+    evidence,
+    evidenceReport,
+    evidenceVariable,
+    exampleScenario,
+    explanationOfBenefit,
+    familyMemberHistory,
+    flag,
+    goal,
+    graphDefinition,
+    group,
+    guidanceResponse,
+    healthcareService,
+    imagingStudy,
+    immunization,
+    immunizationEvaluation,
+    immunizationRecommendation,
+    implementationGuide,
+    ingredient,
+    insurancePlan,
+    invoice,
+    library,
+    linkage,
+    list_,
+    location,
+    manufacturedItemDefinition,
+    measure,
+    measureReport,
+    media,
+    medication,
+    medicationAdministration,
+    medicationDispense,
+    medicationKnowledge,
+    medicationRequest,
+    medicationStatement,
+    medicinalProductDefinition,
+    messageDefinition,
+    messageHeader,
+    molecularSequence,
+    namingSystem,
+    nutritionOrder,
+    nutritionProduct,
+    observation,
+    observationDefinition,
+    operationDefinition,
+    operationOutcome,
+    organization,
+    organizationAffiliation,
+    packagedProductDefinition,
+    patient,
+    paymentNotice,
+    paymentReconciliation,
+    person,
+    planDefinition,
+    practitioner,
+    practitionerRole,
+    procedure,
+    provenance,
+    questionnaire,
+    questionnaireResponse,
+    regulatedAuthorization,
+    relatedPerson,
+    requestGroup,
+    researchDefinition,
+    researchElementDefinition,
+    researchStudy,
+    researchSubject,
+    riskAssessment,
+    schedule,
+    searchParameter,
+    serviceRequest,
+    slot,
+    specimen,
+    specimenDefinition,
+    structureDefinition,
+    structureMap,
+    subscription,
+    subscriptionStatus,
+    subscriptionTopic,
+    substance,
+    substanceDefinition,
+    supplyDelivery,
+    supplyRequest,
+    task,
+    terminologyCapabilities,
+    testReport,
+    testScript,
+    valueSet,
+    verificationResult,
+    visionPrescription,
+    parameters,
   ];
-
-  /// Clones the current instance
-  @override
-  CarePlanActivityKind clone() => CarePlanActivityKind._(
-        valueString: valueString,
-        element: element?.clone() as Element?,
-      );
 
   /// Returns the enum value with an element attached
   CarePlanActivityKind withElement(Element? newElement) {
@@ -1422,36 +3160,56 @@ class CarePlanActivityKind extends FhirCodeEnum {
   @override
   String toString() => valueString ?? '';
 
-  /// Creates a modified copy with updated properties.
   @override
-  CarePlanActivityKind copyWith({
-    dynamic newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
+  CarePlanActivityKind clone() => copyWith();
+
+  /// Creates a new instance with the specified fields replaced.
+  @override
+  CarePlanActivityKindCopyWithImpl<CarePlanActivityKind> get copyWith =>
+      CarePlanActivityKindCopyWithImpl<CarePlanActivityKind>(
+        this,
+        (v) => v as CarePlanActivityKind,
+      );
+}
+
+/// The generated implementation of the copyWith helper for Element.
+/// The call method uses parameters of type Object? with a default value of
+/// [fhirSentinel] so that omitted parameters retain the sentinel value while
+/// explicit nulls do not.
+class CarePlanActivityKindCopyWithImpl<T> extends $FhirCodeCopyWithImpl<T> {
+  /// Constructor for the copyWith implementation.
+  CarePlanActivityKindCopyWithImpl(super._value, super._then);
+
+  @override
+  T call({
+    Object? newValue = fhirSentinel,
+    Object? element = fhirSentinel,
+    Object? id = fhirSentinel,
+    Object? extension_ = fhirSentinel,
+    Object? disallowExtensions = fhirSentinel,
   }) {
-    if (newValue is! String?) {
+    if (!identical(newValue, fhirSentinel) && newValue is! String?) {
       throw ArgumentError(
-        'Invalid input for CarePlanActivityKind: $newValue',
+        'newValue must be a String or null, but found ${newValue.runtimeType}',
+        'newValue',
       );
     }
-    return CarePlanActivityKind._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
+    return _then(
+      CarePlanActivityKind(
+        identical(newValue, fhirSentinel)
+            ? _value.valueString
+            : newValue as String?,
+        element: identical(element, fhirSentinel)
+            ? _value.element
+            : element as Element?,
+        id: identical(id, fhirSentinel) ? _value.id : id as FhirString?,
+        extension_: identical(extension_, fhirSentinel)
+            ? _value.extension_
+            : extension_ as List<FhirExtension>?,
+        disallowExtensions: identical(disallowExtensions, fhirSentinel)
+            ? _value.disallowExtensions
+            : disallowExtensions as bool?,
       ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

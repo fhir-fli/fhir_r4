@@ -1,12 +1,66 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for ActionRequiredBehavior
+enum ActionRequiredBehaviorEnum {
+  /// must
+  must,
+
+  /// could
+  could,
+
+  /// must-unless-documented
+  mustUnlessDocumented,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case ActionRequiredBehaviorEnum.must:
+        return 'must';
+      case ActionRequiredBehaviorEnum.could:
+        return 'could';
+      case ActionRequiredBehaviorEnum.mustUnlessDocumented:
+        return 'must-unless-documented';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static ActionRequiredBehaviorEnum? fromJson(dynamic json) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return ActionRequiredBehaviorEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static ActionRequiredBehaviorEnum? fromString(String? value) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'must':
+        return ActionRequiredBehaviorEnum.must;
+      case 'could':
+        return ActionRequiredBehaviorEnum.could;
+      case 'must-unless-documented':
+        return ActionRequiredBehaviorEnum.mustUnlessDocumented;
+    }
+    return null;
+  }
+}
+
 /// Defines expectations around whether an action or action group is
 /// required.
 class ActionRequiredBehavior extends FhirCodeEnum {
   // Private underscore constructor for internal use.
-  ActionRequiredBehavior._({
+  const ActionRequiredBehavior._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -14,7 +68,6 @@ class ActionRequiredBehavior extends FhirCodeEnum {
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.objectPath = 'Code',
   }) : super._();
 
   /// Public factory if you want a fallback approach or custom creation.
@@ -28,12 +81,13 @@ class ActionRequiredBehavior extends FhirCodeEnum {
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
-    String objectPath = 'Code',
   }) {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
+    final valueEnum = ActionRequiredBehaviorEnum.fromString(valueString);
     return ActionRequiredBehavior._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -41,13 +95,8 @@ class ActionRequiredBehavior extends FhirCodeEnum {
       id: id,
       extension_: extension_,
       disallowExtensions: disallowExtensions,
-      objectPath: objectPath,
     );
   }
-
-  /// Create empty [ActionRequiredBehavior] with element only
-  factory ActionRequiredBehavior.empty() =>
-      ActionRequiredBehavior._(valueString: '');
 
   /// Factory constructor to create [ActionRequiredBehavior]
   /// from JSON.
@@ -55,10 +104,11 @@ class ActionRequiredBehavior extends FhirCodeEnum {
     Map<String, dynamic> json,
   ) {
     final value = json['value'] as String?;
+    final valueEnum = ActionRequiredBehaviorEnum.fromString(value);
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ActionRequiredBehavior.elementOnly.withElement(element);
+      return ActionRequiredBehavior._(valueString: null, element: element);
     } else if (value == null && element == null) {
       throw ArgumentError(
         'ActionRequiredBehavior cannot be constructed from JSON.',
@@ -66,52 +116,60 @@ class ActionRequiredBehavior extends FhirCodeEnum {
     }
     return ActionRequiredBehavior._(
       valueString: value,
+      valueEnum: valueEnum,
       element: element,
     );
   }
 
+  /// An actual enum that can be used for ActionRequiredBehavior
+  final ActionRequiredBehaviorEnum? valueEnum;
+
   /// must
-  static final ActionRequiredBehavior must = ActionRequiredBehavior._(
+  static const ActionRequiredBehavior must = ActionRequiredBehavior._(
     valueString: 'must',
-    system: 'http://hl7.org/fhir/ValueSet/action-required-behavior'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Must'.toFhirString,
+    valueEnum: ActionRequiredBehaviorEnum.must,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/action-required-behavior',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Must',
+    ),
   );
 
   /// could
-  static final ActionRequiredBehavior could = ActionRequiredBehavior._(
+  static const ActionRequiredBehavior could = ActionRequiredBehavior._(
     valueString: 'could',
-    system: 'http://hl7.org/fhir/ValueSet/action-required-behavior'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Could'.toFhirString,
+    valueEnum: ActionRequiredBehaviorEnum.could,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/action-required-behavior',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Could',
+    ),
   );
 
   /// must_unless_documented
-  static final ActionRequiredBehavior must_unless_documented =
+  static const ActionRequiredBehavior mustUnlessDocumented =
       ActionRequiredBehavior._(
     valueString: 'must-unless-documented',
-    system: 'http://hl7.org/fhir/ValueSet/action-required-behavior'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Must Unless Documented'.toFhirString,
+    valueEnum: ActionRequiredBehaviorEnum.mustUnlessDocumented,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/action-required-behavior',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Must Unless Documented',
+    ),
   );
-
-  /// For instances where an Element is present but not value
-  static final ActionRequiredBehavior elementOnly =
-      ActionRequiredBehavior._(valueString: '');
 
   /// List of all enum-like values
   static final List<ActionRequiredBehavior> values = [
     must,
     could,
-    must_unless_documented,
+    mustUnlessDocumented,
   ];
-
-  /// Clones the current instance
-  @override
-  ActionRequiredBehavior clone() => ActionRequiredBehavior._(
-        valueString: valueString,
-        element: element?.clone() as Element?,
-      );
 
   /// Returns the enum value with an element attached
   ActionRequiredBehavior withElement(Element? newElement) {
@@ -132,36 +190,56 @@ class ActionRequiredBehavior extends FhirCodeEnum {
   @override
   String toString() => valueString ?? '';
 
-  /// Creates a modified copy with updated properties.
   @override
-  ActionRequiredBehavior copyWith({
-    dynamic newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
+  ActionRequiredBehavior clone() => copyWith();
+
+  /// Creates a new instance with the specified fields replaced.
+  @override
+  ActionRequiredBehaviorCopyWithImpl<ActionRequiredBehavior> get copyWith =>
+      ActionRequiredBehaviorCopyWithImpl<ActionRequiredBehavior>(
+        this,
+        (v) => v as ActionRequiredBehavior,
+      );
+}
+
+/// The generated implementation of the copyWith helper for Element.
+/// The call method uses parameters of type Object? with a default value of
+/// [fhirSentinel] so that omitted parameters retain the sentinel value while
+/// explicit nulls do not.
+class ActionRequiredBehaviorCopyWithImpl<T> extends $FhirCodeCopyWithImpl<T> {
+  /// Constructor for the copyWith implementation.
+  ActionRequiredBehaviorCopyWithImpl(super._value, super._then);
+
+  @override
+  T call({
+    Object? newValue = fhirSentinel,
+    Object? element = fhirSentinel,
+    Object? id = fhirSentinel,
+    Object? extension_ = fhirSentinel,
+    Object? disallowExtensions = fhirSentinel,
   }) {
-    if (newValue is! String?) {
+    if (!identical(newValue, fhirSentinel) && newValue is! String?) {
       throw ArgumentError(
-        'Invalid input for ActionRequiredBehavior: $newValue',
+        'newValue must be a String or null, but found ${newValue.runtimeType}',
+        'newValue',
       );
     }
-    return ActionRequiredBehavior._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
+    return _then(
+      ActionRequiredBehavior(
+        identical(newValue, fhirSentinel)
+            ? _value.valueString
+            : newValue as String?,
+        element: identical(element, fhirSentinel)
+            ? _value.element
+            : element as Element?,
+        id: identical(id, fhirSentinel) ? _value.id : id as FhirString?,
+        extension_: identical(extension_, fhirSentinel)
+            ? _value.extension_
+            : extension_ as List<FhirExtension>?,
+        disallowExtensions: identical(disallowExtensions, fhirSentinel)
+            ? _value.disallowExtensions
+            : disallowExtensions as bool?,
       ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

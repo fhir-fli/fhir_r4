@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
+part 'guidance_response.g.dart';
+
 /// [GuidanceResponse]
 /// A guidance response is the formal response to a guidance request,
 /// including any output parameters returned by the evaluation, as well as
@@ -35,81 +37,57 @@ class GuidanceResponse extends DomainResource {
     this.result,
     this.dataRequirement,
   }) : super(
-          objectPath: 'GuidanceResponse',
           resourceType: R4ResourceType.GuidanceResponse,
         );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory GuidanceResponse.empty() => GuidanceResponse(
-        moduleX: FhirUri.empty(),
-        status: GuidanceResponseStatus.values.first,
-      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory GuidanceResponse.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'GuidanceResponse';
     return GuidanceResponse(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
         FhirMeta.fromJson,
-        '$objectPath.meta',
       ),
       implicitRules: JsonParser.parsePrimitive<FhirUri>(
         json,
         'implicitRules',
         FhirUri.fromJson,
-        '$objectPath.implicitRules',
       ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-        '$objectPath.language',
       ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
         Narrative.fromJson,
-        '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
           ?.map<Resource>(
             (v) => Resource.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.contained',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -117,15 +95,11 @@ class GuidanceResponse extends DomainResource {
         json,
         'requestIdentifier',
         Identifier.fromJson,
-        '$objectPath.requestIdentifier',
       ),
       identifier: (json['identifier'] as List<dynamic>?)
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.identifier',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -136,75 +110,57 @@ class GuidanceResponse extends DomainResource {
           'moduleCanonical': FhirCanonical.fromJson,
           'moduleCodeableConcept': CodeableConcept.fromJson,
         },
-        objectPath,
       )!,
       status: JsonParser.parsePrimitive<GuidanceResponseStatus>(
         json,
         'status',
         GuidanceResponseStatus.fromJson,
-        '$objectPath.status',
       )!,
       subject: JsonParser.parseObject<Reference>(
         json,
         'subject',
         Reference.fromJson,
-        '$objectPath.subject',
       ),
       encounter: JsonParser.parseObject<Reference>(
         json,
         'encounter',
         Reference.fromJson,
-        '$objectPath.encounter',
       ),
       occurrenceDateTime: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'occurrenceDateTime',
         FhirDateTime.fromJson,
-        '$objectPath.occurrenceDateTime',
       ),
       performer: JsonParser.parseObject<Reference>(
         json,
         'performer',
         Reference.fromJson,
-        '$objectPath.performer',
       ),
       reasonCode: (json['reasonCode'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.reasonCode',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       reasonReference: (json['reasonReference'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.reasonReference',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       note: (json['note'] as List<dynamic>?)
           ?.map<Annotation>(
             (v) => Annotation.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.note',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       evaluationMessage: (json['evaluationMessage'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.evaluationMessage',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -212,21 +168,16 @@ class GuidanceResponse extends DomainResource {
         json,
         'outputParameters',
         Reference.fromJson,
-        '$objectPath.outputParameters',
       ),
       result: JsonParser.parseObject<Reference>(
         json,
         'result',
         Reference.fromJson,
-        '$objectPath.result',
       ),
       dataRequirement: (json['dataRequirement'] as List<dynamic>?)
           ?.map<DataRequirement>(
             (v) => DataRequirement.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.dataRequirement',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -531,923 +482,20 @@ class GuidanceResponse extends DomainResource {
     return json;
   }
 
-  /// Lists the JSON keys for the object.
   @override
-  List<String> listChildrenNames() {
-    return [
-      'id',
-      'meta',
-      'implicitRules',
-      'language',
-      'text',
-      'contained',
-      'extension',
-      'modifierExtension',
-      'requestIdentifier',
-      'identifier',
-      'moduleX',
-      'status',
-      'subject',
-      'encounter',
-      'occurrenceDateTime',
-      'performer',
-      'reasonCode',
-      'reasonReference',
-      'note',
-      'evaluationMessage',
-      'outputParameters',
-      'result',
-      'dataRequirement',
-    ];
-  }
+  GuidanceResponse clone() => copyWith();
 
-  /// Retrieves all matching child fields by name.
-  ///Optionally validates the name.
+  /// Copy function for [GuidanceResponse]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<FhirBase> getChildrenByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    final fields = <FhirBase>[];
-    switch (fieldName) {
-      case 'id':
-        if (id != null) {
-          fields.add(id!);
-        }
-      case 'meta':
-        if (meta != null) {
-          fields.add(meta!);
-        }
-      case 'implicitRules':
-        if (implicitRules != null) {
-          fields.add(implicitRules!);
-        }
-      case 'language':
-        if (language != null) {
-          fields.add(language!);
-        }
-      case 'text':
-        if (text != null) {
-          fields.add(text!);
-        }
-      case 'contained':
-        if (contained != null) {
-          fields.addAll(contained!);
-        }
-      case 'extension':
-        if (extension_ != null) {
-          fields.addAll(extension_!);
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          fields.addAll(modifierExtension!);
-        }
-      case 'requestIdentifier':
-        if (requestIdentifier != null) {
-          fields.add(requestIdentifier!);
-        }
-      case 'identifier':
-        if (identifier != null) {
-          fields.addAll(identifier!);
-        }
-      case 'module':
-        fields.add(moduleX);
-      case 'moduleX':
-        fields.add(moduleX);
-      case 'moduleUri':
-        if (moduleX is FhirUri) {
-          fields.add(moduleX);
-        }
-      case 'moduleCanonical':
-        if (moduleX is FhirCanonical) {
-          fields.add(moduleX);
-        }
-      case 'moduleCodeableConcept':
-        if (moduleX is CodeableConcept) {
-          fields.add(moduleX);
-        }
-      case 'status':
-        fields.add(status);
-      case 'subject':
-        if (subject != null) {
-          fields.add(subject!);
-        }
-      case 'encounter':
-        if (encounter != null) {
-          fields.add(encounter!);
-        }
-      case 'occurrenceDateTime':
-        if (occurrenceDateTime != null) {
-          fields.add(occurrenceDateTime!);
-        }
-      case 'performer':
-        if (performer != null) {
-          fields.add(performer!);
-        }
-      case 'reasonCode':
-        if (reasonCode != null) {
-          fields.addAll(reasonCode!);
-        }
-      case 'reasonReference':
-        if (reasonReference != null) {
-          fields.addAll(reasonReference!);
-        }
-      case 'note':
-        if (note != null) {
-          fields.addAll(note!);
-        }
-      case 'evaluationMessage':
-        if (evaluationMessage != null) {
-          fields.addAll(evaluationMessage!);
-        }
-      case 'outputParameters':
-        if (outputParameters != null) {
-          fields.add(outputParameters!);
-        }
-      case 'result':
-        if (result != null) {
-          fields.add(result!);
-        }
-      case 'dataRequirement':
-        if (dataRequirement != null) {
-          fields.addAll(dataRequirement!);
-        }
-      default:
-        if (checkValid) {
-          throw ArgumentError('Invalid name: $fieldName');
-        }
-    }
-    return fields;
-  }
-
-  /// Retrieves a single field value by its name.
-  @override
-  FhirBase? getChildByName(String name) {
-    final values = getChildrenByName(name);
-    if (values.length > 1) {
-      throw StateError('Too many values for $name found');
-    }
-    return values.isNotEmpty ? values.first : null;
-  }
-
-  @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
-
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'meta':
-        {
-          if (child is FhirMeta) {
-            return copyWith(meta: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'implicitRules':
-        {
-          if (child is FhirUri) {
-            return copyWith(implicitRules: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'language':
-        {
-          if (child is CommonLanguages) {
-            return copyWith(language: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'text':
-        {
-          if (child is Narrative) {
-            return copyWith(text: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'contained':
-        {
-          if (child is List<Resource>) {
-            // Add all elements from passed list
-            final newList = [...?contained, ...child];
-            return copyWith(contained: newList);
-          } else if (child is Resource) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?contained,
-              child,
-            ];
-            return copyWith(contained: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'requestIdentifier':
-        {
-          if (child is Identifier) {
-            return copyWith(requestIdentifier: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'identifier':
-        {
-          if (child is List<Identifier>) {
-            // Add all elements from passed list
-            final newList = [...?identifier, ...child];
-            return copyWith(identifier: newList);
-          } else if (child is Identifier) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?identifier,
-              child,
-            ];
-            return copyWith(identifier: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'module':
-      case 'moduleX':
-        {
-          if (child is ModuleXGuidanceResponse) {
-            return copyWith(moduleX: child);
-          } else {
-            if (child is FhirUri) {
-              return copyWith(moduleX: child);
-            }
-            if (child is FhirCanonical) {
-              return copyWith(moduleX: child);
-            }
-            if (child is CodeableConcept) {
-              return copyWith(moduleX: child);
-            }
-          }
-          throw Exception('Invalid child type for $childName');
-        }
-      case 'moduleFhirUri':
-        {
-          if (child is FhirUri) {
-            return copyWith(moduleX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'moduleFhirCanonical':
-        {
-          if (child is FhirCanonical) {
-            return copyWith(moduleX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'moduleCodeableConcept':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(moduleX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'status':
-        {
-          if (child is GuidanceResponseStatus) {
-            return copyWith(status: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'subject':
-        {
-          if (child is Reference) {
-            return copyWith(subject: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'encounter':
-        {
-          if (child is Reference) {
-            return copyWith(encounter: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'occurrenceDateTime':
-        {
-          if (child is FhirDateTime) {
-            return copyWith(occurrenceDateTime: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'performer':
-        {
-          if (child is Reference) {
-            return copyWith(performer: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'reasonCode':
-        {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?reasonCode, ...child];
-            return copyWith(reasonCode: newList);
-          } else if (child is CodeableConcept) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?reasonCode,
-              child,
-            ];
-            return copyWith(reasonCode: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'reasonReference':
-        {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?reasonReference, ...child];
-            return copyWith(reasonReference: newList);
-          } else if (child is Reference) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?reasonReference,
-              child,
-            ];
-            return copyWith(reasonReference: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'note':
-        {
-          if (child is List<Annotation>) {
-            // Add all elements from passed list
-            final newList = [...?note, ...child];
-            return copyWith(note: newList);
-          } else if (child is Annotation) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?note,
-              child,
-            ];
-            return copyWith(note: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'evaluationMessage':
-        {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?evaluationMessage, ...child];
-            return copyWith(evaluationMessage: newList);
-          } else if (child is Reference) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?evaluationMessage,
-              child,
-            ];
-            return copyWith(evaluationMessage: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'outputParameters':
-        {
-          if (child is Reference) {
-            return copyWith(outputParameters: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'result':
-        {
-          if (child is Reference) {
-            return copyWith(result: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'dataRequirement':
-        {
-          if (child is List<DataRequirement>) {
-            // Add all elements from passed list
-            final newList = [...?dataRequirement, ...child];
-            return copyWith(dataRequirement: newList);
-          } else if (child is DataRequirement) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?dataRequirement,
-              child,
-            ];
-            return copyWith(dataRequirement: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
-  @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'meta':
-        return ['FhirMeta'];
-      case 'implicitRules':
-        return ['FhirUri'];
-      case 'language':
-        return ['FhirCode'];
-      case 'text':
-        return ['Narrative'];
-      case 'contained':
-        return ['Resource'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'requestIdentifier':
-        return ['Identifier'];
-      case 'identifier':
-        return ['Identifier'];
-      case 'module':
-      case 'moduleX':
-        return [
-          'FhirUri',
-          'FhirCanonical',
-          'CodeableConcept',
-        ];
-      case 'moduleUri':
-        return ['FhirUri'];
-      case 'moduleCanonical':
-        return ['FhirCanonical'];
-      case 'moduleCodeableConcept':
-        return ['CodeableConcept'];
-      case 'status':
-        return ['FhirCode'];
-      case 'subject':
-        return ['Reference'];
-      case 'encounter':
-        return ['Reference'];
-      case 'occurrenceDateTime':
-        return ['FhirDateTime'];
-      case 'performer':
-        return ['Reference'];
-      case 'reasonCode':
-        return ['CodeableConcept'];
-      case 'reasonReference':
-        return ['Reference'];
-      case 'note':
-        return ['Annotation'];
-      case 'evaluationMessage':
-        return ['Reference'];
-      case 'outputParameters':
-        return ['Reference'];
-      case 'result':
-        return ['Reference'];
-      case 'dataRequirement':
-        return ['DataRequirement'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [GuidanceResponse]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  GuidanceResponse createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
-          );
-        }
-      case 'meta':
-        {
-          return copyWith(
-            meta: FhirMeta.empty(),
-          );
-        }
-      case 'implicitRules':
-        {
-          return copyWith(
-            implicitRules: FhirUri.empty(),
-          );
-        }
-      case 'language':
-        {
-          return copyWith(
-            language: CommonLanguages.empty(),
-          );
-        }
-      case 'text':
-        {
-          return copyWith(
-            text: Narrative.empty(),
-          );
-        }
-      case 'contained':
-        {
-          return copyWith(
-            contained: <Resource>[],
-          );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'requestIdentifier':
-        {
-          return copyWith(
-            requestIdentifier: Identifier.empty(),
-          );
-        }
-      case 'identifier':
-        {
-          return copyWith(
-            identifier: <Identifier>[],
-          );
-        }
-      case 'module':
-      case 'moduleX':
-      case 'moduleUri':
-        {
-          return copyWith(
-            moduleX: FhirUri.empty(),
-          );
-        }
-      case 'moduleCanonical':
-        {
-          return copyWith(
-            moduleX: FhirCanonical.empty(),
-          );
-        }
-      case 'moduleCodeableConcept':
-        {
-          return copyWith(
-            moduleX: CodeableConcept.empty(),
-          );
-        }
-      case 'status':
-        {
-          return copyWith(
-            status: GuidanceResponseStatus.empty(),
-          );
-        }
-      case 'subject':
-        {
-          return copyWith(
-            subject: Reference.empty(),
-          );
-        }
-      case 'encounter':
-        {
-          return copyWith(
-            encounter: Reference.empty(),
-          );
-        }
-      case 'occurrenceDateTime':
-        {
-          return copyWith(
-            occurrenceDateTime: FhirDateTime.empty(),
-          );
-        }
-      case 'performer':
-        {
-          return copyWith(
-            performer: Reference.empty(),
-          );
-        }
-      case 'reasonCode':
-        {
-          return copyWith(
-            reasonCode: <CodeableConcept>[],
-          );
-        }
-      case 'reasonReference':
-        {
-          return copyWith(
-            reasonReference: <Reference>[],
-          );
-        }
-      case 'note':
-        {
-          return copyWith(
-            note: <Annotation>[],
-          );
-        }
-      case 'evaluationMessage':
-        {
-          return copyWith(
-            evaluationMessage: <Reference>[],
-          );
-        }
-      case 'outputParameters':
-        {
-          return copyWith(
-            outputParameters: Reference.empty(),
-          );
-        }
-      case 'result':
-        {
-          return copyWith(
-            result: Reference.empty(),
-          );
-        }
-      case 'dataRequirement':
-        {
-          return copyWith(
-            dataRequirement: <DataRequirement>[],
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  GuidanceResponse clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool requestIdentifier = false,
-    bool identifier = false,
-    bool subject = false,
-    bool encounter = false,
-    bool occurrenceDateTime = false,
-    bool performer = false,
-    bool reasonCode = false,
-    bool reasonReference = false,
-    bool note = false,
-    bool evaluationMessage = false,
-    bool outputParameters = false,
-    bool result = false,
-    bool dataRequirement = false,
-  }) {
-    return GuidanceResponse(
-      id: id ? null : this.id,
-      meta: meta ? null : this.meta,
-      implicitRules: implicitRules ? null : this.implicitRules,
-      language: language ? null : this.language,
-      text: text ? null : this.text,
-      contained: contained ? null : this.contained,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      requestIdentifier: requestIdentifier ? null : this.requestIdentifier,
-      identifier: identifier ? null : this.identifier,
-      moduleX: moduleX,
-      status: status,
-      subject: subject ? null : this.subject,
-      encounter: encounter ? null : this.encounter,
-      occurrenceDateTime: occurrenceDateTime ? null : this.occurrenceDateTime,
-      performer: performer ? null : this.performer,
-      reasonCode: reasonCode ? null : this.reasonCode,
-      reasonReference: reasonReference ? null : this.reasonReference,
-      note: note ? null : this.note,
-      evaluationMessage: evaluationMessage ? null : this.evaluationMessage,
-      outputParameters: outputParameters ? null : this.outputParameters,
-      result: result ? null : this.result,
-      dataRequirement: dataRequirement ? null : this.dataRequirement,
-    );
-  }
-
-  @override
-  GuidanceResponse clone() => throw UnimplementedError();
-  @override
-  GuidanceResponse copyWith({
-    FhirString? id,
-    FhirMeta? meta,
-    FhirUri? implicitRules,
-    CommonLanguages? language,
-    Narrative? text,
-    List<Resource>? contained,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    Identifier? requestIdentifier,
-    List<Identifier>? identifier,
-    ModuleXGuidanceResponse? moduleX,
-    GuidanceResponseStatus? status,
-    Reference? subject,
-    Reference? encounter,
-    FhirDateTime? occurrenceDateTime,
-    Reference? performer,
-    List<CodeableConcept>? reasonCode,
-    List<Reference>? reasonReference,
-    List<Annotation>? note,
-    List<Reference>? evaluationMessage,
-    Reference? outputParameters,
-    Reference? result,
-    List<DataRequirement>? dataRequirement,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-  }) {
-    final newObjectPath = objectPath;
-    return GuidanceResponse(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      meta: meta?.copyWith(
-            objectPath: '$newObjectPath.meta',
-          ) ??
-          this.meta,
-      implicitRules: implicitRules?.copyWith(
-            objectPath: '$newObjectPath.implicitRules',
-          ) ??
-          this.implicitRules,
-      language: language?.copyWith(
-            objectPath: '$newObjectPath.language',
-          ) ??
-          this.language,
-      text: text?.copyWith(
-            objectPath: '$newObjectPath.text',
-          ) ??
-          this.text,
-      contained: contained ?? this.contained,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      requestIdentifier: requestIdentifier?.copyWith(
-            objectPath: '$newObjectPath.requestIdentifier',
-          ) ??
-          this.requestIdentifier,
-      identifier: identifier
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.identifier',
-                ),
-              )
-              .toList() ??
-          this.identifier,
-      moduleX: moduleX?.copyWith(
-            objectPath: '$newObjectPath.moduleX',
-          ) as ModuleXGuidanceResponse? ??
-          this.moduleX,
-      status: status?.copyWith(
-            objectPath: '$newObjectPath.status',
-          ) ??
-          this.status,
-      subject: subject?.copyWith(
-            objectPath: '$newObjectPath.subject',
-          ) ??
-          this.subject,
-      encounter: encounter?.copyWith(
-            objectPath: '$newObjectPath.encounter',
-          ) ??
-          this.encounter,
-      occurrenceDateTime: occurrenceDateTime?.copyWith(
-            objectPath: '$newObjectPath.occurrenceDateTime',
-          ) ??
-          this.occurrenceDateTime,
-      performer: performer?.copyWith(
-            objectPath: '$newObjectPath.performer',
-          ) ??
-          this.performer,
-      reasonCode: reasonCode
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.reasonCode',
-                ),
-              )
-              .toList() ??
-          this.reasonCode,
-      reasonReference: reasonReference
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.reasonReference',
-                ),
-              )
-              .toList() ??
-          this.reasonReference,
-      note: note
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.note',
-                ),
-              )
-              .toList() ??
-          this.note,
-      evaluationMessage: evaluationMessage
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.evaluationMessage',
-                ),
-              )
-              .toList() ??
-          this.evaluationMessage,
-      outputParameters: outputParameters?.copyWith(
-            objectPath: '$newObjectPath.outputParameters',
-          ) ??
-          this.outputParameters,
-      result: result?.copyWith(
-            objectPath: '$newObjectPath.result',
-          ) ??
-          this.result,
-      dataRequirement: dataRequirement
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.dataRequirement',
-                ),
-              )
-              .toList() ??
-          this.dataRequirement,
-    );
-  }
+  $GuidanceResponseCopyWith<GuidanceResponse> get copyWith =>
+      _$GuidanceResponseCopyWithImpl<GuidanceResponse>(
+        this,
+        (value) => value,
+      );
 
   /// Performs a deep comparison between two instances.
   @override

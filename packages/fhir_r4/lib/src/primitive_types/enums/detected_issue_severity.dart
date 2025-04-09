@@ -1,12 +1,66 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for DetectedIssueSeverity
+enum DetectedIssueSeverityEnum {
+  /// high
+  high,
+
+  /// moderate
+  moderate,
+
+  /// low
+  low,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case DetectedIssueSeverityEnum.high:
+        return 'high';
+      case DetectedIssueSeverityEnum.moderate:
+        return 'moderate';
+      case DetectedIssueSeverityEnum.low:
+        return 'low';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static DetectedIssueSeverityEnum? fromJson(dynamic json) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return DetectedIssueSeverityEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static DetectedIssueSeverityEnum? fromString(String? value) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'high':
+        return DetectedIssueSeverityEnum.high;
+      case 'moderate':
+        return DetectedIssueSeverityEnum.moderate;
+      case 'low':
+        return DetectedIssueSeverityEnum.low;
+    }
+    return null;
+  }
+}
+
 /// Indicates the potential degree of impact of the identified issue on the
 /// patient.
 class DetectedIssueSeverity extends FhirCodeEnum {
   // Private underscore constructor for internal use.
-  DetectedIssueSeverity._({
+  const DetectedIssueSeverity._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -14,7 +68,6 @@ class DetectedIssueSeverity extends FhirCodeEnum {
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.objectPath = 'Code',
   }) : super._();
 
   /// Public factory if you want a fallback approach or custom creation.
@@ -28,12 +81,13 @@ class DetectedIssueSeverity extends FhirCodeEnum {
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
-    String objectPath = 'Code',
   }) {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
+    final valueEnum = DetectedIssueSeverityEnum.fromString(valueString);
     return DetectedIssueSeverity._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -41,13 +95,8 @@ class DetectedIssueSeverity extends FhirCodeEnum {
       id: id,
       extension_: extension_,
       disallowExtensions: disallowExtensions,
-      objectPath: objectPath,
     );
   }
-
-  /// Create empty [DetectedIssueSeverity] with element only
-  factory DetectedIssueSeverity.empty() =>
-      DetectedIssueSeverity._(valueString: '');
 
   /// Factory constructor to create [DetectedIssueSeverity]
   /// from JSON.
@@ -55,10 +104,11 @@ class DetectedIssueSeverity extends FhirCodeEnum {
     Map<String, dynamic> json,
   ) {
     final value = json['value'] as String?;
+    final valueEnum = DetectedIssueSeverityEnum.fromString(value);
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return DetectedIssueSeverity.elementOnly.withElement(element);
+      return DetectedIssueSeverity._(valueString: null, element: element);
     } else if (value == null && element == null) {
       throw ArgumentError(
         'DetectedIssueSeverity cannot be constructed from JSON.',
@@ -66,37 +116,52 @@ class DetectedIssueSeverity extends FhirCodeEnum {
     }
     return DetectedIssueSeverity._(
       valueString: value,
+      valueEnum: valueEnum,
       element: element,
     );
   }
 
+  /// An actual enum that can be used for DetectedIssueSeverity
+  final DetectedIssueSeverityEnum? valueEnum;
+
   /// high
-  static final DetectedIssueSeverity high = DetectedIssueSeverity._(
+  static const DetectedIssueSeverity high = DetectedIssueSeverity._(
     valueString: 'high',
-    system: 'http://hl7.org/fhir/ValueSet/detectedissue-severity'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'High'.toFhirString,
+    valueEnum: DetectedIssueSeverityEnum.high,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/detectedissue-severity',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'High',
+    ),
   );
 
   /// moderate
-  static final DetectedIssueSeverity moderate = DetectedIssueSeverity._(
+  static const DetectedIssueSeverity moderate = DetectedIssueSeverity._(
     valueString: 'moderate',
-    system: 'http://hl7.org/fhir/ValueSet/detectedissue-severity'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Moderate'.toFhirString,
+    valueEnum: DetectedIssueSeverityEnum.moderate,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/detectedissue-severity',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Moderate',
+    ),
   );
 
   /// low
-  static final DetectedIssueSeverity low = DetectedIssueSeverity._(
+  static const DetectedIssueSeverity low = DetectedIssueSeverity._(
     valueString: 'low',
-    system: 'http://hl7.org/fhir/ValueSet/detectedissue-severity'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Low'.toFhirString,
+    valueEnum: DetectedIssueSeverityEnum.low,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/detectedissue-severity',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Low',
+    ),
   );
-
-  /// For instances where an Element is present but not value
-  static final DetectedIssueSeverity elementOnly =
-      DetectedIssueSeverity._(valueString: '');
 
   /// List of all enum-like values
   static final List<DetectedIssueSeverity> values = [
@@ -104,13 +169,6 @@ class DetectedIssueSeverity extends FhirCodeEnum {
     moderate,
     low,
   ];
-
-  /// Clones the current instance
-  @override
-  DetectedIssueSeverity clone() => DetectedIssueSeverity._(
-        valueString: valueString,
-        element: element?.clone() as Element?,
-      );
 
   /// Returns the enum value with an element attached
   DetectedIssueSeverity withElement(Element? newElement) {
@@ -131,36 +189,56 @@ class DetectedIssueSeverity extends FhirCodeEnum {
   @override
   String toString() => valueString ?? '';
 
-  /// Creates a modified copy with updated properties.
   @override
-  DetectedIssueSeverity copyWith({
-    dynamic newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
+  DetectedIssueSeverity clone() => copyWith();
+
+  /// Creates a new instance with the specified fields replaced.
+  @override
+  DetectedIssueSeverityCopyWithImpl<DetectedIssueSeverity> get copyWith =>
+      DetectedIssueSeverityCopyWithImpl<DetectedIssueSeverity>(
+        this,
+        (v) => v as DetectedIssueSeverity,
+      );
+}
+
+/// The generated implementation of the copyWith helper for Element.
+/// The call method uses parameters of type Object? with a default value of
+/// [fhirSentinel] so that omitted parameters retain the sentinel value while
+/// explicit nulls do not.
+class DetectedIssueSeverityCopyWithImpl<T> extends $FhirCodeCopyWithImpl<T> {
+  /// Constructor for the copyWith implementation.
+  DetectedIssueSeverityCopyWithImpl(super._value, super._then);
+
+  @override
+  T call({
+    Object? newValue = fhirSentinel,
+    Object? element = fhirSentinel,
+    Object? id = fhirSentinel,
+    Object? extension_ = fhirSentinel,
+    Object? disallowExtensions = fhirSentinel,
   }) {
-    if (newValue is! String?) {
+    if (!identical(newValue, fhirSentinel) && newValue is! String?) {
       throw ArgumentError(
-        'Invalid input for DetectedIssueSeverity: $newValue',
+        'newValue must be a String or null, but found ${newValue.runtimeType}',
+        'newValue',
       );
     }
-    return DetectedIssueSeverity._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
+    return _then(
+      DetectedIssueSeverity(
+        identical(newValue, fhirSentinel)
+            ? _value.valueString
+            : newValue as String?,
+        element: identical(element, fhirSentinel)
+            ? _value.element
+            : element as Element?,
+        id: identical(id, fhirSentinel) ? _value.id : id as FhirString?,
+        extension_: identical(extension_, fhirSentinel)
+            ? _value.extension_
+            : extension_ as List<FhirExtension>?,
+        disallowExtensions: identical(disallowExtensions, fhirSentinel)
+            ? _value.disallowExtensions
+            : disallowExtensions as bool?,
       ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

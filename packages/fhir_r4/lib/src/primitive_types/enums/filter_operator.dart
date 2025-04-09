@@ -1,11 +1,107 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for FilterOperator
+enum FilterOperatorEnum {
+  /// =
+  eq,
+
+  /// is-a
+  isA,
+
+  /// descendent-of
+  descendentOf,
+
+  /// is-not-a
+  isNotA,
+
+  /// regex
+  regex,
+
+  /// in
+  in_,
+
+  /// not-in
+  notIn,
+
+  /// generalizes
+  generalizes,
+
+  /// exists
+  exists,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case FilterOperatorEnum.eq:
+        return '=';
+      case FilterOperatorEnum.isA:
+        return 'is-a';
+      case FilterOperatorEnum.descendentOf:
+        return 'descendent-of';
+      case FilterOperatorEnum.isNotA:
+        return 'is-not-a';
+      case FilterOperatorEnum.regex:
+        return 'regex';
+      case FilterOperatorEnum.in_:
+        return 'in';
+      case FilterOperatorEnum.notIn:
+        return 'not-in';
+      case FilterOperatorEnum.generalizes:
+        return 'generalizes';
+      case FilterOperatorEnum.exists:
+        return 'exists';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static FilterOperatorEnum? fromJson(dynamic json) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return FilterOperatorEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static FilterOperatorEnum? fromString(String? value) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case '=':
+        return FilterOperatorEnum.eq;
+      case 'is-a':
+        return FilterOperatorEnum.isA;
+      case 'descendent-of':
+        return FilterOperatorEnum.descendentOf;
+      case 'is-not-a':
+        return FilterOperatorEnum.isNotA;
+      case 'regex':
+        return FilterOperatorEnum.regex;
+      case 'in':
+        return FilterOperatorEnum.in_;
+      case 'not-in':
+        return FilterOperatorEnum.notIn;
+      case 'generalizes':
+        return FilterOperatorEnum.generalizes;
+      case 'exists':
+        return FilterOperatorEnum.exists;
+    }
+    return null;
+  }
+}
+
 /// The kind of operation to perform as a part of a property based filter.
 class FilterOperator extends FhirCodeEnum {
   // Private underscore constructor for internal use.
-  FilterOperator._({
+  const FilterOperator._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -13,7 +109,6 @@ class FilterOperator extends FhirCodeEnum {
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.objectPath = 'Code',
   }) : super._();
 
   /// Public factory if you want a fallback approach or custom creation.
@@ -27,12 +122,13 @@ class FilterOperator extends FhirCodeEnum {
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
-    String objectPath = 'Code',
   }) {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
+    final valueEnum = FilterOperatorEnum.fromString(valueString);
     return FilterOperator._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -40,12 +136,8 @@ class FilterOperator extends FhirCodeEnum {
       id: id,
       extension_: extension_,
       disallowExtensions: disallowExtensions,
-      objectPath: objectPath,
     );
   }
-
-  /// Create empty [FilterOperator] with element only
-  factory FilterOperator.empty() => FilterOperator._(valueString: '');
 
   /// Factory constructor to create [FilterOperator]
   /// from JSON.
@@ -53,10 +145,11 @@ class FilterOperator extends FhirCodeEnum {
     Map<String, dynamic> json,
   ) {
     final value = json['value'] as String?;
+    final valueEnum = FilterOperatorEnum.fromString(value);
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return FilterOperator.elementOnly.withElement(element);
+      return FilterOperator._(valueString: null, element: element);
     } else if (value == null && element == null) {
       throw ArgumentError(
         'FilterOperator cannot be constructed from JSON.',
@@ -64,104 +157,143 @@ class FilterOperator extends FhirCodeEnum {
     }
     return FilterOperator._(
       valueString: value,
+      valueEnum: valueEnum,
       element: element,
     );
   }
 
+  /// An actual enum that can be used for FilterOperator
+  final FilterOperatorEnum? valueEnum;
+
   /// eq
-  static final FilterOperator eq = FilterOperator._(
+  static const FilterOperator eq = FilterOperator._(
     valueString: '=',
-    system: 'http://hl7.org/fhir/ValueSet/filter-operator'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Equals'.toFhirString,
+    valueEnum: FilterOperatorEnum.eq,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/filter-operator',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Equals',
+    ),
   );
 
   /// is_a
-  static final FilterOperator is_a = FilterOperator._(
+  static const FilterOperator isA = FilterOperator._(
     valueString: 'is-a',
-    system: 'http://hl7.org/fhir/ValueSet/filter-operator'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Is A (by subsumption)'.toFhirString,
+    valueEnum: FilterOperatorEnum.isA,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/filter-operator',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Is A (by subsumption)',
+    ),
   );
 
   /// descendent_of
-  static final FilterOperator descendent_of = FilterOperator._(
+  static const FilterOperator descendentOf = FilterOperator._(
     valueString: 'descendent-of',
-    system: 'http://hl7.org/fhir/ValueSet/filter-operator'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Descendent Of (by subsumption)'.toFhirString,
+    valueEnum: FilterOperatorEnum.descendentOf,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/filter-operator',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Descendent Of (by subsumption)',
+    ),
   );
 
   /// is_not_a
-  static final FilterOperator is_not_a = FilterOperator._(
+  static const FilterOperator isNotA = FilterOperator._(
     valueString: 'is-not-a',
-    system: 'http://hl7.org/fhir/ValueSet/filter-operator'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Not (Is A) (by subsumption)'.toFhirString,
+    valueEnum: FilterOperatorEnum.isNotA,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/filter-operator',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Not (Is A) (by subsumption)',
+    ),
   );
 
   /// regex
-  static final FilterOperator regex = FilterOperator._(
+  static const FilterOperator regex = FilterOperator._(
     valueString: 'regex',
-    system: 'http://hl7.org/fhir/ValueSet/filter-operator'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Regular Expression'.toFhirString,
+    valueEnum: FilterOperatorEnum.regex,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/filter-operator',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Regular Expression',
+    ),
   );
 
   /// in_
-  static final FilterOperator in_ = FilterOperator._(
+  static const FilterOperator in_ = FilterOperator._(
     valueString: 'in',
-    system: 'http://hl7.org/fhir/ValueSet/filter-operator'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'In Set'.toFhirString,
+    valueEnum: FilterOperatorEnum.in_,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/filter-operator',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'In Set',
+    ),
   );
 
   /// not_in
-  static final FilterOperator not_in = FilterOperator._(
+  static const FilterOperator notIn = FilterOperator._(
     valueString: 'not-in',
-    system: 'http://hl7.org/fhir/ValueSet/filter-operator'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Not in Set'.toFhirString,
+    valueEnum: FilterOperatorEnum.notIn,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/filter-operator',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Not in Set',
+    ),
   );
 
   /// generalizes
-  static final FilterOperator generalizes = FilterOperator._(
+  static const FilterOperator generalizes = FilterOperator._(
     valueString: 'generalizes',
-    system: 'http://hl7.org/fhir/ValueSet/filter-operator'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Generalizes (by Subsumption)'.toFhirString,
+    valueEnum: FilterOperatorEnum.generalizes,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/filter-operator',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Generalizes (by Subsumption)',
+    ),
   );
 
   /// exists
-  static final FilterOperator exists = FilterOperator._(
+  static const FilterOperator exists = FilterOperator._(
     valueString: 'exists',
-    system: 'http://hl7.org/fhir/ValueSet/filter-operator'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Exists'.toFhirString,
+    valueEnum: FilterOperatorEnum.exists,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/filter-operator',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Exists',
+    ),
   );
-
-  /// For instances where an Element is present but not value
-  static final FilterOperator elementOnly = FilterOperator._(valueString: '');
 
   /// List of all enum-like values
   static final List<FilterOperator> values = [
     eq,
-    is_a,
-    descendent_of,
-    is_not_a,
+    isA,
+    descendentOf,
+    isNotA,
     regex,
     in_,
-    not_in,
+    notIn,
     generalizes,
     exists,
   ];
-
-  /// Clones the current instance
-  @override
-  FilterOperator clone() => FilterOperator._(
-        valueString: valueString,
-        element: element?.clone() as Element?,
-      );
 
   /// Returns the enum value with an element attached
   FilterOperator withElement(Element? newElement) {
@@ -182,36 +314,56 @@ class FilterOperator extends FhirCodeEnum {
   @override
   String toString() => valueString ?? '';
 
-  /// Creates a modified copy with updated properties.
   @override
-  FilterOperator copyWith({
-    dynamic newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
+  FilterOperator clone() => copyWith();
+
+  /// Creates a new instance with the specified fields replaced.
+  @override
+  FilterOperatorCopyWithImpl<FilterOperator> get copyWith =>
+      FilterOperatorCopyWithImpl<FilterOperator>(
+        this,
+        (v) => v as FilterOperator,
+      );
+}
+
+/// The generated implementation of the copyWith helper for Element.
+/// The call method uses parameters of type Object? with a default value of
+/// [fhirSentinel] so that omitted parameters retain the sentinel value while
+/// explicit nulls do not.
+class FilterOperatorCopyWithImpl<T> extends $FhirCodeCopyWithImpl<T> {
+  /// Constructor for the copyWith implementation.
+  FilterOperatorCopyWithImpl(super._value, super._then);
+
+  @override
+  T call({
+    Object? newValue = fhirSentinel,
+    Object? element = fhirSentinel,
+    Object? id = fhirSentinel,
+    Object? extension_ = fhirSentinel,
+    Object? disallowExtensions = fhirSentinel,
   }) {
-    if (newValue is! String?) {
+    if (!identical(newValue, fhirSentinel) && newValue is! String?) {
       throw ArgumentError(
-        'Invalid input for FilterOperator: $newValue',
+        'newValue must be a String or null, but found ${newValue.runtimeType}',
+        'newValue',
       );
     }
-    return FilterOperator._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
+    return _then(
+      FilterOperator(
+        identical(newValue, fhirSentinel)
+            ? _value.valueString
+            : newValue as String?,
+        element: identical(element, fhirSentinel)
+            ? _value.element
+            : element as Element?,
+        id: identical(id, fhirSentinel) ? _value.id : id as FhirString?,
+        extension_: identical(extension_, fhirSentinel)
+            ? _value.extension_
+            : extension_ as List<FhirExtension>?,
+        disallowExtensions: identical(disallowExtensions, fhirSentinel)
+            ? _value.disallowExtensions
+            : disallowExtensions as bool?,
       ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

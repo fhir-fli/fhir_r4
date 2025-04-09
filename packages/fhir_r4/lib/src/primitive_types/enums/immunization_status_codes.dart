@@ -1,14 +1,103 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for ImmunizationStatusCodes
+enum ImmunizationStatusCodesEnum {
+  /// preparation
+  preparation,
+
+  /// in-progress
+  inProgress,
+
+  /// not-done
+  notDone,
+
+  /// on-hold
+  onHold,
+
+  /// stopped
+  stopped,
+
+  /// completed
+  completed,
+
+  /// entered-in-error
+  enteredInError,
+
+  /// unknown
+  unknown,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case ImmunizationStatusCodesEnum.preparation:
+        return 'preparation';
+      case ImmunizationStatusCodesEnum.inProgress:
+        return 'in-progress';
+      case ImmunizationStatusCodesEnum.notDone:
+        return 'not-done';
+      case ImmunizationStatusCodesEnum.onHold:
+        return 'on-hold';
+      case ImmunizationStatusCodesEnum.stopped:
+        return 'stopped';
+      case ImmunizationStatusCodesEnum.completed:
+        return 'completed';
+      case ImmunizationStatusCodesEnum.enteredInError:
+        return 'entered-in-error';
+      case ImmunizationStatusCodesEnum.unknown:
+        return 'unknown';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static ImmunizationStatusCodesEnum? fromJson(dynamic json) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return ImmunizationStatusCodesEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static ImmunizationStatusCodesEnum? fromString(String? value) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'preparation':
+        return ImmunizationStatusCodesEnum.preparation;
+      case 'in-progress':
+        return ImmunizationStatusCodesEnum.inProgress;
+      case 'not-done':
+        return ImmunizationStatusCodesEnum.notDone;
+      case 'on-hold':
+        return ImmunizationStatusCodesEnum.onHold;
+      case 'stopped':
+        return ImmunizationStatusCodesEnum.stopped;
+      case 'completed':
+        return ImmunizationStatusCodesEnum.completed;
+      case 'entered-in-error':
+        return ImmunizationStatusCodesEnum.enteredInError;
+      case 'unknown':
+        return ImmunizationStatusCodesEnum.unknown;
+    }
+    return null;
+  }
+}
+
 /// The value set to instantiate this attribute should be drawn from a
 /// terminologically robust code system that consists of or contains
 /// concepts to support describing the current status of the administered
 /// dose of vaccine.
 class ImmunizationStatusCodes extends FhirCodeEnum {
   // Private underscore constructor for internal use.
-  ImmunizationStatusCodes._({
+  const ImmunizationStatusCodes._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -16,7 +105,6 @@ class ImmunizationStatusCodes extends FhirCodeEnum {
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.objectPath = 'Code',
   }) : super._();
 
   /// Public factory if you want a fallback approach or custom creation.
@@ -30,12 +118,13 @@ class ImmunizationStatusCodes extends FhirCodeEnum {
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
-    String objectPath = 'Code',
   }) {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
+    final valueEnum = ImmunizationStatusCodesEnum.fromString(valueString);
     return ImmunizationStatusCodes._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -43,13 +132,8 @@ class ImmunizationStatusCodes extends FhirCodeEnum {
       id: id,
       extension_: extension_,
       disallowExtensions: disallowExtensions,
-      objectPath: objectPath,
     );
   }
-
-  /// Create empty [ImmunizationStatusCodes] with element only
-  factory ImmunizationStatusCodes.empty() =>
-      ImmunizationStatusCodes._(valueString: '');
 
   /// Factory constructor to create [ImmunizationStatusCodes]
   /// from JSON.
@@ -57,10 +141,11 @@ class ImmunizationStatusCodes extends FhirCodeEnum {
     Map<String, dynamic> json,
   ) {
     final value = json['value'] as String?;
+    final valueEnum = ImmunizationStatusCodesEnum.fromString(value);
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ImmunizationStatusCodes.elementOnly.withElement(element);
+      return ImmunizationStatusCodes._(valueString: null, element: element);
     } else if (value == null && element == null) {
       throw ArgumentError(
         'ImmunizationStatusCodes cannot be constructed from JSON.',
@@ -68,97 +153,130 @@ class ImmunizationStatusCodes extends FhirCodeEnum {
     }
     return ImmunizationStatusCodes._(
       valueString: value,
+      valueEnum: valueEnum,
       element: element,
     );
   }
 
+  /// An actual enum that can be used for ImmunizationStatusCodes
+  final ImmunizationStatusCodesEnum? valueEnum;
+
   /// preparation
-  static final ImmunizationStatusCodes preparation = ImmunizationStatusCodes._(
+  static const ImmunizationStatusCodes preparation = ImmunizationStatusCodes._(
     valueString: 'preparation',
-    system: 'http://hl7.org/fhir/ValueSet/immunization-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Preparation'.toFhirString,
+    valueEnum: ImmunizationStatusCodesEnum.preparation,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/immunization-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Preparation',
+    ),
   );
 
   /// in_progress
-  static final ImmunizationStatusCodes in_progress = ImmunizationStatusCodes._(
+  static const ImmunizationStatusCodes inProgress = ImmunizationStatusCodes._(
     valueString: 'in-progress',
-    system: 'http://hl7.org/fhir/ValueSet/immunization-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'In Progress'.toFhirString,
+    valueEnum: ImmunizationStatusCodesEnum.inProgress,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/immunization-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'In Progress',
+    ),
   );
 
   /// not_done
-  static final ImmunizationStatusCodes not_done = ImmunizationStatusCodes._(
+  static const ImmunizationStatusCodes notDone = ImmunizationStatusCodes._(
     valueString: 'not-done',
-    system: 'http://hl7.org/fhir/ValueSet/immunization-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Not Done'.toFhirString,
+    valueEnum: ImmunizationStatusCodesEnum.notDone,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/immunization-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Not Done',
+    ),
   );
 
   /// on_hold
-  static final ImmunizationStatusCodes on_hold = ImmunizationStatusCodes._(
+  static const ImmunizationStatusCodes onHold = ImmunizationStatusCodes._(
     valueString: 'on-hold',
-    system: 'http://hl7.org/fhir/ValueSet/immunization-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'On Hold'.toFhirString,
+    valueEnum: ImmunizationStatusCodesEnum.onHold,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/immunization-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'On Hold',
+    ),
   );
 
   /// stopped
-  static final ImmunizationStatusCodes stopped = ImmunizationStatusCodes._(
+  static const ImmunizationStatusCodes stopped = ImmunizationStatusCodes._(
     valueString: 'stopped',
-    system: 'http://hl7.org/fhir/ValueSet/immunization-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Stopped'.toFhirString,
+    valueEnum: ImmunizationStatusCodesEnum.stopped,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/immunization-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Stopped',
+    ),
   );
 
   /// completed
-  static final ImmunizationStatusCodes completed = ImmunizationStatusCodes._(
+  static const ImmunizationStatusCodes completed = ImmunizationStatusCodes._(
     valueString: 'completed',
-    system: 'http://hl7.org/fhir/ValueSet/immunization-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Completed'.toFhirString,
+    valueEnum: ImmunizationStatusCodesEnum.completed,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/immunization-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Completed',
+    ),
   );
 
   /// entered_in_error
-  static final ImmunizationStatusCodes entered_in_error =
+  static const ImmunizationStatusCodes enteredInError =
       ImmunizationStatusCodes._(
     valueString: 'entered-in-error',
-    system: 'http://hl7.org/fhir/ValueSet/immunization-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Entered in Error'.toFhirString,
+    valueEnum: ImmunizationStatusCodesEnum.enteredInError,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/immunization-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Entered in Error',
+    ),
   );
 
   /// unknown
-  static final ImmunizationStatusCodes unknown = ImmunizationStatusCodes._(
+  static const ImmunizationStatusCodes unknown = ImmunizationStatusCodes._(
     valueString: 'unknown',
-    system: 'http://hl7.org/fhir/ValueSet/immunization-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Unknown'.toFhirString,
+    valueEnum: ImmunizationStatusCodesEnum.unknown,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/immunization-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Unknown',
+    ),
   );
-
-  /// For instances where an Element is present but not value
-  static final ImmunizationStatusCodes elementOnly =
-      ImmunizationStatusCodes._(valueString: '');
 
   /// List of all enum-like values
   static final List<ImmunizationStatusCodes> values = [
     preparation,
-    in_progress,
-    not_done,
-    on_hold,
+    inProgress,
+    notDone,
+    onHold,
     stopped,
     completed,
-    entered_in_error,
+    enteredInError,
     unknown,
   ];
-
-  /// Clones the current instance
-  @override
-  ImmunizationStatusCodes clone() => ImmunizationStatusCodes._(
-        valueString: valueString,
-        element: element?.clone() as Element?,
-      );
 
   /// Returns the enum value with an element attached
   ImmunizationStatusCodes withElement(Element? newElement) {
@@ -179,36 +297,56 @@ class ImmunizationStatusCodes extends FhirCodeEnum {
   @override
   String toString() => valueString ?? '';
 
-  /// Creates a modified copy with updated properties.
   @override
-  ImmunizationStatusCodes copyWith({
-    dynamic newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
+  ImmunizationStatusCodes clone() => copyWith();
+
+  /// Creates a new instance with the specified fields replaced.
+  @override
+  ImmunizationStatusCodesCopyWithImpl<ImmunizationStatusCodes> get copyWith =>
+      ImmunizationStatusCodesCopyWithImpl<ImmunizationStatusCodes>(
+        this,
+        (v) => v as ImmunizationStatusCodes,
+      );
+}
+
+/// The generated implementation of the copyWith helper for Element.
+/// The call method uses parameters of type Object? with a default value of
+/// [fhirSentinel] so that omitted parameters retain the sentinel value while
+/// explicit nulls do not.
+class ImmunizationStatusCodesCopyWithImpl<T> extends $FhirCodeCopyWithImpl<T> {
+  /// Constructor for the copyWith implementation.
+  ImmunizationStatusCodesCopyWithImpl(super._value, super._then);
+
+  @override
+  T call({
+    Object? newValue = fhirSentinel,
+    Object? element = fhirSentinel,
+    Object? id = fhirSentinel,
+    Object? extension_ = fhirSentinel,
+    Object? disallowExtensions = fhirSentinel,
   }) {
-    if (newValue is! String?) {
+    if (!identical(newValue, fhirSentinel) && newValue is! String?) {
       throw ArgumentError(
-        'Invalid input for ImmunizationStatusCodes: $newValue',
+        'newValue must be a String or null, but found ${newValue.runtimeType}',
+        'newValue',
       );
     }
-    return ImmunizationStatusCodes._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
+    return _then(
+      ImmunizationStatusCodes(
+        identical(newValue, fhirSentinel)
+            ? _value.valueString
+            : newValue as String?,
+        element: identical(element, fhirSentinel)
+            ? _value.element
+            : element as Element?,
+        id: identical(id, fhirSentinel) ? _value.id : id as FhirString?,
+        extension_: identical(extension_, fhirSentinel)
+            ? _value.extension_
+            : extension_ as List<FhirExtension>?,
+        disallowExtensions: identical(disallowExtensions, fhirSentinel)
+            ? _value.disallowExtensions
+            : disallowExtensions as bool?,
       ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

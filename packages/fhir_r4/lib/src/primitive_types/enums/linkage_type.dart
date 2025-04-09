@@ -1,12 +1,66 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for LinkageType
+enum LinkageTypeEnum {
+  /// source
+  source,
+
+  /// alternate
+  alternate,
+
+  /// historical
+  historical,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case LinkageTypeEnum.source:
+        return 'source';
+      case LinkageTypeEnum.alternate:
+        return 'alternate';
+      case LinkageTypeEnum.historical:
+        return 'historical';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static LinkageTypeEnum? fromJson(dynamic json) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return LinkageTypeEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static LinkageTypeEnum? fromString(String? value) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'source':
+        return LinkageTypeEnum.source;
+      case 'alternate':
+        return LinkageTypeEnum.alternate;
+      case 'historical':
+        return LinkageTypeEnum.historical;
+    }
+    return null;
+  }
+}
+
 /// Used to distinguish different roles a resource can play within a set of
 /// linked resources.
 class LinkageType extends FhirCodeEnum {
   // Private underscore constructor for internal use.
-  LinkageType._({
+  const LinkageType._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -14,7 +68,6 @@ class LinkageType extends FhirCodeEnum {
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.objectPath = 'Code',
   }) : super._();
 
   /// Public factory if you want a fallback approach or custom creation.
@@ -28,12 +81,13 @@ class LinkageType extends FhirCodeEnum {
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
-    String objectPath = 'Code',
   }) {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
+    final valueEnum = LinkageTypeEnum.fromString(valueString);
     return LinkageType._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -41,12 +95,8 @@ class LinkageType extends FhirCodeEnum {
       id: id,
       extension_: extension_,
       disallowExtensions: disallowExtensions,
-      objectPath: objectPath,
     );
   }
-
-  /// Create empty [LinkageType] with element only
-  factory LinkageType.empty() => LinkageType._(valueString: '');
 
   /// Factory constructor to create [LinkageType]
   /// from JSON.
@@ -54,10 +104,11 @@ class LinkageType extends FhirCodeEnum {
     Map<String, dynamic> json,
   ) {
     final value = json['value'] as String?;
+    final valueEnum = LinkageTypeEnum.fromString(value);
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return LinkageType.elementOnly.withElement(element);
+      return LinkageType._(valueString: null, element: element);
     } else if (value == null && element == null) {
       throw ArgumentError(
         'LinkageType cannot be constructed from JSON.',
@@ -65,36 +116,52 @@ class LinkageType extends FhirCodeEnum {
     }
     return LinkageType._(
       valueString: value,
+      valueEnum: valueEnum,
       element: element,
     );
   }
 
+  /// An actual enum that can be used for LinkageType
+  final LinkageTypeEnum? valueEnum;
+
   /// source
-  static final LinkageType source = LinkageType._(
+  static const LinkageType source = LinkageType._(
     valueString: 'source',
-    system: 'http://hl7.org/fhir/ValueSet/linkage-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Source of Truth'.toFhirString,
+    valueEnum: LinkageTypeEnum.source,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/linkage-type',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Source of Truth',
+    ),
   );
 
   /// alternate
-  static final LinkageType alternate = LinkageType._(
+  static const LinkageType alternate = LinkageType._(
     valueString: 'alternate',
-    system: 'http://hl7.org/fhir/ValueSet/linkage-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Alternate Record'.toFhirString,
+    valueEnum: LinkageTypeEnum.alternate,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/linkage-type',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Alternate Record',
+    ),
   );
 
   /// historical
-  static final LinkageType historical = LinkageType._(
+  static const LinkageType historical = LinkageType._(
     valueString: 'historical',
-    system: 'http://hl7.org/fhir/ValueSet/linkage-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Historical/Obsolete Record'.toFhirString,
+    valueEnum: LinkageTypeEnum.historical,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/linkage-type',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Historical/Obsolete Record',
+    ),
   );
-
-  /// For instances where an Element is present but not value
-  static final LinkageType elementOnly = LinkageType._(valueString: '');
 
   /// List of all enum-like values
   static final List<LinkageType> values = [
@@ -102,13 +169,6 @@ class LinkageType extends FhirCodeEnum {
     alternate,
     historical,
   ];
-
-  /// Clones the current instance
-  @override
-  LinkageType clone() => LinkageType._(
-        valueString: valueString,
-        element: element?.clone() as Element?,
-      );
 
   /// Returns the enum value with an element attached
   LinkageType withElement(Element? newElement) {
@@ -129,36 +189,56 @@ class LinkageType extends FhirCodeEnum {
   @override
   String toString() => valueString ?? '';
 
-  /// Creates a modified copy with updated properties.
   @override
-  LinkageType copyWith({
-    dynamic newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
+  LinkageType clone() => copyWith();
+
+  /// Creates a new instance with the specified fields replaced.
+  @override
+  LinkageTypeCopyWithImpl<LinkageType> get copyWith =>
+      LinkageTypeCopyWithImpl<LinkageType>(
+        this,
+        (v) => v as LinkageType,
+      );
+}
+
+/// The generated implementation of the copyWith helper for Element.
+/// The call method uses parameters of type Object? with a default value of
+/// [fhirSentinel] so that omitted parameters retain the sentinel value while
+/// explicit nulls do not.
+class LinkageTypeCopyWithImpl<T> extends $FhirCodeCopyWithImpl<T> {
+  /// Constructor for the copyWith implementation.
+  LinkageTypeCopyWithImpl(super._value, super._then);
+
+  @override
+  T call({
+    Object? newValue = fhirSentinel,
+    Object? element = fhirSentinel,
+    Object? id = fhirSentinel,
+    Object? extension_ = fhirSentinel,
+    Object? disallowExtensions = fhirSentinel,
   }) {
-    if (newValue is! String?) {
+    if (!identical(newValue, fhirSentinel) && newValue is! String?) {
       throw ArgumentError(
-        'Invalid input for LinkageType: $newValue',
+        'newValue must be a String or null, but found ${newValue.runtimeType}',
+        'newValue',
       );
     }
-    return LinkageType._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
+    return _then(
+      LinkageType(
+        identical(newValue, fhirSentinel)
+            ? _value.valueString
+            : newValue as String?,
+        element: identical(element, fhirSentinel)
+            ? _value.element
+            : element as Element?,
+        id: identical(id, fhirSentinel) ? _value.id : id as FhirString?,
+        extension_: identical(extension_, fhirSentinel)
+            ? _value.extension_
+            : extension_ as List<FhirExtension>?,
+        disallowExtensions: identical(disallowExtensions, fhirSentinel)
+            ? _value.disallowExtensions
+            : disallowExtensions as bool?,
       ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

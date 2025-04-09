@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
+part 'risk_assessment.g.dart';
+
 /// [RiskAssessment]
 /// An assessment of the likely outcome(s) for a patient or other subject
 /// as well as the likelihood of each outcome.
@@ -36,91 +38,64 @@ class RiskAssessment extends DomainResource {
     this.mitigation,
     this.note,
   }) : super(
-          objectPath: 'RiskAssessment',
           resourceType: R4ResourceType.RiskAssessment,
         );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory RiskAssessment.empty() => RiskAssessment(
-        status: ObservationStatus.values.first,
-        subject: Reference.empty(),
-      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory RiskAssessment.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'RiskAssessment';
     return RiskAssessment(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
         FhirMeta.fromJson,
-        '$objectPath.meta',
       ),
       implicitRules: JsonParser.parsePrimitive<FhirUri>(
         json,
         'implicitRules',
         FhirUri.fromJson,
-        '$objectPath.implicitRules',
       ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-        '$objectPath.language',
       ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
         Narrative.fromJson,
-        '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
           ?.map<Resource>(
             (v) => Resource.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.contained',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       identifier: (json['identifier'] as List<dynamic>?)
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.identifier',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -128,43 +103,36 @@ class RiskAssessment extends DomainResource {
         json,
         'basedOn',
         Reference.fromJson,
-        '$objectPath.basedOn',
       ),
       parent: JsonParser.parseObject<Reference>(
         json,
         'parent',
         Reference.fromJson,
-        '$objectPath.parent',
       ),
       status: JsonParser.parsePrimitive<ObservationStatus>(
         json,
         'status',
         ObservationStatus.fromJson,
-        '$objectPath.status',
       )!,
       method: JsonParser.parseObject<CodeableConcept>(
         json,
         'method',
         CodeableConcept.fromJson,
-        '$objectPath.method',
       ),
       code: JsonParser.parseObject<CodeableConcept>(
         json,
         'code',
         CodeableConcept.fromJson,
-        '$objectPath.code',
       ),
       subject: JsonParser.parseObject<Reference>(
         json,
         'subject',
         Reference.fromJson,
-        '$objectPath.subject',
       )!,
       encounter: JsonParser.parseObject<Reference>(
         json,
         'encounter',
         Reference.fromJson,
-        '$objectPath.encounter',
       ),
       occurrenceX: JsonParser.parsePolymorphic<OccurrenceXRiskAssessment>(
         json,
@@ -172,57 +140,42 @@ class RiskAssessment extends DomainResource {
           'occurrenceDateTime': FhirDateTime.fromJson,
           'occurrencePeriod': Period.fromJson,
         },
-        objectPath,
       ),
       condition: JsonParser.parseObject<Reference>(
         json,
         'condition',
         Reference.fromJson,
-        '$objectPath.condition',
       ),
       performer: JsonParser.parseObject<Reference>(
         json,
         'performer',
         Reference.fromJson,
-        '$objectPath.performer',
       ),
       reasonCode: (json['reasonCode'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.reasonCode',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       reasonReference: (json['reasonReference'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.reasonReference',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       basis: (json['basis'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.basis',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       prediction: (json['prediction'] as List<dynamic>?)
           ?.map<RiskAssessmentPrediction>(
             (v) => RiskAssessmentPrediction.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.prediction',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -230,15 +183,11 @@ class RiskAssessment extends DomainResource {
         json,
         'mitigation',
         FhirString.fromJson,
-        '$objectPath.mitigation',
       ),
       note: (json['note'] as List<dynamic>?)
           ?.map<Annotation>(
             (v) => Annotation.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.note',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -533,953 +482,20 @@ class RiskAssessment extends DomainResource {
     return json;
   }
 
-  /// Lists the JSON keys for the object.
   @override
-  List<String> listChildrenNames() {
-    return [
-      'id',
-      'meta',
-      'implicitRules',
-      'language',
-      'text',
-      'contained',
-      'extension',
-      'modifierExtension',
-      'identifier',
-      'basedOn',
-      'parent',
-      'status',
-      'method',
-      'code',
-      'subject',
-      'encounter',
-      'occurrenceX',
-      'condition',
-      'performer',
-      'reasonCode',
-      'reasonReference',
-      'basis',
-      'prediction',
-      'mitigation',
-      'note',
-    ];
-  }
+  RiskAssessment clone() => copyWith();
 
-  /// Retrieves all matching child fields by name.
-  ///Optionally validates the name.
+  /// Copy function for [RiskAssessment]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<FhirBase> getChildrenByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    final fields = <FhirBase>[];
-    switch (fieldName) {
-      case 'id':
-        if (id != null) {
-          fields.add(id!);
-        }
-      case 'meta':
-        if (meta != null) {
-          fields.add(meta!);
-        }
-      case 'implicitRules':
-        if (implicitRules != null) {
-          fields.add(implicitRules!);
-        }
-      case 'language':
-        if (language != null) {
-          fields.add(language!);
-        }
-      case 'text':
-        if (text != null) {
-          fields.add(text!);
-        }
-      case 'contained':
-        if (contained != null) {
-          fields.addAll(contained!);
-        }
-      case 'extension':
-        if (extension_ != null) {
-          fields.addAll(extension_!);
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          fields.addAll(modifierExtension!);
-        }
-      case 'identifier':
-        if (identifier != null) {
-          fields.addAll(identifier!);
-        }
-      case 'basedOn':
-        if (basedOn != null) {
-          fields.add(basedOn!);
-        }
-      case 'parent':
-        if (parent != null) {
-          fields.add(parent!);
-        }
-      case 'status':
-        fields.add(status);
-      case 'method':
-        if (method != null) {
-          fields.add(method!);
-        }
-      case 'code':
-        if (code != null) {
-          fields.add(code!);
-        }
-      case 'subject':
-        fields.add(subject);
-      case 'encounter':
-        if (encounter != null) {
-          fields.add(encounter!);
-        }
-      case 'occurrence':
-        fields.add(occurrenceX!);
-      case 'occurrenceX':
-        fields.add(occurrenceX!);
-      case 'occurrenceDateTime':
-        if (occurrenceX is FhirDateTime) {
-          fields.add(occurrenceX!);
-        }
-      case 'occurrencePeriod':
-        if (occurrenceX is Period) {
-          fields.add(occurrenceX!);
-        }
-      case 'condition':
-        if (condition != null) {
-          fields.add(condition!);
-        }
-      case 'performer':
-        if (performer != null) {
-          fields.add(performer!);
-        }
-      case 'reasonCode':
-        if (reasonCode != null) {
-          fields.addAll(reasonCode!);
-        }
-      case 'reasonReference':
-        if (reasonReference != null) {
-          fields.addAll(reasonReference!);
-        }
-      case 'basis':
-        if (basis != null) {
-          fields.addAll(basis!);
-        }
-      case 'prediction':
-        if (prediction != null) {
-          fields.addAll(prediction!);
-        }
-      case 'mitigation':
-        if (mitigation != null) {
-          fields.add(mitigation!);
-        }
-      case 'note':
-        if (note != null) {
-          fields.addAll(note!);
-        }
-      default:
-        if (checkValid) {
-          throw ArgumentError('Invalid name: $fieldName');
-        }
-    }
-    return fields;
-  }
-
-  /// Retrieves a single field value by its name.
-  @override
-  FhirBase? getChildByName(String name) {
-    final values = getChildrenByName(name);
-    if (values.length > 1) {
-      throw StateError('Too many values for $name found');
-    }
-    return values.isNotEmpty ? values.first : null;
-  }
-
-  @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
-
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'meta':
-        {
-          if (child is FhirMeta) {
-            return copyWith(meta: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'implicitRules':
-        {
-          if (child is FhirUri) {
-            return copyWith(implicitRules: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'language':
-        {
-          if (child is CommonLanguages) {
-            return copyWith(language: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'text':
-        {
-          if (child is Narrative) {
-            return copyWith(text: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'contained':
-        {
-          if (child is List<Resource>) {
-            // Add all elements from passed list
-            final newList = [...?contained, ...child];
-            return copyWith(contained: newList);
-          } else if (child is Resource) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?contained,
-              child,
-            ];
-            return copyWith(contained: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'identifier':
-        {
-          if (child is List<Identifier>) {
-            // Add all elements from passed list
-            final newList = [...?identifier, ...child];
-            return copyWith(identifier: newList);
-          } else if (child is Identifier) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?identifier,
-              child,
-            ];
-            return copyWith(identifier: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'basedOn':
-        {
-          if (child is Reference) {
-            return copyWith(basedOn: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'parent':
-        {
-          if (child is Reference) {
-            return copyWith(parent: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'status':
-        {
-          if (child is ObservationStatus) {
-            return copyWith(status: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'method':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(method: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'code':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(code: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'subject':
-        {
-          if (child is Reference) {
-            return copyWith(subject: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'encounter':
-        {
-          if (child is Reference) {
-            return copyWith(encounter: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'occurrence':
-      case 'occurrenceX':
-        {
-          if (child is OccurrenceXRiskAssessment) {
-            return copyWith(occurrenceX: child);
-          } else {
-            if (child is FhirDateTime) {
-              return copyWith(occurrenceX: child);
-            }
-            if (child is Period) {
-              return copyWith(occurrenceX: child);
-            }
-          }
-          throw Exception('Invalid child type for $childName');
-        }
-      case 'occurrenceFhirDateTime':
-        {
-          if (child is FhirDateTime) {
-            return copyWith(occurrenceX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'occurrencePeriod':
-        {
-          if (child is Period) {
-            return copyWith(occurrenceX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'condition':
-        {
-          if (child is Reference) {
-            return copyWith(condition: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'performer':
-        {
-          if (child is Reference) {
-            return copyWith(performer: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'reasonCode':
-        {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?reasonCode, ...child];
-            return copyWith(reasonCode: newList);
-          } else if (child is CodeableConcept) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?reasonCode,
-              child,
-            ];
-            return copyWith(reasonCode: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'reasonReference':
-        {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?reasonReference, ...child];
-            return copyWith(reasonReference: newList);
-          } else if (child is Reference) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?reasonReference,
-              child,
-            ];
-            return copyWith(reasonReference: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'basis':
-        {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?basis, ...child];
-            return copyWith(basis: newList);
-          } else if (child is Reference) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?basis,
-              child,
-            ];
-            return copyWith(basis: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'prediction':
-        {
-          if (child is List<RiskAssessmentPrediction>) {
-            // Add all elements from passed list
-            final newList = [...?prediction, ...child];
-            return copyWith(prediction: newList);
-          } else if (child is RiskAssessmentPrediction) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?prediction,
-              child,
-            ];
-            return copyWith(prediction: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'mitigation':
-        {
-          if (child is FhirString) {
-            return copyWith(mitigation: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'note':
-        {
-          if (child is List<Annotation>) {
-            // Add all elements from passed list
-            final newList = [...?note, ...child];
-            return copyWith(note: newList);
-          } else if (child is Annotation) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?note,
-              child,
-            ];
-            return copyWith(note: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
-  @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'meta':
-        return ['FhirMeta'];
-      case 'implicitRules':
-        return ['FhirUri'];
-      case 'language':
-        return ['FhirCode'];
-      case 'text':
-        return ['Narrative'];
-      case 'contained':
-        return ['Resource'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'identifier':
-        return ['Identifier'];
-      case 'basedOn':
-        return ['Reference'];
-      case 'parent':
-        return ['Reference'];
-      case 'status':
-        return ['FhirCode'];
-      case 'method':
-        return ['CodeableConcept'];
-      case 'code':
-        return ['CodeableConcept'];
-      case 'subject':
-        return ['Reference'];
-      case 'encounter':
-        return ['Reference'];
-      case 'occurrence':
-      case 'occurrenceX':
-        return [
-          'FhirDateTime',
-          'Period',
-        ];
-      case 'occurrenceDateTime':
-        return ['FhirDateTime'];
-      case 'occurrencePeriod':
-        return ['Period'];
-      case 'condition':
-        return ['Reference'];
-      case 'performer':
-        return ['Reference'];
-      case 'reasonCode':
-        return ['CodeableConcept'];
-      case 'reasonReference':
-        return ['Reference'];
-      case 'basis':
-        return ['Reference'];
-      case 'prediction':
-        return ['RiskAssessmentPrediction'];
-      case 'mitigation':
-        return ['FhirString'];
-      case 'note':
-        return ['Annotation'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [RiskAssessment]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  RiskAssessment createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
-          );
-        }
-      case 'meta':
-        {
-          return copyWith(
-            meta: FhirMeta.empty(),
-          );
-        }
-      case 'implicitRules':
-        {
-          return copyWith(
-            implicitRules: FhirUri.empty(),
-          );
-        }
-      case 'language':
-        {
-          return copyWith(
-            language: CommonLanguages.empty(),
-          );
-        }
-      case 'text':
-        {
-          return copyWith(
-            text: Narrative.empty(),
-          );
-        }
-      case 'contained':
-        {
-          return copyWith(
-            contained: <Resource>[],
-          );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'identifier':
-        {
-          return copyWith(
-            identifier: <Identifier>[],
-          );
-        }
-      case 'basedOn':
-        {
-          return copyWith(
-            basedOn: Reference.empty(),
-          );
-        }
-      case 'parent':
-        {
-          return copyWith(
-            parent: Reference.empty(),
-          );
-        }
-      case 'status':
-        {
-          return copyWith(
-            status: ObservationStatus.empty(),
-          );
-        }
-      case 'method':
-        {
-          return copyWith(
-            method: CodeableConcept.empty(),
-          );
-        }
-      case 'code':
-        {
-          return copyWith(
-            code: CodeableConcept.empty(),
-          );
-        }
-      case 'subject':
-        {
-          return copyWith(
-            subject: Reference.empty(),
-          );
-        }
-      case 'encounter':
-        {
-          return copyWith(
-            encounter: Reference.empty(),
-          );
-        }
-      case 'occurrence':
-      case 'occurrenceX':
-      case 'occurrenceDateTime':
-        {
-          return copyWith(
-            occurrenceX: FhirDateTime.empty(),
-          );
-        }
-      case 'occurrencePeriod':
-        {
-          return copyWith(
-            occurrenceX: Period.empty(),
-          );
-        }
-      case 'condition':
-        {
-          return copyWith(
-            condition: Reference.empty(),
-          );
-        }
-      case 'performer':
-        {
-          return copyWith(
-            performer: Reference.empty(),
-          );
-        }
-      case 'reasonCode':
-        {
-          return copyWith(
-            reasonCode: <CodeableConcept>[],
-          );
-        }
-      case 'reasonReference':
-        {
-          return copyWith(
-            reasonReference: <Reference>[],
-          );
-        }
-      case 'basis':
-        {
-          return copyWith(
-            basis: <Reference>[],
-          );
-        }
-      case 'prediction':
-        {
-          return copyWith(
-            prediction: <RiskAssessmentPrediction>[],
-          );
-        }
-      case 'mitigation':
-        {
-          return copyWith(
-            mitigation: FhirString.empty(),
-          );
-        }
-      case 'note':
-        {
-          return copyWith(
-            note: <Annotation>[],
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  RiskAssessment clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool identifier = false,
-    bool basedOn = false,
-    bool parent = false,
-    bool method = false,
-    bool code = false,
-    bool encounter = false,
-    bool occurrence = false,
-    bool condition = false,
-    bool performer = false,
-    bool reasonCode = false,
-    bool reasonReference = false,
-    bool basis = false,
-    bool prediction = false,
-    bool mitigation = false,
-    bool note = false,
-  }) {
-    return RiskAssessment(
-      id: id ? null : this.id,
-      meta: meta ? null : this.meta,
-      implicitRules: implicitRules ? null : this.implicitRules,
-      language: language ? null : this.language,
-      text: text ? null : this.text,
-      contained: contained ? null : this.contained,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      identifier: identifier ? null : this.identifier,
-      basedOn: basedOn ? null : this.basedOn,
-      parent: parent ? null : this.parent,
-      status: status,
-      method: method ? null : this.method,
-      code: code ? null : this.code,
-      subject: subject,
-      encounter: encounter ? null : this.encounter,
-      occurrenceX: occurrence ? null : occurrenceX,
-      condition: condition ? null : this.condition,
-      performer: performer ? null : this.performer,
-      reasonCode: reasonCode ? null : this.reasonCode,
-      reasonReference: reasonReference ? null : this.reasonReference,
-      basis: basis ? null : this.basis,
-      prediction: prediction ? null : this.prediction,
-      mitigation: mitigation ? null : this.mitigation,
-      note: note ? null : this.note,
-    );
-  }
-
-  @override
-  RiskAssessment clone() => throw UnimplementedError();
-  @override
-  RiskAssessment copyWith({
-    FhirString? id,
-    FhirMeta? meta,
-    FhirUri? implicitRules,
-    CommonLanguages? language,
-    Narrative? text,
-    List<Resource>? contained,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    List<Identifier>? identifier,
-    Reference? basedOn,
-    Reference? parent,
-    ObservationStatus? status,
-    CodeableConcept? method,
-    CodeableConcept? code,
-    Reference? subject,
-    Reference? encounter,
-    OccurrenceXRiskAssessment? occurrenceX,
-    Reference? condition,
-    Reference? performer,
-    List<CodeableConcept>? reasonCode,
-    List<Reference>? reasonReference,
-    List<Reference>? basis,
-    List<RiskAssessmentPrediction>? prediction,
-    FhirString? mitigation,
-    List<Annotation>? note,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-  }) {
-    final newObjectPath = objectPath;
-    return RiskAssessment(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      meta: meta?.copyWith(
-            objectPath: '$newObjectPath.meta',
-          ) ??
-          this.meta,
-      implicitRules: implicitRules?.copyWith(
-            objectPath: '$newObjectPath.implicitRules',
-          ) ??
-          this.implicitRules,
-      language: language?.copyWith(
-            objectPath: '$newObjectPath.language',
-          ) ??
-          this.language,
-      text: text?.copyWith(
-            objectPath: '$newObjectPath.text',
-          ) ??
-          this.text,
-      contained: contained ?? this.contained,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      identifier: identifier
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.identifier',
-                ),
-              )
-              .toList() ??
-          this.identifier,
-      basedOn: basedOn?.copyWith(
-            objectPath: '$newObjectPath.basedOn',
-          ) ??
-          this.basedOn,
-      parent: parent?.copyWith(
-            objectPath: '$newObjectPath.parent',
-          ) ??
-          this.parent,
-      status: status?.copyWith(
-            objectPath: '$newObjectPath.status',
-          ) ??
-          this.status,
-      method: method?.copyWith(
-            objectPath: '$newObjectPath.method',
-          ) ??
-          this.method,
-      code: code?.copyWith(
-            objectPath: '$newObjectPath.code',
-          ) ??
-          this.code,
-      subject: subject?.copyWith(
-            objectPath: '$newObjectPath.subject',
-          ) ??
-          this.subject,
-      encounter: encounter?.copyWith(
-            objectPath: '$newObjectPath.encounter',
-          ) ??
-          this.encounter,
-      occurrenceX: occurrenceX?.copyWith(
-            objectPath: '$newObjectPath.occurrenceX',
-          ) as OccurrenceXRiskAssessment? ??
-          this.occurrenceX,
-      condition: condition?.copyWith(
-            objectPath: '$newObjectPath.condition',
-          ) ??
-          this.condition,
-      performer: performer?.copyWith(
-            objectPath: '$newObjectPath.performer',
-          ) ??
-          this.performer,
-      reasonCode: reasonCode
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.reasonCode',
-                ),
-              )
-              .toList() ??
-          this.reasonCode,
-      reasonReference: reasonReference
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.reasonReference',
-                ),
-              )
-              .toList() ??
-          this.reasonReference,
-      basis: basis
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.basis',
-                ),
-              )
-              .toList() ??
-          this.basis,
-      prediction: prediction
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.prediction',
-                ),
-              )
-              .toList() ??
-          this.prediction,
-      mitigation: mitigation?.copyWith(
-            objectPath: '$newObjectPath.mitigation',
-          ) ??
-          this.mitigation,
-      note: note
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.note',
-                ),
-              )
-              .toList() ??
-          this.note,
-    );
-  }
+  $RiskAssessmentCopyWith<RiskAssessment> get copyWith =>
+      _$RiskAssessmentCopyWithImpl<RiskAssessment>(
+        this,
+        (value) => value,
+      );
 
   /// Performs a deep comparison between two instances.
   @override
@@ -1660,44 +676,29 @@ class RiskAssessmentPrediction extends BackboneElement {
     this.whenX,
     this.rationale,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'RiskAssessment.prediction',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory RiskAssessmentPrediction.empty() => const RiskAssessmentPrediction();
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory RiskAssessmentPrediction.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'RiskAssessment.prediction';
     return RiskAssessmentPrediction(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -1705,7 +706,6 @@ class RiskAssessmentPrediction extends BackboneElement {
         json,
         'outcome',
         CodeableConcept.fromJson,
-        '$objectPath.outcome',
       ),
       probabilityX:
           JsonParser.parsePolymorphic<ProbabilityXRiskAssessmentPrediction>(
@@ -1714,19 +714,16 @@ class RiskAssessmentPrediction extends BackboneElement {
           'probabilityDecimal': FhirDecimal.fromJson,
           'probabilityRange': Range.fromJson,
         },
-        objectPath,
       ),
       qualitativeRisk: JsonParser.parseObject<CodeableConcept>(
         json,
         'qualitativeRisk',
         CodeableConcept.fromJson,
-        '$objectPath.qualitativeRisk',
       ),
       relativeRisk: JsonParser.parsePrimitive<FhirDecimal>(
         json,
         'relativeRisk',
         FhirDecimal.fromJson,
-        '$objectPath.relativeRisk',
       ),
       whenX: JsonParser.parsePolymorphic<WhenXRiskAssessmentPrediction>(
         json,
@@ -1734,13 +731,11 @@ class RiskAssessmentPrediction extends BackboneElement {
           'whenPeriod': Period.fromJson,
           'whenRange': Range.fromJson,
         },
-        objectPath,
       ),
       rationale: JsonParser.parsePrimitive<FhirString>(
         json,
         'rationale',
         FhirString.fromJson,
-        '$objectPath.rationale',
       ),
     );
   }
@@ -1935,475 +930,20 @@ class RiskAssessmentPrediction extends BackboneElement {
     return json;
   }
 
-  /// Lists the JSON keys for the object.
   @override
-  List<String> listChildrenNames() {
-    return [
-      'id',
-      'extension',
-      'modifierExtension',
-      'outcome',
-      'probabilityX',
-      'qualitativeRisk',
-      'relativeRisk',
-      'whenX',
-      'rationale',
-    ];
-  }
+  RiskAssessmentPrediction clone() => copyWith();
 
-  /// Retrieves all matching child fields by name.
-  ///Optionally validates the name.
+  /// Copy function for [RiskAssessmentPrediction]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<FhirBase> getChildrenByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    final fields = <FhirBase>[];
-    switch (fieldName) {
-      case 'id':
-        if (id != null) {
-          fields.add(id!);
-        }
-      case 'extension':
-        if (extension_ != null) {
-          fields.addAll(extension_!);
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          fields.addAll(modifierExtension!);
-        }
-      case 'outcome':
-        if (outcome != null) {
-          fields.add(outcome!);
-        }
-      case 'probability':
-        fields.add(probabilityX!);
-      case 'probabilityX':
-        fields.add(probabilityX!);
-      case 'probabilityDecimal':
-        if (probabilityX is FhirDecimal) {
-          fields.add(probabilityX!);
-        }
-      case 'probabilityRange':
-        if (probabilityX is Range) {
-          fields.add(probabilityX!);
-        }
-      case 'qualitativeRisk':
-        if (qualitativeRisk != null) {
-          fields.add(qualitativeRisk!);
-        }
-      case 'relativeRisk':
-        if (relativeRisk != null) {
-          fields.add(relativeRisk!);
-        }
-      case 'when':
-        fields.add(whenX!);
-      case 'whenX':
-        fields.add(whenX!);
-      case 'whenPeriod':
-        if (whenX is Period) {
-          fields.add(whenX!);
-        }
-      case 'whenRange':
-        if (whenX is Range) {
-          fields.add(whenX!);
-        }
-      case 'rationale':
-        if (rationale != null) {
-          fields.add(rationale!);
-        }
-      default:
-        if (checkValid) {
-          throw ArgumentError('Invalid name: $fieldName');
-        }
-    }
-    return fields;
-  }
-
-  /// Retrieves a single field value by its name.
-  @override
-  FhirBase? getChildByName(String name) {
-    final values = getChildrenByName(name);
-    if (values.length > 1) {
-      throw StateError('Too many values for $name found');
-    }
-    return values.isNotEmpty ? values.first : null;
-  }
-
-  @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
-
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'outcome':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(outcome: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'probability':
-      case 'probabilityX':
-        {
-          if (child is ProbabilityXRiskAssessmentPrediction) {
-            return copyWith(probabilityX: child);
-          } else {
-            if (child is FhirDecimal) {
-              return copyWith(probabilityX: child);
-            }
-            if (child is Range) {
-              return copyWith(probabilityX: child);
-            }
-          }
-          throw Exception('Invalid child type for $childName');
-        }
-      case 'probabilityFhirDecimal':
-        {
-          if (child is FhirDecimal) {
-            return copyWith(probabilityX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'probabilityRange':
-        {
-          if (child is Range) {
-            return copyWith(probabilityX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'qualitativeRisk':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(qualitativeRisk: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'relativeRisk':
-        {
-          if (child is FhirDecimal) {
-            return copyWith(relativeRisk: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'when':
-      case 'whenX':
-        {
-          if (child is WhenXRiskAssessmentPrediction) {
-            return copyWith(whenX: child);
-          } else {
-            if (child is Period) {
-              return copyWith(whenX: child);
-            }
-            if (child is Range) {
-              return copyWith(whenX: child);
-            }
-          }
-          throw Exception('Invalid child type for $childName');
-        }
-      case 'whenPeriod':
-        {
-          if (child is Period) {
-            return copyWith(whenX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'whenRange':
-        {
-          if (child is Range) {
-            return copyWith(whenX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'rationale':
-        {
-          if (child is FhirString) {
-            return copyWith(rationale: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
-  @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'outcome':
-        return ['CodeableConcept'];
-      case 'probability':
-      case 'probabilityX':
-        return [
-          'FhirDecimal',
-          'Range',
-        ];
-      case 'probabilityDecimal':
-        return ['FhirDecimal'];
-      case 'probabilityRange':
-        return ['Range'];
-      case 'qualitativeRisk':
-        return ['CodeableConcept'];
-      case 'relativeRisk':
-        return ['FhirDecimal'];
-      case 'when':
-      case 'whenX':
-        return [
-          'Period',
-          'Range',
-        ];
-      case 'whenPeriod':
-        return ['Period'];
-      case 'whenRange':
-        return ['Range'];
-      case 'rationale':
-        return ['FhirString'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [RiskAssessmentPrediction]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  RiskAssessmentPrediction createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
-          );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'outcome':
-        {
-          return copyWith(
-            outcome: CodeableConcept.empty(),
-          );
-        }
-      case 'probability':
-      case 'probabilityX':
-      case 'probabilityDecimal':
-        {
-          return copyWith(
-            probabilityX: FhirDecimal.empty(),
-          );
-        }
-      case 'probabilityRange':
-        {
-          return copyWith(
-            probabilityX: Range.empty(),
-          );
-        }
-      case 'qualitativeRisk':
-        {
-          return copyWith(
-            qualitativeRisk: CodeableConcept.empty(),
-          );
-        }
-      case 'relativeRisk':
-        {
-          return copyWith(
-            relativeRisk: FhirDecimal.empty(),
-          );
-        }
-      case 'when':
-      case 'whenX':
-      case 'whenPeriod':
-        {
-          return copyWith(
-            whenX: Period.empty(),
-          );
-        }
-      case 'whenRange':
-        {
-          return copyWith(
-            whenX: Range.empty(),
-          );
-        }
-      case 'rationale':
-        {
-          return copyWith(
-            rationale: FhirString.empty(),
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  RiskAssessmentPrediction clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool outcome = false,
-    bool probability = false,
-    bool qualitativeRisk = false,
-    bool relativeRisk = false,
-    bool when = false,
-    bool rationale = false,
-  }) {
-    return RiskAssessmentPrediction(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      outcome: outcome ? null : this.outcome,
-      probabilityX: probability ? null : probabilityX,
-      qualitativeRisk: qualitativeRisk ? null : this.qualitativeRisk,
-      relativeRisk: relativeRisk ? null : this.relativeRisk,
-      whenX: when ? null : whenX,
-      rationale: rationale ? null : this.rationale,
-    );
-  }
-
-  @override
-  RiskAssessmentPrediction clone() => throw UnimplementedError();
-  @override
-  RiskAssessmentPrediction copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    CodeableConcept? outcome,
-    ProbabilityXRiskAssessmentPrediction? probabilityX,
-    CodeableConcept? qualitativeRisk,
-    FhirDecimal? relativeRisk,
-    WhenXRiskAssessmentPrediction? whenX,
-    FhirString? rationale,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return RiskAssessmentPrediction(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      outcome: outcome?.copyWith(
-            objectPath: '$newObjectPath.outcome',
-          ) ??
-          this.outcome,
-      probabilityX: probabilityX?.copyWith(
-            objectPath: '$newObjectPath.probabilityX',
-          ) as ProbabilityXRiskAssessmentPrediction? ??
-          this.probabilityX,
-      qualitativeRisk: qualitativeRisk?.copyWith(
-            objectPath: '$newObjectPath.qualitativeRisk',
-          ) ??
-          this.qualitativeRisk,
-      relativeRisk: relativeRisk?.copyWith(
-            objectPath: '$newObjectPath.relativeRisk',
-          ) ??
-          this.relativeRisk,
-      whenX: whenX?.copyWith(
-            objectPath: '$newObjectPath.whenX',
-          ) as WhenXRiskAssessmentPrediction? ??
-          this.whenX,
-      rationale: rationale?.copyWith(
-            objectPath: '$newObjectPath.rationale',
-          ) ??
-          this.rationale,
-    );
-  }
+  $RiskAssessmentPredictionCopyWith<RiskAssessmentPrediction> get copyWith =>
+      _$RiskAssessmentPredictionCopyWithImpl<RiskAssessmentPrediction>(
+        this,
+        (value) => value,
+      );
 
   /// Performs a deep comparison between two instances.
   @override

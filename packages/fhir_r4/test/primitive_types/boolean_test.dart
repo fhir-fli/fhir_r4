@@ -99,4 +99,50 @@ void booleanTest() {
       expect(copiedBool.valueBoolean, isFalse);
     });
   });
+
+  group('FhirBoolean copyWith Tests:', () {
+    test('should copy with new boolean values', () {
+      final original = FhirBoolean(true);
+      expect(original.valueBoolean, isTrue);
+
+      final copied = original.copyWith(newValue: false);
+      expect(copied.valueBoolean, isFalse);
+      expect(original.valueBoolean, isTrue); // Original unchanged
+    });
+
+    test('should copy with string representation of boolean', () {
+      final original = FhirBoolean(true);
+      expect(original.valueBoolean, isTrue);
+
+      final copied = original.copyWith(newValue: 'false');
+      expect(copied.valueBoolean, isFalse);
+    });
+
+    test('should clear value when explicitly passed null', () {
+      final original = FhirBoolean(true);
+      expect(original.valueBoolean, isNotNull);
+
+      // ignore: avoid_redundant_argument_values
+      final cleared = original.copyWith(
+        newValue: null,
+        element: const Element(),
+      );
+      expect(cleared.valueBoolean, isNull);
+      expect(original.valueBoolean, isNotNull); // Original unchanged
+    });
+
+    test('should preserve other properties when copying', () {
+      const originalElement = Element();
+      final original = FhirBoolean(
+        true,
+        element: originalElement,
+        id: FhirString('test-id'),
+      );
+
+      final copied = original.copyWith(newValue: false);
+      expect(copied.valueBoolean, isFalse);
+      expect(copied.element, equals(originalElement));
+      expect(copied.id?.valueString, equals('test-id'));
+    });
+  });
 }

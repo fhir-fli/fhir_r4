@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
+part 'claim_response.g.dart';
+
 /// [ClaimResponse]
 /// This resource provides the adjudication details from the processing of
 /// a Claim resource.
@@ -46,96 +48,64 @@ class ClaimResponse extends DomainResource {
     this.insurance,
     this.error,
   }) : super(
-          objectPath: 'ClaimResponse',
           resourceType: R4ResourceType.ClaimResponse,
         );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ClaimResponse.empty() => ClaimResponse(
-        status: FinancialResourceStatusCodes.values.first,
-        type: CodeableConcept.empty(),
-        use: Use.values.first,
-        patient: Reference.empty(),
-        created: FhirDateTime.empty(),
-        insurer: Reference.empty(),
-        outcome: RemittanceOutcome.values.first,
-      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ClaimResponse.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'ClaimResponse';
     return ClaimResponse(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
         FhirMeta.fromJson,
-        '$objectPath.meta',
       ),
       implicitRules: JsonParser.parsePrimitive<FhirUri>(
         json,
         'implicitRules',
         FhirUri.fromJson,
-        '$objectPath.implicitRules',
       ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-        '$objectPath.language',
       ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
         Narrative.fromJson,
-        '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
           ?.map<Resource>(
             (v) => Resource.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.contained',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       identifier: (json['identifier'] as List<dynamic>?)
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.identifier',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -143,123 +113,97 @@ class ClaimResponse extends DomainResource {
         json,
         'status',
         FinancialResourceStatusCodes.fromJson,
-        '$objectPath.status',
       )!,
       type: JsonParser.parseObject<CodeableConcept>(
         json,
         'type',
         CodeableConcept.fromJson,
-        '$objectPath.type',
       )!,
       subType: JsonParser.parseObject<CodeableConcept>(
         json,
         'subType',
         CodeableConcept.fromJson,
-        '$objectPath.subType',
       ),
       use: JsonParser.parsePrimitive<Use>(
         json,
         'use',
         Use.fromJson,
-        '$objectPath.use',
       )!,
       patient: JsonParser.parseObject<Reference>(
         json,
         'patient',
         Reference.fromJson,
-        '$objectPath.patient',
       )!,
       created: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'created',
         FhirDateTime.fromJson,
-        '$objectPath.created',
       )!,
       insurer: JsonParser.parseObject<Reference>(
         json,
         'insurer',
         Reference.fromJson,
-        '$objectPath.insurer',
       )!,
       requestor: JsonParser.parseObject<Reference>(
         json,
         'requestor',
         Reference.fromJson,
-        '$objectPath.requestor',
       ),
       request: JsonParser.parseObject<Reference>(
         json,
         'request',
         Reference.fromJson,
-        '$objectPath.request',
       ),
       outcome: JsonParser.parsePrimitive<RemittanceOutcome>(
         json,
         'outcome',
         RemittanceOutcome.fromJson,
-        '$objectPath.outcome',
       )!,
       disposition: JsonParser.parsePrimitive<FhirString>(
         json,
         'disposition',
         FhirString.fromJson,
-        '$objectPath.disposition',
       ),
       preAuthRef: JsonParser.parsePrimitive<FhirString>(
         json,
         'preAuthRef',
         FhirString.fromJson,
-        '$objectPath.preAuthRef',
       ),
       preAuthPeriod: JsonParser.parseObject<Period>(
         json,
         'preAuthPeriod',
         Period.fromJson,
-        '$objectPath.preAuthPeriod',
       ),
       payeeType: JsonParser.parseObject<CodeableConcept>(
         json,
         'payeeType',
         CodeableConcept.fromJson,
-        '$objectPath.payeeType',
       ),
       item: (json['item'] as List<dynamic>?)
           ?.map<ClaimResponseItem>(
             (v) => ClaimResponseItem.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.item',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       addItem: (json['addItem'] as List<dynamic>?)
           ?.map<ClaimResponseAddItem>(
             (v) => ClaimResponseAddItem.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.addItem',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       adjudication: (json['adjudication'] as List<dynamic>?)
           ?.map<ClaimResponseAdjudication>(
             (v) => ClaimResponseAdjudication.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.adjudication',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       total: (json['total'] as List<dynamic>?)
           ?.map<ClaimResponseTotal>(
             (v) => ClaimResponseTotal.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.total',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -267,63 +211,47 @@ class ClaimResponse extends DomainResource {
         json,
         'payment',
         ClaimResponsePayment.fromJson,
-        '$objectPath.payment',
       ),
       fundsReserve: JsonParser.parseObject<CodeableConcept>(
         json,
         'fundsReserve',
         CodeableConcept.fromJson,
-        '$objectPath.fundsReserve',
       ),
       formCode: JsonParser.parseObject<CodeableConcept>(
         json,
         'formCode',
         CodeableConcept.fromJson,
-        '$objectPath.formCode',
       ),
       form: JsonParser.parseObject<Attachment>(
         json,
         'form',
         Attachment.fromJson,
-        '$objectPath.form',
       ),
       processNote: (json['processNote'] as List<dynamic>?)
           ?.map<ClaimResponseProcessNote>(
             (v) => ClaimResponseProcessNote.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.processNote',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       communicationRequest: (json['communicationRequest'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.communicationRequest',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       insurance: (json['insurance'] as List<dynamic>?)
           ?.map<ClaimResponseInsurance>(
             (v) => ClaimResponseInsurance.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.insurance',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       error: (json['error'] as List<dynamic>?)
           ?.map<ClaimResponseError>(
             (v) => ClaimResponseError.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.error',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -702,1211 +630,20 @@ class ClaimResponse extends DomainResource {
     return json;
   }
 
-  /// Lists the JSON keys for the object.
   @override
-  List<String> listChildrenNames() {
-    return [
-      'id',
-      'meta',
-      'implicitRules',
-      'language',
-      'text',
-      'contained',
-      'extension',
-      'modifierExtension',
-      'identifier',
-      'status',
-      'type',
-      'subType',
-      'use',
-      'patient',
-      'created',
-      'insurer',
-      'requestor',
-      'request',
-      'outcome',
-      'disposition',
-      'preAuthRef',
-      'preAuthPeriod',
-      'payeeType',
-      'item',
-      'addItem',
-      'adjudication',
-      'total',
-      'payment',
-      'fundsReserve',
-      'formCode',
-      'form',
-      'processNote',
-      'communicationRequest',
-      'insurance',
-      'error',
-    ];
-  }
+  ClaimResponse clone() => copyWith();
 
-  /// Retrieves all matching child fields by name.
-  ///Optionally validates the name.
+  /// Copy function for [ClaimResponse]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<FhirBase> getChildrenByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    final fields = <FhirBase>[];
-    switch (fieldName) {
-      case 'id':
-        if (id != null) {
-          fields.add(id!);
-        }
-      case 'meta':
-        if (meta != null) {
-          fields.add(meta!);
-        }
-      case 'implicitRules':
-        if (implicitRules != null) {
-          fields.add(implicitRules!);
-        }
-      case 'language':
-        if (language != null) {
-          fields.add(language!);
-        }
-      case 'text':
-        if (text != null) {
-          fields.add(text!);
-        }
-      case 'contained':
-        if (contained != null) {
-          fields.addAll(contained!);
-        }
-      case 'extension':
-        if (extension_ != null) {
-          fields.addAll(extension_!);
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          fields.addAll(modifierExtension!);
-        }
-      case 'identifier':
-        if (identifier != null) {
-          fields.addAll(identifier!);
-        }
-      case 'status':
-        fields.add(status);
-      case 'type':
-        fields.add(type);
-      case 'subType':
-        if (subType != null) {
-          fields.add(subType!);
-        }
-      case 'use':
-        fields.add(use);
-      case 'patient':
-        fields.add(patient);
-      case 'created':
-        fields.add(created);
-      case 'insurer':
-        fields.add(insurer);
-      case 'requestor':
-        if (requestor != null) {
-          fields.add(requestor!);
-        }
-      case 'request':
-        if (request != null) {
-          fields.add(request!);
-        }
-      case 'outcome':
-        fields.add(outcome);
-      case 'disposition':
-        if (disposition != null) {
-          fields.add(disposition!);
-        }
-      case 'preAuthRef':
-        if (preAuthRef != null) {
-          fields.add(preAuthRef!);
-        }
-      case 'preAuthPeriod':
-        if (preAuthPeriod != null) {
-          fields.add(preAuthPeriod!);
-        }
-      case 'payeeType':
-        if (payeeType != null) {
-          fields.add(payeeType!);
-        }
-      case 'item':
-        if (item != null) {
-          fields.addAll(item!);
-        }
-      case 'addItem':
-        if (addItem != null) {
-          fields.addAll(addItem!);
-        }
-      case 'adjudication':
-        if (adjudication != null) {
-          fields.addAll(adjudication!);
-        }
-      case 'total':
-        if (total != null) {
-          fields.addAll(total!);
-        }
-      case 'payment':
-        if (payment != null) {
-          fields.add(payment!);
-        }
-      case 'fundsReserve':
-        if (fundsReserve != null) {
-          fields.add(fundsReserve!);
-        }
-      case 'formCode':
-        if (formCode != null) {
-          fields.add(formCode!);
-        }
-      case 'form':
-        if (form != null) {
-          fields.add(form!);
-        }
-      case 'processNote':
-        if (processNote != null) {
-          fields.addAll(processNote!);
-        }
-      case 'communicationRequest':
-        if (communicationRequest != null) {
-          fields.addAll(communicationRequest!);
-        }
-      case 'insurance':
-        if (insurance != null) {
-          fields.addAll(insurance!);
-        }
-      case 'error':
-        if (error != null) {
-          fields.addAll(error!);
-        }
-      default:
-        if (checkValid) {
-          throw ArgumentError('Invalid name: $fieldName');
-        }
-    }
-    return fields;
-  }
-
-  /// Retrieves a single field value by its name.
-  @override
-  FhirBase? getChildByName(String name) {
-    final values = getChildrenByName(name);
-    if (values.length > 1) {
-      throw StateError('Too many values for $name found');
-    }
-    return values.isNotEmpty ? values.first : null;
-  }
-
-  @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
-
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'meta':
-        {
-          if (child is FhirMeta) {
-            return copyWith(meta: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'implicitRules':
-        {
-          if (child is FhirUri) {
-            return copyWith(implicitRules: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'language':
-        {
-          if (child is CommonLanguages) {
-            return copyWith(language: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'text':
-        {
-          if (child is Narrative) {
-            return copyWith(text: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'contained':
-        {
-          if (child is List<Resource>) {
-            // Add all elements from passed list
-            final newList = [...?contained, ...child];
-            return copyWith(contained: newList);
-          } else if (child is Resource) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?contained,
-              child,
-            ];
-            return copyWith(contained: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'identifier':
-        {
-          if (child is List<Identifier>) {
-            // Add all elements from passed list
-            final newList = [...?identifier, ...child];
-            return copyWith(identifier: newList);
-          } else if (child is Identifier) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?identifier,
-              child,
-            ];
-            return copyWith(identifier: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'status':
-        {
-          if (child is FinancialResourceStatusCodes) {
-            return copyWith(status: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'type':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(type: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'subType':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(subType: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'use':
-        {
-          if (child is Use) {
-            return copyWith(use: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'patient':
-        {
-          if (child is Reference) {
-            return copyWith(patient: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'created':
-        {
-          if (child is FhirDateTime) {
-            return copyWith(created: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'insurer':
-        {
-          if (child is Reference) {
-            return copyWith(insurer: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'requestor':
-        {
-          if (child is Reference) {
-            return copyWith(requestor: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'request':
-        {
-          if (child is Reference) {
-            return copyWith(request: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'outcome':
-        {
-          if (child is RemittanceOutcome) {
-            return copyWith(outcome: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'disposition':
-        {
-          if (child is FhirString) {
-            return copyWith(disposition: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'preAuthRef':
-        {
-          if (child is FhirString) {
-            return copyWith(preAuthRef: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'preAuthPeriod':
-        {
-          if (child is Period) {
-            return copyWith(preAuthPeriod: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'payeeType':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(payeeType: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'item':
-        {
-          if (child is List<ClaimResponseItem>) {
-            // Add all elements from passed list
-            final newList = [...?item, ...child];
-            return copyWith(item: newList);
-          } else if (child is ClaimResponseItem) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?item,
-              child,
-            ];
-            return copyWith(item: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'addItem':
-        {
-          if (child is List<ClaimResponseAddItem>) {
-            // Add all elements from passed list
-            final newList = [...?addItem, ...child];
-            return copyWith(addItem: newList);
-          } else if (child is ClaimResponseAddItem) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?addItem,
-              child,
-            ];
-            return copyWith(addItem: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'adjudication':
-        {
-          if (child is List<ClaimResponseAdjudication>) {
-            // Add all elements from passed list
-            final newList = [...?adjudication, ...child];
-            return copyWith(adjudication: newList);
-          } else if (child is ClaimResponseAdjudication) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?adjudication,
-              child,
-            ];
-            return copyWith(adjudication: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'total':
-        {
-          if (child is List<ClaimResponseTotal>) {
-            // Add all elements from passed list
-            final newList = [...?total, ...child];
-            return copyWith(total: newList);
-          } else if (child is ClaimResponseTotal) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?total,
-              child,
-            ];
-            return copyWith(total: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'payment':
-        {
-          if (child is ClaimResponsePayment) {
-            return copyWith(payment: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'fundsReserve':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(fundsReserve: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'formCode':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(formCode: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'form':
-        {
-          if (child is Attachment) {
-            return copyWith(form: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'processNote':
-        {
-          if (child is List<ClaimResponseProcessNote>) {
-            // Add all elements from passed list
-            final newList = [...?processNote, ...child];
-            return copyWith(processNote: newList);
-          } else if (child is ClaimResponseProcessNote) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?processNote,
-              child,
-            ];
-            return copyWith(processNote: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'communicationRequest':
-        {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?communicationRequest, ...child];
-            return copyWith(communicationRequest: newList);
-          } else if (child is Reference) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?communicationRequest,
-              child,
-            ];
-            return copyWith(communicationRequest: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'insurance':
-        {
-          if (child is List<ClaimResponseInsurance>) {
-            // Add all elements from passed list
-            final newList = [...?insurance, ...child];
-            return copyWith(insurance: newList);
-          } else if (child is ClaimResponseInsurance) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?insurance,
-              child,
-            ];
-            return copyWith(insurance: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'error':
-        {
-          if (child is List<ClaimResponseError>) {
-            // Add all elements from passed list
-            final newList = [...?error, ...child];
-            return copyWith(error: newList);
-          } else if (child is ClaimResponseError) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?error,
-              child,
-            ];
-            return copyWith(error: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
-  @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'meta':
-        return ['FhirMeta'];
-      case 'implicitRules':
-        return ['FhirUri'];
-      case 'language':
-        return ['FhirCode'];
-      case 'text':
-        return ['Narrative'];
-      case 'contained':
-        return ['Resource'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'identifier':
-        return ['Identifier'];
-      case 'status':
-        return ['FhirCode'];
-      case 'type':
-        return ['CodeableConcept'];
-      case 'subType':
-        return ['CodeableConcept'];
-      case 'use':
-        return ['FhirCode'];
-      case 'patient':
-        return ['Reference'];
-      case 'created':
-        return ['FhirDateTime'];
-      case 'insurer':
-        return ['Reference'];
-      case 'requestor':
-        return ['Reference'];
-      case 'request':
-        return ['Reference'];
-      case 'outcome':
-        return ['FhirCode'];
-      case 'disposition':
-        return ['FhirString'];
-      case 'preAuthRef':
-        return ['FhirString'];
-      case 'preAuthPeriod':
-        return ['Period'];
-      case 'payeeType':
-        return ['CodeableConcept'];
-      case 'item':
-        return ['ClaimResponseItem'];
-      case 'addItem':
-        return ['ClaimResponseAddItem'];
-      case 'adjudication':
-        return ['ClaimResponseAdjudication'];
-      case 'total':
-        return ['ClaimResponseTotal'];
-      case 'payment':
-        return ['ClaimResponsePayment'];
-      case 'fundsReserve':
-        return ['CodeableConcept'];
-      case 'formCode':
-        return ['CodeableConcept'];
-      case 'form':
-        return ['Attachment'];
-      case 'processNote':
-        return ['ClaimResponseProcessNote'];
-      case 'communicationRequest':
-        return ['Reference'];
-      case 'insurance':
-        return ['ClaimResponseInsurance'];
-      case 'error':
-        return ['ClaimResponseError'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [ClaimResponse]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  ClaimResponse createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
-          );
-        }
-      case 'meta':
-        {
-          return copyWith(
-            meta: FhirMeta.empty(),
-          );
-        }
-      case 'implicitRules':
-        {
-          return copyWith(
-            implicitRules: FhirUri.empty(),
-          );
-        }
-      case 'language':
-        {
-          return copyWith(
-            language: CommonLanguages.empty(),
-          );
-        }
-      case 'text':
-        {
-          return copyWith(
-            text: Narrative.empty(),
-          );
-        }
-      case 'contained':
-        {
-          return copyWith(
-            contained: <Resource>[],
-          );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'identifier':
-        {
-          return copyWith(
-            identifier: <Identifier>[],
-          );
-        }
-      case 'status':
-        {
-          return copyWith(
-            status: FinancialResourceStatusCodes.empty(),
-          );
-        }
-      case 'type':
-        {
-          return copyWith(
-            type: CodeableConcept.empty(),
-          );
-        }
-      case 'subType':
-        {
-          return copyWith(
-            subType: CodeableConcept.empty(),
-          );
-        }
-      case 'use':
-        {
-          return copyWith(
-            use: Use.empty(),
-          );
-        }
-      case 'patient':
-        {
-          return copyWith(
-            patient: Reference.empty(),
-          );
-        }
-      case 'created':
-        {
-          return copyWith(
-            created: FhirDateTime.empty(),
-          );
-        }
-      case 'insurer':
-        {
-          return copyWith(
-            insurer: Reference.empty(),
-          );
-        }
-      case 'requestor':
-        {
-          return copyWith(
-            requestor: Reference.empty(),
-          );
-        }
-      case 'request':
-        {
-          return copyWith(
-            request: Reference.empty(),
-          );
-        }
-      case 'outcome':
-        {
-          return copyWith(
-            outcome: RemittanceOutcome.empty(),
-          );
-        }
-      case 'disposition':
-        {
-          return copyWith(
-            disposition: FhirString.empty(),
-          );
-        }
-      case 'preAuthRef':
-        {
-          return copyWith(
-            preAuthRef: FhirString.empty(),
-          );
-        }
-      case 'preAuthPeriod':
-        {
-          return copyWith(
-            preAuthPeriod: Period.empty(),
-          );
-        }
-      case 'payeeType':
-        {
-          return copyWith(
-            payeeType: CodeableConcept.empty(),
-          );
-        }
-      case 'item':
-        {
-          return copyWith(
-            item: <ClaimResponseItem>[],
-          );
-        }
-      case 'addItem':
-        {
-          return copyWith(
-            addItem: <ClaimResponseAddItem>[],
-          );
-        }
-      case 'adjudication':
-        {
-          return copyWith(
-            adjudication: <ClaimResponseAdjudication>[],
-          );
-        }
-      case 'total':
-        {
-          return copyWith(
-            total: <ClaimResponseTotal>[],
-          );
-        }
-      case 'payment':
-        {
-          return copyWith(
-            payment: ClaimResponsePayment.empty(),
-          );
-        }
-      case 'fundsReserve':
-        {
-          return copyWith(
-            fundsReserve: CodeableConcept.empty(),
-          );
-        }
-      case 'formCode':
-        {
-          return copyWith(
-            formCode: CodeableConcept.empty(),
-          );
-        }
-      case 'form':
-        {
-          return copyWith(
-            form: Attachment.empty(),
-          );
-        }
-      case 'processNote':
-        {
-          return copyWith(
-            processNote: <ClaimResponseProcessNote>[],
-          );
-        }
-      case 'communicationRequest':
-        {
-          return copyWith(
-            communicationRequest: <Reference>[],
-          );
-        }
-      case 'insurance':
-        {
-          return copyWith(
-            insurance: <ClaimResponseInsurance>[],
-          );
-        }
-      case 'error':
-        {
-          return copyWith(
-            error: <ClaimResponseError>[],
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  ClaimResponse clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool identifier = false,
-    bool subType = false,
-    bool requestor = false,
-    bool request = false,
-    bool disposition = false,
-    bool preAuthRef = false,
-    bool preAuthPeriod = false,
-    bool payeeType = false,
-    bool item = false,
-    bool addItem = false,
-    bool adjudication = false,
-    bool total = false,
-    bool payment = false,
-    bool fundsReserve = false,
-    bool formCode = false,
-    bool form = false,
-    bool processNote = false,
-    bool communicationRequest = false,
-    bool insurance = false,
-    bool error = false,
-  }) {
-    return ClaimResponse(
-      id: id ? null : this.id,
-      meta: meta ? null : this.meta,
-      implicitRules: implicitRules ? null : this.implicitRules,
-      language: language ? null : this.language,
-      text: text ? null : this.text,
-      contained: contained ? null : this.contained,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      identifier: identifier ? null : this.identifier,
-      status: status,
-      type: type,
-      subType: subType ? null : this.subType,
-      use: use,
-      patient: patient,
-      created: created,
-      insurer: insurer,
-      requestor: requestor ? null : this.requestor,
-      request: request ? null : this.request,
-      outcome: outcome,
-      disposition: disposition ? null : this.disposition,
-      preAuthRef: preAuthRef ? null : this.preAuthRef,
-      preAuthPeriod: preAuthPeriod ? null : this.preAuthPeriod,
-      payeeType: payeeType ? null : this.payeeType,
-      item: item ? null : this.item,
-      addItem: addItem ? null : this.addItem,
-      adjudication: adjudication ? null : this.adjudication,
-      total: total ? null : this.total,
-      payment: payment ? null : this.payment,
-      fundsReserve: fundsReserve ? null : this.fundsReserve,
-      formCode: formCode ? null : this.formCode,
-      form: form ? null : this.form,
-      processNote: processNote ? null : this.processNote,
-      communicationRequest:
-          communicationRequest ? null : this.communicationRequest,
-      insurance: insurance ? null : this.insurance,
-      error: error ? null : this.error,
-    );
-  }
-
-  @override
-  ClaimResponse clone() => throw UnimplementedError();
-  @override
-  ClaimResponse copyWith({
-    FhirString? id,
-    FhirMeta? meta,
-    FhirUri? implicitRules,
-    CommonLanguages? language,
-    Narrative? text,
-    List<Resource>? contained,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    List<Identifier>? identifier,
-    FinancialResourceStatusCodes? status,
-    CodeableConcept? type,
-    CodeableConcept? subType,
-    Use? use,
-    Reference? patient,
-    FhirDateTime? created,
-    Reference? insurer,
-    Reference? requestor,
-    Reference? request,
-    RemittanceOutcome? outcome,
-    FhirString? disposition,
-    FhirString? preAuthRef,
-    Period? preAuthPeriod,
-    CodeableConcept? payeeType,
-    List<ClaimResponseItem>? item,
-    List<ClaimResponseAddItem>? addItem,
-    List<ClaimResponseAdjudication>? adjudication,
-    List<ClaimResponseTotal>? total,
-    ClaimResponsePayment? payment,
-    CodeableConcept? fundsReserve,
-    CodeableConcept? formCode,
-    Attachment? form,
-    List<ClaimResponseProcessNote>? processNote,
-    List<Reference>? communicationRequest,
-    List<ClaimResponseInsurance>? insurance,
-    List<ClaimResponseError>? error,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-  }) {
-    final newObjectPath = objectPath;
-    return ClaimResponse(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      meta: meta?.copyWith(
-            objectPath: '$newObjectPath.meta',
-          ) ??
-          this.meta,
-      implicitRules: implicitRules?.copyWith(
-            objectPath: '$newObjectPath.implicitRules',
-          ) ??
-          this.implicitRules,
-      language: language?.copyWith(
-            objectPath: '$newObjectPath.language',
-          ) ??
-          this.language,
-      text: text?.copyWith(
-            objectPath: '$newObjectPath.text',
-          ) ??
-          this.text,
-      contained: contained ?? this.contained,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      identifier: identifier
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.identifier',
-                ),
-              )
-              .toList() ??
-          this.identifier,
-      status: status?.copyWith(
-            objectPath: '$newObjectPath.status',
-          ) ??
-          this.status,
-      type: type?.copyWith(
-            objectPath: '$newObjectPath.type',
-          ) ??
-          this.type,
-      subType: subType?.copyWith(
-            objectPath: '$newObjectPath.subType',
-          ) ??
-          this.subType,
-      use: use?.copyWith(
-            objectPath: '$newObjectPath.use',
-          ) ??
-          this.use,
-      patient: patient?.copyWith(
-            objectPath: '$newObjectPath.patient',
-          ) ??
-          this.patient,
-      created: created?.copyWith(
-            objectPath: '$newObjectPath.created',
-          ) ??
-          this.created,
-      insurer: insurer?.copyWith(
-            objectPath: '$newObjectPath.insurer',
-          ) ??
-          this.insurer,
-      requestor: requestor?.copyWith(
-            objectPath: '$newObjectPath.requestor',
-          ) ??
-          this.requestor,
-      request: request?.copyWith(
-            objectPath: '$newObjectPath.request',
-          ) ??
-          this.request,
-      outcome: outcome?.copyWith(
-            objectPath: '$newObjectPath.outcome',
-          ) ??
-          this.outcome,
-      disposition: disposition?.copyWith(
-            objectPath: '$newObjectPath.disposition',
-          ) ??
-          this.disposition,
-      preAuthRef: preAuthRef?.copyWith(
-            objectPath: '$newObjectPath.preAuthRef',
-          ) ??
-          this.preAuthRef,
-      preAuthPeriod: preAuthPeriod?.copyWith(
-            objectPath: '$newObjectPath.preAuthPeriod',
-          ) ??
-          this.preAuthPeriod,
-      payeeType: payeeType?.copyWith(
-            objectPath: '$newObjectPath.payeeType',
-          ) ??
-          this.payeeType,
-      item: item
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.item',
-                ),
-              )
-              .toList() ??
-          this.item,
-      addItem: addItem
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.addItem',
-                ),
-              )
-              .toList() ??
-          this.addItem,
-      adjudication: adjudication
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.adjudication',
-                ),
-              )
-              .toList() ??
-          this.adjudication,
-      total: total
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.total',
-                ),
-              )
-              .toList() ??
-          this.total,
-      payment: payment?.copyWith(
-            objectPath: '$newObjectPath.payment',
-          ) ??
-          this.payment,
-      fundsReserve: fundsReserve?.copyWith(
-            objectPath: '$newObjectPath.fundsReserve',
-          ) ??
-          this.fundsReserve,
-      formCode: formCode?.copyWith(
-            objectPath: '$newObjectPath.formCode',
-          ) ??
-          this.formCode,
-      form: form?.copyWith(
-            objectPath: '$newObjectPath.form',
-          ) ??
-          this.form,
-      processNote: processNote
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.processNote',
-                ),
-              )
-              .toList() ??
-          this.processNote,
-      communicationRequest: communicationRequest
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.communicationRequest',
-                ),
-              )
-              .toList() ??
-          this.communicationRequest,
-      insurance: insurance
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.insurance',
-                ),
-              )
-              .toList() ??
-          this.insurance,
-      error: error
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.error',
-                ),
-              )
-              .toList() ??
-          this.error,
-    );
-  }
+  $ClaimResponseCopyWith<ClaimResponse> get copyWith =>
+      _$ClaimResponseCopyWithImpl<ClaimResponse>(
+        this,
+        (value) => value,
+      );
 
   /// Performs a deep comparison between two instances.
   @override
@@ -2146,47 +883,29 @@ class ClaimResponseItem extends BackboneElement {
     required this.adjudication,
     this.detail,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'ClaimResponse.item',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ClaimResponseItem.empty() => ClaimResponseItem(
-        itemSequence: FhirPositiveInt.empty(),
-        adjudication: <ClaimResponseAdjudication>[],
-      );
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ClaimResponseItem.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'ClaimResponse.item';
     return ClaimResponseItem(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -2194,31 +913,23 @@ class ClaimResponseItem extends BackboneElement {
         json,
         'itemSequence',
         FhirPositiveInt.fromJson,
-        '$objectPath.itemSequence',
       )!,
       noteNumber: JsonParser.parsePrimitiveList<FhirPositiveInt>(
         json,
         'noteNumber',
         FhirPositiveInt.fromJson,
-        '$objectPath.noteNumber',
       ),
       adjudication: (json['adjudication'] as List<dynamic>)
           .map<ClaimResponseAdjudication>(
             (v) => ClaimResponseAdjudication.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.adjudication',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       detail: (json['detail'] as List<dynamic>?)
           ?.map<ClaimResponseDetail>(
             (v) => ClaimResponseDetail.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.detail',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -2377,358 +1088,20 @@ class ClaimResponseItem extends BackboneElement {
     return json;
   }
 
-  /// Lists the JSON keys for the object.
   @override
-  List<String> listChildrenNames() {
-    return [
-      'id',
-      'extension',
-      'modifierExtension',
-      'itemSequence',
-      'noteNumber',
-      'adjudication',
-      'detail',
-    ];
-  }
+  ClaimResponseItem clone() => copyWith();
 
-  /// Retrieves all matching child fields by name.
-  ///Optionally validates the name.
+  /// Copy function for [ClaimResponseItem]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<FhirBase> getChildrenByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    final fields = <FhirBase>[];
-    switch (fieldName) {
-      case 'id':
-        if (id != null) {
-          fields.add(id!);
-        }
-      case 'extension':
-        if (extension_ != null) {
-          fields.addAll(extension_!);
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          fields.addAll(modifierExtension!);
-        }
-      case 'itemSequence':
-        fields.add(itemSequence);
-      case 'noteNumber':
-        if (noteNumber != null) {
-          fields.addAll(noteNumber!);
-        }
-      case 'adjudication':
-        fields.addAll(adjudication);
-      case 'detail':
-        if (detail != null) {
-          fields.addAll(detail!);
-        }
-      default:
-        if (checkValid) {
-          throw ArgumentError('Invalid name: $fieldName');
-        }
-    }
-    return fields;
-  }
-
-  /// Retrieves a single field value by its name.
-  @override
-  FhirBase? getChildByName(String name) {
-    final values = getChildrenByName(name);
-    if (values.length > 1) {
-      throw StateError('Too many values for $name found');
-    }
-    return values.isNotEmpty ? values.first : null;
-  }
-
-  @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
-
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'itemSequence':
-        {
-          if (child is FhirPositiveInt) {
-            return copyWith(itemSequence: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'noteNumber':
-        {
-          if (child is List<FhirPositiveInt>) {
-            // Add all elements from passed list
-            final newList = [...?noteNumber, ...child];
-            return copyWith(noteNumber: newList);
-          } else if (child is FhirPositiveInt) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?noteNumber,
-              child,
-            ];
-            return copyWith(noteNumber: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'adjudication':
-        {
-          if (child is List<ClaimResponseAdjudication>) {
-            // Add all elements from passed list
-            final newList = [...adjudication, ...child];
-            return copyWith(adjudication: newList);
-          } else if (child is ClaimResponseAdjudication) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...adjudication,
-              child,
-            ];
-            return copyWith(adjudication: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'detail':
-        {
-          if (child is List<ClaimResponseDetail>) {
-            // Add all elements from passed list
-            final newList = [...?detail, ...child];
-            return copyWith(detail: newList);
-          } else if (child is ClaimResponseDetail) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?detail,
-              child,
-            ];
-            return copyWith(detail: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
-  @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'itemSequence':
-        return ['FhirPositiveInt'];
-      case 'noteNumber':
-        return ['FhirPositiveInt'];
-      case 'adjudication':
-        return ['ClaimResponseAdjudication'];
-      case 'detail':
-        return ['ClaimResponseDetail'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [ClaimResponseItem]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  ClaimResponseItem createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
-          );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'itemSequence':
-        {
-          return copyWith(
-            itemSequence: FhirPositiveInt.empty(),
-          );
-        }
-      case 'noteNumber':
-        {
-          return copyWith(
-            noteNumber: <FhirPositiveInt>[],
-          );
-        }
-      case 'adjudication':
-        {
-          return copyWith(
-            adjudication: <ClaimResponseAdjudication>[],
-          );
-        }
-      case 'detail':
-        {
-          return copyWith(
-            detail: <ClaimResponseDetail>[],
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  ClaimResponseItem clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool noteNumber = false,
-    bool detail = false,
-  }) {
-    return ClaimResponseItem(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      itemSequence: itemSequence,
-      noteNumber: noteNumber ? null : this.noteNumber,
-      adjudication: adjudication,
-      detail: detail ? null : this.detail,
-    );
-  }
-
-  @override
-  ClaimResponseItem clone() => throw UnimplementedError();
-  @override
-  ClaimResponseItem copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirPositiveInt? itemSequence,
-    List<FhirPositiveInt>? noteNumber,
-    List<ClaimResponseAdjudication>? adjudication,
-    List<ClaimResponseDetail>? detail,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return ClaimResponseItem(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      itemSequence: itemSequence?.copyWith(
-            objectPath: '$newObjectPath.itemSequence',
-          ) ??
-          this.itemSequence,
-      noteNumber: noteNumber
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.noteNumber',
-                ),
-              )
-              .toList() ??
-          this.noteNumber,
-      adjudication: adjudication
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.adjudication',
-                ),
-              )
-              .toList() ??
-          this.adjudication,
-      detail: detail
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.detail',
-                ),
-              )
-              .toList() ??
-          this.detail,
-    );
-  }
+  $ClaimResponseItemCopyWith<ClaimResponseItem> get copyWith =>
+      _$ClaimResponseItemCopyWithImpl<ClaimResponseItem>(
+        this,
+        (value) => value,
+      );
 
   /// Performs a deep comparison between two instances.
   @override
@@ -2801,46 +1174,29 @@ class ClaimResponseAdjudication extends BackboneElement {
     this.amount,
     this.value,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'ClaimResponse.item.adjudication',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ClaimResponseAdjudication.empty() => ClaimResponseAdjudication(
-        category: CodeableConcept.empty(),
-      );
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ClaimResponseAdjudication.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'ClaimResponse.item.adjudication';
     return ClaimResponseAdjudication(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -2848,25 +1204,21 @@ class ClaimResponseAdjudication extends BackboneElement {
         json,
         'category',
         CodeableConcept.fromJson,
-        '$objectPath.category',
       )!,
       reason: JsonParser.parseObject<CodeableConcept>(
         json,
         'reason',
         CodeableConcept.fromJson,
-        '$objectPath.reason',
       ),
       amount: JsonParser.parseObject<Money>(
         json,
         'amount',
         Money.fromJson,
-        '$objectPath.amount',
       ),
       value: JsonParser.parsePrimitive<FhirDecimal>(
         json,
         'value',
         FhirDecimal.fromJson,
-        '$objectPath.value',
       ),
     );
   }
@@ -3026,322 +1378,20 @@ class ClaimResponseAdjudication extends BackboneElement {
     return json;
   }
 
-  /// Lists the JSON keys for the object.
   @override
-  List<String> listChildrenNames() {
-    return [
-      'id',
-      'extension',
-      'modifierExtension',
-      'category',
-      'reason',
-      'amount',
-      'value',
-    ];
-  }
+  ClaimResponseAdjudication clone() => copyWith();
 
-  /// Retrieves all matching child fields by name.
-  ///Optionally validates the name.
+  /// Copy function for [ClaimResponseAdjudication]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<FhirBase> getChildrenByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    final fields = <FhirBase>[];
-    switch (fieldName) {
-      case 'id':
-        if (id != null) {
-          fields.add(id!);
-        }
-      case 'extension':
-        if (extension_ != null) {
-          fields.addAll(extension_!);
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          fields.addAll(modifierExtension!);
-        }
-      case 'category':
-        fields.add(category);
-      case 'reason':
-        if (reason != null) {
-          fields.add(reason!);
-        }
-      case 'amount':
-        if (amount != null) {
-          fields.add(amount!);
-        }
-      case 'value':
-        if (value != null) {
-          fields.add(value!);
-        }
-      default:
-        if (checkValid) {
-          throw ArgumentError('Invalid name: $fieldName');
-        }
-    }
-    return fields;
-  }
-
-  /// Retrieves a single field value by its name.
-  @override
-  FhirBase? getChildByName(String name) {
-    final values = getChildrenByName(name);
-    if (values.length > 1) {
-      throw StateError('Too many values for $name found');
-    }
-    return values.isNotEmpty ? values.first : null;
-  }
-
-  @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
-
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'category':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(category: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'reason':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(reason: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'amount':
-        {
-          if (child is Money) {
-            return copyWith(amount: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'value':
-        {
-          if (child is FhirDecimal) {
-            return copyWith(value: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
-  @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'category':
-        return ['CodeableConcept'];
-      case 'reason':
-        return ['CodeableConcept'];
-      case 'amount':
-        return ['Money'];
-      case 'value':
-        return ['FhirDecimal'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [ClaimResponseAdjudication]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  ClaimResponseAdjudication createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
-          );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'category':
-        {
-          return copyWith(
-            category: CodeableConcept.empty(),
-          );
-        }
-      case 'reason':
-        {
-          return copyWith(
-            reason: CodeableConcept.empty(),
-          );
-        }
-      case 'amount':
-        {
-          return copyWith(
-            amount: Money.empty(),
-          );
-        }
-      case 'value':
-        {
-          return copyWith(
-            value: FhirDecimal.empty(),
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  ClaimResponseAdjudication clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool reason = false,
-    bool amount = false,
-    bool value = false,
-  }) {
-    return ClaimResponseAdjudication(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      category: category,
-      reason: reason ? null : this.reason,
-      amount: amount ? null : this.amount,
-      value: value ? null : this.value,
-    );
-  }
-
-  @override
-  ClaimResponseAdjudication clone() => throw UnimplementedError();
-  @override
-  ClaimResponseAdjudication copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    CodeableConcept? category,
-    CodeableConcept? reason,
-    Money? amount,
-    FhirDecimal? value,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return ClaimResponseAdjudication(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      category: category?.copyWith(
-            objectPath: '$newObjectPath.category',
-          ) ??
-          this.category,
-      reason: reason?.copyWith(
-            objectPath: '$newObjectPath.reason',
-          ) ??
-          this.reason,
-      amount: amount?.copyWith(
-            objectPath: '$newObjectPath.amount',
-          ) ??
-          this.amount,
-      value: value?.copyWith(
-            objectPath: '$newObjectPath.value',
-          ) ??
-          this.value,
-    );
-  }
+  $ClaimResponseAdjudicationCopyWith<ClaimResponseAdjudication> get copyWith =>
+      _$ClaimResponseAdjudicationCopyWithImpl<ClaimResponseAdjudication>(
+        this,
+        (value) => value,
+      );
 
   /// Performs a deep comparison between two instances.
   @override
@@ -3413,47 +1463,29 @@ class ClaimResponseDetail extends BackboneElement {
     required this.adjudication,
     this.subDetail,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'ClaimResponse.item.detail',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ClaimResponseDetail.empty() => ClaimResponseDetail(
-        detailSequence: FhirPositiveInt.empty(),
-        adjudication: <ClaimResponseAdjudication>[],
-      );
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ClaimResponseDetail.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'ClaimResponse.item.detail';
     return ClaimResponseDetail(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -3461,31 +1493,23 @@ class ClaimResponseDetail extends BackboneElement {
         json,
         'detailSequence',
         FhirPositiveInt.fromJson,
-        '$objectPath.detailSequence',
       )!,
       noteNumber: JsonParser.parsePrimitiveList<FhirPositiveInt>(
         json,
         'noteNumber',
         FhirPositiveInt.fromJson,
-        '$objectPath.noteNumber',
       ),
       adjudication: (json['adjudication'] as List<dynamic>)
           .map<ClaimResponseAdjudication>(
             (v) => ClaimResponseAdjudication.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.adjudication',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       subDetail: (json['subDetail'] as List<dynamic>?)
           ?.map<ClaimResponseSubDetail>(
             (v) => ClaimResponseSubDetail.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.subDetail',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -3641,358 +1665,20 @@ class ClaimResponseDetail extends BackboneElement {
     return json;
   }
 
-  /// Lists the JSON keys for the object.
   @override
-  List<String> listChildrenNames() {
-    return [
-      'id',
-      'extension',
-      'modifierExtension',
-      'detailSequence',
-      'noteNumber',
-      'adjudication',
-      'subDetail',
-    ];
-  }
+  ClaimResponseDetail clone() => copyWith();
 
-  /// Retrieves all matching child fields by name.
-  ///Optionally validates the name.
+  /// Copy function for [ClaimResponseDetail]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<FhirBase> getChildrenByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    final fields = <FhirBase>[];
-    switch (fieldName) {
-      case 'id':
-        if (id != null) {
-          fields.add(id!);
-        }
-      case 'extension':
-        if (extension_ != null) {
-          fields.addAll(extension_!);
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          fields.addAll(modifierExtension!);
-        }
-      case 'detailSequence':
-        fields.add(detailSequence);
-      case 'noteNumber':
-        if (noteNumber != null) {
-          fields.addAll(noteNumber!);
-        }
-      case 'adjudication':
-        fields.addAll(adjudication);
-      case 'subDetail':
-        if (subDetail != null) {
-          fields.addAll(subDetail!);
-        }
-      default:
-        if (checkValid) {
-          throw ArgumentError('Invalid name: $fieldName');
-        }
-    }
-    return fields;
-  }
-
-  /// Retrieves a single field value by its name.
-  @override
-  FhirBase? getChildByName(String name) {
-    final values = getChildrenByName(name);
-    if (values.length > 1) {
-      throw StateError('Too many values for $name found');
-    }
-    return values.isNotEmpty ? values.first : null;
-  }
-
-  @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
-
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'detailSequence':
-        {
-          if (child is FhirPositiveInt) {
-            return copyWith(detailSequence: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'noteNumber':
-        {
-          if (child is List<FhirPositiveInt>) {
-            // Add all elements from passed list
-            final newList = [...?noteNumber, ...child];
-            return copyWith(noteNumber: newList);
-          } else if (child is FhirPositiveInt) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?noteNumber,
-              child,
-            ];
-            return copyWith(noteNumber: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'adjudication':
-        {
-          if (child is List<ClaimResponseAdjudication>) {
-            // Add all elements from passed list
-            final newList = [...adjudication, ...child];
-            return copyWith(adjudication: newList);
-          } else if (child is ClaimResponseAdjudication) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...adjudication,
-              child,
-            ];
-            return copyWith(adjudication: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'subDetail':
-        {
-          if (child is List<ClaimResponseSubDetail>) {
-            // Add all elements from passed list
-            final newList = [...?subDetail, ...child];
-            return copyWith(subDetail: newList);
-          } else if (child is ClaimResponseSubDetail) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?subDetail,
-              child,
-            ];
-            return copyWith(subDetail: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
-  @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'detailSequence':
-        return ['FhirPositiveInt'];
-      case 'noteNumber':
-        return ['FhirPositiveInt'];
-      case 'adjudication':
-        return ['ClaimResponseAdjudication'];
-      case 'subDetail':
-        return ['ClaimResponseSubDetail'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [ClaimResponseDetail]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  ClaimResponseDetail createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
-          );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'detailSequence':
-        {
-          return copyWith(
-            detailSequence: FhirPositiveInt.empty(),
-          );
-        }
-      case 'noteNumber':
-        {
-          return copyWith(
-            noteNumber: <FhirPositiveInt>[],
-          );
-        }
-      case 'adjudication':
-        {
-          return copyWith(
-            adjudication: <ClaimResponseAdjudication>[],
-          );
-        }
-      case 'subDetail':
-        {
-          return copyWith(
-            subDetail: <ClaimResponseSubDetail>[],
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  ClaimResponseDetail clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool noteNumber = false,
-    bool subDetail = false,
-  }) {
-    return ClaimResponseDetail(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      detailSequence: detailSequence,
-      noteNumber: noteNumber ? null : this.noteNumber,
-      adjudication: adjudication,
-      subDetail: subDetail ? null : this.subDetail,
-    );
-  }
-
-  @override
-  ClaimResponseDetail clone() => throw UnimplementedError();
-  @override
-  ClaimResponseDetail copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirPositiveInt? detailSequence,
-    List<FhirPositiveInt>? noteNumber,
-    List<ClaimResponseAdjudication>? adjudication,
-    List<ClaimResponseSubDetail>? subDetail,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return ClaimResponseDetail(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      detailSequence: detailSequence?.copyWith(
-            objectPath: '$newObjectPath.detailSequence',
-          ) ??
-          this.detailSequence,
-      noteNumber: noteNumber
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.noteNumber',
-                ),
-              )
-              .toList() ??
-          this.noteNumber,
-      adjudication: adjudication
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.adjudication',
-                ),
-              )
-              .toList() ??
-          this.adjudication,
-      subDetail: subDetail
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.subDetail',
-                ),
-              )
-              .toList() ??
-          this.subDetail,
-    );
-  }
+  $ClaimResponseDetailCopyWith<ClaimResponseDetail> get copyWith =>
+      _$ClaimResponseDetailCopyWithImpl<ClaimResponseDetail>(
+        this,
+        (value) => value,
+      );
 
   /// Performs a deep comparison between two instances.
   @override
@@ -4062,46 +1748,29 @@ class ClaimResponseSubDetail extends BackboneElement {
     this.noteNumber,
     this.adjudication,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'ClaimResponse.item.detail.subDetail',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ClaimResponseSubDetail.empty() => ClaimResponseSubDetail(
-        subDetailSequence: FhirPositiveInt.empty(),
-      );
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ClaimResponseSubDetail.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'ClaimResponse.item.detail.subDetail';
     return ClaimResponseSubDetail(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -4109,21 +1778,16 @@ class ClaimResponseSubDetail extends BackboneElement {
         json,
         'subDetailSequence',
         FhirPositiveInt.fromJson,
-        '$objectPath.subDetailSequence',
       )!,
       noteNumber: JsonParser.parsePrimitiveList<FhirPositiveInt>(
         json,
         'noteNumber',
         FhirPositiveInt.fromJson,
-        '$objectPath.noteNumber',
       ),
       adjudication: (json['adjudication'] as List<dynamic>?)
           ?.map<ClaimResponseAdjudication>(
             (v) => ClaimResponseAdjudication.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.adjudication',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -4271,320 +1935,20 @@ class ClaimResponseSubDetail extends BackboneElement {
     return json;
   }
 
-  /// Lists the JSON keys for the object.
   @override
-  List<String> listChildrenNames() {
-    return [
-      'id',
-      'extension',
-      'modifierExtension',
-      'subDetailSequence',
-      'noteNumber',
-      'adjudication',
-    ];
-  }
+  ClaimResponseSubDetail clone() => copyWith();
 
-  /// Retrieves all matching child fields by name.
-  ///Optionally validates the name.
+  /// Copy function for [ClaimResponseSubDetail]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<FhirBase> getChildrenByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    final fields = <FhirBase>[];
-    switch (fieldName) {
-      case 'id':
-        if (id != null) {
-          fields.add(id!);
-        }
-      case 'extension':
-        if (extension_ != null) {
-          fields.addAll(extension_!);
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          fields.addAll(modifierExtension!);
-        }
-      case 'subDetailSequence':
-        fields.add(subDetailSequence);
-      case 'noteNumber':
-        if (noteNumber != null) {
-          fields.addAll(noteNumber!);
-        }
-      case 'adjudication':
-        if (adjudication != null) {
-          fields.addAll(adjudication!);
-        }
-      default:
-        if (checkValid) {
-          throw ArgumentError('Invalid name: $fieldName');
-        }
-    }
-    return fields;
-  }
-
-  /// Retrieves a single field value by its name.
-  @override
-  FhirBase? getChildByName(String name) {
-    final values = getChildrenByName(name);
-    if (values.length > 1) {
-      throw StateError('Too many values for $name found');
-    }
-    return values.isNotEmpty ? values.first : null;
-  }
-
-  @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
-
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'subDetailSequence':
-        {
-          if (child is FhirPositiveInt) {
-            return copyWith(subDetailSequence: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'noteNumber':
-        {
-          if (child is List<FhirPositiveInt>) {
-            // Add all elements from passed list
-            final newList = [...?noteNumber, ...child];
-            return copyWith(noteNumber: newList);
-          } else if (child is FhirPositiveInt) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?noteNumber,
-              child,
-            ];
-            return copyWith(noteNumber: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'adjudication':
-        {
-          if (child is List<ClaimResponseAdjudication>) {
-            // Add all elements from passed list
-            final newList = [...?adjudication, ...child];
-            return copyWith(adjudication: newList);
-          } else if (child is ClaimResponseAdjudication) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?adjudication,
-              child,
-            ];
-            return copyWith(adjudication: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
-  @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'subDetailSequence':
-        return ['FhirPositiveInt'];
-      case 'noteNumber':
-        return ['FhirPositiveInt'];
-      case 'adjudication':
-        return ['ClaimResponseAdjudication'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [ClaimResponseSubDetail]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  ClaimResponseSubDetail createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
-          );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'subDetailSequence':
-        {
-          return copyWith(
-            subDetailSequence: FhirPositiveInt.empty(),
-          );
-        }
-      case 'noteNumber':
-        {
-          return copyWith(
-            noteNumber: <FhirPositiveInt>[],
-          );
-        }
-      case 'adjudication':
-        {
-          return copyWith(
-            adjudication: <ClaimResponseAdjudication>[],
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  ClaimResponseSubDetail clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool noteNumber = false,
-    bool adjudication = false,
-  }) {
-    return ClaimResponseSubDetail(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      subDetailSequence: subDetailSequence,
-      noteNumber: noteNumber ? null : this.noteNumber,
-      adjudication: adjudication ? null : this.adjudication,
-    );
-  }
-
-  @override
-  ClaimResponseSubDetail clone() => throw UnimplementedError();
-  @override
-  ClaimResponseSubDetail copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirPositiveInt? subDetailSequence,
-    List<FhirPositiveInt>? noteNumber,
-    List<ClaimResponseAdjudication>? adjudication,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return ClaimResponseSubDetail(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      subDetailSequence: subDetailSequence?.copyWith(
-            objectPath: '$newObjectPath.subDetailSequence',
-          ) ??
-          this.subDetailSequence,
-      noteNumber: noteNumber
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.noteNumber',
-                ),
-              )
-              .toList() ??
-          this.noteNumber,
-      adjudication: adjudication
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.adjudication',
-                ),
-              )
-              .toList() ??
-          this.adjudication,
-    );
-  }
+  $ClaimResponseSubDetailCopyWith<ClaimResponseSubDetail> get copyWith =>
+      _$ClaimResponseSubDetailCopyWithImpl<ClaimResponseSubDetail>(
+        this,
+        (value) => value,
+      );
 
   /// Performs a deep comparison between two instances.
   @override
@@ -4664,47 +2028,29 @@ class ClaimResponseAddItem extends BackboneElement {
     required this.adjudication,
     this.detail,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'ClaimResponse.addItem',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ClaimResponseAddItem.empty() => ClaimResponseAddItem(
-        productOrService: CodeableConcept.empty(),
-        adjudication: <ClaimResponseAdjudication>[],
-      );
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ClaimResponseAddItem.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'ClaimResponse.addItem';
     return ClaimResponseAddItem(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -4712,27 +2058,21 @@ class ClaimResponseAddItem extends BackboneElement {
         json,
         'itemSequence',
         FhirPositiveInt.fromJson,
-        '$objectPath.itemSequence',
       ),
       detailSequence: JsonParser.parsePrimitiveList<FhirPositiveInt>(
         json,
         'detailSequence',
         FhirPositiveInt.fromJson,
-        '$objectPath.detailSequence',
       ),
       subdetailSequence: JsonParser.parsePrimitiveList<FhirPositiveInt>(
         json,
         'subdetailSequence',
         FhirPositiveInt.fromJson,
-        '$objectPath.subdetailSequence',
       ),
       provider: (json['provider'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.provider',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -4740,25 +2080,18 @@ class ClaimResponseAddItem extends BackboneElement {
         json,
         'productOrService',
         CodeableConcept.fromJson,
-        '$objectPath.productOrService',
       )!,
       modifier: (json['modifier'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifier',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       programCode: (json['programCode'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.programCode',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -4768,7 +2101,6 @@ class ClaimResponseAddItem extends BackboneElement {
           'servicedDate': FhirDate.fromJson,
           'servicedPeriod': Period.fromJson,
         },
-        objectPath,
       ),
       locationX: JsonParser.parsePolymorphic<LocationXClaimResponseAddItem>(
         json,
@@ -4777,45 +2109,36 @@ class ClaimResponseAddItem extends BackboneElement {
           'locationAddress': Address.fromJson,
           'locationReference': Reference.fromJson,
         },
-        objectPath,
       ),
       quantity: JsonParser.parseObject<Quantity>(
         json,
         'quantity',
         Quantity.fromJson,
-        '$objectPath.quantity',
       ),
       unitPrice: JsonParser.parseObject<Money>(
         json,
         'unitPrice',
         Money.fromJson,
-        '$objectPath.unitPrice',
       ),
       factor: JsonParser.parsePrimitive<FhirDecimal>(
         json,
         'factor',
         FhirDecimal.fromJson,
-        '$objectPath.factor',
       ),
       net: JsonParser.parseObject<Money>(
         json,
         'net',
         Money.fromJson,
-        '$objectPath.net',
       ),
       bodySite: JsonParser.parseObject<CodeableConcept>(
         json,
         'bodySite',
         CodeableConcept.fromJson,
-        '$objectPath.bodySite',
       ),
       subSite: (json['subSite'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.subSite',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -4823,25 +2146,18 @@ class ClaimResponseAddItem extends BackboneElement {
         json,
         'noteNumber',
         FhirPositiveInt.fromJson,
-        '$objectPath.noteNumber',
       ),
       adjudication: (json['adjudication'] as List<dynamic>)
           .map<ClaimResponseAdjudication>(
             (v) => ClaimResponseAdjudication.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.adjudication',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       detail: (json['detail'] as List<dynamic>?)
           ?.map<ClaimResponseDetail>(
             (v) => ClaimResponseDetail.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.detail',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -5147,959 +2463,20 @@ class ClaimResponseAddItem extends BackboneElement {
     return json;
   }
 
-  /// Lists the JSON keys for the object.
   @override
-  List<String> listChildrenNames() {
-    return [
-      'id',
-      'extension',
-      'modifierExtension',
-      'itemSequence',
-      'detailSequence',
-      'subdetailSequence',
-      'provider',
-      'productOrService',
-      'modifier',
-      'programCode',
-      'servicedX',
-      'locationX',
-      'quantity',
-      'unitPrice',
-      'factor',
-      'net',
-      'bodySite',
-      'subSite',
-      'noteNumber',
-      'adjudication',
-      'detail',
-    ];
-  }
+  ClaimResponseAddItem clone() => copyWith();
 
-  /// Retrieves all matching child fields by name.
-  ///Optionally validates the name.
+  /// Copy function for [ClaimResponseAddItem]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<FhirBase> getChildrenByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    final fields = <FhirBase>[];
-    switch (fieldName) {
-      case 'id':
-        if (id != null) {
-          fields.add(id!);
-        }
-      case 'extension':
-        if (extension_ != null) {
-          fields.addAll(extension_!);
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          fields.addAll(modifierExtension!);
-        }
-      case 'itemSequence':
-        if (itemSequence != null) {
-          fields.addAll(itemSequence!);
-        }
-      case 'detailSequence':
-        if (detailSequence != null) {
-          fields.addAll(detailSequence!);
-        }
-      case 'subdetailSequence':
-        if (subdetailSequence != null) {
-          fields.addAll(subdetailSequence!);
-        }
-      case 'provider':
-        if (provider != null) {
-          fields.addAll(provider!);
-        }
-      case 'productOrService':
-        fields.add(productOrService);
-      case 'modifier':
-        if (modifier != null) {
-          fields.addAll(modifier!);
-        }
-      case 'programCode':
-        if (programCode != null) {
-          fields.addAll(programCode!);
-        }
-      case 'serviced':
-        fields.add(servicedX!);
-      case 'servicedX':
-        fields.add(servicedX!);
-      case 'servicedDate':
-        if (servicedX is FhirDate) {
-          fields.add(servicedX!);
-        }
-      case 'servicedPeriod':
-        if (servicedX is Period) {
-          fields.add(servicedX!);
-        }
-      case 'location':
-        fields.add(locationX!);
-      case 'locationX':
-        fields.add(locationX!);
-      case 'locationCodeableConcept':
-        if (locationX is CodeableConcept) {
-          fields.add(locationX!);
-        }
-      case 'locationAddress':
-        if (locationX is Address) {
-          fields.add(locationX!);
-        }
-      case 'locationReference':
-        if (locationX is Reference) {
-          fields.add(locationX!);
-        }
-      case 'quantity':
-        if (quantity != null) {
-          fields.add(quantity!);
-        }
-      case 'unitPrice':
-        if (unitPrice != null) {
-          fields.add(unitPrice!);
-        }
-      case 'factor':
-        if (factor != null) {
-          fields.add(factor!);
-        }
-      case 'net':
-        if (net != null) {
-          fields.add(net!);
-        }
-      case 'bodySite':
-        if (bodySite != null) {
-          fields.add(bodySite!);
-        }
-      case 'subSite':
-        if (subSite != null) {
-          fields.addAll(subSite!);
-        }
-      case 'noteNumber':
-        if (noteNumber != null) {
-          fields.addAll(noteNumber!);
-        }
-      case 'adjudication':
-        fields.addAll(adjudication);
-      case 'detail':
-        if (detail != null) {
-          fields.addAll(detail!);
-        }
-      default:
-        if (checkValid) {
-          throw ArgumentError('Invalid name: $fieldName');
-        }
-    }
-    return fields;
-  }
-
-  /// Retrieves a single field value by its name.
-  @override
-  FhirBase? getChildByName(String name) {
-    final values = getChildrenByName(name);
-    if (values.length > 1) {
-      throw StateError('Too many values for $name found');
-    }
-    return values.isNotEmpty ? values.first : null;
-  }
-
-  @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
-
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'itemSequence':
-        {
-          if (child is List<FhirPositiveInt>) {
-            // Add all elements from passed list
-            final newList = [...?itemSequence, ...child];
-            return copyWith(itemSequence: newList);
-          } else if (child is FhirPositiveInt) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?itemSequence,
-              child,
-            ];
-            return copyWith(itemSequence: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'detailSequence':
-        {
-          if (child is List<FhirPositiveInt>) {
-            // Add all elements from passed list
-            final newList = [...?detailSequence, ...child];
-            return copyWith(detailSequence: newList);
-          } else if (child is FhirPositiveInt) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?detailSequence,
-              child,
-            ];
-            return copyWith(detailSequence: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'subdetailSequence':
-        {
-          if (child is List<FhirPositiveInt>) {
-            // Add all elements from passed list
-            final newList = [...?subdetailSequence, ...child];
-            return copyWith(subdetailSequence: newList);
-          } else if (child is FhirPositiveInt) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?subdetailSequence,
-              child,
-            ];
-            return copyWith(subdetailSequence: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'provider':
-        {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?provider, ...child];
-            return copyWith(provider: newList);
-          } else if (child is Reference) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?provider,
-              child,
-            ];
-            return copyWith(provider: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'productOrService':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(productOrService: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifier':
-        {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?modifier, ...child];
-            return copyWith(modifier: newList);
-          } else if (child is CodeableConcept) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifier,
-              child,
-            ];
-            return copyWith(modifier: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'programCode':
-        {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?programCode, ...child];
-            return copyWith(programCode: newList);
-          } else if (child is CodeableConcept) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?programCode,
-              child,
-            ];
-            return copyWith(programCode: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'serviced':
-      case 'servicedX':
-        {
-          if (child is ServicedXClaimResponseAddItem) {
-            return copyWith(servicedX: child);
-          } else {
-            if (child is FhirDate) {
-              return copyWith(servicedX: child);
-            }
-            if (child is Period) {
-              return copyWith(servicedX: child);
-            }
-          }
-          throw Exception('Invalid child type for $childName');
-        }
-      case 'servicedFhirDate':
-        {
-          if (child is FhirDate) {
-            return copyWith(servicedX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'servicedPeriod':
-        {
-          if (child is Period) {
-            return copyWith(servicedX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'location':
-      case 'locationX':
-        {
-          if (child is LocationXClaimResponseAddItem) {
-            return copyWith(locationX: child);
-          } else {
-            if (child is CodeableConcept) {
-              return copyWith(locationX: child);
-            }
-            if (child is Address) {
-              return copyWith(locationX: child);
-            }
-            if (child is Reference) {
-              return copyWith(locationX: child);
-            }
-          }
-          throw Exception('Invalid child type for $childName');
-        }
-      case 'locationCodeableConcept':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(locationX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'locationAddress':
-        {
-          if (child is Address) {
-            return copyWith(locationX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'locationReference':
-        {
-          if (child is Reference) {
-            return copyWith(locationX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'quantity':
-        {
-          if (child is Quantity) {
-            return copyWith(quantity: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'unitPrice':
-        {
-          if (child is Money) {
-            return copyWith(unitPrice: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'factor':
-        {
-          if (child is FhirDecimal) {
-            return copyWith(factor: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'net':
-        {
-          if (child is Money) {
-            return copyWith(net: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'bodySite':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(bodySite: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'subSite':
-        {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?subSite, ...child];
-            return copyWith(subSite: newList);
-          } else if (child is CodeableConcept) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?subSite,
-              child,
-            ];
-            return copyWith(subSite: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'noteNumber':
-        {
-          if (child is List<FhirPositiveInt>) {
-            // Add all elements from passed list
-            final newList = [...?noteNumber, ...child];
-            return copyWith(noteNumber: newList);
-          } else if (child is FhirPositiveInt) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?noteNumber,
-              child,
-            ];
-            return copyWith(noteNumber: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'adjudication':
-        {
-          if (child is List<ClaimResponseAdjudication>) {
-            // Add all elements from passed list
-            final newList = [...adjudication, ...child];
-            return copyWith(adjudication: newList);
-          } else if (child is ClaimResponseAdjudication) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...adjudication,
-              child,
-            ];
-            return copyWith(adjudication: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'detail':
-        {
-          if (child is List<ClaimResponseDetail>) {
-            // Add all elements from passed list
-            final newList = [...?detail, ...child];
-            return copyWith(detail: newList);
-          } else if (child is ClaimResponseDetail) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?detail,
-              child,
-            ];
-            return copyWith(detail: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
-  @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'itemSequence':
-        return ['FhirPositiveInt'];
-      case 'detailSequence':
-        return ['FhirPositiveInt'];
-      case 'subdetailSequence':
-        return ['FhirPositiveInt'];
-      case 'provider':
-        return ['Reference'];
-      case 'productOrService':
-        return ['CodeableConcept'];
-      case 'modifier':
-        return ['CodeableConcept'];
-      case 'programCode':
-        return ['CodeableConcept'];
-      case 'serviced':
-      case 'servicedX':
-        return [
-          'FhirDate',
-          'Period',
-        ];
-      case 'servicedDate':
-        return ['FhirDate'];
-      case 'servicedPeriod':
-        return ['Period'];
-      case 'location':
-      case 'locationX':
-        return [
-          'CodeableConcept',
-          'Address',
-          'Reference',
-        ];
-      case 'locationCodeableConcept':
-        return ['CodeableConcept'];
-      case 'locationAddress':
-        return ['Address'];
-      case 'locationReference':
-        return ['Reference'];
-      case 'quantity':
-        return ['Quantity'];
-      case 'unitPrice':
-        return ['Money'];
-      case 'factor':
-        return ['FhirDecimal'];
-      case 'net':
-        return ['Money'];
-      case 'bodySite':
-        return ['CodeableConcept'];
-      case 'subSite':
-        return ['CodeableConcept'];
-      case 'noteNumber':
-        return ['FhirPositiveInt'];
-      case 'adjudication':
-        return ['ClaimResponseAdjudication'];
-      case 'detail':
-        return ['ClaimResponseDetail'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [ClaimResponseAddItem]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  ClaimResponseAddItem createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
-          );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'itemSequence':
-        {
-          return copyWith(
-            itemSequence: <FhirPositiveInt>[],
-          );
-        }
-      case 'detailSequence':
-        {
-          return copyWith(
-            detailSequence: <FhirPositiveInt>[],
-          );
-        }
-      case 'subdetailSequence':
-        {
-          return copyWith(
-            subdetailSequence: <FhirPositiveInt>[],
-          );
-        }
-      case 'provider':
-        {
-          return copyWith(
-            provider: <Reference>[],
-          );
-        }
-      case 'productOrService':
-        {
-          return copyWith(
-            productOrService: CodeableConcept.empty(),
-          );
-        }
-      case 'modifier':
-        {
-          return copyWith(
-            modifier: <CodeableConcept>[],
-          );
-        }
-      case 'programCode':
-        {
-          return copyWith(
-            programCode: <CodeableConcept>[],
-          );
-        }
-      case 'serviced':
-      case 'servicedX':
-      case 'servicedDate':
-        {
-          return copyWith(
-            servicedX: FhirDate.empty(),
-          );
-        }
-      case 'servicedPeriod':
-        {
-          return copyWith(
-            servicedX: Period.empty(),
-          );
-        }
-      case 'location':
-      case 'locationX':
-      case 'locationCodeableConcept':
-        {
-          return copyWith(
-            locationX: CodeableConcept.empty(),
-          );
-        }
-      case 'locationAddress':
-        {
-          return copyWith(
-            locationX: Address.empty(),
-          );
-        }
-      case 'locationReference':
-        {
-          return copyWith(
-            locationX: Reference.empty(),
-          );
-        }
-      case 'quantity':
-        {
-          return copyWith(
-            quantity: Quantity.empty(),
-          );
-        }
-      case 'unitPrice':
-        {
-          return copyWith(
-            unitPrice: Money.empty(),
-          );
-        }
-      case 'factor':
-        {
-          return copyWith(
-            factor: FhirDecimal.empty(),
-          );
-        }
-      case 'net':
-        {
-          return copyWith(
-            net: Money.empty(),
-          );
-        }
-      case 'bodySite':
-        {
-          return copyWith(
-            bodySite: CodeableConcept.empty(),
-          );
-        }
-      case 'subSite':
-        {
-          return copyWith(
-            subSite: <CodeableConcept>[],
-          );
-        }
-      case 'noteNumber':
-        {
-          return copyWith(
-            noteNumber: <FhirPositiveInt>[],
-          );
-        }
-      case 'adjudication':
-        {
-          return copyWith(
-            adjudication: <ClaimResponseAdjudication>[],
-          );
-        }
-      case 'detail':
-        {
-          return copyWith(
-            detail: <ClaimResponseDetail>[],
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  ClaimResponseAddItem clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool itemSequence = false,
-    bool detailSequence = false,
-    bool subdetailSequence = false,
-    bool provider = false,
-    bool modifier = false,
-    bool programCode = false,
-    bool serviced = false,
-    bool location = false,
-    bool quantity = false,
-    bool unitPrice = false,
-    bool factor = false,
-    bool net = false,
-    bool bodySite = false,
-    bool subSite = false,
-    bool noteNumber = false,
-    bool detail = false,
-  }) {
-    return ClaimResponseAddItem(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      itemSequence: itemSequence ? null : this.itemSequence,
-      detailSequence: detailSequence ? null : this.detailSequence,
-      subdetailSequence: subdetailSequence ? null : this.subdetailSequence,
-      provider: provider ? null : this.provider,
-      productOrService: productOrService,
-      modifier: modifier ? null : this.modifier,
-      programCode: programCode ? null : this.programCode,
-      servicedX: serviced ? null : servicedX,
-      locationX: location ? null : locationX,
-      quantity: quantity ? null : this.quantity,
-      unitPrice: unitPrice ? null : this.unitPrice,
-      factor: factor ? null : this.factor,
-      net: net ? null : this.net,
-      bodySite: bodySite ? null : this.bodySite,
-      subSite: subSite ? null : this.subSite,
-      noteNumber: noteNumber ? null : this.noteNumber,
-      adjudication: adjudication,
-      detail: detail ? null : this.detail,
-    );
-  }
-
-  @override
-  ClaimResponseAddItem clone() => throw UnimplementedError();
-  @override
-  ClaimResponseAddItem copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    List<FhirPositiveInt>? itemSequence,
-    List<FhirPositiveInt>? detailSequence,
-    List<FhirPositiveInt>? subdetailSequence,
-    List<Reference>? provider,
-    CodeableConcept? productOrService,
-    List<CodeableConcept>? modifier,
-    List<CodeableConcept>? programCode,
-    ServicedXClaimResponseAddItem? servicedX,
-    LocationXClaimResponseAddItem? locationX,
-    Quantity? quantity,
-    Money? unitPrice,
-    FhirDecimal? factor,
-    Money? net,
-    CodeableConcept? bodySite,
-    List<CodeableConcept>? subSite,
-    List<FhirPositiveInt>? noteNumber,
-    List<ClaimResponseAdjudication>? adjudication,
-    List<ClaimResponseDetail>? detail,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return ClaimResponseAddItem(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      itemSequence: itemSequence
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.itemSequence',
-                ),
-              )
-              .toList() ??
-          this.itemSequence,
-      detailSequence: detailSequence
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.detailSequence',
-                ),
-              )
-              .toList() ??
-          this.detailSequence,
-      subdetailSequence: subdetailSequence
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.subdetailSequence',
-                ),
-              )
-              .toList() ??
-          this.subdetailSequence,
-      provider: provider
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.provider',
-                ),
-              )
-              .toList() ??
-          this.provider,
-      productOrService: productOrService?.copyWith(
-            objectPath: '$newObjectPath.productOrService',
-          ) ??
-          this.productOrService,
-      modifier: modifier
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifier',
-                ),
-              )
-              .toList() ??
-          this.modifier,
-      programCode: programCode
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.programCode',
-                ),
-              )
-              .toList() ??
-          this.programCode,
-      servicedX: servicedX?.copyWith(
-            objectPath: '$newObjectPath.servicedX',
-          ) as ServicedXClaimResponseAddItem? ??
-          this.servicedX,
-      locationX: locationX?.copyWith(
-            objectPath: '$newObjectPath.locationX',
-          ) as LocationXClaimResponseAddItem? ??
-          this.locationX,
-      quantity: quantity?.copyWith(
-            objectPath: '$newObjectPath.quantity',
-          ) ??
-          this.quantity,
-      unitPrice: unitPrice?.copyWith(
-            objectPath: '$newObjectPath.unitPrice',
-          ) ??
-          this.unitPrice,
-      factor: factor?.copyWith(
-            objectPath: '$newObjectPath.factor',
-          ) ??
-          this.factor,
-      net: net?.copyWith(
-            objectPath: '$newObjectPath.net',
-          ) ??
-          this.net,
-      bodySite: bodySite?.copyWith(
-            objectPath: '$newObjectPath.bodySite',
-          ) ??
-          this.bodySite,
-      subSite: subSite
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.subSite',
-                ),
-              )
-              .toList() ??
-          this.subSite,
-      noteNumber: noteNumber
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.noteNumber',
-                ),
-              )
-              .toList() ??
-          this.noteNumber,
-      adjudication: adjudication
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.adjudication',
-                ),
-              )
-              .toList() ??
-          this.adjudication,
-      detail: detail
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.detail',
-                ),
-              )
-              .toList() ??
-          this.detail,
-    );
-  }
+  $ClaimResponseAddItemCopyWith<ClaimResponseAddItem> get copyWith =>
+      _$ClaimResponseAddItemCopyWithImpl<ClaimResponseAddItem>(
+        this,
+        (value) => value,
+      );
 
   /// Performs a deep comparison between two instances.
   @override
@@ -6259,47 +2636,29 @@ class ClaimResponseDetail1 extends BackboneElement {
     required this.adjudication,
     this.subDetail,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'ClaimResponse.addItem.detail',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ClaimResponseDetail1.empty() => ClaimResponseDetail1(
-        productOrService: CodeableConcept.empty(),
-        adjudication: <ClaimResponseAdjudication>[],
-      );
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ClaimResponseDetail1.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'ClaimResponse.addItem.detail';
     return ClaimResponseDetail1(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -6307,15 +2666,11 @@ class ClaimResponseDetail1 extends BackboneElement {
         json,
         'productOrService',
         CodeableConcept.fromJson,
-        '$objectPath.productOrService',
       )!,
       modifier: (json['modifier'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifier',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -6323,49 +2678,38 @@ class ClaimResponseDetail1 extends BackboneElement {
         json,
         'quantity',
         Quantity.fromJson,
-        '$objectPath.quantity',
       ),
       unitPrice: JsonParser.parseObject<Money>(
         json,
         'unitPrice',
         Money.fromJson,
-        '$objectPath.unitPrice',
       ),
       factor: JsonParser.parsePrimitive<FhirDecimal>(
         json,
         'factor',
         FhirDecimal.fromJson,
-        '$objectPath.factor',
       ),
       net: JsonParser.parseObject<Money>(
         json,
         'net',
         Money.fromJson,
-        '$objectPath.net',
       ),
       noteNumber: JsonParser.parsePrimitiveList<FhirPositiveInt>(
         json,
         'noteNumber',
         FhirPositiveInt.fromJson,
-        '$objectPath.noteNumber',
       ),
       adjudication: (json['adjudication'] as List<dynamic>)
           .map<ClaimResponseAdjudication>(
             (v) => ClaimResponseAdjudication.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.adjudication',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       subDetail: (json['subDetail'] as List<dynamic>?)
           ?.map<ClaimResponseSubDetail>(
             (v) => ClaimResponseSubDetail.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.subDetail',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -6570,511 +2914,20 @@ class ClaimResponseDetail1 extends BackboneElement {
     return json;
   }
 
-  /// Lists the JSON keys for the object.
   @override
-  List<String> listChildrenNames() {
-    return [
-      'id',
-      'extension',
-      'modifierExtension',
-      'productOrService',
-      'modifier',
-      'quantity',
-      'unitPrice',
-      'factor',
-      'net',
-      'noteNumber',
-      'adjudication',
-      'subDetail',
-    ];
-  }
+  ClaimResponseDetail1 clone() => copyWith();
 
-  /// Retrieves all matching child fields by name.
-  ///Optionally validates the name.
+  /// Copy function for [ClaimResponseDetail1]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<FhirBase> getChildrenByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    final fields = <FhirBase>[];
-    switch (fieldName) {
-      case 'id':
-        if (id != null) {
-          fields.add(id!);
-        }
-      case 'extension':
-        if (extension_ != null) {
-          fields.addAll(extension_!);
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          fields.addAll(modifierExtension!);
-        }
-      case 'productOrService':
-        fields.add(productOrService);
-      case 'modifier':
-        if (modifier != null) {
-          fields.addAll(modifier!);
-        }
-      case 'quantity':
-        if (quantity != null) {
-          fields.add(quantity!);
-        }
-      case 'unitPrice':
-        if (unitPrice != null) {
-          fields.add(unitPrice!);
-        }
-      case 'factor':
-        if (factor != null) {
-          fields.add(factor!);
-        }
-      case 'net':
-        if (net != null) {
-          fields.add(net!);
-        }
-      case 'noteNumber':
-        if (noteNumber != null) {
-          fields.addAll(noteNumber!);
-        }
-      case 'adjudication':
-        fields.addAll(adjudication);
-      case 'subDetail':
-        if (subDetail != null) {
-          fields.addAll(subDetail!);
-        }
-      default:
-        if (checkValid) {
-          throw ArgumentError('Invalid name: $fieldName');
-        }
-    }
-    return fields;
-  }
-
-  /// Retrieves a single field value by its name.
-  @override
-  FhirBase? getChildByName(String name) {
-    final values = getChildrenByName(name);
-    if (values.length > 1) {
-      throw StateError('Too many values for $name found');
-    }
-    return values.isNotEmpty ? values.first : null;
-  }
-
-  @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
-
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'productOrService':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(productOrService: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifier':
-        {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?modifier, ...child];
-            return copyWith(modifier: newList);
-          } else if (child is CodeableConcept) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifier,
-              child,
-            ];
-            return copyWith(modifier: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'quantity':
-        {
-          if (child is Quantity) {
-            return copyWith(quantity: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'unitPrice':
-        {
-          if (child is Money) {
-            return copyWith(unitPrice: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'factor':
-        {
-          if (child is FhirDecimal) {
-            return copyWith(factor: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'net':
-        {
-          if (child is Money) {
-            return copyWith(net: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'noteNumber':
-        {
-          if (child is List<FhirPositiveInt>) {
-            // Add all elements from passed list
-            final newList = [...?noteNumber, ...child];
-            return copyWith(noteNumber: newList);
-          } else if (child is FhirPositiveInt) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?noteNumber,
-              child,
-            ];
-            return copyWith(noteNumber: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'adjudication':
-        {
-          if (child is List<ClaimResponseAdjudication>) {
-            // Add all elements from passed list
-            final newList = [...adjudication, ...child];
-            return copyWith(adjudication: newList);
-          } else if (child is ClaimResponseAdjudication) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...adjudication,
-              child,
-            ];
-            return copyWith(adjudication: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'subDetail':
-        {
-          if (child is List<ClaimResponseSubDetail>) {
-            // Add all elements from passed list
-            final newList = [...?subDetail, ...child];
-            return copyWith(subDetail: newList);
-          } else if (child is ClaimResponseSubDetail) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?subDetail,
-              child,
-            ];
-            return copyWith(subDetail: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
-  @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'productOrService':
-        return ['CodeableConcept'];
-      case 'modifier':
-        return ['CodeableConcept'];
-      case 'quantity':
-        return ['Quantity'];
-      case 'unitPrice':
-        return ['Money'];
-      case 'factor':
-        return ['FhirDecimal'];
-      case 'net':
-        return ['Money'];
-      case 'noteNumber':
-        return ['FhirPositiveInt'];
-      case 'adjudication':
-        return ['ClaimResponseAdjudication'];
-      case 'subDetail':
-        return ['ClaimResponseSubDetail'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [ClaimResponseDetail1]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  ClaimResponseDetail1 createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
-          );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'productOrService':
-        {
-          return copyWith(
-            productOrService: CodeableConcept.empty(),
-          );
-        }
-      case 'modifier':
-        {
-          return copyWith(
-            modifier: <CodeableConcept>[],
-          );
-        }
-      case 'quantity':
-        {
-          return copyWith(
-            quantity: Quantity.empty(),
-          );
-        }
-      case 'unitPrice':
-        {
-          return copyWith(
-            unitPrice: Money.empty(),
-          );
-        }
-      case 'factor':
-        {
-          return copyWith(
-            factor: FhirDecimal.empty(),
-          );
-        }
-      case 'net':
-        {
-          return copyWith(
-            net: Money.empty(),
-          );
-        }
-      case 'noteNumber':
-        {
-          return copyWith(
-            noteNumber: <FhirPositiveInt>[],
-          );
-        }
-      case 'adjudication':
-        {
-          return copyWith(
-            adjudication: <ClaimResponseAdjudication>[],
-          );
-        }
-      case 'subDetail':
-        {
-          return copyWith(
-            subDetail: <ClaimResponseSubDetail>[],
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  ClaimResponseDetail1 clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool modifier = false,
-    bool quantity = false,
-    bool unitPrice = false,
-    bool factor = false,
-    bool net = false,
-    bool noteNumber = false,
-    bool subDetail = false,
-  }) {
-    return ClaimResponseDetail1(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      productOrService: productOrService,
-      modifier: modifier ? null : this.modifier,
-      quantity: quantity ? null : this.quantity,
-      unitPrice: unitPrice ? null : this.unitPrice,
-      factor: factor ? null : this.factor,
-      net: net ? null : this.net,
-      noteNumber: noteNumber ? null : this.noteNumber,
-      adjudication: adjudication,
-      subDetail: subDetail ? null : this.subDetail,
-    );
-  }
-
-  @override
-  ClaimResponseDetail1 clone() => throw UnimplementedError();
-  @override
-  ClaimResponseDetail1 copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    CodeableConcept? productOrService,
-    List<CodeableConcept>? modifier,
-    Quantity? quantity,
-    Money? unitPrice,
-    FhirDecimal? factor,
-    Money? net,
-    List<FhirPositiveInt>? noteNumber,
-    List<ClaimResponseAdjudication>? adjudication,
-    List<ClaimResponseSubDetail>? subDetail,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return ClaimResponseDetail1(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      productOrService: productOrService?.copyWith(
-            objectPath: '$newObjectPath.productOrService',
-          ) ??
-          this.productOrService,
-      modifier: modifier
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifier',
-                ),
-              )
-              .toList() ??
-          this.modifier,
-      quantity: quantity?.copyWith(
-            objectPath: '$newObjectPath.quantity',
-          ) ??
-          this.quantity,
-      unitPrice: unitPrice?.copyWith(
-            objectPath: '$newObjectPath.unitPrice',
-          ) ??
-          this.unitPrice,
-      factor: factor?.copyWith(
-            objectPath: '$newObjectPath.factor',
-          ) ??
-          this.factor,
-      net: net?.copyWith(
-            objectPath: '$newObjectPath.net',
-          ) ??
-          this.net,
-      noteNumber: noteNumber
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.noteNumber',
-                ),
-              )
-              .toList() ??
-          this.noteNumber,
-      adjudication: adjudication
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.adjudication',
-                ),
-              )
-              .toList() ??
-          this.adjudication,
-      subDetail: subDetail
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.subDetail',
-                ),
-              )
-              .toList() ??
-          this.subDetail,
-    );
-  }
+  $ClaimResponseDetail1CopyWith<ClaimResponseDetail1> get copyWith =>
+      _$ClaimResponseDetail1CopyWithImpl<ClaimResponseDetail1>(
+        this,
+        (value) => value,
+      );
 
   /// Performs a deep comparison between two instances.
   @override
@@ -7179,47 +3032,29 @@ class ClaimResponseSubDetail1 extends BackboneElement {
     this.noteNumber,
     required this.adjudication,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'ClaimResponse.addItem.detail.subDetail',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ClaimResponseSubDetail1.empty() => ClaimResponseSubDetail1(
-        productOrService: CodeableConcept.empty(),
-        adjudication: <ClaimResponseAdjudication>[],
-      );
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ClaimResponseSubDetail1.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'ClaimResponse.addItem.detail.subDetail';
     return ClaimResponseSubDetail1(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -7227,15 +3062,11 @@ class ClaimResponseSubDetail1 extends BackboneElement {
         json,
         'productOrService',
         CodeableConcept.fromJson,
-        '$objectPath.productOrService',
       )!,
       modifier: (json['modifier'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifier',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -7243,39 +3074,31 @@ class ClaimResponseSubDetail1 extends BackboneElement {
         json,
         'quantity',
         Quantity.fromJson,
-        '$objectPath.quantity',
       ),
       unitPrice: JsonParser.parseObject<Money>(
         json,
         'unitPrice',
         Money.fromJson,
-        '$objectPath.unitPrice',
       ),
       factor: JsonParser.parsePrimitive<FhirDecimal>(
         json,
         'factor',
         FhirDecimal.fromJson,
-        '$objectPath.factor',
       ),
       net: JsonParser.parseObject<Money>(
         json,
         'net',
         Money.fromJson,
-        '$objectPath.net',
       ),
       noteNumber: JsonParser.parsePrimitiveList<FhirPositiveInt>(
         json,
         'noteNumber',
         FhirPositiveInt.fromJson,
-        '$objectPath.noteNumber',
       ),
       adjudication: (json['adjudication'] as List<dynamic>)
           .map<ClaimResponseAdjudication>(
             (v) => ClaimResponseAdjudication.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.adjudication',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -7472,470 +3295,20 @@ class ClaimResponseSubDetail1 extends BackboneElement {
     return json;
   }
 
-  /// Lists the JSON keys for the object.
   @override
-  List<String> listChildrenNames() {
-    return [
-      'id',
-      'extension',
-      'modifierExtension',
-      'productOrService',
-      'modifier',
-      'quantity',
-      'unitPrice',
-      'factor',
-      'net',
-      'noteNumber',
-      'adjudication',
-    ];
-  }
+  ClaimResponseSubDetail1 clone() => copyWith();
 
-  /// Retrieves all matching child fields by name.
-  ///Optionally validates the name.
+  /// Copy function for [ClaimResponseSubDetail1]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<FhirBase> getChildrenByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    final fields = <FhirBase>[];
-    switch (fieldName) {
-      case 'id':
-        if (id != null) {
-          fields.add(id!);
-        }
-      case 'extension':
-        if (extension_ != null) {
-          fields.addAll(extension_!);
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          fields.addAll(modifierExtension!);
-        }
-      case 'productOrService':
-        fields.add(productOrService);
-      case 'modifier':
-        if (modifier != null) {
-          fields.addAll(modifier!);
-        }
-      case 'quantity':
-        if (quantity != null) {
-          fields.add(quantity!);
-        }
-      case 'unitPrice':
-        if (unitPrice != null) {
-          fields.add(unitPrice!);
-        }
-      case 'factor':
-        if (factor != null) {
-          fields.add(factor!);
-        }
-      case 'net':
-        if (net != null) {
-          fields.add(net!);
-        }
-      case 'noteNumber':
-        if (noteNumber != null) {
-          fields.addAll(noteNumber!);
-        }
-      case 'adjudication':
-        fields.addAll(adjudication);
-      default:
-        if (checkValid) {
-          throw ArgumentError('Invalid name: $fieldName');
-        }
-    }
-    return fields;
-  }
-
-  /// Retrieves a single field value by its name.
-  @override
-  FhirBase? getChildByName(String name) {
-    final values = getChildrenByName(name);
-    if (values.length > 1) {
-      throw StateError('Too many values for $name found');
-    }
-    return values.isNotEmpty ? values.first : null;
-  }
-
-  @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
-
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'productOrService':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(productOrService: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifier':
-        {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?modifier, ...child];
-            return copyWith(modifier: newList);
-          } else if (child is CodeableConcept) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifier,
-              child,
-            ];
-            return copyWith(modifier: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'quantity':
-        {
-          if (child is Quantity) {
-            return copyWith(quantity: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'unitPrice':
-        {
-          if (child is Money) {
-            return copyWith(unitPrice: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'factor':
-        {
-          if (child is FhirDecimal) {
-            return copyWith(factor: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'net':
-        {
-          if (child is Money) {
-            return copyWith(net: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'noteNumber':
-        {
-          if (child is List<FhirPositiveInt>) {
-            // Add all elements from passed list
-            final newList = [...?noteNumber, ...child];
-            return copyWith(noteNumber: newList);
-          } else if (child is FhirPositiveInt) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?noteNumber,
-              child,
-            ];
-            return copyWith(noteNumber: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'adjudication':
-        {
-          if (child is List<ClaimResponseAdjudication>) {
-            // Add all elements from passed list
-            final newList = [...adjudication, ...child];
-            return copyWith(adjudication: newList);
-          } else if (child is ClaimResponseAdjudication) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...adjudication,
-              child,
-            ];
-            return copyWith(adjudication: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
-  @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'productOrService':
-        return ['CodeableConcept'];
-      case 'modifier':
-        return ['CodeableConcept'];
-      case 'quantity':
-        return ['Quantity'];
-      case 'unitPrice':
-        return ['Money'];
-      case 'factor':
-        return ['FhirDecimal'];
-      case 'net':
-        return ['Money'];
-      case 'noteNumber':
-        return ['FhirPositiveInt'];
-      case 'adjudication':
-        return ['ClaimResponseAdjudication'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [ClaimResponseSubDetail1]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  ClaimResponseSubDetail1 createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
-          );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'productOrService':
-        {
-          return copyWith(
-            productOrService: CodeableConcept.empty(),
-          );
-        }
-      case 'modifier':
-        {
-          return copyWith(
-            modifier: <CodeableConcept>[],
-          );
-        }
-      case 'quantity':
-        {
-          return copyWith(
-            quantity: Quantity.empty(),
-          );
-        }
-      case 'unitPrice':
-        {
-          return copyWith(
-            unitPrice: Money.empty(),
-          );
-        }
-      case 'factor':
-        {
-          return copyWith(
-            factor: FhirDecimal.empty(),
-          );
-        }
-      case 'net':
-        {
-          return copyWith(
-            net: Money.empty(),
-          );
-        }
-      case 'noteNumber':
-        {
-          return copyWith(
-            noteNumber: <FhirPositiveInt>[],
-          );
-        }
-      case 'adjudication':
-        {
-          return copyWith(
-            adjudication: <ClaimResponseAdjudication>[],
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  ClaimResponseSubDetail1 clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool modifier = false,
-    bool quantity = false,
-    bool unitPrice = false,
-    bool factor = false,
-    bool net = false,
-    bool noteNumber = false,
-  }) {
-    return ClaimResponseSubDetail1(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      productOrService: productOrService,
-      modifier: modifier ? null : this.modifier,
-      quantity: quantity ? null : this.quantity,
-      unitPrice: unitPrice ? null : this.unitPrice,
-      factor: factor ? null : this.factor,
-      net: net ? null : this.net,
-      noteNumber: noteNumber ? null : this.noteNumber,
-      adjudication: adjudication,
-    );
-  }
-
-  @override
-  ClaimResponseSubDetail1 clone() => throw UnimplementedError();
-  @override
-  ClaimResponseSubDetail1 copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    CodeableConcept? productOrService,
-    List<CodeableConcept>? modifier,
-    Quantity? quantity,
-    Money? unitPrice,
-    FhirDecimal? factor,
-    Money? net,
-    List<FhirPositiveInt>? noteNumber,
-    List<ClaimResponseAdjudication>? adjudication,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return ClaimResponseSubDetail1(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      productOrService: productOrService?.copyWith(
-            objectPath: '$newObjectPath.productOrService',
-          ) ??
-          this.productOrService,
-      modifier: modifier
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifier',
-                ),
-              )
-              .toList() ??
-          this.modifier,
-      quantity: quantity?.copyWith(
-            objectPath: '$newObjectPath.quantity',
-          ) ??
-          this.quantity,
-      unitPrice: unitPrice?.copyWith(
-            objectPath: '$newObjectPath.unitPrice',
-          ) ??
-          this.unitPrice,
-      factor: factor?.copyWith(
-            objectPath: '$newObjectPath.factor',
-          ) ??
-          this.factor,
-      net: net?.copyWith(
-            objectPath: '$newObjectPath.net',
-          ) ??
-          this.net,
-      noteNumber: noteNumber
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.noteNumber',
-                ),
-              )
-              .toList() ??
-          this.noteNumber,
-      adjudication: adjudication
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.adjudication',
-                ),
-              )
-              .toList() ??
-          this.adjudication,
-    );
-  }
+  $ClaimResponseSubDetail1CopyWith<ClaimResponseSubDetail1> get copyWith =>
+      _$ClaimResponseSubDetail1CopyWithImpl<ClaimResponseSubDetail1>(
+        this,
+        (value) => value,
+      );
 
   /// Performs a deep comparison between two instances.
   @override
@@ -8028,47 +3401,29 @@ class ClaimResponseTotal extends BackboneElement {
     required this.category,
     required this.amount,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'ClaimResponse.total',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ClaimResponseTotal.empty() => ClaimResponseTotal(
-        category: CodeableConcept.empty(),
-        amount: Money.empty(),
-      );
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ClaimResponseTotal.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'ClaimResponse.total';
     return ClaimResponseTotal(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -8076,13 +3431,11 @@ class ClaimResponseTotal extends BackboneElement {
         json,
         'category',
         CodeableConcept.fromJson,
-        '$objectPath.category',
       )!,
       amount: JsonParser.parseObject<Money>(
         json,
         'amount',
         Money.fromJson,
-        '$objectPath.amount',
       )!,
     );
   }
@@ -8223,263 +3576,20 @@ class ClaimResponseTotal extends BackboneElement {
     return json;
   }
 
-  /// Lists the JSON keys for the object.
   @override
-  List<String> listChildrenNames() {
-    return [
-      'id',
-      'extension',
-      'modifierExtension',
-      'category',
-      'amount',
-    ];
-  }
+  ClaimResponseTotal clone() => copyWith();
 
-  /// Retrieves all matching child fields by name.
-  ///Optionally validates the name.
+  /// Copy function for [ClaimResponseTotal]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<FhirBase> getChildrenByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    final fields = <FhirBase>[];
-    switch (fieldName) {
-      case 'id':
-        if (id != null) {
-          fields.add(id!);
-        }
-      case 'extension':
-        if (extension_ != null) {
-          fields.addAll(extension_!);
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          fields.addAll(modifierExtension!);
-        }
-      case 'category':
-        fields.add(category);
-      case 'amount':
-        fields.add(amount);
-      default:
-        if (checkValid) {
-          throw ArgumentError('Invalid name: $fieldName');
-        }
-    }
-    return fields;
-  }
-
-  /// Retrieves a single field value by its name.
-  @override
-  FhirBase? getChildByName(String name) {
-    final values = getChildrenByName(name);
-    if (values.length > 1) {
-      throw StateError('Too many values for $name found');
-    }
-    return values.isNotEmpty ? values.first : null;
-  }
-
-  @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
-
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'category':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(category: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'amount':
-        {
-          if (child is Money) {
-            return copyWith(amount: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
-  @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'category':
-        return ['CodeableConcept'];
-      case 'amount':
-        return ['Money'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [ClaimResponseTotal]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  ClaimResponseTotal createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
-          );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'category':
-        {
-          return copyWith(
-            category: CodeableConcept.empty(),
-          );
-        }
-      case 'amount':
-        {
-          return copyWith(
-            amount: Money.empty(),
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  ClaimResponseTotal clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-  }) {
-    return ClaimResponseTotal(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      category: category,
-      amount: amount,
-    );
-  }
-
-  @override
-  ClaimResponseTotal clone() => throw UnimplementedError();
-  @override
-  ClaimResponseTotal copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    CodeableConcept? category,
-    Money? amount,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return ClaimResponseTotal(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      category: category?.copyWith(
-            objectPath: '$newObjectPath.category',
-          ) ??
-          this.category,
-      amount: amount?.copyWith(
-            objectPath: '$newObjectPath.amount',
-          ) ??
-          this.amount,
-    );
-  }
+  $ClaimResponseTotalCopyWith<ClaimResponseTotal> get copyWith =>
+      _$ClaimResponseTotalCopyWithImpl<ClaimResponseTotal>(
+        this,
+        (value) => value,
+      );
 
   /// Performs a deep comparison between two instances.
   @override
@@ -8540,47 +3650,29 @@ class ClaimResponsePayment extends BackboneElement {
     required this.amount,
     this.identifier,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'ClaimResponse.payment',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ClaimResponsePayment.empty() => ClaimResponsePayment(
-        type: CodeableConcept.empty(),
-        amount: Money.empty(),
-      );
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ClaimResponsePayment.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'ClaimResponse.payment';
     return ClaimResponsePayment(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -8588,37 +3680,31 @@ class ClaimResponsePayment extends BackboneElement {
         json,
         'type',
         CodeableConcept.fromJson,
-        '$objectPath.type',
       )!,
       adjustment: JsonParser.parseObject<Money>(
         json,
         'adjustment',
         Money.fromJson,
-        '$objectPath.adjustment',
       ),
       adjustmentReason: JsonParser.parseObject<CodeableConcept>(
         json,
         'adjustmentReason',
         CodeableConcept.fromJson,
-        '$objectPath.adjustmentReason',
       ),
       date: JsonParser.parsePrimitive<FhirDate>(
         json,
         'date',
         FhirDate.fromJson,
-        '$objectPath.date',
       ),
       amount: JsonParser.parseObject<Money>(
         json,
         'amount',
         Money.fromJson,
-        '$objectPath.amount',
       )!,
       identifier: JsonParser.parseObject<Identifier>(
         json,
         'identifier',
         Identifier.fromJson,
-        '$objectPath.identifier',
       ),
     );
   }
@@ -8790,375 +3876,20 @@ class ClaimResponsePayment extends BackboneElement {
     return json;
   }
 
-  /// Lists the JSON keys for the object.
   @override
-  List<String> listChildrenNames() {
-    return [
-      'id',
-      'extension',
-      'modifierExtension',
-      'type',
-      'adjustment',
-      'adjustmentReason',
-      'date',
-      'amount',
-      'identifier',
-    ];
-  }
+  ClaimResponsePayment clone() => copyWith();
 
-  /// Retrieves all matching child fields by name.
-  ///Optionally validates the name.
+  /// Copy function for [ClaimResponsePayment]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<FhirBase> getChildrenByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    final fields = <FhirBase>[];
-    switch (fieldName) {
-      case 'id':
-        if (id != null) {
-          fields.add(id!);
-        }
-      case 'extension':
-        if (extension_ != null) {
-          fields.addAll(extension_!);
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          fields.addAll(modifierExtension!);
-        }
-      case 'type':
-        fields.add(type);
-      case 'adjustment':
-        if (adjustment != null) {
-          fields.add(adjustment!);
-        }
-      case 'adjustmentReason':
-        if (adjustmentReason != null) {
-          fields.add(adjustmentReason!);
-        }
-      case 'date':
-        if (date != null) {
-          fields.add(date!);
-        }
-      case 'amount':
-        fields.add(amount);
-      case 'identifier':
-        if (identifier != null) {
-          fields.add(identifier!);
-        }
-      default:
-        if (checkValid) {
-          throw ArgumentError('Invalid name: $fieldName');
-        }
-    }
-    return fields;
-  }
-
-  /// Retrieves a single field value by its name.
-  @override
-  FhirBase? getChildByName(String name) {
-    final values = getChildrenByName(name);
-    if (values.length > 1) {
-      throw StateError('Too many values for $name found');
-    }
-    return values.isNotEmpty ? values.first : null;
-  }
-
-  @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
-
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'type':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(type: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'adjustment':
-        {
-          if (child is Money) {
-            return copyWith(adjustment: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'adjustmentReason':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(adjustmentReason: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'date':
-        {
-          if (child is FhirDate) {
-            return copyWith(date: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'amount':
-        {
-          if (child is Money) {
-            return copyWith(amount: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'identifier':
-        {
-          if (child is Identifier) {
-            return copyWith(identifier: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
-  @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'type':
-        return ['CodeableConcept'];
-      case 'adjustment':
-        return ['Money'];
-      case 'adjustmentReason':
-        return ['CodeableConcept'];
-      case 'date':
-        return ['FhirDate'];
-      case 'amount':
-        return ['Money'];
-      case 'identifier':
-        return ['Identifier'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [ClaimResponsePayment]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  ClaimResponsePayment createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
-          );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'type':
-        {
-          return copyWith(
-            type: CodeableConcept.empty(),
-          );
-        }
-      case 'adjustment':
-        {
-          return copyWith(
-            adjustment: Money.empty(),
-          );
-        }
-      case 'adjustmentReason':
-        {
-          return copyWith(
-            adjustmentReason: CodeableConcept.empty(),
-          );
-        }
-      case 'date':
-        {
-          return copyWith(
-            date: FhirDate.empty(),
-          );
-        }
-      case 'amount':
-        {
-          return copyWith(
-            amount: Money.empty(),
-          );
-        }
-      case 'identifier':
-        {
-          return copyWith(
-            identifier: Identifier.empty(),
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  ClaimResponsePayment clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool adjustment = false,
-    bool adjustmentReason = false,
-    bool date = false,
-    bool identifier = false,
-  }) {
-    return ClaimResponsePayment(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      type: type,
-      adjustment: adjustment ? null : this.adjustment,
-      adjustmentReason: adjustmentReason ? null : this.adjustmentReason,
-      date: date ? null : this.date,
-      amount: amount,
-      identifier: identifier ? null : this.identifier,
-    );
-  }
-
-  @override
-  ClaimResponsePayment clone() => throw UnimplementedError();
-  @override
-  ClaimResponsePayment copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    CodeableConcept? type,
-    Money? adjustment,
-    CodeableConcept? adjustmentReason,
-    FhirDate? date,
-    Money? amount,
-    Identifier? identifier,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return ClaimResponsePayment(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      type: type?.copyWith(
-            objectPath: '$newObjectPath.type',
-          ) ??
-          this.type,
-      adjustment: adjustment?.copyWith(
-            objectPath: '$newObjectPath.adjustment',
-          ) ??
-          this.adjustment,
-      adjustmentReason: adjustmentReason?.copyWith(
-            objectPath: '$newObjectPath.adjustmentReason',
-          ) ??
-          this.adjustmentReason,
-      date: date?.copyWith(
-            objectPath: '$newObjectPath.date',
-          ) ??
-          this.date,
-      amount: amount?.copyWith(
-            objectPath: '$newObjectPath.amount',
-          ) ??
-          this.amount,
-      identifier: identifier?.copyWith(
-            objectPath: '$newObjectPath.identifier',
-          ) ??
-          this.identifier,
-    );
-  }
+  $ClaimResponsePaymentCopyWith<ClaimResponsePayment> get copyWith =>
+      _$ClaimResponsePaymentCopyWithImpl<ClaimResponsePayment>(
+        this,
+        (value) => value,
+      );
 
   /// Performs a deep comparison between two instances.
   @override
@@ -9242,46 +3973,29 @@ class ClaimResponseProcessNote extends BackboneElement {
     required this.text,
     this.language,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'ClaimResponse.processNote',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ClaimResponseProcessNote.empty() => ClaimResponseProcessNote(
-        text: FhirString.empty(),
-      );
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ClaimResponseProcessNote.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'ClaimResponse.processNote';
     return ClaimResponseProcessNote(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -9289,25 +4003,21 @@ class ClaimResponseProcessNote extends BackboneElement {
         json,
         'number',
         FhirPositiveInt.fromJson,
-        '$objectPath.number',
       ),
       type: JsonParser.parsePrimitive<NoteType>(
         json,
         'type',
         NoteType.fromJson,
-        '$objectPath.type',
       ),
       text: JsonParser.parsePrimitive<FhirString>(
         json,
         'text',
         FhirString.fromJson,
-        '$objectPath.text',
       )!,
       language: JsonParser.parseObject<CodeableConcept>(
         json,
         'language',
         CodeableConcept.fromJson,
-        '$objectPath.language',
       ),
     );
   }
@@ -9460,322 +4170,20 @@ class ClaimResponseProcessNote extends BackboneElement {
     return json;
   }
 
-  /// Lists the JSON keys for the object.
   @override
-  List<String> listChildrenNames() {
-    return [
-      'id',
-      'extension',
-      'modifierExtension',
-      'number',
-      'type',
-      'text',
-      'language',
-    ];
-  }
+  ClaimResponseProcessNote clone() => copyWith();
 
-  /// Retrieves all matching child fields by name.
-  ///Optionally validates the name.
+  /// Copy function for [ClaimResponseProcessNote]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<FhirBase> getChildrenByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    final fields = <FhirBase>[];
-    switch (fieldName) {
-      case 'id':
-        if (id != null) {
-          fields.add(id!);
-        }
-      case 'extension':
-        if (extension_ != null) {
-          fields.addAll(extension_!);
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          fields.addAll(modifierExtension!);
-        }
-      case 'number':
-        if (number != null) {
-          fields.add(number!);
-        }
-      case 'type':
-        if (type != null) {
-          fields.add(type!);
-        }
-      case 'text':
-        fields.add(text);
-      case 'language':
-        if (language != null) {
-          fields.add(language!);
-        }
-      default:
-        if (checkValid) {
-          throw ArgumentError('Invalid name: $fieldName');
-        }
-    }
-    return fields;
-  }
-
-  /// Retrieves a single field value by its name.
-  @override
-  FhirBase? getChildByName(String name) {
-    final values = getChildrenByName(name);
-    if (values.length > 1) {
-      throw StateError('Too many values for $name found');
-    }
-    return values.isNotEmpty ? values.first : null;
-  }
-
-  @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
-
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'number':
-        {
-          if (child is FhirPositiveInt) {
-            return copyWith(number: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'type':
-        {
-          if (child is NoteType) {
-            return copyWith(type: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'text':
-        {
-          if (child is FhirString) {
-            return copyWith(text: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'language':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(language: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
-  @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'number':
-        return ['FhirPositiveInt'];
-      case 'type':
-        return ['FhirCode'];
-      case 'text':
-        return ['FhirString'];
-      case 'language':
-        return ['CodeableConcept'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [ClaimResponseProcessNote]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  ClaimResponseProcessNote createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
-          );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'number':
-        {
-          return copyWith(
-            number: FhirPositiveInt.empty(),
-          );
-        }
-      case 'type':
-        {
-          return copyWith(
-            type: NoteType.empty(),
-          );
-        }
-      case 'text':
-        {
-          return copyWith(
-            text: FhirString.empty(),
-          );
-        }
-      case 'language':
-        {
-          return copyWith(
-            language: CodeableConcept.empty(),
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  ClaimResponseProcessNote clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool number = false,
-    bool type = false,
-    bool language = false,
-  }) {
-    return ClaimResponseProcessNote(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      number: number ? null : this.number,
-      type: type ? null : this.type,
-      text: text,
-      language: language ? null : this.language,
-    );
-  }
-
-  @override
-  ClaimResponseProcessNote clone() => throw UnimplementedError();
-  @override
-  ClaimResponseProcessNote copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirPositiveInt? number,
-    NoteType? type,
-    FhirString? text,
-    CodeableConcept? language,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return ClaimResponseProcessNote(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      number: number?.copyWith(
-            objectPath: '$newObjectPath.number',
-          ) ??
-          this.number,
-      type: type?.copyWith(
-            objectPath: '$newObjectPath.type',
-          ) ??
-          this.type,
-      text: text?.copyWith(
-            objectPath: '$newObjectPath.text',
-          ) ??
-          this.text,
-      language: language?.copyWith(
-            objectPath: '$newObjectPath.language',
-          ) ??
-          this.language,
-    );
-  }
+  $ClaimResponseProcessNoteCopyWith<ClaimResponseProcessNote> get copyWith =>
+      _$ClaimResponseProcessNoteCopyWithImpl<ClaimResponseProcessNote>(
+        this,
+        (value) => value,
+      );
 
   /// Performs a deep comparison between two instances.
   @override
@@ -9848,48 +4256,29 @@ class ClaimResponseInsurance extends BackboneElement {
     this.businessArrangement,
     this.claimResponse,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'ClaimResponse.insurance',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ClaimResponseInsurance.empty() => ClaimResponseInsurance(
-        sequence: FhirPositiveInt.empty(),
-        focal: FhirBoolean.empty(),
-        coverage: Reference.empty(),
-      );
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ClaimResponseInsurance.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'ClaimResponse.insurance';
     return ClaimResponseInsurance(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -9897,31 +4286,26 @@ class ClaimResponseInsurance extends BackboneElement {
         json,
         'sequence',
         FhirPositiveInt.fromJson,
-        '$objectPath.sequence',
       )!,
       focal: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'focal',
         FhirBoolean.fromJson,
-        '$objectPath.focal',
       )!,
       coverage: JsonParser.parseObject<Reference>(
         json,
         'coverage',
         Reference.fromJson,
-        '$objectPath.coverage',
       )!,
       businessArrangement: JsonParser.parsePrimitive<FhirString>(
         json,
         'businessArrangement',
         FhirString.fromJson,
-        '$objectPath.businessArrangement',
       ),
       claimResponse: JsonParser.parseObject<Reference>(
         json,
         'claimResponse',
         Reference.fromJson,
-        '$objectPath.claimResponse',
       ),
     );
   }
@@ -10089,345 +4473,20 @@ class ClaimResponseInsurance extends BackboneElement {
     return json;
   }
 
-  /// Lists the JSON keys for the object.
   @override
-  List<String> listChildrenNames() {
-    return [
-      'id',
-      'extension',
-      'modifierExtension',
-      'sequence',
-      'focal',
-      'coverage',
-      'businessArrangement',
-      'claimResponse',
-    ];
-  }
+  ClaimResponseInsurance clone() => copyWith();
 
-  /// Retrieves all matching child fields by name.
-  ///Optionally validates the name.
+  /// Copy function for [ClaimResponseInsurance]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<FhirBase> getChildrenByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    final fields = <FhirBase>[];
-    switch (fieldName) {
-      case 'id':
-        if (id != null) {
-          fields.add(id!);
-        }
-      case 'extension':
-        if (extension_ != null) {
-          fields.addAll(extension_!);
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          fields.addAll(modifierExtension!);
-        }
-      case 'sequence':
-        fields.add(sequence);
-      case 'focal':
-        fields.add(focal);
-      case 'coverage':
-        fields.add(coverage);
-      case 'businessArrangement':
-        if (businessArrangement != null) {
-          fields.add(businessArrangement!);
-        }
-      case 'claimResponse':
-        if (claimResponse != null) {
-          fields.add(claimResponse!);
-        }
-      default:
-        if (checkValid) {
-          throw ArgumentError('Invalid name: $fieldName');
-        }
-    }
-    return fields;
-  }
-
-  /// Retrieves a single field value by its name.
-  @override
-  FhirBase? getChildByName(String name) {
-    final values = getChildrenByName(name);
-    if (values.length > 1) {
-      throw StateError('Too many values for $name found');
-    }
-    return values.isNotEmpty ? values.first : null;
-  }
-
-  @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
-
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'sequence':
-        {
-          if (child is FhirPositiveInt) {
-            return copyWith(sequence: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'focal':
-        {
-          if (child is FhirBoolean) {
-            return copyWith(focal: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'coverage':
-        {
-          if (child is Reference) {
-            return copyWith(coverage: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'businessArrangement':
-        {
-          if (child is FhirString) {
-            return copyWith(businessArrangement: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'claimResponse':
-        {
-          if (child is Reference) {
-            return copyWith(claimResponse: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
-  @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'sequence':
-        return ['FhirPositiveInt'];
-      case 'focal':
-        return ['FhirBoolean'];
-      case 'coverage':
-        return ['Reference'];
-      case 'businessArrangement':
-        return ['FhirString'];
-      case 'claimResponse':
-        return ['Reference'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [ClaimResponseInsurance]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  ClaimResponseInsurance createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
-          );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'sequence':
-        {
-          return copyWith(
-            sequence: FhirPositiveInt.empty(),
-          );
-        }
-      case 'focal':
-        {
-          return copyWith(
-            focal: FhirBoolean.empty(),
-          );
-        }
-      case 'coverage':
-        {
-          return copyWith(
-            coverage: Reference.empty(),
-          );
-        }
-      case 'businessArrangement':
-        {
-          return copyWith(
-            businessArrangement: FhirString.empty(),
-          );
-        }
-      case 'claimResponse':
-        {
-          return copyWith(
-            claimResponse: Reference.empty(),
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  ClaimResponseInsurance clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool businessArrangement = false,
-    bool claimResponse = false,
-  }) {
-    return ClaimResponseInsurance(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      sequence: sequence,
-      focal: focal,
-      coverage: coverage,
-      businessArrangement:
-          businessArrangement ? null : this.businessArrangement,
-      claimResponse: claimResponse ? null : this.claimResponse,
-    );
-  }
-
-  @override
-  ClaimResponseInsurance clone() => throw UnimplementedError();
-  @override
-  ClaimResponseInsurance copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirPositiveInt? sequence,
-    FhirBoolean? focal,
-    Reference? coverage,
-    FhirString? businessArrangement,
-    Reference? claimResponse,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return ClaimResponseInsurance(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      sequence: sequence?.copyWith(
-            objectPath: '$newObjectPath.sequence',
-          ) ??
-          this.sequence,
-      focal: focal?.copyWith(
-            objectPath: '$newObjectPath.focal',
-          ) ??
-          this.focal,
-      coverage: coverage?.copyWith(
-            objectPath: '$newObjectPath.coverage',
-          ) ??
-          this.coverage,
-      businessArrangement: businessArrangement?.copyWith(
-            objectPath: '$newObjectPath.businessArrangement',
-          ) ??
-          this.businessArrangement,
-      claimResponse: claimResponse?.copyWith(
-            objectPath: '$newObjectPath.claimResponse',
-          ) ??
-          this.claimResponse,
-    );
-  }
+  $ClaimResponseInsuranceCopyWith<ClaimResponseInsurance> get copyWith =>
+      _$ClaimResponseInsuranceCopyWithImpl<ClaimResponseInsurance>(
+        this,
+        (value) => value,
+      );
 
   /// Performs a deep comparison between two instances.
   @override
@@ -10504,46 +4563,29 @@ class ClaimResponseError extends BackboneElement {
     this.subDetailSequence,
     required this.code,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'ClaimResponse.error',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory ClaimResponseError.empty() => ClaimResponseError(
-        code: CodeableConcept.empty(),
-      );
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ClaimResponseError.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'ClaimResponse.error';
     return ClaimResponseError(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -10551,25 +4593,21 @@ class ClaimResponseError extends BackboneElement {
         json,
         'itemSequence',
         FhirPositiveInt.fromJson,
-        '$objectPath.itemSequence',
       ),
       detailSequence: JsonParser.parsePrimitive<FhirPositiveInt>(
         json,
         'detailSequence',
         FhirPositiveInt.fromJson,
-        '$objectPath.detailSequence',
       ),
       subDetailSequence: JsonParser.parsePrimitive<FhirPositiveInt>(
         json,
         'subDetailSequence',
         FhirPositiveInt.fromJson,
-        '$objectPath.subDetailSequence',
       ),
       code: JsonParser.parseObject<CodeableConcept>(
         json,
         'code',
         CodeableConcept.fromJson,
-        '$objectPath.code',
       )!,
     );
   }
@@ -10729,322 +4767,20 @@ class ClaimResponseError extends BackboneElement {
     return json;
   }
 
-  /// Lists the JSON keys for the object.
   @override
-  List<String> listChildrenNames() {
-    return [
-      'id',
-      'extension',
-      'modifierExtension',
-      'itemSequence',
-      'detailSequence',
-      'subDetailSequence',
-      'code',
-    ];
-  }
+  ClaimResponseError clone() => copyWith();
 
-  /// Retrieves all matching child fields by name.
-  ///Optionally validates the name.
+  /// Copy function for [ClaimResponseError]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<FhirBase> getChildrenByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    final fields = <FhirBase>[];
-    switch (fieldName) {
-      case 'id':
-        if (id != null) {
-          fields.add(id!);
-        }
-      case 'extension':
-        if (extension_ != null) {
-          fields.addAll(extension_!);
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          fields.addAll(modifierExtension!);
-        }
-      case 'itemSequence':
-        if (itemSequence != null) {
-          fields.add(itemSequence!);
-        }
-      case 'detailSequence':
-        if (detailSequence != null) {
-          fields.add(detailSequence!);
-        }
-      case 'subDetailSequence':
-        if (subDetailSequence != null) {
-          fields.add(subDetailSequence!);
-        }
-      case 'code':
-        fields.add(code);
-      default:
-        if (checkValid) {
-          throw ArgumentError('Invalid name: $fieldName');
-        }
-    }
-    return fields;
-  }
-
-  /// Retrieves a single field value by its name.
-  @override
-  FhirBase? getChildByName(String name) {
-    final values = getChildrenByName(name);
-    if (values.length > 1) {
-      throw StateError('Too many values for $name found');
-    }
-    return values.isNotEmpty ? values.first : null;
-  }
-
-  @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
-
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'itemSequence':
-        {
-          if (child is FhirPositiveInt) {
-            return copyWith(itemSequence: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'detailSequence':
-        {
-          if (child is FhirPositiveInt) {
-            return copyWith(detailSequence: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'subDetailSequence':
-        {
-          if (child is FhirPositiveInt) {
-            return copyWith(subDetailSequence: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'code':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(code: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
-  @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'itemSequence':
-        return ['FhirPositiveInt'];
-      case 'detailSequence':
-        return ['FhirPositiveInt'];
-      case 'subDetailSequence':
-        return ['FhirPositiveInt'];
-      case 'code':
-        return ['CodeableConcept'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [ClaimResponseError]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  ClaimResponseError createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
-          );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'itemSequence':
-        {
-          return copyWith(
-            itemSequence: FhirPositiveInt.empty(),
-          );
-        }
-      case 'detailSequence':
-        {
-          return copyWith(
-            detailSequence: FhirPositiveInt.empty(),
-          );
-        }
-      case 'subDetailSequence':
-        {
-          return copyWith(
-            subDetailSequence: FhirPositiveInt.empty(),
-          );
-        }
-      case 'code':
-        {
-          return copyWith(
-            code: CodeableConcept.empty(),
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  ClaimResponseError clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool itemSequence = false,
-    bool detailSequence = false,
-    bool subDetailSequence = false,
-  }) {
-    return ClaimResponseError(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      itemSequence: itemSequence ? null : this.itemSequence,
-      detailSequence: detailSequence ? null : this.detailSequence,
-      subDetailSequence: subDetailSequence ? null : this.subDetailSequence,
-      code: code,
-    );
-  }
-
-  @override
-  ClaimResponseError clone() => throw UnimplementedError();
-  @override
-  ClaimResponseError copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    FhirPositiveInt? itemSequence,
-    FhirPositiveInt? detailSequence,
-    FhirPositiveInt? subDetailSequence,
-    CodeableConcept? code,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return ClaimResponseError(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      itemSequence: itemSequence?.copyWith(
-            objectPath: '$newObjectPath.itemSequence',
-          ) ??
-          this.itemSequence,
-      detailSequence: detailSequence?.copyWith(
-            objectPath: '$newObjectPath.detailSequence',
-          ) ??
-          this.detailSequence,
-      subDetailSequence: subDetailSequence?.copyWith(
-            objectPath: '$newObjectPath.subDetailSequence',
-          ) ??
-          this.subDetailSequence,
-      code: code?.copyWith(
-            objectPath: '$newObjectPath.code',
-          ) ??
-          this.code,
-    );
-  }
+  $ClaimResponseErrorCopyWith<ClaimResponseError> get copyWith =>
+      _$ClaimResponseErrorCopyWithImpl<ClaimResponseError>(
+        this,
+        (value) => value,
+      );
 
   /// Performs a deep comparison between two instances.
   @override

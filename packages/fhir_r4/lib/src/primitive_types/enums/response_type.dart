@@ -1,11 +1,65 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for ResponseType
+enum ResponseTypeEnum {
+  /// ok
+  ok,
+
+  /// transient-error
+  transientError,
+
+  /// fatal-error
+  fatalError,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case ResponseTypeEnum.ok:
+        return 'ok';
+      case ResponseTypeEnum.transientError:
+        return 'transient-error';
+      case ResponseTypeEnum.fatalError:
+        return 'fatal-error';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static ResponseTypeEnum? fromJson(dynamic json) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return ResponseTypeEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static ResponseTypeEnum? fromString(String? value) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'ok':
+        return ResponseTypeEnum.ok;
+      case 'transient-error':
+        return ResponseTypeEnum.transientError;
+      case 'fatal-error':
+        return ResponseTypeEnum.fatalError;
+    }
+    return null;
+  }
+}
+
 /// The kind of response to a message.
 class ResponseType extends FhirCodeEnum {
   // Private underscore constructor for internal use.
-  ResponseType._({
+  const ResponseType._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -13,7 +67,6 @@ class ResponseType extends FhirCodeEnum {
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.objectPath = 'Code',
   }) : super._();
 
   /// Public factory if you want a fallback approach or custom creation.
@@ -27,12 +80,13 @@ class ResponseType extends FhirCodeEnum {
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
-    String objectPath = 'Code',
   }) {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
+    final valueEnum = ResponseTypeEnum.fromString(valueString);
     return ResponseType._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -40,12 +94,8 @@ class ResponseType extends FhirCodeEnum {
       id: id,
       extension_: extension_,
       disallowExtensions: disallowExtensions,
-      objectPath: objectPath,
     );
   }
-
-  /// Create empty [ResponseType] with element only
-  factory ResponseType.empty() => ResponseType._(valueString: '');
 
   /// Factory constructor to create [ResponseType]
   /// from JSON.
@@ -53,10 +103,11 @@ class ResponseType extends FhirCodeEnum {
     Map<String, dynamic> json,
   ) {
     final value = json['value'] as String?;
+    final valueEnum = ResponseTypeEnum.fromString(value);
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ResponseType.elementOnly.withElement(element);
+      return ResponseType._(valueString: null, element: element);
     } else if (value == null && element == null) {
       throw ArgumentError(
         'ResponseType cannot be constructed from JSON.',
@@ -64,50 +115,59 @@ class ResponseType extends FhirCodeEnum {
     }
     return ResponseType._(
       valueString: value,
+      valueEnum: valueEnum,
       element: element,
     );
   }
 
+  /// An actual enum that can be used for ResponseType
+  final ResponseTypeEnum? valueEnum;
+
   /// ok
-  static final ResponseType ok = ResponseType._(
+  static const ResponseType ok = ResponseType._(
     valueString: 'ok',
-    system: 'http://hl7.org/fhir/ValueSet/response-code'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'OK'.toFhirString,
+    valueEnum: ResponseTypeEnum.ok,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/response-code',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'OK',
+    ),
   );
 
   /// transient_error
-  static final ResponseType transient_error = ResponseType._(
+  static const ResponseType transientError = ResponseType._(
     valueString: 'transient-error',
-    system: 'http://hl7.org/fhir/ValueSet/response-code'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Transient Error'.toFhirString,
+    valueEnum: ResponseTypeEnum.transientError,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/response-code',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Transient Error',
+    ),
   );
 
   /// fatal_error
-  static final ResponseType fatal_error = ResponseType._(
+  static const ResponseType fatalError = ResponseType._(
     valueString: 'fatal-error',
-    system: 'http://hl7.org/fhir/ValueSet/response-code'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Fatal Error'.toFhirString,
+    valueEnum: ResponseTypeEnum.fatalError,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/response-code',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Fatal Error',
+    ),
   );
-
-  /// For instances where an Element is present but not value
-  static final ResponseType elementOnly = ResponseType._(valueString: '');
 
   /// List of all enum-like values
   static final List<ResponseType> values = [
     ok,
-    transient_error,
-    fatal_error,
+    transientError,
+    fatalError,
   ];
-
-  /// Clones the current instance
-  @override
-  ResponseType clone() => ResponseType._(
-        valueString: valueString,
-        element: element?.clone() as Element?,
-      );
 
   /// Returns the enum value with an element attached
   ResponseType withElement(Element? newElement) {
@@ -128,36 +188,56 @@ class ResponseType extends FhirCodeEnum {
   @override
   String toString() => valueString ?? '';
 
-  /// Creates a modified copy with updated properties.
   @override
-  ResponseType copyWith({
-    dynamic newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
+  ResponseType clone() => copyWith();
+
+  /// Creates a new instance with the specified fields replaced.
+  @override
+  ResponseTypeCopyWithImpl<ResponseType> get copyWith =>
+      ResponseTypeCopyWithImpl<ResponseType>(
+        this,
+        (v) => v as ResponseType,
+      );
+}
+
+/// The generated implementation of the copyWith helper for Element.
+/// The call method uses parameters of type Object? with a default value of
+/// [fhirSentinel] so that omitted parameters retain the sentinel value while
+/// explicit nulls do not.
+class ResponseTypeCopyWithImpl<T> extends $FhirCodeCopyWithImpl<T> {
+  /// Constructor for the copyWith implementation.
+  ResponseTypeCopyWithImpl(super._value, super._then);
+
+  @override
+  T call({
+    Object? newValue = fhirSentinel,
+    Object? element = fhirSentinel,
+    Object? id = fhirSentinel,
+    Object? extension_ = fhirSentinel,
+    Object? disallowExtensions = fhirSentinel,
   }) {
-    if (newValue is! String?) {
+    if (!identical(newValue, fhirSentinel) && newValue is! String?) {
       throw ArgumentError(
-        'Invalid input for ResponseType: $newValue',
+        'newValue must be a String or null, but found ${newValue.runtimeType}',
+        'newValue',
       );
     }
-    return ResponseType._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
+    return _then(
+      ResponseType(
+        identical(newValue, fhirSentinel)
+            ? _value.valueString
+            : newValue as String?,
+        element: identical(element, fhirSentinel)
+            ? _value.element
+            : element as Element?,
+        id: identical(id, fhirSentinel) ? _value.id : id as FhirString?,
+        extension_: identical(extension_, fhirSentinel)
+            ? _value.extension_
+            : extension_ as List<FhirExtension>?,
+        disallowExtensions: identical(disallowExtensions, fhirSentinel)
+            ? _value.disallowExtensions
+            : disallowExtensions as bool?,
       ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

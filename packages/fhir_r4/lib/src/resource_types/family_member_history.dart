@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
+part 'family_member_history.g.dart';
+
 /// [FamilyMemberHistory]
 /// Significant health conditions for a person related to the patient
 /// relevant in the context of care for the patient.
@@ -37,92 +39,64 @@ class FamilyMemberHistory extends DomainResource {
     this.note,
     this.condition,
   }) : super(
-          objectPath: 'FamilyMemberHistory',
           resourceType: R4ResourceType.FamilyMemberHistory,
         );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory FamilyMemberHistory.empty() => FamilyMemberHistory(
-        status: FamilyHistoryStatus.values.first,
-        patient: Reference.empty(),
-        relationship: CodeableConcept.empty(),
-      );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory FamilyMemberHistory.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'FamilyMemberHistory';
     return FamilyMemberHistory(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       meta: JsonParser.parseObject<FhirMeta>(
         json,
         'meta',
         FhirMeta.fromJson,
-        '$objectPath.meta',
       ),
       implicitRules: JsonParser.parsePrimitive<FhirUri>(
         json,
         'implicitRules',
         FhirUri.fromJson,
-        '$objectPath.implicitRules',
       ),
       language: JsonParser.parsePrimitive<CommonLanguages>(
         json,
         'language',
         CommonLanguages.fromJson,
-        '$objectPath.language',
       ),
       text: JsonParser.parseObject<Narrative>(
         json,
         'text',
         Narrative.fromJson,
-        '$objectPath.text',
       ),
       contained: (json['contained'] as List<dynamic>?)
           ?.map<Resource>(
             (v) => Resource.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.contained',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       identifier: (json['identifier'] as List<dynamic>?)
           ?.map<Identifier>(
             (v) => Identifier.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.identifier',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -130,55 +104,46 @@ class FamilyMemberHistory extends DomainResource {
         json,
         'instantiatesCanonical',
         FhirCanonical.fromJson,
-        '$objectPath.instantiatesCanonical',
       ),
       instantiatesUri: JsonParser.parsePrimitiveList<FhirUri>(
         json,
         'instantiatesUri',
         FhirUri.fromJson,
-        '$objectPath.instantiatesUri',
       ),
       status: JsonParser.parsePrimitive<FamilyHistoryStatus>(
         json,
         'status',
         FamilyHistoryStatus.fromJson,
-        '$objectPath.status',
       )!,
       dataAbsentReason: JsonParser.parseObject<CodeableConcept>(
         json,
         'dataAbsentReason',
         CodeableConcept.fromJson,
-        '$objectPath.dataAbsentReason',
       ),
       patient: JsonParser.parseObject<Reference>(
         json,
         'patient',
         Reference.fromJson,
-        '$objectPath.patient',
       )!,
       date: JsonParser.parsePrimitive<FhirDateTime>(
         json,
         'date',
         FhirDateTime.fromJson,
-        '$objectPath.date',
       ),
       name: JsonParser.parsePrimitive<FhirString>(
         json,
         'name',
         FhirString.fromJson,
-        '$objectPath.name',
       ),
       relationship: JsonParser.parseObject<CodeableConcept>(
         json,
         'relationship',
         CodeableConcept.fromJson,
-        '$objectPath.relationship',
       )!,
       sex: JsonParser.parseObject<CodeableConcept>(
         json,
         'sex',
         CodeableConcept.fromJson,
-        '$objectPath.sex',
       ),
       bornX: JsonParser.parsePolymorphic<BornXFamilyMemberHistory>(
         json,
@@ -187,7 +152,6 @@ class FamilyMemberHistory extends DomainResource {
           'bornDate': FhirDate.fromJson,
           'bornString': FhirString.fromJson,
         },
-        objectPath,
       ),
       ageX: JsonParser.parsePolymorphic<AgeXFamilyMemberHistory>(
         json,
@@ -196,13 +160,11 @@ class FamilyMemberHistory extends DomainResource {
           'ageRange': Range.fromJson,
           'ageString': FhirString.fromJson,
         },
-        objectPath,
       ),
       estimatedAge: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'estimatedAge',
         FhirBoolean.fromJson,
-        '$objectPath.estimatedAge',
       ),
       deceasedX: JsonParser.parsePolymorphic<DeceasedXFamilyMemberHistory>(
         json,
@@ -213,45 +175,32 @@ class FamilyMemberHistory extends DomainResource {
           'deceasedDate': FhirDate.fromJson,
           'deceasedString': FhirString.fromJson,
         },
-        objectPath,
       ),
       reasonCode: (json['reasonCode'] as List<dynamic>?)
           ?.map<CodeableConcept>(
             (v) => CodeableConcept.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.reasonCode',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       reasonReference: (json['reasonReference'] as List<dynamic>?)
           ?.map<Reference>(
             (v) => Reference.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.reasonReference',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       note: (json['note'] as List<dynamic>?)
           ?.map<Annotation>(
             (v) => Annotation.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.note',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       condition: (json['condition'] as List<dynamic>?)
           ?.map<FamilyMemberHistoryCondition>(
             (v) => FamilyMemberHistoryCondition.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.condition',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -603,1206 +552,20 @@ class FamilyMemberHistory extends DomainResource {
     return json;
   }
 
-  /// Lists the JSON keys for the object.
   @override
-  List<String> listChildrenNames() {
-    return [
-      'id',
-      'meta',
-      'implicitRules',
-      'language',
-      'text',
-      'contained',
-      'extension',
-      'modifierExtension',
-      'identifier',
-      'instantiatesCanonical',
-      'instantiatesUri',
-      'status',
-      'dataAbsentReason',
-      'patient',
-      'date',
-      'name',
-      'relationship',
-      'sex',
-      'bornX',
-      'ageX',
-      'estimatedAge',
-      'deceasedX',
-      'reasonCode',
-      'reasonReference',
-      'note',
-      'condition',
-    ];
-  }
+  FamilyMemberHistory clone() => copyWith();
 
-  /// Retrieves all matching child fields by name.
-  ///Optionally validates the name.
+  /// Copy function for [FamilyMemberHistory]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<FhirBase> getChildrenByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    final fields = <FhirBase>[];
-    switch (fieldName) {
-      case 'id':
-        if (id != null) {
-          fields.add(id!);
-        }
-      case 'meta':
-        if (meta != null) {
-          fields.add(meta!);
-        }
-      case 'implicitRules':
-        if (implicitRules != null) {
-          fields.add(implicitRules!);
-        }
-      case 'language':
-        if (language != null) {
-          fields.add(language!);
-        }
-      case 'text':
-        if (text != null) {
-          fields.add(text!);
-        }
-      case 'contained':
-        if (contained != null) {
-          fields.addAll(contained!);
-        }
-      case 'extension':
-        if (extension_ != null) {
-          fields.addAll(extension_!);
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          fields.addAll(modifierExtension!);
-        }
-      case 'identifier':
-        if (identifier != null) {
-          fields.addAll(identifier!);
-        }
-      case 'instantiatesCanonical':
-        if (instantiatesCanonical != null) {
-          fields.addAll(instantiatesCanonical!);
-        }
-      case 'instantiatesUri':
-        if (instantiatesUri != null) {
-          fields.addAll(instantiatesUri!);
-        }
-      case 'status':
-        fields.add(status);
-      case 'dataAbsentReason':
-        if (dataAbsentReason != null) {
-          fields.add(dataAbsentReason!);
-        }
-      case 'patient':
-        fields.add(patient);
-      case 'date':
-        if (date != null) {
-          fields.add(date!);
-        }
-      case 'name':
-        if (name != null) {
-          fields.add(name!);
-        }
-      case 'relationship':
-        fields.add(relationship);
-      case 'sex':
-        if (sex != null) {
-          fields.add(sex!);
-        }
-      case 'born':
-        fields.add(bornX!);
-      case 'bornX':
-        fields.add(bornX!);
-      case 'bornPeriod':
-        if (bornX is Period) {
-          fields.add(bornX!);
-        }
-      case 'bornDate':
-        if (bornX is FhirDate) {
-          fields.add(bornX!);
-        }
-      case 'bornString':
-        if (bornX is FhirString) {
-          fields.add(bornX!);
-        }
-      case 'age':
-        fields.add(ageX!);
-      case 'ageX':
-        fields.add(ageX!);
-      case 'ageAge':
-        if (ageX is Age) {
-          fields.add(ageX!);
-        }
-      case 'ageRange':
-        if (ageX is Range) {
-          fields.add(ageX!);
-        }
-      case 'ageString':
-        if (ageX is FhirString) {
-          fields.add(ageX!);
-        }
-      case 'estimatedAge':
-        if (estimatedAge != null) {
-          fields.add(estimatedAge!);
-        }
-      case 'deceased':
-        fields.add(deceasedX!);
-      case 'deceasedX':
-        fields.add(deceasedX!);
-      case 'deceasedBoolean':
-        if (deceasedX is FhirBoolean) {
-          fields.add(deceasedX!);
-        }
-      case 'deceasedAge':
-        if (deceasedX is Age) {
-          fields.add(deceasedX!);
-        }
-      case 'deceasedRange':
-        if (deceasedX is Range) {
-          fields.add(deceasedX!);
-        }
-      case 'deceasedDate':
-        if (deceasedX is FhirDate) {
-          fields.add(deceasedX!);
-        }
-      case 'deceasedString':
-        if (deceasedX is FhirString) {
-          fields.add(deceasedX!);
-        }
-      case 'reasonCode':
-        if (reasonCode != null) {
-          fields.addAll(reasonCode!);
-        }
-      case 'reasonReference':
-        if (reasonReference != null) {
-          fields.addAll(reasonReference!);
-        }
-      case 'note':
-        if (note != null) {
-          fields.addAll(note!);
-        }
-      case 'condition':
-        if (condition != null) {
-          fields.addAll(condition!);
-        }
-      default:
-        if (checkValid) {
-          throw ArgumentError('Invalid name: $fieldName');
-        }
-    }
-    return fields;
-  }
-
-  /// Retrieves a single field value by its name.
-  @override
-  FhirBase? getChildByName(String name) {
-    final values = getChildrenByName(name);
-    if (values.length > 1) {
-      throw StateError('Too many values for $name found');
-    }
-    return values.isNotEmpty ? values.first : null;
-  }
-
-  @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
-
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'meta':
-        {
-          if (child is FhirMeta) {
-            return copyWith(meta: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'implicitRules':
-        {
-          if (child is FhirUri) {
-            return copyWith(implicitRules: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'language':
-        {
-          if (child is CommonLanguages) {
-            return copyWith(language: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'text':
-        {
-          if (child is Narrative) {
-            return copyWith(text: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'contained':
-        {
-          if (child is List<Resource>) {
-            // Add all elements from passed list
-            final newList = [...?contained, ...child];
-            return copyWith(contained: newList);
-          } else if (child is Resource) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?contained,
-              child,
-            ];
-            return copyWith(contained: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'identifier':
-        {
-          if (child is List<Identifier>) {
-            // Add all elements from passed list
-            final newList = [...?identifier, ...child];
-            return copyWith(identifier: newList);
-          } else if (child is Identifier) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?identifier,
-              child,
-            ];
-            return copyWith(identifier: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'instantiatesCanonical':
-        {
-          if (child is List<FhirCanonical>) {
-            // Add all elements from passed list
-            final newList = [...?instantiatesCanonical, ...child];
-            return copyWith(instantiatesCanonical: newList);
-          } else if (child is FhirCanonical) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?instantiatesCanonical,
-              child,
-            ];
-            return copyWith(instantiatesCanonical: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'instantiatesUri':
-        {
-          if (child is List<FhirUri>) {
-            // Add all elements from passed list
-            final newList = [...?instantiatesUri, ...child];
-            return copyWith(instantiatesUri: newList);
-          } else if (child is FhirUri) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?instantiatesUri,
-              child,
-            ];
-            return copyWith(instantiatesUri: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'status':
-        {
-          if (child is FamilyHistoryStatus) {
-            return copyWith(status: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'dataAbsentReason':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(dataAbsentReason: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'patient':
-        {
-          if (child is Reference) {
-            return copyWith(patient: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'date':
-        {
-          if (child is FhirDateTime) {
-            return copyWith(date: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'name':
-        {
-          if (child is FhirString) {
-            return copyWith(name: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'relationship':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(relationship: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'sex':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(sex: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'born':
-      case 'bornX':
-        {
-          if (child is BornXFamilyMemberHistory) {
-            return copyWith(bornX: child);
-          } else {
-            if (child is Period) {
-              return copyWith(bornX: child);
-            }
-            if (child is FhirDate) {
-              return copyWith(bornX: child);
-            }
-            if (child is FhirString) {
-              return copyWith(bornX: child);
-            }
-          }
-          throw Exception('Invalid child type for $childName');
-        }
-      case 'bornPeriod':
-        {
-          if (child is Period) {
-            return copyWith(bornX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'bornFhirDate':
-        {
-          if (child is FhirDate) {
-            return copyWith(bornX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'bornFhirString':
-        {
-          if (child is FhirString) {
-            return copyWith(bornX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'age':
-      case 'ageX':
-        {
-          if (child is AgeXFamilyMemberHistory) {
-            return copyWith(ageX: child);
-          } else {
-            if (child is Age) {
-              return copyWith(ageX: child);
-            }
-            if (child is Range) {
-              return copyWith(ageX: child);
-            }
-            if (child is FhirString) {
-              return copyWith(ageX: child);
-            }
-          }
-          throw Exception('Invalid child type for $childName');
-        }
-      case 'ageAge':
-        {
-          if (child is Age) {
-            return copyWith(ageX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'ageRange':
-        {
-          if (child is Range) {
-            return copyWith(ageX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'ageFhirString':
-        {
-          if (child is FhirString) {
-            return copyWith(ageX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'estimatedAge':
-        {
-          if (child is FhirBoolean) {
-            return copyWith(estimatedAge: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'deceased':
-      case 'deceasedX':
-        {
-          if (child is DeceasedXFamilyMemberHistory) {
-            return copyWith(deceasedX: child);
-          } else {
-            if (child is FhirBoolean) {
-              return copyWith(deceasedX: child);
-            }
-            if (child is Age) {
-              return copyWith(deceasedX: child);
-            }
-            if (child is Range) {
-              return copyWith(deceasedX: child);
-            }
-            if (child is FhirDate) {
-              return copyWith(deceasedX: child);
-            }
-            if (child is FhirString) {
-              return copyWith(deceasedX: child);
-            }
-          }
-          throw Exception('Invalid child type for $childName');
-        }
-      case 'deceasedFhirBoolean':
-        {
-          if (child is FhirBoolean) {
-            return copyWith(deceasedX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'deceasedAge':
-        {
-          if (child is Age) {
-            return copyWith(deceasedX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'deceasedRange':
-        {
-          if (child is Range) {
-            return copyWith(deceasedX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'deceasedFhirDate':
-        {
-          if (child is FhirDate) {
-            return copyWith(deceasedX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'deceasedFhirString':
-        {
-          if (child is FhirString) {
-            return copyWith(deceasedX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'reasonCode':
-        {
-          if (child is List<CodeableConcept>) {
-            // Add all elements from passed list
-            final newList = [...?reasonCode, ...child];
-            return copyWith(reasonCode: newList);
-          } else if (child is CodeableConcept) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?reasonCode,
-              child,
-            ];
-            return copyWith(reasonCode: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'reasonReference':
-        {
-          if (child is List<Reference>) {
-            // Add all elements from passed list
-            final newList = [...?reasonReference, ...child];
-            return copyWith(reasonReference: newList);
-          } else if (child is Reference) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?reasonReference,
-              child,
-            ];
-            return copyWith(reasonReference: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'note':
-        {
-          if (child is List<Annotation>) {
-            // Add all elements from passed list
-            final newList = [...?note, ...child];
-            return copyWith(note: newList);
-          } else if (child is Annotation) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?note,
-              child,
-            ];
-            return copyWith(note: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'condition':
-        {
-          if (child is List<FamilyMemberHistoryCondition>) {
-            // Add all elements from passed list
-            final newList = [...?condition, ...child];
-            return copyWith(condition: newList);
-          } else if (child is FamilyMemberHistoryCondition) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?condition,
-              child,
-            ];
-            return copyWith(condition: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
-  @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'meta':
-        return ['FhirMeta'];
-      case 'implicitRules':
-        return ['FhirUri'];
-      case 'language':
-        return ['FhirCode'];
-      case 'text':
-        return ['Narrative'];
-      case 'contained':
-        return ['Resource'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'identifier':
-        return ['Identifier'];
-      case 'instantiatesCanonical':
-        return ['FhirCanonical'];
-      case 'instantiatesUri':
-        return ['FhirUri'];
-      case 'status':
-        return ['FhirCode'];
-      case 'dataAbsentReason':
-        return ['CodeableConcept'];
-      case 'patient':
-        return ['Reference'];
-      case 'date':
-        return ['FhirDateTime'];
-      case 'name':
-        return ['FhirString'];
-      case 'relationship':
-        return ['CodeableConcept'];
-      case 'sex':
-        return ['CodeableConcept'];
-      case 'born':
-      case 'bornX':
-        return [
-          'Period',
-          'FhirDate',
-          'FhirString',
-        ];
-      case 'bornPeriod':
-        return ['Period'];
-      case 'bornDate':
-        return ['FhirDate'];
-      case 'bornString':
-        return ['FhirString'];
-      case 'age':
-      case 'ageX':
-        return [
-          'Age',
-          'Range',
-          'FhirString',
-        ];
-      case 'ageAge':
-        return ['Age'];
-      case 'ageRange':
-        return ['Range'];
-      case 'ageString':
-        return ['FhirString'];
-      case 'estimatedAge':
-        return ['FhirBoolean'];
-      case 'deceased':
-      case 'deceasedX':
-        return [
-          'FhirBoolean',
-          'Age',
-          'Range',
-          'FhirDate',
-          'FhirString',
-        ];
-      case 'deceasedBoolean':
-        return ['FhirBoolean'];
-      case 'deceasedAge':
-        return ['Age'];
-      case 'deceasedRange':
-        return ['Range'];
-      case 'deceasedDate':
-        return ['FhirDate'];
-      case 'deceasedString':
-        return ['FhirString'];
-      case 'reasonCode':
-        return ['CodeableConcept'];
-      case 'reasonReference':
-        return ['Reference'];
-      case 'note':
-        return ['Annotation'];
-      case 'condition':
-        return ['FamilyMemberHistoryCondition'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [FamilyMemberHistory]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  FamilyMemberHistory createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
-          );
-        }
-      case 'meta':
-        {
-          return copyWith(
-            meta: FhirMeta.empty(),
-          );
-        }
-      case 'implicitRules':
-        {
-          return copyWith(
-            implicitRules: FhirUri.empty(),
-          );
-        }
-      case 'language':
-        {
-          return copyWith(
-            language: CommonLanguages.empty(),
-          );
-        }
-      case 'text':
-        {
-          return copyWith(
-            text: Narrative.empty(),
-          );
-        }
-      case 'contained':
-        {
-          return copyWith(
-            contained: <Resource>[],
-          );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'identifier':
-        {
-          return copyWith(
-            identifier: <Identifier>[],
-          );
-        }
-      case 'instantiatesCanonical':
-        {
-          return copyWith(
-            instantiatesCanonical: <FhirCanonical>[],
-          );
-        }
-      case 'instantiatesUri':
-        {
-          return copyWith(
-            instantiatesUri: <FhirUri>[],
-          );
-        }
-      case 'status':
-        {
-          return copyWith(
-            status: FamilyHistoryStatus.empty(),
-          );
-        }
-      case 'dataAbsentReason':
-        {
-          return copyWith(
-            dataAbsentReason: CodeableConcept.empty(),
-          );
-        }
-      case 'patient':
-        {
-          return copyWith(
-            patient: Reference.empty(),
-          );
-        }
-      case 'date':
-        {
-          return copyWith(
-            date: FhirDateTime.empty(),
-          );
-        }
-      case 'name':
-        {
-          return copyWith(
-            name: FhirString.empty(),
-          );
-        }
-      case 'relationship':
-        {
-          return copyWith(
-            relationship: CodeableConcept.empty(),
-          );
-        }
-      case 'sex':
-        {
-          return copyWith(
-            sex: CodeableConcept.empty(),
-          );
-        }
-      case 'born':
-      case 'bornX':
-      case 'bornPeriod':
-        {
-          return copyWith(
-            bornX: Period.empty(),
-          );
-        }
-      case 'bornDate':
-        {
-          return copyWith(
-            bornX: FhirDate.empty(),
-          );
-        }
-      case 'bornString':
-        {
-          return copyWith(
-            bornX: FhirString.empty(),
-          );
-        }
-      case 'age':
-      case 'ageX':
-      case 'ageAge':
-        {
-          return copyWith(
-            ageX: Age.empty(),
-          );
-        }
-      case 'ageRange':
-        {
-          return copyWith(
-            ageX: Range.empty(),
-          );
-        }
-      case 'ageString':
-        {
-          return copyWith(
-            ageX: FhirString.empty(),
-          );
-        }
-      case 'estimatedAge':
-        {
-          return copyWith(
-            estimatedAge: FhirBoolean.empty(),
-          );
-        }
-      case 'deceased':
-      case 'deceasedX':
-      case 'deceasedBoolean':
-        {
-          return copyWith(
-            deceasedX: FhirBoolean.empty(),
-          );
-        }
-      case 'deceasedAge':
-        {
-          return copyWith(
-            deceasedX: Age.empty(),
-          );
-        }
-      case 'deceasedRange':
-        {
-          return copyWith(
-            deceasedX: Range.empty(),
-          );
-        }
-      case 'deceasedDate':
-        {
-          return copyWith(
-            deceasedX: FhirDate.empty(),
-          );
-        }
-      case 'deceasedString':
-        {
-          return copyWith(
-            deceasedX: FhirString.empty(),
-          );
-        }
-      case 'reasonCode':
-        {
-          return copyWith(
-            reasonCode: <CodeableConcept>[],
-          );
-        }
-      case 'reasonReference':
-        {
-          return copyWith(
-            reasonReference: <Reference>[],
-          );
-        }
-      case 'note':
-        {
-          return copyWith(
-            note: <Annotation>[],
-          );
-        }
-      case 'condition':
-        {
-          return copyWith(
-            condition: <FamilyMemberHistoryCondition>[],
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  FamilyMemberHistory clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool identifier = false,
-    bool instantiatesCanonical = false,
-    bool instantiatesUri = false,
-    bool dataAbsentReason = false,
-    bool date = false,
-    bool name = false,
-    bool sex = false,
-    bool born = false,
-    bool age = false,
-    bool estimatedAge = false,
-    bool deceased = false,
-    bool reasonCode = false,
-    bool reasonReference = false,
-    bool note = false,
-    bool condition = false,
-  }) {
-    return FamilyMemberHistory(
-      id: id ? null : this.id,
-      meta: meta ? null : this.meta,
-      implicitRules: implicitRules ? null : this.implicitRules,
-      language: language ? null : this.language,
-      text: text ? null : this.text,
-      contained: contained ? null : this.contained,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      identifier: identifier ? null : this.identifier,
-      instantiatesCanonical:
-          instantiatesCanonical ? null : this.instantiatesCanonical,
-      instantiatesUri: instantiatesUri ? null : this.instantiatesUri,
-      status: status,
-      dataAbsentReason: dataAbsentReason ? null : this.dataAbsentReason,
-      patient: patient,
-      date: date ? null : this.date,
-      name: name ? null : this.name,
-      relationship: relationship,
-      sex: sex ? null : this.sex,
-      bornX: born ? null : bornX,
-      ageX: age ? null : ageX,
-      estimatedAge: estimatedAge ? null : this.estimatedAge,
-      deceasedX: deceased ? null : deceasedX,
-      reasonCode: reasonCode ? null : this.reasonCode,
-      reasonReference: reasonReference ? null : this.reasonReference,
-      note: note ? null : this.note,
-      condition: condition ? null : this.condition,
-    );
-  }
-
-  @override
-  FamilyMemberHistory clone() => throw UnimplementedError();
-  @override
-  FamilyMemberHistory copyWith({
-    FhirString? id,
-    FhirMeta? meta,
-    FhirUri? implicitRules,
-    CommonLanguages? language,
-    Narrative? text,
-    List<Resource>? contained,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    List<Identifier>? identifier,
-    List<FhirCanonical>? instantiatesCanonical,
-    List<FhirUri>? instantiatesUri,
-    FamilyHistoryStatus? status,
-    CodeableConcept? dataAbsentReason,
-    Reference? patient,
-    FhirDateTime? date,
-    FhirString? name,
-    CodeableConcept? relationship,
-    CodeableConcept? sex,
-    BornXFamilyMemberHistory? bornX,
-    AgeXFamilyMemberHistory? ageX,
-    FhirBoolean? estimatedAge,
-    DeceasedXFamilyMemberHistory? deceasedX,
-    List<CodeableConcept>? reasonCode,
-    List<Reference>? reasonReference,
-    List<Annotation>? note,
-    List<FamilyMemberHistoryCondition>? condition,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-  }) {
-    final newObjectPath = objectPath;
-    return FamilyMemberHistory(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      meta: meta?.copyWith(
-            objectPath: '$newObjectPath.meta',
-          ) ??
-          this.meta,
-      implicitRules: implicitRules?.copyWith(
-            objectPath: '$newObjectPath.implicitRules',
-          ) ??
-          this.implicitRules,
-      language: language?.copyWith(
-            objectPath: '$newObjectPath.language',
-          ) ??
-          this.language,
-      text: text?.copyWith(
-            objectPath: '$newObjectPath.text',
-          ) ??
-          this.text,
-      contained: contained ?? this.contained,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      identifier: identifier
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.identifier',
-                ),
-              )
-              .toList() ??
-          this.identifier,
-      instantiatesCanonical: instantiatesCanonical
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.instantiatesCanonical',
-                ),
-              )
-              .toList() ??
-          this.instantiatesCanonical,
-      instantiatesUri: instantiatesUri
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.instantiatesUri',
-                ),
-              )
-              .toList() ??
-          this.instantiatesUri,
-      status: status?.copyWith(
-            objectPath: '$newObjectPath.status',
-          ) ??
-          this.status,
-      dataAbsentReason: dataAbsentReason?.copyWith(
-            objectPath: '$newObjectPath.dataAbsentReason',
-          ) ??
-          this.dataAbsentReason,
-      patient: patient?.copyWith(
-            objectPath: '$newObjectPath.patient',
-          ) ??
-          this.patient,
-      date: date?.copyWith(
-            objectPath: '$newObjectPath.date',
-          ) ??
-          this.date,
-      name: name?.copyWith(
-            objectPath: '$newObjectPath.name',
-          ) ??
-          this.name,
-      relationship: relationship?.copyWith(
-            objectPath: '$newObjectPath.relationship',
-          ) ??
-          this.relationship,
-      sex: sex?.copyWith(
-            objectPath: '$newObjectPath.sex',
-          ) ??
-          this.sex,
-      bornX: bornX?.copyWith(
-            objectPath: '$newObjectPath.bornX',
-          ) as BornXFamilyMemberHistory? ??
-          this.bornX,
-      ageX: ageX?.copyWith(
-            objectPath: '$newObjectPath.ageX',
-          ) as AgeXFamilyMemberHistory? ??
-          this.ageX,
-      estimatedAge: estimatedAge?.copyWith(
-            objectPath: '$newObjectPath.estimatedAge',
-          ) ??
-          this.estimatedAge,
-      deceasedX: deceasedX?.copyWith(
-            objectPath: '$newObjectPath.deceasedX',
-          ) as DeceasedXFamilyMemberHistory? ??
-          this.deceasedX,
-      reasonCode: reasonCode
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.reasonCode',
-                ),
-              )
-              .toList() ??
-          this.reasonCode,
-      reasonReference: reasonReference
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.reasonReference',
-                ),
-              )
-              .toList() ??
-          this.reasonReference,
-      note: note
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.note',
-                ),
-              )
-              .toList() ??
-          this.note,
-      condition: condition
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.condition',
-                ),
-              )
-              .toList() ??
-          this.condition,
-    );
-  }
+  $FamilyMemberHistoryCopyWith<FamilyMemberHistory> get copyWith =>
+      _$FamilyMemberHistoryCopyWithImpl<FamilyMemberHistory>(
+        this,
+        (value) => value,
+      );
 
   /// Performs a deep comparison between two instances.
   @override
@@ -1991,46 +754,29 @@ class FamilyMemberHistoryCondition extends BackboneElement {
     this.onsetX,
     this.note,
     super.disallowExtensions,
-  }) : super(
-          objectPath: 'FamilyMemberHistory.condition',
-        );
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory FamilyMemberHistoryCondition.empty() => FamilyMemberHistoryCondition(
-        code: CodeableConcept.empty(),
-      );
+  }) : super();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory FamilyMemberHistoryCondition.fromJson(
     Map<String, dynamic> json,
   ) {
-    const objectPath = 'FamilyMemberHistory.condition';
     return FamilyMemberHistoryCondition(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       modifierExtension: (json['modifierExtension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.modifierExtension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -2038,19 +784,16 @@ class FamilyMemberHistoryCondition extends BackboneElement {
         json,
         'code',
         CodeableConcept.fromJson,
-        '$objectPath.code',
       )!,
       outcome: JsonParser.parseObject<CodeableConcept>(
         json,
         'outcome',
         CodeableConcept.fromJson,
-        '$objectPath.outcome',
       ),
       contributedToDeath: JsonParser.parsePrimitive<FhirBoolean>(
         json,
         'contributedToDeath',
         FhirBoolean.fromJson,
-        '$objectPath.contributedToDeath',
       ),
       onsetX: JsonParser.parsePolymorphic<OnsetXFamilyMemberHistoryCondition>(
         json,
@@ -2060,15 +803,11 @@ class FamilyMemberHistoryCondition extends BackboneElement {
           'onsetPeriod': Period.fromJson,
           'onsetString': FhirString.fromJson,
         },
-        objectPath,
       ),
       note: (json['note'] as List<dynamic>?)
           ?.map<Annotation>(
             (v) => Annotation.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.note',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -2255,458 +994,21 @@ class FamilyMemberHistoryCondition extends BackboneElement {
     return json;
   }
 
-  /// Lists the JSON keys for the object.
   @override
-  List<String> listChildrenNames() {
-    return [
-      'id',
-      'extension',
-      'modifierExtension',
-      'code',
-      'outcome',
-      'contributedToDeath',
-      'onsetX',
-      'note',
-    ];
-  }
+  FamilyMemberHistoryCondition clone() => copyWith();
 
-  /// Retrieves all matching child fields by name.
-  ///Optionally validates the name.
+  /// Copy function for [FamilyMemberHistoryCondition]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<FhirBase> getChildrenByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    final fields = <FhirBase>[];
-    switch (fieldName) {
-      case 'id':
-        if (id != null) {
-          fields.add(id!);
-        }
-      case 'extension':
-        if (extension_ != null) {
-          fields.addAll(extension_!);
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          fields.addAll(modifierExtension!);
-        }
-      case 'code':
-        fields.add(code);
-      case 'outcome':
-        if (outcome != null) {
-          fields.add(outcome!);
-        }
-      case 'contributedToDeath':
-        if (contributedToDeath != null) {
-          fields.add(contributedToDeath!);
-        }
-      case 'onset':
-        fields.add(onsetX!);
-      case 'onsetX':
-        fields.add(onsetX!);
-      case 'onsetAge':
-        if (onsetX is Age) {
-          fields.add(onsetX!);
-        }
-      case 'onsetRange':
-        if (onsetX is Range) {
-          fields.add(onsetX!);
-        }
-      case 'onsetPeriod':
-        if (onsetX is Period) {
-          fields.add(onsetX!);
-        }
-      case 'onsetString':
-        if (onsetX is FhirString) {
-          fields.add(onsetX!);
-        }
-      case 'note':
-        if (note != null) {
-          fields.addAll(note!);
-        }
-      default:
-        if (checkValid) {
-          throw ArgumentError('Invalid name: $fieldName');
-        }
-    }
-    return fields;
-  }
-
-  /// Retrieves a single field value by its name.
-  @override
-  FhirBase? getChildByName(String name) {
-    final values = getChildrenByName(name);
-    if (values.length > 1) {
-      throw StateError('Too many values for $name found');
-    }
-    return values.isNotEmpty ? values.first : null;
-  }
-
-  @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
-
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'modifierExtension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?modifierExtension, ...child];
-            return copyWith(modifierExtension: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?modifierExtension,
-              child,
-            ];
-            return copyWith(modifierExtension: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'code':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(code: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'outcome':
-        {
-          if (child is CodeableConcept) {
-            return copyWith(outcome: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'contributedToDeath':
-        {
-          if (child is FhirBoolean) {
-            return copyWith(contributedToDeath: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'onset':
-      case 'onsetX':
-        {
-          if (child is OnsetXFamilyMemberHistoryCondition) {
-            return copyWith(onsetX: child);
-          } else {
-            if (child is Age) {
-              return copyWith(onsetX: child);
-            }
-            if (child is Range) {
-              return copyWith(onsetX: child);
-            }
-            if (child is Period) {
-              return copyWith(onsetX: child);
-            }
-            if (child is FhirString) {
-              return copyWith(onsetX: child);
-            }
-          }
-          throw Exception('Invalid child type for $childName');
-        }
-      case 'onsetAge':
-        {
-          if (child is Age) {
-            return copyWith(onsetX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'onsetRange':
-        {
-          if (child is Range) {
-            return copyWith(onsetX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'onsetPeriod':
-        {
-          if (child is Period) {
-            return copyWith(onsetX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'onsetFhirString':
-        {
-          if (child is FhirString) {
-            return copyWith(onsetX: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'note':
-        {
-          if (child is List<Annotation>) {
-            // Add all elements from passed list
-            final newList = [...?note, ...child];
-            return copyWith(note: newList);
-          } else if (child is Annotation) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?note,
-              child,
-            ];
-            return copyWith(note: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
-  @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'modifierExtension':
-        return ['FhirExtension'];
-      case 'code':
-        return ['CodeableConcept'];
-      case 'outcome':
-        return ['CodeableConcept'];
-      case 'contributedToDeath':
-        return ['FhirBoolean'];
-      case 'onset':
-      case 'onsetX':
-        return [
-          'Age',
-          'Range',
-          'Period',
-          'FhirString',
-        ];
-      case 'onsetAge':
-        return ['Age'];
-      case 'onsetRange':
-        return ['Range'];
-      case 'onsetPeriod':
-        return ['Period'];
-      case 'onsetString':
-        return ['FhirString'];
-      case 'note':
-        return ['Annotation'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [FamilyMemberHistoryCondition]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  FamilyMemberHistoryCondition createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
+  $FamilyMemberHistoryConditionCopyWith<FamilyMemberHistoryCondition>
+      get copyWith => _$FamilyMemberHistoryConditionCopyWithImpl<
+              FamilyMemberHistoryCondition>(
+            this,
+            (value) => value,
           );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'modifierExtension':
-        {
-          return copyWith(
-            modifierExtension: <FhirExtension>[],
-          );
-        }
-      case 'code':
-        {
-          return copyWith(
-            code: CodeableConcept.empty(),
-          );
-        }
-      case 'outcome':
-        {
-          return copyWith(
-            outcome: CodeableConcept.empty(),
-          );
-        }
-      case 'contributedToDeath':
-        {
-          return copyWith(
-            contributedToDeath: FhirBoolean.empty(),
-          );
-        }
-      case 'onset':
-      case 'onsetX':
-      case 'onsetAge':
-        {
-          return copyWith(
-            onsetX: Age.empty(),
-          );
-        }
-      case 'onsetRange':
-        {
-          return copyWith(
-            onsetX: Range.empty(),
-          );
-        }
-      case 'onsetPeriod':
-        {
-          return copyWith(
-            onsetX: Period.empty(),
-          );
-        }
-      case 'onsetString':
-        {
-          return copyWith(
-            onsetX: FhirString.empty(),
-          );
-        }
-      case 'note':
-        {
-          return copyWith(
-            note: <Annotation>[],
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  FamilyMemberHistoryCondition clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool outcome = false,
-    bool contributedToDeath = false,
-    bool onset = false,
-    bool note = false,
-  }) {
-    return FamilyMemberHistoryCondition(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      modifierExtension: modifierExtension ? null : this.modifierExtension,
-      code: code,
-      outcome: outcome ? null : this.outcome,
-      contributedToDeath: contributedToDeath ? null : this.contributedToDeath,
-      onsetX: onset ? null : onsetX,
-      note: note ? null : this.note,
-    );
-  }
-
-  @override
-  FamilyMemberHistoryCondition clone() => throw UnimplementedError();
-  @override
-  FamilyMemberHistoryCondition copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirExtension>? modifierExtension,
-    CodeableConcept? code,
-    CodeableConcept? outcome,
-    FhirBoolean? contributedToDeath,
-    OnsetXFamilyMemberHistoryCondition? onsetX,
-    List<Annotation>? note,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = this.objectPath;
-    return FamilyMemberHistoryCondition(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      modifierExtension: modifierExtension
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.modifierExtension',
-                ),
-              )
-              .toList() ??
-          this.modifierExtension,
-      code: code?.copyWith(
-            objectPath: '$newObjectPath.code',
-          ) ??
-          this.code,
-      outcome: outcome?.copyWith(
-            objectPath: '$newObjectPath.outcome',
-          ) ??
-          this.outcome,
-      contributedToDeath: contributedToDeath?.copyWith(
-            objectPath: '$newObjectPath.contributedToDeath',
-          ) ??
-          this.contributedToDeath,
-      onsetX: onsetX?.copyWith(
-            objectPath: '$newObjectPath.onsetX',
-          ) as OnsetXFamilyMemberHistoryCondition? ??
-          this.onsetX,
-      note: note
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.note',
-                ),
-              )
-              .toList() ??
-          this.note,
-    );
-  }
 
   /// Performs a deep comparison between two instances.
   @override

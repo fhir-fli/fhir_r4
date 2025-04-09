@@ -1,11 +1,163 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for TypeRestfulInteraction
+enum TypeRestfulInteractionEnum {
+  /// read
+  read,
+
+  /// vread
+  vread,
+
+  /// update
+  update,
+
+  /// patch
+  patch,
+
+  /// delete
+  delete,
+
+  /// history
+  history,
+
+  /// history-instance
+  historyInstance,
+
+  /// history-type
+  historyType,
+
+  /// history-system
+  historySystem,
+
+  /// create
+  create,
+
+  /// search
+  search,
+
+  /// search-type
+  searchType,
+
+  /// search-system
+  searchSystem,
+
+  /// capabilities
+  capabilities,
+
+  /// transaction
+  transaction,
+
+  /// batch
+  batch,
+
+  /// operation
+  operation,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case TypeRestfulInteractionEnum.read:
+        return 'read';
+      case TypeRestfulInteractionEnum.vread:
+        return 'vread';
+      case TypeRestfulInteractionEnum.update:
+        return 'update';
+      case TypeRestfulInteractionEnum.patch:
+        return 'patch';
+      case TypeRestfulInteractionEnum.delete:
+        return 'delete';
+      case TypeRestfulInteractionEnum.history:
+        return 'history';
+      case TypeRestfulInteractionEnum.historyInstance:
+        return 'history-instance';
+      case TypeRestfulInteractionEnum.historyType:
+        return 'history-type';
+      case TypeRestfulInteractionEnum.historySystem:
+        return 'history-system';
+      case TypeRestfulInteractionEnum.create:
+        return 'create';
+      case TypeRestfulInteractionEnum.search:
+        return 'search';
+      case TypeRestfulInteractionEnum.searchType:
+        return 'search-type';
+      case TypeRestfulInteractionEnum.searchSystem:
+        return 'search-system';
+      case TypeRestfulInteractionEnum.capabilities:
+        return 'capabilities';
+      case TypeRestfulInteractionEnum.transaction:
+        return 'transaction';
+      case TypeRestfulInteractionEnum.batch:
+        return 'batch';
+      case TypeRestfulInteractionEnum.operation:
+        return 'operation';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static TypeRestfulInteractionEnum? fromJson(dynamic json) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return TypeRestfulInteractionEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static TypeRestfulInteractionEnum? fromString(String? value) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'read':
+        return TypeRestfulInteractionEnum.read;
+      case 'vread':
+        return TypeRestfulInteractionEnum.vread;
+      case 'update':
+        return TypeRestfulInteractionEnum.update;
+      case 'patch':
+        return TypeRestfulInteractionEnum.patch;
+      case 'delete':
+        return TypeRestfulInteractionEnum.delete;
+      case 'history':
+        return TypeRestfulInteractionEnum.history;
+      case 'history-instance':
+        return TypeRestfulInteractionEnum.historyInstance;
+      case 'history-type':
+        return TypeRestfulInteractionEnum.historyType;
+      case 'history-system':
+        return TypeRestfulInteractionEnum.historySystem;
+      case 'create':
+        return TypeRestfulInteractionEnum.create;
+      case 'search':
+        return TypeRestfulInteractionEnum.search;
+      case 'search-type':
+        return TypeRestfulInteractionEnum.searchType;
+      case 'search-system':
+        return TypeRestfulInteractionEnum.searchSystem;
+      case 'capabilities':
+        return TypeRestfulInteractionEnum.capabilities;
+      case 'transaction':
+        return TypeRestfulInteractionEnum.transaction;
+      case 'batch':
+        return TypeRestfulInteractionEnum.batch;
+      case 'operation':
+        return TypeRestfulInteractionEnum.operation;
+    }
+    return null;
+  }
+}
+
 /// Operations supported by REST at the type or instance level.
 class TypeRestfulInteraction extends FhirCodeEnum {
   // Private underscore constructor for internal use.
-  TypeRestfulInteraction._({
+  const TypeRestfulInteraction._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -13,7 +165,6 @@ class TypeRestfulInteraction extends FhirCodeEnum {
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.objectPath = 'Code',
   }) : super._();
 
   /// Public factory if you want a fallback approach or custom creation.
@@ -27,12 +178,13 @@ class TypeRestfulInteraction extends FhirCodeEnum {
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
-    String objectPath = 'Code',
   }) {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
+    final valueEnum = TypeRestfulInteractionEnum.fromString(valueString);
     return TypeRestfulInteraction._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -40,13 +192,8 @@ class TypeRestfulInteraction extends FhirCodeEnum {
       id: id,
       extension_: extension_,
       disallowExtensions: disallowExtensions,
-      objectPath: objectPath,
     );
   }
-
-  /// Create empty [TypeRestfulInteraction] with element only
-  factory TypeRestfulInteraction.empty() =>
-      TypeRestfulInteraction._(valueString: '');
 
   /// Factory constructor to create [TypeRestfulInteraction]
   /// from JSON.
@@ -54,10 +201,11 @@ class TypeRestfulInteraction extends FhirCodeEnum {
     Map<String, dynamic> json,
   ) {
     final value = json['value'] as String?;
+    final valueEnum = TypeRestfulInteractionEnum.fromString(value);
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return TypeRestfulInteraction.elementOnly.withElement(element);
+      return TypeRestfulInteraction._(valueString: null, element: element);
     } else if (value == null && element == null) {
       throw ArgumentError(
         'TypeRestfulInteraction cannot be constructed from JSON.',
@@ -65,150 +213,235 @@ class TypeRestfulInteraction extends FhirCodeEnum {
     }
     return TypeRestfulInteraction._(
       valueString: value,
+      valueEnum: valueEnum,
       element: element,
     );
   }
 
+  /// An actual enum that can be used for TypeRestfulInteraction
+  final TypeRestfulInteractionEnum? valueEnum;
+
   /// read
-  static final TypeRestfulInteraction read = TypeRestfulInteraction._(
+  static const TypeRestfulInteraction read = TypeRestfulInteraction._(
     valueString: 'read',
-    system: 'http://hl7.org/fhir/ValueSet/type-restful-interaction'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'read'.toFhirString,
+    valueEnum: TypeRestfulInteractionEnum.read,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/type-restful-interaction',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'read',
+    ),
   );
 
   /// vread
-  static final TypeRestfulInteraction vread = TypeRestfulInteraction._(
+  static const TypeRestfulInteraction vread = TypeRestfulInteraction._(
     valueString: 'vread',
-    system: 'http://hl7.org/fhir/ValueSet/type-restful-interaction'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'vread'.toFhirString,
+    valueEnum: TypeRestfulInteractionEnum.vread,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/type-restful-interaction',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'vread',
+    ),
   );
 
   /// update
-  static final TypeRestfulInteraction update = TypeRestfulInteraction._(
+  static const TypeRestfulInteraction update = TypeRestfulInteraction._(
     valueString: 'update',
-    system: 'http://hl7.org/fhir/ValueSet/type-restful-interaction'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'update'.toFhirString,
+    valueEnum: TypeRestfulInteractionEnum.update,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/type-restful-interaction',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'update',
+    ),
   );
 
   /// patch
-  static final TypeRestfulInteraction patch = TypeRestfulInteraction._(
+  static const TypeRestfulInteraction patch = TypeRestfulInteraction._(
     valueString: 'patch',
-    system: 'http://hl7.org/fhir/ValueSet/type-restful-interaction'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'patch'.toFhirString,
+    valueEnum: TypeRestfulInteractionEnum.patch,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/type-restful-interaction',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'patch',
+    ),
   );
 
   /// delete
-  static final TypeRestfulInteraction delete = TypeRestfulInteraction._(
+  static const TypeRestfulInteraction delete = TypeRestfulInteraction._(
     valueString: 'delete',
-    system: 'http://hl7.org/fhir/ValueSet/type-restful-interaction'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'delete'.toFhirString,
+    valueEnum: TypeRestfulInteractionEnum.delete,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/type-restful-interaction',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'delete',
+    ),
   );
 
   /// history
-  static final TypeRestfulInteraction history = TypeRestfulInteraction._(
+  static const TypeRestfulInteraction history = TypeRestfulInteraction._(
     valueString: 'history',
-    system: 'http://hl7.org/fhir/ValueSet/type-restful-interaction'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'history'.toFhirString,
+    valueEnum: TypeRestfulInteractionEnum.history,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/type-restful-interaction',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'history',
+    ),
   );
 
   /// history_instance
-  static final TypeRestfulInteraction history_instance =
+  static const TypeRestfulInteraction historyInstance =
       TypeRestfulInteraction._(
     valueString: 'history-instance',
-    system: 'http://hl7.org/fhir/ValueSet/type-restful-interaction'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'history-instance'.toFhirString,
+    valueEnum: TypeRestfulInteractionEnum.historyInstance,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/type-restful-interaction',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'history-instance',
+    ),
   );
 
   /// history_type
-  static final TypeRestfulInteraction history_type = TypeRestfulInteraction._(
+  static const TypeRestfulInteraction historyType = TypeRestfulInteraction._(
     valueString: 'history-type',
-    system: 'http://hl7.org/fhir/ValueSet/type-restful-interaction'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'history-type'.toFhirString,
+    valueEnum: TypeRestfulInteractionEnum.historyType,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/type-restful-interaction',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'history-type',
+    ),
   );
 
   /// history_system
-  static final TypeRestfulInteraction history_system = TypeRestfulInteraction._(
+  static const TypeRestfulInteraction historySystem = TypeRestfulInteraction._(
     valueString: 'history-system',
-    system: 'http://hl7.org/fhir/ValueSet/type-restful-interaction'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'history-system'.toFhirString,
+    valueEnum: TypeRestfulInteractionEnum.historySystem,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/type-restful-interaction',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'history-system',
+    ),
   );
 
   /// create
-  static final TypeRestfulInteraction create = TypeRestfulInteraction._(
+  static const TypeRestfulInteraction create = TypeRestfulInteraction._(
     valueString: 'create',
-    system: 'http://hl7.org/fhir/ValueSet/type-restful-interaction'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'create'.toFhirString,
+    valueEnum: TypeRestfulInteractionEnum.create,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/type-restful-interaction',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'create',
+    ),
   );
 
   /// search
-  static final TypeRestfulInteraction search = TypeRestfulInteraction._(
+  static const TypeRestfulInteraction search = TypeRestfulInteraction._(
     valueString: 'search',
-    system: 'http://hl7.org/fhir/ValueSet/type-restful-interaction'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'search'.toFhirString,
+    valueEnum: TypeRestfulInteractionEnum.search,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/type-restful-interaction',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'search',
+    ),
   );
 
   /// search_type
-  static final TypeRestfulInteraction search_type = TypeRestfulInteraction._(
+  static const TypeRestfulInteraction searchType = TypeRestfulInteraction._(
     valueString: 'search-type',
-    system: 'http://hl7.org/fhir/ValueSet/type-restful-interaction'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'search-type'.toFhirString,
+    valueEnum: TypeRestfulInteractionEnum.searchType,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/type-restful-interaction',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'search-type',
+    ),
   );
 
   /// search_system
-  static final TypeRestfulInteraction search_system = TypeRestfulInteraction._(
+  static const TypeRestfulInteraction searchSystem = TypeRestfulInteraction._(
     valueString: 'search-system',
-    system: 'http://hl7.org/fhir/ValueSet/type-restful-interaction'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'search-system'.toFhirString,
+    valueEnum: TypeRestfulInteractionEnum.searchSystem,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/type-restful-interaction',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'search-system',
+    ),
   );
 
   /// capabilities
-  static final TypeRestfulInteraction capabilities = TypeRestfulInteraction._(
+  static const TypeRestfulInteraction capabilities = TypeRestfulInteraction._(
     valueString: 'capabilities',
-    system: 'http://hl7.org/fhir/ValueSet/type-restful-interaction'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'capabilities'.toFhirString,
+    valueEnum: TypeRestfulInteractionEnum.capabilities,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/type-restful-interaction',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'capabilities',
+    ),
   );
 
   /// transaction
-  static final TypeRestfulInteraction transaction = TypeRestfulInteraction._(
+  static const TypeRestfulInteraction transaction = TypeRestfulInteraction._(
     valueString: 'transaction',
-    system: 'http://hl7.org/fhir/ValueSet/type-restful-interaction'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'transaction'.toFhirString,
+    valueEnum: TypeRestfulInteractionEnum.transaction,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/type-restful-interaction',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'transaction',
+    ),
   );
 
   /// batch
-  static final TypeRestfulInteraction batch = TypeRestfulInteraction._(
+  static const TypeRestfulInteraction batch = TypeRestfulInteraction._(
     valueString: 'batch',
-    system: 'http://hl7.org/fhir/ValueSet/type-restful-interaction'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'batch'.toFhirString,
+    valueEnum: TypeRestfulInteractionEnum.batch,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/type-restful-interaction',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'batch',
+    ),
   );
 
   /// operation
-  static final TypeRestfulInteraction operation = TypeRestfulInteraction._(
+  static const TypeRestfulInteraction operation = TypeRestfulInteraction._(
     valueString: 'operation',
-    system: 'http://hl7.org/fhir/ValueSet/type-restful-interaction'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'operation'.toFhirString,
+    valueEnum: TypeRestfulInteractionEnum.operation,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/type-restful-interaction',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'operation',
+    ),
   );
-
-  /// For instances where an Element is present but not value
-  static final TypeRestfulInteraction elementOnly =
-      TypeRestfulInteraction._(valueString: '');
 
   /// List of all enum-like values
   static final List<TypeRestfulInteraction> values = [
@@ -218,25 +451,18 @@ class TypeRestfulInteraction extends FhirCodeEnum {
     patch,
     delete,
     history,
-    history_instance,
-    history_type,
-    history_system,
+    historyInstance,
+    historyType,
+    historySystem,
     create,
     search,
-    search_type,
-    search_system,
+    searchType,
+    searchSystem,
     capabilities,
     transaction,
     batch,
     operation,
   ];
-
-  /// Clones the current instance
-  @override
-  TypeRestfulInteraction clone() => TypeRestfulInteraction._(
-        valueString: valueString,
-        element: element?.clone() as Element?,
-      );
 
   /// Returns the enum value with an element attached
   TypeRestfulInteraction withElement(Element? newElement) {
@@ -257,36 +483,56 @@ class TypeRestfulInteraction extends FhirCodeEnum {
   @override
   String toString() => valueString ?? '';
 
-  /// Creates a modified copy with updated properties.
   @override
-  TypeRestfulInteraction copyWith({
-    dynamic newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
+  TypeRestfulInteraction clone() => copyWith();
+
+  /// Creates a new instance with the specified fields replaced.
+  @override
+  TypeRestfulInteractionCopyWithImpl<TypeRestfulInteraction> get copyWith =>
+      TypeRestfulInteractionCopyWithImpl<TypeRestfulInteraction>(
+        this,
+        (v) => v as TypeRestfulInteraction,
+      );
+}
+
+/// The generated implementation of the copyWith helper for Element.
+/// The call method uses parameters of type Object? with a default value of
+/// [fhirSentinel] so that omitted parameters retain the sentinel value while
+/// explicit nulls do not.
+class TypeRestfulInteractionCopyWithImpl<T> extends $FhirCodeCopyWithImpl<T> {
+  /// Constructor for the copyWith implementation.
+  TypeRestfulInteractionCopyWithImpl(super._value, super._then);
+
+  @override
+  T call({
+    Object? newValue = fhirSentinel,
+    Object? element = fhirSentinel,
+    Object? id = fhirSentinel,
+    Object? extension_ = fhirSentinel,
+    Object? disallowExtensions = fhirSentinel,
   }) {
-    if (newValue is! String?) {
+    if (!identical(newValue, fhirSentinel) && newValue is! String?) {
       throw ArgumentError(
-        'Invalid input for TypeRestfulInteraction: $newValue',
+        'newValue must be a String or null, but found ${newValue.runtimeType}',
+        'newValue',
       );
     }
-    return TypeRestfulInteraction._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
+    return _then(
+      TypeRestfulInteraction(
+        identical(newValue, fhirSentinel)
+            ? _value.valueString
+            : newValue as String?,
+        element: identical(element, fhirSentinel)
+            ? _value.element
+            : element as Element?,
+        id: identical(id, fhirSentinel) ? _value.id : id as FhirString?,
+        extension_: identical(extension_, fhirSentinel)
+            ? _value.extension_
+            : extension_ as List<FhirExtension>?,
+        disallowExtensions: identical(disallowExtensions, fhirSentinel)
+            ? _value.disallowExtensions
+            : disallowExtensions as bool?,
       ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

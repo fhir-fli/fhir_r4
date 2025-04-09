@@ -1,11 +1,163 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for InteractionTrigger
+enum InteractionTriggerEnum {
+  /// read
+  read,
+
+  /// vread
+  vread,
+
+  /// update
+  update,
+
+  /// patch
+  patch,
+
+  /// delete
+  delete,
+
+  /// history
+  history,
+
+  /// history-instance
+  historyInstance,
+
+  /// history-type
+  historyType,
+
+  /// history-system
+  historySystem,
+
+  /// create
+  create,
+
+  /// search
+  search,
+
+  /// search-type
+  searchType,
+
+  /// search-system
+  searchSystem,
+
+  /// capabilities
+  capabilities,
+
+  /// transaction
+  transaction,
+
+  /// batch
+  batch,
+
+  /// operation
+  operation,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case InteractionTriggerEnum.read:
+        return 'read';
+      case InteractionTriggerEnum.vread:
+        return 'vread';
+      case InteractionTriggerEnum.update:
+        return 'update';
+      case InteractionTriggerEnum.patch:
+        return 'patch';
+      case InteractionTriggerEnum.delete:
+        return 'delete';
+      case InteractionTriggerEnum.history:
+        return 'history';
+      case InteractionTriggerEnum.historyInstance:
+        return 'history-instance';
+      case InteractionTriggerEnum.historyType:
+        return 'history-type';
+      case InteractionTriggerEnum.historySystem:
+        return 'history-system';
+      case InteractionTriggerEnum.create:
+        return 'create';
+      case InteractionTriggerEnum.search:
+        return 'search';
+      case InteractionTriggerEnum.searchType:
+        return 'search-type';
+      case InteractionTriggerEnum.searchSystem:
+        return 'search-system';
+      case InteractionTriggerEnum.capabilities:
+        return 'capabilities';
+      case InteractionTriggerEnum.transaction:
+        return 'transaction';
+      case InteractionTriggerEnum.batch:
+        return 'batch';
+      case InteractionTriggerEnum.operation:
+        return 'operation';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static InteractionTriggerEnum? fromJson(dynamic json) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return InteractionTriggerEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static InteractionTriggerEnum? fromString(String? value) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'read':
+        return InteractionTriggerEnum.read;
+      case 'vread':
+        return InteractionTriggerEnum.vread;
+      case 'update':
+        return InteractionTriggerEnum.update;
+      case 'patch':
+        return InteractionTriggerEnum.patch;
+      case 'delete':
+        return InteractionTriggerEnum.delete;
+      case 'history':
+        return InteractionTriggerEnum.history;
+      case 'history-instance':
+        return InteractionTriggerEnum.historyInstance;
+      case 'history-type':
+        return InteractionTriggerEnum.historyType;
+      case 'history-system':
+        return InteractionTriggerEnum.historySystem;
+      case 'create':
+        return InteractionTriggerEnum.create;
+      case 'search':
+        return InteractionTriggerEnum.search;
+      case 'search-type':
+        return InteractionTriggerEnum.searchType;
+      case 'search-system':
+        return InteractionTriggerEnum.searchSystem;
+      case 'capabilities':
+        return InteractionTriggerEnum.capabilities;
+      case 'transaction':
+        return InteractionTriggerEnum.transaction;
+      case 'batch':
+        return InteractionTriggerEnum.batch;
+      case 'operation':
+        return InteractionTriggerEnum.operation;
+    }
+    return null;
+  }
+}
+
 /// FHIR RESTful interaction codes used for SubscriptionTopic trigger.
 class InteractionTrigger extends FhirCodeEnum {
   // Private underscore constructor for internal use.
-  InteractionTrigger._({
+  const InteractionTrigger._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -13,7 +165,6 @@ class InteractionTrigger extends FhirCodeEnum {
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.objectPath = 'Code',
   }) : super._();
 
   /// Public factory if you want a fallback approach or custom creation.
@@ -27,12 +178,13 @@ class InteractionTrigger extends FhirCodeEnum {
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
-    String objectPath = 'Code',
   }) {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
+    final valueEnum = InteractionTriggerEnum.fromString(valueString);
     return InteractionTrigger._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -40,12 +192,8 @@ class InteractionTrigger extends FhirCodeEnum {
       id: id,
       extension_: extension_,
       disallowExtensions: disallowExtensions,
-      objectPath: objectPath,
     );
   }
-
-  /// Create empty [InteractionTrigger] with element only
-  factory InteractionTrigger.empty() => InteractionTrigger._(valueString: '');
 
   /// Factory constructor to create [InteractionTrigger]
   /// from JSON.
@@ -53,10 +201,11 @@ class InteractionTrigger extends FhirCodeEnum {
     Map<String, dynamic> json,
   ) {
     final value = json['value'] as String?;
+    final valueEnum = InteractionTriggerEnum.fromString(value);
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return InteractionTrigger.elementOnly.withElement(element);
+      return InteractionTrigger._(valueString: null, element: element);
     } else if (value == null && element == null) {
       throw ArgumentError(
         'InteractionTrigger cannot be constructed from JSON.',
@@ -64,149 +213,234 @@ class InteractionTrigger extends FhirCodeEnum {
     }
     return InteractionTrigger._(
       valueString: value,
+      valueEnum: valueEnum,
       element: element,
     );
   }
 
+  /// An actual enum that can be used for InteractionTrigger
+  final InteractionTriggerEnum? valueEnum;
+
   /// read
-  static final InteractionTrigger read = InteractionTrigger._(
+  static const InteractionTrigger read = InteractionTrigger._(
     valueString: 'read',
-    system: 'http://hl7.org/fhir/ValueSet/interaction-trigger'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'read'.toFhirString,
+    valueEnum: InteractionTriggerEnum.read,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/interaction-trigger',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'read',
+    ),
   );
 
   /// vread
-  static final InteractionTrigger vread = InteractionTrigger._(
+  static const InteractionTrigger vread = InteractionTrigger._(
     valueString: 'vread',
-    system: 'http://hl7.org/fhir/ValueSet/interaction-trigger'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'vread'.toFhirString,
+    valueEnum: InteractionTriggerEnum.vread,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/interaction-trigger',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'vread',
+    ),
   );
 
   /// update
-  static final InteractionTrigger update = InteractionTrigger._(
+  static const InteractionTrigger update = InteractionTrigger._(
     valueString: 'update',
-    system: 'http://hl7.org/fhir/ValueSet/interaction-trigger'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'update'.toFhirString,
+    valueEnum: InteractionTriggerEnum.update,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/interaction-trigger',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'update',
+    ),
   );
 
   /// patch
-  static final InteractionTrigger patch = InteractionTrigger._(
+  static const InteractionTrigger patch = InteractionTrigger._(
     valueString: 'patch',
-    system: 'http://hl7.org/fhir/ValueSet/interaction-trigger'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'patch'.toFhirString,
+    valueEnum: InteractionTriggerEnum.patch,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/interaction-trigger',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'patch',
+    ),
   );
 
   /// delete
-  static final InteractionTrigger delete = InteractionTrigger._(
+  static const InteractionTrigger delete = InteractionTrigger._(
     valueString: 'delete',
-    system: 'http://hl7.org/fhir/ValueSet/interaction-trigger'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'delete'.toFhirString,
+    valueEnum: InteractionTriggerEnum.delete,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/interaction-trigger',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'delete',
+    ),
   );
 
   /// history
-  static final InteractionTrigger history = InteractionTrigger._(
+  static const InteractionTrigger history = InteractionTrigger._(
     valueString: 'history',
-    system: 'http://hl7.org/fhir/ValueSet/interaction-trigger'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'history'.toFhirString,
+    valueEnum: InteractionTriggerEnum.history,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/interaction-trigger',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'history',
+    ),
   );
 
   /// history_instance
-  static final InteractionTrigger history_instance = InteractionTrigger._(
+  static const InteractionTrigger historyInstance = InteractionTrigger._(
     valueString: 'history-instance',
-    system: 'http://hl7.org/fhir/ValueSet/interaction-trigger'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'history-instance'.toFhirString,
+    valueEnum: InteractionTriggerEnum.historyInstance,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/interaction-trigger',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'history-instance',
+    ),
   );
 
   /// history_type
-  static final InteractionTrigger history_type = InteractionTrigger._(
+  static const InteractionTrigger historyType = InteractionTrigger._(
     valueString: 'history-type',
-    system: 'http://hl7.org/fhir/ValueSet/interaction-trigger'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'history-type'.toFhirString,
+    valueEnum: InteractionTriggerEnum.historyType,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/interaction-trigger',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'history-type',
+    ),
   );
 
   /// history_system
-  static final InteractionTrigger history_system = InteractionTrigger._(
+  static const InteractionTrigger historySystem = InteractionTrigger._(
     valueString: 'history-system',
-    system: 'http://hl7.org/fhir/ValueSet/interaction-trigger'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'history-system'.toFhirString,
+    valueEnum: InteractionTriggerEnum.historySystem,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/interaction-trigger',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'history-system',
+    ),
   );
 
   /// create
-  static final InteractionTrigger create = InteractionTrigger._(
+  static const InteractionTrigger create = InteractionTrigger._(
     valueString: 'create',
-    system: 'http://hl7.org/fhir/ValueSet/interaction-trigger'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'create'.toFhirString,
+    valueEnum: InteractionTriggerEnum.create,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/interaction-trigger',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'create',
+    ),
   );
 
   /// search
-  static final InteractionTrigger search = InteractionTrigger._(
+  static const InteractionTrigger search = InteractionTrigger._(
     valueString: 'search',
-    system: 'http://hl7.org/fhir/ValueSet/interaction-trigger'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'search'.toFhirString,
+    valueEnum: InteractionTriggerEnum.search,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/interaction-trigger',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'search',
+    ),
   );
 
   /// search_type
-  static final InteractionTrigger search_type = InteractionTrigger._(
+  static const InteractionTrigger searchType = InteractionTrigger._(
     valueString: 'search-type',
-    system: 'http://hl7.org/fhir/ValueSet/interaction-trigger'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'search-type'.toFhirString,
+    valueEnum: InteractionTriggerEnum.searchType,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/interaction-trigger',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'search-type',
+    ),
   );
 
   /// search_system
-  static final InteractionTrigger search_system = InteractionTrigger._(
+  static const InteractionTrigger searchSystem = InteractionTrigger._(
     valueString: 'search-system',
-    system: 'http://hl7.org/fhir/ValueSet/interaction-trigger'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'search-system'.toFhirString,
+    valueEnum: InteractionTriggerEnum.searchSystem,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/interaction-trigger',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'search-system',
+    ),
   );
 
   /// capabilities
-  static final InteractionTrigger capabilities = InteractionTrigger._(
+  static const InteractionTrigger capabilities = InteractionTrigger._(
     valueString: 'capabilities',
-    system: 'http://hl7.org/fhir/ValueSet/interaction-trigger'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'capabilities'.toFhirString,
+    valueEnum: InteractionTriggerEnum.capabilities,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/interaction-trigger',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'capabilities',
+    ),
   );
 
   /// transaction
-  static final InteractionTrigger transaction = InteractionTrigger._(
+  static const InteractionTrigger transaction = InteractionTrigger._(
     valueString: 'transaction',
-    system: 'http://hl7.org/fhir/ValueSet/interaction-trigger'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'transaction'.toFhirString,
+    valueEnum: InteractionTriggerEnum.transaction,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/interaction-trigger',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'transaction',
+    ),
   );
 
   /// batch
-  static final InteractionTrigger batch = InteractionTrigger._(
+  static const InteractionTrigger batch = InteractionTrigger._(
     valueString: 'batch',
-    system: 'http://hl7.org/fhir/ValueSet/interaction-trigger'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'batch'.toFhirString,
+    valueEnum: InteractionTriggerEnum.batch,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/interaction-trigger',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'batch',
+    ),
   );
 
   /// operation
-  static final InteractionTrigger operation = InteractionTrigger._(
+  static const InteractionTrigger operation = InteractionTrigger._(
     valueString: 'operation',
-    system: 'http://hl7.org/fhir/ValueSet/interaction-trigger'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'operation'.toFhirString,
+    valueEnum: InteractionTriggerEnum.operation,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/interaction-trigger',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'operation',
+    ),
   );
-
-  /// For instances where an Element is present but not value
-  static final InteractionTrigger elementOnly =
-      InteractionTrigger._(valueString: '');
 
   /// List of all enum-like values
   static final List<InteractionTrigger> values = [
@@ -216,25 +450,18 @@ class InteractionTrigger extends FhirCodeEnum {
     patch,
     delete,
     history,
-    history_instance,
-    history_type,
-    history_system,
+    historyInstance,
+    historyType,
+    historySystem,
     create,
     search,
-    search_type,
-    search_system,
+    searchType,
+    searchSystem,
     capabilities,
     transaction,
     batch,
     operation,
   ];
-
-  /// Clones the current instance
-  @override
-  InteractionTrigger clone() => InteractionTrigger._(
-        valueString: valueString,
-        element: element?.clone() as Element?,
-      );
 
   /// Returns the enum value with an element attached
   InteractionTrigger withElement(Element? newElement) {
@@ -255,36 +482,56 @@ class InteractionTrigger extends FhirCodeEnum {
   @override
   String toString() => valueString ?? '';
 
-  /// Creates a modified copy with updated properties.
   @override
-  InteractionTrigger copyWith({
-    dynamic newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
+  InteractionTrigger clone() => copyWith();
+
+  /// Creates a new instance with the specified fields replaced.
+  @override
+  InteractionTriggerCopyWithImpl<InteractionTrigger> get copyWith =>
+      InteractionTriggerCopyWithImpl<InteractionTrigger>(
+        this,
+        (v) => v as InteractionTrigger,
+      );
+}
+
+/// The generated implementation of the copyWith helper for Element.
+/// The call method uses parameters of type Object? with a default value of
+/// [fhirSentinel] so that omitted parameters retain the sentinel value while
+/// explicit nulls do not.
+class InteractionTriggerCopyWithImpl<T> extends $FhirCodeCopyWithImpl<T> {
+  /// Constructor for the copyWith implementation.
+  InteractionTriggerCopyWithImpl(super._value, super._then);
+
+  @override
+  T call({
+    Object? newValue = fhirSentinel,
+    Object? element = fhirSentinel,
+    Object? id = fhirSentinel,
+    Object? extension_ = fhirSentinel,
+    Object? disallowExtensions = fhirSentinel,
   }) {
-    if (newValue is! String?) {
+    if (!identical(newValue, fhirSentinel) && newValue is! String?) {
       throw ArgumentError(
-        'Invalid input for InteractionTrigger: $newValue',
+        'newValue must be a String or null, but found ${newValue.runtimeType}',
+        'newValue',
       );
     }
-    return InteractionTrigger._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
+    return _then(
+      InteractionTrigger(
+        identical(newValue, fhirSentinel)
+            ? _value.valueString
+            : newValue as String?,
+        element: identical(element, fhirSentinel)
+            ? _value.element
+            : element as Element?,
+        id: identical(id, fhirSentinel) ? _value.id : id as FhirString?,
+        extension_: identical(extension_, fhirSentinel)
+            ? _value.extension_
+            : extension_ as List<FhirExtension>?,
+        disallowExtensions: identical(disallowExtensions, fhirSentinel)
+            ? _value.disallowExtensions
+            : disallowExtensions as bool?,
       ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

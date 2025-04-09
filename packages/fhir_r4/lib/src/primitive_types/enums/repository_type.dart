@@ -1,11 +1,79 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for RepositoryType
+enum RepositoryTypeEnum {
+  /// directlink
+  directlink,
+
+  /// openapi
+  openapi,
+
+  /// login
+  login,
+
+  /// oauth
+  oauth,
+
+  /// other
+  other,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case RepositoryTypeEnum.directlink:
+        return 'directlink';
+      case RepositoryTypeEnum.openapi:
+        return 'openapi';
+      case RepositoryTypeEnum.login:
+        return 'login';
+      case RepositoryTypeEnum.oauth:
+        return 'oauth';
+      case RepositoryTypeEnum.other:
+        return 'other';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static RepositoryTypeEnum? fromJson(dynamic json) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return RepositoryTypeEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static RepositoryTypeEnum? fromString(String? value) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'directlink':
+        return RepositoryTypeEnum.directlink;
+      case 'openapi':
+        return RepositoryTypeEnum.openapi;
+      case 'login':
+        return RepositoryTypeEnum.login;
+      case 'oauth':
+        return RepositoryTypeEnum.oauth;
+      case 'other':
+        return RepositoryTypeEnum.other;
+    }
+    return null;
+  }
+}
+
 /// Type for access of external URI.
 class RepositoryType extends FhirCodeEnum {
   // Private underscore constructor for internal use.
-  RepositoryType._({
+  const RepositoryType._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -13,7 +81,6 @@ class RepositoryType extends FhirCodeEnum {
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.objectPath = 'Code',
   }) : super._();
 
   /// Public factory if you want a fallback approach or custom creation.
@@ -27,12 +94,13 @@ class RepositoryType extends FhirCodeEnum {
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
-    String objectPath = 'Code',
   }) {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
+    final valueEnum = RepositoryTypeEnum.fromString(valueString);
     return RepositoryType._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -40,12 +108,8 @@ class RepositoryType extends FhirCodeEnum {
       id: id,
       extension_: extension_,
       disallowExtensions: disallowExtensions,
-      objectPath: objectPath,
     );
   }
-
-  /// Create empty [RepositoryType] with element only
-  factory RepositoryType.empty() => RepositoryType._(valueString: '');
 
   /// Factory constructor to create [RepositoryType]
   /// from JSON.
@@ -53,10 +117,11 @@ class RepositoryType extends FhirCodeEnum {
     Map<String, dynamic> json,
   ) {
     final value = json['value'] as String?;
+    final valueEnum = RepositoryTypeEnum.fromString(value);
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return RepositoryType.elementOnly.withElement(element);
+      return RepositoryType._(valueString: null, element: element);
     } else if (value == null && element == null) {
       throw ArgumentError(
         'RepositoryType cannot be constructed from JSON.',
@@ -64,59 +129,81 @@ class RepositoryType extends FhirCodeEnum {
     }
     return RepositoryType._(
       valueString: value,
+      valueEnum: valueEnum,
       element: element,
     );
   }
 
+  /// An actual enum that can be used for RepositoryType
+  final RepositoryTypeEnum? valueEnum;
+
   /// directlink
-  static final RepositoryType directlink = RepositoryType._(
+  static const RepositoryType directlink = RepositoryType._(
     valueString: 'directlink',
-    system: 'http://hl7.org/fhir/ValueSet/repository-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Click and see'.toFhirString,
+    valueEnum: RepositoryTypeEnum.directlink,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/repository-type',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Click and see',
+    ),
   );
 
   /// openapi
-  static final RepositoryType openapi = RepositoryType._(
+  static const RepositoryType openapi = RepositoryType._(
     valueString: 'openapi',
-    system: 'http://hl7.org/fhir/ValueSet/repository-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display:
-        'The URL is the RESTful or other kind of API that can access to the result.'
-            .toFhirString,
+    valueEnum: RepositoryTypeEnum.openapi,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/repository-type',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString:
+          'The URL is the RESTful or other kind of API that can access to the result.',
+    ),
   );
 
   /// login
-  static final RepositoryType login = RepositoryType._(
+  static const RepositoryType login = RepositoryType._(
     valueString: 'login',
-    system: 'http://hl7.org/fhir/ValueSet/repository-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display:
-        'Result cannot be access unless an account is logged in'.toFhirString,
+    valueEnum: RepositoryTypeEnum.login,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/repository-type',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Result cannot be access unless an account is logged in',
+    ),
   );
 
   /// oauth
-  static final RepositoryType oauth = RepositoryType._(
+  static const RepositoryType oauth = RepositoryType._(
     valueString: 'oauth',
-    system: 'http://hl7.org/fhir/ValueSet/repository-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display:
-        'Result need to be fetched with API and need LOGIN( or cookies are required when visiting the link of resource)'
-            .toFhirString,
+    valueEnum: RepositoryTypeEnum.oauth,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/repository-type',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString:
+          'Result need to be fetched with API and need LOGIN( or cookies are required when visiting the link of resource)',
+    ),
   );
 
   /// other
-  static final RepositoryType other = RepositoryType._(
+  static const RepositoryType other = RepositoryType._(
     valueString: 'other',
-    system: 'http://hl7.org/fhir/ValueSet/repository-type'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display:
-        'Some other complicated or particular way to get resource from URL.'
-            .toFhirString,
+    valueEnum: RepositoryTypeEnum.other,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/repository-type',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString:
+          'Some other complicated or particular way to get resource from URL.',
+    ),
   );
-
-  /// For instances where an Element is present but not value
-  static final RepositoryType elementOnly = RepositoryType._(valueString: '');
 
   /// List of all enum-like values
   static final List<RepositoryType> values = [
@@ -126,13 +213,6 @@ class RepositoryType extends FhirCodeEnum {
     oauth,
     other,
   ];
-
-  /// Clones the current instance
-  @override
-  RepositoryType clone() => RepositoryType._(
-        valueString: valueString,
-        element: element?.clone() as Element?,
-      );
 
   /// Returns the enum value with an element attached
   RepositoryType withElement(Element? newElement) {
@@ -153,36 +233,56 @@ class RepositoryType extends FhirCodeEnum {
   @override
   String toString() => valueString ?? '';
 
-  /// Creates a modified copy with updated properties.
   @override
-  RepositoryType copyWith({
-    dynamic newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
+  RepositoryType clone() => copyWith();
+
+  /// Creates a new instance with the specified fields replaced.
+  @override
+  RepositoryTypeCopyWithImpl<RepositoryType> get copyWith =>
+      RepositoryTypeCopyWithImpl<RepositoryType>(
+        this,
+        (v) => v as RepositoryType,
+      );
+}
+
+/// The generated implementation of the copyWith helper for Element.
+/// The call method uses parameters of type Object? with a default value of
+/// [fhirSentinel] so that omitted parameters retain the sentinel value while
+/// explicit nulls do not.
+class RepositoryTypeCopyWithImpl<T> extends $FhirCodeCopyWithImpl<T> {
+  /// Constructor for the copyWith implementation.
+  RepositoryTypeCopyWithImpl(super._value, super._then);
+
+  @override
+  T call({
+    Object? newValue = fhirSentinel,
+    Object? element = fhirSentinel,
+    Object? id = fhirSentinel,
+    Object? extension_ = fhirSentinel,
+    Object? disallowExtensions = fhirSentinel,
   }) {
-    if (newValue is! String?) {
+    if (!identical(newValue, fhirSentinel) && newValue is! String?) {
       throw ArgumentError(
-        'Invalid input for RepositoryType: $newValue',
+        'newValue must be a String or null, but found ${newValue.runtimeType}',
+        'newValue',
       );
     }
-    return RepositoryType._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
+    return _then(
+      RepositoryType(
+        identical(newValue, fhirSentinel)
+            ? _value.valueString
+            : newValue as String?,
+        element: identical(element, fhirSentinel)
+            ? _value.element
+            : element as Element?,
+        id: identical(id, fhirSentinel) ? _value.id : id as FhirString?,
+        extension_: identical(extension_, fhirSentinel)
+            ? _value.extension_
+            : extension_ as List<FhirExtension>?,
+        disallowExtensions: identical(disallowExtensions, fhirSentinel)
+            ? _value.disallowExtensions
+            : disallowExtensions as bool?,
       ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

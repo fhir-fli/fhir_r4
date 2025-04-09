@@ -195,4 +195,54 @@ void base64BinaryTest() {
       expect(jsonEncode(base64Binary.valueString), equals('"dGVzdA=="'));
     });
   });
+
+  group('FhirBase64Binary copyWith Tests:', () {
+    test('should copy with new values', () {
+      final original = FhirBase64Binary('SGVsbG8gV29ybGQ=');
+      expect(original.valueString, equals('SGVsbG8gV29ybGQ='));
+
+      final copied = original.copyWith(newValue: 'RklISQ==');
+      expect(copied.valueString, equals('RklISQ=='));
+      expect(
+        original.valueString,
+        equals('SGVsbG8gV29ybGQ='),
+      ); // Original unchanged
+    });
+
+    test('should clear value when explicitly passed null', () {
+      final original = FhirBase64Binary('SGVsbG8gV29ybGQ=');
+      expect(original.valueString, isNotNull);
+
+      // ignore: avoid_redundant_argument_values
+      final cleared = original.copyWith(
+        newValue: null,
+        element: const Element(),
+      );
+      expect(cleared.valueString, isNull);
+      expect(original.valueString, isNotNull); // Original unchanged
+    });
+
+    test('should preserve other properties when copying', () {
+      const originalElement = Element();
+      final original = FhirBase64Binary(
+        'SGVsbG8gV29ybGQ=',
+        element: originalElement,
+        id: FhirString('test-id'),
+      );
+
+      final copied = original.copyWith(newValue: 'RklISQ==');
+      expect(copied.valueString, equals('RklISQ=='));
+      expect(copied.element, equals(originalElement));
+      expect(copied.id?.valueString, equals('test-id'));
+    });
+
+    test('should be able to update element and keep value', () {
+      final original = FhirBase64Binary('SGVsbG8gV29ybGQ=');
+      const newElement = Element();
+
+      final copied = original.copyWith(element: newElement);
+      expect(copied.valueString, equals('SGVsbG8gV29ybGQ='));
+      expect(copied.element, equals(newElement));
+    });
+  });
 }

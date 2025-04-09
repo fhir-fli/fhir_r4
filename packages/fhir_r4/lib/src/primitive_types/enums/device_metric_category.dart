@@ -1,11 +1,72 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for DeviceMetricCategory
+enum DeviceMetricCategoryEnum {
+  /// measurement
+  measurement,
+
+  /// setting
+  setting,
+
+  /// calculation
+  calculation,
+
+  /// unspecified
+  unspecified,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case DeviceMetricCategoryEnum.measurement:
+        return 'measurement';
+      case DeviceMetricCategoryEnum.setting:
+        return 'setting';
+      case DeviceMetricCategoryEnum.calculation:
+        return 'calculation';
+      case DeviceMetricCategoryEnum.unspecified:
+        return 'unspecified';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static DeviceMetricCategoryEnum? fromJson(dynamic json) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return DeviceMetricCategoryEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static DeviceMetricCategoryEnum? fromString(String? value) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'measurement':
+        return DeviceMetricCategoryEnum.measurement;
+      case 'setting':
+        return DeviceMetricCategoryEnum.setting;
+      case 'calculation':
+        return DeviceMetricCategoryEnum.calculation;
+      case 'unspecified':
+        return DeviceMetricCategoryEnum.unspecified;
+    }
+    return null;
+  }
+}
+
 /// Describes the category of the metric.
 class DeviceMetricCategory extends FhirCodeEnum {
   // Private underscore constructor for internal use.
-  DeviceMetricCategory._({
+  const DeviceMetricCategory._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -13,7 +74,6 @@ class DeviceMetricCategory extends FhirCodeEnum {
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.objectPath = 'Code',
   }) : super._();
 
   /// Public factory if you want a fallback approach or custom creation.
@@ -27,12 +87,13 @@ class DeviceMetricCategory extends FhirCodeEnum {
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
-    String objectPath = 'Code',
   }) {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
+    final valueEnum = DeviceMetricCategoryEnum.fromString(valueString);
     return DeviceMetricCategory._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -40,13 +101,8 @@ class DeviceMetricCategory extends FhirCodeEnum {
       id: id,
       extension_: extension_,
       disallowExtensions: disallowExtensions,
-      objectPath: objectPath,
     );
   }
-
-  /// Create empty [DeviceMetricCategory] with element only
-  factory DeviceMetricCategory.empty() =>
-      DeviceMetricCategory._(valueString: '');
 
   /// Factory constructor to create [DeviceMetricCategory]
   /// from JSON.
@@ -54,10 +110,11 @@ class DeviceMetricCategory extends FhirCodeEnum {
     Map<String, dynamic> json,
   ) {
     final value = json['value'] as String?;
+    final valueEnum = DeviceMetricCategoryEnum.fromString(value);
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return DeviceMetricCategory.elementOnly.withElement(element);
+      return DeviceMetricCategory._(valueString: null, element: element);
     } else if (value == null && element == null) {
       throw ArgumentError(
         'DeviceMetricCategory cannot be constructed from JSON.',
@@ -65,45 +122,65 @@ class DeviceMetricCategory extends FhirCodeEnum {
     }
     return DeviceMetricCategory._(
       valueString: value,
+      valueEnum: valueEnum,
       element: element,
     );
   }
 
+  /// An actual enum that can be used for DeviceMetricCategory
+  final DeviceMetricCategoryEnum? valueEnum;
+
   /// measurement
-  static final DeviceMetricCategory measurement = DeviceMetricCategory._(
+  static const DeviceMetricCategory measurement = DeviceMetricCategory._(
     valueString: 'measurement',
-    system: 'http://hl7.org/fhir/ValueSet/metric-category'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Measurement'.toFhirString,
+    valueEnum: DeviceMetricCategoryEnum.measurement,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/metric-category',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Measurement',
+    ),
   );
 
   /// setting
-  static final DeviceMetricCategory setting = DeviceMetricCategory._(
+  static const DeviceMetricCategory setting = DeviceMetricCategory._(
     valueString: 'setting',
-    system: 'http://hl7.org/fhir/ValueSet/metric-category'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Setting'.toFhirString,
+    valueEnum: DeviceMetricCategoryEnum.setting,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/metric-category',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Setting',
+    ),
   );
 
   /// calculation
-  static final DeviceMetricCategory calculation = DeviceMetricCategory._(
+  static const DeviceMetricCategory calculation = DeviceMetricCategory._(
     valueString: 'calculation',
-    system: 'http://hl7.org/fhir/ValueSet/metric-category'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Calculation'.toFhirString,
+    valueEnum: DeviceMetricCategoryEnum.calculation,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/metric-category',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Calculation',
+    ),
   );
 
   /// unspecified
-  static final DeviceMetricCategory unspecified = DeviceMetricCategory._(
+  static const DeviceMetricCategory unspecified = DeviceMetricCategory._(
     valueString: 'unspecified',
-    system: 'http://hl7.org/fhir/ValueSet/metric-category'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Unspecified'.toFhirString,
+    valueEnum: DeviceMetricCategoryEnum.unspecified,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/metric-category',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Unspecified',
+    ),
   );
-
-  /// For instances where an Element is present but not value
-  static final DeviceMetricCategory elementOnly =
-      DeviceMetricCategory._(valueString: '');
 
   /// List of all enum-like values
   static final List<DeviceMetricCategory> values = [
@@ -112,13 +189,6 @@ class DeviceMetricCategory extends FhirCodeEnum {
     calculation,
     unspecified,
   ];
-
-  /// Clones the current instance
-  @override
-  DeviceMetricCategory clone() => DeviceMetricCategory._(
-        valueString: valueString,
-        element: element?.clone() as Element?,
-      );
 
   /// Returns the enum value with an element attached
   DeviceMetricCategory withElement(Element? newElement) {
@@ -139,36 +209,56 @@ class DeviceMetricCategory extends FhirCodeEnum {
   @override
   String toString() => valueString ?? '';
 
-  /// Creates a modified copy with updated properties.
   @override
-  DeviceMetricCategory copyWith({
-    dynamic newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
+  DeviceMetricCategory clone() => copyWith();
+
+  /// Creates a new instance with the specified fields replaced.
+  @override
+  DeviceMetricCategoryCopyWithImpl<DeviceMetricCategory> get copyWith =>
+      DeviceMetricCategoryCopyWithImpl<DeviceMetricCategory>(
+        this,
+        (v) => v as DeviceMetricCategory,
+      );
+}
+
+/// The generated implementation of the copyWith helper for Element.
+/// The call method uses parameters of type Object? with a default value of
+/// [fhirSentinel] so that omitted parameters retain the sentinel value while
+/// explicit nulls do not.
+class DeviceMetricCategoryCopyWithImpl<T> extends $FhirCodeCopyWithImpl<T> {
+  /// Constructor for the copyWith implementation.
+  DeviceMetricCategoryCopyWithImpl(super._value, super._then);
+
+  @override
+  T call({
+    Object? newValue = fhirSentinel,
+    Object? element = fhirSentinel,
+    Object? id = fhirSentinel,
+    Object? extension_ = fhirSentinel,
+    Object? disallowExtensions = fhirSentinel,
   }) {
-    if (newValue is! String?) {
+    if (!identical(newValue, fhirSentinel) && newValue is! String?) {
       throw ArgumentError(
-        'Invalid input for DeviceMetricCategory: $newValue',
+        'newValue must be a String or null, but found ${newValue.runtimeType}',
+        'newValue',
       );
     }
-    return DeviceMetricCategory._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
+    return _then(
+      DeviceMetricCategory(
+        identical(newValue, fhirSentinel)
+            ? _value.valueString
+            : newValue as String?,
+        element: identical(element, fhirSentinel)
+            ? _value.element
+            : element as Element?,
+        id: identical(id, fhirSentinel) ? _value.id : id as FhirString?,
+        extension_: identical(extension_, fhirSentinel)
+            ? _value.extension_
+            : extension_ as List<FhirExtension>?,
+        disallowExtensions: identical(disallowExtensions, fhirSentinel)
+            ? _value.disallowExtensions
+            : disallowExtensions as bool?,
       ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

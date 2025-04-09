@@ -1,11 +1,79 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for QuestionnaireResponseStatus
+enum QuestionnaireResponseStatusEnum {
+  /// in-progress
+  inProgress,
+
+  /// completed
+  completed,
+
+  /// amended
+  amended,
+
+  /// entered-in-error
+  enteredInError,
+
+  /// stopped
+  stopped,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case QuestionnaireResponseStatusEnum.inProgress:
+        return 'in-progress';
+      case QuestionnaireResponseStatusEnum.completed:
+        return 'completed';
+      case QuestionnaireResponseStatusEnum.amended:
+        return 'amended';
+      case QuestionnaireResponseStatusEnum.enteredInError:
+        return 'entered-in-error';
+      case QuestionnaireResponseStatusEnum.stopped:
+        return 'stopped';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static QuestionnaireResponseStatusEnum? fromJson(dynamic json) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return QuestionnaireResponseStatusEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static QuestionnaireResponseStatusEnum? fromString(String? value) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'in-progress':
+        return QuestionnaireResponseStatusEnum.inProgress;
+      case 'completed':
+        return QuestionnaireResponseStatusEnum.completed;
+      case 'amended':
+        return QuestionnaireResponseStatusEnum.amended;
+      case 'entered-in-error':
+        return QuestionnaireResponseStatusEnum.enteredInError;
+      case 'stopped':
+        return QuestionnaireResponseStatusEnum.stopped;
+    }
+    return null;
+  }
+}
+
 /// Lifecycle status of the questionnaire response.
 class QuestionnaireResponseStatus extends FhirCodeEnum {
   // Private underscore constructor for internal use.
-  QuestionnaireResponseStatus._({
+  const QuestionnaireResponseStatus._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -13,7 +81,6 @@ class QuestionnaireResponseStatus extends FhirCodeEnum {
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.objectPath = 'Code',
   }) : super._();
 
   /// Public factory if you want a fallback approach or custom creation.
@@ -27,12 +94,13 @@ class QuestionnaireResponseStatus extends FhirCodeEnum {
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
-    String objectPath = 'Code',
   }) {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
+    final valueEnum = QuestionnaireResponseStatusEnum.fromString(valueString);
     return QuestionnaireResponseStatus._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -40,13 +108,8 @@ class QuestionnaireResponseStatus extends FhirCodeEnum {
       id: id,
       extension_: extension_,
       disallowExtensions: disallowExtensions,
-      objectPath: objectPath,
     );
   }
-
-  /// Create empty [QuestionnaireResponseStatus] with element only
-  factory QuestionnaireResponseStatus.empty() =>
-      QuestionnaireResponseStatus._(valueString: '');
 
   /// Factory constructor to create [QuestionnaireResponseStatus]
   /// from JSON.
@@ -54,10 +117,11 @@ class QuestionnaireResponseStatus extends FhirCodeEnum {
     Map<String, dynamic> json,
   ) {
     final value = json['value'] as String?;
+    final valueEnum = QuestionnaireResponseStatusEnum.fromString(value);
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return QuestionnaireResponseStatus.elementOnly.withElement(element);
+      return QuestionnaireResponseStatus._(valueString: null, element: element);
     } else if (value == null && element == null) {
       throw ArgumentError(
         'QuestionnaireResponseStatus cannot be constructed from JSON.',
@@ -65,79 +129,92 @@ class QuestionnaireResponseStatus extends FhirCodeEnum {
     }
     return QuestionnaireResponseStatus._(
       valueString: value,
+      valueEnum: valueEnum,
       element: element,
     );
   }
 
+  /// An actual enum that can be used for QuestionnaireResponseStatus
+  final QuestionnaireResponseStatusEnum? valueEnum;
+
   /// in_progress
-  static final QuestionnaireResponseStatus in_progress =
+  static const QuestionnaireResponseStatus inProgress =
       QuestionnaireResponseStatus._(
     valueString: 'in-progress',
-    system:
-        'http://hl7.org/fhir/ValueSet/questionnaire-answers-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'In Progress'.toFhirString,
+    valueEnum: QuestionnaireResponseStatusEnum.inProgress,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/questionnaire-answers-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'In Progress',
+    ),
   );
 
   /// completed
-  static final QuestionnaireResponseStatus completed =
+  static const QuestionnaireResponseStatus completed =
       QuestionnaireResponseStatus._(
     valueString: 'completed',
-    system:
-        'http://hl7.org/fhir/ValueSet/questionnaire-answers-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Completed'.toFhirString,
+    valueEnum: QuestionnaireResponseStatusEnum.completed,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/questionnaire-answers-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Completed',
+    ),
   );
 
   /// amended
-  static final QuestionnaireResponseStatus amended =
+  static const QuestionnaireResponseStatus amended =
       QuestionnaireResponseStatus._(
     valueString: 'amended',
-    system:
-        'http://hl7.org/fhir/ValueSet/questionnaire-answers-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Amended'.toFhirString,
+    valueEnum: QuestionnaireResponseStatusEnum.amended,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/questionnaire-answers-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Amended',
+    ),
   );
 
   /// entered_in_error
-  static final QuestionnaireResponseStatus entered_in_error =
+  static const QuestionnaireResponseStatus enteredInError =
       QuestionnaireResponseStatus._(
     valueString: 'entered-in-error',
-    system:
-        'http://hl7.org/fhir/ValueSet/questionnaire-answers-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Entered in Error'.toFhirString,
+    valueEnum: QuestionnaireResponseStatusEnum.enteredInError,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/questionnaire-answers-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Entered in Error',
+    ),
   );
 
   /// stopped
-  static final QuestionnaireResponseStatus stopped =
+  static const QuestionnaireResponseStatus stopped =
       QuestionnaireResponseStatus._(
     valueString: 'stopped',
-    system:
-        'http://hl7.org/fhir/ValueSet/questionnaire-answers-status'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Stopped'.toFhirString,
+    valueEnum: QuestionnaireResponseStatusEnum.stopped,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/questionnaire-answers-status',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Stopped',
+    ),
   );
-
-  /// For instances where an Element is present but not value
-  static final QuestionnaireResponseStatus elementOnly =
-      QuestionnaireResponseStatus._(valueString: '');
 
   /// List of all enum-like values
   static final List<QuestionnaireResponseStatus> values = [
-    in_progress,
+    inProgress,
     completed,
     amended,
-    entered_in_error,
+    enteredInError,
     stopped,
   ];
-
-  /// Clones the current instance
-  @override
-  QuestionnaireResponseStatus clone() => QuestionnaireResponseStatus._(
-        valueString: valueString,
-        element: element?.clone() as Element?,
-      );
 
   /// Returns the enum value with an element attached
   QuestionnaireResponseStatus withElement(Element? newElement) {
@@ -158,36 +235,58 @@ class QuestionnaireResponseStatus extends FhirCodeEnum {
   @override
   String toString() => valueString ?? '';
 
-  /// Creates a modified copy with updated properties.
   @override
-  QuestionnaireResponseStatus copyWith({
-    dynamic newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
+  QuestionnaireResponseStatus clone() => copyWith();
+
+  /// Creates a new instance with the specified fields replaced.
+  @override
+  QuestionnaireResponseStatusCopyWithImpl<QuestionnaireResponseStatus>
+      get copyWith =>
+          QuestionnaireResponseStatusCopyWithImpl<QuestionnaireResponseStatus>(
+            this,
+            (v) => v as QuestionnaireResponseStatus,
+          );
+}
+
+/// The generated implementation of the copyWith helper for Element.
+/// The call method uses parameters of type Object? with a default value of
+/// [fhirSentinel] so that omitted parameters retain the sentinel value while
+/// explicit nulls do not.
+class QuestionnaireResponseStatusCopyWithImpl<T>
+    extends $FhirCodeCopyWithImpl<T> {
+  /// Constructor for the copyWith implementation.
+  QuestionnaireResponseStatusCopyWithImpl(super._value, super._then);
+
+  @override
+  T call({
+    Object? newValue = fhirSentinel,
+    Object? element = fhirSentinel,
+    Object? id = fhirSentinel,
+    Object? extension_ = fhirSentinel,
+    Object? disallowExtensions = fhirSentinel,
   }) {
-    if (newValue is! String?) {
+    if (!identical(newValue, fhirSentinel) && newValue is! String?) {
       throw ArgumentError(
-        'Invalid input for QuestionnaireResponseStatus: $newValue',
+        'newValue must be a String or null, but found ${newValue.runtimeType}',
+        'newValue',
       );
     }
-    return QuestionnaireResponseStatus._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
+    return _then(
+      QuestionnaireResponseStatus(
+        identical(newValue, fhirSentinel)
+            ? _value.valueString
+            : newValue as String?,
+        element: identical(element, fhirSentinel)
+            ? _value.element
+            : element as Element?,
+        id: identical(id, fhirSentinel) ? _value.id : id as FhirString?,
+        extension_: identical(extension_, fhirSentinel)
+            ? _value.extension_
+            : extension_ as List<FhirExtension>?,
+        disallowExtensions: identical(disallowExtensions, fhirSentinel)
+            ? _value.disallowExtensions
+            : disallowExtensions as bool?,
       ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

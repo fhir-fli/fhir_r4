@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
+part 'codeable_concept.g.dart';
+
 /// [CodeableConcept]
 /// A concept that may be defined by a formal reference to a terminology or
 /// ontology or may be provided by text.
@@ -93,43 +95,29 @@ class CodeableConcept extends DataType
     this.coding,
     this.text,
     super.disallowExtensions,
-    super.objectPath = 'CodeableConcept',
   });
-
-  /// An empty constructor for partial usage.
-  /// All required fields are assigned placeholder values, so
-  /// you can instantiate and fill them in later if desired.
-  factory CodeableConcept.empty() => const CodeableConcept();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CodeableConcept.fromJson(
     Map<String, dynamic> json,
   ) {
-    final objectPath = json['resourceType'] as String? ?? 'CodeableConcept';
     return CodeableConcept(
       id: JsonParser.parsePrimitive<FhirString>(
         json,
         'id',
         FhirString.fromJson,
-        '$objectPath.id',
       ),
       extension_: (json['extension'] as List<dynamic>?)
           ?.map<FhirExtension>(
             (v) => FhirExtension.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.extension',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
       coding: (json['coding'] as List<dynamic>?)
           ?.map<Coding>(
             (v) => Coding.fromJson(
-              {
-                ...v as Map<String, dynamic>,
-                'objectPath': '$objectPath.coding',
-              },
+              {...v as Map<String, dynamic>},
             ),
           )
           .toList(),
@@ -137,7 +125,6 @@ class CodeableConcept extends DataType
         json,
         'text',
         FhirString.fromJson,
-        '$objectPath.text',
       ),
     );
   }
@@ -272,241 +259,20 @@ class CodeableConcept extends DataType
     return json;
   }
 
-  /// Lists the JSON keys for the object.
   @override
-  List<String> listChildrenNames() {
-    return [
-      'id',
-      'extension',
-      'coding',
-      'text',
-    ];
-  }
+  CodeableConcept clone() => copyWith();
 
-  /// Retrieves all matching child fields by name.
-  ///Optionally validates the name.
+  /// Copy function for [CodeableConcept]
+  /// Returns a copy of the current instance with the provided fields modified.
+  /// If a field is not provided, it will retain its original value.
+  /// If a null is provided, this will clearn the field, unless the
+  /// field is required, in which case it will keep its current value.
   @override
-  List<FhirBase> getChildrenByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    final fields = <FhirBase>[];
-    switch (fieldName) {
-      case 'id':
-        if (id != null) {
-          fields.add(id!);
-        }
-      case 'extension':
-        if (extension_ != null) {
-          fields.addAll(extension_!);
-        }
-      case 'coding':
-        if (coding != null) {
-          fields.addAll(coding!);
-        }
-      case 'text':
-        if (text != null) {
-          fields.add(text!);
-        }
-      default:
-        if (checkValid) {
-          throw ArgumentError('Invalid name: $fieldName');
-        }
-    }
-    return fields;
-  }
-
-  /// Retrieves a single field value by its name.
-  @override
-  FhirBase? getChildByName(String name) {
-    final values = getChildrenByName(name);
-    if (values.length > 1) {
-      throw StateError('Too many values for $name found');
-    }
-    return values.isNotEmpty ? values.first : null;
-  }
-
-  @override
-  FhirBase setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
-
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?extension_,
-              child,
-            ];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'coding':
-        {
-          if (child is List<Coding>) {
-            // Add all elements from passed list
-            final newList = [...?coding, ...child];
-            return copyWith(coding: newList);
-          } else if (child is Coding) {
-            // Add single element to existing list or create new list
-            final newList = [
-              ...?coding,
-              child,
-            ];
-            return copyWith(coding: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'text':
-        {
-          if (child is FhirString) {
-            return copyWith(text: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw Exception('Cannot set child value for $childName');
-    }
-  }
-
-  /// Return the possible Dart types for the field named [fieldName].
-  /// For polymorphic fields, multiple types are possible.
-  @override
-  List<String> typeByElementName(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return ['FhirString'];
-      case 'extension':
-        return ['FhirExtension'];
-      case 'coding':
-        return ['Coding'];
-      case 'text':
-        return ['FhirString'];
-      default:
-        return <String>[];
-    }
-  }
-
-  /// Creates a new [CodeableConcept]
-  ///  with a chosen field set to an empty object.
-  /// If [propertyName] matches the field, that field is replaced by its
-  /// `.empty()` variant (or list of `.empty()`).
-  @override
-  CodeableConcept createProperty(
-    String propertyName,
-  ) {
-    switch (propertyName) {
-      case 'id':
-        {
-          return copyWith(
-            id: FhirString.empty(),
-          );
-        }
-      case 'extension':
-        {
-          return copyWith(
-            extension_: <FhirExtension>[],
-          );
-        }
-      case 'coding':
-        {
-          return copyWith(
-            coding: <Coding>[],
-          );
-        }
-      case 'text':
-        {
-          return copyWith(
-            text: FhirString.empty(),
-          );
-        }
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  CodeableConcept clear({
-    bool id = false,
-    bool extension_ = false,
-    bool coding = false,
-    bool text = false,
-  }) {
-    return CodeableConcept(
-      id: id ? null : this.id,
-      extension_: extension_ ? null : this.extension_,
-      coding: coding ? null : this.coding,
-      text: text ? null : this.text,
-    );
-  }
-
-  @override
-  CodeableConcept clone() => throw UnimplementedError();
-  @override
-  CodeableConcept copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<Coding>? coding,
-    FhirString? text,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    final newObjectPath = objectPath ?? this.objectPath;
-    return CodeableConcept(
-      id: id?.copyWith(
-            objectPath: '$newObjectPath.id',
-          ) ??
-          this.id,
-      extension_: extension_
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.extension',
-                ),
-              )
-              .toList() ??
-          this.extension_,
-      coding: coding
-              ?.map(
-                (e) => e.copyWith(
-                  objectPath: '$newObjectPath.coding',
-                ),
-              )
-              .toList() ??
-          this.coding,
-      text: text?.copyWith(
-            objectPath: '$newObjectPath.text',
-          ) ??
-          this.text,
-    );
-  }
+  $CodeableConceptCopyWith<CodeableConcept> get copyWith =>
+      _$CodeableConceptCopyWithImpl<CodeableConcept>(
+        this,
+        (value) => value,
+      );
 
   /// Performs a deep comparison between two instances.
   @override

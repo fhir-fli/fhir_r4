@@ -12,6 +12,7 @@ import 'package:fhir_r4/fhir_r4.dart'
         InsurancePlanPlan,
         InsurancePlanSpecificCost,
         R4ResourceType,
+        StringExtensionForFHIR,
         yamlMapToJson,
         yamlToJson;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';

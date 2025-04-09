@@ -1,11 +1,72 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for StructureMapModelMode
+enum StructureMapModelModeEnum {
+  /// source
+  source,
+
+  /// queried
+  queried,
+
+  /// target
+  target,
+
+  /// produced
+  produced,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case StructureMapModelModeEnum.source:
+        return 'source';
+      case StructureMapModelModeEnum.queried:
+        return 'queried';
+      case StructureMapModelModeEnum.target:
+        return 'target';
+      case StructureMapModelModeEnum.produced:
+        return 'produced';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static StructureMapModelModeEnum? fromJson(dynamic json) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return StructureMapModelModeEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static StructureMapModelModeEnum? fromString(String? value) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'source':
+        return StructureMapModelModeEnum.source;
+      case 'queried':
+        return StructureMapModelModeEnum.queried;
+      case 'target':
+        return StructureMapModelModeEnum.target;
+      case 'produced':
+        return StructureMapModelModeEnum.produced;
+    }
+    return null;
+  }
+}
+
 /// How the referenced structure is used in this mapping.
 class StructureMapModelMode extends FhirCodeEnum {
   // Private underscore constructor for internal use.
-  StructureMapModelMode._({
+  const StructureMapModelMode._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -13,7 +74,6 @@ class StructureMapModelMode extends FhirCodeEnum {
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.objectPath = 'Code',
   }) : super._();
 
   /// Public factory if you want a fallback approach or custom creation.
@@ -27,12 +87,13 @@ class StructureMapModelMode extends FhirCodeEnum {
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
-    String objectPath = 'Code',
   }) {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
+    final valueEnum = StructureMapModelModeEnum.fromString(valueString);
     return StructureMapModelMode._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -40,13 +101,8 @@ class StructureMapModelMode extends FhirCodeEnum {
       id: id,
       extension_: extension_,
       disallowExtensions: disallowExtensions,
-      objectPath: objectPath,
     );
   }
-
-  /// Create empty [StructureMapModelMode] with element only
-  factory StructureMapModelMode.empty() =>
-      StructureMapModelMode._(valueString: '');
 
   /// Factory constructor to create [StructureMapModelMode]
   /// from JSON.
@@ -54,10 +110,11 @@ class StructureMapModelMode extends FhirCodeEnum {
     Map<String, dynamic> json,
   ) {
     final value = json['value'] as String?;
+    final valueEnum = StructureMapModelModeEnum.fromString(value);
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return StructureMapModelMode.elementOnly.withElement(element);
+      return StructureMapModelMode._(valueString: null, element: element);
     } else if (value == null && element == null) {
       throw ArgumentError(
         'StructureMapModelMode cannot be constructed from JSON.',
@@ -65,45 +122,65 @@ class StructureMapModelMode extends FhirCodeEnum {
     }
     return StructureMapModelMode._(
       valueString: value,
+      valueEnum: valueEnum,
       element: element,
     );
   }
 
+  /// An actual enum that can be used for StructureMapModelMode
+  final StructureMapModelModeEnum? valueEnum;
+
   /// source
-  static final StructureMapModelMode source = StructureMapModelMode._(
+  static const StructureMapModelMode source = StructureMapModelMode._(
     valueString: 'source',
-    system: 'http://hl7.org/fhir/ValueSet/map-model-mode'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Source Structure Definition'.toFhirString,
+    valueEnum: StructureMapModelModeEnum.source,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/map-model-mode',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Source Structure Definition',
+    ),
   );
 
   /// queried
-  static final StructureMapModelMode queried = StructureMapModelMode._(
+  static const StructureMapModelMode queried = StructureMapModelMode._(
     valueString: 'queried',
-    system: 'http://hl7.org/fhir/ValueSet/map-model-mode'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Queried Structure Definition'.toFhirString,
+    valueEnum: StructureMapModelModeEnum.queried,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/map-model-mode',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Queried Structure Definition',
+    ),
   );
 
   /// target
-  static final StructureMapModelMode target = StructureMapModelMode._(
+  static const StructureMapModelMode target = StructureMapModelMode._(
     valueString: 'target',
-    system: 'http://hl7.org/fhir/ValueSet/map-model-mode'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Target Structure Definition'.toFhirString,
+    valueEnum: StructureMapModelModeEnum.target,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/map-model-mode',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Target Structure Definition',
+    ),
   );
 
   /// produced
-  static final StructureMapModelMode produced = StructureMapModelMode._(
+  static const StructureMapModelMode produced = StructureMapModelMode._(
     valueString: 'produced',
-    system: 'http://hl7.org/fhir/ValueSet/map-model-mode'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Produced Structure Definition'.toFhirString,
+    valueEnum: StructureMapModelModeEnum.produced,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/map-model-mode',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Produced Structure Definition',
+    ),
   );
-
-  /// For instances where an Element is present but not value
-  static final StructureMapModelMode elementOnly =
-      StructureMapModelMode._(valueString: '');
 
   /// List of all enum-like values
   static final List<StructureMapModelMode> values = [
@@ -112,13 +189,6 @@ class StructureMapModelMode extends FhirCodeEnum {
     target,
     produced,
   ];
-
-  /// Clones the current instance
-  @override
-  StructureMapModelMode clone() => StructureMapModelMode._(
-        valueString: valueString,
-        element: element?.clone() as Element?,
-      );
 
   /// Returns the enum value with an element attached
   StructureMapModelMode withElement(Element? newElement) {
@@ -139,36 +209,56 @@ class StructureMapModelMode extends FhirCodeEnum {
   @override
   String toString() => valueString ?? '';
 
-  /// Creates a modified copy with updated properties.
   @override
-  StructureMapModelMode copyWith({
-    dynamic newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
+  StructureMapModelMode clone() => copyWith();
+
+  /// Creates a new instance with the specified fields replaced.
+  @override
+  StructureMapModelModeCopyWithImpl<StructureMapModelMode> get copyWith =>
+      StructureMapModelModeCopyWithImpl<StructureMapModelMode>(
+        this,
+        (v) => v as StructureMapModelMode,
+      );
+}
+
+/// The generated implementation of the copyWith helper for Element.
+/// The call method uses parameters of type Object? with a default value of
+/// [fhirSentinel] so that omitted parameters retain the sentinel value while
+/// explicit nulls do not.
+class StructureMapModelModeCopyWithImpl<T> extends $FhirCodeCopyWithImpl<T> {
+  /// Constructor for the copyWith implementation.
+  StructureMapModelModeCopyWithImpl(super._value, super._then);
+
+  @override
+  T call({
+    Object? newValue = fhirSentinel,
+    Object? element = fhirSentinel,
+    Object? id = fhirSentinel,
+    Object? extension_ = fhirSentinel,
+    Object? disallowExtensions = fhirSentinel,
   }) {
-    if (newValue is! String?) {
+    if (!identical(newValue, fhirSentinel) && newValue is! String?) {
       throw ArgumentError(
-        'Invalid input for StructureMapModelMode: $newValue',
+        'newValue must be a String or null, but found ${newValue.runtimeType}',
+        'newValue',
       );
     }
-    return StructureMapModelMode._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
+    return _then(
+      StructureMapModelMode(
+        identical(newValue, fhirSentinel)
+            ? _value.valueString
+            : newValue as String?,
+        element: identical(element, fhirSentinel)
+            ? _value.element
+            : element as Element?,
+        id: identical(id, fhirSentinel) ? _value.id : id as FhirString?,
+        extension_: identical(extension_, fhirSentinel)
+            ? _value.extension_
+            : extension_ as List<FhirExtension>?,
+        disallowExtensions: identical(disallowExtensions, fhirSentinel)
+            ? _value.disallowExtensions
+            : disallowExtensions as bool?,
       ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

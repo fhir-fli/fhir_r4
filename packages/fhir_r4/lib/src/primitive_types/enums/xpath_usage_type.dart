@@ -1,12 +1,80 @@
 // ignore_for_file: unused_element_parameter, non_constant_identifier_names
 part of '../primitive_types.dart';
 
+/// Actual enum for XPathUsageType
+enum XPathUsageTypeEnum {
+  /// normal
+  normal,
+
+  /// phonetic
+  phonetic,
+
+  /// nearby
+  nearby,
+
+  /// distance
+  distance,
+
+  /// other
+  other,
+  ;
+
+  /// Converts the enum value to a string.
+  String toJson() => toString();
+
+  /// Returns the enum value as a string.
+  @override
+  String toString() {
+    switch (this) {
+      case XPathUsageTypeEnum.normal:
+        return 'normal';
+      case XPathUsageTypeEnum.phonetic:
+        return 'phonetic';
+      case XPathUsageTypeEnum.nearby:
+        return 'nearby';
+      case XPathUsageTypeEnum.distance:
+        return 'distance';
+      case XPathUsageTypeEnum.other:
+        return 'other';
+    }
+  }
+
+  /// Converts a string/JSON value to the corresponding enum value.
+  static XPathUsageTypeEnum? fromJson(dynamic json) {
+    if (json == null || json is! String) {
+      return null;
+    }
+    return XPathUsageTypeEnum.fromString(json);
+  }
+
+  /// Converts a string to the corresponding enum value.
+  static XPathUsageTypeEnum? fromString(String? value) {
+    if (value == null) {
+      return null;
+    }
+    switch (value) {
+      case 'normal':
+        return XPathUsageTypeEnum.normal;
+      case 'phonetic':
+        return XPathUsageTypeEnum.phonetic;
+      case 'nearby':
+        return XPathUsageTypeEnum.nearby;
+      case 'distance':
+        return XPathUsageTypeEnum.distance;
+      case 'other':
+        return XPathUsageTypeEnum.other;
+    }
+    return null;
+  }
+}
+
 /// How a search parameter relates to the set of elements returned by
 /// evaluating its xpath query.
 class XPathUsageType extends FhirCodeEnum {
   // Private underscore constructor for internal use.
-  XPathUsageType._({
+  const XPathUsageType._({
     required super.valueString,
+    this.valueEnum,
     super.system,
     super.version,
     super.display,
@@ -14,7 +82,6 @@ class XPathUsageType extends FhirCodeEnum {
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.objectPath = 'Code',
   }) : super._();
 
   /// Public factory if you want a fallback approach or custom creation.
@@ -28,12 +95,13 @@ class XPathUsageType extends FhirCodeEnum {
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
-    String objectPath = 'Code',
   }) {
     final valueString =
         rawValue != null ? FhirCode._validateCode(rawValue) : null;
+    final valueEnum = XPathUsageTypeEnum.fromString(valueString);
     return XPathUsageType._(
       valueString: valueString,
+      valueEnum: valueEnum,
       system: system,
       version: version,
       display: display,
@@ -41,12 +109,8 @@ class XPathUsageType extends FhirCodeEnum {
       id: id,
       extension_: extension_,
       disallowExtensions: disallowExtensions,
-      objectPath: objectPath,
     );
   }
-
-  /// Create empty [XPathUsageType] with element only
-  factory XPathUsageType.empty() => XPathUsageType._(valueString: '');
 
   /// Factory constructor to create [XPathUsageType]
   /// from JSON.
@@ -54,10 +118,11 @@ class XPathUsageType extends FhirCodeEnum {
     Map<String, dynamic> json,
   ) {
     final value = json['value'] as String?;
+    final valueEnum = XPathUsageTypeEnum.fromString(value);
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return XPathUsageType.elementOnly.withElement(element);
+      return XPathUsageType._(valueString: null, element: element);
     } else if (value == null && element == null) {
       throw ArgumentError(
         'XPathUsageType cannot be constructed from JSON.',
@@ -65,52 +130,78 @@ class XPathUsageType extends FhirCodeEnum {
     }
     return XPathUsageType._(
       valueString: value,
+      valueEnum: valueEnum,
       element: element,
     );
   }
 
+  /// An actual enum that can be used for XPathUsageType
+  final XPathUsageTypeEnum? valueEnum;
+
   /// normal
-  static final XPathUsageType normal = XPathUsageType._(
+  static const XPathUsageType normal = XPathUsageType._(
     valueString: 'normal',
-    system: 'http://hl7.org/fhir/ValueSet/search-xpath-usage'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Normal'.toFhirString,
+    valueEnum: XPathUsageTypeEnum.normal,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/search-xpath-usage',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Normal',
+    ),
   );
 
   /// phonetic
-  static final XPathUsageType phonetic = XPathUsageType._(
+  static const XPathUsageType phonetic = XPathUsageType._(
     valueString: 'phonetic',
-    system: 'http://hl7.org/fhir/ValueSet/search-xpath-usage'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Phonetic'.toFhirString,
+    valueEnum: XPathUsageTypeEnum.phonetic,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/search-xpath-usage',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Phonetic',
+    ),
   );
 
   /// nearby
-  static final XPathUsageType nearby = XPathUsageType._(
+  static const XPathUsageType nearby = XPathUsageType._(
     valueString: 'nearby',
-    system: 'http://hl7.org/fhir/ValueSet/search-xpath-usage'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Nearby'.toFhirString,
+    valueEnum: XPathUsageTypeEnum.nearby,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/search-xpath-usage',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Nearby',
+    ),
   );
 
   /// distance
-  static final XPathUsageType distance = XPathUsageType._(
+  static const XPathUsageType distance = XPathUsageType._(
     valueString: 'distance',
-    system: 'http://hl7.org/fhir/ValueSet/search-xpath-usage'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Distance'.toFhirString,
+    valueEnum: XPathUsageTypeEnum.distance,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/search-xpath-usage',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Distance',
+    ),
   );
 
   /// other
-  static final XPathUsageType other = XPathUsageType._(
+  static const XPathUsageType other = XPathUsageType._(
     valueString: 'other',
-    system: 'http://hl7.org/fhir/ValueSet/search-xpath-usage'.toFhirUri,
-    version: '4.3.0'.toFhirString,
-    display: 'Other'.toFhirString,
+    valueEnum: XPathUsageTypeEnum.other,
+    system: FhirUri._(
+      valueString: 'http://hl7.org/fhir/ValueSet/search-xpath-usage',
+    ),
+    version: FhirString._(valueString: '4.3.0'),
+    display: FhirString._(
+      valueString: 'Other',
+    ),
   );
-
-  /// For instances where an Element is present but not value
-  static final XPathUsageType elementOnly = XPathUsageType._(valueString: '');
 
   /// List of all enum-like values
   static final List<XPathUsageType> values = [
@@ -120,13 +211,6 @@ class XPathUsageType extends FhirCodeEnum {
     distance,
     other,
   ];
-
-  /// Clones the current instance
-  @override
-  XPathUsageType clone() => XPathUsageType._(
-        valueString: valueString,
-        element: element?.clone() as Element?,
-      );
 
   /// Returns the enum value with an element attached
   XPathUsageType withElement(Element? newElement) {
@@ -147,36 +231,56 @@ class XPathUsageType extends FhirCodeEnum {
   @override
   String toString() => valueString ?? '';
 
-  /// Creates a modified copy with updated properties.
   @override
-  XPathUsageType copyWith({
-    dynamic newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
+  XPathUsageType clone() => copyWith();
+
+  /// Creates a new instance with the specified fields replaced.
+  @override
+  XPathUsageTypeCopyWithImpl<XPathUsageType> get copyWith =>
+      XPathUsageTypeCopyWithImpl<XPathUsageType>(
+        this,
+        (v) => v as XPathUsageType,
+      );
+}
+
+/// The generated implementation of the copyWith helper for Element.
+/// The call method uses parameters of type Object? with a default value of
+/// [fhirSentinel] so that omitted parameters retain the sentinel value while
+/// explicit nulls do not.
+class XPathUsageTypeCopyWithImpl<T> extends $FhirCodeCopyWithImpl<T> {
+  /// Constructor for the copyWith implementation.
+  XPathUsageTypeCopyWithImpl(super._value, super._then);
+
+  @override
+  T call({
+    Object? newValue = fhirSentinel,
+    Object? element = fhirSentinel,
+    Object? id = fhirSentinel,
+    Object? extension_ = fhirSentinel,
+    Object? disallowExtensions = fhirSentinel,
   }) {
-    if (newValue is! String?) {
+    if (!identical(newValue, fhirSentinel) && newValue is! String?) {
       throw ArgumentError(
-        'Invalid input for XPathUsageType: $newValue',
+        'newValue must be a String or null, but found ${newValue.runtimeType}',
+        'newValue',
       );
     }
-    return XPathUsageType._(
-      valueString: newValue ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
+    return _then(
+      XPathUsageType(
+        identical(newValue, fhirSentinel)
+            ? _value.valueString
+            : newValue as String?,
+        element: identical(element, fhirSentinel)
+            ? _value.element
+            : element as Element?,
+        id: identical(id, fhirSentinel) ? _value.id : id as FhirString?,
+        extension_: identical(extension_, fhirSentinel)
+            ? _value.extension_
+            : extension_ as List<FhirExtension>?,
+        disallowExtensions: identical(disallowExtensions, fhirSentinel)
+            ? _value.disallowExtensions
+            : disallowExtensions as bool?,
       ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }
