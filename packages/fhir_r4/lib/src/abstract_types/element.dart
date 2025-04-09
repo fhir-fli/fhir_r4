@@ -5,6 +5,8 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
+part 'element.g.dart';
+
 /// [Element] Base definition for all FHIR elements.
 class Element extends FhirBase {
   /// Constructor for Element with optional id and extensions.
@@ -12,11 +14,6 @@ class Element extends FhirBase {
     this.id,
     this.extension_,
     this.disallowExtensions = false,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
-    super.objectPath = 'Element',
   });
 
   /// Factory constructor for [Element] that takes in a [YamlMap]
@@ -75,73 +72,6 @@ class Element extends FhirBase {
   /// to do: enforce this....
   final bool? disallowExtensions;
 
-  // The following fields come from FhirBase:
-  // userData, formatCommentsPre, formatCommentsPost, annotations, objectPath
-
-  Element _copyWith({
-    required Element Function(Element) then,
-    Object? id = fhirSentinel,
-    Object? extension_ = fhirSentinel,
-    Object? disallowExtensions = fhirSentinel,
-    Object? userData = fhirSentinel,
-    Object? formatCommentsPre = fhirSentinel,
-    Object? formatCommentsPost = fhirSentinel,
-    Object? annotations = fhirSentinel,
-    Object? objectPath = fhirSentinel,
-  }) {
-    return then(
-      Element(
-        id: identical(id, fhirSentinel) ? this.id : id as FhirString?,
-        extension_: identical(extension_, fhirSentinel)
-            ? this.extension_
-            : extension_ as List<FhirExtension>?,
-        disallowExtensions: identical(disallowExtensions, fhirSentinel)
-            ? this.disallowExtensions
-            : disallowExtensions as bool?,
-        userData: identical(userData, fhirSentinel)
-            ? this.userData
-            : userData as Map<String, dynamic>?,
-        formatCommentsPre: identical(formatCommentsPre, fhirSentinel)
-            ? this.formatCommentsPre
-            : formatCommentsPre as List<String>?,
-        formatCommentsPost: identical(formatCommentsPost, fhirSentinel)
-            ? this.formatCommentsPost
-            : formatCommentsPost as List<String>?,
-        annotations: identical(annotations, fhirSentinel)
-            ? this.annotations
-            : annotations as List<dynamic>?,
-        objectPath: identical(objectPath, fhirSentinel)
-            ? this.objectPath
-            : objectPath as String?,
-      ),
-    );
-  }
-
-  /// CopyWith method for [Element].
-  @override
-  Element copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    bool? disallowExtensions,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    return _copyWith(
-      then: (value) => value,
-      id: id,
-      extension_: extension_,
-      disallowExtensions: disallowExtensions,
-      userData: userData,
-      formatCommentsPre: formatCommentsPre,
-      formatCommentsPost: formatCommentsPost,
-      annotations: annotations,
-      objectPath: objectPath,
-    );
-  }
-
   /// Getter for checking if the element has an id.
   bool get hasId => id?.valueString != null && (id!.valueString!.isNotEmpty);
 
@@ -182,40 +112,6 @@ class Element extends FhirBase {
     extension_?.removeWhere((FhirExtension ext) => ext.url.equals(url));
   }
 
-  /// Implementing the getProperty method.
-  dynamic getProperty(String name) {
-    switch (name) {
-      case 'id':
-        return id;
-      case 'extension':
-        return extension_;
-      default:
-        throw ArgumentError('Unknown property name: $name');
-    }
-  }
-
-  /// Implementing the setProperty method.
-  Element setProperty(String name, dynamic value) {
-    switch (name) {
-      case 'id':
-        if (value is String) {
-          return Element(id: value.toFhirString, extension_: extension_);
-        } else {
-          throw ArgumentError('Invalid type for id. Expected String.');
-        }
-      case 'extension':
-        if (value is List<FhirExtension>) {
-          return Element(id: id, extension_: value);
-        } else {
-          throw ArgumentError(
-            'Invalid type for extension. Expected List<FhirExtension>.',
-          );
-        }
-      default:
-        throw ArgumentError('Unknown property name: $name');
-    }
-  }
-
   @override
   bool equalsDeep(FhirBase? o) {
     if (o == null || o is! Element) {
@@ -252,63 +148,6 @@ class Element extends FhirBase {
   FhirBase clone() => copyWith();
 
   @override
-  FhirBase? getChildByName(String name) {
-    if (name == 'id') {
-      return id;
-    } else if (name == 'extension') {
-      if (extension_ == null || extension_!.isEmpty) {
-        return null;
-      } else if (extension_!.length == 1) {
-        return extension_!.first;
-      } else {
-        throw FHIRException(message: 'Too many values for $name found');
-      }
-    }
-    return null;
-  }
-
-  @override
-  List<FhirBase> getChildrenByName(String name, [bool checkValid = false]) {
-    if (name == 'id') {
-      return [id!];
-    } else if (name == 'extension') {
-      return extension_ ?? <FhirExtension>[];
-    }
-    return <FhirBase>[];
-  }
-
-  @override
-
-  /// Sets a property by name.
-  FhirBase setChildByName(String childName, dynamic child) {
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
-    switch (childName) {
-      case 'id':
-        if (child is FhirString) {
-          return copyWith(id: child);
-        }
-        throw Exception('Cannot set child value for $childName');
-      case 'extension':
-        if (child is List<FhirExtension>) {
-          return copyWith(extension_: child);
-        }
-        throw Exception('Cannot set child value for $childName');
-    }
-    throw Exception('Cannot set child value for $childName');
-  }
-
-  /// Retrieves the type of the object by element name.
-  @override
-  List<String> typeByElementName(String elementName) {
-    switch (elementName) {
-      case 'id':
-        return <String>['FhirString'];
-      case 'extension':
-        return <String>['FhirExtension'];
-      default:
-        return <String>[];
-    }
-  }
+  $ElementCopyWith<Element> get copyWith =>
+      $ElementCopyWithImpl<Element>(this, (value) => value);
 }

@@ -16,11 +16,6 @@ abstract class DomainResource extends Resource {
     this.contained,
     this.extension_,
     this.modifierExtension,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
-    super.objectPath = 'DomainResource',
   });
 
   /// Factory constructor for [DomainResource] that takes in a
@@ -132,7 +127,13 @@ abstract class DomainResource extends Resource {
 
   /// CopyWith method for [DomainResource].
   @override
-  DomainResource copyWith({
+  $DomainResourceCopyWith<DomainResource> get copyWith;
+}
+
+/// The public interface for copyWith for [DomainResource].
+abstract class $DomainResourceCopyWith<T> extends $ResourceCopyWith<T> {
+  @override
+  T call({
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
@@ -141,16 +142,5 @@ abstract class DomainResource extends Resource {
     List<Resource>? contained,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
   });
-
-  /// Retrieves the type of the object by element name.
-  @override
-  List<String> typeByElementName(String elementName) {
-    return <String>[];
-  }
 }

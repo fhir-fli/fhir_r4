@@ -10,11 +10,6 @@ abstract class DataType extends Element {
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
-    super.objectPath = 'DataType',
   });
 
   /// Creates an empty [DataType] object
@@ -58,22 +53,16 @@ abstract class DataType extends Element {
   @override
   DataType clone();
 
-  /// CopyWith method for [DataType].
   @override
-  DataType copyWith({
+  $DataTypeCopyWith<DataType> get copyWith;
+}
+
+/// Abstract class for copyWith functionality for [DataType]
+abstract class $DataTypeCopyWith<T> extends $ElementCopyWith<T> {
+  @override
+  T call({
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
   });
-
-  /// Retrieves the type of the object by element name.
-  @override
-  List<String> typeByElementName(String elementName) {
-    return <String>[];
-  }
 }

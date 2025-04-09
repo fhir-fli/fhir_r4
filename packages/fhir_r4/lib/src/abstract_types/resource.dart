@@ -12,11 +12,6 @@ abstract class Resource extends FhirBase {
     this.meta,
     this.implicitRules,
     this.language,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
-    super.objectPath = 'Resource',
   });
 
   /// Acts like a constructor, returns a [Resource], accepts a
@@ -129,21 +124,16 @@ abstract class Resource extends FhirBase {
 
   /// CopyWith method for [Resource].
   @override
-  Resource copyWith({
+  $ResourceCopyWith<Resource> get copyWith;
+}
+
+/// The public interface for copyWith for [Resource].
+abstract class $ResourceCopyWith<T> extends $FhirBaseCopyWith<T> {
+  @override
+  T call({
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
     CommonLanguages? language,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
   });
-
-  /// Retrieves the type of the object by element name.
-  @override
-  List<String> typeByElementName(String elementName) {
-    return <String>[];
-  }
 }

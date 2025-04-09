@@ -52,7 +52,7 @@ void main() {
 
 // Example with a polymorphic field
   final carePlanDetail = CarePlanDetail(
-    status: CarePlanActivityStatus.in_progress,
+    status: CarePlanActivityStatus.inProgress,
     scheduledX: Timing(
       repeat: TimingRepeat(
         frequency: FhirPositiveInt(1),
@@ -76,15 +76,6 @@ void main() {
   final displayText = status.display?.valueString; // 'in-progress'
   final system = status
       .system?.valueString; // 'http://hl7.org/fhir/ValueSet/account-status'
-
-// Get field names
-  final fieldNames = patient.listChildrenNames();
-
-// Get a field by name
-  final value = patient.getChildByName('birthDate');
-
-// Set a field by name
-  final updatedPatient = patient.setChildByName('active', FhirBoolean(true));
 
 // Modify with copyWith
   final modifiedPatient = patient.copyWith(

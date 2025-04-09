@@ -26,11 +26,6 @@ abstract class CanonicalResource extends DomainResource {
     this.description,
     this.useContext,
     this.jurisdiction,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
-    super.objectPath = 'CanonicalResource',
   });
 
   /// Factory constructor for [CanonicalResource] that takes in a
@@ -132,7 +127,14 @@ abstract class CanonicalResource extends DomainResource {
 
   /// CopyWith method for [CanonicalResource].
   @override
-  CanonicalResource copyWith({
+  $CanonicalResourceCopyWith<CanonicalResource> get copyWith;
+}
+
+/// The public interface for copyWith for [CanonicalResource].
+abstract class $CanonicalResourceCopyWith<T>
+    extends $DomainResourceCopyWith<T> {
+  @override
+  T call({
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
@@ -151,16 +153,5 @@ abstract class CanonicalResource extends DomainResource {
     FhirMarkdown? description,
     List<UsageContext>? useContext,
     List<CodeableConcept>? jurisdiction,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
   });
-
-  /// Retrieves the type of the object by element name.
-  @override
-  List<String> typeByElementName(String elementName) {
-    return <String>[];
-  }
 }

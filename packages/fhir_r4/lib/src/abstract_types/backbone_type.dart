@@ -12,11 +12,6 @@ abstract class BackboneType extends DataType {
     super.extension_,
     this.modifierExtension,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
-    super.objectPath = 'BackboneType',
   });
 
   /// FromJson Factory Constructor for [BackboneType]
@@ -124,21 +119,16 @@ abstract class BackboneType extends DataType {
 
   /// CopyWith method for [BackboneType].
   @override
-  BackboneType copyWith({
+  $BackboneTypeCopyWith<BackboneType> get copyWith;
+}
+
+/// Abstract class for copyWith functionality for [BackboneType]
+abstract class $BackboneTypeCopyWith<T> extends $DataTypeCopyWith<T> {
+  @override
+  T call({
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     bool? disallowExtensions,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
   });
-
-  /// Retrieves the type of the object by element name.
-  @override
-  List<String> typeByElementName(String elementName) {
-    return <String>[];
-  }
 }
