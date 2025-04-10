@@ -1216,62 +1216,6 @@ class LocationBuilder extends DomainResourceBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool identifier = false,
-    bool status = false,
-    bool operationalStatus = false,
-    bool name = false,
-    bool alias = false,
-    bool description = false,
-    bool mode = false,
-    bool type = false,
-    bool telecom = false,
-    bool address = false,
-    bool physicalType = false,
-    bool position = false,
-    bool managingOrganization = false,
-    bool partOf = false,
-    bool hoursOfOperation = false,
-    bool availabilityExceptions = false,
-    bool endpoint = false,
-  }) {
-    if (id) this.id = null;
-    if (meta) this.meta = null;
-    if (implicitRules) this.implicitRules = null;
-    if (language) this.language = null;
-    if (text) this.text = null;
-    if (contained) this.contained = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (identifier) this.identifier = null;
-    if (status) this.status = null;
-    if (operationalStatus) this.operationalStatus = null;
-    if (name) this.name = null;
-    if (alias) this.alias = null;
-    if (description) this.description = null;
-    if (mode) this.mode = null;
-    if (type) this.type = null;
-    if (telecom) this.telecom = null;
-    if (address) this.address = null;
-    if (physicalType) this.physicalType = null;
-    if (position) this.position = null;
-    if (managingOrganization) this.managingOrganization = null;
-    if (partOf) this.partOf = null;
-    if (hoursOfOperation) this.hoursOfOperation = null;
-    if (availabilityExceptions) this.availabilityExceptions = null;
-    if (endpoint) this.endpoint = null;
-  }
-
   @override
   LocationBuilder clone() => throw UnimplementedError();
   @override
@@ -1964,24 +1908,6 @@ class LocationPositionBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool longitude = false,
-    bool latitude = false,
-    bool altitude = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (longitude) this.longitude = null;
-    if (latitude) this.latitude = null;
-    if (altitude) this.altitude = null;
-  }
-
   @override
   LocationPositionBuilder clone() => throw UnimplementedError();
   @override
@@ -2580,26 +2506,6 @@ class LocationHoursOfOperationBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool daysOfWeek = false,
-    bool allDay = false,
-    bool openingTime = false,
-    bool closingTime = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (daysOfWeek) this.daysOfWeek = null;
-    if (allDay) this.allDay = null;
-    if (openingTime) this.openingTime = null;
-    if (closingTime) this.closingTime = null;
   }
 
   @override

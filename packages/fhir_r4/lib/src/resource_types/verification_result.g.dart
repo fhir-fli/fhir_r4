@@ -98,7 +98,9 @@ class _$VerificationResultCopyWithImpl<T>
         need: identical(need, fhirSentinel)
             ? _value.need
             : need as CodeableConcept?,
-        status: status as Status? ?? _value.status,
+        status: identical(status, fhirSentinel)
+            ? _value.status
+            : (status as Status?) ?? _value.status,
         statusDate: identical(statusDate, fhirSentinel)
             ? _value.statusDate
             : statusDate as FhirDateTime?,
@@ -357,7 +359,9 @@ class _$VerificationResultValidatorCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        organization: organization as Reference? ?? _value.organization,
+        organization: identical(organization, fhirSentinel)
+            ? _value.organization
+            : (organization as Reference?) ?? _value.organization,
         identityCertificate: identical(identityCertificate, fhirSentinel)
             ? _value.identityCertificate
             : identityCertificate as FhirString?,

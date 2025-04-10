@@ -167,7 +167,9 @@ class _$ActivityDefinitionCopyWithImpl<T>
         subtitle: identical(subtitle, fhirSentinel)
             ? _value.subtitle
             : subtitle as FhirString?,
-        status: status as PublicationStatus? ?? _value.status,
+        status: identical(status, fhirSentinel)
+            ? _value.status
+            : (status as PublicationStatus?) ?? _value.status,
         experimental: identical(experimental, fhirSentinel)
             ? _value.experimental
             : experimental as FhirBoolean?,
@@ -336,7 +338,9 @@ class _$ActivityDefinitionParticipantCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        type: type as ActionParticipantType? ?? _value.type,
+        type: identical(type, fhirSentinel)
+            ? _value.type
+            : (type as ActionParticipantType?) ?? _value.type,
         role: identical(role, fhirSentinel)
             ? _value.role
             : role as CodeableConcept?,
@@ -396,8 +400,12 @@ class _$ActivityDefinitionDynamicValueCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        path: path as FhirString? ?? _value.path,
-        expression: expression as FhirExpression? ?? _value.expression,
+        path: identical(path, fhirSentinel)
+            ? _value.path
+            : (path as FhirString?) ?? _value.path,
+        expression: identical(expression, fhirSentinel)
+            ? _value.expression
+            : (expression as FhirExpression?) ?? _value.expression,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,

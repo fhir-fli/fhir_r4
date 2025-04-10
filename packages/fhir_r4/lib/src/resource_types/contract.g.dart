@@ -278,7 +278,9 @@ class _$ContractContentDefinitionCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        type: type as CodeableConcept? ?? _value.type,
+        type: identical(type, fhirSentinel)
+            ? _value.type
+            : (type as CodeableConcept?) ?? _value.type,
         subType: identical(subType, fhirSentinel)
             ? _value.subType
             : subType as CodeableConcept?,
@@ -288,8 +290,9 @@ class _$ContractContentDefinitionCopyWithImpl<T>
         publicationDate: identical(publicationDate, fhirSentinel)
             ? _value.publicationDate
             : publicationDate as FhirDateTime?,
-        publicationStatus:
-            publicationStatus as ContractResourcePublicationStatusCodes? ??
+        publicationStatus: identical(publicationStatus, fhirSentinel)
+            ? _value.publicationStatus
+            : (publicationStatus as ContractResourcePublicationStatusCodes?) ??
                 _value.publicationStatus,
         copyright: identical(copyright, fhirSentinel)
             ? _value.copyright
@@ -389,7 +392,9 @@ class _$ContractTermCopyWithImpl<T> implements $ContractTermCopyWith<T> {
         securityLabel: identical(securityLabel, fhirSentinel)
             ? _value.securityLabel
             : securityLabel as List<ContractSecurityLabel>?,
-        offer: offer as ContractOffer? ?? _value.offer,
+        offer: identical(offer, fhirSentinel)
+            ? _value.offer
+            : (offer as ContractOffer?) ?? _value.offer,
         asset: identical(asset, fhirSentinel)
             ? _value.asset
             : asset as List<ContractAsset>?,
@@ -460,7 +465,9 @@ class _$ContractSecurityLabelCopyWithImpl<T>
         number: identical(number, fhirSentinel)
             ? _value.number
             : number as List<FhirUnsignedInt>?,
-        classification: classification as Coding? ?? _value.classification,
+        classification: identical(classification, fhirSentinel)
+            ? _value.classification
+            : (classification as Coding?) ?? _value.classification,
         category: identical(category, fhirSentinel)
             ? _value.category
             : category as List<Coding>?,
@@ -614,8 +621,12 @@ class _$ContractPartyCopyWithImpl<T> implements $ContractPartyCopyWith<T> {
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        reference: reference as List<Reference>? ?? _value.reference,
-        role: role as CodeableConcept? ?? _value.role,
+        reference: identical(reference, fhirSentinel)
+            ? _value.reference
+            : (reference as List<Reference>?) ?? _value.reference,
+        role: identical(role, fhirSentinel)
+            ? _value.role
+            : (role as CodeableConcept?) ?? _value.role,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,
@@ -666,7 +677,9 @@ class _$ContractAnswerCopyWithImpl<T> implements $ContractAnswerCopyWith<T> {
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        valueX: valueX as FhirBoolean? ?? _value.valueX,
+        valueX: identical(valueX, fhirSentinel)
+            ? _value.valueX
+            : (valueX as FhirBoolean?) ?? _value.valueX,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,
@@ -1060,15 +1073,21 @@ class _$ContractActionCopyWithImpl<T> implements $ContractActionCopyWith<T> {
         doNotPerform: identical(doNotPerform, fhirSentinel)
             ? _value.doNotPerform
             : doNotPerform as FhirBoolean?,
-        type: type as CodeableConcept? ?? _value.type,
+        type: identical(type, fhirSentinel)
+            ? _value.type
+            : (type as CodeableConcept?) ?? _value.type,
         subject: identical(subject, fhirSentinel)
             ? _value.subject
             : subject as List<ContractSubject>?,
-        intent: intent as CodeableConcept? ?? _value.intent,
+        intent: identical(intent, fhirSentinel)
+            ? _value.intent
+            : (intent as CodeableConcept?) ?? _value.intent,
         linkId: identical(linkId, fhirSentinel)
             ? _value.linkId
             : linkId as List<FhirString>?,
-        status: status as CodeableConcept? ?? _value.status,
+        status: identical(status, fhirSentinel)
+            ? _value.status
+            : (status as CodeableConcept?) ?? _value.status,
         context: identical(context, fhirSentinel)
             ? _value.context
             : context as Reference?,
@@ -1166,7 +1185,9 @@ class _$ContractSubjectCopyWithImpl<T> implements $ContractSubjectCopyWith<T> {
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        reference: reference as List<Reference>? ?? _value.reference,
+        reference: identical(reference, fhirSentinel)
+            ? _value.reference
+            : (reference as List<Reference>?) ?? _value.reference,
         role: identical(role, fhirSentinel)
             ? _value.role
             : role as CodeableConcept?,
@@ -1224,9 +1245,15 @@ class _$ContractSignerCopyWithImpl<T> implements $ContractSignerCopyWith<T> {
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        type: type as Coding? ?? _value.type,
-        party: party as Reference? ?? _value.party,
-        signature: signature as List<Signature>? ?? _value.signature,
+        type: identical(type, fhirSentinel)
+            ? _value.type
+            : (type as Coding?) ?? _value.type,
+        party: identical(party, fhirSentinel)
+            ? _value.party
+            : (party as Reference?) ?? _value.party,
+        signature: identical(signature, fhirSentinel)
+            ? _value.signature
+            : (signature as List<Signature>?) ?? _value.signature,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,
@@ -1279,7 +1306,9 @@ class _$ContractFriendlyCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        contentX: contentX as Attachment? ?? _value.contentX,
+        contentX: identical(contentX, fhirSentinel)
+            ? _value.contentX
+            : (contentX as Attachment?) ?? _value.contentX,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,
@@ -1330,7 +1359,9 @@ class _$ContractLegalCopyWithImpl<T> implements $ContractLegalCopyWith<T> {
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        contentX: contentX as Attachment? ?? _value.contentX,
+        contentX: identical(contentX, fhirSentinel)
+            ? _value.contentX
+            : (contentX as Attachment?) ?? _value.contentX,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,
@@ -1381,7 +1412,9 @@ class _$ContractRuleCopyWithImpl<T> implements $ContractRuleCopyWith<T> {
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        contentX: contentX as Attachment? ?? _value.contentX,
+        contentX: identical(contentX, fhirSentinel)
+            ? _value.contentX
+            : (contentX as Attachment?) ?? _value.contentX,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,

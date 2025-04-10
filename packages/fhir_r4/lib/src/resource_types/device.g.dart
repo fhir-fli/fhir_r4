@@ -316,8 +316,12 @@ class _$DeviceDeviceNameCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        name: name as FhirString? ?? _value.name,
-        type: type as DeviceNameType? ?? _value.type,
+        name: identical(name, fhirSentinel)
+            ? _value.name
+            : (name as FhirString?) ?? _value.name,
+        type: identical(type, fhirSentinel)
+            ? _value.type
+            : (type as DeviceNameType?) ?? _value.type,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,
@@ -372,7 +376,9 @@ class _$DeviceSpecializationCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        systemType: systemType as CodeableConcept? ?? _value.systemType,
+        systemType: identical(systemType, fhirSentinel)
+            ? _value.systemType
+            : (systemType as CodeableConcept?) ?? _value.systemType,
         version: identical(version, fhirSentinel)
             ? _value.version
             : version as FhirString?,
@@ -436,7 +442,9 @@ class _$DeviceVersionCopyWithImpl<T> implements $DeviceVersionCopyWith<T> {
         component: identical(component, fhirSentinel)
             ? _value.component
             : component as Identifier?,
-        value: value as FhirString? ?? _value.value,
+        value: identical(value, fhirSentinel)
+            ? _value.value
+            : (value as FhirString?) ?? _value.value,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,
@@ -491,7 +499,9 @@ class _$DevicePropertyCopyWithImpl<T> implements $DevicePropertyCopyWith<T> {
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        type: type as CodeableConcept? ?? _value.type,
+        type: identical(type, fhirSentinel)
+            ? _value.type
+            : (type as CodeableConcept?) ?? _value.type,
         valueQuantity: identical(valueQuantity, fhirSentinel)
             ? _value.valueQuantity
             : valueQuantity as List<Quantity>?,

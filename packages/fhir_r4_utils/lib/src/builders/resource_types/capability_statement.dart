@@ -1768,80 +1768,6 @@ class CapabilityStatementBuilder extends CanonicalResourceBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool url = false,
-    bool version = false,
-    bool name = false,
-    bool title = false,
-    bool status = false,
-    bool experimental = false,
-    bool date = false,
-    bool publisher = false,
-    bool contact = false,
-    bool description = false,
-    bool useContext = false,
-    bool jurisdiction = false,
-    bool purpose = false,
-    bool copyright = false,
-    bool kind = false,
-    bool instantiates = false,
-    bool imports = false,
-    bool software = false,
-    bool implementation = false,
-    bool fhirVersion = false,
-    bool format = false,
-    bool patchFormat = false,
-    bool implementationGuide = false,
-    bool rest = false,
-    bool messaging = false,
-    bool document = false,
-  }) {
-    if (id) this.id = null;
-    if (meta) this.meta = null;
-    if (implicitRules) this.implicitRules = null;
-    if (language) this.language = null;
-    if (text) this.text = null;
-    if (contained) this.contained = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (url) this.url = null;
-    if (version) this.version = null;
-    if (name) this.name = null;
-    if (title) this.title = null;
-    if (status) this.status = null;
-    if (experimental) this.experimental = null;
-    if (date) this.date = null;
-    if (publisher) this.publisher = null;
-    if (contact) this.contact = null;
-    if (description) this.description = null;
-    if (useContext) this.useContext = null;
-    if (jurisdiction) this.jurisdiction = null;
-    if (purpose) this.purpose = null;
-    if (copyright) this.copyright = null;
-    if (kind) this.kind = null;
-    if (instantiates) this.instantiates = null;
-    if (imports) this.imports = null;
-    if (software) this.software = null;
-    if (implementation) this.implementation = null;
-    if (fhirVersion) this.fhirVersion = null;
-    if (format) this.format = null;
-    if (patchFormat) this.patchFormat = null;
-    if (implementationGuide) this.implementationGuide = null;
-    if (rest) this.rest = null;
-    if (messaging) this.messaging = null;
-    if (document) this.document = null;
-  }
-
   @override
   CapabilityStatementBuilder clone() => throw UnimplementedError();
   @override
@@ -2589,24 +2515,6 @@ class CapabilityStatementSoftwareBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool name = false,
-    bool version = false,
-    bool releaseDate = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (name) this.name = null;
-    if (version) this.version = null;
-    if (releaseDate) this.releaseDate = null;
-  }
-
   @override
   CapabilityStatementSoftwareBuilder clone() => throw UnimplementedError();
   @override
@@ -3120,24 +3028,6 @@ class CapabilityStatementImplementationBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool description = false,
-    bool url = false,
-    bool custodian = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (description) this.description = null;
-    if (url) this.url = null;
-    if (custodian) this.custodian = null;
   }
 
   @override
@@ -3912,34 +3802,6 @@ class CapabilityStatementRestBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool mode = false,
-    bool documentation = false,
-    bool security = false,
-    bool resource = false,
-    bool interaction = false,
-    bool searchParam = false,
-    bool operation = false,
-    bool compartment = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (mode) this.mode = null;
-    if (documentation) this.documentation = null;
-    if (security) this.security = null;
-    if (resource) this.resource = null;
-    if (interaction) this.interaction = null;
-    if (searchParam) this.searchParam = null;
-    if (operation) this.operation = null;
-    if (compartment) this.compartment = null;
-  }
-
   @override
   CapabilityStatementRestBuilder clone() => throw UnimplementedError();
   @override
@@ -4500,24 +4362,6 @@ class CapabilityStatementSecurityBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool cors = false,
-    bool service = false,
-    bool description = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (cors) this.cors = null;
-    if (service) this.service = null;
-    if (description) this.description = null;
   }
 
   @override
@@ -5817,52 +5661,6 @@ class CapabilityStatementResourceBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool type = false,
-    bool profile = false,
-    bool supportedProfile = false,
-    bool documentation = false,
-    bool interaction = false,
-    bool versioning = false,
-    bool readHistory = false,
-    bool updateCreate = false,
-    bool conditionalCreate = false,
-    bool conditionalRead = false,
-    bool conditionalUpdate = false,
-    bool conditionalDelete = false,
-    bool referencePolicy = false,
-    bool searchInclude = false,
-    bool searchRevInclude = false,
-    bool searchParam = false,
-    bool operation = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (type) this.type = null;
-    if (profile) this.profile = null;
-    if (supportedProfile) this.supportedProfile = null;
-    if (documentation) this.documentation = null;
-    if (interaction) this.interaction = null;
-    if (versioning) this.versioning = null;
-    if (readHistory) this.readHistory = null;
-    if (updateCreate) this.updateCreate = null;
-    if (conditionalCreate) this.conditionalCreate = null;
-    if (conditionalRead) this.conditionalRead = null;
-    if (conditionalUpdate) this.conditionalUpdate = null;
-    if (conditionalDelete) this.conditionalDelete = null;
-    if (referencePolicy) this.referencePolicy = null;
-    if (searchInclude) this.searchInclude = null;
-    if (searchRevInclude) this.searchRevInclude = null;
-    if (searchParam) this.searchParam = null;
-    if (operation) this.operation = null;
-  }
-
   @override
   CapabilityStatementResourceBuilder clone() => throw UnimplementedError();
   @override
@@ -6458,22 +6256,6 @@ class CapabilityStatementInteractionBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool code = false,
-    bool documentation = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (code) this.code = null;
-    if (documentation) this.documentation = null;
-  }
-
   @override
   CapabilityStatementInteractionBuilder clone() => throw UnimplementedError();
   @override
@@ -7046,26 +6828,6 @@ class CapabilityStatementSearchParamBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool name = false,
-    bool definition = false,
-    bool type = false,
-    bool documentation = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (name) this.name = null;
-    if (definition) this.definition = null;
-    if (type) this.type = null;
-    if (documentation) this.documentation = null;
-  }
-
   @override
   CapabilityStatementSearchParamBuilder clone() => throw UnimplementedError();
   @override
@@ -7612,24 +7374,6 @@ class CapabilityStatementOperationBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool name = false,
-    bool definition = false,
-    bool documentation = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (name) this.name = null;
-    if (definition) this.definition = null;
-    if (documentation) this.documentation = null;
-  }
-
   @override
   CapabilityStatementOperationBuilder clone() => throw UnimplementedError();
   @override
@@ -8111,22 +7855,6 @@ class CapabilityStatementInteraction1Builder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool code = false,
-    bool documentation = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (code) this.code = null;
-    if (documentation) this.documentation = null;
   }
 
   @override
@@ -8697,26 +8425,6 @@ class CapabilityStatementMessagingBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool endpoint = false,
-    bool reliableCache = false,
-    bool documentation = false,
-    bool supportedMessage = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (endpoint) this.endpoint = null;
-    if (reliableCache) this.reliableCache = null;
-    if (documentation) this.documentation = null;
-    if (supportedMessage) this.supportedMessage = null;
-  }
-
   @override
   CapabilityStatementMessagingBuilder clone() => throw UnimplementedError();
   @override
@@ -9195,22 +8903,6 @@ class CapabilityStatementEndpointBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool protocol = false,
-    bool address = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (protocol) this.protocol = null;
-    if (address) this.address = null;
-  }
-
   @override
   CapabilityStatementEndpointBuilder clone() => throw UnimplementedError();
   @override
@@ -9687,22 +9379,6 @@ class CapabilityStatementSupportedMessageBuilder
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool mode = false,
-    bool definition = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (mode) this.mode = null;
-    if (definition) this.definition = null;
   }
 
   @override
@@ -10226,24 +9902,6 @@ class CapabilityStatementDocumentBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool mode = false,
-    bool documentation = false,
-    bool profile = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (mode) this.mode = null;
-    if (documentation) this.documentation = null;
-    if (profile) this.profile = null;
   }
 
   @override

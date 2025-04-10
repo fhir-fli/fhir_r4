@@ -419,6 +419,145 @@ class Specimen extends DomainResource {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> listChildrenNames() {
+    return [
+      'id',
+      'meta',
+      'implicitRules',
+      'language',
+      'text',
+      'contained',
+      'extension',
+      'modifierExtension',
+      'identifier',
+      'accessionIdentifier',
+      'status',
+      'type',
+      'subject',
+      'receivedTime',
+      'parent',
+      'request',
+      'collection',
+      'processing',
+      'container',
+      'condition',
+      'note',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> getChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'meta':
+        if (meta != null) {
+          fields.add(meta!);
+        }
+      case 'implicitRules':
+        if (implicitRules != null) {
+          fields.add(implicitRules!);
+        }
+      case 'language':
+        if (language != null) {
+          fields.add(language!);
+        }
+      case 'text':
+        if (text != null) {
+          fields.add(text!);
+        }
+      case 'contained':
+        if (contained != null) {
+          fields.addAll(contained!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'identifier':
+        if (identifier != null) {
+          fields.addAll(identifier!);
+        }
+      case 'accessionIdentifier':
+        if (accessionIdentifier != null) {
+          fields.add(accessionIdentifier!);
+        }
+      case 'status':
+        if (status != null) {
+          fields.add(status!);
+        }
+      case 'type':
+        if (type != null) {
+          fields.add(type!);
+        }
+      case 'subject':
+        if (subject != null) {
+          fields.add(subject!);
+        }
+      case 'receivedTime':
+        if (receivedTime != null) {
+          fields.add(receivedTime!);
+        }
+      case 'parent':
+        if (parent != null) {
+          fields.addAll(parent!);
+        }
+      case 'request':
+        if (request != null) {
+          fields.addAll(request!);
+        }
+      case 'collection':
+        if (collection != null) {
+          fields.add(collection!);
+        }
+      case 'processing':
+        if (processing != null) {
+          fields.addAll(processing!);
+        }
+      case 'container':
+        if (container != null) {
+          fields.addAll(container!);
+        }
+      case 'condition':
+        if (condition != null) {
+          fields.addAll(condition!);
+        }
+      case 'note':
+        if (note != null) {
+          fields.addAll(note!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildByName(String name) {
+    final values = getChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   Specimen clone() => copyWith();
 
@@ -858,6 +997,106 @@ class SpecimenCollection extends BackboneElement {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> listChildrenNames() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'collector',
+      'collectedX',
+      'duration',
+      'quantity',
+      'method',
+      'bodySite',
+      'fastingStatusX',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> getChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'collector':
+        if (collector != null) {
+          fields.add(collector!);
+        }
+      case 'collected':
+        fields.add(collectedX!);
+      case 'collectedX':
+        fields.add(collectedX!);
+      case 'collectedDateTime':
+        if (collectedX is FhirDateTime) {
+          fields.add(collectedX!);
+        }
+      case 'collectedPeriod':
+        if (collectedX is Period) {
+          fields.add(collectedX!);
+        }
+      case 'duration':
+        if (duration != null) {
+          fields.add(duration!);
+        }
+      case 'quantity':
+        if (quantity != null) {
+          fields.add(quantity!);
+        }
+      case 'method':
+        if (method != null) {
+          fields.add(method!);
+        }
+      case 'bodySite':
+        if (bodySite != null) {
+          fields.add(bodySite!);
+        }
+      case 'fastingStatus':
+        fields.add(fastingStatusX!);
+      case 'fastingStatusX':
+        fields.add(fastingStatusX!);
+      case 'fastingStatusCodeableConcept':
+        if (fastingStatusX is CodeableConcept) {
+          fields.add(fastingStatusX!);
+        }
+      case 'fastingStatusDuration':
+        if (fastingStatusX is FhirDuration) {
+          fields.add(fastingStatusX!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildByName(String name) {
+    final values = getChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   SpecimenCollection clone() => copyWith();
 
@@ -1171,6 +1410,83 @@ class SpecimenProcessing extends BackboneElement {
     }
 
     return json;
+  }
+
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> listChildrenNames() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'description',
+      'procedure',
+      'additive',
+      'timeX',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> getChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'description':
+        if (description != null) {
+          fields.add(description!);
+        }
+      case 'procedure':
+        if (procedure != null) {
+          fields.add(procedure!);
+        }
+      case 'additive':
+        if (additive != null) {
+          fields.addAll(additive!);
+        }
+      case 'time':
+        fields.add(timeX!);
+      case 'timeX':
+        fields.add(timeX!);
+      case 'timeDateTime':
+        if (timeX is FhirDateTime) {
+          fields.add(timeX!);
+        }
+      case 'timePeriod':
+        if (timeX is Period) {
+          fields.add(timeX!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildByName(String name) {
+    final values = getChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
   }
 
   @override
@@ -1501,6 +1817,93 @@ class SpecimenContainer extends BackboneElement {
     }
 
     return json;
+  }
+
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> listChildrenNames() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'identifier',
+      'description',
+      'type',
+      'capacity',
+      'specimenQuantity',
+      'additiveX',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> getChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'identifier':
+        if (identifier != null) {
+          fields.addAll(identifier!);
+        }
+      case 'description':
+        if (description != null) {
+          fields.add(description!);
+        }
+      case 'type':
+        if (type != null) {
+          fields.add(type!);
+        }
+      case 'capacity':
+        if (capacity != null) {
+          fields.add(capacity!);
+        }
+      case 'specimenQuantity':
+        if (specimenQuantity != null) {
+          fields.add(specimenQuantity!);
+        }
+      case 'additive':
+        fields.add(additiveX!);
+      case 'additiveX':
+        fields.add(additiveX!);
+      case 'additiveCodeableConcept':
+        if (additiveX is CodeableConcept) {
+          fields.add(additiveX!);
+        }
+      case 'additiveReference':
+        if (additiveX is Reference) {
+          fields.add(additiveX!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildByName(String name) {
+    final values = getChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
   }
 
   @override

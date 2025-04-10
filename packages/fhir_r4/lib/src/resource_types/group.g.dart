@@ -85,8 +85,12 @@ class _$FhirGroupCopyWithImpl<T> implements $FhirGroupCopyWith<T> {
         active: identical(active, fhirSentinel)
             ? _value.active
             : active as FhirBoolean?,
-        type: type as GroupType? ?? _value.type,
-        actual: actual as FhirBoolean? ?? _value.actual,
+        type: identical(type, fhirSentinel)
+            ? _value.type
+            : (type as GroupType?) ?? _value.type,
+        actual: identical(actual, fhirSentinel)
+            ? _value.actual
+            : (actual as FhirBoolean?) ?? _value.actual,
         code: identical(code, fhirSentinel)
             ? _value.code
             : code as CodeableConcept?,
@@ -158,9 +162,15 @@ class _$GroupCharacteristicCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        code: code as CodeableConcept? ?? _value.code,
-        valueX: valueX as CodeableConcept? ?? _value.valueX,
-        exclude: exclude as FhirBoolean? ?? _value.exclude,
+        code: identical(code, fhirSentinel)
+            ? _value.code
+            : (code as CodeableConcept?) ?? _value.code,
+        valueX: identical(valueX, fhirSentinel)
+            ? _value.valueX
+            : (valueX as CodeableConcept?) ?? _value.valueX,
+        exclude: identical(exclude, fhirSentinel)
+            ? _value.exclude
+            : (exclude as FhirBoolean?) ?? _value.exclude,
         period:
             identical(period, fhirSentinel) ? _value.period : period as Period?,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
@@ -217,7 +227,9 @@ class _$GroupMemberCopyWithImpl<T> implements $GroupMemberCopyWith<T> {
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        entity: entity as Reference? ?? _value.entity,
+        entity: identical(entity, fhirSentinel)
+            ? _value.entity
+            : (entity as Reference?) ?? _value.entity,
         period:
             identical(period, fhirSentinel) ? _value.period : period as Period?,
         inactive: identical(inactive, fhirSentinel)

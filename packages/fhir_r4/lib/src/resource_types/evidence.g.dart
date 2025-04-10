@@ -122,7 +122,9 @@ class _$EvidenceCopyWithImpl<T> implements $EvidenceCopyWith<T> {
         citeAsX: identical(citeAsX, fhirSentinel)
             ? _value.citeAsX
             : citeAsX as Reference?,
-        status: status as PublicationStatus? ?? _value.status,
+        status: identical(status, fhirSentinel)
+            ? _value.status
+            : (status as PublicationStatus?) ?? _value.status,
         date:
             identical(date, fhirSentinel) ? _value.date : date as FhirDateTime?,
         useContext: identical(useContext, fhirSentinel)
@@ -164,8 +166,9 @@ class _$EvidenceCopyWithImpl<T> implements $EvidenceCopyWith<T> {
         note: identical(note, fhirSentinel)
             ? _value.note
             : note as List<Annotation>?,
-        variableDefinition:
-            variableDefinition as List<EvidenceVariableDefinition>? ??
+        variableDefinition: identical(variableDefinition, fhirSentinel)
+            ? _value.variableDefinition
+            : (variableDefinition as List<EvidenceVariableDefinition>?) ??
                 _value.variableDefinition,
         synthesisType: identical(synthesisType, fhirSentinel)
             ? _value.synthesisType
@@ -243,7 +246,9 @@ class _$EvidenceVariableDefinitionCopyWithImpl<T>
         note: identical(note, fhirSentinel)
             ? _value.note
             : note as List<Annotation>?,
-        variableRole: variableRole as CodeableConcept? ?? _value.variableRole,
+        variableRole: identical(variableRole, fhirSentinel)
+            ? _value.variableRole
+            : (variableRole as CodeableConcept?) ?? _value.variableRole,
         observed: identical(observed, fhirSentinel)
             ? _value.observed
             : observed as Reference?,
@@ -572,7 +577,9 @@ class _$EvidenceModelCharacteristicCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        code: code as CodeableConcept? ?? _value.code,
+        code: identical(code, fhirSentinel)
+            ? _value.code
+            : (code as CodeableConcept?) ?? _value.code,
         value:
             identical(value, fhirSentinel) ? _value.value : value as Quantity?,
         variable: identical(variable, fhirSentinel)
@@ -643,8 +650,9 @@ class _$EvidenceModelCharacteristicVariableCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        variableDefinition:
-            variableDefinition as Reference? ?? _value.variableDefinition,
+        variableDefinition: identical(variableDefinition, fhirSentinel)
+            ? _value.variableDefinition
+            : (variableDefinition as Reference?) ?? _value.variableDefinition,
         handling: identical(handling, fhirSentinel)
             ? _value.handling
             : handling as EvidenceVariableHandling?,

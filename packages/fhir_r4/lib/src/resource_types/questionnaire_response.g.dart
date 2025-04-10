@@ -95,7 +95,9 @@ class _$QuestionnaireResponseCopyWithImpl<T>
         questionnaire: identical(questionnaire, fhirSentinel)
             ? _value.questionnaire
             : questionnaire as FhirCanonical?,
-        status: status as QuestionnaireResponseStatus? ?? _value.status,
+        status: identical(status, fhirSentinel)
+            ? _value.status
+            : (status as QuestionnaireResponseStatus?) ?? _value.status,
         subject: identical(subject, fhirSentinel)
             ? _value.subject
             : subject as Reference?,
@@ -171,7 +173,9 @@ class _$QuestionnaireResponseItemCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        linkId: linkId as FhirString? ?? _value.linkId,
+        linkId: identical(linkId, fhirSentinel)
+            ? _value.linkId
+            : (linkId as FhirString?) ?? _value.linkId,
         definition: identical(definition, fhirSentinel)
             ? _value.definition
             : definition as FhirUri?,

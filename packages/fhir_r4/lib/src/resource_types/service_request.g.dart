@@ -143,8 +143,12 @@ class _$ServiceRequestCopyWithImpl<T> implements $ServiceRequestCopyWith<T> {
         requisition: identical(requisition, fhirSentinel)
             ? _value.requisition
             : requisition as Identifier?,
-        status: status as RequestStatus? ?? _value.status,
-        intent: intent as RequestIntent? ?? _value.intent,
+        status: identical(status, fhirSentinel)
+            ? _value.status
+            : (status as RequestStatus?) ?? _value.status,
+        intent: identical(intent, fhirSentinel)
+            ? _value.intent
+            : (intent as RequestIntent?) ?? _value.intent,
         category: identical(category, fhirSentinel)
             ? _value.category
             : category as List<CodeableConcept>?,
@@ -163,7 +167,9 @@ class _$ServiceRequestCopyWithImpl<T> implements $ServiceRequestCopyWith<T> {
         quantityX: identical(quantityX, fhirSentinel)
             ? _value.quantityX
             : quantityX as Quantity?,
-        subject: subject as Reference? ?? _value.subject,
+        subject: identical(subject, fhirSentinel)
+            ? _value.subject
+            : (subject as Reference?) ?? _value.subject,
         encounter: identical(encounter, fhirSentinel)
             ? _value.encounter
             : encounter as Reference?,

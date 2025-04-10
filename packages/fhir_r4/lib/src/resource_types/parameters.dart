@@ -186,6 +186,65 @@ class Parameters extends Resource {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> listChildrenNames() {
+    return [
+      'id',
+      'meta',
+      'implicitRules',
+      'language',
+      'parameter',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> getChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'meta':
+        if (meta != null) {
+          fields.add(meta!);
+        }
+      case 'implicitRules':
+        if (implicitRules != null) {
+          fields.add(implicitRules!);
+        }
+      case 'language':
+        if (language != null) {
+          fields.add(language!);
+        }
+      case 'parameter':
+        if (parameter != null) {
+          fields.addAll(parameter!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildByName(String name) {
+    final values = getChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   Parameters clone() => copyWith();
 
@@ -661,6 +720,273 @@ class ParametersParameter extends BackboneElement {
       part_,
     );
     return json;
+  }
+
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> listChildrenNames() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'name',
+      'valueX',
+      'resource',
+      'part',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> getChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'name':
+        fields.add(name);
+      case 'value':
+        fields.add(valueX!);
+      case 'valueX':
+        fields.add(valueX!);
+      case 'valueBase64Binary':
+        if (valueX is FhirBase64Binary) {
+          fields.add(valueX!);
+        }
+      case 'valueBoolean':
+        if (valueX is FhirBoolean) {
+          fields.add(valueX!);
+        }
+      case 'valueCanonical':
+        if (valueX is FhirCanonical) {
+          fields.add(valueX!);
+        }
+      case 'valueCode':
+        if (valueX is FhirCode) {
+          fields.add(valueX!);
+        }
+      case 'valueDate':
+        if (valueX is FhirDate) {
+          fields.add(valueX!);
+        }
+      case 'valueDateTime':
+        if (valueX is FhirDateTime) {
+          fields.add(valueX!);
+        }
+      case 'valueDecimal':
+        if (valueX is FhirDecimal) {
+          fields.add(valueX!);
+        }
+      case 'valueId':
+        if (valueX is FhirId) {
+          fields.add(valueX!);
+        }
+      case 'valueInstant':
+        if (valueX is FhirInstant) {
+          fields.add(valueX!);
+        }
+      case 'valueInteger':
+        if (valueX is FhirInteger) {
+          fields.add(valueX!);
+        }
+      case 'valueMarkdown':
+        if (valueX is FhirMarkdown) {
+          fields.add(valueX!);
+        }
+      case 'valueOid':
+        if (valueX is FhirOid) {
+          fields.add(valueX!);
+        }
+      case 'valuePositiveInt':
+        if (valueX is FhirPositiveInt) {
+          fields.add(valueX!);
+        }
+      case 'valueString':
+        if (valueX is FhirString) {
+          fields.add(valueX!);
+        }
+      case 'valueTime':
+        if (valueX is FhirTime) {
+          fields.add(valueX!);
+        }
+      case 'valueUnsignedInt':
+        if (valueX is FhirUnsignedInt) {
+          fields.add(valueX!);
+        }
+      case 'valueUri':
+        if (valueX is FhirUri) {
+          fields.add(valueX!);
+        }
+      case 'valueUrl':
+        if (valueX is FhirUrl) {
+          fields.add(valueX!);
+        }
+      case 'valueUuid':
+        if (valueX is FhirUuid) {
+          fields.add(valueX!);
+        }
+      case 'valueAddress':
+        if (valueX is Address) {
+          fields.add(valueX!);
+        }
+      case 'valueAge':
+        if (valueX is Age) {
+          fields.add(valueX!);
+        }
+      case 'valueAnnotation':
+        if (valueX is Annotation) {
+          fields.add(valueX!);
+        }
+      case 'valueAttachment':
+        if (valueX is Attachment) {
+          fields.add(valueX!);
+        }
+      case 'valueCodeableConcept':
+        if (valueX is CodeableConcept) {
+          fields.add(valueX!);
+        }
+      case 'valueCoding':
+        if (valueX is Coding) {
+          fields.add(valueX!);
+        }
+      case 'valueContactPoint':
+        if (valueX is ContactPoint) {
+          fields.add(valueX!);
+        }
+      case 'valueCount':
+        if (valueX is Count) {
+          fields.add(valueX!);
+        }
+      case 'valueDistance':
+        if (valueX is Distance) {
+          fields.add(valueX!);
+        }
+      case 'valueDuration':
+        if (valueX is FhirDuration) {
+          fields.add(valueX!);
+        }
+      case 'valueHumanName':
+        if (valueX is HumanName) {
+          fields.add(valueX!);
+        }
+      case 'valueIdentifier':
+        if (valueX is Identifier) {
+          fields.add(valueX!);
+        }
+      case 'valueMoney':
+        if (valueX is Money) {
+          fields.add(valueX!);
+        }
+      case 'valuePeriod':
+        if (valueX is Period) {
+          fields.add(valueX!);
+        }
+      case 'valueQuantity':
+        if (valueX is Quantity) {
+          fields.add(valueX!);
+        }
+      case 'valueRange':
+        if (valueX is Range) {
+          fields.add(valueX!);
+        }
+      case 'valueRatio':
+        if (valueX is Ratio) {
+          fields.add(valueX!);
+        }
+      case 'valueReference':
+        if (valueX is Reference) {
+          fields.add(valueX!);
+        }
+      case 'valueSampledData':
+        if (valueX is SampledData) {
+          fields.add(valueX!);
+        }
+      case 'valueSignature':
+        if (valueX is Signature) {
+          fields.add(valueX!);
+        }
+      case 'valueTiming':
+        if (valueX is Timing) {
+          fields.add(valueX!);
+        }
+      case 'valueContactDetail':
+        if (valueX is ContactDetail) {
+          fields.add(valueX!);
+        }
+      case 'valueContributor':
+        if (valueX is Contributor) {
+          fields.add(valueX!);
+        }
+      case 'valueDataRequirement':
+        if (valueX is DataRequirement) {
+          fields.add(valueX!);
+        }
+      case 'valueExpression':
+        if (valueX is FhirExpression) {
+          fields.add(valueX!);
+        }
+      case 'valueParameterDefinition':
+        if (valueX is ParameterDefinition) {
+          fields.add(valueX!);
+        }
+      case 'valueRelatedArtifact':
+        if (valueX is RelatedArtifact) {
+          fields.add(valueX!);
+        }
+      case 'valueTriggerDefinition':
+        if (valueX is TriggerDefinition) {
+          fields.add(valueX!);
+        }
+      case 'valueUsageContext':
+        if (valueX is UsageContext) {
+          fields.add(valueX!);
+        }
+      case 'valueDosage':
+        if (valueX is Dosage) {
+          fields.add(valueX!);
+        }
+      case 'valueMeta':
+        if (valueX is FhirMeta) {
+          fields.add(valueX!);
+        }
+      case 'resource':
+        if (resource != null) {
+          fields.add(resource!);
+        }
+      case 'part':
+        if (part_ != null) {
+          fields.addAll(part_!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildByName(String name) {
+    final values = getChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
   }
 
   @override

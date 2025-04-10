@@ -1152,56 +1152,6 @@ class CoverageEligibilityRequestBuilder extends DomainResourceBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool identifier = false,
-    bool status = false,
-    bool priority = false,
-    bool purpose = false,
-    bool patient = false,
-    bool serviced = false,
-    bool created = false,
-    bool enterer = false,
-    bool provider = false,
-    bool insurer = false,
-    bool facility = false,
-    bool supportingInfo = false,
-    bool insurance = false,
-    bool item = false,
-  }) {
-    if (id) this.id = null;
-    if (meta) this.meta = null;
-    if (implicitRules) this.implicitRules = null;
-    if (language) this.language = null;
-    if (text) this.text = null;
-    if (contained) this.contained = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (identifier) this.identifier = null;
-    if (status) this.status = null;
-    if (priority) this.priority = null;
-    if (purpose) this.purpose = null;
-    if (patient) this.patient = null;
-    if (serviced) servicedX = null;
-    if (created) this.created = null;
-    if (enterer) this.enterer = null;
-    if (provider) this.provider = null;
-    if (insurer) this.insurer = null;
-    if (facility) this.facility = null;
-    if (supportingInfo) this.supportingInfo = null;
-    if (insurance) this.insurance = null;
-    if (item) this.item = null;
-  }
-
   @override
   CoverageEligibilityRequestBuilder clone() => throw UnimplementedError();
   @override
@@ -1850,24 +1800,6 @@ class CoverageEligibilityRequestSupportingInfoBuilder
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool sequence = false,
-    bool information = false,
-    bool appliesToAll = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (sequence) this.sequence = null;
-    if (information) this.information = null;
-    if (appliesToAll) this.appliesToAll = null;
-  }
-
   @override
   CoverageEligibilityRequestSupportingInfoBuilder clone() =>
       throw UnimplementedError();
@@ -2384,24 +2316,6 @@ class CoverageEligibilityRequestInsuranceBuilder
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool focal = false,
-    bool coverage = false,
-    bool businessArrangement = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (focal) this.focal = null;
-    if (coverage) this.coverage = null;
-    if (businessArrangement) this.businessArrangement = null;
   }
 
   @override
@@ -3208,38 +3122,6 @@ class CoverageEligibilityRequestItemBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool supportingInfoSequence = false,
-    bool category = false,
-    bool productOrService = false,
-    bool modifier = false,
-    bool provider = false,
-    bool quantity = false,
-    bool unitPrice = false,
-    bool facility = false,
-    bool diagnosis = false,
-    bool detail = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (supportingInfoSequence) this.supportingInfoSequence = null;
-    if (category) this.category = null;
-    if (productOrService) this.productOrService = null;
-    if (modifier) this.modifier = null;
-    if (provider) this.provider = null;
-    if (quantity) this.quantity = null;
-    if (unitPrice) this.unitPrice = null;
-    if (facility) this.facility = null;
-    if (diagnosis) this.diagnosis = null;
-    if (detail) this.detail = null;
-  }
-
   @override
   CoverageEligibilityRequestItemBuilder clone() => throw UnimplementedError();
   @override
@@ -3787,20 +3669,6 @@ class CoverageEligibilityRequestDiagnosisBuilder
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool diagnosis = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (diagnosis) diagnosisX = null;
   }
 
   @override

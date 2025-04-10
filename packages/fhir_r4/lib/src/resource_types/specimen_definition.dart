@@ -305,6 +305,110 @@ class SpecimenDefinition extends DomainResource {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> listChildrenNames() {
+    return [
+      'id',
+      'meta',
+      'implicitRules',
+      'language',
+      'text',
+      'contained',
+      'extension',
+      'modifierExtension',
+      'identifier',
+      'typeCollected',
+      'patientPreparation',
+      'timeAspect',
+      'collection',
+      'typeTested',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> getChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'meta':
+        if (meta != null) {
+          fields.add(meta!);
+        }
+      case 'implicitRules':
+        if (implicitRules != null) {
+          fields.add(implicitRules!);
+        }
+      case 'language':
+        if (language != null) {
+          fields.add(language!);
+        }
+      case 'text':
+        if (text != null) {
+          fields.add(text!);
+        }
+      case 'contained':
+        if (contained != null) {
+          fields.addAll(contained!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'identifier':
+        if (identifier != null) {
+          fields.add(identifier!);
+        }
+      case 'typeCollected':
+        if (typeCollected != null) {
+          fields.add(typeCollected!);
+        }
+      case 'patientPreparation':
+        if (patientPreparation != null) {
+          fields.addAll(patientPreparation!);
+        }
+      case 'timeAspect':
+        if (timeAspect != null) {
+          fields.add(timeAspect!);
+        }
+      case 'collection':
+        if (collection != null) {
+          fields.addAll(collection!);
+        }
+      case 'typeTested':
+        if (typeTested != null) {
+          fields.addAll(typeTested!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildByName(String name) {
+    final values = getChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   SpecimenDefinition clone() => copyWith();
 
@@ -693,6 +797,93 @@ class SpecimenDefinitionTypeTested extends BackboneElement {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> listChildrenNames() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'isDerived',
+      'type',
+      'preference',
+      'container',
+      'requirement',
+      'retentionTime',
+      'rejectionCriterion',
+      'handling',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> getChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'isDerived':
+        if (isDerived != null) {
+          fields.add(isDerived!);
+        }
+      case 'type':
+        if (type != null) {
+          fields.add(type!);
+        }
+      case 'preference':
+        fields.add(preference);
+      case 'container':
+        if (container != null) {
+          fields.add(container!);
+        }
+      case 'requirement':
+        if (requirement != null) {
+          fields.add(requirement!);
+        }
+      case 'retentionTime':
+        if (retentionTime != null) {
+          fields.add(retentionTime!);
+        }
+      case 'rejectionCriterion':
+        if (rejectionCriterion != null) {
+          fields.addAll(rejectionCriterion!);
+        }
+      case 'handling':
+        if (handling != null) {
+          fields.addAll(handling!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildByName(String name) {
+    final values = getChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   SpecimenDefinitionTypeTested clone() => copyWith();
 
@@ -1072,6 +1263,103 @@ class SpecimenDefinitionContainer extends BackboneElement {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> listChildrenNames() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'material',
+      'type',
+      'cap',
+      'description',
+      'capacity',
+      'minimumVolumeX',
+      'additive',
+      'preparation',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> getChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'material':
+        if (material != null) {
+          fields.add(material!);
+        }
+      case 'type':
+        if (type != null) {
+          fields.add(type!);
+        }
+      case 'cap':
+        if (cap != null) {
+          fields.add(cap!);
+        }
+      case 'description':
+        if (description != null) {
+          fields.add(description!);
+        }
+      case 'capacity':
+        if (capacity != null) {
+          fields.add(capacity!);
+        }
+      case 'minimumVolume':
+        fields.add(minimumVolumeX!);
+      case 'minimumVolumeX':
+        fields.add(minimumVolumeX!);
+      case 'minimumVolumeQuantity':
+        if (minimumVolumeX is Quantity) {
+          fields.add(minimumVolumeX!);
+        }
+      case 'minimumVolumeString':
+        if (minimumVolumeX is FhirString) {
+          fields.add(minimumVolumeX!);
+        }
+      case 'additive':
+        if (additive != null) {
+          fields.addAll(additive!);
+        }
+      case 'preparation':
+        if (preparation != null) {
+          fields.add(preparation!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildByName(String name) {
+    final values = getChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   SpecimenDefinitionContainer clone() => copyWith();
 
@@ -1350,6 +1638,68 @@ class SpecimenDefinitionAdditive extends BackboneElement {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> listChildrenNames() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'additiveX',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> getChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'additive':
+        fields.add(additiveX);
+      case 'additiveX':
+        fields.add(additiveX);
+      case 'additiveCodeableConcept':
+        if (additiveX is CodeableConcept) {
+          fields.add(additiveX);
+        }
+      case 'additiveReference':
+        if (additiveX is Reference) {
+          fields.add(additiveX);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildByName(String name) {
+    final values = getChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   SpecimenDefinitionAdditive clone() => copyWith();
 
@@ -1617,6 +1967,75 @@ class SpecimenDefinitionHandling extends BackboneElement {
       instruction,
     );
     return json;
+  }
+
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> listChildrenNames() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'temperatureQualifier',
+      'temperatureRange',
+      'maxDuration',
+      'instruction',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> getChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'temperatureQualifier':
+        if (temperatureQualifier != null) {
+          fields.add(temperatureQualifier!);
+        }
+      case 'temperatureRange':
+        if (temperatureRange != null) {
+          fields.add(temperatureRange!);
+        }
+      case 'maxDuration':
+        if (maxDuration != null) {
+          fields.add(maxDuration!);
+        }
+      case 'instruction':
+        if (instruction != null) {
+          fields.add(instruction!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildByName(String name) {
+    final values = getChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
   }
 
   @override

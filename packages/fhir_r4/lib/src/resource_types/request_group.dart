@@ -496,6 +496,166 @@ class RequestGroup extends DomainResource {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> listChildrenNames() {
+    return [
+      'id',
+      'meta',
+      'implicitRules',
+      'language',
+      'text',
+      'contained',
+      'extension',
+      'modifierExtension',
+      'identifier',
+      'instantiatesCanonical',
+      'instantiatesUri',
+      'basedOn',
+      'replaces',
+      'groupIdentifier',
+      'status',
+      'intent',
+      'priority',
+      'code',
+      'subject',
+      'encounter',
+      'authoredOn',
+      'author',
+      'reasonCode',
+      'reasonReference',
+      'note',
+      'action',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> getChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'meta':
+        if (meta != null) {
+          fields.add(meta!);
+        }
+      case 'implicitRules':
+        if (implicitRules != null) {
+          fields.add(implicitRules!);
+        }
+      case 'language':
+        if (language != null) {
+          fields.add(language!);
+        }
+      case 'text':
+        if (text != null) {
+          fields.add(text!);
+        }
+      case 'contained':
+        if (contained != null) {
+          fields.addAll(contained!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'identifier':
+        if (identifier != null) {
+          fields.addAll(identifier!);
+        }
+      case 'instantiatesCanonical':
+        if (instantiatesCanonical != null) {
+          fields.addAll(instantiatesCanonical!);
+        }
+      case 'instantiatesUri':
+        if (instantiatesUri != null) {
+          fields.addAll(instantiatesUri!);
+        }
+      case 'basedOn':
+        if (basedOn != null) {
+          fields.addAll(basedOn!);
+        }
+      case 'replaces':
+        if (replaces != null) {
+          fields.addAll(replaces!);
+        }
+      case 'groupIdentifier':
+        if (groupIdentifier != null) {
+          fields.add(groupIdentifier!);
+        }
+      case 'status':
+        fields.add(status);
+      case 'intent':
+        fields.add(intent);
+      case 'priority':
+        if (priority != null) {
+          fields.add(priority!);
+        }
+      case 'code':
+        if (code != null) {
+          fields.add(code!);
+        }
+      case 'subject':
+        if (subject != null) {
+          fields.add(subject!);
+        }
+      case 'encounter':
+        if (encounter != null) {
+          fields.add(encounter!);
+        }
+      case 'authoredOn':
+        if (authoredOn != null) {
+          fields.add(authoredOn!);
+        }
+      case 'author':
+        if (author != null) {
+          fields.add(author!);
+        }
+      case 'reasonCode':
+        if (reasonCode != null) {
+          fields.addAll(reasonCode!);
+        }
+      case 'reasonReference':
+        if (reasonReference != null) {
+          fields.addAll(reasonReference!);
+        }
+      case 'note':
+        if (note != null) {
+          fields.addAll(note!);
+        }
+      case 'action':
+        if (action != null) {
+          fields.addAll(action!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildByName(String name) {
+    final values = getChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   RequestGroup clone() => copyWith();
 
@@ -1153,6 +1313,174 @@ class RequestGroupAction extends BackboneElement {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> listChildrenNames() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'prefix',
+      'title',
+      'description',
+      'textEquivalent',
+      'priority',
+      'code',
+      'documentation',
+      'condition',
+      'relatedAction',
+      'timingX',
+      'participant',
+      'type',
+      'groupingBehavior',
+      'selectionBehavior',
+      'requiredBehavior',
+      'precheckBehavior',
+      'cardinalityBehavior',
+      'resource',
+      'action',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> getChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'prefix':
+        if (prefix != null) {
+          fields.add(prefix!);
+        }
+      case 'title':
+        if (title != null) {
+          fields.add(title!);
+        }
+      case 'description':
+        if (description != null) {
+          fields.add(description!);
+        }
+      case 'textEquivalent':
+        if (textEquivalent != null) {
+          fields.add(textEquivalent!);
+        }
+      case 'priority':
+        if (priority != null) {
+          fields.add(priority!);
+        }
+      case 'code':
+        if (code != null) {
+          fields.addAll(code!);
+        }
+      case 'documentation':
+        if (documentation != null) {
+          fields.addAll(documentation!);
+        }
+      case 'condition':
+        if (condition != null) {
+          fields.addAll(condition!);
+        }
+      case 'relatedAction':
+        if (relatedAction != null) {
+          fields.addAll(relatedAction!);
+        }
+      case 'timing':
+        fields.add(timingX!);
+      case 'timingX':
+        fields.add(timingX!);
+      case 'timingDateTime':
+        if (timingX is FhirDateTime) {
+          fields.add(timingX!);
+        }
+      case 'timingAge':
+        if (timingX is Age) {
+          fields.add(timingX!);
+        }
+      case 'timingPeriod':
+        if (timingX is Period) {
+          fields.add(timingX!);
+        }
+      case 'timingDuration':
+        if (timingX is FhirDuration) {
+          fields.add(timingX!);
+        }
+      case 'timingRange':
+        if (timingX is Range) {
+          fields.add(timingX!);
+        }
+      case 'timingTiming':
+        if (timingX is Timing) {
+          fields.add(timingX!);
+        }
+      case 'participant':
+        if (participant != null) {
+          fields.addAll(participant!);
+        }
+      case 'type':
+        if (type != null) {
+          fields.add(type!);
+        }
+      case 'groupingBehavior':
+        if (groupingBehavior != null) {
+          fields.add(groupingBehavior!);
+        }
+      case 'selectionBehavior':
+        if (selectionBehavior != null) {
+          fields.add(selectionBehavior!);
+        }
+      case 'requiredBehavior':
+        if (requiredBehavior != null) {
+          fields.add(requiredBehavior!);
+        }
+      case 'precheckBehavior':
+        if (precheckBehavior != null) {
+          fields.add(precheckBehavior!);
+        }
+      case 'cardinalityBehavior':
+        if (cardinalityBehavior != null) {
+          fields.add(cardinalityBehavior!);
+        }
+      case 'resource':
+        if (resource != null) {
+          fields.add(resource!);
+        }
+      case 'action':
+        if (action != null) {
+          fields.addAll(action!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildByName(String name) {
+    final values = getChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   RequestGroupAction clone() => copyWith();
 
@@ -1498,6 +1826,63 @@ class RequestGroupCondition extends BackboneElement {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> listChildrenNames() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'kind',
+      'expression',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> getChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'kind':
+        fields.add(kind);
+      case 'expression':
+        if (expression != null) {
+          fields.add(expression!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildByName(String name) {
+    final values = getChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   RequestGroupCondition clone() => copyWith();
 
@@ -1765,6 +2150,74 @@ class RequestGroupRelatedAction extends BackboneElement {
     }
 
     return json;
+  }
+
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> listChildrenNames() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'actionId',
+      'relationship',
+      'offsetX',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> getChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'actionId':
+        fields.add(actionId);
+      case 'relationship':
+        fields.add(relationship);
+      case 'offset':
+        fields.add(offsetX!);
+      case 'offsetX':
+        fields.add(offsetX!);
+      case 'offsetDuration':
+        if (offsetX is FhirDuration) {
+          fields.add(offsetX!);
+        }
+      case 'offsetRange':
+        if (offsetX is Range) {
+          fields.add(offsetX!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildByName(String name) {
+    final values = getChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
   }
 
   @override

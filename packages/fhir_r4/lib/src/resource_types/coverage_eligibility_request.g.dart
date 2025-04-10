@@ -92,23 +92,33 @@ class _$CoverageEligibilityRequestCopyWithImpl<T>
         identifier: identical(identifier, fhirSentinel)
             ? _value.identifier
             : identifier as List<Identifier>?,
-        status: status as FinancialResourceStatusCodes? ?? _value.status,
+        status: identical(status, fhirSentinel)
+            ? _value.status
+            : (status as FinancialResourceStatusCodes?) ?? _value.status,
         priority: identical(priority, fhirSentinel)
             ? _value.priority
             : priority as CodeableConcept?,
-        purpose: purpose as List<EligibilityRequestPurpose>? ?? _value.purpose,
-        patient: patient as Reference? ?? _value.patient,
+        purpose: identical(purpose, fhirSentinel)
+            ? _value.purpose
+            : (purpose as List<EligibilityRequestPurpose>?) ?? _value.purpose,
+        patient: identical(patient, fhirSentinel)
+            ? _value.patient
+            : (patient as Reference?) ?? _value.patient,
         servicedX: identical(servicedX, fhirSentinel)
             ? _value.servicedX
             : servicedX as FhirDate?,
-        created: created as FhirDateTime? ?? _value.created,
+        created: identical(created, fhirSentinel)
+            ? _value.created
+            : (created as FhirDateTime?) ?? _value.created,
         enterer: identical(enterer, fhirSentinel)
             ? _value.enterer
             : enterer as Reference?,
         provider: identical(provider, fhirSentinel)
             ? _value.provider
             : provider as Reference?,
-        insurer: insurer as Reference? ?? _value.insurer,
+        insurer: identical(insurer, fhirSentinel)
+            ? _value.insurer
+            : (insurer as Reference?) ?? _value.insurer,
         facility: identical(facility, fhirSentinel)
             ? _value.facility
             : facility as Reference?,
@@ -177,8 +187,12 @@ class _$CoverageEligibilityRequestSupportingInfoCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        sequence: sequence as FhirPositiveInt? ?? _value.sequence,
-        information: information as Reference? ?? _value.information,
+        sequence: identical(sequence, fhirSentinel)
+            ? _value.sequence
+            : (sequence as FhirPositiveInt?) ?? _value.sequence,
+        information: identical(information, fhirSentinel)
+            ? _value.information
+            : (information as Reference?) ?? _value.information,
         appliesToAll: identical(appliesToAll, fhirSentinel)
             ? _value.appliesToAll
             : appliesToAll as FhirBoolean?,
@@ -244,7 +258,9 @@ class _$CoverageEligibilityRequestInsuranceCopyWithImpl<T>
         focal: identical(focal, fhirSentinel)
             ? _value.focal
             : focal as FhirBoolean?,
-        coverage: coverage as Reference? ?? _value.coverage,
+        coverage: identical(coverage, fhirSentinel)
+            ? _value.coverage
+            : (coverage as Reference?) ?? _value.coverage,
         businessArrangement: identical(businessArrangement, fhirSentinel)
             ? _value.businessArrangement
             : businessArrangement as FhirString?,

@@ -123,7 +123,9 @@ class _$CommunicationCopyWithImpl<T> implements $CommunicationCopyWith<T> {
         inResponseTo: identical(inResponseTo, fhirSentinel)
             ? _value.inResponseTo
             : inResponseTo as List<Reference>?,
-        status: status as EventStatus? ?? _value.status,
+        status: identical(status, fhirSentinel)
+            ? _value.status
+            : (status as EventStatus?) ?? _value.status,
         statusReason: identical(statusReason, fhirSentinel)
             ? _value.statusReason
             : statusReason as CodeableConcept?,
@@ -220,7 +222,9 @@ class _$CommunicationPayloadCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        contentX: contentX as FhirString? ?? _value.contentX,
+        contentX: identical(contentX, fhirSentinel)
+            ? _value.contentX
+            : (contentX as FhirString?) ?? _value.contentX,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,

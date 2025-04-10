@@ -78,11 +78,17 @@ class _$ResearchSubjectCopyWithImpl<T> implements $ResearchSubjectCopyWith<T> {
         identifier: identical(identifier, fhirSentinel)
             ? _value.identifier
             : identifier as List<Identifier>?,
-        status: status as ResearchSubjectStatus? ?? _value.status,
+        status: identical(status, fhirSentinel)
+            ? _value.status
+            : (status as ResearchSubjectStatus?) ?? _value.status,
         period:
             identical(period, fhirSentinel) ? _value.period : period as Period?,
-        study: study as Reference? ?? _value.study,
-        individual: individual as Reference? ?? _value.individual,
+        study: identical(study, fhirSentinel)
+            ? _value.study
+            : (study as Reference?) ?? _value.study,
+        individual: identical(individual, fhirSentinel)
+            ? _value.individual
+            : (individual as Reference?) ?? _value.individual,
         assignedArm: identical(assignedArm, fhirSentinel)
             ? _value.assignedArm
             : assignedArm as FhirString?,

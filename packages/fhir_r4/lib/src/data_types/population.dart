@@ -229,6 +229,83 @@ class Population extends BackboneType {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> listChildrenNames() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'ageX',
+      'gender',
+      'race',
+      'physiologicalCondition',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> getChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'age':
+        fields.add(ageX!);
+      case 'ageX':
+        fields.add(ageX!);
+      case 'ageRange':
+        if (ageX is Range) {
+          fields.add(ageX!);
+        }
+      case 'ageCodeableConcept':
+        if (ageX is CodeableConcept) {
+          fields.add(ageX!);
+        }
+      case 'gender':
+        if (gender != null) {
+          fields.add(gender!);
+        }
+      case 'race':
+        if (race != null) {
+          fields.add(race!);
+        }
+      case 'physiologicalCondition':
+        if (physiologicalCondition != null) {
+          fields.add(physiologicalCondition!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildByName(String name) {
+    final values = getChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   Population clone() => copyWith();
 

@@ -160,8 +160,9 @@ class _$SpecimenDefinitionTypeTestedCopyWithImpl<T>
         type: identical(type, fhirSentinel)
             ? _value.type
             : type as CodeableConcept?,
-        preference:
-            preference as SpecimenContainedPreference? ?? _value.preference,
+        preference: identical(preference, fhirSentinel)
+            ? _value.preference
+            : (preference as SpecimenContainedPreference?) ?? _value.preference,
         container: identical(container, fhirSentinel)
             ? _value.container
             : container as SpecimenDefinitionContainer?,
@@ -322,7 +323,9 @@ class _$SpecimenDefinitionAdditiveCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        additiveX: additiveX as CodeableConcept? ?? _value.additiveX,
+        additiveX: identical(additiveX, fhirSentinel)
+            ? _value.additiveX
+            : (additiveX as CodeableConcept?) ?? _value.additiveX,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,

@@ -501,26 +501,6 @@ class FhirExpressionBuilder extends DataTypeBuilder
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool description = false,
-    bool name = false,
-    bool language = false,
-    bool expression = false,
-    bool reference = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (description) this.description = null;
-    if (name) this.name = null;
-    if (language) this.language = null;
-    if (expression) this.expression = null;
-    if (reference) this.reference = null;
-  }
-
   @override
   FhirExpressionBuilder clone() => throw UnimplementedError();
   @override

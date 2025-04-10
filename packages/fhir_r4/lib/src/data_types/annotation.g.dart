@@ -44,7 +44,9 @@ class _$AnnotationCopyWithImpl<T> implements $AnnotationCopyWith<T> {
             : authorX as Reference?,
         time:
             identical(time, fhirSentinel) ? _value.time : time as FhirDateTime?,
-        text: text as FhirMarkdown? ?? _value.text,
+        text: identical(text, fhirSentinel)
+            ? _value.text
+            : (text as FhirMarkdown?) ?? _value.text,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,

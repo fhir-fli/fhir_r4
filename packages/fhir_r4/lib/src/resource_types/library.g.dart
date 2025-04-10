@@ -135,11 +135,15 @@ class _$LibraryCopyWithImpl<T> implements $LibraryCopyWith<T> {
         subtitle: identical(subtitle, fhirSentinel)
             ? _value.subtitle
             : subtitle as FhirString?,
-        status: status as PublicationStatus? ?? _value.status,
+        status: identical(status, fhirSentinel)
+            ? _value.status
+            : (status as PublicationStatus?) ?? _value.status,
         experimental: identical(experimental, fhirSentinel)
             ? _value.experimental
             : experimental as FhirBoolean?,
-        type: type as CodeableConcept? ?? _value.type,
+        type: identical(type, fhirSentinel)
+            ? _value.type
+            : (type as CodeableConcept?) ?? _value.type,
         subjectX: identical(subjectX, fhirSentinel)
             ? _value.subjectX
             : subjectX as CodeableConcept?,

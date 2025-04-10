@@ -104,7 +104,9 @@ class _$ClinicalImpressionCopyWithImpl<T>
         identifier: identical(identifier, fhirSentinel)
             ? _value.identifier
             : identifier as List<Identifier>?,
-        status: status as ClinicalImpressionStatus? ?? _value.status,
+        status: identical(status, fhirSentinel)
+            ? _value.status
+            : (status as ClinicalImpressionStatus?) ?? _value.status,
         statusReason: identical(statusReason, fhirSentinel)
             ? _value.statusReason
             : statusReason as CodeableConcept?,
@@ -114,7 +116,9 @@ class _$ClinicalImpressionCopyWithImpl<T>
         description: identical(description, fhirSentinel)
             ? _value.description
             : description as FhirString?,
-        subject: subject as Reference? ?? _value.subject,
+        subject: identical(subject, fhirSentinel)
+            ? _value.subject
+            : (subject as Reference?) ?? _value.subject,
         encounter: identical(encounter, fhirSentinel)
             ? _value.encounter
             : encounter as Reference?,
@@ -208,7 +212,9 @@ class _$ClinicalImpressionInvestigationCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        code: code as CodeableConcept? ?? _value.code,
+        code: identical(code, fhirSentinel)
+            ? _value.code
+            : (code as CodeableConcept?) ?? _value.code,
         item: identical(item, fhirSentinel)
             ? _value.item
             : item as List<Reference>?,

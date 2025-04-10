@@ -1379,68 +1379,6 @@ class ImplementationGuideBuilder extends CanonicalResourceBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool url = false,
-    bool version = false,
-    bool name = false,
-    bool title = false,
-    bool status = false,
-    bool experimental = false,
-    bool date = false,
-    bool publisher = false,
-    bool contact = false,
-    bool description = false,
-    bool useContext = false,
-    bool jurisdiction = false,
-    bool copyright = false,
-    bool packageId = false,
-    bool license = false,
-    bool fhirVersion = false,
-    bool dependsOn = false,
-    bool global = false,
-    bool definition = false,
-    bool manifest = false,
-  }) {
-    if (id) this.id = null;
-    if (meta) this.meta = null;
-    if (implicitRules) this.implicitRules = null;
-    if (language) this.language = null;
-    if (text) this.text = null;
-    if (contained) this.contained = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (url) this.url = null;
-    if (version) this.version = null;
-    if (name) this.name = null;
-    if (title) this.title = null;
-    if (status) this.status = null;
-    if (experimental) this.experimental = null;
-    if (date) this.date = null;
-    if (publisher) this.publisher = null;
-    if (contact) this.contact = null;
-    if (description) this.description = null;
-    if (useContext) this.useContext = null;
-    if (jurisdiction) this.jurisdiction = null;
-    if (copyright) this.copyright = null;
-    if (packageId) this.packageId = null;
-    if (license) this.license = null;
-    if (fhirVersion) this.fhirVersion = null;
-    if (dependsOn) this.dependsOn = null;
-    if (global) this.global = null;
-    if (definition) this.definition = null;
-    if (manifest) this.manifest = null;
-  }
-
   @override
   ImplementationGuideBuilder clone() => throw UnimplementedError();
   @override
@@ -2142,24 +2080,6 @@ class ImplementationGuideDependsOnBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool uri = false,
-    bool packageId = false,
-    bool version = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (uri) this.uri = null;
-    if (packageId) this.packageId = null;
-    if (version) this.version = null;
-  }
-
   @override
   ImplementationGuideDependsOnBuilder clone() => throw UnimplementedError();
   @override
@@ -2638,22 +2558,6 @@ class ImplementationGuideGlobalBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool type = false,
-    bool profile = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (type) this.type = null;
-    if (profile) this.profile = null;
   }
 
   @override
@@ -3252,28 +3156,6 @@ class ImplementationGuideDefinitionBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool grouping = false,
-    bool resource = false,
-    bool page = false,
-    bool parameter = false,
-    bool template = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (grouping) this.grouping = null;
-    if (resource) this.resource = null;
-    if (page) this.page = null;
-    if (parameter) this.parameter = null;
-    if (template) this.template = null;
-  }
-
   @override
   ImplementationGuideDefinitionBuilder clone() => throw UnimplementedError();
   @override
@@ -3768,22 +3650,6 @@ class ImplementationGuideGroupingBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool name = false,
-    bool description = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (name) this.name = null;
-    if (description) this.description = null;
   }
 
   @override
@@ -4523,30 +4389,6 @@ class ImplementationGuideResourceBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool reference = false,
-    bool fhirVersion = false,
-    bool name = false,
-    bool description = false,
-    bool example = false,
-    bool groupingId = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (reference) this.reference = null;
-    if (fhirVersion) this.fhirVersion = null;
-    if (name) this.name = null;
-    if (description) this.description = null;
-    if (example) exampleX = null;
-    if (groupingId) this.groupingId = null;
-  }
-
   @override
   ImplementationGuideResourceBuilder clone() => throw UnimplementedError();
   @override
@@ -5198,26 +5040,6 @@ class ImplementationGuidePageBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool name = false,
-    bool title = false,
-    bool generation = false,
-    bool page = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (name) nameX = null;
-    if (title) this.title = null;
-    if (generation) this.generation = null;
-    if (page) this.page = null;
-  }
-
   @override
   ImplementationGuidePageBuilder clone() => throw UnimplementedError();
   @override
@@ -5708,22 +5530,6 @@ class ImplementationGuideParameterBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool code = false,
-    bool value = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (code) this.code = null;
-    if (value) this.value = null;
   }
 
   @override
@@ -6239,24 +6045,6 @@ class ImplementationGuideTemplateBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool code = false,
-    bool source = false,
-    bool scope = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (code) this.code = null;
-    if (source) this.source = null;
-    if (scope) this.scope = null;
   }
 
   @override
@@ -6934,28 +6722,6 @@ class ImplementationGuideManifestBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool rendering = false,
-    bool resource = false,
-    bool page = false,
-    bool image = false,
-    bool other = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (rendering) this.rendering = null;
-    if (resource) this.resource = null;
-    if (page) this.page = null;
-    if (image) this.image = null;
-    if (other) this.other = null;
-  }
-
   @override
   ImplementationGuideManifestBuilder clone() => throw UnimplementedError();
   @override
@@ -7545,24 +7311,6 @@ class ImplementationGuideResource1Builder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool reference = false,
-    bool example = false,
-    bool relativePath = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (reference) this.reference = null;
-    if (example) exampleX = null;
-    if (relativePath) this.relativePath = null;
-  }
-
   @override
   ImplementationGuideResource1Builder clone() => throw UnimplementedError();
   @override
@@ -8112,24 +7860,6 @@ class ImplementationGuidePage1Builder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool name = false,
-    bool title = false,
-    bool anchor = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (name) this.name = null;
-    if (title) this.title = null;
-    if (anchor) this.anchor = null;
   }
 
   @override

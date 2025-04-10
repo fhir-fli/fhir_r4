@@ -90,7 +90,9 @@ class _$ScheduleCopyWithImpl<T> implements $ScheduleCopyWith<T> {
         specialty: identical(specialty, fhirSentinel)
             ? _value.specialty
             : specialty as List<CodeableConcept>?,
-        actor: actor as List<Reference>? ?? _value.actor,
+        actor: identical(actor, fhirSentinel)
+            ? _value.actor
+            : (actor as List<Reference>?) ?? _value.actor,
         planningHorizon: identical(planningHorizon, fhirSentinel)
             ? _value.planningHorizon
             : planningHorizon as Period?,

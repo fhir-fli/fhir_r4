@@ -477,24 +477,6 @@ class TimingBuilder extends BackboneTypeBuilder
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool event = false,
-    bool repeat = false,
-    bool code = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (event) this.event = null;
-    if (repeat) this.repeat = null;
-    if (code) this.code = null;
-  }
-
   @override
   TimingBuilder clone() => throw UnimplementedError();
   @override
@@ -1754,46 +1736,6 @@ class TimingRepeatBuilder extends ElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool bounds = false,
-    bool count = false,
-    bool countMax = false,
-    bool duration = false,
-    bool durationMax = false,
-    bool durationUnit = false,
-    bool frequency = false,
-    bool frequencyMax = false,
-    bool period = false,
-    bool periodMax = false,
-    bool periodUnit = false,
-    bool dayOfWeek = false,
-    bool timeOfDay = false,
-    bool when = false,
-    bool offset = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (bounds) boundsX = null;
-    if (count) this.count = null;
-    if (countMax) this.countMax = null;
-    if (duration) this.duration = null;
-    if (durationMax) this.durationMax = null;
-    if (durationUnit) this.durationUnit = null;
-    if (frequency) this.frequency = null;
-    if (frequencyMax) this.frequencyMax = null;
-    if (period) this.period = null;
-    if (periodMax) this.periodMax = null;
-    if (periodUnit) this.periodUnit = null;
-    if (dayOfWeek) this.dayOfWeek = null;
-    if (timeOfDay) this.timeOfDay = null;
-    if (when) this.when = null;
-    if (offset) this.offset = null;
   }
 
   @override

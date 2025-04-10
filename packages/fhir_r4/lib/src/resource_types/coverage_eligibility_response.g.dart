@@ -94,22 +94,36 @@ class _$CoverageEligibilityResponseCopyWithImpl<T>
         identifier: identical(identifier, fhirSentinel)
             ? _value.identifier
             : identifier as List<Identifier>?,
-        status: status as FinancialResourceStatusCodes? ?? _value.status,
-        purpose: purpose as List<EligibilityResponsePurpose>? ?? _value.purpose,
-        patient: patient as Reference? ?? _value.patient,
+        status: identical(status, fhirSentinel)
+            ? _value.status
+            : (status as FinancialResourceStatusCodes?) ?? _value.status,
+        purpose: identical(purpose, fhirSentinel)
+            ? _value.purpose
+            : (purpose as List<EligibilityResponsePurpose>?) ?? _value.purpose,
+        patient: identical(patient, fhirSentinel)
+            ? _value.patient
+            : (patient as Reference?) ?? _value.patient,
         servicedX: identical(servicedX, fhirSentinel)
             ? _value.servicedX
             : servicedX as FhirDate?,
-        created: created as FhirDateTime? ?? _value.created,
+        created: identical(created, fhirSentinel)
+            ? _value.created
+            : (created as FhirDateTime?) ?? _value.created,
         requestor: identical(requestor, fhirSentinel)
             ? _value.requestor
             : requestor as Reference?,
-        request: request as Reference? ?? _value.request,
-        outcome: outcome as RemittanceOutcome? ?? _value.outcome,
+        request: identical(request, fhirSentinel)
+            ? _value.request
+            : (request as Reference?) ?? _value.request,
+        outcome: identical(outcome, fhirSentinel)
+            ? _value.outcome
+            : (outcome as RemittanceOutcome?) ?? _value.outcome,
         disposition: identical(disposition, fhirSentinel)
             ? _value.disposition
             : disposition as FhirString?,
-        insurer: insurer as Reference? ?? _value.insurer,
+        insurer: identical(insurer, fhirSentinel)
+            ? _value.insurer
+            : (insurer as Reference?) ?? _value.insurer,
         insurance: identical(insurance, fhirSentinel)
             ? _value.insurance
             : insurance as List<CoverageEligibilityResponseInsurance>?,
@@ -179,7 +193,9 @@ class _$CoverageEligibilityResponseInsuranceCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        coverage: coverage as Reference? ?? _value.coverage,
+        coverage: identical(coverage, fhirSentinel)
+            ? _value.coverage
+            : (coverage as Reference?) ?? _value.coverage,
         inforce: identical(inforce, fhirSentinel)
             ? _value.inforce
             : inforce as FhirBoolean?,
@@ -369,7 +385,9 @@ class _$CoverageEligibilityResponseBenefitCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        type: type as CodeableConcept? ?? _value.type,
+        type: identical(type, fhirSentinel)
+            ? _value.type
+            : (type as CodeableConcept?) ?? _value.type,
         allowedX: identical(allowedX, fhirSentinel)
             ? _value.allowedX
             : allowedX as FhirUnsignedInt?,
@@ -431,7 +449,9 @@ class _$CoverageEligibilityResponseErrorCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        code: code as CodeableConcept? ?? _value.code,
+        code: identical(code, fhirSentinel)
+            ? _value.code
+            : (code as CodeableConcept?) ?? _value.code,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,

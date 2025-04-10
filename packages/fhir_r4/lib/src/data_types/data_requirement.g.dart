@@ -49,7 +49,9 @@ class _$DataRequirementCopyWithImpl<T> implements $DataRequirementCopyWith<T> {
         extension_: identical(extension_, fhirSentinel)
             ? _value.extension_
             : extension_ as List<FhirExtension>?,
-        type: type as FHIRAllTypes? ?? _value.type,
+        type: identical(type, fhirSentinel)
+            ? _value.type
+            : (type as FHIRAllTypes?) ?? _value.type,
         profile: identical(profile, fhirSentinel)
             ? _value.profile
             : profile as List<FhirCanonical>?,
@@ -241,8 +243,12 @@ class _$DataRequirementSortCopyWithImpl<T>
         extension_: identical(extension_, fhirSentinel)
             ? _value.extension_
             : extension_ as List<FhirExtension>?,
-        path: path as FhirString? ?? _value.path,
-        direction: direction as SortDirection? ?? _value.direction,
+        path: identical(path, fhirSentinel)
+            ? _value.path
+            : (path as FhirString?) ?? _value.path,
+        direction: identical(direction, fhirSentinel)
+            ? _value.direction
+            : (direction as SortDirection?) ?? _value.direction,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,

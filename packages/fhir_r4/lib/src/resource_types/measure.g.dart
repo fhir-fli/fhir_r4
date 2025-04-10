@@ -155,7 +155,9 @@ class _$MeasureCopyWithImpl<T> implements $MeasureCopyWith<T> {
         subtitle: identical(subtitle, fhirSentinel)
             ? _value.subtitle
             : subtitle as FhirString?,
-        status: status as PublicationStatus? ?? _value.status,
+        status: identical(status, fhirSentinel)
+            ? _value.status
+            : (status as PublicationStatus?) ?? _value.status,
         experimental: identical(experimental, fhirSentinel)
             ? _value.experimental
             : experimental as FhirBoolean?,
@@ -384,7 +386,9 @@ class _$MeasurePopulationCopyWithImpl<T>
         description: identical(description, fhirSentinel)
             ? _value.description
             : description as FhirString?,
-        criteria: criteria as FhirExpression? ?? _value.criteria,
+        criteria: identical(criteria, fhirSentinel)
+            ? _value.criteria
+            : (criteria as FhirExpression?) ?? _value.criteria,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,
@@ -517,7 +521,9 @@ class _$MeasureComponentCopyWithImpl<T>
         description: identical(description, fhirSentinel)
             ? _value.description
             : description as FhirString?,
-        criteria: criteria as FhirExpression? ?? _value.criteria,
+        criteria: identical(criteria, fhirSentinel)
+            ? _value.criteria
+            : (criteria as FhirExpression?) ?? _value.criteria,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,
@@ -585,7 +591,9 @@ class _$MeasureSupplementalDataCopyWithImpl<T>
         description: identical(description, fhirSentinel)
             ? _value.description
             : description as FhirString?,
-        criteria: criteria as FhirExpression? ?? _value.criteria,
+        criteria: identical(criteria, fhirSentinel)
+            ? _value.criteria
+            : (criteria as FhirExpression?) ?? _value.criteria,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,

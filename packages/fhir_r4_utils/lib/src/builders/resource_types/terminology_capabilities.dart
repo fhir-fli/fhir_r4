@@ -1480,76 +1480,6 @@ class TerminologyCapabilitiesBuilder extends CanonicalResourceBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool url = false,
-    bool version = false,
-    bool name = false,
-    bool title = false,
-    bool status = false,
-    bool experimental = false,
-    bool date = false,
-    bool publisher = false,
-    bool contact = false,
-    bool description = false,
-    bool useContext = false,
-    bool jurisdiction = false,
-    bool purpose = false,
-    bool copyright = false,
-    bool kind = false,
-    bool software = false,
-    bool implementation = false,
-    bool lockedDate = false,
-    bool codeSystem = false,
-    bool expansion = false,
-    bool codeSearch = false,
-    bool validateCode = false,
-    bool translation = false,
-    bool closure = false,
-  }) {
-    if (id) this.id = null;
-    if (meta) this.meta = null;
-    if (implicitRules) this.implicitRules = null;
-    if (language) this.language = null;
-    if (text) this.text = null;
-    if (contained) this.contained = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (url) this.url = null;
-    if (version) this.version = null;
-    if (name) this.name = null;
-    if (title) this.title = null;
-    if (status) this.status = null;
-    if (experimental) this.experimental = null;
-    if (date) this.date = null;
-    if (publisher) this.publisher = null;
-    if (contact) this.contact = null;
-    if (description) this.description = null;
-    if (useContext) this.useContext = null;
-    if (jurisdiction) this.jurisdiction = null;
-    if (purpose) this.purpose = null;
-    if (copyright) this.copyright = null;
-    if (kind) this.kind = null;
-    if (software) this.software = null;
-    if (implementation) this.implementation = null;
-    if (lockedDate) this.lockedDate = null;
-    if (codeSystem) this.codeSystem = null;
-    if (expansion) this.expansion = null;
-    if (codeSearch) this.codeSearch = null;
-    if (validateCode) this.validateCode = null;
-    if (translation) this.translation = null;
-    if (closure) this.closure = null;
-  }
-
   @override
   TerminologyCapabilitiesBuilder clone() => throw UnimplementedError();
   @override
@@ -2237,22 +2167,6 @@ class TerminologyCapabilitiesSoftwareBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool name = false,
-    bool version = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (name) this.name = null;
-    if (version) this.version = null;
-  }
-
   @override
   TerminologyCapabilitiesSoftwareBuilder clone() => throw UnimplementedError();
   @override
@@ -2725,22 +2639,6 @@ class TerminologyCapabilitiesImplementationBuilder
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool description = false,
-    bool url = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (description) this.description = null;
-    if (url) this.url = null;
   }
 
   @override
@@ -3257,24 +3155,6 @@ class TerminologyCapabilitiesCodeSystemBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool uri = false,
-    bool version = false,
-    bool subsumption = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (uri) this.uri = null;
-    if (version) this.version = null;
-    if (subsumption) this.subsumption = null;
   }
 
   @override
@@ -3990,30 +3870,6 @@ class TerminologyCapabilitiesVersionBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool code = false,
-    bool isDefault = false,
-    bool compositional = false,
-    bool language = false,
-    bool filter = false,
-    bool property = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (code) this.code = null;
-    if (isDefault) this.isDefault = null;
-    if (compositional) this.compositional = null;
-    if (language) this.language = null;
-    if (filter) this.filter = null;
-    if (property) this.property = null;
-  }
-
   @override
   TerminologyCapabilitiesVersionBuilder clone() => throw UnimplementedError();
   @override
@@ -4544,22 +4400,6 @@ class TerminologyCapabilitiesFilterBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool code = false,
-    bool op = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (code) this.code = null;
-    if (op) this.op = null;
   }
 
   @override
@@ -5163,28 +5003,6 @@ class TerminologyCapabilitiesExpansionBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool hierarchical = false,
-    bool paging = false,
-    bool incomplete = false,
-    bool parameter = false,
-    bool textFilter = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (hierarchical) this.hierarchical = null;
-    if (paging) this.paging = null;
-    if (incomplete) this.incomplete = null;
-    if (parameter) this.parameter = null;
-    if (textFilter) this.textFilter = null;
-  }
-
   @override
   TerminologyCapabilitiesExpansionBuilder clone() => throw UnimplementedError();
   @override
@@ -5679,22 +5497,6 @@ class TerminologyCapabilitiesParameterBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool name = false,
-    bool documentation = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (name) this.name = null;
-    if (documentation) this.documentation = null;
-  }
-
   @override
   TerminologyCapabilitiesParameterBuilder clone() => throw UnimplementedError();
   @override
@@ -6124,20 +5926,6 @@ class TerminologyCapabilitiesValidateCodeBuilder
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool translations = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (translations) this.translations = null;
-  }
-
   @override
   TerminologyCapabilitiesValidateCodeBuilder clone() =>
       throw UnimplementedError();
@@ -6558,20 +6346,6 @@ class TerminologyCapabilitiesTranslationBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool needsMap = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (needsMap) this.needsMap = null;
-  }
-
   @override
   TerminologyCapabilitiesTranslationBuilder clone() =>
       throw UnimplementedError();
@@ -6987,20 +6761,6 @@ class TerminologyCapabilitiesClosureBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool translation = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (translation) this.translation = null;
   }
 
   @override

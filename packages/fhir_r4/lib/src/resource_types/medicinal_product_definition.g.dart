@@ -191,7 +191,9 @@ class _$MedicinalProductDefinitionCopyWithImpl<T>
             : clinicalTrial as List<Reference>?,
         code:
             identical(code, fhirSentinel) ? _value.code : code as List<Coding>?,
-        name: name as List<MedicinalProductDefinitionName>? ?? _value.name,
+        name: identical(name, fhirSentinel)
+            ? _value.name
+            : (name as List<MedicinalProductDefinitionName>?) ?? _value.name,
         crossReference: identical(crossReference, fhirSentinel)
             ? _value.crossReference
             : crossReference as List<MedicinalProductDefinitionCrossReference>?,
@@ -257,7 +259,9 @@ class _$MedicinalProductDefinitionContactCopyWithImpl<T>
         type: identical(type, fhirSentinel)
             ? _value.type
             : type as CodeableConcept?,
-        contact: contact as Reference? ?? _value.contact,
+        contact: identical(contact, fhirSentinel)
+            ? _value.contact
+            : (contact as Reference?) ?? _value.contact,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,
@@ -318,7 +322,9 @@ class _$MedicinalProductDefinitionNameCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        productName: productName as FhirString? ?? _value.productName,
+        productName: identical(productName, fhirSentinel)
+            ? _value.productName
+            : (productName as FhirString?) ?? _value.productName,
         type: identical(type, fhirSentinel)
             ? _value.type
             : type as CodeableConcept?,
@@ -385,8 +391,12 @@ class _$MedicinalProductDefinitionNamePartCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        part_: part_ as FhirString? ?? _value.part_,
-        type: type as CodeableConcept? ?? _value.type,
+        part_: identical(part_, fhirSentinel)
+            ? _value.part_
+            : (part_ as FhirString?) ?? _value.part_,
+        type: identical(type, fhirSentinel)
+            ? _value.type
+            : (type as CodeableConcept?) ?? _value.type,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,
@@ -447,11 +457,15 @@ class _$MedicinalProductDefinitionCountryLanguageCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        country: country as CodeableConcept? ?? _value.country,
+        country: identical(country, fhirSentinel)
+            ? _value.country
+            : (country as CodeableConcept?) ?? _value.country,
         jurisdiction: identical(jurisdiction, fhirSentinel)
             ? _value.jurisdiction
             : jurisdiction as CodeableConcept?,
-        language: language as CodeableConcept? ?? _value.language,
+        language: identical(language, fhirSentinel)
+            ? _value.language
+            : (language as CodeableConcept?) ?? _value.language,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,
@@ -510,7 +524,9 @@ class _$MedicinalProductDefinitionCrossReferenceCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        product: product as CodeableReference? ?? _value.product,
+        product: identical(product, fhirSentinel)
+            ? _value.product
+            : (product as CodeableReference?) ?? _value.product,
         type: identical(type, fhirSentinel)
             ? _value.type
             : type as CodeableConcept?,
@@ -646,7 +662,9 @@ class _$MedicinalProductDefinitionCharacteristicCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        type: type as CodeableConcept? ?? _value.type,
+        type: identical(type, fhirSentinel)
+            ? _value.type
+            : (type as CodeableConcept?) ?? _value.type,
         valueX: identical(valueX, fhirSentinel)
             ? _value.valueX
             : valueX as CodeableConcept?,

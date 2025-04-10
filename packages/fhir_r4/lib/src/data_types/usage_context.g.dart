@@ -37,8 +37,12 @@ class _$UsageContextCopyWithImpl<T> implements $UsageContextCopyWith<T> {
         extension_: identical(extension_, fhirSentinel)
             ? _value.extension_
             : extension_ as List<FhirExtension>?,
-        code: code as Coding? ?? _value.code,
-        valueX: valueX as CodeableConcept? ?? _value.valueX,
+        code: identical(code, fhirSentinel)
+            ? _value.code
+            : (code as Coding?) ?? _value.code,
+        valueX: identical(valueX, fhirSentinel)
+            ? _value.valueX
+            : (valueX as CodeableConcept?) ?? _value.valueX,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,

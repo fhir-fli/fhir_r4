@@ -102,14 +102,18 @@ class _$AdverseEventCopyWithImpl<T> implements $AdverseEventCopyWith<T> {
         identifier: identical(identifier, fhirSentinel)
             ? _value.identifier
             : identifier as Identifier?,
-        actuality: actuality as AdverseEventActuality? ?? _value.actuality,
+        actuality: identical(actuality, fhirSentinel)
+            ? _value.actuality
+            : (actuality as AdverseEventActuality?) ?? _value.actuality,
         category: identical(category, fhirSentinel)
             ? _value.category
             : category as List<CodeableConcept>?,
         event: identical(event, fhirSentinel)
             ? _value.event
             : event as CodeableConcept?,
-        subject: subject as Reference? ?? _value.subject,
+        subject: identical(subject, fhirSentinel)
+            ? _value.subject
+            : (subject as Reference?) ?? _value.subject,
         encounter: identical(encounter, fhirSentinel)
             ? _value.encounter
             : encounter as Reference?,
@@ -205,7 +209,9 @@ class _$AdverseEventSuspectEntityCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        instance: instance as Reference? ?? _value.instance,
+        instance: identical(instance, fhirSentinel)
+            ? _value.instance
+            : (instance as Reference?) ?? _value.instance,
         causality: identical(causality, fhirSentinel)
             ? _value.causality
             : causality as List<AdverseEventCausality>?,

@@ -8,13 +8,9 @@ import 'package:fhir_r4/fhir_r4.dart'
     show
         Coding,
         ConceptMap,
-        ConceptMapGroup,
-        DataType,
         FHIRException,
         FhirBase,
         FhirCanonical,
-        FhirId,
-        FhirNumber,
         FhirStringExtension,
         IssueSeverity,
         IssueType,
@@ -24,18 +20,6 @@ import 'package:fhir_r4/fhir_r4.dart'
         StringExtensionForFHIR,
         StructureDefinition,
         StructureMap,
-        StructureMapDependent,
-        StructureMapGroup,
-        StructureMapGroupTypeMode,
-        StructureMapInputMode,
-        StructureMapModelMode,
-        StructureMapParameter,
-        StructureMapRule,
-        StructureMapSource,
-        StructureMapStructure,
-        StructureMapTarget,
-        StructureMapTargetListMode,
-        StructureMapTransform,
         ValueSet,
         ValueSetContains;
 import 'package:fhir_r4_path/fhir_r4_path.dart';
@@ -115,13 +99,15 @@ class FhirMapEngine {
     StructureMap map,
     FhirBaseBuilder? targetBuilder,
   ) async {
+    final mapBuilder = map.toBuilder as StructureMapBuilder;
     final context = TransformContext(appInfo);
-    final g = map.group.firstOrNull;
+    final g = mapBuilder.group?.firstOrNull;
     if (g == null) {
       throw FHIRException(message: 'No group found');
     }
 
-    final inputName = _getInputName(g, StructureMapInputMode.source, 'source');
+    final inputName =
+        _getInputName(g, StructureMapInputModeBuilder.source, 'source');
     if (inputName == null) {
       throw MappingDefinitionException(message: 'No input name found');
     }
@@ -129,12 +115,12 @@ class FhirMapEngine {
     final vars = MappingVariables()
       ..add(MappingVariableMode.INPUT, inputName, sourceBuilder);
     final String? targetName =
-        _getInputName(g, StructureMapInputMode.target, 'target');
+        _getInputName(g, StructureMapInputModeBuilder.target, 'target');
     if (targetName != null) {
       if (targetBuilder != null) {
         vars.add(MappingVariableMode.OUTPUT, targetName, targetBuilder);
       } else {
-        final type = _getInputType(g, StructureMapInputMode.target);
+        final type = _getInputType(g, StructureMapInputModeBuilder.target);
         if (type != null) {
           final newTarget = emptyFromType(type);
           if (newTarget != null) {
@@ -155,7 +141,7 @@ class FhirMapEngine {
     }
 
     try {
-      await _executeGroup('', context, map, vars, g, true);
+      await _executeGroup('', context, mapBuilder, vars, g, true);
       final result = vars.getOutputVar(targetName);
 
       if (result == null) {
@@ -182,9 +168,12 @@ class FhirMapEngine {
     );
   }
 
-  String? _getInputType(StructureMapGroup g, StructureMapInputMode mode) {
+  String? _getInputType(
+    StructureMapGroupBuilder g,
+    StructureMapInputModeBuilder mode,
+  ) {
     String? type;
-    for (final inp in g.input) {
+    for (final inp in g.input ?? <StructureMapInputBuilder>[]) {
       if (inp.mode == mode) {
         if (type != null) {
           throw MappingDefinitionException(
@@ -199,19 +188,19 @@ class FhirMapEngine {
   }
 
   String? _getInputName(
-    StructureMapGroup g,
-    StructureMapInputMode mode,
+    StructureMapGroupBuilder g,
+    StructureMapInputModeBuilder mode,
     String? def,
   ) {
     String? name;
-    for (final inp in g.input) {
+    for (final inp in g.input ?? <StructureMapInputBuilder>[]) {
       if (inp.mode == mode) {
         if (name != null) {
           throw MappingDefinitionException(
             message: 'This engine does not support multiple source inputs',
           );
         } else {
-          name = inp.name.valueString;
+          name = inp.name?.valueString;
         }
       }
     }
@@ -221,9 +210,9 @@ class FhirMapEngine {
   Future<void> _executeGroup(
     String indent,
     TransformContext context,
-    StructureMap? map,
+    StructureMapBuilder? map,
     MappingVariables vars,
-    StructureMapGroup? group,
+    StructureMapGroupBuilder? group,
     bool atRoot,
   ) async {
     // Resolve and execute extended group first if it exists
@@ -242,7 +231,7 @@ class FhirMapEngine {
     }
 
     // Execute rules within the group
-    for (final rule in group?.rule ?? <StructureMapRule>[]) {
+    for (final rule in group?.rule ?? <StructureMapRuleBuilder>[]) {
       await _executeRule('$indent  ', context, map, vars, group, rule, atRoot);
     }
   }
@@ -250,14 +239,14 @@ class FhirMapEngine {
   Future<void> _executeRule(
     String indent,
     TransformContext context,
-    StructureMap? map,
+    StructureMapBuilder? map,
     MappingVariables vars,
-    StructureMapGroup? group,
-    StructureMapRule rule,
+    StructureMapGroupBuilder? group,
+    StructureMapRuleBuilder rule,
     bool atRoot,
   ) async {
     // Ensure single source and create copy of variables
-    if (rule.source.length != 1) {
+    if (rule.source?.length != 1) {
       throw Exception('Rule "${rule.name}" has multiple sources.');
     }
     final srcVars = vars.copy();
@@ -267,13 +256,13 @@ class FhirMapEngine {
       rule.name.toString(),
       context,
       srcVars,
-      rule.source.first,
+      rule.source!.first,
       map?.url.toString(),
       indent,
     );
 
     for (final MappingVariables v in source ?? <MappingVariables>[]) {
-      for (final target in rule.target ?? <StructureMapTarget>[]) {
+      for (final target in rule.target ?? <StructureMapTargetBuilder>[]) {
         await _processTarget(
           rule.name.toString(),
           context,
@@ -281,13 +270,13 @@ class FhirMapEngine {
           map,
           group,
           target,
-          rule.source.first.variable?.toString(),
+          rule.source!.first.variable?.toString(),
           atRoot,
           vars,
         );
       }
       if (rule.rule?.isNotEmpty ?? false) {
-        for (final childrule in rule.rule ?? <StructureMapRule>[]) {
+        for (final childrule in rule.rule ?? <StructureMapRuleBuilder>[]) {
           await _executeRule(
             '$indent  ',
             context,
@@ -299,7 +288,8 @@ class FhirMapEngine {
           );
         }
       } else if (rule.dependent?.isNotEmpty ?? false) {
-        for (final dependent in rule.dependent ?? <StructureMapDependent>[]) {
+        for (final dependent
+            in rule.dependent ?? <StructureMapDependentBuilder>[]) {
           await _executeDependency(
             '$indent  ',
             context,
@@ -309,15 +299,15 @@ class FhirMapEngine {
             dependent,
           );
         }
-      } else if (rule.source.length == 1 &&
-          rule.source.first.variable != null &&
+      } else if (rule.source?.length == 1 &&
+          rule.source!.first.variable != null &&
           rule.target?.length == 1 &&
           rule.target?.first.variable != null &&
-          rule.target?.first.transform == StructureMapTransform.create &&
+          rule.target?.first.transform == StructureMapTransformBuilder.create &&
           !(rule.target?.first.parameter?.isNotEmpty ?? false)) {
         final FhirBaseBuilder? src = v.get(
           MappingVariableMode.INPUT,
-          rule.source.first.variable?.valueString,
+          rule.source!.first.variable?.valueString,
         );
         final FhirBaseBuilder? tgt = v.get(
           MappingVariableMode.OUTPUT,
@@ -331,17 +321,17 @@ class FhirMapEngine {
         final String tgtType = tgt.fhirType;
         final ResolvedGroup defGroup = await _resolveGroupByTypes(
           map,
-          rule.name.valueString ?? '',
+          rule.name?.valueString ?? '',
           group,
           srcType,
           tgtType,
         );
         final MappingVariables vdef = MappingVariables();
-        final inputName = defGroup.target!.input[0].name.valueString;
+        final inputName = defGroup.target!.input?[0].name?.valueString;
         if (inputName == null) {
           throw MappingDefinitionException(message: 'No input name found');
         }
-        final targetName = defGroup.target!.input[1].name.valueString;
+        final targetName = defGroup.target!.input?[1].name?.valueString;
         if (targetName == null) {
           throw MappingDefinitionException(message: 'No target name found');
         }
@@ -363,24 +353,24 @@ class FhirMapEngine {
   Future<void> _executeDependency(
     String indent,
     TransformContext context,
-    StructureMap? map,
+    StructureMapBuilder? map,
     MappingVariables vin,
-    StructureMapGroup? group,
-    StructureMapDependent dependent,
+    StructureMapGroupBuilder? group,
+    StructureMapDependentBuilder dependent,
   ) async {
-    final rg = _resolveGroupReference(map, group, dependent.name.valueString!);
+    final rg = _resolveGroupReference(map, group, dependent.name!.valueString!);
 
-    if (rg.target!.input.length != dependent.variable.length) {
+    if (rg.target!.input?.length != dependent.variable?.length) {
       throw FHIRException(
-        message: "Rule '${dependent.name}' has ${rg.target!.input.length} but "
-            'the invocation has ${dependent.variable.length} variables',
+        message: "Rule '${dependent.name}' has ${rg.target!.input?.length} but "
+            'the invocation has ${dependent.variable?.length} variables',
       );
     }
     final MappingVariables v = MappingVariables();
-    for (int i = 0; i < rg.target!.input.length; i++) {
-      final input = rg.target!.input[i];
-      final varVal = dependent.variable[i].valueString;
-      final mode = input.mode == StructureMapInputMode.source
+    for (int i = 0; i < (rg.target!.input?.length ?? 0); i++) {
+      final input = rg.target!.input?[i];
+      final varVal = dependent.variable?[i].valueString;
+      final mode = input?.mode == StructureMapInputModeBuilder.source
           ? MappingVariableMode.INPUT
           : MappingVariableMode.OUTPUT;
       var vv = varVal == null ? null : vin.get(mode, varVal);
@@ -389,11 +379,18 @@ class FhirMapEngine {
       }
       if (vv == null) {
         throw FHIRException(
-          message: "Rule '${dependent.name}' $mode variable '${input.name}' "
+          message: "Rule '${dependent.name}' $mode variable '${input?.name}' "
               "named '$varVal' has no value (vars = ${vin.summary()})",
         );
       }
-      v.add(mode, input.name.toString(), vv);
+      if (input?.name != null) {
+        v.add(mode, input!.name.toString(), vv);
+      } else {
+        throw FHIRException(
+          message: "Rule '${dependent.name}' $mode variable '${input?.name}' "
+              "named '$varVal' has no name (vars = ${vin.summary()})",
+        );
+      }
     }
     await _executeGroup(
       '$indent  ',
@@ -406,8 +403,8 @@ class FhirMapEngine {
   }
 
   Future<String> _determineTypeFromSourceType(
-    StructureMap? map,
-    StructureMapGroup? source,
+    StructureMapBuilder? map,
+    StructureMapGroupBuilder? source,
     FhirBaseBuilder fhirBase,
     List<String> types,
   ) async {
@@ -419,7 +416,7 @@ class FhirMapEngine {
     }
 
     final ResolvedGroup res = ResolvedGroup(null, null);
-    for (final grp in map?.group ?? <StructureMapGroup>[]) {
+    for (final grp in map?.group ?? <StructureMapGroupBuilder>[]) {
       if (await _matchesByType(map, grp, type)) {
         if (res.targetMap == null) {
           res
@@ -436,20 +433,21 @@ class FhirMapEngine {
     if (res.targetMap != null) {
       final String result = await _getActualType(
         res.targetMap!,
-        res.target!.input.first.type?.valueString ?? '',
+        res.target!.input?.first.type?.valueString ?? '',
       );
       source?.setUserData(kn, result);
       return result;
     }
 
     for (final imp in map?.import_ ?? <FhirCanonical>[]) {
-      final List<StructureMap> impMapList = _findMatchingMaps(imp.toString());
+      final List<StructureMapBuilder> impMapList =
+          _findMatchingMaps(imp.toString());
       if (impMapList.isEmpty) {
         throw FHIRException(message: 'Unable to find map(s) for $imp');
       }
       for (final impMap in impMapList) {
         if (impMap.url != map!.url) {
-          for (final grp in impMap.group) {
+          for (final grp in impMap.group ?? <StructureMapGroupBuilder>[]) {
             if (await _matchesByType(impMap, grp, type)) {
               if (res.targetMap == null) {
                 res
@@ -475,16 +473,16 @@ class FhirMapEngine {
     }
     final String result = await _getActualType(
       res.targetMap!,
-      res.target!.input.first.type?.valueString ?? '',
+      res.target!.input?.first.type?.valueString ?? '',
     );
     source?.setUserData(kn, result);
     return result;
   }
 
-  List<StructureMap> _findMatchingMaps(String canonicalUrlTemplate) {
+  List<StructureMapBuilder> _findMatchingMaps(String canonicalUrlTemplate) {
     final structureMapService = StructureMapService();
     final seenUrls = <String>{};
-    var result = <StructureMap>[];
+    var result = <StructureMapBuilder>[];
 
     if (canonicalUrlTemplate.contains('*')) {
       result = structureMapService.listTransforms(canonicalUrlTemplate);
@@ -500,9 +498,9 @@ class FhirMapEngine {
   }
 
   Future<ResolvedGroup> _resolveGroupByTypes(
-    StructureMap? map,
+    StructureMapBuilder? map,
     String ruleid,
-    StructureMapGroup? source,
+    StructureMapGroupBuilder? source,
     String srcType,
     String tgtType,
   ) async {
@@ -512,7 +510,7 @@ class FhirMapEngine {
     }
 
     final ResolvedGroup res = ResolvedGroup(null, null);
-    for (final grp in map?.group ?? <StructureMapGroup>[]) {
+    for (final grp in map?.group ?? <StructureMapGroupBuilder>[]) {
       if (await _matchesByType(map, grp, srcType, tgtType)) {
         if (res.targetMap == null) {
           res
@@ -531,14 +529,15 @@ class FhirMapEngine {
       return res;
     }
 
-    for (final imp in map?.import_ ?? <FhirCanonical>[]) {
-      final List<StructureMap> impMapList = _findMatchingMaps(imp.toString());
+    for (final imp in map?.import_ ?? <FhirCanonicalBuilder>[]) {
+      final List<StructureMapBuilder> impMapList =
+          _findMatchingMaps(imp.toString());
       if (impMapList.isEmpty) {
         throw FHIRException(message: 'Unable to find map(s) for $imp');
       }
       for (final impMap in impMapList) {
         if (impMap.url != map!.url) {
-          for (final grp in impMap.group) {
+          for (final grp in impMap.group ?? <StructureMapGroupBuilder>[]) {
             if (await _matchesByType(impMap, grp, srcType, tgtType)) {
               if (res.targetMap == null) {
                 res
@@ -567,47 +566,47 @@ class FhirMapEngine {
   }
 
   Future<bool> _matchesByType(
-    StructureMap? map,
-    StructureMapGroup grp,
+    StructureMapBuilder? map,
+    StructureMapGroupBuilder grp,
     String srcType, [
     String? tgtType,
   ]) async {
     if (tgtType == null &&
-        grp.typeMode != StructureMapGroupTypeMode.typeAndTypes) {
+        grp.typeMode != StructureMapGroupTypeModeBuilder.type_and_types) {
       return false;
     }
-    if (grp.input.length != 2 ||
-        grp.input.first.mode != StructureMapInputMode.source ||
-        grp.input[1].mode != StructureMapInputMode.target) {
+    if (grp.input?.length != 2 ||
+        grp.input?.first.mode != StructureMapInputModeBuilder.source ||
+        grp.input?[1].mode != StructureMapInputModeBuilder.target) {
       return false;
     }
     if (tgtType == null) {
       return _matchesType(
         map,
         srcType,
-        grp.input.first.type?.valueString ?? '',
+        grp.input?.first.type?.valueString ?? '',
       );
     }
-    if (grp.input.first.type == null || grp.input[1].type == null) {
+    if (grp.input?.first.type == null || grp.input?[1].type == null) {
       return false;
     }
     return await _matchesType(
           map,
           srcType,
-          grp.input.first.type?.valueString ?? '',
+          grp.input?.first.type?.valueString ?? '',
         ) &&
-        await _matchesType(map, tgtType, grp.input[1].type?.valueString ?? '');
+        await _matchesType(map, tgtType, grp.input?[1].type?.valueString ?? '');
   }
 
   Future<bool> _matchesType(
-    StructureMap? map,
+    StructureMapBuilder? map,
     String actualType,
     String statedType,
   ) async {
     var newStatedType = statedType;
     var newActualType = actualType;
     // check the aliases
-    for (final imp in map?.structure ?? <StructureMapStructure>[]) {
+    for (final imp in map?.structure ?? <StructureMapStructureBuilder>[]) {
       if (imp.alias != null && newStatedType == imp.alias!.valueString) {
         // If we can fetch the underlying StructureDefinition
         final StructureDefinition? sd = await resolver
@@ -636,9 +635,12 @@ class FhirMapEngine {
     return actualType == statedType;
   }
 
-  Future<String> _getActualType(StructureMap map, String statedType) async {
+  Future<String> _getActualType(
+    StructureMapBuilder map,
+    String statedType,
+  ) async {
     // check the aliases
-    for (final imp in map.structure ?? <StructureMapStructure>[]) {
+    for (final imp in map.structure ?? <StructureMapStructureBuilder>[]) {
       if (imp.alias != null && statedType == imp.alias?.valueString) {
         final sd = await resolver
             .fetchResource<StructureDefinition>(imp.url.toString());
@@ -655,8 +657,8 @@ class FhirMapEngine {
   }
 
   ResolvedGroup _resolveGroupReference(
-    StructureMap? map,
-    StructureMapGroup? source,
+    StructureMapBuilder? map,
+    StructureMapGroupBuilder? source,
     String name,
   ) {
     final String kn = 'ref^$name';
@@ -665,8 +667,8 @@ class FhirMapEngine {
     }
 
     final ResolvedGroup res = ResolvedGroup(null, null);
-    for (final grp in map?.group ?? <StructureMapGroup>[]) {
-      if (grp.name.valueString == name) {
+    for (final grp in map?.group ?? <StructureMapGroupBuilder>[]) {
+      if (grp.name?.valueString == name) {
         if (res.targetMap == null) {
           res
             ..targetMap = map
@@ -684,14 +686,15 @@ class FhirMapEngine {
     }
 
     for (final imp in map?.import_ ?? <FhirCanonical>[]) {
-      final List<StructureMap> impMapList = _findMatchingMaps(imp.toString());
+      final List<StructureMapBuilder> impMapList =
+          _findMatchingMaps(imp.toString());
       if (impMapList.isEmpty) {
         throw FHIRException(message: 'Unable to find map(s) for $imp');
       }
       for (final impMap in impMapList) {
         if (impMap.url != map!.url) {
-          for (final grp in impMap.group) {
-            if (grp.name.valueString == name) {
+          for (final grp in impMap.group ?? <StructureMapGroupBuilder>[]) {
+            if (grp.name?.valueString == name) {
               if (res.targetMap == null) {
                 res
                   ..targetMap = impMap
@@ -723,12 +726,12 @@ class FhirMapEngine {
     String ruleId,
     TransformContext context,
     MappingVariables vars,
-    StructureMapSource src,
+    StructureMapSourceBuilder src,
     String? pathForErrors,
     String indent,
   ) async {
     final List<FhirBaseBuilder> items = <FhirBaseBuilder>[];
-    if (src.context.valueString == '@search') {
+    if (src.context?.valueString == '@search') {
       // Evaluate an expression, then do a search
       ExpressionNode? expr =
           src.getUserData(MAP_SEARCH_EXPRESSION) as ExpressionNode?;
@@ -744,7 +747,7 @@ class FhirMapEngine {
       throw FHIRException(message: 'Search not implemented');
     } else {
       final FhirBaseBuilder? b =
-          vars.get(MappingVariableMode.INPUT, src.context.valueString);
+          vars.get(MappingVariableMode.INPUT, src.context?.valueString);
 
       if (b == null) {
         throw FHIRException(
@@ -759,7 +762,7 @@ class FhirMapEngine {
         await _getChildrenByName(b, src.element?.valueString ?? '', items);
 
         if (items.isEmpty && src.defaultValueX != null) {
-          items.add(src.defaultValueX!.toBuilder);
+          items.add(src.defaultValueX!);
         }
       }
     }
@@ -787,7 +790,7 @@ class FhirMapEngine {
           );
         }
         final srcBase =
-            vars.get(MappingVariableMode.INPUT, src.context.valueString);
+            vars.get(MappingVariableMode.INPUT, src.context?.valueString);
         final children = srcBase?.listChildrenNames();
         for (final child in children ?? <String>[]) {
           final varBase = vars.get(MappingVariableMode.INPUT, child);
@@ -839,7 +842,7 @@ class FhirMapEngine {
           );
         }
         final srcBase =
-            vars.get(MappingVariableMode.INPUT, src.context.valueString);
+            vars.get(MappingVariableMode.INPUT, src.context?.valueString);
         final children = srcBase?.listChildrenNames();
         for (final child in children ?? <String>[]) {
           final varBase = vars.get(MappingVariableMode.INPUT, child);
@@ -965,9 +968,9 @@ class FhirMapEngine {
     String rulePath,
     TransformContext context,
     MappingVariables vars,
-    StructureMap? map,
-    StructureMapGroup? group,
-    StructureMapTarget tgt,
+    StructureMapBuilder? map,
+    StructureMapGroupBuilder? group,
+    StructureMapTargetBuilder tgt,
     String? srcVar,
     bool atRoot,
     MappingVariables sharedVars,
@@ -1011,7 +1014,8 @@ class FhirMapEngine {
         }
       }
     } else if (dest != null) {
-      if (tgt.listMode?.contains(StructureMapTargetListMode.share) ?? false) {
+      if (tgt.listMode?.contains(StructureMapTargetListModeBuilder.share) ??
+          false) {
         v = sharedVars.get(
           MappingVariableMode.SHARED,
           tgt.listRuleId?.valueString,
@@ -1047,9 +1051,9 @@ class FhirMapEngine {
   Future<FhirBaseBuilder?> _runTransform(
     String rulePath,
     TransformContext context,
-    StructureMap? map,
-    StructureMapGroup? group,
-    StructureMapTarget tgt,
+    StructureMapBuilder? map,
+    StructureMapGroupBuilder? group,
+    StructureMapTargetBuilder tgt,
     MappingVariables vars,
     FhirBaseBuilder? dest,
     String element,
@@ -1102,8 +1106,9 @@ class FhirMapEngine {
                 tgt.toString(),
               );
               // attempt to resolve alias in map's structure
-              for (final uses in map?.structure ?? <StructureMapStructure>[]) {
-                if (uses.mode == StructureMapModelMode.target &&
+              for (final uses
+                  in map?.structure ?? <StructureMapStructureBuilder>[]) {
+                if (uses.mode == StructureMapModelModeBuilder.target &&
                     uses.alias != null &&
                     tn == uses.alias!.valueString) {
                   tn = uses.url.toString();
@@ -1196,9 +1201,10 @@ class FhirMapEngine {
           {
             if (tgt.parameter?.length == 2) {
               String src = _getParamString(vars, tgt.parameter![0]) ?? '';
-              if (tgt.parameter![1].value is FhirNumber) {
-                final int? l =
-                    (tgt.parameter![1].value! as FhirNumber).valueNum?.toInt();
+              if (tgt.parameter![1].valueX is FhirNumberBuilder) {
+                final int? l = (tgt.parameter![1].valueX! as FhirNumberBuilder)
+                    .valueNum
+                    ?.toInt();
                 if (l == null) {
                   throw FHIRException(
                     message: 'Rule "$rulePath": Transform TRUNCATE requires a '
@@ -1423,7 +1429,7 @@ class FhirMapEngine {
               context,
               map,
               vars,
-              tgt.parameter ?? <StructureMapParameter>[],
+              tgt.parameter ?? <StructureMapParameterBuilder>[],
             );
           }
 
@@ -1665,7 +1671,7 @@ class FhirMapEngine {
 
   String _getParamStringNoNull(
     MappingVariables vars,
-    StructureMapParameter parameter,
+    StructureMapParameterBuilder parameter,
     String message,
   ) {
     final FhirBaseBuilder? b = _getParam(vars, parameter);
@@ -1691,12 +1697,12 @@ class FhirMapEngine {
             'Context: $message',
       );
     }
-    return b.primitiveValue!;
+    return b.valueString!;
   }
 
   String? _getParamString(
     MappingVariables vars,
-    StructureMapParameter parameter,
+    StructureMapParameterBuilder parameter,
   ) {
     final FhirBaseBuilder? b = _getParam(vars, parameter);
 
@@ -1708,12 +1714,12 @@ class FhirMapEngine {
 
   FhirBaseBuilder? _getParam(
     MappingVariables vars,
-    StructureMapParameter parameter,
+    StructureMapParameterBuilder parameter,
   ) {
-    final DataType p = parameter.valueX;
+    final DataTypeBuilder p = parameter.valueX! as DataTypeBuilder;
 
-    if (p is! FhirId) {
-      return p.toBuilder;
+    if (p is! FhirIdBuilder) {
+      return p;
     } else {
       final String n = p.toString();
 
@@ -1730,10 +1736,11 @@ class FhirMapEngine {
 
   Future<FhirBaseBuilder?> _translate(
     TransformContext context,
-    StructureMap? map,
+    StructureMapBuilder? map,
     MappingVariables variables,
-    List<StructureMapParameter> parameters,
+    List<StructureMapParameterBuilder> parameters,
   ) async {
+    print('translate: ${parameters.first.toJson()}');
     final sourceElement = _getParam(variables, parameters.first);
     final conceptMapUrl = _getParamStringGeneral(
       variables,
@@ -1766,7 +1773,7 @@ class FhirMapEngine {
     FhirBaseBuilder? sourceElement,
     String? conceptMapUrl,
     String? fieldToReturn,
-    StructureMap? map,
+    StructureMapBuilder? map,
   ) async {
     final sourceCoding = sourceElement == null
         ? null
@@ -1774,7 +1781,11 @@ class FhirMapEngine {
             ? sourceElement.valueString
             : sourceElement.toJson()['coding'];
 
+    print('sourceCoding: $sourceCoding');
+
     final conceptMap = await _findConceptMap(conceptMapUrl, map);
+
+    print('conceptMap: ${conceptMap?.toJson()}');
 
     return conceptMap == null
         ? null
@@ -1782,13 +1793,13 @@ class FhirMapEngine {
   }
 
   Future<FhirBaseBuilder?> _translateCoding(
-    ConceptMap conceptMap,
+    ConceptMapBuilder conceptMap,
     dynamic sourceCoding,
     String? fieldToReturn,
   ) async {
     CodingBuilder? outcome;
 
-    for (final group in conceptMap.group ?? <ConceptMapGroup>[]) {
+    for (final group in conceptMap.group ?? <ConceptMapGroupBuilder>[]) {
       if (sourceCoding is String) {
         outcome = _findMatchInGroup(group, sourceCoding);
       } else if (sourceCoding is Coding) {
@@ -1813,11 +1824,11 @@ class FhirMapEngine {
 
   // Helper method to find a matching Coding in a ConceptMapGroup
   CodingBuilder? _findMatchInGroup(
-    ConceptMapGroup group,
+    ConceptMapGroupBuilder group,
     String? code, [
     String? system,
   ]) {
-    for (final element in group.element) {
+    for (final element in group.element ?? <ConceptMapElementBuilder>[]) {
       if ((system == null && element.code?.valueString == code) ||
           (system == group.source?.toString() &&
               element.code?.valueString == code)) {
@@ -1827,8 +1838,8 @@ class FhirMapEngine {
 
         if (matchingTarget != null) {
           return CodingBuilder(
-            system: group.target?.toBuilder as FhirUriBuilder?,
-            code: matchingTarget.code?.toBuilder as FhirCodeBuilder?,
+            system: group.target,
+            code: matchingTarget.code,
           );
         }
       }
@@ -1841,27 +1852,28 @@ class FhirMapEngine {
         ['equal', 'relatedto', 'equivalent', 'wider'].contains(equivalence);
   }
 
-  Future<ConceptMap?> _findConceptMap(
+  Future<ConceptMapBuilder?> _findConceptMap(
     String? conceptMapUrl,
-    StructureMap? map,
+    StructureMapBuilder? map,
   ) async {
     if (conceptMapUrl == null) return null;
 
     if (conceptMapUrl.startsWith('#')) {
       return map?.contained?.firstWhereOrNull(
         (resource) =>
-            resource is ConceptMap &&
+            resource is ConceptMapBuilder &&
             resource.id?.valueString == conceptMapUrl.substring(1),
-      ) as ConceptMap?;
+      ) as ConceptMapBuilder?;
     }
 
-    return resolver.fetchResource<ConceptMap>(conceptMapUrl);
+    return (await resolver.fetchResource<ConceptMap>(conceptMapUrl))?.toBuilder
+        as ConceptMapBuilder?;
   }
 
   String? _getParamStringGeneral(
     MappingVariables variables,
-    StructureMapParameter parameter,
-    StructureMap? map, {
+    StructureMapParameterBuilder parameter,
+    StructureMapBuilder? map, {
     required bool throwIfNull,
     String? contextMessage,
   }) {

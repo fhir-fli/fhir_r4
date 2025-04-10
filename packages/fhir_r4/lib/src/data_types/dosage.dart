@@ -376,6 +376,128 @@ class Dosage extends BackboneType
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> listChildrenNames() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'sequence',
+      'text',
+      'additionalInstruction',
+      'patientInstruction',
+      'timing',
+      'asNeededX',
+      'site',
+      'route',
+      'method',
+      'doseAndRate',
+      'maxDosePerPeriod',
+      'maxDosePerAdministration',
+      'maxDosePerLifetime',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> getChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'sequence':
+        if (sequence != null) {
+          fields.add(sequence!);
+        }
+      case 'text':
+        if (text != null) {
+          fields.add(text!);
+        }
+      case 'additionalInstruction':
+        if (additionalInstruction != null) {
+          fields.addAll(additionalInstruction!);
+        }
+      case 'patientInstruction':
+        if (patientInstruction != null) {
+          fields.add(patientInstruction!);
+        }
+      case 'timing':
+        if (timing != null) {
+          fields.add(timing!);
+        }
+      case 'asNeeded':
+        fields.add(asNeededX!);
+      case 'asNeededX':
+        fields.add(asNeededX!);
+      case 'asNeededBoolean':
+        if (asNeededX is FhirBoolean) {
+          fields.add(asNeededX!);
+        }
+      case 'asNeededCodeableConcept':
+        if (asNeededX is CodeableConcept) {
+          fields.add(asNeededX!);
+        }
+      case 'site':
+        if (site != null) {
+          fields.add(site!);
+        }
+      case 'route':
+        if (route != null) {
+          fields.add(route!);
+        }
+      case 'method':
+        if (method != null) {
+          fields.add(method!);
+        }
+      case 'doseAndRate':
+        if (doseAndRate != null) {
+          fields.addAll(doseAndRate!);
+        }
+      case 'maxDosePerPeriod':
+        if (maxDosePerPeriod != null) {
+          fields.add(maxDosePerPeriod!);
+        }
+      case 'maxDosePerAdministration':
+        if (maxDosePerAdministration != null) {
+          fields.add(maxDosePerAdministration!);
+        }
+      case 'maxDosePerLifetime':
+        if (maxDosePerLifetime != null) {
+          fields.add(maxDosePerLifetime!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildByName(String name) {
+    final values = getChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   Dosage clone() => copyWith();
 
@@ -710,6 +832,85 @@ class DosageDoseAndRate extends Element {
     }
 
     return json;
+  }
+
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> listChildrenNames() {
+    return [
+      'id',
+      'extension',
+      'type',
+      'doseX',
+      'rateX',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> getChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'type':
+        if (type != null) {
+          fields.add(type!);
+        }
+      case 'dose':
+        fields.add(doseX!);
+      case 'doseX':
+        fields.add(doseX!);
+      case 'doseRange':
+        if (doseX is Range) {
+          fields.add(doseX!);
+        }
+      case 'doseQuantity':
+        if (doseX is Quantity) {
+          fields.add(doseX!);
+        }
+      case 'rate':
+        fields.add(rateX!);
+      case 'rateX':
+        fields.add(rateX!);
+      case 'rateRatio':
+        if (rateX is Ratio) {
+          fields.add(rateX!);
+        }
+      case 'rateRange':
+        if (rateX is Range) {
+          fields.add(rateX!);
+        }
+      case 'rateQuantity':
+        if (rateX is Quantity) {
+          fields.add(rateX!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildByName(String name) {
+    final values = getChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
   }
 
   @override

@@ -128,7 +128,9 @@ class _$CitationCopyWithImpl<T> implements $CitationCopyWith<T> {
         title: identical(title, fhirSentinel)
             ? _value.title
             : title as FhirString?,
-        status: status as PublicationStatus? ?? _value.status,
+        status: identical(status, fhirSentinel)
+            ? _value.status
+            : (status as PublicationStatus?) ?? _value.status,
         experimental: identical(experimental, fhirSentinel)
             ? _value.experimental
             : experimental as FhirBoolean?,
@@ -248,7 +250,9 @@ class _$CitationSummaryCopyWithImpl<T> implements $CitationSummaryCopyWith<T> {
         style: identical(style, fhirSentinel)
             ? _value.style
             : style as CodeableConcept?,
-        text: text as FhirMarkdown? ?? _value.text,
+        text: identical(text, fhirSentinel)
+            ? _value.text
+            : (text as FhirMarkdown?) ?? _value.text,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,
@@ -365,11 +369,15 @@ class _$CitationStatusDateCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        activity: activity as CodeableConcept? ?? _value.activity,
+        activity: identical(activity, fhirSentinel)
+            ? _value.activity
+            : (activity as CodeableConcept?) ?? _value.activity,
         actual: identical(actual, fhirSentinel)
             ? _value.actual
             : actual as FhirBoolean?,
-        period: period as Period? ?? _value.period,
+        period: identical(period, fhirSentinel)
+            ? _value.period
+            : (period as Period?) ?? _value.period,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,
@@ -426,12 +434,15 @@ class _$CitationRelatesToCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        relationshipType:
-            relationshipType as CodeableConcept? ?? _value.relationshipType,
+        relationshipType: identical(relationshipType, fhirSentinel)
+            ? _value.relationshipType
+            : (relationshipType as CodeableConcept?) ?? _value.relationshipType,
         targetClassifier: identical(targetClassifier, fhirSentinel)
             ? _value.targetClassifier
             : targetClassifier as List<CodeableConcept>?,
-        targetX: targetX as FhirUri? ?? _value.targetX,
+        targetX: identical(targetX, fhirSentinel)
+            ? _value.targetX
+            : (targetX as FhirUri?) ?? _value.targetX,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,
@@ -609,7 +620,9 @@ class _$CitationVersionCopyWithImpl<T> implements $CitationVersionCopyWith<T> {
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        value: value as FhirString? ?? _value.value,
+        value: identical(value, fhirSentinel)
+            ? _value.value
+            : (value as FhirString?) ?? _value.value,
         baseCitation: identical(baseCitation, fhirSentinel)
             ? _value.baseCitation
             : baseCitation as Reference?,
@@ -669,11 +682,15 @@ class _$CitationStatusDate1CopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        activity: activity as CodeableConcept? ?? _value.activity,
+        activity: identical(activity, fhirSentinel)
+            ? _value.activity
+            : (activity as CodeableConcept?) ?? _value.activity,
         actual: identical(actual, fhirSentinel)
             ? _value.actual
             : actual as FhirBoolean?,
-        period: period as Period? ?? _value.period,
+        period: identical(period, fhirSentinel)
+            ? _value.period
+            : (period as Period?) ?? _value.period,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,
@@ -734,7 +751,9 @@ class _$CitationTitleCopyWithImpl<T> implements $CitationTitleCopyWith<T> {
         language: identical(language, fhirSentinel)
             ? _value.language
             : language as CodeableConcept?,
-        text: text as FhirMarkdown? ?? _value.text,
+        text: identical(text, fhirSentinel)
+            ? _value.text
+            : (text as FhirMarkdown?) ?? _value.text,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,
@@ -799,7 +818,9 @@ class _$CitationAbstractCopyWithImpl<T>
         language: identical(language, fhirSentinel)
             ? _value.language
             : language as CodeableConcept?,
-        text: text as FhirMarkdown? ?? _value.text,
+        text: identical(text, fhirSentinel)
+            ? _value.text
+            : (text as FhirMarkdown?) ?? _value.text,
         copyright: identical(copyright, fhirSentinel)
             ? _value.copyright
             : copyright as FhirMarkdown?,
@@ -922,12 +943,15 @@ class _$CitationRelatesTo1CopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        relationshipType:
-            relationshipType as CodeableConcept? ?? _value.relationshipType,
+        relationshipType: identical(relationshipType, fhirSentinel)
+            ? _value.relationshipType
+            : (relationshipType as CodeableConcept?) ?? _value.relationshipType,
         targetClassifier: identical(targetClassifier, fhirSentinel)
             ? _value.targetClassifier
             : targetClassifier as List<CodeableConcept>?,
-        targetX: targetX as FhirUri? ?? _value.targetX,
+        targetX: identical(targetX, fhirSentinel)
+            ? _value.targetX
+            : (targetX as FhirUri?) ?? _value.targetX,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,
@@ -1737,7 +1761,9 @@ class _$CitationContributionInstanceCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        type: type as CodeableConcept? ?? _value.type,
+        type: identical(type, fhirSentinel)
+            ? _value.type
+            : (type as CodeableConcept?) ?? _value.type,
         time:
             identical(time, fhirSentinel) ? _value.time : time as FhirDateTime?,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
@@ -1809,7 +1835,9 @@ class _$CitationSummary1CopyWithImpl<T>
         source: identical(source, fhirSentinel)
             ? _value.source
             : source as CodeableConcept?,
-        value: value as FhirMarkdown? ?? _value.value,
+        value: identical(value, fhirSentinel)
+            ? _value.value
+            : (value as FhirMarkdown?) ?? _value.value,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,

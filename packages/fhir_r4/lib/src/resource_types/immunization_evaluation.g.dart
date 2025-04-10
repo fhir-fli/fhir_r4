@@ -90,18 +90,26 @@ class _$ImmunizationEvaluationCopyWithImpl<T>
         identifier: identical(identifier, fhirSentinel)
             ? _value.identifier
             : identifier as List<Identifier>?,
-        status: status as ImmunizationEvaluationStatusCodes? ?? _value.status,
-        patient: patient as Reference? ?? _value.patient,
+        status: identical(status, fhirSentinel)
+            ? _value.status
+            : (status as ImmunizationEvaluationStatusCodes?) ?? _value.status,
+        patient: identical(patient, fhirSentinel)
+            ? _value.patient
+            : (patient as Reference?) ?? _value.patient,
         date:
             identical(date, fhirSentinel) ? _value.date : date as FhirDateTime?,
         authority: identical(authority, fhirSentinel)
             ? _value.authority
             : authority as Reference?,
-        targetDisease:
-            targetDisease as CodeableConcept? ?? _value.targetDisease,
-        immunizationEvent:
-            immunizationEvent as Reference? ?? _value.immunizationEvent,
-        doseStatus: doseStatus as CodeableConcept? ?? _value.doseStatus,
+        targetDisease: identical(targetDisease, fhirSentinel)
+            ? _value.targetDisease
+            : (targetDisease as CodeableConcept?) ?? _value.targetDisease,
+        immunizationEvent: identical(immunizationEvent, fhirSentinel)
+            ? _value.immunizationEvent
+            : (immunizationEvent as Reference?) ?? _value.immunizationEvent,
+        doseStatus: identical(doseStatus, fhirSentinel)
+            ? _value.doseStatus
+            : (doseStatus as CodeableConcept?) ?? _value.doseStatus,
         doseStatusReason: identical(doseStatusReason, fhirSentinel)
             ? _value.doseStatusReason
             : doseStatusReason as List<CodeableConcept>?,

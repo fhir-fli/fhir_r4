@@ -106,7 +106,9 @@ class _$ConceptMapCopyWithImpl<T> implements $ConceptMapCopyWith<T> {
         title: identical(title, fhirSentinel)
             ? _value.title
             : title as FhirString?,
-        status: status as PublicationStatus? ?? _value.status,
+        status: identical(status, fhirSentinel)
+            ? _value.status
+            : (status as PublicationStatus?) ?? _value.status,
         experimental: identical(experimental, fhirSentinel)
             ? _value.experimental
             : experimental as FhirBoolean?,
@@ -211,7 +213,9 @@ class _$ConceptMapGroupCopyWithImpl<T> implements $ConceptMapGroupCopyWith<T> {
         targetVersion: identical(targetVersion, fhirSentinel)
             ? _value.targetVersion
             : targetVersion as FhirString?,
-        element: element as List<ConceptMapElement>? ?? _value.element,
+        element: identical(element, fhirSentinel)
+            ? _value.element
+            : (element as List<ConceptMapElement>?) ?? _value.element,
         unmapped: identical(unmapped, fhirSentinel)
             ? _value.unmapped
             : unmapped as ConceptMapUnmapped?,
@@ -344,8 +348,9 @@ class _$ConceptMapTargetCopyWithImpl<T>
         display: identical(display, fhirSentinel)
             ? _value.display
             : display as FhirString?,
-        equivalence:
-            equivalence as ConceptMapEquivalence? ?? _value.equivalence,
+        equivalence: identical(equivalence, fhirSentinel)
+            ? _value.equivalence
+            : (equivalence as ConceptMapEquivalence?) ?? _value.equivalence,
         comment: identical(comment, fhirSentinel)
             ? _value.comment
             : comment as FhirString?,
@@ -413,11 +418,15 @@ class _$ConceptMapDependsOnCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        property: property as FhirUri? ?? _value.property,
+        property: identical(property, fhirSentinel)
+            ? _value.property
+            : (property as FhirUri?) ?? _value.property,
         system: identical(system, fhirSentinel)
             ? _value.system
             : system as FhirCanonical?,
-        value: value as FhirString? ?? _value.value,
+        value: identical(value, fhirSentinel)
+            ? _value.value
+            : (value as FhirString?) ?? _value.value,
         display: identical(display, fhirSentinel)
             ? _value.display
             : display as FhirString?,
@@ -479,7 +488,9 @@ class _$ConceptMapUnmappedCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        mode: mode as ConceptMapGroupUnmappedMode? ?? _value.mode,
+        mode: identical(mode, fhirSentinel)
+            ? _value.mode
+            : (mode as ConceptMapGroupUnmappedMode?) ?? _value.mode,
         code: identical(code, fhirSentinel) ? _value.code : code as FhirCode?,
         display: identical(display, fhirSentinel)
             ? _value.display

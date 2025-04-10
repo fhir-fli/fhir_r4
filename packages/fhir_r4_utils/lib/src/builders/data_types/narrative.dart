@@ -356,20 +356,6 @@ class NarrativeBuilder extends DataTypeBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool status = false,
-    bool div = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (status) this.status = null;
-    if (div) this.div = null;
-  }
-
   @override
   NarrativeBuilder clone() => throw UnimplementedError();
   @override

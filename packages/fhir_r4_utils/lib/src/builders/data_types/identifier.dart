@@ -508,28 +508,6 @@ class IdentifierBuilder extends DataTypeBuilder
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool use = false,
-    bool type = false,
-    bool system = false,
-    bool value = false,
-    bool period = false,
-    bool assigner = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (use) this.use = null;
-    if (type) this.type = null;
-    if (system) this.system = null;
-    if (value) this.value = null;
-    if (period) this.period = null;
-    if (assigner) this.assigner = null;
-  }
-
   @override
   IdentifierBuilder clone() => throw UnimplementedError();
   @override

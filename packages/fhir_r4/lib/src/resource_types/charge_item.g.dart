@@ -120,12 +120,18 @@ class _$ChargeItemCopyWithImpl<T> implements $ChargeItemCopyWith<T> {
         definitionCanonical: identical(definitionCanonical, fhirSentinel)
             ? _value.definitionCanonical
             : definitionCanonical as List<FhirCanonical>?,
-        status: status as ChargeItemStatus? ?? _value.status,
+        status: identical(status, fhirSentinel)
+            ? _value.status
+            : (status as ChargeItemStatus?) ?? _value.status,
         partOf: identical(partOf, fhirSentinel)
             ? _value.partOf
             : partOf as List<Reference>?,
-        code: code as CodeableConcept? ?? _value.code,
-        subject: subject as Reference? ?? _value.subject,
+        code: identical(code, fhirSentinel)
+            ? _value.code
+            : (code as CodeableConcept?) ?? _value.code,
+        subject: identical(subject, fhirSentinel)
+            ? _value.subject
+            : (subject as Reference?) ?? _value.subject,
         context: identical(context, fhirSentinel)
             ? _value.context
             : context as Reference?,
@@ -237,7 +243,9 @@ class _$ChargeItemPerformerCopyWithImpl<T>
         function_: identical(function_, fhirSentinel)
             ? _value.function_
             : function_ as CodeableConcept?,
-        actor: actor as Reference? ?? _value.actor,
+        actor: identical(actor, fhirSentinel)
+            ? _value.actor
+            : (actor as Reference?) ?? _value.actor,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,

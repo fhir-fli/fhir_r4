@@ -151,7 +151,9 @@ class _$MedicationIngredientCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        itemX: itemX as CodeableConcept? ?? _value.itemX,
+        itemX: identical(itemX, fhirSentinel)
+            ? _value.itemX
+            : (itemX as CodeableConcept?) ?? _value.itemX,
         isActive: identical(isActive, fhirSentinel)
             ? _value.isActive
             : isActive as FhirBoolean?,

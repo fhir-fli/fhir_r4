@@ -112,7 +112,9 @@ class _$MediaCopyWithImpl<T> implements $MediaCopyWith<T> {
         partOf: identical(partOf, fhirSentinel)
             ? _value.partOf
             : partOf as List<Reference>?,
-        status: status as EventStatus? ?? _value.status,
+        status: identical(status, fhirSentinel)
+            ? _value.status
+            : (status as EventStatus?) ?? _value.status,
         type: identical(type, fhirSentinel)
             ? _value.type
             : type as CodeableConcept?,
@@ -161,7 +163,9 @@ class _$MediaCopyWithImpl<T> implements $MediaCopyWith<T> {
         duration: identical(duration, fhirSentinel)
             ? _value.duration
             : duration as FhirDecimal?,
-        content: content as Attachment? ?? _value.content,
+        content: identical(content, fhirSentinel)
+            ? _value.content
+            : (content as Attachment?) ?? _value.content,
         note: identical(note, fhirSentinel)
             ? _value.note
             : note as List<Annotation>?,

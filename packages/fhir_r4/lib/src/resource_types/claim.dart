@@ -630,6 +630,199 @@ class Claim extends DomainResource {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> listChildrenNames() {
+    return [
+      'id',
+      'meta',
+      'implicitRules',
+      'language',
+      'text',
+      'contained',
+      'extension',
+      'modifierExtension',
+      'identifier',
+      'status',
+      'type',
+      'subType',
+      'use',
+      'patient',
+      'billablePeriod',
+      'created',
+      'enterer',
+      'insurer',
+      'provider',
+      'priority',
+      'fundsReserve',
+      'related',
+      'prescription',
+      'originalPrescription',
+      'payee',
+      'referral',
+      'facility',
+      'careTeam',
+      'supportingInfo',
+      'diagnosis',
+      'procedure',
+      'insurance',
+      'accident',
+      'item',
+      'total',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> getChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'meta':
+        if (meta != null) {
+          fields.add(meta!);
+        }
+      case 'implicitRules':
+        if (implicitRules != null) {
+          fields.add(implicitRules!);
+        }
+      case 'language':
+        if (language != null) {
+          fields.add(language!);
+        }
+      case 'text':
+        if (text != null) {
+          fields.add(text!);
+        }
+      case 'contained':
+        if (contained != null) {
+          fields.addAll(contained!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'identifier':
+        if (identifier != null) {
+          fields.addAll(identifier!);
+        }
+      case 'status':
+        fields.add(status);
+      case 'type':
+        fields.add(type);
+      case 'subType':
+        if (subType != null) {
+          fields.add(subType!);
+        }
+      case 'use':
+        fields.add(use);
+      case 'patient':
+        fields.add(patient);
+      case 'billablePeriod':
+        if (billablePeriod != null) {
+          fields.add(billablePeriod!);
+        }
+      case 'created':
+        fields.add(created);
+      case 'enterer':
+        if (enterer != null) {
+          fields.add(enterer!);
+        }
+      case 'insurer':
+        if (insurer != null) {
+          fields.add(insurer!);
+        }
+      case 'provider':
+        fields.add(provider);
+      case 'priority':
+        fields.add(priority);
+      case 'fundsReserve':
+        if (fundsReserve != null) {
+          fields.add(fundsReserve!);
+        }
+      case 'related':
+        if (related != null) {
+          fields.addAll(related!);
+        }
+      case 'prescription':
+        if (prescription != null) {
+          fields.add(prescription!);
+        }
+      case 'originalPrescription':
+        if (originalPrescription != null) {
+          fields.add(originalPrescription!);
+        }
+      case 'payee':
+        if (payee != null) {
+          fields.add(payee!);
+        }
+      case 'referral':
+        if (referral != null) {
+          fields.add(referral!);
+        }
+      case 'facility':
+        if (facility != null) {
+          fields.add(facility!);
+        }
+      case 'careTeam':
+        if (careTeam != null) {
+          fields.addAll(careTeam!);
+        }
+      case 'supportingInfo':
+        if (supportingInfo != null) {
+          fields.addAll(supportingInfo!);
+        }
+      case 'diagnosis':
+        if (diagnosis != null) {
+          fields.addAll(diagnosis!);
+        }
+      case 'procedure':
+        if (procedure != null) {
+          fields.addAll(procedure!);
+        }
+      case 'insurance':
+        fields.addAll(insurance);
+      case 'accident':
+        if (accident != null) {
+          fields.add(accident!);
+        }
+      case 'item':
+        if (item != null) {
+          fields.addAll(item!);
+        }
+      case 'total':
+        if (total != null) {
+          fields.add(total!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildByName(String name) {
+    final values = getChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   Claim clone() => copyWith();
 
@@ -1066,6 +1259,70 @@ class ClaimRelated extends BackboneElement {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> listChildrenNames() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'claim',
+      'relationship',
+      'reference',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> getChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'claim':
+        if (claim != null) {
+          fields.add(claim!);
+        }
+      case 'relationship':
+        if (relationship != null) {
+          fields.add(relationship!);
+        }
+      case 'reference':
+        if (reference != null) {
+          fields.add(reference!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildByName(String name) {
+    final values = getChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   ClaimRelated clone() => copyWith();
 
@@ -1313,6 +1570,63 @@ class ClaimPayee extends BackboneElement {
       party,
     );
     return json;
+  }
+
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> listChildrenNames() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'type',
+      'party',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> getChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'type':
+        fields.add(type);
+      case 'party':
+        if (party != null) {
+          fields.add(party!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildByName(String name) {
+    final values = getChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
   }
 
   @override
@@ -1599,6 +1913,76 @@ class ClaimCareTeam extends BackboneElement {
       qualification,
     );
     return json;
+  }
+
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> listChildrenNames() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'sequence',
+      'provider',
+      'responsible',
+      'role',
+      'qualification',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> getChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'sequence':
+        fields.add(sequence);
+      case 'provider':
+        fields.add(provider);
+      case 'responsible':
+        if (responsible != null) {
+          fields.add(responsible!);
+        }
+      case 'role':
+        if (role != null) {
+          fields.add(role!);
+        }
+      case 'qualification':
+        if (qualification != null) {
+          fields.add(qualification!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildByName(String name) {
+    final values = getChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
   }
 
   @override
@@ -1959,6 +2343,109 @@ class ClaimSupportingInfo extends BackboneElement {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> listChildrenNames() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'sequence',
+      'category',
+      'code',
+      'timingX',
+      'valueX',
+      'reason',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> getChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'sequence':
+        fields.add(sequence);
+      case 'category':
+        fields.add(category);
+      case 'code':
+        if (code != null) {
+          fields.add(code!);
+        }
+      case 'timing':
+        fields.add(timingX!);
+      case 'timingX':
+        fields.add(timingX!);
+      case 'timingDate':
+        if (timingX is FhirDate) {
+          fields.add(timingX!);
+        }
+      case 'timingPeriod':
+        if (timingX is Period) {
+          fields.add(timingX!);
+        }
+      case 'value':
+        fields.add(valueX!);
+      case 'valueX':
+        fields.add(valueX!);
+      case 'valueBoolean':
+        if (valueX is FhirBoolean) {
+          fields.add(valueX!);
+        }
+      case 'valueString':
+        if (valueX is FhirString) {
+          fields.add(valueX!);
+        }
+      case 'valueQuantity':
+        if (valueX is Quantity) {
+          fields.add(valueX!);
+        }
+      case 'valueAttachment':
+        if (valueX is Attachment) {
+          fields.add(valueX!);
+        }
+      case 'valueReference':
+        if (valueX is Reference) {
+          fields.add(valueX!);
+        }
+      case 'reason':
+        if (reason != null) {
+          fields.add(reason!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildByName(String name) {
+    final values = getChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   ClaimSupportingInfo clone() => copyWith();
 
@@ -2283,6 +2770,86 @@ class ClaimDiagnosis extends BackboneElement {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> listChildrenNames() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'sequence',
+      'diagnosisX',
+      'type',
+      'onAdmission',
+      'packageCode',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> getChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'sequence':
+        fields.add(sequence);
+      case 'diagnosis':
+        fields.add(diagnosisX);
+      case 'diagnosisX':
+        fields.add(diagnosisX);
+      case 'diagnosisCodeableConcept':
+        if (diagnosisX is CodeableConcept) {
+          fields.add(diagnosisX);
+        }
+      case 'diagnosisReference':
+        if (diagnosisX is Reference) {
+          fields.add(diagnosisX);
+        }
+      case 'type':
+        if (type != null) {
+          fields.addAll(type!);
+        }
+      case 'onAdmission':
+        if (onAdmission != null) {
+          fields.add(onAdmission!);
+        }
+      case 'packageCode':
+        if (packageCode != null) {
+          fields.add(packageCode!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildByName(String name) {
+    final values = getChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   ClaimDiagnosis clone() => copyWith();
 
@@ -2599,6 +3166,86 @@ class ClaimProcedure extends BackboneElement {
       udi,
     );
     return json;
+  }
+
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> listChildrenNames() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'sequence',
+      'type',
+      'date',
+      'procedureX',
+      'udi',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> getChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'sequence':
+        fields.add(sequence);
+      case 'type':
+        if (type != null) {
+          fields.addAll(type!);
+        }
+      case 'date':
+        if (date != null) {
+          fields.add(date!);
+        }
+      case 'procedure':
+        fields.add(procedureX);
+      case 'procedureX':
+        fields.add(procedureX);
+      case 'procedureCodeableConcept':
+        if (procedureX is CodeableConcept) {
+          fields.add(procedureX);
+        }
+      case 'procedureReference':
+        if (procedureX is Reference) {
+          fields.add(procedureX);
+        }
+      case 'udi':
+        if (udi != null) {
+          fields.addAll(udi!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildByName(String name) {
+    final values = getChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
   }
 
   @override
@@ -2941,6 +3588,84 @@ class ClaimInsurance extends BackboneElement {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> listChildrenNames() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'sequence',
+      'focal',
+      'identifier',
+      'coverage',
+      'businessArrangement',
+      'preAuthRef',
+      'claimResponse',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> getChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'sequence':
+        fields.add(sequence);
+      case 'focal':
+        fields.add(focal);
+      case 'identifier':
+        if (identifier != null) {
+          fields.add(identifier!);
+        }
+      case 'coverage':
+        fields.add(coverage);
+      case 'businessArrangement':
+        if (businessArrangement != null) {
+          fields.add(businessArrangement!);
+        }
+      case 'preAuthRef':
+        if (preAuthRef != null) {
+          fields.addAll(preAuthRef!);
+        }
+      case 'claimResponse':
+        if (claimResponse != null) {
+          fields.add(claimResponse!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildByName(String name) {
+    final values = getChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   ClaimInsurance clone() => copyWith();
 
@@ -3240,6 +3965,76 @@ class ClaimAccident extends BackboneElement {
     }
 
     return json;
+  }
+
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> listChildrenNames() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'date',
+      'type',
+      'locationX',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> getChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'date':
+        fields.add(date);
+      case 'type':
+        if (type != null) {
+          fields.add(type!);
+        }
+      case 'location':
+        fields.add(locationX!);
+      case 'locationX':
+        fields.add(locationX!);
+      case 'locationAddress':
+        if (locationX is Address) {
+          fields.add(locationX!);
+        }
+      case 'locationReference':
+        if (locationX is Reference) {
+          fields.add(locationX!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildByName(String name) {
+    final values = getChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
   }
 
   @override
@@ -3813,6 +4608,176 @@ class ClaimItem extends BackboneElement {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> listChildrenNames() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'sequence',
+      'careTeamSequence',
+      'diagnosisSequence',
+      'procedureSequence',
+      'informationSequence',
+      'revenue',
+      'category',
+      'productOrService',
+      'modifier',
+      'programCode',
+      'servicedX',
+      'locationX',
+      'quantity',
+      'unitPrice',
+      'factor',
+      'net',
+      'udi',
+      'bodySite',
+      'subSite',
+      'encounter',
+      'detail',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> getChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'sequence':
+        fields.add(sequence);
+      case 'careTeamSequence':
+        if (careTeamSequence != null) {
+          fields.addAll(careTeamSequence!);
+        }
+      case 'diagnosisSequence':
+        if (diagnosisSequence != null) {
+          fields.addAll(diagnosisSequence!);
+        }
+      case 'procedureSequence':
+        if (procedureSequence != null) {
+          fields.addAll(procedureSequence!);
+        }
+      case 'informationSequence':
+        if (informationSequence != null) {
+          fields.addAll(informationSequence!);
+        }
+      case 'revenue':
+        if (revenue != null) {
+          fields.add(revenue!);
+        }
+      case 'category':
+        if (category != null) {
+          fields.add(category!);
+        }
+      case 'productOrService':
+        fields.add(productOrService);
+      case 'modifier':
+        if (modifier != null) {
+          fields.addAll(modifier!);
+        }
+      case 'programCode':
+        if (programCode != null) {
+          fields.addAll(programCode!);
+        }
+      case 'serviced':
+        fields.add(servicedX!);
+      case 'servicedX':
+        fields.add(servicedX!);
+      case 'servicedDate':
+        if (servicedX is FhirDate) {
+          fields.add(servicedX!);
+        }
+      case 'servicedPeriod':
+        if (servicedX is Period) {
+          fields.add(servicedX!);
+        }
+      case 'location':
+        fields.add(locationX!);
+      case 'locationX':
+        fields.add(locationX!);
+      case 'locationCodeableConcept':
+        if (locationX is CodeableConcept) {
+          fields.add(locationX!);
+        }
+      case 'locationAddress':
+        if (locationX is Address) {
+          fields.add(locationX!);
+        }
+      case 'locationReference':
+        if (locationX is Reference) {
+          fields.add(locationX!);
+        }
+      case 'quantity':
+        if (quantity != null) {
+          fields.add(quantity!);
+        }
+      case 'unitPrice':
+        if (unitPrice != null) {
+          fields.add(unitPrice!);
+        }
+      case 'factor':
+        if (factor != null) {
+          fields.add(factor!);
+        }
+      case 'net':
+        if (net != null) {
+          fields.add(net!);
+        }
+      case 'udi':
+        if (udi != null) {
+          fields.addAll(udi!);
+        }
+      case 'bodySite':
+        if (bodySite != null) {
+          fields.add(bodySite!);
+        }
+      case 'subSite':
+        if (subSite != null) {
+          fields.addAll(subSite!);
+        }
+      case 'encounter':
+        if (encounter != null) {
+          fields.addAll(encounter!);
+        }
+      case 'detail':
+        if (detail != null) {
+          fields.addAll(detail!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildByName(String name) {
+    final values = getChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   ClaimItem clone() => copyWith();
 
@@ -4329,6 +5294,111 @@ class ClaimDetail extends BackboneElement {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> listChildrenNames() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'sequence',
+      'revenue',
+      'category',
+      'productOrService',
+      'modifier',
+      'programCode',
+      'quantity',
+      'unitPrice',
+      'factor',
+      'net',
+      'udi',
+      'subDetail',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> getChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'sequence':
+        fields.add(sequence);
+      case 'revenue':
+        if (revenue != null) {
+          fields.add(revenue!);
+        }
+      case 'category':
+        if (category != null) {
+          fields.add(category!);
+        }
+      case 'productOrService':
+        fields.add(productOrService);
+      case 'modifier':
+        if (modifier != null) {
+          fields.addAll(modifier!);
+        }
+      case 'programCode':
+        if (programCode != null) {
+          fields.addAll(programCode!);
+        }
+      case 'quantity':
+        if (quantity != null) {
+          fields.add(quantity!);
+        }
+      case 'unitPrice':
+        if (unitPrice != null) {
+          fields.add(unitPrice!);
+        }
+      case 'factor':
+        if (factor != null) {
+          fields.add(factor!);
+        }
+      case 'net':
+        if (net != null) {
+          fields.add(net!);
+        }
+      case 'udi':
+        if (udi != null) {
+          fields.addAll(udi!);
+        }
+      case 'subDetail':
+        if (subDetail != null) {
+          fields.addAll(subDetail!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildByName(String name) {
+    final values = getChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   ClaimDetail clone() => copyWith();
 
@@ -4772,6 +5842,106 @@ class ClaimSubDetail extends BackboneElement {
       udi,
     );
     return json;
+  }
+
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> listChildrenNames() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'sequence',
+      'revenue',
+      'category',
+      'productOrService',
+      'modifier',
+      'programCode',
+      'quantity',
+      'unitPrice',
+      'factor',
+      'net',
+      'udi',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> getChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'sequence':
+        fields.add(sequence);
+      case 'revenue':
+        if (revenue != null) {
+          fields.add(revenue!);
+        }
+      case 'category':
+        if (category != null) {
+          fields.add(category!);
+        }
+      case 'productOrService':
+        fields.add(productOrService);
+      case 'modifier':
+        if (modifier != null) {
+          fields.addAll(modifier!);
+        }
+      case 'programCode':
+        if (programCode != null) {
+          fields.addAll(programCode!);
+        }
+      case 'quantity':
+        if (quantity != null) {
+          fields.add(quantity!);
+        }
+      case 'unitPrice':
+        if (unitPrice != null) {
+          fields.add(unitPrice!);
+        }
+      case 'factor':
+        if (factor != null) {
+          fields.add(factor!);
+        }
+      case 'net':
+        if (net != null) {
+          fields.add(net!);
+        }
+      case 'udi':
+        if (udi != null) {
+          fields.addAll(udi!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildByName(String name) {
+    final values = getChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
   }
 
   @override

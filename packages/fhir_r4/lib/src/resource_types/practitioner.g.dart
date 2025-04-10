@@ -167,7 +167,9 @@ class _$PractitionerQualificationCopyWithImpl<T>
         identifier: identical(identifier, fhirSentinel)
             ? _value.identifier
             : identifier as List<Identifier>?,
-        code: code as CodeableConcept? ?? _value.code,
+        code: identical(code, fhirSentinel)
+            ? _value.code
+            : (code as CodeableConcept?) ?? _value.code,
         period:
             identical(period, fhirSentinel) ? _value.period : period as Period?,
         issuer: identical(issuer, fhirSentinel)

@@ -96,7 +96,9 @@ class _$BodyStructureCopyWithImpl<T> implements $BodyStructureCopyWith<T> {
         image: identical(image, fhirSentinel)
             ? _value.image
             : image as List<Attachment>?,
-        patient: patient as Reference? ?? _value.patient,
+        patient: identical(patient, fhirSentinel)
+            ? _value.patient
+            : (patient as Reference?) ?? _value.patient,
       ),
     );
   }

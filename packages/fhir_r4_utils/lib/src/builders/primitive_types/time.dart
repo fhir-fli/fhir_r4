@@ -505,20 +505,6 @@ class FhirTimeBuilder extends PrimitiveTypeBuilder
 
   @override
   FhirTimeBuilder createProperty(String propertyName) => this;
-
-  @override
-  FhirTimeBuilder clear({
-    bool value = false,
-    bool extension_ = false,
-    bool id = false,
-  }) {
-    return FhirTimeBuilder(
-      value ? null : valueString,
-      element: element,
-      extension_: extension_ ? <FhirExtensionBuilder>[] : this.extension_,
-      id: id ? null : this.id,
-    );
-  }
 }
 
 /// An extension on [TemporalPrecisionEnum] to check if it is valid for `time`.

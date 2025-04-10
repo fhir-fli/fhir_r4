@@ -367,20 +367,6 @@ class MoneyBuilder extends DataTypeBuilder
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool value = false,
-    bool currency = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (value) this.value = null;
-    if (currency) this.currency = null;
-  }
-
   @override
   MoneyBuilder clone() => throw UnimplementedError();
   @override

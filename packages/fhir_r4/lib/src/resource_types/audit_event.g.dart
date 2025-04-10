@@ -81,7 +81,9 @@ class _$AuditEventCopyWithImpl<T> implements $AuditEventCopyWith<T> {
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        type: type as Coding? ?? _value.type,
+        type: identical(type, fhirSentinel)
+            ? _value.type
+            : (type as Coding?) ?? _value.type,
         subtype: identical(subtype, fhirSentinel)
             ? _value.subtype
             : subtype as List<Coding>?,
@@ -90,7 +92,9 @@ class _$AuditEventCopyWithImpl<T> implements $AuditEventCopyWith<T> {
             : action as AuditEventAction?,
         period:
             identical(period, fhirSentinel) ? _value.period : period as Period?,
-        recorded: recorded as FhirInstant? ?? _value.recorded,
+        recorded: identical(recorded, fhirSentinel)
+            ? _value.recorded
+            : (recorded as FhirInstant?) ?? _value.recorded,
         outcome: identical(outcome, fhirSentinel)
             ? _value.outcome
             : outcome as AuditEventOutcome?,
@@ -100,8 +104,12 @@ class _$AuditEventCopyWithImpl<T> implements $AuditEventCopyWith<T> {
         purposeOfEvent: identical(purposeOfEvent, fhirSentinel)
             ? _value.purposeOfEvent
             : purposeOfEvent as List<CodeableConcept>?,
-        agent: agent as List<AuditEventAgent>? ?? _value.agent,
-        source: source as AuditEventSource? ?? _value.source,
+        agent: identical(agent, fhirSentinel)
+            ? _value.agent
+            : (agent as List<AuditEventAgent>?) ?? _value.agent,
+        source: identical(source, fhirSentinel)
+            ? _value.source
+            : (source as AuditEventSource?) ?? _value.source,
         entity: identical(entity, fhirSentinel)
             ? _value.entity
             : entity as List<AuditEventEntity>?,
@@ -183,7 +191,9 @@ class _$AuditEventAgentCopyWithImpl<T> implements $AuditEventAgentCopyWith<T> {
             ? _value.altId
             : altId as FhirString?,
         name: identical(name, fhirSentinel) ? _value.name : name as FhirString?,
-        requestor: requestor as FhirBoolean? ?? _value.requestor,
+        requestor: identical(requestor, fhirSentinel)
+            ? _value.requestor
+            : (requestor as FhirBoolean?) ?? _value.requestor,
         location: identical(location, fhirSentinel)
             ? _value.location
             : location as Reference?,
@@ -314,7 +324,9 @@ class _$AuditEventSourceCopyWithImpl<T>
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
         site: identical(site, fhirSentinel) ? _value.site : site as FhirString?,
-        observer: observer as Reference? ?? _value.observer,
+        observer: identical(observer, fhirSentinel)
+            ? _value.observer
+            : (observer as Reference?) ?? _value.observer,
         type:
             identical(type, fhirSentinel) ? _value.type : type as List<Coding>?,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
@@ -458,8 +470,12 @@ class _$AuditEventDetailCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        type: type as FhirString? ?? _value.type,
-        valueX: valueX as FhirString? ?? _value.valueX,
+        type: identical(type, fhirSentinel)
+            ? _value.type
+            : (type as FhirString?) ?? _value.type,
+        valueX: identical(valueX, fhirSentinel)
+            ? _value.valueX
+            : (valueX as FhirString?) ?? _value.valueX,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,

@@ -1445,62 +1445,6 @@ class ConditionBuilder extends DomainResourceBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool identifier = false,
-    bool clinicalStatus = false,
-    bool verificationStatus = false,
-    bool category = false,
-    bool severity = false,
-    bool code = false,
-    bool bodySite = false,
-    bool subject = false,
-    bool encounter = false,
-    bool onset = false,
-    bool abatement = false,
-    bool recordedDate = false,
-    bool recorder = false,
-    bool asserter = false,
-    bool stage = false,
-    bool evidence = false,
-    bool note = false,
-  }) {
-    if (id) this.id = null;
-    if (meta) this.meta = null;
-    if (implicitRules) this.implicitRules = null;
-    if (language) this.language = null;
-    if (text) this.text = null;
-    if (contained) this.contained = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (identifier) this.identifier = null;
-    if (clinicalStatus) this.clinicalStatus = null;
-    if (verificationStatus) this.verificationStatus = null;
-    if (category) this.category = null;
-    if (severity) this.severity = null;
-    if (code) this.code = null;
-    if (bodySite) this.bodySite = null;
-    if (subject) this.subject = null;
-    if (encounter) this.encounter = null;
-    if (onset) onsetX = null;
-    if (abatement) abatementX = null;
-    if (recordedDate) this.recordedDate = null;
-    if (recorder) this.recorder = null;
-    if (asserter) this.asserter = null;
-    if (stage) this.stage = null;
-    if (evidence) this.evidence = null;
-    if (note) this.note = null;
-  }
-
   @override
   ConditionBuilder clone() => throw UnimplementedError();
   @override
@@ -2149,24 +2093,6 @@ class ConditionStageBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool summary = false,
-    bool assessment = false,
-    bool type = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (summary) this.summary = null;
-    if (assessment) this.assessment = null;
-    if (type) this.type = null;
-  }
-
   @override
   ConditionStageBuilder clone() => throw UnimplementedError();
   @override
@@ -2641,22 +2567,6 @@ class ConditionEvidenceBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool code = false,
-    bool detail = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (code) this.code = null;
-    if (detail) this.detail = null;
   }
 
   @override

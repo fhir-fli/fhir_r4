@@ -62,7 +62,9 @@ class _$OperationOutcomeCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        issue: issue as List<OperationOutcomeIssue>? ?? _value.issue,
+        issue: identical(issue, fhirSentinel)
+            ? _value.issue
+            : (issue as List<OperationOutcomeIssue>?) ?? _value.issue,
       ),
     );
   }
@@ -122,8 +124,12 @@ class _$OperationOutcomeIssueCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        severity: severity as IssueSeverity? ?? _value.severity,
-        code: code as IssueType? ?? _value.code,
+        severity: identical(severity, fhirSentinel)
+            ? _value.severity
+            : (severity as IssueSeverity?) ?? _value.severity,
+        code: identical(code, fhirSentinel)
+            ? _value.code
+            : (code as IssueType?) ?? _value.code,
         details: identical(details, fhirSentinel)
             ? _value.details
             : details as CodeableConcept?,

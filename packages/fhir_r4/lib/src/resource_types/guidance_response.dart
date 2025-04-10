@@ -482,6 +482,165 @@ class GuidanceResponse extends DomainResource {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> listChildrenNames() {
+    return [
+      'id',
+      'meta',
+      'implicitRules',
+      'language',
+      'text',
+      'contained',
+      'extension',
+      'modifierExtension',
+      'requestIdentifier',
+      'identifier',
+      'moduleX',
+      'status',
+      'subject',
+      'encounter',
+      'occurrenceDateTime',
+      'performer',
+      'reasonCode',
+      'reasonReference',
+      'note',
+      'evaluationMessage',
+      'outputParameters',
+      'result',
+      'dataRequirement',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> getChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'meta':
+        if (meta != null) {
+          fields.add(meta!);
+        }
+      case 'implicitRules':
+        if (implicitRules != null) {
+          fields.add(implicitRules!);
+        }
+      case 'language':
+        if (language != null) {
+          fields.add(language!);
+        }
+      case 'text':
+        if (text != null) {
+          fields.add(text!);
+        }
+      case 'contained':
+        if (contained != null) {
+          fields.addAll(contained!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'requestIdentifier':
+        if (requestIdentifier != null) {
+          fields.add(requestIdentifier!);
+        }
+      case 'identifier':
+        if (identifier != null) {
+          fields.addAll(identifier!);
+        }
+      case 'module':
+        fields.add(moduleX);
+      case 'moduleX':
+        fields.add(moduleX);
+      case 'moduleUri':
+        if (moduleX is FhirUri) {
+          fields.add(moduleX);
+        }
+      case 'moduleCanonical':
+        if (moduleX is FhirCanonical) {
+          fields.add(moduleX);
+        }
+      case 'moduleCodeableConcept':
+        if (moduleX is CodeableConcept) {
+          fields.add(moduleX);
+        }
+      case 'status':
+        fields.add(status);
+      case 'subject':
+        if (subject != null) {
+          fields.add(subject!);
+        }
+      case 'encounter':
+        if (encounter != null) {
+          fields.add(encounter!);
+        }
+      case 'occurrenceDateTime':
+        if (occurrenceDateTime != null) {
+          fields.add(occurrenceDateTime!);
+        }
+      case 'performer':
+        if (performer != null) {
+          fields.add(performer!);
+        }
+      case 'reasonCode':
+        if (reasonCode != null) {
+          fields.addAll(reasonCode!);
+        }
+      case 'reasonReference':
+        if (reasonReference != null) {
+          fields.addAll(reasonReference!);
+        }
+      case 'note':
+        if (note != null) {
+          fields.addAll(note!);
+        }
+      case 'evaluationMessage':
+        if (evaluationMessage != null) {
+          fields.addAll(evaluationMessage!);
+        }
+      case 'outputParameters':
+        if (outputParameters != null) {
+          fields.add(outputParameters!);
+        }
+      case 'result':
+        if (result != null) {
+          fields.add(result!);
+        }
+      case 'dataRequirement':
+        if (dataRequirement != null) {
+          fields.addAll(dataRequirement!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildByName(String name) {
+    final values = getChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   GuidanceResponse clone() => copyWith();
 

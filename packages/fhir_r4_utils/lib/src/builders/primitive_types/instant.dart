@@ -358,31 +358,4 @@ class FhirInstantBuilder extends FhirDateTimeBaseBuilder
   @override
   FhirInstantBuilder createProperty(String propertyName) => this;
 
-  /// Clears specified fields in a [FhirInstantBuilder].
-  @override
-  FhirInstantBuilder clear({
-    bool value = false,
-    bool element = false,
-    bool extension_ = false,
-    bool id = false,
-  }) {
-    return FhirInstantBuilder.fromBase(
-      valueString: value ? null : valueString,
-      year: value ? null : year,
-      month: value ? null : month,
-      day: value ? null : day,
-      hour: value ? null : hour,
-      minute: value ? null : minute,
-      second: value ? null : second,
-      millisecond: value ? null : millisecond,
-      microsecond: value ? null : microsecond,
-      timeZoneOffset: value ? null : timeZoneOffset,
-      isUtc: value ? value : isUtc,
-      element: element ? null : this.element,
-      extension_: extension_ ? <FhirExtensionBuilder>[] : this.extension_,
-      id: id ? null : this.id,
-      disallowExtensions: disallowExtensions,
-      objectPath: objectPath!,
-    );
-  }
 }

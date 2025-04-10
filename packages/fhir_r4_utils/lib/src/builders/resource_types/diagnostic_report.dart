@@ -1331,64 +1331,6 @@ class DiagnosticReportBuilder extends DomainResourceBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool identifier = false,
-    bool basedOn = false,
-    bool status = false,
-    bool category = false,
-    bool code = false,
-    bool subject = false,
-    bool encounter = false,
-    bool effective = false,
-    bool issued = false,
-    bool performer = false,
-    bool resultsInterpreter = false,
-    bool specimen = false,
-    bool result = false,
-    bool imagingStudy = false,
-    bool media = false,
-    bool conclusion = false,
-    bool conclusionCode = false,
-    bool presentedForm = false,
-  }) {
-    if (id) this.id = null;
-    if (meta) this.meta = null;
-    if (implicitRules) this.implicitRules = null;
-    if (language) this.language = null;
-    if (text) this.text = null;
-    if (contained) this.contained = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (identifier) this.identifier = null;
-    if (basedOn) this.basedOn = null;
-    if (status) this.status = null;
-    if (category) this.category = null;
-    if (code) this.code = null;
-    if (subject) this.subject = null;
-    if (encounter) this.encounter = null;
-    if (effective) effectiveX = null;
-    if (issued) this.issued = null;
-    if (performer) this.performer = null;
-    if (resultsInterpreter) this.resultsInterpreter = null;
-    if (specimen) this.specimen = null;
-    if (result) this.result = null;
-    if (imagingStudy) this.imagingStudy = null;
-    if (media) this.media = null;
-    if (conclusion) this.conclusion = null;
-    if (conclusionCode) this.conclusionCode = null;
-    if (presentedForm) this.presentedForm = null;
-  }
-
   @override
   DiagnosticReportBuilder clone() => throw UnimplementedError();
   @override
@@ -2014,22 +1956,6 @@ class DiagnosticReportMediaBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool comment = false,
-    bool link = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (comment) this.comment = null;
-    if (link) this.link = null;
   }
 
   @override

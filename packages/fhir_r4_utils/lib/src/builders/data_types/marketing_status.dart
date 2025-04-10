@@ -495,28 +495,6 @@ class MarketingStatusBuilder extends BackboneTypeBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool country = false,
-    bool jurisdiction = false,
-    bool status = false,
-    bool dateRange = false,
-    bool restoreDate = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (country) this.country = null;
-    if (jurisdiction) this.jurisdiction = null;
-    if (status) this.status = null;
-    if (dateRange) this.dateRange = null;
-    if (restoreDate) this.restoreDate = null;
-  }
-
   @override
   MarketingStatusBuilder clone() => throw UnimplementedError();
   @override

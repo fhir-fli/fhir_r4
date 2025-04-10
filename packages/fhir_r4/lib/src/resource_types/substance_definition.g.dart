@@ -296,7 +296,9 @@ class _$SubstanceDefinitionPropertyCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        type: type as CodeableConcept? ?? _value.type,
+        type: identical(type, fhirSentinel)
+            ? _value.type
+            : (type as CodeableConcept?) ?? _value.type,
         valueX: identical(valueX, fhirSentinel)
             ? _value.valueX
             : valueX as CodeableConcept?,
@@ -364,7 +366,9 @@ class _$SubstanceDefinitionMolecularWeightCopyWithImpl<T>
         type: identical(type, fhirSentinel)
             ? _value.type
             : type as CodeableConcept?,
-        amount: amount as Quantity? ?? _value.amount,
+        amount: identical(amount, fhirSentinel)
+            ? _value.amount
+            : (amount as Quantity?) ?? _value.amount,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,
@@ -680,7 +684,9 @@ class _$SubstanceDefinitionNameCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        name: name as FhirString? ?? _value.name,
+        name: identical(name, fhirSentinel)
+            ? _value.name
+            : (name as FhirString?) ?? _value.name,
         type: identical(type, fhirSentinel)
             ? _value.type
             : type as CodeableConcept?,
@@ -844,7 +850,9 @@ class _$SubstanceDefinitionRelationshipCopyWithImpl<T>
         substanceDefinitionX: identical(substanceDefinitionX, fhirSentinel)
             ? _value.substanceDefinitionX
             : substanceDefinitionX as Reference?,
-        type: type as CodeableConcept? ?? _value.type,
+        type: identical(type, fhirSentinel)
+            ? _value.type
+            : (type as CodeableConcept?) ?? _value.type,
         isDefining: identical(isDefining, fhirSentinel)
             ? _value.isDefining
             : isDefining as FhirBoolean?,

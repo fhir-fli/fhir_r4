@@ -108,22 +108,30 @@ class _$MedicationAdministrationCopyWithImpl<T>
         partOf: identical(partOf, fhirSentinel)
             ? _value.partOf
             : partOf as List<Reference>?,
-        status: status as MedicationAdministrationStatusCodes? ?? _value.status,
+        status: identical(status, fhirSentinel)
+            ? _value.status
+            : (status as MedicationAdministrationStatusCodes?) ?? _value.status,
         statusReason: identical(statusReason, fhirSentinel)
             ? _value.statusReason
             : statusReason as List<CodeableConcept>?,
         category: identical(category, fhirSentinel)
             ? _value.category
             : category as CodeableConcept?,
-        medicationX: medicationX as CodeableConcept? ?? _value.medicationX,
-        subject: subject as Reference? ?? _value.subject,
+        medicationX: identical(medicationX, fhirSentinel)
+            ? _value.medicationX
+            : (medicationX as CodeableConcept?) ?? _value.medicationX,
+        subject: identical(subject, fhirSentinel)
+            ? _value.subject
+            : (subject as Reference?) ?? _value.subject,
         context: identical(context, fhirSentinel)
             ? _value.context
             : context as Reference?,
         supportingInformation: identical(supportingInformation, fhirSentinel)
             ? _value.supportingInformation
             : supportingInformation as List<Reference>?,
-        effectiveX: effectiveX as FhirDateTime? ?? _value.effectiveX,
+        effectiveX: identical(effectiveX, fhirSentinel)
+            ? _value.effectiveX
+            : (effectiveX as FhirDateTime?) ?? _value.effectiveX,
         performer: identical(performer, fhirSentinel)
             ? _value.performer
             : performer as List<MedicationAdministrationPerformer>?,
@@ -203,7 +211,9 @@ class _$MedicationAdministrationPerformerCopyWithImpl<T>
         function_: identical(function_, fhirSentinel)
             ? _value.function_
             : function_ as CodeableConcept?,
-        actor: actor as Reference? ?? _value.actor,
+        actor: identical(actor, fhirSentinel)
+            ? _value.actor
+            : (actor as Reference?) ?? _value.actor,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,

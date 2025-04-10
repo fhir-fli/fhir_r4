@@ -78,9 +78,13 @@ class _$ManufacturedItemDefinitionCopyWithImpl<T>
         identifier: identical(identifier, fhirSentinel)
             ? _value.identifier
             : identifier as List<Identifier>?,
-        status: status as PublicationStatus? ?? _value.status,
-        manufacturedDoseForm: manufacturedDoseForm as CodeableConcept? ??
-            _value.manufacturedDoseForm,
+        status: identical(status, fhirSentinel)
+            ? _value.status
+            : (status as PublicationStatus?) ?? _value.status,
+        manufacturedDoseForm: identical(manufacturedDoseForm, fhirSentinel)
+            ? _value.manufacturedDoseForm
+            : (manufacturedDoseForm as CodeableConcept?) ??
+                _value.manufacturedDoseForm,
         unitOfPresentation: identical(unitOfPresentation, fhirSentinel)
             ? _value.unitOfPresentation
             : unitOfPresentation as CodeableConcept?,
@@ -146,7 +150,9 @@ class _$ManufacturedItemDefinitionPropertyCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        type: type as CodeableConcept? ?? _value.type,
+        type: identical(type, fhirSentinel)
+            ? _value.type
+            : (type as CodeableConcept?) ?? _value.type,
         valueX: identical(valueX, fhirSentinel)
             ? _value.valueX
             : valueX as CodeableConcept?,

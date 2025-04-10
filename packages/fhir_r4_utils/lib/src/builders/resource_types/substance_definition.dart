@@ -1294,66 +1294,6 @@ class SubstanceDefinitionBuilder extends DomainResourceBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool identifier = false,
-    bool version = false,
-    bool status = false,
-    bool classification = false,
-    bool domain = false,
-    bool grade = false,
-    bool description = false,
-    bool informationSource = false,
-    bool note = false,
-    bool manufacturer = false,
-    bool supplier = false,
-    bool moiety = false,
-    bool property = false,
-    bool molecularWeight = false,
-    bool structure = false,
-    bool code = false,
-    bool name = false,
-    bool relationship = false,
-    bool sourceMaterial = false,
-  }) {
-    if (id) this.id = null;
-    if (meta) this.meta = null;
-    if (implicitRules) this.implicitRules = null;
-    if (language) this.language = null;
-    if (text) this.text = null;
-    if (contained) this.contained = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (identifier) this.identifier = null;
-    if (version) this.version = null;
-    if (status) this.status = null;
-    if (classification) this.classification = null;
-    if (domain) this.domain = null;
-    if (grade) this.grade = null;
-    if (description) this.description = null;
-    if (informationSource) this.informationSource = null;
-    if (note) this.note = null;
-    if (manufacturer) this.manufacturer = null;
-    if (supplier) this.supplier = null;
-    if (moiety) this.moiety = null;
-    if (property) this.property = null;
-    if (molecularWeight) this.molecularWeight = null;
-    if (structure) this.structure = null;
-    if (code) this.code = null;
-    if (name) this.name = null;
-    if (relationship) this.relationship = null;
-    if (sourceMaterial) this.sourceMaterial = null;
-  }
-
   @override
   SubstanceDefinitionBuilder clone() => throw UnimplementedError();
   @override
@@ -2261,34 +2201,6 @@ class SubstanceDefinitionMoietyBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool role = false,
-    bool identifier = false,
-    bool name = false,
-    bool stereochemistry = false,
-    bool opticalActivity = false,
-    bool molecularFormula = false,
-    bool amount = false,
-    bool measurementType = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (role) this.role = null;
-    if (identifier) this.identifier = null;
-    if (name) this.name = null;
-    if (stereochemistry) this.stereochemistry = null;
-    if (opticalActivity) this.opticalActivity = null;
-    if (molecularFormula) this.molecularFormula = null;
-    if (amount) amountX = null;
-    if (measurementType) this.measurementType = null;
-  }
-
   @override
   SubstanceDefinitionMoietyBuilder clone() => throw UnimplementedError();
   @override
@@ -2939,22 +2851,6 @@ class SubstanceDefinitionPropertyBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool type = false,
-    bool value = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (type) this.type = null;
-    if (value) valueX = null;
-  }
-
   @override
   SubstanceDefinitionPropertyBuilder clone() => throw UnimplementedError();
   @override
@@ -3436,24 +3332,6 @@ class SubstanceDefinitionMolecularWeightBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool method = false,
-    bool type = false,
-    bool amount = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (method) this.method = null;
-    if (type) this.type = null;
-    if (amount) this.amount = null;
   }
 
   @override
@@ -4166,34 +4044,6 @@ class SubstanceDefinitionStructureBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool stereochemistry = false,
-    bool opticalActivity = false,
-    bool molecularFormula = false,
-    bool molecularFormulaByMoiety = false,
-    bool molecularWeight = false,
-    bool technique = false,
-    bool sourceDocument = false,
-    bool representation = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (stereochemistry) this.stereochemistry = null;
-    if (opticalActivity) this.opticalActivity = null;
-    if (molecularFormula) this.molecularFormula = null;
-    if (molecularFormulaByMoiety) this.molecularFormulaByMoiety = null;
-    if (molecularWeight) this.molecularWeight = null;
-    if (technique) this.technique = null;
-    if (sourceDocument) this.sourceDocument = null;
-    if (representation) this.representation = null;
-  }
-
   @override
   SubstanceDefinitionStructureBuilder clone() => throw UnimplementedError();
   @override
@@ -4766,26 +4616,6 @@ class SubstanceDefinitionRepresentationBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool type = false,
-    bool representation = false,
-    bool format = false,
-    bool document = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (type) this.type = null;
-    if (representation) this.representation = null;
-    if (format) this.format = null;
-    if (document) this.document = null;
   }
 
   @override
@@ -5379,28 +5209,6 @@ class SubstanceDefinitionCodeBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool code = false,
-    bool status = false,
-    bool statusDate = false,
-    bool note = false,
-    bool source = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (code) this.code = null;
-    if (status) this.status = null;
-    if (statusDate) this.statusDate = null;
-    if (note) this.note = null;
-    if (source) this.source = null;
   }
 
   @override
@@ -6270,40 +6078,6 @@ class SubstanceDefinitionNameBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool name = false,
-    bool type = false,
-    bool status = false,
-    bool preferred = false,
-    bool language = false,
-    bool domain = false,
-    bool jurisdiction = false,
-    bool synonym = false,
-    bool translation = false,
-    bool official = false,
-    bool source = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (name) this.name = null;
-    if (type) this.type = null;
-    if (status) this.status = null;
-    if (preferred) this.preferred = null;
-    if (language) this.language = null;
-    if (domain) this.domain = null;
-    if (jurisdiction) this.jurisdiction = null;
-    if (synonym) this.synonym = null;
-    if (translation) this.translation = null;
-    if (official) this.official = null;
-    if (source) this.source = null;
-  }
-
   @override
   SubstanceDefinitionNameBuilder clone() => throw UnimplementedError();
   @override
@@ -6863,24 +6637,6 @@ class SubstanceDefinitionOfficialBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool authority = false,
-    bool status = false,
-    bool date = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (authority) this.authority = null;
-    if (status) this.status = null;
-    if (date) this.date = null;
   }
 
   @override
@@ -7699,32 +7455,6 @@ class SubstanceDefinitionRelationshipBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool substanceDefinition = false,
-    bool type = false,
-    bool isDefining = false,
-    bool amount = false,
-    bool ratioHighLimitAmount = false,
-    bool comparator = false,
-    bool source = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (substanceDefinition) substanceDefinitionX = null;
-    if (type) this.type = null;
-    if (isDefining) this.isDefining = null;
-    if (amount) amountX = null;
-    if (ratioHighLimitAmount) this.ratioHighLimitAmount = null;
-    if (comparator) this.comparator = null;
-    if (source) this.source = null;
-  }
-
   @override
   SubstanceDefinitionRelationshipBuilder clone() => throw UnimplementedError();
   @override
@@ -8319,28 +8049,6 @@ class SubstanceDefinitionSourceMaterialBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool type = false,
-    bool genus = false,
-    bool species = false,
-    bool part_ = false,
-    bool countryOfOrigin = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (type) this.type = null;
-    if (genus) this.genus = null;
-    if (species) this.species = null;
-    if (part_) this.part_ = null;
-    if (countryOfOrigin) this.countryOfOrigin = null;
   }
 
   @override

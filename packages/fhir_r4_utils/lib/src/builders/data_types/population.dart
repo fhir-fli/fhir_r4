@@ -496,26 +496,6 @@ class PopulationBuilder extends BackboneTypeBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool age = false,
-    bool gender = false,
-    bool race = false,
-    bool physiologicalCondition = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (age) ageX = null;
-    if (gender) this.gender = null;
-    if (race) this.race = null;
-    if (physiologicalCondition) this.physiologicalCondition = null;
-  }
-
   @override
   PopulationBuilder clone() => throw UnimplementedError();
   @override

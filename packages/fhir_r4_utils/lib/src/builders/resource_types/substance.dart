@@ -791,42 +791,6 @@ class SubstanceBuilder extends DomainResourceBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool identifier = false,
-    bool status = false,
-    bool category = false,
-    bool code = false,
-    bool description = false,
-    bool instance = false,
-    bool ingredient = false,
-  }) {
-    if (id) this.id = null;
-    if (meta) this.meta = null;
-    if (implicitRules) this.implicitRules = null;
-    if (language) this.language = null;
-    if (text) this.text = null;
-    if (contained) this.contained = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (identifier) this.identifier = null;
-    if (status) this.status = null;
-    if (category) this.category = null;
-    if (code) this.code = null;
-    if (description) this.description = null;
-    if (instance) this.instance = null;
-    if (ingredient) this.ingredient = null;
-  }
-
   @override
   SubstanceBuilder clone() => throw UnimplementedError();
   @override
@@ -1395,24 +1359,6 @@ class SubstanceInstanceBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool identifier = false,
-    bool expiry = false,
-    bool quantity = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (identifier) this.identifier = null;
-    if (expiry) this.expiry = null;
-    if (quantity) this.quantity = null;
-  }
-
   @override
   SubstanceInstanceBuilder clone() => throw UnimplementedError();
   @override
@@ -1933,22 +1879,6 @@ class SubstanceIngredientBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool quantity = false,
-    bool substance = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (quantity) this.quantity = null;
-    if (substance) substanceX = null;
   }
 
   @override

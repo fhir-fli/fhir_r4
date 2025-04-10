@@ -230,8 +230,12 @@ class _$MedicationKnowledgeRelatedMedicationKnowledgeCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        type: type as CodeableConcept? ?? _value.type,
-        reference: reference as List<Reference>? ?? _value.reference,
+        type: identical(type, fhirSentinel)
+            ? _value.type
+            : (type as CodeableConcept?) ?? _value.type,
+        reference: identical(reference, fhirSentinel)
+            ? _value.reference
+            : (reference as List<Reference>?) ?? _value.reference,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,
@@ -354,7 +358,9 @@ class _$MedicationKnowledgeIngredientCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        itemX: itemX as CodeableConcept? ?? _value.itemX,
+        itemX: identical(itemX, fhirSentinel)
+            ? _value.itemX
+            : (itemX as CodeableConcept?) ?? _value.itemX,
         isActive: identical(isActive, fhirSentinel)
             ? _value.isActive
             : isActive as FhirBoolean?,
@@ -419,11 +425,15 @@ class _$MedicationKnowledgeCostCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        type: type as CodeableConcept? ?? _value.type,
+        type: identical(type, fhirSentinel)
+            ? _value.type
+            : (type as CodeableConcept?) ?? _value.type,
         source: identical(source, fhirSentinel)
             ? _value.source
             : source as FhirString?,
-        cost: cost as Money? ?? _value.cost,
+        cost: identical(cost, fhirSentinel)
+            ? _value.cost
+            : (cost as Money?) ?? _value.cost,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,
@@ -609,8 +619,12 @@ class _$MedicationKnowledgeDosageCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        type: type as CodeableConcept? ?? _value.type,
-        dosage: dosage as List<Dosage>? ?? _value.dosage,
+        type: identical(type, fhirSentinel)
+            ? _value.type
+            : (type as CodeableConcept?) ?? _value.type,
+        dosage: identical(dosage, fhirSentinel)
+            ? _value.dosage
+            : (dosage as List<Dosage>?) ?? _value.dosage,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,
@@ -667,8 +681,9 @@ class _$MedicationKnowledgePatientCharacteristicsCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        characteristicX:
-            characteristicX as CodeableConcept? ?? _value.characteristicX,
+        characteristicX: identical(characteristicX, fhirSentinel)
+            ? _value.characteristicX
+            : (characteristicX as CodeableConcept?) ?? _value.characteristicX,
         value: identical(value, fhirSentinel)
             ? _value.value
             : value as List<FhirString>?,
@@ -730,7 +745,9 @@ class _$MedicationKnowledgeMedicineClassificationCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        type: type as CodeableConcept? ?? _value.type,
+        type: identical(type, fhirSentinel)
+            ? _value.type
+            : (type as CodeableConcept?) ?? _value.type,
         classification: identical(classification, fhirSentinel)
             ? _value.classification
             : classification as List<CodeableConcept>?,
@@ -920,8 +937,9 @@ class _$MedicationKnowledgeRegulatoryCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        regulatoryAuthority:
-            regulatoryAuthority as Reference? ?? _value.regulatoryAuthority,
+        regulatoryAuthority: identical(regulatoryAuthority, fhirSentinel)
+            ? _value.regulatoryAuthority
+            : (regulatoryAuthority as Reference?) ?? _value.regulatoryAuthority,
         substitution: identical(substitution, fhirSentinel)
             ? _value.substitution
             : substitution as List<MedicationKnowledgeSubstitution>?,
@@ -987,8 +1005,12 @@ class _$MedicationKnowledgeSubstitutionCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        type: type as CodeableConcept? ?? _value.type,
-        allowed: allowed as FhirBoolean? ?? _value.allowed,
+        type: identical(type, fhirSentinel)
+            ? _value.type
+            : (type as CodeableConcept?) ?? _value.type,
+        allowed: identical(allowed, fhirSentinel)
+            ? _value.allowed
+            : (allowed as FhirBoolean?) ?? _value.allowed,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,
@@ -1043,7 +1065,9 @@ class _$MedicationKnowledgeScheduleCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        schedule: schedule as CodeableConcept? ?? _value.schedule,
+        schedule: identical(schedule, fhirSentinel)
+            ? _value.schedule
+            : (schedule as CodeableConcept?) ?? _value.schedule,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,
@@ -1100,7 +1124,9 @@ class _$MedicationKnowledgeMaxDispenseCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        quantity: quantity as Quantity? ?? _value.quantity,
+        quantity: identical(quantity, fhirSentinel)
+            ? _value.quantity
+            : (quantity as Quantity?) ?? _value.quantity,
         period: identical(period, fhirSentinel)
             ? _value.period
             : period as FhirDuration?,

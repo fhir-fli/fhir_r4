@@ -121,11 +121,15 @@ class _$CapabilityStatementCopyWithImpl<T>
         title: identical(title, fhirSentinel)
             ? _value.title
             : title as FhirString?,
-        status: status as PublicationStatus? ?? _value.status,
+        status: identical(status, fhirSentinel)
+            ? _value.status
+            : (status as PublicationStatus?) ?? _value.status,
         experimental: identical(experimental, fhirSentinel)
             ? _value.experimental
             : experimental as FhirBoolean?,
-        date: date as FhirDateTime? ?? _value.date,
+        date: identical(date, fhirSentinel)
+            ? _value.date
+            : (date as FhirDateTime?) ?? _value.date,
         publisher: identical(publisher, fhirSentinel)
             ? _value.publisher
             : publisher as FhirString?,
@@ -147,7 +151,9 @@ class _$CapabilityStatementCopyWithImpl<T>
         copyright: identical(copyright, fhirSentinel)
             ? _value.copyright
             : copyright as FhirMarkdown?,
-        kind: kind as CapabilityStatementKind? ?? _value.kind,
+        kind: identical(kind, fhirSentinel)
+            ? _value.kind
+            : (kind as CapabilityStatementKind?) ?? _value.kind,
         instantiates: identical(instantiates, fhirSentinel)
             ? _value.instantiates
             : instantiates as List<FhirCanonical>?,
@@ -160,8 +166,12 @@ class _$CapabilityStatementCopyWithImpl<T>
         implementation: identical(implementation, fhirSentinel)
             ? _value.implementation
             : implementation as CapabilityStatementImplementation?,
-        fhirVersion: fhirVersion as FHIRVersion? ?? _value.fhirVersion,
-        format: format as List<FhirCode>? ?? _value.format,
+        fhirVersion: identical(fhirVersion, fhirSentinel)
+            ? _value.fhirVersion
+            : (fhirVersion as FHIRVersion?) ?? _value.fhirVersion,
+        format: identical(format, fhirSentinel)
+            ? _value.format
+            : (format as List<FhirCode>?) ?? _value.format,
         patchFormat: identical(patchFormat, fhirSentinel)
             ? _value.patchFormat
             : patchFormat as List<FhirCode>?,
@@ -230,7 +240,9 @@ class _$CapabilityStatementSoftwareCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        name: name as FhirString? ?? _value.name,
+        name: identical(name, fhirSentinel)
+            ? _value.name
+            : (name as FhirString?) ?? _value.name,
         version: identical(version, fhirSentinel)
             ? _value.version
             : version as FhirString?,
@@ -295,7 +307,9 @@ class _$CapabilityStatementImplementationCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        description: description as FhirString? ?? _value.description,
+        description: identical(description, fhirSentinel)
+            ? _value.description
+            : (description as FhirString?) ?? _value.description,
         url: identical(url, fhirSentinel) ? _value.url : url as FhirUrl?,
         custodian: identical(custodian, fhirSentinel)
             ? _value.custodian
@@ -368,7 +382,9 @@ class _$CapabilityStatementRestCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        mode: mode as RestfulCapabilityMode? ?? _value.mode,
+        mode: identical(mode, fhirSentinel)
+            ? _value.mode
+            : (mode as RestfulCapabilityMode?) ?? _value.mode,
         documentation: identical(documentation, fhirSentinel)
             ? _value.documentation
             : documentation as FhirMarkdown?,
@@ -540,7 +556,9 @@ class _$CapabilityStatementResourceCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        type: type as FhirCode? ?? _value.type,
+        type: identical(type, fhirSentinel)
+            ? _value.type
+            : (type as FhirCode?) ?? _value.type,
         profile: identical(profile, fhirSentinel)
             ? _value.profile
             : profile as FhirCanonical?,
@@ -645,7 +663,9 @@ class _$CapabilityStatementInteractionCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        code: code as TypeRestfulInteraction? ?? _value.code,
+        code: identical(code, fhirSentinel)
+            ? _value.code
+            : (code as TypeRestfulInteraction?) ?? _value.code,
         documentation: identical(documentation, fhirSentinel)
             ? _value.documentation
             : documentation as FhirMarkdown?,
@@ -709,11 +729,15 @@ class _$CapabilityStatementSearchParamCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        name: name as FhirString? ?? _value.name,
+        name: identical(name, fhirSentinel)
+            ? _value.name
+            : (name as FhirString?) ?? _value.name,
         definition: identical(definition, fhirSentinel)
             ? _value.definition
             : definition as FhirCanonical?,
-        type: type as SearchParamType? ?? _value.type,
+        type: identical(type, fhirSentinel)
+            ? _value.type
+            : (type as SearchParamType?) ?? _value.type,
         documentation: identical(documentation, fhirSentinel)
             ? _value.documentation
             : documentation as FhirMarkdown?,
@@ -775,8 +799,12 @@ class _$CapabilityStatementOperationCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        name: name as FhirString? ?? _value.name,
-        definition: definition as FhirCanonical? ?? _value.definition,
+        name: identical(name, fhirSentinel)
+            ? _value.name
+            : (name as FhirString?) ?? _value.name,
+        definition: identical(definition, fhirSentinel)
+            ? _value.definition
+            : (definition as FhirCanonical?) ?? _value.definition,
         documentation: identical(documentation, fhirSentinel)
             ? _value.documentation
             : documentation as FhirMarkdown?,
@@ -836,7 +864,9 @@ class _$CapabilityStatementInteraction1CopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        code: code as SystemRestfulInteraction? ?? _value.code,
+        code: identical(code, fhirSentinel)
+            ? _value.code
+            : (code as SystemRestfulInteraction?) ?? _value.code,
         documentation: identical(documentation, fhirSentinel)
             ? _value.documentation
             : documentation as FhirMarkdown?,
@@ -968,8 +998,12 @@ class _$CapabilityStatementEndpointCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        protocol: protocol as Coding? ?? _value.protocol,
-        address: address as FhirUrl? ?? _value.address,
+        protocol: identical(protocol, fhirSentinel)
+            ? _value.protocol
+            : (protocol as Coding?) ?? _value.protocol,
+        address: identical(address, fhirSentinel)
+            ? _value.address
+            : (address as FhirUrl?) ?? _value.address,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,
@@ -1026,8 +1060,12 @@ class _$CapabilityStatementSupportedMessageCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        mode: mode as EventCapabilityMode? ?? _value.mode,
-        definition: definition as FhirCanonical? ?? _value.definition,
+        mode: identical(mode, fhirSentinel)
+            ? _value.mode
+            : (mode as EventCapabilityMode?) ?? _value.mode,
+        definition: identical(definition, fhirSentinel)
+            ? _value.definition
+            : (definition as FhirCanonical?) ?? _value.definition,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,
@@ -1087,11 +1125,15 @@ class _$CapabilityStatementDocumentCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        mode: mode as DocumentMode? ?? _value.mode,
+        mode: identical(mode, fhirSentinel)
+            ? _value.mode
+            : (mode as DocumentMode?) ?? _value.mode,
         documentation: identical(documentation, fhirSentinel)
             ? _value.documentation
             : documentation as FhirMarkdown?,
-        profile: profile as FhirCanonical? ?? _value.profile,
+        profile: identical(profile, fhirSentinel)
+            ? _value.profile
+            : (profile as FhirCanonical?) ?? _value.profile,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,

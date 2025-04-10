@@ -346,6 +346,114 @@ class Ingredient extends DomainResource {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> listChildrenNames() {
+    return [
+      'id',
+      'meta',
+      'implicitRules',
+      'language',
+      'text',
+      'contained',
+      'extension',
+      'modifierExtension',
+      'identifier',
+      'status',
+      'for',
+      'role',
+      'function',
+      'allergenicIndicator',
+      'manufacturer',
+      'substance',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> getChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'meta':
+        if (meta != null) {
+          fields.add(meta!);
+        }
+      case 'implicitRules':
+        if (implicitRules != null) {
+          fields.add(implicitRules!);
+        }
+      case 'language':
+        if (language != null) {
+          fields.add(language!);
+        }
+      case 'text':
+        if (text != null) {
+          fields.add(text!);
+        }
+      case 'contained':
+        if (contained != null) {
+          fields.addAll(contained!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'identifier':
+        if (identifier != null) {
+          fields.add(identifier!);
+        }
+      case 'status':
+        fields.add(status);
+      case 'for':
+        if (for_ != null) {
+          fields.addAll(for_!);
+        }
+      case 'role':
+        fields.add(role);
+      case 'function':
+        if (function_ != null) {
+          fields.addAll(function_!);
+        }
+      case 'allergenicIndicator':
+        if (allergenicIndicator != null) {
+          fields.add(allergenicIndicator!);
+        }
+      case 'manufacturer':
+        if (manufacturer != null) {
+          fields.addAll(manufacturer!);
+        }
+      case 'substance':
+        fields.add(substance);
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildByName(String name) {
+    final values = getChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   Ingredient clone() => copyWith();
 
@@ -661,6 +769,63 @@ class IngredientManufacturer extends BackboneElement {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> listChildrenNames() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'role',
+      'manufacturer',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> getChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'role':
+        if (role != null) {
+          fields.add(role!);
+        }
+      case 'manufacturer':
+        fields.add(manufacturer);
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildByName(String name) {
+    final values = getChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   IngredientManufacturer clone() => copyWith();
 
@@ -906,6 +1071,63 @@ class IngredientSubstance extends BackboneElement {
       strength,
     );
     return json;
+  }
+
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> listChildrenNames() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'code',
+      'strength',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> getChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'code':
+        fields.add(code);
+      case 'strength':
+        if (strength != null) {
+          fields.addAll(strength!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildByName(String name) {
+    final values = getChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
   }
 
   @override
@@ -1271,6 +1493,106 @@ class IngredientStrength extends BackboneElement {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> listChildrenNames() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'presentationX',
+      'textPresentation',
+      'concentrationX',
+      'textConcentration',
+      'measurementPoint',
+      'country',
+      'referenceStrength',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> getChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'presentation':
+        fields.add(presentationX!);
+      case 'presentationX':
+        fields.add(presentationX!);
+      case 'presentationRatio':
+        if (presentationX is Ratio) {
+          fields.add(presentationX!);
+        }
+      case 'presentationRatioRange':
+        if (presentationX is RatioRange) {
+          fields.add(presentationX!);
+        }
+      case 'textPresentation':
+        if (textPresentation != null) {
+          fields.add(textPresentation!);
+        }
+      case 'concentration':
+        fields.add(concentrationX!);
+      case 'concentrationX':
+        fields.add(concentrationX!);
+      case 'concentrationRatio':
+        if (concentrationX is Ratio) {
+          fields.add(concentrationX!);
+        }
+      case 'concentrationRatioRange':
+        if (concentrationX is RatioRange) {
+          fields.add(concentrationX!);
+        }
+      case 'textConcentration':
+        if (textConcentration != null) {
+          fields.add(textConcentration!);
+        }
+      case 'measurementPoint':
+        if (measurementPoint != null) {
+          fields.add(measurementPoint!);
+        }
+      case 'country':
+        if (country != null) {
+          fields.addAll(country!);
+        }
+      case 'referenceStrength':
+        if (referenceStrength != null) {
+          fields.addAll(referenceStrength!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildByName(String name) {
+    final values = getChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   IngredientStrength clone() => copyWith();
 
@@ -1587,6 +1909,83 @@ class IngredientReferenceStrength extends BackboneElement {
       country,
     );
     return json;
+  }
+
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> listChildrenNames() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'substance',
+      'strengthX',
+      'measurementPoint',
+      'country',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> getChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'substance':
+        if (substance != null) {
+          fields.add(substance!);
+        }
+      case 'strength':
+        fields.add(strengthX);
+      case 'strengthX':
+        fields.add(strengthX);
+      case 'strengthRatio':
+        if (strengthX is Ratio) {
+          fields.add(strengthX);
+        }
+      case 'strengthRatioRange':
+        if (strengthX is RatioRange) {
+          fields.add(strengthX);
+        }
+      case 'measurementPoint':
+        if (measurementPoint != null) {
+          fields.add(measurementPoint!);
+        }
+      case 'country':
+        if (country != null) {
+          fields.addAll(country!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildByName(String name) {
+    final values = getChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
   }
 
   @override

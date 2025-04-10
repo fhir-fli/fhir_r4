@@ -92,8 +92,12 @@ class _$CompositionCopyWithImpl<T> implements $CompositionCopyWith<T> {
         identifier: identical(identifier, fhirSentinel)
             ? _value.identifier
             : identifier as Identifier?,
-        status: status as CompositionStatus? ?? _value.status,
-        type: type as CodeableConcept? ?? _value.type,
+        status: identical(status, fhirSentinel)
+            ? _value.status
+            : (status as CompositionStatus?) ?? _value.status,
+        type: identical(type, fhirSentinel)
+            ? _value.type
+            : (type as CodeableConcept?) ?? _value.type,
         category: identical(category, fhirSentinel)
             ? _value.category
             : category as List<CodeableConcept>?,
@@ -103,9 +107,15 @@ class _$CompositionCopyWithImpl<T> implements $CompositionCopyWith<T> {
         encounter: identical(encounter, fhirSentinel)
             ? _value.encounter
             : encounter as Reference?,
-        date: date as FhirDateTime? ?? _value.date,
-        author: author as List<Reference>? ?? _value.author,
-        title: title as FhirString? ?? _value.title,
+        date: identical(date, fhirSentinel)
+            ? _value.date
+            : (date as FhirDateTime?) ?? _value.date,
+        author: identical(author, fhirSentinel)
+            ? _value.author
+            : (author as List<Reference>?) ?? _value.author,
+        title: identical(title, fhirSentinel)
+            ? _value.title
+            : (title as FhirString?) ?? _value.title,
         confidentiality: identical(confidentiality, fhirSentinel)
             ? _value.confidentiality
             : confidentiality as FhirCode?,
@@ -177,7 +187,9 @@ class _$CompositionAttesterCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        mode: mode as CompositionAttestationMode? ?? _value.mode,
+        mode: identical(mode, fhirSentinel)
+            ? _value.mode
+            : (mode as CompositionAttestationMode?) ?? _value.mode,
         time:
             identical(time, fhirSentinel) ? _value.time : time as FhirDateTime?,
         party:
@@ -236,8 +248,12 @@ class _$CompositionRelatesToCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        code: code as DocumentRelationshipType? ?? _value.code,
-        targetX: targetX as Identifier? ?? _value.targetX,
+        code: identical(code, fhirSentinel)
+            ? _value.code
+            : (code as DocumentRelationshipType?) ?? _value.code,
+        targetX: identical(targetX, fhirSentinel)
+            ? _value.targetX
+            : (targetX as Identifier?) ?? _value.targetX,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,

@@ -73,17 +73,25 @@ class _$SubscriptionCopyWithImpl<T> implements $SubscriptionCopyWith<T> {
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        status: status as SubscriptionStatusCodes? ?? _value.status,
+        status: identical(status, fhirSentinel)
+            ? _value.status
+            : (status as SubscriptionStatusCodes?) ?? _value.status,
         contact: identical(contact, fhirSentinel)
             ? _value.contact
             : contact as List<ContactPoint>?,
         end: identical(end, fhirSentinel) ? _value.end : end as FhirInstant?,
-        reason: reason as FhirString? ?? _value.reason,
-        criteria: criteria as FhirString? ?? _value.criteria,
+        reason: identical(reason, fhirSentinel)
+            ? _value.reason
+            : (reason as FhirString?) ?? _value.reason,
+        criteria: identical(criteria, fhirSentinel)
+            ? _value.criteria
+            : (criteria as FhirString?) ?? _value.criteria,
         error: identical(error, fhirSentinel)
             ? _value.error
             : error as FhirString?,
-        channel: channel as SubscriptionChannel? ?? _value.channel,
+        channel: identical(channel, fhirSentinel)
+            ? _value.channel
+            : (channel as SubscriptionChannel?) ?? _value.channel,
       ),
     );
   }
@@ -139,7 +147,9 @@ class _$SubscriptionChannelCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        type: type as SubscriptionChannelType? ?? _value.type,
+        type: identical(type, fhirSentinel)
+            ? _value.type
+            : (type as SubscriptionChannelType?) ?? _value.type,
         endpoint: identical(endpoint, fhirSentinel)
             ? _value.endpoint
             : endpoint as FhirUrl?,

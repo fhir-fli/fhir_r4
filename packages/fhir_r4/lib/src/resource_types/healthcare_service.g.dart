@@ -364,7 +364,9 @@ class _$HealthcareServiceNotAvailableCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        description: description as FhirString? ?? _value.description,
+        description: identical(description, fhirSentinel)
+            ? _value.description
+            : (description as FhirString?) ?? _value.description,
         during:
             identical(during, fhirSentinel) ? _value.during : during as Period?,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)

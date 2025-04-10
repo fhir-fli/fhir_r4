@@ -150,22 +150,36 @@ class _$ExplanationOfBenefitCopyWithImpl<T>
         identifier: identical(identifier, fhirSentinel)
             ? _value.identifier
             : identifier as List<Identifier>?,
-        status: status as ExplanationOfBenefitStatus? ?? _value.status,
-        type: type as CodeableConcept? ?? _value.type,
+        status: identical(status, fhirSentinel)
+            ? _value.status
+            : (status as ExplanationOfBenefitStatus?) ?? _value.status,
+        type: identical(type, fhirSentinel)
+            ? _value.type
+            : (type as CodeableConcept?) ?? _value.type,
         subType: identical(subType, fhirSentinel)
             ? _value.subType
             : subType as CodeableConcept?,
-        use: use as Use? ?? _value.use,
-        patient: patient as Reference? ?? _value.patient,
+        use: identical(use, fhirSentinel)
+            ? _value.use
+            : (use as Use?) ?? _value.use,
+        patient: identical(patient, fhirSentinel)
+            ? _value.patient
+            : (patient as Reference?) ?? _value.patient,
         billablePeriod: identical(billablePeriod, fhirSentinel)
             ? _value.billablePeriod
             : billablePeriod as Period?,
-        created: created as FhirDateTime? ?? _value.created,
+        created: identical(created, fhirSentinel)
+            ? _value.created
+            : (created as FhirDateTime?) ?? _value.created,
         enterer: identical(enterer, fhirSentinel)
             ? _value.enterer
             : enterer as Reference?,
-        insurer: insurer as Reference? ?? _value.insurer,
-        provider: provider as Reference? ?? _value.provider,
+        insurer: identical(insurer, fhirSentinel)
+            ? _value.insurer
+            : (insurer as Reference?) ?? _value.insurer,
+        provider: identical(provider, fhirSentinel)
+            ? _value.provider
+            : (provider as Reference?) ?? _value.provider,
         priority: identical(priority, fhirSentinel)
             ? _value.priority
             : priority as CodeableConcept?,
@@ -198,7 +212,9 @@ class _$ExplanationOfBenefitCopyWithImpl<T>
         claimResponse: identical(claimResponse, fhirSentinel)
             ? _value.claimResponse
             : claimResponse as Reference?,
-        outcome: outcome as RemittanceOutcome? ?? _value.outcome,
+        outcome: identical(outcome, fhirSentinel)
+            ? _value.outcome
+            : (outcome as RemittanceOutcome?) ?? _value.outcome,
         disposition: identical(disposition, fhirSentinel)
             ? _value.disposition
             : disposition as FhirString?,
@@ -223,8 +239,10 @@ class _$ExplanationOfBenefitCopyWithImpl<T>
         precedence: identical(precedence, fhirSentinel)
             ? _value.precedence
             : precedence as FhirPositiveInt?,
-        insurance: insurance as List<ExplanationOfBenefitInsurance>? ??
-            _value.insurance,
+        insurance: identical(insurance, fhirSentinel)
+            ? _value.insurance
+            : (insurance as List<ExplanationOfBenefitInsurance>?) ??
+                _value.insurance,
         accident: identical(accident, fhirSentinel)
             ? _value.accident
             : accident as ExplanationOfBenefitAccident?,
@@ -439,8 +457,12 @@ class _$ExplanationOfBenefitCareTeamCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        sequence: sequence as FhirPositiveInt? ?? _value.sequence,
-        provider: provider as Reference? ?? _value.provider,
+        sequence: identical(sequence, fhirSentinel)
+            ? _value.sequence
+            : (sequence as FhirPositiveInt?) ?? _value.sequence,
+        provider: identical(provider, fhirSentinel)
+            ? _value.provider
+            : (provider as Reference?) ?? _value.provider,
         responsible: identical(responsible, fhirSentinel)
             ? _value.responsible
             : responsible as FhirBoolean?,
@@ -514,8 +536,12 @@ class _$ExplanationOfBenefitSupportingInfoCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        sequence: sequence as FhirPositiveInt? ?? _value.sequence,
-        category: category as CodeableConcept? ?? _value.category,
+        sequence: identical(sequence, fhirSentinel)
+            ? _value.sequence
+            : (sequence as FhirPositiveInt?) ?? _value.sequence,
+        category: identical(category, fhirSentinel)
+            ? _value.category
+            : (category as CodeableConcept?) ?? _value.category,
         code: identical(code, fhirSentinel)
             ? _value.code
             : code as CodeableConcept?,
@@ -590,8 +616,12 @@ class _$ExplanationOfBenefitDiagnosisCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        sequence: sequence as FhirPositiveInt? ?? _value.sequence,
-        diagnosisX: diagnosisX as CodeableConcept? ?? _value.diagnosisX,
+        sequence: identical(sequence, fhirSentinel)
+            ? _value.sequence
+            : (sequence as FhirPositiveInt?) ?? _value.sequence,
+        diagnosisX: identical(diagnosisX, fhirSentinel)
+            ? _value.diagnosisX
+            : (diagnosisX as CodeableConcept?) ?? _value.diagnosisX,
         type: identical(type, fhirSentinel)
             ? _value.type
             : type as List<CodeableConcept>?,
@@ -663,13 +693,17 @@ class _$ExplanationOfBenefitProcedureCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        sequence: sequence as FhirPositiveInt? ?? _value.sequence,
+        sequence: identical(sequence, fhirSentinel)
+            ? _value.sequence
+            : (sequence as FhirPositiveInt?) ?? _value.sequence,
         type: identical(type, fhirSentinel)
             ? _value.type
             : type as List<CodeableConcept>?,
         date:
             identical(date, fhirSentinel) ? _value.date : date as FhirDateTime?,
-        procedureX: procedureX as CodeableConcept? ?? _value.procedureX,
+        procedureX: identical(procedureX, fhirSentinel)
+            ? _value.procedureX
+            : (procedureX as CodeableConcept?) ?? _value.procedureX,
         udi:
             identical(udi, fhirSentinel) ? _value.udi : udi as List<Reference>?,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
@@ -730,8 +764,12 @@ class _$ExplanationOfBenefitInsuranceCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        focal: focal as FhirBoolean? ?? _value.focal,
-        coverage: coverage as Reference? ?? _value.coverage,
+        focal: identical(focal, fhirSentinel)
+            ? _value.focal
+            : (focal as FhirBoolean?) ?? _value.focal,
+        coverage: identical(coverage, fhirSentinel)
+            ? _value.coverage
+            : (coverage as Reference?) ?? _value.coverage,
         preAuthRef: identical(preAuthRef, fhirSentinel)
             ? _value.preAuthRef
             : preAuthRef as List<FhirString>?,
@@ -898,7 +936,9 @@ class _$ExplanationOfBenefitItemCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        sequence: sequence as FhirPositiveInt? ?? _value.sequence,
+        sequence: identical(sequence, fhirSentinel)
+            ? _value.sequence
+            : (sequence as FhirPositiveInt?) ?? _value.sequence,
         careTeamSequence: identical(careTeamSequence, fhirSentinel)
             ? _value.careTeamSequence
             : careTeamSequence as List<FhirPositiveInt>?,
@@ -917,8 +957,9 @@ class _$ExplanationOfBenefitItemCopyWithImpl<T>
         category: identical(category, fhirSentinel)
             ? _value.category
             : category as CodeableConcept?,
-        productOrService:
-            productOrService as CodeableConcept? ?? _value.productOrService,
+        productOrService: identical(productOrService, fhirSentinel)
+            ? _value.productOrService
+            : (productOrService as CodeableConcept?) ?? _value.productOrService,
         modifier: identical(modifier, fhirSentinel)
             ? _value.modifier
             : modifier as List<CodeableConcept>?,
@@ -1020,7 +1061,9 @@ class _$ExplanationOfBenefitAdjudicationCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        category: category as CodeableConcept? ?? _value.category,
+        category: identical(category, fhirSentinel)
+            ? _value.category
+            : (category as CodeableConcept?) ?? _value.category,
         reason: identical(reason, fhirSentinel)
             ? _value.reason
             : reason as CodeableConcept?,
@@ -1109,15 +1152,18 @@ class _$ExplanationOfBenefitDetailCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        sequence: sequence as FhirPositiveInt? ?? _value.sequence,
+        sequence: identical(sequence, fhirSentinel)
+            ? _value.sequence
+            : (sequence as FhirPositiveInt?) ?? _value.sequence,
         revenue: identical(revenue, fhirSentinel)
             ? _value.revenue
             : revenue as CodeableConcept?,
         category: identical(category, fhirSentinel)
             ? _value.category
             : category as CodeableConcept?,
-        productOrService:
-            productOrService as CodeableConcept? ?? _value.productOrService,
+        productOrService: identical(productOrService, fhirSentinel)
+            ? _value.productOrService
+            : (productOrService as CodeableConcept?) ?? _value.productOrService,
         modifier: identical(modifier, fhirSentinel)
             ? _value.modifier
             : modifier as List<CodeableConcept>?,
@@ -1223,15 +1269,18 @@ class _$ExplanationOfBenefitSubDetailCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        sequence: sequence as FhirPositiveInt? ?? _value.sequence,
+        sequence: identical(sequence, fhirSentinel)
+            ? _value.sequence
+            : (sequence as FhirPositiveInt?) ?? _value.sequence,
         revenue: identical(revenue, fhirSentinel)
             ? _value.revenue
             : revenue as CodeableConcept?,
         category: identical(category, fhirSentinel)
             ? _value.category
             : category as CodeableConcept?,
-        productOrService:
-            productOrService as CodeableConcept? ?? _value.productOrService,
+        productOrService: identical(productOrService, fhirSentinel)
+            ? _value.productOrService
+            : (productOrService as CodeableConcept?) ?? _value.productOrService,
         modifier: identical(modifier, fhirSentinel)
             ? _value.modifier
             : modifier as List<CodeableConcept>?,
@@ -1356,8 +1405,9 @@ class _$ExplanationOfBenefitAddItemCopyWithImpl<T>
         provider: identical(provider, fhirSentinel)
             ? _value.provider
             : provider as List<Reference>?,
-        productOrService:
-            productOrService as CodeableConcept? ?? _value.productOrService,
+        productOrService: identical(productOrService, fhirSentinel)
+            ? _value.productOrService
+            : (productOrService as CodeableConcept?) ?? _value.productOrService,
         modifier: identical(modifier, fhirSentinel)
             ? _value.modifier
             : modifier as List<CodeableConcept>?,
@@ -1465,8 +1515,9 @@ class _$ExplanationOfBenefitDetail1CopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        productOrService:
-            productOrService as CodeableConcept? ?? _value.productOrService,
+        productOrService: identical(productOrService, fhirSentinel)
+            ? _value.productOrService
+            : (productOrService as CodeableConcept?) ?? _value.productOrService,
         modifier: identical(modifier, fhirSentinel)
             ? _value.modifier
             : modifier as List<CodeableConcept>?,
@@ -1557,8 +1608,9 @@ class _$ExplanationOfBenefitSubDetail1CopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        productOrService:
-            productOrService as CodeableConcept? ?? _value.productOrService,
+        productOrService: identical(productOrService, fhirSentinel)
+            ? _value.productOrService
+            : (productOrService as CodeableConcept?) ?? _value.productOrService,
         modifier: identical(modifier, fhirSentinel)
             ? _value.modifier
             : modifier as List<CodeableConcept>?,
@@ -1634,8 +1686,12 @@ class _$ExplanationOfBenefitTotalCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        category: category as CodeableConcept? ?? _value.category,
-        amount: amount as Money? ?? _value.amount,
+        category: identical(category, fhirSentinel)
+            ? _value.category
+            : (category as CodeableConcept?) ?? _value.category,
+        amount: identical(amount, fhirSentinel)
+            ? _value.amount
+            : (amount as Money?) ?? _value.amount,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,
@@ -1850,7 +1906,9 @@ class _$ExplanationOfBenefitBenefitBalanceCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        category: category as CodeableConcept? ?? _value.category,
+        category: identical(category, fhirSentinel)
+            ? _value.category
+            : (category as CodeableConcept?) ?? _value.category,
         excluded: identical(excluded, fhirSentinel)
             ? _value.excluded
             : excluded as FhirBoolean?,
@@ -1929,7 +1987,9 @@ class _$ExplanationOfBenefitFinancialCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        type: type as CodeableConcept? ?? _value.type,
+        type: identical(type, fhirSentinel)
+            ? _value.type
+            : (type as CodeableConcept?) ?? _value.type,
         allowedX: identical(allowedX, fhirSentinel)
             ? _value.allowedX
             : allowedX as FhirUnsignedInt?,

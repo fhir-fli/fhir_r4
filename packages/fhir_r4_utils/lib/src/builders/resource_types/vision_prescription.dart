@@ -820,44 +820,6 @@ class VisionPrescriptionBuilder extends DomainResourceBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool identifier = false,
-    bool status = false,
-    bool created = false,
-    bool patient = false,
-    bool encounter = false,
-    bool dateWritten = false,
-    bool prescriber = false,
-    bool lensSpecification = false,
-  }) {
-    if (id) this.id = null;
-    if (meta) this.meta = null;
-    if (implicitRules) this.implicitRules = null;
-    if (language) this.language = null;
-    if (text) this.text = null;
-    if (contained) this.contained = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (identifier) this.identifier = null;
-    if (status) this.status = null;
-    if (created) this.created = null;
-    if (patient) this.patient = null;
-    if (encounter) this.encounter = null;
-    if (dateWritten) this.dateWritten = null;
-    if (prescriber) this.prescriber = null;
-    if (lensSpecification) this.lensSpecification = null;
-  }
-
   @override
   VisionPrescriptionBuilder clone() => throw UnimplementedError();
   @override
@@ -1962,46 +1924,6 @@ class VisionPrescriptionLensSpecificationBuilder
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool product = false,
-    bool eye = false,
-    bool sphere = false,
-    bool cylinder = false,
-    bool axis = false,
-    bool prism = false,
-    bool add = false,
-    bool power = false,
-    bool backCurve = false,
-    bool diameter = false,
-    bool duration = false,
-    bool color = false,
-    bool brand = false,
-    bool note = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (product) this.product = null;
-    if (eye) this.eye = null;
-    if (sphere) this.sphere = null;
-    if (cylinder) this.cylinder = null;
-    if (axis) this.axis = null;
-    if (prism) this.prism = null;
-    if (add) this.add = null;
-    if (power) this.power = null;
-    if (backCurve) this.backCurve = null;
-    if (diameter) this.diameter = null;
-    if (duration) this.duration = null;
-    if (color) this.color = null;
-    if (brand) this.brand = null;
-    if (note) this.note = null;
-  }
-
   @override
   VisionPrescriptionLensSpecificationBuilder clone() =>
       throw UnimplementedError();
@@ -2575,22 +2497,6 @@ class VisionPrescriptionPrismBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool amount = false,
-    bool base = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (amount) this.amount = null;
-    if (base) this.base = null;
   }
 
   @override

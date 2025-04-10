@@ -139,14 +139,18 @@ class _$TaskCopyWithImpl<T> implements $TaskCopyWith<T> {
         partOf: identical(partOf, fhirSentinel)
             ? _value.partOf
             : partOf as List<Reference>?,
-        status: status as TaskStatus? ?? _value.status,
+        status: identical(status, fhirSentinel)
+            ? _value.status
+            : (status as TaskStatus?) ?? _value.status,
         statusReason: identical(statusReason, fhirSentinel)
             ? _value.statusReason
             : statusReason as CodeableConcept?,
         businessStatus: identical(businessStatus, fhirSentinel)
             ? _value.businessStatus
             : businessStatus as CodeableConcept?,
-        intent: intent as TaskIntent? ?? _value.intent,
+        intent: identical(intent, fhirSentinel)
+            ? _value.intent
+            : (intent as TaskIntent?) ?? _value.intent,
         priority: identical(priority, fhirSentinel)
             ? _value.priority
             : priority as RequestPriority?,
@@ -316,8 +320,12 @@ class _$TaskInputCopyWithImpl<T> implements $TaskInputCopyWith<T> {
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        type: type as CodeableConcept? ?? _value.type,
-        valueX: valueX as FhirBase64Binary? ?? _value.valueX,
+        type: identical(type, fhirSentinel)
+            ? _value.type
+            : (type as CodeableConcept?) ?? _value.type,
+        valueX: identical(valueX, fhirSentinel)
+            ? _value.valueX
+            : (valueX as FhirBase64Binary?) ?? _value.valueX,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,
@@ -370,8 +378,12 @@ class _$TaskOutputCopyWithImpl<T> implements $TaskOutputCopyWith<T> {
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        type: type as CodeableConcept? ?? _value.type,
-        valueX: valueX as FhirBase64Binary? ?? _value.valueX,
+        type: identical(type, fhirSentinel)
+            ? _value.type
+            : (type as CodeableConcept?) ?? _value.type,
+        valueX: identical(valueX, fhirSentinel)
+            ? _value.valueX
+            : (valueX as FhirBase64Binary?) ?? _value.valueX,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,

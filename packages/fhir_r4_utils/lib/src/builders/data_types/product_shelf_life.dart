@@ -455,26 +455,6 @@ class ProductShelfLifeBuilder extends BackboneTypeBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool identifier = false,
-    bool type = false,
-    bool period = false,
-    bool specialPrecautionsForStorage = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (identifier) this.identifier = null;
-    if (type) this.type = null;
-    if (period) this.period = null;
-    if (specialPrecautionsForStorage) this.specialPrecautionsForStorage = null;
-  }
-
   @override
   ProductShelfLifeBuilder clone() => throw UnimplementedError();
   @override

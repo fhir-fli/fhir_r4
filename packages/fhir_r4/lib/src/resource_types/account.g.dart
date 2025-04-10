@@ -84,7 +84,9 @@ class _$AccountCopyWithImpl<T> implements $AccountCopyWith<T> {
         identifier: identical(identifier, fhirSentinel)
             ? _value.identifier
             : identifier as List<Identifier>?,
-        status: status as AccountStatus? ?? _value.status,
+        status: identical(status, fhirSentinel)
+            ? _value.status
+            : (status as AccountStatus?) ?? _value.status,
         type: identical(type, fhirSentinel)
             ? _value.type
             : type as CodeableConcept?,
@@ -157,7 +159,9 @@ class _$AccountCoverageCopyWithImpl<T> implements $AccountCoverageCopyWith<T> {
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        coverage: coverage as Reference? ?? _value.coverage,
+        coverage: identical(coverage, fhirSentinel)
+            ? _value.coverage
+            : (coverage as Reference?) ?? _value.coverage,
         priority: identical(priority, fhirSentinel)
             ? _value.priority
             : priority as FhirPositiveInt?,
@@ -217,7 +221,9 @@ class _$AccountGuarantorCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        party: party as Reference? ?? _value.party,
+        party: identical(party, fhirSentinel)
+            ? _value.party
+            : (party as Reference?) ?? _value.party,
         onHold: identical(onHold, fhirSentinel)
             ? _value.onHold
             : onHold as FhirBoolean?,

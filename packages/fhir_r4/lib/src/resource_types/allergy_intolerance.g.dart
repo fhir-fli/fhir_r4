@@ -114,7 +114,9 @@ class _$AllergyIntoleranceCopyWithImpl<T>
         code: identical(code, fhirSentinel)
             ? _value.code
             : code as CodeableConcept?,
-        patient: patient as Reference? ?? _value.patient,
+        patient: identical(patient, fhirSentinel)
+            ? _value.patient
+            : (patient as Reference?) ?? _value.patient,
         encounter: identical(encounter, fhirSentinel)
             ? _value.encounter
             : encounter as Reference?,
@@ -203,8 +205,9 @@ class _$AllergyIntoleranceReactionCopyWithImpl<T>
         substance: identical(substance, fhirSentinel)
             ? _value.substance
             : substance as CodeableConcept?,
-        manifestation:
-            manifestation as List<CodeableConcept>? ?? _value.manifestation,
+        manifestation: identical(manifestation, fhirSentinel)
+            ? _value.manifestation
+            : (manifestation as List<CodeableConcept>?) ?? _value.manifestation,
         description: identical(description, fhirSentinel)
             ? _value.description
             : description as FhirString?,

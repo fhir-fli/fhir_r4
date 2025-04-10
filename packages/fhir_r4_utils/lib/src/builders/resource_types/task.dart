@@ -1720,90 +1720,6 @@ class TaskBuilder extends DomainResourceBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool identifier = false,
-    bool instantiatesCanonical = false,
-    bool instantiatesUri = false,
-    bool basedOn = false,
-    bool groupIdentifier = false,
-    bool partOf = false,
-    bool status = false,
-    bool statusReason = false,
-    bool businessStatus = false,
-    bool intent = false,
-    bool priority = false,
-    bool code = false,
-    bool description = false,
-    bool focus = false,
-    bool for_ = false,
-    bool encounter = false,
-    bool executionPeriod = false,
-    bool authoredOn = false,
-    bool lastModified = false,
-    bool requester = false,
-    bool performerType = false,
-    bool owner = false,
-    bool location = false,
-    bool reasonCode = false,
-    bool reasonReference = false,
-    bool insurance = false,
-    bool note = false,
-    bool relevantHistory = false,
-    bool restriction = false,
-    bool input = false,
-    bool output = false,
-  }) {
-    if (id) this.id = null;
-    if (meta) this.meta = null;
-    if (implicitRules) this.implicitRules = null;
-    if (language) this.language = null;
-    if (text) this.text = null;
-    if (contained) this.contained = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (identifier) this.identifier = null;
-    if (instantiatesCanonical) this.instantiatesCanonical = null;
-    if (instantiatesUri) this.instantiatesUri = null;
-    if (basedOn) this.basedOn = null;
-    if (groupIdentifier) this.groupIdentifier = null;
-    if (partOf) this.partOf = null;
-    if (status) this.status = null;
-    if (statusReason) this.statusReason = null;
-    if (businessStatus) this.businessStatus = null;
-    if (intent) this.intent = null;
-    if (priority) this.priority = null;
-    if (code) this.code = null;
-    if (description) this.description = null;
-    if (focus) this.focus = null;
-    if (for_) this.for_ = null;
-    if (encounter) this.encounter = null;
-    if (executionPeriod) this.executionPeriod = null;
-    if (authoredOn) this.authoredOn = null;
-    if (lastModified) this.lastModified = null;
-    if (requester) this.requester = null;
-    if (performerType) this.performerType = null;
-    if (owner) this.owner = null;
-    if (location) this.location = null;
-    if (reasonCode) this.reasonCode = null;
-    if (reasonReference) this.reasonReference = null;
-    if (insurance) this.insurance = null;
-    if (note) this.note = null;
-    if (relevantHistory) this.relevantHistory = null;
-    if (restriction) this.restriction = null;
-    if (input) this.input = null;
-    if (output) this.output = null;
-  }
-
   @override
   TaskBuilder clone() => throw UnimplementedError();
   @override
@@ -2581,24 +2497,6 @@ class TaskRestrictionBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool repetitions = false,
-    bool period = false,
-    bool recipient = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (repetitions) this.repetitions = null;
-    if (period) this.period = null;
-    if (recipient) this.recipient = null;
   }
 
   @override
@@ -4529,22 +4427,6 @@ class TaskInputBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool type = false,
-    bool value = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (type) this.type = null;
-    if (value) valueX = null;
-  }
-
   @override
   TaskInputBuilder clone() => throw UnimplementedError();
   @override
@@ -6462,22 +6344,6 @@ class TaskOutputBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool type = false,
-    bool value = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (type) this.type = null;
-    if (value) valueX = null;
   }
 
   @override

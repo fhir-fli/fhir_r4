@@ -290,6 +290,99 @@ class ImmunizationRecommendation extends DomainResource {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> listChildrenNames() {
+    return [
+      'id',
+      'meta',
+      'implicitRules',
+      'language',
+      'text',
+      'contained',
+      'extension',
+      'modifierExtension',
+      'identifier',
+      'patient',
+      'date',
+      'authority',
+      'recommendation',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> getChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'meta':
+        if (meta != null) {
+          fields.add(meta!);
+        }
+      case 'implicitRules':
+        if (implicitRules != null) {
+          fields.add(implicitRules!);
+        }
+      case 'language':
+        if (language != null) {
+          fields.add(language!);
+        }
+      case 'text':
+        if (text != null) {
+          fields.add(text!);
+        }
+      case 'contained':
+        if (contained != null) {
+          fields.addAll(contained!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'identifier':
+        if (identifier != null) {
+          fields.addAll(identifier!);
+        }
+      case 'patient':
+        fields.add(patient);
+      case 'date':
+        fields.add(date);
+      case 'authority':
+        if (authority != null) {
+          fields.add(authority!);
+        }
+      case 'recommendation':
+        fields.addAll(recommendation);
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildByName(String name) {
+    final values = getChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   ImmunizationRecommendation clone() => copyWith();
 
@@ -770,6 +863,129 @@ class ImmunizationRecommendationRecommendation extends BackboneElement {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> listChildrenNames() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'vaccineCode',
+      'targetDisease',
+      'contraindicatedVaccineCode',
+      'forecastStatus',
+      'forecastReason',
+      'dateCriterion',
+      'description',
+      'series',
+      'doseNumberX',
+      'seriesDosesX',
+      'supportingImmunization',
+      'supportingPatientInformation',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> getChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'vaccineCode':
+        if (vaccineCode != null) {
+          fields.addAll(vaccineCode!);
+        }
+      case 'targetDisease':
+        if (targetDisease != null) {
+          fields.add(targetDisease!);
+        }
+      case 'contraindicatedVaccineCode':
+        if (contraindicatedVaccineCode != null) {
+          fields.addAll(contraindicatedVaccineCode!);
+        }
+      case 'forecastStatus':
+        fields.add(forecastStatus);
+      case 'forecastReason':
+        if (forecastReason != null) {
+          fields.addAll(forecastReason!);
+        }
+      case 'dateCriterion':
+        if (dateCriterion != null) {
+          fields.addAll(dateCriterion!);
+        }
+      case 'description':
+        if (description != null) {
+          fields.add(description!);
+        }
+      case 'series':
+        if (series != null) {
+          fields.add(series!);
+        }
+      case 'doseNumber':
+        fields.add(doseNumberX!);
+      case 'doseNumberX':
+        fields.add(doseNumberX!);
+      case 'doseNumberPositiveInt':
+        if (doseNumberX is FhirPositiveInt) {
+          fields.add(doseNumberX!);
+        }
+      case 'doseNumberString':
+        if (doseNumberX is FhirString) {
+          fields.add(doseNumberX!);
+        }
+      case 'seriesDoses':
+        fields.add(seriesDosesX!);
+      case 'seriesDosesX':
+        fields.add(seriesDosesX!);
+      case 'seriesDosesPositiveInt':
+        if (seriesDosesX is FhirPositiveInt) {
+          fields.add(seriesDosesX!);
+        }
+      case 'seriesDosesString':
+        if (seriesDosesX is FhirString) {
+          fields.add(seriesDosesX!);
+        }
+      case 'supportingImmunization':
+        if (supportingImmunization != null) {
+          fields.addAll(supportingImmunization!);
+        }
+      case 'supportingPatientInformation':
+        if (supportingPatientInformation != null) {
+          fields.addAll(supportingPatientInformation!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildByName(String name) {
+    final values = getChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   ImmunizationRecommendationRecommendation clone() => copyWith();
 
@@ -1073,6 +1289,61 @@ class ImmunizationRecommendationDateCriterion extends BackboneElement {
       value,
     );
     return json;
+  }
+
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> listChildrenNames() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'code',
+      'value',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> getChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'code':
+        fields.add(code);
+      case 'value':
+        fields.add(value);
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildByName(String name) {
+    final values = getChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
   }
 
   @override

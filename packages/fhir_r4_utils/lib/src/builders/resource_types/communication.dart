@@ -1529,74 +1529,6 @@ class CommunicationBuilder extends DomainResourceBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool identifier = false,
-    bool instantiatesCanonical = false,
-    bool instantiatesUri = false,
-    bool basedOn = false,
-    bool partOf = false,
-    bool inResponseTo = false,
-    bool status = false,
-    bool statusReason = false,
-    bool category = false,
-    bool priority = false,
-    bool medium = false,
-    bool subject = false,
-    bool topic = false,
-    bool about = false,
-    bool encounter = false,
-    bool sent = false,
-    bool received = false,
-    bool recipient = false,
-    bool sender = false,
-    bool reasonCode = false,
-    bool reasonReference = false,
-    bool payload = false,
-    bool note = false,
-  }) {
-    if (id) this.id = null;
-    if (meta) this.meta = null;
-    if (implicitRules) this.implicitRules = null;
-    if (language) this.language = null;
-    if (text) this.text = null;
-    if (contained) this.contained = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (identifier) this.identifier = null;
-    if (instantiatesCanonical) this.instantiatesCanonical = null;
-    if (instantiatesUri) this.instantiatesUri = null;
-    if (basedOn) this.basedOn = null;
-    if (partOf) this.partOf = null;
-    if (inResponseTo) this.inResponseTo = null;
-    if (status) this.status = null;
-    if (statusReason) this.statusReason = null;
-    if (category) this.category = null;
-    if (priority) this.priority = null;
-    if (medium) this.medium = null;
-    if (subject) this.subject = null;
-    if (topic) this.topic = null;
-    if (about) this.about = null;
-    if (encounter) this.encounter = null;
-    if (sent) this.sent = null;
-    if (received) this.received = null;
-    if (recipient) this.recipient = null;
-    if (sender) this.sender = null;
-    if (reasonCode) this.reasonCode = null;
-    if (reasonReference) this.reasonReference = null;
-    if (payload) this.payload = null;
-    if (note) this.note = null;
-  }
-
   @override
   CommunicationBuilder clone() => throw UnimplementedError();
   @override
@@ -2315,20 +2247,6 @@ class CommunicationPayloadBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool content = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (content) contentX = null;
   }
 
   @override

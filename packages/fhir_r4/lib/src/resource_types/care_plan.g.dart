@@ -123,8 +123,12 @@ class _$CarePlanCopyWithImpl<T> implements $CarePlanCopyWith<T> {
         partOf: identical(partOf, fhirSentinel)
             ? _value.partOf
             : partOf as List<Reference>?,
-        status: status as RequestStatus? ?? _value.status,
-        intent: intent as CarePlanIntent? ?? _value.intent,
+        status: identical(status, fhirSentinel)
+            ? _value.status
+            : (status as RequestStatus?) ?? _value.status,
+        intent: identical(intent, fhirSentinel)
+            ? _value.intent
+            : (intent as CarePlanIntent?) ?? _value.intent,
         category: identical(category, fhirSentinel)
             ? _value.category
             : category as List<CodeableConcept>?,
@@ -134,7 +138,9 @@ class _$CarePlanCopyWithImpl<T> implements $CarePlanCopyWith<T> {
         description: identical(description, fhirSentinel)
             ? _value.description
             : description as FhirString?,
-        subject: subject as Reference? ?? _value.subject,
+        subject: identical(subject, fhirSentinel)
+            ? _value.subject
+            : (subject as Reference?) ?? _value.subject,
         encounter: identical(encounter, fhirSentinel)
             ? _value.encounter
             : encounter as Reference?,
@@ -341,7 +347,9 @@ class _$CarePlanDetailCopyWithImpl<T> implements $CarePlanDetailCopyWith<T> {
         goal: identical(goal, fhirSentinel)
             ? _value.goal
             : goal as List<Reference>?,
-        status: status as CarePlanActivityStatus? ?? _value.status,
+        status: identical(status, fhirSentinel)
+            ? _value.status
+            : (status as CarePlanActivityStatus?) ?? _value.status,
         statusReason: identical(statusReason, fhirSentinel)
             ? _value.statusReason
             : statusReason as CodeableConcept?,

@@ -1547,74 +1547,6 @@ class CarePlanBuilder extends DomainResourceBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool identifier = false,
-    bool instantiatesCanonical = false,
-    bool instantiatesUri = false,
-    bool basedOn = false,
-    bool replaces = false,
-    bool partOf = false,
-    bool status = false,
-    bool intent = false,
-    bool category = false,
-    bool title = false,
-    bool description = false,
-    bool subject = false,
-    bool encounter = false,
-    bool period = false,
-    bool created = false,
-    bool author = false,
-    bool contributor = false,
-    bool careTeam = false,
-    bool addresses = false,
-    bool supportingInfo = false,
-    bool goal = false,
-    bool activity = false,
-    bool note = false,
-  }) {
-    if (id) this.id = null;
-    if (meta) this.meta = null;
-    if (implicitRules) this.implicitRules = null;
-    if (language) this.language = null;
-    if (text) this.text = null;
-    if (contained) this.contained = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (identifier) this.identifier = null;
-    if (instantiatesCanonical) this.instantiatesCanonical = null;
-    if (instantiatesUri) this.instantiatesUri = null;
-    if (basedOn) this.basedOn = null;
-    if (replaces) this.replaces = null;
-    if (partOf) this.partOf = null;
-    if (status) this.status = null;
-    if (intent) this.intent = null;
-    if (category) this.category = null;
-    if (title) this.title = null;
-    if (description) this.description = null;
-    if (subject) this.subject = null;
-    if (encounter) this.encounter = null;
-    if (period) this.period = null;
-    if (created) this.created = null;
-    if (author) this.author = null;
-    if (contributor) this.contributor = null;
-    if (careTeam) this.careTeam = null;
-    if (addresses) this.addresses = null;
-    if (supportingInfo) this.supportingInfo = null;
-    if (goal) this.goal = null;
-    if (activity) this.activity = null;
-    if (note) this.note = null;
-  }
-
   @override
   CarePlanBuilder clone() => throw UnimplementedError();
   @override
@@ -2406,28 +2338,6 @@ class CarePlanActivityBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool outcomeCodeableConcept = false,
-    bool outcomeReference = false,
-    bool progress = false,
-    bool reference = false,
-    bool detail = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (outcomeCodeableConcept) this.outcomeCodeableConcept = null;
-    if (outcomeReference) this.outcomeReference = null;
-    if (progress) this.progress = null;
-    if (reference) this.reference = null;
-    if (detail) this.detail = null;
   }
 
   @override
@@ -3755,52 +3665,6 @@ class CarePlanDetailBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool kind = false,
-    bool instantiatesCanonical = false,
-    bool instantiatesUri = false,
-    bool code = false,
-    bool reasonCode = false,
-    bool reasonReference = false,
-    bool goal = false,
-    bool status = false,
-    bool statusReason = false,
-    bool doNotPerform = false,
-    bool scheduled = false,
-    bool location = false,
-    bool performer = false,
-    bool product = false,
-    bool dailyAmount = false,
-    bool quantity = false,
-    bool description = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (kind) this.kind = null;
-    if (instantiatesCanonical) this.instantiatesCanonical = null;
-    if (instantiatesUri) this.instantiatesUri = null;
-    if (code) this.code = null;
-    if (reasonCode) this.reasonCode = null;
-    if (reasonReference) this.reasonReference = null;
-    if (goal) this.goal = null;
-    if (status) this.status = null;
-    if (statusReason) this.statusReason = null;
-    if (doNotPerform) this.doNotPerform = null;
-    if (scheduled) scheduledX = null;
-    if (location) this.location = null;
-    if (performer) this.performer = null;
-    if (product) productX = null;
-    if (dailyAmount) this.dailyAmount = null;
-    if (quantity) this.quantity = null;
-    if (description) this.description = null;
   }
 
   @override

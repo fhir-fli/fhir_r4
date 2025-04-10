@@ -1117,56 +1117,6 @@ class InsurancePlanBuilder extends DomainResourceBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool identifier = false,
-    bool status = false,
-    bool type = false,
-    bool name = false,
-    bool alias = false,
-    bool period = false,
-    bool ownedBy = false,
-    bool administeredBy = false,
-    bool coverageArea = false,
-    bool contact = false,
-    bool endpoint = false,
-    bool network = false,
-    bool coverage = false,
-    bool plan = false,
-  }) {
-    if (id) this.id = null;
-    if (meta) this.meta = null;
-    if (implicitRules) this.implicitRules = null;
-    if (language) this.language = null;
-    if (text) this.text = null;
-    if (contained) this.contained = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (identifier) this.identifier = null;
-    if (status) this.status = null;
-    if (type) this.type = null;
-    if (name) this.name = null;
-    if (alias) this.alias = null;
-    if (period) this.period = null;
-    if (ownedBy) this.ownedBy = null;
-    if (administeredBy) this.administeredBy = null;
-    if (coverageArea) this.coverageArea = null;
-    if (contact) this.contact = null;
-    if (endpoint) this.endpoint = null;
-    if (network) this.network = null;
-    if (coverage) this.coverage = null;
-    if (plan) this.plan = null;
-  }
-
   @override
   InsurancePlanBuilder clone() => throw UnimplementedError();
   @override
@@ -1821,26 +1771,6 @@ class InsurancePlanContactBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool purpose = false,
-    bool name = false,
-    bool telecom = false,
-    bool address = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (purpose) this.purpose = null;
-    if (name) this.name = null;
-    if (telecom) this.telecom = null;
-    if (address) this.address = null;
-  }
-
   @override
   InsurancePlanContactBuilder clone() => throw UnimplementedError();
   @override
@@ -2359,24 +2289,6 @@ class InsurancePlanCoverageBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool type = false,
-    bool network = false,
-    bool benefit = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (type) this.type = null;
-    if (network) this.network = null;
-    if (benefit) this.benefit = null;
-  }
-
   @override
   InsurancePlanCoverageBuilder clone() => throw UnimplementedError();
   @override
@@ -2885,24 +2797,6 @@ class InsurancePlanBenefitBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool type = false,
-    bool requirement = false,
-    bool limit = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (type) this.type = null;
-    if (requirement) this.requirement = null;
-    if (limit) this.limit = null;
-  }
-
   @override
   InsurancePlanBenefitBuilder clone() => throw UnimplementedError();
   @override
@@ -3352,22 +3246,6 @@ class InsurancePlanLimitBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool value = false,
-    bool code = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (value) this.value = null;
-    if (code) this.code = null;
   }
 
   @override
@@ -4003,30 +3881,6 @@ class InsurancePlanPlanBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool identifier = false,
-    bool type = false,
-    bool coverageArea = false,
-    bool network = false,
-    bool generalCost = false,
-    bool specificCost = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (identifier) this.identifier = null;
-    if (type) this.type = null;
-    if (coverageArea) this.coverageArea = null;
-    if (network) this.network = null;
-    if (generalCost) this.generalCost = null;
-    if (specificCost) this.specificCost = null;
-  }
-
   @override
   InsurancePlanPlanBuilder clone() => throw UnimplementedError();
   @override
@@ -4597,26 +4451,6 @@ class InsurancePlanGeneralCostBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool type = false,
-    bool groupSize = false,
-    bool cost = false,
-    bool comment = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (type) this.type = null;
-    if (groupSize) this.groupSize = null;
-    if (cost) this.cost = null;
-    if (comment) this.comment = null;
-  }
-
   @override
   InsurancePlanGeneralCostBuilder clone() => throw UnimplementedError();
   @override
@@ -5092,22 +4926,6 @@ class InsurancePlanSpecificCostBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool category = false,
-    bool benefit = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (category) this.category = null;
-    if (benefit) this.benefit = null;
-  }
-
   @override
   InsurancePlanSpecificCostBuilder clone() => throw UnimplementedError();
   @override
@@ -5563,22 +5381,6 @@ class InsurancePlanBenefit1Builder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool type = false,
-    bool cost = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (type) this.type = null;
-    if (cost) this.cost = null;
   }
 
   @override
@@ -6103,26 +5905,6 @@ class InsurancePlanCostBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool type = false,
-    bool applicability = false,
-    bool qualifiers = false,
-    bool value = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (type) this.type = null;
-    if (applicability) this.applicability = null;
-    if (qualifiers) this.qualifiers = null;
-    if (value) this.value = null;
   }
 
   @override

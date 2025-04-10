@@ -1749,80 +1749,6 @@ class ChargeItemBuilder extends DomainResourceBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool identifier = false,
-    bool definitionUri = false,
-    bool definitionCanonical = false,
-    bool status = false,
-    bool partOf = false,
-    bool code = false,
-    bool subject = false,
-    bool context = false,
-    bool occurrence = false,
-    bool performer = false,
-    bool performingOrganization = false,
-    bool requestingOrganization = false,
-    bool costCenter = false,
-    bool quantity = false,
-    bool bodysite = false,
-    bool factorOverride = false,
-    bool priceOverride = false,
-    bool overrideReason = false,
-    bool enterer = false,
-    bool enteredDate = false,
-    bool reason = false,
-    bool service = false,
-    bool product = false,
-    bool account = false,
-    bool note = false,
-    bool supportingInformation = false,
-  }) {
-    if (id) this.id = null;
-    if (meta) this.meta = null;
-    if (implicitRules) this.implicitRules = null;
-    if (language) this.language = null;
-    if (text) this.text = null;
-    if (contained) this.contained = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (identifier) this.identifier = null;
-    if (definitionUri) this.definitionUri = null;
-    if (definitionCanonical) this.definitionCanonical = null;
-    if (status) this.status = null;
-    if (partOf) this.partOf = null;
-    if (code) this.code = null;
-    if (subject) this.subject = null;
-    if (context) this.context = null;
-    if (occurrence) occurrenceX = null;
-    if (performer) this.performer = null;
-    if (performingOrganization) this.performingOrganization = null;
-    if (requestingOrganization) this.requestingOrganization = null;
-    if (costCenter) this.costCenter = null;
-    if (quantity) this.quantity = null;
-    if (bodysite) this.bodysite = null;
-    if (factorOverride) this.factorOverride = null;
-    if (priceOverride) this.priceOverride = null;
-    if (overrideReason) this.overrideReason = null;
-    if (enterer) this.enterer = null;
-    if (enteredDate) this.enteredDate = null;
-    if (reason) this.reason = null;
-    if (service) this.service = null;
-    if (product) productX = null;
-    if (account) this.account = null;
-    if (note) this.note = null;
-    if (supportingInformation) this.supportingInformation = null;
-  }
-
   @override
   ChargeItemBuilder clone() => throw UnimplementedError();
   @override
@@ -2501,22 +2427,6 @@ class ChargeItemPerformerBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool function_ = false,
-    bool actor = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (function_) this.function_ = null;
-    if (actor) this.actor = null;
   }
 
   @override

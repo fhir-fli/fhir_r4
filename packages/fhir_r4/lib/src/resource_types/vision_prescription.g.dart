@@ -80,16 +80,28 @@ class _$VisionPrescriptionCopyWithImpl<T>
         identifier: identical(identifier, fhirSentinel)
             ? _value.identifier
             : identifier as List<Identifier>?,
-        status: status as FinancialResourceStatusCodes? ?? _value.status,
-        created: created as FhirDateTime? ?? _value.created,
-        patient: patient as Reference? ?? _value.patient,
+        status: identical(status, fhirSentinel)
+            ? _value.status
+            : (status as FinancialResourceStatusCodes?) ?? _value.status,
+        created: identical(created, fhirSentinel)
+            ? _value.created
+            : (created as FhirDateTime?) ?? _value.created,
+        patient: identical(patient, fhirSentinel)
+            ? _value.patient
+            : (patient as Reference?) ?? _value.patient,
         encounter: identical(encounter, fhirSentinel)
             ? _value.encounter
             : encounter as Reference?,
-        dateWritten: dateWritten as FhirDateTime? ?? _value.dateWritten,
-        prescriber: prescriber as Reference? ?? _value.prescriber,
-        lensSpecification:
-            lensSpecification as List<VisionPrescriptionLensSpecification>? ??
+        dateWritten: identical(dateWritten, fhirSentinel)
+            ? _value.dateWritten
+            : (dateWritten as FhirDateTime?) ?? _value.dateWritten,
+        prescriber: identical(prescriber, fhirSentinel)
+            ? _value.prescriber
+            : (prescriber as Reference?) ?? _value.prescriber,
+        lensSpecification: identical(lensSpecification, fhirSentinel)
+            ? _value.lensSpecification
+            : (lensSpecification
+                    as List<VisionPrescriptionLensSpecification>?) ??
                 _value.lensSpecification,
       ),
     );
@@ -166,8 +178,12 @@ class _$VisionPrescriptionLensSpecificationCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        product: product as CodeableConcept? ?? _value.product,
-        eye: eye as VisionEyes? ?? _value.eye,
+        product: identical(product, fhirSentinel)
+            ? _value.product
+            : (product as CodeableConcept?) ?? _value.product,
+        eye: identical(eye, fhirSentinel)
+            ? _value.eye
+            : (eye as VisionEyes?) ?? _value.eye,
         sphere: identical(sphere, fhirSentinel)
             ? _value.sphere
             : sphere as FhirDecimal?,
@@ -258,8 +274,12 @@ class _$VisionPrescriptionPrismCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        amount: amount as FhirDecimal? ?? _value.amount,
-        base: base as VisionBase? ?? _value.base,
+        amount: identical(amount, fhirSentinel)
+            ? _value.amount
+            : (amount as FhirDecimal?) ?? _value.amount,
+        base: identical(base, fhirSentinel)
+            ? _value.base
+            : (base as VisionBase?) ?? _value.base,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,

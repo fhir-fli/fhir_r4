@@ -784,40 +784,6 @@ class ProdCharacteristicBuilder extends BackboneTypeBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool height = false,
-    bool width = false,
-    bool depth = false,
-    bool weight = false,
-    bool nominalVolume = false,
-    bool externalDiameter = false,
-    bool shape = false,
-    bool color = false,
-    bool imprint = false,
-    bool image = false,
-    bool scoring = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (height) this.height = null;
-    if (width) this.width = null;
-    if (depth) this.depth = null;
-    if (weight) this.weight = null;
-    if (nominalVolume) this.nominalVolume = null;
-    if (externalDiameter) this.externalDiameter = null;
-    if (shape) this.shape = null;
-    if (color) this.color = null;
-    if (imprint) this.imprint = null;
-    if (image) this.image = null;
-    if (scoring) this.scoring = null;
-  }
-
   @override
   ProdCharacteristicBuilder clone() => throw UnimplementedError();
   @override

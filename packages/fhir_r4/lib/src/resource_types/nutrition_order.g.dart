@@ -105,13 +105,21 @@ class _$NutritionOrderCopyWithImpl<T> implements $NutritionOrderCopyWith<T> {
         instantiates: identical(instantiates, fhirSentinel)
             ? _value.instantiates
             : instantiates as List<FhirUri>?,
-        status: status as RequestStatus? ?? _value.status,
-        intent: intent as RequestIntent? ?? _value.intent,
-        patient: patient as Reference? ?? _value.patient,
+        status: identical(status, fhirSentinel)
+            ? _value.status
+            : (status as RequestStatus?) ?? _value.status,
+        intent: identical(intent, fhirSentinel)
+            ? _value.intent
+            : (intent as RequestIntent?) ?? _value.intent,
+        patient: identical(patient, fhirSentinel)
+            ? _value.patient
+            : (patient as Reference?) ?? _value.patient,
         encounter: identical(encounter, fhirSentinel)
             ? _value.encounter
             : encounter as Reference?,
-        dateTime: dateTime as FhirDateTime? ?? _value.dateTime,
+        dateTime: identical(dateTime, fhirSentinel)
+            ? _value.dateTime
+            : (dateTime as FhirDateTime?) ?? _value.dateTime,
         orderer: identical(orderer, fhirSentinel)
             ? _value.orderer
             : orderer as Reference?,

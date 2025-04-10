@@ -11,7 +11,6 @@ class TLeft6 extends Element {
     super.extension_,
     this.a23,
     super.disallowExtensions,
-    super.objectPath = 'TLeft6',
   });
 
   /// FromJson Factory Constructor
@@ -48,24 +47,6 @@ class TLeft6 extends Element {
   final List<FhirString>? a23;
 
   @override
-  TLeft6 copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirString>? a23,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    return TLeft6(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      a23: a23 ?? this.a23,
-    );
-  }
-
-  @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{'resourceType': 'TLeft'};
     if (id != null) json['id'] = id!.valueString;
@@ -76,37 +57,6 @@ class TLeft6 extends Element {
       json['a23'] = a23!.map((e) => e.valueString).toList();
     }
     return json;
-  }
-
-  @override
-  List<String> listChildrenNames() => ['id', 'extension', 'a23'];
-
-  @override
-  List<FhirBase> getChildrenByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    final fields = <FhirBase>[];
-    switch (fieldName) {
-      case 'id':
-        if (id != null) fields.add(id!);
-      case 'extension':
-        if (extension_ != null) fields.addAll(extension_!);
-      case 'a23':
-        if (a23 != null) fields.addAll(a23!);
-      default:
-        if (checkValid) throw ArgumentError('Invalid field name: $fieldName');
-    }
-    return fields;
-  }
-
-  @override
-  FhirBase? getChildByName(String name) {
-    final values = getChildrenByName(name);
-    if (values.length > 1) {
-      throw StateError('Multiple values found for $name');
-    }
-    return values.isNotEmpty ? values.first : null;
   }
 
   @override
@@ -327,17 +277,6 @@ class TLeft6Builder extends ElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool a23 = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (a23) this.a23 = null;
   }
 
   @override

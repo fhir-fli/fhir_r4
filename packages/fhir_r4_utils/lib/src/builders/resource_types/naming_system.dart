@@ -1081,54 +1081,6 @@ class NamingSystemBuilder extends DomainResourceBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool name = false,
-    bool status = false,
-    bool kind = false,
-    bool date = false,
-    bool publisher = false,
-    bool contact = false,
-    bool responsible = false,
-    bool type = false,
-    bool description = false,
-    bool useContext = false,
-    bool jurisdiction = false,
-    bool usage = false,
-    bool uniqueId = false,
-  }) {
-    if (id) this.id = null;
-    if (meta) this.meta = null;
-    if (implicitRules) this.implicitRules = null;
-    if (language) this.language = null;
-    if (text) this.text = null;
-    if (contained) this.contained = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (name) this.name = null;
-    if (status) this.status = null;
-    if (kind) this.kind = null;
-    if (date) this.date = null;
-    if (publisher) this.publisher = null;
-    if (contact) this.contact = null;
-    if (responsible) this.responsible = null;
-    if (type) this.type = null;
-    if (description) this.description = null;
-    if (useContext) this.useContext = null;
-    if (jurisdiction) this.jurisdiction = null;
-    if (usage) this.usage = null;
-    if (uniqueId) this.uniqueId = null;
-  }
-
   @override
   NamingSystemBuilder clone() => throw UnimplementedError();
   @override
@@ -1853,28 +1805,6 @@ class NamingSystemUniqueIdBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool type = false,
-    bool value = false,
-    bool preferred = false,
-    bool comment = false,
-    bool period = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (type) this.type = null;
-    if (value) this.value = null;
-    if (preferred) this.preferred = null;
-    if (comment) this.comment = null;
-    if (period) this.period = null;
   }
 
   @override

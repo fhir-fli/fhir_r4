@@ -2369,111 +2369,6 @@ class MeasureBuilder extends CanonicalResourceBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool url = false,
-    bool identifier = false,
-    bool version = false,
-    bool name = false,
-    bool title = false,
-    bool subtitle = false,
-    bool status = false,
-    bool experimental = false,
-    bool subject = false,
-    bool date = false,
-    bool publisher = false,
-    bool contact = false,
-    bool description = false,
-    bool useContext = false,
-    bool jurisdiction = false,
-    bool purpose = false,
-    bool usage = false,
-    bool copyright = false,
-    bool approvalDate = false,
-    bool lastReviewDate = false,
-    bool effectivePeriod = false,
-    bool topic = false,
-    bool author = false,
-    bool editor = false,
-    bool reviewer = false,
-    bool endorser = false,
-    bool relatedArtifact = false,
-    bool library_ = false,
-    bool disclaimer = false,
-    bool scoring = false,
-    bool compositeScoring = false,
-    bool type = false,
-    bool riskAdjustment = false,
-    bool rateAggregation = false,
-    bool rationale = false,
-    bool clinicalRecommendationStatement = false,
-    bool improvementNotation = false,
-    bool definition = false,
-    bool guidance = false,
-    bool group = false,
-    bool supplementalData = false,
-  }) {
-    if (id) this.id = null;
-    if (meta) this.meta = null;
-    if (implicitRules) this.implicitRules = null;
-    if (language) this.language = null;
-    if (text) this.text = null;
-    if (contained) this.contained = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (url) this.url = null;
-    if (identifier) this.identifier = null;
-    if (version) this.version = null;
-    if (name) this.name = null;
-    if (title) this.title = null;
-    if (subtitle) this.subtitle = null;
-    if (status) this.status = null;
-    if (experimental) this.experimental = null;
-    if (subject) subjectX = null;
-    if (date) this.date = null;
-    if (publisher) this.publisher = null;
-    if (contact) this.contact = null;
-    if (description) this.description = null;
-    if (useContext) this.useContext = null;
-    if (jurisdiction) this.jurisdiction = null;
-    if (purpose) this.purpose = null;
-    if (usage) this.usage = null;
-    if (copyright) this.copyright = null;
-    if (approvalDate) this.approvalDate = null;
-    if (lastReviewDate) this.lastReviewDate = null;
-    if (effectivePeriod) this.effectivePeriod = null;
-    if (topic) this.topic = null;
-    if (author) this.author = null;
-    if (editor) this.editor = null;
-    if (reviewer) this.reviewer = null;
-    if (endorser) this.endorser = null;
-    if (relatedArtifact) this.relatedArtifact = null;
-    if (library_) this.library_ = null;
-    if (disclaimer) this.disclaimer = null;
-    if (scoring) this.scoring = null;
-    if (compositeScoring) this.compositeScoring = null;
-    if (type) this.type = null;
-    if (riskAdjustment) this.riskAdjustment = null;
-    if (rateAggregation) this.rateAggregation = null;
-    if (rationale) this.rationale = null;
-    if (clinicalRecommendationStatement)
-      this.clinicalRecommendationStatement = null;
-    if (improvementNotation) this.improvementNotation = null;
-    if (definition) this.definition = null;
-    if (guidance) this.guidance = null;
-    if (group) this.group = null;
-    if (supplementalData) this.supplementalData = null;
-  }
-
   @override
   MeasureBuilder clone() => throw UnimplementedError();
   @override
@@ -3372,26 +3267,6 @@ class MeasureGroupBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool code = false,
-    bool description = false,
-    bool population = false,
-    bool stratifier = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (code) this.code = null;
-    if (description) this.description = null;
-    if (population) this.population = null;
-    if (stratifier) this.stratifier = null;
-  }
-
   @override
   MeasureGroupBuilder clone() => throw UnimplementedError();
   @override
@@ -3895,24 +3770,6 @@ class MeasurePopulationBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool code = false,
-    bool description = false,
-    bool criteria = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (code) this.code = null;
-    if (description) this.description = null;
-    if (criteria) this.criteria = null;
   }
 
   @override
@@ -4462,26 +4319,6 @@ class MeasureStratifierBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool code = false,
-    bool description = false,
-    bool criteria = false,
-    bool component = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (code) this.code = null;
-    if (description) this.description = null;
-    if (criteria) this.criteria = null;
-    if (component) this.component = null;
-  }
-
   @override
   MeasureStratifierBuilder clone() => throw UnimplementedError();
   @override
@@ -4992,24 +4829,6 @@ class MeasureComponentBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool code = false,
-    bool description = false,
-    bool criteria = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (code) this.code = null;
-    if (description) this.description = null;
-    if (criteria) this.criteria = null;
   }
 
   @override
@@ -5564,26 +5383,6 @@ class MeasureSupplementalDataBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool code = false,
-    bool usage = false,
-    bool description = false,
-    bool criteria = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (code) this.code = null;
-    if (usage) this.usage = null;
-    if (description) this.description = null;
-    if (criteria) this.criteria = null;
   }
 
   @override

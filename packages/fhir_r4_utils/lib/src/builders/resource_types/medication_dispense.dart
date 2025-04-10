@@ -1591,76 +1591,6 @@ class MedicationDispenseBuilder extends DomainResourceBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool identifier = false,
-    bool partOf = false,
-    bool status = false,
-    bool statusReason = false,
-    bool category = false,
-    bool medication = false,
-    bool subject = false,
-    bool context = false,
-    bool supportingInformation = false,
-    bool performer = false,
-    bool location = false,
-    bool authorizingPrescription = false,
-    bool type = false,
-    bool quantity = false,
-    bool daysSupply = false,
-    bool whenPrepared = false,
-    bool whenHandedOver = false,
-    bool destination = false,
-    bool receiver = false,
-    bool note = false,
-    bool dosageInstruction = false,
-    bool substitution = false,
-    bool detectedIssue = false,
-    bool eventHistory = false,
-  }) {
-    if (id) this.id = null;
-    if (meta) this.meta = null;
-    if (implicitRules) this.implicitRules = null;
-    if (language) this.language = null;
-    if (text) this.text = null;
-    if (contained) this.contained = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (identifier) this.identifier = null;
-    if (partOf) this.partOf = null;
-    if (status) this.status = null;
-    if (statusReason) statusReasonX = null;
-    if (category) this.category = null;
-    if (medication) medicationX = null;
-    if (subject) this.subject = null;
-    if (context) this.context = null;
-    if (supportingInformation) this.supportingInformation = null;
-    if (performer) this.performer = null;
-    if (location) this.location = null;
-    if (authorizingPrescription) this.authorizingPrescription = null;
-    if (type) this.type = null;
-    if (quantity) this.quantity = null;
-    if (daysSupply) this.daysSupply = null;
-    if (whenPrepared) this.whenPrepared = null;
-    if (whenHandedOver) this.whenHandedOver = null;
-    if (destination) this.destination = null;
-    if (receiver) this.receiver = null;
-    if (note) this.note = null;
-    if (dosageInstruction) this.dosageInstruction = null;
-    if (substitution) this.substitution = null;
-    if (detectedIssue) this.detectedIssue = null;
-    if (eventHistory) this.eventHistory = null;
-  }
-
   @override
   MedicationDispenseBuilder clone() => throw UnimplementedError();
   @override
@@ -2326,22 +2256,6 @@ class MedicationDispensePerformerBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool function_ = false,
-    bool actor = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (function_) this.function_ = null;
-    if (actor) this.actor = null;
-  }
-
   @override
   MedicationDispensePerformerBuilder clone() => throw UnimplementedError();
   @override
@@ -2894,26 +2808,6 @@ class MedicationDispenseSubstitutionBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool wasSubstituted = false,
-    bool type = false,
-    bool reason = false,
-    bool responsibleParty = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (wasSubstituted) this.wasSubstituted = null;
-    if (type) this.type = null;
-    if (reason) this.reason = null;
-    if (responsibleParty) this.responsibleParty = null;
   }
 
   @override

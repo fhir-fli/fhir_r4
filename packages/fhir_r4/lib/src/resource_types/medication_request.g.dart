@@ -128,11 +128,15 @@ class _$MedicationRequestCopyWithImpl<T>
         identifier: identical(identifier, fhirSentinel)
             ? _value.identifier
             : identifier as List<Identifier>?,
-        status: status as MedicationrequestStatus? ?? _value.status,
+        status: identical(status, fhirSentinel)
+            ? _value.status
+            : (status as MedicationrequestStatus?) ?? _value.status,
         statusReason: identical(statusReason, fhirSentinel)
             ? _value.statusReason
             : statusReason as CodeableConcept?,
-        intent: intent as MedicationRequestIntent? ?? _value.intent,
+        intent: identical(intent, fhirSentinel)
+            ? _value.intent
+            : (intent as MedicationRequestIntent?) ?? _value.intent,
         category: identical(category, fhirSentinel)
             ? _value.category
             : category as List<CodeableConcept>?,
@@ -145,8 +149,12 @@ class _$MedicationRequestCopyWithImpl<T>
         reportedX: identical(reportedX, fhirSentinel)
             ? _value.reportedX
             : reportedX as FhirBoolean?,
-        medicationX: medicationX as CodeableConcept? ?? _value.medicationX,
-        subject: subject as Reference? ?? _value.subject,
+        medicationX: identical(medicationX, fhirSentinel)
+            ? _value.medicationX
+            : (medicationX as CodeableConcept?) ?? _value.medicationX,
+        subject: identical(subject, fhirSentinel)
+            ? _value.subject
+            : (subject as Reference?) ?? _value.subject,
         encounter: identical(encounter, fhirSentinel)
             ? _value.encounter
             : encounter as Reference?,
@@ -413,7 +421,9 @@ class _$MedicationRequestSubstitutionCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        allowedX: allowedX as FhirBoolean? ?? _value.allowedX,
+        allowedX: identical(allowedX, fhirSentinel)
+            ? _value.allowedX
+            : (allowedX as FhirBoolean?) ?? _value.allowedX,
         reason: identical(reason, fhirSentinel)
             ? _value.reason
             : reason as CodeableConcept?,

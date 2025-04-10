@@ -101,8 +101,12 @@ class _$SupplyRequestCopyWithImpl<T> implements $SupplyRequestCopyWith<T> {
         priority: identical(priority, fhirSentinel)
             ? _value.priority
             : priority as RequestPriority?,
-        itemX: itemX as CodeableConcept? ?? _value.itemX,
-        quantity: quantity as Quantity? ?? _value.quantity,
+        itemX: identical(itemX, fhirSentinel)
+            ? _value.itemX
+            : (itemX as CodeableConcept?) ?? _value.itemX,
+        quantity: identical(quantity, fhirSentinel)
+            ? _value.quantity
+            : (quantity as Quantity?) ?? _value.quantity,
         parameter: identical(parameter, fhirSentinel)
             ? _value.parameter
             : parameter as List<SupplyRequestParameter>?,

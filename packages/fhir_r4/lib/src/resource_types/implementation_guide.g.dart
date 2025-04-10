@@ -101,15 +101,21 @@ class _$ImplementationGuideCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        url: url as FhirUri? ?? _value.url,
+        url: identical(url, fhirSentinel)
+            ? _value.url
+            : (url as FhirUri?) ?? _value.url,
         version: identical(version, fhirSentinel)
             ? _value.version
             : version as FhirString?,
-        name: name as FhirString? ?? _value.name,
+        name: identical(name, fhirSentinel)
+            ? _value.name
+            : (name as FhirString?) ?? _value.name,
         title: identical(title, fhirSentinel)
             ? _value.title
             : title as FhirString?,
-        status: status as PublicationStatus? ?? _value.status,
+        status: identical(status, fhirSentinel)
+            ? _value.status
+            : (status as PublicationStatus?) ?? _value.status,
         experimental: identical(experimental, fhirSentinel)
             ? _value.experimental
             : experimental as FhirBoolean?,
@@ -133,11 +139,15 @@ class _$ImplementationGuideCopyWithImpl<T>
         copyright: identical(copyright, fhirSentinel)
             ? _value.copyright
             : copyright as FhirMarkdown?,
-        packageId: packageId as FhirId? ?? _value.packageId,
+        packageId: identical(packageId, fhirSentinel)
+            ? _value.packageId
+            : (packageId as FhirId?) ?? _value.packageId,
         license: identical(license, fhirSentinel)
             ? _value.license
             : license as SPDXLicense?,
-        fhirVersion: fhirVersion as List<FHIRVersion>? ?? _value.fhirVersion,
+        fhirVersion: identical(fhirVersion, fhirSentinel)
+            ? _value.fhirVersion
+            : (fhirVersion as List<FHIRVersion>?) ?? _value.fhirVersion,
         dependsOn: identical(dependsOn, fhirSentinel)
             ? _value.dependsOn
             : dependsOn as List<ImplementationGuideDependsOn>?,
@@ -203,7 +213,9 @@ class _$ImplementationGuideDependsOnCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        uri: uri as FhirCanonical? ?? _value.uri,
+        uri: identical(uri, fhirSentinel)
+            ? _value.uri
+            : (uri as FhirCanonical?) ?? _value.uri,
         packageId: identical(packageId, fhirSentinel)
             ? _value.packageId
             : packageId as FhirId?,
@@ -266,8 +278,12 @@ class _$ImplementationGuideGlobalCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        type: type as FhirCode? ?? _value.type,
-        profile: profile as FhirCanonical? ?? _value.profile,
+        type: identical(type, fhirSentinel)
+            ? _value.type
+            : (type as FhirCode?) ?? _value.type,
+        profile: identical(profile, fhirSentinel)
+            ? _value.profile
+            : (profile as FhirCanonical?) ?? _value.profile,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,
@@ -332,8 +348,10 @@ class _$ImplementationGuideDefinitionCopyWithImpl<T>
         grouping: identical(grouping, fhirSentinel)
             ? _value.grouping
             : grouping as List<ImplementationGuideGrouping>?,
-        resource:
-            resource as List<ImplementationGuideResource>? ?? _value.resource,
+        resource: identical(resource, fhirSentinel)
+            ? _value.resource
+            : (resource as List<ImplementationGuideResource>?) ??
+                _value.resource,
         page: identical(page, fhirSentinel)
             ? _value.page
             : page as ImplementationGuidePage?,
@@ -399,7 +417,9 @@ class _$ImplementationGuideGroupingCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        name: name as FhirString? ?? _value.name,
+        name: identical(name, fhirSentinel)
+            ? _value.name
+            : (name as FhirString?) ?? _value.name,
         description: identical(description, fhirSentinel)
             ? _value.description
             : description as FhirString?,
@@ -467,7 +487,9 @@ class _$ImplementationGuideResourceCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        reference: reference as Reference? ?? _value.reference,
+        reference: identical(reference, fhirSentinel)
+            ? _value.reference
+            : (reference as Reference?) ?? _value.reference,
         fhirVersion: identical(fhirVersion, fhirSentinel)
             ? _value.fhirVersion
             : fhirVersion as List<FHIRVersion>?,
@@ -541,9 +563,15 @@ class _$ImplementationGuidePageCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        nameX: nameX as FhirUrl? ?? _value.nameX,
-        title: title as FhirString? ?? _value.title,
-        generation: generation as GuidePageGeneration? ?? _value.generation,
+        nameX: identical(nameX, fhirSentinel)
+            ? _value.nameX
+            : (nameX as FhirUrl?) ?? _value.nameX,
+        title: identical(title, fhirSentinel)
+            ? _value.title
+            : (title as FhirString?) ?? _value.title,
+        generation: identical(generation, fhirSentinel)
+            ? _value.generation
+            : (generation as GuidePageGeneration?) ?? _value.generation,
         page: identical(page, fhirSentinel)
             ? _value.page
             : page as List<ImplementationGuidePage>?,
@@ -601,8 +629,12 @@ class _$ImplementationGuideParameterCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        code: code as GuideParameterCode? ?? _value.code,
-        value: value as FhirString? ?? _value.value,
+        code: identical(code, fhirSentinel)
+            ? _value.code
+            : (code as GuideParameterCode?) ?? _value.code,
+        value: identical(value, fhirSentinel)
+            ? _value.value
+            : (value as FhirString?) ?? _value.value,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,
@@ -661,8 +693,12 @@ class _$ImplementationGuideTemplateCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        code: code as FhirCode? ?? _value.code,
-        source: source as FhirString? ?? _value.source,
+        code: identical(code, fhirSentinel)
+            ? _value.code
+            : (code as FhirCode?) ?? _value.code,
+        source: identical(source, fhirSentinel)
+            ? _value.source
+            : (source as FhirString?) ?? _value.source,
         scope: identical(scope, fhirSentinel)
             ? _value.scope
             : scope as FhirString?,
@@ -731,8 +767,10 @@ class _$ImplementationGuideManifestCopyWithImpl<T>
         rendering: identical(rendering, fhirSentinel)
             ? _value.rendering
             : rendering as FhirUrl?,
-        resource:
-            resource as List<ImplementationGuideResource1>? ?? _value.resource,
+        resource: identical(resource, fhirSentinel)
+            ? _value.resource
+            : (resource as List<ImplementationGuideResource1>?) ??
+                _value.resource,
         page: identical(page, fhirSentinel)
             ? _value.page
             : page as List<ImplementationGuidePage1>?,
@@ -800,7 +838,9 @@ class _$ImplementationGuideResource1CopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        reference: reference as Reference? ?? _value.reference,
+        reference: identical(reference, fhirSentinel)
+            ? _value.reference
+            : (reference as Reference?) ?? _value.reference,
         exampleX: identical(exampleX, fhirSentinel)
             ? _value.exampleX
             : exampleX as FhirBoolean?,
@@ -865,7 +905,9 @@ class _$ImplementationGuidePage1CopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        name: name as FhirString? ?? _value.name,
+        name: identical(name, fhirSentinel)
+            ? _value.name
+            : (name as FhirString?) ?? _value.name,
         title: identical(title, fhirSentinel)
             ? _value.title
             : title as FhirString?,

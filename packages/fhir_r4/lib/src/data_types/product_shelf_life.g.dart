@@ -50,8 +50,12 @@ class _$ProductShelfLifeCopyWithImpl<T>
         identifier: identical(identifier, fhirSentinel)
             ? _value.identifier
             : identifier as Identifier?,
-        type: type as CodeableConcept? ?? _value.type,
-        period: period as Quantity? ?? _value.period,
+        type: identical(type, fhirSentinel)
+            ? _value.type
+            : (type as CodeableConcept?) ?? _value.type,
+        period: identical(period, fhirSentinel)
+            ? _value.period
+            : (period as Quantity?) ?? _value.period,
         specialPrecautionsForStorage:
             identical(specialPrecautionsForStorage, fhirSentinel)
                 ? _value.specialPrecautionsForStorage

@@ -37,7 +37,9 @@ class _$FhirExtensionCopyWithImpl<T> implements $FhirExtensionCopyWith<T> {
         extension_: identical(extension_, fhirSentinel)
             ? _value.extension_
             : extension_ as List<FhirExtension>?,
-        url: url as FhirString? ?? _value.url,
+        url: identical(url, fhirSentinel)
+            ? _value.url
+            : (url as FhirString?) ?? _value.url,
         valueX: identical(valueX, fhirSentinel)
             ? _value.valueX
             : valueX as FhirBase64Binary?,

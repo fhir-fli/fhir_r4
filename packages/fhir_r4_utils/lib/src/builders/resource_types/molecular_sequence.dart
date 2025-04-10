@@ -1155,60 +1155,6 @@ class MolecularSequenceBuilder extends DomainResourceBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool identifier = false,
-    bool type = false,
-    bool coordinateSystem = false,
-    bool patient = false,
-    bool specimen = false,
-    bool device = false,
-    bool performer = false,
-    bool quantity = false,
-    bool referenceSeq = false,
-    bool variant = false,
-    bool observedSeq = false,
-    bool quality = false,
-    bool readCoverage = false,
-    bool repository = false,
-    bool pointer = false,
-    bool structureVariant = false,
-  }) {
-    if (id) this.id = null;
-    if (meta) this.meta = null;
-    if (implicitRules) this.implicitRules = null;
-    if (language) this.language = null;
-    if (text) this.text = null;
-    if (contained) this.contained = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (identifier) this.identifier = null;
-    if (type) this.type = null;
-    if (coordinateSystem) this.coordinateSystem = null;
-    if (patient) this.patient = null;
-    if (specimen) this.specimen = null;
-    if (device) this.device = null;
-    if (performer) this.performer = null;
-    if (quantity) this.quantity = null;
-    if (referenceSeq) this.referenceSeq = null;
-    if (variant) this.variant = null;
-    if (observedSeq) this.observedSeq = null;
-    if (quality) this.quality = null;
-    if (readCoverage) this.readCoverage = null;
-    if (repository) this.repository = null;
-    if (pointer) this.pointer = null;
-    if (structureVariant) this.structureVariant = null;
-  }
-
   @override
   MolecularSequenceBuilder clone() => throw UnimplementedError();
   @override
@@ -2135,36 +2081,6 @@ class MolecularSequenceReferenceSeqBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool chromosome = false,
-    bool genomeBuild = false,
-    bool orientation = false,
-    bool referenceSeqId = false,
-    bool referenceSeqPointer = false,
-    bool referenceSeqString = false,
-    bool strand = false,
-    bool windowStart = false,
-    bool windowEnd = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (chromosome) this.chromosome = null;
-    if (genomeBuild) this.genomeBuild = null;
-    if (orientation) this.orientation = null;
-    if (referenceSeqId) this.referenceSeqId = null;
-    if (referenceSeqPointer) this.referenceSeqPointer = null;
-    if (referenceSeqString) this.referenceSeqString = null;
-    if (strand) this.strand = null;
-    if (windowStart) this.windowStart = null;
-    if (windowEnd) this.windowEnd = null;
-  }
-
   @override
   MolecularSequenceReferenceSeqBuilder clone() => throw UnimplementedError();
   @override
@@ -2884,30 +2800,6 @@ class MolecularSequenceVariantBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool start = false,
-    bool end = false,
-    bool observedAllele = false,
-    bool referenceAllele = false,
-    bool cigar = false,
-    bool variantPointer = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (start) this.start = null;
-    if (end) this.end = null;
-    if (observedAllele) this.observedAllele = null;
-    if (referenceAllele) this.referenceAllele = null;
-    if (cigar) this.cigar = null;
-    if (variantPointer) this.variantPointer = null;
   }
 
   @override
@@ -4013,48 +3905,6 @@ class MolecularSequenceQualityBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool type = false,
-    bool standardSequence = false,
-    bool start = false,
-    bool end = false,
-    bool score = false,
-    bool method = false,
-    bool truthTP = false,
-    bool queryTP = false,
-    bool truthFN = false,
-    bool queryFP = false,
-    bool gtFP = false,
-    bool precision = false,
-    bool recall = false,
-    bool fScore = false,
-    bool roc = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (type) this.type = null;
-    if (standardSequence) this.standardSequence = null;
-    if (start) this.start = null;
-    if (end) this.end = null;
-    if (score) this.score = null;
-    if (method) this.method = null;
-    if (truthTP) this.truthTP = null;
-    if (queryTP) this.queryTP = null;
-    if (truthFN) this.truthFN = null;
-    if (queryFP) this.queryFP = null;
-    if (gtFP) this.gtFP = null;
-    if (precision) this.precision = null;
-    if (recall) this.recall = null;
-    if (fScore) this.fScore = null;
-    if (roc) this.roc = null;
-  }
-
   @override
   MolecularSequenceQualityBuilder clone() => throw UnimplementedError();
   @override
@@ -5126,32 +4976,6 @@ class MolecularSequenceRocBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool score = false,
-    bool numTP = false,
-    bool numFP = false,
-    bool numFN = false,
-    bool precision = false,
-    bool sensitivity = false,
-    bool fMeasure = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (score) this.score = null;
-    if (numTP) this.numTP = null;
-    if (numFP) this.numFP = null;
-    if (numFN) this.numFN = null;
-    if (precision) this.precision = null;
-    if (sensitivity) this.sensitivity = null;
-    if (fMeasure) this.fMeasure = null;
-  }
-
   @override
   MolecularSequenceRocBuilder clone() => throw UnimplementedError();
   @override
@@ -5849,30 +5673,6 @@ class MolecularSequenceRepositoryBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool type = false,
-    bool url = false,
-    bool name = false,
-    bool datasetId = false,
-    bool variantsetId = false,
-    bool readsetId = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (type) this.type = null;
-    if (url) this.url = null;
-    if (name) this.name = null;
-    if (datasetId) this.datasetId = null;
-    if (variantsetId) this.variantsetId = null;
-    if (readsetId) this.readsetId = null;
-  }
-
   @override
   MolecularSequenceRepositoryBuilder clone() => throw UnimplementedError();
   @override
@@ -6475,28 +6275,6 @@ class MolecularSequenceStructureVariantBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool variantType = false,
-    bool exact = false,
-    bool length = false,
-    bool outer = false,
-    bool inner = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (variantType) this.variantType = null;
-    if (exact) this.exact = null;
-    if (length) this.length = null;
-    if (outer) this.outer = null;
-    if (inner) this.inner = null;
-  }
-
   @override
   MolecularSequenceStructureVariantBuilder clone() =>
       throw UnimplementedError();
@@ -7003,22 +6781,6 @@ class MolecularSequenceOuterBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool start = false,
-    bool end = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (start) this.start = null;
-    if (end) this.end = null;
-  }
-
   @override
   MolecularSequenceOuterBuilder clone() => throw UnimplementedError();
   @override
@@ -7498,22 +7260,6 @@ class MolecularSequenceInnerBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool start = false,
-    bool end = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (start) this.start = null;
-    if (end) this.end = null;
   }
 
   @override

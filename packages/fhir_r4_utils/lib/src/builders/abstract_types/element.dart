@@ -305,15 +305,4 @@ class ElementBuilder extends FhirBaseBuilder {
       extension_ = <FhirExtensionBuilder>[];
     }
   }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({bool id = false, bool extension_ = false}) {
-    if (id) {
-      this.id = null;
-    }
-    if (extension_) {
-      this.extension_ = null;
-    }
-  }
 }

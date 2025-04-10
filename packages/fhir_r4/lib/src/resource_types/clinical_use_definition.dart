@@ -387,6 +387,133 @@ class ClinicalUseDefinition extends DomainResource {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> listChildrenNames() {
+    return [
+      'id',
+      'meta',
+      'implicitRules',
+      'language',
+      'text',
+      'contained',
+      'extension',
+      'modifierExtension',
+      'identifier',
+      'type',
+      'category',
+      'subject',
+      'status',
+      'contraindication',
+      'indication',
+      'interaction',
+      'population',
+      'undesirableEffect',
+      'warning',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> getChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'meta':
+        if (meta != null) {
+          fields.add(meta!);
+        }
+      case 'implicitRules':
+        if (implicitRules != null) {
+          fields.add(implicitRules!);
+        }
+      case 'language':
+        if (language != null) {
+          fields.add(language!);
+        }
+      case 'text':
+        if (text != null) {
+          fields.add(text!);
+        }
+      case 'contained':
+        if (contained != null) {
+          fields.addAll(contained!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'identifier':
+        if (identifier != null) {
+          fields.addAll(identifier!);
+        }
+      case 'type':
+        fields.add(type);
+      case 'category':
+        if (category != null) {
+          fields.addAll(category!);
+        }
+      case 'subject':
+        if (subject != null) {
+          fields.addAll(subject!);
+        }
+      case 'status':
+        if (status != null) {
+          fields.add(status!);
+        }
+      case 'contraindication':
+        if (contraindication != null) {
+          fields.add(contraindication!);
+        }
+      case 'indication':
+        if (indication != null) {
+          fields.add(indication!);
+        }
+      case 'interaction':
+        if (interaction != null) {
+          fields.add(interaction!);
+        }
+      case 'population':
+        if (population != null) {
+          fields.addAll(population!);
+        }
+      case 'undesirableEffect':
+        if (undesirableEffect != null) {
+          fields.add(undesirableEffect!);
+        }
+      case 'warning':
+        if (warning != null) {
+          fields.add(warning!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildByName(String name) {
+    final values = getChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   ClinicalUseDefinition clone() => copyWith();
 
@@ -763,6 +890,80 @@ class ClinicalUseDefinitionContraindication extends BackboneElement {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> listChildrenNames() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'diseaseSymptomProcedure',
+      'diseaseStatus',
+      'comorbidity',
+      'indication',
+      'otherTherapy',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> getChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'diseaseSymptomProcedure':
+        if (diseaseSymptomProcedure != null) {
+          fields.add(diseaseSymptomProcedure!);
+        }
+      case 'diseaseStatus':
+        if (diseaseStatus != null) {
+          fields.add(diseaseStatus!);
+        }
+      case 'comorbidity':
+        if (comorbidity != null) {
+          fields.addAll(comorbidity!);
+        }
+      case 'indication':
+        if (indication != null) {
+          fields.addAll(indication!);
+        }
+      case 'otherTherapy':
+        if (otherTherapy != null) {
+          fields.addAll(otherTherapy!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildByName(String name) {
+    final values = getChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   ClinicalUseDefinitionContraindication clone() => copyWith();
 
@@ -1025,6 +1226,61 @@ class ClinicalUseDefinitionOtherTherapy extends BackboneElement {
       therapy,
     );
     return json;
+  }
+
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> listChildrenNames() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'relationshipType',
+      'therapy',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> getChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'relationshipType':
+        fields.add(relationshipType);
+      case 'therapy':
+        fields.add(therapy);
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildByName(String name) {
+    final values = getChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
   }
 
   @override
@@ -1365,6 +1621,98 @@ class ClinicalUseDefinitionIndication extends BackboneElement {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> listChildrenNames() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'diseaseSymptomProcedure',
+      'diseaseStatus',
+      'comorbidity',
+      'intendedEffect',
+      'durationX',
+      'undesirableEffect',
+      'otherTherapy',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> getChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'diseaseSymptomProcedure':
+        if (diseaseSymptomProcedure != null) {
+          fields.add(diseaseSymptomProcedure!);
+        }
+      case 'diseaseStatus':
+        if (diseaseStatus != null) {
+          fields.add(diseaseStatus!);
+        }
+      case 'comorbidity':
+        if (comorbidity != null) {
+          fields.addAll(comorbidity!);
+        }
+      case 'intendedEffect':
+        if (intendedEffect != null) {
+          fields.add(intendedEffect!);
+        }
+      case 'duration':
+        fields.add(durationX!);
+      case 'durationX':
+        fields.add(durationX!);
+      case 'durationRange':
+        if (durationX is Range) {
+          fields.add(durationX!);
+        }
+      case 'durationString':
+        if (durationX is FhirString) {
+          fields.add(durationX!);
+        }
+      case 'undesirableEffect':
+        if (undesirableEffect != null) {
+          fields.addAll(undesirableEffect!);
+        }
+      case 'otherTherapy':
+        if (otherTherapy != null) {
+          fields.addAll(otherTherapy!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildByName(String name) {
+    final values = getChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   ClinicalUseDefinitionIndication clone() => copyWith();
 
@@ -1686,6 +2034,80 @@ class ClinicalUseDefinitionInteraction extends BackboneElement {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> listChildrenNames() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'interactant',
+      'type',
+      'effect',
+      'incidence',
+      'management',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> getChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'interactant':
+        if (interactant != null) {
+          fields.addAll(interactant!);
+        }
+      case 'type':
+        if (type != null) {
+          fields.add(type!);
+        }
+      case 'effect':
+        if (effect != null) {
+          fields.add(effect!);
+        }
+      case 'incidence':
+        if (incidence != null) {
+          fields.add(incidence!);
+        }
+      case 'management':
+        if (management != null) {
+          fields.addAll(management!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildByName(String name) {
+    final values = getChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   ClinicalUseDefinitionInteraction clone() => copyWith();
 
@@ -1943,6 +2365,68 @@ class ClinicalUseDefinitionInteractant extends BackboneElement {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> listChildrenNames() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'itemX',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> getChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'item':
+        fields.add(itemX);
+      case 'itemX':
+        fields.add(itemX);
+      case 'itemReference':
+        if (itemX is Reference) {
+          fields.add(itemX);
+        }
+      case 'itemCodeableConcept':
+        if (itemX is CodeableConcept) {
+          fields.add(itemX);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildByName(String name) {
+    final values = getChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   ClinicalUseDefinitionInteractant clone() => copyWith();
 
@@ -2192,6 +2676,70 @@ class ClinicalUseDefinitionUndesirableEffect extends BackboneElement {
       frequencyOfOccurrence,
     );
     return json;
+  }
+
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> listChildrenNames() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'symptomConditionEffect',
+      'classification',
+      'frequencyOfOccurrence',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> getChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'symptomConditionEffect':
+        if (symptomConditionEffect != null) {
+          fields.add(symptomConditionEffect!);
+        }
+      case 'classification':
+        if (classification != null) {
+          fields.add(classification!);
+        }
+      case 'frequencyOfOccurrence':
+        if (frequencyOfOccurrence != null) {
+          fields.add(frequencyOfOccurrence!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildByName(String name) {
+    final values = getChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
   }
 
   @override
@@ -2444,6 +2992,65 @@ class ClinicalUseDefinitionWarning extends BackboneElement {
       code,
     );
     return json;
+  }
+
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> listChildrenNames() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'description',
+      'code',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> getChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'description':
+        if (description != null) {
+          fields.add(description!);
+        }
+      case 'code':
+        if (code != null) {
+          fields.add(code!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildByName(String name) {
+    final values = getChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
   }
 
   @override

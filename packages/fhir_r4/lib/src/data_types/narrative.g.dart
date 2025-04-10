@@ -37,8 +37,12 @@ class _$NarrativeCopyWithImpl<T> implements $NarrativeCopyWith<T> {
         extension_: identical(extension_, fhirSentinel)
             ? _value.extension_
             : extension_ as List<FhirExtension>?,
-        status: status as NarrativeStatus? ?? _value.status,
-        div: div as FhirXhtml? ?? _value.div,
+        status: identical(status, fhirSentinel)
+            ? _value.status
+            : (status as NarrativeStatus?) ?? _value.status,
+        div: identical(div, fhirSentinel)
+            ? _value.div
+            : (div as FhirXhtml?) ?? _value.div,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,

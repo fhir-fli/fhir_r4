@@ -123,11 +123,15 @@ class _$MessageDefinitionCopyWithImpl<T>
         replaces: identical(replaces, fhirSentinel)
             ? _value.replaces
             : replaces as List<FhirCanonical>?,
-        status: status as PublicationStatus? ?? _value.status,
+        status: identical(status, fhirSentinel)
+            ? _value.status
+            : (status as PublicationStatus?) ?? _value.status,
         experimental: identical(experimental, fhirSentinel)
             ? _value.experimental
             : experimental as FhirBoolean?,
-        date: date as FhirDateTime? ?? _value.date,
+        date: identical(date, fhirSentinel)
+            ? _value.date
+            : (date as FhirDateTime?) ?? _value.date,
         publisher: identical(publisher, fhirSentinel)
             ? _value.publisher
             : publisher as FhirString?,
@@ -155,7 +159,9 @@ class _$MessageDefinitionCopyWithImpl<T>
         parent: identical(parent, fhirSentinel)
             ? _value.parent
             : parent as List<FhirCanonical>?,
-        eventX: eventX as Coding? ?? _value.eventX,
+        eventX: identical(eventX, fhirSentinel)
+            ? _value.eventX
+            : (eventX as Coding?) ?? _value.eventX,
         category: identical(category, fhirSentinel)
             ? _value.category
             : category as MessageSignificanceCategory?,
@@ -226,11 +232,15 @@ class _$MessageDefinitionFocusCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        code: code as FhirCode? ?? _value.code,
+        code: identical(code, fhirSentinel)
+            ? _value.code
+            : (code as FhirCode?) ?? _value.code,
         profile: identical(profile, fhirSentinel)
             ? _value.profile
             : profile as FhirCanonical?,
-        min: min as FhirUnsignedInt? ?? _value.min,
+        min: identical(min, fhirSentinel)
+            ? _value.min
+            : (min as FhirUnsignedInt?) ?? _value.min,
         max: identical(max, fhirSentinel) ? _value.max : max as FhirString?,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
@@ -286,7 +296,9 @@ class _$MessageDefinitionAllowedResponseCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        message: message as FhirCanonical? ?? _value.message,
+        message: identical(message, fhirSentinel)
+            ? _value.message
+            : (message as FhirCanonical?) ?? _value.message,
         situation: identical(situation, fhirSentinel)
             ? _value.situation
             : situation as FhirMarkdown?,

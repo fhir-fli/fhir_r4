@@ -539,6 +539,177 @@ class MedicationStatement extends DomainResource {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> listChildrenNames() {
+    return [
+      'id',
+      'meta',
+      'implicitRules',
+      'language',
+      'text',
+      'contained',
+      'extension',
+      'modifierExtension',
+      'identifier',
+      'basedOn',
+      'partOf',
+      'status',
+      'statusReason',
+      'category',
+      'medicationX',
+      'subject',
+      'context',
+      'effectiveX',
+      'dateAsserted',
+      'informationSource',
+      'derivedFrom',
+      'reasonCode',
+      'reasonReference',
+      'note',
+      'dosage',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> getChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'meta':
+        if (meta != null) {
+          fields.add(meta!);
+        }
+      case 'implicitRules':
+        if (implicitRules != null) {
+          fields.add(implicitRules!);
+        }
+      case 'language':
+        if (language != null) {
+          fields.add(language!);
+        }
+      case 'text':
+        if (text != null) {
+          fields.add(text!);
+        }
+      case 'contained':
+        if (contained != null) {
+          fields.addAll(contained!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'identifier':
+        if (identifier != null) {
+          fields.addAll(identifier!);
+        }
+      case 'basedOn':
+        if (basedOn != null) {
+          fields.addAll(basedOn!);
+        }
+      case 'partOf':
+        if (partOf != null) {
+          fields.addAll(partOf!);
+        }
+      case 'status':
+        fields.add(status);
+      case 'statusReason':
+        if (statusReason != null) {
+          fields.addAll(statusReason!);
+        }
+      case 'category':
+        if (category != null) {
+          fields.add(category!);
+        }
+      case 'medication':
+        fields.add(medicationX);
+      case 'medicationX':
+        fields.add(medicationX);
+      case 'medicationCodeableConcept':
+        if (medicationX is CodeableConcept) {
+          fields.add(medicationX);
+        }
+      case 'medicationReference':
+        if (medicationX is Reference) {
+          fields.add(medicationX);
+        }
+      case 'subject':
+        fields.add(subject);
+      case 'context':
+        if (context != null) {
+          fields.add(context!);
+        }
+      case 'effective':
+        fields.add(effectiveX!);
+      case 'effectiveX':
+        fields.add(effectiveX!);
+      case 'effectiveDateTime':
+        if (effectiveX is FhirDateTime) {
+          fields.add(effectiveX!);
+        }
+      case 'effectivePeriod':
+        if (effectiveX is Period) {
+          fields.add(effectiveX!);
+        }
+      case 'dateAsserted':
+        if (dateAsserted != null) {
+          fields.add(dateAsserted!);
+        }
+      case 'informationSource':
+        if (informationSource != null) {
+          fields.add(informationSource!);
+        }
+      case 'derivedFrom':
+        if (derivedFrom != null) {
+          fields.addAll(derivedFrom!);
+        }
+      case 'reasonCode':
+        if (reasonCode != null) {
+          fields.addAll(reasonCode!);
+        }
+      case 'reasonReference':
+        if (reasonReference != null) {
+          fields.addAll(reasonReference!);
+        }
+      case 'note':
+        if (note != null) {
+          fields.addAll(note!);
+        }
+      case 'dosage':
+        if (dosage != null) {
+          fields.addAll(dosage!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildByName(String name) {
+    final values = getChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   MedicationStatement clone() => copyWith();
 

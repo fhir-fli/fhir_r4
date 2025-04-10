@@ -102,11 +102,15 @@ class _$ImagingStudyCopyWithImpl<T> implements $ImagingStudyCopyWith<T> {
         identifier: identical(identifier, fhirSentinel)
             ? _value.identifier
             : identifier as List<Identifier>?,
-        status: status as ImagingStudyStatus? ?? _value.status,
+        status: identical(status, fhirSentinel)
+            ? _value.status
+            : (status as ImagingStudyStatus?) ?? _value.status,
         modality: identical(modality, fhirSentinel)
             ? _value.modality
             : modality as List<Coding>?,
-        subject: subject as Reference? ?? _value.subject,
+        subject: identical(subject, fhirSentinel)
+            ? _value.subject
+            : (subject as Reference?) ?? _value.subject,
         encounter: identical(encounter, fhirSentinel)
             ? _value.encounter
             : encounter as Reference?,
@@ -226,11 +230,15 @@ class _$ImagingStudySeriesCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        uid: uid as FhirId? ?? _value.uid,
+        uid: identical(uid, fhirSentinel)
+            ? _value.uid
+            : (uid as FhirId?) ?? _value.uid,
         number: identical(number, fhirSentinel)
             ? _value.number
             : number as FhirUnsignedInt?,
-        modality: modality as Coding? ?? _value.modality,
+        modality: identical(modality, fhirSentinel)
+            ? _value.modality
+            : (modality as Coding?) ?? _value.modality,
         description: identical(description, fhirSentinel)
             ? _value.description
             : description as FhirString?,
@@ -315,7 +323,9 @@ class _$ImagingStudyPerformerCopyWithImpl<T>
         function_: identical(function_, fhirSentinel)
             ? _value.function_
             : function_ as CodeableConcept?,
-        actor: actor as Reference? ?? _value.actor,
+        actor: identical(actor, fhirSentinel)
+            ? _value.actor
+            : (actor as Reference?) ?? _value.actor,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,
@@ -374,8 +384,12 @@ class _$ImagingStudyInstanceCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        uid: uid as FhirId? ?? _value.uid,
-        sopClass: sopClass as Coding? ?? _value.sopClass,
+        uid: identical(uid, fhirSentinel)
+            ? _value.uid
+            : (uid as FhirId?) ?? _value.uid,
+        sopClass: identical(sopClass, fhirSentinel)
+            ? _value.sopClass
+            : (sopClass as Coding?) ?? _value.sopClass,
         number: identical(number, fhirSentinel)
             ? _value.number
             : number as FhirUnsignedInt?,

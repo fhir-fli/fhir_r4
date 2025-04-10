@@ -107,18 +107,24 @@ class _$TestScriptCopyWithImpl<T> implements $TestScriptCopyWith<T> {
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        url: url as FhirUri? ?? _value.url,
+        url: identical(url, fhirSentinel)
+            ? _value.url
+            : (url as FhirUri?) ?? _value.url,
         identifier: identical(identifier, fhirSentinel)
             ? _value.identifier
             : identifier as Identifier?,
         version: identical(version, fhirSentinel)
             ? _value.version
             : version as FhirString?,
-        name: name as FhirString? ?? _value.name,
+        name: identical(name, fhirSentinel)
+            ? _value.name
+            : (name as FhirString?) ?? _value.name,
         title: identical(title, fhirSentinel)
             ? _value.title
             : title as FhirString?,
-        status: status as PublicationStatus? ?? _value.status,
+        status: identical(status, fhirSentinel)
+            ? _value.status
+            : (status as PublicationStatus?) ?? _value.status,
         experimental: identical(experimental, fhirSentinel)
             ? _value.experimental
             : experimental as FhirBoolean?,
@@ -223,8 +229,12 @@ class _$TestScriptOriginCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        index: index as FhirInteger? ?? _value.index,
-        profile: profile as Coding? ?? _value.profile,
+        index: identical(index, fhirSentinel)
+            ? _value.index
+            : (index as FhirInteger?) ?? _value.index,
+        profile: identical(profile, fhirSentinel)
+            ? _value.profile
+            : (profile as Coding?) ?? _value.profile,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,
@@ -279,8 +289,12 @@ class _$TestScriptDestinationCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        index: index as FhirInteger? ?? _value.index,
-        profile: profile as Coding? ?? _value.profile,
+        index: identical(index, fhirSentinel)
+            ? _value.index
+            : (index as FhirInteger?) ?? _value.index,
+        profile: identical(profile, fhirSentinel)
+            ? _value.profile
+            : (profile as Coding?) ?? _value.profile,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,
@@ -338,8 +352,9 @@ class _$TestScriptMetadataCopyWithImpl<T>
         link: identical(link, fhirSentinel)
             ? _value.link
             : link as List<TestScriptLink>?,
-        capability:
-            capability as List<TestScriptCapability>? ?? _value.capability,
+        capability: identical(capability, fhirSentinel)
+            ? _value.capability
+            : (capability as List<TestScriptCapability>?) ?? _value.capability,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,
@@ -392,7 +407,9 @@ class _$TestScriptLinkCopyWithImpl<T> implements $TestScriptLinkCopyWith<T> {
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        url: url as FhirUri? ?? _value.url,
+        url: identical(url, fhirSentinel)
+            ? _value.url
+            : (url as FhirUri?) ?? _value.url,
         description: identical(description, fhirSentinel)
             ? _value.description
             : description as FhirString?,
@@ -460,8 +477,12 @@ class _$TestScriptCapabilityCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        required_: required_ as FhirBoolean? ?? _value.required_,
-        validated: validated as FhirBoolean? ?? _value.validated,
+        required_: identical(required_, fhirSentinel)
+            ? _value.required_
+            : (required_ as FhirBoolean?) ?? _value.required_,
+        validated: identical(validated, fhirSentinel)
+            ? _value.validated
+            : (validated as FhirBoolean?) ?? _value.validated,
         description: identical(description, fhirSentinel)
             ? _value.description
             : description as FhirString?,
@@ -474,7 +495,9 @@ class _$TestScriptCapabilityCopyWithImpl<T>
         link: identical(link, fhirSentinel)
             ? _value.link
             : link as List<FhirUri>?,
-        capabilities: capabilities as FhirCanonical? ?? _value.capabilities,
+        capabilities: identical(capabilities, fhirSentinel)
+            ? _value.capabilities
+            : (capabilities as FhirCanonical?) ?? _value.capabilities,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,
@@ -531,8 +554,12 @@ class _$TestScriptFixtureCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        autocreate: autocreate as FhirBoolean? ?? _value.autocreate,
-        autodelete: autodelete as FhirBoolean? ?? _value.autodelete,
+        autocreate: identical(autocreate, fhirSentinel)
+            ? _value.autocreate
+            : (autocreate as FhirBoolean?) ?? _value.autocreate,
+        autodelete: identical(autodelete, fhirSentinel)
+            ? _value.autodelete
+            : (autodelete as FhirBoolean?) ?? _value.autodelete,
         resource: identical(resource, fhirSentinel)
             ? _value.resource
             : resource as Reference?,
@@ -602,7 +629,9 @@ class _$TestScriptVariableCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        name: name as FhirString? ?? _value.name,
+        name: identical(name, fhirSentinel)
+            ? _value.name
+            : (name as FhirString?) ?? _value.name,
         defaultValue: identical(defaultValue, fhirSentinel)
             ? _value.defaultValue
             : defaultValue as FhirString?,
@@ -670,7 +699,9 @@ class _$TestScriptSetupCopyWithImpl<T> implements $TestScriptSetupCopyWith<T> {
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        action: action as List<TestScriptAction>? ?? _value.action,
+        action: identical(action, fhirSentinel)
+            ? _value.action
+            : (action as List<TestScriptAction>?) ?? _value.action,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,
@@ -834,8 +865,9 @@ class _$TestScriptOperationCopyWithImpl<T>
         destination: identical(destination, fhirSentinel)
             ? _value.destination
             : destination as FhirInteger?,
-        encodeRequestUrl:
-            encodeRequestUrl as FhirBoolean? ?? _value.encodeRequestUrl,
+        encodeRequestUrl: identical(encodeRequestUrl, fhirSentinel)
+            ? _value.encodeRequestUrl
+            : (encodeRequestUrl as FhirBoolean?) ?? _value.encodeRequestUrl,
         method: identical(method, fhirSentinel)
             ? _value.method
             : method as TestScriptRequestMethodCode?,
@@ -915,8 +947,12 @@ class _$TestScriptRequestHeaderCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        field: field as FhirString? ?? _value.field,
-        value: value as FhirString? ?? _value.value,
+        field: identical(field, fhirSentinel)
+            ? _value.field
+            : (field as FhirString?) ?? _value.field,
+        value: identical(value, fhirSentinel)
+            ? _value.value
+            : (value as FhirString?) ?? _value.value,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,
@@ -1073,7 +1109,9 @@ class _$TestScriptAssertCopyWithImpl<T>
         value: identical(value, fhirSentinel)
             ? _value.value
             : value as FhirString?,
-        warningOnly: warningOnly as FhirBoolean? ?? _value.warningOnly,
+        warningOnly: identical(warningOnly, fhirSentinel)
+            ? _value.warningOnly
+            : (warningOnly as FhirBoolean?) ?? _value.warningOnly,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,
@@ -1132,7 +1170,9 @@ class _$TestScriptTestCopyWithImpl<T> implements $TestScriptTestCopyWith<T> {
         description: identical(description, fhirSentinel)
             ? _value.description
             : description as FhirString?,
-        action: action as List<TestScriptAction>? ?? _value.action,
+        action: identical(action, fhirSentinel)
+            ? _value.action
+            : (action as List<TestScriptAction>?) ?? _value.action,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,
@@ -1245,7 +1285,9 @@ class _$TestScriptTeardownCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        action: action as List<TestScriptAction>? ?? _value.action,
+        action: identical(action, fhirSentinel)
+            ? _value.action
+            : (action as List<TestScriptAction>?) ?? _value.action,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,
@@ -1298,7 +1340,9 @@ class _$TestScriptAction2CopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        operation: operation as TestScriptOperation? ?? _value.operation,
+        operation: identical(operation, fhirSentinel)
+            ? _value.operation
+            : (operation as TestScriptOperation?) ?? _value.operation,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,

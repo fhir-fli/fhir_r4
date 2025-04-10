@@ -384,7 +384,6 @@ class TerminologyServiceErrorClass extends FhirCodeEnum {
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.objectPath = 'TerminologyServiceErrorClass',
   }) : super(valueString: valueString);
 
   /// Factory constructor to create a new instance of
@@ -396,7 +395,6 @@ class TerminologyServiceErrorClass extends FhirCodeEnum {
     FhirString? id,
     List<FhirExtension>? extension_,
     bool? disallowExtensions,
-    String objectPath = 'TerminologyServiceErrorClass',
     String? system,
     String? version,
     String? display,
@@ -410,7 +408,6 @@ class TerminologyServiceErrorClass extends FhirCodeEnum {
       id: id,
       extension_: extension_,
       disallowExtensions: disallowExtensions,
-      objectPath: objectPath,
     );
   }
 
@@ -527,29 +524,57 @@ class TerminologyServiceErrorClass extends FhirCodeEnum {
 
   /// Creates a modified copy with updated properties.
   @override
-  TerminologyServiceErrorClass copyWith({
-    dynamic newValue,
-    Element? element,
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    bool? disallowExtensions,
-    String? objectPath,
+  TerminologyServiceErrorClassCopyWithImpl<TerminologyServiceErrorClass>
+      get copyWith => TerminologyServiceErrorClassCopyWithImpl<
+              TerminologyServiceErrorClass>(
+            this,
+            (value) => value as TerminologyServiceErrorClass,
+          );
+}
+
+/// The generated implementation of the copyWith helper for Element.
+/// The call method uses parameters of type Object? with a default value of
+/// [fhirSentinel] so that omitted parameters retain the sentinel value while
+/// explicit nulls do not.
+class TerminologyServiceErrorClassCopyWithImpl<T>
+    extends $FhirCodeCopyWithImpl<T> {
+  /// Constructor for the copyWith implementation.
+  TerminologyServiceErrorClassCopyWithImpl(this._value, this._then)
+      : super(_value, _then);
+
+  final FhirString _value;
+  final T Function(FhirString) _then;
+
+  @override
+  T call({
+    Object? newValue = fhirSentinel,
+    Object? element = fhirSentinel,
+    Object? id = fhirSentinel,
+    Object? extension_ = fhirSentinel,
+    Object? disallowExtensions = fhirSentinel,
   }) {
-    return TerminologyServiceErrorClass._(
-      newValue?.toString() ?? valueString,
-      element: (element ?? this.element)?.copyWith(
-        userData: userData ?? this.element?.userData,
-        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
-        formatCommentsPost:
-            formatCommentsPost ?? this.element?.formatCommentsPost,
-        annotations: annotations ?? this.element?.annotations,
+    if (!identical(newValue, fhirSentinel) && newValue is! String?) {
+      throw ArgumentError(
+        'newValue must be a String or null, but found ${newValue.runtimeType}',
+        'newValue',
+      );
+    }
+    return _then(
+      TerminologyServiceErrorClass(
+        identical(newValue, fhirSentinel)
+            ? _value.valueString
+            : newValue as String?,
+        element: identical(element, fhirSentinel)
+            ? _value.element
+            : element as Element?,
+        id: identical(id, fhirSentinel) ? _value.id : id as FhirString?,
+        extension_: identical(extension_, fhirSentinel)
+            ? _value.extension_
+            : extension_ as List<FhirExtension>?,
+        disallowExtensions: identical(disallowExtensions, fhirSentinel)
+            ? _value.disallowExtensions
+            : disallowExtensions as bool?,
       ),
-      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }

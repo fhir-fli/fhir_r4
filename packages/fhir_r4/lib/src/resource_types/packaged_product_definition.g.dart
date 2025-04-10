@@ -420,7 +420,9 @@ class _$PackagedProductDefinitionPropertyCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        type: type as CodeableConcept? ?? _value.type,
+        type: identical(type, fhirSentinel)
+            ? _value.type
+            : (type as CodeableConcept?) ?? _value.type,
         valueX: identical(valueX, fhirSentinel)
             ? _value.valueX
             : valueX as CodeableConcept?,
@@ -480,7 +482,9 @@ class _$PackagedProductDefinitionContainedItemCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        item: item as CodeableReference? ?? _value.item,
+        item: identical(item, fhirSentinel)
+            ? _value.item
+            : (item as CodeableReference?) ?? _value.item,
         amount: identical(amount, fhirSentinel)
             ? _value.amount
             : amount as Quantity?,

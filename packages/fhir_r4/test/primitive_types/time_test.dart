@@ -35,5 +35,4 @@ void timeTest() {
       expect(fhirTime1 >= fhirTime2, isTrue);
     });
   });
-
 }

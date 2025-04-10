@@ -117,11 +117,15 @@ class _$TerminologyCapabilitiesCopyWithImpl<T>
         title: identical(title, fhirSentinel)
             ? _value.title
             : title as FhirString?,
-        status: status as PublicationStatus? ?? _value.status,
+        status: identical(status, fhirSentinel)
+            ? _value.status
+            : (status as PublicationStatus?) ?? _value.status,
         experimental: identical(experimental, fhirSentinel)
             ? _value.experimental
             : experimental as FhirBoolean?,
-        date: date as FhirDateTime? ?? _value.date,
+        date: identical(date, fhirSentinel)
+            ? _value.date
+            : (date as FhirDateTime?) ?? _value.date,
         publisher: identical(publisher, fhirSentinel)
             ? _value.publisher
             : publisher as FhirString?,
@@ -143,7 +147,9 @@ class _$TerminologyCapabilitiesCopyWithImpl<T>
         copyright: identical(copyright, fhirSentinel)
             ? _value.copyright
             : copyright as FhirMarkdown?,
-        kind: kind as CapabilityStatementKind? ?? _value.kind,
+        kind: identical(kind, fhirSentinel)
+            ? _value.kind
+            : (kind as CapabilityStatementKind?) ?? _value.kind,
         software: identical(software, fhirSentinel)
             ? _value.software
             : software as TerminologyCapabilitiesSoftware?,
@@ -222,7 +228,9 @@ class _$TerminologyCapabilitiesSoftwareCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        name: name as FhirString? ?? _value.name,
+        name: identical(name, fhirSentinel)
+            ? _value.name
+            : (name as FhirString?) ?? _value.name,
         version: identical(version, fhirSentinel)
             ? _value.version
             : version as FhirString?,
@@ -282,7 +290,9 @@ class _$TerminologyCapabilitiesImplementationCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        description: description as FhirString? ?? _value.description,
+        description: identical(description, fhirSentinel)
+            ? _value.description
+            : (description as FhirString?) ?? _value.description,
         url: identical(url, fhirSentinel) ? _value.url : url as FhirUrl?,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
@@ -486,8 +496,12 @@ class _$TerminologyCapabilitiesFilterCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        code: code as FhirCode? ?? _value.code,
-        op: op as List<FhirCode>? ?? _value.op,
+        code: identical(code, fhirSentinel)
+            ? _value.code
+            : (code as FhirCode?) ?? _value.code,
+        op: identical(op, fhirSentinel)
+            ? _value.op
+            : (op as List<FhirCode>?) ?? _value.op,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,
@@ -621,7 +635,9 @@ class _$TerminologyCapabilitiesParameterCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        name: name as FhirCode? ?? _value.name,
+        name: identical(name, fhirSentinel)
+            ? _value.name
+            : (name as FhirCode?) ?? _value.name,
         documentation: identical(documentation, fhirSentinel)
             ? _value.documentation
             : documentation as FhirString?,
@@ -679,7 +695,9 @@ class _$TerminologyCapabilitiesValidateCodeCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        translations: translations as FhirBoolean? ?? _value.translations,
+        translations: identical(translations, fhirSentinel)
+            ? _value.translations
+            : (translations as FhirBoolean?) ?? _value.translations,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,
@@ -735,7 +753,9 @@ class _$TerminologyCapabilitiesTranslationCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        needsMap: needsMap as FhirBoolean? ?? _value.needsMap,
+        needsMap: identical(needsMap, fhirSentinel)
+            ? _value.needsMap
+            : (needsMap as FhirBoolean?) ?? _value.needsMap,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,

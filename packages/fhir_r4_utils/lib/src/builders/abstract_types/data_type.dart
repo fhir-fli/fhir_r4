@@ -75,7 +75,4 @@ abstract class DataTypeBuilder extends ElementBuilder {
   /// Creates an empty property in the object
   @override
   void createProperty(String propertyName);
-
-  @override
-  void clear({bool extension_ = false, bool id = false});
 }

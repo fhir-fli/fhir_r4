@@ -88,8 +88,12 @@ class _$FhirListCopyWithImpl<T> implements $FhirListCopyWith<T> {
         identifier: identical(identifier, fhirSentinel)
             ? _value.identifier
             : identifier as List<Identifier>?,
-        status: status as ListStatus? ?? _value.status,
-        mode: mode as ListMode? ?? _value.mode,
+        status: identical(status, fhirSentinel)
+            ? _value.status
+            : (status as ListStatus?) ?? _value.status,
+        mode: identical(mode, fhirSentinel)
+            ? _value.mode
+            : (mode as ListMode?) ?? _value.mode,
         title: identical(title, fhirSentinel)
             ? _value.title
             : title as FhirString?,
@@ -179,7 +183,9 @@ class _$ListEntryCopyWithImpl<T> implements $ListEntryCopyWith<T> {
             : deleted as FhirBoolean?,
         date:
             identical(date, fhirSentinel) ? _value.date : date as FhirDateTime?,
-        item: item as Reference? ?? _value.item,
+        item: identical(item, fhirSentinel)
+            ? _value.item
+            : (item as Reference?) ?? _value.item,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,

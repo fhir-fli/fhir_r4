@@ -90,7 +90,9 @@ class _$ObservationDefinitionCopyWithImpl<T>
         category: identical(category, fhirSentinel)
             ? _value.category
             : category as List<CodeableConcept>?,
-        code: code as CodeableConcept? ?? _value.code,
+        code: identical(code, fhirSentinel)
+            ? _value.code
+            : (code as CodeableConcept?) ?? _value.code,
         identifier: identical(identifier, fhirSentinel)
             ? _value.identifier
             : identifier as List<Identifier>?,

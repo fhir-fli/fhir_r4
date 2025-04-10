@@ -101,7 +101,9 @@ class _$ExampleScenarioCopyWithImpl<T> implements $ExampleScenarioCopyWith<T> {
             ? _value.version
             : version as FhirString?,
         name: identical(name, fhirSentinel) ? _value.name : name as FhirString?,
-        status: status as PublicationStatus? ?? _value.status,
+        status: identical(status, fhirSentinel)
+            ? _value.status
+            : (status as PublicationStatus?) ?? _value.status,
         experimental: identical(experimental, fhirSentinel)
             ? _value.experimental
             : experimental as FhirBoolean?,
@@ -192,8 +194,12 @@ class _$ExampleScenarioActorCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        actorId: actorId as FhirString? ?? _value.actorId,
-        type: type as ExampleScenarioActorType? ?? _value.type,
+        actorId: identical(actorId, fhirSentinel)
+            ? _value.actorId
+            : (actorId as FhirString?) ?? _value.actorId,
+        type: identical(type, fhirSentinel)
+            ? _value.type
+            : (type as ExampleScenarioActorType?) ?? _value.type,
         name: identical(name, fhirSentinel) ? _value.name : name as FhirString?,
         description: identical(description, fhirSentinel)
             ? _value.description
@@ -260,8 +266,12 @@ class _$ExampleScenarioInstanceCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        resourceId: resourceId as FhirString? ?? _value.resourceId,
-        resourceType: resourceType as FhirCode? ?? _value.resourceType,
+        resourceId: identical(resourceId, fhirSentinel)
+            ? _value.resourceId
+            : (resourceId as FhirString?) ?? _value.resourceId,
+        resourceType: identical(resourceType, fhirSentinel)
+            ? _value.resourceType
+            : (resourceType as FhirCode?) ?? _value.resourceType,
         name: identical(name, fhirSentinel) ? _value.name : name as FhirString?,
         description: identical(description, fhirSentinel)
             ? _value.description
@@ -326,8 +336,12 @@ class _$ExampleScenarioVersionCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        versionId: versionId as FhirString? ?? _value.versionId,
-        description: description as FhirMarkdown? ?? _value.description,
+        versionId: identical(versionId, fhirSentinel)
+            ? _value.versionId
+            : (versionId as FhirString?) ?? _value.versionId,
+        description: identical(description, fhirSentinel)
+            ? _value.description
+            : (description as FhirMarkdown?) ?? _value.description,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,
@@ -382,7 +396,9 @@ class _$ExampleScenarioContainedInstanceCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        resourceId: resourceId as FhirString? ?? _value.resourceId,
+        resourceId: identical(resourceId, fhirSentinel)
+            ? _value.resourceId
+            : (resourceId as FhirString?) ?? _value.resourceId,
         versionId: identical(versionId, fhirSentinel)
             ? _value.versionId
             : versionId as FhirString?,
@@ -448,7 +464,9 @@ class _$ExampleScenarioProcessCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        title: title as FhirString? ?? _value.title,
+        title: identical(title, fhirSentinel)
+            ? _value.title
+            : (title as FhirString?) ?? _value.title,
         description: identical(description, fhirSentinel)
             ? _value.description
             : description as FhirMarkdown?,
@@ -601,7 +619,9 @@ class _$ExampleScenarioOperationCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        number: number as FhirString? ?? _value.number,
+        number: identical(number, fhirSentinel)
+            ? _value.number
+            : (number as FhirString?) ?? _value.number,
         type: identical(type, fhirSentinel) ? _value.type : type as FhirString?,
         name: identical(name, fhirSentinel) ? _value.name : name as FhirString?,
         initiator: identical(initiator, fhirSentinel)
@@ -682,7 +702,9 @@ class _$ExampleScenarioAlternativeCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        title: title as FhirString? ?? _value.title,
+        title: identical(title, fhirSentinel)
+            ? _value.title
+            : (title as FhirString?) ?? _value.title,
         description: identical(description, fhirSentinel)
             ? _value.description
             : description as FhirMarkdown?,

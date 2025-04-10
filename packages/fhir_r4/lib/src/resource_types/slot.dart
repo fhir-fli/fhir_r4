@@ -386,6 +386,127 @@ class Slot extends DomainResource {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> listChildrenNames() {
+    return [
+      'id',
+      'meta',
+      'implicitRules',
+      'language',
+      'text',
+      'contained',
+      'extension',
+      'modifierExtension',
+      'identifier',
+      'serviceCategory',
+      'serviceType',
+      'specialty',
+      'appointmentType',
+      'schedule',
+      'status',
+      'start',
+      'end',
+      'overbooked',
+      'comment',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> getChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'meta':
+        if (meta != null) {
+          fields.add(meta!);
+        }
+      case 'implicitRules':
+        if (implicitRules != null) {
+          fields.add(implicitRules!);
+        }
+      case 'language':
+        if (language != null) {
+          fields.add(language!);
+        }
+      case 'text':
+        if (text != null) {
+          fields.add(text!);
+        }
+      case 'contained':
+        if (contained != null) {
+          fields.addAll(contained!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'identifier':
+        if (identifier != null) {
+          fields.addAll(identifier!);
+        }
+      case 'serviceCategory':
+        if (serviceCategory != null) {
+          fields.addAll(serviceCategory!);
+        }
+      case 'serviceType':
+        if (serviceType != null) {
+          fields.addAll(serviceType!);
+        }
+      case 'specialty':
+        if (specialty != null) {
+          fields.addAll(specialty!);
+        }
+      case 'appointmentType':
+        if (appointmentType != null) {
+          fields.add(appointmentType!);
+        }
+      case 'schedule':
+        fields.add(schedule);
+      case 'status':
+        fields.add(status);
+      case 'start':
+        fields.add(start);
+      case 'end':
+        fields.add(end);
+      case 'overbooked':
+        if (overbooked != null) {
+          fields.add(overbooked!);
+        }
+      case 'comment':
+        if (comment != null) {
+          fields.add(comment!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildByName(String name) {
+    final values = getChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   Slot clone() => copyWith();
 

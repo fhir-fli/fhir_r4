@@ -122,7 +122,9 @@ class _$CodeSystemCopyWithImpl<T> implements $CodeSystemCopyWith<T> {
         title: identical(title, fhirSentinel)
             ? _value.title
             : title as FhirString?,
-        status: status as PublicationStatus? ?? _value.status,
+        status: identical(status, fhirSentinel)
+            ? _value.status
+            : (status as PublicationStatus?) ?? _value.status,
         experimental: identical(experimental, fhirSentinel)
             ? _value.experimental
             : experimental as FhirBoolean?,
@@ -164,7 +166,9 @@ class _$CodeSystemCopyWithImpl<T> implements $CodeSystemCopyWith<T> {
         versionNeeded: identical(versionNeeded, fhirSentinel)
             ? _value.versionNeeded
             : versionNeeded as FhirBoolean?,
-        content: content as CodeSystemContentMode? ?? _value.content,
+        content: identical(content, fhirSentinel)
+            ? _value.content
+            : (content as CodeSystemContentMode?) ?? _value.content,
         supplements: identical(supplements, fhirSentinel)
             ? _value.supplements
             : supplements as FhirCanonical?,
@@ -235,12 +239,18 @@ class _$CodeSystemFilterCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        code: code as FhirCode? ?? _value.code,
+        code: identical(code, fhirSentinel)
+            ? _value.code
+            : (code as FhirCode?) ?? _value.code,
         description: identical(description, fhirSentinel)
             ? _value.description
             : description as FhirString?,
-        operator_: operator_ as List<FilterOperator>? ?? _value.operator_,
-        value: value as FhirString? ?? _value.value,
+        operator_: identical(operator_, fhirSentinel)
+            ? _value.operator_
+            : (operator_ as List<FilterOperator>?) ?? _value.operator_,
+        value: identical(value, fhirSentinel)
+            ? _value.value
+            : (value as FhirString?) ?? _value.value,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,
@@ -299,12 +309,16 @@ class _$CodeSystemPropertyCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        code: code as FhirCode? ?? _value.code,
+        code: identical(code, fhirSentinel)
+            ? _value.code
+            : (code as FhirCode?) ?? _value.code,
         uri: identical(uri, fhirSentinel) ? _value.uri : uri as FhirUri?,
         description: identical(description, fhirSentinel)
             ? _value.description
             : description as FhirString?,
-        type: type as PropertyTypeEnum? ?? _value.type,
+        type: identical(type, fhirSentinel)
+            ? _value.type
+            : (type as PropertyTypeEnum?) ?? _value.type,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,
@@ -367,7 +381,9 @@ class _$CodeSystemConceptCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        code: code as FhirCode? ?? _value.code,
+        code: identical(code, fhirSentinel)
+            ? _value.code
+            : (code as FhirCode?) ?? _value.code,
         display: identical(display, fhirSentinel)
             ? _value.display
             : display as FhirString?,
@@ -443,7 +459,9 @@ class _$CodeSystemDesignationCopyWithImpl<T>
             ? _value.language
             : language as CommonLanguages?,
         use: identical(use, fhirSentinel) ? _value.use : use as Coding?,
-        value: value as FhirString? ?? _value.value,
+        value: identical(value, fhirSentinel)
+            ? _value.value
+            : (value as FhirString?) ?? _value.value,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,
@@ -498,8 +516,12 @@ class _$CodeSystemProperty1CopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        code: code as FhirCode? ?? _value.code,
-        valueX: valueX as FhirCode? ?? _value.valueX,
+        code: identical(code, fhirSentinel)
+            ? _value.code
+            : (code as FhirCode?) ?? _value.code,
+        valueX: identical(valueX, fhirSentinel)
+            ? _value.valueX
+            : (valueX as FhirCode?) ?? _value.valueX,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,

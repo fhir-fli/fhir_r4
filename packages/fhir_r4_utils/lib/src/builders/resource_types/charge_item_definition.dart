@@ -1620,74 +1620,6 @@ class ChargeItemDefinitionBuilder extends DomainResourceBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool url = false,
-    bool identifier = false,
-    bool version = false,
-    bool title = false,
-    bool derivedFromUri = false,
-    bool partOf = false,
-    bool replaces = false,
-    bool status = false,
-    bool experimental = false,
-    bool date = false,
-    bool publisher = false,
-    bool contact = false,
-    bool description = false,
-    bool useContext = false,
-    bool jurisdiction = false,
-    bool copyright = false,
-    bool approvalDate = false,
-    bool lastReviewDate = false,
-    bool effectivePeriod = false,
-    bool code = false,
-    bool instance = false,
-    bool applicability = false,
-    bool propertyGroup = false,
-  }) {
-    if (id) this.id = null;
-    if (meta) this.meta = null;
-    if (implicitRules) this.implicitRules = null;
-    if (language) this.language = null;
-    if (text) this.text = null;
-    if (contained) this.contained = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (url) this.url = null;
-    if (identifier) this.identifier = null;
-    if (version) this.version = null;
-    if (title) this.title = null;
-    if (derivedFromUri) this.derivedFromUri = null;
-    if (partOf) this.partOf = null;
-    if (replaces) this.replaces = null;
-    if (status) this.status = null;
-    if (experimental) this.experimental = null;
-    if (date) this.date = null;
-    if (publisher) this.publisher = null;
-    if (contact) this.contact = null;
-    if (description) this.description = null;
-    if (useContext) this.useContext = null;
-    if (jurisdiction) this.jurisdiction = null;
-    if (copyright) this.copyright = null;
-    if (approvalDate) this.approvalDate = null;
-    if (lastReviewDate) this.lastReviewDate = null;
-    if (effectivePeriod) this.effectivePeriod = null;
-    if (code) this.code = null;
-    if (instance) this.instance = null;
-    if (applicability) this.applicability = null;
-    if (propertyGroup) this.propertyGroup = null;
-  }
-
   @override
   ChargeItemDefinitionBuilder clone() => throw UnimplementedError();
   @override
@@ -2413,24 +2345,6 @@ class ChargeItemDefinitionApplicabilityBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool description = false,
-    bool language = false,
-    bool expression = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (description) this.description = null;
-    if (language) this.language = null;
-    if (expression) this.expression = null;
-  }
-
   @override
   ChargeItemDefinitionApplicabilityBuilder clone() =>
       throw UnimplementedError();
@@ -2914,22 +2828,6 @@ class ChargeItemDefinitionPropertyGroupBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool applicability = false,
-    bool priceComponent = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (applicability) this.applicability = null;
-    if (priceComponent) this.priceComponent = null;
   }
 
   @override
@@ -3480,26 +3378,6 @@ class ChargeItemDefinitionPriceComponentBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool type = false,
-    bool code = false,
-    bool factor = false,
-    bool amount = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (type) this.type = null;
-    if (code) this.code = null;
-    if (factor) this.factor = null;
-    if (amount) this.amount = null;
   }
 
   @override

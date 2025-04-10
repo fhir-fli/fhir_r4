@@ -997,52 +997,6 @@ class TestReportBuilder extends DomainResourceBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool identifier = false,
-    bool name = false,
-    bool status = false,
-    bool testScript = false,
-    bool result = false,
-    bool score = false,
-    bool tester = false,
-    bool issued = false,
-    bool participant = false,
-    bool setup = false,
-    bool test = false,
-    bool teardown = false,
-  }) {
-    if (id) this.id = null;
-    if (meta) this.meta = null;
-    if (implicitRules) this.implicitRules = null;
-    if (language) this.language = null;
-    if (text) this.text = null;
-    if (contained) this.contained = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (identifier) this.identifier = null;
-    if (name) this.name = null;
-    if (status) this.status = null;
-    if (testScript) this.testScript = null;
-    if (result) this.result = null;
-    if (score) this.score = null;
-    if (tester) this.tester = null;
-    if (issued) this.issued = null;
-    if (participant) this.participant = null;
-    if (setup) this.setup = null;
-    if (test) this.test = null;
-    if (teardown) this.teardown = null;
-  }
-
   @override
   TestReportBuilder clone() => throw UnimplementedError();
   @override
@@ -1679,24 +1633,6 @@ class TestReportParticipantBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool type = false,
-    bool uri = false,
-    bool display = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (type) this.type = null;
-    if (uri) this.uri = null;
-    if (display) this.display = null;
-  }
-
   @override
   TestReportParticipantBuilder clone() => throw UnimplementedError();
   @override
@@ -2128,20 +2064,6 @@ class TestReportSetupBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool action = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (action) this.action = null;
   }
 
   @override
@@ -2576,22 +2498,6 @@ class TestReportActionBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool operation = false,
-    bool assert_ = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (operation) this.operation = null;
-    if (assert_) this.assert_ = null;
   }
 
   @override
@@ -3107,24 +3013,6 @@ class TestReportOperationBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool result = false,
-    bool message = false,
-    bool detail = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (result) this.result = null;
-    if (message) this.message = null;
-    if (detail) this.detail = null;
   }
 
   @override
@@ -3650,24 +3538,6 @@ class TestReportAssertBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool result = false,
-    bool message = false,
-    bool detail = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (result) this.result = null;
-    if (message) this.message = null;
-    if (detail) this.detail = null;
-  }
-
   @override
   TestReportAssertBuilder clone() => throw UnimplementedError();
   @override
@@ -4190,24 +4060,6 @@ class TestReportTestBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool name = false,
-    bool description = false,
-    bool action = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (name) this.name = null;
-    if (description) this.description = null;
-    if (action) this.action = null;
-  }
-
   @override
   TestReportTestBuilder clone() => throw UnimplementedError();
   @override
@@ -4658,22 +4510,6 @@ class TestReportAction1Builder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool operation = false,
-    bool assert_ = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (operation) this.operation = null;
-    if (assert_) this.assert_ = null;
-  }
-
   @override
   TestReportAction1Builder clone() => throw UnimplementedError();
   @override
@@ -5099,20 +4935,6 @@ class TestReportTeardownBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool action = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (action) this.action = null;
-  }
-
   @override
   TestReportTeardownBuilder clone() => throw UnimplementedError();
   @override
@@ -5515,20 +5337,6 @@ class TestReportAction2Builder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool operation = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (operation) this.operation = null;
   }
 
   @override

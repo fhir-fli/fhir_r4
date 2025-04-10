@@ -106,7 +106,9 @@ class _$AppointmentCopyWithImpl<T> implements $AppointmentCopyWith<T> {
         identifier: identical(identifier, fhirSentinel)
             ? _value.identifier
             : identifier as List<Identifier>?,
-        status: status as AppointmentStatus? ?? _value.status,
+        status: identical(status, fhirSentinel)
+            ? _value.status
+            : (status as AppointmentStatus?) ?? _value.status,
         cancelationReason: identical(cancelationReason, fhirSentinel)
             ? _value.cancelationReason
             : cancelationReason as CodeableConcept?,
@@ -159,8 +161,10 @@ class _$AppointmentCopyWithImpl<T> implements $AppointmentCopyWith<T> {
         basedOn: identical(basedOn, fhirSentinel)
             ? _value.basedOn
             : basedOn as List<Reference>?,
-        participant:
-            participant as List<AppointmentParticipant>? ?? _value.participant,
+        participant: identical(participant, fhirSentinel)
+            ? _value.participant
+            : (participant as List<AppointmentParticipant>?) ??
+                _value.participant,
         requestedPeriod: identical(requestedPeriod, fhirSentinel)
             ? _value.requestedPeriod
             : requestedPeriod as List<Period>?,
@@ -229,7 +233,9 @@ class _$AppointmentParticipantCopyWithImpl<T>
         required_: identical(required_, fhirSentinel)
             ? _value.required_
             : required_ as ParticipantRequired?,
-        status: status as ParticipationStatus? ?? _value.status,
+        status: identical(status, fhirSentinel)
+            ? _value.status
+            : (status as ParticipationStatus?) ?? _value.status,
         period:
             identical(period, fhirSentinel) ? _value.period : period as Period?,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)

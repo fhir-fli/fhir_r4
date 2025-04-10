@@ -1081,58 +1081,6 @@ class PaymentReconciliationBuilder extends DomainResourceBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool identifier = false,
-    bool status = false,
-    bool period = false,
-    bool created = false,
-    bool paymentIssuer = false,
-    bool request = false,
-    bool requestor = false,
-    bool outcome = false,
-    bool disposition = false,
-    bool paymentDate = false,
-    bool paymentAmount = false,
-    bool paymentIdentifier = false,
-    bool detail = false,
-    bool formCode = false,
-    bool processNote = false,
-  }) {
-    if (id) this.id = null;
-    if (meta) this.meta = null;
-    if (implicitRules) this.implicitRules = null;
-    if (language) this.language = null;
-    if (text) this.text = null;
-    if (contained) this.contained = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (identifier) this.identifier = null;
-    if (status) this.status = null;
-    if (period) this.period = null;
-    if (created) this.created = null;
-    if (paymentIssuer) this.paymentIssuer = null;
-    if (request) this.request = null;
-    if (requestor) this.requestor = null;
-    if (outcome) this.outcome = null;
-    if (disposition) this.disposition = null;
-    if (paymentDate) this.paymentDate = null;
-    if (paymentAmount) this.paymentAmount = null;
-    if (paymentIdentifier) this.paymentIdentifier = null;
-    if (detail) this.detail = null;
-    if (formCode) this.formCode = null;
-    if (processNote) this.processNote = null;
-  }
-
   @override
   PaymentReconciliationBuilder clone() => throw UnimplementedError();
   @override
@@ -1996,38 +1944,6 @@ class PaymentReconciliationDetailBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool identifier = false,
-    bool predecessor = false,
-    bool type = false,
-    bool request = false,
-    bool submitter = false,
-    bool response = false,
-    bool date = false,
-    bool responsible = false,
-    bool payee = false,
-    bool amount = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (identifier) this.identifier = null;
-    if (predecessor) this.predecessor = null;
-    if (type) this.type = null;
-    if (request) this.request = null;
-    if (submitter) this.submitter = null;
-    if (response) this.response = null;
-    if (date) this.date = null;
-    if (responsible) this.responsible = null;
-    if (payee) this.payee = null;
-    if (amount) this.amount = null;
-  }
-
   @override
   PaymentReconciliationDetailBuilder clone() => throw UnimplementedError();
   @override
@@ -2562,22 +2478,6 @@ class PaymentReconciliationProcessNoteBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool type = false,
-    bool text = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (type) this.type = null;
-    if (text) this.text = null;
   }
 
   @override

@@ -1298,60 +1298,6 @@ class PatientBuilder extends DomainResourceBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool identifier = false,
-    bool active = false,
-    bool name = false,
-    bool telecom = false,
-    bool gender = false,
-    bool birthDate = false,
-    bool deceased = false,
-    bool address = false,
-    bool maritalStatus = false,
-    bool multipleBirth = false,
-    bool photo = false,
-    bool contact = false,
-    bool communication = false,
-    bool generalPractitioner = false,
-    bool managingOrganization = false,
-    bool link = false,
-  }) {
-    if (id) this.id = null;
-    if (meta) this.meta = null;
-    if (implicitRules) this.implicitRules = null;
-    if (language) this.language = null;
-    if (text) this.text = null;
-    if (contained) this.contained = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (identifier) this.identifier = null;
-    if (active) this.active = null;
-    if (name) this.name = null;
-    if (telecom) this.telecom = null;
-    if (gender) this.gender = null;
-    if (birthDate) this.birthDate = null;
-    if (deceased) deceasedX = null;
-    if (address) this.address = null;
-    if (maritalStatus) this.maritalStatus = null;
-    if (multipleBirth) multipleBirthX = null;
-    if (photo) this.photo = null;
-    if (contact) this.contact = null;
-    if (communication) this.communication = null;
-    if (generalPractitioner) this.generalPractitioner = null;
-    if (managingOrganization) this.managingOrganization = null;
-    if (link) this.link = null;
-  }
-
   @override
   PatientBuilder clone() => throw UnimplementedError();
   @override
@@ -2149,32 +2095,6 @@ class PatientContactBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool relationship = false,
-    bool name = false,
-    bool telecom = false,
-    bool address = false,
-    bool gender = false,
-    bool organization = false,
-    bool period = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (relationship) this.relationship = null;
-    if (name) this.name = null;
-    if (telecom) this.telecom = null;
-    if (address) this.address = null;
-    if (gender) this.gender = null;
-    if (organization) this.organization = null;
-    if (period) this.period = null;
-  }
-
   @override
   PatientContactBuilder clone() => throw UnimplementedError();
   @override
@@ -2676,22 +2596,6 @@ class PatientCommunicationBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool language = false,
-    bool preferred = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (language) this.language = null;
-    if (preferred) this.preferred = null;
-  }
-
   @override
   PatientCommunicationBuilder clone() => throw UnimplementedError();
   @override
@@ -3151,22 +3055,6 @@ class PatientLinkBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool other = false,
-    bool type = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (other) this.other = null;
-    if (type) this.type = null;
   }
 
   @override

@@ -1002,52 +1002,6 @@ class RelatedPersonBuilder extends DomainResourceBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool identifier = false,
-    bool active = false,
-    bool patient = false,
-    bool relationship = false,
-    bool name = false,
-    bool telecom = false,
-    bool gender = false,
-    bool birthDate = false,
-    bool address = false,
-    bool photo = false,
-    bool period = false,
-    bool communication = false,
-  }) {
-    if (id) this.id = null;
-    if (meta) this.meta = null;
-    if (implicitRules) this.implicitRules = null;
-    if (language) this.language = null;
-    if (text) this.text = null;
-    if (contained) this.contained = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (identifier) this.identifier = null;
-    if (active) this.active = null;
-    if (patient) this.patient = null;
-    if (relationship) this.relationship = null;
-    if (name) this.name = null;
-    if (telecom) this.telecom = null;
-    if (gender) this.gender = null;
-    if (birthDate) this.birthDate = null;
-    if (address) this.address = null;
-    if (photo) this.photo = null;
-    if (period) this.period = null;
-    if (communication) this.communication = null;
-  }
-
   @override
   RelatedPersonBuilder clone() => throw UnimplementedError();
   @override
@@ -1628,22 +1582,6 @@ class RelatedPersonCommunicationBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool language = false,
-    bool preferred = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (language) this.language = null;
-    if (preferred) this.preferred = null;
   }
 
   @override

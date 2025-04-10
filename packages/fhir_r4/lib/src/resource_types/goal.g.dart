@@ -94,8 +94,10 @@ class _$GoalCopyWithImpl<T> implements $GoalCopyWith<T> {
         identifier: identical(identifier, fhirSentinel)
             ? _value.identifier
             : identifier as List<Identifier>?,
-        lifecycleStatus:
-            lifecycleStatus as GoalLifecycleStatus? ?? _value.lifecycleStatus,
+        lifecycleStatus: identical(lifecycleStatus, fhirSentinel)
+            ? _value.lifecycleStatus
+            : (lifecycleStatus as GoalLifecycleStatus?) ??
+                _value.lifecycleStatus,
         achievementStatus: identical(achievementStatus, fhirSentinel)
             ? _value.achievementStatus
             : achievementStatus as CodeableConcept?,
@@ -105,8 +107,12 @@ class _$GoalCopyWithImpl<T> implements $GoalCopyWith<T> {
         priority: identical(priority, fhirSentinel)
             ? _value.priority
             : priority as CodeableConcept?,
-        description: description as CodeableConcept? ?? _value.description,
-        subject: subject as Reference? ?? _value.subject,
+        description: identical(description, fhirSentinel)
+            ? _value.description
+            : (description as CodeableConcept?) ?? _value.description,
+        subject: identical(subject, fhirSentinel)
+            ? _value.subject
+            : (subject as Reference?) ?? _value.subject,
         startX: identical(startX, fhirSentinel)
             ? _value.startX
             : startX as FhirDate?,

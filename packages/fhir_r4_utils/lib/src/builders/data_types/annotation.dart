@@ -459,22 +459,6 @@ class AnnotationBuilder extends DataTypeBuilder
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool author = false,
-    bool time = false,
-    bool text = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (author) authorX = null;
-    if (time) this.time = null;
-    if (text) this.text = null;
-  }
-
   @override
   AnnotationBuilder clone() => throw UnimplementedError();
   @override

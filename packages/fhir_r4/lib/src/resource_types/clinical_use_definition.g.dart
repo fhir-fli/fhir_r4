@@ -86,7 +86,9 @@ class _$ClinicalUseDefinitionCopyWithImpl<T>
         identifier: identical(identifier, fhirSentinel)
             ? _value.identifier
             : identifier as List<Identifier>?,
-        type: type as ClinicalUseDefinitionType? ?? _value.type,
+        type: identical(type, fhirSentinel)
+            ? _value.type
+            : (type as ClinicalUseDefinitionType?) ?? _value.type,
         category: identical(category, fhirSentinel)
             ? _value.category
             : category as List<CodeableConcept>?,
@@ -244,9 +246,12 @@ class _$ClinicalUseDefinitionOtherTherapyCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        relationshipType:
-            relationshipType as CodeableConcept? ?? _value.relationshipType,
-        therapy: therapy as CodeableReference? ?? _value.therapy,
+        relationshipType: identical(relationshipType, fhirSentinel)
+            ? _value.relationshipType
+            : (relationshipType as CodeableConcept?) ?? _value.relationshipType,
+        therapy: identical(therapy, fhirSentinel)
+            ? _value.therapy
+            : (therapy as CodeableReference?) ?? _value.therapy,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,
@@ -466,7 +471,9 @@ class _$ClinicalUseDefinitionInteractantCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        itemX: itemX as Reference? ?? _value.itemX,
+        itemX: identical(itemX, fhirSentinel)
+            ? _value.itemX
+            : (itemX as Reference?) ?? _value.itemX,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,

@@ -115,18 +115,24 @@ class _$StructureDefinitionCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        url: url as FhirUri? ?? _value.url,
+        url: identical(url, fhirSentinel)
+            ? _value.url
+            : (url as FhirUri?) ?? _value.url,
         identifier: identical(identifier, fhirSentinel)
             ? _value.identifier
             : identifier as List<Identifier>?,
         version: identical(version, fhirSentinel)
             ? _value.version
             : version as FhirString?,
-        name: name as FhirString? ?? _value.name,
+        name: identical(name, fhirSentinel)
+            ? _value.name
+            : (name as FhirString?) ?? _value.name,
         title: identical(title, fhirSentinel)
             ? _value.title
             : title as FhirString?,
-        status: status as PublicationStatus? ?? _value.status,
+        status: identical(status, fhirSentinel)
+            ? _value.status
+            : (status as PublicationStatus?) ?? _value.status,
         experimental: identical(experimental, fhirSentinel)
             ? _value.experimental
             : experimental as FhirBoolean?,
@@ -162,15 +168,21 @@ class _$StructureDefinitionCopyWithImpl<T>
         mapping: identical(mapping, fhirSentinel)
             ? _value.mapping
             : mapping as List<StructureDefinitionMapping>?,
-        kind: kind as StructureDefinitionKind? ?? _value.kind,
-        abstract_: abstract_ as FhirBoolean? ?? _value.abstract_,
+        kind: identical(kind, fhirSentinel)
+            ? _value.kind
+            : (kind as StructureDefinitionKind?) ?? _value.kind,
+        abstract_: identical(abstract_, fhirSentinel)
+            ? _value.abstract_
+            : (abstract_ as FhirBoolean?) ?? _value.abstract_,
         context: identical(context, fhirSentinel)
             ? _value.context
             : context as List<StructureDefinitionContext>?,
         contextInvariant: identical(contextInvariant, fhirSentinel)
             ? _value.contextInvariant
             : contextInvariant as List<FhirString>?,
-        type: type as FhirUri? ?? _value.type,
+        type: identical(type, fhirSentinel)
+            ? _value.type
+            : (type as FhirUri?) ?? _value.type,
         baseDefinition: identical(baseDefinition, fhirSentinel)
             ? _value.baseDefinition
             : baseDefinition as FhirCanonical?,
@@ -238,7 +250,9 @@ class _$StructureDefinitionMappingCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        identity: identity as FhirId? ?? _value.identity,
+        identity: identical(identity, fhirSentinel)
+            ? _value.identity
+            : (identity as FhirId?) ?? _value.identity,
         uri: identical(uri, fhirSentinel) ? _value.uri : uri as FhirUri?,
         name: identical(name, fhirSentinel) ? _value.name : name as FhirString?,
         comment: identical(comment, fhirSentinel)
@@ -300,8 +314,12 @@ class _$StructureDefinitionContextCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        type: type as ExtensionContextType? ?? _value.type,
-        expression: expression as FhirString? ?? _value.expression,
+        type: identical(type, fhirSentinel)
+            ? _value.type
+            : (type as ExtensionContextType?) ?? _value.type,
+        expression: identical(expression, fhirSentinel)
+            ? _value.expression
+            : (expression as FhirString?) ?? _value.expression,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,
@@ -356,7 +374,9 @@ class _$StructureDefinitionSnapshotCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        element: element as List<ElementDefinition>? ?? _value.element,
+        element: identical(element, fhirSentinel)
+            ? _value.element
+            : (element as List<ElementDefinition>?) ?? _value.element,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,
@@ -411,7 +431,9 @@ class _$StructureDefinitionDifferentialCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        element: element as List<ElementDefinition>? ?? _value.element,
+        element: identical(element, fhirSentinel)
+            ? _value.element
+            : (element as List<ElementDefinition>?) ?? _value.element,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,

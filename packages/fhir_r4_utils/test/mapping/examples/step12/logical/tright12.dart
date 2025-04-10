@@ -1,6 +1,12 @@
 import 'package:collection/collection.dart';
 import 'package:fhir_r4/fhir_r4.dart'
-    show BackboneElement, Element, FhirBase, FhirExtension, FhirString;
+    show
+        $BackboneElementCopyWith,
+        BackboneElement,
+        Element,
+        FhirBase,
+        FhirExtension,
+        FhirString;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 
 /// [TRight12]
@@ -11,7 +17,6 @@ class TRight12 extends Element {
     super.extension_,
     this.az1,
     super.disallowExtensions,
-    super.objectPath = 'TRight12',
   });
 
   /// Factory constructor for an empty [TRight12]
@@ -54,24 +59,6 @@ class TRight12 extends Element {
   final List<TRight12az1>? az1;
 
   @override
-  TRight12 copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<TRight12az1>? az1,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    return TRight12(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      az1: az1 ?? this.az1,
-    );
-  }
-
-  @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{'resourceType': 'TRight'};
     if (id != null) json['id'] = id!.valueString;
@@ -82,35 +69,6 @@ class TRight12 extends Element {
       json['az1'] = az1!.map((e) => e.toJson()).toList();
     }
     return json;
-  }
-
-  @override
-  List<String> listChildrenNames() => ['id', 'extension', 'az1'];
-
-  @override
-  List<FhirBase> getChildrenByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    final fields = <FhirBase>[];
-    switch (fieldName) {
-      case 'id':
-        if (id != null) fields.add(id!);
-      case 'extension':
-        if (extension_ != null) fields.addAll(extension_!);
-      case 'az1':
-        if (az1 != null) fields.addAll(az1!);
-      default:
-        if (checkValid) throw ArgumentError('Invalid name: $fieldName');
-    }
-    return fields;
-  }
-
-  @override
-  FhirBase? getChildByName(String name) {
-    final values = getChildrenByName(name);
-    if (values.length > 1) throw StateError('Too many values for $name found');
-    return values.isNotEmpty ? values.first : null;
   }
 
   @override
@@ -132,7 +90,6 @@ class TRight12az1 extends BackboneElement {
     this.az2,
     this.az3,
     super.disallowExtensions,
-    super.objectPath = 'TRight12az1',
   });
 
   factory TRight12az1.fromJson(Map<String, dynamic> json) {
@@ -178,23 +135,12 @@ class TRight12az1 extends BackboneElement {
   final FhirString? az3;
 
   @override
-  TRight12az1 copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    FhirString? az2,
-    FhirString? az3,
-    List<FhirExtension>? modifierExtension,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    return TRight12az1(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      az2: az2 ?? this.az2,
-      az3: az3 ?? this.az3,
+  TRight12az1 clone() => copyWith();
+
+  @override
+  $BackboneElementCopyWith<TRight12az1> get copyWith {
+    throw UnimplementedError(
+      'TLeft12az1.copyWith() is not implemented yet',
     );
   }
 
@@ -211,37 +157,6 @@ class TRight12az1 extends BackboneElement {
   }
 
   @override
-  List<String> listChildrenNames() => ['id', 'extension', 'az2', 'az3'];
-
-  @override
-  List<FhirBase> getChildrenByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    final fields = <FhirBase>[];
-    switch (fieldName) {
-      case 'id':
-        if (id != null) fields.add(id!);
-      case 'extension':
-        if (extension_ != null) fields.addAll(extension_!);
-      case 'az2':
-        if (az2 != null) fields.add(az2!);
-      case 'az3':
-        if (az3 != null) fields.add(az3!);
-      default:
-        if (checkValid) throw ArgumentError('Invalid name: $fieldName');
-    }
-    return fields;
-  }
-
-  @override
-  FhirBase? getChildByName(String name) {
-    final values = getChildrenByName(name);
-    if (values.length > 1) throw StateError('Too many values for $name found');
-    return values.isNotEmpty ? values.first : null;
-  }
-
-  @override
   bool equalsDeep(FhirBase? other) {
     if (other is! TRight12az1) return false;
     if (identical(this, other)) return true;
@@ -249,16 +164,6 @@ class TRight12az1 extends BackboneElement {
         const DeepCollectionEquality().equals(extension_, other.extension_) &&
         az2 == other.az2 &&
         az3 == other.az3;
-  }
-
-  @override
-  TRight12az1 createProperty(String elementName) {
-    throw UnimplementedError();
-  }
-
-  @override
-  TRight12az1 clear({bool extension_ = false, bool id = false}) {
-    throw UnimplementedError();
   }
 }
 
@@ -484,17 +389,6 @@ class TRight12Builder extends ElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool az1 = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (az1) this.az1 = null;
   }
 
   @override
@@ -854,20 +748,6 @@ class TRight12az1Builder extends BackboneElementBuilder {
     }
   }
 
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool az2 = false,
-    bool az3 = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (az2) this.az2 = null;
-    if (az3) this.az3 = null;
-  }
 
   @override
   Map<String, dynamic> toJson() {

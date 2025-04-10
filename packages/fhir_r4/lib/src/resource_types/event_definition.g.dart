@@ -130,7 +130,9 @@ class _$EventDefinitionCopyWithImpl<T> implements $EventDefinitionCopyWith<T> {
         subtitle: identical(subtitle, fhirSentinel)
             ? _value.subtitle
             : subtitle as FhirString?,
-        status: status as PublicationStatus? ?? _value.status,
+        status: identical(status, fhirSentinel)
+            ? _value.status
+            : (status as PublicationStatus?) ?? _value.status,
         experimental: identical(experimental, fhirSentinel)
             ? _value.experimental
             : experimental as FhirBoolean?,
@@ -190,7 +192,9 @@ class _$EventDefinitionCopyWithImpl<T> implements $EventDefinitionCopyWith<T> {
         relatedArtifact: identical(relatedArtifact, fhirSentinel)
             ? _value.relatedArtifact
             : relatedArtifact as List<RelatedArtifact>?,
-        trigger: trigger as List<TriggerDefinition>? ?? _value.trigger,
+        trigger: identical(trigger, fhirSentinel)
+            ? _value.trigger
+            : (trigger as List<TriggerDefinition>?) ?? _value.trigger,
       ),
     );
   }

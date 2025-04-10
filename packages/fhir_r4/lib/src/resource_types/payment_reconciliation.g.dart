@@ -94,10 +94,14 @@ class _$PaymentReconciliationCopyWithImpl<T>
         identifier: identical(identifier, fhirSentinel)
             ? _value.identifier
             : identifier as List<Identifier>?,
-        status: status as FinancialResourceStatusCodes? ?? _value.status,
+        status: identical(status, fhirSentinel)
+            ? _value.status
+            : (status as FinancialResourceStatusCodes?) ?? _value.status,
         period:
             identical(period, fhirSentinel) ? _value.period : period as Period?,
-        created: created as FhirDateTime? ?? _value.created,
+        created: identical(created, fhirSentinel)
+            ? _value.created
+            : (created as FhirDateTime?) ?? _value.created,
         paymentIssuer: identical(paymentIssuer, fhirSentinel)
             ? _value.paymentIssuer
             : paymentIssuer as Reference?,
@@ -113,8 +117,12 @@ class _$PaymentReconciliationCopyWithImpl<T>
         disposition: identical(disposition, fhirSentinel)
             ? _value.disposition
             : disposition as FhirString?,
-        paymentDate: paymentDate as FhirDate? ?? _value.paymentDate,
-        paymentAmount: paymentAmount as Money? ?? _value.paymentAmount,
+        paymentDate: identical(paymentDate, fhirSentinel)
+            ? _value.paymentDate
+            : (paymentDate as FhirDate?) ?? _value.paymentDate,
+        paymentAmount: identical(paymentAmount, fhirSentinel)
+            ? _value.paymentAmount
+            : (paymentAmount as Money?) ?? _value.paymentAmount,
         paymentIdentifier: identical(paymentIdentifier, fhirSentinel)
             ? _value.paymentIdentifier
             : paymentIdentifier as Identifier?,
@@ -200,7 +208,9 @@ class _$PaymentReconciliationDetailCopyWithImpl<T>
         predecessor: identical(predecessor, fhirSentinel)
             ? _value.predecessor
             : predecessor as Identifier?,
-        type: type as CodeableConcept? ?? _value.type,
+        type: identical(type, fhirSentinel)
+            ? _value.type
+            : (type as CodeableConcept?) ?? _value.type,
         request: identical(request, fhirSentinel)
             ? _value.request
             : request as Reference?,

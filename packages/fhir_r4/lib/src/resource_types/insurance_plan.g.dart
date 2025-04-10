@@ -247,11 +247,15 @@ class _$InsurancePlanCoverageCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        type: type as CodeableConcept? ?? _value.type,
+        type: identical(type, fhirSentinel)
+            ? _value.type
+            : (type as CodeableConcept?) ?? _value.type,
         network: identical(network, fhirSentinel)
             ? _value.network
             : network as List<Reference>?,
-        benefit: benefit as List<InsurancePlanBenefit>? ?? _value.benefit,
+        benefit: identical(benefit, fhirSentinel)
+            ? _value.benefit
+            : (benefit as List<InsurancePlanBenefit>?) ?? _value.benefit,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,
@@ -308,7 +312,9 @@ class _$InsurancePlanBenefitCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        type: type as CodeableConcept? ?? _value.type,
+        type: identical(type, fhirSentinel)
+            ? _value.type
+            : (type as CodeableConcept?) ?? _value.type,
         requirement: identical(requirement, fhirSentinel)
             ? _value.requirement
             : requirement as FhirString?,
@@ -577,7 +583,9 @@ class _$InsurancePlanSpecificCostCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        category: category as CodeableConcept? ?? _value.category,
+        category: identical(category, fhirSentinel)
+            ? _value.category
+            : (category as CodeableConcept?) ?? _value.category,
         benefit: identical(benefit, fhirSentinel)
             ? _value.benefit
             : benefit as List<InsurancePlanBenefit>?,
@@ -636,7 +644,9 @@ class _$InsurancePlanBenefit1CopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        type: type as CodeableConcept? ?? _value.type,
+        type: identical(type, fhirSentinel)
+            ? _value.type
+            : (type as CodeableConcept?) ?? _value.type,
         cost: identical(cost, fhirSentinel)
             ? _value.cost
             : cost as List<InsurancePlanCost>?,
@@ -698,7 +708,9 @@ class _$InsurancePlanCostCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        type: type as CodeableConcept? ?? _value.type,
+        type: identical(type, fhirSentinel)
+            ? _value.type
+            : (type as CodeableConcept?) ?? _value.type,
         applicability: identical(applicability, fhirSentinel)
             ? _value.applicability
             : applicability as CodeableConcept?,

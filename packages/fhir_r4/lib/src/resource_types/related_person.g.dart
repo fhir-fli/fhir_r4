@@ -89,7 +89,9 @@ class _$RelatedPersonCopyWithImpl<T> implements $RelatedPersonCopyWith<T> {
         active: identical(active, fhirSentinel)
             ? _value.active
             : active as FhirBoolean?,
-        patient: patient as Reference? ?? _value.patient,
+        patient: identical(patient, fhirSentinel)
+            ? _value.patient
+            : (patient as Reference?) ?? _value.patient,
         relationship: identical(relationship, fhirSentinel)
             ? _value.relationship
             : relationship as List<CodeableConcept>?,
@@ -167,7 +169,9 @@ class _$RelatedPersonCommunicationCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        language: language as CodeableConcept? ?? _value.language,
+        language: identical(language, fhirSentinel)
+            ? _value.language
+            : (language as CodeableConcept?) ?? _value.language,
         preferred: identical(preferred, fhirSentinel)
             ? _value.preferred
             : preferred as FhirBoolean?,

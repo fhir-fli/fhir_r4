@@ -130,7 +130,9 @@ class _$ProcedureCopyWithImpl<T> implements $ProcedureCopyWith<T> {
         partOf: identical(partOf, fhirSentinel)
             ? _value.partOf
             : partOf as List<Reference>?,
-        status: status as EventStatus? ?? _value.status,
+        status: identical(status, fhirSentinel)
+            ? _value.status
+            : (status as EventStatus?) ?? _value.status,
         statusReason: identical(statusReason, fhirSentinel)
             ? _value.statusReason
             : statusReason as CodeableConcept?,
@@ -140,7 +142,9 @@ class _$ProcedureCopyWithImpl<T> implements $ProcedureCopyWith<T> {
         code: identical(code, fhirSentinel)
             ? _value.code
             : code as CodeableConcept?,
-        subject: subject as Reference? ?? _value.subject,
+        subject: identical(subject, fhirSentinel)
+            ? _value.subject
+            : (subject as Reference?) ?? _value.subject,
         encounter: identical(encounter, fhirSentinel)
             ? _value.encounter
             : encounter as Reference?,
@@ -251,7 +255,9 @@ class _$ProcedurePerformerCopyWithImpl<T>
         function_: identical(function_, fhirSentinel)
             ? _value.function_
             : function_ as CodeableConcept?,
-        actor: actor as Reference? ?? _value.actor,
+        actor: identical(actor, fhirSentinel)
+            ? _value.actor
+            : (actor as Reference?) ?? _value.actor,
         onBehalfOf: identical(onBehalfOf, fhirSentinel)
             ? _value.onBehalfOf
             : onBehalfOf as Reference?,
@@ -312,7 +318,9 @@ class _$ProcedureFocalDeviceCopyWithImpl<T>
         action: identical(action, fhirSentinel)
             ? _value.action
             : action as CodeableConcept?,
-        manipulated: manipulated as Reference? ?? _value.manipulated,
+        manipulated: identical(manipulated, fhirSentinel)
+            ? _value.manipulated
+            : (manipulated as Reference?) ?? _value.manipulated,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,

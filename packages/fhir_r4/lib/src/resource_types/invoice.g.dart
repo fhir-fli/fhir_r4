@@ -94,7 +94,9 @@ class _$InvoiceCopyWithImpl<T> implements $InvoiceCopyWith<T> {
         identifier: identical(identifier, fhirSentinel)
             ? _value.identifier
             : identifier as List<Identifier>?,
-        status: status as InvoiceStatus? ?? _value.status,
+        status: identical(status, fhirSentinel)
+            ? _value.status
+            : (status as InvoiceStatus?) ?? _value.status,
         cancelledReason: identical(cancelledReason, fhirSentinel)
             ? _value.cancelledReason
             : cancelledReason as FhirString?,
@@ -189,7 +191,9 @@ class _$InvoiceParticipantCopyWithImpl<T>
         role: identical(role, fhirSentinel)
             ? _value.role
             : role as CodeableConcept?,
-        actor: actor as Reference? ?? _value.actor,
+        actor: identical(actor, fhirSentinel)
+            ? _value.actor
+            : (actor as Reference?) ?? _value.actor,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,
@@ -247,7 +251,9 @@ class _$InvoiceLineItemCopyWithImpl<T> implements $InvoiceLineItemCopyWith<T> {
         sequence: identical(sequence, fhirSentinel)
             ? _value.sequence
             : sequence as FhirPositiveInt?,
-        chargeItemX: chargeItemX as Reference? ?? _value.chargeItemX,
+        chargeItemX: identical(chargeItemX, fhirSentinel)
+            ? _value.chargeItemX
+            : (chargeItemX as Reference?) ?? _value.chargeItemX,
         priceComponent: identical(priceComponent, fhirSentinel)
             ? _value.priceComponent
             : priceComponent as List<InvoicePriceComponent>?,
@@ -309,7 +315,9 @@ class _$InvoicePriceComponentCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        type: type as InvoicePriceComponentType? ?? _value.type,
+        type: identical(type, fhirSentinel)
+            ? _value.type
+            : (type as InvoicePriceComponentType?) ?? _value.type,
         code: identical(code, fhirSentinel)
             ? _value.code
             : code as CodeableConcept?,

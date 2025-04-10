@@ -1293,64 +1293,6 @@ class StructureMapBuilder extends CanonicalResourceBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool url = false,
-    bool identifier = false,
-    bool version = false,
-    bool name = false,
-    bool title = false,
-    bool status = false,
-    bool experimental = false,
-    bool date = false,
-    bool publisher = false,
-    bool contact = false,
-    bool description = false,
-    bool useContext = false,
-    bool jurisdiction = false,
-    bool purpose = false,
-    bool copyright = false,
-    bool structure = false,
-    bool import_ = false,
-    bool group = false,
-  }) {
-    if (id) this.id = null;
-    if (meta) this.meta = null;
-    if (implicitRules) this.implicitRules = null;
-    if (language) this.language = null;
-    if (text) this.text = null;
-    if (contained) this.contained = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (url) this.url = null;
-    if (identifier) this.identifier = null;
-    if (version) this.version = null;
-    if (name) this.name = null;
-    if (title) this.title = null;
-    if (status) this.status = null;
-    if (experimental) this.experimental = null;
-    if (date) this.date = null;
-    if (publisher) this.publisher = null;
-    if (contact) this.contact = null;
-    if (description) this.description = null;
-    if (useContext) this.useContext = null;
-    if (jurisdiction) this.jurisdiction = null;
-    if (purpose) this.purpose = null;
-    if (copyright) this.copyright = null;
-    if (structure) this.structure = null;
-    if (import_) this.import_ = null;
-    if (group) this.group = null;
-  }
-
   @override
   StructureMapBuilder clone() => throw UnimplementedError();
   @override
@@ -2080,26 +2022,6 @@ class StructureMapStructureBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool url = false,
-    bool mode = false,
-    bool alias = false,
-    bool documentation = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (url) this.url = null;
-    if (mode) this.mode = null;
-    if (alias) this.alias = null;
-    if (documentation) this.documentation = null;
-  }
-
   @override
   StructureMapStructureBuilder clone() => throw UnimplementedError();
   @override
@@ -2770,30 +2692,6 @@ class StructureMapGroupBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool name = false,
-    bool extends_ = false,
-    bool typeMode = false,
-    bool documentation = false,
-    bool input = false,
-    bool rule = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (name) this.name = null;
-    if (extends_) this.extends_ = null;
-    if (typeMode) this.typeMode = null;
-    if (documentation) this.documentation = null;
-    if (input) this.input = null;
-    if (rule) this.rule = null;
-  }
-
   @override
   StructureMapGroupBuilder clone() => throw UnimplementedError();
   @override
@@ -3385,26 +3283,6 @@ class StructureMapInputBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool name = false,
-    bool type = false,
-    bool mode = false,
-    bool documentation = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (name) this.name = null;
-    if (type) this.type = null;
-    if (mode) this.mode = null;
-    if (documentation) this.documentation = null;
   }
 
   @override
@@ -4066,30 +3944,6 @@ class StructureMapRuleBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool name = false,
-    bool source = false,
-    bool target = false,
-    bool rule = false,
-    bool dependent = false,
-    bool documentation = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (name) this.name = null;
-    if (source) this.source = null;
-    if (target) this.target = null;
-    if (rule) this.rule = null;
-    if (dependent) this.dependent = null;
-    if (documentation) this.documentation = null;
   }
 
   @override
@@ -6489,40 +6343,6 @@ class StructureMapSourceBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool context = false,
-    bool min = false,
-    bool max = false,
-    bool type = false,
-    bool defaultValue = false,
-    bool element = false,
-    bool listMode = false,
-    bool variable = false,
-    bool condition = false,
-    bool check = false,
-    bool logMessage = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (context) this.context = null;
-    if (min) this.min = null;
-    if (max) this.max = null;
-    if (type) this.type = null;
-    if (defaultValue) defaultValueX = null;
-    if (element) this.element = null;
-    if (listMode) this.listMode = null;
-    if (variable) this.variable = null;
-    if (condition) this.condition = null;
-    if (check) this.check = null;
-    if (logMessage) this.logMessage = null;
-  }
-
   @override
   StructureMapSourceBuilder clone() => throw UnimplementedError();
   @override
@@ -7369,34 +7189,6 @@ class StructureMapTargetBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool context = false,
-    bool contextType = false,
-    bool element = false,
-    bool variable = false,
-    bool listMode = false,
-    bool listRuleId = false,
-    bool transform = false,
-    bool parameter = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (context) this.context = null;
-    if (contextType) this.contextType = null;
-    if (element) this.element = null;
-    if (variable) this.variable = null;
-    if (listMode) this.listMode = null;
-    if (listRuleId) this.listRuleId = null;
-    if (transform) this.transform = null;
-    if (parameter) this.parameter = null;
-  }
-
   @override
   StructureMapTargetBuilder clone() => throw UnimplementedError();
   @override
@@ -8011,20 +7803,6 @@ class StructureMapParameterBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool value = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (value) valueX = null;
-  }
-
   @override
   StructureMapParameterBuilder clone() => throw UnimplementedError();
   @override
@@ -8513,22 +8291,6 @@ class StructureMapDependentBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool name = false,
-    bool variable = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (name) this.name = null;
-    if (variable) this.variable = null;
   }
 
   @override

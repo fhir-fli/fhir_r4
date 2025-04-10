@@ -1025,54 +1025,6 @@ class ObservationDefinitionBuilder extends DomainResourceBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool category = false,
-    bool code = false,
-    bool identifier = false,
-    bool permittedDataType = false,
-    bool multipleResultsAllowed = false,
-    bool method = false,
-    bool preferredReportName = false,
-    bool quantitativeDetails = false,
-    bool qualifiedInterval = false,
-    bool validCodedValueSet = false,
-    bool normalCodedValueSet = false,
-    bool abnormalCodedValueSet = false,
-    bool criticalCodedValueSet = false,
-  }) {
-    if (id) this.id = null;
-    if (meta) this.meta = null;
-    if (implicitRules) this.implicitRules = null;
-    if (language) this.language = null;
-    if (text) this.text = null;
-    if (contained) this.contained = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (category) this.category = null;
-    if (code) this.code = null;
-    if (identifier) this.identifier = null;
-    if (permittedDataType) this.permittedDataType = null;
-    if (multipleResultsAllowed) this.multipleResultsAllowed = null;
-    if (method) this.method = null;
-    if (preferredReportName) this.preferredReportName = null;
-    if (quantitativeDetails) this.quantitativeDetails = null;
-    if (qualifiedInterval) this.qualifiedInterval = null;
-    if (validCodedValueSet) this.validCodedValueSet = null;
-    if (normalCodedValueSet) this.normalCodedValueSet = null;
-    if (abnormalCodedValueSet) this.abnormalCodedValueSet = null;
-    if (criticalCodedValueSet) this.criticalCodedValueSet = null;
-  }
-
   @override
   ObservationDefinitionBuilder clone() => throw UnimplementedError();
   @override
@@ -1748,26 +1700,6 @@ class ObservationDefinitionQuantitativeDetailsBuilder
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool customaryUnit = false,
-    bool unit = false,
-    bool conversionFactor = false,
-    bool decimalPrecision = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (customaryUnit) this.customaryUnit = null;
-    if (unit) this.unit = null;
-    if (conversionFactor) this.conversionFactor = null;
-    if (decimalPrecision) this.decimalPrecision = null;
   }
 
   @override
@@ -2483,34 +2415,6 @@ class ObservationDefinitionQualifiedIntervalBuilder
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool category = false,
-    bool range = false,
-    bool context = false,
-    bool appliesTo = false,
-    bool gender = false,
-    bool age = false,
-    bool gestationalAge = false,
-    bool condition = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (category) this.category = null;
-    if (range) this.range = null;
-    if (context) this.context = null;
-    if (appliesTo) this.appliesTo = null;
-    if (gender) this.gender = null;
-    if (age) this.age = null;
-    if (gestationalAge) this.gestationalAge = null;
-    if (condition) this.condition = null;
   }
 
   @override

@@ -260,7 +260,7 @@ String? resolvePolymorphicType(ElementDefinition elementDef, String path) {
   }
 }
 
-/// Represents a resolved group within a [StructureMap].
+/// Represents a resolved group within a [StructureMapBuilder].
 class ResolvedGroup {
   /// Constructs a [ResolvedGroup] with a [target] and an associated
   /// [targetMap].
@@ -272,10 +272,10 @@ class ResolvedGroup {
         targetMap = null;
 
   /// The target group within the structure map.
-  StructureMapGroup? target;
+  StructureMapGroupBuilder? target;
 
   /// The associated structure map for the target group.
-  StructureMap? targetMap;
+  StructureMapBuilder? targetMap;
 }
 
 /// Manages the storage and retrieval of [StructureMap] instances.
@@ -289,18 +289,20 @@ class StructureMapService {
   }
 
   /// Retrieves a [StructureMap] by its canonical URL.
-  StructureMap? getTransform(String canonicalUrl) {
+  StructureMapBuilder? getTransform(String canonicalUrl) {
     return _structureMaps
-        .firstWhereOrNull((map) => map.url.toString() == canonicalUrl);
+        .firstWhereOrNull((map) => map.url.toString() == canonicalUrl)
+        ?.toBuilder as StructureMapBuilder?;
   }
 
   /// Lists all [StructureMap] instances that match the given
   /// [canonicalUrlTemplate].
-  List<StructureMap> listTransforms(String canonicalUrlTemplate) {
+  List<StructureMapBuilder> listTransforms(String canonicalUrlTemplate) {
     final pattern = RegExp('^${canonicalUrlTemplate.replaceAll('*', '.*')}\$');
     return _structureMaps
         .where((map) => pattern.hasMatch(map.url.toString()))
-        .toList();
+        .map((e) => e.toBuilder)
+        .toList() as List<StructureMapBuilder>;
   }
 }
 

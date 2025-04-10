@@ -72,7 +72,9 @@ class _$BasicCopyWithImpl<T> implements $BasicCopyWith<T> {
         identifier: identical(identifier, fhirSentinel)
             ? _value.identifier
             : identifier as List<Identifier>?,
-        code: code as CodeableConcept? ?? _value.code,
+        code: identical(code, fhirSentinel)
+            ? _value.code
+            : (code as CodeableConcept?) ?? _value.code,
         subject: identical(subject, fhirSentinel)
             ? _value.subject
             : subject as Reference?,

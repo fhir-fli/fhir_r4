@@ -115,14 +115,18 @@ class _$MedicationDispenseCopyWithImpl<T>
         partOf: identical(partOf, fhirSentinel)
             ? _value.partOf
             : partOf as List<Reference>?,
-        status: status as MedicationDispenseStatusCodes? ?? _value.status,
+        status: identical(status, fhirSentinel)
+            ? _value.status
+            : (status as MedicationDispenseStatusCodes?) ?? _value.status,
         statusReasonX: identical(statusReasonX, fhirSentinel)
             ? _value.statusReasonX
             : statusReasonX as CodeableConcept?,
         category: identical(category, fhirSentinel)
             ? _value.category
             : category as CodeableConcept?,
-        medicationX: medicationX as CodeableConcept? ?? _value.medicationX,
+        medicationX: identical(medicationX, fhirSentinel)
+            ? _value.medicationX
+            : (medicationX as CodeableConcept?) ?? _value.medicationX,
         subject: identical(subject, fhirSentinel)
             ? _value.subject
             : subject as Reference?,
@@ -232,7 +236,9 @@ class _$MedicationDispensePerformerCopyWithImpl<T>
         function_: identical(function_, fhirSentinel)
             ? _value.function_
             : function_ as CodeableConcept?,
-        actor: actor as Reference? ?? _value.actor,
+        actor: identical(actor, fhirSentinel)
+            ? _value.actor
+            : (actor as Reference?) ?? _value.actor,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,
@@ -293,7 +299,9 @@ class _$MedicationDispenseSubstitutionCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        wasSubstituted: wasSubstituted as FhirBoolean? ?? _value.wasSubstituted,
+        wasSubstituted: identical(wasSubstituted, fhirSentinel)
+            ? _value.wasSubstituted
+            : (wasSubstituted as FhirBoolean?) ?? _value.wasSubstituted,
         type: identical(type, fhirSentinel)
             ? _value.type
             : type as CodeableConcept?,

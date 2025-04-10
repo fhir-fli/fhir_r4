@@ -78,11 +78,15 @@ class _$IngredientCopyWithImpl<T> implements $IngredientCopyWith<T> {
         identifier: identical(identifier, fhirSentinel)
             ? _value.identifier
             : identifier as Identifier?,
-        status: status as PublicationStatus? ?? _value.status,
+        status: identical(status, fhirSentinel)
+            ? _value.status
+            : (status as PublicationStatus?) ?? _value.status,
         for_: identical(for_, fhirSentinel)
             ? _value.for_
             : for_ as List<Reference>?,
-        role: role as CodeableConcept? ?? _value.role,
+        role: identical(role, fhirSentinel)
+            ? _value.role
+            : (role as CodeableConcept?) ?? _value.role,
         function_: identical(function_, fhirSentinel)
             ? _value.function_
             : function_ as List<CodeableConcept>?,
@@ -92,7 +96,9 @@ class _$IngredientCopyWithImpl<T> implements $IngredientCopyWith<T> {
         manufacturer: identical(manufacturer, fhirSentinel)
             ? _value.manufacturer
             : manufacturer as List<IngredientManufacturer>?,
-        substance: substance as IngredientSubstance? ?? _value.substance,
+        substance: identical(substance, fhirSentinel)
+            ? _value.substance
+            : (substance as IngredientSubstance?) ?? _value.substance,
       ),
     );
   }
@@ -147,7 +153,9 @@ class _$IngredientManufacturerCopyWithImpl<T>
         role: identical(role, fhirSentinel)
             ? _value.role
             : role as IngredientManufacturerRole?,
-        manufacturer: manufacturer as Reference? ?? _value.manufacturer,
+        manufacturer: identical(manufacturer, fhirSentinel)
+            ? _value.manufacturer
+            : (manufacturer as Reference?) ?? _value.manufacturer,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,
@@ -202,7 +210,9 @@ class _$IngredientSubstanceCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        code: code as CodeableReference? ?? _value.code,
+        code: identical(code, fhirSentinel)
+            ? _value.code
+            : (code as CodeableReference?) ?? _value.code,
         strength: identical(strength, fhirSentinel)
             ? _value.strength
             : strength as List<IngredientStrength>?,
@@ -352,7 +362,9 @@ class _$IngredientReferenceStrengthCopyWithImpl<T>
         substance: identical(substance, fhirSentinel)
             ? _value.substance
             : substance as CodeableReference?,
-        strengthX: strengthX as Ratio? ?? _value.strengthX,
+        strengthX: identical(strengthX, fhirSentinel)
+            ? _value.strengthX
+            : (strengthX as Ratio?) ?? _value.strengthX,
         measurementPoint: identical(measurementPoint, fhirSentinel)
             ? _value.measurementPoint
             : measurementPoint as FhirString?,

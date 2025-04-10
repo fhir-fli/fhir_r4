@@ -275,19 +275,4 @@ class FhirDecimalBuilder extends FhirNumberBuilder
   /// No-op property creator.
   @override
   FhirDecimalBuilder createProperty(String propertyName) => this;
-
-  /// Clears specified fields in this [FhirDecimalBuilder].
-  @override
-  FhirDecimalBuilder clear({
-    bool value = false,
-    bool extension_ = false,
-    bool id = false,
-  }) {
-    return FhirDecimalBuilder(
-      value ? null : valueString,
-      element: element,
-      extension_: extension_ ? <FhirExtensionBuilder>[] : this.extension_,
-      id: id ? null : this.id,
-    );
-  }
 }

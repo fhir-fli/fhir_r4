@@ -85,10 +85,18 @@ class _$NamingSystemCopyWithImpl<T> implements $NamingSystemCopyWith<T> {
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        name: name as FhirString? ?? _value.name,
-        status: status as PublicationStatus? ?? _value.status,
-        kind: kind as NamingSystemType? ?? _value.kind,
-        date: date as FhirDateTime? ?? _value.date,
+        name: identical(name, fhirSentinel)
+            ? _value.name
+            : (name as FhirString?) ?? _value.name,
+        status: identical(status, fhirSentinel)
+            ? _value.status
+            : (status as PublicationStatus?) ?? _value.status,
+        kind: identical(kind, fhirSentinel)
+            ? _value.kind
+            : (kind as NamingSystemType?) ?? _value.kind,
+        date: identical(date, fhirSentinel)
+            ? _value.date
+            : (date as FhirDateTime?) ?? _value.date,
         publisher: identical(publisher, fhirSentinel)
             ? _value.publisher
             : publisher as FhirString?,
@@ -113,7 +121,9 @@ class _$NamingSystemCopyWithImpl<T> implements $NamingSystemCopyWith<T> {
         usage: identical(usage, fhirSentinel)
             ? _value.usage
             : usage as FhirString?,
-        uniqueId: uniqueId as List<NamingSystemUniqueId>? ?? _value.uniqueId,
+        uniqueId: identical(uniqueId, fhirSentinel)
+            ? _value.uniqueId
+            : (uniqueId as List<NamingSystemUniqueId>?) ?? _value.uniqueId,
       ),
     );
   }
@@ -171,8 +181,12 @@ class _$NamingSystemUniqueIdCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        type: type as NamingSystemIdentifierType? ?? _value.type,
-        value: value as FhirString? ?? _value.value,
+        type: identical(type, fhirSentinel)
+            ? _value.type
+            : (type as NamingSystemIdentifierType?) ?? _value.type,
+        value: identical(value, fhirSentinel)
+            ? _value.value
+            : (value as FhirString?) ?? _value.value,
         preferred: identical(preferred, fhirSentinel)
             ? _value.preferred
             : preferred as FhirBoolean?,

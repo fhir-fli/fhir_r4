@@ -1121,58 +1121,6 @@ class GraphDefinitionBuilder extends CanonicalResourceBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool url = false,
-    bool version = false,
-    bool name = false,
-    bool status = false,
-    bool experimental = false,
-    bool date = false,
-    bool publisher = false,
-    bool contact = false,
-    bool description = false,
-    bool useContext = false,
-    bool jurisdiction = false,
-    bool purpose = false,
-    bool start = false,
-    bool profile = false,
-    bool link = false,
-  }) {
-    if (id) this.id = null;
-    if (meta) this.meta = null;
-    if (implicitRules) this.implicitRules = null;
-    if (language) this.language = null;
-    if (text) this.text = null;
-    if (contained) this.contained = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (url) this.url = null;
-    if (version) this.version = null;
-    if (name) this.name = null;
-    if (status) this.status = null;
-    if (experimental) this.experimental = null;
-    if (date) this.date = null;
-    if (publisher) this.publisher = null;
-    if (contact) this.contact = null;
-    if (description) this.description = null;
-    if (useContext) this.useContext = null;
-    if (jurisdiction) this.jurisdiction = null;
-    if (purpose) this.purpose = null;
-    if (start) this.start = null;
-    if (profile) this.profile = null;
-    if (link) this.link = null;
-  }
-
   @override
   GraphDefinitionBuilder clone() => throw UnimplementedError();
   @override
@@ -1965,30 +1913,6 @@ class GraphDefinitionLinkBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool path = false,
-    bool sliceName = false,
-    bool min = false,
-    bool max = false,
-    bool description = false,
-    bool target = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (path) this.path = null;
-    if (sliceName) this.sliceName = null;
-    if (min) this.min = null;
-    if (max) this.max = null;
-    if (description) this.description = null;
-    if (target) this.target = null;
-  }
-
   @override
   GraphDefinitionLinkBuilder clone() => throw UnimplementedError();
   @override
@@ -2619,28 +2543,6 @@ class GraphDefinitionTargetBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool type = false,
-    bool params = false,
-    bool profile = false,
-    bool compartment = false,
-    bool link = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (type) this.type = null;
-    if (params) this.params = null;
-    if (profile) this.profile = null;
-    if (compartment) this.compartment = null;
-    if (link) this.link = null;
   }
 
   @override
@@ -3280,28 +3182,6 @@ class GraphDefinitionCompartmentBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool use = false,
-    bool code = false,
-    bool rule = false,
-    bool expression = false,
-    bool description = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (use) this.use = null;
-    if (code) this.code = null;
-    if (rule) this.rule = null;
-    if (expression) this.expression = null;
-    if (description) this.description = null;
   }
 
   @override

@@ -125,7 +125,9 @@ class _$EvidenceVariableCopyWithImpl<T>
         subtitle: identical(subtitle, fhirSentinel)
             ? _value.subtitle
             : subtitle as FhirString?,
-        status: status as PublicationStatus? ?? _value.status,
+        status: identical(status, fhirSentinel)
+            ? _value.status
+            : (status as PublicationStatus?) ?? _value.status,
         date:
             identical(date, fhirSentinel) ? _value.date : date as FhirDateTime?,
         description: identical(description, fhirSentinel)
@@ -238,7 +240,9 @@ class _$EvidenceVariableCharacteristicCopyWithImpl<T>
         description: identical(description, fhirSentinel)
             ? _value.description
             : description as FhirString?,
-        definitionX: definitionX as Reference? ?? _value.definitionX,
+        definitionX: identical(definitionX, fhirSentinel)
+            ? _value.definitionX
+            : (definitionX as Reference?) ?? _value.definitionX,
         method: identical(method, fhirSentinel)
             ? _value.method
             : method as CodeableConcept?,

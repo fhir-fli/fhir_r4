@@ -55,21 +55,6 @@ class FHIRConstant extends FhirBase {
   }
 
   @override
-  FhirBase copyWith({
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-  }) {
-    throw UnimplementedError();
-  }
-
-  @override
-  FhirBase? getChildByName(String name) {
-    throw UnimplementedError();
-  }
-
-  @override
   List<FhirBase> getChildrenByName(String name, [bool checkValid = false]) {
     throw UnimplementedError();
   }
@@ -80,15 +65,5 @@ class FHIRConstant extends FhirBase {
   }
 
   @override
-  FHIRConstant createProperty(String propertyName) {
-    switch (propertyName) {
-      default:
-        throw ArgumentError('No matching property: $propertyName');
-    }
-  }
-
-  @override
-  FHIRConstant clear() {
-    return FHIRConstant(value);
-  }
+  $FhirBaseCopyWith<FhirBase> get copyWith => throw UnimplementedError();
 }

@@ -47,9 +47,15 @@ class _$SignatureCopyWithImpl<T> implements $SignatureCopyWith<T> {
         extension_: identical(extension_, fhirSentinel)
             ? _value.extension_
             : extension_ as List<FhirExtension>?,
-        type: type as List<Coding>? ?? _value.type,
-        when: when as FhirInstant? ?? _value.when,
-        who: who as Reference? ?? _value.who,
+        type: identical(type, fhirSentinel)
+            ? _value.type
+            : (type as List<Coding>?) ?? _value.type,
+        when: identical(when, fhirSentinel)
+            ? _value.when
+            : (when as FhirInstant?) ?? _value.when,
+        who: identical(who, fhirSentinel)
+            ? _value.who
+            : (who as Reference?) ?? _value.who,
         onBehalfOf: identical(onBehalfOf, fhirSentinel)
             ? _value.onBehalfOf
             : onBehalfOf as Reference?,

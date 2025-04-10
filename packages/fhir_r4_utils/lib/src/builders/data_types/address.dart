@@ -751,36 +751,6 @@ class AddressBuilder extends DataTypeBuilder
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool use = false,
-    bool type = false,
-    bool text = false,
-    bool line = false,
-    bool city = false,
-    bool district = false,
-    bool state = false,
-    bool postalCode = false,
-    bool country = false,
-    bool period = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (use) this.use = null;
-    if (type) this.type = null;
-    if (text) this.text = null;
-    if (line) this.line = null;
-    if (city) this.city = null;
-    if (district) this.district = null;
-    if (state) this.state = null;
-    if (postalCode) this.postalCode = null;
-    if (country) this.country = null;
-    if (period) this.period = null;
-  }
-
   @override
   AddressBuilder clone() => throw UnimplementedError();
   @override

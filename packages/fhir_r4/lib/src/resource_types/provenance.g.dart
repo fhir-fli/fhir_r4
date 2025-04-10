@@ -79,11 +79,15 @@ class _$ProvenanceCopyWithImpl<T> implements $ProvenanceCopyWith<T> {
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        target: target as List<Reference>? ?? _value.target,
+        target: identical(target, fhirSentinel)
+            ? _value.target
+            : (target as List<Reference>?) ?? _value.target,
         occurredX: identical(occurredX, fhirSentinel)
             ? _value.occurredX
             : occurredX as Period?,
-        recorded: recorded as FhirInstant? ?? _value.recorded,
+        recorded: identical(recorded, fhirSentinel)
+            ? _value.recorded
+            : (recorded as FhirInstant?) ?? _value.recorded,
         policy: identical(policy, fhirSentinel)
             ? _value.policy
             : policy as List<FhirUri>?,
@@ -96,7 +100,9 @@ class _$ProvenanceCopyWithImpl<T> implements $ProvenanceCopyWith<T> {
         activity: identical(activity, fhirSentinel)
             ? _value.activity
             : activity as CodeableConcept?,
-        agent: agent as List<ProvenanceAgent>? ?? _value.agent,
+        agent: identical(agent, fhirSentinel)
+            ? _value.agent
+            : (agent as List<ProvenanceAgent>?) ?? _value.agent,
         entity: identical(entity, fhirSentinel)
             ? _value.entity
             : entity as List<ProvenanceEntity>?,
@@ -162,7 +168,9 @@ class _$ProvenanceAgentCopyWithImpl<T> implements $ProvenanceAgentCopyWith<T> {
         role: identical(role, fhirSentinel)
             ? _value.role
             : role as List<CodeableConcept>?,
-        who: who as Reference? ?? _value.who,
+        who: identical(who, fhirSentinel)
+            ? _value.who
+            : (who as Reference?) ?? _value.who,
         onBehalfOf: identical(onBehalfOf, fhirSentinel)
             ? _value.onBehalfOf
             : onBehalfOf as Reference?,
@@ -222,8 +230,12 @@ class _$ProvenanceEntityCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        role: role as ProvenanceEntityRole? ?? _value.role,
-        what: what as Reference? ?? _value.what,
+        role: identical(role, fhirSentinel)
+            ? _value.role
+            : (role as ProvenanceEntityRole?) ?? _value.role,
+        what: identical(what, fhirSentinel)
+            ? _value.what
+            : (what as Reference?) ?? _value.what,
         agent: identical(agent, fhirSentinel)
             ? _value.agent
             : agent as List<ProvenanceAgent>?,

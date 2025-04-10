@@ -106,7 +106,9 @@ class _$ValueSetCopyWithImpl<T> implements $ValueSetCopyWith<T> {
         title: identical(title, fhirSentinel)
             ? _value.title
             : title as FhirString?,
-        status: status as PublicationStatus? ?? _value.status,
+        status: identical(status, fhirSentinel)
+            ? _value.status
+            : (status as PublicationStatus?) ?? _value.status,
         experimental: identical(experimental, fhirSentinel)
             ? _value.experimental
             : experimental as FhirBoolean?,
@@ -200,7 +202,9 @@ class _$ValueSetComposeCopyWithImpl<T> implements $ValueSetComposeCopyWith<T> {
         inactive: identical(inactive, fhirSentinel)
             ? _value.inactive
             : inactive as FhirBoolean?,
-        include: include as List<ValueSetInclude>? ?? _value.include,
+        include: identical(include, fhirSentinel)
+            ? _value.include
+            : (include as List<ValueSetInclude>?) ?? _value.include,
         exclude: identical(exclude, fhirSentinel)
             ? _value.exclude
             : exclude as List<ValueSetInclude>?,
@@ -331,7 +335,9 @@ class _$ValueSetConceptCopyWithImpl<T> implements $ValueSetConceptCopyWith<T> {
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        code: code as FhirCode? ?? _value.code,
+        code: identical(code, fhirSentinel)
+            ? _value.code
+            : (code as FhirCode?) ?? _value.code,
         display: identical(display, fhirSentinel)
             ? _value.display
             : display as FhirString?,
@@ -398,7 +404,9 @@ class _$ValueSetDesignationCopyWithImpl<T>
             ? _value.language
             : language as CommonLanguages?,
         use: identical(use, fhirSentinel) ? _value.use : use as Coding?,
-        value: value as FhirString? ?? _value.value,
+        value: identical(value, fhirSentinel)
+            ? _value.value
+            : (value as FhirString?) ?? _value.value,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,
@@ -453,9 +461,15 @@ class _$ValueSetFilterCopyWithImpl<T> implements $ValueSetFilterCopyWith<T> {
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        property: property as FhirCode? ?? _value.property,
-        op: op as FilterOperator? ?? _value.op,
-        value: value as FhirString? ?? _value.value,
+        property: identical(property, fhirSentinel)
+            ? _value.property
+            : (property as FhirCode?) ?? _value.property,
+        op: identical(op, fhirSentinel)
+            ? _value.op
+            : (op as FilterOperator?) ?? _value.op,
+        value: identical(value, fhirSentinel)
+            ? _value.value
+            : (value as FhirString?) ?? _value.value,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,
@@ -521,7 +535,9 @@ class _$ValueSetExpansionCopyWithImpl<T>
         identifier: identical(identifier, fhirSentinel)
             ? _value.identifier
             : identifier as FhirUri?,
-        timestamp: timestamp as FhirDateTime? ?? _value.timestamp,
+        timestamp: identical(timestamp, fhirSentinel)
+            ? _value.timestamp
+            : (timestamp as FhirDateTime?) ?? _value.timestamp,
         total: identical(total, fhirSentinel)
             ? _value.total
             : total as FhirInteger?,
@@ -588,7 +604,9 @@ class _$ValueSetParameterCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        name: name as FhirString? ?? _value.name,
+        name: identical(name, fhirSentinel)
+            ? _value.name
+            : (name as FhirString?) ?? _value.name,
         valueX: identical(valueX, fhirSentinel)
             ? _value.valueX
             : valueX as FhirString?,

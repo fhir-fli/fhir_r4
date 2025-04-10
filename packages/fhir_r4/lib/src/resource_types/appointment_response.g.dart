@@ -80,7 +80,9 @@ class _$AppointmentResponseCopyWithImpl<T>
         identifier: identical(identifier, fhirSentinel)
             ? _value.identifier
             : identifier as List<Identifier>?,
-        appointment: appointment as Reference? ?? _value.appointment,
+        appointment: identical(appointment, fhirSentinel)
+            ? _value.appointment
+            : (appointment as Reference?) ?? _value.appointment,
         start: identical(start, fhirSentinel)
             ? _value.start
             : start as FhirInstant?,
@@ -90,8 +92,10 @@ class _$AppointmentResponseCopyWithImpl<T>
             : participantType as List<CodeableConcept>?,
         actor:
             identical(actor, fhirSentinel) ? _value.actor : actor as Reference?,
-        participantStatus: participantStatus as ParticipationStatus? ??
-            _value.participantStatus,
+        participantStatus: identical(participantStatus, fhirSentinel)
+            ? _value.participantStatus
+            : (participantStatus as ParticipationStatus?) ??
+                _value.participantStatus,
         comment: identical(comment, fhirSentinel)
             ? _value.comment
             : comment as FhirString?,

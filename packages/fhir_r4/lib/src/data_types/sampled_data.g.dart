@@ -47,8 +47,12 @@ class _$SampledDataCopyWithImpl<T> implements $SampledDataCopyWith<T> {
         extension_: identical(extension_, fhirSentinel)
             ? _value.extension_
             : extension_ as List<FhirExtension>?,
-        origin: origin as Quantity? ?? _value.origin,
-        period: period as FhirDecimal? ?? _value.period,
+        origin: identical(origin, fhirSentinel)
+            ? _value.origin
+            : (origin as Quantity?) ?? _value.origin,
+        period: identical(period, fhirSentinel)
+            ? _value.period
+            : (period as FhirDecimal?) ?? _value.period,
         factor: identical(factor, fhirSentinel)
             ? _value.factor
             : factor as FhirDecimal?,
@@ -58,7 +62,9 @@ class _$SampledDataCopyWithImpl<T> implements $SampledDataCopyWith<T> {
         upperLimit: identical(upperLimit, fhirSentinel)
             ? _value.upperLimit
             : upperLimit as FhirDecimal?,
-        dimensions: dimensions as FhirPositiveInt? ?? _value.dimensions,
+        dimensions: identical(dimensions, fhirSentinel)
+            ? _value.dimensions
+            : (dimensions as FhirPositiveInt?) ?? _value.dimensions,
         data: identical(data, fhirSentinel) ? _value.data : data as FhirString?,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions

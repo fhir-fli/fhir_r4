@@ -1309,62 +1309,6 @@ class ExampleScenarioBuilder extends DomainResourceBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool url = false,
-    bool identifier = false,
-    bool version = false,
-    bool name = false,
-    bool status = false,
-    bool experimental = false,
-    bool date = false,
-    bool publisher = false,
-    bool contact = false,
-    bool useContext = false,
-    bool jurisdiction = false,
-    bool copyright = false,
-    bool purpose = false,
-    bool actor = false,
-    bool instance = false,
-    bool process = false,
-    bool workflow = false,
-  }) {
-    if (id) this.id = null;
-    if (meta) this.meta = null;
-    if (implicitRules) this.implicitRules = null;
-    if (language) this.language = null;
-    if (text) this.text = null;
-    if (contained) this.contained = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (url) this.url = null;
-    if (identifier) this.identifier = null;
-    if (version) this.version = null;
-    if (name) this.name = null;
-    if (status) this.status = null;
-    if (experimental) this.experimental = null;
-    if (date) this.date = null;
-    if (publisher) this.publisher = null;
-    if (contact) this.contact = null;
-    if (useContext) this.useContext = null;
-    if (jurisdiction) this.jurisdiction = null;
-    if (copyright) this.copyright = null;
-    if (purpose) this.purpose = null;
-    if (actor) this.actor = null;
-    if (instance) this.instance = null;
-    if (process) this.process = null;
-    if (workflow) this.workflow = null;
-  }
-
   @override
   ExampleScenarioBuilder clone() => throw UnimplementedError();
   @override
@@ -2084,26 +2028,6 @@ class ExampleScenarioActorBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool actorId = false,
-    bool type = false,
-    bool name = false,
-    bool description = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (actorId) this.actorId = null;
-    if (type) this.type = null;
-    if (name) this.name = null;
-    if (description) this.description = null;
-  }
-
   @override
   ExampleScenarioActorBuilder clone() => throw UnimplementedError();
   @override
@@ -2767,30 +2691,6 @@ class ExampleScenarioInstanceBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool resourceId = false,
-    bool resourceType = false,
-    bool name = false,
-    bool description = false,
-    bool version = false,
-    bool containedInstance = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (resourceId) this.resourceId = null;
-    if (resourceType) this.resourceType = null;
-    if (name) this.name = null;
-    if (description) this.description = null;
-    if (version) this.version = null;
-    if (containedInstance) this.containedInstance = null;
-  }
-
   @override
   ExampleScenarioInstanceBuilder clone() => throw UnimplementedError();
   @override
@@ -3293,22 +3193,6 @@ class ExampleScenarioVersionBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool versionId = false,
-    bool description = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (versionId) this.versionId = null;
-    if (description) this.description = null;
-  }
-
   @override
   ExampleScenarioVersionBuilder clone() => throw UnimplementedError();
   @override
@@ -3778,22 +3662,6 @@ class ExampleScenarioContainedInstanceBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool resourceId = false,
-    bool versionId = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (resourceId) this.resourceId = null;
-    if (versionId) this.versionId = null;
   }
 
   @override
@@ -4397,28 +4265,6 @@ class ExampleScenarioProcessBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool title = false,
-    bool description = false,
-    bool preConditions = false,
-    bool postConditions = false,
-    bool step = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (title) this.title = null;
-    if (description) this.description = null;
-    if (preConditions) this.preConditions = null;
-    if (postConditions) this.postConditions = null;
-    if (step) this.step = null;
-  }
-
   @override
   ExampleScenarioProcessBuilder clone() => throw UnimplementedError();
   @override
@@ -4984,26 +4830,6 @@ class ExampleScenarioStepBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool process = false,
-    bool pause = false,
-    bool operation = false,
-    bool alternative = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (process) this.process = null;
-    if (pause) this.pause = null;
-    if (operation) this.operation = null;
-    if (alternative) this.alternative = null;
   }
 
   @override
@@ -5820,38 +5646,6 @@ class ExampleScenarioOperationBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool number = false,
-    bool type = false,
-    bool name = false,
-    bool initiator = false,
-    bool receiver = false,
-    bool description = false,
-    bool initiatorActive = false,
-    bool receiverActive = false,
-    bool request = false,
-    bool response = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (number) this.number = null;
-    if (type) this.type = null;
-    if (name) this.name = null;
-    if (initiator) this.initiator = null;
-    if (receiver) this.receiver = null;
-    if (description) this.description = null;
-    if (initiatorActive) this.initiatorActive = null;
-    if (receiverActive) this.receiverActive = null;
-    if (request) this.request = null;
-    if (response) this.response = null;
-  }
-
   @override
   ExampleScenarioOperationBuilder clone() => throw UnimplementedError();
   @override
@@ -6431,24 +6225,6 @@ class ExampleScenarioAlternativeBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool title = false,
-    bool description = false,
-    bool step = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (title) this.title = null;
-    if (description) this.description = null;
-    if (step) this.step = null;
   }
 
   @override

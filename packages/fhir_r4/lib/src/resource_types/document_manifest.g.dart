@@ -90,7 +90,9 @@ class _$DocumentManifestCopyWithImpl<T>
         identifier: identical(identifier, fhirSentinel)
             ? _value.identifier
             : identifier as List<Identifier>?,
-        status: status as DocumentReferenceStatus? ?? _value.status,
+        status: identical(status, fhirSentinel)
+            ? _value.status
+            : (status as DocumentReferenceStatus?) ?? _value.status,
         type: identical(type, fhirSentinel)
             ? _value.type
             : type as CodeableConcept?,
@@ -112,7 +114,9 @@ class _$DocumentManifestCopyWithImpl<T>
         description: identical(description, fhirSentinel)
             ? _value.description
             : description as FhirString?,
-        content: content as List<Reference>? ?? _value.content,
+        content: identical(content, fhirSentinel)
+            ? _value.content
+            : (content as List<Reference>?) ?? _value.content,
         related: identical(related, fhirSentinel)
             ? _value.related
             : related as List<DocumentManifestRelated>?,

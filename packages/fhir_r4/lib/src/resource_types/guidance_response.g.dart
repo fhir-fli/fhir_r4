@@ -96,8 +96,12 @@ class _$GuidanceResponseCopyWithImpl<T>
         identifier: identical(identifier, fhirSentinel)
             ? _value.identifier
             : identifier as List<Identifier>?,
-        moduleX: moduleX as FhirUri? ?? _value.moduleX,
-        status: status as GuidanceResponseStatus? ?? _value.status,
+        moduleX: identical(moduleX, fhirSentinel)
+            ? _value.moduleX
+            : (moduleX as FhirUri?) ?? _value.moduleX,
+        status: identical(status, fhirSentinel)
+            ? _value.status
+            : (status as GuidanceResponseStatus?) ?? _value.status,
         subject: identical(subject, fhirSentinel)
             ? _value.subject
             : subject as Reference?,

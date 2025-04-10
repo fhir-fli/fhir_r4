@@ -831,44 +831,6 @@ class AppointmentResponseBuilder extends DomainResourceBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool identifier = false,
-    bool appointment = false,
-    bool start = false,
-    bool end = false,
-    bool participantType = false,
-    bool actor = false,
-    bool participantStatus = false,
-    bool comment = false,
-  }) {
-    if (id) this.id = null;
-    if (meta) this.meta = null;
-    if (implicitRules) this.implicitRules = null;
-    if (language) this.language = null;
-    if (text) this.text = null;
-    if (contained) this.contained = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (identifier) this.identifier = null;
-    if (appointment) this.appointment = null;
-    if (start) this.start = null;
-    if (end) this.end = null;
-    if (participantType) this.participantType = null;
-    if (actor) this.actor = null;
-    if (participantStatus) this.participantStatus = null;
-    if (comment) this.comment = null;
-  }
-
   @override
   AppointmentResponseBuilder clone() => throw UnimplementedError();
   @override

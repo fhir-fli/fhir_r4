@@ -86,7 +86,9 @@ class _$EpisodeOfCareCopyWithImpl<T> implements $EpisodeOfCareCopyWith<T> {
         identifier: identical(identifier, fhirSentinel)
             ? _value.identifier
             : identifier as List<Identifier>?,
-        status: status as EpisodeOfCareStatus? ?? _value.status,
+        status: identical(status, fhirSentinel)
+            ? _value.status
+            : (status as EpisodeOfCareStatus?) ?? _value.status,
         statusHistory: identical(statusHistory, fhirSentinel)
             ? _value.statusHistory
             : statusHistory as List<EpisodeOfCareStatusHistory>?,
@@ -96,7 +98,9 @@ class _$EpisodeOfCareCopyWithImpl<T> implements $EpisodeOfCareCopyWith<T> {
         diagnosis: identical(diagnosis, fhirSentinel)
             ? _value.diagnosis
             : diagnosis as List<EpisodeOfCareDiagnosis>?,
-        patient: patient as Reference? ?? _value.patient,
+        patient: identical(patient, fhirSentinel)
+            ? _value.patient
+            : (patient as Reference?) ?? _value.patient,
         managingOrganization: identical(managingOrganization, fhirSentinel)
             ? _value.managingOrganization
             : managingOrganization as Reference?,
@@ -165,8 +169,12 @@ class _$EpisodeOfCareStatusHistoryCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        status: status as EpisodeOfCareStatus? ?? _value.status,
-        period: period as Period? ?? _value.period,
+        status: identical(status, fhirSentinel)
+            ? _value.status
+            : (status as EpisodeOfCareStatus?) ?? _value.status,
+        period: identical(period, fhirSentinel)
+            ? _value.period
+            : (period as Period?) ?? _value.period,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,
@@ -225,7 +233,9 @@ class _$EpisodeOfCareDiagnosisCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        condition: condition as Reference? ?? _value.condition,
+        condition: identical(condition, fhirSentinel)
+            ? _value.condition
+            : (condition as Reference?) ?? _value.condition,
         role: identical(role, fhirSentinel)
             ? _value.role
             : role as CodeableConcept?,

@@ -786,42 +786,6 @@ class ManufacturedItemDefinitionBuilder extends DomainResourceBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool identifier = false,
-    bool status = false,
-    bool manufacturedDoseForm = false,
-    bool unitOfPresentation = false,
-    bool manufacturer = false,
-    bool ingredient = false,
-    bool property = false,
-  }) {
-    if (id) this.id = null;
-    if (meta) this.meta = null;
-    if (implicitRules) this.implicitRules = null;
-    if (language) this.language = null;
-    if (text) this.text = null;
-    if (contained) this.contained = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (identifier) this.identifier = null;
-    if (status) this.status = null;
-    if (manufacturedDoseForm) this.manufacturedDoseForm = null;
-    if (unitOfPresentation) this.unitOfPresentation = null;
-    if (manufacturer) this.manufacturer = null;
-    if (ingredient) this.ingredient = null;
-    if (property) this.property = null;
-  }
-
   @override
   ManufacturedItemDefinitionBuilder clone() => throw UnimplementedError();
   @override
@@ -1501,22 +1465,6 @@ class ManufacturedItemDefinitionPropertyBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool type = false,
-    bool value = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (type) this.type = null;
-    if (value) valueX = null;
   }
 
   @override

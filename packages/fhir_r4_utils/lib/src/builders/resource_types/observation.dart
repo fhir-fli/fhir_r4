@@ -1925,76 +1925,6 @@ class ObservationBuilder extends DomainResourceBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool identifier = false,
-    bool basedOn = false,
-    bool partOf = false,
-    bool status = false,
-    bool category = false,
-    bool code = false,
-    bool subject = false,
-    bool focus = false,
-    bool encounter = false,
-    bool effective = false,
-    bool issued = false,
-    bool performer = false,
-    bool value = false,
-    bool dataAbsentReason = false,
-    bool interpretation = false,
-    bool note = false,
-    bool bodySite = false,
-    bool method = false,
-    bool specimen = false,
-    bool device = false,
-    bool referenceRange = false,
-    bool hasMember = false,
-    bool derivedFrom = false,
-    bool component = false,
-  }) {
-    if (id) this.id = null;
-    if (meta) this.meta = null;
-    if (implicitRules) this.implicitRules = null;
-    if (language) this.language = null;
-    if (text) this.text = null;
-    if (contained) this.contained = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (identifier) this.identifier = null;
-    if (basedOn) this.basedOn = null;
-    if (partOf) this.partOf = null;
-    if (status) this.status = null;
-    if (category) this.category = null;
-    if (code) this.code = null;
-    if (subject) this.subject = null;
-    if (focus) this.focus = null;
-    if (encounter) this.encounter = null;
-    if (effective) effectiveX = null;
-    if (issued) this.issued = null;
-    if (performer) this.performer = null;
-    if (value) valueX = null;
-    if (dataAbsentReason) this.dataAbsentReason = null;
-    if (interpretation) this.interpretation = null;
-    if (note) this.note = null;
-    if (bodySite) this.bodySite = null;
-    if (method) this.method = null;
-    if (specimen) this.specimen = null;
-    if (device) this.device = null;
-    if (referenceRange) this.referenceRange = null;
-    if (hasMember) this.hasMember = null;
-    if (derivedFrom) this.derivedFrom = null;
-    if (component) this.component = null;
-  }
-
   @override
   ObservationBuilder clone() => throw UnimplementedError();
   @override
@@ -2823,30 +2753,6 @@ class ObservationReferenceRangeBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool low = false,
-    bool high = false,
-    bool type = false,
-    bool appliesTo = false,
-    bool age = false,
-    bool text = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (low) this.low = null;
-    if (high) this.high = null;
-    if (type) this.type = null;
-    if (appliesTo) this.appliesTo = null;
-    if (age) this.age = null;
-    if (text) this.text = null;
   }
 
   @override
@@ -3782,28 +3688,6 @@ class ObservationComponentBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool code = false,
-    bool value = false,
-    bool dataAbsentReason = false,
-    bool interpretation = false,
-    bool referenceRange = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (code) this.code = null;
-    if (value) valueX = null;
-    if (dataAbsentReason) this.dataAbsentReason = null;
-    if (interpretation) this.interpretation = null;
-    if (referenceRange) this.referenceRange = null;
   }
 
   @override

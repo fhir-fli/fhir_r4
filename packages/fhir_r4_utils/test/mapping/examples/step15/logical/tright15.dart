@@ -11,7 +11,6 @@ class TRight15 extends Element {
     super.extension_,
     this.c,
     super.disallowExtensions,
-    super.objectPath = 'TRight15',
   });
 
   factory TRight15.fromJson(Map<String, dynamic> json) {
@@ -45,24 +44,6 @@ class TRight15 extends Element {
   /// [c]
   /// List of string elements
   final List<FhirString>? c;
-
-  @override
-  TRight15 copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirString>? c,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    return TRight15(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      c: c ?? this.c,
-    );
-  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -323,17 +304,6 @@ class TRight15Builder extends ElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool c = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (c) this.c = null;
   }
 
   @override

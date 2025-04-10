@@ -801,42 +801,6 @@ class SubscriptionStatusBuilder extends DomainResourceBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool status = false,
-    bool type = false,
-    bool eventsSinceSubscriptionStart = false,
-    bool notificationEvent = false,
-    bool subscription = false,
-    bool topic = false,
-    bool error = false,
-  }) {
-    if (id) this.id = null;
-    if (meta) this.meta = null;
-    if (implicitRules) this.implicitRules = null;
-    if (language) this.language = null;
-    if (text) this.text = null;
-    if (contained) this.contained = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (status) this.status = null;
-    if (type) this.type = null;
-    if (eventsSinceSubscriptionStart) this.eventsSinceSubscriptionStart = null;
-    if (notificationEvent) this.notificationEvent = null;
-    if (subscription) this.subscription = null;
-    if (topic) this.topic = null;
-    if (error) this.error = null;
-  }
-
   @override
   SubscriptionStatusBuilder clone() => throw UnimplementedError();
   @override
@@ -1469,26 +1433,6 @@ class SubscriptionStatusNotificationEventBuilder
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool eventNumber = false,
-    bool timestamp = false,
-    bool focus = false,
-    bool additionalContext = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (eventNumber) this.eventNumber = null;
-    if (timestamp) this.timestamp = null;
-    if (focus) this.focus = null;
-    if (additionalContext) this.additionalContext = null;
   }
 
   @override

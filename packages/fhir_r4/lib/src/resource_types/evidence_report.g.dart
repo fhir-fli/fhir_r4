@@ -96,7 +96,9 @@ class _$EvidenceReportCopyWithImpl<T> implements $EvidenceReportCopyWith<T> {
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
         url: identical(url, fhirSentinel) ? _value.url : url as FhirUri?,
-        status: status as PublicationStatus? ?? _value.status,
+        status: identical(status, fhirSentinel)
+            ? _value.status
+            : (status as PublicationStatus?) ?? _value.status,
         useContext: identical(useContext, fhirSentinel)
             ? _value.useContext
             : useContext as List<UsageContext>?,
@@ -118,7 +120,9 @@ class _$EvidenceReportCopyWithImpl<T> implements $EvidenceReportCopyWith<T> {
         relatedArtifact: identical(relatedArtifact, fhirSentinel)
             ? _value.relatedArtifact
             : relatedArtifact as List<RelatedArtifact>?,
-        subject: subject as EvidenceReportSubject? ?? _value.subject,
+        subject: identical(subject, fhirSentinel)
+            ? _value.subject
+            : (subject as EvidenceReportSubject?) ?? _value.subject,
         publisher: identical(publisher, fhirSentinel)
             ? _value.publisher
             : publisher as FhirString?,
@@ -258,8 +262,12 @@ class _$EvidenceReportCharacteristicCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        code: code as CodeableConcept? ?? _value.code,
-        valueX: valueX as Reference? ?? _value.valueX,
+        code: identical(code, fhirSentinel)
+            ? _value.code
+            : (code as CodeableConcept?) ?? _value.code,
+        valueX: identical(valueX, fhirSentinel)
+            ? _value.valueX
+            : (valueX as Reference?) ?? _value.valueX,
         exclude: identical(exclude, fhirSentinel)
             ? _value.exclude
             : exclude as FhirBoolean?,
@@ -321,8 +329,12 @@ class _$EvidenceReportRelatesToCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        code: code as ReportRelationshipType? ?? _value.code,
-        targetX: targetX as Identifier? ?? _value.targetX,
+        code: identical(code, fhirSentinel)
+            ? _value.code
+            : (code as ReportRelationshipType?) ?? _value.code,
+        targetX: identical(targetX, fhirSentinel)
+            ? _value.targetX
+            : (targetX as Identifier?) ?? _value.targetX,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,

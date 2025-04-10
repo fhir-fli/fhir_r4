@@ -1544,76 +1544,6 @@ class HealthcareServiceBuilder extends DomainResourceBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool identifier = false,
-    bool active = false,
-    bool providedBy = false,
-    bool category = false,
-    bool type = false,
-    bool specialty = false,
-    bool location = false,
-    bool name = false,
-    bool comment = false,
-    bool extraDetails = false,
-    bool photo = false,
-    bool telecom = false,
-    bool coverageArea = false,
-    bool serviceProvisionCode = false,
-    bool eligibility = false,
-    bool program = false,
-    bool characteristic = false,
-    bool communication = false,
-    bool referralMethod = false,
-    bool appointmentRequired = false,
-    bool availableTime = false,
-    bool notAvailable = false,
-    bool availabilityExceptions = false,
-    bool endpoint = false,
-  }) {
-    if (id) this.id = null;
-    if (meta) this.meta = null;
-    if (implicitRules) this.implicitRules = null;
-    if (language) this.language = null;
-    if (text) this.text = null;
-    if (contained) this.contained = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (identifier) this.identifier = null;
-    if (active) this.active = null;
-    if (providedBy) this.providedBy = null;
-    if (category) this.category = null;
-    if (type) this.type = null;
-    if (specialty) this.specialty = null;
-    if (location) this.location = null;
-    if (name) this.name = null;
-    if (comment) this.comment = null;
-    if (extraDetails) this.extraDetails = null;
-    if (photo) this.photo = null;
-    if (telecom) this.telecom = null;
-    if (coverageArea) this.coverageArea = null;
-    if (serviceProvisionCode) this.serviceProvisionCode = null;
-    if (eligibility) this.eligibility = null;
-    if (program) this.program = null;
-    if (characteristic) this.characteristic = null;
-    if (communication) this.communication = null;
-    if (referralMethod) this.referralMethod = null;
-    if (appointmentRequired) this.appointmentRequired = null;
-    if (availableTime) this.availableTime = null;
-    if (notAvailable) this.notAvailable = null;
-    if (availabilityExceptions) this.availabilityExceptions = null;
-    if (endpoint) this.endpoint = null;
-  }
-
   @override
   HealthcareServiceBuilder clone() => throw UnimplementedError();
   @override
@@ -2287,22 +2217,6 @@ class HealthcareServiceEligibilityBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool code = false,
-    bool comment = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (code) this.code = null;
-    if (comment) this.comment = null;
-  }
-
   @override
   HealthcareServiceEligibilityBuilder clone() => throw UnimplementedError();
   @override
@@ -2898,26 +2812,6 @@ class HealthcareServiceAvailableTimeBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool daysOfWeek = false,
-    bool allDay = false,
-    bool availableStartTime = false,
-    bool availableEndTime = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (daysOfWeek) this.daysOfWeek = null;
-    if (allDay) this.allDay = null;
-    if (availableStartTime) this.availableStartTime = null;
-    if (availableEndTime) this.availableEndTime = null;
-  }
-
   @override
   HealthcareServiceAvailableTimeBuilder clone() => throw UnimplementedError();
   @override
@@ -3393,22 +3287,6 @@ class HealthcareServiceNotAvailableBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool description = false,
-    bool during = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (description) this.description = null;
-    if (during) this.during = null;
   }
 
   @override

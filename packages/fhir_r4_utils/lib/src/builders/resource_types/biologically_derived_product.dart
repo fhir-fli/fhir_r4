@@ -967,50 +967,6 @@ class BiologicallyDerivedProductBuilder extends DomainResourceBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool identifier = false,
-    bool productCategory = false,
-    bool productCode = false,
-    bool status = false,
-    bool request = false,
-    bool quantity = false,
-    bool parent = false,
-    bool collection = false,
-    bool processing = false,
-    bool manipulation = false,
-    bool storage = false,
-  }) {
-    if (id) this.id = null;
-    if (meta) this.meta = null;
-    if (implicitRules) this.implicitRules = null;
-    if (language) this.language = null;
-    if (text) this.text = null;
-    if (contained) this.contained = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (identifier) this.identifier = null;
-    if (productCategory) this.productCategory = null;
-    if (productCode) this.productCode = null;
-    if (status) this.status = null;
-    if (request) this.request = null;
-    if (quantity) this.quantity = null;
-    if (parent) this.parent = null;
-    if (collection) this.collection = null;
-    if (processing) this.processing = null;
-    if (manipulation) this.manipulation = null;
-    if (storage) this.storage = null;
-  }
-
   @override
   BiologicallyDerivedProductBuilder clone() => throw UnimplementedError();
   @override
@@ -1669,24 +1625,6 @@ class BiologicallyDerivedProductCollectionBuilder
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool collector = false,
-    bool source = false,
-    bool collected = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (collector) this.collector = null;
-    if (source) this.source = null;
-    if (collected) collectedX = null;
-  }
-
   @override
   BiologicallyDerivedProductCollectionBuilder clone() =>
       throw UnimplementedError();
@@ -2287,26 +2225,6 @@ class BiologicallyDerivedProductProcessingBuilder
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool description = false,
-    bool procedure = false,
-    bool additive = false,
-    bool time = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (description) this.description = null;
-    if (procedure) this.procedure = null;
-    if (additive) this.additive = null;
-    if (time) timeX = null;
-  }
-
   @override
   BiologicallyDerivedProductProcessingBuilder clone() =>
       throw UnimplementedError();
@@ -2849,22 +2767,6 @@ class BiologicallyDerivedProductManipulationBuilder
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool description = false,
-    bool time = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (description) this.description = null;
-    if (time) timeX = null;
   }
 
   @override
@@ -3420,26 +3322,6 @@ class BiologicallyDerivedProductStorageBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool description = false,
-    bool temperature = false,
-    bool scale = false,
-    bool duration = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (description) this.description = null;
-    if (temperature) this.temperature = null;
-    if (scale) this.scale = null;
-    if (duration) this.duration = null;
   }
 
   @override

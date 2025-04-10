@@ -74,13 +74,19 @@ class _$ImmunizationRecommendationCopyWithImpl<T>
         identifier: identical(identifier, fhirSentinel)
             ? _value.identifier
             : identifier as List<Identifier>?,
-        patient: patient as Reference? ?? _value.patient,
-        date: date as FhirDateTime? ?? _value.date,
+        patient: identical(patient, fhirSentinel)
+            ? _value.patient
+            : (patient as Reference?) ?? _value.patient,
+        date: identical(date, fhirSentinel)
+            ? _value.date
+            : (date as FhirDateTime?) ?? _value.date,
         authority: identical(authority, fhirSentinel)
             ? _value.authority
             : authority as Reference?,
-        recommendation:
-            recommendation as List<ImmunizationRecommendationRecommendation>? ??
+        recommendation: identical(recommendation, fhirSentinel)
+            ? _value.recommendation
+            : (recommendation
+                    as List<ImmunizationRecommendationRecommendation>?) ??
                 _value.recommendation,
       ),
     );
@@ -166,8 +172,9 @@ class _$ImmunizationRecommendationRecommendationCopyWithImpl<T>
             identical(contraindicatedVaccineCode, fhirSentinel)
                 ? _value.contraindicatedVaccineCode
                 : contraindicatedVaccineCode as List<CodeableConcept>?,
-        forecastStatus:
-            forecastStatus as CodeableConcept? ?? _value.forecastStatus,
+        forecastStatus: identical(forecastStatus, fhirSentinel)
+            ? _value.forecastStatus
+            : (forecastStatus as CodeableConcept?) ?? _value.forecastStatus,
         forecastReason: identical(forecastReason, fhirSentinel)
             ? _value.forecastReason
             : forecastReason as List<CodeableConcept>?,
@@ -251,8 +258,12 @@ class _$ImmunizationRecommendationDateCriterionCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        code: code as CodeableConcept? ?? _value.code,
-        value: value as FhirDateTime? ?? _value.value,
+        code: identical(code, fhirSentinel)
+            ? _value.code
+            : (code as CodeableConcept?) ?? _value.code,
+        value: identical(value, fhirSentinel)
+            ? _value.value
+            : (value as FhirDateTime?) ?? _value.value,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,

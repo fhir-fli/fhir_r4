@@ -88,9 +88,15 @@ class _$ConsentCopyWithImpl<T> implements $ConsentCopyWith<T> {
         identifier: identical(identifier, fhirSentinel)
             ? _value.identifier
             : identifier as List<Identifier>?,
-        status: status as ConsentState? ?? _value.status,
-        scope: scope as CodeableConcept? ?? _value.scope,
-        category: category as List<CodeableConcept>? ?? _value.category,
+        status: identical(status, fhirSentinel)
+            ? _value.status
+            : (status as ConsentState?) ?? _value.status,
+        scope: identical(scope, fhirSentinel)
+            ? _value.scope
+            : (scope as CodeableConcept?) ?? _value.scope,
+        category: identical(category, fhirSentinel)
+            ? _value.category
+            : (category as List<CodeableConcept>?) ?? _value.category,
         patient: identical(patient, fhirSentinel)
             ? _value.patient
             : patient as Reference?,
@@ -226,7 +232,9 @@ class _$ConsentVerificationCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        verified: verified as FhirBoolean? ?? _value.verified,
+        verified: identical(verified, fhirSentinel)
+            ? _value.verified
+            : (verified as FhirBoolean?) ?? _value.verified,
         verifiedWith: identical(verifiedWith, fhirSentinel)
             ? _value.verifiedWith
             : verifiedWith as Reference?,
@@ -389,8 +397,12 @@ class _$ConsentActorCopyWithImpl<T> implements $ConsentActorCopyWith<T> {
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        role: role as CodeableConcept? ?? _value.role,
-        reference: reference as Reference? ?? _value.reference,
+        role: identical(role, fhirSentinel)
+            ? _value.role
+            : (role as CodeableConcept?) ?? _value.role,
+        reference: identical(reference, fhirSentinel)
+            ? _value.reference
+            : (reference as Reference?) ?? _value.reference,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,
@@ -443,8 +455,12 @@ class _$ConsentDataCopyWithImpl<T> implements $ConsentDataCopyWith<T> {
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        meaning: meaning as ConsentDataMeaning? ?? _value.meaning,
-        reference: reference as Reference? ?? _value.reference,
+        meaning: identical(meaning, fhirSentinel)
+            ? _value.meaning
+            : (meaning as ConsentDataMeaning?) ?? _value.meaning,
+        reference: identical(reference, fhirSentinel)
+            ? _value.reference
+            : (reference as Reference?) ?? _value.reference,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,

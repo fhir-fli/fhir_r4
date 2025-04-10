@@ -82,7 +82,9 @@ class _$DeviceMetricCopyWithImpl<T> implements $DeviceMetricCopyWith<T> {
         identifier: identical(identifier, fhirSentinel)
             ? _value.identifier
             : identifier as List<Identifier>?,
-        type: type as CodeableConcept? ?? _value.type,
+        type: identical(type, fhirSentinel)
+            ? _value.type
+            : (type as CodeableConcept?) ?? _value.type,
         unit: identical(unit, fhirSentinel)
             ? _value.unit
             : unit as CodeableConcept?,
@@ -98,7 +100,9 @@ class _$DeviceMetricCopyWithImpl<T> implements $DeviceMetricCopyWith<T> {
         color: identical(color, fhirSentinel)
             ? _value.color
             : color as DeviceMetricColor?,
-        category: category as DeviceMetricCategory? ?? _value.category,
+        category: identical(category, fhirSentinel)
+            ? _value.category
+            : (category as DeviceMetricCategory?) ?? _value.category,
         measurementPeriod: identical(measurementPeriod, fhirSentinel)
             ? _value.measurementPeriod
             : measurementPeriod as Timing?,

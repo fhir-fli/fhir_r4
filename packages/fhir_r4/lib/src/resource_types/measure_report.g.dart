@@ -84,9 +84,15 @@ class _$MeasureReportCopyWithImpl<T> implements $MeasureReportCopyWith<T> {
         identifier: identical(identifier, fhirSentinel)
             ? _value.identifier
             : identifier as List<Identifier>?,
-        status: status as MeasureReportStatus? ?? _value.status,
-        type: type as MeasureReportType? ?? _value.type,
-        measure: measure as FhirCanonical? ?? _value.measure,
+        status: identical(status, fhirSentinel)
+            ? _value.status
+            : (status as MeasureReportStatus?) ?? _value.status,
+        type: identical(type, fhirSentinel)
+            ? _value.type
+            : (type as MeasureReportType?) ?? _value.type,
+        measure: identical(measure, fhirSentinel)
+            ? _value.measure
+            : (measure as FhirCanonical?) ?? _value.measure,
         subject: identical(subject, fhirSentinel)
             ? _value.subject
             : subject as Reference?,
@@ -95,7 +101,9 @@ class _$MeasureReportCopyWithImpl<T> implements $MeasureReportCopyWith<T> {
         reporter: identical(reporter, fhirSentinel)
             ? _value.reporter
             : reporter as Reference?,
-        period: period as Period? ?? _value.period,
+        period: identical(period, fhirSentinel)
+            ? _value.period
+            : (period as Period?) ?? _value.period,
         improvementNotation: identical(improvementNotation, fhirSentinel)
             ? _value.improvementNotation
             : improvementNotation as CodeableConcept?,
@@ -421,8 +429,12 @@ class _$MeasureReportComponentCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        code: code as CodeableConcept? ?? _value.code,
-        value: value as CodeableConcept? ?? _value.value,
+        code: identical(code, fhirSentinel)
+            ? _value.code
+            : (code as CodeableConcept?) ?? _value.code,
+        value: identical(value, fhirSentinel)
+            ? _value.value
+            : (value as CodeableConcept?) ?? _value.value,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,

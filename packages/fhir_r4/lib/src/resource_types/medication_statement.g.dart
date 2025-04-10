@@ -104,15 +104,21 @@ class _$MedicationStatementCopyWithImpl<T>
         partOf: identical(partOf, fhirSentinel)
             ? _value.partOf
             : partOf as List<Reference>?,
-        status: status as MedicationStatementStatusCodes? ?? _value.status,
+        status: identical(status, fhirSentinel)
+            ? _value.status
+            : (status as MedicationStatementStatusCodes?) ?? _value.status,
         statusReason: identical(statusReason, fhirSentinel)
             ? _value.statusReason
             : statusReason as List<CodeableConcept>?,
         category: identical(category, fhirSentinel)
             ? _value.category
             : category as CodeableConcept?,
-        medicationX: medicationX as CodeableConcept? ?? _value.medicationX,
-        subject: subject as Reference? ?? _value.subject,
+        medicationX: identical(medicationX, fhirSentinel)
+            ? _value.medicationX
+            : (medicationX as CodeableConcept?) ?? _value.medicationX,
+        subject: identical(subject, fhirSentinel)
+            ? _value.subject
+            : (subject as Reference?) ?? _value.subject,
         context: identical(context, fhirSentinel)
             ? _value.context
             : context as Reference?,

@@ -798,6 +798,271 @@ class ServiceRequest extends DomainResource {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> listChildrenNames() {
+    return [
+      'id',
+      'meta',
+      'implicitRules',
+      'language',
+      'text',
+      'contained',
+      'extension',
+      'modifierExtension',
+      'identifier',
+      'instantiatesCanonical',
+      'instantiatesUri',
+      'basedOn',
+      'replaces',
+      'requisition',
+      'status',
+      'intent',
+      'category',
+      'priority',
+      'doNotPerform',
+      'code',
+      'orderDetail',
+      'quantityX',
+      'subject',
+      'encounter',
+      'occurrenceX',
+      'asNeededX',
+      'authoredOn',
+      'requester',
+      'performerType',
+      'performer',
+      'locationCode',
+      'locationReference',
+      'reasonCode',
+      'reasonReference',
+      'insurance',
+      'supportingInfo',
+      'specimen',
+      'bodySite',
+      'note',
+      'patientInstruction',
+      'relevantHistory',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> getChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'meta':
+        if (meta != null) {
+          fields.add(meta!);
+        }
+      case 'implicitRules':
+        if (implicitRules != null) {
+          fields.add(implicitRules!);
+        }
+      case 'language':
+        if (language != null) {
+          fields.add(language!);
+        }
+      case 'text':
+        if (text != null) {
+          fields.add(text!);
+        }
+      case 'contained':
+        if (contained != null) {
+          fields.addAll(contained!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'identifier':
+        if (identifier != null) {
+          fields.addAll(identifier!);
+        }
+      case 'instantiatesCanonical':
+        if (instantiatesCanonical != null) {
+          fields.addAll(instantiatesCanonical!);
+        }
+      case 'instantiatesUri':
+        if (instantiatesUri != null) {
+          fields.addAll(instantiatesUri!);
+        }
+      case 'basedOn':
+        if (basedOn != null) {
+          fields.addAll(basedOn!);
+        }
+      case 'replaces':
+        if (replaces != null) {
+          fields.addAll(replaces!);
+        }
+      case 'requisition':
+        if (requisition != null) {
+          fields.add(requisition!);
+        }
+      case 'status':
+        fields.add(status);
+      case 'intent':
+        fields.add(intent);
+      case 'category':
+        if (category != null) {
+          fields.addAll(category!);
+        }
+      case 'priority':
+        if (priority != null) {
+          fields.add(priority!);
+        }
+      case 'doNotPerform':
+        if (doNotPerform != null) {
+          fields.add(doNotPerform!);
+        }
+      case 'code':
+        if (code != null) {
+          fields.add(code!);
+        }
+      case 'orderDetail':
+        if (orderDetail != null) {
+          fields.addAll(orderDetail!);
+        }
+      case 'quantity':
+        fields.add(quantityX!);
+      case 'quantityX':
+        fields.add(quantityX!);
+      case 'quantityQuantity':
+        if (quantityX is Quantity) {
+          fields.add(quantityX!);
+        }
+      case 'quantityRatio':
+        if (quantityX is Ratio) {
+          fields.add(quantityX!);
+        }
+      case 'quantityRange':
+        if (quantityX is Range) {
+          fields.add(quantityX!);
+        }
+      case 'subject':
+        fields.add(subject);
+      case 'encounter':
+        if (encounter != null) {
+          fields.add(encounter!);
+        }
+      case 'occurrence':
+        fields.add(occurrenceX!);
+      case 'occurrenceX':
+        fields.add(occurrenceX!);
+      case 'occurrenceDateTime':
+        if (occurrenceX is FhirDateTime) {
+          fields.add(occurrenceX!);
+        }
+      case 'occurrencePeriod':
+        if (occurrenceX is Period) {
+          fields.add(occurrenceX!);
+        }
+      case 'occurrenceTiming':
+        if (occurrenceX is Timing) {
+          fields.add(occurrenceX!);
+        }
+      case 'asNeeded':
+        fields.add(asNeededX!);
+      case 'asNeededX':
+        fields.add(asNeededX!);
+      case 'asNeededBoolean':
+        if (asNeededX is FhirBoolean) {
+          fields.add(asNeededX!);
+        }
+      case 'asNeededCodeableConcept':
+        if (asNeededX is CodeableConcept) {
+          fields.add(asNeededX!);
+        }
+      case 'authoredOn':
+        if (authoredOn != null) {
+          fields.add(authoredOn!);
+        }
+      case 'requester':
+        if (requester != null) {
+          fields.add(requester!);
+        }
+      case 'performerType':
+        if (performerType != null) {
+          fields.add(performerType!);
+        }
+      case 'performer':
+        if (performer != null) {
+          fields.addAll(performer!);
+        }
+      case 'locationCode':
+        if (locationCode != null) {
+          fields.addAll(locationCode!);
+        }
+      case 'locationReference':
+        if (locationReference != null) {
+          fields.addAll(locationReference!);
+        }
+      case 'reasonCode':
+        if (reasonCode != null) {
+          fields.addAll(reasonCode!);
+        }
+      case 'reasonReference':
+        if (reasonReference != null) {
+          fields.addAll(reasonReference!);
+        }
+      case 'insurance':
+        if (insurance != null) {
+          fields.addAll(insurance!);
+        }
+      case 'supportingInfo':
+        if (supportingInfo != null) {
+          fields.addAll(supportingInfo!);
+        }
+      case 'specimen':
+        if (specimen != null) {
+          fields.addAll(specimen!);
+        }
+      case 'bodySite':
+        if (bodySite != null) {
+          fields.addAll(bodySite!);
+        }
+      case 'note':
+        if (note != null) {
+          fields.addAll(note!);
+        }
+      case 'patientInstruction':
+        if (patientInstruction != null) {
+          fields.add(patientInstruction!);
+        }
+      case 'relevantHistory':
+        if (relevantHistory != null) {
+          fields.addAll(relevantHistory!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildByName(String name) {
+    final values = getChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   ServiceRequest clone() => copyWith();
 

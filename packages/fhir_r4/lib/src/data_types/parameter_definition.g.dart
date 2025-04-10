@@ -49,13 +49,17 @@ class _$ParameterDefinitionCopyWithImpl<T>
             ? _value.extension_
             : extension_ as List<FhirExtension>?,
         name: identical(name, fhirSentinel) ? _value.name : name as FhirCode?,
-        use: use as OperationParameterUse? ?? _value.use,
+        use: identical(use, fhirSentinel)
+            ? _value.use
+            : (use as OperationParameterUse?) ?? _value.use,
         min: identical(min, fhirSentinel) ? _value.min : min as FhirInteger?,
         max: identical(max, fhirSentinel) ? _value.max : max as FhirString?,
         documentation: identical(documentation, fhirSentinel)
             ? _value.documentation
             : documentation as FhirString?,
-        type: type as FHIRAllTypes? ?? _value.type,
+        type: identical(type, fhirSentinel)
+            ? _value.type
+            : (type as FHIRAllTypes?) ?? _value.type,
         profile: identical(profile, fhirSentinel)
             ? _value.profile
             : profile as FhirCanonical?,

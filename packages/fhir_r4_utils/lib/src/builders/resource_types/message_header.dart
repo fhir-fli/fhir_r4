@@ -964,50 +964,6 @@ class MessageHeaderBuilder extends DomainResourceBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool event = false,
-    bool destination = false,
-    bool sender = false,
-    bool enterer = false,
-    bool author = false,
-    bool source = false,
-    bool responsible = false,
-    bool reason = false,
-    bool response = false,
-    bool focus = false,
-    bool definition = false,
-  }) {
-    if (id) this.id = null;
-    if (meta) this.meta = null;
-    if (implicitRules) this.implicitRules = null;
-    if (language) this.language = null;
-    if (text) this.text = null;
-    if (contained) this.contained = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (event) eventX = null;
-    if (destination) this.destination = null;
-    if (sender) this.sender = null;
-    if (enterer) this.enterer = null;
-    if (author) this.author = null;
-    if (source) this.source = null;
-    if (responsible) this.responsible = null;
-    if (reason) this.reason = null;
-    if (response) this.response = null;
-    if (focus) this.focus = null;
-    if (definition) this.definition = null;
-  }
-
   @override
   MessageHeaderBuilder clone() => throw UnimplementedError();
   @override
@@ -1656,26 +1612,6 @@ class MessageHeaderDestinationBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool name = false,
-    bool target = false,
-    bool endpoint = false,
-    bool receiver = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (name) this.name = null;
-    if (target) this.target = null;
-    if (endpoint) this.endpoint = null;
-    if (receiver) this.receiver = null;
-  }
-
   @override
   MessageHeaderDestinationBuilder clone() => throw UnimplementedError();
   @override
@@ -2282,28 +2218,6 @@ class MessageHeaderSourceBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool name = false,
-    bool software = false,
-    bool version = false,
-    bool contact = false,
-    bool endpoint = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (name) this.name = null;
-    if (software) this.software = null;
-    if (version) this.version = null;
-    if (contact) this.contact = null;
-    if (endpoint) this.endpoint = null;
-  }
-
   @override
   MessageHeaderSourceBuilder clone() => throw UnimplementedError();
   @override
@@ -2833,24 +2747,6 @@ class MessageHeaderResponseBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool identifier = false,
-    bool code = false,
-    bool details = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (identifier) this.identifier = null;
-    if (code) this.code = null;
-    if (details) this.details = null;
   }
 
   @override

@@ -107,7 +107,9 @@ class _$ChargeItemDefinitionCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        url: url as FhirUri? ?? _value.url,
+        url: identical(url, fhirSentinel)
+            ? _value.url
+            : (url as FhirUri?) ?? _value.url,
         identifier: identical(identifier, fhirSentinel)
             ? _value.identifier
             : identifier as List<Identifier>?,
@@ -126,7 +128,9 @@ class _$ChargeItemDefinitionCopyWithImpl<T>
         replaces: identical(replaces, fhirSentinel)
             ? _value.replaces
             : replaces as List<FhirCanonical>?,
-        status: status as PublicationStatus? ?? _value.status,
+        status: identical(status, fhirSentinel)
+            ? _value.status
+            : (status as PublicationStatus?) ?? _value.status,
         experimental: identical(experimental, fhirSentinel)
             ? _value.experimental
             : experimental as FhirBoolean?,
@@ -355,7 +359,9 @@ class _$ChargeItemDefinitionPriceComponentCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        type: type as InvoicePriceComponentType? ?? _value.type,
+        type: identical(type, fhirSentinel)
+            ? _value.type
+            : (type as InvoicePriceComponentType?) ?? _value.type,
         code: identical(code, fhirSentinel)
             ? _value.code
             : code as CodeableConcept?,

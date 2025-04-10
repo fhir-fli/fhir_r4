@@ -86,25 +86,35 @@ class _$PaymentNoticeCopyWithImpl<T> implements $PaymentNoticeCopyWith<T> {
         identifier: identical(identifier, fhirSentinel)
             ? _value.identifier
             : identifier as List<Identifier>?,
-        status: status as FinancialResourceStatusCodes? ?? _value.status,
+        status: identical(status, fhirSentinel)
+            ? _value.status
+            : (status as FinancialResourceStatusCodes?) ?? _value.status,
         request: identical(request, fhirSentinel)
             ? _value.request
             : request as Reference?,
         response: identical(response, fhirSentinel)
             ? _value.response
             : response as Reference?,
-        created: created as FhirDateTime? ?? _value.created,
+        created: identical(created, fhirSentinel)
+            ? _value.created
+            : (created as FhirDateTime?) ?? _value.created,
         provider: identical(provider, fhirSentinel)
             ? _value.provider
             : provider as Reference?,
-        payment: payment as Reference? ?? _value.payment,
+        payment: identical(payment, fhirSentinel)
+            ? _value.payment
+            : (payment as Reference?) ?? _value.payment,
         paymentDate: identical(paymentDate, fhirSentinel)
             ? _value.paymentDate
             : paymentDate as FhirDate?,
         payee:
             identical(payee, fhirSentinel) ? _value.payee : payee as Reference?,
-        recipient: recipient as Reference? ?? _value.recipient,
-        amount: amount as Money? ?? _value.amount,
+        recipient: identical(recipient, fhirSentinel)
+            ? _value.recipient
+            : (recipient as Reference?) ?? _value.recipient,
+        amount: identical(amount, fhirSentinel)
+            ? _value.amount
+            : (amount as Money?) ?? _value.amount,
         paymentStatus: identical(paymentStatus, fhirSentinel)
             ? _value.paymentStatus
             : paymentStatus as CodeableConcept?,

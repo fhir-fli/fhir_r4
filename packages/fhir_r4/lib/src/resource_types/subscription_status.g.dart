@@ -78,7 +78,9 @@ class _$SubscriptionStatusCopyWithImpl<T>
         status: identical(status, fhirSentinel)
             ? _value.status
             : status as SubscriptionStatusCodes?,
-        type: type as SubscriptionNotificationType? ?? _value.type,
+        type: identical(type, fhirSentinel)
+            ? _value.type
+            : (type as SubscriptionNotificationType?) ?? _value.type,
         eventsSinceSubscriptionStart:
             identical(eventsSinceSubscriptionStart, fhirSentinel)
                 ? _value.eventsSinceSubscriptionStart
@@ -86,7 +88,9 @@ class _$SubscriptionStatusCopyWithImpl<T>
         notificationEvent: identical(notificationEvent, fhirSentinel)
             ? _value.notificationEvent
             : notificationEvent as List<SubscriptionStatusNotificationEvent>?,
-        subscription: subscription as Reference? ?? _value.subscription,
+        subscription: identical(subscription, fhirSentinel)
+            ? _value.subscription
+            : (subscription as Reference?) ?? _value.subscription,
         topic: identical(topic, fhirSentinel)
             ? _value.topic
             : topic as FhirCanonical?,
@@ -148,7 +152,9 @@ class _$SubscriptionStatusNotificationEventCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        eventNumber: eventNumber as FhirString? ?? _value.eventNumber,
+        eventNumber: identical(eventNumber, fhirSentinel)
+            ? _value.eventNumber
+            : (eventNumber as FhirString?) ?? _value.eventNumber,
         timestamp: identical(timestamp, fhirSentinel)
             ? _value.timestamp
             : timestamp as FhirInstant?,

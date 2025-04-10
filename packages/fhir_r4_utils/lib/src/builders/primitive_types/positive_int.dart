@@ -262,17 +262,4 @@ class FhirPositiveIntBuilder extends FhirNumberBuilder
   @override
   FhirPositiveIntBuilder createProperty(String propertyName) => this;
 
-  @override
-  FhirPositiveIntBuilder clear({
-    bool value = false,
-    bool extension_ = false,
-    bool id = false,
-  }) {
-    return FhirPositiveIntBuilder(
-      value ? null : valueString,
-      element: element,
-      extension_: extension_ ? <FhirExtensionBuilder>[] : this.extension_,
-      id: id ? null : this.id,
-    );
-  }
 }

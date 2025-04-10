@@ -1672,84 +1672,6 @@ class ImmunizationBuilder extends DomainResourceBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool identifier = false,
-    bool status = false,
-    bool statusReason = false,
-    bool vaccineCode = false,
-    bool patient = false,
-    bool encounter = false,
-    bool occurrence = false,
-    bool recorded = false,
-    bool primarySource = false,
-    bool reportOrigin = false,
-    bool location = false,
-    bool manufacturer = false,
-    bool lotNumber = false,
-    bool expirationDate = false,
-    bool site = false,
-    bool route = false,
-    bool doseQuantity = false,
-    bool performer = false,
-    bool note = false,
-    bool reasonCode = false,
-    bool reasonReference = false,
-    bool isSubpotent = false,
-    bool subpotentReason = false,
-    bool education = false,
-    bool programEligibility = false,
-    bool fundingSource = false,
-    bool reaction = false,
-    bool protocolApplied = false,
-  }) {
-    if (id) this.id = null;
-    if (meta) this.meta = null;
-    if (implicitRules) this.implicitRules = null;
-    if (language) this.language = null;
-    if (text) this.text = null;
-    if (contained) this.contained = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (identifier) this.identifier = null;
-    if (status) this.status = null;
-    if (statusReason) this.statusReason = null;
-    if (vaccineCode) this.vaccineCode = null;
-    if (patient) this.patient = null;
-    if (encounter) this.encounter = null;
-    if (occurrence) occurrenceX = null;
-    if (recorded) this.recorded = null;
-    if (primarySource) this.primarySource = null;
-    if (reportOrigin) this.reportOrigin = null;
-    if (location) this.location = null;
-    if (manufacturer) this.manufacturer = null;
-    if (lotNumber) this.lotNumber = null;
-    if (expirationDate) this.expirationDate = null;
-    if (site) this.site = null;
-    if (route) this.route = null;
-    if (doseQuantity) this.doseQuantity = null;
-    if (performer) this.performer = null;
-    if (note) this.note = null;
-    if (reasonCode) this.reasonCode = null;
-    if (reasonReference) this.reasonReference = null;
-    if (isSubpotent) this.isSubpotent = null;
-    if (subpotentReason) this.subpotentReason = null;
-    if (education) this.education = null;
-    if (programEligibility) this.programEligibility = null;
-    if (fundingSource) this.fundingSource = null;
-    if (reaction) this.reaction = null;
-    if (protocolApplied) this.protocolApplied = null;
-  }
-
   @override
   ImmunizationBuilder clone() => throw UnimplementedError();
   @override
@@ -2442,22 +2364,6 @@ class ImmunizationPerformerBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool function_ = false,
-    bool actor = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (function_) this.function_ = null;
-    if (actor) this.actor = null;
-  }
-
   @override
   ImmunizationPerformerBuilder clone() => throw UnimplementedError();
   @override
@@ -3015,26 +2921,6 @@ class ImmunizationEducationBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool documentType = false,
-    bool reference = false,
-    bool publicationDate = false,
-    bool presentationDate = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (documentType) this.documentType = null;
-    if (reference) this.reference = null;
-    if (publicationDate) this.publicationDate = null;
-    if (presentationDate) this.presentationDate = null;
-  }
-
   @override
   ImmunizationEducationBuilder clone() => throw UnimplementedError();
   @override
@@ -3548,24 +3434,6 @@ class ImmunizationReactionBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool date = false,
-    bool detail = false,
-    bool reported = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (date) this.date = null;
-    if (detail) this.detail = null;
-    if (reported) this.reported = null;
   }
 
   @override
@@ -4283,28 +4151,6 @@ class ImmunizationProtocolAppliedBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool series = false,
-    bool authority = false,
-    bool targetDisease = false,
-    bool doseNumber = false,
-    bool seriesDoses = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (series) this.series = null;
-    if (authority) this.authority = null;
-    if (targetDisease) this.targetDisease = null;
-    if (doseNumber) doseNumberX = null;
-    if (seriesDoses) seriesDosesX = null;
   }
 
   @override

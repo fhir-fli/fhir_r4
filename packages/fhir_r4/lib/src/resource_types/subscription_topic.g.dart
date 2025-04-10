@@ -105,7 +105,9 @@ class _$SubscriptionTopicCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        url: url as FhirUri? ?? _value.url,
+        url: identical(url, fhirSentinel)
+            ? _value.url
+            : (url as FhirUri?) ?? _value.url,
         identifier: identical(identifier, fhirSentinel)
             ? _value.identifier
             : identifier as List<Identifier>?,
@@ -118,7 +120,9 @@ class _$SubscriptionTopicCopyWithImpl<T>
         derivedFrom: identical(derivedFrom, fhirSentinel)
             ? _value.derivedFrom
             : derivedFrom as List<FhirCanonical>?,
-        status: status as PublicationStatus? ?? _value.status,
+        status: identical(status, fhirSentinel)
+            ? _value.status
+            : (status as PublicationStatus?) ?? _value.status,
         experimental: identical(experimental, fhirSentinel)
             ? _value.experimental
             : experimental as FhirBoolean?,
@@ -226,7 +230,9 @@ class _$SubscriptionTopicResourceTriggerCopyWithImpl<T>
         description: identical(description, fhirSentinel)
             ? _value.description
             : description as FhirMarkdown?,
-        resource: resource as FhirUri? ?? _value.resource,
+        resource: identical(resource, fhirSentinel)
+            ? _value.resource
+            : (resource as FhirUri?) ?? _value.resource,
         supportedInteraction: identical(supportedInteraction, fhirSentinel)
             ? _value.supportedInteraction
             : supportedInteraction as List<InteractionTrigger>?,
@@ -374,8 +380,12 @@ class _$SubscriptionTopicEventTriggerCopyWithImpl<T>
         description: identical(description, fhirSentinel)
             ? _value.description
             : description as FhirMarkdown?,
-        event: event as CodeableConcept? ?? _value.event,
-        resource: resource as FhirUri? ?? _value.resource,
+        event: identical(event, fhirSentinel)
+            ? _value.event
+            : (event as CodeableConcept?) ?? _value.event,
+        resource: identical(resource, fhirSentinel)
+            ? _value.resource
+            : (resource as FhirUri?) ?? _value.resource,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,
@@ -444,8 +454,9 @@ class _$SubscriptionTopicCanFilterByCopyWithImpl<T>
         resource: identical(resource, fhirSentinel)
             ? _value.resource
             : resource as FhirUri?,
-        filterParameter:
-            filterParameter as FhirString? ?? _value.filterParameter,
+        filterParameter: identical(filterParameter, fhirSentinel)
+            ? _value.filterParameter
+            : (filterParameter as FhirString?) ?? _value.filterParameter,
         filterDefinition: identical(filterDefinition, fhirSentinel)
             ? _value.filterDefinition
             : filterDefinition as FhirUri?,
@@ -510,7 +521,9 @@ class _$SubscriptionTopicNotificationShapeCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        resource: resource as FhirUri? ?? _value.resource,
+        resource: identical(resource, fhirSentinel)
+            ? _value.resource
+            : (resource as FhirUri?) ?? _value.resource,
         include: identical(include, fhirSentinel)
             ? _value.include
             : include as List<FhirString>?,

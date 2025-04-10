@@ -117,7 +117,9 @@ class _$QuestionnaireCopyWithImpl<T> implements $QuestionnaireCopyWith<T> {
         derivedFrom: identical(derivedFrom, fhirSentinel)
             ? _value.derivedFrom
             : derivedFrom as List<FhirCanonical>?,
-        status: status as PublicationStatus? ?? _value.status,
+        status: identical(status, fhirSentinel)
+            ? _value.status
+            : (status as PublicationStatus?) ?? _value.status,
         experimental: identical(experimental, fhirSentinel)
             ? _value.experimental
             : experimental as FhirBoolean?,
@@ -240,7 +242,9 @@ class _$QuestionnaireItemCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        linkId: linkId as FhirString? ?? _value.linkId,
+        linkId: identical(linkId, fhirSentinel)
+            ? _value.linkId
+            : (linkId as FhirString?) ?? _value.linkId,
         definition: identical(definition, fhirSentinel)
             ? _value.definition
             : definition as FhirUri?,
@@ -250,7 +254,9 @@ class _$QuestionnaireItemCopyWithImpl<T>
             ? _value.prefix
             : prefix as FhirString?,
         text: identical(text, fhirSentinel) ? _value.text : text as FhirString?,
-        type: type as QuestionnaireItemType? ?? _value.type,
+        type: identical(type, fhirSentinel)
+            ? _value.type
+            : (type as QuestionnaireItemType?) ?? _value.type,
         enableWhen: identical(enableWhen, fhirSentinel)
             ? _value.enableWhen
             : enableWhen as List<QuestionnaireEnableWhen>?,
@@ -337,9 +343,15 @@ class _$QuestionnaireEnableWhenCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        question: question as FhirString? ?? _value.question,
-        operator_: operator_ as QuestionnaireItemOperator? ?? _value.operator_,
-        answerX: answerX as FhirBoolean? ?? _value.answerX,
+        question: identical(question, fhirSentinel)
+            ? _value.question
+            : (question as FhirString?) ?? _value.question,
+        operator_: identical(operator_, fhirSentinel)
+            ? _value.operator_
+            : (operator_ as QuestionnaireItemOperator?) ?? _value.operator_,
+        answerX: identical(answerX, fhirSentinel)
+            ? _value.answerX
+            : (answerX as FhirBoolean?) ?? _value.answerX,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,
@@ -394,7 +406,9 @@ class _$QuestionnaireAnswerOptionCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        valueX: valueX as FhirInteger? ?? _value.valueX,
+        valueX: identical(valueX, fhirSentinel)
+            ? _value.valueX
+            : (valueX as FhirInteger?) ?? _value.valueX,
         initialSelected: identical(initialSelected, fhirSentinel)
             ? _value.initialSelected
             : initialSelected as FhirBoolean?,
@@ -451,7 +465,9 @@ class _$QuestionnaireInitialCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        valueX: valueX as FhirBoolean? ?? _value.valueX,
+        valueX: identical(valueX, fhirSentinel)
+            ? _value.valueX
+            : (valueX as FhirBoolean?) ?? _value.valueX,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,

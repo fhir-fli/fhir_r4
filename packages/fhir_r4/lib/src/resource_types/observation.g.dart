@@ -116,11 +116,15 @@ class _$ObservationCopyWithImpl<T> implements $ObservationCopyWith<T> {
         partOf: identical(partOf, fhirSentinel)
             ? _value.partOf
             : partOf as List<Reference>?,
-        status: status as ObservationStatus? ?? _value.status,
+        status: identical(status, fhirSentinel)
+            ? _value.status
+            : (status as ObservationStatus?) ?? _value.status,
         category: identical(category, fhirSentinel)
             ? _value.category
             : category as List<CodeableConcept>?,
-        code: code as CodeableConcept? ?? _value.code,
+        code: identical(code, fhirSentinel)
+            ? _value.code
+            : (code as CodeableConcept?) ?? _value.code,
         subject: identical(subject, fhirSentinel)
             ? _value.subject
             : subject as Reference?,
@@ -305,7 +309,9 @@ class _$ObservationComponentCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        code: code as CodeableConcept? ?? _value.code,
+        code: identical(code, fhirSentinel)
+            ? _value.code
+            : (code as CodeableConcept?) ?? _value.code,
         valueX: identical(valueX, fhirSentinel)
             ? _value.valueX
             : valueX as Quantity?,

@@ -84,8 +84,12 @@ class _$FhirEndpointCopyWithImpl<T> implements $FhirEndpointCopyWith<T> {
         identifier: identical(identifier, fhirSentinel)
             ? _value.identifier
             : identifier as List<Identifier>?,
-        status: status as EndpointStatus? ?? _value.status,
-        connectionType: connectionType as Coding? ?? _value.connectionType,
+        status: identical(status, fhirSentinel)
+            ? _value.status
+            : (status as EndpointStatus?) ?? _value.status,
+        connectionType: identical(connectionType, fhirSentinel)
+            ? _value.connectionType
+            : (connectionType as Coding?) ?? _value.connectionType,
         name: identical(name, fhirSentinel) ? _value.name : name as FhirString?,
         managingOrganization: identical(managingOrganization, fhirSentinel)
             ? _value.managingOrganization
@@ -95,12 +99,15 @@ class _$FhirEndpointCopyWithImpl<T> implements $FhirEndpointCopyWith<T> {
             : contact as List<ContactPoint>?,
         period:
             identical(period, fhirSentinel) ? _value.period : period as Period?,
-        payloadType:
-            payloadType as List<CodeableConcept>? ?? _value.payloadType,
+        payloadType: identical(payloadType, fhirSentinel)
+            ? _value.payloadType
+            : (payloadType as List<CodeableConcept>?) ?? _value.payloadType,
         payloadMimeType: identical(payloadMimeType, fhirSentinel)
             ? _value.payloadMimeType
             : payloadMimeType as List<FhirCode>?,
-        address: address as FhirUrl? ?? _value.address,
+        address: identical(address, fhirSentinel)
+            ? _value.address
+            : (address as FhirUrl?) ?? _value.address,
         header: identical(header, fhirSentinel)
             ? _value.header
             : header as List<FhirString>?,

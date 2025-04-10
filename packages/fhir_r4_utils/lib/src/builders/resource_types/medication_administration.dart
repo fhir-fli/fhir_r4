@@ -1448,66 +1448,6 @@ class MedicationAdministrationBuilder extends DomainResourceBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool identifier = false,
-    bool instantiates = false,
-    bool partOf = false,
-    bool status = false,
-    bool statusReason = false,
-    bool category = false,
-    bool medication = false,
-    bool subject = false,
-    bool context = false,
-    bool supportingInformation = false,
-    bool effective = false,
-    bool performer = false,
-    bool reasonCode = false,
-    bool reasonReference = false,
-    bool request = false,
-    bool device = false,
-    bool note = false,
-    bool dosage = false,
-    bool eventHistory = false,
-  }) {
-    if (id) this.id = null;
-    if (meta) this.meta = null;
-    if (implicitRules) this.implicitRules = null;
-    if (language) this.language = null;
-    if (text) this.text = null;
-    if (contained) this.contained = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (identifier) this.identifier = null;
-    if (instantiates) this.instantiates = null;
-    if (partOf) this.partOf = null;
-    if (status) this.status = null;
-    if (statusReason) this.statusReason = null;
-    if (category) this.category = null;
-    if (medication) medicationX = null;
-    if (subject) this.subject = null;
-    if (context) this.context = null;
-    if (supportingInformation) this.supportingInformation = null;
-    if (effective) effectiveX = null;
-    if (performer) this.performer = null;
-    if (reasonCode) this.reasonCode = null;
-    if (reasonReference) this.reasonReference = null;
-    if (request) this.request = null;
-    if (device) this.device = null;
-    if (note) this.note = null;
-    if (dosage) this.dosage = null;
-    if (eventHistory) this.eventHistory = null;
-  }
-
   @override
   MedicationAdministrationBuilder clone() => throw UnimplementedError();
   @override
@@ -2130,22 +2070,6 @@ class MedicationAdministrationPerformerBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool function_ = false,
-    bool actor = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (function_) this.function_ = null;
-    if (actor) this.actor = null;
   }
 
   @override
@@ -2815,30 +2739,6 @@ class MedicationAdministrationDosageBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool text = false,
-    bool site = false,
-    bool route = false,
-    bool method = false,
-    bool dose = false,
-    bool rate = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (text) this.text = null;
-    if (site) this.site = null;
-    if (route) this.route = null;
-    if (method) this.method = null;
-    if (dose) this.dose = null;
-    if (rate) rateX = null;
   }
 
   @override

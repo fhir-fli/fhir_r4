@@ -1585,80 +1585,6 @@ class DeviceBuilder extends DomainResourceBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool identifier = false,
-    bool definition = false,
-    bool udiCarrier = false,
-    bool status = false,
-    bool statusReason = false,
-    bool distinctIdentifier = false,
-    bool manufacturer = false,
-    bool manufactureDate = false,
-    bool expirationDate = false,
-    bool lotNumber = false,
-    bool serialNumber = false,
-    bool deviceName = false,
-    bool modelNumber = false,
-    bool partNumber = false,
-    bool type = false,
-    bool specialization = false,
-    bool version = false,
-    bool property = false,
-    bool patient = false,
-    bool owner = false,
-    bool contact = false,
-    bool location = false,
-    bool url = false,
-    bool note = false,
-    bool safety = false,
-    bool parent = false,
-  }) {
-    if (id) this.id = null;
-    if (meta) this.meta = null;
-    if (implicitRules) this.implicitRules = null;
-    if (language) this.language = null;
-    if (text) this.text = null;
-    if (contained) this.contained = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (identifier) this.identifier = null;
-    if (definition) this.definition = null;
-    if (udiCarrier) this.udiCarrier = null;
-    if (status) this.status = null;
-    if (statusReason) this.statusReason = null;
-    if (distinctIdentifier) this.distinctIdentifier = null;
-    if (manufacturer) this.manufacturer = null;
-    if (manufactureDate) this.manufactureDate = null;
-    if (expirationDate) this.expirationDate = null;
-    if (lotNumber) this.lotNumber = null;
-    if (serialNumber) this.serialNumber = null;
-    if (deviceName) this.deviceName = null;
-    if (modelNumber) this.modelNumber = null;
-    if (partNumber) this.partNumber = null;
-    if (type) this.type = null;
-    if (specialization) this.specialization = null;
-    if (version) this.version = null;
-    if (property) this.property = null;
-    if (patient) this.patient = null;
-    if (owner) this.owner = null;
-    if (contact) this.contact = null;
-    if (location) this.location = null;
-    if (url) this.url = null;
-    if (note) this.note = null;
-    if (safety) this.safety = null;
-    if (parent) this.parent = null;
-  }
-
   @override
   DeviceBuilder clone() => throw UnimplementedError();
   @override
@@ -2557,30 +2483,6 @@ class DeviceUdiCarrierBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool deviceIdentifier = false,
-    bool issuer = false,
-    bool jurisdiction = false,
-    bool carrierAIDC = false,
-    bool carrierHRF = false,
-    bool entryType = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (deviceIdentifier) this.deviceIdentifier = null;
-    if (issuer) this.issuer = null;
-    if (jurisdiction) this.jurisdiction = null;
-    if (carrierAIDC) this.carrierAIDC = null;
-    if (carrierHRF) this.carrierHRF = null;
-    if (entryType) this.entryType = null;
-  }
-
   @override
   DeviceUdiCarrierBuilder clone() => throw UnimplementedError();
   @override
@@ -3090,22 +2992,6 @@ class DeviceDeviceNameBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool name = false,
-    bool type = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (name) this.name = null;
-    if (type) this.type = null;
-  }
-
   @override
   DeviceDeviceNameBuilder clone() => throw UnimplementedError();
   @override
@@ -3562,22 +3448,6 @@ class DeviceSpecializationBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool systemType = false,
-    bool version = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (systemType) this.systemType = null;
-    if (version) this.version = null;
   }
 
   @override
@@ -4067,24 +3937,6 @@ class DeviceVersionBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool type = false,
-    bool component = false,
-    bool value = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (type) this.type = null;
-    if (component) this.component = null;
-    if (value) this.value = null;
   }
 
   @override
@@ -4595,24 +4447,6 @@ class DevicePropertyBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool type = false,
-    bool valueQuantity = false,
-    bool valueCode = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (type) this.type = null;
-    if (valueQuantity) this.valueQuantity = null;
-    if (valueCode) this.valueCode = null;
   }
 
   @override

@@ -572,30 +572,6 @@ class SignatureBuilder extends DataTypeBuilder
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool type = false,
-    bool when = false,
-    bool who = false,
-    bool onBehalfOf = false,
-    bool targetFormat = false,
-    bool sigFormat = false,
-    bool data = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (type) this.type = null;
-    if (when) this.when = null;
-    if (who) this.who = null;
-    if (onBehalfOf) this.onBehalfOf = null;
-    if (targetFormat) this.targetFormat = null;
-    if (sigFormat) this.sigFormat = null;
-    if (data) this.data = null;
-  }
-
   @override
   SignatureBuilder clone() => throw UnimplementedError();
   @override

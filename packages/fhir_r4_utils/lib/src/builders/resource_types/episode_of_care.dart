@@ -986,52 +986,6 @@ class EpisodeOfCareBuilder extends DomainResourceBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool identifier = false,
-    bool status = false,
-    bool statusHistory = false,
-    bool type = false,
-    bool diagnosis = false,
-    bool patient = false,
-    bool managingOrganization = false,
-    bool period = false,
-    bool referralRequest = false,
-    bool careManager = false,
-    bool team = false,
-    bool account = false,
-  }) {
-    if (id) this.id = null;
-    if (meta) this.meta = null;
-    if (implicitRules) this.implicitRules = null;
-    if (language) this.language = null;
-    if (text) this.text = null;
-    if (contained) this.contained = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (identifier) this.identifier = null;
-    if (status) this.status = null;
-    if (statusHistory) this.statusHistory = null;
-    if (type) this.type = null;
-    if (diagnosis) this.diagnosis = null;
-    if (patient) this.patient = null;
-    if (managingOrganization) this.managingOrganization = null;
-    if (period) this.period = null;
-    if (referralRequest) this.referralRequest = null;
-    if (careManager) this.careManager = null;
-    if (team) this.team = null;
-    if (account) this.account = null;
-  }
-
   @override
   EpisodeOfCareBuilder clone() => throw UnimplementedError();
   @override
@@ -1614,22 +1568,6 @@ class EpisodeOfCareStatusHistoryBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool status = false,
-    bool period = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (status) this.status = null;
-    if (period) this.period = null;
-  }
-
   @override
   EpisodeOfCareStatusHistoryBuilder clone() => throw UnimplementedError();
   @override
@@ -2124,24 +2062,6 @@ class EpisodeOfCareDiagnosisBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool condition = false,
-    bool role = false,
-    bool rank = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (condition) this.condition = null;
-    if (role) this.role = null;
-    if (rank) this.rank = null;
   }
 
   @override

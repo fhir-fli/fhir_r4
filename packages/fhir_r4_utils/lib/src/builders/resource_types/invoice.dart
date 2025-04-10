@@ -1126,60 +1126,6 @@ class InvoiceBuilder extends DomainResourceBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool identifier = false,
-    bool status = false,
-    bool cancelledReason = false,
-    bool type = false,
-    bool subject = false,
-    bool recipient = false,
-    bool date = false,
-    bool participant = false,
-    bool issuer = false,
-    bool account = false,
-    bool lineItem = false,
-    bool totalPriceComponent = false,
-    bool totalNet = false,
-    bool totalGross = false,
-    bool paymentTerms = false,
-    bool note = false,
-  }) {
-    if (id) this.id = null;
-    if (meta) this.meta = null;
-    if (implicitRules) this.implicitRules = null;
-    if (language) this.language = null;
-    if (text) this.text = null;
-    if (contained) this.contained = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (identifier) this.identifier = null;
-    if (status) this.status = null;
-    if (cancelledReason) this.cancelledReason = null;
-    if (type) this.type = null;
-    if (subject) this.subject = null;
-    if (recipient) this.recipient = null;
-    if (date) this.date = null;
-    if (participant) this.participant = null;
-    if (issuer) this.issuer = null;
-    if (account) this.account = null;
-    if (lineItem) this.lineItem = null;
-    if (totalPriceComponent) this.totalPriceComponent = null;
-    if (totalNet) this.totalNet = null;
-    if (totalGross) this.totalGross = null;
-    if (paymentTerms) this.paymentTerms = null;
-    if (note) this.note = null;
-  }
-
   @override
   InvoiceBuilder clone() => throw UnimplementedError();
   @override
@@ -1778,22 +1724,6 @@ class InvoiceParticipantBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool role = false,
-    bool actor = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (role) this.role = null;
-    if (actor) this.actor = null;
-  }
-
   @override
   InvoiceParticipantBuilder clone() => throw UnimplementedError();
   @override
@@ -2379,24 +2309,6 @@ class InvoiceLineItemBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool sequence = false,
-    bool chargeItem = false,
-    bool priceComponent = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (sequence) this.sequence = null;
-    if (chargeItem) chargeItemX = null;
-    if (priceComponent) this.priceComponent = null;
-  }
-
   @override
   InvoiceLineItemBuilder clone() => throw UnimplementedError();
   @override
@@ -2950,26 +2862,6 @@ class InvoicePriceComponentBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool type = false,
-    bool code = false,
-    bool factor = false,
-    bool amount = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (type) this.type = null;
-    if (code) this.code = null;
-    if (factor) this.factor = null;
-    if (amount) this.amount = null;
   }
 
   @override

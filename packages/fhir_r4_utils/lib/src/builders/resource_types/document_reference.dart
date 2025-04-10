@@ -1153,60 +1153,6 @@ class DocumentReferenceBuilder extends DomainResourceBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool masterIdentifier = false,
-    bool identifier = false,
-    bool status = false,
-    bool docStatus = false,
-    bool type = false,
-    bool category = false,
-    bool subject = false,
-    bool date = false,
-    bool author = false,
-    bool authenticator = false,
-    bool custodian = false,
-    bool relatesTo = false,
-    bool description = false,
-    bool securityLabel = false,
-    bool content = false,
-    bool context = false,
-  }) {
-    if (id) this.id = null;
-    if (meta) this.meta = null;
-    if (implicitRules) this.implicitRules = null;
-    if (language) this.language = null;
-    if (text) this.text = null;
-    if (contained) this.contained = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (masterIdentifier) this.masterIdentifier = null;
-    if (identifier) this.identifier = null;
-    if (status) this.status = null;
-    if (docStatus) this.docStatus = null;
-    if (type) this.type = null;
-    if (category) this.category = null;
-    if (subject) this.subject = null;
-    if (date) this.date = null;
-    if (author) this.author = null;
-    if (authenticator) this.authenticator = null;
-    if (custodian) this.custodian = null;
-    if (relatesTo) this.relatesTo = null;
-    if (description) this.description = null;
-    if (securityLabel) this.securityLabel = null;
-    if (content) this.content = null;
-    if (context) this.context = null;
-  }
-
   @override
   DocumentReferenceBuilder clone() => throw UnimplementedError();
   @override
@@ -1821,22 +1767,6 @@ class DocumentReferenceRelatesToBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool code = false,
-    bool target = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (code) this.code = null;
-    if (target) this.target = null;
-  }
-
   @override
   DocumentReferenceRelatesToBuilder clone() => throw UnimplementedError();
   @override
@@ -2285,22 +2215,6 @@ class DocumentReferenceContentBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool attachment = false,
-    bool format = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (attachment) this.attachment = null;
-    if (format) this.format = null;
   }
 
   @override
@@ -2949,32 +2863,6 @@ class DocumentReferenceContextBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool encounter = false,
-    bool event = false,
-    bool period = false,
-    bool facilityType = false,
-    bool practiceSetting = false,
-    bool sourcePatientInfo = false,
-    bool related = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (encounter) this.encounter = null;
-    if (event) this.event = null;
-    if (period) this.period = null;
-    if (facilityType) this.facilityType = null;
-    if (practiceSetting) this.practiceSetting = null;
-    if (sourcePatientInfo) this.sourcePatientInfo = null;
-    if (related) this.related = null;
   }
 
   @override

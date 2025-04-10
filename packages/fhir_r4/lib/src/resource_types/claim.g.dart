@@ -116,25 +116,39 @@ class _$ClaimCopyWithImpl<T> implements $ClaimCopyWith<T> {
         identifier: identical(identifier, fhirSentinel)
             ? _value.identifier
             : identifier as List<Identifier>?,
-        status: status as FinancialResourceStatusCodes? ?? _value.status,
-        type: type as CodeableConcept? ?? _value.type,
+        status: identical(status, fhirSentinel)
+            ? _value.status
+            : (status as FinancialResourceStatusCodes?) ?? _value.status,
+        type: identical(type, fhirSentinel)
+            ? _value.type
+            : (type as CodeableConcept?) ?? _value.type,
         subType: identical(subType, fhirSentinel)
             ? _value.subType
             : subType as CodeableConcept?,
-        use: use as Use? ?? _value.use,
-        patient: patient as Reference? ?? _value.patient,
+        use: identical(use, fhirSentinel)
+            ? _value.use
+            : (use as Use?) ?? _value.use,
+        patient: identical(patient, fhirSentinel)
+            ? _value.patient
+            : (patient as Reference?) ?? _value.patient,
         billablePeriod: identical(billablePeriod, fhirSentinel)
             ? _value.billablePeriod
             : billablePeriod as Period?,
-        created: created as FhirDateTime? ?? _value.created,
+        created: identical(created, fhirSentinel)
+            ? _value.created
+            : (created as FhirDateTime?) ?? _value.created,
         enterer: identical(enterer, fhirSentinel)
             ? _value.enterer
             : enterer as Reference?,
         insurer: identical(insurer, fhirSentinel)
             ? _value.insurer
             : insurer as Reference?,
-        provider: provider as Reference? ?? _value.provider,
-        priority: priority as CodeableConcept? ?? _value.priority,
+        provider: identical(provider, fhirSentinel)
+            ? _value.provider
+            : (provider as Reference?) ?? _value.provider,
+        priority: identical(priority, fhirSentinel)
+            ? _value.priority
+            : (priority as CodeableConcept?) ?? _value.priority,
         fundsReserve: identical(fundsReserve, fhirSentinel)
             ? _value.fundsReserve
             : fundsReserve as CodeableConcept?,
@@ -168,7 +182,9 @@ class _$ClaimCopyWithImpl<T> implements $ClaimCopyWith<T> {
         procedure: identical(procedure, fhirSentinel)
             ? _value.procedure
             : procedure as List<ClaimProcedure>?,
-        insurance: insurance as List<ClaimInsurance>? ?? _value.insurance,
+        insurance: identical(insurance, fhirSentinel)
+            ? _value.insurance
+            : (insurance as List<ClaimInsurance>?) ?? _value.insurance,
         accident: identical(accident, fhirSentinel)
             ? _value.accident
             : accident as ClaimAccident?,
@@ -286,7 +302,9 @@ class _$ClaimPayeeCopyWithImpl<T> implements $ClaimPayeeCopyWith<T> {
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        type: type as CodeableConcept? ?? _value.type,
+        type: identical(type, fhirSentinel)
+            ? _value.type
+            : (type as CodeableConcept?) ?? _value.type,
         party:
             identical(party, fhirSentinel) ? _value.party : party as Reference?,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
@@ -347,8 +365,12 @@ class _$ClaimCareTeamCopyWithImpl<T> implements $ClaimCareTeamCopyWith<T> {
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        sequence: sequence as FhirPositiveInt? ?? _value.sequence,
-        provider: provider as Reference? ?? _value.provider,
+        sequence: identical(sequence, fhirSentinel)
+            ? _value.sequence
+            : (sequence as FhirPositiveInt?) ?? _value.sequence,
+        provider: identical(provider, fhirSentinel)
+            ? _value.provider
+            : (provider as Reference?) ?? _value.provider,
         responsible: identical(responsible, fhirSentinel)
             ? _value.responsible
             : responsible as FhirBoolean?,
@@ -420,8 +442,12 @@ class _$ClaimSupportingInfoCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        sequence: sequence as FhirPositiveInt? ?? _value.sequence,
-        category: category as CodeableConcept? ?? _value.category,
+        sequence: identical(sequence, fhirSentinel)
+            ? _value.sequence
+            : (sequence as FhirPositiveInt?) ?? _value.sequence,
+        category: identical(category, fhirSentinel)
+            ? _value.category
+            : (category as CodeableConcept?) ?? _value.category,
         code: identical(code, fhirSentinel)
             ? _value.code
             : code as CodeableConcept?,
@@ -492,8 +518,12 @@ class _$ClaimDiagnosisCopyWithImpl<T> implements $ClaimDiagnosisCopyWith<T> {
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        sequence: sequence as FhirPositiveInt? ?? _value.sequence,
-        diagnosisX: diagnosisX as CodeableConcept? ?? _value.diagnosisX,
+        sequence: identical(sequence, fhirSentinel)
+            ? _value.sequence
+            : (sequence as FhirPositiveInt?) ?? _value.sequence,
+        diagnosisX: identical(diagnosisX, fhirSentinel)
+            ? _value.diagnosisX
+            : (diagnosisX as CodeableConcept?) ?? _value.diagnosisX,
         type: identical(type, fhirSentinel)
             ? _value.type
             : type as List<CodeableConcept>?,
@@ -561,13 +591,17 @@ class _$ClaimProcedureCopyWithImpl<T> implements $ClaimProcedureCopyWith<T> {
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        sequence: sequence as FhirPositiveInt? ?? _value.sequence,
+        sequence: identical(sequence, fhirSentinel)
+            ? _value.sequence
+            : (sequence as FhirPositiveInt?) ?? _value.sequence,
         type: identical(type, fhirSentinel)
             ? _value.type
             : type as List<CodeableConcept>?,
         date:
             identical(date, fhirSentinel) ? _value.date : date as FhirDateTime?,
-        procedureX: procedureX as CodeableConcept? ?? _value.procedureX,
+        procedureX: identical(procedureX, fhirSentinel)
+            ? _value.procedureX
+            : (procedureX as CodeableConcept?) ?? _value.procedureX,
         udi:
             identical(udi, fhirSentinel) ? _value.udi : udi as List<Reference>?,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
@@ -632,12 +666,18 @@ class _$ClaimInsuranceCopyWithImpl<T> implements $ClaimInsuranceCopyWith<T> {
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        sequence: sequence as FhirPositiveInt? ?? _value.sequence,
-        focal: focal as FhirBoolean? ?? _value.focal,
+        sequence: identical(sequence, fhirSentinel)
+            ? _value.sequence
+            : (sequence as FhirPositiveInt?) ?? _value.sequence,
+        focal: identical(focal, fhirSentinel)
+            ? _value.focal
+            : (focal as FhirBoolean?) ?? _value.focal,
         identifier: identical(identifier, fhirSentinel)
             ? _value.identifier
             : identifier as Identifier?,
-        coverage: coverage as Reference? ?? _value.coverage,
+        coverage: identical(coverage, fhirSentinel)
+            ? _value.coverage
+            : (coverage as Reference?) ?? _value.coverage,
         businessArrangement: identical(businessArrangement, fhirSentinel)
             ? _value.businessArrangement
             : businessArrangement as FhirString?,
@@ -701,7 +741,9 @@ class _$ClaimAccidentCopyWithImpl<T> implements $ClaimAccidentCopyWith<T> {
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        date: date as FhirDate? ?? _value.date,
+        date: identical(date, fhirSentinel)
+            ? _value.date
+            : (date as FhirDate?) ?? _value.date,
         type: identical(type, fhirSentinel)
             ? _value.type
             : type as CodeableConcept?,
@@ -798,7 +840,9 @@ class _$ClaimItemCopyWithImpl<T> implements $ClaimItemCopyWith<T> {
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        sequence: sequence as FhirPositiveInt? ?? _value.sequence,
+        sequence: identical(sequence, fhirSentinel)
+            ? _value.sequence
+            : (sequence as FhirPositiveInt?) ?? _value.sequence,
         careTeamSequence: identical(careTeamSequence, fhirSentinel)
             ? _value.careTeamSequence
             : careTeamSequence as List<FhirPositiveInt>?,
@@ -817,8 +861,9 @@ class _$ClaimItemCopyWithImpl<T> implements $ClaimItemCopyWith<T> {
         category: identical(category, fhirSentinel)
             ? _value.category
             : category as CodeableConcept?,
-        productOrService:
-            productOrService as CodeableConcept? ?? _value.productOrService,
+        productOrService: identical(productOrService, fhirSentinel)
+            ? _value.productOrService
+            : (productOrService as CodeableConcept?) ?? _value.productOrService,
         modifier: identical(modifier, fhirSentinel)
             ? _value.modifier
             : modifier as List<CodeableConcept>?,
@@ -927,15 +972,18 @@ class _$ClaimDetailCopyWithImpl<T> implements $ClaimDetailCopyWith<T> {
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        sequence: sequence as FhirPositiveInt? ?? _value.sequence,
+        sequence: identical(sequence, fhirSentinel)
+            ? _value.sequence
+            : (sequence as FhirPositiveInt?) ?? _value.sequence,
         revenue: identical(revenue, fhirSentinel)
             ? _value.revenue
             : revenue as CodeableConcept?,
         category: identical(category, fhirSentinel)
             ? _value.category
             : category as CodeableConcept?,
-        productOrService:
-            productOrService as CodeableConcept? ?? _value.productOrService,
+        productOrService: identical(productOrService, fhirSentinel)
+            ? _value.productOrService
+            : (productOrService as CodeableConcept?) ?? _value.productOrService,
         modifier: identical(modifier, fhirSentinel)
             ? _value.modifier
             : modifier as List<CodeableConcept>?,
@@ -1027,15 +1075,18 @@ class _$ClaimSubDetailCopyWithImpl<T> implements $ClaimSubDetailCopyWith<T> {
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        sequence: sequence as FhirPositiveInt? ?? _value.sequence,
+        sequence: identical(sequence, fhirSentinel)
+            ? _value.sequence
+            : (sequence as FhirPositiveInt?) ?? _value.sequence,
         revenue: identical(revenue, fhirSentinel)
             ? _value.revenue
             : revenue as CodeableConcept?,
         category: identical(category, fhirSentinel)
             ? _value.category
             : category as CodeableConcept?,
-        productOrService:
-            productOrService as CodeableConcept? ?? _value.productOrService,
+        productOrService: identical(productOrService, fhirSentinel)
+            ? _value.productOrService
+            : (productOrService as CodeableConcept?) ?? _value.productOrService,
         modifier: identical(modifier, fhirSentinel)
             ? _value.modifier
             : modifier as List<CodeableConcept>?,

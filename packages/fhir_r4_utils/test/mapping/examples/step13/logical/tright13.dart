@@ -12,7 +12,6 @@ class TRight13 extends Element {
     this.ptr,
     this.f2,
     super.disallowExtensions,
-    super.objectPath = 'TRight13',
   });
 
   /// An empty constructor for partial usage
@@ -65,26 +64,6 @@ class TRight13 extends Element {
   final List<Basic>? f2;
 
   @override
-  TRight13 copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirString>? ptr,
-    List<Basic>? f2,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    return TRight13(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      ptr: ptr ?? this.ptr,
-      f2: f2 ?? this.f2,
-    );
-  }
-
-  @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{'resourceType': 'TRight'};
     if (id != null) json['id'] = id!.valueString;
@@ -94,37 +73,6 @@ class TRight13 extends Element {
     if (ptr != null) json['ptr'] = ptr!.map((e) => e.valueString).toList();
     if (f2 != null) json['f2'] = f2!.map((e) => e.toJson()).toList();
     return json;
-  }
-
-  @override
-  List<String> listChildrenNames() => ['id', 'extension', 'ptr', 'f2'];
-
-  @override
-  List<FhirBase> getChildrenByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    final fields = <FhirBase>[];
-    switch (fieldName) {
-      case 'id':
-        if (id != null) fields.add(id!);
-      case 'extension':
-        if (extension_ != null) fields.addAll(extension_!);
-      case 'ptr':
-        if (ptr != null) fields.addAll(ptr!);
-      case 'f2':
-        if (f2 != null) fields.addAll(f2!);
-      default:
-        if (checkValid) throw ArgumentError('Invalid name: $fieldName');
-    }
-    return fields;
-  }
-
-  @override
-  FhirBase? getChildByName(String name) {
-    final values = getChildrenByName(name);
-    if (values.length > 1) throw StateError('Too many values for $name found');
-    return values.isNotEmpty ? values.first : null;
   }
 
   @override
@@ -427,19 +375,6 @@ class TRight13Builder extends ElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool ptr = false,
-    bool f2 = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (ptr) this.ptr = null;
-    if (f2) this.f2 = null;
   }
 
   @override

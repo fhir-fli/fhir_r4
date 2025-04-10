@@ -112,15 +112,21 @@ class _$SearchParameterCopyWithImpl<T> implements $SearchParameterCopyWith<T> {
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        url: url as FhirUri? ?? _value.url,
+        url: identical(url, fhirSentinel)
+            ? _value.url
+            : (url as FhirUri?) ?? _value.url,
         version: identical(version, fhirSentinel)
             ? _value.version
             : version as FhirString?,
-        name: name as FhirString? ?? _value.name,
+        name: identical(name, fhirSentinel)
+            ? _value.name
+            : (name as FhirString?) ?? _value.name,
         derivedFrom: identical(derivedFrom, fhirSentinel)
             ? _value.derivedFrom
             : derivedFrom as FhirCanonical?,
-        status: status as PublicationStatus? ?? _value.status,
+        status: identical(status, fhirSentinel)
+            ? _value.status
+            : (status as PublicationStatus?) ?? _value.status,
         experimental: identical(experimental, fhirSentinel)
             ? _value.experimental
             : experimental as FhirBoolean?,
@@ -132,7 +138,9 @@ class _$SearchParameterCopyWithImpl<T> implements $SearchParameterCopyWith<T> {
         contact: identical(contact, fhirSentinel)
             ? _value.contact
             : contact as List<ContactDetail>?,
-        description: description as FhirMarkdown? ?? _value.description,
+        description: identical(description, fhirSentinel)
+            ? _value.description
+            : (description as FhirMarkdown?) ?? _value.description,
         useContext: identical(useContext, fhirSentinel)
             ? _value.useContext
             : useContext as List<UsageContext>?,
@@ -142,9 +150,15 @@ class _$SearchParameterCopyWithImpl<T> implements $SearchParameterCopyWith<T> {
         purpose: identical(purpose, fhirSentinel)
             ? _value.purpose
             : purpose as FhirMarkdown?,
-        code: code as FhirCode? ?? _value.code,
-        base: base as List<FhirCode>? ?? _value.base,
-        type: type as SearchParamType? ?? _value.type,
+        code: identical(code, fhirSentinel)
+            ? _value.code
+            : (code as FhirCode?) ?? _value.code,
+        base: identical(base, fhirSentinel)
+            ? _value.base
+            : (base as List<FhirCode>?) ?? _value.base,
+        type: identical(type, fhirSentinel)
+            ? _value.type
+            : (type as SearchParamType?) ?? _value.type,
         expression: identical(expression, fhirSentinel)
             ? _value.expression
             : expression as FhirString?,
@@ -226,8 +240,12 @@ class _$SearchParameterComponentCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        definition: definition as FhirCanonical? ?? _value.definition,
-        expression: expression as FhirString? ?? _value.expression,
+        definition: identical(definition, fhirSentinel)
+            ? _value.definition
+            : (definition as FhirCanonical?) ?? _value.definition,
+        expression: identical(expression, fhirSentinel)
+            ? _value.expression
+            : (expression as FhirString?) ?? _value.expression,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,

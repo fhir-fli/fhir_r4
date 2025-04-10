@@ -552,6 +552,208 @@ class FamilyMemberHistory extends DomainResource {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> listChildrenNames() {
+    return [
+      'id',
+      'meta',
+      'implicitRules',
+      'language',
+      'text',
+      'contained',
+      'extension',
+      'modifierExtension',
+      'identifier',
+      'instantiatesCanonical',
+      'instantiatesUri',
+      'status',
+      'dataAbsentReason',
+      'patient',
+      'date',
+      'name',
+      'relationship',
+      'sex',
+      'bornX',
+      'ageX',
+      'estimatedAge',
+      'deceasedX',
+      'reasonCode',
+      'reasonReference',
+      'note',
+      'condition',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> getChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'meta':
+        if (meta != null) {
+          fields.add(meta!);
+        }
+      case 'implicitRules':
+        if (implicitRules != null) {
+          fields.add(implicitRules!);
+        }
+      case 'language':
+        if (language != null) {
+          fields.add(language!);
+        }
+      case 'text':
+        if (text != null) {
+          fields.add(text!);
+        }
+      case 'contained':
+        if (contained != null) {
+          fields.addAll(contained!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'identifier':
+        if (identifier != null) {
+          fields.addAll(identifier!);
+        }
+      case 'instantiatesCanonical':
+        if (instantiatesCanonical != null) {
+          fields.addAll(instantiatesCanonical!);
+        }
+      case 'instantiatesUri':
+        if (instantiatesUri != null) {
+          fields.addAll(instantiatesUri!);
+        }
+      case 'status':
+        fields.add(status);
+      case 'dataAbsentReason':
+        if (dataAbsentReason != null) {
+          fields.add(dataAbsentReason!);
+        }
+      case 'patient':
+        fields.add(patient);
+      case 'date':
+        if (date != null) {
+          fields.add(date!);
+        }
+      case 'name':
+        if (name != null) {
+          fields.add(name!);
+        }
+      case 'relationship':
+        fields.add(relationship);
+      case 'sex':
+        if (sex != null) {
+          fields.add(sex!);
+        }
+      case 'born':
+        fields.add(bornX!);
+      case 'bornX':
+        fields.add(bornX!);
+      case 'bornPeriod':
+        if (bornX is Period) {
+          fields.add(bornX!);
+        }
+      case 'bornDate':
+        if (bornX is FhirDate) {
+          fields.add(bornX!);
+        }
+      case 'bornString':
+        if (bornX is FhirString) {
+          fields.add(bornX!);
+        }
+      case 'age':
+        fields.add(ageX!);
+      case 'ageX':
+        fields.add(ageX!);
+      case 'ageAge':
+        if (ageX is Age) {
+          fields.add(ageX!);
+        }
+      case 'ageRange':
+        if (ageX is Range) {
+          fields.add(ageX!);
+        }
+      case 'ageString':
+        if (ageX is FhirString) {
+          fields.add(ageX!);
+        }
+      case 'estimatedAge':
+        if (estimatedAge != null) {
+          fields.add(estimatedAge!);
+        }
+      case 'deceased':
+        fields.add(deceasedX!);
+      case 'deceasedX':
+        fields.add(deceasedX!);
+      case 'deceasedBoolean':
+        if (deceasedX is FhirBoolean) {
+          fields.add(deceasedX!);
+        }
+      case 'deceasedAge':
+        if (deceasedX is Age) {
+          fields.add(deceasedX!);
+        }
+      case 'deceasedRange':
+        if (deceasedX is Range) {
+          fields.add(deceasedX!);
+        }
+      case 'deceasedDate':
+        if (deceasedX is FhirDate) {
+          fields.add(deceasedX!);
+        }
+      case 'deceasedString':
+        if (deceasedX is FhirString) {
+          fields.add(deceasedX!);
+        }
+      case 'reasonCode':
+        if (reasonCode != null) {
+          fields.addAll(reasonCode!);
+        }
+      case 'reasonReference':
+        if (reasonReference != null) {
+          fields.addAll(reasonReference!);
+        }
+      case 'note':
+        if (note != null) {
+          fields.addAll(note!);
+        }
+      case 'condition':
+        if (condition != null) {
+          fields.addAll(condition!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildByName(String name) {
+    final values = getChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   FamilyMemberHistory clone() => copyWith();
 
@@ -992,6 +1194,94 @@ class FamilyMemberHistoryCondition extends BackboneElement {
       note,
     );
     return json;
+  }
+
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> listChildrenNames() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'code',
+      'outcome',
+      'contributedToDeath',
+      'onsetX',
+      'note',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> getChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'code':
+        fields.add(code);
+      case 'outcome':
+        if (outcome != null) {
+          fields.add(outcome!);
+        }
+      case 'contributedToDeath':
+        if (contributedToDeath != null) {
+          fields.add(contributedToDeath!);
+        }
+      case 'onset':
+        fields.add(onsetX!);
+      case 'onsetX':
+        fields.add(onsetX!);
+      case 'onsetAge':
+        if (onsetX is Age) {
+          fields.add(onsetX!);
+        }
+      case 'onsetRange':
+        if (onsetX is Range) {
+          fields.add(onsetX!);
+        }
+      case 'onsetPeriod':
+        if (onsetX is Period) {
+          fields.add(onsetX!);
+        }
+      case 'onsetString':
+        if (onsetX is FhirString) {
+          fields.add(onsetX!);
+        }
+      case 'note':
+        if (note != null) {
+          fields.addAll(note!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildByName(String name) {
+    final values = getChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
   }
 
   @override

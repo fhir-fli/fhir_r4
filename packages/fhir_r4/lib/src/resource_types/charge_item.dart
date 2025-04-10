@@ -641,6 +641,224 @@ class ChargeItem extends DomainResource {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> listChildrenNames() {
+    return [
+      'id',
+      'meta',
+      'implicitRules',
+      'language',
+      'text',
+      'contained',
+      'extension',
+      'modifierExtension',
+      'identifier',
+      'definitionUri',
+      'definitionCanonical',
+      'status',
+      'partOf',
+      'code',
+      'subject',
+      'context',
+      'occurrenceX',
+      'performer',
+      'performingOrganization',
+      'requestingOrganization',
+      'costCenter',
+      'quantity',
+      'bodysite',
+      'factorOverride',
+      'priceOverride',
+      'overrideReason',
+      'enterer',
+      'enteredDate',
+      'reason',
+      'service',
+      'productX',
+      'account',
+      'note',
+      'supportingInformation',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> getChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'meta':
+        if (meta != null) {
+          fields.add(meta!);
+        }
+      case 'implicitRules':
+        if (implicitRules != null) {
+          fields.add(implicitRules!);
+        }
+      case 'language':
+        if (language != null) {
+          fields.add(language!);
+        }
+      case 'text':
+        if (text != null) {
+          fields.add(text!);
+        }
+      case 'contained':
+        if (contained != null) {
+          fields.addAll(contained!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'identifier':
+        if (identifier != null) {
+          fields.addAll(identifier!);
+        }
+      case 'definitionUri':
+        if (definitionUri != null) {
+          fields.addAll(definitionUri!);
+        }
+      case 'definitionCanonical':
+        if (definitionCanonical != null) {
+          fields.addAll(definitionCanonical!);
+        }
+      case 'status':
+        fields.add(status);
+      case 'partOf':
+        if (partOf != null) {
+          fields.addAll(partOf!);
+        }
+      case 'code':
+        fields.add(code);
+      case 'subject':
+        fields.add(subject);
+      case 'context':
+        if (context != null) {
+          fields.add(context!);
+        }
+      case 'occurrence':
+        fields.add(occurrenceX!);
+      case 'occurrenceX':
+        fields.add(occurrenceX!);
+      case 'occurrenceDateTime':
+        if (occurrenceX is FhirDateTime) {
+          fields.add(occurrenceX!);
+        }
+      case 'occurrencePeriod':
+        if (occurrenceX is Period) {
+          fields.add(occurrenceX!);
+        }
+      case 'occurrenceTiming':
+        if (occurrenceX is Timing) {
+          fields.add(occurrenceX!);
+        }
+      case 'performer':
+        if (performer != null) {
+          fields.addAll(performer!);
+        }
+      case 'performingOrganization':
+        if (performingOrganization != null) {
+          fields.add(performingOrganization!);
+        }
+      case 'requestingOrganization':
+        if (requestingOrganization != null) {
+          fields.add(requestingOrganization!);
+        }
+      case 'costCenter':
+        if (costCenter != null) {
+          fields.add(costCenter!);
+        }
+      case 'quantity':
+        if (quantity != null) {
+          fields.add(quantity!);
+        }
+      case 'bodysite':
+        if (bodysite != null) {
+          fields.addAll(bodysite!);
+        }
+      case 'factorOverride':
+        if (factorOverride != null) {
+          fields.add(factorOverride!);
+        }
+      case 'priceOverride':
+        if (priceOverride != null) {
+          fields.add(priceOverride!);
+        }
+      case 'overrideReason':
+        if (overrideReason != null) {
+          fields.add(overrideReason!);
+        }
+      case 'enterer':
+        if (enterer != null) {
+          fields.add(enterer!);
+        }
+      case 'enteredDate':
+        if (enteredDate != null) {
+          fields.add(enteredDate!);
+        }
+      case 'reason':
+        if (reason != null) {
+          fields.addAll(reason!);
+        }
+      case 'service':
+        if (service != null) {
+          fields.addAll(service!);
+        }
+      case 'product':
+        fields.add(productX!);
+      case 'productX':
+        fields.add(productX!);
+      case 'productReference':
+        if (productX is Reference) {
+          fields.add(productX!);
+        }
+      case 'productCodeableConcept':
+        if (productX is CodeableConcept) {
+          fields.add(productX!);
+        }
+      case 'account':
+        if (account != null) {
+          fields.addAll(account!);
+        }
+      case 'note':
+        if (note != null) {
+          fields.addAll(note!);
+        }
+      case 'supportingInformation':
+        if (supportingInformation != null) {
+          fields.addAll(supportingInformation!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildByName(String name) {
+    final values = getChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   ChargeItem clone() => copyWith();
 
@@ -1056,6 +1274,63 @@ class ChargeItemPerformer extends BackboneElement {
       actor,
     );
     return json;
+  }
+
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> listChildrenNames() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'function',
+      'actor',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> getChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'function':
+        if (function_ != null) {
+          fields.add(function_!);
+        }
+      case 'actor':
+        fields.add(actor);
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildByName(String name) {
+    final values = getChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
   }
 
   @override

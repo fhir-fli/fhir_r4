@@ -95,18 +95,24 @@ class _$StructureMapCopyWithImpl<T> implements $StructureMapCopyWith<T> {
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        url: url as FhirUri? ?? _value.url,
+        url: identical(url, fhirSentinel)
+            ? _value.url
+            : (url as FhirUri?) ?? _value.url,
         identifier: identical(identifier, fhirSentinel)
             ? _value.identifier
             : identifier as List<Identifier>?,
         version: identical(version, fhirSentinel)
             ? _value.version
             : version as FhirString?,
-        name: name as FhirString? ?? _value.name,
+        name: identical(name, fhirSentinel)
+            ? _value.name
+            : (name as FhirString?) ?? _value.name,
         title: identical(title, fhirSentinel)
             ? _value.title
             : title as FhirString?,
-        status: status as PublicationStatus? ?? _value.status,
+        status: identical(status, fhirSentinel)
+            ? _value.status
+            : (status as PublicationStatus?) ?? _value.status,
         experimental: identical(experimental, fhirSentinel)
             ? _value.experimental
             : experimental as FhirBoolean?,
@@ -139,7 +145,9 @@ class _$StructureMapCopyWithImpl<T> implements $StructureMapCopyWith<T> {
         import_: identical(import_, fhirSentinel)
             ? _value.import_
             : import_ as List<FhirCanonical>?,
-        group: group as List<StructureMapGroup>? ?? _value.group,
+        group: identical(group, fhirSentinel)
+            ? _value.group
+            : (group as List<StructureMapGroup>?) ?? _value.group,
       ),
     );
   }
@@ -195,8 +203,12 @@ class _$StructureMapStructureCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        url: url as FhirCanonical? ?? _value.url,
-        mode: mode as StructureMapModelMode? ?? _value.mode,
+        url: identical(url, fhirSentinel)
+            ? _value.url
+            : (url as FhirCanonical?) ?? _value.url,
+        mode: identical(mode, fhirSentinel)
+            ? _value.mode
+            : (mode as StructureMapModelMode?) ?? _value.mode,
         alias: identical(alias, fhirSentinel)
             ? _value.alias
             : alias as FhirString?,
@@ -265,16 +277,24 @@ class _$StructureMapGroupCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        name: name as FhirId? ?? _value.name,
+        name: identical(name, fhirSentinel)
+            ? _value.name
+            : (name as FhirId?) ?? _value.name,
         extends_: identical(extends_, fhirSentinel)
             ? _value.extends_
             : extends_ as FhirId?,
-        typeMode: typeMode as StructureMapGroupTypeMode? ?? _value.typeMode,
+        typeMode: identical(typeMode, fhirSentinel)
+            ? _value.typeMode
+            : (typeMode as StructureMapGroupTypeMode?) ?? _value.typeMode,
         documentation: identical(documentation, fhirSentinel)
             ? _value.documentation
             : documentation as FhirString?,
-        input: input as List<StructureMapInput>? ?? _value.input,
-        rule: rule as List<StructureMapRule>? ?? _value.rule,
+        input: identical(input, fhirSentinel)
+            ? _value.input
+            : (input as List<StructureMapInput>?) ?? _value.input,
+        rule: identical(rule, fhirSentinel)
+            ? _value.rule
+            : (rule as List<StructureMapRule>?) ?? _value.rule,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,
@@ -333,9 +353,13 @@ class _$StructureMapInputCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        name: name as FhirId? ?? _value.name,
+        name: identical(name, fhirSentinel)
+            ? _value.name
+            : (name as FhirId?) ?? _value.name,
         type: identical(type, fhirSentinel) ? _value.type : type as FhirString?,
-        mode: mode as StructureMapInputMode? ?? _value.mode,
+        mode: identical(mode, fhirSentinel)
+            ? _value.mode
+            : (mode as StructureMapInputMode?) ?? _value.mode,
         documentation: identical(documentation, fhirSentinel)
             ? _value.documentation
             : documentation as FhirString?,
@@ -401,8 +425,12 @@ class _$StructureMapRuleCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        name: name as FhirId? ?? _value.name,
-        source: source as List<StructureMapSource>? ?? _value.source,
+        name: identical(name, fhirSentinel)
+            ? _value.name
+            : (name as FhirId?) ?? _value.name,
+        source: identical(source, fhirSentinel)
+            ? _value.source
+            : (source as List<StructureMapSource>?) ?? _value.source,
         target: identical(target, fhirSentinel)
             ? _value.target
             : target as List<StructureMapTarget>?,
@@ -487,7 +515,9 @@ class _$StructureMapSourceCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        context: context as FhirId? ?? _value.context,
+        context: identical(context, fhirSentinel)
+            ? _value.context
+            : (context as FhirId?) ?? _value.context,
         min: identical(min, fhirSentinel) ? _value.min : min as FhirInteger?,
         max: identical(max, fhirSentinel) ? _value.max : max as FhirString?,
         type: identical(type, fhirSentinel) ? _value.type : type as FhirString?,
@@ -654,7 +684,9 @@ class _$StructureMapParameterCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        valueX: valueX as FhirId? ?? _value.valueX,
+        valueX: identical(valueX, fhirSentinel)
+            ? _value.valueX
+            : (valueX as FhirId?) ?? _value.valueX,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,
@@ -709,8 +741,12 @@ class _$StructureMapDependentCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        name: name as FhirId? ?? _value.name,
-        variable: variable as List<FhirString>? ?? _value.variable,
+        name: identical(name, fhirSentinel)
+            ? _value.name
+            : (name as FhirId?) ?? _value.name,
+        variable: identical(variable, fhirSentinel)
+            ? _value.variable
+            : (variable as List<FhirString>?) ?? _value.variable,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,

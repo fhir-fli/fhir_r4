@@ -924,50 +924,6 @@ class ClinicalUseDefinitionBuilder extends DomainResourceBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool identifier = false,
-    bool type = false,
-    bool category = false,
-    bool subject = false,
-    bool status = false,
-    bool contraindication = false,
-    bool indication = false,
-    bool interaction = false,
-    bool population = false,
-    bool undesirableEffect = false,
-    bool warning = false,
-  }) {
-    if (id) this.id = null;
-    if (meta) this.meta = null;
-    if (implicitRules) this.implicitRules = null;
-    if (language) this.language = null;
-    if (text) this.text = null;
-    if (contained) this.contained = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (identifier) this.identifier = null;
-    if (type) this.type = null;
-    if (category) this.category = null;
-    if (subject) this.subject = null;
-    if (status) this.status = null;
-    if (contraindication) this.contraindication = null;
-    if (indication) this.indication = null;
-    if (interaction) this.interaction = null;
-    if (population) this.population = null;
-    if (undesirableEffect) this.undesirableEffect = null;
-    if (warning) this.warning = null;
-  }
-
   @override
   ClinicalUseDefinitionBuilder clone() => throw UnimplementedError();
   @override
@@ -1659,28 +1615,6 @@ class ClinicalUseDefinitionContraindicationBuilder
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool diseaseSymptomProcedure = false,
-    bool diseaseStatus = false,
-    bool comorbidity = false,
-    bool indication = false,
-    bool otherTherapy = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (diseaseSymptomProcedure) this.diseaseSymptomProcedure = null;
-    if (diseaseStatus) this.diseaseStatus = null;
-    if (comorbidity) this.comorbidity = null;
-    if (indication) this.indication = null;
-    if (otherTherapy) this.otherTherapy = null;
-  }
-
   @override
   ClinicalUseDefinitionContraindicationBuilder clone() =>
       throw UnimplementedError();
@@ -2155,22 +2089,6 @@ class ClinicalUseDefinitionOtherTherapyBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool relationshipType = false,
-    bool therapy = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (relationshipType) this.relationshipType = null;
-    if (therapy) this.therapy = null;
   }
 
   @override
@@ -2889,32 +2807,6 @@ class ClinicalUseDefinitionIndicationBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool diseaseSymptomProcedure = false,
-    bool diseaseStatus = false,
-    bool comorbidity = false,
-    bool intendedEffect = false,
-    bool duration = false,
-    bool undesirableEffect = false,
-    bool otherTherapy = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (diseaseSymptomProcedure) this.diseaseSymptomProcedure = null;
-    if (diseaseStatus) this.diseaseStatus = null;
-    if (comorbidity) this.comorbidity = null;
-    if (intendedEffect) this.intendedEffect = null;
-    if (duration) durationX = null;
-    if (undesirableEffect) this.undesirableEffect = null;
-    if (otherTherapy) this.otherTherapy = null;
-  }
-
   @override
   ClinicalUseDefinitionIndicationBuilder clone() => throw UnimplementedError();
   @override
@@ -3523,28 +3415,6 @@ class ClinicalUseDefinitionInteractionBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool interactant = false,
-    bool type = false,
-    bool effect = false,
-    bool incidence = false,
-    bool management = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (interactant) this.interactant = null;
-    if (type) this.type = null;
-    if (effect) this.effect = null;
-    if (incidence) this.incidence = null;
-    if (management) this.management = null;
-  }
-
   @override
   ClinicalUseDefinitionInteractionBuilder clone() => throw UnimplementedError();
   @override
@@ -4053,20 +3923,6 @@ class ClinicalUseDefinitionInteractantBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool item = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (item) itemX = null;
-  }
-
   @override
   ClinicalUseDefinitionInteractantBuilder clone() => throw UnimplementedError();
   @override
@@ -4537,24 +4393,6 @@ class ClinicalUseDefinitionUndesirableEffectBuilder
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool symptomConditionEffect = false,
-    bool classification = false,
-    bool frequencyOfOccurrence = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (symptomConditionEffect) this.symptomConditionEffect = null;
-    if (classification) this.classification = null;
-    if (frequencyOfOccurrence) this.frequencyOfOccurrence = null;
-  }
-
   @override
   ClinicalUseDefinitionUndesirableEffectBuilder clone() =>
       throw UnimplementedError();
@@ -5023,22 +4861,6 @@ class ClinicalUseDefinitionWarningBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool description = false,
-    bool code = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (description) this.description = null;
-    if (code) this.code = null;
   }
 
   @override

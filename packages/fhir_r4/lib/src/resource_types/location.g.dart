@@ -193,8 +193,12 @@ class _$LocationPositionCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        longitude: longitude as FhirDecimal? ?? _value.longitude,
-        latitude: latitude as FhirDecimal? ?? _value.latitude,
+        longitude: identical(longitude, fhirSentinel)
+            ? _value.longitude
+            : (longitude as FhirDecimal?) ?? _value.longitude,
+        latitude: identical(latitude, fhirSentinel)
+            ? _value.latitude
+            : (latitude as FhirDecimal?) ?? _value.latitude,
         altitude: identical(altitude, fhirSentinel)
             ? _value.altitude
             : altitude as FhirDecimal?,

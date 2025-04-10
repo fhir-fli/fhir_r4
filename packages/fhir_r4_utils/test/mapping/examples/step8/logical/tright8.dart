@@ -11,7 +11,6 @@ class TRight8 extends Element {
     super.extension_,
     this.d,
     super.disallowExtensions,
-    super.objectPath = 'TRight8',
   });
 
   /// An empty constructor for partial usage
@@ -51,24 +50,6 @@ class TRight8 extends Element {
   final FhirCode? d;
 
   @override
-  TRight8 copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    FhirCode? d,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    return TRight8(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      d: d ?? this.d,
-    );
-  }
-
-  @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{'resourceType': 'TRight'};
     if (id != null) json['id'] = id!.valueString;
@@ -79,35 +60,6 @@ class TRight8 extends Element {
       json['d'] = d!.valueString;
     }
     return json;
-  }
-
-  @override
-  List<String> listChildrenNames() => ['id', 'extension', 'd'];
-
-  @override
-  List<FhirBase> getChildrenByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    final fields = <FhirBase>[];
-    switch (fieldName) {
-      case 'id':
-        if (id != null) fields.add(id!);
-      case 'extension':
-        if (extension_ != null) fields.addAll(extension_!);
-      case 'd':
-        if (d != null) fields.add(d!);
-      default:
-        if (checkValid) throw ArgumentError('Invalid name: $fieldName');
-    }
-    return fields;
-  }
-
-  @override
-  FhirBase? getChildByName(String name) {
-    final values = getChildrenByName(name);
-    if (values.length > 1) throw StateError('Too many values for $name found');
-    return values.isNotEmpty ? values.first : null;
   }
 
   @override
@@ -324,17 +276,6 @@ class TRight8Builder extends ElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool d = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (d) this.d = null;
   }
 
   @override

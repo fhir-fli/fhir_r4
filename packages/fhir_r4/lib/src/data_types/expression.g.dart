@@ -47,7 +47,9 @@ class _$FhirExpressionCopyWithImpl<T> implements $FhirExpressionCopyWith<T> {
             ? _value.description
             : description as FhirString?,
         name: identical(name, fhirSentinel) ? _value.name : name as FhirId?,
-        language: language as ExpressionLanguage? ?? _value.language,
+        language: identical(language, fhirSentinel)
+            ? _value.language
+            : (language as ExpressionLanguage?) ?? _value.language,
         expression: identical(expression, fhirSentinel)
             ? _value.expression
             : expression as FhirString?,

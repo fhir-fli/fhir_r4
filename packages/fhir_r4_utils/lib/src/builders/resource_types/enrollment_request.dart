@@ -751,42 +751,6 @@ class EnrollmentRequestBuilder extends DomainResourceBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool identifier = false,
-    bool status = false,
-    bool created = false,
-    bool insurer = false,
-    bool provider = false,
-    bool candidate = false,
-    bool coverage = false,
-  }) {
-    if (id) this.id = null;
-    if (meta) this.meta = null;
-    if (implicitRules) this.implicitRules = null;
-    if (language) this.language = null;
-    if (text) this.text = null;
-    if (contained) this.contained = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (identifier) this.identifier = null;
-    if (status) this.status = null;
-    if (created) this.created = null;
-    if (insurer) this.insurer = null;
-    if (provider) this.provider = null;
-    if (candidate) this.candidate = null;
-    if (coverage) this.coverage = null;
-  }
-
   @override
   EnrollmentRequestBuilder clone() => throw UnimplementedError();
   @override

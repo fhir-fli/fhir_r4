@@ -99,7 +99,9 @@ class _$DocumentReferenceCopyWithImpl<T>
         identifier: identical(identifier, fhirSentinel)
             ? _value.identifier
             : identifier as List<Identifier>?,
-        status: status as DocumentReferenceStatus? ?? _value.status,
+        status: identical(status, fhirSentinel)
+            ? _value.status
+            : (status as DocumentReferenceStatus?) ?? _value.status,
         docStatus: identical(docStatus, fhirSentinel)
             ? _value.docStatus
             : docStatus as CompositionStatus?,
@@ -132,7 +134,9 @@ class _$DocumentReferenceCopyWithImpl<T>
         securityLabel: identical(securityLabel, fhirSentinel)
             ? _value.securityLabel
             : securityLabel as List<CodeableConcept>?,
-        content: content as List<DocumentReferenceContent>? ?? _value.content,
+        content: identical(content, fhirSentinel)
+            ? _value.content
+            : (content as List<DocumentReferenceContent>?) ?? _value.content,
         context: identical(context, fhirSentinel)
             ? _value.context
             : context as DocumentReferenceContext?,
@@ -187,8 +191,12 @@ class _$DocumentReferenceRelatesToCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        code: code as DocumentRelationshipType? ?? _value.code,
-        target: target as Reference? ?? _value.target,
+        code: identical(code, fhirSentinel)
+            ? _value.code
+            : (code as DocumentRelationshipType?) ?? _value.code,
+        target: identical(target, fhirSentinel)
+            ? _value.target
+            : (target as Reference?) ?? _value.target,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,
@@ -245,7 +253,9 @@ class _$DocumentReferenceContentCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        attachment: attachment as Attachment? ?? _value.attachment,
+        attachment: identical(attachment, fhirSentinel)
+            ? _value.attachment
+            : (attachment as Attachment?) ?? _value.attachment,
         format:
             identical(format, fhirSentinel) ? _value.format : format as Coding?,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)

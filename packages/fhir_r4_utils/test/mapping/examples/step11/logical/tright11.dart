@@ -1,6 +1,7 @@
 import 'package:collection/collection.dart';
 import 'package:fhir_r4/fhir_r4.dart'
     show
+        $BackboneElementCopyWith,
         BackboneElement,
         Element,
         FhirBase,
@@ -17,7 +18,6 @@ class TRight11 extends Element {
     super.extension_,
     this.e,
     super.disallowExtensions,
-    super.objectPath = 'TRight11',
   });
 
   /// Factory constructor for an empty TRight11
@@ -60,24 +60,6 @@ class TRight11 extends Element {
   final List<TRight11e>? e;
 
   @override
-  TRight11 copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<TRight11e>? e,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    return TRight11(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      e: e ?? this.e,
-    );
-  }
-
-  @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{'resourceType': 'TRight'};
     if (id != null) json['id'] = id!.valueString;
@@ -88,35 +70,6 @@ class TRight11 extends Element {
       json['e'] = e!.map((e) => e.toJson()).toList();
     }
     return json;
-  }
-
-  @override
-  List<String> listChildrenNames() => ['id', 'extension', 'e'];
-
-  @override
-  List<FhirBase> getChildrenByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    final fields = <FhirBase>[];
-    switch (fieldName) {
-      case 'id':
-        if (id != null) fields.add(id!);
-      case 'extension':
-        if (extension_ != null) fields.addAll(extension_!);
-      case 'e':
-        if (e != null) fields.addAll(e!);
-      default:
-        if (checkValid) throw ArgumentError('Invalid name: $fieldName');
-    }
-    return fields;
-  }
-
-  @override
-  FhirBase? getChildByName(String name) {
-    final values = getChildrenByName(name);
-    if (values.length > 1) throw StateError('Too many values for $name found');
-    return values.isNotEmpty ? values.first : null;
   }
 
   @override
@@ -138,7 +91,6 @@ class TRight11e extends BackboneElement {
     this.f,
     this.g,
     super.disallowExtensions,
-    super.objectPath = 'TRight11e',
   });
 
   factory TRight11e.fromJson(Map<String, dynamic> json) {
@@ -184,23 +136,12 @@ class TRight11e extends BackboneElement {
   final FhirCode? g;
 
   @override
-  TRight11e copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    FhirString? f,
-    FhirCode? g,
-    List<FhirExtension>? modifierExtension,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    return TRight11e(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      f: f ?? this.f,
-      g: g ?? this.g,
+  TRight11e clone() => copyWith();
+
+  @override
+  $BackboneElementCopyWith<TRight11e> get copyWith {
+    throw UnimplementedError(
+      'TLeft12az1.copyWith() is not implemented yet',
     );
   }
 
@@ -217,37 +158,6 @@ class TRight11e extends BackboneElement {
   }
 
   @override
-  List<String> listChildrenNames() => ['id', 'extension', 'f', 'g'];
-
-  @override
-  List<FhirBase> getChildrenByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    final fields = <FhirBase>[];
-    switch (fieldName) {
-      case 'id':
-        if (id != null) fields.add(id!);
-      case 'extension':
-        if (extension_ != null) fields.addAll(extension_!);
-      case 'f':
-        if (f != null) fields.add(f!);
-      case 'g':
-        if (g != null) fields.add(g!);
-      default:
-        if (checkValid) throw ArgumentError('Invalid name: $fieldName');
-    }
-    return fields;
-  }
-
-  @override
-  FhirBase? getChildByName(String name) {
-    final values = getChildrenByName(name);
-    if (values.length > 1) throw StateError('Too many values for $name found');
-    return values.isNotEmpty ? values.first : null;
-  }
-
-  @override
   bool equalsDeep(FhirBase? other) {
     if (other is! TRight11e) return false;
     if (identical(this, other)) return true;
@@ -255,16 +165,6 @@ class TRight11e extends BackboneElement {
         const DeepCollectionEquality().equals(extension_, other.extension_) &&
         f == other.f &&
         g == other.g;
-  }
-
-  @override
-  TRight11e createProperty(String elementName) {
-    throw UnimplementedError();
-  }
-
-  @override
-  TRight11e clear({bool extension_ = false, bool id = false}) {
-    throw UnimplementedError();
   }
 }
 
@@ -579,21 +479,6 @@ class TRight11eBuilder extends BackboneElementBuilder {
   }
 
   @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool f = false,
-    bool g = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (f) this.f = null;
-    if (g) this.g = null;
-  }
-
-  @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     void addField(String key, dynamic field) {
@@ -872,18 +757,6 @@ class TRight11Builder extends ElementBuilder {
         throw ArgumentError('No matching property: $propertyName');
     }
   }
-
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool e = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (e) this.e = null;
-  }
-
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{'resourceType': 'TRight'};

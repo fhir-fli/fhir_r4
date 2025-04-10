@@ -58,7 +58,9 @@ class _$BundleCopyWithImpl<T> implements $BundleCopyWith<T> {
         identifier: identical(identifier, fhirSentinel)
             ? _value.identifier
             : identifier as Identifier?,
-        type: type as BundleType? ?? _value.type,
+        type: identical(type, fhirSentinel)
+            ? _value.type
+            : (type as BundleType?) ?? _value.type,
         timestamp: identical(timestamp, fhirSentinel)
             ? _value.timestamp
             : timestamp as FhirInstant?,
@@ -122,8 +124,12 @@ class _$BundleLinkCopyWithImpl<T> implements $BundleLinkCopyWith<T> {
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        relation: relation as FhirString? ?? _value.relation,
-        url: url as FhirUri? ?? _value.url,
+        relation: identical(relation, fhirSentinel)
+            ? _value.relation
+            : (relation as FhirString?) ?? _value.relation,
+        url: identical(url, fhirSentinel)
+            ? _value.url
+            : (url as FhirUri?) ?? _value.url,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,
@@ -320,8 +326,12 @@ class _$BundleRequestCopyWithImpl<T> implements $BundleRequestCopyWith<T> {
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        method: method as HTTPVerb? ?? _value.method,
-        url: url as FhirUri? ?? _value.url,
+        method: identical(method, fhirSentinel)
+            ? _value.method
+            : (method as HTTPVerb?) ?? _value.method,
+        url: identical(url, fhirSentinel)
+            ? _value.url
+            : (url as FhirUri?) ?? _value.url,
         ifNoneMatch: identical(ifNoneMatch, fhirSentinel)
             ? _value.ifNoneMatch
             : ifNoneMatch as FhirString?,
@@ -392,7 +402,9 @@ class _$BundleResponseCopyWithImpl<T> implements $BundleResponseCopyWith<T> {
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        status: status as FhirString? ?? _value.status,
+        status: identical(status, fhirSentinel)
+            ? _value.status
+            : (status as FhirString?) ?? _value.status,
         location: identical(location, fhirSentinel)
             ? _value.location
             : location as FhirUri?,

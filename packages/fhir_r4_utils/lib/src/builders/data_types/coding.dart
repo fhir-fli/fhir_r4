@@ -506,26 +506,6 @@ class CodingBuilder extends DataTypeBuilder
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool system = false,
-    bool version = false,
-    bool code = false,
-    bool display = false,
-    bool userSelected = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (system) this.system = null;
-    if (version) this.version = null;
-    if (code) this.code = null;
-    if (display) this.display = null;
-    if (userSelected) this.userSelected = null;
-  }
-
   @override
   CodingBuilder clone() => throw UnimplementedError();
   @override

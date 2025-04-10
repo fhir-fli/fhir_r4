@@ -108,11 +108,15 @@ class _$EncounterCopyWithImpl<T> implements $EncounterCopyWith<T> {
         identifier: identical(identifier, fhirSentinel)
             ? _value.identifier
             : identifier as List<Identifier>?,
-        status: status as EncounterStatus? ?? _value.status,
+        status: identical(status, fhirSentinel)
+            ? _value.status
+            : (status as EncounterStatus?) ?? _value.status,
         statusHistory: identical(statusHistory, fhirSentinel)
             ? _value.statusHistory
             : statusHistory as List<EncounterStatusHistory>?,
-        class_: class_ as Coding? ?? _value.class_,
+        class_: identical(class_, fhirSentinel)
+            ? _value.class_
+            : (class_ as Coding?) ?? _value.class_,
         classHistory: identical(classHistory, fhirSentinel)
             ? _value.classHistory
             : classHistory as List<EncounterClassHistory>?,
@@ -220,8 +224,12 @@ class _$EncounterStatusHistoryCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        status: status as EncounterStatus? ?? _value.status,
-        period: period as Period? ?? _value.period,
+        status: identical(status, fhirSentinel)
+            ? _value.status
+            : (status as EncounterStatus?) ?? _value.status,
+        period: identical(period, fhirSentinel)
+            ? _value.period
+            : (period as Period?) ?? _value.period,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,
@@ -276,8 +284,12 @@ class _$EncounterClassHistoryCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        class_: class_ as Coding? ?? _value.class_,
-        period: period as Period? ?? _value.period,
+        class_: identical(class_, fhirSentinel)
+            ? _value.class_
+            : (class_ as Coding?) ?? _value.class_,
+        period: identical(period, fhirSentinel)
+            ? _value.period
+            : (period as Period?) ?? _value.period,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,
@@ -398,7 +410,9 @@ class _$EncounterDiagnosisCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        condition: condition as Reference? ?? _value.condition,
+        condition: identical(condition, fhirSentinel)
+            ? _value.condition
+            : (condition as Reference?) ?? _value.condition,
         use:
             identical(use, fhirSentinel) ? _value.use : use as CodeableConcept?,
         rank: identical(rank, fhirSentinel)
@@ -558,7 +572,9 @@ class _$EncounterLocationCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        location: location as Reference? ?? _value.location,
+        location: identical(location, fhirSentinel)
+            ? _value.location
+            : (location as Reference?) ?? _value.location,
         status: identical(status, fhirSentinel)
             ? _value.status
             : status as EncounterLocationStatus?,

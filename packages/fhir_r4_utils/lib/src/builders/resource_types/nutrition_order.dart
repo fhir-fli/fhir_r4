@@ -1307,62 +1307,6 @@ class NutritionOrderBuilder extends DomainResourceBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool identifier = false,
-    bool instantiatesCanonical = false,
-    bool instantiatesUri = false,
-    bool instantiates = false,
-    bool status = false,
-    bool intent = false,
-    bool patient = false,
-    bool encounter = false,
-    bool dateTime = false,
-    bool orderer = false,
-    bool allergyIntolerance = false,
-    bool foodPreferenceModifier = false,
-    bool excludeFoodModifier = false,
-    bool oralDiet = false,
-    bool supplement = false,
-    bool enteralFormula = false,
-    bool note = false,
-  }) {
-    if (id) this.id = null;
-    if (meta) this.meta = null;
-    if (implicitRules) this.implicitRules = null;
-    if (language) this.language = null;
-    if (text) this.text = null;
-    if (contained) this.contained = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (identifier) this.identifier = null;
-    if (instantiatesCanonical) this.instantiatesCanonical = null;
-    if (instantiatesUri) this.instantiatesUri = null;
-    if (instantiates) this.instantiates = null;
-    if (status) this.status = null;
-    if (intent) this.intent = null;
-    if (patient) this.patient = null;
-    if (encounter) this.encounter = null;
-    if (dateTime) this.dateTime = null;
-    if (orderer) this.orderer = null;
-    if (allergyIntolerance) this.allergyIntolerance = null;
-    if (foodPreferenceModifier) this.foodPreferenceModifier = null;
-    if (excludeFoodModifier) this.excludeFoodModifier = null;
-    if (oralDiet) this.oralDiet = null;
-    if (supplement) this.supplement = null;
-    if (enteralFormula) this.enteralFormula = null;
-    if (note) this.note = null;
-  }
-
   @override
   NutritionOrderBuilder clone() => throw UnimplementedError();
   @override
@@ -2174,30 +2118,6 @@ class NutritionOrderOralDietBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool type = false,
-    bool schedule = false,
-    bool nutrient = false,
-    bool texture = false,
-    bool fluidConsistencyType = false,
-    bool instruction = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (type) this.type = null;
-    if (schedule) this.schedule = null;
-    if (nutrient) this.nutrient = null;
-    if (texture) this.texture = null;
-    if (fluidConsistencyType) this.fluidConsistencyType = null;
-    if (instruction) this.instruction = null;
-  }
-
   @override
   NutritionOrderOralDietBuilder clone() => throw UnimplementedError();
   @override
@@ -2674,22 +2594,6 @@ class NutritionOrderNutrientBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool modifier = false,
-    bool amount = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (modifier) this.modifier = null;
-    if (amount) this.amount = null;
-  }
-
   @override
   NutritionOrderNutrientBuilder clone() => throw UnimplementedError();
   @override
@@ -3134,22 +3038,6 @@ class NutritionOrderTextureBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool modifier = false,
-    bool foodType = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (modifier) this.modifier = null;
-    if (foodType) this.foodType = null;
   }
 
   @override
@@ -3732,28 +3620,6 @@ class NutritionOrderSupplementBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool type = false,
-    bool productName = false,
-    bool schedule = false,
-    bool quantity = false,
-    bool instruction = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (type) this.type = null;
-    if (productName) this.productName = null;
-    if (schedule) this.schedule = null;
-    if (quantity) this.quantity = null;
-    if (instruction) this.instruction = null;
   }
 
   @override
@@ -4513,36 +4379,6 @@ class NutritionOrderEnteralFormulaBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool baseFormulaType = false,
-    bool baseFormulaProductName = false,
-    bool additiveType = false,
-    bool additiveProductName = false,
-    bool caloricDensity = false,
-    bool routeofAdministration = false,
-    bool administration = false,
-    bool maxVolumeToDeliver = false,
-    bool administrationInstruction = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (baseFormulaType) this.baseFormulaType = null;
-    if (baseFormulaProductName) this.baseFormulaProductName = null;
-    if (additiveType) this.additiveType = null;
-    if (additiveProductName) this.additiveProductName = null;
-    if (caloricDensity) this.caloricDensity = null;
-    if (routeofAdministration) this.routeofAdministration = null;
-    if (administration) this.administration = null;
-    if (maxVolumeToDeliver) this.maxVolumeToDeliver = null;
-    if (administrationInstruction) this.administrationInstruction = null;
-  }
-
   @override
   NutritionOrderEnteralFormulaBuilder clone() => throw UnimplementedError();
   @override
@@ -5151,24 +4987,6 @@ class NutritionOrderAdministrationBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool schedule = false,
-    bool quantity = false,
-    bool rate = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (schedule) this.schedule = null;
-    if (quantity) this.quantity = null;
-    if (rate) rateX = null;
   }
 
   @override

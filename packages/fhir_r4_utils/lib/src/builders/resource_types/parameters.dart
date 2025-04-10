@@ -384,22 +384,6 @@ class ParametersBuilder extends ResourceBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool parameter = false,
-  }) {
-    if (id) this.id = null;
-    if (meta) this.meta = null;
-    if (implicitRules) this.implicitRules = null;
-    if (language) this.language = null;
-    if (parameter) this.parameter = null;
-  }
-
   @override
   ParametersBuilder clone() => throw UnimplementedError();
   @override
@@ -2403,26 +2387,6 @@ class ParametersParameterBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool name = false,
-    bool value = false,
-    bool resource = false,
-    bool part_ = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (name) this.name = null;
-    if (value) valueX = null;
-    if (resource) this.resource = null;
-    if (part_) this.part_ = null;
   }
 
   @override

@@ -1680,76 +1680,6 @@ class MessageDefinitionBuilder extends CanonicalResourceBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool url = false,
-    bool identifier = false,
-    bool version = false,
-    bool name = false,
-    bool title = false,
-    bool replaces = false,
-    bool status = false,
-    bool experimental = false,
-    bool date = false,
-    bool publisher = false,
-    bool contact = false,
-    bool description = false,
-    bool useContext = false,
-    bool jurisdiction = false,
-    bool purpose = false,
-    bool copyright = false,
-    bool base = false,
-    bool parent = false,
-    bool event = false,
-    bool category = false,
-    bool focus = false,
-    bool responseRequired = false,
-    bool allowedResponse = false,
-    bool graph = false,
-  }) {
-    if (id) this.id = null;
-    if (meta) this.meta = null;
-    if (implicitRules) this.implicitRules = null;
-    if (language) this.language = null;
-    if (text) this.text = null;
-    if (contained) this.contained = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (url) this.url = null;
-    if (identifier) this.identifier = null;
-    if (version) this.version = null;
-    if (name) this.name = null;
-    if (title) this.title = null;
-    if (replaces) this.replaces = null;
-    if (status) this.status = null;
-    if (experimental) this.experimental = null;
-    if (date) this.date = null;
-    if (publisher) this.publisher = null;
-    if (contact) this.contact = null;
-    if (description) this.description = null;
-    if (useContext) this.useContext = null;
-    if (jurisdiction) this.jurisdiction = null;
-    if (purpose) this.purpose = null;
-    if (copyright) this.copyright = null;
-    if (base) this.base = null;
-    if (parent) this.parent = null;
-    if (event) eventX = null;
-    if (category) this.category = null;
-    if (focus) this.focus = null;
-    if (responseRequired) this.responseRequired = null;
-    if (allowedResponse) this.allowedResponse = null;
-    if (graph) this.graph = null;
-  }
-
   @override
   MessageDefinitionBuilder clone() => throw UnimplementedError();
   @override
@@ -2535,26 +2465,6 @@ class MessageDefinitionFocusBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool code = false,
-    bool profile = false,
-    bool min = false,
-    bool max = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (code) this.code = null;
-    if (profile) this.profile = null;
-    if (min) this.min = null;
-    if (max) this.max = null;
-  }
-
   @override
   MessageDefinitionFocusBuilder clone() => throw UnimplementedError();
   @override
@@ -3042,22 +2952,6 @@ class MessageDefinitionAllowedResponseBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool message = false,
-    bool situation = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (message) this.message = null;
-    if (situation) this.situation = null;
   }
 
   @override

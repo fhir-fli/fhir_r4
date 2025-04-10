@@ -96,10 +96,18 @@ class _$SlotCopyWithImpl<T> implements $SlotCopyWith<T> {
         appointmentType: identical(appointmentType, fhirSentinel)
             ? _value.appointmentType
             : appointmentType as CodeableConcept?,
-        schedule: schedule as Reference? ?? _value.schedule,
-        status: status as SlotStatus? ?? _value.status,
-        start: start as FhirInstant? ?? _value.start,
-        end: end as FhirInstant? ?? _value.end,
+        schedule: identical(schedule, fhirSentinel)
+            ? _value.schedule
+            : (schedule as Reference?) ?? _value.schedule,
+        status: identical(status, fhirSentinel)
+            ? _value.status
+            : (status as SlotStatus?) ?? _value.status,
+        start: identical(start, fhirSentinel)
+            ? _value.start
+            : (start as FhirInstant?) ?? _value.start,
+        end: identical(end, fhirSentinel)
+            ? _value.end
+            : (end as FhirInstant?) ?? _value.end,
         overbooked: identical(overbooked, fhirSentinel)
             ? _value.overbooked
             : overbooked as FhirBoolean?,

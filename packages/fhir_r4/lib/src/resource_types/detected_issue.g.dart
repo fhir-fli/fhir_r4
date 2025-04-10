@@ -86,7 +86,9 @@ class _$DetectedIssueCopyWithImpl<T> implements $DetectedIssueCopyWith<T> {
         identifier: identical(identifier, fhirSentinel)
             ? _value.identifier
             : identifier as List<Identifier>?,
-        status: status as ObservationStatus? ?? _value.status,
+        status: identical(status, fhirSentinel)
+            ? _value.status
+            : (status as ObservationStatus?) ?? _value.status,
         code: identical(code, fhirSentinel)
             ? _value.code
             : code as CodeableConcept?,
@@ -230,7 +232,9 @@ class _$DetectedIssueMitigationCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        action: action as CodeableConcept? ?? _value.action,
+        action: identical(action, fhirSentinel)
+            ? _value.action
+            : (action as CodeableConcept?) ?? _value.action,
         date:
             identical(date, fhirSentinel) ? _value.date : date as FhirDateTime?,
         author: identical(author, fhirSentinel)

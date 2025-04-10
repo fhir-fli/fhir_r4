@@ -71,7 +71,9 @@ class _$LinkageCopyWithImpl<T> implements $LinkageCopyWith<T> {
         author: identical(author, fhirSentinel)
             ? _value.author
             : author as Reference?,
-        item: item as List<LinkageItem>? ?? _value.item,
+        item: identical(item, fhirSentinel)
+            ? _value.item
+            : (item as List<LinkageItem>?) ?? _value.item,
       ),
     );
   }
@@ -120,8 +122,12 @@ class _$LinkageItemCopyWithImpl<T> implements $LinkageItemCopyWith<T> {
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        type: type as LinkageType? ?? _value.type,
-        resource: resource as Reference? ?? _value.resource,
+        type: identical(type, fhirSentinel)
+            ? _value.type
+            : (type as LinkageType?) ?? _value.type,
+        resource: identical(resource, fhirSentinel)
+            ? _value.resource
+            : (resource as Reference?) ?? _value.resource,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,

@@ -408,20 +408,6 @@ class PeriodBuilder extends DataTypeBuilder
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool start = false,
-    bool end = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (start) this.start = null;
-    if (end) this.end = null;
-  }
-
   @override
   PeriodBuilder clone() => throw UnimplementedError();
   @override

@@ -627,6 +627,214 @@ class MedicationDispense extends DomainResource {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> listChildrenNames() {
+    return [
+      'id',
+      'meta',
+      'implicitRules',
+      'language',
+      'text',
+      'contained',
+      'extension',
+      'modifierExtension',
+      'identifier',
+      'partOf',
+      'status',
+      'statusReasonX',
+      'category',
+      'medicationX',
+      'subject',
+      'context',
+      'supportingInformation',
+      'performer',
+      'location',
+      'authorizingPrescription',
+      'type',
+      'quantity',
+      'daysSupply',
+      'whenPrepared',
+      'whenHandedOver',
+      'destination',
+      'receiver',
+      'note',
+      'dosageInstruction',
+      'substitution',
+      'detectedIssue',
+      'eventHistory',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> getChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'meta':
+        if (meta != null) {
+          fields.add(meta!);
+        }
+      case 'implicitRules':
+        if (implicitRules != null) {
+          fields.add(implicitRules!);
+        }
+      case 'language':
+        if (language != null) {
+          fields.add(language!);
+        }
+      case 'text':
+        if (text != null) {
+          fields.add(text!);
+        }
+      case 'contained':
+        if (contained != null) {
+          fields.addAll(contained!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'identifier':
+        if (identifier != null) {
+          fields.addAll(identifier!);
+        }
+      case 'partOf':
+        if (partOf != null) {
+          fields.addAll(partOf!);
+        }
+      case 'status':
+        fields.add(status);
+      case 'statusReason':
+        fields.add(statusReasonX!);
+      case 'statusReasonX':
+        fields.add(statusReasonX!);
+      case 'statusReasonCodeableConcept':
+        if (statusReasonX is CodeableConcept) {
+          fields.add(statusReasonX!);
+        }
+      case 'statusReasonReference':
+        if (statusReasonX is Reference) {
+          fields.add(statusReasonX!);
+        }
+      case 'category':
+        if (category != null) {
+          fields.add(category!);
+        }
+      case 'medication':
+        fields.add(medicationX);
+      case 'medicationX':
+        fields.add(medicationX);
+      case 'medicationCodeableConcept':
+        if (medicationX is CodeableConcept) {
+          fields.add(medicationX);
+        }
+      case 'medicationReference':
+        if (medicationX is Reference) {
+          fields.add(medicationX);
+        }
+      case 'subject':
+        if (subject != null) {
+          fields.add(subject!);
+        }
+      case 'context':
+        if (context != null) {
+          fields.add(context!);
+        }
+      case 'supportingInformation':
+        if (supportingInformation != null) {
+          fields.addAll(supportingInformation!);
+        }
+      case 'performer':
+        if (performer != null) {
+          fields.addAll(performer!);
+        }
+      case 'location':
+        if (location != null) {
+          fields.add(location!);
+        }
+      case 'authorizingPrescription':
+        if (authorizingPrescription != null) {
+          fields.addAll(authorizingPrescription!);
+        }
+      case 'type':
+        if (type != null) {
+          fields.add(type!);
+        }
+      case 'quantity':
+        if (quantity != null) {
+          fields.add(quantity!);
+        }
+      case 'daysSupply':
+        if (daysSupply != null) {
+          fields.add(daysSupply!);
+        }
+      case 'whenPrepared':
+        if (whenPrepared != null) {
+          fields.add(whenPrepared!);
+        }
+      case 'whenHandedOver':
+        if (whenHandedOver != null) {
+          fields.add(whenHandedOver!);
+        }
+      case 'destination':
+        if (destination != null) {
+          fields.add(destination!);
+        }
+      case 'receiver':
+        if (receiver != null) {
+          fields.addAll(receiver!);
+        }
+      case 'note':
+        if (note != null) {
+          fields.addAll(note!);
+        }
+      case 'dosageInstruction':
+        if (dosageInstruction != null) {
+          fields.addAll(dosageInstruction!);
+        }
+      case 'substitution':
+        if (substitution != null) {
+          fields.add(substitution!);
+        }
+      case 'detectedIssue':
+        if (detectedIssue != null) {
+          fields.addAll(detectedIssue!);
+        }
+      case 'eventHistory':
+        if (eventHistory != null) {
+          fields.addAll(eventHistory!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildByName(String name) {
+    final values = getChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   MedicationDispense clone() => copyWith();
 
@@ -1032,6 +1240,63 @@ class MedicationDispensePerformer extends BackboneElement {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> listChildrenNames() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'function',
+      'actor',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> getChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'function':
+        if (function_ != null) {
+          fields.add(function_!);
+        }
+      case 'actor':
+        fields.add(actor);
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildByName(String name) {
+    final values = getChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   MedicationDispensePerformer clone() => copyWith();
 
@@ -1312,6 +1577,73 @@ class MedicationDispenseSubstitution extends BackboneElement {
       responsibleParty,
     );
     return json;
+  }
+
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> listChildrenNames() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'wasSubstituted',
+      'type',
+      'reason',
+      'responsibleParty',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> getChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'wasSubstituted':
+        fields.add(wasSubstituted);
+      case 'type':
+        if (type != null) {
+          fields.add(type!);
+        }
+      case 'reason':
+        if (reason != null) {
+          fields.addAll(reason!);
+        }
+      case 'responsibleParty':
+        if (responsibleParty != null) {
+          fields.addAll(responsibleParty!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildByName(String name) {
+    final values = getChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
   }
 
   @override

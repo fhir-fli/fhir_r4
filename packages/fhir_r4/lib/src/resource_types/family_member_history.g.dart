@@ -106,15 +106,21 @@ class _$FamilyMemberHistoryCopyWithImpl<T>
         instantiatesUri: identical(instantiatesUri, fhirSentinel)
             ? _value.instantiatesUri
             : instantiatesUri as List<FhirUri>?,
-        status: status as FamilyHistoryStatus? ?? _value.status,
+        status: identical(status, fhirSentinel)
+            ? _value.status
+            : (status as FamilyHistoryStatus?) ?? _value.status,
         dataAbsentReason: identical(dataAbsentReason, fhirSentinel)
             ? _value.dataAbsentReason
             : dataAbsentReason as CodeableConcept?,
-        patient: patient as Reference? ?? _value.patient,
+        patient: identical(patient, fhirSentinel)
+            ? _value.patient
+            : (patient as Reference?) ?? _value.patient,
         date:
             identical(date, fhirSentinel) ? _value.date : date as FhirDateTime?,
         name: identical(name, fhirSentinel) ? _value.name : name as FhirString?,
-        relationship: relationship as CodeableConcept? ?? _value.relationship,
+        relationship: identical(relationship, fhirSentinel)
+            ? _value.relationship
+            : (relationship as CodeableConcept?) ?? _value.relationship,
         sex:
             identical(sex, fhirSentinel) ? _value.sex : sex as CodeableConcept?,
         bornX: identical(bornX, fhirSentinel) ? _value.bornX : bornX as Period?,
@@ -194,7 +200,9 @@ class _$FamilyMemberHistoryConditionCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        code: code as CodeableConcept? ?? _value.code,
+        code: identical(code, fhirSentinel)
+            ? _value.code
+            : (code as CodeableConcept?) ?? _value.code,
         outcome: identical(outcome, fhirSentinel)
             ? _value.outcome
             : outcome as CodeableConcept?,

@@ -101,7 +101,9 @@ class _$ParametersParameterCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        name: name as FhirString? ?? _value.name,
+        name: identical(name, fhirSentinel)
+            ? _value.name
+            : (name as FhirString?) ?? _value.name,
         valueX: identical(valueX, fhirSentinel)
             ? _value.valueX
             : valueX as FhirBase64Binary?,

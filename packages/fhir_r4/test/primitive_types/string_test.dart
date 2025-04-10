@@ -186,7 +186,8 @@ void stringTest() {
       expect(copied.extension_?.length, equals(1));
       expect(
         copied.extension_?[0].url,
-        equals('http://example.org/fhir/StructureDefinition/test-extension'.toFhirString),
+        equals('http://example.org/fhir/StructureDefinition/test-extension'
+            .toFhirString),
       );
     });
 

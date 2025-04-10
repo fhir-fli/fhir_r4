@@ -139,7 +139,9 @@ class _$PlanDefinitionCopyWithImpl<T> implements $PlanDefinitionCopyWith<T> {
         type: identical(type, fhirSentinel)
             ? _value.type
             : type as CodeableConcept?,
-        status: status as PublicationStatus? ?? _value.status,
+        status: identical(status, fhirSentinel)
+            ? _value.status
+            : (status as PublicationStatus?) ?? _value.status,
         experimental: identical(experimental, fhirSentinel)
             ? _value.experimental
             : experimental as FhirBoolean?,
@@ -272,7 +274,9 @@ class _$PlanDefinitionGoalCopyWithImpl<T>
         category: identical(category, fhirSentinel)
             ? _value.category
             : category as CodeableConcept?,
-        description: description as CodeableConcept? ?? _value.description,
+        description: identical(description, fhirSentinel)
+            ? _value.description
+            : (description as CodeableConcept?) ?? _value.description,
         priority: identical(priority, fhirSentinel)
             ? _value.priority
             : priority as CodeableConcept?,
@@ -590,7 +594,9 @@ class _$PlanDefinitionConditionCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        kind: kind as ActionConditionKind? ?? _value.kind,
+        kind: identical(kind, fhirSentinel)
+            ? _value.kind
+            : (kind as ActionConditionKind?) ?? _value.kind,
         expression: identical(expression, fhirSentinel)
             ? _value.expression
             : expression as FhirExpression?,
@@ -650,9 +656,12 @@ class _$PlanDefinitionRelatedActionCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        actionId: actionId as FhirId? ?? _value.actionId,
-        relationship:
-            relationship as ActionRelationshipType? ?? _value.relationship,
+        actionId: identical(actionId, fhirSentinel)
+            ? _value.actionId
+            : (actionId as FhirId?) ?? _value.actionId,
+        relationship: identical(relationship, fhirSentinel)
+            ? _value.relationship
+            : (relationship as ActionRelationshipType?) ?? _value.relationship,
         offsetX: identical(offsetX, fhirSentinel)
             ? _value.offsetX
             : offsetX as FhirDuration?,
@@ -712,7 +721,9 @@ class _$PlanDefinitionParticipantCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        type: type as ActionParticipantType? ?? _value.type,
+        type: identical(type, fhirSentinel)
+            ? _value.type
+            : (type as ActionParticipantType?) ?? _value.type,
         role: identical(role, fhirSentinel)
             ? _value.role
             : role as CodeableConcept?,

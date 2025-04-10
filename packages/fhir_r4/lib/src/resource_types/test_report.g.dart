@@ -87,9 +87,15 @@ class _$TestReportCopyWithImpl<T> implements $TestReportCopyWith<T> {
             ? _value.identifier
             : identifier as Identifier?,
         name: identical(name, fhirSentinel) ? _value.name : name as FhirString?,
-        status: status as TestReportStatus? ?? _value.status,
-        testScript: testScript as Reference? ?? _value.testScript,
-        result: result as TestReportResult? ?? _value.result,
+        status: identical(status, fhirSentinel)
+            ? _value.status
+            : (status as TestReportStatus?) ?? _value.status,
+        testScript: identical(testScript, fhirSentinel)
+            ? _value.testScript
+            : (testScript as Reference?) ?? _value.testScript,
+        result: identical(result, fhirSentinel)
+            ? _value.result
+            : (result as TestReportResult?) ?? _value.result,
         score: identical(score, fhirSentinel)
             ? _value.score
             : score as FhirDecimal?,
@@ -164,8 +170,12 @@ class _$TestReportParticipantCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        type: type as TestReportParticipantType? ?? _value.type,
-        uri: uri as FhirUri? ?? _value.uri,
+        type: identical(type, fhirSentinel)
+            ? _value.type
+            : (type as TestReportParticipantType?) ?? _value.type,
+        uri: identical(uri, fhirSentinel)
+            ? _value.uri
+            : (uri as FhirUri?) ?? _value.uri,
         display: identical(display, fhirSentinel)
             ? _value.display
             : display as FhirString?,
@@ -219,7 +229,9 @@ class _$TestReportSetupCopyWithImpl<T> implements $TestReportSetupCopyWith<T> {
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        action: action as List<TestReportAction>? ?? _value.action,
+        action: identical(action, fhirSentinel)
+            ? _value.action
+            : (action as List<TestReportAction>?) ?? _value.action,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,
@@ -336,7 +348,9 @@ class _$TestReportOperationCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        result: result as TestReportActionResult? ?? _value.result,
+        result: identical(result, fhirSentinel)
+            ? _value.result
+            : (result as TestReportActionResult?) ?? _value.result,
         message: identical(message, fhirSentinel)
             ? _value.message
             : message as FhirMarkdown?,
@@ -399,7 +413,9 @@ class _$TestReportAssertCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        result: result as TestReportActionResult? ?? _value.result,
+        result: identical(result, fhirSentinel)
+            ? _value.result
+            : (result as TestReportActionResult?) ?? _value.result,
         message: identical(message, fhirSentinel)
             ? _value.message
             : message as FhirMarkdown?,
@@ -464,7 +480,9 @@ class _$TestReportTestCopyWithImpl<T> implements $TestReportTestCopyWith<T> {
         description: identical(description, fhirSentinel)
             ? _value.description
             : description as FhirString?,
-        action: action as List<TestReportAction>? ?? _value.action,
+        action: identical(action, fhirSentinel)
+            ? _value.action
+            : (action as List<TestReportAction>?) ?? _value.action,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,
@@ -577,7 +595,9 @@ class _$TestReportTeardownCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        action: action as List<TestReportAction>? ?? _value.action,
+        action: identical(action, fhirSentinel)
+            ? _value.action
+            : (action as List<TestReportAction>?) ?? _value.action,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,
@@ -630,7 +650,9 @@ class _$TestReportAction2CopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        operation: operation as TestReportOperation? ?? _value.operation,
+        operation: identical(operation, fhirSentinel)
+            ? _value.operation
+            : (operation as TestReportOperation?) ?? _value.operation,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,

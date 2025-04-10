@@ -572,28 +572,6 @@ class FhirMetaBuilder extends DataTypeBuilder
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool versionId = false,
-    bool lastUpdated = false,
-    bool source = false,
-    bool profile = false,
-    bool security = false,
-    bool tag = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (versionId) this.versionId = null;
-    if (lastUpdated) this.lastUpdated = null;
-    if (source) this.source = null;
-    if (profile) this.profile = null;
-    if (security) this.security = null;
-    if (tag) this.tag = null;
-  }
-
   @override
   FhirMetaBuilder clone() => throw UnimplementedError();
   @override

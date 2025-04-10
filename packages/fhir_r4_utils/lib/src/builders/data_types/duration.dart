@@ -489,26 +489,6 @@ class FhirDurationBuilder extends QuantityBuilder
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool value = false,
-    bool comparator = false,
-    bool unit = false,
-    bool system = false,
-    bool code = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (value) this.value = null;
-    if (comparator) this.comparator = null;
-    if (unit) this.unit = null;
-    if (system) this.system = null;
-    if (code) this.code = null;
-  }
-
   @override
   FhirDurationBuilder clone() => throw UnimplementedError();
   @override

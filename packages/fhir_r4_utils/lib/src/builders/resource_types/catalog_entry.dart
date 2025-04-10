@@ -1035,54 +1035,6 @@ class CatalogEntryBuilder extends DomainResourceBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool identifier = false,
-    bool type = false,
-    bool orderable = false,
-    bool referencedItem = false,
-    bool additionalIdentifier = false,
-    bool classification = false,
-    bool status = false,
-    bool validityPeriod = false,
-    bool validTo = false,
-    bool lastUpdated = false,
-    bool additionalCharacteristic = false,
-    bool additionalClassification = false,
-    bool relatedEntry = false,
-  }) {
-    if (id) this.id = null;
-    if (meta) this.meta = null;
-    if (implicitRules) this.implicitRules = null;
-    if (language) this.language = null;
-    if (text) this.text = null;
-    if (contained) this.contained = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (identifier) this.identifier = null;
-    if (type) this.type = null;
-    if (orderable) this.orderable = null;
-    if (referencedItem) this.referencedItem = null;
-    if (additionalIdentifier) this.additionalIdentifier = null;
-    if (classification) this.classification = null;
-    if (status) this.status = null;
-    if (validityPeriod) this.validityPeriod = null;
-    if (validTo) this.validTo = null;
-    if (lastUpdated) this.lastUpdated = null;
-    if (additionalCharacteristic) this.additionalCharacteristic = null;
-    if (additionalClassification) this.additionalClassification = null;
-    if (relatedEntry) this.relatedEntry = null;
-  }
-
   @override
   CatalogEntryBuilder clone() => throw UnimplementedError();
   @override
@@ -1674,22 +1626,6 @@ class CatalogEntryRelatedEntryBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool relationtype = false,
-    bool item = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (relationtype) this.relationtype = null;
-    if (item) this.item = null;
   }
 
   @override

@@ -345,20 +345,6 @@ class RatioBuilder extends DataTypeBuilder
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool numerator = false,
-    bool denominator = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (numerator) this.numerator = null;
-    if (denominator) this.denominator = null;
-  }
-
   @override
   RatioBuilder clone() => throw UnimplementedError();
   @override

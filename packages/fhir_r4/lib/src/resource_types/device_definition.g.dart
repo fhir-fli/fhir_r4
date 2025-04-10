@@ -221,10 +221,15 @@ class _$DeviceDefinitionUdiDeviceIdentifierCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        deviceIdentifier:
-            deviceIdentifier as FhirString? ?? _value.deviceIdentifier,
-        issuer: issuer as FhirUri? ?? _value.issuer,
-        jurisdiction: jurisdiction as FhirUri? ?? _value.jurisdiction,
+        deviceIdentifier: identical(deviceIdentifier, fhirSentinel)
+            ? _value.deviceIdentifier
+            : (deviceIdentifier as FhirString?) ?? _value.deviceIdentifier,
+        issuer: identical(issuer, fhirSentinel)
+            ? _value.issuer
+            : (issuer as FhirUri?) ?? _value.issuer,
+        jurisdiction: identical(jurisdiction, fhirSentinel)
+            ? _value.jurisdiction
+            : (jurisdiction as FhirUri?) ?? _value.jurisdiction,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,
@@ -282,8 +287,12 @@ class _$DeviceDefinitionDeviceNameCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        name: name as FhirString? ?? _value.name,
-        type: type as DeviceNameType? ?? _value.type,
+        name: identical(name, fhirSentinel)
+            ? _value.name
+            : (name as FhirString?) ?? _value.name,
+        type: identical(type, fhirSentinel)
+            ? _value.type
+            : (type as DeviceNameType?) ?? _value.type,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,
@@ -340,7 +349,9 @@ class _$DeviceDefinitionSpecializationCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        systemType: systemType as FhirString? ?? _value.systemType,
+        systemType: identical(systemType, fhirSentinel)
+            ? _value.systemType
+            : (systemType as FhirString?) ?? _value.systemType,
         version: identical(version, fhirSentinel)
             ? _value.version
             : version as FhirString?,
@@ -400,7 +411,9 @@ class _$DeviceDefinitionCapabilityCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        type: type as CodeableConcept? ?? _value.type,
+        type: identical(type, fhirSentinel)
+            ? _value.type
+            : (type as CodeableConcept?) ?? _value.type,
         description: identical(description, fhirSentinel)
             ? _value.description
             : description as List<CodeableConcept>?,
@@ -462,7 +475,9 @@ class _$DeviceDefinitionPropertyCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        type: type as CodeableConcept? ?? _value.type,
+        type: identical(type, fhirSentinel)
+            ? _value.type
+            : (type as CodeableConcept?) ?? _value.type,
         valueQuantity: identical(valueQuantity, fhirSentinel)
             ? _value.valueQuantity
             : valueQuantity as List<Quantity>?,
@@ -526,7 +541,9 @@ class _$DeviceDefinitionMaterialCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        substance: substance as CodeableConcept? ?? _value.substance,
+        substance: identical(substance, fhirSentinel)
+            ? _value.substance
+            : (substance as CodeableConcept?) ?? _value.substance,
         alternate: identical(alternate, fhirSentinel)
             ? _value.alternate
             : alternate as FhirBoolean?,

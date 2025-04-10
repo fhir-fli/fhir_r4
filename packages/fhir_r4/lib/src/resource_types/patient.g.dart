@@ -269,7 +269,9 @@ class _$PatientCommunicationCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        language: language as CodeableConcept? ?? _value.language,
+        language: identical(language, fhirSentinel)
+            ? _value.language
+            : (language as CodeableConcept?) ?? _value.language,
         preferred: identical(preferred, fhirSentinel)
             ? _value.preferred
             : preferred as FhirBoolean?,
@@ -325,8 +327,12 @@ class _$PatientLinkCopyWithImpl<T> implements $PatientLinkCopyWith<T> {
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        other: other as Reference? ?? _value.other,
-        type: type as LinkType? ?? _value.type,
+        other: identical(other, fhirSentinel)
+            ? _value.other
+            : (other as Reference?) ?? _value.other,
+        type: identical(type, fhirSentinel)
+            ? _value.type
+            : (type as LinkType?) ?? _value.type,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,

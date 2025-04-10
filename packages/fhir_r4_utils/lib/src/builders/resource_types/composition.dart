@@ -1123,58 +1123,6 @@ class CompositionBuilder extends DomainResourceBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool identifier = false,
-    bool status = false,
-    bool type = false,
-    bool category = false,
-    bool subject = false,
-    bool encounter = false,
-    bool date = false,
-    bool author = false,
-    bool title = false,
-    bool confidentiality = false,
-    bool attester = false,
-    bool custodian = false,
-    bool relatesTo = false,
-    bool event = false,
-    bool section = false,
-  }) {
-    if (id) this.id = null;
-    if (meta) this.meta = null;
-    if (implicitRules) this.implicitRules = null;
-    if (language) this.language = null;
-    if (text) this.text = null;
-    if (contained) this.contained = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (identifier) this.identifier = null;
-    if (status) this.status = null;
-    if (type) this.type = null;
-    if (category) this.category = null;
-    if (subject) this.subject = null;
-    if (encounter) this.encounter = null;
-    if (date) this.date = null;
-    if (author) this.author = null;
-    if (title) this.title = null;
-    if (confidentiality) this.confidentiality = null;
-    if (attester) this.attester = null;
-    if (custodian) this.custodian = null;
-    if (relatesTo) this.relatesTo = null;
-    if (event) this.event = null;
-    if (section) this.section = null;
-  }
-
   @override
   CompositionBuilder clone() => throw UnimplementedError();
   @override
@@ -1823,24 +1771,6 @@ class CompositionAttesterBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool mode = false,
-    bool time = false,
-    bool party = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (mode) this.mode = null;
-    if (time) this.time = null;
-    if (party) this.party = null;
-  }
-
   @override
   CompositionAttesterBuilder clone() => throw UnimplementedError();
   @override
@@ -2378,22 +2308,6 @@ class CompositionRelatesToBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool code = false,
-    bool target = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (code) this.code = null;
-    if (target) targetX = null;
-  }
-
   @override
   CompositionRelatesToBuilder clone() => throw UnimplementedError();
   @override
@@ -2899,24 +2813,6 @@ class CompositionEventBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool code = false,
-    bool period = false,
-    bool detail = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (code) this.code = null;
-    if (period) this.period = null;
-    if (detail) this.detail = null;
   }
 
   @override
@@ -3707,38 +3603,6 @@ class CompositionSectionBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool title = false,
-    bool code = false,
-    bool author = false,
-    bool focus = false,
-    bool text = false,
-    bool mode = false,
-    bool orderedBy = false,
-    bool entry = false,
-    bool emptyReason = false,
-    bool section = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (title) this.title = null;
-    if (code) this.code = null;
-    if (author) this.author = null;
-    if (focus) this.focus = null;
-    if (text) this.text = null;
-    if (mode) this.mode = null;
-    if (orderedBy) this.orderedBy = null;
-    if (entry) this.entry = null;
-    if (emptyReason) this.emptyReason = null;
-    if (section) this.section = null;
   }
 
   @override

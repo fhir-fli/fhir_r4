@@ -1953,90 +1953,6 @@ class PlanDefinitionBuilder extends CanonicalResourceBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool url = false,
-    bool identifier = false,
-    bool version = false,
-    bool name = false,
-    bool title = false,
-    bool subtitle = false,
-    bool type = false,
-    bool status = false,
-    bool experimental = false,
-    bool subject = false,
-    bool date = false,
-    bool publisher = false,
-    bool contact = false,
-    bool description = false,
-    bool useContext = false,
-    bool jurisdiction = false,
-    bool purpose = false,
-    bool usage = false,
-    bool copyright = false,
-    bool approvalDate = false,
-    bool lastReviewDate = false,
-    bool effectivePeriod = false,
-    bool topic = false,
-    bool author = false,
-    bool editor = false,
-    bool reviewer = false,
-    bool endorser = false,
-    bool relatedArtifact = false,
-    bool library_ = false,
-    bool goal = false,
-    bool action = false,
-  }) {
-    if (id) this.id = null;
-    if (meta) this.meta = null;
-    if (implicitRules) this.implicitRules = null;
-    if (language) this.language = null;
-    if (text) this.text = null;
-    if (contained) this.contained = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (url) this.url = null;
-    if (identifier) this.identifier = null;
-    if (version) this.version = null;
-    if (name) this.name = null;
-    if (title) this.title = null;
-    if (subtitle) this.subtitle = null;
-    if (type) this.type = null;
-    if (status) this.status = null;
-    if (experimental) this.experimental = null;
-    if (subject) subjectX = null;
-    if (date) this.date = null;
-    if (publisher) this.publisher = null;
-    if (contact) this.contact = null;
-    if (description) this.description = null;
-    if (useContext) this.useContext = null;
-    if (jurisdiction) this.jurisdiction = null;
-    if (purpose) this.purpose = null;
-    if (usage) this.usage = null;
-    if (copyright) this.copyright = null;
-    if (approvalDate) this.approvalDate = null;
-    if (lastReviewDate) this.lastReviewDate = null;
-    if (effectivePeriod) this.effectivePeriod = null;
-    if (topic) this.topic = null;
-    if (author) this.author = null;
-    if (editor) this.editor = null;
-    if (reviewer) this.reviewer = null;
-    if (endorser) this.endorser = null;
-    if (relatedArtifact) this.relatedArtifact = null;
-    if (library_) this.library_ = null;
-    if (goal) this.goal = null;
-    if (action) this.action = null;
-  }
-
   @override
   PlanDefinitionBuilder clone() => throw UnimplementedError();
   @override
@@ -2959,32 +2875,6 @@ class PlanDefinitionGoalBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool category = false,
-    bool description = false,
-    bool priority = false,
-    bool start = false,
-    bool addresses = false,
-    bool documentation = false,
-    bool target = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (category) this.category = null;
-    if (description) this.description = null;
-    if (priority) this.priority = null;
-    if (start) this.start = null;
-    if (addresses) this.addresses = null;
-    if (documentation) this.documentation = null;
-    if (target) this.target = null;
-  }
-
   @override
   PlanDefinitionGoalBuilder clone() => throw UnimplementedError();
   @override
@@ -3602,24 +3492,6 @@ class PlanDefinitionTargetBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool measure = false,
-    bool detail = false,
-    bool due = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (measure) this.measure = null;
-    if (detail) detailX = null;
-    if (due) this.due = null;
   }
 
   @override
@@ -5592,72 +5464,6 @@ class PlanDefinitionActionBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool prefix = false,
-    bool title = false,
-    bool description = false,
-    bool textEquivalent = false,
-    bool priority = false,
-    bool code = false,
-    bool reason = false,
-    bool documentation = false,
-    bool goalId = false,
-    bool subject = false,
-    bool trigger = false,
-    bool condition = false,
-    bool input = false,
-    bool output = false,
-    bool relatedAction = false,
-    bool timing = false,
-    bool participant = false,
-    bool type = false,
-    bool groupingBehavior = false,
-    bool selectionBehavior = false,
-    bool requiredBehavior = false,
-    bool precheckBehavior = false,
-    bool cardinalityBehavior = false,
-    bool definition = false,
-    bool transform = false,
-    bool dynamicValue = false,
-    bool action = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (prefix) this.prefix = null;
-    if (title) this.title = null;
-    if (description) this.description = null;
-    if (textEquivalent) this.textEquivalent = null;
-    if (priority) this.priority = null;
-    if (code) this.code = null;
-    if (reason) this.reason = null;
-    if (documentation) this.documentation = null;
-    if (goalId) this.goalId = null;
-    if (subject) subjectX = null;
-    if (trigger) this.trigger = null;
-    if (condition) this.condition = null;
-    if (input) this.input = null;
-    if (output) this.output = null;
-    if (relatedAction) this.relatedAction = null;
-    if (timing) timingX = null;
-    if (participant) this.participant = null;
-    if (type) this.type = null;
-    if (groupingBehavior) this.groupingBehavior = null;
-    if (selectionBehavior) this.selectionBehavior = null;
-    if (requiredBehavior) this.requiredBehavior = null;
-    if (precheckBehavior) this.precheckBehavior = null;
-    if (cardinalityBehavior) this.cardinalityBehavior = null;
-    if (definition) definitionX = null;
-    if (transform) this.transform = null;
-    if (dynamicValue) this.dynamicValue = null;
-    if (action) this.action = null;
-  }
-
   @override
   PlanDefinitionActionBuilder clone() => throw UnimplementedError();
   @override
@@ -6320,22 +6126,6 @@ class PlanDefinitionConditionBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool kind = false,
-    bool expression = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (kind) this.kind = null;
-    if (expression) this.expression = null;
-  }
-
   @override
   PlanDefinitionConditionBuilder clone() => throw UnimplementedError();
   @override
@@ -6913,24 +6703,6 @@ class PlanDefinitionRelatedActionBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool actionId = false,
-    bool relationship = false,
-    bool offset = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (actionId) this.actionId = null;
-    if (relationship) this.relationship = null;
-    if (offset) offsetX = null;
-  }
-
   @override
   PlanDefinitionRelatedActionBuilder clone() => throw UnimplementedError();
   @override
@@ -7401,22 +7173,6 @@ class PlanDefinitionParticipantBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool type = false,
-    bool role = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (type) this.type = null;
-    if (role) this.role = null;
-  }
-
   @override
   PlanDefinitionParticipantBuilder clone() => throw UnimplementedError();
   @override
@@ -7883,22 +7639,6 @@ class PlanDefinitionDynamicValueBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool path = false,
-    bool expression = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (path) this.path = null;
-    if (expression) this.expression = null;
   }
 
   @override

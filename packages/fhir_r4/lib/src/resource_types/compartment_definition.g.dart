@@ -89,12 +89,18 @@ class _$CompartmentDefinitionCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        url: url as FhirUri? ?? _value.url,
+        url: identical(url, fhirSentinel)
+            ? _value.url
+            : (url as FhirUri?) ?? _value.url,
         version: identical(version, fhirSentinel)
             ? _value.version
             : version as FhirString?,
-        name: name as FhirString? ?? _value.name,
-        status: status as PublicationStatus? ?? _value.status,
+        name: identical(name, fhirSentinel)
+            ? _value.name
+            : (name as FhirString?) ?? _value.name,
+        status: identical(status, fhirSentinel)
+            ? _value.status
+            : (status as PublicationStatus?) ?? _value.status,
         experimental: identical(experimental, fhirSentinel)
             ? _value.experimental
             : experimental as FhirBoolean?,
@@ -115,8 +121,12 @@ class _$CompartmentDefinitionCopyWithImpl<T>
         purpose: identical(purpose, fhirSentinel)
             ? _value.purpose
             : purpose as FhirMarkdown?,
-        code: code as CompartmentType? ?? _value.code,
-        search: search as FhirBoolean? ?? _value.search,
+        code: identical(code, fhirSentinel)
+            ? _value.code
+            : (code as CompartmentType?) ?? _value.code,
+        search: identical(search, fhirSentinel)
+            ? _value.search
+            : (search as FhirBoolean?) ?? _value.search,
         resource: identical(resource, fhirSentinel)
             ? _value.resource
             : resource as List<CompartmentDefinitionResource>?,
@@ -173,7 +183,9 @@ class _$CompartmentDefinitionResourceCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        code: code as FhirCode? ?? _value.code,
+        code: identical(code, fhirSentinel)
+            ? _value.code
+            : (code as FhirCode?) ?? _value.code,
         param: identical(param, fhirSentinel)
             ? _value.param
             : param as List<FhirString>?,

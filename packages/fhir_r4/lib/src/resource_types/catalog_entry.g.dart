@@ -91,8 +91,12 @@ class _$CatalogEntryCopyWithImpl<T> implements $CatalogEntryCopyWith<T> {
         type: identical(type, fhirSentinel)
             ? _value.type
             : type as CodeableConcept?,
-        orderable: orderable as FhirBoolean? ?? _value.orderable,
-        referencedItem: referencedItem as Reference? ?? _value.referencedItem,
+        orderable: identical(orderable, fhirSentinel)
+            ? _value.orderable
+            : (orderable as FhirBoolean?) ?? _value.orderable,
+        referencedItem: identical(referencedItem, fhirSentinel)
+            ? _value.referencedItem
+            : (referencedItem as Reference?) ?? _value.referencedItem,
         additionalIdentifier: identical(additionalIdentifier, fhirSentinel)
             ? _value.additionalIdentifier
             : additionalIdentifier as List<Identifier>?,
@@ -173,9 +177,13 @@ class _$CatalogEntryRelatedEntryCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        relationtype:
-            relationtype as CatalogEntryRelationType? ?? _value.relationtype,
-        item: item as Reference? ?? _value.item,
+        relationtype: identical(relationtype, fhirSentinel)
+            ? _value.relationtype
+            : (relationtype as CatalogEntryRelationType?) ??
+                _value.relationtype,
+        item: identical(item, fhirSentinel)
+            ? _value.item
+            : (item as Reference?) ?? _value.item,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,

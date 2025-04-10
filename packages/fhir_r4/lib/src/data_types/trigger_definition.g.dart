@@ -44,7 +44,9 @@ class _$TriggerDefinitionCopyWithImpl<T>
         extension_: identical(extension_, fhirSentinel)
             ? _value.extension_
             : extension_ as List<FhirExtension>?,
-        type: type as TriggerType? ?? _value.type,
+        type: identical(type, fhirSentinel)
+            ? _value.type
+            : (type as TriggerType?) ?? _value.type,
         name: identical(name, fhirSentinel) ? _value.name : name as FhirString?,
         timingX: identical(timingX, fhirSentinel)
             ? _value.timingX

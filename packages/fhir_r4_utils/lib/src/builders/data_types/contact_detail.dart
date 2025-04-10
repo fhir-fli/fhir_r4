@@ -358,20 +358,6 @@ class ContactDetailBuilder extends DataTypeBuilder
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool name = false,
-    bool telecom = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (name) this.name = null;
-    if (telecom) this.telecom = null;
-  }
-
   @override
   ContactDetailBuilder clone() => throw UnimplementedError();
   @override

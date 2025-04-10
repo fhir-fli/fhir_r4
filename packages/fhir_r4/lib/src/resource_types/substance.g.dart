@@ -82,7 +82,9 @@ class _$SubstanceCopyWithImpl<T> implements $SubstanceCopyWith<T> {
         category: identical(category, fhirSentinel)
             ? _value.category
             : category as List<CodeableConcept>?,
-        code: code as CodeableConcept? ?? _value.code,
+        code: identical(code, fhirSentinel)
+            ? _value.code
+            : (code as CodeableConcept?) ?? _value.code,
         description: identical(description, fhirSentinel)
             ? _value.description
             : description as FhirString?,
@@ -211,7 +213,9 @@ class _$SubstanceIngredientCopyWithImpl<T>
         quantity: identical(quantity, fhirSentinel)
             ? _value.quantity
             : quantity as Ratio?,
-        substanceX: substanceX as CodeableConcept? ?? _value.substanceX,
+        substanceX: identical(substanceX, fhirSentinel)
+            ? _value.substanceX
+            : (substanceX as CodeableConcept?) ?? _value.substanceX,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,

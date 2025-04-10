@@ -146,7 +146,9 @@ class _$ResearchDefinitionCopyWithImpl<T>
         subtitle: identical(subtitle, fhirSentinel)
             ? _value.subtitle
             : subtitle as FhirString?,
-        status: status as PublicationStatus? ?? _value.status,
+        status: identical(status, fhirSentinel)
+            ? _value.status
+            : (status as PublicationStatus?) ?? _value.status,
         experimental: identical(experimental, fhirSentinel)
             ? _value.experimental
             : experimental as FhirBoolean?,
@@ -212,7 +214,9 @@ class _$ResearchDefinitionCopyWithImpl<T>
         library_: identical(library_, fhirSentinel)
             ? _value.library_
             : library_ as List<FhirCanonical>?,
-        population: population as Reference? ?? _value.population,
+        population: identical(population, fhirSentinel)
+            ? _value.population
+            : (population as Reference?) ?? _value.population,
         exposure: identical(exposure, fhirSentinel)
             ? _value.exposure
             : exposure as Reference?,

@@ -252,6 +252,78 @@ class MarketingStatus extends BackboneType {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> listChildrenNames() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'country',
+      'jurisdiction',
+      'status',
+      'dateRange',
+      'restoreDate',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> getChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'country':
+        if (country != null) {
+          fields.add(country!);
+        }
+      case 'jurisdiction':
+        if (jurisdiction != null) {
+          fields.add(jurisdiction!);
+        }
+      case 'status':
+        fields.add(status);
+      case 'dateRange':
+        if (dateRange != null) {
+          fields.add(dateRange!);
+        }
+      case 'restoreDate':
+        if (restoreDate != null) {
+          fields.add(restoreDate!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildByName(String name) {
+    final values = getChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   MarketingStatus clone() => copyWith();
 

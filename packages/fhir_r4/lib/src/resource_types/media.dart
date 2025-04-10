@@ -561,6 +561,194 @@ class Media extends DomainResource {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> listChildrenNames() {
+    return [
+      'id',
+      'meta',
+      'implicitRules',
+      'language',
+      'text',
+      'contained',
+      'extension',
+      'modifierExtension',
+      'identifier',
+      'basedOn',
+      'partOf',
+      'status',
+      'type',
+      'modality',
+      'view',
+      'subject',
+      'encounter',
+      'createdX',
+      'issued',
+      'operator',
+      'reasonCode',
+      'bodySite',
+      'deviceName',
+      'device',
+      'height',
+      'width',
+      'frames',
+      'duration',
+      'content',
+      'note',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> getChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'meta':
+        if (meta != null) {
+          fields.add(meta!);
+        }
+      case 'implicitRules':
+        if (implicitRules != null) {
+          fields.add(implicitRules!);
+        }
+      case 'language':
+        if (language != null) {
+          fields.add(language!);
+        }
+      case 'text':
+        if (text != null) {
+          fields.add(text!);
+        }
+      case 'contained':
+        if (contained != null) {
+          fields.addAll(contained!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'identifier':
+        if (identifier != null) {
+          fields.addAll(identifier!);
+        }
+      case 'basedOn':
+        if (basedOn != null) {
+          fields.addAll(basedOn!);
+        }
+      case 'partOf':
+        if (partOf != null) {
+          fields.addAll(partOf!);
+        }
+      case 'status':
+        fields.add(status);
+      case 'type':
+        if (type != null) {
+          fields.add(type!);
+        }
+      case 'modality':
+        if (modality != null) {
+          fields.add(modality!);
+        }
+      case 'view':
+        if (view != null) {
+          fields.add(view!);
+        }
+      case 'subject':
+        if (subject != null) {
+          fields.add(subject!);
+        }
+      case 'encounter':
+        if (encounter != null) {
+          fields.add(encounter!);
+        }
+      case 'created':
+        fields.add(createdX!);
+      case 'createdX':
+        fields.add(createdX!);
+      case 'createdDateTime':
+        if (createdX is FhirDateTime) {
+          fields.add(createdX!);
+        }
+      case 'createdPeriod':
+        if (createdX is Period) {
+          fields.add(createdX!);
+        }
+      case 'issued':
+        if (issued != null) {
+          fields.add(issued!);
+        }
+      case 'operator':
+        if (operator_ != null) {
+          fields.add(operator_!);
+        }
+      case 'reasonCode':
+        if (reasonCode != null) {
+          fields.addAll(reasonCode!);
+        }
+      case 'bodySite':
+        if (bodySite != null) {
+          fields.add(bodySite!);
+        }
+      case 'deviceName':
+        if (deviceName != null) {
+          fields.add(deviceName!);
+        }
+      case 'device':
+        if (device != null) {
+          fields.add(device!);
+        }
+      case 'height':
+        if (height != null) {
+          fields.add(height!);
+        }
+      case 'width':
+        if (width != null) {
+          fields.add(width!);
+        }
+      case 'frames':
+        if (frames != null) {
+          fields.add(frames!);
+        }
+      case 'duration':
+        if (duration != null) {
+          fields.add(duration!);
+        }
+      case 'content':
+        fields.add(content);
+      case 'note':
+        if (note != null) {
+          fields.addAll(note!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildByName(String name) {
+    final values = getChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   Media clone() => copyWith();
 

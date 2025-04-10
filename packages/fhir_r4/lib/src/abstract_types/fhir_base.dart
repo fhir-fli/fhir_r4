@@ -86,6 +86,39 @@ abstract class FhirBase {
     return true;
   }
 
+  /// Retrieves the properties of the object.
+  // ignore: avoid_positional_boolean_parameters
+  List<FhirBase> getChildrenByName(String name, [bool checkValid = false]);
+
+  /// Lists the JSON keys for the object.
+  List<String> listChildrenNames() {
+    // Subclasses should override this to return their specific children.
+    return <String>[];
+  }
+
+  /// Retrieves a property by name, or if its a list that contains only one
+  /// element, returns that element.
+  FhirBase? getChildByName(String name) {
+    final children = getChildrenByName(name);
+    if (children.isEmpty) {
+      return null;
+    }
+    if (children.length == 1) {
+      return children.first;
+    }
+    throw Exception('Cannot get child value for $name');
+  }
+
+  /// Checks if the object has values.
+  bool hasValues() {
+    for (final child in listChildrenNames()) {
+      if (getChildByName(child) != null) {
+        return true;
+      }
+    }
+    return false;
+  }
+
   /// Checks if the list is empty.
   static bool noList<T extends FhirBase>(List<T>? list) {
     return list == null ||

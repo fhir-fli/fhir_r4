@@ -7009,86 +7009,6 @@ class ElementDefinitionBuilder extends BackboneTypeBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool path = false,
-    bool representation = false,
-    bool sliceName = false,
-    bool sliceIsConstraining = false,
-    bool label = false,
-    bool code = false,
-    bool slicing = false,
-    bool short = false,
-    bool definition = false,
-    bool comment = false,
-    bool requirements = false,
-    bool alias = false,
-    bool min = false,
-    bool max = false,
-    bool base = false,
-    bool contentReference = false,
-    bool type = false,
-    bool defaultValue = false,
-    bool meaningWhenMissing = false,
-    bool orderMeaning = false,
-    bool fixed = false,
-    bool pattern = false,
-    bool example = false,
-    bool minValue = false,
-    bool maxValue = false,
-    bool maxLength = false,
-    bool condition = false,
-    bool constraint = false,
-    bool mustSupport = false,
-    bool isModifier = false,
-    bool isModifierReason = false,
-    bool isSummary = false,
-    bool binding = false,
-    bool mapping = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (path) this.path = null;
-    if (representation) this.representation = null;
-    if (sliceName) this.sliceName = null;
-    if (sliceIsConstraining) this.sliceIsConstraining = null;
-    if (label) this.label = null;
-    if (code) this.code = null;
-    if (slicing) this.slicing = null;
-    if (short) this.short = null;
-    if (definition) this.definition = null;
-    if (comment) this.comment = null;
-    if (requirements) this.requirements = null;
-    if (alias) this.alias = null;
-    if (min) this.min = null;
-    if (max) this.max = null;
-    if (base) this.base = null;
-    if (contentReference) this.contentReference = null;
-    if (type) this.type = null;
-    if (defaultValue) defaultValueX = null;
-    if (meaningWhenMissing) this.meaningWhenMissing = null;
-    if (orderMeaning) this.orderMeaning = null;
-    if (fixed) fixedX = null;
-    if (pattern) patternX = null;
-    if (example) this.example = null;
-    if (minValue) minValueX = null;
-    if (maxValue) maxValueX = null;
-    if (maxLength) this.maxLength = null;
-    if (condition) this.condition = null;
-    if (constraint) this.constraint = null;
-    if (mustSupport) this.mustSupport = null;
-    if (isModifier) this.isModifier = null;
-    if (isModifierReason) this.isModifierReason = null;
-    if (isSummary) this.isSummary = null;
-    if (binding) this.binding = null;
-    if (mapping) this.mapping = null;
-  }
-
   @override
   ElementDefinitionBuilder clone() => throw UnimplementedError();
   @override
@@ -7882,24 +7802,6 @@ class ElementDefinitionSlicingBuilder extends ElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool discriminator = false,
-    bool description = false,
-    bool ordered = false,
-    bool rules = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (discriminator) this.discriminator = null;
-    if (description) this.description = null;
-    if (ordered) this.ordered = null;
-    if (rules) this.rules = null;
-  }
-
   @override
   ElementDefinitionSlicingBuilder clone() => throw UnimplementedError();
   @override
@@ -8346,20 +8248,6 @@ class ElementDefinitionDiscriminatorBuilder extends ElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool type = false,
-    bool path = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (type) this.type = null;
-    if (path) this.path = null;
   }
 
   @override
@@ -8842,22 +8730,6 @@ class ElementDefinitionBaseBuilder extends ElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool path = false,
-    bool min = false,
-    bool max = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (path) this.path = null;
-    if (min) this.min = null;
-    if (max) this.max = null;
   }
 
   @override
@@ -9535,26 +9407,6 @@ class ElementDefinitionTypeBuilder extends ElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool code = false,
-    bool profile = false,
-    bool targetProfile = false,
-    bool aggregation = false,
-    bool versioning = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (code) this.code = null;
-    if (profile) this.profile = null;
-    if (targetProfile) this.targetProfile = null;
-    if (aggregation) this.aggregation = null;
-    if (versioning) this.versioning = null;
   }
 
   @override
@@ -11499,20 +11351,6 @@ class ElementDefinitionExampleBuilder extends ElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool label = false,
-    bool value = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (label) this.label = null;
-    if (value) valueX = null;
-  }
-
   @override
   ElementDefinitionExampleBuilder clone() => throw UnimplementedError();
   @override
@@ -12168,30 +12006,6 @@ class ElementDefinitionConstraintBuilder extends ElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool key = false,
-    bool requirements = false,
-    bool severity = false,
-    bool human = false,
-    bool expression = false,
-    bool xpath = false,
-    bool source = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (key) this.key = null;
-    if (requirements) this.requirements = null;
-    if (severity) this.severity = null;
-    if (human) this.human = null;
-    if (expression) this.expression = null;
-    if (xpath) this.xpath = null;
-    if (source) this.source = null;
-  }
-
   @override
   ElementDefinitionConstraintBuilder clone() => throw UnimplementedError();
   @override
@@ -12703,22 +12517,6 @@ class ElementDefinitionBindingBuilder extends ElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool strength = false,
-    bool description = false,
-    bool valueSet = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (strength) this.strength = null;
-    if (description) this.description = null;
-    if (valueSet) this.valueSet = null;
   }
 
   @override
@@ -13240,24 +13038,6 @@ class ElementDefinitionMappingBuilder extends ElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool identity = false,
-    bool language = false,
-    bool map = false,
-    bool comment = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (identity) this.identity = null;
-    if (language) this.language = null;
-    if (map) this.map = null;
-    if (comment) this.comment = null;
   }
 
   @override

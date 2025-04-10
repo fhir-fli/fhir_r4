@@ -54,7 +54,9 @@ class _$MarketingStatusCopyWithImpl<T> implements $MarketingStatusCopyWith<T> {
         jurisdiction: identical(jurisdiction, fhirSentinel)
             ? _value.jurisdiction
             : jurisdiction as CodeableConcept?,
-        status: status as CodeableConcept? ?? _value.status,
+        status: identical(status, fhirSentinel)
+            ? _value.status
+            : (status as CodeableConcept?) ?? _value.status,
         dateRange: identical(dateRange, fhirSentinel)
             ? _value.dateRange
             : dateRange as Period?,

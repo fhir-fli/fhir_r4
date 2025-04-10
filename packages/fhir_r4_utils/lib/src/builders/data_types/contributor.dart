@@ -410,22 +410,6 @@ class ContributorBuilder extends DataTypeBuilder
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool type = false,
-    bool name = false,
-    bool contact = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (type) this.type = null;
-    if (name) this.name = null;
-    if (contact) this.contact = null;
-  }
-
   @override
   ContributorBuilder clone() => throw UnimplementedError();
   @override

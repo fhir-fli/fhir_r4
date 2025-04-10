@@ -85,7 +85,9 @@ class _$AdministrableProductDefinitionCopyWithImpl<T>
         identifier: identical(identifier, fhirSentinel)
             ? _value.identifier
             : identifier as List<Identifier>?,
-        status: status as PublicationStatus? ?? _value.status,
+        status: identical(status, fhirSentinel)
+            ? _value.status
+            : (status as PublicationStatus?) ?? _value.status,
         formOf: identical(formOf, fhirSentinel)
             ? _value.formOf
             : formOf as List<Reference>?,
@@ -107,9 +109,11 @@ class _$AdministrableProductDefinitionCopyWithImpl<T>
         property: identical(property, fhirSentinel)
             ? _value.property
             : property as List<AdministrableProductDefinitionProperty>?,
-        routeOfAdministration: routeOfAdministration
-                as List<AdministrableProductDefinitionRouteOfAdministration>? ??
-            _value.routeOfAdministration,
+        routeOfAdministration: identical(routeOfAdministration, fhirSentinel)
+            ? _value.routeOfAdministration
+            : (routeOfAdministration as List<
+                    AdministrableProductDefinitionRouteOfAdministration>?) ??
+                _value.routeOfAdministration,
       ),
     );
   }
@@ -165,7 +169,9 @@ class _$AdministrableProductDefinitionPropertyCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        type: type as CodeableConcept? ?? _value.type,
+        type: identical(type, fhirSentinel)
+            ? _value.type
+            : (type as CodeableConcept?) ?? _value.type,
         valueX: identical(valueX, fhirSentinel)
             ? _value.valueX
             : valueX as CodeableConcept?,
@@ -240,7 +246,9 @@ class _$AdministrableProductDefinitionRouteOfAdministrationCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        code: code as CodeableConcept? ?? _value.code,
+        code: identical(code, fhirSentinel)
+            ? _value.code
+            : (code as CodeableConcept?) ?? _value.code,
         firstDose: identical(firstDose, fhirSentinel)
             ? _value.firstDose
             : firstDose as Quantity?,
@@ -320,7 +328,9 @@ class _$AdministrableProductDefinitionTargetSpeciesCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        code: code as CodeableConcept? ?? _value.code,
+        code: identical(code, fhirSentinel)
+            ? _value.code
+            : (code as CodeableConcept?) ?? _value.code,
         withdrawalPeriod: identical(withdrawalPeriod, fhirSentinel)
             ? _value.withdrawalPeriod
             : withdrawalPeriod
@@ -385,8 +395,12 @@ class _$AdministrableProductDefinitionWithdrawalPeriodCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        tissue: tissue as CodeableConcept? ?? _value.tissue,
-        value: value as Quantity? ?? _value.value,
+        tissue: identical(tissue, fhirSentinel)
+            ? _value.tissue
+            : (tissue as CodeableConcept?) ?? _value.tissue,
+        value: identical(value, fhirSentinel)
+            ? _value.value
+            : (value as Quantity?) ?? _value.value,
         supportingInformation: identical(supportingInformation, fhirSentinel)
             ? _value.supportingInformation
             : supportingInformation as FhirString?,

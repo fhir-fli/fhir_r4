@@ -96,7 +96,9 @@ class _$CoverageCopyWithImpl<T> implements $CoverageCopyWith<T> {
         identifier: identical(identifier, fhirSentinel)
             ? _value.identifier
             : identifier as List<Identifier>?,
-        status: status as FinancialResourceStatusCodes? ?? _value.status,
+        status: identical(status, fhirSentinel)
+            ? _value.status
+            : (status as FinancialResourceStatusCodes?) ?? _value.status,
         type: identical(type, fhirSentinel)
             ? _value.type
             : type as CodeableConcept?,
@@ -109,7 +111,9 @@ class _$CoverageCopyWithImpl<T> implements $CoverageCopyWith<T> {
         subscriberId: identical(subscriberId, fhirSentinel)
             ? _value.subscriberId
             : subscriberId as FhirString?,
-        beneficiary: beneficiary as Reference? ?? _value.beneficiary,
+        beneficiary: identical(beneficiary, fhirSentinel)
+            ? _value.beneficiary
+            : (beneficiary as Reference?) ?? _value.beneficiary,
         dependent: identical(dependent, fhirSentinel)
             ? _value.dependent
             : dependent as FhirString?,
@@ -118,7 +122,9 @@ class _$CoverageCopyWithImpl<T> implements $CoverageCopyWith<T> {
             : relationship as CodeableConcept?,
         period:
             identical(period, fhirSentinel) ? _value.period : period as Period?,
-        payor: payor as List<Reference>? ?? _value.payor,
+        payor: identical(payor, fhirSentinel)
+            ? _value.payor
+            : (payor as List<Reference>?) ?? _value.payor,
         class_: identical(class_, fhirSentinel)
             ? _value.class_
             : class_ as List<CoverageClass>?,
@@ -187,8 +193,12 @@ class _$CoverageClassCopyWithImpl<T> implements $CoverageClassCopyWith<T> {
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        type: type as CodeableConcept? ?? _value.type,
-        value: value as FhirString? ?? _value.value,
+        type: identical(type, fhirSentinel)
+            ? _value.type
+            : (type as CodeableConcept?) ?? _value.type,
+        value: identical(value, fhirSentinel)
+            ? _value.value
+            : (value as FhirString?) ?? _value.value,
         name: identical(name, fhirSentinel) ? _value.name : name as FhirString?,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
@@ -249,7 +259,9 @@ class _$CoverageCostToBeneficiaryCopyWithImpl<T>
         type: identical(type, fhirSentinel)
             ? _value.type
             : type as CodeableConcept?,
-        valueX: valueX as Quantity? ?? _value.valueX,
+        valueX: identical(valueX, fhirSentinel)
+            ? _value.valueX
+            : (valueX as Quantity?) ?? _value.valueX,
         exception: identical(exception, fhirSentinel)
             ? _value.exception
             : exception as List<CoverageException>?,
@@ -308,7 +320,9 @@ class _$CoverageExceptionCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        type: type as CodeableConcept? ?? _value.type,
+        type: identical(type, fhirSentinel)
+            ? _value.type
+            : (type as CodeableConcept?) ?? _value.type,
         period:
             identical(period, fhirSentinel) ? _value.period : period as Period?,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)

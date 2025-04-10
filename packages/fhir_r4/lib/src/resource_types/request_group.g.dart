@@ -113,8 +113,12 @@ class _$RequestGroupCopyWithImpl<T> implements $RequestGroupCopyWith<T> {
         groupIdentifier: identical(groupIdentifier, fhirSentinel)
             ? _value.groupIdentifier
             : groupIdentifier as Identifier?,
-        status: status as RequestStatus? ?? _value.status,
-        intent: intent as RequestIntent? ?? _value.intent,
+        status: identical(status, fhirSentinel)
+            ? _value.status
+            : (status as RequestStatus?) ?? _value.status,
+        intent: identical(intent, fhirSentinel)
+            ? _value.intent
+            : (intent as RequestIntent?) ?? _value.intent,
         priority: identical(priority, fhirSentinel)
             ? _value.priority
             : priority as RequestPriority?,
@@ -341,7 +345,9 @@ class _$RequestGroupConditionCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        kind: kind as ActionConditionKind? ?? _value.kind,
+        kind: identical(kind, fhirSentinel)
+            ? _value.kind
+            : (kind as ActionConditionKind?) ?? _value.kind,
         expression: identical(expression, fhirSentinel)
             ? _value.expression
             : expression as FhirExpression?,
@@ -401,9 +407,12 @@ class _$RequestGroupRelatedActionCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        actionId: actionId as FhirId? ?? _value.actionId,
-        relationship:
-            relationship as ActionRelationshipType? ?? _value.relationship,
+        actionId: identical(actionId, fhirSentinel)
+            ? _value.actionId
+            : (actionId as FhirId?) ?? _value.actionId,
+        relationship: identical(relationship, fhirSentinel)
+            ? _value.relationship
+            : (relationship as ActionRelationshipType?) ?? _value.relationship,
         offsetX: identical(offsetX, fhirSentinel)
             ? _value.offsetX
             : offsetX as FhirDuration?,

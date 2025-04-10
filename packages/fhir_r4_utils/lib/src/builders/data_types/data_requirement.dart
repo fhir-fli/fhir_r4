@@ -775,32 +775,6 @@ class DataRequirementBuilder extends DataTypeBuilder
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool type = false,
-    bool profile = false,
-    bool subject = false,
-    bool mustSupport = false,
-    bool codeFilter = false,
-    bool dateFilter = false,
-    bool limit = false,
-    bool sort = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (type) this.type = null;
-    if (profile) this.profile = null;
-    if (subject) subjectX = null;
-    if (mustSupport) this.mustSupport = null;
-    if (codeFilter) this.codeFilter = null;
-    if (dateFilter) this.dateFilter = null;
-    if (limit) this.limit = null;
-    if (sort) this.sort = null;
-  }
-
   @override
   DataRequirementBuilder clone() => throw UnimplementedError();
   @override
@@ -1374,24 +1348,6 @@ class DataRequirementCodeFilterBuilder extends ElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool path = false,
-    bool searchParam = false,
-    bool valueSet = false,
-    bool code = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (path) this.path = null;
-    if (searchParam) this.searchParam = null;
-    if (valueSet) this.valueSet = null;
-    if (code) this.code = null;
   }
 
   @override
@@ -1977,22 +1933,6 @@ class DataRequirementDateFilterBuilder extends ElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool path = false,
-    bool searchParam = false,
-    bool value = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (path) this.path = null;
-    if (searchParam) this.searchParam = null;
-    if (value) valueX = null;
-  }
-
   @override
   DataRequirementDateFilterBuilder clone() => throw UnimplementedError();
   @override
@@ -2426,20 +2366,6 @@ class DataRequirementSortBuilder extends ElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool path = false,
-    bool direction = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (path) this.path = null;
-    if (direction) this.direction = null;
   }
 
   @override

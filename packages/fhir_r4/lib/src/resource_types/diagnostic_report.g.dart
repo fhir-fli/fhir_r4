@@ -102,11 +102,15 @@ class _$DiagnosticReportCopyWithImpl<T>
         basedOn: identical(basedOn, fhirSentinel)
             ? _value.basedOn
             : basedOn as List<Reference>?,
-        status: status as DiagnosticReportStatus? ?? _value.status,
+        status: identical(status, fhirSentinel)
+            ? _value.status
+            : (status as DiagnosticReportStatus?) ?? _value.status,
         category: identical(category, fhirSentinel)
             ? _value.category
             : category as List<CodeableConcept>?,
-        code: code as CodeableConcept? ?? _value.code,
+        code: identical(code, fhirSentinel)
+            ? _value.code
+            : (code as CodeableConcept?) ?? _value.code,
         subject: identical(subject, fhirSentinel)
             ? _value.subject
             : subject as Reference?,
@@ -200,7 +204,9 @@ class _$DiagnosticReportMediaCopyWithImpl<T>
         comment: identical(comment, fhirSentinel)
             ? _value.comment
             : comment as FhirString?,
-        link: link as Reference? ?? _value.link,
+        link: identical(link, fhirSentinel)
+            ? _value.link
+            : (link as Reference?) ?? _value.link,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,

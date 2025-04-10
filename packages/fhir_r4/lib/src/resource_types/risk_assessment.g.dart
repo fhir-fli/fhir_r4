@@ -102,14 +102,18 @@ class _$RiskAssessmentCopyWithImpl<T> implements $RiskAssessmentCopyWith<T> {
         parent: identical(parent, fhirSentinel)
             ? _value.parent
             : parent as Reference?,
-        status: status as ObservationStatus? ?? _value.status,
+        status: identical(status, fhirSentinel)
+            ? _value.status
+            : (status as ObservationStatus?) ?? _value.status,
         method: identical(method, fhirSentinel)
             ? _value.method
             : method as CodeableConcept?,
         code: identical(code, fhirSentinel)
             ? _value.code
             : code as CodeableConcept?,
-        subject: subject as Reference? ?? _value.subject,
+        subject: identical(subject, fhirSentinel)
+            ? _value.subject
+            : (subject as Reference?) ?? _value.subject,
         encounter: identical(encounter, fhirSentinel)
             ? _value.encounter
             : encounter as Reference?,

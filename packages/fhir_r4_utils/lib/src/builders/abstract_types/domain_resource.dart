@@ -157,7 +157,4 @@ abstract class DomainResourceBuilder extends ResourceBuilder {
   /// Creates an empty property in the object
   @override
   void createProperty(String propertyName);
-
-  @override
-  void clear();
 }

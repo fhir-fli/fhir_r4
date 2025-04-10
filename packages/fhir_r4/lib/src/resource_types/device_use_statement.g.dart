@@ -93,8 +93,12 @@ class _$DeviceUseStatementCopyWithImpl<T>
         basedOn: identical(basedOn, fhirSentinel)
             ? _value.basedOn
             : basedOn as List<Reference>?,
-        status: status as DeviceUseStatementStatus? ?? _value.status,
-        subject: subject as Reference? ?? _value.subject,
+        status: identical(status, fhirSentinel)
+            ? _value.status
+            : (status as DeviceUseStatementStatus?) ?? _value.status,
+        subject: identical(subject, fhirSentinel)
+            ? _value.subject
+            : (subject as Reference?) ?? _value.subject,
         derivedFrom: identical(derivedFrom, fhirSentinel)
             ? _value.derivedFrom
             : derivedFrom as List<Reference>?,
@@ -107,7 +111,9 @@ class _$DeviceUseStatementCopyWithImpl<T>
         source: identical(source, fhirSentinel)
             ? _value.source
             : source as Reference?,
-        device: device as Reference? ?? _value.device,
+        device: identical(device, fhirSentinel)
+            ? _value.device
+            : (device as Reference?) ?? _value.device,
         reasonCode: identical(reasonCode, fhirSentinel)
             ? _value.reasonCode
             : reasonCode as List<CodeableConcept>?,

@@ -529,24 +529,6 @@ class ReferenceBuilder extends DataTypeBuilder
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool reference = false,
-    bool type = false,
-    bool identifier = false,
-    bool display = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (reference) this.reference = null;
-    if (type) this.type = null;
-    if (identifier) this.identifier = null;
-    if (display) this.display = null;
-  }
-
   @override
   ReferenceBuilder clone() => throw UnimplementedError();
   @override

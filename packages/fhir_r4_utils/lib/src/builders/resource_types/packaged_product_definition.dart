@@ -1103,56 +1103,6 @@ class PackagedProductDefinitionBuilder extends DomainResourceBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool identifier = false,
-    bool name = false,
-    bool type = false,
-    bool packageFor = false,
-    bool status = false,
-    bool statusDate = false,
-    bool containedItemQuantity = false,
-    bool description = false,
-    bool legalStatusOfSupply = false,
-    bool marketingStatus = false,
-    bool characteristic = false,
-    bool copackagedIndicator = false,
-    bool manufacturer = false,
-    bool package = false,
-  }) {
-    if (id) this.id = null;
-    if (meta) this.meta = null;
-    if (implicitRules) this.implicitRules = null;
-    if (language) this.language = null;
-    if (text) this.text = null;
-    if (contained) this.contained = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (identifier) this.identifier = null;
-    if (name) this.name = null;
-    if (type) this.type = null;
-    if (packageFor) this.packageFor = null;
-    if (status) this.status = null;
-    if (statusDate) this.statusDate = null;
-    if (containedItemQuantity) this.containedItemQuantity = null;
-    if (description) this.description = null;
-    if (legalStatusOfSupply) this.legalStatusOfSupply = null;
-    if (marketingStatus) this.marketingStatus = null;
-    if (characteristic) this.characteristic = null;
-    if (copackagedIndicator) this.copackagedIndicator = null;
-    if (manufacturer) this.manufacturer = null;
-    if (package) this.package = null;
-  }
-
   @override
   PackagedProductDefinitionBuilder clone() => throw UnimplementedError();
   @override
@@ -1736,22 +1686,6 @@ class PackagedProductDefinitionLegalStatusOfSupplyBuilder
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool code = false,
-    bool jurisdiction = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (code) this.code = null;
-    if (jurisdiction) this.jurisdiction = null;
   }
 
   @override
@@ -2579,38 +2513,6 @@ class PackagedProductDefinitionPackageBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool identifier = false,
-    bool type = false,
-    bool quantity = false,
-    bool material = false,
-    bool alternateMaterial = false,
-    bool shelfLifeStorage = false,
-    bool manufacturer = false,
-    bool property = false,
-    bool containedItem = false,
-    bool package = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (identifier) this.identifier = null;
-    if (type) this.type = null;
-    if (quantity) this.quantity = null;
-    if (material) this.material = null;
-    if (alternateMaterial) this.alternateMaterial = null;
-    if (shelfLifeStorage) this.shelfLifeStorage = null;
-    if (manufacturer) this.manufacturer = null;
-    if (property) this.property = null;
-    if (containedItem) this.containedItem = null;
-    if (package) this.package = null;
-  }
-
   @override
   PackagedProductDefinitionPackageBuilder clone() => throw UnimplementedError();
   @override
@@ -3246,24 +3148,6 @@ class PackagedProductDefinitionShelfLifeStorageBuilder
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool type = false,
-    bool period = false,
-    bool specialPrecautionsForStorage = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (type) this.type = null;
-    if (period) periodX = null;
-    if (specialPrecautionsForStorage) this.specialPrecautionsForStorage = null;
-  }
-
   @override
   PackagedProductDefinitionShelfLifeStorageBuilder clone() =>
       throw UnimplementedError();
@@ -3876,22 +3760,6 @@ class PackagedProductDefinitionPropertyBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool type = false,
-    bool value = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (type) this.type = null;
-    if (value) valueX = null;
-  }
-
   @override
   PackagedProductDefinitionPropertyBuilder clone() =>
       throw UnimplementedError();
@@ -4345,22 +4213,6 @@ class PackagedProductDefinitionContainedItemBuilder
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool item = false,
-    bool amount = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (item) this.item = null;
-    if (amount) this.amount = null;
   }
 
   @override

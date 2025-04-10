@@ -117,12 +117,18 @@ class _$OperationDefinitionCopyWithImpl<T>
         version: identical(version, fhirSentinel)
             ? _value.version
             : version as FhirString?,
-        name: name as FhirString? ?? _value.name,
+        name: identical(name, fhirSentinel)
+            ? _value.name
+            : (name as FhirString?) ?? _value.name,
         title: identical(title, fhirSentinel)
             ? _value.title
             : title as FhirString?,
-        status: status as PublicationStatus? ?? _value.status,
-        kind: kind as OperationKind? ?? _value.kind,
+        status: identical(status, fhirSentinel)
+            ? _value.status
+            : (status as PublicationStatus?) ?? _value.status,
+        kind: identical(kind, fhirSentinel)
+            ? _value.kind
+            : (kind as OperationKind?) ?? _value.kind,
         experimental: identical(experimental, fhirSentinel)
             ? _value.experimental
             : experimental as FhirBoolean?,
@@ -149,7 +155,9 @@ class _$OperationDefinitionCopyWithImpl<T>
         affectsState: identical(affectsState, fhirSentinel)
             ? _value.affectsState
             : affectsState as FhirBoolean?,
-        code: code as FhirCode? ?? _value.code,
+        code: identical(code, fhirSentinel)
+            ? _value.code
+            : (code as FhirCode?) ?? _value.code,
         comment: identical(comment, fhirSentinel)
             ? _value.comment
             : comment as FhirMarkdown?,
@@ -159,9 +167,15 @@ class _$OperationDefinitionCopyWithImpl<T>
         resource: identical(resource, fhirSentinel)
             ? _value.resource
             : resource as List<FhirCode>?,
-        system: system as FhirBoolean? ?? _value.system,
-        type: type as FhirBoolean? ?? _value.type,
-        instance: instance as FhirBoolean? ?? _value.instance,
+        system: identical(system, fhirSentinel)
+            ? _value.system
+            : (system as FhirBoolean?) ?? _value.system,
+        type: identical(type, fhirSentinel)
+            ? _value.type
+            : (type as FhirBoolean?) ?? _value.type,
+        instance: identical(instance, fhirSentinel)
+            ? _value.instance
+            : (instance as FhirBoolean?) ?? _value.instance,
         inputProfile: identical(inputProfile, fhirSentinel)
             ? _value.inputProfile
             : inputProfile as FhirCanonical?,
@@ -243,10 +257,18 @@ class _$OperationDefinitionParameterCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        name: name as FhirCode? ?? _value.name,
-        use: use as OperationParameterUse? ?? _value.use,
-        min: min as FhirInteger? ?? _value.min,
-        max: max as FhirString? ?? _value.max,
+        name: identical(name, fhirSentinel)
+            ? _value.name
+            : (name as FhirCode?) ?? _value.name,
+        use: identical(use, fhirSentinel)
+            ? _value.use
+            : (use as OperationParameterUse?) ?? _value.use,
+        min: identical(min, fhirSentinel)
+            ? _value.min
+            : (min as FhirInteger?) ?? _value.min,
+        max: identical(max, fhirSentinel)
+            ? _value.max
+            : (max as FhirString?) ?? _value.max,
         documentation: identical(documentation, fhirSentinel)
             ? _value.documentation
             : documentation as FhirString?,
@@ -323,8 +345,12 @@ class _$OperationDefinitionBindingCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        strength: strength as BindingStrength? ?? _value.strength,
-        valueSet: valueSet as FhirCanonical? ?? _value.valueSet,
+        strength: identical(strength, fhirSentinel)
+            ? _value.strength
+            : (strength as BindingStrength?) ?? _value.strength,
+        valueSet: identical(valueSet, fhirSentinel)
+            ? _value.valueSet
+            : (valueSet as FhirCanonical?) ?? _value.valueSet,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,
@@ -381,7 +407,9 @@ class _$OperationDefinitionReferencedFromCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        source: source as FhirString? ?? _value.source,
+        source: identical(source, fhirSentinel)
+            ? _value.source
+            : (source as FhirString?) ?? _value.source,
         sourceId: identical(sourceId, fhirSentinel)
             ? _value.sourceId
             : sourceId as FhirString?,

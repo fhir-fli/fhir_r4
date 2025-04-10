@@ -118,16 +118,24 @@ class _$ImmunizationCopyWithImpl<T> implements $ImmunizationCopyWith<T> {
         identifier: identical(identifier, fhirSentinel)
             ? _value.identifier
             : identifier as List<Identifier>?,
-        status: status as ImmunizationStatusCodes? ?? _value.status,
+        status: identical(status, fhirSentinel)
+            ? _value.status
+            : (status as ImmunizationStatusCodes?) ?? _value.status,
         statusReason: identical(statusReason, fhirSentinel)
             ? _value.statusReason
             : statusReason as CodeableConcept?,
-        vaccineCode: vaccineCode as CodeableConcept? ?? _value.vaccineCode,
-        patient: patient as Reference? ?? _value.patient,
+        vaccineCode: identical(vaccineCode, fhirSentinel)
+            ? _value.vaccineCode
+            : (vaccineCode as CodeableConcept?) ?? _value.vaccineCode,
+        patient: identical(patient, fhirSentinel)
+            ? _value.patient
+            : (patient as Reference?) ?? _value.patient,
         encounter: identical(encounter, fhirSentinel)
             ? _value.encounter
             : encounter as Reference?,
-        occurrenceX: occurrenceX as FhirDateTime? ?? _value.occurrenceX,
+        occurrenceX: identical(occurrenceX, fhirSentinel)
+            ? _value.occurrenceX
+            : (occurrenceX as FhirDateTime?) ?? _value.occurrenceX,
         recorded: identical(recorded, fhirSentinel)
             ? _value.recorded
             : recorded as FhirDateTime?,
@@ -245,7 +253,9 @@ class _$ImmunizationPerformerCopyWithImpl<T>
         function_: identical(function_, fhirSentinel)
             ? _value.function_
             : function_ as CodeableConcept?,
-        actor: actor as Reference? ?? _value.actor,
+        actor: identical(actor, fhirSentinel)
+            ? _value.actor
+            : (actor as Reference?) ?? _value.actor,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,
@@ -449,7 +459,9 @@ class _$ImmunizationProtocolAppliedCopyWithImpl<T>
         targetDisease: identical(targetDisease, fhirSentinel)
             ? _value.targetDisease
             : targetDisease as List<CodeableConcept>?,
-        doseNumberX: doseNumberX as FhirPositiveInt? ?? _value.doseNumberX,
+        doseNumberX: identical(doseNumberX, fhirSentinel)
+            ? _value.doseNumberX
+            : (doseNumberX as FhirPositiveInt?) ?? _value.doseNumberX,
         seriesDosesX: identical(seriesDosesX, fhirSentinel)
             ? _value.seriesDosesX
             : seriesDosesX as FhirPositiveInt?,

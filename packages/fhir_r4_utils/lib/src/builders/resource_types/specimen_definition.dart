@@ -730,40 +730,6 @@ class SpecimenDefinitionBuilder extends DomainResourceBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool identifier = false,
-    bool typeCollected = false,
-    bool patientPreparation = false,
-    bool timeAspect = false,
-    bool collection = false,
-    bool typeTested = false,
-  }) {
-    if (id) this.id = null;
-    if (meta) this.meta = null;
-    if (implicitRules) this.implicitRules = null;
-    if (language) this.language = null;
-    if (text) this.text = null;
-    if (contained) this.contained = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (identifier) this.identifier = null;
-    if (typeCollected) this.typeCollected = null;
-    if (patientPreparation) this.patientPreparation = null;
-    if (timeAspect) this.timeAspect = null;
-    if (collection) this.collection = null;
-    if (typeTested) this.typeTested = null;
-  }
-
   @override
   SpecimenDefinitionBuilder clone() => throw UnimplementedError();
   @override
@@ -1540,34 +1506,6 @@ class SpecimenDefinitionTypeTestedBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool isDerived = false,
-    bool type = false,
-    bool preference = false,
-    bool container = false,
-    bool requirement = false,
-    bool retentionTime = false,
-    bool rejectionCriterion = false,
-    bool handling = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (isDerived) this.isDerived = null;
-    if (type) this.type = null;
-    if (preference) this.preference = null;
-    if (container) this.container = null;
-    if (requirement) this.requirement = null;
-    if (retentionTime) this.retentionTime = null;
-    if (rejectionCriterion) this.rejectionCriterion = null;
-    if (handling) this.handling = null;
   }
 
   @override
@@ -2362,34 +2300,6 @@ class SpecimenDefinitionContainerBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool material = false,
-    bool type = false,
-    bool cap = false,
-    bool description = false,
-    bool capacity = false,
-    bool minimumVolume = false,
-    bool additive = false,
-    bool preparation = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (material) this.material = null;
-    if (type) this.type = null;
-    if (cap) this.cap = null;
-    if (description) this.description = null;
-    if (capacity) this.capacity = null;
-    if (minimumVolume) minimumVolumeX = null;
-    if (additive) this.additive = null;
-    if (preparation) this.preparation = null;
-  }
-
   @override
   SpecimenDefinitionContainerBuilder clone() => throw UnimplementedError();
   @override
@@ -2924,20 +2834,6 @@ class SpecimenDefinitionAdditiveBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool additive = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (additive) additiveX = null;
-  }
-
   @override
   SpecimenDefinitionAdditiveBuilder clone() => throw UnimplementedError();
   @override
@@ -3453,26 +3349,6 @@ class SpecimenDefinitionHandlingBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool temperatureQualifier = false,
-    bool temperatureRange = false,
-    bool maxDuration = false,
-    bool instruction = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (temperatureQualifier) this.temperatureQualifier = null;
-    if (temperatureRange) this.temperatureRange = null;
-    if (maxDuration) this.maxDuration = null;
-    if (instruction) this.instruction = null;
   }
 
   @override

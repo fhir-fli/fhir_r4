@@ -78,12 +78,18 @@ class _$FlagCopyWithImpl<T> implements $FlagCopyWith<T> {
         identifier: identical(identifier, fhirSentinel)
             ? _value.identifier
             : identifier as List<Identifier>?,
-        status: status as FlagStatus? ?? _value.status,
+        status: identical(status, fhirSentinel)
+            ? _value.status
+            : (status as FlagStatus?) ?? _value.status,
         category: identical(category, fhirSentinel)
             ? _value.category
             : category as List<CodeableConcept>?,
-        code: code as CodeableConcept? ?? _value.code,
-        subject: subject as Reference? ?? _value.subject,
+        code: identical(code, fhirSentinel)
+            ? _value.code
+            : (code as CodeableConcept?) ?? _value.code,
+        subject: identical(subject, fhirSentinel)
+            ? _value.subject
+            : (subject as Reference?) ?? _value.subject,
         period:
             identical(period, fhirSentinel) ? _value.period : period as Period?,
         encounter: identical(encounter, fhirSentinel)

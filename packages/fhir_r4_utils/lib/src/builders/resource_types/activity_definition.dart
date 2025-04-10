@@ -2838,120 +2838,6 @@ class ActivityDefinitionBuilder extends CanonicalResourceBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool url = false,
-    bool identifier = false,
-    bool version = false,
-    bool name = false,
-    bool title = false,
-    bool subtitle = false,
-    bool status = false,
-    bool experimental = false,
-    bool subject = false,
-    bool date = false,
-    bool publisher = false,
-    bool contact = false,
-    bool description = false,
-    bool useContext = false,
-    bool jurisdiction = false,
-    bool purpose = false,
-    bool usage = false,
-    bool copyright = false,
-    bool approvalDate = false,
-    bool lastReviewDate = false,
-    bool effectivePeriod = false,
-    bool topic = false,
-    bool author = false,
-    bool editor = false,
-    bool reviewer = false,
-    bool endorser = false,
-    bool relatedArtifact = false,
-    bool library_ = false,
-    bool kind = false,
-    bool profile = false,
-    bool code = false,
-    bool intent = false,
-    bool priority = false,
-    bool doNotPerform = false,
-    bool timing = false,
-    bool location = false,
-    bool participant = false,
-    bool product = false,
-    bool quantity = false,
-    bool dosage = false,
-    bool bodySite = false,
-    bool specimenRequirement = false,
-    bool observationRequirement = false,
-    bool observationResultRequirement = false,
-    bool transform = false,
-    bool dynamicValue = false,
-  }) {
-    if (id) this.id = null;
-    if (meta) this.meta = null;
-    if (implicitRules) this.implicitRules = null;
-    if (language) this.language = null;
-    if (text) this.text = null;
-    if (contained) this.contained = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (url) this.url = null;
-    if (identifier) this.identifier = null;
-    if (version) this.version = null;
-    if (name) this.name = null;
-    if (title) this.title = null;
-    if (subtitle) this.subtitle = null;
-    if (status) this.status = null;
-    if (experimental) this.experimental = null;
-    if (subject) subjectX = null;
-    if (date) this.date = null;
-    if (publisher) this.publisher = null;
-    if (contact) this.contact = null;
-    if (description) this.description = null;
-    if (useContext) this.useContext = null;
-    if (jurisdiction) this.jurisdiction = null;
-    if (purpose) this.purpose = null;
-    if (usage) this.usage = null;
-    if (copyright) this.copyright = null;
-    if (approvalDate) this.approvalDate = null;
-    if (lastReviewDate) this.lastReviewDate = null;
-    if (effectivePeriod) this.effectivePeriod = null;
-    if (topic) this.topic = null;
-    if (author) this.author = null;
-    if (editor) this.editor = null;
-    if (reviewer) this.reviewer = null;
-    if (endorser) this.endorser = null;
-    if (relatedArtifact) this.relatedArtifact = null;
-    if (library_) this.library_ = null;
-    if (kind) this.kind = null;
-    if (profile) this.profile = null;
-    if (code) this.code = null;
-    if (intent) this.intent = null;
-    if (priority) this.priority = null;
-    if (doNotPerform) this.doNotPerform = null;
-    if (timing) timingX = null;
-    if (location) this.location = null;
-    if (participant) this.participant = null;
-    if (product) productX = null;
-    if (quantity) this.quantity = null;
-    if (dosage) this.dosage = null;
-    if (bodySite) this.bodySite = null;
-    if (specimenRequirement) this.specimenRequirement = null;
-    if (observationRequirement) this.observationRequirement = null;
-    if (observationResultRequirement) this.observationResultRequirement = null;
-    if (transform) this.transform = null;
-    if (dynamicValue) this.dynamicValue = null;
-  }
-
   @override
   ActivityDefinitionBuilder clone() => throw UnimplementedError();
   @override
@@ -3807,22 +3693,6 @@ class ActivityDefinitionParticipantBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool type = false,
-    bool role = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (type) this.type = null;
-    if (role) this.role = null;
-  }
-
   @override
   ActivityDefinitionParticipantBuilder clone() => throw UnimplementedError();
   @override
@@ -4292,22 +4162,6 @@ class ActivityDefinitionDynamicValueBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool path = false,
-    bool expression = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (path) this.path = null;
-    if (expression) this.expression = null;
   }
 
   @override

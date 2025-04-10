@@ -128,15 +128,21 @@ class _$DeviceRequestCopyWithImpl<T> implements $DeviceRequestCopyWith<T> {
         status: identical(status, fhirSentinel)
             ? _value.status
             : status as RequestStatus?,
-        intent: intent as RequestIntent? ?? _value.intent,
+        intent: identical(intent, fhirSentinel)
+            ? _value.intent
+            : (intent as RequestIntent?) ?? _value.intent,
         priority: identical(priority, fhirSentinel)
             ? _value.priority
             : priority as RequestPriority?,
-        codeX: codeX as Reference? ?? _value.codeX,
+        codeX: identical(codeX, fhirSentinel)
+            ? _value.codeX
+            : (codeX as Reference?) ?? _value.codeX,
         parameter: identical(parameter, fhirSentinel)
             ? _value.parameter
             : parameter as List<DeviceRequestParameter>?,
-        subject: subject as Reference? ?? _value.subject,
+        subject: identical(subject, fhirSentinel)
+            ? _value.subject
+            : (subject as Reference?) ?? _value.subject,
         encounter: identical(encounter, fhirSentinel)
             ? _value.encounter
             : encounter as Reference?,

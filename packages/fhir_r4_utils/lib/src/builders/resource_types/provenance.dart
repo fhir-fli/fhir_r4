@@ -1010,48 +1010,6 @@ class ProvenanceBuilder extends DomainResourceBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool target = false,
-    bool occurred = false,
-    bool recorded = false,
-    bool policy = false,
-    bool location = false,
-    bool reason = false,
-    bool activity = false,
-    bool agent = false,
-    bool entity = false,
-    bool signature = false,
-  }) {
-    if (id) this.id = null;
-    if (meta) this.meta = null;
-    if (implicitRules) this.implicitRules = null;
-    if (language) this.language = null;
-    if (text) this.text = null;
-    if (contained) this.contained = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (target) this.target = null;
-    if (occurred) occurredX = null;
-    if (recorded) this.recorded = null;
-    if (policy) this.policy = null;
-    if (location) this.location = null;
-    if (reason) this.reason = null;
-    if (activity) this.activity = null;
-    if (agent) this.agent = null;
-    if (entity) this.entity = null;
-    if (signature) this.signature = null;
-  }
-
   @override
   ProvenanceBuilder clone() => throw UnimplementedError();
   @override
@@ -1677,26 +1635,6 @@ class ProvenanceAgentBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool type = false,
-    bool role = false,
-    bool who = false,
-    bool onBehalfOf = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (type) this.type = null;
-    if (role) this.role = null;
-    if (who) this.who = null;
-    if (onBehalfOf) this.onBehalfOf = null;
-  }
-
   @override
   ProvenanceAgentBuilder clone() => throw UnimplementedError();
   @override
@@ -2219,24 +2157,6 @@ class ProvenanceEntityBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool role = false,
-    bool what = false,
-    bool agent = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (role) this.role = null;
-    if (what) this.what = null;
-    if (agent) this.agent = null;
   }
 
   @override

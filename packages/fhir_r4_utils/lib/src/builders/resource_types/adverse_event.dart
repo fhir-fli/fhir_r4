@@ -1286,68 +1286,6 @@ class AdverseEventBuilder extends DomainResourceBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool identifier = false,
-    bool actuality = false,
-    bool category = false,
-    bool event = false,
-    bool subject = false,
-    bool encounter = false,
-    bool date = false,
-    bool detected = false,
-    bool recordedDate = false,
-    bool resultingCondition = false,
-    bool location = false,
-    bool seriousness = false,
-    bool severity = false,
-    bool outcome = false,
-    bool recorder = false,
-    bool contributor = false,
-    bool suspectEntity = false,
-    bool subjectMedicalHistory = false,
-    bool referenceDocument = false,
-    bool study = false,
-  }) {
-    if (id) this.id = null;
-    if (meta) this.meta = null;
-    if (implicitRules) this.implicitRules = null;
-    if (language) this.language = null;
-    if (text) this.text = null;
-    if (contained) this.contained = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (identifier) this.identifier = null;
-    if (actuality) this.actuality = null;
-    if (category) this.category = null;
-    if (event) this.event = null;
-    if (subject) this.subject = null;
-    if (encounter) this.encounter = null;
-    if (date) this.date = null;
-    if (detected) this.detected = null;
-    if (recordedDate) this.recordedDate = null;
-    if (resultingCondition) this.resultingCondition = null;
-    if (location) this.location = null;
-    if (seriousness) this.seriousness = null;
-    if (severity) this.severity = null;
-    if (outcome) this.outcome = null;
-    if (recorder) this.recorder = null;
-    if (contributor) this.contributor = null;
-    if (suspectEntity) this.suspectEntity = null;
-    if (subjectMedicalHistory) this.subjectMedicalHistory = null;
-    if (referenceDocument) this.referenceDocument = null;
-    if (study) this.study = null;
-  }
-
   @override
   AdverseEventBuilder clone() => throw UnimplementedError();
   @override
@@ -1993,22 +1931,6 @@ class AdverseEventSuspectEntityBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool instance = false,
-    bool causality = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (instance) this.instance = null;
-    if (causality) this.causality = null;
-  }
-
   @override
   AdverseEventSuspectEntityBuilder clone() => throw UnimplementedError();
   @override
@@ -2526,26 +2448,6 @@ class AdverseEventCausalityBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool assessment = false,
-    bool productRelatedness = false,
-    bool author = false,
-    bool method = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (assessment) this.assessment = null;
-    if (productRelatedness) this.productRelatedness = null;
-    if (author) this.author = null;
-    if (method) this.method = null;
   }
 
   @override

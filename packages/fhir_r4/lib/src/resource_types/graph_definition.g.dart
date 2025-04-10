@@ -94,8 +94,12 @@ class _$GraphDefinitionCopyWithImpl<T> implements $GraphDefinitionCopyWith<T> {
         version: identical(version, fhirSentinel)
             ? _value.version
             : version as FhirString?,
-        name: name as FhirString? ?? _value.name,
-        status: status as PublicationStatus? ?? _value.status,
+        name: identical(name, fhirSentinel)
+            ? _value.name
+            : (name as FhirString?) ?? _value.name,
+        status: identical(status, fhirSentinel)
+            ? _value.status
+            : (status as PublicationStatus?) ?? _value.status,
         experimental: identical(experimental, fhirSentinel)
             ? _value.experimental
             : experimental as FhirBoolean?,
@@ -119,7 +123,9 @@ class _$GraphDefinitionCopyWithImpl<T> implements $GraphDefinitionCopyWith<T> {
         purpose: identical(purpose, fhirSentinel)
             ? _value.purpose
             : purpose as FhirMarkdown?,
-        start: start as FhirCode? ?? _value.start,
+        start: identical(start, fhirSentinel)
+            ? _value.start
+            : (start as FhirCode?) ?? _value.start,
         profile: identical(profile, fhirSentinel)
             ? _value.profile
             : profile as FhirCanonical?,
@@ -257,7 +263,9 @@ class _$GraphDefinitionTargetCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        type: type as FhirCode? ?? _value.type,
+        type: identical(type, fhirSentinel)
+            ? _value.type
+            : (type as FhirCode?) ?? _value.type,
         params: identical(params, fhirSentinel)
             ? _value.params
             : params as FhirString?,
@@ -330,9 +338,15 @@ class _$GraphDefinitionCompartmentCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        use: use as GraphCompartmentUse? ?? _value.use,
-        code: code as CompartmentType? ?? _value.code,
-        rule: rule as GraphCompartmentRule? ?? _value.rule,
+        use: identical(use, fhirSentinel)
+            ? _value.use
+            : (use as GraphCompartmentUse?) ?? _value.use,
+        code: identical(code, fhirSentinel)
+            ? _value.code
+            : (code as CompartmentType?) ?? _value.code,
+        rule: identical(rule, fhirSentinel)
+            ? _value.rule
+            : (rule as GraphCompartmentRule?) ?? _value.rule,
         expression: identical(expression, fhirSentinel)
             ? _value.expression
             : expression as FhirString?,

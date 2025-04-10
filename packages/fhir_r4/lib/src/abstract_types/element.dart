@@ -127,6 +127,16 @@ class Element extends FhirBase {
   }
 
   @override
+  List<FhirBase> getChildrenByName(String name, [bool checkValid = false]) {
+    if (name == 'id') {
+      return [id!];
+    } else if (name == 'extension') {
+      return extension_ ?? <FhirExtension>[];
+    }
+    return <FhirBase>[];
+  }
+
+  @override
   bool isEmpty() {
     return super.isEmpty() && (extension_?.isEmpty ?? true);
   }

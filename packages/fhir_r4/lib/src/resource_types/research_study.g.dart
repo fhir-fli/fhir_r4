@@ -119,7 +119,9 @@ class _$ResearchStudyCopyWithImpl<T> implements $ResearchStudyCopyWith<T> {
         partOf: identical(partOf, fhirSentinel)
             ? _value.partOf
             : partOf as List<Reference>?,
-        status: status as ResearchStudyStatus? ?? _value.status,
+        status: identical(status, fhirSentinel)
+            ? _value.status
+            : (status as ResearchStudyStatus?) ?? _value.status,
         primaryPurposeType: identical(primaryPurposeType, fhirSentinel)
             ? _value.primaryPurposeType
             : primaryPurposeType as CodeableConcept?,
@@ -229,7 +231,9 @@ class _$ResearchStudyArmCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        name: name as FhirString? ?? _value.name,
+        name: identical(name, fhirSentinel)
+            ? _value.name
+            : (name as FhirString?) ?? _value.name,
         type: identical(type, fhirSentinel)
             ? _value.type
             : type as CodeableConcept?,

@@ -1206,60 +1206,6 @@ class GoalBuilder extends DomainResourceBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool identifier = false,
-    bool lifecycleStatus = false,
-    bool achievementStatus = false,
-    bool category = false,
-    bool priority = false,
-    bool description = false,
-    bool subject = false,
-    bool start = false,
-    bool target = false,
-    bool statusDate = false,
-    bool statusReason = false,
-    bool expressedBy = false,
-    bool addresses = false,
-    bool note = false,
-    bool outcomeCode = false,
-    bool outcomeReference = false,
-  }) {
-    if (id) this.id = null;
-    if (meta) this.meta = null;
-    if (implicitRules) this.implicitRules = null;
-    if (language) this.language = null;
-    if (text) this.text = null;
-    if (contained) this.contained = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (identifier) this.identifier = null;
-    if (lifecycleStatus) this.lifecycleStatus = null;
-    if (achievementStatus) this.achievementStatus = null;
-    if (category) this.category = null;
-    if (priority) this.priority = null;
-    if (description) this.description = null;
-    if (subject) this.subject = null;
-    if (start) startX = null;
-    if (target) this.target = null;
-    if (statusDate) this.statusDate = null;
-    if (statusReason) this.statusReason = null;
-    if (expressedBy) this.expressedBy = null;
-    if (addresses) this.addresses = null;
-    if (note) this.note = null;
-    if (outcomeCode) this.outcomeCode = null;
-    if (outcomeReference) this.outcomeReference = null;
-  }
-
   @override
   GoalBuilder clone() => throw UnimplementedError();
   @override
@@ -2170,24 +2116,6 @@ class GoalTargetBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool measure = false,
-    bool detail = false,
-    bool due = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (measure) this.measure = null;
-    if (detail) detailX = null;
-    if (due) dueX = null;
   }
 
   @override

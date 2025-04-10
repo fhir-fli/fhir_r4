@@ -1653,80 +1653,6 @@ class OperationDefinitionBuilder extends CanonicalResourceBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool url = false,
-    bool version = false,
-    bool name = false,
-    bool title = false,
-    bool status = false,
-    bool kind = false,
-    bool experimental = false,
-    bool date = false,
-    bool publisher = false,
-    bool contact = false,
-    bool description = false,
-    bool useContext = false,
-    bool jurisdiction = false,
-    bool purpose = false,
-    bool affectsState = false,
-    bool code = false,
-    bool comment = false,
-    bool base = false,
-    bool resource = false,
-    bool system = false,
-    bool type = false,
-    bool instance = false,
-    bool inputProfile = false,
-    bool outputProfile = false,
-    bool parameter = false,
-    bool overload = false,
-  }) {
-    if (id) this.id = null;
-    if (meta) this.meta = null;
-    if (implicitRules) this.implicitRules = null;
-    if (language) this.language = null;
-    if (text) this.text = null;
-    if (contained) this.contained = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (url) this.url = null;
-    if (version) this.version = null;
-    if (name) this.name = null;
-    if (title) this.title = null;
-    if (status) this.status = null;
-    if (kind) this.kind = null;
-    if (experimental) this.experimental = null;
-    if (date) this.date = null;
-    if (publisher) this.publisher = null;
-    if (contact) this.contact = null;
-    if (description) this.description = null;
-    if (useContext) this.useContext = null;
-    if (jurisdiction) this.jurisdiction = null;
-    if (purpose) this.purpose = null;
-    if (affectsState) this.affectsState = null;
-    if (code) this.code = null;
-    if (comment) this.comment = null;
-    if (base) this.base = null;
-    if (resource) this.resource = null;
-    if (system) this.system = null;
-    if (type) this.type = null;
-    if (instance) this.instance = null;
-    if (inputProfile) this.inputProfile = null;
-    if (outputProfile) this.outputProfile = null;
-    if (parameter) this.parameter = null;
-    if (overload) this.overload = null;
-  }
-
   @override
   OperationDefinitionBuilder clone() => throw UnimplementedError();
   @override
@@ -2870,40 +2796,6 @@ class OperationDefinitionParameterBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool name = false,
-    bool use = false,
-    bool min = false,
-    bool max = false,
-    bool documentation = false,
-    bool type = false,
-    bool targetProfile = false,
-    bool searchType = false,
-    bool binding = false,
-    bool referencedFrom = false,
-    bool part_ = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (name) this.name = null;
-    if (use) this.use = null;
-    if (min) this.min = null;
-    if (max) this.max = null;
-    if (documentation) this.documentation = null;
-    if (type) this.type = null;
-    if (targetProfile) this.targetProfile = null;
-    if (searchType) this.searchType = null;
-    if (binding) this.binding = null;
-    if (referencedFrom) this.referencedFrom = null;
-    if (part_) this.part_ = null;
-  }
-
   @override
   OperationDefinitionParameterBuilder clone() => throw UnimplementedError();
   @override
@@ -3454,22 +3346,6 @@ class OperationDefinitionBindingBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool strength = false,
-    bool valueSet = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (strength) this.strength = null;
-    if (valueSet) this.valueSet = null;
-  }
-
   @override
   OperationDefinitionBindingBuilder clone() => throw UnimplementedError();
   @override
@@ -3942,22 +3818,6 @@ class OperationDefinitionReferencedFromBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool source = false,
-    bool sourceId = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (source) this.source = null;
-    if (sourceId) this.sourceId = null;
   }
 
   @override
@@ -4458,22 +4318,6 @@ class OperationDefinitionOverloadBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool parameterName = false,
-    bool comment = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (parameterName) this.parameterName = null;
-    if (comment) this.comment = null;
   }
 
   @override

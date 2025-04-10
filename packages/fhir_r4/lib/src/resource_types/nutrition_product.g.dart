@@ -80,7 +80,9 @@ class _$NutritionProductCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        status: status as NutritionProductStatus? ?? _value.status,
+        status: identical(status, fhirSentinel)
+            ? _value.status
+            : (status as NutritionProductStatus?) ?? _value.status,
         category: identical(category, fhirSentinel)
             ? _value.category
             : category as List<CodeableConcept>?,
@@ -221,7 +223,9 @@ class _$NutritionProductIngredientCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        item: item as CodeableReference? ?? _value.item,
+        item: identical(item, fhirSentinel)
+            ? _value.item
+            : (item as CodeableReference?) ?? _value.item,
         amount: identical(amount, fhirSentinel)
             ? _value.amount
             : amount as List<Ratio>?,
@@ -281,8 +285,12 @@ class _$NutritionProductProductCharacteristicCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        type: type as CodeableConcept? ?? _value.type,
-        valueX: valueX as CodeableConcept? ?? _value.valueX,
+        type: identical(type, fhirSentinel)
+            ? _value.type
+            : (type as CodeableConcept?) ?? _value.type,
+        valueX: identical(valueX, fhirSentinel)
+            ? _value.valueX
+            : (valueX as CodeableConcept?) ?? _value.valueX,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,

@@ -941,48 +941,6 @@ class AdministrableProductDefinitionBuilder extends DomainResourceBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool identifier = false,
-    bool status = false,
-    bool formOf = false,
-    bool administrableDoseForm = false,
-    bool unitOfPresentation = false,
-    bool producedFrom = false,
-    bool ingredient = false,
-    bool device = false,
-    bool property = false,
-    bool routeOfAdministration = false,
-  }) {
-    if (id) this.id = null;
-    if (meta) this.meta = null;
-    if (implicitRules) this.implicitRules = null;
-    if (language) this.language = null;
-    if (text) this.text = null;
-    if (contained) this.contained = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (identifier) this.identifier = null;
-    if (status) this.status = null;
-    if (formOf) this.formOf = null;
-    if (administrableDoseForm) this.administrableDoseForm = null;
-    if (unitOfPresentation) this.unitOfPresentation = null;
-    if (producedFrom) this.producedFrom = null;
-    if (ingredient) this.ingredient = null;
-    if (device) this.device = null;
-    if (property) this.property = null;
-    if (routeOfAdministration) this.routeOfAdministration = null;
-  }
-
   @override
   AdministrableProductDefinitionBuilder clone() => throw UnimplementedError();
   @override
@@ -1724,24 +1682,6 @@ class AdministrableProductDefinitionPropertyBuilder
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool type = false,
-    bool value = false,
-    bool status = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (type) this.type = null;
-    if (value) valueX = null;
-    if (status) this.status = null;
-  }
-
   @override
   AdministrableProductDefinitionPropertyBuilder clone() =>
       throw UnimplementedError();
@@ -2383,32 +2323,6 @@ class AdministrableProductDefinitionRouteOfAdministrationBuilder
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool code = false,
-    bool firstDose = false,
-    bool maxSingleDose = false,
-    bool maxDosePerDay = false,
-    bool maxDosePerTreatmentPeriod = false,
-    bool maxTreatmentPeriod = false,
-    bool targetSpecies = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (code) this.code = null;
-    if (firstDose) this.firstDose = null;
-    if (maxSingleDose) this.maxSingleDose = null;
-    if (maxDosePerDay) this.maxDosePerDay = null;
-    if (maxDosePerTreatmentPeriod) this.maxDosePerTreatmentPeriod = null;
-    if (maxTreatmentPeriod) this.maxTreatmentPeriod = null;
-    if (targetSpecies) this.targetSpecies = null;
-  }
-
   @override
   AdministrableProductDefinitionRouteOfAdministrationBuilder clone() =>
       throw UnimplementedError();
@@ -2918,22 +2832,6 @@ class AdministrableProductDefinitionTargetSpeciesBuilder
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool code = false,
-    bool withdrawalPeriod = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (code) this.code = null;
-    if (withdrawalPeriod) this.withdrawalPeriod = null;
-  }
-
   @override
   AdministrableProductDefinitionTargetSpeciesBuilder clone() =>
       throw UnimplementedError();
@@ -3431,24 +3329,6 @@ class AdministrableProductDefinitionWithdrawalPeriodBuilder
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool tissue = false,
-    bool value = false,
-    bool supportingInformation = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (tissue) this.tissue = null;
-    if (value) this.value = null;
-    if (supportingInformation) this.supportingInformation = null;
   }
 
   @override

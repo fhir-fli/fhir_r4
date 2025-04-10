@@ -107,7 +107,9 @@ class _$ElementDefinitionCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        path: path as FhirString? ?? _value.path,
+        path: identical(path, fhirSentinel)
+            ? _value.path
+            : (path as FhirString?) ?? _value.path,
         representation: identical(representation, fhirSentinel)
             ? _value.representation
             : representation as List<PropertyRepresentation>?,
@@ -265,7 +267,9 @@ class _$ElementDefinitionSlicingCopyWithImpl<T>
         ordered: identical(ordered, fhirSentinel)
             ? _value.ordered
             : ordered as FhirBoolean?,
-        rules: rules as SlicingRules? ?? _value.rules,
+        rules: identical(rules, fhirSentinel)
+            ? _value.rules
+            : (rules as SlicingRules?) ?? _value.rules,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,
@@ -316,8 +320,12 @@ class _$ElementDefinitionDiscriminatorCopyWithImpl<T>
         extension_: identical(extension_, fhirSentinel)
             ? _value.extension_
             : extension_ as List<FhirExtension>?,
-        type: type as DiscriminatorType? ?? _value.type,
-        path: path as FhirString? ?? _value.path,
+        type: identical(type, fhirSentinel)
+            ? _value.type
+            : (type as DiscriminatorType?) ?? _value.type,
+        path: identical(path, fhirSentinel)
+            ? _value.path
+            : (path as FhirString?) ?? _value.path,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,
@@ -370,9 +378,15 @@ class _$ElementDefinitionBaseCopyWithImpl<T>
         extension_: identical(extension_, fhirSentinel)
             ? _value.extension_
             : extension_ as List<FhirExtension>?,
-        path: path as FhirString? ?? _value.path,
-        min: min as FhirUnsignedInt? ?? _value.min,
-        max: max as FhirString? ?? _value.max,
+        path: identical(path, fhirSentinel)
+            ? _value.path
+            : (path as FhirString?) ?? _value.path,
+        min: identical(min, fhirSentinel)
+            ? _value.min
+            : (min as FhirUnsignedInt?) ?? _value.min,
+        max: identical(max, fhirSentinel)
+            ? _value.max
+            : (max as FhirString?) ?? _value.max,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,
@@ -427,7 +441,9 @@ class _$ElementDefinitionTypeCopyWithImpl<T>
         extension_: identical(extension_, fhirSentinel)
             ? _value.extension_
             : extension_ as List<FhirExtension>?,
-        code: code as FhirUri? ?? _value.code,
+        code: identical(code, fhirSentinel)
+            ? _value.code
+            : (code as FhirUri?) ?? _value.code,
         profile: identical(profile, fhirSentinel)
             ? _value.profile
             : profile as List<FhirCanonical>?,
@@ -489,8 +505,12 @@ class _$ElementDefinitionExampleCopyWithImpl<T>
         extension_: identical(extension_, fhirSentinel)
             ? _value.extension_
             : extension_ as List<FhirExtension>?,
-        label: label as FhirString? ?? _value.label,
-        valueX: valueX as FhirBase64Binary? ?? _value.valueX,
+        label: identical(label, fhirSentinel)
+            ? _value.label
+            : (label as FhirString?) ?? _value.label,
+        valueX: identical(valueX, fhirSentinel)
+            ? _value.valueX
+            : (valueX as FhirBase64Binary?) ?? _value.valueX,
         disallowExtensions: identical(disallowExtensions, fhirSentinel)
             ? _value.disallowExtensions
             : disallowExtensions as bool?,
@@ -551,12 +571,18 @@ class _$ElementDefinitionConstraintCopyWithImpl<T>
         extension_: identical(extension_, fhirSentinel)
             ? _value.extension_
             : extension_ as List<FhirExtension>?,
-        key: key as FhirId? ?? _value.key,
+        key: identical(key, fhirSentinel)
+            ? _value.key
+            : (key as FhirId?) ?? _value.key,
         requirements: identical(requirements, fhirSentinel)
             ? _value.requirements
             : requirements as FhirString?,
-        severity: severity as ConstraintSeverity? ?? _value.severity,
-        human: human as FhirString? ?? _value.human,
+        severity: identical(severity, fhirSentinel)
+            ? _value.severity
+            : (severity as ConstraintSeverity?) ?? _value.severity,
+        human: identical(human, fhirSentinel)
+            ? _value.human
+            : (human as FhirString?) ?? _value.human,
         expression: identical(expression, fhirSentinel)
             ? _value.expression
             : expression as FhirString?,
@@ -619,7 +645,9 @@ class _$ElementDefinitionBindingCopyWithImpl<T>
         extension_: identical(extension_, fhirSentinel)
             ? _value.extension_
             : extension_ as List<FhirExtension>?,
-        strength: strength as BindingStrength? ?? _value.strength,
+        strength: identical(strength, fhirSentinel)
+            ? _value.strength
+            : (strength as BindingStrength?) ?? _value.strength,
         description: identical(description, fhirSentinel)
             ? _value.description
             : description as FhirString?,
@@ -680,11 +708,15 @@ class _$ElementDefinitionMappingCopyWithImpl<T>
         extension_: identical(extension_, fhirSentinel)
             ? _value.extension_
             : extension_ as List<FhirExtension>?,
-        identity: identity as FhirId? ?? _value.identity,
+        identity: identical(identity, fhirSentinel)
+            ? _value.identity
+            : (identity as FhirId?) ?? _value.identity,
         language: identical(language, fhirSentinel)
             ? _value.language
             : language as FhirCode?,
-        map: map as FhirString? ?? _value.map,
+        map: identical(map, fhirSentinel)
+            ? _value.map
+            : (map as FhirString?) ?? _value.map,
         comment: identical(comment, fhirSentinel)
             ? _value.comment
             : comment as FhirString?,

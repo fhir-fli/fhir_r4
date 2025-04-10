@@ -341,20 +341,6 @@ class FhirBase64BinaryBuilder extends PrimitiveTypeBuilder
   @override
   FhirBase64BinaryBuilder createProperty(String propertyName) => this;
 
-  /// Clears selected fields from this object.
-  @override
-  FhirBase64BinaryBuilder clear({
-    bool value = false,
-    bool extension_ = false,
-    bool id = false,
-  }) {
-    return FhirBase64BinaryBuilder(
-      value ? null : valueString,
-      element: element,
-      extension_: extension_ ? <FhirExtensionBuilder>[] : this.extension_,
-      id: id ? null : this.id,
-    );
-  }
 }
 
 /// Enum to indicate a detected file type from the decoded bytes.

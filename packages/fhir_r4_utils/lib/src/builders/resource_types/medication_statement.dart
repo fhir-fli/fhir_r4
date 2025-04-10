@@ -1354,62 +1354,6 @@ class MedicationStatementBuilder extends DomainResourceBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool identifier = false,
-    bool basedOn = false,
-    bool partOf = false,
-    bool status = false,
-    bool statusReason = false,
-    bool category = false,
-    bool medication = false,
-    bool subject = false,
-    bool context = false,
-    bool effective = false,
-    bool dateAsserted = false,
-    bool informationSource = false,
-    bool derivedFrom = false,
-    bool reasonCode = false,
-    bool reasonReference = false,
-    bool note = false,
-    bool dosage = false,
-  }) {
-    if (id) this.id = null;
-    if (meta) this.meta = null;
-    if (implicitRules) this.implicitRules = null;
-    if (language) this.language = null;
-    if (text) this.text = null;
-    if (contained) this.contained = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (identifier) this.identifier = null;
-    if (basedOn) this.basedOn = null;
-    if (partOf) this.partOf = null;
-    if (status) this.status = null;
-    if (statusReason) this.statusReason = null;
-    if (category) this.category = null;
-    if (medication) medicationX = null;
-    if (subject) this.subject = null;
-    if (context) this.context = null;
-    if (effective) effectiveX = null;
-    if (dateAsserted) this.dateAsserted = null;
-    if (informationSource) this.informationSource = null;
-    if (derivedFrom) this.derivedFrom = null;
-    if (reasonCode) this.reasonCode = null;
-    if (reasonReference) this.reasonReference = null;
-    if (note) this.note = null;
-    if (dosage) this.dosage = null;
-  }
-
   @override
   MedicationStatementBuilder clone() => throw UnimplementedError();
   @override

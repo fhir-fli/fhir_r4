@@ -11,7 +11,6 @@ class TRight5 extends Element {
     super.extension_,
     this.a22,
     super.disallowExtensions,
-    super.objectPath = 'TRight5',
   });
 
   factory TRight5.empty() => const TRight5();
@@ -50,24 +49,6 @@ class TRight5 extends Element {
   final List<FhirString>? a22;
 
   @override
-  TRight5 copyWith({
-    FhirString? id,
-    List<FhirExtension>? extension_,
-    List<FhirString>? a22,
-    Map<String, dynamic>? userData,
-    List<String>? formatCommentsPre,
-    List<String>? formatCommentsPost,
-    List<dynamic>? annotations,
-    String? objectPath,
-  }) {
-    return TRight5(
-      id: id ?? this.id,
-      extension_: extension_ ?? this.extension_,
-      a22: a22 ?? this.a22,
-    );
-  }
-
-  @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{'resourceType': 'TRight'};
     if (id != null) json['id'] = id!.valueString;
@@ -81,91 +62,12 @@ class TRight5 extends Element {
   }
 
   @override
-  List<String> listChildrenNames() => ['id', 'extension', 'a22'];
-
-  @override
-  List<FhirBase> getChildrenByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    final fields = <FhirBase>[];
-    switch (fieldName) {
-      case 'id':
-        if (id != null) fields.add(id!);
-      case 'extension':
-        if (extension_ != null) fields.addAll(extension_!);
-      case 'a22':
-        if (a22 != null) fields.addAll(a22!);
-      default:
-        if (checkValid) throw ArgumentError('Invalid name: $fieldName');
-    }
-    return fields;
-  }
-
-  @override
-  FhirBase? getChildByName(String name) {
-    final values = getChildrenByName(name);
-    if (values.length > 1) throw StateError('Too many values for $name found');
-    return values.isNotEmpty ? values.first : null;
-  }
-
-  @override
   bool equalsDeep(FhirBase? other) {
     if (other is! TRight5) return false;
     if (identical(this, other)) return true;
     return id == other.id &&
         const DeepCollectionEquality().equals(extension_, other.extension_) &&
         const DeepCollectionEquality().equals(a22, other.a22);
-  }
-
-  @override
-  TRight5 setChildByName(String childName, dynamic child) {
-    // child must be null, or a (List of) FhirBase(s).
-    // We only do runtime checks; if incorrect, we throw.
-    if (child == null) {
-      throw Exception('Cannot set child to null value for $childName');
-    }
-    if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $childName');
-    }
-    switch (childName) {
-      case 'id':
-        {
-          if (child is FhirString) {
-            return copyWith(id: child);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'extension':
-        {
-          if (child is List<FhirExtension>) {
-            // Add all elements from passed list
-            final newList = [...?extension_, ...child];
-            return copyWith(extension_: newList);
-          } else if (child is FhirExtension) {
-            // Add single element to existing list or create new list
-            final newList = [...?extension_, child];
-            return copyWith(extension_: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      case 'a22':
-        {
-          if (child is List<FhirString>) {
-            final newList = [...?a22, ...child];
-            return copyWith(a22: newList);
-          } else if (child is FhirString) {
-            final newList = [...?a22, child];
-            return copyWith(a22: newList);
-          } else {
-            throw Exception('Invalid child type for $childName');
-          }
-        }
-      default:
-        throw ArgumentError('Field name not recognized');
-    }
   }
 }
 
@@ -380,16 +282,6 @@ class TRight5Builder extends ElementBuilder {
     }
   }
 
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool a22 = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (a22) this.a22 = null;
-  }
 
   @override
   Map<String, dynamic> toJson() {

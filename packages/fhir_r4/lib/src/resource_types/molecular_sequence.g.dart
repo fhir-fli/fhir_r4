@@ -98,8 +98,9 @@ class _$MolecularSequenceCopyWithImpl<T>
             : identifier as List<Identifier>?,
         type:
             identical(type, fhirSentinel) ? _value.type : type as SequenceType?,
-        coordinateSystem:
-            coordinateSystem as FhirInteger? ?? _value.coordinateSystem,
+        coordinateSystem: identical(coordinateSystem, fhirSentinel)
+            ? _value.coordinateSystem
+            : (coordinateSystem as FhirInteger?) ?? _value.coordinateSystem,
         patient: identical(patient, fhirSentinel)
             ? _value.patient
             : patient as Reference?,
@@ -392,7 +393,9 @@ class _$MolecularSequenceQualityCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        type: type as QualityType? ?? _value.type,
+        type: identical(type, fhirSentinel)
+            ? _value.type
+            : (type as QualityType?) ?? _value.type,
         standardSequence: identical(standardSequence, fhirSentinel)
             ? _value.standardSequence
             : standardSequence as CodeableConcept?,
@@ -579,7 +582,9 @@ class _$MolecularSequenceRepositoryCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        type: type as RepositoryType? ?? _value.type,
+        type: identical(type, fhirSentinel)
+            ? _value.type
+            : (type as RepositoryType?) ?? _value.type,
         url: identical(url, fhirSentinel) ? _value.url : url as FhirUri?,
         name: identical(name, fhirSentinel) ? _value.name : name as FhirString?,
         datasetId: identical(datasetId, fhirSentinel)

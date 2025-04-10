@@ -1486,72 +1486,6 @@ class QuestionnaireBuilder extends CanonicalResourceBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool meta = false,
-    bool implicitRules = false,
-    bool language = false,
-    bool text = false,
-    bool contained = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool url = false,
-    bool identifier = false,
-    bool version = false,
-    bool name = false,
-    bool title = false,
-    bool derivedFrom = false,
-    bool status = false,
-    bool experimental = false,
-    bool subjectType = false,
-    bool date = false,
-    bool publisher = false,
-    bool contact = false,
-    bool description = false,
-    bool useContext = false,
-    bool jurisdiction = false,
-    bool purpose = false,
-    bool copyright = false,
-    bool approvalDate = false,
-    bool lastReviewDate = false,
-    bool effectivePeriod = false,
-    bool code = false,
-    bool item = false,
-  }) {
-    if (id) this.id = null;
-    if (meta) this.meta = null;
-    if (implicitRules) this.implicitRules = null;
-    if (language) this.language = null;
-    if (text) this.text = null;
-    if (contained) this.contained = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (url) this.url = null;
-    if (identifier) this.identifier = null;
-    if (version) this.version = null;
-    if (name) this.name = null;
-    if (title) this.title = null;
-    if (derivedFrom) this.derivedFrom = null;
-    if (status) this.status = null;
-    if (experimental) this.experimental = null;
-    if (subjectType) this.subjectType = null;
-    if (date) this.date = null;
-    if (publisher) this.publisher = null;
-    if (contact) this.contact = null;
-    if (description) this.description = null;
-    if (useContext) this.useContext = null;
-    if (jurisdiction) this.jurisdiction = null;
-    if (purpose) this.purpose = null;
-    if (copyright) this.copyright = null;
-    if (approvalDate) this.approvalDate = null;
-    if (lastReviewDate) this.lastReviewDate = null;
-    if (effectivePeriod) this.effectivePeriod = null;
-    if (code) this.code = null;
-    if (item) this.item = null;
-  }
-
   @override
   QuestionnaireBuilder clone() => throw UnimplementedError();
   @override
@@ -2882,50 +2816,6 @@ class QuestionnaireItemBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool linkId = false,
-    bool definition = false,
-    bool code = false,
-    bool prefix = false,
-    bool text = false,
-    bool type = false,
-    bool enableWhen = false,
-    bool enableBehavior = false,
-    bool required_ = false,
-    bool repeats = false,
-    bool readOnly = false,
-    bool maxLength = false,
-    bool answerValueSet = false,
-    bool answerOption = false,
-    bool initial = false,
-    bool item = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (linkId) this.linkId = null;
-    if (definition) this.definition = null;
-    if (code) this.code = null;
-    if (prefix) this.prefix = null;
-    if (text) this.text = null;
-    if (type) this.type = null;
-    if (enableWhen) this.enableWhen = null;
-    if (enableBehavior) this.enableBehavior = null;
-    if (required_) this.required_ = null;
-    if (repeats) this.repeats = null;
-    if (readOnly) this.readOnly = null;
-    if (maxLength) this.maxLength = null;
-    if (answerValueSet) this.answerValueSet = null;
-    if (answerOption) this.answerOption = null;
-    if (initial) this.initial = null;
-    if (item) this.item = null;
-  }
-
   @override
   QuestionnaireItemBuilder clone() => throw UnimplementedError();
   @override
@@ -3849,24 +3739,6 @@ class QuestionnaireEnableWhenBuilder extends BackboneElementBuilder {
     }
   }
 
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool question = false,
-    bool operator_ = false,
-    bool answer = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (question) this.question = null;
-    if (operator_) this.operator_ = null;
-    if (answer) answerX = null;
-  }
-
   @override
   QuestionnaireEnableWhenBuilder clone() => throw UnimplementedError();
   @override
@@ -4516,22 +4388,6 @@ class QuestionnaireAnswerOptionBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool value = false,
-    bool initialSelected = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (value) valueX = null;
-    if (initialSelected) this.initialSelected = null;
   }
 
   @override
@@ -5302,20 +5158,6 @@ class QuestionnaireInitialBuilder extends BackboneElementBuilder {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
-  }
-
-  /// Clears specific fields in this object
-  @override
-  void clear({
-    bool id = false,
-    bool extension_ = false,
-    bool modifierExtension = false,
-    bool value = false,
-  }) {
-    if (id) this.id = null;
-    if (extension_) this.extension_ = null;
-    if (modifierExtension) this.modifierExtension = null;
-    if (value) valueX = null;
   }
 
   @override

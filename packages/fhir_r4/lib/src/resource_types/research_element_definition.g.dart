@@ -144,7 +144,9 @@ class _$ResearchElementDefinitionCopyWithImpl<T>
         subtitle: identical(subtitle, fhirSentinel)
             ? _value.subtitle
             : subtitle as FhirString?,
-        status: status as PublicationStatus? ?? _value.status,
+        status: identical(status, fhirSentinel)
+            ? _value.status
+            : (status as PublicationStatus?) ?? _value.status,
         experimental: identical(experimental, fhirSentinel)
             ? _value.experimental
             : experimental as FhirBoolean?,
@@ -210,12 +212,16 @@ class _$ResearchElementDefinitionCopyWithImpl<T>
         library_: identical(library_, fhirSentinel)
             ? _value.library_
             : library_ as List<FhirCanonical>?,
-        type: type as ResearchElementType? ?? _value.type,
+        type: identical(type, fhirSentinel)
+            ? _value.type
+            : (type as ResearchElementType?) ?? _value.type,
         variableType: identical(variableType, fhirSentinel)
             ? _value.variableType
             : variableType as VariableType?,
-        characteristic:
-            characteristic as List<ResearchElementDefinitionCharacteristic>? ??
+        characteristic: identical(characteristic, fhirSentinel)
+            ? _value.characteristic
+            : (characteristic
+                    as List<ResearchElementDefinitionCharacteristic>?) ??
                 _value.characteristic,
       ),
     );
@@ -290,7 +296,9 @@ class _$ResearchElementDefinitionCharacteristicCopyWithImpl<T>
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        definitionX: definitionX as CodeableConcept? ?? _value.definitionX,
+        definitionX: identical(definitionX, fhirSentinel)
+            ? _value.definitionX
+            : (definitionX as CodeableConcept?) ?? _value.definitionX,
         usageContext: identical(usageContext, fhirSentinel)
             ? _value.usageContext
             : usageContext as List<UsageContext>?,

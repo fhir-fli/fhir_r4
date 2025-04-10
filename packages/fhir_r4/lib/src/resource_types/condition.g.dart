@@ -114,7 +114,9 @@ class _$ConditionCopyWithImpl<T> implements $ConditionCopyWith<T> {
         bodySite: identical(bodySite, fhirSentinel)
             ? _value.bodySite
             : bodySite as List<CodeableConcept>?,
-        subject: subject as Reference? ?? _value.subject,
+        subject: identical(subject, fhirSentinel)
+            ? _value.subject
+            : (subject as Reference?) ?? _value.subject,
         encounter: identical(encounter, fhirSentinel)
             ? _value.encounter
             : encounter as Reference?,

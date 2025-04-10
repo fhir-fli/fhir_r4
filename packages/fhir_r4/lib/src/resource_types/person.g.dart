@@ -157,7 +157,9 @@ class _$PersonLinkCopyWithImpl<T> implements $PersonLinkCopyWith<T> {
         modifierExtension: identical(modifierExtension, fhirSentinel)
             ? _value.modifierExtension
             : modifierExtension as List<FhirExtension>?,
-        target: target as Reference? ?? _value.target,
+        target: identical(target, fhirSentinel)
+            ? _value.target
+            : (target as Reference?) ?? _value.target,
         assurance: identical(assurance, fhirSentinel)
             ? _value.assurance
             : assurance as IdentityAssuranceLevel?,

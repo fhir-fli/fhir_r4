@@ -1474,6 +1474,907 @@ class ElementDefinition extends BackboneType {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> listChildrenNames() {
+    return [
+      'id',
+      'extension',
+      'modifierExtension',
+      'path',
+      'representation',
+      'sliceName',
+      'sliceIsConstraining',
+      'label',
+      'code',
+      'slicing',
+      'short',
+      'definition',
+      'comment',
+      'requirements',
+      'alias',
+      'min',
+      'max',
+      'base',
+      'contentReference',
+      'type',
+      'defaultValueX',
+      'meaningWhenMissing',
+      'orderMeaning',
+      'fixedX',
+      'patternX',
+      'example',
+      'minValueX',
+      'maxValueX',
+      'maxLength',
+      'condition',
+      'constraint',
+      'mustSupport',
+      'isModifier',
+      'isModifierReason',
+      'isSummary',
+      'binding',
+      'mapping',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> getChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          fields.addAll(modifierExtension!);
+        }
+      case 'path':
+        fields.add(path);
+      case 'representation':
+        if (representation != null) {
+          fields.addAll(representation!);
+        }
+      case 'sliceName':
+        if (sliceName != null) {
+          fields.add(sliceName!);
+        }
+      case 'sliceIsConstraining':
+        if (sliceIsConstraining != null) {
+          fields.add(sliceIsConstraining!);
+        }
+      case 'label':
+        if (label != null) {
+          fields.add(label!);
+        }
+      case 'code':
+        if (code != null) {
+          fields.addAll(code!);
+        }
+      case 'slicing':
+        if (slicing != null) {
+          fields.add(slicing!);
+        }
+      case 'short':
+        if (short != null) {
+          fields.add(short!);
+        }
+      case 'definition':
+        if (definition != null) {
+          fields.add(definition!);
+        }
+      case 'comment':
+        if (comment != null) {
+          fields.add(comment!);
+        }
+      case 'requirements':
+        if (requirements != null) {
+          fields.add(requirements!);
+        }
+      case 'alias':
+        if (alias != null) {
+          fields.addAll(alias!);
+        }
+      case 'min':
+        if (min != null) {
+          fields.add(min!);
+        }
+      case 'max':
+        if (max != null) {
+          fields.add(max!);
+        }
+      case 'base':
+        if (base != null) {
+          fields.add(base!);
+        }
+      case 'contentReference':
+        if (contentReference != null) {
+          fields.add(contentReference!);
+        }
+      case 'type':
+        if (type != null) {
+          fields.addAll(type!);
+        }
+      case 'defaultValue':
+        fields.add(defaultValueX!);
+      case 'defaultValueX':
+        fields.add(defaultValueX!);
+      case 'defaultValueBase64Binary':
+        if (defaultValueX is FhirBase64Binary) {
+          fields.add(defaultValueX!);
+        }
+      case 'defaultValueBoolean':
+        if (defaultValueX is FhirBoolean) {
+          fields.add(defaultValueX!);
+        }
+      case 'defaultValueCanonical':
+        if (defaultValueX is FhirCanonical) {
+          fields.add(defaultValueX!);
+        }
+      case 'defaultValueCode':
+        if (defaultValueX is FhirCode) {
+          fields.add(defaultValueX!);
+        }
+      case 'defaultValueDate':
+        if (defaultValueX is FhirDate) {
+          fields.add(defaultValueX!);
+        }
+      case 'defaultValueDateTime':
+        if (defaultValueX is FhirDateTime) {
+          fields.add(defaultValueX!);
+        }
+      case 'defaultValueDecimal':
+        if (defaultValueX is FhirDecimal) {
+          fields.add(defaultValueX!);
+        }
+      case 'defaultValueId':
+        if (defaultValueX is FhirId) {
+          fields.add(defaultValueX!);
+        }
+      case 'defaultValueInstant':
+        if (defaultValueX is FhirInstant) {
+          fields.add(defaultValueX!);
+        }
+      case 'defaultValueInteger':
+        if (defaultValueX is FhirInteger) {
+          fields.add(defaultValueX!);
+        }
+      case 'defaultValueMarkdown':
+        if (defaultValueX is FhirMarkdown) {
+          fields.add(defaultValueX!);
+        }
+      case 'defaultValueOid':
+        if (defaultValueX is FhirOid) {
+          fields.add(defaultValueX!);
+        }
+      case 'defaultValuePositiveInt':
+        if (defaultValueX is FhirPositiveInt) {
+          fields.add(defaultValueX!);
+        }
+      case 'defaultValueString':
+        if (defaultValueX is FhirString) {
+          fields.add(defaultValueX!);
+        }
+      case 'defaultValueTime':
+        if (defaultValueX is FhirTime) {
+          fields.add(defaultValueX!);
+        }
+      case 'defaultValueUnsignedInt':
+        if (defaultValueX is FhirUnsignedInt) {
+          fields.add(defaultValueX!);
+        }
+      case 'defaultValueUri':
+        if (defaultValueX is FhirUri) {
+          fields.add(defaultValueX!);
+        }
+      case 'defaultValueUrl':
+        if (defaultValueX is FhirUrl) {
+          fields.add(defaultValueX!);
+        }
+      case 'defaultValueUuid':
+        if (defaultValueX is FhirUuid) {
+          fields.add(defaultValueX!);
+        }
+      case 'defaultValueAddress':
+        if (defaultValueX is Address) {
+          fields.add(defaultValueX!);
+        }
+      case 'defaultValueAge':
+        if (defaultValueX is Age) {
+          fields.add(defaultValueX!);
+        }
+      case 'defaultValueAnnotation':
+        if (defaultValueX is Annotation) {
+          fields.add(defaultValueX!);
+        }
+      case 'defaultValueAttachment':
+        if (defaultValueX is Attachment) {
+          fields.add(defaultValueX!);
+        }
+      case 'defaultValueCodeableConcept':
+        if (defaultValueX is CodeableConcept) {
+          fields.add(defaultValueX!);
+        }
+      case 'defaultValueCodeableReference':
+        if (defaultValueX is CodeableReference) {
+          fields.add(defaultValueX!);
+        }
+      case 'defaultValueCoding':
+        if (defaultValueX is Coding) {
+          fields.add(defaultValueX!);
+        }
+      case 'defaultValueContactPoint':
+        if (defaultValueX is ContactPoint) {
+          fields.add(defaultValueX!);
+        }
+      case 'defaultValueCount':
+        if (defaultValueX is Count) {
+          fields.add(defaultValueX!);
+        }
+      case 'defaultValueDistance':
+        if (defaultValueX is Distance) {
+          fields.add(defaultValueX!);
+        }
+      case 'defaultValueDuration':
+        if (defaultValueX is FhirDuration) {
+          fields.add(defaultValueX!);
+        }
+      case 'defaultValueHumanName':
+        if (defaultValueX is HumanName) {
+          fields.add(defaultValueX!);
+        }
+      case 'defaultValueIdentifier':
+        if (defaultValueX is Identifier) {
+          fields.add(defaultValueX!);
+        }
+      case 'defaultValueMoney':
+        if (defaultValueX is Money) {
+          fields.add(defaultValueX!);
+        }
+      case 'defaultValuePeriod':
+        if (defaultValueX is Period) {
+          fields.add(defaultValueX!);
+        }
+      case 'defaultValueQuantity':
+        if (defaultValueX is Quantity) {
+          fields.add(defaultValueX!);
+        }
+      case 'defaultValueRange':
+        if (defaultValueX is Range) {
+          fields.add(defaultValueX!);
+        }
+      case 'defaultValueRatio':
+        if (defaultValueX is Ratio) {
+          fields.add(defaultValueX!);
+        }
+      case 'defaultValueRatioRange':
+        if (defaultValueX is RatioRange) {
+          fields.add(defaultValueX!);
+        }
+      case 'defaultValueReference':
+        if (defaultValueX is Reference) {
+          fields.add(defaultValueX!);
+        }
+      case 'defaultValueSampledData':
+        if (defaultValueX is SampledData) {
+          fields.add(defaultValueX!);
+        }
+      case 'defaultValueSignature':
+        if (defaultValueX is Signature) {
+          fields.add(defaultValueX!);
+        }
+      case 'defaultValueTiming':
+        if (defaultValueX is Timing) {
+          fields.add(defaultValueX!);
+        }
+      case 'defaultValueContactDetail':
+        if (defaultValueX is ContactDetail) {
+          fields.add(defaultValueX!);
+        }
+      case 'defaultValueContributor':
+        if (defaultValueX is Contributor) {
+          fields.add(defaultValueX!);
+        }
+      case 'defaultValueDataRequirement':
+        if (defaultValueX is DataRequirement) {
+          fields.add(defaultValueX!);
+        }
+      case 'defaultValueExpression':
+        if (defaultValueX is FhirExpression) {
+          fields.add(defaultValueX!);
+        }
+      case 'defaultValueParameterDefinition':
+        if (defaultValueX is ParameterDefinition) {
+          fields.add(defaultValueX!);
+        }
+      case 'defaultValueRelatedArtifact':
+        if (defaultValueX is RelatedArtifact) {
+          fields.add(defaultValueX!);
+        }
+      case 'defaultValueTriggerDefinition':
+        if (defaultValueX is TriggerDefinition) {
+          fields.add(defaultValueX!);
+        }
+      case 'defaultValueUsageContext':
+        if (defaultValueX is UsageContext) {
+          fields.add(defaultValueX!);
+        }
+      case 'defaultValueDosage':
+        if (defaultValueX is Dosage) {
+          fields.add(defaultValueX!);
+        }
+      case 'meaningWhenMissing':
+        if (meaningWhenMissing != null) {
+          fields.add(meaningWhenMissing!);
+        }
+      case 'orderMeaning':
+        if (orderMeaning != null) {
+          fields.add(orderMeaning!);
+        }
+      case 'fixed':
+        fields.add(fixedX!);
+      case 'fixedX':
+        fields.add(fixedX!);
+      case 'fixedBase64Binary':
+        if (fixedX is FhirBase64Binary) {
+          fields.add(fixedX!);
+        }
+      case 'fixedBoolean':
+        if (fixedX is FhirBoolean) {
+          fields.add(fixedX!);
+        }
+      case 'fixedCanonical':
+        if (fixedX is FhirCanonical) {
+          fields.add(fixedX!);
+        }
+      case 'fixedCode':
+        if (fixedX is FhirCode) {
+          fields.add(fixedX!);
+        }
+      case 'fixedDate':
+        if (fixedX is FhirDate) {
+          fields.add(fixedX!);
+        }
+      case 'fixedDateTime':
+        if (fixedX is FhirDateTime) {
+          fields.add(fixedX!);
+        }
+      case 'fixedDecimal':
+        if (fixedX is FhirDecimal) {
+          fields.add(fixedX!);
+        }
+      case 'fixedId':
+        if (fixedX is FhirId) {
+          fields.add(fixedX!);
+        }
+      case 'fixedInstant':
+        if (fixedX is FhirInstant) {
+          fields.add(fixedX!);
+        }
+      case 'fixedInteger':
+        if (fixedX is FhirInteger) {
+          fields.add(fixedX!);
+        }
+      case 'fixedMarkdown':
+        if (fixedX is FhirMarkdown) {
+          fields.add(fixedX!);
+        }
+      case 'fixedOid':
+        if (fixedX is FhirOid) {
+          fields.add(fixedX!);
+        }
+      case 'fixedPositiveInt':
+        if (fixedX is FhirPositiveInt) {
+          fields.add(fixedX!);
+        }
+      case 'fixedString':
+        if (fixedX is FhirString) {
+          fields.add(fixedX!);
+        }
+      case 'fixedTime':
+        if (fixedX is FhirTime) {
+          fields.add(fixedX!);
+        }
+      case 'fixedUnsignedInt':
+        if (fixedX is FhirUnsignedInt) {
+          fields.add(fixedX!);
+        }
+      case 'fixedUri':
+        if (fixedX is FhirUri) {
+          fields.add(fixedX!);
+        }
+      case 'fixedUrl':
+        if (fixedX is FhirUrl) {
+          fields.add(fixedX!);
+        }
+      case 'fixedUuid':
+        if (fixedX is FhirUuid) {
+          fields.add(fixedX!);
+        }
+      case 'fixedAddress':
+        if (fixedX is Address) {
+          fields.add(fixedX!);
+        }
+      case 'fixedAge':
+        if (fixedX is Age) {
+          fields.add(fixedX!);
+        }
+      case 'fixedAnnotation':
+        if (fixedX is Annotation) {
+          fields.add(fixedX!);
+        }
+      case 'fixedAttachment':
+        if (fixedX is Attachment) {
+          fields.add(fixedX!);
+        }
+      case 'fixedCodeableConcept':
+        if (fixedX is CodeableConcept) {
+          fields.add(fixedX!);
+        }
+      case 'fixedCodeableReference':
+        if (fixedX is CodeableReference) {
+          fields.add(fixedX!);
+        }
+      case 'fixedCoding':
+        if (fixedX is Coding) {
+          fields.add(fixedX!);
+        }
+      case 'fixedContactPoint':
+        if (fixedX is ContactPoint) {
+          fields.add(fixedX!);
+        }
+      case 'fixedCount':
+        if (fixedX is Count) {
+          fields.add(fixedX!);
+        }
+      case 'fixedDistance':
+        if (fixedX is Distance) {
+          fields.add(fixedX!);
+        }
+      case 'fixedDuration':
+        if (fixedX is FhirDuration) {
+          fields.add(fixedX!);
+        }
+      case 'fixedHumanName':
+        if (fixedX is HumanName) {
+          fields.add(fixedX!);
+        }
+      case 'fixedIdentifier':
+        if (fixedX is Identifier) {
+          fields.add(fixedX!);
+        }
+      case 'fixedMoney':
+        if (fixedX is Money) {
+          fields.add(fixedX!);
+        }
+      case 'fixedPeriod':
+        if (fixedX is Period) {
+          fields.add(fixedX!);
+        }
+      case 'fixedQuantity':
+        if (fixedX is Quantity) {
+          fields.add(fixedX!);
+        }
+      case 'fixedRange':
+        if (fixedX is Range) {
+          fields.add(fixedX!);
+        }
+      case 'fixedRatio':
+        if (fixedX is Ratio) {
+          fields.add(fixedX!);
+        }
+      case 'fixedRatioRange':
+        if (fixedX is RatioRange) {
+          fields.add(fixedX!);
+        }
+      case 'fixedReference':
+        if (fixedX is Reference) {
+          fields.add(fixedX!);
+        }
+      case 'fixedSampledData':
+        if (fixedX is SampledData) {
+          fields.add(fixedX!);
+        }
+      case 'fixedSignature':
+        if (fixedX is Signature) {
+          fields.add(fixedX!);
+        }
+      case 'fixedTiming':
+        if (fixedX is Timing) {
+          fields.add(fixedX!);
+        }
+      case 'fixedContactDetail':
+        if (fixedX is ContactDetail) {
+          fields.add(fixedX!);
+        }
+      case 'fixedContributor':
+        if (fixedX is Contributor) {
+          fields.add(fixedX!);
+        }
+      case 'fixedDataRequirement':
+        if (fixedX is DataRequirement) {
+          fields.add(fixedX!);
+        }
+      case 'fixedExpression':
+        if (fixedX is FhirExpression) {
+          fields.add(fixedX!);
+        }
+      case 'fixedParameterDefinition':
+        if (fixedX is ParameterDefinition) {
+          fields.add(fixedX!);
+        }
+      case 'fixedRelatedArtifact':
+        if (fixedX is RelatedArtifact) {
+          fields.add(fixedX!);
+        }
+      case 'fixedTriggerDefinition':
+        if (fixedX is TriggerDefinition) {
+          fields.add(fixedX!);
+        }
+      case 'fixedUsageContext':
+        if (fixedX is UsageContext) {
+          fields.add(fixedX!);
+        }
+      case 'fixedDosage':
+        if (fixedX is Dosage) {
+          fields.add(fixedX!);
+        }
+      case 'pattern':
+        fields.add(patternX!);
+      case 'patternX':
+        fields.add(patternX!);
+      case 'patternBase64Binary':
+        if (patternX is FhirBase64Binary) {
+          fields.add(patternX!);
+        }
+      case 'patternBoolean':
+        if (patternX is FhirBoolean) {
+          fields.add(patternX!);
+        }
+      case 'patternCanonical':
+        if (patternX is FhirCanonical) {
+          fields.add(patternX!);
+        }
+      case 'patternCode':
+        if (patternX is FhirCode) {
+          fields.add(patternX!);
+        }
+      case 'patternDate':
+        if (patternX is FhirDate) {
+          fields.add(patternX!);
+        }
+      case 'patternDateTime':
+        if (patternX is FhirDateTime) {
+          fields.add(patternX!);
+        }
+      case 'patternDecimal':
+        if (patternX is FhirDecimal) {
+          fields.add(patternX!);
+        }
+      case 'patternId':
+        if (patternX is FhirId) {
+          fields.add(patternX!);
+        }
+      case 'patternInstant':
+        if (patternX is FhirInstant) {
+          fields.add(patternX!);
+        }
+      case 'patternInteger':
+        if (patternX is FhirInteger) {
+          fields.add(patternX!);
+        }
+      case 'patternMarkdown':
+        if (patternX is FhirMarkdown) {
+          fields.add(patternX!);
+        }
+      case 'patternOid':
+        if (patternX is FhirOid) {
+          fields.add(patternX!);
+        }
+      case 'patternPositiveInt':
+        if (patternX is FhirPositiveInt) {
+          fields.add(patternX!);
+        }
+      case 'patternString':
+        if (patternX is FhirString) {
+          fields.add(patternX!);
+        }
+      case 'patternTime':
+        if (patternX is FhirTime) {
+          fields.add(patternX!);
+        }
+      case 'patternUnsignedInt':
+        if (patternX is FhirUnsignedInt) {
+          fields.add(patternX!);
+        }
+      case 'patternUri':
+        if (patternX is FhirUri) {
+          fields.add(patternX!);
+        }
+      case 'patternUrl':
+        if (patternX is FhirUrl) {
+          fields.add(patternX!);
+        }
+      case 'patternUuid':
+        if (patternX is FhirUuid) {
+          fields.add(patternX!);
+        }
+      case 'patternAddress':
+        if (patternX is Address) {
+          fields.add(patternX!);
+        }
+      case 'patternAge':
+        if (patternX is Age) {
+          fields.add(patternX!);
+        }
+      case 'patternAnnotation':
+        if (patternX is Annotation) {
+          fields.add(patternX!);
+        }
+      case 'patternAttachment':
+        if (patternX is Attachment) {
+          fields.add(patternX!);
+        }
+      case 'patternCodeableConcept':
+        if (patternX is CodeableConcept) {
+          fields.add(patternX!);
+        }
+      case 'patternCodeableReference':
+        if (patternX is CodeableReference) {
+          fields.add(patternX!);
+        }
+      case 'patternCoding':
+        if (patternX is Coding) {
+          fields.add(patternX!);
+        }
+      case 'patternContactPoint':
+        if (patternX is ContactPoint) {
+          fields.add(patternX!);
+        }
+      case 'patternCount':
+        if (patternX is Count) {
+          fields.add(patternX!);
+        }
+      case 'patternDistance':
+        if (patternX is Distance) {
+          fields.add(patternX!);
+        }
+      case 'patternDuration':
+        if (patternX is FhirDuration) {
+          fields.add(patternX!);
+        }
+      case 'patternHumanName':
+        if (patternX is HumanName) {
+          fields.add(patternX!);
+        }
+      case 'patternIdentifier':
+        if (patternX is Identifier) {
+          fields.add(patternX!);
+        }
+      case 'patternMoney':
+        if (patternX is Money) {
+          fields.add(patternX!);
+        }
+      case 'patternPeriod':
+        if (patternX is Period) {
+          fields.add(patternX!);
+        }
+      case 'patternQuantity':
+        if (patternX is Quantity) {
+          fields.add(patternX!);
+        }
+      case 'patternRange':
+        if (patternX is Range) {
+          fields.add(patternX!);
+        }
+      case 'patternRatio':
+        if (patternX is Ratio) {
+          fields.add(patternX!);
+        }
+      case 'patternRatioRange':
+        if (patternX is RatioRange) {
+          fields.add(patternX!);
+        }
+      case 'patternReference':
+        if (patternX is Reference) {
+          fields.add(patternX!);
+        }
+      case 'patternSampledData':
+        if (patternX is SampledData) {
+          fields.add(patternX!);
+        }
+      case 'patternSignature':
+        if (patternX is Signature) {
+          fields.add(patternX!);
+        }
+      case 'patternTiming':
+        if (patternX is Timing) {
+          fields.add(patternX!);
+        }
+      case 'patternContactDetail':
+        if (patternX is ContactDetail) {
+          fields.add(patternX!);
+        }
+      case 'patternContributor':
+        if (patternX is Contributor) {
+          fields.add(patternX!);
+        }
+      case 'patternDataRequirement':
+        if (patternX is DataRequirement) {
+          fields.add(patternX!);
+        }
+      case 'patternExpression':
+        if (patternX is FhirExpression) {
+          fields.add(patternX!);
+        }
+      case 'patternParameterDefinition':
+        if (patternX is ParameterDefinition) {
+          fields.add(patternX!);
+        }
+      case 'patternRelatedArtifact':
+        if (patternX is RelatedArtifact) {
+          fields.add(patternX!);
+        }
+      case 'patternTriggerDefinition':
+        if (patternX is TriggerDefinition) {
+          fields.add(patternX!);
+        }
+      case 'patternUsageContext':
+        if (patternX is UsageContext) {
+          fields.add(patternX!);
+        }
+      case 'patternDosage':
+        if (patternX is Dosage) {
+          fields.add(patternX!);
+        }
+      case 'example':
+        if (example != null) {
+          fields.addAll(example!);
+        }
+      case 'minValue':
+        fields.add(minValueX!);
+      case 'minValueX':
+        fields.add(minValueX!);
+      case 'minValueDate':
+        if (minValueX is FhirDate) {
+          fields.add(minValueX!);
+        }
+      case 'minValueDateTime':
+        if (minValueX is FhirDateTime) {
+          fields.add(minValueX!);
+        }
+      case 'minValueInstant':
+        if (minValueX is FhirInstant) {
+          fields.add(minValueX!);
+        }
+      case 'minValueTime':
+        if (minValueX is FhirTime) {
+          fields.add(minValueX!);
+        }
+      case 'minValueDecimal':
+        if (minValueX is FhirDecimal) {
+          fields.add(minValueX!);
+        }
+      case 'minValueInteger':
+        if (minValueX is FhirInteger) {
+          fields.add(minValueX!);
+        }
+      case 'minValuePositiveInt':
+        if (minValueX is FhirPositiveInt) {
+          fields.add(minValueX!);
+        }
+      case 'minValueUnsignedInt':
+        if (minValueX is FhirUnsignedInt) {
+          fields.add(minValueX!);
+        }
+      case 'minValueQuantity':
+        if (minValueX is Quantity) {
+          fields.add(minValueX!);
+        }
+      case 'maxValue':
+        fields.add(maxValueX!);
+      case 'maxValueX':
+        fields.add(maxValueX!);
+      case 'maxValueDate':
+        if (maxValueX is FhirDate) {
+          fields.add(maxValueX!);
+        }
+      case 'maxValueDateTime':
+        if (maxValueX is FhirDateTime) {
+          fields.add(maxValueX!);
+        }
+      case 'maxValueInstant':
+        if (maxValueX is FhirInstant) {
+          fields.add(maxValueX!);
+        }
+      case 'maxValueTime':
+        if (maxValueX is FhirTime) {
+          fields.add(maxValueX!);
+        }
+      case 'maxValueDecimal':
+        if (maxValueX is FhirDecimal) {
+          fields.add(maxValueX!);
+        }
+      case 'maxValueInteger':
+        if (maxValueX is FhirInteger) {
+          fields.add(maxValueX!);
+        }
+      case 'maxValuePositiveInt':
+        if (maxValueX is FhirPositiveInt) {
+          fields.add(maxValueX!);
+        }
+      case 'maxValueUnsignedInt':
+        if (maxValueX is FhirUnsignedInt) {
+          fields.add(maxValueX!);
+        }
+      case 'maxValueQuantity':
+        if (maxValueX is Quantity) {
+          fields.add(maxValueX!);
+        }
+      case 'maxLength':
+        if (maxLength != null) {
+          fields.add(maxLength!);
+        }
+      case 'condition':
+        if (condition != null) {
+          fields.addAll(condition!);
+        }
+      case 'constraint':
+        if (constraint != null) {
+          fields.addAll(constraint!);
+        }
+      case 'mustSupport':
+        if (mustSupport != null) {
+          fields.add(mustSupport!);
+        }
+      case 'isModifier':
+        if (isModifier != null) {
+          fields.add(isModifier!);
+        }
+      case 'isModifierReason':
+        if (isModifierReason != null) {
+          fields.add(isModifierReason!);
+        }
+      case 'isSummary':
+        if (isSummary != null) {
+          fields.add(isSummary!);
+        }
+      case 'binding':
+        if (binding != null) {
+          fields.add(binding!);
+        }
+      case 'mapping':
+        if (mapping != null) {
+          fields.addAll(mapping!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildByName(String name) {
+    final values = getChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   ElementDefinition clone() => copyWith();
 
@@ -1941,6 +2842,68 @@ class ElementDefinitionSlicing extends Element {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> listChildrenNames() {
+    return [
+      'id',
+      'extension',
+      'discriminator',
+      'description',
+      'ordered',
+      'rules',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> getChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'discriminator':
+        if (discriminator != null) {
+          fields.addAll(discriminator!);
+        }
+      case 'description':
+        if (description != null) {
+          fields.add(description!);
+        }
+      case 'ordered':
+        if (ordered != null) {
+          fields.add(ordered!);
+        }
+      case 'rules':
+        fields.add(rules);
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildByName(String name) {
+    final values = getChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   ElementDefinitionSlicing clone() => copyWith();
 
@@ -2180,6 +3143,56 @@ class ElementDefinitionDiscriminator extends Element {
       path,
     );
     return json;
+  }
+
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> listChildrenNames() {
+    return [
+      'id',
+      'extension',
+      'type',
+      'path',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> getChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'type':
+        fields.add(type);
+      case 'path':
+        fields.add(path);
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildByName(String name) {
+    final values = getChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
   }
 
   @override
@@ -2429,6 +3442,59 @@ class ElementDefinitionBase extends Element {
       max,
     );
     return json;
+  }
+
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> listChildrenNames() {
+    return [
+      'id',
+      'extension',
+      'path',
+      'min',
+      'max',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> getChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'path':
+        fields.add(path);
+      case 'min':
+        fields.add(min);
+      case 'max':
+        fields.add(max);
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildByName(String name) {
+    final values = getChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
   }
 
   @override
@@ -2721,6 +3787,73 @@ class ElementDefinitionType extends Element {
       versioning,
     );
     return json;
+  }
+
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> listChildrenNames() {
+    return [
+      'id',
+      'extension',
+      'code',
+      'profile',
+      'targetProfile',
+      'aggregation',
+      'versioning',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> getChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'code':
+        fields.add(code);
+      case 'profile':
+        if (profile != null) {
+          fields.addAll(profile!);
+        }
+      case 'targetProfile':
+        if (targetProfile != null) {
+          fields.addAll(targetProfile!);
+        }
+      case 'aggregation':
+        if (aggregation != null) {
+          fields.addAll(aggregation!);
+        }
+      case 'versioning':
+        if (versioning != null) {
+          fields.add(versioning!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildByName(String name) {
+    final values = getChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
   }
 
   @override
@@ -3175,6 +4308,262 @@ class ElementDefinitionExample extends Element {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> listChildrenNames() {
+    return [
+      'id',
+      'extension',
+      'label',
+      'valueX',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> getChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'label':
+        fields.add(label);
+      case 'value':
+        fields.add(valueX);
+      case 'valueX':
+        fields.add(valueX);
+      case 'valueBase64Binary':
+        if (valueX is FhirBase64Binary) {
+          fields.add(valueX);
+        }
+      case 'valueBoolean':
+        if (valueX is FhirBoolean) {
+          fields.add(valueX);
+        }
+      case 'valueCanonical':
+        if (valueX is FhirCanonical) {
+          fields.add(valueX);
+        }
+      case 'valueCode':
+        if (valueX is FhirCode) {
+          fields.add(valueX);
+        }
+      case 'valueDate':
+        if (valueX is FhirDate) {
+          fields.add(valueX);
+        }
+      case 'valueDateTime':
+        if (valueX is FhirDateTime) {
+          fields.add(valueX);
+        }
+      case 'valueDecimal':
+        if (valueX is FhirDecimal) {
+          fields.add(valueX);
+        }
+      case 'valueId':
+        if (valueX is FhirId) {
+          fields.add(valueX);
+        }
+      case 'valueInstant':
+        if (valueX is FhirInstant) {
+          fields.add(valueX);
+        }
+      case 'valueInteger':
+        if (valueX is FhirInteger) {
+          fields.add(valueX);
+        }
+      case 'valueMarkdown':
+        if (valueX is FhirMarkdown) {
+          fields.add(valueX);
+        }
+      case 'valueOid':
+        if (valueX is FhirOid) {
+          fields.add(valueX);
+        }
+      case 'valuePositiveInt':
+        if (valueX is FhirPositiveInt) {
+          fields.add(valueX);
+        }
+      case 'valueString':
+        if (valueX is FhirString) {
+          fields.add(valueX);
+        }
+      case 'valueTime':
+        if (valueX is FhirTime) {
+          fields.add(valueX);
+        }
+      case 'valueUnsignedInt':
+        if (valueX is FhirUnsignedInt) {
+          fields.add(valueX);
+        }
+      case 'valueUri':
+        if (valueX is FhirUri) {
+          fields.add(valueX);
+        }
+      case 'valueUrl':
+        if (valueX is FhirUrl) {
+          fields.add(valueX);
+        }
+      case 'valueUuid':
+        if (valueX is FhirUuid) {
+          fields.add(valueX);
+        }
+      case 'valueAddress':
+        if (valueX is Address) {
+          fields.add(valueX);
+        }
+      case 'valueAge':
+        if (valueX is Age) {
+          fields.add(valueX);
+        }
+      case 'valueAnnotation':
+        if (valueX is Annotation) {
+          fields.add(valueX);
+        }
+      case 'valueAttachment':
+        if (valueX is Attachment) {
+          fields.add(valueX);
+        }
+      case 'valueCodeableConcept':
+        if (valueX is CodeableConcept) {
+          fields.add(valueX);
+        }
+      case 'valueCodeableReference':
+        if (valueX is CodeableReference) {
+          fields.add(valueX);
+        }
+      case 'valueCoding':
+        if (valueX is Coding) {
+          fields.add(valueX);
+        }
+      case 'valueContactPoint':
+        if (valueX is ContactPoint) {
+          fields.add(valueX);
+        }
+      case 'valueCount':
+        if (valueX is Count) {
+          fields.add(valueX);
+        }
+      case 'valueDistance':
+        if (valueX is Distance) {
+          fields.add(valueX);
+        }
+      case 'valueDuration':
+        if (valueX is FhirDuration) {
+          fields.add(valueX);
+        }
+      case 'valueHumanName':
+        if (valueX is HumanName) {
+          fields.add(valueX);
+        }
+      case 'valueIdentifier':
+        if (valueX is Identifier) {
+          fields.add(valueX);
+        }
+      case 'valueMoney':
+        if (valueX is Money) {
+          fields.add(valueX);
+        }
+      case 'valuePeriod':
+        if (valueX is Period) {
+          fields.add(valueX);
+        }
+      case 'valueQuantity':
+        if (valueX is Quantity) {
+          fields.add(valueX);
+        }
+      case 'valueRange':
+        if (valueX is Range) {
+          fields.add(valueX);
+        }
+      case 'valueRatio':
+        if (valueX is Ratio) {
+          fields.add(valueX);
+        }
+      case 'valueRatioRange':
+        if (valueX is RatioRange) {
+          fields.add(valueX);
+        }
+      case 'valueReference':
+        if (valueX is Reference) {
+          fields.add(valueX);
+        }
+      case 'valueSampledData':
+        if (valueX is SampledData) {
+          fields.add(valueX);
+        }
+      case 'valueSignature':
+        if (valueX is Signature) {
+          fields.add(valueX);
+        }
+      case 'valueTiming':
+        if (valueX is Timing) {
+          fields.add(valueX);
+        }
+      case 'valueContactDetail':
+        if (valueX is ContactDetail) {
+          fields.add(valueX);
+        }
+      case 'valueContributor':
+        if (valueX is Contributor) {
+          fields.add(valueX);
+        }
+      case 'valueDataRequirement':
+        if (valueX is DataRequirement) {
+          fields.add(valueX);
+        }
+      case 'valueExpression':
+        if (valueX is FhirExpression) {
+          fields.add(valueX);
+        }
+      case 'valueParameterDefinition':
+        if (valueX is ParameterDefinition) {
+          fields.add(valueX);
+        }
+      case 'valueRelatedArtifact':
+        if (valueX is RelatedArtifact) {
+          fields.add(valueX);
+        }
+      case 'valueTriggerDefinition':
+        if (valueX is TriggerDefinition) {
+          fields.add(valueX);
+        }
+      case 'valueUsageContext':
+        if (valueX is UsageContext) {
+          fields.add(valueX);
+        }
+      case 'valueDosage':
+        if (valueX is Dosage) {
+          fields.add(valueX);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildByName(String name) {
+    final values = getChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   ElementDefinitionExample clone() => copyWith();
 
@@ -3476,6 +4865,79 @@ class ElementDefinitionConstraint extends Element {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> listChildrenNames() {
+    return [
+      'id',
+      'extension',
+      'key',
+      'requirements',
+      'severity',
+      'human',
+      'expression',
+      'xpath',
+      'source',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> getChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'key':
+        fields.add(key);
+      case 'requirements':
+        if (requirements != null) {
+          fields.add(requirements!);
+        }
+      case 'severity':
+        fields.add(severity);
+      case 'human':
+        fields.add(human);
+      case 'expression':
+        if (expression != null) {
+          fields.add(expression!);
+        }
+      case 'xpath':
+        if (xpath != null) {
+          fields.add(xpath!);
+        }
+      case 'source':
+        if (source != null) {
+          fields.add(source!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildByName(String name) {
+    final values = getChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   ElementDefinitionConstraint clone() => copyWith();
 
@@ -3748,6 +5210,63 @@ class ElementDefinitionBinding extends Element {
     return json;
   }
 
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> listChildrenNames() {
+    return [
+      'id',
+      'extension',
+      'strength',
+      'description',
+      'valueSet',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> getChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'strength':
+        fields.add(strength);
+      case 'description':
+        if (description != null) {
+          fields.add(description!);
+        }
+      case 'valueSet':
+        if (valueSet != null) {
+          fields.add(valueSet!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildByName(String name) {
+    final values = getChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
+  }
+
   @override
   ElementDefinitionBinding clone() => copyWith();
 
@@ -4005,6 +5524,66 @@ class ElementDefinitionMapping extends Element {
       comment,
     );
     return json;
+  }
+
+  /// Lists the JSON keys for the object.
+  @override
+  List<String> listChildrenNames() {
+    return [
+      'id',
+      'extension',
+      'identity',
+      'language',
+      'map',
+      'comment',
+    ];
+  }
+
+  /// Retrieves all matching child fields by name.
+  ///Optionally validates the name.
+  @override
+  List<FhirBase> getChildrenByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    final fields = <FhirBase>[];
+    switch (fieldName) {
+      case 'id':
+        if (id != null) {
+          fields.add(id!);
+        }
+      case 'extension':
+        if (extension_ != null) {
+          fields.addAll(extension_!);
+        }
+      case 'identity':
+        fields.add(identity);
+      case 'language':
+        if (language != null) {
+          fields.add(language!);
+        }
+      case 'map':
+        fields.add(map);
+      case 'comment':
+        if (comment != null) {
+          fields.add(comment!);
+        }
+      default:
+        if (checkValid) {
+          throw ArgumentError('Invalid name: $fieldName');
+        }
+    }
+    return fields;
+  }
+
+  /// Retrieves a single field value by its name.
+  @override
+  FhirBase? getChildByName(String name) {
+    final values = getChildrenByName(name);
+    if (values.length > 1) {
+      throw StateError('Too many values for $name found');
+    }
+    return values.isNotEmpty ? values.first : null;
   }
 
   @override

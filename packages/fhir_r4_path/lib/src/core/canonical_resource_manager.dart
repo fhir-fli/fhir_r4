@@ -205,7 +205,7 @@ class CanonicalResourceManager extends ResourceCache {
   List<String> getNames() {
     final names = <String>{};
     for (final resource in _list) {
-      final name = resource.getResource().getChildByName('name');
+      final name = resource.getResource().getChildrenByName('name').first;
       if (name is FhirString && name.valueString != null) {
         names.add(name.valueString!);
       }

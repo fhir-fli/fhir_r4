@@ -47,7 +47,9 @@ class _$RelatedArtifactCopyWithImpl<T> implements $RelatedArtifactCopyWith<T> {
         extension_: identical(extension_, fhirSentinel)
             ? _value.extension_
             : extension_ as List<FhirExtension>?,
-        type: type as RelatedArtifactType? ?? _value.type,
+        type: identical(type, fhirSentinel)
+            ? _value.type
+            : (type as RelatedArtifactType?) ?? _value.type,
         label: identical(label, fhirSentinel)
             ? _value.label
             : label as FhirString?,

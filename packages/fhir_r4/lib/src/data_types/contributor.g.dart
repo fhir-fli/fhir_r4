@@ -39,8 +39,12 @@ class _$ContributorCopyWithImpl<T> implements $ContributorCopyWith<T> {
         extension_: identical(extension_, fhirSentinel)
             ? _value.extension_
             : extension_ as List<FhirExtension>?,
-        type: type as ContributorType? ?? _value.type,
-        name: name as FhirString? ?? _value.name,
+        type: identical(type, fhirSentinel)
+            ? _value.type
+            : (type as ContributorType?) ?? _value.type,
+        name: identical(name, fhirSentinel)
+            ? _value.name
+            : (name as FhirString?) ?? _value.name,
         contact: identical(contact, fhirSentinel)
             ? _value.contact
             : contact as List<ContactDetail>?,

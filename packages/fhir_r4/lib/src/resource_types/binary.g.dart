@@ -47,7 +47,9 @@ class _$BinaryCopyWithImpl<T> implements $BinaryCopyWith<T> {
         language: identical(language, fhirSentinel)
             ? _value.language
             : language as CommonLanguages?,
-        contentType: contentType as FhirCode? ?? _value.contentType,
+        contentType: identical(contentType, fhirSentinel)
+            ? _value.contentType
+            : (contentType as FhirCode?) ?? _value.contentType,
         securityContext: identical(securityContext, fhirSentinel)
             ? _value.securityContext
             : securityContext as Reference?,
