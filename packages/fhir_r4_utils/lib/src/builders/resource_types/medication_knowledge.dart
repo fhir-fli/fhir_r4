@@ -1878,7 +1878,7 @@ class MedicationKnowledgeRelatedMedicationKnowledgeBuilder
     final dynamic json = jsonDecode(source);
     if (json is Map<String, dynamic>) {
       return MedicationKnowledgeRelatedMedicationKnowledgeBuilder.fromJson(
-          json);
+          json,);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, dynamic>.');

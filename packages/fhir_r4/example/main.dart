@@ -70,7 +70,7 @@ void main() {
   }
 
 // Using predefined values
-  final status = AccountStatus.active;
+  const status = AccountStatus.active;
 
 // Accessing metadata
   final displayText = status.display?.valueString; // 'in-progress'

@@ -1,5 +1,11 @@
 # fhir_r4
 
+## [0.4.0]
+
+* Sigh, immediately decided to change some things
+* copyWith now accepts a null value to clear a field
+* removed clear, empty, setChildByName, typeByElement, createProperty
+
 ## [0.3.1]
 
 * forgot to add example
