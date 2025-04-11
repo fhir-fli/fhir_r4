@@ -1054,6 +1054,7 @@ class FHIRPathEngine {
     // This will hold the evaluated results for the current node
     var work = <FhirBase>[];
 
+    
     // Main switch to evaluate this node based on its kind
     switch (exp.kind) {
       case ExpressionNodeKind.unary:
@@ -1075,8 +1076,8 @@ class FHIRPathEngine {
                 negValues.add(
                   val.copyWith(
                     value: val.value == null
-                        ? (val.value! * -1)! as FhirDecimal
-                        : null,
+                        ? null
+                        : (val.value! * -1)! as FhirDecimal,
                   ),
                 );
               } else {
@@ -1127,7 +1128,6 @@ class FHIRPathEngine {
         // Evaluate a literal constant
         final constants =
             resolveConstantWithBase(context, exp.constant, false, exp, true);
-        print('Constants: $constants');
 
         work.addAll(constants);
 
@@ -1203,6 +1203,7 @@ class FHIRPathEngine {
     ExpressionNode exp, {
     required bool atEntry,
   }) async {
+    
     final result = <FhirBase>[];
     // Step 1: Resolve constants if at entry
     if (atEntry && context.appInfo != null && hostServices != null) {
@@ -1255,6 +1256,7 @@ class FHIRPathEngine {
       // Step 3: Default case - Get children by name
       getChildrenByName(item, exp.name!, result);
     }
+
     // Step 4: Fallback to resolve constants if result is empty
     if (atEntry &&
         context.appInfo != null &&
@@ -1265,7 +1267,6 @@ class FHIRPathEngine {
             .resolveConstant(this, context.appInfo, exp.name, false, false),
       );
     }
-
     return result;
   }
 
@@ -6565,6 +6566,8 @@ class FHIRPathEngine {
 
     final base = focus[0];
     final result = <FhirBase>[];
+
+    
 
     if (base is FhirNumber && base.valueNum != null) {
       if (base is FhirDecimal) {

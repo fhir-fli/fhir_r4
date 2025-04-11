@@ -1,6 +1,6 @@
 name: fhir_r4_db
 description: Lightweight FHIR Db written in Hive so it can run on all platforms.
-version: 0.3.0
+version: 0.4.0
 homepage: https://www.fhirfli.dev/
 repository: https://github.com/fhir-fli/fhir_r4
 
@@ -19,7 +19,7 @@ environment:
 dependencies:
   collection: ^1.19.0
   crypto: ^3.0.6
-  fhir_r4: ^0.3.0
+  fhir_r4: ^0.4.0
   hive_ce: ^2.10.1
   rxdart: ^0.28.0
 

@@ -165,6 +165,17 @@ abstract class PrimitiveType extends DataType {
     }
     return [...extension_!, ...elementExtensions];
   }
+
+  @override
+  List<FhirBase> getChildrenByName(String name, [bool checkValid = false]) {
+    print('getChildrenByName: $name');
+    if (name == 'id') {
+      return [id!];
+    } else if (name == 'extension') {
+      return allExtensions ?? <FhirExtension>[];
+    }
+    return <FhirBase>[];
+  }
 }
 
 /// The public interface for copyWith for Element.

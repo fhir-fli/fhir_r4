@@ -1,5 +1,9 @@
 # fhir_r4_bulk
 
+## [0.4.0]
+
+* just update to use the most recent fhir_r4 package
+
 ## [0.3.0]
 
 * More robust now, includes import and export, continues to allow compression

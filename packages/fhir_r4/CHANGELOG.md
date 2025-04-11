@@ -1,5 +1,9 @@
 # fhir_r4
 
+## [0.4.1]
+
+* added back getChildrenByType to PrimitiveType
+
 ## [0.4.0]
 
 * Sigh, immediately decided to change some things

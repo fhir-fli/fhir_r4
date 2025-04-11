@@ -1580,23 +1580,23 @@ Future<void> testArgFxns() async {
 
   group('extensions', () {
     test('extensionOnPolymorphic', () async {
-      await expectLater(
-        walkFhirPath(
+      expect(
+        await walkFhirPath(
           context: questionnaireResponse3,
           pathExpression: '%context.repeat(item).answer.value.extension.'
               'where(url=%`ext-ordinalValue`).value',
         ),
-        completion(equals([4.toFhirDecimal, 5.toFhirDecimal, 4.toFhirDecimal])),
+        [4.toFhirDecimal, 5.toFhirDecimal, 4.toFhirDecimal],
       );
     });
     test('extensionOnPrimitive', () async {
-      await expectLater(
-        walkFhirPath(
+      expect(
+        await walkFhirPath(
           context: patient1,
           pathExpression: 'Patient.contact.name.family.extension'
               '(%`ext-humanname-own-prefix`).value',
         ),
-        completion(equals(['VV'.toFhirString])),
+        ['VV'.toFhirString],
       );
     });
   });
