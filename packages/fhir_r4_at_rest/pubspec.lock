@@ -77,10 +77,10 @@ packages:
     dependency: "direct main"
     description:
       name: fhir_r4
-      sha256: c9db8a54625d4411055c50156e67621566ffbc7bf4a39d3a0023f5d95be34bd7
+      sha256: ad8de271aa7e7dc21e040b3ba1c34647382e4215b1fbef5ee7051cd6c057fe77
       url: "https://pub.dev"
     source: hosted
-    version: "0.3.0"
+    version: "0.4.0"
   file:
     dependency: transitive
     description:

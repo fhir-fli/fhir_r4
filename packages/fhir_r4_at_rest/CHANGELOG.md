@@ -1,5 +1,9 @@
 # fhir_r4_at_rest
 
+## [0.4.0]
+
+* just update to use the most recent fhir_r4 package
+
 ## [0.3.0]
 
 * Hopefully ready for the real world.
