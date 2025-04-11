@@ -1,5 +1,11 @@
 # fhir_r4_path
 
+## [0.4.0]
+
+* just update to use the most recent fhir_r4 package
+* also changed to universal_io so no issues using with web
+* added example
+
 ## [0.3.0]
 
 * Most of the details are here https://fhir-fli.github.io/fhir_fli_documentation/docs

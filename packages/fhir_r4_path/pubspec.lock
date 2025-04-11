@@ -76,9 +76,10 @@ packages:
   fhir_r4:
     dependency: "direct main"
     description:
-      path: "../fhir_r4"
-      relative: true
-    source: path
+      name: fhir_r4
+      sha256: ad8de271aa7e7dc21e040b3ba1c34647382e4215b1fbef5ee7051cd6c057fe77
+      url: "https://pub.dev"
+    source: hosted
     version: "0.4.0"
   file:
     dependency: transitive
@@ -368,6 +369,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.6.0"
+  universal_io:
+    dependency: "direct main"
+    description:
+      name: universal_io
+      sha256: "1722b2dcc462b4b2f3ee7d188dad008b6eb4c40bbd03a3de451d82c78bba9aad"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.2.2"
   uuid:
     dependency: transitive
     description:
