@@ -283,7 +283,7 @@ void main() {
         entry: [
           BundleEntry(
             request: BundleRequest(
-              method: HTTPVerb.DELETE,
+              method: HTTPVerb.dELETE,
               url: FhirUri('Patient/123'),
             ),
           ),
