@@ -21,6 +21,7 @@ dependencies:
   fhir_r4: ^0.4.0
   http: ^1.3.0
   ucum: ^0.6.0
+  universal_io: ^2.2.2
 
 dev_dependencies:
   test: ^1.25.15

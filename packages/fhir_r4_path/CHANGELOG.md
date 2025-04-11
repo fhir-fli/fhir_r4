@@ -3,6 +3,8 @@
 ## [0.4.0]
 
 * just update to use the most recent fhir_r4 package
+* also changed to universal_io so no issues using with web
+* added example
 
 ## [0.3.0]
 
